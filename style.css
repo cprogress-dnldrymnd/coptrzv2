@@ -15106,8 +15106,12 @@ tspan {
   #header .top-header .search-form > * {
     height: 54px;
     border-radius: 0; }
+  #header .top-header .search-form select {
+    width: 40%; }
   #header .top-header .search-form button {
-    background-color: var(--accent-color); }
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    width: 54px; }
 #header .bottom-header {
   border-bottom: 1px solid var(--body-color); }
   #header .bottom-header .navigation-holder ul .navbar-nav {

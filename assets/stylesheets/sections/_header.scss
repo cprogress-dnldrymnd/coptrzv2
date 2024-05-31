@@ -13,8 +13,13 @@
 				height: 54px;
 				border-radius: 0;
 			}
+			select {
+				width: 40%;
+			}
 			button {
 				background-color: var(--accent-color);
+				color: var(--white-color);
+				width: 54px;
 			}
 		}
 	}
