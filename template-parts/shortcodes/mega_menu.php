@@ -23,6 +23,15 @@ if ($menu_items) {
                     <a class="mega-menu-link text-uppercase fw-semibold d-inline-block <?= $submenu ? 'has-submenu' : '' ?>" href="<?= $link ?>">
                         <?= $menu_text ?>
                     </a>
+                    <?php foreach ($submenu as $menu) { ?>
+
+                        <pre>
+                        <?php
+                        var_dump($menu);
+                        ?>
+                        </pre>
+
+                    <?php } ?>
                 </div>
             <?php } ?>
         </div>
