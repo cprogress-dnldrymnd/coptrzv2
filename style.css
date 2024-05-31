@@ -14746,13 +14746,13 @@ a.fancybox-gallery-img {
   margin-bottom: 1rem; }
 
 .fw-medium {
-  font-weight: 500; }
+  font-weight: 500 !important; }
 
 .fw-extrabold {
-  font-weight: 800; }
+  font-weight: 800 !important; }
 
 .fw-semibold {
-  font-weight: 600; }
+  font-weight: 600 !important; }
 
 .fw-medium h1,
 .fw-medium h2,
@@ -15119,7 +15119,7 @@ tspan {
     width: 54px; }
 #header .bottom-header {
   border-bottom: 1px solid var(--body-color); }
-  #header .bottom-header ul .menu-item .nav-item {
+  #header .bottom-header ul .menu-item .nav-link {
     color: var(--black-color);
     font-size: 15px;
     height: 80px; }
