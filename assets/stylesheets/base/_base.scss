@@ -3298,6 +3298,7 @@ a.fancybox-gallery-img {
 
 
 .modal {
+    z-index: 999999;
     &.popup-form {
         .modal-dialog {
             max-width: 800px;
