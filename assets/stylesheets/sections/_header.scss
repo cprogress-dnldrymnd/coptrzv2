@@ -50,6 +50,17 @@
 				font-size: 15px;
 				padding-top: 30px;
 				padding-bottom: 30px;
+				&.has-submenu {
+					&:after {
+						content: "";
+						width: 10px;
+						height: 10px;
+						border-left: 2px solid;
+						border-top: 2px solid;
+						@include transform(rotate(225deg) translateY(5px));
+						display: inline-block;
+					}
+				}
 			}
 		}
 	}
