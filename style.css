@@ -14938,6 +14938,15 @@ tspan {
       -o-transform: rotate(225deg) translateY(5px);
       transform: rotate(225deg) translateY(5px);
       display: inline-block; }
+  #header .bottom-header .mega-menu .menu-holder:hover .submenu-holder, #header .bottom-header .mega-menu .menu-holder:active .submenu-holder, #header .bottom-header .mega-menu .menu-holder:focus .submenu-holder {
+    display: block; }
+  #header .bottom-header .mega-menu .submenu-holder {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: var(--white-color);
+    z-index: 99999;
+    display: none; }
 
 /* Basic Dropdown Styling */
 .cart-dropdown {

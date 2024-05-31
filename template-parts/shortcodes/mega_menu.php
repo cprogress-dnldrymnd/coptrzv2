@@ -20,26 +20,28 @@ if ($menu_items) {
 
                 ?>
                 <div class="col-auto">
-                    <a class="mega-menu-link text-uppercase fw-semibold d-inline-block <?= $submenu ? 'has-submenu' : '' ?>" href="<?= $link ?>">
-                        <?= $menu_text ?>
-                    </a>
-                    <?php if ($submenu) { ?>
-                        <div class="submenu-holder">
-                            <div class="container">
-                                <?php foreach ($submenu as $menu) { ?>
-                                    <?php
-                                    $type = $menu['_type'];
-                                    ?>
+                    <div class="menu-holder">
+                        <a class="mega-menu-link text-uppercase fw-semibold d-inline-block <?= $submenu ? 'has-submenu' : '' ?>" href="<?= $link ?>">
+                            <?= $menu_text ?>
+                        </a>
+                        <?php if ($submenu) { ?>
+                            <div class="submenu-holder">
+                                <div class="container">
+                                    <?php foreach ($submenu as $menu) { ?>
+                                        <?php
+                                        $type = $menu['_type'];
+                                        ?>
 
-                                    <?php
-                                    if ($type == 'menu_items') {
-                                        echo '<h4>' . $menu['menu_text'] . '</h4>';
-                                        echo do_shortcode('[menu id=' . $menu['menu'] . ']');
-                                    }
-                                    ?>
+                                        <?php
+                                        if ($type == 'menu_items') {
+                                            echo '<h4>' . $menu['menu_text'] . '</h4>';
+                                            echo do_shortcode('[menu id=' . $menu['menu'] . ']');
+                                        }
+                                        ?>
+                                </div>
                             </div>
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
+                    </div>
                 <?php } ?>
                 </div>
             <?php } ?>

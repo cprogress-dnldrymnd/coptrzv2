@@ -62,8 +62,20 @@
 					}
 				}
 			}
+			.menu-holder {
+				@include on-event {
+					.submenu-holder {
+						display: block;
+					}
+				}
+			}
 			.submenu-holder {
-				
+				position: absolute;
+				left: 0;
+				right: 0;
+				background-color: var(--white-color);
+				z-index: 99999;
+				display: none;
 			}
 		}
 	}
