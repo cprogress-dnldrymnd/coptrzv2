@@ -23,19 +23,22 @@ if ($menu_items) {
                     <a class="mega-menu-link text-uppercase fw-semibold d-inline-block <?= $submenu ? 'has-submenu' : '' ?>" href="<?= $link ?>">
                         <?= $menu_text ?>
                     </a>
-                    <?php foreach ($submenu as $menu) { ?>
-                        <?php
-                        $type = $menu['_type'];
-                        ?>
+                    <?php if ($submenu) { ?>
+                        <div class="submenu-holder">
+                            <?php foreach ($submenu as $menu) { ?>
+                                <?php
+                                $type = $menu['_type'];
+                                ?>
 
-                        <?php
-                        if ($type == 'menu_items') {
-                            echo '<h4>'.$menu['menu_text'].'</h4>';
-                            echo do_shortcode('[menu id=' . $menu['menu'] . ']');
-                        }
-                        ?>
-
+                                <?php
+                                if ($type == 'menu_items') {
+                                    echo '<h4>' . $menu['menu_text'] . '</h4>';
+                                    echo do_shortcode('[menu id=' . $menu['menu'] . ']');
+                                }
+                                ?>
+                        </div>
                     <?php } ?>
+                <?php } ?>
                 </div>
             <?php } ?>
         </div>
