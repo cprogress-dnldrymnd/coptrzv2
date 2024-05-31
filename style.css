@@ -14641,6 +14641,12 @@ a.fancybox-gallery-img {
 @media (min-width: 1700px) {
   .container:not(.medium-container) {
     max-width: 1660px; } }
+@media (min-width: 1800px) {
+  .container:not(.medium-container) {
+    max-width: 1760px; } }
+@media (min-width: 1900) {
+  .container:not(.medium-container) {
+    max-width: 1820px; } }
 @media (min-width: 576px) {
   .container.extend-right, .container.extend-left {
     max-width: calc(540px + (50% - (540px / 2)) + var(--bs-gutter-x, 0.75rem)); } }
