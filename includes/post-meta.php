@@ -775,7 +775,23 @@ Container::make('post_meta', 'Modules')
 							),
 						Field::make('complex', 'submenu', __('Submenu'))
 							->add_fields('menu_items', array(
-								Field::make('text', 'menu_text'),
+								Field::make('select', 'width', __('Width'))
+									->set_options(
+										array(
+											'col-12' => '100%',
+											'col-lg-11'  => '91.67%',
+											'col-lg-10'  => '83.33%',
+											'col-lg-9'  => '75%',
+											'col-lg-7'  => '58.33%',
+											'col-lg-6'  => '50%',
+											'col-lg-5'  => '67%',
+											'col-lg-4'  => '33.33%',
+											'col-lg-3'  => '25%%',
+											'col-lg-2'  => '16.67%',
+											'col-lg-1'  => '8.33%',
+										)
+									),
+								Field::make('text', 'menu_text', __('Menu Text')),
 								Field::make('select', 'menu', __('Menu'))
 									->set_options(get_menu_list_array())
 							))
