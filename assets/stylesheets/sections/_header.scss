@@ -3,3 +3,11 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+
+#header {
+	.top-header {
+	}
+	.bottom-header {
+		border-bottom: 1px solid var(--body-color);
+	}
+}
