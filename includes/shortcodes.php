@@ -1142,8 +1142,13 @@ class Shortcodes
 	?>
 		<div class="cart-dropdown">
 			<a class="cart-icon" href="<?php echo wc_get_cart_url(); ?>">
-				<?= $SVG->cart() ?>
-				<span class="cart-contents-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+				<div class="d-inline-flex align-items-center">
+					<span class="cart-subtotal"><?php echo WC()->cart->get_cart_subtotal(); ?></span>
+					<span>
+						<?= $SVG->cart() ?>
+						<span class="cart-contents-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+					</span>
+				</div>
 			</a>
 			<div class="cart-dropdown-content">
 				<?php woocommerce_mini_cart(); ?>
