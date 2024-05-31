@@ -1140,7 +1140,7 @@ class Shortcodes
 	{
 		$SVG = new SVG;
 	?>
-		<div class="cart-dropdown">
+		<div class="cart-dropdown me-4">
 			<a class="cart-icon" href="<?php echo wc_get_cart_url(); ?>">
 				<div class="d-inline-flex align-items-center">
 					<span class="cart-subtotal"><?php echo WC()->cart->get_cart_subtotal(); ?></span>
