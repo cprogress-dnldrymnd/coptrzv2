@@ -414,3 +414,13 @@ $Guide_Category->args = array(
         'slug'         => 'guide-category',
     )
 );
+
+$Slides = new newPostType();
+$Testimonials->name = 'Slides';
+$Testimonials->singular_name = 'Slide';
+$Testimonials->icon = 'dashicons-testimonial';
+$Testimonials->supports = array('title', 'revisions');
+$Testimonials->exclude_from_search = true;
+$Testimonials->publicly_queryable = false;
+$Testimonials->show_in_admin_bar = false;
+$Testimonials->has_archive = false;
