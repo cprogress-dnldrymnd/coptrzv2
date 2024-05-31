@@ -13869,7 +13869,8 @@ a.fancybox-gallery-img {
   .modal.popup-form .modal-dialog {
     max-width: 800px; }
   .modal.popup-form .modal-content {
-    border-radius: 0; }
+    border-radius: 0;
+    border: none; }
   .modal.popup-form .form-holder .form-inner input {
     max-width: 100%; }
   .modal.popup-form .bg-image img {
