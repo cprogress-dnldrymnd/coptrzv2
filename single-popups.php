@@ -1,5 +1,10 @@
 <?php get_header() ?>
 <?php while (have_posts()) : the_post(); ?>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch Popup
+    </button>
     <!-- Modal -->
     <div class="modal fade modal-v2" id="modalSearch" tabindex="-1" aria-labelledby="modalSearchLabel" aria-hidden="true">
         <div class="modal-dialog">
