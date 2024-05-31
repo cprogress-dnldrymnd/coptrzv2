@@ -47,7 +47,7 @@ $SVG = new SVG;
                 </div>
                 <div class="col-3">
                     <div class="button-box button-accent text-end">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-268179">
                             GET STARTED
                         </button>
                     </div>
