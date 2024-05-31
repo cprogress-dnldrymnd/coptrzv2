@@ -6,6 +6,16 @@
 
 #header {
 	.top-header {
+		.search-form {
+			border: 1px solid var(--border-color);
+			> * {
+				height: 54px;
+				border-radius: 0;
+			}
+			button {
+				background-color: var(--accent-color);
+			}
+		}
 	}
 	.bottom-header {
 		border-bottom: 1px solid var(--body-color);

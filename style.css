@@ -14644,7 +14644,7 @@ a.fancybox-gallery-img {
 @media (min-width: 1800px) {
   .container:not(.medium-container) {
     max-width: 1760px; } }
-@media (min-width: 1900) {
+@media (min-width: 1900px) {
   .container:not(.medium-container) {
     max-width: 1820px; } }
 @media (min-width: 576px) {
@@ -15100,6 +15100,13 @@ tspan {
   padding-top: 10px;
   padding-bottom: 10px; }
 
+#header .top-header .search-form {
+  border: 1px solid var(--border-color); }
+  #header .top-header .search-form > * {
+    height: 54px;
+    border-radius: 0; }
+  #header .top-header .search-form button {
+    background-color: var(--accent-color); }
 #header .bottom-header {
   border-bottom: 1px solid var(--body-color); }
   #header .bottom-header .navigation-holder ul .navbar-nav {

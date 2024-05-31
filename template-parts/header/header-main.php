@@ -24,9 +24,9 @@ $SVG = new SVG;
                         </a>
                     </div>
                 </div>
-                <div class="col-auto">
+                <div class="col">
                     <div class="column-holder">
-                        <div class="search-form">
+                        <div class="search-form d-flex">
                             <select name="eael-adv-search-cate-list">
                                 <option value="">All Categories</option>
                                 <option value="30">Accessories &amp; Parts</option>
@@ -44,6 +44,7 @@ $SVG = new SVG;
                         </div>
                     </div>
                 </div>
+                <div class="col-auto"></div>
             </div>
         </div>
     </div>
