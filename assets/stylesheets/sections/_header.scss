@@ -30,7 +30,6 @@
 			}
 		}
 		.column-right {
-			
 		}
 	}
 	.bottom-header {
@@ -48,22 +47,22 @@
 	}
 }
 
-
 /* Basic Dropdown Styling */
 .cart-dropdown {
-    position: relative;
-    display: inline-block;
-}
+	position: relative;
+	display: inline-block;
+	.cart-dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f9f9f9;
+		min-width: 250px;
+		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		z-index: 1;
+	}
 
-.cart-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 250px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.cart-dropdown:hover .cart-dropdown-content {
-    display: block;
+	@include on-event {
+		.cart-dropdown-content {
+			display: block;
+		}
+	}
 }
