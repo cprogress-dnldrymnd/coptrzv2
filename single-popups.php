@@ -16,8 +16,10 @@
                                 <?php the_content() ?>
                             </div>
                         </div>
-                        <div class="col-lg-6 bg-image position-relative">
-                            <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'large') ?>" alt="">
+                        <div class="col-lg-6 bg-image">
+                            <div class="position-relative h-100">
+                                <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'large') ?>" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
