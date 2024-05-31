@@ -43,7 +43,7 @@ $SVG = new SVG;
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="button-box button-accent">
+                    <div class="button-box button-accent text-end">
                         <a href="#">GET STARTED</a>
                     </div>
                 </div>
