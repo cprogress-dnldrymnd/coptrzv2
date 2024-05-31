@@ -4,7 +4,98 @@ Author: Donald Raymundo
 Description: Bespoke Theme
 Version: 1.1
 License: GNU General Public License
+*/
+.elementor-button-link, .eael-infobox-button {
+  border-radius: 50px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.8px !important;
+  padding: 1rem 2rem !important;
+  line-height: 1 !important;
+  font-size: 1rem !important; }
 
+@keyframes rotate_left {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg); }
+  100% {
+    transform: rotate(-360deg) translateX(100px) rotate(360deg); } }
+@keyframes rotate_right {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg); }
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg); } }
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(45, 161, 255, 0.7); }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(45, 161, 255, 0); }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(45, 161, 255, 0); } }
+@keyframes spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+:root {
+  --primary-font: Poppins, sans-serif;
+  --primary-color: #000000;
+  --secondary-color: #1C1C1E;
+  --accent-color: #2DA1FF;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --text-color: #A0A1A8;
+  --light-blue: #0093CC14;
+  --gray-color: #707070;
+  --dark-gray-color: #4B4B4B;
+  --light-color: #CFD0D8;
+  --body-color: #F7F7FA;
+  --light-gray: #F2F2F2;
+  --border-color: #E7E7E7; }
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-Light.eot");
+  src: url("./assets/fonts/poppins/Poppins-Light.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-Light.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-Light.woff") format("woff"), url("./assets/fonts/poppins/Poppins-Light.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-Light.svg#Poppins-Light") format("svg");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap; }
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-Regular.eot");
+  src: url("./assets/fonts/poppins/Poppins-Regular.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-Regular.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-Regular.woff") format("woff"), url("./assets/fonts/poppins/Poppins-Regular.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-Regular.svg#Poppins-Regular") format("svg");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; }
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-Medium.eot");
+  src: url("./assets/fonts/poppins/Poppins-Medium.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-Medium.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-Medium.woff") format("woff"), url("./assets/fonts/poppins/Poppins-Medium.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-Medium.svg#Poppins-Medium") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap; }
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-SemiBold.eot");
+  src: url("./assets/fonts/poppins/Poppins-SemiBold.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-SemiBold.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-SemiBold.woff") format("woff"), url("./assets/fonts/poppins/Poppins-SemiBold.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-SemiBold.svg#Poppins-SemiBold") format("svg");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap; }
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-Bold.eot");
+  src: url("./assets/fonts/poppins/Poppins-Bold.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-Bold.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-Bold.woff") format("woff"), url("./assets/fonts/poppins/Poppins-Bold.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-Bold.svg#Poppins-Bold") format("svg");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap; }
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-ExtraBold.eot");
+  src: url("./assets/fonts/poppins/Poppins-ExtraBold.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-ExtraBold.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-ExtraBold.woff") format("woff"), url("./assets/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-ExtraBold.svg#Poppins-ExtraBold") format("svg");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap; }
 /*-----------------------------------------------------------------------------------*/
 /* Vendors
 /*-----------------------------------------------------------------------------------*/
@@ -10917,55 +11008,6 @@ html.with-fancybox body.hide-scrollbar {
 /*-----------------------------------------------------------------------------------*/
 /* Utils
 /*-----------------------------------------------------------------------------------*/
-.elementor-button-link, .eael-infobox-button {
-  border-radius: 50px !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.8px !important;
-  padding: 1rem 2rem !important;
-  line-height: 1 !important;
-  font-size: 1rem !important; }
-
-@keyframes rotate_left {
-  0% {
-    transform: rotate(0deg) translateX(100px) rotate(0deg); }
-  100% {
-    transform: rotate(-360deg) translateX(100px) rotate(360deg); } }
-@keyframes rotate_right {
-  0% {
-    transform: rotate(0deg) translateX(100px) rotate(0deg); }
-  100% {
-    transform: rotate(360deg) translateX(100px) rotate(-360deg); } }
-@keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(45, 161, 255, 0.7); }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(45, 161, 255, 0); }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(45, 161, 255, 0); } }
-@keyframes spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
-:root {
-  --primary-font: Poppins, sans-serif;
-  --primary-color: #000000;
-  --secondary-color: #1C1C1E;
-  --accent-color: #2DA1FF;
-  --white-color: #ffffff;
-  --black-color: #000000;
-  --text-color: #A0A1A8;
-  --light-blue: #0093CC14;
-  --gray-color: #707070;
-  --dark-gray-color: #4B4B4B;
-  --light-color: #CFD0D8;
-  --body-color: #F7F7FA;
-  --light-gray: #F2F2F2;
-  --border-color: #E7E7E7; }
-
 /*-----------------------------------------------------------------------------------*/
 /* Base
 /*-----------------------------------------------------------------------------------*/
@@ -13883,48 +13925,6 @@ a.fancybox-gallery-img {
     height: 100%;
     object-fit: cover; }
 
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/poppins/Poppins-Light.eot");
-  src: url("./assets/fonts/poppins/Poppins-Light.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-Light.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-Light.woff") format("woff"), url("./assets/fonts/poppins/Poppins-Light.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-Light.svg#Poppins-Light") format("svg");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap; }
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/poppins/Poppins-Regular.eot");
-  src: url("./assets/fonts/poppins/Poppins-Regular.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-Regular.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-Regular.woff") format("woff"), url("./assets/fonts/poppins/Poppins-Regular.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-Regular.svg#Poppins-Regular") format("svg");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap; }
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/poppins/Poppins-Medium.eot");
-  src: url("./assets/fonts/poppins/Poppins-Medium.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-Medium.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-Medium.woff") format("woff"), url("./assets/fonts/poppins/Poppins-Medium.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-Medium.svg#Poppins-Medium") format("svg");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap; }
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/poppins/Poppins-SemiBold.eot");
-  src: url("./assets/fonts/poppins/Poppins-SemiBold.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-SemiBold.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-SemiBold.woff") format("woff"), url("./assets/fonts/poppins/Poppins-SemiBold.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-SemiBold.svg#Poppins-SemiBold") format("svg");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap; }
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/poppins/Poppins-Bold.eot");
-  src: url("./assets/fonts/poppins/Poppins-Bold.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-Bold.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-Bold.woff") format("woff"), url("./assets/fonts/poppins/Poppins-Bold.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-Bold.svg#Poppins-Bold") format("svg");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap; }
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/poppins/Poppins-ExtraBold.eot");
-  src: url("./assets/fonts/poppins/Poppins-ExtraBold.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/poppins/Poppins-ExtraBold.woff2") format("woff2"), url("./assets/fonts/poppins/Poppins-ExtraBold.woff") format("woff"), url("./assets/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype"), url("./assets/fonts/poppins/Poppins-ExtraBold.svg#Poppins-ExtraBold") format("svg");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap; }
 /*Padding*/
 /*Extra Small Padding*/
 .xxs-padding-top {
