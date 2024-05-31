@@ -9,5 +9,12 @@
 	}
 	.bottom-header {
 		border-bottom: 1px solid var(--body-color);
+		.navigation-holder {
+			ul {
+				.navbar-nav {
+					flex-direction: row;
+				}
+			}
+		}
 	}
 }
