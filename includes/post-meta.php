@@ -702,21 +702,46 @@ Container::make('post_meta', 'Download Guide')
 
 
 
-	/*-----------------------------------------------------------------------------------*/
-/* Page Banner
+/*-----------------------------------------------------------------------------------*/
+/* Modules
 /*-----------------------------------------------------------------------------------*/
 
 Container::make('post_meta', 'Modules')
-->where('post_template', '=', 'templates/page-modules.php')
-->set_priority('high')
-->add_fields(
-	array(
-		Field::make('image', 'image', __('Image')),
-		Field::make('complex', 'guides', __('Guides'))
-			->add_fields(
-				array(
-					Field::make('textarea', 'guide_text', __('Guide Text')),
+	->where('post_template', '=', 'templates/page-modules.php')
+	->set_priority('high')
+	->add_fields(
+		array(
+			Field::make('image', 'image', __('Image')),
+			Field::make('complex', 'guides', __('Guides'))
+				->add_fields(
+					array(
+						Field::make('textarea', 'guide_text', __('Guide Text')),
+					)
 				)
-			)
-	)
-);
+		)
+	);
+
+/*-----------------------------------------------------------------------------------*/
+/* Mega Menus
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', 'Modules')
+	->where('post_type', '=', 'megamenus')
+	->set_priority('high')
+	->add_fields(
+		array(
+			Field::make('complex', 'menu_items', __('Menu Items'))
+				->add_fields(
+					array(
+						Field::make('select', 'menu_type', __('Menu Type'))
+							->set_options(
+								array(
+									'internal' => 'Internal',
+									'custom'  => 'Custom',
+								)
+							),
+						Field::make('text', 'menu_text', __('Menu Text')),
+						Field::make('association', 'menu_item', __('Menu Item'))
+					)
+				)
+		)
+	);
