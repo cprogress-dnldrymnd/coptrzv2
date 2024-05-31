@@ -46,6 +46,7 @@ $SVG = new SVG;
                     </div>
                 </div>
                 <div class="col-3">
+                    <?= do_shortcode('[woocommerce_mini_cart_dropdown_shortcode]') ?>
                     <div class="button-box button-accent text-end">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-268179">
                             GET STARTED
