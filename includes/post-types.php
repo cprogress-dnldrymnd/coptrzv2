@@ -435,3 +435,13 @@ $Popup->exclude_from_search = true;
 $Popup->publicly_queryable = true;
 $Popup->show_in_admin_bar = true;
 $Popup->has_archive = false;
+
+$Popup = new newPostType();
+$Popup->name = 'Mega Menus';
+$Popup->singular_name = 'Mega Menu';
+$Popup->icon = 'dashicons-testimonial';
+$Popup->supports = array('title', 'revisions');
+$Popup->exclude_from_search = true;
+$Popup->publicly_queryable = true;
+$Popup->show_in_admin_bar = true;
+$Popup->has_archive = false;
