@@ -750,6 +750,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('association', 'menu_item_page', __('Page'))
+							->set_max(1)
 							->set_types(array(
 								array(
 									'type' => 'post',
