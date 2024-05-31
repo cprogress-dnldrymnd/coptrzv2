@@ -40,6 +40,9 @@ $SVG = new SVG;
                         </select>
                         <input type="text" placeholder="Search for Drones, Software, Guides and more…" class="eael-advanced-search" autocomplete="off">
                         <button class="eael-advanced-search-button"><?= $SVG->search() ?></button>
+                        <div id="search-result">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="col-3">
