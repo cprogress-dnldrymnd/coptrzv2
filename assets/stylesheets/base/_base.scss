@@ -302,6 +302,7 @@ a {
     border-color: var(--accent-color);
     width: 100%;
     background-image: none !important;
+    height: auto;
     @include on-event {
         background-color: transparent !important;
         border-color: var(--accent-color);

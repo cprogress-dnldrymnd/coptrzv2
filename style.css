@@ -11389,7 +11389,8 @@ a {
   color: var(--white-color);
   border-color: var(--accent-color);
   width: 100%;
-  background-image: none !important; }
+  background-image: none !important;
+  height: auto; }
   .wpcf7-submit span, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit span {
     position: relative;
     z-index: 1; }
