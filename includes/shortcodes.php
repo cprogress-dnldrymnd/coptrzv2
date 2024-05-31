@@ -1136,28 +1136,26 @@ class Shortcodes
 		return ob_get_clean();
 	}
 
-	function woocommerce_mini_cart_with_icon_shortcode()
+	function woocommerce_mini_cart_dropdown_shortcode()
 	{
-		// Cart Icon HTML
-		$cart_icon = '<a class="cart-customlocation" href="' . wc_get_cart_url() . '" title="' . esc_attr__('View your shopping cart', 'woocommerce') . '">' .
-			'<i class="fa fa-shopping-cart"></i>' .
-			'<span class="cart-contents-count">' . WC()->cart->get_cart_contents_count() . '</span>' .
-			'</a>';
-
-		// Mini-cart HTML with Icon
-		ob_start();
-		echo $cart_icon;
+		$SVG = new SVG;
 	?>
-		<div class="mini-cart-container"> <?php woocommerce_mini_cart(); ?>
+		<div class="cart-dropdown">
+			<a class="cart-icon" href="<?php echo wc_get_cart_url(); ?>">
+				<?= $SVG->cart() ?>
+				<span class="cart-contents-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+			</a>
+			<div class="cart-dropdown-content">
+				<?php woocommerce_mini_cart(); ?>
+			</div>
 		</div>
 	<?php
-		return ob_get_clean();
 	}
 }
 
 
 $Shortcodes = new Shortcodes;
-add_shortcode('woocommerce_mini_cart_with_icon_shortcode', array($Shortcodes, 'woocommerce_mini_cart_with_icon_shortcode'));
+add_shortcode('woocommerce_mini_cart_dropdown_shortcode', array($Shortcodes, 'woocommerce_mini_cart_dropdown_shortcode'));
 add_shortcode('popup', array($Shortcodes, 'popup'));
 add_shortcode('announcement_bar', array($Shortcodes, 'announcement_bar'));
 add_shortcode('shop_filter', array($Shortcodes, 'shop_filter'));
