@@ -786,7 +786,7 @@ Container::make('post_meta', 'Modules')
 											'col-lg-6'  => '50%',
 											'col-lg-5'  => '67%',
 											'col-lg-4'  => '33.33%',
-											'col-lg-3'  => '25%%',
+											'col-lg-3'  => '25%',
 											'col-lg-2'  => '16.67%',
 											'col-lg-1'  => '8.33%',
 										)
