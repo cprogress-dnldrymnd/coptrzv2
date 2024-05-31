@@ -14,7 +14,7 @@ if ($menu_items) {
                 if ($menu_type == 'custom') {
                     $link = $menu_custom_url;
                 } else {
-                    $link = get_permalink($menu_item_page['id']);
+                    $link = get_the_permalink($menu_item_page[0]['id']);
                 }
 
                 ?>
