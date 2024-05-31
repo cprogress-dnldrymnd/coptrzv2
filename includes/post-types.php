@@ -424,3 +424,14 @@ $Slides->exclude_from_search = true;
 $Slides->publicly_queryable = false;
 $Slides->show_in_admin_bar = false;
 $Slides->has_archive = false;
+
+
+$Popup = new newPostType();
+$Popup->name = 'Popups';
+$Popup->singular_name = 'Popup';
+$Popup->icon = 'dashicons-testimonial';
+$Popup->supports = array('title', 'revisions');
+$Popup->exclude_from_search = true;
+$Popup->publicly_queryable = false;
+$Popup->show_in_admin_bar = false;
+$Popup->has_archive = false;
