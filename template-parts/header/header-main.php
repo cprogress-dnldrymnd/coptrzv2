@@ -5,7 +5,7 @@ $SVG = new SVG;
     <div class="top-header py-4 background-body">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-auto">
+                <div class="col-3">
                     <div class="site-logo-holder position-relative">
                         <a aria-label="Coptrz Homepage" href="https://coptrz.com" class="site-logo position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="256" height="26.026" viewBox="0 0 256 26.026" class="svg-image replaced-svg">
@@ -24,7 +24,7 @@ $SVG = new SVG;
                         </a>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-6">
                     <div class="column-holder">
                         <div class="search-form d-flex">
                             <select name="eael-adv-search-cate-list">
