@@ -25,17 +25,19 @@ if ($menu_items) {
                     </a>
                     <?php if ($submenu) { ?>
                         <div class="submenu-holder">
-                            <?php foreach ($submenu as $menu) { ?>
-                                <?php
-                                $type = $menu['_type'];
-                                ?>
+                            <div class="container">
+                                <?php foreach ($submenu as $menu) { ?>
+                                    <?php
+                                    $type = $menu['_type'];
+                                    ?>
 
-                                <?php
-                                if ($type == 'menu_items') {
-                                    echo '<h4>' . $menu['menu_text'] . '</h4>';
-                                    echo do_shortcode('[menu id=' . $menu['menu'] . ']');
-                                }
-                                ?>
+                                    <?php
+                                    if ($type == 'menu_items') {
+                                        echo '<h4>' . $menu['menu_text'] . '</h4>';
+                                        echo do_shortcode('[menu id=' . $menu['menu'] . ']');
+                                    }
+                                    ?>
+                            </div>
                         </div>
                     <?php } ?>
                 <?php } ?>
