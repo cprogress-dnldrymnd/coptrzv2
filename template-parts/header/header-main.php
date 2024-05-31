@@ -2,7 +2,7 @@
 $SVG = new SVG;
 ?>
 <header id="header">
-    <div class="top-header py-4 background-body">
+    <div class="top-header py-3 background-body">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-3">
