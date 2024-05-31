@@ -1085,7 +1085,7 @@ class Shortcodes
 				'menu' => $id,
 				'container'      => false,
 				'menu_class'     => '',
-				'items_wrap'     => '<ul id="%1$s" class="menu-items %2$s">%3$s</ul>',
+				'items_wrap'     => '<ul id="%1$s" class="menu-items list-inline p-0 %2$s">%3$s</ul>',
 				'depth'          => 3,
 				'echo' => false
 			)
