@@ -10,6 +10,7 @@ if ($menu_items) {
                 $menu_type = $menu_item['menu_type'];
                 $menu_item_page = $menu_item['menu_item_page'];
                 $menu_custom_url = $menu_item['menu_custom_url'];
+                $submenu = $menu_item['submenu'];
 
                 if ($menu_type == 'custom') {
                     $link = $menu_custom_url;
@@ -19,7 +20,7 @@ if ($menu_items) {
 
                 ?>
                 <div class="col-auto">
-                    <a class="mega-menu-link text-uppercase fw-semibold d-inline-block" href="<?= $link ?>">
+                    <a class="mega-menu-link text-uppercase fw-semibold d-inline-block <?= $submenu ? 'has-submenu' : '' ?>" href="<?= $link ?>">
                         <?= $menu_text ?>
                     </a>
                 </div>
