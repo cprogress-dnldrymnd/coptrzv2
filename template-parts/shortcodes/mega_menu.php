@@ -1,10 +1,9 @@
 <?php
 $menu_items = carbon_get_post_meta($id, 'menu_items');
-echo $id;
 if ($menu_items) {
 ?>
     <div class="mega-menu">
-        <div class="row">
+        <div class="row justify-content-between">
             <?php foreach ($menu_items as $menu_item) { ?>
                 <?php
                 $menu_text = $menu_item['menu_text'];
@@ -20,7 +19,7 @@ if ($menu_items) {
 
                 ?>
                 <div class="col-auto">
-                    <a href="<?= $link ?>">
+                    <a class="mega-menu-link"href="<?= $link ?>">
                         <?= $menu_text ?>
                     </a>
                 </div>
