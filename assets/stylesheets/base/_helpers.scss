@@ -1,0 +1,986 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+/*Padding*/
+/*Extra Small Padding*/
+.xxs-padding-top {
+	padding-top: 1.625rem;
+}
+
+.xxs-padding-bottom {
+	padding-bottom: 1.625rem;
+}
+
+.xxs-padding {
+	padding-top: 1.625rem;
+	padding-bottom: 1.625rem;
+}
+
+/*End of Extra Small Padding*/
+/*Small Padding*/
+.sm-padding-top {
+	padding-top: 3.75rem;
+
+	@include responsive(xs) {
+		padding-top: 2rem;
+	}
+}
+
+.sm-padding-bottom {
+	padding-bottom: 3.75rem;
+
+	@include responsive(xs) {
+		padding-bottom: 2rem;
+	}
+}
+
+.sm-padding {
+	padding-top: 3.75rem;
+	padding-bottom: 3.75rem;
+
+	@include responsive(xs) {
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+	}
+}
+
+/*End of Small Padding*/
+/*Medium Padding*/
+.md-padding-top {
+	padding-top: 5rem;
+
+	@include responsive(md-lg) {
+		padding-top: 5rem;
+	}
+
+	@include responsive(sm) {
+		padding-top: 4rem;
+	}
+
+	@include responsive(xs) {
+		padding-top: 3rem;
+	}
+}
+
+.md-padding-bottom {
+	padding-bottom: 5rem;
+
+	@include responsive(md-lg) {
+		padding-bottom: 5rem;
+	}
+
+	@include responsive(sm) {
+		padding-bottom: 4rem;
+	}
+
+	@include responsive(xs) {
+		padding-bottom: 3rem;
+	}
+}
+
+.md-padding {
+	@include responsive(md-lg) {
+		padding-top: 5rem;
+		padding-bottom: 5rem;
+	}
+
+	@include responsive(sm) {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	@include responsive(xs) {
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+	}
+}
+
+/*End of Medium Padding*/
+/*Large Padding*/
+.lg-padding-top {
+	@include responsive(md-lg) {
+		padding-top: 7.25rem;
+	}
+
+	@include responsive(sm) {
+		padding-top: 5rem;
+	}
+
+	@include responsive(xs) {
+		padding-top: 4rem;
+	}
+}
+
+.lg-padding-bottom {
+	@include responsive(md-lg) {
+		padding-bottom: 7.25rem;
+	}
+
+	@include responsive(sm) {
+		padding-bottom: 6rem;
+	}
+
+	@include responsive(xs) {
+		padding-bottom: 4rem;
+	}
+}
+
+.lg-padding {
+	@include responsive(md-lg) {
+		padding-top: 7.25rem;
+		padding-bottom: 7.25rem;
+	}
+
+	@include responsive(sm) {
+		padding-top: 5rem;
+		padding-bottom: 6rem;
+	}
+
+	@include responsive(xs) {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+}
+
+/*End of Large Padding*/
+/*Large Padding*/
+.xl-padding-top {
+	@include responsive(md-lg) {
+		padding-top: 9.5rem;
+	}
+
+	@include responsive(sm) {
+		padding-top: 6rem;
+	}
+
+	@include responsive(xs) {
+		padding-top: 5rem;
+	}
+
+	@include responsive(mobile) {
+		padding-top: 3rem;
+	}
+}
+
+.xl-padding-bottom {
+	@include responsive(md-lg) {
+		padding-bottom: 9.5rem;
+	}
+
+	@include responsive(sm) {
+		padding-bottom: 6rem;
+	}
+
+	@include responsive(xs) {
+		padding-bottom: 5rem;
+	}
+
+	@include responsive(mobile) {
+		padding-bottom: 3rem;
+	}
+}
+
+.xl-padding {
+	@include responsive(md-lg) {
+		padding-top: 9.5rem;
+		padding-bottom: 9.5rem;
+	}
+
+	@include responsive(sm) {
+		padding-top: 6rem;
+		padding-bottom: 6rem;
+	}
+
+	@include responsive(xs) {
+		padding-top: 5rem;
+		padding-bottom: 5rem;
+	}
+
+	@include responsive(mobile) {
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+	}
+}
+
+/*End of Extra Large Padding*/
+
+/*margin*/
+/*Extra Small margin*/
+.xxs-margin-top {
+	margin-top: 1.625rem;
+}
+
+.xxs-margin-bottom {
+	margin-bottom: 1.625rem;
+}
+
+.xxs-margin {
+	margin-top: 1.625rem;
+	margin-bottom: 1.625rem;
+}
+
+/*End of Extra Small margin*/
+/*Small margin*/
+.sm-margin-top {
+	margin-top: 3.75rem;
+
+	@include responsive(xs) {
+		margin-top: 2rem;
+	}
+}
+
+.sm-margin-bottom {
+	margin-bottom: 3.75rem;
+
+	@include responsive(xs) {
+		margin-bottom: 2rem;
+	}
+}
+
+.sm-margin {
+	margin-top: 3.75rem;
+	margin-bottom: 3.75rem;
+
+	@include responsive(xs) {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+	}
+}
+
+/*End of Small margin*/
+/*Medium margin*/
+.md-margin-top {
+	margin-top: 5rem;
+
+	@include responsive(md-lg) {
+		margin-top: 5rem;
+	}
+
+	@include responsive(sm) {
+		margin-top: 4rem;
+	}
+
+	@include responsive(xs) {
+		margin-top: 3rem;
+	}
+}
+
+.md-margin-bottom {
+	margin-bottom: 5rem;
+
+	@include responsive(md-lg) {
+		margin-bottom: 5rem;
+	}
+
+	@include responsive(sm) {
+		margin-bottom: 4rem;
+	}
+
+	@include responsive(xs) {
+		margin-bottom: 3rem;
+	}
+}
+
+.md-margin {
+	@include responsive(md-lg) {
+		margin-top: 5rem;
+		margin-bottom: 5rem;
+	}
+
+	@include responsive(sm) {
+		margin-top: 4rem;
+		margin-bottom: 4rem;
+	}
+
+	@include responsive(xs) {
+		margin-top: 3rem;
+		margin-bottom: 3rem;
+	}
+}
+
+/*End of Medium margin*/
+/*Large margin*/
+.lg-margin-top {
+	@include responsive(md-lg) {
+		margin-top: 7.25rem;
+	}
+
+	@include responsive(sm) {
+		margin-top: 5rem;
+	}
+
+	@include responsive(xs) {
+		margin-top: 4rem;
+	}
+}
+
+.lg-margin-bottom {
+	@include responsive(md-lg) {
+		margin-bottom: 7.25rem;
+	}
+
+	@include responsive(sm) {
+		margin-bottom: 6rem;
+	}
+
+	@include responsive(xs) {
+		margin-bottom: 4rem;
+	}
+}
+
+.lg-margin {
+	@include responsive(md-lg) {
+		margin-top: 7.25rem;
+		margin-bottom: 7.25rem;
+	}
+
+	@include responsive(sm) {
+		margin-top: 5rem;
+		margin-bottom: 6rem;
+	}
+
+	@include responsive(xs) {
+		margin-top: 4rem;
+		margin-bottom: 4rem;
+	}
+}
+
+/*End of Large margin*/
+/*Large margin*/
+.xl-margin-top {
+	@include responsive(md-lg) {
+		margin-top: 9.5rem;
+	}
+
+	@include responsive(sm) {
+		margin-top: 6rem;
+	}
+
+	@include responsive(xs) {
+		margin-top: 5rem;
+	}
+
+	@include responsive(mobile) {
+		margin-top: 3rem;
+	}
+}
+
+.xl-margin-bottom {
+	@include responsive(md-lg) {
+		margin-bottom: 9.5rem;
+	}
+
+	@include responsive(sm) {
+		margin-bottom: 6rem;
+	}
+
+	@include responsive(xs) {
+		margin-bottom: 5rem;
+	}
+
+	@include responsive(mobile) {
+		margin-bottom: 3rem;
+	}
+}
+
+.xl-margin {
+	@include responsive(md-lg) {
+		margin-top: 9.5rem;
+		margin-bottom: 9.5rem;
+	}
+
+	@include responsive(sm) {
+		margin-top: 6rem;
+		margin-bottom: 6rem;
+	}
+
+	@include responsive(xs) {
+		margin-top: 5rem;
+		margin-bottom: 5rem;
+	}
+
+	@include responsive(mobile) {
+		margin-top: 3rem;
+		margin-bottom: 3rem;
+	}
+}
+
+/*End of Extra Large margin*/
+/*Background*/
+.background-black,
+.background-primary,
+.background-secondary {
+	color: var(--white-color);
+
+	@include headings {
+		color: var(--white-color);
+	}
+
+	.menu-item {
+		color: var(--white-color);
+	}
+
+	.description-box {
+		color: var(--white-color);
+
+		a {
+			color: var(--accent-color);
+		}
+	}
+}
+
+.background-white,
+background-body {
+	color: var(--black-color);
+
+	@include headings {
+		color: var(--black-color);
+	}
+}
+
+.background-body {
+	background-color: var(--body-color);
+}
+
+.background-black {
+	background-color: var(--black-color);
+}
+
+.background-primary {
+	background-color: var(--primary-color);
+}
+
+.background-secondary {
+	background-color: var(--secondary-color);
+}
+
+.background-accent {
+	background-color: var(--accent-color);
+	color: var(--white-color);
+
+	.description-box ul:not(.not-styled) li:before {
+		background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16.888" height="12.594" viewBox="0 0 16.888 12.594"><path id="Icon_awesome-check" data-name="Icon awesome-check" d="M5.736 16.924.247 11.435a.844.844 0 0 1 0-1.194L1.442 9.047a.844.844 0 0 1 1.194 0l3.7 3.7 7.92-7.92a.844.844 0 0 1 1.194 0l1.194 1.194a.844.844 0 0 1 0 1.194L6.93 16.924A.844.844 0 0 1 5.736 16.924Z" transform="translate(0 -4.577)" fill="%23fff"/></svg>');
+	}
+}
+
+.background-gray {
+	background-color: var(--gray-color);
+	color: var(--white-color);
+}
+
+.background-light-gray {
+	background-color: var(--light-gray-color);
+}
+
+.background-white {
+	background-color: var(--white-color);
+}
+
+.background-pattern {
+	background-image: url($image-url + "white-wall.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+.light-color {
+	color: var(--light-color) !important;
+}
+
+.gray-color {
+	color: var(--gray-color) !important;
+}
+
+.primary-color {
+	color: var(--primary-color) !important;
+}
+
+.white-color {
+	color: var(--white-color) !important;
+}
+
+.bg-image {
+	background-size: cover;
+	background-position: center;
+
+	&.bg-fixed {
+		@include responsive(md-lg) {
+			background-attachment: fixed;
+		}
+	}
+}
+
+.background-image {
+	@include absolute-corner;
+
+	> img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+
+	+ div {
+		position: relative;
+	}
+
+	&:not(.no-overlay) {
+		@include overlay;
+	}
+}
+
+.overlay {
+	@include overlay;
+}
+
+/*Overlay*/
+/*Colors*/
+.text-white {
+	p {
+		color: inherit;
+	}
+}
+
+.text-primary {
+	color: var(--primary-color) !important;
+
+	p {
+		color: inherit;
+	}
+}
+
+/*Others*/
+.with-separator {
+	> * {
+		@include not-last-child {
+			@include after {
+				content: "";
+				width: 118px;
+				display: block;
+				margin: 2.5rem auto;
+				border-bottom: 1px dotted var(--white-color);
+			}
+		}
+	}
+}
+
+.fullheight {
+	min-height: 100vh;
+}
+
+.fullheight-desktop {
+	@include responsive(md-lg) {
+		min-height: 100vh;
+	}
+}
+
+/*font family*/
+.primary-font {
+	font-family: var(--primary-font);
+}
+
+.secondary-font {
+	font-family: var(--secondary-font);
+}
+
+.accent-font {
+	font-family: var(--accent-font);
+
+	@include headings {
+		font-weight: 400;
+		line-height: 1;
+	}
+}
+
+/*font-size*/
+.small-font-size {
+	font-size: 14px;
+}
+
+.padding-left-right {
+	@include responsive(md-lg) {
+		padding-left: 4%;
+		padding-right: 4%;
+	}
+
+	@include responsive(xs-sm) {
+		padding-left: 0.75rem;
+		padding-right: 0.75rem;
+	}
+}
+
+/*text-color*/
+
+.half-opacity {
+	opacity: 0.5;
+}
+
+/*Container*/
+.container {
+	@media (min-width: 1300px) {
+		max-width: 1260px;
+	}
+
+	@media (min-width: 1400px) {
+		max-width: 1360px;
+	}
+	@media (min-width: 1500px) {
+		max-width: 1460px;
+	}
+
+	&:not(.medium-container) {
+		@media (min-width: 1600px) {
+			max-width: 1560px;
+		}
+
+		@media (min-width: 1700px) {
+			max-width: 1660px;
+		}
+	}
+
+	&.extend-right,
+	&.extend-left {
+		@media (min-width: 576px) {
+			max-width: calc(540px + (50% - (540px / 2)) + var(--bs-gutter-x, 0.75rem));
+		}
+
+		@media (min-width: 768px) {
+			max-width: calc(720px + (50% - (720px / 2)) + var(--bs-gutter-x, 0.75rem));
+		}
+
+		@media (min-width: 992px) {
+			max-width: calc(960px + (50% - (960px / 2)) + var(--bs-gutter-x, 0.75rem));
+		}
+
+		@media (min-width: 1200px) {
+			max-width: calc(1140px + (50% - (1140px / 2)) + var(--bs-gutter-x, 0.75rem));
+		}
+
+		@media (min-width: 1300px) {
+			max-width: calc(1260px + (50% - (1260px / 2)) + var(--bs-gutter-x, 0.75rem));
+		}
+
+		@media (min-width: 1400px) {
+			max-width: calc(1360px + (50% - (1360px / 2)) + var(--bs-gutter-x, 0.75rem));
+		}
+
+		@media (min-width: 1500px) {
+			max-width: calc(1460px + (50% - (1460px / 2)) + var(--bs-gutter-x, 0.75rem));
+		}
+
+		@media (min-width: 1600px) {
+			max-width: calc(1560px + (50% - (1560px / 2)) + var(--bs-gutter-x, 0.75rem));
+		}
+
+		@media (min-width: 1700px) {
+			max-width: calc(1660px + (50% - (1660px / 2)) + var(--bs-gutter-x, 0.75rem));
+		}
+	}
+
+	&.extend-right {
+		margin-right: 0;
+		margin-left: auto;
+		padding-right: 0;
+	}
+
+	&.extend-left {
+		margin-right: auto;
+		margin-left: 0;
+		padding-left: 0;
+	}
+}
+
+.large-container {
+	@media (min-width: 1900px) {
+		max-width: 1800px;
+	}
+}
+
+/*margins*/
+.no-margin {
+	@include headings {
+		margin-bottom: 0;
+	}
+}
+
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+	@include responsive(xs) {
+		padding-right: var(--bs-gutter-x, 20px);
+		padding-left: var(--bs-gutter-x, 20px);
+	}
+}
+
+.bg-cover {
+	background-size: cover;
+	background-position: center;
+}
+
+.row-g-small {
+	--bs-gutter-x: 10px;
+	--bs-gutter-y: 10px;
+}
+
+.row-g-medium {
+	--bs-gutter-x: 1.5rem;
+	--bs-gutter-y: 1.5rem;
+}
+
+.row-g-medium {
+	--bs-gutter-x: 2rem;
+	--bs-gutter-y: 2rem;
+}
+
+.row-gy-medium {
+	--bs-gutter-y: 2rem;
+}
+
+.offset-top {
+	margin-top: -3.75rem;
+
+	@include before {
+		content: "";
+		position: absolute;
+		top: 60px;
+		background-color: var(--light-gray-color);
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+
+	> div {
+		position: relative;
+	}
+}
+
+.content-margin {
+	> * {
+		@include not-last-child {
+			margin-bottom: 2rem;
+		}
+	}
+}
+
+.content-margin-small {
+	> * {
+		@include not-last-child {
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+.fw-medium {
+	font-weight: 500;
+}
+
+.fw-extrabold {
+	font-weight: 800;
+}
+
+.fw-semibold {
+	font-weight: 600;
+}
+
+.fw-medium,
+.fw-bold,
+.fw-light,
+.fw-extrabold,
+.fw-semibold {
+	@include headings {
+		font-weight: inherit;
+	}
+
+	p,
+	ul,
+	a {
+		font-weight: inherit;
+	}
+}
+
+.h-lg-100 {
+	@include responsive(md-lg) {
+		height: 100%;
+	}
+}
+
+.gx-6 {
+	@include responsive(md-lg) {
+		--bs-gutter-x: 4rem;
+	}
+}
+
+.gx-7 {
+	@include responsive(md-lg) {
+		--bs-gutter-x: 5rem;
+	}
+}
+
+.gy-6 {
+	@include responsive(md-lg) {
+		--bs-gutter-y: 4rem;
+	}
+
+	@include responsive(xs-sm) {
+		--bs-gutter-y: 1.5rem;
+	}
+}
+
+.with-triangle {
+	&:before {
+		content: "";
+		width: 0;
+		height: 0;
+		border-bottom: 62vw solid var(--light-blue);
+		border-left: 62vw solid transparent;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+.ps-10p {
+	padding-left: 10%;
+}
+
+.pe-10p {
+	padding-right: 10%;
+}
+
+.medium-width {
+	max-width: 900px;
+}
+
+.small-width {
+	max-width: 760px;
+}
+
+.extra-small-width {
+	max-width: 500px;
+}
+
+.mb-6 {
+	margin-bottom: 4rem;
+}
+
+.mb-7 {
+	margin-bottom: 5rem;
+}
+
+.transition-300 {
+	@include transition(300ms);
+}
+
+.transition-400 {
+	@include transition(400ms);
+}
+
+.transition-500 {
+	@include transition(500ms);
+}
+
+.image-cover-transform {
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100% !important;
+		object-fit: cover;
+		left: 0;
+		top: 0;
+	}
+}
+
+.image-contain-transform {
+	img {
+		position: absolute;
+		width: 80%;
+		height: 100%;
+		object-fit: contain;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.icon-tel,
+.icon-email {
+	background-size: 18px;
+	background-position: left 2px;
+	background-repeat: no-repeat;
+	padding-left: 38px;
+}
+
+.icon-tel {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.2.1 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons  Inc. --%3E%3Cpath d='M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z' fill='%231C1C1E'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.icon-email {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.2.1 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons  Inc. --%3E%3Cpath fill='%231C1C1E' d='M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z'/%3E%3C/svg%3E");
+}
+
+.remove-bg-991 {
+	@include responsive(xs-sm) {
+		background-image: none !important;
+	}
+}
+
+.image-w-100 {
+	img {
+		width: 100% !important;
+	}
+}
+
+.elementor-video-box {
+	@include responsive(xs) {
+		display: block !important;
+	}
+
+	> .e-con-inner {
+		@include responsive(xs) {
+			display: block !important;
+		}
+	}
+}
+
+.same-height-elementor-image {
+	.elementor-widget-container {
+		position: relative;
+		padding: 35% 0;
+
+		img {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
+
+.color-white-sm {
+	@include responsive(xs-sm) {
+		color: var(--white-color);
+
+		.elementor-heading-title {
+			color: inherit !important;
+		}
+	}
+}
+
+.with-line {
+	.elementor-heading-title {
+		display: flex;
+		align-items: center;
+		&:after {
+			content: "";
+			display: block;
+			border-bottom: 1px solid;
+			flex: 1 0 0%;
+			margin-left: 1rem;
+			opacity: 0.1;
+		}
+	}
+}

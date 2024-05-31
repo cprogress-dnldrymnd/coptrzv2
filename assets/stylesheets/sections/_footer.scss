@@ -1,0 +1,100 @@
+footer {
+    position: relative;
+    z-index: 1;
+    ul {
+        list-style: none;
+        padding-left: 0;
+        li {
+            a {
+                color: var(--white-color);
+            }
+            @include not-last-child {
+                margin-bottom: 10px;
+            }
+        }
+    }
+    h5 {
+        font-size: 1.75rem;
+        margin-bottom: 1.75rem;
+    }
+    .footer-main {
+        .footer-column-1,
+        .footer-column-2,
+        .footer-column-3 {
+            @include responsive(xs-sm) {
+                flex: 0 0 auto;
+                width: 33.333333%;
+            }
+            @include responsive(mobile) {
+                width: 100%;
+            }
+        }
+        .footer-column-4,
+        .footer-column-5 {
+            @include responsive(mobile) {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+          }
+
+        .footer-column-4 {
+            max-width: 383px;
+            @media (min-width: 1300px) {
+                flex: 0 0 auto;
+                width: auto;
+                padding-right: 50px;
+            }
+        }
+        .footer-column-5 {
+            @include responsive(mobile) {
+                min-height: 100px;
+                .column-holder {
+                    text-align: left !important;
+                }
+            }
+        }
+       
+    }
+
+    .menu {
+        li {
+            a {
+                @include inline-flex;
+                align-items: center;
+                position: relative;
+                color: inherit;
+                @include after {
+                    content: none;
+                    width: 5px;
+                    height: 5px;
+                    background-color: var(--accent-color);
+                    border-radius: 50%;
+                    animation: pulse 2s infinite;
+                    opacity: 0;
+                    margin-left: 15px;
+                }
+                @include before {
+                    content: none;
+                    position: absolute;
+                    left: 0;
+                    border-bottom: 1px solid;
+                    bottom: -5px;
+                    width: 0;
+                    height: 100%;
+                    border-radius: 0 50px 50px 0;
+                    @include transition(300ms);
+                }
+                @include on-event {
+                    color: var(--white-color);
+                    text-decoration: underline;
+                    @include before {
+                        width: 100%;
+                    }
+                    @include after {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}

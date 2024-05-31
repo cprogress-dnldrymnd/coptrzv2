@@ -1,0 +1,416 @@
+<?php
+class newPostType
+{
+    public $name;
+    public $singular_name;
+    public $icon;
+    public $supports;
+    public $rewrite;
+    public $show_in_rest = false;
+    public $exclude_from_search = false;
+    public $publicly_queryable = true;
+    public $show_in_admin_bar = true;
+    public $has_archive = true;
+    public $hierarchical = false;
+    public $text_domain = 'coptrz';
+
+
+    function __construct()
+    {
+
+        add_action('init', array($this, 'create_post_type'));
+    }
+
+
+    function create_post_type()
+    {
+        register_post_type(
+            strtolower($this->name),
+            array(
+                'labels'              => array(
+                    'name'               => _x($this->name, 'post type general name', $this->text_domain),
+                    'singular_name'      => _x($this->singular_name, 'post type singular name', $this->text_domain),
+                    'menu_name'          => _x($this->name, 'admin menu'), $this->text_domain,
+                    'name_admin_bar'     => _x($this->singular_name, 'add new on admin bar', $this->text_domain),
+                    'add_new'            => _x('Add New', strtolower($this->name), $this->text_domain),
+                    'add_new_item'       => __('Add New ' . $this->singular_name, $this->text_domain),
+                    'new_item'           => __('New ' . $this->singular_name, $this->text_domain),
+                    'edit_item'          => __('Edit ' . $this->singular_name, $this->text_domain),
+                    'view_item'          => __('View ' . $this->singular_name, $this->text_domain),
+                    'all_items'          => __('All ' . $this->name, $this->text_domain),
+                    'search_items'       => __('Search ' . $this->name, $this->text_domain),
+                    'parent_item_colon'  => __('Parent :' . $this->name, $this->text_domain),
+                    'not_found'          => __('No ' . strtolower($this->name) . ' found.', $this->text_domain),
+                    'not_found_in_trash' => __('No ' . strtolower($this->name) . ' found in Trash.', $this->text_domain)
+                ),
+                'show_in_rest'        => $this->show_in_rest,
+                'supports'            => $this->supports,
+                'public'              => true,
+                'has_archive'         => $this->has_archive,
+                'hierarchical'        => $this->hierarchical,
+                'rewrite'             => $this->rewrite,
+                'menu_icon'           => $this->icon,
+                'capability_type'     => 'page',
+                'exclude_from_search' => $this->exclude_from_search,
+                'publicly_queryable'  => $this->publicly_queryable,
+                'show_in_admin_bar'   => $this->show_in_admin_bar,
+            )
+        );
+    }
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* Taxonomy
+/*-----------------------------------------------------------------------------------*/
+class newTaxonomy
+{
+    public $taxonomy;
+    public $post_type;
+    public $args;
+
+    function __construct()
+    {
+        add_action('init', array($this, 'create_taxonomy'));
+        add_action('restrict_manage_posts', array($this, 'filter_by_taxonomy'), 10, 2);
+        add_filter('manage_' . $this->post_type . '_posts_columns', array($this, 'change_table_column_titles'));
+        add_filter('manage_' . $this->post_type . '_posts_custom_column', array($this, 'change_column_rows'), 10, 2);
+        add_filter('manage_edit-' . $this->post_type . '_sortable_columns', array($this, 'change_sortable_columns'));
+    }
+
+    function create_taxonomy()
+    {
+        register_taxonomy($this->taxonomy, $this->post_type, $this->args);
+    }
+
+    function filter_by_taxonomy($post_type, $which)
+    {
+        // Apply this only on a specific post type
+        if ($this->post_type !== $post_type)
+            return;
+
+        // A list of taxonomy slugs to filter by
+        $taxonomies = array($this->taxonomy);
+
+        foreach ($taxonomies as $taxonomy_slug) {
+
+            // Retrieve taxonomy data
+            $taxonomy_obj = get_taxonomy($taxonomy_slug);
+            $taxonomy_name = $taxonomy_obj->labels->name;
+
+            // Retrieve taxonomy terms
+            $terms = get_terms($taxonomy_slug);
+
+            // Display filter HTML
+            echo "<select name='{$taxonomy_slug}' id='{$taxonomy_slug}' class='postform'>";
+            echo '<option value="">' . sprintf(esc_html__('Show All %s', 'text_domain'), $taxonomy_name) . '</option>';
+            foreach ($terms as $term) {
+                printf(
+                    '<option value="%1$s" %2$s>%3$s (%4$s)</option>',
+                    $term->slug,
+                    ((isset($_GET[$taxonomy_slug]) && ($_GET[$taxonomy_slug] == $term->slug)) ? ' selected="selected"' : ''),
+                    $term->name,
+                    $term->count
+                );
+            }
+            echo '</select>';
+        }
+    }
+    function change_table_column_titles($columns)
+    {
+        unset($columns['date']); // temporarily remove, to have custom column before date column
+        $columns[$this->taxonomy] = $this->args['label'];
+        $columns['date'] = 'Date'; // readd the date column
+        return $columns;
+    }
+
+    function change_column_rows($column_name, $post_id)
+    {
+        if ($column_name == $this->taxonomy) {
+            echo get_the_term_list($post_id, $this->taxonomy, '', ', ', '') . PHP_EOL;
+        }
+    }
+
+    function change_sortable_columns($columns)
+    {
+        $columns[$this->taxonomy] = $this->taxonomy;
+        return $columns;
+    }
+}
+
+$Testimonials = new newPostType();
+$Testimonials->name = 'Testimonials';
+$Testimonials->singular_name = 'Testimonial';
+$Testimonials->icon = 'dashicons-testimonial';
+$Testimonials->supports = array('title', 'revisions');
+$Testimonials->exclude_from_search = true;
+$Testimonials->publicly_queryable = false;
+$Testimonials->show_in_admin_bar = false;
+$Testimonials->has_archive = false;
+
+$Events = new newPostType();
+$Events->name = 'Events';
+$Events->singular_name = 'Event';
+$Events->icon = 'dashicons-camera-alt';
+$Events->supports = array('title', 'revisions', 'editor', 'thumbnail');
+$Events->rewrite = array('slug' => 'events');
+$Events->show_in_rest = true;
+
+$Solutions = new newPostType();
+$Solutions->name = 'Solutions';
+$Solutions->singular_name = 'Solution';
+$Solutions->icon = 'dashicons-portfolio';
+$Solutions->supports = array('title', 'revisions', 'editor', 'thumbnail', 'page-attributes');
+$Solutions->has_archive = true;
+$Solutions->hierarchical = true;
+$Solutions->show_in_rest = true;
+
+
+$Webinars = new newPostType();
+$Webinars->name = 'Webinars';
+$Webinars->singular_name = 'Webinar';
+$Webinars->icon = 'dashicons-video-alt3';
+$Webinars->supports = array('title', 'revisions', 'editor', 'thumbnail');
+$Webinars->has_archive = true;
+$Webinars->hierarchical = true;
+$Webinars->show_in_rest = true;
+
+
+
+$FAQs = new newPostType();
+$FAQs->name = 'FAQ';
+$FAQs->singular_name = 'FAQ';
+$FAQs->icon = 'dashicons-info';
+$FAQs->supports = array('title', 'revisions', 'editor');
+$FAQs->exclude_from_search = true;
+$FAQs->publicly_queryable = false;
+$FAQs->show_in_admin_bar = false;
+$FAQs->has_archive = false;
+
+$Nira_3D = new newPostType();
+$Nira_3D->name = 'Nira 3D';
+$Nira_3D->singular_name = 'Nira 3D';
+$Nira_3D->icon = 'dashicons-desktop';
+$Nira_3D->supports = array('title', 'revisions', 'thumbnail');
+$Nira_3D->exclude_from_search = true;
+$Nira_3D->publicly_queryable = false;
+$Nira_3D->show_in_admin_bar = false;
+$Nira_3D->has_archive = false;
+
+$Partners = new newPostType();
+$Partners->name = 'Partners';
+$Partners->singular_name = 'Partner';
+$Partners->icon = 'dashicons-admin-site-alt3';
+$Partners->supports = array('title', 'revisions', 'thumbnail');
+$Partners->exclude_from_search = true;
+$Partners->publicly_queryable = false;
+$Partners->show_in_admin_bar = false;
+$Partners->has_archive = false;
+
+$Team = new newPostType();
+$Team->name = 'Team';
+$Team->singular_name = 'Team';
+$Team->icon = 'dashicons-groups';
+$Team->supports = array('title', 'revisions', 'thumbnail');
+$Team->exclude_from_search = true;
+$Team->publicly_queryable = false;
+$Team->show_in_admin_bar = false;
+$Team->has_archive = false;
+
+$Careers = new newPostType();
+$Careers->name = 'Careers';
+$Careers->singular_name = 'Career';
+$Careers->icon = 'dashicons-businessman';
+$Careers->supports = array('title', 'revisions', 'thumbnail', 'editor', 'excerpt');
+$Careers->show_in_rest = true;
+
+$Case_Studies = new newPostType();
+$Case_Studies->name = 'Case Studies';
+$Case_Studies->singular_name = 'Case Study';
+$Case_Studies->icon = 'dashicons-media-text';
+$Case_Studies->supports = array('title', 'revisions', 'thumbnail', 'editor', 'excerpt');
+$Case_Studies->show_in_rest = true;
+
+
+$Guides = new newPostType();
+$Guides->name = 'Guides';
+$Guides->singular_name = 'Guide';
+$Guides->icon = 'dashicons-media-document';
+$Guides->supports = array('title', 'revisions', 'editor', 'thumbnail', 'excerpt', 'author');
+$Guides->show_in_rest = true;
+$Guides->rewrite = array(
+    'with_front' => false,
+    'slug' => 'guides'
+);
+
+
+
+$Events_Category = new newTaxonomy();
+$Events_Category->taxonomy = 'events_category';
+$Events_Category->post_type = 'events';
+$Events_Category->args = array(
+    'label'        => 'Events Categories',
+    'labels' => array(
+        'name'                       => _x('Events Categories', 'Taxonomy General Name', 'text_domain'),
+        'singular_name'              => _x('Events Category', 'Taxonomy Singular Name', 'text_domain'),
+        'menu_name'                  => __('Events Category', 'text_domain'),
+        'all_items'                  => __('All Items', 'text_domain'),
+        'parent_item'                => __('Parent Item', 'text_domain'),
+        'parent_item_colon'          => __('Parent Item:', 'text_domain'),
+        'new_item_name'              => __('New Item Name', 'text_domain'),
+        'add_new_item'               => __('Add New Item', 'text_domain'),
+        'edit_item'                  => __('Edit Item', 'text_domain'),
+        'update_item'                => __('Update Item', 'text_domain'),
+        'view_item'                  => __('View Item', 'text_domain'),
+        'separate_items_with_commas' => __('Separate items with commas', 'text_domain'),
+        'add_or_remove_items'        => __('Add or remove items', 'text_domain'),
+        'choose_from_most_used'      => __('Choose from the most used', 'text_domain'),
+        'popular_items'              => __('Popular Items', 'text_domain'),
+        'search_items'               => __('Search Items', 'text_domain'),
+        'not_found'                  => __('Not Found', 'text_domain'),
+        'no_terms'                   => __('No items', 'text_domain'),
+        'items_list'                 => __('Items list', 'text_domain'),
+        'items_list_navigation'      => __('Items list navigation', 'text_domain'),
+    ),
+    'rewrite'      => array('slug' => 'events-category'),
+    'hierarchical' => true,
+    'query_var'    => true,
+    'has_archive'  => true,
+    'show_in_rest' => true,
+);
+
+$Webinars_Category = new newTaxonomy();
+$Webinars_Category->taxonomy = 'webinars_category';
+$Webinars_Category->post_type = 'webinars';
+$Webinars_Category->args = array(
+    'label'        => 'Webinars Categories',
+    'labels' => array(
+        'name'                       => _x('Webinars Categories', 'Taxonomy General Name', 'text_domain'),
+        'singular_name'              => _x('Webinars Category', 'Taxonomy Singular Name', 'text_domain'),
+        'menu_name'                  => __('Webinars Category', 'text_domain'),
+        'all_items'                  => __('All Items', 'text_domain'),
+        'parent_item'                => __('Parent Item', 'text_domain'),
+        'parent_item_colon'          => __('Parent Item:', 'text_domain'),
+        'new_item_name'              => __('New Item Name', 'text_domain'),
+        'add_new_item'               => __('Add New Item', 'text_domain'),
+        'edit_item'                  => __('Edit Item', 'text_domain'),
+        'update_item'                => __('Update Item', 'text_domain'),
+        'view_item'                  => __('View Item', 'text_domain'),
+        'separate_items_with_commas' => __('Separate items with commas', 'text_domain'),
+        'add_or_remove_items'        => __('Add or remove items', 'text_domain'),
+        'choose_from_most_used'      => __('Choose from the most used', 'text_domain'),
+        'popular_items'              => __('Popular Items', 'text_domain'),
+        'search_items'               => __('Search Items', 'text_domain'),
+        'not_found'                  => __('Not Found', 'text_domain'),
+        'no_terms'                   => __('No items', 'text_domain'),
+        'items_list'                 => __('Items list', 'text_domain'),
+        'items_list_navigation'      => __('Items list navigation', 'text_domain'),
+    ),
+    'hierarchical' => true,
+    'query_var'    => true,
+    'rewrite'      => array(
+        'slug'         => 'webinars-category',
+    )
+);
+
+$Team_Category = new newTaxonomy();
+$Team_Category->taxonomy = 'team_category';
+$Team_Category->post_type = 'team';
+$Team_Category->args = array(
+    'label'        => 'Team Categories',
+    'labels' => array(
+        'name'                       => _x('Team Categories', 'Taxonomy General Name', 'text_domain'),
+        'singular_name'              => _x('Team Category', 'Taxonomy Singular Name', 'text_domain'),
+        'menu_name'                  => __('Team Category', 'text_domain'),
+        'all_items'                  => __('All Items', 'text_domain'),
+        'parent_item'                => __('Parent Item', 'text_domain'),
+        'parent_item_colon'          => __('Parent Item:', 'text_domain'),
+        'new_item_name'              => __('New Item Name', 'text_domain'),
+        'add_new_item'               => __('Add New Item', 'text_domain'),
+        'edit_item'                  => __('Edit Item', 'text_domain'),
+        'update_item'                => __('Update Item', 'text_domain'),
+        'view_item'                  => __('View Item', 'text_domain'),
+        'separate_items_with_commas' => __('Separate items with commas', 'text_domain'),
+        'add_or_remove_items'        => __('Add or remove items', 'text_domain'),
+        'choose_from_most_used'      => __('Choose from the most used', 'text_domain'),
+        'popular_items'              => __('Popular Items', 'text_domain'),
+        'search_items'               => __('Search Items', 'text_domain'),
+        'not_found'                  => __('Not Found', 'text_domain'),
+        'no_terms'                   => __('No items', 'text_domain'),
+        'items_list'                 => __('Items list', 'text_domain'),
+        'items_list_navigation'      => __('Items list navigation', 'text_domain'),
+    ),
+    'hierarchical' => true,
+    'query_var'    => false,
+    'has_archive'  => false,
+);
+
+
+
+$Case_Study_Category = new newTaxonomy();
+$Case_Study_Category->taxonomy = 'case_study_category';
+$Case_Study_Category->post_type = 'casestudies';
+$Case_Study_Category->args = array(
+    'label'        => 'Case Study Categories',
+    'labels' => array(
+        'name'                       => _x('Case Study Categories', 'Taxonomy General Name', 'text_domain'),
+        'singular_name'              => _x('Case Study Category', 'Taxonomy Singular Name', 'text_domain'),
+        'menu_name'                  => __('Case Study Category', 'text_domain'),
+        'all_items'                  => __('All Items', 'text_domain'),
+        'parent_item'                => __('Parent Item', 'text_domain'),
+        'parent_item_colon'          => __('Parent Item:', 'text_domain'),
+        'new_item_name'              => __('New Item Name', 'text_domain'),
+        'add_new_item'               => __('Add New Item', 'text_domain'),
+        'edit_item'                  => __('Edit Item', 'text_domain'),
+        'update_item'                => __('Update Item', 'text_domain'),
+        'view_item'                  => __('View Item', 'text_domain'),
+        'separate_items_with_commas' => __('Separate items with commas', 'text_domain'),
+        'add_or_remove_items'        => __('Add or remove items', 'text_domain'),
+        'choose_from_most_used'      => __('Choose from the most used', 'text_domain'),
+        'popular_items'              => __('Popular Items', 'text_domain'),
+        'search_items'               => __('Search Items', 'text_domain'),
+        'not_found'                  => __('Not Found', 'text_domain'),
+        'no_terms'                   => __('No items', 'text_domain'),
+        'items_list'                 => __('Items list', 'text_domain'),
+        'items_list_navigation'      => __('Items list navigation', 'text_domain'),
+    ),
+    'hierarchical' => true,
+    'query_var'    => true,
+    'rewrite'      => array(
+        'slug'         => 'case-study-category',
+    )
+);
+
+
+$Guide_Category = new newTaxonomy();
+$Guide_Category->taxonomy = 'Guide_category';
+$Guide_Category->post_type = 'guides';
+$Guide_Category->args = array(
+    'label'        => 'Guide Categories',
+    'labels' => array(
+        'name'                       => _x('Guide Categories', 'Taxonomy General Name', 'text_domain'),
+        'singular_name'              => _x('Guide Category', 'Taxonomy Singular Name', 'text_domain'),
+        'menu_name'                  => __('Guide Category', 'text_domain'),
+        'all_items'                  => __('All Items', 'text_domain'),
+        'parent_item'                => __('Parent Item', 'text_domain'),
+        'parent_item_colon'          => __('Parent Item:', 'text_domain'),
+        'new_item_name'              => __('New Item Name', 'text_domain'),
+        'add_new_item'               => __('Add New Item', 'text_domain'),
+        'edit_item'                  => __('Edit Item', 'text_domain'),
+        'update_item'                => __('Update Item', 'text_domain'),
+        'view_item'                  => __('View Item', 'text_domain'),
+        'separate_items_with_commas' => __('Separate items with commas', 'text_domain'),
+        'add_or_remove_items'        => __('Add or remove items', 'text_domain'),
+        'choose_from_most_used'      => __('Choose from the most used', 'text_domain'),
+        'popular_items'              => __('Popular Items', 'text_domain'),
+        'search_items'               => __('Search Items', 'text_domain'),
+        'not_found'                  => __('Not Found', 'text_domain'),
+        'no_terms'                   => __('No items', 'text_domain'),
+        'items_list'                 => __('Items list', 'text_domain'),
+        'items_list_navigation'      => __('Items list navigation', 'text_domain'),
+    ),
+    'hierarchical' => true,
+    'query_var'    => true,
+    'rewrite'      => array(
+        'slug'         => 'guide-category',
+    )
+);
