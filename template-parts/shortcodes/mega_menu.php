@@ -19,7 +19,7 @@ if ($menu_items) {
 
                 ?>
                 <div class="col-auto">
-                    <a class="mega-menu-link text-uppercase" href="<?= $link ?>">
+                    <a class="mega-menu-link text-uppercase fw-semibold d-inline-block" href="<?= $link ?>">
                         <?= $menu_text ?>
                     </a>
                 </div>
