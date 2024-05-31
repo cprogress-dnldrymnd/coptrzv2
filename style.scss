@@ -5,33 +5,27 @@ Author: Donald Raymundo
 Description: Bespoke Theme
 Version: 1.1
 License: GNU General Public License
-
+*/
+@import "assets/stylesheets/base/fonts";
 /*-----------------------------------------------------------------------------------*/
 /* Vendors
 /*-----------------------------------------------------------------------------------*/
-@import 'assets/coptrz_vendors/bootstrap/bootstrap';
-@import 'assets/coptrz_vendors/swiper/swiper';
-@import 'assets/coptrz_vendors/fancybox/fancybox';
+@import "assets/coptrz_vendors/bootstrap/bootstrap";
+@import "assets/coptrz_vendors/swiper/swiper";
+@import "assets/coptrz_vendors/fancybox/fancybox";
 /*-----------------------------------------------------------------------------------*/
 /* Utils
 /*-----------------------------------------------------------------------------------*/
-@import 'assets/stylesheets/utils/mixins',
-'assets/stylesheets/utils/variables'
-;
+@import "assets/stylesheets/utils/mixins", "assets/stylesheets/utils/variables";
 /*-----------------------------------------------------------------------------------*/
 /* Base
 /*-----------------------------------------------------------------------------------*/
-@import 'assets/stylesheets/base/base',
-'assets/stylesheets/base/fonts',
-'assets/stylesheets/base/helpers',
-'assets/stylesheets/base/typography'
-;
+@import "assets/stylesheets/base/base", "assets/stylesheets/base/helpers", "assets/stylesheets/base/typography";
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
-@import 'assets/stylesheets/sections/header',
-'assets/stylesheets/sections/footer';
+@import "assets/stylesheets/sections/header", "assets/stylesheets/sections/footer";
 /*-----------------------------------------------------------------------------------*/
 /* Sections
 /*-----------------------------------------------------------------------------------*/
-@import 'assets/stylesheets/sections/sections';
+@import "assets/stylesheets/sections/sections";
