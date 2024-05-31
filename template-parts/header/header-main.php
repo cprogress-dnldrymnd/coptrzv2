@@ -44,7 +44,7 @@ $SVG = new SVG;
         <div class="container">
             <?= do_shortcode('[mega_menu id=268186]'); ?>
             <?php
-            wp_nav_menu(
+           /* wp_nav_menu(
                 array(
                     'theme_location' => 'header-menu',
                     'container'      => false,
@@ -54,7 +54,7 @@ $SVG = new SVG;
                     'depth'          => 3,
                     'walker'         => new bootstrap_5_wp_nav_menu_walker()
                 )
-            );
+            );*/
             ?>
         </div>
     </div>
