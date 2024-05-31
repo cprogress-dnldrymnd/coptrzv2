@@ -15119,7 +15119,7 @@ tspan {
     width: 54px; }
 #header .bottom-header {
   border-bottom: 1px solid var(--body-color); }
-  #header .bottom-header .navigation-holder ul .menu-item .nav-item {
+  #header .bottom-header ul .menu-item .nav-item {
     color: var(--black-color);
     font-size: 15px;
     height: 80px; }
