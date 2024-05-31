@@ -15,7 +15,7 @@
 
                         </div>
                         <div class="col-lg-6">
-                            <img src="<?= get_the_post_thumbnail_url() ?>" alt="">
+                            <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'large') ?>" alt="">
                         </div>
                     </div>
                 </div>
