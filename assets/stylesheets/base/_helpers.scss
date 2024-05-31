@@ -429,8 +429,7 @@
 	}
 }
 
-.background-white,
-background-body {
+.background-white {
 	color: var(--black-color);
 
 	@include headings {

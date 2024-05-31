@@ -14473,21 +14473,14 @@ a.fancybox-gallery-img {
     .background-secondary .description-box a {
       color: var(--accent-color); }
 
-.background-white,
-background-body {
+.background-white {
   color: var(--black-color); }
   .background-white h1,
   .background-white h2,
   .background-white h3,
   .background-white h4,
   .background-white h5,
-  .background-white h6,
-  background-body h1,
-  background-body h2,
-  background-body h3,
-  background-body h4,
-  background-body h5,
-  background-body h6 {
+  .background-white h6 {
     color: var(--black-color); }
 
 .background-body {
