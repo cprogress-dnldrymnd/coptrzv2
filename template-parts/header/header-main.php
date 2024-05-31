@@ -41,13 +41,15 @@ $SVG = new SVG;
                         <input type="text" placeholder="Search for Drones, Software, Guides and more…" class="eael-advanced-search" autocomplete="off">
                         <button class="eael-advanced-search-button"><?= $SVG->search() ?></button>
                         <div id="search-result">
-                            
+
                         </div>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="button-box button-accent text-end">
-                        <a href="#">GET STARTED</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+                            GET STARTED
+                        </button>
                     </div>
                 </div>
             </div>
