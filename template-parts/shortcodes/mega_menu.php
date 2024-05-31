@@ -35,7 +35,6 @@ if ($menu_items) {
                                         <?php
                                         if ($type == 'menu_items') {
                                             echo '<h4>' . $menu['menu_text'] . '</h4>';
-                                            echo do_shortcode('[menu id=' . $menu['menu'] . ']');
                                         }
                                         ?>
                                 </div>
