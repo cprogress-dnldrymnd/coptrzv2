@@ -4,7 +4,7 @@ $SVG = new SVG;
 <header id="header">
     <div class="top-header py-4 background-body">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-auto">
                     <div class="site-logo-holder position-relative">
                         <a aria-label="Coptrz Homepage" href="https://coptrz.com" class="site-logo position-relative">
