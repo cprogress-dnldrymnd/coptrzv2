@@ -769,6 +769,8 @@ Container::make('post_meta', 'Modules')
 							->add_fields('menu_items', array(
 								Field::make('text', 'menu_text'),
 							))
+							->set_layout('tabbed-vertical')
+
 					)
 				)
 				->set_layout('tabbed-vertical')
