@@ -15101,7 +15101,8 @@ tspan {
   padding-bottom: 10px; }
 
 #header .top-header .search-form {
-  border: 1px solid var(--border-color); }
+  border: 1px solid var(--border-color);
+  max-width: 890px; }
   #header .top-header .search-form > * {
     height: 54px;
     border-radius: 0; }

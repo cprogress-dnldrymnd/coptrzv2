@@ -8,6 +8,7 @@
 	.top-header {
 		.search-form {
 			border: 1px solid var(--border-color);
+			max-width: 890px;
 			> * {
 				height: 54px;
 				border-radius: 0;
