@@ -40,4 +40,4 @@
 		</div>
 	<![endif]-->
 
-	<?php get_template_part('template-parts/header', 'top-bar') ?>
+	<?php get_template_part('template-parts/header/header-top-bar') ?>
