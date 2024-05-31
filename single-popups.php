@@ -12,7 +12,7 @@
                 <div class="modal-body p-0">
                     <div class="row">
                         <div class="col-lg-6">
-
+                            <?php the_content() ?>
                         </div>
                         <div class="col-lg-6">
                             <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'large') ?>" alt="">
