@@ -12,8 +12,10 @@
                 <div class="modal-body p-0">
                     <div class="row g-0">
                         <div class="col-lg-6">
-                            <div class="p-5 h-100 d-flex align-items-center">
-                                <?php the_content() ?>
+                            <div class="form-holder p-4 h-100 d-flex align-items-center">
+                                <div class="form-inner">
+                                    <?php the_content() ?>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 bg-image">
