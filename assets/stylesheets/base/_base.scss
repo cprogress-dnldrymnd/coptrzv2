@@ -301,9 +301,9 @@ a {
     @include button-accent;
     border-color: var(--accent-color);
     width: 100%;
-
+    background-image: none !important;
     @include on-event {
-        background-color: transparent;
+        background-color: transparent !important;
         border-color: var(--accent-color);
     }
 }
