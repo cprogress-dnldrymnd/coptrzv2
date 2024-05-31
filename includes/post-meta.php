@@ -707,7 +707,7 @@ Container::make('post_meta', 'Download Guide')
 /*-----------------------------------------------------------------------------------*/
 
 Container::make('post_meta', 'Modules')
-->where('post_template', '=', '')
+->where('post_template', '=', 'templates/page-modules.php')
 ->set_priority('high')
 ->add_fields(
 	array(
