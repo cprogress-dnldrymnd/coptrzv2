@@ -735,7 +735,7 @@ Container::make('post_meta', 'Modules')
 						Field::make('select', 'menu_type', __('Menu Type'))
 							->set_options(
 								array(
-									'internal' => 'Internal',
+									'page' => 'Page',
 									'custom'  => 'Custom',
 								)
 							),
@@ -749,12 +749,18 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('association', 'menu_item', __('Menu Item'))
+						Field::make('association', 'menu_item_page', __('Page'))
+							->set_types(array(
+								array(
+									'type' => 'post',
+									'post_type' => 'page',
+								),
+							))
 							->set_conditional_logic(
 								array(
 									array(
 										'field' => 'menu_type',
-										'value' => 'internal',
+										'value' => 'page',
 									)
 								)
 							),
