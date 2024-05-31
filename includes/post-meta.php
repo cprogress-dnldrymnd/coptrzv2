@@ -740,7 +740,24 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'menu_text', __('Menu Text')),
+						Field::make('text', 'menu_custom_url', __('Custom Url'))
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'menu_type',
+										'value' => 'custom',
+									)
+								)
+							),
 						Field::make('association', 'menu_item', __('Menu Item'))
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'menu_type',
+										'value' => 'internal',
+									)
+								)
+							),
 					)
 				)
 		)
