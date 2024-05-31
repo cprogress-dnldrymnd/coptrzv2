@@ -7,7 +7,7 @@
     </button>
     <!-- Modal -->
     <div class="modal fade modal-v2 popup-form" id="modal" tabindex="-1" aria-labelledby="modalSearchLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content background-white">
                 <div class="modal-body p-0">
                     <div class="row">
