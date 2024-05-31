@@ -61,6 +61,10 @@
 	}
 	.cart-subtotal {
 		color: #979797;
+		font-weight: 600;
+	}
+	.cart-icon {
+		color: #979797;
 	}
 	@include on-event {
 		.cart-dropdown-content {

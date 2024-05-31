@@ -14934,6 +14934,9 @@ tspan {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1; }
   .cart-dropdown .cart-subtotal {
+    color: #979797;
+    font-weight: 600; }
+  .cart-dropdown .cart-icon {
     color: #979797; }
   .cart-dropdown:hover .cart-dropdown-content, .cart-dropdown:active .cart-dropdown-content, .cart-dropdown:focus .cart-dropdown-content {
     display: block; }
