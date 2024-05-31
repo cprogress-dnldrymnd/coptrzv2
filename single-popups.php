@@ -10,7 +10,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content background-white">
                 <div class="modal-body p-0">
-                    <div class="row">
+                    <div class="row g-0">
                         <div class="col-lg-6">
                             <div class="p-5 h-100 d-flex align-items-center">
                                 <?php the_content() ?>
