@@ -38,10 +38,10 @@ if ($menu_items) {
                                             //echo do_shortcode('[menu id=' . $menu['menu'] . ']');
                                         }
                                         ?>
+                                    <?php } ?>
                                 </div>
                             </div>
                         <?php } ?>
-                    <?php } ?>
                     </div>
                 </div>
             <?php } ?>
