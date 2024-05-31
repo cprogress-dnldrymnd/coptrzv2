@@ -15094,6 +15094,9 @@ tspan {
   padding-top: 10px;
   padding-bottom: 10px; }
 
+#header .bottom-header {
+  border-bottom: 1px solid var(--body-color); }
+
 footer {
   position: relative;
   z-index: 1; }
