@@ -15105,9 +15105,14 @@ tspan {
   max-width: 890px; }
   #header .top-header .search-form > * {
     height: 54px;
-    border-radius: 0; }
+    border-radius: 0;
+    border: none; }
   #header .top-header .search-form select {
     width: 40%; }
+  #header .top-header .search-form input {
+    width: calc(60% - 54px);
+    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color); }
   #header .top-header .search-form button {
     background-color: var(--accent-color);
     color: var(--white-color);

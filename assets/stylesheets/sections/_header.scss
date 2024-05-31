@@ -12,9 +12,15 @@
 			> * {
 				height: 54px;
 				border-radius: 0;
+				border: none;
 			}
 			select {
 				width: 40%;
+			}
+			input {
+				width: calc(60% - 54px);
+				border-right: 1px solid var(--border-color);
+				border-left: 1px solid var(--border-color);
 			}
 			button {
 				background-color: var(--accent-color);
