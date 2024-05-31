@@ -1215,7 +1215,6 @@ select option {
     }
 }
 
-
 .breadcrumbs-title {
     .description-box {
         font-size: 40px;
@@ -3296,7 +3295,6 @@ a.fancybox-gallery-img {
     justify-content: center;
 }
 
-
 .modal {
     z-index: 999999;
     &.popup-form {
@@ -3305,6 +3303,13 @@ a.fancybox-gallery-img {
         }
         .modal-content {
             border-radius: 0;
+        }
+        .form-holder {
+            .form-inner {
+                input {
+                    max-width: 100%;
+                }
+            }
         }
         .bg-image {
             img {

@@ -11419,8 +11419,8 @@ a {
 input:not([type="submit"]):not(.qty):not([type="checkbox"]):not([type="radio"]):not(.search),
 select,
 textarea {
-  border-radius: 5px;
-  border: 2px solid var(--gray-color);
+  border-radius: 0;
+  border: 1px solid var(--border-color);
   outline: none;
   padding: 13px;
   line-height: 1;
@@ -13148,8 +13148,8 @@ body.elementor-editor-active .elementor-swiper-slider > .e-con-inner:before {
     .ElementsWidget-prefix.ElementsWidget-prefix .R-TextBody > div:hover:before, .ElementsWidget-prefix.ElementsWidget-prefix .R-TextBody > div:active:before, .ElementsWidget-prefix.ElementsWidget-prefix .R-TextBody > div:focus:before {
       animation: pulse 2s infinite; }
 .ElementsWidget-prefix.ElementsWidget-prefix .R-Field .R-Field__input {
-  border-radius: 5px;
-  border: 2px solid var(--gray-color);
+  border-radius: 0;
+  border: 1px solid var(--border-color);
   outline: none;
   padding: 13px;
   line-height: 1;
@@ -13867,6 +13867,8 @@ a.fancybox-gallery-img {
     max-width: 800px; }
   .modal.popup-form .modal-content {
     border-radius: 0; }
+  .modal.popup-form .form-holder .form-inner input {
+    max-width: 100%; }
   .modal.popup-form .bg-image img {
     position: absolute;
     left: 0;

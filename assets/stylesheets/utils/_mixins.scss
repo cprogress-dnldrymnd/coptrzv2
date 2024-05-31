@@ -736,8 +736,8 @@
 }
 
 @mixin input-style {
-    border-radius: 5px;
-    border: 2px solid var(--gray-color);
+    border-radius: 0;
+    border: 1px solid var(--border-color);
     outline: none;
     padding: 13px;
     line-height: 1;

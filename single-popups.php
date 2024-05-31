@@ -13,7 +13,7 @@
                     <div class="row g-0">
                         <div class="col-lg-6">
                             <div class="form-holder p-4 h-100 d-flex align-items-center">
-                                <div class="form-inner">
+                                <div class="form-inner w-100">
                                     <?php the_content() ?>
                                 </div>
                             </div>
