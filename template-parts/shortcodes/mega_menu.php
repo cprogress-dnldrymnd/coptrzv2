@@ -26,12 +26,11 @@ if ($menu_items) {
                     <?php foreach ($submenu as $menu) { ?>
                         <?php
                         $type = $menu['_type'];
-                        $type = $menu['_type'];
                         ?>
 
                         <?php
                         if ($type == 'menu_items') {
-                            echo do_shortcode('[menu id=]')
+                            echo do_shortcode('[menu id=' . $menu['menu'] . ']');
                         }
                         ?>
 
