@@ -24,12 +24,16 @@ if ($menu_items) {
                         <?= $menu_text ?>
                     </a>
                     <?php foreach ($submenu as $menu) { ?>
-
-                        <pre>
                         <?php
-                        var_dump($menu);
+                        $type = $menu['_type'];
+                        $type = $menu['_type'];
                         ?>
-                        </pre>
+
+                        <?php
+                        if ($type == 'menu_items') {
+                            echo do_shortcode('[menu id=]')
+                        }
+                        ?>
 
                     <?php } ?>
                 </div>

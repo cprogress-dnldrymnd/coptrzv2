@@ -1047,34 +1047,7 @@ class Shortcodes
 		return ob_get_clean();
 	}
 
-	function menu()
-	{
-		ob_start();
-	?>
 
-		<div class="col-auto col-menu d-flex align-self-stretch align-items-center justify-content-end">
-			<div class="column-holder h-lg-100" id="header-column">
-				<div class="h-lg-100" id="header-column-inner">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'header-menu-2',
-							'container'      => false,
-							'menu_class'     => '',
-							'fallback_cb'    => 'WP_Bootstrap_Navwalker::fallback',
-							'items_wrap'     => '<ul id="%1$s" class="navbar-nav align-items-center h-100 %2$s">%3$s</ul>',
-							'depth'          => 3,
-							'walker'         => new bootstrap_5_wp_nav_menu_walker()
-						)
-					);
-					?>
-				</div>
-			</div>
-		</div>
-
-	<?php
-		return ob_get_clean();
-	}
 
 	function announcement_bar()
 	{
@@ -1095,6 +1068,27 @@ class Shortcodes
 		} else {
 			return do_shortcode('[wpf-filters id=1]');
 		}
+	}
+
+	function menu($atts)
+	{
+		extract(
+			shortcode_atts(
+				array(
+					'id' => '',
+				),
+				$atts
+			)
+		);
+		return wp_nav_menu(
+			array(
+				'menu' => $id,
+				'container'      => false,
+				'menu_class'     => '',
+				'items_wrap'     => '<ul id="%1$s" class="navbar-nav align-items-center h-100 %2$s">%3$s</ul>',
+				'depth'          => 3,
+			)
+		);
 	}
 
 	function popup($atts)
