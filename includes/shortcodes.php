@@ -1108,31 +1108,7 @@ class Shortcodes
 				$atts
 			)
 		);
-	?>
-		<!-- Modal -->
-		<div class="modal fade modal-v2 popup-form" id="modal-<?= $id ?>" tabindex="-1" aria-labelledby="modalSearchLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content background-white">
-					<div class="modal-body p-0">
-						<div class="row g-0">
-							<div class="col-lg-6">
-								<div class="form-holder p-4 h-100 d-flex align-items-center">
-									<div class="form-inner w-100">
-										<?= do_shortcode(get_the_content(NULL, false, $id)) ?>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 bg-image">
-								<div class="position-relative h-100">
-									<img src="<?= get_the_post_thumbnail_url($id, 'large') ?>" alt="<?= get_the_title($id) ?>">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	<?php
+		include(get_stylesheet_directory() . '/template-parts/shortcodes/popup.php');
 		return ob_get_clean();
 	}
 
@@ -1149,10 +1125,26 @@ class Shortcodes
 		include(get_stylesheet_directory() . '/template-parts/shortcodes/search_form.php');
 		return ob_get_clean();
 	}
+
+	function mega_menu($atts)
+	{
+		ob_start();
+		extract(
+			shortcode_atts(
+				array(
+					'id' => '',
+				),
+				$atts
+			)
+		);
+		include(get_stylesheet_directory() . '/template-parts/shortcodes/mega_menu.php');
+		return ob_get_clean();
+	}
 }
 
 
 $Shortcodes = new Shortcodes;
+add_shortcode('mega_menu', array($Shortcodes, 'mega_menu'));
 add_shortcode('search_form', array($Shortcodes, 'search_form'));
 add_shortcode('mini_cart', array($Shortcodes, 'mini_cart'));
 add_shortcode('popup', array($Shortcodes, 'popup'));
