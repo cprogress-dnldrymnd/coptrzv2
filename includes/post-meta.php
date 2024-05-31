@@ -768,13 +768,7 @@ Container::make('post_meta', 'Modules')
 						Field::make('complex', 'submenu', __('Submenu'))
 							->add_fields('menu_items', array(
 								Field::make('text', 'menu_text'),
-								Field::make('association', 'menu_item_page', __('Page'))
-									->set_max(1)
-									->set_types(array(
-										array(
-											'type' => 'menus',
-										),
-									))
+							
 							))
 							->set_layout('tabbed-vertical')
 
