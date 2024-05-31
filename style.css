@@ -11007,6 +11007,9 @@ html.mobile-menu-active {
   html.coptrz-html {
     margin-top: 0 !important; } }
 
+img[style="border-bottom-color: rgba(0, 0, 0, 0);"] {
+  border-bottom: none !important; }
+
 html,
 body {
   position: relative; }
