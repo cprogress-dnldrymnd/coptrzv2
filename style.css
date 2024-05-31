@@ -15119,8 +15119,8 @@ tspan {
     width: 54px; }
 #header .bottom-header {
   border-bottom: 1px solid var(--body-color); }
-  #header .bottom-header .navigation-holder ul .navbar-nav {
-    flex-direction: row; }
+  #header .bottom-header .navigation-holder ul .menu-item .nav-item {
+    height: 80px; }
 
 footer {
   position: relative;

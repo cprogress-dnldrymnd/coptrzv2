@@ -33,8 +33,10 @@
 		border-bottom: 1px solid var(--body-color);
 		.navigation-holder {
 			ul {
-				.navbar-nav {
-					flex-direction: row;
+				.menu-item {
+					.nav-item {
+						height: 80px;
+					}
 				}
 			}
 		}
