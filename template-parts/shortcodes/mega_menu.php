@@ -41,8 +41,8 @@ if ($menu_items) {
                                 </div>
                             </div>
                         <?php } ?>
+                    <?php } ?>
                     </div>
-                <?php } ?>
                 </div>
             <?php } ?>
         </div>
