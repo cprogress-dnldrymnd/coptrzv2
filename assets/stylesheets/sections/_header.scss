@@ -59,7 +59,9 @@
 		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 		z-index: 1;
 	}
-
+	.cart-subtotal {
+		color: #979797;
+	}
 	@include on-event {
 		.cart-dropdown-content {
 			display: block;

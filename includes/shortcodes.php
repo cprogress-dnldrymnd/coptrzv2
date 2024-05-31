@@ -1143,7 +1143,7 @@ class Shortcodes
 		<div class="cart-dropdown me-4">
 			<a class="cart-icon" href="<?php echo wc_get_cart_url(); ?>">
 				<div class="d-inline-flex align-items-center">
-					<span class="cart-subtotal"><?php echo WC()->cart->get_cart_subtotal(); ?></span>
+					<span class="cart-subtotal"><strong><?php echo WC()->cart->get_cart_subtotal(); ?></strong></span>
 					<span>
 						<?= $SVG->cart() ?>
 						<span class="cart-contents-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
