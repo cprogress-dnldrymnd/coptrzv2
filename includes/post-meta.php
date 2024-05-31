@@ -699,3 +699,24 @@ Container::make('post_meta', 'Download Guide')
 				)
 		)
 	);
+
+
+
+	/*-----------------------------------------------------------------------------------*/
+/* Page Banner
+/*-----------------------------------------------------------------------------------*/
+
+Container::make('post_meta', 'Modules')
+->where('post_template', '=', '')
+->set_priority('high')
+->add_fields(
+	array(
+		Field::make('image', 'image', __('Image')),
+		Field::make('complex', 'guides', __('Guides'))
+			->add_fields(
+				array(
+					Field::make('textarea', 'guide_text', __('Guide Text')),
+				)
+			)
+	)
+);
