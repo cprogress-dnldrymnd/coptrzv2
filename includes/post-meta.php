@@ -724,6 +724,14 @@ Container::make('post_meta', 'Modules')
 /*-----------------------------------------------------------------------------------*/
 /* Mega Menus
 /*-----------------------------------------------------------------------------------*/
+$menu_locations = get_nav_menu_locations();
+
+// 2. Store Menus in Array (Basic)
+$menus = array();
+foreach ($menu_locations as $location => $menu_id) {
+	$menu_items = wp_get_nav_menu_items($menu_id);
+	$menus[$location] = $menu_items;
+}
 Container::make('post_meta', 'Modules')
 	->where('post_type', '=', 'megamenus')
 	->set_priority('high')
@@ -768,7 +776,8 @@ Container::make('post_meta', 'Modules')
 						Field::make('complex', 'submenu', __('Submenu'))
 							->add_fields('menu_items', array(
 								Field::make('text', 'menu_text'),
-							
+								Field::make('select', 'menu_type', __('Menu Type'))
+									->set_options(get_menu_list_array())
 							))
 							->set_layout('tabbed-vertical')
 
