@@ -421,6 +421,6 @@ $Slides->singular_name = 'Slide';
 $Slides->icon = 'dashicons-testimonial';
 $Slides->supports = array('title', 'revisions');
 $Slides->exclude_from_search = true;
-$Testimonials->publicly_queryable = false;
+$Slides->publicly_queryable = false;
 $Slides->show_in_admin_bar = false;
 $Slides->has_archive = false;
