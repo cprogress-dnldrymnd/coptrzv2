@@ -981,6 +981,12 @@ Container::make('post_meta', 'Modules')
 											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url'),
 										)
 									)
+									->add_fields(
+										'image',
+										array(
+											Field::make('image', 'image', __('Image')),
+										)
+									)
 							)
 						)
 						->set_layout('tabbed-vertical')
