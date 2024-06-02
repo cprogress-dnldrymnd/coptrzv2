@@ -7,6 +7,11 @@
                     <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="column-holder content-margin">
+                    <?= do_shortcode($module['contact_form_shortcode']) ?>
+                </div>
+            </div>
         </div>
     </div>
 </section>
