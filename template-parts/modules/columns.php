@@ -7,7 +7,7 @@
 
         <div class="column-items">
             <?php if ($module['columns']) { ?>
-                <div class="row">
+                <div class="row align-items-center">
                     <?php foreach ($module['columns'] as $column) { ?>
                         <div class="col">
                             <div class="column-holder content-margin">
