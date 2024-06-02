@@ -18,38 +18,37 @@ $terms = get_terms(array(
         <div class="tab-content" id="myTabContent">
             <?php foreach ($terms as $key => $term) { ?>
                 <div class="tab-pane fade  <?= $key == 0 ? 'show active' : '' ?>" id="term-<?= $term->term_id ?>" role="tabpanel" aria-labelledby="term-<?= $term->term_id ?>-tab">
-                    <?= $term->name ?>
+                    <?php
+                    // Build the args
+                    $args = array(
+                        'post_type' => $module['post_type_key'],
+                        'posts_per_page' => -1,
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => $module['taxonomy_key'],
+                                'field' => 'id',
+                                'terms' => $term->term_id,
+                            )
+                        )
+                    );
+
+                    // Get the posts
+                    $posts = get_posts($args);
+                    ?>
+
+                    <?php if ($posts) { ?>
+                        <div class="row">
+                            <?php foreach ($posts as $post) { ?>
+                                <div class="col-lg-4">
+                                    <div class="column-holder">
+                                        <?= do_shortcode('[post_grid id="' . $post->ID . '"]') ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
                 </div>
 
-                <?php
-                // Build the args
-                $args = array(
-                    'post_type' => $module['post_type_key'],
-                    'posts_per_page' => -1,
-                    'tax_query' => array(
-                        array(
-                            'taxonomy' => $module['taxonomy_key'],
-                            'field' => 'id',
-                            'terms' => $term->term_id,
-                        )
-                    )
-                );
-
-                // Get the posts
-                $posts = get_posts($args);
-                ?>
-
-                <?php if ($posts) { ?>
-                    <div class="row">
-                        <?php foreach ($posts as $post) { ?>
-                            <div class="col-lg-4">
-                                <div class="column-holder">
-                                    <?= do_shortcode('[post_grid id="' . $post->ID . '"]') ?>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                <?php } ?>
             <?php } ?>
         </div>
     </div>
