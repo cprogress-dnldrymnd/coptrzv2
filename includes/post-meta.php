@@ -953,7 +953,7 @@ Container::make('post_meta', 'Modules')
 						->set_layout('tabbed-vertical'),
 					Field::make('text', 'heading', __('Heading')),
 					Field::make('textarea', 'description', __('Description')),
-					Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+					Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector-single')
 						->set_options(
 							array(
 								'page' => 'Page',

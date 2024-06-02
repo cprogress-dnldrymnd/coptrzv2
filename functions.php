@@ -285,6 +285,13 @@ function action_admin_footer()
 			active_link_type($selector, $value)
 		});
 
+		
+		jQuery(document).on("change", '.trigger-selector-single select', function(event) {
+			$value = jQuery(this).val();
+			$selector = jQuery(this).parent().parent().next().next().find('.page-selector');
+			active_link_type($selector, $value)
+		});
+
 		jQuery(document).on("change", '.select-page-selector', function(event) {
 			$value = jQuery(this).val();
 			$input = jQuery(this).parent().parent().parent().parent().parent().find('.field-url input');
