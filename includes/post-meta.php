@@ -959,6 +959,7 @@ Container::make('post_meta', 'Modules')
 						))
 						->add_fields(
 							array(
+								Field::make('text', 'label', __('Label')),
 								Field::make('complex', 'items', __('Items'))
 									->set_layout('tabbed-vertical')
 									->add_fields(
@@ -983,6 +984,7 @@ Container::make('post_meta', 'Modules')
 							)
 						)
 						->set_layout('tabbed-vertical')
+						->set_header_template('<%- label  %>'),
 
 				)
 			)
