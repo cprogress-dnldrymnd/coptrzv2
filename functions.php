@@ -20,6 +20,8 @@ function action_after_setup_theme()
 
 	global $theme_settings;
 
+	$styles = array();
+
 	$theme_settings = array(
 		array(
 			'id'    => 'general_settings',
