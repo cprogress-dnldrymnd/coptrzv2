@@ -992,3 +992,9 @@
 		}
 	}
 }
+
+.form-style-2 {
+	@include inputs {
+		background-color: var(--body-color);
+	}
+}
