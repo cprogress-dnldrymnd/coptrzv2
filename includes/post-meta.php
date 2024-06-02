@@ -1274,6 +1274,12 @@ Container::make('post_meta', 'Modules')
 													->set_header_template('<%- heading  %>'),
 											)
 										)
+										->add_fields(
+											'custom_html',
+											array(
+												Field::make('textarea', 'custom_html', __('Custom HTML')),
+											)
+										)
 										->set_layout('tabbed-vertical')
 								)
 							)
