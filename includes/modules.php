@@ -7,7 +7,7 @@ function modules_styles()
 
     echo '<style id="module-styles">';
     foreach ($modules as $key => $module) {
-        
+        echo '#module'
     }
     echo '</style>';
 }
