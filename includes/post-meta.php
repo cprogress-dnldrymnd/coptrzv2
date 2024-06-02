@@ -813,7 +813,7 @@ Container::make('post_meta', 'Modules')
 										)
 									),
 								Field::make('text', 'menu_text', __('Column Text')),
-								Field::make('media_gallery', 'image', __('Image')),
+								Field::make('media_gallery', 'image', __('Images')),
 							))
 							->set_layout('tabbed-vertical')
 
