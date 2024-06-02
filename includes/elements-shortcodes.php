@@ -88,7 +88,7 @@ add_shortcode('_description', array($Elements_Shortcodes, '_description'));
 add_shortcode('_button', array($Elements_Shortcodes, '_button'));
 
 
-function _elements($data, $module_id)
+function _elements($data, $module_id, $same_height_images)
 {
     ob_start();
     foreach ($data as $d) {
@@ -100,7 +100,7 @@ function _elements($data, $module_id)
                 echo do_shortcode("[_description description='" . $d['description'] . "']");
                 break;
             case 'image':
-                echo do_shortcode('[_image id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
+                echo do_shortcode('[_image ' . $same_height_images ? 'same_height="true"' : 'same_height="false"' . ' id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
                 break;
             case 'button':
                 echo do_shortcode('[_button id="' . $d['button_url'] . '" custom_url="' . $d['button_url_custom'] . '" button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" ]');
