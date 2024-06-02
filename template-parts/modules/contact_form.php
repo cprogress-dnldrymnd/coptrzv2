@@ -1,5 +1,5 @@
 <?php
-$module['heading'];
+echo $module['heading'];
 ?>
 <section class="contact-form">
     <div class="container">
