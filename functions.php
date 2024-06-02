@@ -312,8 +312,7 @@ function action_admin_footer()
 				$value = jQuery(this).val();
 				$selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
 				$input = jQuery(this).parent().parent().next().next().find('input').val();
-				active_link_type($selector, $value, $input)
-				active_link_type($selector, $value)
+				active_link_type($selector, $value, $input);
 			});
 
 		}, 2000);
