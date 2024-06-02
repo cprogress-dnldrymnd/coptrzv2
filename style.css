@@ -14732,6 +14732,9 @@ a.fancybox-gallery-img {
 .rounded-corner {
   border-radius: var(--border-radius, 15px); }
 
+.max-width {
+  border-radius: var(--max-width, 600px); }
+
 /**
  * Basic typography style for copy text
  */
