@@ -97,6 +97,15 @@ function _elements($data)
             case 'image':
                 echo do_shortcode('[_image id="' . $d['image'] . '"]');
                 break;
+            case 'button':
+                if ($d['button_type'] == 'custom') {
+                    $button_link = $d['button_url_custom'];
+                } else {
+                    $id = $d['button_url_' . $d['button_type']];
+                    $button_link = get_permalink($id);
+                }
+                echo do_shortcode('[_button button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" button_link="' . $button_link . '"]');
+                break;
         }
     }
     return ob_get_clean();

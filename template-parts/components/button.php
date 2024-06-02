@@ -11,10 +11,5 @@ $button_link = get_permalink($button_type) ? get_permalink($button_type) : do_sh
 		<?php } ?>
 
 		<span class="text"><?= $button_text ? do_shortcode($button_text) : get_the_title($button_type) ?></span>
-
-		<?php if ($button_icon == 'sixty-seconds') { ?>
-			<span class="sixty-seconds"> <?= $SVG->sixty_seconds ?> </span>
-		<?php } ?>
-
 	</a>
 </div>
