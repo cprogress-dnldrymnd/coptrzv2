@@ -101,7 +101,8 @@ function _elements($data, $module_id, $same_height_images)
                 echo do_shortcode("[_description description='" . $d['description'] . "']");
                 break;
             case 'image':
-                echo do_shortcode('[_image ' . $same_height_images ? 'same_height="true"' : 'same_height="false"' . ' id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
+                $same_height = $same_height_images ? 'same_height="true"' : 'same_height="false"';
+                echo do_shortcode('[_image ' . $same_height . '  id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
                 break;
             case 'button':
                 echo do_shortcode('[_button id="' . $d['button_url'] . '" custom_url="' . $d['button_url_custom'] . '" button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" ]');
