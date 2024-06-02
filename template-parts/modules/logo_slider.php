@@ -1,4 +1,4 @@
-<section class="logo-slider <?= $classes ?>">
+<section class="logo-slider <?= $classes ?>" id="<?= $module_id ?>">
     <div class="container">
         <div class="section-heading-description">
             <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="text-center mb-5" tag="h3"]') ?>
