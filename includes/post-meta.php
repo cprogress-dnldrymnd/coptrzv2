@@ -820,8 +820,6 @@ Container::make('post_meta', 'Mega Menu Items')
 /*-----------------------------------------------------------------------------------*/
 /* Modules
 /*-----------------------------------------------------------------------------------*/
-$GetData = new GetData;
-$page = $GetData->get_posts_admin_only('page');
 Container::make('post_meta', 'Modules')
 	->where('post_template', '=', 'templates/page-modules.php')
 	->set_priority('high')
