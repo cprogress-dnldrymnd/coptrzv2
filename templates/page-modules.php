@@ -13,13 +13,10 @@ global $styles;
     foreach ($modules as $key => $module) {
         $type = $module['_type'];
         $module_id = 'module-' . $key;
+        $styles[$module_id] = $module['styles'];
         include locate_template('template-parts/modules/' . $type . '.php');
     }
     ?>
 </div>
 
-<?php
-function modules_styles() 
-add_action('modules_styles',)
-?>
 <?php get_footer(); ?>
