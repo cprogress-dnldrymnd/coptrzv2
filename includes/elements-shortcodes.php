@@ -96,7 +96,7 @@ function _elements($data, $module_id, $same_height_images)
         $type = $d['_type'];
         switch ($type) {
             case 'heading':
-                echo do_shortcode('[_heading heading="' . $d['heading'] . '"]');
+                echo do_shortcode('[_heading tag="' . $d['tag'] . '" heading="' . $d['heading'] . '"]');
             case 'description':
                 echo do_shortcode('[_description description="' . $d['description'] . '"]');
                 break;
