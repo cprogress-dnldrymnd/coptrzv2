@@ -14713,6 +14713,9 @@ a.fancybox-gallery-img {
     .color-white-sm .elementor-heading-title {
       color: inherit !important; } }
 
+.color-black {
+  color: var(--black-color); }
+
 .with-line .elementor-heading-title {
   display: flex;
   align-items: center; }
