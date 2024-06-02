@@ -13916,7 +13916,8 @@ a.fancybox-gallery-img {
 .accordion.accordion-v2 .accordion-item {
   margin-bottom: 1rem; }
   .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button {
-    padding-bottom: 1rem !important; }
+    padding-bottom: 1rem !important;
+    background-color: transparent; }
     .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button span {
       color: var(--black-color); }
       .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button span h4 {
