@@ -1370,6 +1370,12 @@ Container::make('post_meta', 'Modules')
 					)
 				)
 				->add_fields(
+					'custom_html',
+					array(
+						Field::make('textarea', 'custom_html', __('Custom HTML')),
+					)
+				)
+				->add_fields(
 					'post_tabs',
 					array(
 						Field::make('complex', 'styles', __('Styles'))
