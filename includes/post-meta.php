@@ -830,7 +830,7 @@ Container::make('post_meta', 'Modules')
 				array(
 					Field::make('complex', 'styles', __('Styles'))
 						->add_fields(
-							'styles',
+							'background_color',
 							array(
 								Field::make('select', 'background_color', 'Background Color')
 									->set_options(
@@ -874,7 +874,11 @@ Container::make('post_meta', 'Modules')
 										)
 									),
 							)
-						)->set_max(1)
+						)
+						->add_fields(
+							'padding',
+							array()
+						)
 						->set_layout('tabbed-vertical'),
 					Field::make('text', 'heading', __('Heading')),
 					Field::make('rich_text', 'description', __('Description')),
