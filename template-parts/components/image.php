@@ -22,15 +22,14 @@ else {
 ?>
 <?php if ($image_url || $placeholder) { ?>
 
-	<div class="image-box<?= $GetData->get_class($class) ?> <?= $img_class ?>" <?= $GetData->get_data_aos($data_aos) ?>>
+	<div class="image-box <?= $class ?>" <?= $GetData->get_data_aos($data_aos) ?>>
 		<?php
 		if ($link) {
 			echo '<a href="' . $link . '" class="d-block">';
 		}
 		?>
 		<?php if ($ext != 'svg') { ?>
-			<img <?= $image_height ? 'height="' . $image_height . '"' : '' ?> <?= $image_width ? 'width="' . $image_width . '"' : '' ?> decoding="async" class="jetpack-lazy-image"
-				src="<?= $image_url ?>" alt="<?= $image_alt ?>">
+			<img <?= $image_height ? 'height="' . $image_height . '"' : '' ?> 		<?= $image_width ? 'width="' . $image_width . '"' : '' ?> decoding="async" class="jetpack-lazy-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>">
 		<?php }
 		else { ?>
 			<span class="svg-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>"></span>
