@@ -330,7 +330,7 @@ function action_admin_footer()
 			} else {
 				$selector.html('');
 			}
-
+			console.log($input);
 			$selector.find('.select-page-selector').val($input);
 		}
 	</script>
