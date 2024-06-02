@@ -14316,6 +14316,87 @@ a.fancybox-gallery-img {
     margin-top: 3rem;
     margin-bottom: 3rem; } }
 
+@media screen and (min-width: 992px) {
+  .xl-margin-left {
+    margin-left: 9.5rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .xl-margin-left {
+    margin-left: 6rem; } }
+@media screen and (max-width: 767px) {
+  .xl-margin-left {
+    margin-left: 5rem; } }
+@media screen and (max-width: 575px) {
+  .xl-margin-left {
+    margin-left: 3rem; } }
+
+@media screen and (min-width: 992px) {
+  .lg-margin-left {
+    margin-left: 7.25rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .lg-margin-left {
+    margin-left: 5rem; } }
+@media screen and (max-width: 767px) {
+  .lg-margin-left {
+    margin-left: 4rem; } }
+
+@media screen and (min-width: 992px) {
+  .md-margin-left {
+    margin-left: 5rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .md-margin-left {
+    margin-left: 4rem; } }
+@media screen and (max-width: 767px) {
+  .md-margin-left {
+    margin-left: 3rem; } }
+
+.sm-margin-left {
+  margin-left: 3.75rem; }
+  @media screen and (max-width: 767px) {
+    .sm-margin-left {
+      margin-left: 2rem; } }
+
+.xs-margin-left {
+  margin-left: 1.625rem; }
+
+@media screen and (min-width: 992px) {
+  .xl-margin-right {
+    margin-right: 9.5rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .xl-margin-right {
+    margin-right: 6rem; } }
+@media screen and (max-width: 767px) {
+  .xl-margin-right {
+    margin-right: 5rem; } }
+@media screen and (max-width: 575px) {
+  .xl-margin-right {
+    margin-right: 3rem; } }
+
+@media screen and (min-width: 992px) {
+  .lg-margin-right {
+    margin-right: 7.25rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .lg-margin-right {
+    margin-right: 5rem; } }
+@media screen and (max-width: 767px) {
+  .lg-margin-right {
+    margin-right: 4rem; } }
+
+@media screen and (min-width: 992px) {
+  .md-margin-right {
+    margin-right: 5rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .md-margin-right {
+    margin-right: 4rem; } }
+@media screen and (max-width: 767px) {
+  .md-margin-right {
+    margin-right: 3rem; } }
+
+.sm-margin-right {
+  margin-right: 3.75rem; }
+  @media screen and (max-width: 767px) {
+    .sm-margin-right {
+      margin-right: 2rem; } }
+
 /*End of Extra Large margin*/
 /*Background*/
 .background-black,
