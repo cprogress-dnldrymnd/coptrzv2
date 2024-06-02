@@ -1097,7 +1097,7 @@ Container::make('post_meta', 'Modules')
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', '3D Model Library Settings')
 	->set_priority('high')
-	->or_where('post_type', '=', 'guides')
+	->or_where('post_type', '=', '3dmodellibraries')
 	->add_fields(
 		array(
 			Field::make('image', 'captured_by', 'Captured by (Logo)'),
