@@ -14,6 +14,7 @@ $modules = get__post_meta('modules');
         $module_id = 'module-' . get_the_ID() . '-' . $key;
         $styles = $module['styles'];
         $classes = '';
+        $style = '';
         if ($styles) {
             foreach ($styles as $style) {
                 $style_type = $style['_type'];
