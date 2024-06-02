@@ -990,16 +990,8 @@ Container::make('post_meta', 'Modules')
 													)
 												),
 											Field::make('text', 'button_text', __('Button Text')),
-											Field::make('select', 'button_url_page', __('Button URL'))->set_classes('field-url')
-												->set_options($page)
-												->set_conditional_logic(
-													array(
-														array(
-															'field' => 'button_type',
-															'value' => 'page',
-														)
-													)
-												),
+											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+												->set_field('<div class="select-page"> </div>')
 										)
 									)
 									->add_fields(
