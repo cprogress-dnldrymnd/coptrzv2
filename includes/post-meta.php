@@ -1019,6 +1019,18 @@ Container::make('post_meta', 'Modules')
 											Field::make('image', 'image', __('Image')),
 										)
 									)
+									->add_fields(
+										'accordion',
+										array(
+											Field::make('complex', 'accordion', __('Accordion'))
+												->add_fields(
+													array(
+														Field::make('text', 'heading', __('Heading')),
+														Field::make('textarea', 'description', __('Description')),
+													)
+												)
+										)
+									)
 									->set_layout('tabbed-vertical')
 							)
 						)
