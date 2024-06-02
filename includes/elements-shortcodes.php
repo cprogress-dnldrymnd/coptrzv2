@@ -63,7 +63,7 @@ class Elements_Shortcodes
         extract(
             shortcode_atts(
                 array(
-                    'data' => '',
+                    'data' => array(),
                 ),
                 $atts
             )
