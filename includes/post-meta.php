@@ -816,9 +816,9 @@ Container::make('post_meta', 'Modules')
 	);
 
 
-class Styles_Modules
+class Modules
 {
-	public static function render()
+	public static function styles()
 	{
 		return Field::make('complex', 'styles', __('Styles'))
 			->set_duplicate_groups_allowed(false)
@@ -877,11 +877,11 @@ class Styles_Modules
 			->set_layout('tabbed-vertical');
 	}
 }
-$Styles_Modules = new Styles_Modules();
+$Modules = new Modules();
 /*-----------------------------------------------------------------------------------*/
 /* Modules
 /*-----------------------------------------------------------------------------------*/
-$Styles_Modules = new Styles_Modules;
+$Modules = new Modules;
 Container::make('post_meta', 'Modules')
 	->where('post_template', '=', 'templates/page-modules.php')
 	->set_priority('high')
@@ -890,7 +890,7 @@ Container::make('post_meta', 'Modules')
 			->add_fields(
 				'contact_form',
 				array(
-					$Styles_Modules::render(),
+					$Modules::styles(),
 					Field::make('text', 'heading', __('Heading')),
 					Field::make('rich_text', 'description', __('Description')),
 					Field::make('text', 'form_heading', __('Form Heading')),
@@ -900,10 +900,16 @@ Container::make('post_meta', 'Modules')
 			->add_fields(
 				'columns',
 				array(
-					$Styles_Modules::render(),
+					$Modules::styles(),
 					Field::make('text', 'heading', __('Heading')),
 					Field::make('rich_text', 'description', __('Description')),
-					
+					Field::make('complex', 'columns', __('Columns'))
+						->add_fields(
+							array(
+								Field::make('textarea', 'guide_text', __('Guide Text')),
+								
+							)
+						)
 				)
 			)
 			->set_collapsed(true)
