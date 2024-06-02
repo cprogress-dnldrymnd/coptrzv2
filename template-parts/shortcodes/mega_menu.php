@@ -26,7 +26,7 @@ if ($menu_items) {
                         </a>
                         <?php if ($submenu) { ?>
                             <div class="submenu-holder py-3">
-                                <div class="container">
+                                <div class="container small-container">
                                     <div class="row">
                                         <?php foreach ($submenu as $menu) { ?>
                                             <?php

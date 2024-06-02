@@ -14433,16 +14433,16 @@ a.fancybox-gallery-img {
   .container {
     max-width: 1460px; } }
 @media (min-width: 1600px) {
-  .container:not(.medium-container) {
+  .container:not(.medium-container):not(.small-container) {
     max-width: 1560px; } }
 @media (min-width: 1700px) {
-  .container:not(.medium-container) {
+  .container:not(.medium-container):not(.small-container) {
     max-width: 1660px; } }
 @media (min-width: 1800px) {
-  .container:not(.medium-container) {
+  .container:not(.medium-container):not(.small-container) {
     max-width: 1760px; } }
 @media (min-width: 1900px) {
-  .container:not(.medium-container) {
+  .container:not(.medium-container):not(.small-container) {
     max-width: 1820px; } }
 @media (min-width: 576px) {
   .container.extend-right, .container.extend-left {

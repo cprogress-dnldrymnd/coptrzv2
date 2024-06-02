@@ -625,7 +625,7 @@
 		max-width: 1460px;
 	}
 
-	&:not(.medium-container) {
+	&:not(.medium-container):not(.small-container) {
 		@media (min-width: 1600px) {
 			max-width: 1560px;
 		}
@@ -690,6 +690,10 @@
 		margin-right: auto;
 		margin-left: 0;
 		padding-left: 0;
+	}
+
+	.small-container {
+
 	}
 }
 
