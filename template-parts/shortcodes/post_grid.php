@@ -12,6 +12,9 @@ $captured_by = get__post_meta_by_id($id, 'captured_by');
             </button>
         </div>
         <?php if ($captured_by) { ?>
+            <p>
+                Captured by
+            </p>
             <?= do_shortcode('[_image id="' . $captured_by . '"]'); ?>
         <?php } ?>
     </div>
