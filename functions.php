@@ -309,7 +309,18 @@ function action_admin_footer()
 		setTimeout(function() {
 			jQuery('.trigger-selector select').each(function(index, element) {
 				$value = jQuery(this).val();
-				console.log($value);
+				$selector = jQuery(this).parent().parent().parent().find('.page-selector');
+				if ($value == 'page') {
+					$selector.html('<?= $select_page ?>');
+				} else if ($value == 'post') {
+					$selector.html('<?= $select_post ?>');
+				} else if ($value == 'solutions') {
+					$selector.html('<?= $select_solution ?>');
+				} else if ($value == 'popups') {
+					$selector.html('<?= $select_popup ?>');
+				} else {
+					$selector.html('');
+				}
 			});
 		}, 1000);
 	</script>
