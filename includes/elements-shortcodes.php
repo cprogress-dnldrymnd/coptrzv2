@@ -64,6 +64,7 @@ class Elements_Shortcodes
         extract(
             shortcode_atts(
                 array(
+                    'button_type' => '',
                     'button_text' => '',
                     'button_link' => '',
                     'class' => 'button-accent',
