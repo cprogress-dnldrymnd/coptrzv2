@@ -77,6 +77,9 @@ function _elements($data)
             case 'description':
                 echo do_shortcode('[_description description="' . $d['description'] . '"]');
                 break;
+            case 'image':
+                echo do_shortcode('[_image id="' . $d['image'] . '"]');
+                break;
         }
     }
     return ob_get_clean();
