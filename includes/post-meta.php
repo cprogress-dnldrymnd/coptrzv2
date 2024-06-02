@@ -967,12 +967,7 @@ Container::make('post_meta', 'Modules')
 											Field::make('text', 'heading', __('Heading')),
 										)
 									)
-									->add_fields(
-										'description',
-										array(
-											Field::make('textarea', 'description', __('Description')),
-										)
-									)
+									
 									->add_fields(
 										'button',
 										array(
