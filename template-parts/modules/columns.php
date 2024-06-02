@@ -14,7 +14,7 @@
                             <?php var_dump($column['items']) ?>
                             </pre>
 
-                            <?= do_shortcode('[_elements data="' . $column['items'] . '"]') ?>
+                            <?= do_shortcode('[_elements data="' . http_build_query($column['items']) . '"]') ?>
                         </div>
                     <?php } ?>
                 </div>

@@ -69,7 +69,7 @@ class Elements_Shortcodes
                 $atts
             )
         );
-        echo 'sdsdsds';
+        parse_str($data, $decoded_array);
         var_dump($data);
         foreach ($data as $d) {
             $type = $d['_type'];
