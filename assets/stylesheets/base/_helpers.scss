@@ -256,7 +256,7 @@
 	}
 }
 
-.xs-padding-left {
+.xsx-padding-left {
 	padding-left: 1.625rem;
 }
 
@@ -317,7 +317,6 @@
 .xxs-padding-right {
 	padding-right: 1.625rem;
 }
-
 /*End of Extra Large Padding*/
 
 /*margin*/
@@ -520,64 +519,7 @@
 		margin-bottom: 3rem;
 	}
 }
-
-.xl-margin-left {
-	@include responsive(md-lg) {
-		margin-left: 9.5rem;
-	}
-
-	@include responsive(sm) {
-		margin-left: 6rem;
-	}
-
-	@include responsive(xs) {
-		margin-left: 5rem;
-	}
-
-	@include responsive(mobile) {
-		margin-left: 3rem;
-	}
-}
-
-.lg-margin-left {
-	@include responsive(md-lg) {
-		margin-left: 7.25rem;
-	}
-
-	@include responsive(sm) {
-		margin-left: 5rem;
-	}
-
-	@include responsive(xs) {
-		margin-left: 4rem;
-	}
-}
-
-.md-margin-left {
-	@include responsive(md-lg) {
-		margin-left: 5rem;
-	}
-
-	@include responsive(sm) {
-		margin-left: 4rem;
-	}
-
-	@include responsive(xs) {
-		margin-left: 3rem;
-	}
-}
-
-.sm-margin-left {
-	margin-left: 3.75rem;
-
-	@include responsive(xs) {
-		margin-left: 2rem;
-	}
-}
-
-.xs-margin-left {
-	margin-left: 1.625rem;
-}
+/*End of Extra Large margin*/
 
 .xl-margin-right {
 	@include responsive(md-lg) {
@@ -633,7 +575,67 @@
 	}
 }
 
-/*End of Extra Large margin*/
+.xxs-margin-right {
+	margin-right: 1.625rem;
+}
+
+.xl-margin-left {
+	@include responsive(md-lg) {
+		margin-left: 9.5rem;
+	}
+
+	@include responsive(sm) {
+		margin-left: 6rem;
+	}
+
+	@include responsive(xs) {
+		margin-left: 5rem;
+	}
+
+	@include responsive(mobile) {
+		margin-left: 3rem;
+	}
+}
+
+.lg-margin-left {
+	@include responsive(md-lg) {
+		margin-left: 7.25rem;
+	}
+
+	@include responsive(sm) {
+		margin-left: 5rem;
+	}
+
+	@include responsive(xs) {
+		margin-left: 4rem;
+	}
+}
+
+.md-margin-left {
+	@include responsive(md-lg) {
+		margin-left: 5rem;
+	}
+
+	@include responsive(sm) {
+		margin-left: 4rem;
+	}
+
+	@include responsive(xs) {
+		margin-left: 3rem;
+	}
+}
+
+.sm-margin-left {
+	margin-left: 3.75rem;
+
+	@include responsive(xs) {
+		margin-left: 2rem;
+	}
+}
+
+.xxs-margin-left {
+	margin-left: 1.625rem;
+}
 /*Background*/
 .background-black,
 .background-primary,
