@@ -956,6 +956,7 @@ Container::make('post_meta', 'Modules')
 					Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector-single')
 						->set_options(
 							array(
+								'' => 'Select Button Type',
 								'page' => 'Page',
 								'post' => 'Post',
 								'solutions' => 'Solution',
@@ -1012,6 +1013,7 @@ Container::make('post_meta', 'Modules')
 											Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
 												->set_options(
 													array(
+														'' => 'Select Button Type',
 														'page' => 'Page',
 														'post' => 'Post',
 														'solutions' => 'Solution',
