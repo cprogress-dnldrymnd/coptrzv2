@@ -637,7 +637,7 @@
 		}
 	}
 
-	&.large-container {
+	&.large-container.large-container {
 		@media (min-width: 1800px) {
 			max-width: 1760px;
 		}
