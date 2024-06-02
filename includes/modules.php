@@ -9,4 +9,4 @@ function modules_styles()
     </style>
 <?php
 }
-add_action('modules_styles', 'modules_styles');
+add_action('wp_head', 'modules_styles');
