@@ -273,7 +273,7 @@ function action_admin_footer()
 			if ($value == 'page') {
 				$selector.html('<?= $select_page ?>');
 			} else if ($value == 'post') {
-				$selector.html('<?= $select_page ?>');
+				$selector.html('<?= $select_post ?>');
 			}
 		});
 
