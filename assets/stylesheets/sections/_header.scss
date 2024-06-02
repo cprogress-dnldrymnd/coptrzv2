@@ -76,6 +76,10 @@
 				background-color: var(--white-color);
 				z-index: 99999;
 				display: none;
+				.container {
+					padding-left: 0.75rem;
+					padding-right: 0.75rem;
+				}
 			}
 		}
 	}

@@ -14947,6 +14947,9 @@ tspan {
     background-color: var(--white-color);
     z-index: 99999;
     display: none; }
+    #header .bottom-header .mega-menu .submenu-holder .container {
+      padding-left: 0.75rem;
+      padding-left: 0.75rem; }
 
 /* Basic Dropdown Styling */
 .cart-dropdown {
