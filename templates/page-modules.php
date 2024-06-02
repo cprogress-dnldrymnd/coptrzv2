@@ -37,7 +37,7 @@ $modules = get__post_meta('modules');
                         $style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
                         break;
                     case 'custom_class':
-                        $classes .= ' ' . $styles['custom_class'];
+                        $classes .= ' ' . $style['custom_class'];
                         break;
 
                 }
