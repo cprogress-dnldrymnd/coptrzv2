@@ -953,6 +953,38 @@ Container::make('post_meta', 'Modules')
 						->set_layout('tabbed-vertical'),
 					Field::make('text', 'heading', __('Heading')),
 					Field::make('textarea', 'description', __('Description')),
+					Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+						->set_options(
+							array(
+								'page' => 'Page',
+								'post' => 'Post',
+								'solutions' => 'Solution',
+								'popups' => 'Popup',
+								'custom' => 'Custom',
+							)
+						),
+					Field::make('text', 'button_text', __('Button Text')),
+					Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+						->set_conditional_logic(
+							array(
+								array(
+									'field' => 'button_type',
+									'value' => 'custom',
+									'compare' => '!='
+								)
+							)
+						),
+					Field::make('html', 'html')
+						->set_html('<div class="page-selector">  </div>'),
+					Field::make('text', 'button_url_custom', __('Button URL'))
+						->set_conditional_logic(
+							array(
+								array(
+									'field' => 'button_type',
+									'value' => 'custom',
+								)
+							)
+						),
 					Field::make('complex', 'columns', __('Columns'))
 						->setup_labels(array(
 							'plural_name' => 'Columns',
