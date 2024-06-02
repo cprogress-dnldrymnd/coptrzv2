@@ -9,6 +9,8 @@
             </div>
             <div class="col-lg-6">
                 <div class="column-holder content-margin form-holder form-style-2 rounded-corner">
+
+                    <?= do_shortcode('[_heading heading="' . $module['form_heading'] . '" tag="h3"]') ?>
                     <?= do_shortcode($module['contact_form_shortcode']) ?>
                 </div>
             </div>
