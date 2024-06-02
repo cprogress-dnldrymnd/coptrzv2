@@ -58,7 +58,7 @@ class Elements_Shortcodes
         return ob_get_clean();
     }
 
-    function _button()
+    function _button($atts)
     {
         ob_start();
         extract(
