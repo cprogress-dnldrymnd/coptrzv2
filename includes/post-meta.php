@@ -1251,6 +1251,8 @@ Container::make('post_meta', 'Modules')
 											'image',
 											array(
 												Field::make('image', 'image', __('Image')),
+												Field::make('text', 'image_width', __('Custom Image Width')),
+												Field::make('text', 'image_height', __('Custom Image Height')),
 											)
 										)
 										->add_fields(
