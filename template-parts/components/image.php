@@ -29,7 +29,7 @@ else {
 		}
 		?>
 		<?php if ($ext != 'svg') { ?>
-			<img xx <?= $image_height ? 'height="' . $image_height . '"' : '' ?>	<?= $image_width ? 'width="' . $image_width . '"' : '' ?> decoding="async" class="jetpack-lazy-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>">
+			<img <?= $image_height ? 'height="' . $image_height . '"' : '' ?>	<?= $image_width ? 'width="' . $image_width . '"' : '' ?> decoding="async" class="jetpack-lazy-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>">
 		<?php }
 		else { ?>
 			<span class="svg-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>"></span>
