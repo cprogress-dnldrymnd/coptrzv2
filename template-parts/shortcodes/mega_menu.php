@@ -35,13 +35,28 @@ if ($menu_items) {
                                             ?>
                                             <div class="<?= $width ?>">
                                                 <?php
+                                                echo '<div class="submenu-item-title fw-semibold">' . $menu['menu_text'] . '</div>';
                                                 if ($type == 'menu_items') {
-                                                    echo '<div class="submenu-item-title fw-semibold">' . $menu['menu_text'] . '</div>';
                                                     echo do_shortcode('[menu id=' . $menu['menu'] . ']');
+                                                }
+                                                if ($type == 'images') {
+                                                    $image = $menu['image'];
+                                                ?>
+                                                    <div class="row">
+                                                        <?php
+                                                        foreach ($image as $img) {
+                                                        ?>
+                                                            <div class="col">
+                                                                <?= do_shortcode('[_image id="' . $img . '"]') ?>
+                                                            </div>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                <?php
                                                 }
                                                 ?>
                                             </div>
-
                                         <?php } ?>
                                     </div>
                                 </div>

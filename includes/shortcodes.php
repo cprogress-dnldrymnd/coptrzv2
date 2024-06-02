@@ -1135,10 +1135,12 @@ class Shortcodes
 		include(get_stylesheet_directory() . '/template-parts/shortcodes/mega_menu.php');
 		return ob_get_clean();
 	}
+
 }
 
 
 $Shortcodes = new Shortcodes;
+add_shortcode('_image', array($Shortcodes, '_image'));
 add_shortcode('mega_menu', array($Shortcodes, 'mega_menu'));
 add_shortcode('search_form', array($Shortcodes, 'search_form'));
 add_shortcode('mini_cart', array($Shortcodes, 'mini_cart'));
