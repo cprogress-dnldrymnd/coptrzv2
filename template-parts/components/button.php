@@ -1,7 +1,7 @@
 <?php
 $GetData = new GetData;
 $SVG = new SVG;
-if ($button_type != 'popup') {
+if ($button_type != 'popups') {
 	$tag = 'a';
 	$link = 'href="' . $button_link . '"';
 } else {
@@ -15,6 +15,6 @@ if ($button_type != 'popup') {
 		<?php if ($button_icon) { ?>
 			<span class="icon"><?= $SVG->{$button_icon} ?></span>
 		<?php } ?>
-		<span class="text"><?= $button_type ?></span>
+		<span class="text"><?= $button_text ? do_shortcode($button_text) : get_the_title($button_type) ?></span>
 	</<?= $tag ?>>
 </div>
