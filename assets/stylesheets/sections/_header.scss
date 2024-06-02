@@ -94,6 +94,9 @@
 				}
 				.menu-items {
 					li {
+						a {
+							font-weight: 400;
+						}
 						@include not-last-child {
 							margin-bottom: 15px;
 						}
