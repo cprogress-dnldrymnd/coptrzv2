@@ -1136,13 +1136,14 @@ class Shortcodes
 		return ob_get_clean();
 	}
 
-	function post_grid()
+	function post_grid($atts)
 	{
 		ob_start();
 		extract(
 			shortcode_atts(
 				array(
 					'id' => '',
+					'class' => '',
 				),
 				$atts
 			)
