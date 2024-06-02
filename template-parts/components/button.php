@@ -1,12 +1,15 @@
 <?php
 $GetData = new GetData;
 $SVG = new SVG;
+
 if ($button_type != 'popups') {
 	$tag = 'a';
-	$link = 'href="' . $button_link . '"';
+	$link = 'href="' . get_permalink($id) . '"';
+} else if ($d['button_type'] == 'custom') {
+	$link = 'href="' . $custom_url . '"';
 } else {
 	$tag = 'button';
-	$link = '';
+	$link = 'data-bs-toggle="modal" data-bs-target="#modal-"';
 }
 
 ?>

@@ -64,6 +64,7 @@ class Elements_Shortcodes
         extract(
             shortcode_atts(
                 array(
+                    'id' => '',
                     'button_type' => '',
                     'button_text' => '',
                     'button_link' => '',
@@ -100,12 +101,7 @@ function _elements($data)
                 echo do_shortcode('[_image id="' . $d['image'] . '"]');
                 break;
             case 'button':
-                if ($d['button_type'] == 'custom') {
-                    $button_link = $d['button_url_custom'];
-                } else {
-                    $button_link = get_permalink($d['button_url']);
-                }
-                echo do_shortcode('[_button  button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" button_link="' . $button_link . '"]');
+                echo do_shortcode('[_button id="' . $d['button_url'] . '" custom_url="' . $d['button_url_custom'] . '" button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" ]');
                 break;
         }
     }
