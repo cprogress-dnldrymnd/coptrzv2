@@ -6,7 +6,15 @@
         </div>
 
         <div class="column-items">
-            
+            <?php if ($module['columns']) { ?>
+                <div class="row">
+                    <?php foreach ($module['columns'] as $column) { ?>
+                        <div class="col">
+                            <?= do_shortcode('[_elements data="' . $column . '"]') ?>
+                        </div>
+                    <?php } ?>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </section>
