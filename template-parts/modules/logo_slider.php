@@ -1,12 +1,11 @@
-<section class="logo-slider">
+<section class="logo-slider <?= $classes ?>">
     <div class="container">
-
         <div class="section-heading-description">
             <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading"]') ?>
             <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
         </div>
 
-        <div class="logo-slider-box md-padding">
+        <div class="logo-slider-box">
             <div class="swiper mySwiper-logoSwiper">
                 <div class="swiper-wrapper text-center align-items-center">
                     <?php foreach ($module['images'] as $logo) { ?>
