@@ -1,7 +1,7 @@
 <section class="logo-slider <?= $classes ?>">
     <div class="container">
         <div class="section-heading-description">
-            <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading"]') ?>
+            <?= do_shortcode('[_heading heading="' . $module['heading'] . '" ]') ?>
             <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
         </div>
 
