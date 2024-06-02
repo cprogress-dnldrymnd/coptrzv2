@@ -1648,6 +1648,8 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_layout('tabbed-vertical'),
+						Field::make('text', 'heading', __('Heading')),
+						Field::make('textarea', 'description', __('Description')),
 						Field::make('complex', 'accordion', __('Accordion'))
 							->setup_labels(
 								array(

@@ -1,5 +1,9 @@
 <section class="accordion-section <?= $classes ?>" id="<?= $module_id ?>">
   <div class="container">
+    <div class="section-heading-description mb-5">
+      <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading"]') ?>
+      <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
+    </div>
     <div class="accordion accordion-v2 accordion-flush" id="accordion-<?= $module_id ?>">
       <?php foreach ($module['accordion'] as $key => $accordion_item) { ?>
         <div class="accordion-item">
