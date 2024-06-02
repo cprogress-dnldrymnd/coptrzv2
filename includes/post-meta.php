@@ -952,13 +952,7 @@ Container::make('post_meta', 'Modules')
 						->set_layout('tabbed-vertical'),
 					Field::make('text', 'heading', __('Heading')),
 					Field::make('rich_text', 'description', __('Description')),
-					Field::make('complex', 'columns', __('Columns'))
-						->setup_labels(array(
-							'plural_name' => 'Columns',
-							'singular_name' => 'Column',
-						))
-						
-						->set_layout('tabbed-vertical')
+				
 
 				)
 			)
