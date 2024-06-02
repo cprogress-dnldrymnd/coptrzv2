@@ -986,7 +986,6 @@ Container::make('post_meta', 'Modules')
 
 				)
 			)
-			->set_collapsed(true)
 
 
 	));
