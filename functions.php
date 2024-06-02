@@ -246,28 +246,28 @@ if (version_compare(phpversion(), '7.1', '>=')) {
 function action_admin_footer()
 {
 	$pages = get__posts('page');
-	$select_page = '<label class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Page</label><select class="select-page-selector">';
+	$select_page = '<label style="display: block" class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Page</label><select class="select-page-selector">';
 	foreach ($pages as $key => $page) {
 		$select_page .= '<option value="' . $key . '"> ' . $page . ' </option>';
 	}
 	$select_page .= '</select>';
 
 	$posts = get__posts('post');
-	$select_post = '<label class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Post</label><select class="select-page-selector">';
+	$select_post = '<label style="display: block" class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Post</label><select class="select-page-selector">';
 	foreach ($posts as $key => $post) {
 		$select_post .= '<option value="' . $key . '"> ' . $post . ' </option>';
 	}
 	$select_post .= '</select>';
 
 	$solutions = get__posts('solutions');
-	$select_solution = '<label class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Solution</label><select class="select-page-selector">';
+	$select_solution = '<label style="display: block" class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Solution</label><select class="select-page-selector">';
 	foreach ($solutions as $key => $solution) {
 		$select_solution .= '<option value="' . $key . '"> ' . $solution . ' </option>';
 	}
 	$select_solution .= '</select>';
 
 	$popups = get__posts('popups');
-	$select_popup = '<label class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Popup</label><select class="select-page-selector">';
+	$select_popup = '<label style="display: block" class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Popup</label><select class="select-page-selector">';
 	foreach ($popups as $key => $popup) {
 		$select_popup .= '<option value="' . $key . '"> ' . $popup . ' </option>';
 	}
@@ -301,6 +301,12 @@ function action_admin_footer()
 			$value = jQuery(this).val();
 			$input = jQuery(this).parents('.cf-complex__group-body').find('.field-url input');
 			$input.val($value);
+			console.log($value);
+		});
+
+
+		jQuery('.trigger-selector').each(function(index, element) {
+			$value = jQuery(this).val();
 			console.log($value);
 		});
 	</script>
