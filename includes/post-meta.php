@@ -819,7 +819,6 @@ Container::make('post_meta', 'Modules')
 /*-----------------------------------------------------------------------------------*/
 /* Modules
 /*-----------------------------------------------------------------------------------*/
-$Styles_Modules = new Styles_Modules;
 Container::make('post_meta', 'Modules')
 	->where('post_template', '=', 'templates/page-modules.php')
 	->set_priority('high')
