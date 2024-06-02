@@ -297,9 +297,8 @@ function action_admin_footer()
 			}
 		});
 
-		jQuery(document).on(".select-page-selector", '.cf-complex__tabs-item ', function(event) {
+		jQuery(document).on("change", '.select-page-selector', function(event) {
 			console.log('xxxxx');
-
 
 		});
 	</script>
