@@ -1,3 +1,5 @@
 <section class="wysiwyg <?= $classes ?>" id="<?= $module_id ?>">
-  <?= $module['wysiwyg'] ?>
+  <div class="container">
+    <?= $module['wysiwyg'] ?>
+  </div>
 </section>
