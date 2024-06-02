@@ -1143,7 +1143,7 @@ class Shortcodes
 			shortcode_atts(
 				array(
 					'id' => '',
-					'class' => '',
+					' ' => '',
 				),
 				$atts
 			)

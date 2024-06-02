@@ -40,9 +40,7 @@ $terms = get_terms(array(
                         <div class="row">
                             <?php foreach ($posts as $post) { ?>
                                 <div class="col-lg-4">
-                                    <div class="column-holder">
-                                        <?= do_shortcode('[post_grid class="background-primary" id="' . $post->ID . '"]') ?>
-                                    </div>
+                                    <?= do_shortcode('[post_grid class="background-primary" id="' . $post->ID . '"]') ?>
                                 </div>
                             <?php } ?>
                         </div>
