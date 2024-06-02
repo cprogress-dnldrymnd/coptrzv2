@@ -105,7 +105,7 @@ function _elements($data)
                     $id = $d['button_url_' . $d['button_type']];
                     $button_link = get_permalink($id);
                 }
-                echo do_shortcode('[_button button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" button_link="' . $button_link . '"]');
+                echo do_shortcode('[_button class="button-accent" button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" button_link="' . $button_link . '"]');
                 break;
         }
     }
