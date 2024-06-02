@@ -68,27 +68,6 @@ class GetData
 		return $return;
 	}
 
-	function get_posts_admin_only($post_type, $label = 'Select Post', $posts_per_page = -1, $post_status = 'publish')
-	{
-		if (is_admin()) {
-			$return = array();
-			if ($label) {
-				$return[''] = $label;
-			}
-			$args = array(
-				'post_type'      => $post_type,
-				'posts_per_page' => $posts_per_page,
-				'post_status '   => $post_status
-			);
-
-			$posts = get_posts($args);
-			foreach ($posts as $post_val) {
-				$return[$post_val->ID] = $post_val->post_title;
-			}
-
-			return $return;
-		}
-	}
 
 	function get_posts_details($post_type, $posts_per_page = -1, $post_status = 'publish', $tax_query = false)
 	{
