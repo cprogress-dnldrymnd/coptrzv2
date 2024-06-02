@@ -1,3 +1,6 @@
+<?php
+$module['heading'];
+?>
 <section class="contact-form">
     <div class="container">
         <div class="row">
