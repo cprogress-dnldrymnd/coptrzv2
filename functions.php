@@ -304,23 +304,25 @@ function action_admin_footer()
 		});
 
 
-
+		function active_link_type($selector, $value) {
+			if ($value == 'page') {
+				$selector.html('<?= $select_page ?>');
+			} else if ($value == 'post') {
+				$selector.html('<?= $select_post ?>');
+			} else if ($value == 'solutions') {
+				$selector.html('<?= $select_solution ?>');
+			} else if ($value == 'popups') {
+				$selector.html('<?= $select_popup ?>');
+			} else {
+				$selector.html('');
+			}
+		}
 
 		setTimeout(function() {
 			jQuery('.trigger-selector select').each(function(index, element) {
 				$value = jQuery(this).val();
 				$selector = jQuery(this).parent().parent().parent().find('.page-selector');
-				if ($value == 'page') {
-					$selector.html('<?= $select_page ?>');
-				} else if ($value == 'post') {
-					$selector.html('<?= $select_post ?>');
-				} else if ($value == 'solutions') {
-					$selector.html('<?= $select_solution ?>');
-				} else if ($value == 'popups') {
-					$selector.html('<?= $select_popup ?>');
-				} else {
-					$selector.html('');
-				}
+				active_link_type($selector, $value)
 			});
 		}, 1000);
 	</script>
