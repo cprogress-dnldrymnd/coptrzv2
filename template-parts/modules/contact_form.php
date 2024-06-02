@@ -1,4 +1,4 @@
-<section class="contact-form">
+<section class="contact-form" id="<?= $module_id ?>">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">

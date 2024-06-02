@@ -6,6 +6,7 @@
 <?php get_header(); ?>
 <?php
 $modules = get__post_meta('modules');
+global $styles;
 ?>
 <div class="modules">
     <pre>
@@ -14,11 +15,11 @@ $modules = get__post_meta('modules');
     ?>
     </pre>
     <?php
-    foreach ($modules as $module) {
+    foreach ($modules as $key => $module) {
         $type = $module['_type'];
+        $module_id = 'module-' . $key;
         include locate_template('template-parts/modules/' . $type . '.php');
-        
-        add_action('modules_styles', '<style>.sdsdsds{dispaly:none}</style>');
+        $styles[] = $module['styles'];
     }
     ?>
 </div>
