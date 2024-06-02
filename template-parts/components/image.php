@@ -22,7 +22,7 @@ else {
 ?>
 <?php if ($image_url || $placeholder) { ?>
 
-	<div class="image-box <?= $same_height ?> <?= $class ?>" <?= $GetData->get_data_aos($data_aos) ?>>
+	<div class="image-box <?= $same_height == 'true' ? 'image-absolute' : '' ?> <?= $class ?>" <?= $GetData->get_data_aos($data_aos) ?>>
 		<?php
 		if ($link) {
 			echo '<a href="' . $link . '" class="d-block">';
