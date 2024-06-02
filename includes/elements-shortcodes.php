@@ -81,6 +81,7 @@ $Elements_Shortcodes = new Elements_Shortcodes;
 add_shortcode('_image', array($Elements_Shortcodes, '_image'));
 add_shortcode('_heading', array($Elements_Shortcodes, '_heading'));
 add_shortcode('_description', array($Elements_Shortcodes, '_description'));
+add_shortcode('_button', array($Elements_Shortcodes, '_button'));
 
 
 function _elements($data)
