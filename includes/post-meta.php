@@ -876,6 +876,10 @@ class Modules
 			)
 			->set_layout('tabbed-vertical');
 	}
+	public static function heading()
+	{
+		return Field::make('text', 'heading', __('Heading'));
+	}
 }
 $Modules = new Modules();
 /*-----------------------------------------------------------------------------------*/
@@ -891,7 +895,7 @@ Container::make('post_meta', 'Modules')
 				'contact_form',
 				array(
 					$Modules::styles(),
-					Field::make('text', 'heading', __('Heading')),
+					$Modules::heading(),
 					Field::make('rich_text', 'description', __('Description')),
 					Field::make('text', 'form_heading', __('Form Heading')),
 					Field::make('text', 'contact_form_shortcode', __('Contact Form Shortcode'))->set_classes('field-contact-form'),
@@ -901,13 +905,13 @@ Container::make('post_meta', 'Modules')
 				'columns',
 				array(
 					$Modules::styles(),
-					Field::make('text', 'heading', __('Heading')),
+					$Modules::heading(),
 					Field::make('rich_text', 'description', __('Description')),
 					Field::make('complex', 'columns', __('Columns'))
 						->add_fields(
 							array(
 								Field::make('textarea', 'guide_text', __('Guide Text')),
-								
+
 							)
 						)
 				)
