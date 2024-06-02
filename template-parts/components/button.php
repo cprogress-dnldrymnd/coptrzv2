@@ -5,7 +5,7 @@ $SVG = new SVG;
 if ($button_type != 'popups') {
 	$tag = 'a';
 	$link = 'href="' . get_permalink($id) . '"';
-} else if ($d['button_type'] == 'custom') {
+} else if ($button_type == 'custom') {
 	$link = 'href="' . $custom_url . '"';
 } else {
 	$tag = 'button';
