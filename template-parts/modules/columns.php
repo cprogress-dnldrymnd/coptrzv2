@@ -17,6 +17,7 @@
                             foreach ($data as $d) {
                                 $type = $d['_type'];
                                 echo $type;
+                            }
                             ?>
                             <?= do_shortcode('[_elements data="' . $column['items'] . '"]') ?>
                         </div>
