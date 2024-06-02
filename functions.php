@@ -292,6 +292,8 @@ function action_admin_footer()
 				$selector.html('<?= $select_solution ?>');
 			} else if ($value == 'popups') {
 				$selector.html('<?= $select_popup ?>');
+			} else {
+				$selector.html('');
 			}
 		});
 
