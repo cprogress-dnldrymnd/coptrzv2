@@ -246,7 +246,7 @@ if (version_compare(phpversion(), '7.1', '>=')) {
 function action_admin_footer()
 {
 	$pages = get__posts('page');
-	$select = '<select name="select-page">';
+	$select = '<select name="select-page-selector">';
 	foreach ($pages as $key => $page) {
 		$select .= '<option value="' . $key . '"> ' . $page . ' </option>';
 	}
@@ -259,10 +259,16 @@ function action_admin_footer()
 		});
 
 		jQuery(document).on("click", '.cf-complex__tabs-item ', function(event) {
-			jQuery('.select-page').each(function(index, element) {
+			jQuery('.select-page-selector').each(function(index, element) {
 				jQuery(this).html('<?= $select ?>');
 			});
 		});
+		jQuery(document).on(".select-page-selector", '.cf-complex__tabs-item ', function(event) {
+			console.log('xxxxx');
+
+			
+		});
+
 	</script>
 <?php
 }

@@ -977,7 +977,7 @@ Container::make('post_meta', 'Modules')
 									->add_fields(
 										'button',
 										array(
-											Field::make('select', 'button_type', __('Button Type'))
+											Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
 												->set_options(
 													array(
 														'page' => 'Page',
@@ -990,7 +990,7 @@ Container::make('post_meta', 'Modules')
 											Field::make('text', 'button_text', __('Button Text')),
 											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url'),
 											Field::make('html', 'html')
-												->set_html('<div class="select-page"> </div>')
+												->set_html('<div class="select-page">  </div>')
 										)
 									)
 									->add_fields(
