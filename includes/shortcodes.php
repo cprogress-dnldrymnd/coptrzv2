@@ -883,7 +883,6 @@ add_shortcode('menu', array($Shortcodes, 'menu'));
 add_shortcode('brands_slider', array($Shortcodes, 'brands_slider'));
 add_shortcode('contact_number', array($Shortcodes, 'contact_number'));
 add_shortcode('email_address', array($Shortcodes, 'email_address'));
-add_shortcode('accordion', array($Shortcodes, 'accordion'));
 add_shortcode('post_title', array($Shortcodes, 'post_title'));
 add_shortcode('post_title_html', array($Shortcodes, 'post_title_html'));
 add_shortcode('get_param', array($Shortcodes, 'get_param'));

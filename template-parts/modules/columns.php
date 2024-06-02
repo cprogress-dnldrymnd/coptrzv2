@@ -11,7 +11,7 @@
                     <?php foreach ($module['columns'] as $column) { ?>
                         <div class="col">
                             <div class="column-holder content-margin">
-                                <?= _elements($column['items']) ?>
+                                <?= _elements($column['items'], $module_id) ?>
                             </div>
                         </div>
                     <?php } ?>
