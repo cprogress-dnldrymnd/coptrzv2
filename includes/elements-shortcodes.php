@@ -10,6 +10,7 @@ class Elements_Shortcodes
                 array(
                     'id' => '',
                     'size' => '',
+                    'link' => '',
                     'placeholder' => '',
                     'class' => '',
                     'data_aos' => '',
