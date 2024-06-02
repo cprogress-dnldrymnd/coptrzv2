@@ -851,6 +851,11 @@ Container::make('post_meta', 'Modules')
 											)
 										)
 									),
+							)
+						)
+						->add_fields(
+							'padding',
+							array(
 								Field::make('select', 'padding_top', 'Padding Top')
 									->set_options(
 										array(
@@ -873,11 +878,8 @@ Container::make('post_meta', 'Modules')
 											'xxs-padding-bottom' => 'Extra Small',
 										)
 									),
+
 							)
-						)
-						->add_fields(
-							'padding',
-							array()
 						)
 						->set_layout('tabbed-vertical'),
 					Field::make('text', 'heading', __('Heading')),
