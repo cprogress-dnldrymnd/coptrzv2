@@ -447,8 +447,8 @@ $Popup->show_in_admin_bar = true;
 $Popup->has_archive = false;
 
 $Model3d = new newPostType();
-$Model3d->name = 'Model Libraries';
-$Model3d->singular_name = 'Model Library';
+$Model3d->name = '3D Model Libraries';
+$Model3d->singular_name = '3D Model Library';
 $Model3d->icon = 'dashicons-testimonial';
 $Model3d->supports = array('title', 'revisions', 'thumbnail', 'editor');
 $Model3d->exclude_from_search = true;
@@ -460,7 +460,7 @@ $Model3d->show_in_rest = true;
 
 $Model3D = new newTaxonomy();
 $Model3D->taxonomy = 'Model3d_Category';
-$Model3D->post_type = 'modellibraries';
+$Model3D->post_type = '3dmodellibraries';
 $Model3D->args = array(
     'label'        => 'Categories',
     'labels' => array(
@@ -487,5 +487,6 @@ $Model3D->args = array(
     ),
     'hierarchical' => true,
     'query_var'    => true,
+    'show_in_rest' => true,
 
 );
