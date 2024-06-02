@@ -874,7 +874,6 @@ class Styles_Modules
 
 				)
 			)
-			->set_layout('tabbed-vertical');
 	}
 }
 $Styles_Modules = new Styles_Modules();
