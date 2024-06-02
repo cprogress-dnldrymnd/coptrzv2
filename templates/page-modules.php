@@ -6,7 +6,7 @@
 <?php get_header(); ?>
 <?php
 $modules = get__post_meta('modules');
-global $styles;
+$styles = array();
 ?>
 <div class="modules">
     <?php
@@ -19,6 +19,14 @@ global $styles;
 </div>
 
 <?php
-add_action('wp_head',)
+function modules_styles($styles)
+{
+?>
+    <style id="module-styles">
+        <?php var_dump($styles) ?>
+    </style>
+<?php
+}
+add_action('modules_styles', 'modules_styles');
 ?>
 <?php get_footer(); ?>
