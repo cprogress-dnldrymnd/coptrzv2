@@ -1009,3 +1009,25 @@
 .max-width {
 	border-radius: var(--max-width, 600px);
 }
+
+.image-absolute {
+	position: relative;
+	padding: var(--padding, 30%);
+	img {
+		position: relative;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+	&:not(.image-absolute-contain) {
+		img {
+			object-fit: cover;
+		}
+	}
+	&.image-absolute-contain {
+		img {
+			object-fit: contain;
+		}
+	}
+}

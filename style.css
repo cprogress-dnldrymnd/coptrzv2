@@ -14747,6 +14747,20 @@ a.fancybox-gallery-img {
 .max-width {
   border-radius: var(--max-width, 600px); }
 
+.image-absolute {
+  position: relative;
+  padding: var(--padding, 30%); }
+  .image-absolute img {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; }
+  .image-absolute:not(.image-absolute-contain) img {
+    object-fit: cover; }
+  .image-absolute.image-absolute-contain img {
+    object-fit: contain; }
+
 /**
  * Basic typography style for copy text
  */
