@@ -9,17 +9,16 @@ $modules = get__post_meta('modules');
 global $styles;
 ?>
 <div class="modules">
-    <pre>
-
-    </pre>
     <?php
     foreach ($modules as $key => $module) {
         $type = $module['_type'];
         $module_id = 'module-' . $key;
         include locate_template('template-parts/modules/' . $type . '.php');
-        $styles[$module_id] = $module['styles'];
     }
     ?>
- 
 </div>
+
+<?php
+add_action('wp_head',)
+?>
 <?php get_footer(); ?>
