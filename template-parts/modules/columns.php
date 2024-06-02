@@ -10,6 +10,29 @@
                 <div class="row align-items-center">
                     <?php foreach ($module['columns'] as $column) { ?>
                         <div class="col">
+                            <?php
+                            $styles = $column['styles'];
+                            $classes = '';
+                            $style_attribute = '';
+                            if ($styles) {
+                                foreach ($styles as $style) {
+                                    $style_type = $style['_type'];
+                                    switch ($style_type) {
+                                        case 'background_color':
+                                            if ($style['background_color'] != 'background-custom') {
+                                                $classes .= ' ' . $style['background_color'];
+                                            }
+                                            else {
+                                                $style_attribute = 'background-color: ' . $style['background_color_custom'] . ';';
+                                            }
+                                            break;
+                                        case 'border_radius':
+                                            $style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
+                                            break;
+                                    }
+                                }
+                            }
+                            ?>
                             <div class="column-holder content-margin">
                                 <?= _elements($column['items'], $module_id) ?>
                             </div>
