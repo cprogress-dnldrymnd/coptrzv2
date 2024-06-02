@@ -1,7 +1,6 @@
 <?php
 $GetData = new GetData;
 $SVG = new SVG;
-$button_type = $button_type ? $button_type : '';
 if ($button_type != 'popup') {
 	$tag = 'a';
 	$link = 'href="' . $button_link . '"';
