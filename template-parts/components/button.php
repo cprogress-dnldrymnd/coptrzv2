@@ -2,7 +2,6 @@
 $GetData = new GetData;
 $SVG = new SVG;
 $button_type = $button_type ? $button_type : '';
-$button_link = get_permalink($button_type) ? get_permalink($button_type) : do_shortcode($button_type);
 ?>
 <div class="button-box <?= $button_class ?>" <?= $GetData->get_data_aos($data_aos) ?> <?= $button_attribute ? $button_attribute : '' ?>>
 	<a href="<?= $button_link ?>" <?= $button_action ?>>
