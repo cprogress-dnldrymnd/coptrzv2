@@ -54,7 +54,7 @@ function get__term_meta($term_id, $value)
 
 function get__post_meta_by_id($id, $value)
 {
-	return carbon_get_post_meta($id, $value, true);
+	return carbon_get_post_meta($id, $value);
 }
 function get__theme_option($value)
 {
