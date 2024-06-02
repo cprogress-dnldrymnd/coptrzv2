@@ -14976,7 +14976,10 @@ tspan {
     z-index: 1;
     padding: 1.5rem;
     max-width: 330px;
+    min-width: 330px;
     border-radius: 10px; }
+    .cart-dropdown .cart-dropdown-content .woocommerce-mini-cart {
+      padding-left: 0; }
     .cart-dropdown .cart-dropdown-content .woocommerce-mini-cart__buttons a:first-child {
       display: none; }
   .cart-dropdown .cart-subtotal {

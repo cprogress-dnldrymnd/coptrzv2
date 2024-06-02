@@ -7,7 +7,7 @@ $SVG = new SVG;
             <div class="row align-items-center">
                 <div class="col-3">
                     <div class="site-logo-holder position-relative">
-                        <a aria-label="Coptrz Homepage" href="https://coptrz.com" class="site-logo position-relative">
+                        <a aria-label="Coptrz Homepage" href="<?= get_site_url() ?>" class="site-logo position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="256" height="26.026" viewBox="0 0 256 26.026" class="svg-image replaced-svg">
                                 <g id="Group_170" data-name="Group 170" transform="translate(-99.825 -87.108)">
                                     <g id="Group_172" data-name="Group 172" transform="translate(99.825 87.108)">
