@@ -714,7 +714,8 @@ foreach ($menu_locations as $location => $menu_id) {
 	$menu_items = wp_get_nav_menu_items($menu_id);
 	$menus[$location] = $menu_items;
 }
-Container::make('post_meta', 'Modules')
+
+Container::make('post_meta', 'Mega Menu Items')
 	->where('post_type', '=', 'megamenus')
 	->set_priority('high')
 	->add_fields(
@@ -819,6 +820,8 @@ Container::make('post_meta', 'Modules')
 /*-----------------------------------------------------------------------------------*/
 /* Modules
 /*-----------------------------------------------------------------------------------*/
+$GetData = new GetData;
+$page = $GetData->get_posts_admin_only('page');
 Container::make('post_meta', 'Modules')
 	->where('post_template', '=', 'templates/page-modules.php')
 	->set_priority('high')
@@ -987,7 +990,8 @@ Container::make('post_meta', 'Modules')
 													)
 												),
 											Field::make('text', 'button_text', __('Button Text')),
-											Field::make('text', 'button_url_page', __('Button URL'))->set_classes('field-url')
+											Field::make('select', 'button_url_page', __('Button URL'))->set_classes('field-url')
+												->set_options($page)
 												->set_conditional_logic(
 													array(
 														array(
