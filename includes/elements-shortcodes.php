@@ -9,6 +9,8 @@ class Elements_Shortcodes
             shortcode_atts(
                 array(
                     'id' => '',
+                    'size' => '',
+                    'placeholder' => '',
                     'class' => '',
                     'data_aos' => '',
                     'class' => '',

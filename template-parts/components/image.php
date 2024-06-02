@@ -1,14 +1,14 @@
 <?php
 $GetData = new GetData;
-$size = isset($data['size']) ? $data['size'] : 'full';
-$placeholder = isset($data['placeholder']) ? true : false;
-$image_url = wp_get_attachment_image_url($data['image_id'], $size);
-$link = isset($data['link']) ? $data['link'] : false;
+$size = isset($size) ? $size : 'full';
+$placeholder = isset($placeholder) ? true : false;
+$image_url = wp_get_attachment_image_url($id, $size);
+$link = isset($link) ? $link : false;
 
-$ext = wp_check_filetype(wp_get_attachment_url($data['image_id']))['ext'];
+$ext = wp_check_filetype(wp_get_attachment_url($id))['ext'];
 $img_class = '';
 if ($image_url) {
-	$image_alt = $GetData->get_image_alt($data['image_id']);
+	$image_alt = $GetData->get_image_alt($id);
 } else {
 	if ($placeholder) {
 		$logo = get__theme_option('alt_logo');
