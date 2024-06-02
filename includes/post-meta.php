@@ -833,4 +833,5 @@ Container::make('post_meta', 'Modules')
 					Field::make('text', 'contact_form_shortcode', __('Contact Form Shortcode'))->set_classes('field-contact-form'),
 				)
 			)
-	));
+	))
+	->set_layout('tabbed-vertical');
