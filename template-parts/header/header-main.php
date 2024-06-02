@@ -3,7 +3,7 @@ $SVG = new SVG;
 ?>
 <header id="header">
     <div class="top-header py-3 background-body">
-        <div class="container">
+        <div class="container large-container">
             <div class="row align-items-center">
                 <div class="col-3">
                     <div class="site-logo-holder position-relative">
