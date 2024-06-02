@@ -1004,9 +1004,6 @@ Container::make('post_meta', 'Modules')
 						)
 						->set_layout('tabbed-vertical')
 						->set_header_template('<%- label  %>'),
-
 				)
 			)
-
-
 	));
