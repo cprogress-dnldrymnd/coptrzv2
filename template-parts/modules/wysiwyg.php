@@ -1,5 +1,5 @@
 <section class="wysiwyg <?= $classes ?>" id="<?= $module_id ?>">
   <div class="container">
-    <?= wpautop($module['wysiwyg']) ?>
+    <?= do_shortcode(wpautop($module['wysiwyg'])) ?>
   </div>
 </section>
