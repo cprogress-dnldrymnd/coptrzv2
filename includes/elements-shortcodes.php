@@ -66,7 +66,7 @@ class Elements_Shortcodes
                 array(
                     'button_text' => '',
                     'button_link' => '',
-                    'class' => '',
+                    'class' => 'button-accent',
                     'data_aos' => '',
                 ),
                 $atts
