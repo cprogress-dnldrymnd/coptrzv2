@@ -21,6 +21,5 @@ class Elements_Shortcodes
     }
 }
 
-add_shortcode('_image', array($Elements_Shortcodes, '_image'));
-
 $Elements_Shortcodes = new Elements_Shortcodes;
+add_shortcode('_image', array($Elements_Shortcodes, '_image'));
