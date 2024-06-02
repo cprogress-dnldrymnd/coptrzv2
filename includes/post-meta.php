@@ -818,7 +818,7 @@ Container::make('post_meta', 'Modules')
 
 class Styles_Modules
 {
-	function render()
+	public static function render()
 	{
 		return Field::make('complex', 'styles', __('Styles'))
 			->set_duplicate_groups_allowed(false)
