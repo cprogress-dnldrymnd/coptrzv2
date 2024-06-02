@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <?= do_shortcode('[_heading heading="test" tag="h3" heading_small="sdsdsds"]') ?>
+                <?= do_shortcode('[_heading heading="' . $module['heading'] . '" tag="h3" heading_small="sdsdsds"]') ?>
             </div>
         </div>
     </div>
