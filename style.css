@@ -14973,7 +14973,12 @@ tspan {
     background-color: #f9f9f9;
     min-width: 250px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1; }
+    z-index: 1;
+    padding: 1.5rem;
+    max-width: 330px;
+    border-radius: 10px; }
+    .cart-dropdown .cart-dropdown-content .woocommerce-mini-cart__buttons a:first-child {
+      display: none; }
   .cart-dropdown .cart-subtotal {
     color: #979797;
     font-weight: 600; }
