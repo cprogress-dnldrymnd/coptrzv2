@@ -957,9 +957,7 @@ Container::make('post_meta', 'Modules')
 							'plural_name' => 'Columns',
 							'singular_name' => 'Column',
 						))
-						->add_fields(
-							
-						)
+						
 						->set_layout('tabbed-vertical')
 
 				)
