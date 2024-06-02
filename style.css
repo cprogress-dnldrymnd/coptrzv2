@@ -16946,6 +16946,7 @@ section.sticky-add-to-cart {
 
 section.contact-form .form-holder {
   background-color: var(--white-color);
-  padding: 2rem; }
+  padding: 2rem;
+  color: var(--black-color); }
 
 /*# sourceMappingURL=style.css.map */
