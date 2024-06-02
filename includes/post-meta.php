@@ -904,6 +904,10 @@ Container::make('post_meta', 'Modules')
 					Field::make('text', 'heading', __('Heading')),
 					Field::make('rich_text', 'description', __('Description')),
 					Field::make('complex', 'columns', __('Columns'))
+						->setup_labels(array(
+							'plural_name' => 'Columns',
+							'singular_name' => 'Column',
+						))
 						->add_fields(
 							array(
 								Field::make('complex', 'items', __('Items'))
