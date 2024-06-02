@@ -14729,6 +14729,9 @@ a.fancybox-gallery-img {
 .form-style-2 textarea {
   background-color: var(--body-color); }
 
+.rounded-corner {
+  border-radius: var(--border-radius, 15px); }
+
 /**
  * Basic typography style for copy text
  */

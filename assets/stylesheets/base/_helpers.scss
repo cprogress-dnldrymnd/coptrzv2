@@ -994,3 +994,7 @@
 		background-color: var(--body-color);
 	}
 }
+
+.rounded-corner {
+	border-radius: var(--border-radius, 15px);
+}
