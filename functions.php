@@ -288,7 +288,7 @@ function action_admin_footer()
 		
 		jQuery(document).on("change", '.trigger-selector-single select', function(event) {
 			$value = jQuery(this).val();
-			$selector = jQuery(this).parent().parent().next().next().find('.page-selector');
+			$selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
 			active_link_type($selector, $value)
 		});
 
