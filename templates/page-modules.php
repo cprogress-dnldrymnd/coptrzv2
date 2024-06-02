@@ -6,6 +6,7 @@
 <?php get_header(); ?>
 <?php
 $modules = get__post_meta('modules');
+global $styles;
 ?>
 <div class="modules">
     <pre>
