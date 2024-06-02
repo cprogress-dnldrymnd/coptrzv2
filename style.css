@@ -14965,8 +14965,19 @@ tspan {
 
 /* Basic Dropdown Styling */
 .cart-dropdown {
-  position: relative;
   display: inline-block; }
+  .cart-dropdown .cart-icon svg {
+    position: absolute;
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    font-size: 10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 2px;
+    font-weight: bold;
+    right: -10px; }
   .cart-dropdown .cart-dropdown-content {
     display: none;
     position: absolute;
