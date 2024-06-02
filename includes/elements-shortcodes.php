@@ -11,6 +11,7 @@ class Elements_Shortcodes
                     'id' => '',
                     'size' => '',
                     'link' => '',
+                    'style' => '',
                     'placeholder' => '',
                     'class' => '',
                     'data_aos' => '',

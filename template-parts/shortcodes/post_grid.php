@@ -3,7 +3,7 @@ $captured_by = get__post_meta_by_id($id, 'captured_by');
 ?>
 <div class="post-grid h-100 rounded-corner p-5 post-<?= $id ?> <?= $class ?>" style="--border-radius: 10px">
     <div class="content-margin h-100">
-        <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . get_post_thumbnail_id($id) . '"]'); ?>
+        <?= do_shortcode('[_image class="image-absolute image-absolute-contain" style="--padding: 20%" id="' . get_post_thumbnail_id($id) . '"]'); ?>
         <?= do_shortcode('[_heading heading="' . get_the_title($id) . '" tag="h3"]') ?>
         <?= do_shortcode('[_description description="' . get_the_excerpt($id) . '" ]') ?>
         <div class="button-box button-accent">

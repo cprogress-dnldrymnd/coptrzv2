@@ -21,7 +21,7 @@ if ($image_url) {
 ?>
 <?php if ($image_url || $placeholder) { ?>
 
-	<div class="image-box<?= $GetData->get_class($class) ?> <?= $img_class ?>" <?= $GetData->get_data_aos($data_aos) ?>>
+	<div class="image-box<?= $GetData->get_class($class) ?> <?= $img_class ?>" <?= $GetData->get_data_aos($data_aos) ?> <?= $style ?>>
 		<?php
 		if ($link) {
 			echo '<a href="' . $link . '" class="d-block">';

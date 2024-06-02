@@ -14751,7 +14751,7 @@ a.fancybox-gallery-img {
   position: relative;
   padding: var(--padding, 30%); }
   .image-absolute img {
-    position: relative;
+    position: absolute;
     left: 0;
     top: 0;
     width: 100%;
