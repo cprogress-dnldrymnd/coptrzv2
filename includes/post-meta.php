@@ -1376,6 +1376,12 @@ Container::make('post_meta', 'Modules')
 					)
 				)
 				->add_fields(
+					'wysiwyg',
+					array(
+						Field::make('rich_text', 'wysiwyg', __('WYSIWYG')),
+					)
+				)
+				->add_fields(
 					'post_tabs',
 					array(
 						Field::make('complex', 'styles', __('Styles'))
