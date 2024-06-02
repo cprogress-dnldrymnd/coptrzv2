@@ -13,12 +13,7 @@
                             <pre>
                             <?php var_dump($column['items']) ?>
                             </pre>
-                            <?php
-                            foreach ($column['items'] as $d) {
-                                $type = $d['_type'];
-                                echo $type;
-                            }
-                            ?>
+                          
                             <?= do_shortcode('[_elements data="' . $column['items'] . '"]') ?>
                         </div>
                     <?php } ?>
