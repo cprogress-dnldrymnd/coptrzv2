@@ -1,6 +1,6 @@
 <section class="contact-form <?= $classes ?>" id="<?= $module_id ?>">
     <div class="container">
-        <div class="row">
+        <div class="row g-4 align-items-center">
             <div class="col-lg-6">
                 <div class="column-holder content-margin">
                     <?= do_shortcode('[_heading heading="' . $module['heading'] . '" ]') ?>
