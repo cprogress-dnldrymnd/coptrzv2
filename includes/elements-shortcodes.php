@@ -73,7 +73,7 @@ function _elements($data)
         echo $type;
         switch ($type) {
             case 'heading':
-                echo do_shortcode('[_heading heading="' . $d['heading'] . ' tag=""]');
+                echo do_shortcode('[_heading heading="' . $d['heading'] . ']');
             case 'description':
                 echo do_shortcode('[_description description="' . $d['description'] . '"]');
                 break;
