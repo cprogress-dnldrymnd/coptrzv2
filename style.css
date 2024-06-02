@@ -11397,7 +11397,8 @@ a {
     .button-box.button-box .dropdown:hover .dropdown-menu, .button-box.button-box .dropdown:active .dropdown-menu, .button-box.button-box .dropdown:focus .dropdown-menu {
       display: block !important; } }
 
-.wpcf7-submit, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit {
+.wpcf7-submit,
+.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit {
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -11433,24 +11434,37 @@ a {
   width: 100%;
   background-image: none !important;
   height: auto; }
-  .wpcf7-submit span, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit span {
+  .wpcf7-submit span,
+  .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit span {
     position: relative;
     z-index: 1; }
-    .wpcf7-submit span.icon, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit span.icon {
+    .wpcf7-submit span.icon,
+    .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit span.icon {
       margin-top: -3px; }
   @media screen and (min-width: 992px) {
-    .wpcf7-submit, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit {
+    .wpcf7-submit,
+    .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit {
       white-space: nowrap; } }
   @media screen and (max-width: 767px) {
-    .wpcf7-submit, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit {
+    .wpcf7-submit,
+    .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit {
       padding: 1rem 1.5rem !important; } }
-  .wpcf7-submit:hover, .wpcf7-submit:active, .wpcf7-submit:focus, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:hover, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:active, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:focus {
+  .wpcf7-submit:hover, .wpcf7-submit:active, .wpcf7-submit:focus,
+  .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:hover,
+  .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:active,
+  .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:focus {
     background-color: transparent;
     color: var(--accent-color);
     border-color: var(--accent-color); }
-    .wpcf7-submit:hover:before, .wpcf7-submit:active:before, .wpcf7-submit:focus:before, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:hover:before, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:active:before, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:focus:before {
+    .wpcf7-submit:hover:before, .wpcf7-submit:active:before, .wpcf7-submit:focus:before,
+    .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:hover:before,
+    .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:active:before,
+    .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:focus:before {
       animation: pulse 2s infinite; }
-  .wpcf7-submit:hover, .wpcf7-submit:active, .wpcf7-submit:focus, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:hover, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:active, .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:focus {
+  .wpcf7-submit:hover, .wpcf7-submit:active, .wpcf7-submit:focus,
+  .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:hover,
+  .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:active,
+  .wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit.wpforms-submit:focus {
     background-color: transparent !important;
     border-color: var(--accent-color); }
 
@@ -13924,6 +13938,9 @@ a.fancybox-gallery-img {
         margin-bottom: 0; }
     .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button:after {
       display: none; }
+  .accordion.accordion-v2 .accordion-item .description-box {
+    padding-top: 1rem;
+    padding-bottom: 1rem; }
 
 /*Padding*/
 /*Extra Small Padding*/
