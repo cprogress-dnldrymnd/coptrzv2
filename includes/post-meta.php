@@ -1064,6 +1064,39 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								array(
 									Field::make('text', 'label', __('Label')),
+									Field::make('complex', 'styles', __('Styles'))
+										->set_duplicate_groups_allowed(false)
+										->add_fields(
+											'background_color',
+											array(
+												Field::make('select', 'background_color', 'Background Color')
+													->set_options(
+														array(
+															'background-primary'   => 'Primary',
+															'background-secondary' => 'Secondary',
+															'background-accent'    => 'Accent',
+															'background-white'     => 'White',
+															'background-custom'    => 'Custom',
+														)
+													),
+												Field::make('color', 'background_color_custom', __('Background Color'))
+													->set_conditional_logic(
+														array(
+															array(
+																'field' => 'background_color',
+																'value' => 'background-custom',
+															)
+														)
+													),
+											)
+										)
+										->add_fields(
+											'border_radius',
+											array(
+												Field::make('text', 'border_radius', 'Border Radius')
+											)
+										)
+										->set_layout('tabbed-vertical'),
 									Field::make('complex', 'items', __('Items'))
 										->add_fields(
 											'heading',
