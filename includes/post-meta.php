@@ -829,6 +829,7 @@ Container::make('post_meta', 'Modules')
 				'contact_form',
 				array(
 					Field::make('complex', 'styles', __('Styles'))
+						->set_duplicate_groups_allowed(false)
 						->add_fields(
 							'background_color',
 							array(
