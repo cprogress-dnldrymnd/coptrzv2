@@ -981,7 +981,7 @@ Container::make('post_meta', 'Modules')
 										)
 									)
 							)
-						)
+										),
 					Field::make('complex', 'items', __('Items'))
 						->set_layout('tabbed-vertical')
 						->add_fields(
