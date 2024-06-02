@@ -16,6 +16,7 @@ class Elements_Shortcodes
                     'data_aos'     => '',
                     'image_height' => '',
                     'image_width'  => '',
+                    'same_height'  => 'false',
                 ),
                 $atts
             )
