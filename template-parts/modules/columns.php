@@ -7,7 +7,7 @@
 
         <div class="column-items">
             <?php if ($module['columns']) { ?>
-                <div class="row">
+                <div class="row g-4">
                     <?php foreach ($module['columns'] as $column) { ?>
                         <div class="col-sm-12 col-lg">
                             <?php
