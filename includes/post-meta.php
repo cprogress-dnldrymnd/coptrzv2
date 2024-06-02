@@ -982,7 +982,28 @@ Container::make('post_meta', 'Modules')
 									)
 							)
 						)
+						->set_layout('tabbed-vertical'),
+					Field::make('complex', 'items', __('Items'))
 						->set_layout('tabbed-vertical')
+						->add_fields(
+							'heading',
+							array(
+								Field::make('text', 'heading', __('Heading')),
+							)
+						)
+						->add_fields(
+							'description',
+							array(
+								Field::make('rich_text', 'description', __('Description')),
+							)
+						)
+						->add_fields(
+							'button',
+							array(
+								Field::make('text', 'button_text', __('Button Text')),
+								Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url'),
+							)
+						)
 
 				)
 			)
