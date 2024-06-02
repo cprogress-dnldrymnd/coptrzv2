@@ -40,14 +40,16 @@ if ($menu_items) {
                                                     echo do_shortcode('[menu id=' . $menu['menu'] . ']');
                                                 }
                                                 if ($type == 'images') {
-                                                    $image = $menu['image'];
+                                                    $images = $menu['menu_images'];
                                                 ?>
                                                     <div class="row">
                                                         <?php
-                                                        foreach ($image as $img) {
+                                                        foreach ($images as $image) {
+
                                                         ?>
                                                             <div class="col-auto">
-                                                                <?= do_shortcode('[_image id=' . $img . ' size="medium"]') ?>
+
+                                                                <?= do_shortcode('[_image link="' . $image['url'] . '" id=' . $image['image'] . ' size="medium"]') ?>
                                                             </div>
                                                         <?php
                                                         }
