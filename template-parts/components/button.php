@@ -10,7 +10,7 @@ if ($button_type != 'popups') {
 	$link = 'href="' . $custom_url . '"';
 } else {
 	$tag = 'button';
-	$link = 'data-bs-toggle="modal" data-bs-target="#modal-"';
+	$link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $id . '"';
 }
 
 ?>
