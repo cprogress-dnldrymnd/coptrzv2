@@ -60,10 +60,11 @@ class Elements_Shortcodes
 
     function _elements($atts)
     {
+        ob_start();
         extract(
             shortcode_atts(
                 array(
-                    'data' => array(),
+                    'data' => '',
                 ),
                 $atts
             )
@@ -71,8 +72,15 @@ class Elements_Shortcodes
 
         foreach ($data as $d) {
             $type = $d['_type'];
-           return $type;
+            switch ($type) {
+                case 'heading':
+                    echo do_shortcode('[_heading heading="' . $d['heading'] . '"]');
+                case 'description':
+                    echo do_shortcode('[_description description="' . $d['description'] . '"]');
+                    break;
+            }
         }
+        return ob_get_clean();
     }
 }
 

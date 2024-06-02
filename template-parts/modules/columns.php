@@ -13,7 +13,7 @@
                             <pre>
                             <?php var_dump($column['items']) ?>
                             </pre>
-                          
+
                             <?= do_shortcode('[_elements data="' . $column['items'] . '"]') ?>
                         </div>
                     <?php } ?>
