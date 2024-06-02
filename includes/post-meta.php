@@ -816,9 +816,9 @@ Container::make('post_meta', 'Modules')
 	);
 
 
-class Modules
+class Styles_Modules
 {
-	public static function styles()
+	public static function render()
 	{
 		return Field::make('complex', 'styles', __('Styles'))
 			->set_duplicate_groups_allowed(false)
@@ -876,16 +876,12 @@ class Modules
 			)
 			->set_layout('tabbed-vertical');
 	}
-	public static function heading()
-	{
-		return Field::make('text', 'heading', __('Heading'));
-	}
 }
-$Modules = new Modules();
+$Styles_Modules = new Styles_Modules();
 /*-----------------------------------------------------------------------------------*/
 /* Modules
 /*-----------------------------------------------------------------------------------*/
-$Modules = new Modules;
+$Styles_Modules = new Styles_Modules;
 Container::make('post_meta', 'Modules')
 	->where('post_template', '=', 'templates/page-modules.php')
 	->set_priority('high')
@@ -894,8 +890,8 @@ Container::make('post_meta', 'Modules')
 			->add_fields(
 				'contact_form',
 				array(
-					$Modules::styles(),
-					$Modules::heading(),
+					$Styles_Modules::render(),
+					Field::make('text', 'heading', __('Heading')),
 					Field::make('rich_text', 'description', __('Description')),
 					Field::make('text', 'form_heading', __('Form Heading')),
 					Field::make('text', 'contact_form_shortcode', __('Contact Form Shortcode'))->set_classes('field-contact-form'),
@@ -904,14 +900,32 @@ Container::make('post_meta', 'Modules')
 			->add_fields(
 				'columns',
 				array(
-					$Modules::styles(),
-					$Modules::heading(),
+					$Styles_Modules::render(),
+					Field::make('text', 'heading', __('Heading')),
 					Field::make('rich_text', 'description', __('Description')),
 					Field::make('complex', 'columns', __('Columns'))
 						->add_fields(
 							array(
-								Field::make('textarea', 'guide_text', __('Guide Text')),
-
+								Field::make('complex', 'items', __('Items'))
+									->add_fields(
+										'heading',
+										array(
+											Field::make('text', 'heading', __('Heading')),
+										)
+									)
+									->add_fields(
+										'description',
+										array(
+											Field::make('rich_text', 'heading', __('description')),
+										)
+									)
+									->add_fields(
+										'button',
+										array(
+											Field::make('text', 'button_text', __('Button Text')),
+											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url'),
+										)
+									)
 							)
 						)
 				)
