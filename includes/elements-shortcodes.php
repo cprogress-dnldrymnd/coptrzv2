@@ -69,9 +69,9 @@ class Elements_Shortcodes
                 $atts
             )
         );
-        $data = unserialize($data);
-        var_dump($data);
-        foreach ($data as $d) {
+        $datas = unserialize($data);
+        var_dump($datas);
+        foreach ($datas as $d) {
             $type = $d['_type'];
             echo $type;
             switch ($type) {
