@@ -907,6 +907,7 @@ Container::make('post_meta', 'Modules')
 						->add_fields(
 							array(
 								Field::make('complex', 'items', __('Items'))
+									->set_layout('tabbed-vertical')
 									->add_fields(
 										'heading',
 										array(
@@ -928,6 +929,8 @@ Container::make('post_meta', 'Modules')
 									)
 							)
 						)
+						->set_layout('tabbed-vertical')
+
 				)
 			)
 			->set_collapsed(true)
