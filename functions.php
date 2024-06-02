@@ -304,10 +304,14 @@ function action_admin_footer()
 		});
 
 
-		jQuery('.trigger-selector select').each(function(index, element) {
-			$value = jQuery(this).val();
-			console.log($value);
-		});
+
+
+		setTimeout(function() {
+			jQuery('.trigger-selector select').each(function(index, element) {
+				$value = jQuery(this).val();
+				console.log($value);
+			});
+		}, 1000);
 	</script>
 <?php
 }
