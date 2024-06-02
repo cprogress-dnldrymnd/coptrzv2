@@ -989,7 +989,8 @@ Container::make('post_meta', 'Modules')
 												),
 											Field::make('text', 'button_text', __('Button Text')),
 											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
-												->set_field('<div class="select-page"> </div>')
+											Field::make('html', 'html')
+												->set_html('<div class="select-page"> </div>')
 										)
 									)
 									->add_fields(
