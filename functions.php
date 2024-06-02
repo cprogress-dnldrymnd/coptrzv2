@@ -255,6 +255,10 @@ function action_admin_footer()
 	<script>
 		jQuery(document).ready(function() {
 			console.log('mama mo')
+
+		});
+
+		jQuery(document).on("click", '.cf-complex__tabs-item ', function(event) {
 			jQuery('.select-page').each(function(index, element) {
 				jQuery(this).html('<?= $select ?>');
 			});
