@@ -16,9 +16,10 @@
 
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-	<?php do_action('modules_styles') ?>
 
 	<?php wp_head(); ?>
+
+	<?php do_action('modules_styles') ?>
 
 	<!--[if lte IE 9]>
 		<link href="stylesheets/non-responsive.css" rel="stylesheet" />
