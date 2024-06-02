@@ -14988,6 +14988,9 @@ tspan {
   #footer .widget-title {
     font-size: 2rem;
     margin-bottom: 20px; }
+    @media screen and (max-width: 1199px) {
+      #footer .widget-title {
+        font-size: 1.5rem; } }
   #footer .menu {
     padding: 0;
     list-style: none; }

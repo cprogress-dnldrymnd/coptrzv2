@@ -1,7 +1,7 @@
 <footer id="footer" class="background-primary">
     <div class="container">
-        <div class="row">
-        <div class="col-lg col-md-12">
+        <div class="row g-4">
+            <div class="col-lg col-md-12">
                 <?php dynamic_sidebar('footer_column_1') ?>
             </div>
             <div class="col-lg col-md-6">
