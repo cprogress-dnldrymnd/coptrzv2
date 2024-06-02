@@ -1514,6 +1514,157 @@ Container::make('post_meta', 'Modules')
 					)
 				)
 				->add_fields(
+					'accordion',
+					array(
+						Field::make('complex', 'styles', __('Styles'))
+							->set_duplicate_groups_allowed(false)
+							->add_fields(
+								'background_color',
+								array(
+									Field::make('select', 'background_color', 'Background Color')
+										->set_options(
+											array(
+												'background-primary'   => 'Primary',
+												'background-secondary' => 'Secondary',
+												'background-accent'    => 'Accent',
+												'background-white'     => 'White',
+												'background-custom'    => 'Custom',
+											)
+										),
+									Field::make('color', 'background_color_custom', __('Background Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_color',
+													'value' => 'background-custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
+								'padding',
+								array(
+									Field::make('select', 'padding_top', 'Padding Top')
+										->set_options(
+											array(
+												''                => 'No Padding',
+												'xl-padding-top'  => 'Extra Large',
+												'lg-padding-top'  => 'Large',
+												'md-padding-top'  => 'Medium',
+												'sm-padding-top'  => 'Small',
+												'xxs-padding-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_bottom', 'Padding Bottom')
+										->set_options(
+											array(
+												''                   => 'No Padding',
+												'xl-padding-bottom'  => 'Extra Large',
+												'lg-padding-bottom'  => 'Large',
+												'md-padding-bottom'  => 'Medium',
+												'sm-padding-bottom'  => 'Small',
+												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
+											)
+										),
+
+								)
+							)
+							->add_fields(
+								'margin',
+								array(
+									Field::make('select', 'margin_top', 'margin Top')
+										->set_options(
+											array(
+												''               => 'No margin',
+												'xl-margin-top'  => 'Extra Large',
+												'lg-margin-top'  => 'Large',
+												'md-margin-top'  => 'Medium',
+												'sm-margin-top'  => 'Small',
+												'xxs-margin-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_bottom', 'margin Bottom')
+										->set_options(
+											array(
+												''                  => 'No margin',
+												'xl-margin-bottom'  => 'Extra Large',
+												'lg-margin-bottom'  => 'Large',
+												'md-margin-bottom'  => 'Medium',
+												'sm-margin-bottom'  => 'Small',
+												'xxs-margin-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_left', 'margin left')
+										->set_options(
+											array(
+												''                => 'No margin',
+												'xl-margin-left'  => 'Extra Large',
+												'lg-margin-left'  => 'Large',
+												'md-margin-left'  => 'Medium',
+												'sm-margin-left'  => 'Small',
+												'xxs-margin-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_right', 'margin right')
+										->set_options(
+											array(
+												''                 => 'No margin',
+												'xl-margin-right'  => 'Extra Large',
+												'lg-margin-right'  => 'Large',
+												'md-margin-right'  => 'Medium',
+												'sm-margin-right'  => 'Small',
+												'xxs-margin-right' => 'Extra Small',
+											)
+										),
+								)
+							)
+							->add_fields(
+								'border_radius',
+								array(
+									Field::make('text', 'border_radius', 'Border Radius')
+								)
+							)
+							->set_layout('tabbed-vertical'),
+						Field::make('complex', 'accordion', __('Accordion'))
+							->setup_labels(
+								array(
+									'plural_name'   => 'Accordions',
+									'singular_name' => 'Accordion',
+								)
+							)
+							->add_fields(
+								array(
+									Field::make('text', 'heading', __('Heading')),
+									Field::make('textarea', 'description', __('Description')),
+								)
+							)
+							->set_header_template('<%- heading  %>'),
+					)
+				)
+				->add_fields(
 					'post_tabs',
 					array(
 						Field::make('complex', 'styles', __('Styles'))
