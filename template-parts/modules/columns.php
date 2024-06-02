@@ -33,7 +33,7 @@
                                 }
                             }
                             ?>
-                            <div class="column-holder content-margin">
+                            <div class="column-holder content-margin <?= $classes ?>" style="<?= $styles ?>">
                                 <?= _elements($column['items'], $module_id) ?>
                             </div>
                         </div>
