@@ -57,6 +57,24 @@ class Elements_Shortcodes
         include locate_template('template-parts/components/description.php');
         return ob_get_clean();
     }
+
+    function _button()
+    {
+        ob_start();
+        extract(
+            shortcode_atts(
+                array(
+                    'button_text' => '',
+                    'button_link' => '',
+                    'class' => '',
+                    'data_aos' => '',
+                ),
+                $atts
+            )
+        );
+        include locate_template('template-parts/components/button.php');
+        return ob_get_clean();
+    }
 }
 
 $Elements_Shortcodes = new Elements_Shortcodes;

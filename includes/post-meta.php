@@ -976,8 +976,26 @@ Container::make('post_meta', 'Modules')
 									->add_fields(
 										'button',
 										array(
+											Field::make('select', 'button_type', __('Button Type'))
+												->set_options(
+													array(
+														'page' => 'Page',
+														'post' => 'Post',
+														'solution' => 'Solution',
+														'popup' => 'Popup',
+														'custom' => 'Custom',
+													)
+												),
 											Field::make('text', 'button_text', __('Button Text')),
-											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url'),
+											Field::make('text', 'button_url_page', __('Button URL'))->set_classes('field-url')
+												->set_conditional_logic(
+													array(
+														array(
+															'field' => 'button_type',
+															'value' => 'page',
+														)
+													)
+												),
 										)
 									)
 									->add_fields(

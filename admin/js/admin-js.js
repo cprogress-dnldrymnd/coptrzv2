@@ -2,6 +2,9 @@ jQuery(document).ready(function ($) {
     codemirror();
 });
 
+
+function 
+
 function codemirror() {
     setTimeout(function () {
         if (jQuery('textarea[name="carbon_fields_compact_input[_page_custom_css]"').length > 0) {
