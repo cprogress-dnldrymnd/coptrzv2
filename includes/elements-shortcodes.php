@@ -68,13 +68,12 @@ add_shortcode('_description', array($Elements_Shortcodes, '_description'));
 function _elements($data)
 {
     ob_start();
-    var_dump($data);
     foreach ($data as $d) {
         $type = $d['_type'];
         echo $type;
         switch ($type) {
             case 'heading':
-                echo do_shortcode('[_heading heading="' . $d['heading'] . '"]');
+                echo do_shortcode('[_heading heading="' . $d['heading'] . ' tag=""]');
             case 'description':
                 echo do_shortcode('[_description description="' . $d['description'] . '"]');
                 break;
