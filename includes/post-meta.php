@@ -1150,6 +1150,7 @@ Container::make('post_meta', 'Modules')
 					Field::make('text', 'heading', __('Heading')),
 					Field::make('textarea', 'description', __('Description')),
 					Field::make('text', 'post_type_key', __('Post Type Key')),
+					Field::make('text', 'taxonomy_key', __('Taxonomy Key')),
 				)
 			)
 	));
