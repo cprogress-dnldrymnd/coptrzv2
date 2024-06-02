@@ -1,4 +1,4 @@
-<section class="accordion-section">
+<section class="accordion-section <?= $classes ?>" id="<?= $module_id ?>">
   <div class="container">
     <div class="accordion accordion-v2 accordion-flush" id="accordion-<?= $module_id ?>">
       <?php foreach ($module['accordion'] as $key => $accordion_item) { ?>
