@@ -263,6 +263,11 @@ function action_admin_footer()
 				jQuery(this).html('<?= $select ?>');
 			});
 		});
+
+		jQuery(document).on("change", '.trigger-selector', function(event) {
+			console.log('sdsdsds');
+		});
+		
 		jQuery(document).on(".select-page-selector", '.cf-complex__tabs-item ', function(event) {
 			console.log('xxxxx');
 
