@@ -14,7 +14,6 @@
                             <?php var_dump($column['items']) ?>
                             </pre>
 
-                            <?= do_shortcode('[_elements data="' . serialize($column['items']) . '"]') ?>
                         </div>
                     <?php } ?>
                 </div>
