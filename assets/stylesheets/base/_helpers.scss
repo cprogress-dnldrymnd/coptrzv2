@@ -614,15 +614,17 @@
 
 /*Container*/
 .container {
-	@media (min-width: 1300px) {
-		max-width: 1260px;
-	}
+	&:not(.small-container) {
+		@media (min-width: 1300px) {
+			max-width: 1260px;
+		}
 
-	@media (min-width: 1400px) {
-		max-width: 1360px;
-	}
-	@media (min-width: 1500px) {
-		max-width: 1460px;
+		@media (min-width: 1400px) {
+			max-width: 1360px;
+		}
+		@media (min-width: 1500px) {
+			max-width: 1460px;
+		}
 	}
 
 	&:not(.medium-container):not(.small-container) {
@@ -693,7 +695,6 @@
 	}
 
 	.small-container {
-		
 	}
 }
 

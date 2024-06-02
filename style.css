@@ -14424,13 +14424,13 @@ a.fancybox-gallery-img {
 
 /*Container*/
 @media (min-width: 1300px) {
-  .container {
+  .container:not(.small-container) {
     max-width: 1260px; } }
 @media (min-width: 1400px) {
-  .container {
+  .container:not(.small-container) {
     max-width: 1360px; } }
 @media (min-width: 1500px) {
-  .container {
+  .container:not(.small-container) {
     max-width: 1460px; } }
 @media (min-width: 1600px) {
   .container:not(.medium-container):not(.small-container) {
