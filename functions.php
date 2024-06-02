@@ -259,14 +259,14 @@ function action_admin_footer()
 	}
 	$select_post .= '</select>';
 
-	$solutions = get__solutions('solutions');
+	$solutions = get__posts('solutions');
 	$select_solution = '<select name="select-page-selector">';
 	foreach ($solutions as $key => $solution) {
 		$select_solution .= '<option value="' . $key . '"> ' . $solution . ' </option>';
 	}
 	$select_solution .= '</select>';
 
-	$popups = get__solutions('popups');
+	$popups = get__posts('popups');
 	$select_popup = '<select name="select-page-selector">';
 	foreach ($popups as $key => $popup) {
 		$select_popup .= '<option value="' . $key . '"> ' . $popup . ' </option>';
