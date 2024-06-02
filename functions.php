@@ -246,28 +246,28 @@ if (version_compare(phpversion(), '7.1', '>=')) {
 function action_admin_footer()
 {
 	$pages = get__posts('page');
-	$select_page = '<select name="select-page-selector">';
+	$select_page = '<label class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Page</label><select name="select-page-selector">';
 	foreach ($pages as $key => $page) {
 		$select_page .= '<option value="' . $key . '"> ' . $page . ' </option>';
 	}
 	$select_page .= '</select>';
 
 	$posts = get__posts('post');
-	$select_post = '<select name="select-page-selector">';
+	$select_post = '<label class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Post</label><select name="select-page-selector">';
 	foreach ($posts as $key => $post) {
 		$select_post .= '<option value="' . $key . '"> ' . $post . ' </option>';
 	}
 	$select_post .= '</select>';
 
 	$solutions = get__posts('solutions');
-	$select_solution = '<select name="select-page-selector">';
+	$select_solution = '<label class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Solution</label><select name="select-page-selector">';
 	foreach ($solutions as $key => $solution) {
 		$select_solution .= '<option value="' . $key . '"> ' . $solution . ' </option>';
 	}
 	$select_solution .= '</select>';
 
 	$popups = get__posts('popups');
-	$select_popup = '<select name="select-page-selector">';
+	$select_popup = '<label class="cf-field__label" for="cf-5GHbM06TaZX30T4joWn9r">Select Popup</label><select name="select-page-selector">';
 	foreach ($popups as $key => $popup) {
 		$select_popup .= '<option value="' . $key . '"> ' . $popup . ' </option>';
 	}
