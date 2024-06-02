@@ -8,14 +8,14 @@ class Elements_Shortcodes
         extract(
             shortcode_atts(
                 array(
-                    'id' => '',
-                    'size' => '',
-                    'link' => '',
-                    'placeholder' => '',
-                    'class' => '',
-                    'data_aos' => '',
+                    'id'           => '',
+                    'size'         => '',
+                    'link'         => '',
+                    'placeholder'  => '',
+                    'class'        => '',
+                    'data_aos'     => '',
                     'image_height' => '',
-                    'image_width' => '',
+                    'image_width'  => '',
                 ),
                 $atts
             )
@@ -30,11 +30,11 @@ class Elements_Shortcodes
         extract(
             shortcode_atts(
                 array(
-                    'heading' => '',
+                    'heading'       => '',
                     'heading_small' => '',
-                    'tag' => '',
-                    'class' => '',
-                    'data_aos' => '',
+                    'tag'           => '',
+                    'class'         => '',
+                    'data_aos'      => '',
                 ),
                 $atts
             )
@@ -50,8 +50,8 @@ class Elements_Shortcodes
             shortcode_atts(
                 array(
                     'description' => '',
-                    'class' => '',
-                    'data_aos' => '',
+                    'class'       => '',
+                    'data_aos'    => '',
                 ),
                 $atts
             )
@@ -66,12 +66,12 @@ class Elements_Shortcodes
         extract(
             shortcode_atts(
                 array(
-                    'id' => '',
+                    'id'          => '',
                     'button_type' => '',
                     'button_text' => '',
                     'button_link' => '',
-                    'class' => 'button-accent',
-                    'data_aos' => '',
+                    'class'       => 'button-accent',
+                    'data_aos'    => '',
                 ),
                 $atts
             )
@@ -97,10 +97,10 @@ function _elements($data, $module_id)
             case 'heading':
                 echo do_shortcode('[_heading heading="' . $d['heading'] . '"]');
             case 'description':
-                echo do_shortcode("[_description description='". $d['description']."']");
+                echo do_shortcode("[_description description='" . $d['description'] . "']");
                 break;
             case 'image':
-                echo do_shortcode('[_image id="' . $d['image'] . '" image_width="'. $d['image_width'].'"image_height="' . $d['image_height'] . '"]');
+                echo do_shortcode('[_image id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
                 break;
             case 'button':
                 echo do_shortcode('[_button id="' . $d['button_url'] . '" custom_url="' . $d['button_url_custom'] . '" button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" ]');
