@@ -279,22 +279,10 @@ function action_admin_footer()
 
 		});
 
-
 		jQuery(document).on("change", '.trigger-selector select', function(event) {
 			$value = jQuery(this).val();
-			console.log($value);
 			$selector = jQuery(this).parent().parent().parent().find('.page-selector');
-			if ($value == 'page') {
-				$selector.html('<?= $select_page ?>');
-			} else if ($value == 'post') {
-				$selector.html('<?= $select_post ?>');
-			} else if ($value == 'solutions') {
-				$selector.html('<?= $select_solution ?>');
-			} else if ($value == 'popups') {
-				$selector.html('<?= $select_popup ?>');
-			} else {
-				$selector.html('');
-			}
+			active_link_type($selector, $value)
 		});
 
 		jQuery(document).on("change", '.select-page-selector', function(event) {
@@ -324,7 +312,7 @@ function action_admin_footer()
 				$selector = jQuery(this).parent().parent().parent().find('.page-selector');
 				active_link_type($selector, $value)
 			});
-		}, 1000);
+		}, 2000);
 	</script>
 <?php
 }
