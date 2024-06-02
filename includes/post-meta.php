@@ -1033,7 +1033,6 @@ Container::make('post_meta', 'Modules')
 												->set_header_template('<%- heading  %>'),
 										)
 									)
-									->set_layout('tabbed-vertical')
 							)
 						)
 						->set_layout('tabbed-vertical')
