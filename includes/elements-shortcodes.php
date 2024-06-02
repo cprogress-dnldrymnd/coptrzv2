@@ -109,6 +109,9 @@ function _elements($data, $module_id)
                 $accordion = $d['accordion'];
                 include locate_template('template-parts/components/accordion.php');
                 break;
+            case 'custom_html':
+                echo $d['custom_html'];
+                break;
         }
     }
     return ob_get_clean();
