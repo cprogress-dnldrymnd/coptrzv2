@@ -1,6 +1,6 @@
 <?php
 $terms = get_terms(array(
-    'taxonomy'   => $modules['taxonomy_key'],
+    'taxonomy'   => $module['taxonomy_key'],
     'hide_empty' => false,
 ));
 ?>
