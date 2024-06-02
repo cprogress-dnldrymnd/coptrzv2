@@ -1,4 +1,4 @@
-<footer class="background-primary">
+<footer id="footer" class="background-primary">
     <div class="container">
         <div class="row">
         <div class="col">
