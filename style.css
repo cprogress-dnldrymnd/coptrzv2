@@ -14958,6 +14958,8 @@ tspan {
       border-color: #d8d8d8; }
     #header .bottom-header .mega-menu .submenu-holder .image-box img {
       border-radius: 10px; }
+    #header .bottom-header .mega-menu .submenu-holder .menu-items li a {
+      font-weight: 400; }
     #header .bottom-header .mega-menu .submenu-holder .menu-items li:not(:last-child) {
       margin-bottom: 15px; }
 
