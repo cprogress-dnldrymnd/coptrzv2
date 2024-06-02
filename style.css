@@ -14951,12 +14951,15 @@ tspan {
       padding-left: 0.75rem;
       padding-right: 0.75rem; }
     #header .bottom-header .mega-menu .submenu-holder .submenu-item-title {
-      padding: 0px 0px 15px 0px;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
       border-style: solid;
       border-width: 0px 0px 1px 0px;
       border-color: #d8d8d8; }
     #header .bottom-header .mega-menu .submenu-holder .image-box img {
       border-radius: 10px; }
+    #header .bottom-header .mega-menu .submenu-holder .menu-items li:not(:last-child) {
+      margin-bottom: 15px; }
 
 /* Basic Dropdown Styling */
 .cart-dropdown {
