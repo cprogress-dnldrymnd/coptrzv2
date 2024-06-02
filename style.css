@@ -11474,7 +11474,8 @@ textarea {
   font-size: 1rem;
   background-color: transparent;
   width: 100%;
-  color: inherit; }
+  color: inherit;
+  max-width: 100% !important; }
   input:not([type="submit"]):not(.qty):not([type="checkbox"]):not([type="radio"]):not(.search)::placeholder,
   select::placeholder,
   textarea::placeholder {
@@ -13189,7 +13190,8 @@ body.elementor-editor-active .elementor-swiper-slider > .e-con-inner:before {
   font-size: 1rem;
   background-color: transparent;
   width: 100%;
-  color: inherit; }
+  color: inherit;
+  max-width: 100% !important; }
   .ElementsWidget-prefix.ElementsWidget-prefix .R-Field .R-Field__input::placeholder {
     opacity: 0.75; }
   .ElementsWidget-prefix.ElementsWidget-prefix .R-Field .R-Field__input:hover, .ElementsWidget-prefix.ElementsWidget-prefix .R-Field .R-Field__input:active, .ElementsWidget-prefix.ElementsWidget-prefix .R-Field .R-Field__input:focus {
