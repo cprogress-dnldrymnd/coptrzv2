@@ -301,6 +301,7 @@ function action_admin_footer()
 			$value = jQuery(this).val();
 			$input = jQuery(this).parents('.cf-complex__group-body').find('.field-url input');
 			$input.val($value);
+			console.log($value);
 		});
 	</script>
 <?php
