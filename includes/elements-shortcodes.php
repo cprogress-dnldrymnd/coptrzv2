@@ -16,7 +16,6 @@ class Elements_Shortcodes
                 $atts
             )
         );
-        echo 'test';
         include locate_template('template-parts/components/image.php');
         return ob_get_clean();
     }

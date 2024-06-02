@@ -44,6 +44,7 @@ if ($menu_items) {
                                                 ?>
                                                     <div class="row">
                                                         <?php
+                                                        var_dump($image);
                                                         foreach ($image as $img) {
                                                         ?>
                                                             <div class="col">
