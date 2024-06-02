@@ -48,12 +48,6 @@ foreach ($terms as $term) {
     }
   }
 }
-$DisplayData = new DisplayData;
-?>
-<?php
-if (!get__post_meta('hide_page_banner')) {
-  get_template_part('template-parts/section/content', 'banner');
-}
 ?>
 
 <section class="vendors-nav sm-padding-bottom overflow-visible">
