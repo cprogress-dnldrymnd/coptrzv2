@@ -702,24 +702,6 @@ Container::make('post_meta', 'Download Guide')
 
 
 
-/*-----------------------------------------------------------------------------------*/
-/* Modules
-/*-----------------------------------------------------------------------------------*/
-
-Container::make('post_meta', 'Modules')
-	->where('post_template', '=', 'templates/page-modules.php')
-	->set_priority('high')
-	->add_fields(
-		array(
-			Field::make('image', 'image', __('Image')),
-			Field::make('complex', 'guides', __('Guides'))
-				->add_fields(
-					array(
-						Field::make('textarea', 'guide_text', __('Guide Text')),
-					)
-				)
-		)
-	);
 
 /*-----------------------------------------------------------------------------------*/
 /* Mega Menus
@@ -830,5 +812,22 @@ Container::make('post_meta', 'Modules')
 				->set_layout('tabbed-vertical')
 				->set_header_template('<%- menu_text  %>'),
 
+		)
+	);
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Modules
+/*-----------------------------------------------------------------------------------*/
+
+Container::make('post_meta', 'Modules')
+	->where('post_template', '=', 'templates/page-modules.php')
+	->set_priority('high')
+	->add_fields(
+		'contact_form',
+		array(
+			Field::make('text', 'heading', __('Heading')),
+			Field::make('rich_text', 'description', __('Description')),
+			Field::make('text', 'contact_form_shortcode', __('Contact Form Shortcode'))->set_classes('field-contact-form'),
 		)
 	);
