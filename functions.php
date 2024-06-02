@@ -298,8 +298,9 @@ function action_admin_footer()
 		});
 
 		jQuery(document).on("change", '.select-page-selector', function(event) {
-			console.log('xxxxx');
-
+			$value = jQuery(this).val();
+			$input = jQuery(this).parents('.cf-complex__group-body').find('.field-url input');
+			$input.val($value);
 		});
 	</script>
 <?php
