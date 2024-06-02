@@ -7,8 +7,11 @@ function modules_styles()
 
     echo '<style id="module-styles">';
     foreach ($modules as $key => $module) {
-        echo '#module'
+        $module_id = 'module-' . get_the_ID() . '-' . $key;
+        echo '#' . $module_id . '{';
+
+        echo '}';
     }
     echo '</style>';
 }
-add_action('wp_head', 'modules_styles');
+add_action('modules_styles', 'modules_styles');
