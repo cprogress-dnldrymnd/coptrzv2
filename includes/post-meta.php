@@ -881,7 +881,7 @@ $Styles_Modules = new Styles_Modules();
 /*-----------------------------------------------------------------------------------*/
 /* Modules
 /*-----------------------------------------------------------------------------------*/
-
+$Styles_Modules = new Styles_Modules;
 Container::make('post_meta', 'Modules')
 	->where('post_template', '=', 'templates/page-modules.php')
 	->set_priority('high')
@@ -890,7 +890,7 @@ Container::make('post_meta', 'Modules')
 			->add_fields(
 				'contact_form',
 				array(
-					new Styles_Modules::render(),
+					new $Styles_Modules::render(),
 					Field::make('text', 'heading', __('Heading')),
 					Field::make('rich_text', 'description', __('Description')),
 					Field::make('text', 'form_heading', __('Form Heading')),
