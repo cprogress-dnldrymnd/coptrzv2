@@ -1,6 +1,6 @@
 <section class="columns <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
     <div class="container">
-        <div class="section-heading-description">
+        <div class="section-heading-description mb-5">
             <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading"]') ?>
             <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
         </div>
