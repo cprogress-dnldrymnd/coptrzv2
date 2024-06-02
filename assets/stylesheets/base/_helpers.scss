@@ -317,6 +317,7 @@
 .xxs-padding-right {
 	padding-right: 1.625rem;
 }
+
 /*End of Extra Large Padding*/
 
 /*margin*/
@@ -519,6 +520,7 @@
 		margin-bottom: 3rem;
 	}
 }
+
 /*End of Extra Large margin*/
 
 .xl-margin-right {
@@ -636,6 +638,7 @@
 .xxs-margin-left {
 	margin-left: 1.625rem;
 }
+
 /*Background*/
 .background-black,
 .background-primary,
@@ -655,6 +658,25 @@
 
 		a {
 			color: var(--accent-color);
+		}
+	}
+
+	.background-white {
+		color: var(--primary-color);
+
+		@include headings {
+			color: var(--primary-color);
+		}
+
+		.menu-item {
+			color: var(--primary-color);
+		}
+
+		.description-box {
+			color: var(--primary-color);
+			a {
+				color: var(--primary-color);
+			}
 		}
 	}
 }
