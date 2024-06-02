@@ -6,7 +6,6 @@
 <?php get_header(); ?>
 <?php
 $modules = get__post_meta('modules');
-global $styles;
 ?>
 <div class="modules">
     <pre>
@@ -20,8 +19,6 @@ global $styles;
         $styles[$module_id] = $module['styles'];
     }
     ?>
-        <?php
-    var_dump($styles);
-    ?>
+ 
 </div>
 <?php get_footer(); ?>
