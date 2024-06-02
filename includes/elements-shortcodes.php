@@ -14,7 +14,6 @@ class Elements_Shortcodes
                     'placeholder' => '',
                     'class' => '',
                     'data_aos' => '',
-                    'class' => '',
                 ),
                 $atts
             )
@@ -22,7 +21,27 @@ class Elements_Shortcodes
         include locate_template('template-parts/components/image.php');
         return ob_get_clean();
     }
+
+    function _heading()
+    {
+        ob_start();
+        extract(
+            shortcode_atts(
+                array(
+                    'heading' => '',
+                    'heading_small' => '',
+                    'tag' => '',
+                    'class' => '',
+                    'data_aos' => '',
+                ),
+                $atts
+            )
+        );
+        include locate_template('template-parts/components/heading.php');
+        return ob_get_clean();
+    }
 }
 
 $Elements_Shortcodes = new Elements_Shortcodes;
 add_shortcode('_image', array($Elements_Shortcodes, '_image'));
+add_shortcode('_heading', array($Elements_Shortcodes, '_heading'));
