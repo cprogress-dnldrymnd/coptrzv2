@@ -104,6 +104,7 @@ function _elements($data, $module_id)
                 echo do_shortcode('[_button id="' . $d['button_url'] . '" custom_url="' . $d['button_url_custom'] . '" button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" ]');
                 break;
             case 'accordion':
+                $accordion = $d['accordion'];
                 include locate_template('template-parts/components/accordion.php');
                 break;
         }
