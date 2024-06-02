@@ -102,8 +102,7 @@ function _elements($data)
                 if ($d['button_type'] == 'custom') {
                     $button_link = $d['button_url_custom'];
                 } else {
-                    $id = $d['button_url_' . $d['button_type']];
-                    $button_link = get_permalink($id);
+                    $button_link = get_permalink($d['button_url']);
                 }
                 echo do_shortcode('[_button class="button-accent" button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" button_link="' . $button_link . '"]');
                 break;
