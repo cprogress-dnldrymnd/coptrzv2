@@ -19,7 +19,7 @@ global $styles;
         $type = $module['_type'];
         $module_id = 'module-' . $key;
         include locate_template('template-parts/modules/' . $type . '.php');
-        $styles[] = $module['styles'];
+        $styles[$module_id] = $module['styles'];
     }
     ?>
 </div>
