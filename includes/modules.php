@@ -2,9 +2,10 @@
 
 function modules_styles()
 {
+    global $styles;
 ?>
     <style id="module-styles">
-
+        <?= var_dump($styles) ?>
     </style>
 <?php
 }
