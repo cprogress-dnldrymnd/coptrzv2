@@ -6,6 +6,7 @@ if ($button_type != 'popups') {
 	$tag = 'a';
 	$link = 'href="' . get_permalink($id) . '"';
 } else if ($button_type == 'custom') {
+	$tag = 'a';
 	$link = 'href="' . $custom_url . '"';
 } else {
 	$tag = 'button';
