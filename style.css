@@ -14437,6 +14437,41 @@ a.fancybox-gallery-img {
     .background-primary .description-box a,
     .background-secondary .description-box a {
       color: var(--accent-color); }
+  .background-black .background-white,
+  .background-primary .background-white,
+  .background-secondary .background-white {
+    color: var(--primary-color); }
+    .background-black .background-white h1,
+    .background-black .background-white h2,
+    .background-black .background-white h3,
+    .background-black .background-white h4,
+    .background-black .background-white h5,
+    .background-black .background-white h6,
+    .background-primary .background-white h1,
+    .background-primary .background-white h2,
+    .background-primary .background-white h3,
+    .background-primary .background-white h4,
+    .background-primary .background-white h5,
+    .background-primary .background-white h6,
+    .background-secondary .background-white h1,
+    .background-secondary .background-white h2,
+    .background-secondary .background-white h3,
+    .background-secondary .background-white h4,
+    .background-secondary .background-white h5,
+    .background-secondary .background-white h6 {
+      color: var(--primary-color); }
+    .background-black .background-white .menu-item,
+    .background-primary .background-white .menu-item,
+    .background-secondary .background-white .menu-item {
+      color: var(--primary-color); }
+    .background-black .background-white .description-box,
+    .background-primary .background-white .description-box,
+    .background-secondary .background-white .description-box {
+      color: var(--primary-color); }
+      .background-black .background-white .description-box a,
+      .background-primary .background-white .description-box a,
+      .background-secondary .background-white .description-box a {
+        color: var(--primary-color); }
 
 .background-white {
   color: var(--black-color); }
