@@ -868,10 +868,24 @@ class Shortcodes
 		include(get_stylesheet_directory() . '/template-parts/shortcodes/post_grid.php');
 		return ob_get_clean();
 	}
+	function brands_grid($atts) {
+		ob_start();
+		extract(
+			shortcode_atts(
+				array(
+					'id' => '',
+				),
+				$atts
+			)
+		);
+		include (get_stylesheet_directory() . '/template-parts/shortcodes/brands.php');
+		return ob_get_clean();
+	}
 }
 
 
 $Shortcodes = new Shortcodes;
+add_shortcode('brands_grid', array($Shortcodes, 'brands_grid'));
 add_shortcode('post_grid', array($Shortcodes, 'post_grid'));
 add_shortcode('mega_menu', array($Shortcodes, 'mega_menu'));
 add_shortcode('search_form', array($Shortcodes, 'search_form'));
