@@ -312,6 +312,8 @@ function action_admin_footer()
 				$selector.html('');
 			}
 
+			$selector.find('.select-page-selector').val($input);
+
 		
 		}
 
@@ -327,8 +329,7 @@ function action_admin_footer()
 				$value = jQuery(this).val();
 				$selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
 				$input = jQuery(this).parent().parent().next().next().find('input').val();
-				console.log($input);
-				active_link_type($selector, $value)
+				active_link_type($selector, $value, $input)
 			});
 
 		}, 2000);
