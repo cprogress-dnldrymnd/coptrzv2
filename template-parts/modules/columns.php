@@ -14,7 +14,7 @@
                             <?php var_dump($column['items']) ?>
                             </pre>
                             <?php
-                            foreach ($data as $d) {
+                            foreach ($column['items'] as $d) {
                                 $type = $d['_type'];
                                 echo $type;
                             }
