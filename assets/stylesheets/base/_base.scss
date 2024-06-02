@@ -1500,22 +1500,7 @@ select option {
     }
 }
 
-.contact-form {
-    @include inputs {
-        border-radius: 50px;
-        border: none;
-        background-color: var(--white-color);
-        padding: 1.25rem 3rem;
 
-        &::placeholder {
-            font-weight: 300;
-        }
-    }
-
-    .wpcf7-submit {
-        width: auto;
-    }
-}
 
 .content-wrapper {
     z-index: 2;

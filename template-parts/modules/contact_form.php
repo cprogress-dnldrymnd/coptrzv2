@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="column-holder content-margin">
+                <div class="column-holder content-margin form-holder">
                     <?= do_shortcode($module['contact_form_shortcode']) ?>
                 </div>
             </div>

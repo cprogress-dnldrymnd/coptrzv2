@@ -12510,20 +12510,6 @@ select option {
     margin-left: 1.25rem;
     margin-right: 1.25rem; }
 
-.contact-form input:not([type="submit"]):not(.qty):not([type="checkbox"]):not([type="radio"]):not(.search),
-.contact-form select,
-.contact-form textarea {
-  border-radius: 50px;
-  border: none;
-  background-color: var(--white-color);
-  padding: 1.25rem 3rem; }
-  .contact-form input:not([type="submit"]):not(.qty):not([type="checkbox"]):not([type="radio"]):not(.search)::placeholder,
-  .contact-form select::placeholder,
-  .contact-form textarea::placeholder {
-    font-weight: 300; }
-.contact-form .wpcf7-submit {
-  width: auto; }
-
 .content-wrapper {
   z-index: 2; }
 
@@ -16953,5 +16939,9 @@ section.sticky-add-to-cart {
     --bs-gutter-x: 0 !important; }
   section.sticky-add-to-cart .add-to-cart-box {
     margin-top: 1rem !important; }
+
+section.contact-form .form-holder {
+  background-color: var(--white-color);
+  padding: 2rem; }
 
 /*# sourceMappingURL=style.css.map */
