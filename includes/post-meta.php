@@ -902,12 +902,7 @@ Container::make('post_meta', 'Modules')
 
 								)
 							)
-							->add_fields(
-								'border_radius',
-								array(
-									Field::make('text', 'border_radius', 'Border Radius')
-								)
-							)
+							
 							->set_layout('tabbed-vertical'),
 						Field::make('text', 'heading', __('Heading')),
 						Field::make('textarea', 'description', __('Description')),
@@ -970,6 +965,12 @@ Container::make('post_meta', 'Modules')
 											)
 										),
 
+								)
+							)
+							->add_fields(
+								'border_radius',
+								array(
+									Field::make('text', 'border_radius', 'Border Radius')
 								)
 							)
 							->set_layout('tabbed-vertical'),
