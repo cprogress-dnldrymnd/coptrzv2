@@ -9,7 +9,8 @@ $ext = wp_check_filetype(wp_get_attachment_url($id))['ext'];
 $img_class = '';
 if ($image_url) {
 	$image_alt = $GetData->get_image_alt($id);
-} else {
+}
+else {
 	if ($placeholder) {
 		$logo = get__theme_option('alt_logo');
 		$image_url = wp_get_attachment_image_url($logo);
@@ -28,8 +29,10 @@ if ($image_url) {
 		}
 		?>
 		<?php if ($ext != 'svg') { ?>
-			<img decoding="async" class="jetpack-lazy-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>">
-		<?php } else { ?>
+			<img <?= $image_height ? 'height="' . $image_height . '"' : '' ?> <?= $image_width ? 'width="' . $image_width . '"' : '' ?> decoding="async" class="jetpack-lazy-image"
+				src="<?= $image_url ?>" alt="<?= $image_alt ?>">
+		<?php }
+		else { ?>
 			<span class="svg-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>"></span>
 		<?php } ?>
 	</div>
@@ -37,5 +40,5 @@ if ($image_url) {
 	if ($link) {
 		echo '</a>';
 	}
-	?>
+?>
 <?php } ?>
