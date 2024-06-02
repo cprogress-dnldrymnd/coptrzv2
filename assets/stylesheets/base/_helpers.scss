@@ -976,6 +976,9 @@
 
 .color-black {
 	color: var(--black-color);
+	@include headings {
+		color: var(--black-color);
+	}
 }
 
 .with-line {
@@ -1002,7 +1005,6 @@
 .rounded-corner {
 	border-radius: var(--border-radius, 15px);
 }
-
 
 .max-width {
 	border-radius: var(--max-width, 600px);
