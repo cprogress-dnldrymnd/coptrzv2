@@ -229,8 +229,8 @@ Container::make('post_meta', 'Product Components')
 			Field::make('select', 'featured_video_type', __('Featured Video Type'))
 				->set_options(
 					array(
-						'dark-video' => 'Dark',
-						'light-video'      => 'Light',
+						'dark-video'  => 'Dark',
+						'light-video' => 'Light',
 					)
 				),
 			Field::make('text', 'featured_video_text', __('Featured Video Heading')),
@@ -314,7 +314,7 @@ Container::make('theme_options', __('Training Settings'))
 				),
 		)
 	)
-	->add_tab('CTA', 	array(
+	->add_tab('CTA', array(
 		Field::make('text', 'training_cta_heading', 'Heading'),
 		Field::make('textarea', 'training_cta_description', 'Description'),
 		Field::make('file', 'training_cta_background', 'Background')->set_width(20)
@@ -326,7 +326,8 @@ Container::make('theme_options', __('Training Settings'))
 					'style-2' => 'Style 2',
 				)
 			)
-	));
+	)
+	);
 
 
 Container::make('post_meta', 'Training Components')
@@ -455,12 +456,14 @@ Container::make('theme_options', __('Settings'))
 	->add_fields(
 		array(
 			Field::make('association', 'suggested_articles', 'Featured Posts(Blog)')
-				->set_types(array(
+				->set_types(
 					array(
-						'type'      => 'post',
-						'post_type' => 'post',
+						array(
+							'type'      => 'post',
+							'post_type' => 'post',
+						)
 					)
-				)),
+				),
 		)
 	);
 
@@ -474,12 +477,14 @@ Container::make('theme_options', __('Settings'))
 	->add_fields(
 		array(
 			Field::make('association', 'featured_guides', 'Featured Guides')
-				->set_types(array(
+				->set_types(
 					array(
-						'type'      => 'post',
-						'post_type' => 'guides',
+						array(
+							'type'      => 'post',
+							'post_type' => 'guides',
+						)
 					)
-				)),
+				),
 		)
 	);
 
@@ -502,12 +507,14 @@ Container::make('theme_options', __('Settings'))
 	->add_fields(
 		array(
 			Field::make('association', 'featured_webinars', 'Featured Webinars')
-				->set_types(array(
+				->set_types(
 					array(
-						'type'      => 'post',
-						'post_type' => 'webinars',
+						array(
+							'type'      => 'post',
+							'post_type' => 'webinars',
+						)
 					)
-				)),
+				),
 		)
 	);
 
@@ -523,12 +530,14 @@ Container::make('theme_options', __('Settings'))
 	->add_fields(
 		array(
 			Field::make('association', 'featured_case_studies', 'Featured Case Studies')
-				->set_types(array(
+				->set_types(
 					array(
-						'type'      => 'post',
-						'post_type' => 'casestudies',
+						array(
+							'type'      => 'post',
+							'post_type' => 'casestudies',
+						)
 					)
-				)),
+				),
 		)
 	);
 
@@ -726,8 +735,8 @@ Container::make('post_meta', 'Mega Menu Items')
 						Field::make('select', 'menu_type', __('Menu Type'))
 							->set_options(
 								array(
-									'page' => 'Page',
-									'custom'  => 'Custom',
+									'page'   => 'Page',
+									'custom' => 'Custom',
 								)
 							),
 						Field::make('text', 'menu_text', __('Menu Text')),
@@ -742,12 +751,14 @@ Container::make('post_meta', 'Mega Menu Items')
 							),
 						Field::make('association', 'menu_item_page', __('Page'))
 							->set_max(1)
-							->set_types(array(
+							->set_types(
 								array(
-									'type' => 'post',
-									'post_type' => 'page',
-								),
-							))
+									array(
+										'type'      => 'post',
+										'post_type' => 'page',
+									),
+								)
+							)
 							->set_conditional_logic(
 								array(
 									array(
@@ -761,9 +772,9 @@ Container::make('post_meta', 'Mega Menu Items')
 								Field::make('select', 'width', __('Width'))
 									->set_options(
 										array(
-											'col-12' => '100%',
-											'col-lg-11'  => '91.67%',
-											'col-lg-10'  => '83.33%',
+											'col-12'    => '100%',
+											'col-lg-11' => '91.67%',
+											'col-lg-10' => '83.33%',
 											'col-lg-9'  => '75%',
 											'col-lg-7'  => '58.33%',
 											'col-lg-6'  => '50%',
@@ -777,14 +788,15 @@ Container::make('post_meta', 'Mega Menu Items')
 								Field::make('text', 'menu_text', __('Column Text')),
 								Field::make('select', 'menu', __('Menu'))
 									->set_options(get_menu_list_array())
-							))
+							)
+							)
 							->add_fields('images', array(
 								Field::make('select', 'width', __('Width'))
 									->set_options(
 										array(
-											'col-12' => '100%',
-											'col-lg-11'  => '91.67%',
-											'col-lg-10'  => '83.33%',
+											'col-12'    => '100%',
+											'col-lg-11' => '91.67%',
+											'col-lg-10' => '83.33%',
 											'col-lg-9'  => '75%',
 											'col-lg-7'  => '58.33%',
 											'col-lg-6'  => '50%',
@@ -805,7 +817,8 @@ Container::make('post_meta', 'Mega Menu Items')
 									)
 									->set_layout('tabbed-vertical')
 
-							))
+							)
+							)
 							->set_layout('tabbed-vertical')
 
 					)
@@ -823,354 +836,368 @@ Container::make('post_meta', 'Mega Menu Items')
 Container::make('post_meta', 'Modules')
 	->where('post_template', '=', 'templates/page-modules.php')
 	->set_priority('high')
-	->add_fields(array(
-		Field::make('complex', 'modules', __('Modules'))
-			->setup_labels(array(
-				'plural_name' => 'Modules',
-				'singular_name' => 'Module',
-			))
-			->add_fields(
-				'contact_form',
-				array(
-					Field::make('complex', 'styles', __('Styles'))
-						->set_duplicate_groups_allowed(false)
-						->add_fields(
-							'background_color',
-							array(
-								Field::make('select', 'background_color', 'Background Color')
-									->set_options(
-										array(
-											'background-primary' => 'Primary',
-											'background-secondary' => 'Secondary',
-											'background-accent' => 'Accent',
-											'background-white' => 'White',
-											'background-custom' => 'Custom',
-										)
-									),
-								Field::make('color', 'background_color_custom', __('Background Color'))
-									->set_conditional_logic(
-										array(
-											array(
-												'field' => 'background_color',
-												'value' => 'background-custom',
-											)
-										)
-									),
-							)
-						)
-						->add_fields(
-							'padding',
-							array(
-								Field::make('select', 'padding_top', 'Padding Top')
-									->set_options(
-										array(
-											'' => 'No Padding',
-											'xl-padding-top' => 'Extra Large',
-											'lg-padding-top' => 'Large',
-											'md-padding-top' => 'Medium',
-											'sm-padding-top' => 'Small',
-											'xxs-padding-top' => 'Extra Small',
-										)
-									),
-								Field::make('select', 'padding_bottom', 'Padding Bottom')
-									->set_options(
-										array(
-											'' => 'No Padding',
-											'xl-padding-bottom' => 'Extra Large',
-											'lg-padding-bottom' => 'Large',
-											'md-padding-bottom' => 'Medium',
-											'sm-padding-bottom' => 'Small',
-											'xxs-padding-bottom' => 'Extra Small',
-										)
-									),
-
-							)
-						)
-						->set_layout('tabbed-vertical'),
-					Field::make('text', 'heading', __('Heading')),
-					Field::make('textarea', 'description', __('Description')),
-					Field::make('text', 'form_heading', __('Form Heading')),
-					Field::make('text', 'contact_form_shortcode', __('Contact Form Shortcode'))->set_classes('field-contact-form'),
+	->add_fields(
+		array(
+			Field::make('complex', 'modules', __('Modules'))
+				->setup_labels(
+					array(
+						'plural_name'   => 'Modules',
+						'singular_name' => 'Module',
+					)
 				)
-			)
-			->add_fields(
-				'columns',
-				array(
-					Field::make('complex', 'styles', __('Styles'))
-						->set_duplicate_groups_allowed(false)
-						->add_fields(
-							'background_color',
-							array(
-								Field::make('select', 'background_color', 'Background Color')
-									->set_options(
-										array(
-											'background-primary' => 'Primary',
-											'background-secondary' => 'Secondary',
-											'background-accent' => 'Accent',
-											'background-white' => 'White',
-											'background-custom' => 'Custom',
-										)
-									),
-								Field::make('color', 'background_color_custom', __('Background Color'))
-									->set_conditional_logic(
-										array(
+				->add_fields(
+					'contact_form',
+					array(
+						Field::make('complex', 'styles', __('Styles'))
+							->set_duplicate_groups_allowed(false)
+							->add_fields(
+								'background_color',
+								array(
+									Field::make('select', 'background_color', 'Background Color')
+										->set_options(
 											array(
-												'field' => 'background_color',
-												'value' => 'background-custom',
+												'background-primary'   => 'Primary',
+												'background-secondary' => 'Secondary',
+												'background-accent'    => 'Accent',
+												'background-white'     => 'White',
+												'background-custom'    => 'Custom',
 											)
-										)
-									),
-							)
-						)
-						->add_fields(
-							'padding',
-							array(
-								Field::make('select', 'padding_top', 'Padding Top')
-									->set_options(
-										array(
-											'' => 'No Padding',
-											'xl-padding-top' => 'Extra Large',
-											'lg-padding-top' => 'Large',
-											'md-padding-top' => 'Medium',
-											'sm-padding-top' => 'Small',
-											'xxs-padding-top' => 'Extra Small',
-										)
-									),
-								Field::make('select', 'padding_bottom', 'Padding Bottom')
-									->set_options(
-										array(
-											'' => 'No Padding',
-											'xl-padding-bottom' => 'Extra Large',
-											'lg-padding-bottom' => 'Large',
-											'md-padding-bottom' => 'Medium',
-											'sm-padding-bottom' => 'Small',
-											'xxs-padding-bottom' => 'Extra Small',
-										)
-									),
-
-							)
-						)
-						->set_layout('tabbed-vertical'),
-					Field::make('text', 'heading', __('Heading')),
-					Field::make('textarea', 'description', __('Description')),
-					Field::make('complex', 'columns', __('Columns'))
-						->setup_labels(array(
-							'plural_name' => 'Columns',
-							'singular_name' => 'Column',
-						))
-						->add_fields(
-							array(
-								Field::make('text', 'label', __('Label')),
-								Field::make('complex', 'items', __('Items'))
-									->add_fields(
-										'heading',
-										array(
-											Field::make('text', 'heading', __('Heading')),
-										)
-									)
-									->add_fields(
-										'description',
-										array(
-											Field::make('textarea', 'description', __('Description')),
-										)
-									)
-									->add_fields(
-										'button',
-										array(
-											Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
-												->set_options(
-													array(
-														'' => 'Select Button Type',
-														'page' => 'Page',
-														'post' => 'Post',
-														'solutions' => 'Solution',
-														'popups' => 'Popup',
-														'custom' => 'Custom',
-													)
-												),
-											Field::make('text', 'button_text', __('Button Text')),
-											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
-												->set_conditional_logic(
-													array(
-														array(
-															'field' => 'button_type',
-															'value' => 'custom',
-															'compare' => '!='
-														)
-													)
-												),
-											Field::make('html', 'html')
-												->set_html('<div class="page-selector">  </div>'),
-											Field::make('text', 'button_url_custom', __('Button URL'))
-												->set_conditional_logic(
-													array(
-														array(
-															'field' => 'button_type',
-															'value' => 'custom',
-														)
-													)
-												),
-
-										)
-									)
-									->add_fields(
-										'image',
-										array(
-											Field::make('image', 'image', __('Image')),
-										)
-									)
-									->add_fields(
-										'accordion',
-										array(
-											Field::make('complex', 'accordion', __('Accordion'))
-												->setup_labels(array(
-													'plural_name' => 'Accordions',
-													'singular_name' => 'Accordion',
-												))
-												->add_fields(
-													array(
-														Field::make('text', 'heading', __('Heading')),
-														Field::make('textarea', 'description', __('Description')),
-													)
+										),
+									Field::make('color', 'background_color_custom', __('Background Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_color',
+													'value' => 'background-custom',
 												)
-												->set_header_template('<%- heading  %>'),
-										)
-									)
-									->set_layout('tabbed-vertical')
+											)
+										),
+								)
 							)
-						)
-						->set_layout('tabbed-vertical')
-						->set_header_template('<%- label  %>'),
-				)
-			)
-			->add_fields(
-				'logo_slider',
-				array(
-					Field::make('complex', 'styles', __('Styles'))
-						->set_duplicate_groups_allowed(false)
-						->add_fields(
-							'background_color',
-							array(
-								Field::make('select', 'background_color', 'Background Color')
-									->set_options(
-										array(
-											'background-primary' => 'Primary',
-											'background-secondary' => 'Secondary',
-											'background-accent' => 'Accent',
-											'background-white' => 'White',
-											'background-custom' => 'Custom',
-										)
-									),
-								Field::make('color', 'background_color_custom', __('Background Color'))
-									->set_conditional_logic(
-										array(
+							->add_fields(
+								'padding',
+								array(
+									Field::make('select', 'padding_top', 'Padding Top')
+										->set_options(
 											array(
-												'field' => 'background_color',
-												'value' => 'background-custom',
+												''                => 'No Padding',
+												'xl-padding-top'  => 'Extra Large',
+												'lg-padding-top'  => 'Large',
+												'md-padding-top'  => 'Medium',
+												'sm-padding-top'  => 'Small',
+												'xxs-padding-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_bottom', 'Padding Bottom')
+										->set_options(
+											array(
+												''                   => 'No Padding',
+												'xl-padding-bottom'  => 'Extra Large',
+												'lg-padding-bottom'  => 'Large',
+												'md-padding-bottom'  => 'Medium',
+												'sm-padding-bottom'  => 'Small',
+												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+
+								)
+							)
+							->add_fields(
+								'border_radius',
+								array(
+									Field::make('text', 'border_radius', 'Border Radius')
+								)
+							)
+							->set_layout('tabbed-vertical'),
+						Field::make('text', 'heading', __('Heading')),
+						Field::make('textarea', 'description', __('Description')),
+						Field::make('text', 'form_heading', __('Form Heading')),
+						Field::make('text', 'contact_form_shortcode', __('Contact Form Shortcode'))->set_classes('field-contact-form'),
+					)
+				)
+				->add_fields(
+					'columns',
+					array(
+						Field::make('complex', 'styles', __('Styles'))
+							->set_duplicate_groups_allowed(false)
+							->add_fields(
+								'background_color',
+								array(
+									Field::make('select', 'background_color', 'Background Color')
+										->set_options(
+											array(
+												'background-primary'   => 'Primary',
+												'background-secondary' => 'Secondary',
+												'background-accent'    => 'Accent',
+												'background-white'     => 'White',
+												'background-custom'    => 'Custom',
+											)
+										),
+									Field::make('color', 'background_color_custom', __('Background Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_color',
+													'value' => 'background-custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
+								'padding',
+								array(
+									Field::make('select', 'padding_top', 'Padding Top')
+										->set_options(
+											array(
+												''                => 'No Padding',
+												'xl-padding-top'  => 'Extra Large',
+												'lg-padding-top'  => 'Large',
+												'md-padding-top'  => 'Medium',
+												'sm-padding-top'  => 'Small',
+												'xxs-padding-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_bottom', 'Padding Bottom')
+										->set_options(
+											array(
+												''                   => 'No Padding',
+												'xl-padding-bottom'  => 'Extra Large',
+												'lg-padding-bottom'  => 'Large',
+												'md-padding-bottom'  => 'Medium',
+												'sm-padding-bottom'  => 'Small',
+												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+
+								)
+							)
+							->set_layout('tabbed-vertical'),
+						Field::make('text', 'heading', __('Heading')),
+						Field::make('textarea', 'description', __('Description')),
+						Field::make('complex', 'columns', __('Columns'))
+							->setup_labels(
+								array(
+									'plural_name'   => 'Columns',
+									'singular_name' => 'Column',
+								)
+							)
+							->add_fields(
+								array(
+									Field::make('text', 'label', __('Label')),
+									Field::make('complex', 'items', __('Items'))
+										->add_fields(
+											'heading',
+											array(
+												Field::make('text', 'heading', __('Heading')),
 											)
 										)
-									),
-							)
-						)
-						->add_fields(
-							'padding',
-							array(
-								Field::make('select', 'padding_top', 'Padding Top')
-									->set_options(
-										array(
-											'' => 'No Padding',
-											'xl-padding-top' => 'Extra Large',
-											'lg-padding-top' => 'Large',
-											'md-padding-top' => 'Medium',
-											'sm-padding-top' => 'Small',
-											'xxs-padding-top' => 'Extra Small',
-										)
-									),
-								Field::make('select', 'padding_bottom', 'Padding Bottom')
-									->set_options(
-										array(
-											'' => 'No Padding',
-											'xl-padding-bottom' => 'Extra Large',
-											'lg-padding-bottom' => 'Large',
-											'md-padding-bottom' => 'Medium',
-											'sm-padding-bottom' => 'Small',
-											'xxs-padding-bottom' => 'Extra Small',
-										)
-									),
-
-							)
-						)
-						->set_layout('tabbed-vertical'),
-					Field::make('text', 'heading', __('Heading')),
-					Field::make('textarea', 'description', __('Description')),
-					Field::make('media_gallery', 'images', __('Image')),
-				)
-			)
-			->add_fields(
-				'post_tabs',
-				array(
-					Field::make('complex', 'styles', __('Styles'))
-						->set_duplicate_groups_allowed(false)
-						->add_fields(
-							'background_color',
-							array(
-								Field::make('select', 'background_color', 'Background Color')
-									->set_options(
-										array(
-											'background-primary' => 'Primary',
-											'background-secondary' => 'Secondary',
-											'background-accent' => 'Accent',
-											'background-white' => 'White',
-											'background-custom' => 'Custom',
-										)
-									),
-								Field::make('color', 'background_color_custom', __('Background Color'))
-									->set_conditional_logic(
-										array(
+										->add_fields(
+											'description',
 											array(
-												'field' => 'background_color',
-												'value' => 'background-custom',
+												Field::make('textarea', 'description', __('Description')),
 											)
 										)
-									),
-							)
-						)
-						->add_fields(
-							'padding',
-							array(
-								Field::make('select', 'padding_top', 'Padding Top')
-									->set_options(
-										array(
-											'' => 'No Padding',
-											'xl-padding-top' => 'Extra Large',
-											'lg-padding-top' => 'Large',
-											'md-padding-top' => 'Medium',
-											'sm-padding-top' => 'Small',
-											'xxs-padding-top' => 'Extra Small',
-										)
-									),
-								Field::make('select', 'padding_bottom', 'Padding Bottom')
-									->set_options(
-										array(
-											'' => 'No Padding',
-											'xl-padding-bottom' => 'Extra Large',
-											'lg-padding-bottom' => 'Large',
-											'md-padding-bottom' => 'Medium',
-											'sm-padding-bottom' => 'Small',
-											'xxs-padding-bottom' => 'Extra Small',
-										)
-									),
+										->add_fields(
+											'button',
+											array(
+												Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+													->set_options(
+														array(
+															''          => 'Select Button Type',
+															'page'      => 'Page',
+															'post'      => 'Post',
+															'solutions' => 'Solution',
+															'popups'    => 'Popup',
+															'custom'    => 'Custom',
+														)
+													),
+												Field::make('text', 'button_text', __('Button Text')),
+												Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+													->set_conditional_logic(
+														array(
+															array(
+																'field'   => 'button_type',
+																'value'   => 'custom',
+																'compare' => '!='
+															)
+														)
+													),
+												Field::make('html', 'html')
+													->set_html('<div class="page-selector">  </div>'),
+												Field::make('text', 'button_url_custom', __('Button URL'))
+													->set_conditional_logic(
+														array(
+															array(
+																'field' => 'button_type',
+																'value' => 'custom',
+															)
+														)
+													),
 
+											)
+										)
+										->add_fields(
+											'image',
+											array(
+												Field::make('image', 'image', __('Image')),
+											)
+										)
+										->add_fields(
+											'accordion',
+											array(
+												Field::make('complex', 'accordion', __('Accordion'))
+													->setup_labels(
+														array(
+															'plural_name'   => 'Accordions',
+															'singular_name' => 'Accordion',
+														)
+													)
+													->add_fields(
+														array(
+															Field::make('text', 'heading', __('Heading')),
+															Field::make('textarea', 'description', __('Description')),
+														)
+													)
+													->set_header_template('<%- heading  %>'),
+											)
+										)
+										->set_layout('tabbed-vertical')
+								)
 							)
-						)
-						->set_layout('tabbed-vertical'),
-					Field::make('text', 'heading', __('Heading')),
-					Field::make('textarea', 'description', __('Description')),
-					Field::make('text', 'post_type_key', __('Post Type Key')),
-					Field::make('text', 'taxonomy_key', __('Taxonomy Key')),
+							->set_layout('tabbed-vertical')
+							->set_header_template('<%- label  %>'),
+					)
 				)
-			)
-	));
+				->add_fields(
+					'logo_slider',
+					array(
+						Field::make('complex', 'styles', __('Styles'))
+							->set_duplicate_groups_allowed(false)
+							->add_fields(
+								'background_color',
+								array(
+									Field::make('select', 'background_color', 'Background Color')
+										->set_options(
+											array(
+												'background-primary'   => 'Primary',
+												'background-secondary' => 'Secondary',
+												'background-accent'    => 'Accent',
+												'background-white'     => 'White',
+												'background-custom'    => 'Custom',
+											)
+										),
+									Field::make('color', 'background_color_custom', __('Background Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_color',
+													'value' => 'background-custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
+								'padding',
+								array(
+									Field::make('select', 'padding_top', 'Padding Top')
+										->set_options(
+											array(
+												''                => 'No Padding',
+												'xl-padding-top'  => 'Extra Large',
+												'lg-padding-top'  => 'Large',
+												'md-padding-top'  => 'Medium',
+												'sm-padding-top'  => 'Small',
+												'xxs-padding-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_bottom', 'Padding Bottom')
+										->set_options(
+											array(
+												''                   => 'No Padding',
+												'xl-padding-bottom'  => 'Extra Large',
+												'lg-padding-bottom'  => 'Large',
+												'md-padding-bottom'  => 'Medium',
+												'sm-padding-bottom'  => 'Small',
+												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+
+								)
+							)
+							->set_layout('tabbed-vertical'),
+						Field::make('text', 'heading', __('Heading')),
+						Field::make('textarea', 'description', __('Description')),
+						Field::make('media_gallery', 'images', __('Image')),
+					)
+				)
+				->add_fields(
+					'post_tabs',
+					array(
+						Field::make('complex', 'styles', __('Styles'))
+							->set_duplicate_groups_allowed(false)
+							->add_fields(
+								'background_color',
+								array(
+									Field::make('select', 'background_color', 'Background Color')
+										->set_options(
+											array(
+												'background-primary'   => 'Primary',
+												'background-secondary' => 'Secondary',
+												'background-accent'    => 'Accent',
+												'background-white'     => 'White',
+												'background-custom'    => 'Custom',
+											)
+										),
+									Field::make('color', 'background_color_custom', __('Background Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_color',
+													'value' => 'background-custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
+								'padding',
+								array(
+									Field::make('select', 'padding_top', 'Padding Top')
+										->set_options(
+											array(
+												''                => 'No Padding',
+												'xl-padding-top'  => 'Extra Large',
+												'lg-padding-top'  => 'Large',
+												'md-padding-top'  => 'Medium',
+												'sm-padding-top'  => 'Small',
+												'xxs-padding-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_bottom', 'Padding Bottom')
+										->set_options(
+											array(
+												''                   => 'No Padding',
+												'xl-padding-bottom'  => 'Extra Large',
+												'lg-padding-bottom'  => 'Large',
+												'md-padding-bottom'  => 'Medium',
+												'sm-padding-bottom'  => 'Small',
+												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+
+								)
+							)
+							->set_layout('tabbed-vertical'),
+						Field::make('text', 'heading', __('Heading')),
+						Field::make('textarea', 'description', __('Description')),
+						Field::make('text', 'post_type_key', __('Post Type Key')),
+						Field::make('text', 'taxonomy_key', __('Taxonomy Key')),
+					)
+				)
+		)
+	);
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -1183,12 +1210,14 @@ Container::make('post_meta', '3D Model Library Settings')
 		array(
 			Field::make('image', 'captured_by', 'Captured by (Logo)'),
 			Field::make('association', 'related_blog', 'Related Blog')
-				->set_types(array(
+				->set_types(
 					array(
-						'type'      => 'post',
-						'post_type' => 'post',
+						array(
+							'type'      => 'post',
+							'post_type' => 'post',
+						)
 					)
-				))
+				)
 				->set_max(1)
 
 		)
