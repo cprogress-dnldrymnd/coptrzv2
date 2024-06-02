@@ -29,7 +29,7 @@ $modules = get__post_meta('modules');
                         }
                         break;
                     case 'padding':
-                        $classes .= $style['padding_top'] . 'padding_bottom' . $style['padding_bottom'];
+                        $classes .= $style['padding_top'] . ' ' . $style['padding_bottom'];
                         break;
                 }
             }
