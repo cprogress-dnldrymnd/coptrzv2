@@ -14078,6 +14078,90 @@ a.fancybox-gallery-img {
     padding-top: 3rem;
     padding-bottom: 3rem; } }
 
+@media screen and (min-width: 992px) {
+  .xl-padding-left {
+    padding-left: 9.5rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .xl-padding-left {
+    padding-left: 6rem; } }
+@media screen and (max-width: 767px) {
+  .xl-padding-left {
+    padding-left: 5rem; } }
+@media screen and (max-width: 575px) {
+  .xl-padding-left {
+    padding-left: 3rem; } }
+
+@media screen and (min-width: 992px) {
+  .lg-padding-left {
+    padding-left: 7.25rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .lg-padding-left {
+    padding-left: 5rem; } }
+@media screen and (max-width: 767px) {
+  .lg-padding-left {
+    padding-left: 4rem; } }
+
+@media screen and (min-width: 992px) {
+  .md-padding-left {
+    padding-left: 5rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .md-padding-left {
+    padding-left: 4rem; } }
+@media screen and (max-width: 767px) {
+  .md-padding-left {
+    padding-left: 3rem; } }
+
+.sm-padding-left {
+  padding-left: 3.75rem; }
+  @media screen and (max-width: 767px) {
+    .sm-padding-left {
+      padding-left: 2rem; } }
+
+.xs-padding-left {
+  padding-left: 1.625rem; }
+
+@media screen and (min-width: 992px) {
+  .xl-padding-right {
+    padding-right: 9.5rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .xl-padding-right {
+    padding-right: 6rem; } }
+@media screen and (max-width: 767px) {
+  .xl-padding-right {
+    padding-right: 5rem; } }
+@media screen and (max-width: 575px) {
+  .xl-padding-right {
+    padding-right: 3rem; } }
+
+@media screen and (min-width: 992px) {
+  .lg-padding-right {
+    padding-right: 7.25rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .lg-padding-right {
+    padding-right: 5rem; } }
+@media screen and (max-width: 767px) {
+  .lg-padding-right {
+    padding-right: 4rem; } }
+
+@media screen and (min-width: 992px) {
+  .md-padding-right {
+    padding-right: 5rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .md-padding-right {
+    padding-right: 4rem; } }
+@media screen and (max-width: 767px) {
+  .md-padding-right {
+    padding-right: 3rem; } }
+
+.sm-padding-right {
+  padding-right: 3.75rem; }
+  @media screen and (max-width: 767px) {
+    .sm-padding-right {
+      padding-right: 2rem; } }
+
+.xxs-padding-right {
+  padding-right: 1.625rem; }
+
 /*End of Extra Large Padding*/
 /*margin*/
 /*Extra Small margin*/
