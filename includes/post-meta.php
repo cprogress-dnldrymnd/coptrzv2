@@ -853,7 +853,6 @@ Container::make('post_meta', 'Modules')
 									),
 							)
 						)
-						->set_max(1)
 						->add_fields(
 							'padding',
 							array(
