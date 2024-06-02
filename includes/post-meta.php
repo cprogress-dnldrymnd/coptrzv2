@@ -1023,6 +1023,10 @@ Container::make('post_meta', 'Modules')
 										'accordion',
 										array(
 											Field::make('complex', 'accordion', __('Accordion'))
+												->setup_labels(array(
+													'plural_name' => 'Accordions',
+													'singular_name' => 'Accordion',
+												))
 												->add_fields(
 													array(
 														Field::make('text', 'heading', __('Heading')),
