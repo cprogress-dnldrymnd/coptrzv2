@@ -95,7 +95,7 @@ function _elements($data, $module_id)
             case 'heading':
                 echo do_shortcode('[_heading heading="' . $d['heading'] . '"]');
             case 'description':
-                echo do_shortcode('[_description description="' . $d['description'] . '"]');
+                echo do_shortcode("[_description description='". $d['description']."']");
                 break;
             case 'image':
                 echo do_shortcode('[_image id="' . $d['image'] . '"]');
