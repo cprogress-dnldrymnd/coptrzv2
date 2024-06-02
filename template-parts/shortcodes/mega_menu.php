@@ -47,7 +47,7 @@ if ($menu_items) {
                                                         foreach ($image as $img) {
                                                         ?>
                                                             <div class="col">
-                                                                <?= do_shortcode('[_image id=' . $img . ']') ?>
+                                                                <?= do_shortcode('[_image id=' . $img . ' size="medium"]') ?>
                                                             </div>
                                                         <?php
                                                         }
