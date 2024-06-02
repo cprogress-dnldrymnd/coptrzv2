@@ -14985,6 +14985,16 @@ tspan {
 #footer {
   padding-top: 100px;
   padding-bottom: 100px; }
+  #footer .widget-title {
+    font-size: 2rem;
+    margin-bottom: 20px; }
+  #footer .menu {
+    padding: 0;
+    list-style: none; }
+    #footer .menu .menu-item a {
+      color: var(--white-color); }
+    #footer .menu .menu-item:not(:last-child) {
+      margin-bottom: 10px; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections
