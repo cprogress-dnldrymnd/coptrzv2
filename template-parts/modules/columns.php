@@ -7,9 +7,9 @@
 
         <div class="column-items">
             <?php if ($module['columns']) { ?>
-                <div class="row align-items-center">
+                <div class="row">
                     <?php foreach ($module['columns'] as $column) { ?>
-                        <div class="col">
+                        <div class="col d-flex align-items-center">
                             <?php
                             $styles = $column['styles'];
                             $classes = '';
@@ -39,7 +39,7 @@
                                 }
                             }
                             ?>
-                            <div class="column-holder content-margin <?= $classes ?>" style="<?= $style_attribute ?>">
+                            <div class="column-holder h-100 content-margin <?= $classes ?>" style="<?= $style_attribute ?>">
                                 <?= _elements($column['items'], $module_id) ?>
                             </div>
                         </div>
