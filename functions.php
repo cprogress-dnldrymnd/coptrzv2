@@ -297,11 +297,14 @@ function action_admin_footer()
 			}
 		});
 
-		jQuery(document).on("change", '.select-page-selector', function(event) {
-			$value = jQuery(this).val();
-			$input = jQuery(this).parents('.cf-complex__group-body').find('.field-url input');
-			$input.val($value);
-			console.log($value);
+		jQuery('.select-page-selector').each(function(index, element) {
+			var $this = jQuery(this);
+			jQuery(document).on("change", $this, function(event) {
+				$value = jQuery(this).val();
+				$input = jQuery(this).parents('.cf-complex__group-body').find('.field-url input');
+				$input.val($value);
+			});
+
 		});
 
 
