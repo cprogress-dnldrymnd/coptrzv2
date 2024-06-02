@@ -267,6 +267,8 @@ function action_admin_footer()
 		jQuery(document).on("change", '.trigger-selector select', function(event) {
 			$value = jQuery(this).val();
 			console.log($value);
+
+			jQuery(this).parents('.cf-complex__group-body').find('.page-selector').html(<?= $select ?>);
 		});
 		
 		jQuery(document).on(".select-page-selector", '.cf-complex__tabs-item ', function(event) {
