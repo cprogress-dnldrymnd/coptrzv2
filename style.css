@@ -14954,7 +14954,9 @@ tspan {
       padding: 0px 0px 15px 0px;
       border-style: solid;
       border-width: 0px 0px 1px 0px;
-      border-color: #D8D8D8; }
+      border-color: #d8d8d8; }
+    #header .bottom-header .mega-menu .submenu-holder .image-box img {
+      border-radius: 10px 10px; }
 
 /* Basic Dropdown Styling */
 .cart-dropdown {
