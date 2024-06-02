@@ -21,12 +21,13 @@ $modules = get__post_meta('modules');
                     case 'background_color':
                         if ($style['background_color'] != 'background-custom') {
                             $classes .= ' ' . $style['background_color'];
-                        } else {
+                        }
+                        else {
                             $style = 'background-color: ' . $style['background_color_custom'];
                         }
                         break;
                     case 'padding':
-                        $classes .= ' ' . $style['padding_top'] . ' ' . $style['padding_bottom'];
+                        $classes .= ' ' . $style['padding_top'] . ' ' . $style['padding_bottom'] . ' ' . $style['padding_left'] . ' ' . $style['padding_right'];
                         break;
                 }
             }
