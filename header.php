@@ -16,6 +16,8 @@
 
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
+	<?php do_action('modules_styles') ?>
+
 	<?php wp_head(); ?>
 
 	<!--[if lte IE 9]>
