@@ -14988,7 +14988,8 @@ tspan {
     padding: 1.5rem;
     max-width: 330px;
     min-width: 330px;
-    border-radius: 10px; }
+    border-radius: 10px;
+    right: 0; }
     .cart-dropdown .cart-dropdown-content .woocommerce-mini-cart {
       padding-left: 0; }
     .cart-dropdown .cart-dropdown-content .woocommerce-mini-cart__buttons a:first-child {
