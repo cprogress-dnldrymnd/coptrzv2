@@ -70,6 +70,7 @@ class Elements_Shortcodes
             )
         );
         $data = unserialize($data);
+        var_dump($data);
         foreach ($data as $d) {
             $type = $d['_type'];
             echo $type;
