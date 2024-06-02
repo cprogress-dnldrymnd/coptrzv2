@@ -44,7 +44,7 @@ function tissue_paper_register_custom_fields()
 }
 function get__post_meta($value)
 {
-	return get_post_meta(get_the_ID(), '_' . $value, true);
+	return carbon_get_the_post_meta($value);
 }
 
 function get__term_meta($term_id, $value)
@@ -54,7 +54,7 @@ function get__term_meta($term_id, $value)
 
 function get__post_meta_by_id($id, $value)
 {
-	return get_post_meta($id, '_' . $value, true);
+	return carbon_get_post_meta($id, $value, true);
 }
 function get__theme_option($value)
 {
