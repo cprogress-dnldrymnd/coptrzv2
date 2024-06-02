@@ -34,7 +34,7 @@ $modules = get__post_meta('modules');
                         $classes .= $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
                         break;
                     case 'border_radius':
-                        $style_attribute .= 'border_radius: ' . $style['border_radius'] . ';';
+                        $style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
                         break;
                 }
             }
