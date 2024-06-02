@@ -256,7 +256,7 @@ function action_admin_footer()
 		jQuery(document).ready(function() {
 			console.log('mama mo')
 			jQuery('.select-page').each(function(index, element) {
-				jQuery(this).html(<?= $select ?>);
+				jQuery(this).html('<?= $select ?>');
 			});
 		});
 	</script>
