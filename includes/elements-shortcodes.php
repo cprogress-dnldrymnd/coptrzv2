@@ -69,7 +69,7 @@ class Elements_Shortcodes
                 $atts
             )
         );
-
+        echo 'sdsdsds';
         foreach ($data as $d) {
             $type = $d['_type'];
             echo $type;
