@@ -98,7 +98,7 @@ function _elements($data, $module_id, $same_height_images)
             case 'heading':
                 echo do_shortcode('[_heading heading="' . $d['heading'] . '"]');
             case 'description':
-                echo do_shortcode("[_description description='" . $d['description'] . "']");
+                echo do_shortcode('[_description description="' . $d['description'] . '"]');
                 break;
             case 'image':
                 $same_height = $same_height_images ? 'same_height="true"' : 'same_height="false"';
