@@ -73,9 +73,9 @@ class Elements_Shortcodes
             $type = $d['_type'];
             switch ($type) {
                 case 'heading':
-                    return do_shortcode('[heading heading="' . $d['heading'] . '"]');
+                    return do_shortcode('[_heading heading="' . $d['heading'] . '"]');
                 case 'description':
-                    return do_shortcode('[description description="' . $d['description'] . '"]');
+                    return do_shortcode('[_description description="' . $d['description'] . '"]');
                     break;
             }
         }
