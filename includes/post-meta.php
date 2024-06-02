@@ -824,6 +824,10 @@ Container::make('post_meta', 'Modules')
 	->set_priority('high')
 	->add_fields(array(
 		Field::make('complex', 'modules', __('Modules'))
+			->setup_labels(array(
+				'plural_name' => 'Modules',
+				'singular_name' => 'Module',
+			))
 			->add_fields(
 				'contact_form',
 				array(
@@ -966,7 +970,7 @@ Container::make('post_meta', 'Modules')
 									->add_fields(
 										'description',
 										array(
-											Field::make('rich_text', 'heading', __('description')),
+											Field::make('rich_text', 'Description', __('Description')),
 										)
 									)
 									->add_fields(
@@ -983,5 +987,6 @@ Container::make('post_meta', 'Modules')
 				)
 			)
 			->set_collapsed(true)
+
 
 	));
