@@ -15,6 +15,20 @@ $modules = get__post_meta('modules');
     foreach ($modules as $key => $module) {
         $type = $module['_type'];
         $module_id = 'module-' . get_the_ID() . '-' . $key;
+        $styles = $module['styles'];
+        $classes = '';
+        if ($styles) {
+            foreach ($styles as $style) {
+                $style_type = $style['_type'];
+                switch ($style_type) {
+                    case 'background_color':
+                        if ($style['background_color'] != 'background-custom') {
+                            $classes .= $style['background_color'];
+                        }
+                        break;
+                }
+            }
+        }
         include locate_template('template-parts/modules/' . $type . '.php');
     }
     ?>

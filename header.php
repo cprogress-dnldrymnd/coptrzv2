@@ -19,8 +19,7 @@
 
 	<?php wp_head(); ?>
 
-	<?php do_action('modules_styles') ?>
-
+	
 	<!--[if lte IE 9]>
 		<link href="stylesheets/non-responsive.css" rel="stylesheet" />
 	<![endif]-->

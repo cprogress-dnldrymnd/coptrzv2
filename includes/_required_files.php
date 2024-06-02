@@ -14,6 +14,5 @@ require_once('woocommerce.php');
 require_once('ajax.php');
 require_once('svg.php');
 require_once('theme-widgets.php');
-require_once('modules.php');
 //require_once('elementor.php');
 //require_once('checkout.php');
