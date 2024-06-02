@@ -1090,3 +1090,25 @@ Container::make('post_meta', 'Modules')
 				)
 			)
 	));
+
+
+/*-----------------------------------------------------------------------------------*/
+/* 3D Model Library
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', '3D Model Library Settings')
+	->set_priority('high')
+	->or_where('post_type', '=', 'guides')
+	->add_fields(
+		array(
+			Field::make('image', 'captured_by', 'Captured by (Logo)'),
+			Field::make('association', 'related_blog', 'Related Blog')
+				->set_types(array(
+					array(
+						'type'      => 'post',
+						'post_type' => 'post',
+					)
+				))
+				->set_max(1)
+
+		)
+	);
