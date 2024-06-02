@@ -285,7 +285,7 @@ function action_admin_footer()
 			active_link_type($selector, $value)
 		});
 
-		
+
 		jQuery(document).on("change", '.trigger-selector-single select', function(event) {
 			$value = jQuery(this).val();
 			$selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
@@ -319,6 +319,16 @@ function action_admin_footer()
 				$selector = jQuery(this).parent().parent().parent().find('.page-selector');
 				active_link_type($selector, $value)
 			});
+
+
+			jQuery('.trigger-selector-single select').each(function(index, element) {
+				$value = jQuery(this).val();
+				$selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
+				active_link_type($selector, $value)
+			});
+
+
+
 		}, 2000);
 	</script>
 <?php
