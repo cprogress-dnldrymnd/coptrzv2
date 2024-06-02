@@ -1,6 +1,3 @@
-<pre>
-    <?php var_dump($module['columns']) ?>
-</pre>
 <section class="columns <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
     <div class="container">
         <div class="section-heading-description mb-5">
@@ -45,7 +42,7 @@
                             <div class="column-holder h-100  <?= $classes ?>"
                                 style="<?= $style_attribute ?>">
                                 <div class="inner content-margin">
-                                    <?= _elements($column['items'], $module_id, $module['same_height_images']) ?>
+                                    <?= _elements($column['items'], $module_id) ?>
                                 </div>
                             </div>
                         </div>
