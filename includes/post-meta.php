@@ -988,10 +988,7 @@ Container::make('post_meta', 'Modules')
 													)
 												),
 											Field::make('text', 'button_text', __('Button Text')),
-											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url'),
-											Field::make('html', 'html')
-												->set_html('<div class="page-selector">  </div>')
-												Field::make('text', 'button_url_custom', __('Button URL'))
+											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
 												->set_conditional_logic(
 													array(
 														array(
@@ -1001,6 +998,8 @@ Container::make('post_meta', 'Modules')
 														)
 													)
 												),
+											Field::make('html', 'html')
+												->set_html('<div class="page-selector">  </div>'),
 											Field::make('text', 'button_url_custom', __('Button URL'))
 												->set_conditional_logic(
 													array(
