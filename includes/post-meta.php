@@ -820,6 +820,8 @@ Container::make('post_meta', 'Mega Menu Items')
 /*-----------------------------------------------------------------------------------*/
 /* Modules
 /*-----------------------------------------------------------------------------------*/
+$GetData = new GetData;
+$page = $GetData->get_posts_admin_only('page');
 Container::make('post_meta', 'Modules')
 	->where('post_template', '=', 'templates/page-modules.php')
 	->set_priority('high')
@@ -988,7 +990,7 @@ Container::make('post_meta', 'Modules')
 													)
 												),
 											Field::make('text', 'button_text', __('Button Text')),
-											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url'),
+											Field::make('select', 'button_url', __('Button URL'))->set_classes('field-url'),
 											Field::make('html', 'html')
 												->set_html('<div class="select-page"> </div>')
 										)
