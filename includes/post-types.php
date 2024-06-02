@@ -455,6 +455,7 @@ $Model3d->exclude_from_search = true;
 $Model3d->publicly_queryable = true;
 $Model3d->show_in_admin_bar = true;
 $Model3d->has_archive = false;
+$Model3d->show_in_rest = true;
 
 
 $Model3D = new newTaxonomy();
