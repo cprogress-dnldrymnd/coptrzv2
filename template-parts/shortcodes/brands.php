@@ -79,15 +79,7 @@ if (!get__post_meta('hide_page_banner')) {
           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 vendor-box">
             <a class="inner content-margin h-100 background-white d-block" href="<?= get_term_link($key) ?>">
               <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . $vendor['image'] . '" size="medium"]'); ?>
-              <?php
-              $DisplayData->image(
-                array(
-                  'image_id' => $vendor['image'],
-                  'size'     => 'medium'
-                ),
-                'position-relative image-contain-transform mb-3'
-              );
-              ?>
+
               <div class="vendor-title">
                 <h4 class="mb-0">
                   <?= $vendor['name'] ?>
@@ -113,16 +105,8 @@ if (!get__post_meta('hide_page_banner')) {
           <?php
           ?>
           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 vendor-box">
-            <a class="inner h-100 background-white d-block" href="<?= get_term_link($key) ?>">
-              <?php
-              $DisplayData->image(
-                array(
-                  'image_id' => $vendor['image'],
-                  'size'     => 'medium'
-                ),
-                'position-relative image-contain-transform mb-3'
-              );
-              ?>
+            <a class="inner content-margin background-white d-block" href="<?= get_term_link($key) ?>">
+              <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . $vendor['image'] . '" size="medium"]'); ?>
               <div class="vendor-title">
                 <h4 class="mb-0">
                   <?= $vendor['name'] ?>
@@ -147,16 +131,9 @@ if (!get__post_meta('hide_page_banner')) {
           <?php
           ?>
           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 vendor-box">
-            <a class="inner h-100 background-white d-block" href="<?= get_term_link($key) ?>">
-              <?php
-              $DisplayData->image(
-                array(
-                  'image_id' => $vendor['image'],
-                  'size'     => 'medium'
-                ),
-                'position-relative image-contain-transform mb-3'
-              );
-              ?>
+            <a class="inner content-margin background-white d-block" href="<?= get_term_link($key) ?>">
+              <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . $vendor['image'] . '" size="medium"]'); ?>
+
               <div class="vendor-title">
                 <h4 class="mb-0">
                   <?= $vendor['name'] ?>
@@ -181,16 +158,8 @@ if (!get__post_meta('hide_page_banner')) {
           <?php
           ?>
           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 vendor-box">
-            <a class="inner h-100 background-white d-block" href="<?= get_term_link($key) ?>">
-              <?php
-              $DisplayData->image(
-                array(
-                  'image_id' => $vendor['image'],
-                  'size'     => 'medium'
-                ),
-                'position-relative image-contain-transform mb-3'
-              );
-              ?>
+            <a class="inner content-margin background-white d-block" href="<?= get_term_link($key) ?>">
+              <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . $vendor['image'] . '" size="medium"]'); ?>
               <div class="vendor-title">
                 <h4 class="mb-0">
                   <?= $vendor['name'] ?>
