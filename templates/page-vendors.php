@@ -55,7 +55,6 @@ foreach ($terms as $term) {
       );
     }
   }
-
 }
 $DisplayData = new DisplayData;
 ?>
@@ -86,7 +85,9 @@ if (!get__post_meta('hide_page_banner')) {
           <?php
           ?>
           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 vendor-box">
-            <a class="inner h-100 background-white d-block" href="<?= get_term_link($key) ?>">
+            <a class="inner content-margin h-100 background-white d-block" href="<?= get_term_link($key) ?>">
+              <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . $vendor['image'] . '" size="medium"]'); ?>
+
               <?php
               $DisplayData->image(
                 array(
