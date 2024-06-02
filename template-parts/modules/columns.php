@@ -1,3 +1,6 @@
+<pre>
+    <?php var_dump($module['columns']) ?>
+</pre>
 <section class="columns <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
     <div class="container">
         <div class="section-heading-description mb-5">
