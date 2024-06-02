@@ -22,7 +22,7 @@ class Elements_Shortcodes
         return ob_get_clean();
     }
 
-    function _heading()
+    function _heading($atts)
     {
         ob_start();
         extract(

@@ -1,7 +1,6 @@
 <?php
 $GetData = new GetData;
 $heading_small = isset($heading_small) ? $heading_small : false;
-echo 'xsxs';
 ?>
 <?php
 if (isset($heading) && $heading != '') {
