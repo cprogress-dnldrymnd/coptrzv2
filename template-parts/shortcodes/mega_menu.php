@@ -35,7 +35,7 @@ if ($menu_items) {
                                             ?>
                                             <div class="<?= $width ?>">
                                                 <?php
-                                                echo '<div class="submenu-item-title fw-semibold">' . $menu['menu_text'] . '</div>';
+                                                echo '<div class="submenu-item-title fw-semibold text-uppercase">' . $menu['menu_text'] . '</div>';
                                                 if ($type == 'menu_items') {
                                                     echo do_shortcode('[menu id=' . $menu['menu'] . ']');
                                                 }
