@@ -326,6 +326,8 @@ function action_admin_footer()
 			jQuery('.trigger-selector-single select').each(function(index, element) {
 				$value = jQuery(this).val();
 				$selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
+				$input = jQuery(this).parent().parent().next().next().find('input').val();
+				console.log($input);
 				active_link_type($selector, $value)
 			});
 
