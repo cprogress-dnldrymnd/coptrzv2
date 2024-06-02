@@ -1136,11 +1136,25 @@ class Shortcodes
 		return ob_get_clean();
 	}
 
+	function post_grid()
+	{
+		ob_start();
+		extract(
+			shortcode_atts(
+				array(
+					'id' => '',
+				),
+				$atts
+			)
+		);
+		include(get_stylesheet_directory() . '/template-parts/shortcodes/post_grid.php');
+		return ob_get_clean();
+	}
 }
 
 
 $Shortcodes = new Shortcodes;
-add_shortcode('_image', array($Shortcodes, '_image'));
+add_shortcode('post_grid', array($Shortcodes, 'post_grid'));
 add_shortcode('mega_menu', array($Shortcodes, 'mega_menu'));
 add_shortcode('search_form', array($Shortcodes, 'search_form'));
 add_shortcode('mini_cart', array($Shortcodes, 'mini_cart'));
