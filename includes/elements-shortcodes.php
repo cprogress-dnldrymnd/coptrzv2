@@ -70,7 +70,6 @@ function _elements($data)
     ob_start();
     foreach ($data as $d) {
         $type = $d['_type'];
-        echo $type;
         switch ($type) {
             case 'heading':
                 echo do_shortcode('[_heading heading="' . $d['heading'] . ']');
