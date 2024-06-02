@@ -1207,6 +1207,18 @@ Container::make('post_meta', 'Modules')
 											'heading',
 											array(
 												Field::make('text', 'heading', __('Heading')),
+												Field::make('select', 'tag', __('Tag'))
+													->set_options(
+														array(
+															'h1' => 'h1',
+															'h2' => 'h2',
+															'h3' => 'h3',
+															'h4' => 'h4',
+															'h5' => 'h5',
+															'h6' => 'h6',
+														)
+													)
+													->set_default_value('h2')
 											)
 										)
 										->add_fields(
