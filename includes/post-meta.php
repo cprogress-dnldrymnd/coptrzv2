@@ -952,28 +952,37 @@ Container::make('post_meta', 'Modules')
 						->set_layout('tabbed-vertical'),
 					Field::make('text', 'heading', __('Heading')),
 					Field::make('rich_text', 'description', __('Description')),
-				
-					Field::make('complex', 'items', __('Items'))
+					Field::make('complex', 'columns', __('Columns'))
+						->setup_labels(array(
+							'plural_name' => 'Columns',
+							'singular_name' => 'Column',
+						))
+						->add_fields(
+							array(
+								Field::make('complex', 'items', __('Items'))
+									->set_layout('tabbed-vertical')
+									->add_fields(
+										'heading',
+										array(
+											Field::make('text', 'heading', __('Heading')),
+										)
+									)
+									->add_fields(
+										'description',
+										array(
+											Field::make('textarea', 'description', __('Description')),
+										)
+									)
+									->add_fields(
+										'button',
+										array(
+											Field::make('text', 'button_text', __('Button Text')),
+											Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url'),
+										)
+									)
+							)
+						)
 						->set_layout('tabbed-vertical')
-						->add_fields(
-							'heading',
-							array(
-								Field::make('text', 'heading', __('Heading')),
-							)
-						)
-						->add_fields(
-							'description',
-							array(
-								Field::make('rich_text', 'description', __('Description')),
-							)
-						)
-						->add_fields(
-							'button',
-							array(
-								Field::make('text', 'button_text', __('Button Text')),
-								Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url'),
-							)
-						)
 
 				)
 			)
