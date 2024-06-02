@@ -321,7 +321,8 @@ function action_admin_footer()
 			jQuery('.trigger-selector select').each(function(index, element) {
 				$value = jQuery(this).val();
 				$selector = jQuery(this).parent().parent().parent().find('.page-selector');
-				active_link_type($selector, $value)
+				$input = jQuery(this).parent().parent().parent().find('.field-url input').val();
+				active_link_type($selector, $value, $input)
 			});
 
 
