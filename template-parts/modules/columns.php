@@ -10,6 +10,9 @@
                 <div class="row">
                     <?php foreach ($module['columns'] as $column) { ?>
                         <div class="col">
+                            <pre>
+                            <?php var_dump($column) ?>
+                            </pre>
                             <?= do_shortcode('[_elements data="' . $column . '"]') ?>
                         </div>
                     <?php } ?>
