@@ -2,11 +2,13 @@
 
 function modules_styles()
 {
-    global $styles;
-?>
-    <style id="module-styles">
-        <?= var_dump($styles) ?>
-    </style>
-<?php
+
+    $modules = get__post_meta('modules');
+
+    echo '<style id="module-styles">';
+    foreach ($modules as $key => $module) {
+        
+    }
+    echo '</style>';
 }
 add_action('wp_head', 'modules_styles');

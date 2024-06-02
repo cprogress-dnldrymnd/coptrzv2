@@ -6,8 +6,10 @@
 <?php get_header(); ?>
 <?php
 $modules = get__post_meta('modules');
-global $styles;
 ?>
+<pre>
+    <?php var_dump($modules) ?>
+</pre>
 <div class="modules">
     <?php
     foreach ($modules as $key => $module) {
