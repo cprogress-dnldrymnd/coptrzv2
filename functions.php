@@ -283,7 +283,7 @@ function action_admin_footer()
 		jQuery(document).on("change", '.trigger-selector select', function(event) {
 			$value = jQuery(this).val();
 			console.log($value);
-			$selector = jQuery(this).parent().parent().next().next().find('.page-selector');
+			$selector = jQuery(this).parent().parent().parent().find('.page-selector');
 			if ($value == 'page') {
 				$selector.html('<?= $select_page ?>');
 			} else if ($value == 'post') {
