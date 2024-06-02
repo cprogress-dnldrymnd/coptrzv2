@@ -246,11 +246,18 @@ if (version_compare(phpversion(), '7.1', '>=')) {
 function action_admin_footer()
 {
 	$pages = get__posts('page');
-	$select = '<select name="select-page-selector">';
+	$select_page = '<select name="select-page-selector">';
 	foreach ($pages as $key => $page) {
-		$select .= '<option value="' . $key . '"> ' . $page . ' </option>';
+		$select_page .= '<option value="' . $key . '"> ' . $page . ' </option>';
 	}
-	$select .= '</select>';
+	$select_page .= '</select>';
+
+	$posts = get__posts('post');
+	$select_post = '<select name="select-page-selector">';
+	foreach ($posts as $key => $post) {
+		$select_post .= '<option value="' . $key . '"> ' . $post . ' </option>';
+	}
+	$select_post .= '</select>';
 ?>
 	<script>
 		jQuery(document).ready(function() {
@@ -258,25 +265,23 @@ function action_admin_footer()
 
 		});
 
-		jQuery(document).on("click", '.cf-complex__tabs-item ', function(event) {
-			jQuery('.select-page-selector').each(function(index, element) {
-				jQuery(this).html('<?= $select ?>');
-			});
-		});
 
 		jQuery(document).on("change", '.trigger-selector select', function(event) {
 			$value = jQuery(this).val();
 			console.log($value);
-
-			jQuery(this).parents('.cf-complex__group-body').find('.page-selector').html('<?= $select ?>');
+			$selector = jQuery(this).parents('.cf-complex__group-body').find('.page-selector');
+			if ($value == 'page') {
+				$selector.html('<?= $select_page ?>');
+			} else if ($value == 'post') {
+				$selector.html('<?= $select_page ?>');
+			}
 		});
-		
+
 		jQuery(document).on(".select-page-selector", '.cf-complex__tabs-item ', function(event) {
 			console.log('xxxxx');
 
-			
-		});
 
+		});
 	</script>
 <?php
 }
