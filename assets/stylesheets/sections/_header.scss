@@ -111,7 +111,7 @@
 .cart-dropdown {
 	display: inline-block;
 	.cart-icon {
-		svg {
+		.cart-contents-count {
 			position: absolute;
 			background-color: var(--accent-color);
 			color: var(--white-color);
