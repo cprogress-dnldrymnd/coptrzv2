@@ -23,7 +23,7 @@ $modules = get__post_meta('modules');
                             $classes .= ' ' . $style['background_color'];
                         }
                         else {
-                            $style = 'background-color: ' . $style['background_color_custom'];
+                            $style = 'background-color: ' . $style['background_color_custom'] . ';';
                         }
                         break;
                     case 'padding':
@@ -31,6 +31,9 @@ $modules = get__post_meta('modules');
                         break;
                     case 'margin':
                         $classes .= $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
+                        break;
+                    case 'border_radius':
+                        $style .= 'border_radius: ' . $style['border_radius'] . ';';
                         break;
                 }
             }

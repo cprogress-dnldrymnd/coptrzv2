@@ -1,4 +1,4 @@
-<section class="columns <?= $classes ?>" id="<?= $module_id ?>">
+<section class="columns <?= $classes ?>" id="<?= $module_id ?>" <?= $style ?>>
     <div class="container">
         <div class="section-heading-description">
             <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading"]') ?>
