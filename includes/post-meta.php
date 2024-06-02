@@ -314,19 +314,21 @@ Container::make('theme_options', __('Training Settings'))
 				),
 		)
 	)
-	->add_tab('CTA', array(
-		Field::make('text', 'training_cta_heading', 'Heading'),
-		Field::make('textarea', 'training_cta_description', 'Description'),
-		Field::make('file', 'training_cta_background', 'Background')->set_width(20)
-			->set_help_text('Select Image/Video Background'),
-		Field::make('select', 'training_cta_style', 'Style')
-			->set_options(
-				array(
-					'style-1' => 'Style 1',
-					'style-2' => 'Style 2',
+	->add_tab(
+		'CTA',
+		array(
+			Field::make('text', 'training_cta_heading', 'Heading'),
+			Field::make('textarea', 'training_cta_description', 'Description'),
+			Field::make('file', 'training_cta_background', 'Background')->set_width(20)
+				->set_help_text('Select Image/Video Background'),
+			Field::make('select', 'training_cta_style', 'Style')
+				->set_options(
+					array(
+						'style-1' => 'Style 1',
+						'style-2' => 'Style 2',
+					)
 				)
-			)
-	)
+		)
 	);
 
 
@@ -768,56 +770,60 @@ Container::make('post_meta', 'Mega Menu Items')
 								)
 							),
 						Field::make('complex', 'submenu', __('Submenu'))
-							->add_fields('menu_items', array(
-								Field::make('select', 'width', __('Width'))
-									->set_options(
-										array(
-											'col-12'    => '100%',
-											'col-lg-11' => '91.67%',
-											'col-lg-10' => '83.33%',
-											'col-lg-9'  => '75%',
-											'col-lg-7'  => '58.33%',
-											'col-lg-6'  => '50%',
-											'col-lg-5'  => '67%',
-											'col-lg-4'  => '33.33%',
-											'col-lg-3'  => '25%',
-											'col-lg-2'  => '16.67%',
-											'col-lg-1'  => '8.33%',
-										)
-									),
-								Field::make('text', 'menu_text', __('Column Text')),
-								Field::make('select', 'menu', __('Menu'))
-									->set_options(get_menu_list_array())
+							->add_fields(
+								'menu_items',
+								array(
+									Field::make('select', 'width', __('Width'))
+										->set_options(
+											array(
+												'col-12'    => '100%',
+												'col-lg-11' => '91.67%',
+												'col-lg-10' => '83.33%',
+												'col-lg-9'  => '75%',
+												'col-lg-7'  => '58.33%',
+												'col-lg-6'  => '50%',
+												'col-lg-5'  => '67%',
+												'col-lg-4'  => '33.33%',
+												'col-lg-3'  => '25%',
+												'col-lg-2'  => '16.67%',
+												'col-lg-1'  => '8.33%',
+											)
+										),
+									Field::make('text', 'menu_text', __('Column Text')),
+									Field::make('select', 'menu', __('Menu'))
+										->set_options(get_menu_list_array())
+								)
 							)
-							)
-							->add_fields('images', array(
-								Field::make('select', 'width', __('Width'))
-									->set_options(
-										array(
-											'col-12'    => '100%',
-											'col-lg-11' => '91.67%',
-											'col-lg-10' => '83.33%',
-											'col-lg-9'  => '75%',
-											'col-lg-7'  => '58.33%',
-											'col-lg-6'  => '50%',
-											'col-lg-5'  => '67%',
-											'col-lg-4'  => '33.33%',
-											'col-lg-3'  => '25%',
-											'col-lg-2'  => '16.67%',
-											'col-lg-1'  => '8.33%',
+							->add_fields(
+								'images',
+								array(
+									Field::make('select', 'width', __('Width'))
+										->set_options(
+											array(
+												'col-12'    => '100%',
+												'col-lg-11' => '91.67%',
+												'col-lg-10' => '83.33%',
+												'col-lg-9'  => '75%',
+												'col-lg-7'  => '58.33%',
+												'col-lg-6'  => '50%',
+												'col-lg-5'  => '67%',
+												'col-lg-4'  => '33.33%',
+												'col-lg-3'  => '25%',
+												'col-lg-2'  => '16.67%',
+												'col-lg-1'  => '8.33%',
+											)
+										),
+									Field::make('text', 'menu_text', __('Column Text')),
+									Field::make('complex', 'menu_images', __('Images'))
+										->add_fields(
+											array(
+												Field::make('image', 'image', __('Image')),
+												Field::make('text', 'url', __('URL'))->set_classes('field-url'),
+											)
 										)
-									),
-								Field::make('text', 'menu_text', __('Column Text')),
-								Field::make('complex', 'menu_images', __('Images'))
-									->add_fields(
-										array(
-											Field::make('image', 'image', __('Image')),
-											Field::make('text', 'url', __('URL'))->set_classes('field-url'),
-										)
-									)
-									->set_layout('tabbed-vertical')
+										->set_layout('tabbed-vertical')
 
-							)
+								)
 							)
 							->set_layout('tabbed-vertical')
 
@@ -902,7 +908,7 @@ Container::make('post_meta', 'Modules')
 
 								)
 							)
-							
+
 							->set_layout('tabbed-vertical'),
 						Field::make('text', 'heading', __('Heading')),
 						Field::make('textarea', 'description', __('Description')),
@@ -962,6 +968,28 @@ Container::make('post_meta', 'Modules')
 												'md-padding-bottom'  => 'Medium',
 												'sm-padding-bottom'  => 'Small',
 												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
 											)
 										),
 
