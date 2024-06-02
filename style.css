@@ -13913,12 +13913,16 @@ a.fancybox-gallery-img {
     height: 100%;
     object-fit: cover; }
 
-.accordion.accordion-v2 .accordion-item .accordion-header .accordion-button span {
-  color: var(--black-color); }
-  .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button span h4 {
-    margin-bottom: 0; }
-.accordion.accordion-v2 .accordion-item .accordion-header .accordion-button:after {
-  display: none; }
+.accordion.accordion-v2 .accordion-item {
+  margin-bottom: 1rem; }
+  .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button {
+    padding-bottom: 1rem !important; }
+    .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button span {
+      color: var(--black-color); }
+      .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button span h4 {
+        margin-bottom: 0; }
+    .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button:after {
+      display: none; }
 
 /*Padding*/
 /*Extra Small Padding*/

@@ -3317,8 +3317,10 @@ a.fancybox-gallery-img {
 .accordion {
     &.accordion-v2 {
         .accordion-item {
+            margin-bottom: 1rem;
             .accordion-header {
                 .accordion-button {
+                    padding-bottom: 1rem !important;
                     span {
                         color: var(--black-color);
                         h4 {
