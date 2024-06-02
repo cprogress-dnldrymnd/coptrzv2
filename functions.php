@@ -258,6 +258,20 @@ function action_admin_footer()
 		$select_post .= '<option value="' . $key . '"> ' . $post . ' </option>';
 	}
 	$select_post .= '</select>';
+
+	$solutions = get__solutions('solutions');
+	$select_solution = '<select name="select-page-selector">';
+	foreach ($solutions as $key => $solution) {
+		$select_solution .= '<option value="' . $key . '"> ' . $solution . ' </option>';
+	}
+	$select_solution .= '</select>';
+
+	$popups = get__solutions('popups');
+	$select_popup = '<select name="select-page-selector">';
+	foreach ($popups as $key => $popup) {
+		$select_popup .= '<option value="' . $key . '"> ' . $popup . ' </option>';
+	}
+	$select_popup .= '</select>';
 ?>
 	<script>
 		jQuery(document).ready(function() {
@@ -274,6 +288,10 @@ function action_admin_footer()
 				$selector.html('<?= $select_page ?>');
 			} else if ($value == 'post') {
 				$selector.html('<?= $select_post ?>');
+			} else if ($value == 'solutions') {
+				$selector.html('<?= $select_solution ?>');
+			} else if ($value == 'popups') {
+				$selector.html('<?= $select_popup ?>');
 			}
 		});
 

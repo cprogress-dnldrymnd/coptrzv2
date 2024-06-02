@@ -982,8 +982,8 @@ Container::make('post_meta', 'Modules')
 													array(
 														'page' => 'Page',
 														'post' => 'Post',
-														'solution' => 'Solution',
-														'popup' => 'Popup',
+														'solutions' => 'Solution',
+														'popups' => 'Popup',
 														'custom' => 'Custom',
 													)
 												),
