@@ -970,7 +970,7 @@ Container::make('post_meta', 'Modules')
 									->add_fields(
 										'description',
 										array(
-											Field::make('textarea', 'description', __('Description')),
+											Field::make('rich_text', 'item_description', __('Description')),
 										)
 									)
 									->add_fields(
