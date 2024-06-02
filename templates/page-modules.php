@@ -13,5 +13,11 @@ $modules = get__post_meta('modules');
     var_dump($modules);
     ?>
     </pre>
+    <?php
+    foreach ($modules as $module) {
+        $type = $module['_type'];
+        include locate_template('template-parts/modules/' . $type . '.php');
+    }
+    ?>
 </div>
 <?php get_footer(); ?>
