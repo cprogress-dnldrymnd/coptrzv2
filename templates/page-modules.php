@@ -20,7 +20,7 @@ $modules = get__post_meta('modules');
                 switch ($style_type) {
                     case 'background_color':
                         if ($style['background_color'] != 'background-custom') {
-                            $classes .= $style['background_color'];
+                            $classes .= ' ' . $style['background_color'];
                         } else {
                             $style = 'background-color: ' . $style['background_color_custom'];
                         }
