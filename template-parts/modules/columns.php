@@ -10,7 +10,9 @@
                 <div class="row">
                     <?php foreach ($module['columns'] as $column) { ?>
                         <div class="col">
-                            <?= _elements($column['items']) ?>
+                            <div class="column-holder content-margin">
+                                <?= _elements($column['items']) ?>
+                            </div>
                         </div>
                     <?php } ?>
                 </div>
