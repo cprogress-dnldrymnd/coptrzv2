@@ -820,6 +820,8 @@ Container::make('post_meta', 'Modules')
 											Field::make('text', 'url', __('URL'))->set_classes('field-url'),
 										)
 									)
+									->set_layout('tabbed-vertical')
+
 							))
 							->set_layout('tabbed-vertical')
 
