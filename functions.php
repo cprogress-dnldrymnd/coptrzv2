@@ -299,7 +299,26 @@ function action_admin_footer()
 		});
 
 
-		function active_link_type($selector, $value) {
+		setTimeout(function() {
+			jQuery('.trigger-selector select').each(function(index, element) {
+				$value = jQuery(this).val();
+				$selector = jQuery(this).parent().parent().parent().find('.page-selector');
+				$input = jQuery(this).parent().parent().parent().find('.page-selector');
+				active_link_type($selector, $value, $input)
+			});
+
+
+			jQuery('.trigger-selector-single select').each(function(index, element) {
+				$value = jQuery(this).val();
+				$selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
+				$input = jQuery(this).parent().parent().next().next().find('input').val();
+				active_link_type($selector, $value, $input)
+				active_link_type($selector, $value)
+			});
+
+		}, 2000);
+
+		function active_link_type($selector, $value, $input) {
 			if ($value == 'page') {
 				$selector.html('<?= $select_page ?>');
 			} else if ($value == 'post') {
@@ -311,25 +330,9 @@ function action_admin_footer()
 			} else {
 				$selector.html('');
 			}
+
+			$selector.find('.select-page-selector').val($input);
 		}
-
-		setTimeout(function() {
-			jQuery('.trigger-selector select').each(function(index, element) {
-				$value = jQuery(this).val();
-				$selector = jQuery(this).parent().parent().parent().find('.page-selector');
-				active_link_type($selector, $value)
-			});
-
-
-			jQuery('.trigger-selector-single select').each(function(index, element) {
-				$value = jQuery(this).val();
-				$selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
-				active_link_type($selector, $value)
-			});
-
-
-
-		}, 2000);
 	</script>
 <?php
 }
