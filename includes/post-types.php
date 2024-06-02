@@ -458,7 +458,7 @@ $Model3d->has_archive = false;
 
 
 $Model3D = new newTaxonomy();
-$Model3D->taxonomy = '3dModel_Category';
+$Model3D->taxonomy = 'Model3d_Category';
 $Model3D->post_type = '3dmodellibraries';
 $Model3D->args = array(
     'label'        => 'Categories',
