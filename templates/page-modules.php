@@ -10,9 +10,7 @@ global $styles;
 ?>
 <div class="modules">
     <pre>
-    <?php
-    var_dump($modules);
-    ?>
+
     </pre>
     <?php
     foreach ($modules as $key => $module) {
@@ -21,6 +19,9 @@ global $styles;
         include locate_template('template-parts/modules/' . $type . '.php');
         $styles[$module_id] = $module['styles'];
     }
+    ?>
+        <?php
+    var_dump($styles);
     ?>
 </div>
 <?php get_footer(); ?>
