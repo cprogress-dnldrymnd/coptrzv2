@@ -1029,6 +1029,8 @@ Container::make('post_meta', 'Modules')
 														Field::make('textarea', 'description', __('Description')),
 													)
 												)
+												->set_layout('tabbed-vertical')
+												->set_header_template('<%- heading  %>'),
 										)
 									)
 									->set_layout('tabbed-vertical')
