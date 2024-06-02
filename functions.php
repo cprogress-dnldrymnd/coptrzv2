@@ -305,7 +305,7 @@ function action_admin_footer()
 		});
 
 
-		jQuery('.trigger-selector').each(function(index, element) {
+		jQuery('.trigger-selector select').each(function(index, element) {
 			$value = jQuery(this).val();
 			console.log($value);
 		});
