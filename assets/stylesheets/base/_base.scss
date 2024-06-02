@@ -3313,3 +3313,23 @@ a.fancybox-gallery-img {
         }
     }
 }
+
+.accordion {
+    &.accordion-v2 {
+        .accordion-item {
+            .accordion-header {
+                .accordion-button {
+                    span {
+                        color: var(--black-color);
+                        h4 {
+                            margin-bottom: 0;
+                        }
+                    }
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
