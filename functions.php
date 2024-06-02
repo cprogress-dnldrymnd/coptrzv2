@@ -152,15 +152,15 @@ require_once('includes/_required_files.php');
 function action_admin_enqueue_scripts($hook)
 {
 
-	wp_enqueue_style('my_custom_script', get_template_directory_uri() . '/admin/css/admin-css.css', array(), '1.1');
+	//wp_enqueue_style('my_custom_script', get_template_directory_uri() . '/admin/css/admin-css.css', array(), '1.1');
 
-	wp_enqueue_style('select_2_css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css', array(), '1.0');
+	//wp_enqueue_style('select_2_css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css', array(), '1.0');
 
 	wp_enqueue_style('karla', 'https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&display=swap', array(), '1.0');
 
-	wp_enqueue_script('select_2_js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js', array(), '1.0');
+	//wp_enqueue_script('select_2_js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js', array(), '1.0');
 
-	wp_enqueue_script('admin_js', get_template_directory_uri() . '/admin/js/admin-js.js', array(), '1.3');
+	//wp_enqueue_script('admin_js', get_template_directory_uri() . '/admin/js/admin-js.js', array(), '1.3');
 }
 add_action('admin_enqueue_scripts', 'action_admin_enqueue_scripts');
 
