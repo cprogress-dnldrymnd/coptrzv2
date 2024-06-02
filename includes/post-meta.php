@@ -961,7 +961,6 @@ Container::make('post_meta', 'Modules')
 							array(
 								Field::make('text', 'label', __('Label')),
 								Field::make('complex', 'items', __('Items'))
-									->set_layout('tabbed-vertical')
 									->add_fields(
 										'heading',
 										array(
@@ -987,6 +986,7 @@ Container::make('post_meta', 'Modules')
 											Field::make('image', 'image', __('Image')),
 										)
 									)
+									->set_layout('tabbed-vertical')
 							)
 						)
 						->set_layout('tabbed-vertical')
