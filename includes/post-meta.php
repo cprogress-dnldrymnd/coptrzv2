@@ -910,7 +910,67 @@ Container::make('post_meta', 'Modules')
 
 								)
 							)
-
+							->add_fields(
+								'margin',
+								array(
+									Field::make('select', 'margin_top', 'margin Top')
+										->set_options(
+											array(
+												''               => 'No margin',
+												'xl-margin-top'  => 'Extra Large',
+												'lg-margin-top'  => 'Large',
+												'md-margin-top'  => 'Medium',
+												'sm-margin-top'  => 'Small',
+												'xxs-margin-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_bottom', 'margin Bottom')
+										->set_options(
+											array(
+												''                  => 'No margin',
+												'xl-margin-bottom'  => 'Extra Large',
+												'lg-margin-bottom'  => 'Large',
+												'md-margin-bottom'  => 'Medium',
+												'sm-margin-bottom'  => 'Small',
+												'xxs-margin-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_left', 'margin left')
+										->set_options(
+											array(
+												''                => 'No margin',
+												'xl-margin-left'  => 'Extra Large',
+												'lg-margin-left'  => 'Large',
+												'md-margin-left'  => 'Medium',
+												'sm-margin-left'  => 'Small',
+												'xxs-margin-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_right', 'margin right')
+										->set_options(
+											array(
+												''                 => 'No margin',
+												'xl-margin-right'  => 'Extra Large',
+												'lg-margin-right'  => 'Large',
+												'md-margin-right'  => 'Medium',
+												'sm-margin-right'  => 'Small',
+												'xxs-margin-right' => 'Extra Small',
+											)
+										),
+								)
+							)
+							->add_fields(
+								'border_radius',
+								array(
+									Field::make('text', 'border_radius', 'Border Radius')
+								)
+							)
+							->add_fields(
+								'custom_class',
+								array(
+									Field::make('text', 'custom_class', 'Custom Class')
+								)
+							)
 							->set_layout('tabbed-vertical'),
 						Field::make('text', 'heading', __('Heading'))->set_width(50),
 						Field::make('select', 'tag', __('Tag'))->set_width(50)
