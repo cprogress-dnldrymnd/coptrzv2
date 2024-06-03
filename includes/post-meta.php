@@ -1656,28 +1656,6 @@ Container::make('post_meta', 'Modules')
 													->add_fields(
 														array(
 															Field::make('text', 'heading', __('Heading')),
-															Field::make('select', 'tag', __('Tag'))
-																->set_options(
-																	array(
-																		'h1' => 'h1',
-																		'h2' => 'h2',
-																		'h3' => 'h3',
-																		'h4' => 'h4',
-																		'h5' => 'h5',
-																		'h6' => 'h6',
-																	)
-																)
-																->set_default_value('h2'),
-															Field::make('select', 'size', __('Heading Size'))
-																->set_options(
-																	array(
-																		'' => 'Default',
-																		'big-heading' => 'Big Heading',
-																		'medium-heading' => 'Medium Heading',
-																		'small-heading' => 'Small Heading',
-																	)
-																)
-																->set_default_value('h2'),
 															Field::make('textarea', 'description', __('Description')),
 														)
 													)
@@ -2046,6 +2024,28 @@ Container::make('post_meta', 'Modules')
 							)
 							->set_layout('tabbed-vertical'),
 						Field::make('text', 'heading', __('Heading')),
+						Field::make('select', 'tag', __('Tag'))
+							->set_options(
+								array(
+									'h1' => 'h1',
+									'h2' => 'h2',
+									'h3' => 'h3',
+									'h4' => 'h4',
+									'h5' => 'h5',
+									'h6' => 'h6',
+								)
+							)
+							->set_default_value('h2'),
+						Field::make('select', 'size', __('Heading Size'))
+							->set_options(
+								array(
+									'' => 'Default',
+									'big-heading' => 'Big Heading',
+									'medium-heading' => 'Medium Heading',
+									'small-heading' => 'Small Heading',
+								)
+							)
+							->set_default_value('h2'),
 						Field::make('textarea', 'description', __('Description')),
 						Field::make('complex', 'accordion', __('Accordion'))
 							->setup_labels(
