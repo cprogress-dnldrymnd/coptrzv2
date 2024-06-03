@@ -13952,6 +13952,16 @@ a.fancybox-gallery-img {
     margin-left: -2rem;
     margin-top: -2rem;
     margin-right: -2rem; }
+    @media screen and (max-width: 1199px) {
+      .post-grid-style-1 .image-holder {
+        margin-left: -1.5rem;
+        margin-top: -1.5rem;
+        margin-right: -1.5rem; } }
+    @media screen and (max-width: 991px) {
+      .post-grid-style-1 .image-holder {
+        margin-left: -1rem;
+        margin-top: -1rem;
+        margin-right: -1.5rem; } }
   .post-grid-style-1 .placeholder-image {
     background-color: var(--accent-color);
     object-fit: contain !important; }

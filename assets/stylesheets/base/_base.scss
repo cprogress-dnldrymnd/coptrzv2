@@ -3430,6 +3430,16 @@ a.fancybox-gallery-img {
         margin-left: -2rem;
         margin-top: -2rem;
         margin-right: -2rem;
+        @include responsive(xs-md) {
+            margin-left: -1.5rem;
+            margin-top: -1.5rem;
+            margin-right: -1.5rem;
+        }
+        @include responsive(xs-sm) {
+            margin-left: -1rem;
+            margin-top: -1rem;
+            margin-right: -1rem;
+        }
     }
     .placeholder-image {
         background-color: var(--accent-color);
