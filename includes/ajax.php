@@ -146,14 +146,14 @@ function archive_ajax()
 					<div class="post-grid content-margin post-grid-style-1 background-white h-100 rounded-corner overflow-hidden ">
 						<div class="image-holder position-relative">
 							<?php
-							echo do_shortcode('[_image class="image-absolute image-absolute-cover" size="large" id="' . get_post_thumbnail_id(). '"]');
+							echo do_shortcode('[_image class="image-absolute image-absolute-cover" size="large" id="' . get_post_thumbnail_id() . '"]');
 							if ($is_search) {
 								if (get_post_type() == 'post') {
 									$post_type_val = 'blog';
 								} else {
 									$post_type_val = get_post_type();
 								}
-
+								$button_text = 'Read more';
 								if (get_post_type() == 'post') {
 									$button_text = 'Read more';
 								} else if (get_post_type() == 'webinars') {
@@ -213,24 +213,14 @@ function archive_ajax()
 							</h4>
 
 							<?php
-							$DisplayData->description(
-								array(
-									'description' => custom_excerpt_length(get_the_excerpt(), 20),
-								)
-							);
+							echo do_shortcode('[_description description="' . custom_excerpt_length(get_the_excerpt(), 20). '"]');
 							?>
 						</div>
 
 						<div class="bottom-box">
-
-							<div class="link-box">
-								<a href="<?= get_permalink() ?>" class="link-underline fw-medium">
-									<?= $button_text ? $button_text : 'Read more' ?>
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-										<path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-									</svg>
-								</a>
-							</div>
+							<?php
+							echo do_shortcode('[_button id="' . get_the_ID() . '" button_type="' . get_post_type() . '" button_text="' . $button_text . '" ]');
+							?>
 						</div>
 					</div>
 				</div>
