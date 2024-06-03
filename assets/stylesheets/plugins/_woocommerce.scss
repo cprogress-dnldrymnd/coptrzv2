@@ -1,6 +1,9 @@
 ul.custom-products.custom-products.custom-products {
     li.product {
         .inner {
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: var(--body-color);
             a {
                 display: inline-block;
             }
@@ -11,12 +14,18 @@ ul.custom-products.custom-products.custom-products {
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
         }
+        .woocommerce-loop-product__title, .button, .price{
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+        .image-box {
+            padding: 35%;
+        }
         .button {
             margin-top: 1rem !important;
         }
     }
 }
-
 
 .wysiwyg {
     .woocommerce {
