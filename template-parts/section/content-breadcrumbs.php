@@ -67,32 +67,8 @@ if (is_page() || is_single()) {
 
         </div>
 
-        <?php
-
-        $DisplayData->heading(
-
-            array(
-
-                'heading' => $title
-
-            ),
-
-            'big-heading'
-
-        );
-
-        if ($description) {
-            $DisplayData->description(
-                array(
-
-                    'description' => $description
-
-                ),
-            );
-        }
-
-        ?>
-
+        <?= do_shortcode('[_heading heading="' . $title . '" class="big-heading"]') ?>
+        <?= do_shortcode('[_description description="' . $description . '" ]') ?>
         <?php if (is_single()) { ?>
 
             <div class="meta-box d-flex mt-3">
