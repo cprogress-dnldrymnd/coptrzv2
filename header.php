@@ -19,7 +19,7 @@
 
 	<?php wp_head(); ?>
 
-	
+
 	<!--[if lte IE 9]>
 		<link href="stylesheets/non-responsive.css" rel="stylesheet" />
 	<![endif]-->
@@ -42,5 +42,10 @@
 		</div>
 	<![endif]-->
 
-	<?php get_template_part('template-parts/header/header-top-bar') ?>
-	<?php get_template_part('template-parts/header/header-main') ?>
+	<?php
+	$hide_header = get__post_meta('hide_header');
+	if (!$hide_header) {
+		get_template_part('template-parts/header/header-top-bar');
+		get_template_part('template-parts/header/header-main');
+	}
+	?>

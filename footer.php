@@ -1,3 +1,8 @@
+><?php
+
+    $hide_footer = get__post_meta('hide_footer');
+    if (!$hide_footer) {
+    ?>
 <?= do_shortcode('[coptrz_review]') ?>
 <footer id="footer" class="background-primary">
     <div class="container">
@@ -22,6 +27,7 @@
 </footer>
 
 <?= do_shortcode('[popup id=268179]') ?>
+<?php } ?>
 <?php wp_footer(); ?>
 </body>
 
