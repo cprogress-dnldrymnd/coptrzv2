@@ -1232,7 +1232,7 @@ Container::make('post_meta', 'Modules')
 									Field::make('text', 'border_radius', 'Border Radius')
 								)
 							)
-							
+
 							->add_fields(
 								'alignment',
 								array(
@@ -1276,6 +1276,47 @@ Container::make('post_meta', 'Modules')
 						Field::make('checkbox', 'same_height_images', __('Same Height Images'))->set_width(20),
 						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(80),
 						Field::make('text', 'heading', __('Heading'))
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('select', 'tag', __('Tag'))
+							->set_options(
+								array(
+									'h1' => 'h1',
+									'h2' => 'h2',
+									'h3' => 'h3',
+									'h4' => 'h4',
+									'h5' => 'h5',
+									'h6' => 'h6',
+								)
+							)
+							->set_default_value('h2')
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('select', 'text_align', 'Text Align')
+							->set_options(
+								array(
+									''                => 'Default',
+									'text-start'                => 'Left',
+									'text-center'                => 'Center',
+									'text-end'                => 'Right',
+									'text-justify'                => 'Justify',
+								)
+							)
+							->set_width(33)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1465,6 +1506,7 @@ Container::make('post_meta', 'Modules')
 															'text-start'                => 'Left',
 															'text-center'                => 'Center',
 															'text-end'                => 'Right',
+															'text-justify'                => 'Justify',
 														)
 													),
 											)
