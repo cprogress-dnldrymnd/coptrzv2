@@ -65,7 +65,7 @@ function codemirror() {
             tinymce.init({
                 selector: 'textarea[name="carbon_fields_compact_input[_modules][0][_description]"]',
                 // Additional TinyMCE settings (customize as needed)
-                plugins: 'lists link image table code',
+                plugins: 'lists link image code',
                 toolbar: 'formatselect | bold italic | bullist numlist | link image | table | code'
             });
 
