@@ -9,8 +9,7 @@ $ext = wp_check_filetype(wp_get_attachment_url($id))['ext'];
 $img_class = '';
 if ($image_url) {
 	$image_alt = $GetData->get_image_alt($id);
-}
-else {
+} else {
 	if ($placeholder) {
 		$logo = get__theme_option('alt_logo');
 		$image_url = wp_get_attachment_image_url($logo);
@@ -19,8 +18,8 @@ else {
 	}
 }
 
-if($border_radius) {
-	$style=''
+if ($border_radius) {
+	$style = 'style="--border-radius: ' . $border_radius . '"';
 }
 
 ?>
@@ -33,9 +32,8 @@ if($border_radius) {
 		}
 		?>
 		<?php if ($ext != 'svg') { ?>
-			<img <?= $image_height ? 'height="' . $image_height . '"' : '' ?>	<?= $image_width ? 'width="' . $image_width . '"' : '' ?> decoding="async" class="jetpack-lazy-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>">
-		<?php }
-		else { ?>
+			<img <?= $style ?> <?= $image_height ? 'height="' . $image_height . '"' : '' ?> <?= $image_width ? 'width="' . $image_width . '"' : '' ?> decoding="async" class="jetpack-lazy-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>">
+		<?php } else { ?>
 			<span class="svg-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>"></span>
 		<?php } ?>
 	</div>
@@ -43,5 +41,5 @@ if($border_radius) {
 	if ($link) {
 		echo '</a>';
 	}
-?>
+	?>
 <?php } ?>
