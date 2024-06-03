@@ -1,5 +1,6 @@
 ul.custom-products {
     li.product {
+     
         .woocommerce-loop-product__title {
             font-size: 1.5rem;
             padding: 0;
@@ -9,8 +10,5 @@ ul.custom-products {
         .button {
             margin-top: 1rem;
         }
-    }
-    @include before-after {
-        content: none;
     }
 }
