@@ -852,6 +852,103 @@ Container::make('post_meta', 'Modules')
 					)
 				)
 				->add_fields(
+					'cta',
+					array(
+						Field::make('complex', 'styles', __('Styles'))
+							->set_duplicate_groups_allowed(false)
+							->add_fields(
+								'background_color',
+								array(
+									Field::make('select', 'background_color', 'Background Color')
+										->set_options(
+											array(
+												'background-primary'   => 'Primary',
+												'background-secondary' => 'Secondary',
+												'background-accent'    => 'Accent',
+												'background-white'     => 'White',
+												'background-light-gray'     => 'Light Gray',
+												'background-body-color'     => 'Body',
+												'background-custom'    => 'Custom',
+											)
+										),
+									Field::make('color', 'background_color_custom', __('Background Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_color',
+													'value' => 'background-custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
+								'padding',
+								array(
+									Field::make('select', 'padding_top', 'Padding Top')
+										->set_options(
+											array(
+												''                => 'No Padding',
+												'xl-padding-top'  => 'Extra Large',
+												'lg-padding-top'  => 'Large',
+												'md-padding-top'  => 'Medium',
+												'sm-padding-top'  => 'Small',
+												'xxs-padding-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_bottom', 'Padding Bottom')
+										->set_options(
+											array(
+												''                   => 'No Padding',
+												'xl-padding-bottom'  => 'Extra Large',
+												'lg-padding-bottom'  => 'Large',
+												'md-padding-bottom'  => 'Medium',
+												'sm-padding-bottom'  => 'Small',
+												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+
+								)
+							)
+
+							->set_layout('tabbed-vertical'),
+						Field::make('text', 'heading', __('Heading')),
+						Field::make('textarea', 'description', __('Description')),
+						Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+							->set_options(
+								array(
+									''          => 'Select Button Type',
+									'page'      => 'Page',
+									'post'      => 'Post',
+									'solutions' => 'Solution',
+									'popups'    => 'Popup',
+								)
+							),
+						Field::make('text', 'button_text', __('Button Text')),
+						Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+							->set_conditional_logic(
+								array(
+									array(
+										'field'   => 'button_type',
+										'value'   => 'custom',
+										'compare' => '!='
+									)
+								)
+							),
+						Field::make('html', 'html')
+							->set_html('<div class="page-selector">  </div>'),
+						Field::make('text', 'button_url_custom', __('Button URL'))
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'button_type',
+										'value' => 'custom',
+									)
+								)
+							),
+					)
+				)
+				->add_fields(
 					'contact_form',
 					array(
 						Field::make('complex', 'styles', __('Styles'))
