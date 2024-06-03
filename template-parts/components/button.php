@@ -2,7 +2,7 @@
 $GetData = new GetData;
 $SVG = new SVG;
 
-if ($button_type != 'popups') {
+if ($button_type != 'popups' && $button_type != 'custom') {
 	$tag = 'a';
 	$link = 'href="' . get_permalink($id) . '"';
 } else if ($button_type == 'custom') {
