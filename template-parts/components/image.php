@@ -36,7 +36,7 @@ if ($border_radius) {
 		}
 		?>
 		<?php if ($ext != 'svg') { ?>
-			<img <?= $style ?> <?= $image_height ? 'height="' . $image_height . '"' : '' ?> <?= $image_width ? 'width="' . $image_width . '"' : '' ?> decoding="async" class="jetpack-lazy-image <?= $rounded_corners ?>" src="<?= $image_url ?>" alt="<?= $image_alt ?>">
+			<img <?= $style ?> <?= $image_height ? 'height="' . $image_height . '"' : '' ?> <?= $image_width ? 'width="' . $image_width . '"' : '' ?> decoding="async" class="jetpack-lazy-image <?= $img_class ?>" src="<?= $image_url ?>" alt="<?= $image_alt ?>">
 		<?php } else { ?>
 			<span class="svg-image" src="<?= $image_url ?>" alt="<?= $image_alt ?>"></span>
 		<?php } ?>
