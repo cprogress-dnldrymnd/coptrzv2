@@ -73,6 +73,7 @@ class Elements_Shortcodes
                     'button_type' => '',
                     'button_text' => '',
                     'button_link' => '',
+                    'custom_url' => '',
                     'class'       => 'button-accent',
                     'data_aos'    => '',
                 ),
