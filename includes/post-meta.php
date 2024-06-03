@@ -50,7 +50,19 @@ Container::make('post_meta', 'Tag Options')
 		)
 	);
 
+/*-----------------------------------------------------------------------------------*/
+/* Page Options
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', 'Page Options')
+	->where('post_type', '=', 'page')
+	->set_context('side')
+	->add_fields(
+		array(
+			Field::make('checkbox', 'hide_header', 'Hide Header'),
+			Field::make('checkbox', 'hide_footer', 'Hide Footer'),
 
+		)
+	);
 
 /*-----------------------------------------------------------------------------------*/
 /* Industry Solution
