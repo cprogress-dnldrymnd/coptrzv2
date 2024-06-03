@@ -141,6 +141,8 @@ function archive_ajax()
 		if ($the_query->have_posts()) {
 			while ($the_query->have_posts()) {
 				$the_query->the_post();
+				$button_text = 'Read more';
+
 		?>
 				<div class="<?= $class ?> col-sm-6 post-item">
 					<div class="post-grid content-margin post-grid-style-1 background-white h-100 rounded-corner overflow-hidden ">
@@ -153,7 +155,6 @@ function archive_ajax()
 								} else {
 									$post_type_val = get_post_type();
 								}
-								$button_text = 'Read more';
 								if (get_post_type() == 'post') {
 									$button_text = 'Read more';
 								} else if (get_post_type() == 'webinars') {
@@ -167,6 +168,7 @@ function archive_ajax()
 								}
 								echo '<span class="badge"> ' . $post_type_val . ' </span>';
 							}
+
 							?>
 						</div>
 						<?php if (get_post_type() == 'post' || get_post_type() == 'casestudies' || get_post_type() == 'events') { ?>
@@ -213,7 +215,7 @@ function archive_ajax()
 							</h4>
 
 							<?php
-							echo do_shortcode('[_description description="' . custom_excerpt_length(get_the_excerpt(), 20). '"]');
+							echo do_shortcode('[_description description="' . custom_excerpt_length(get_the_excerpt(), 20) . '"]');
 							?>
 						</div>
 
