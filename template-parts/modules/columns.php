@@ -46,7 +46,7 @@
                                         $style_attribute_inner .= 'max-width: ' . $style['max_width'] . ';';
                                         break;
                                     case 'column_width':
-                                        $column_class .= $style['column_width'];
+                                        $column_class = $style['column_width'];
                                         break;
                                 }
                             }
