@@ -54,7 +54,30 @@ function codemirror() {
             wp.codeEditor.initialize(jQuery('textarea[name="carbon_fields_compact_input[_body_scripts]"'), cm_settings.ce_html);
         }
 
-      
+        jQuery(document).ready(function($) {
+            // Ensure TinyMCE is loaded (assuming you've enqueued it in WordPress)
+            if (typeof tinymce !== 'undefined') {
+                
+                // Find the textarea element
+                var textarea = $('textarea[name="custom_textarea"]');
+                
+                // Replace textarea with TinyMCE editor
+                tinymce.init({
+                    selector: 'textarea[name="custom_textarea"]',
+                    // Additional TinyMCE settings (customize as needed)
+                    plugins: 'lists link image table code',
+                    toolbar: 'formatselect | bold italic | bullist numlist | link image | table | code'
+                });
+            
+                // Handle form submission (update textarea with TinyMCE content)
+                textarea.closest('form').submit(function(e) {
+                    // Update the textarea's value before submitting the form
+                    textarea.val(tinymce.get('custom_textarea').getContent());
+                });
+            } else {
+                console.error('TinyMCE is not loaded.');
+            }
+        });
 
 
     }, 500);
