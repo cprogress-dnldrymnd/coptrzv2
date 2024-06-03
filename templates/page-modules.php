@@ -46,6 +46,10 @@ $modules = get__post_meta('modules');
                         $baground_image = $style['background_image'];
                         $classes .= ' ' . $style['background_size'] . ' ' . $style['background_attachment'] . ' ' . $style['background_repeat'];
                         break;
+                    case 'text_color':
+                        $classes .= ' ' . $style['text_color'];
+                        $style_attribute .= 'text-color: ' . $style['text_color_custom'] . ';';
+                        break;
                 }
             }
         }
