@@ -1,7 +1,7 @@
 <section class="call-to-action">
     <div class="container">
         <div class="inner rounded-corner <?= $classes ?>" id="<?= $module_id ?>">
-            <div class="row g-4 align-items-end">
+            <div class="row g-5 align-items-end">
                 <div class="col-lg-7">
                     <div class="column-holder content-margin">
                         <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading" tag="' . $module['tag'] . '"]') ?>
