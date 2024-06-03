@@ -1864,6 +1864,12 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->add_fields(
+								'background_image',
+								array(
+									Field::make('image', 'background_image', 'Background Image')
+								)
+							)
+							->add_fields(
 								'padding',
 								array(
 									Field::make('select', 'padding_top', 'Padding Top')
