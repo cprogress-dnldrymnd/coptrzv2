@@ -958,7 +958,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'button_style', __('Button Style'))
+						Field::make('select', 'button_style', __('Button Style'))
 							->set_options(
 								array(
 									'button-accent'      => 'Accent',
