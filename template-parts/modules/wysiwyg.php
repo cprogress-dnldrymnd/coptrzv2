@@ -1,4 +1,4 @@
-<section class="wysiwyg position-relative <?= $classes ?>" id="<?= $module_id ?>">
+<section class="wysiwyg position-relative <?= $classes ?>" <?= $style_attribute ?> id="<?= $module_id ?>">
   <?php if ($baground_image) { ?>
     <?= do_shortcode('[_image class="background-image" id="' . $baground_image . '"]'); ?>
   <?php } ?>
