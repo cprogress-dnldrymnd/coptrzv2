@@ -2,7 +2,7 @@
     <div class="container">
         <div class="section-heading-description mb-5">
             <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading"]') ?>
-            <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
+            <?= do_shortcode("[_description description='" . $module['description'] . "']") ?>
         </div>
 
         <div class="column-items">
@@ -21,8 +21,7 @@
                                         case 'background_color':
                                             if ($style['background_color'] != 'background-custom') {
                                                 $classes .= ' ' . $style['background_color'];
-                                            }
-                                            else {
+                                            } else {
                                                 $style_attribute = 'background-color: ' . $style['background_color_custom'] . ';';
                                             }
                                             break;
@@ -39,8 +38,7 @@
                                 }
                             }
                             ?>
-                            <div class="column-holder h-100  <?= $classes ?>"
-                                style="<?= $style_attribute ?>">
+                            <div class="column-holder h-100  <?= $classes ?>" style="<?= $style_attribute ?>">
                                 <div class="inner content-margin">
                                     <?= _elements($column['items'], $module_id, $module['same_height_images']) ?>
                                 </div>
