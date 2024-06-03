@@ -17227,16 +17227,16 @@ ul.custom-products.custom-products.custom-products li.product .inner {
 ul.custom-products.custom-products.custom-products li.product .woocommerce-loop-product__title {
   font-size: 1.5rem;
   padding: 0;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   margin-bottom: 1.5rem; }
 ul.custom-products.custom-products.custom-products li.product .woocommerce-loop-product__title, ul.custom-products.custom-products.custom-products li.product .button, ul.custom-products.custom-products.custom-products li.product .price {
-  margin-left: 1rem;
-  margin-right: 1rem; }
+  margin-left: 2rem !important;
+  margin-right: 2rem !important; }
 ul.custom-products.custom-products.custom-products li.product .image-box {
   padding: 35%; }
 ul.custom-products.custom-products.custom-products li.product .button {
   margin-top: 1rem !important;
-  margin-bottom: 1rem; }
+  margin-bottom: 2rem; }
 
 .wysiwyg .woocommerce {
   max-width: 1400px;
