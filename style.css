@@ -17221,6 +17221,9 @@ section.sticky-add-to-cart {
   section.sticky-add-to-cart .add-to-cart-box {
     margin-top: 1rem !important; }
 
+.blog {
+  background-color: var(--body-color); }
+
 section.contact-form .form-holder {
   background-color: var(--white-color);
   padding: 2rem;
