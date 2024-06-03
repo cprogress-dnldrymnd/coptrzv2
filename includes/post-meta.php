@@ -1276,7 +1276,7 @@ Container::make('post_meta', 'Modules')
 						Field::make('checkbox', 'same_height_images', __('Same Height Images'))->set_width(20),
 						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(80),
 						Field::make('text', 'heading', __('Heading'))
-							->set_width(33)
+							->set_width(25)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1297,7 +1297,7 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_default_value('h2')
-							->set_width(33)
+							->set_width(25)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1316,7 +1316,25 @@ Container::make('post_meta', 'Modules')
 									'text-justify'                => 'Justify',
 								)
 							)
-							->set_width(33)
+							->set_width(25)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('select', 'size', __('Heading Size'))
+							->set_options(
+								array(
+									'' => 'Default',
+									'big-heading' => 'Big Heading',
+									'medium-heading' => 'Medium Heading',
+									'small-heading' => 'Small Heading',
+								)
+							)
+							->set_width(25)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1550,7 +1568,6 @@ Container::make('post_meta', 'Modules')
 															'small-heading' => 'Small Heading',
 														)
 													)
-													->set_default_value('h2'),
 											)
 										)
 										->add_fields(
@@ -2023,7 +2040,17 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_layout('tabbed-vertical'),
-						Field::make('text', 'heading', __('Heading')),
+						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(80),
+						Field::make('text', 'heading', __('Heading'))
+							->set_width(25)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
 						Field::make('select', 'tag', __('Tag'))
 							->set_options(
 								array(
@@ -2035,7 +2062,35 @@ Container::make('post_meta', 'Modules')
 									'h6' => 'h6',
 								)
 							)
-							->set_default_value('h2'),
+							->set_default_value('h2')
+							->set_width(25)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('select', 'text_align', 'Text Align')
+							->set_options(
+								array(
+									''                => 'Default',
+									'text-start'                => 'Left',
+									'text-center'                => 'Center',
+									'text-end'                => 'Right',
+									'text-justify'                => 'Justify',
+								)
+							)
+							->set_width(25)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
 						Field::make('select', 'size', __('Heading Size'))
 							->set_options(
 								array(
@@ -2045,7 +2100,15 @@ Container::make('post_meta', 'Modules')
 									'small-heading' => 'Small Heading',
 								)
 							)
-							->set_default_value('h2'),
+							->set_width(25)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
 						Field::make('textarea', 'description', __('Description')),
 						Field::make('complex', 'accordion', __('Accordion'))
 							->setup_labels(
