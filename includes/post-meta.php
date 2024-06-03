@@ -1245,9 +1245,18 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->add_fields(
-								'max_width',
+								'container_width',
 								array(
-									Field::make('text', 'max_width', 'Max Width')
+									Field::make('select', 'container_width', 'Container Width')
+										->set_options(
+											array(
+												''               => 'Default',
+												'large-container'  => 'Large',
+												'medium-container'  => 'Medium',
+												'small-container'  => 'Small',
+											)
+										),
+									Field::make('text', 'custom_container_width', 'Custom Container Width')
 								)
 							)
 							->add_fields(
