@@ -42,7 +42,7 @@ $testimonial_rating = get__theme_option('testimonial_rating');
                 </div>
                 <div class="review-score d-flex align-items-center">
                     <div class="score">
-                    <?= $testimonial_rating ?>
+                        <?= $testimonial_rating ?>
                     </div>
                     <div class="stars-holder">
                         <div class="stars d-flex">
@@ -71,14 +71,8 @@ $testimonial_rating = get__theme_option('testimonial_rating');
                             <?php SVG::quote() ?>
                         </div>
                         <div class="review-content">
-                            <?php
-                            $DisplayData->description(
-                                array(
-                                    'description' => $testimonial['description'],
-                                ),
-                                'review-text'
-                            );
-                            ?>
+                            <?= do_shortcode('[_description class="review-text" description="' . $testimonial['description'] . '" ]') ?>
+
                             <div class="author d-flex align-items-center">
                                 <span>
                                     <?= $testimonial['author'] ?>
