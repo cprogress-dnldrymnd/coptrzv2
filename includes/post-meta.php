@@ -1408,7 +1408,7 @@ Container::make('post_meta', 'Modules')
 										->add_fields(
 											'description',
 											array(
-												Field::make('textarea', 'description', __('Description')),
+												Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
 											)
 										)
 										->add_fields(
