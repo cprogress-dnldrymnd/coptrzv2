@@ -48,7 +48,7 @@ $modules = get__post_meta('modules');
                         break;
                     case 'text_color':
                         $classes .= ' ' . $style['text_color'];
-                        $style_attribute .= 'text-color: ' . $style['text_color_custom'] . ';';
+                        $style_attribute .= 'color: ' . $style['text_color_custom'] . ';';
                         break;
                 }
             }
