@@ -125,7 +125,7 @@ function enqueue_scripts()
 
 	if (is_checkout()) {
 		wp_enqueue_style('checkout-style', assets_dir . 'stylesheets/checkout/checkout.css', NULL, coptz_version);
-		wp_enqueue_script('checkout-js', assets_dir . 'javascripts/checkout.js', ['jquery'], coptz_version);
+		//wp_enqueue_script('checkout-js', assets_dir . 'javascripts/checkout.js', ['jquery'], coptz_version);
 	}
 }
 
