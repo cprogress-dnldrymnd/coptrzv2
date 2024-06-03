@@ -58,7 +58,7 @@ function codemirror() {
         if (typeof tinymce !== 'undefined') {
 
             // Find the textarea element
-            var textarea = $('textarea[name="carbon_fields_compact_input[_modules][0][_description]"]');
+            var textarea = jQuery('textarea[name="carbon_fields_compact_input[_modules][0][_description]"]');
 
             // Replace textarea with TinyMCE editor
             tinymce.init({
