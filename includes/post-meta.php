@@ -1917,6 +1917,12 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->add_fields(
+								'custom_class',
+								array(
+									Field::make('text', 'custom_class', 'Custom Class')
+								)
+							)
+							->add_fields(
 								'padding',
 								array(
 									Field::make('select', 'padding_top', 'Padding Top')
