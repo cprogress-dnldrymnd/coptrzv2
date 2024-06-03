@@ -55,7 +55,8 @@ function codemirror() {
         }
 
         jQuery('.activate-tinymce').each(function (index, element) {
-            console.log('test');
+            var $textarea = jQuery(this).find('textarea');
+            wp.codeEditor.initialize($textarea, cm_settings.ce_html);
         });
 
 
