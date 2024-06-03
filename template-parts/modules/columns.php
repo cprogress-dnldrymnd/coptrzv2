@@ -44,7 +44,7 @@
                                 }
                             }
                             ?>
-                            <div class="column-holder h-100  <?= $classes ?>" style="<?= $style_attribute ?>">
+                            <div class="column-holder h-100 d-flex <?= $classes ?>" style="<?= $style_attribute ?>">
                                 <div class="inner content-margin">
                                     <?= _elements($column['items'], $module_id, $module['same_height_images']) ?>
                                 </div>
