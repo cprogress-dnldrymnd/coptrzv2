@@ -36,6 +36,7 @@ get_header(); // This fxn gets the header.php file and renders it
                     </div>
                 <?php } ?>
             </div>
+    </div>
 </section>
 
 
