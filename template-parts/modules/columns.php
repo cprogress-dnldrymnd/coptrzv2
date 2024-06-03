@@ -16,6 +16,7 @@
                             $styles = $column['styles'];
                             $classes = '';
                             $style_attribute = '';
+                            $style_attribute_inner = '';
                             if ($styles) {
                                 foreach ($styles as $style) {
                                     $style_type = $style['_type'];
@@ -42,12 +43,17 @@
                                         case 'custom_class':
                                             $classes .= ' ' .  $style['custom_class'];
                                             break;
+                                        case 'max_width':
+                                            $style_attribute_inner .= 'max-width: ' . $style['max_width'] . ';';
+                                            break;
                                     }
                                 }
                             }
                             ?>
+
+
                             <div class="column-holder h-100 d-flex <?= $classes ?>" style="<?= $style_attribute ?>">
-                                <div class="inner content-margin w-100">
+                                <div class="inner content-margin w-100 <?= $style_attribute_inner ?>">
                                     <?= _elements($column['items'], $module_id, $module['same_height_images']) ?>
                                 </div>
                             </div>
