@@ -1866,7 +1866,28 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'background_image',
 								array(
-									Field::make('image', 'background_image', 'Background Image')
+									Field::make('image', 'background_image', 'Background Image'),
+									Field::make('select', 'background_size', 'Background Size')
+										->set_options(
+											array(
+												'background-cover' => 'Cover',
+												'background-contain'  => 'Contain',
+											)
+										),
+									Field::make('select', 'background_attachment', 'Background Attachment')
+										->set_options(
+											array(
+												'background-scroll'    => 'Scroll',
+												'background-fixed'  => 'Fixed',
+											)
+										),
+									Field::make('select', 'background_repeat', 'Background Repeat')
+										->set_options(
+											array(
+												'background-no-repeat'    => 'No Repeat',
+												'background-repeat'  => 'No Repeat',
+											)
+										),
 								)
 							)
 							->add_fields(
