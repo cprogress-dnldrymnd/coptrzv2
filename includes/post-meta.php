@@ -1540,7 +1540,17 @@ Container::make('post_meta', 'Modules')
 															'h6' => 'h6',
 														)
 													)
-													->set_default_value('h2')
+													->set_default_value('h2'),
+												Field::make('radio', 'size', __('Heading Size'))
+													->set_options(
+														array(
+															'' => 'Default',
+															'big-heading' => 'Big Heading',
+															'medium-heading' => 'Medium Heading',
+															'small-heading' => 'Small Heading',
+														)
+													)
+													->set_default_value('h2'),
 											)
 										)
 										->add_fields(
