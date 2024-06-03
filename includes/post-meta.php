@@ -1578,6 +1578,20 @@ Container::make('post_meta', 'Modules')
 												Field::make('text', 'max_width', 'Max Width')
 											)
 										)
+										->add_fields(
+											'column_width',
+											array(
+												Field::make('select', 'column_width', 'Max Width')
+													->set_options(
+														array(
+															'col-lg'  => 'Auto',
+															'col-lg-6' => 'Two',
+															'col-lg-4' => 'Three',
+															'col-lg-3' => 'Four',
+														)
+													),
+											)
+										)
 										->set_layout('tabbed-vertical'),
 									Field::make('complex', 'items', __('Items'))
 										->add_fields(
