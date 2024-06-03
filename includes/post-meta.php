@@ -1240,7 +1240,7 @@ Container::make('post_meta', 'Modules')
 							)
 							->set_layout('tabbed-vertical'),
 						Field::make('text', 'heading', __('Heading')),
-						Field::make('textarea', 'description', __('Description')),
+						Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
 						Field::make('checkbox', 'same_height_images', __('Same Height Images')),
 						Field::make('complex', 'columns', __('Columns'))
 							->setup_labels(
