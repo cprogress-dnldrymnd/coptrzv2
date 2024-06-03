@@ -1,4 +1,4 @@
-<section class="call-to-action <?= $classes ?>" id="<?= $module_id ?>">
+<section class="call-to-action <?= $classes ?>">
     <div class="container">
         <div class="inner rounded-corner <?= $classes ?>" id="<?= $module_id ?>">
             <div class="row g-5 align-items-end">
