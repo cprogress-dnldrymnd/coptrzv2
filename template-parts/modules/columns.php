@@ -29,10 +29,16 @@
                                             $classes .= ' ' . $style['padding_top'] . ' ' . $style['padding_bottom'] . ' ' . $style['padding_left'] . ' ' . $style['padding_right'];
                                             break;
                                         case 'margin':
-                                            $classes .= $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
+                                            $classes .= ' ' . $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
                                             break;
                                         case 'border_radius':
                                             $style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
+                                            break;
+                                        case 'alignment':
+                                            $classes .= ' ' . $style['align_items'] . ' ' . $style['justify_content'] . ' ' . $style['text_align'];
+                                            break;
+                                        case 'custom_class':
+                                            $classes .= ' ' .  $style['custom_class'];
                                             break;
                                     }
                                 }
