@@ -62,7 +62,7 @@ function codemirror() {
 
             // Replace textarea with TinyMCE editor
             tinymce.init({
-                selector: 'textarea[name="custom_textarea"]',
+                selector: 'textarea[name="carbon_fields_compact_input[_modules][0][_description]"]',
                 // Additional TinyMCE settings (customize as needed)
                 plugins: 'lists link image table code',
                 toolbar: 'formatselect | bold italic | bullist numlist | link image | table | code'
@@ -71,7 +71,7 @@ function codemirror() {
             // Handle form submission (update textarea with TinyMCE content)
             textarea.closest('form').submit(function (e) {
                 // Update the textarea's value before submitting the form
-                textarea.val(tinymce.get('custom_textarea').getContent());
+                textarea.val(tinymce.get('carbon_fields_compact_input[_modules][0][_description]').getContent());
             });
         } else {
             console.error('TinyMCE is not loaded.');
