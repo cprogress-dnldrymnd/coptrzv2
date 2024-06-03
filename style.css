@@ -17219,7 +17219,7 @@ section.call-to-action .inner {
   --border-radius: 32px; }
 
 ul.custom-products.custom-products.custom-products li.product .inner {
-  border-radius: 15px;
+  border-radius: 10px;
   overflow: hidden;
   background-color: var(--body-color); }
   ul.custom-products.custom-products.custom-products li.product .inner a {
