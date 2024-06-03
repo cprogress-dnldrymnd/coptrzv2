@@ -88,5 +88,5 @@ function codemirror() {
             console.error('TinyMCE is not loaded.');
         }
 
-    }, 500);
+    }, 1000);
 }
