@@ -1581,13 +1581,21 @@ Container::make('post_meta', 'Modules')
 										->add_fields(
 											'column_width',
 											array(
-												Field::make('select', 'column_width', 'Max Width')
+												Field::make('select', 'column_width', __('Column Width'))
 													->set_options(
 														array(
-															'col-lg'  => 'Auto',
-															'col-lg-6' => '50.00%',
-															'col-lg-4' => '33.33%',
-															'col-lg-3' => '25.00%',
+															'col-lg' 	=> 'Auto',
+															'col-12'    => '100.00%',
+															'col-lg-11' => '91.67%',
+															'col-lg-10' => '83.33%',
+															'col-lg-9'  => '75.00%',
+															'col-lg-7'  => '58.33%',
+															'col-lg-6'  => '50.00%',
+															'col-lg-5'  => '67.00%',
+															'col-lg-4'  => '33.33%',
+															'col-lg-3'  => '25.00%',
+															'col-lg-2'  => '16.67%',
+															'col-lg-1'  => '08.33%',
 														)
 													),
 											)
