@@ -146,7 +146,7 @@ function archive_ajax()
 					<div class="post-grid h-100 rounded-corner">
 						<div class="image-holder position-relative">
 							<?php
-							echo do_shortcode('[_image size="medium" id="' . get_post_thumbnail_id(). '"]');
+							echo do_shortcode('[_image size="large" id="' . get_post_thumbnail_id(). '"]');
 							if ($is_search) {
 								if (get_post_type() == 'post') {
 									$post_type_val = 'blog';
