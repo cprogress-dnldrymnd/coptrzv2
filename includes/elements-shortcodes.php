@@ -17,6 +17,7 @@ class Elements_Shortcodes
                     'image_height' => '',
                     'image_width'  => '',
                     'same_height'  => 'false',
+                    'rounded_corners' => 'false',
                     'border_radius' => '',
                 ),
                 $atts
@@ -103,8 +104,8 @@ function _elements($data, $module_id, $same_height_images)
                 break;
             case 'image':
                 $same_height = $same_height_images ? 'same_height="true"' : 'same_height="false"';
-                $class = $d['rounded_corners'] ? 'rounded-corner' : '';
-                echo do_shortcode('[_image class="' . $class . '" border_radius="' . $d['border_radius'] . '" ' . $same_height . '  id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
+                $rounded_corners = $d['rounded_corners'] ? 'true' : 'false';
+                echo do_shortcode('[_image rounded_corners="' . $rounded_corners . '" border_radius="' . $d['border_radius'] . '" ' . $same_height . '  id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
                 break;
             case 'button':
                 echo do_shortcode('[_button id="' . $d['button_url'] . '" custom_url="' . $d['button_url_custom'] . '" button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" ]');
