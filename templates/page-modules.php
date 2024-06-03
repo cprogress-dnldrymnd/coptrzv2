@@ -42,6 +42,10 @@ $modules = get__post_meta('modules');
                     case 'alignment':
                         $classes_row .= ' ' . $style['align_items'] . ' ' . $style['justify_content'] . ' ' . $style['text_align'];
                         break;
+                    case 'background_image':
+                        $baground_image = $style['background_image'];
+                        $classes .= ' ' . $style['background_size'] . ' ' . $style['background_attachment'] . ' ' . $style['background_repeat'];
+                        break;
                 }
             }
         }

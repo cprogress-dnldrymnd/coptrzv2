@@ -1,5 +1,8 @@
-<section class="wysiwyg <?= $classes ?>" id="<?= $module_id ?>">
-  <div class="container">
+<section class="wysiwyg position-relative <?= $classes ?>" id="<?= $module_id ?>">
+  <?php if ($baground_image) { ?>
+    <?= do_shortcode('[_image class="background-image" id="' . $baground_image . '"]'); ?>
+  <?php } ?>
+  <div class="container position-relative">
     <?= do_shortcode(wpautop($module['wysiwyg'])) ?>
   </div>
 </section>
