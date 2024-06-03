@@ -118,6 +118,9 @@ function _elements($data, $module_id, $same_height_images)
             case 'custom_html':
                 echo $d['custom_html'];
                 break;
+            case 'column_width':
+                $column_class .= $style['column_width'];
+                break;
         }
     }
     return ob_get_clean();
