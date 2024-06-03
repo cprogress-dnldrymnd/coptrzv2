@@ -17223,5 +17223,7 @@ ul.products.products.products li.product .woocommerce-loop-product__title {
   padding: 0;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem; }
+ul.products.products.products li.product .button {
+  margin-top: 1rem; }
 
 /*# sourceMappingURL=style.css.map */
