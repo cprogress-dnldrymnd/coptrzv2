@@ -13930,8 +13930,9 @@ a.fancybox-gallery-img {
 .accordion.accordion-v2 .accordion-item {
   margin-bottom: 1rem; }
   .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button {
-    padding-bottom: 1rem !important;
-    background-color: transparent; }
+    padding-bottom: 30px !important;
+    background-color: transparent;
+    box-shadow: none !important; }
     .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button span {
       color: var(--black-color); }
       .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button span h4 {
@@ -13939,8 +13940,8 @@ a.fancybox-gallery-img {
     .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button:after {
       display: none; }
   .accordion.accordion-v2 .accordion-item .description-box {
-    padding-top: 1rem;
-    padding-bottom: 1rem; }
+    padding-top: 30px;
+    padding-bottom: 30px; }
 
 /*Padding*/
 /*Extra Small Padding*/

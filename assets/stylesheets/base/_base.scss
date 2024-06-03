@@ -3393,13 +3393,13 @@ a.fancybox-gallery-img {
 .accordion {
     &.accordion-v2 {
         .accordion-item {
-            margin-bottom: 1rem;
+            margin-bottom: 30px;
 
             .accordion-header {
                 .accordion-button {
-                    padding-bottom: 1rem !important;
+                    padding-bottom: 30px !important;
                     background-color: transparent;
-
+                    box-shadow: none !important;
                     span {
                         color: var(--black-color);
 
@@ -3415,8 +3415,8 @@ a.fancybox-gallery-img {
             }
 
             .description-box {
-                padding-top: 1rem;
-                padding-bottom: 1rem;
+                padding-top: 30px;
+                padding-bottom: 30px;
             }
         }
     }
