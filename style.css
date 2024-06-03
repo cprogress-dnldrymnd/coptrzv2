@@ -17218,6 +17218,8 @@ section.call-to-action .inner {
   padding: 5rem 3rem 3rem 3rem;
   --border-radius: 32px; }
 
+ul.custom-products li.product .inner a {
+  display: block; }
 ul.custom-products li.product .woocommerce-loop-product__title {
   font-size: 1.5rem;
   padding: 0;

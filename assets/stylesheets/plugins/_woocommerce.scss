@@ -1,6 +1,10 @@
 ul.custom-products {
     li.product {
-     
+        .inner {
+            a {
+                display: inline-block;
+            }
+        }
         .woocommerce-loop-product__title {
             font-size: 1.5rem;
             padding: 0;
