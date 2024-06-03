@@ -1,9 +1,11 @@
 <section class="columns <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
     <div class="container">
-        <div class="section-heading-description mb-5">
-            <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading"]') ?>
-            <?= do_shortcode("[_description description='" . $module['description'] . "']") ?>
-        </div>
+        <?php if ($module['display_heading_description'] && ($module['heading'] || $module['description'])) {  ?>
+            <div class="section-heading-description mb-5">
+                <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading"]') ?>
+                <?= do_shortcode("[_description description='" . $module['description'] . "']") ?>
+            </div>
+        <?php } ?>
 
         <div class="column-items">
             <?php if ($module['columns']) { ?>
