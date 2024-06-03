@@ -135,16 +135,8 @@ function archive_ajax()
 	}
 
 
-	$args = array(
-		'numberposts' => -1,
-		'post_type'   => 'guides'
-	);
-
-	$latest_books = get_posts($args);
-
-
 ?>
-	<div class="row gy-3 product-holder product-grid post-box-PostSlider">
+	<div class="row gy-3">
 		<?php
 		if ($the_query->have_posts()) {
 			while ($the_query->have_posts()) {
