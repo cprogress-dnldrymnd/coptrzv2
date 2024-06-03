@@ -7,7 +7,7 @@ if ($button_type != 'popups') {
 	$link = 'href="' . get_permalink($id) . '"';
 } else if ($button_type == 'custom') {
 	$tag = 'a';
-	$link = 'href="' . $custom_url . '"';
+	$link = 'href="' . $button_url_custom . '"';
 } else {
 	$tag = 'button';
 	$link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $id . '"';
