@@ -16,7 +16,7 @@ get_header(); // This fxn gets the header.php file and renders it
         </div>
 
         <?php if (have_posts()) { ?>
-            <div class="row">
+            <div class="row g-4">
                 <?php while (have_posts()) {
                     the_post() ?>
                     <div class="col-lg-4">
