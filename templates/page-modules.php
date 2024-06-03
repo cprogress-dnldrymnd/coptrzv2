@@ -59,7 +59,7 @@ $modules = get__post_meta('modules');
                     case 'container_width':
                         $container_width_class .= ' ' . $style['container_width'];
                         if ($style['custom_container_width']) {
-                            $container_width_style_attribute .= 'max-width: ' . $style['custom_container_width'] . ';';
+                            $container_width_style_attribute .= 'max-width: ' . $style['custom_container_width'] . '; margin-left: auto; margin-right: auto';
                         }
                         break;
                 }
