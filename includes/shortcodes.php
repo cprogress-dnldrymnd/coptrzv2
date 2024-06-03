@@ -601,7 +601,7 @@ class Shortcodes
 	function coptrz_review()
 	{
 		ob_start();
-		echo '<section class="customer-reviews">';
+		echo '<section class="customer-reviews background-primary">';
 		include(get_stylesheet_directory() . '/template-parts/modules/_customer_reviews.php');
 		echo '</section>';
 
