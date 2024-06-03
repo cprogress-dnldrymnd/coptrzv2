@@ -1,5 +1,11 @@
 ul.products.products.products {
     li.product {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 100%;
+        padding-right: calc(var(--bs-gutter-x) * 0.5);
+        padding-left: calc(var(--bs-gutter-x) * 0.5);
+        margin-top: var(--bs-gutter-y);
         .woocommerce-loop-product__title {
             font-size: 1.5rem;
             padding: 0;
@@ -9,5 +15,8 @@ ul.products.products.products {
         .button {
             margin-top: 1rem;
         }
+    }
+    @include before-after {
+        content: none;
     }
 }
