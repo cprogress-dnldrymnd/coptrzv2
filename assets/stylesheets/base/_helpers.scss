@@ -1290,3 +1290,18 @@
 		}
 	}
 }
+
+.background-cover {
+	background-size: cover !important;
+}
+
+.background-contain {
+	background-size: contain !important;
+}
+
+.background-fixed {
+	background-attachment: fixed !important;
+}
+.background-no-repeat {
+	background-repeat: no-repeat !important;
+}

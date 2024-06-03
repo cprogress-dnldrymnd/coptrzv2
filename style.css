@@ -14997,6 +14997,18 @@ a.fancybox-gallery-img {
   .image-absolute.image-absolute-contain img {
     object-fit: contain; }
 
+.background-cover {
+  background-size: cover !important; }
+
+.background-contain {
+  background-size: contain !important; }
+
+.background-fixed {
+  background-attachment: fixed !important; }
+
+.background-no-repeat {
+  background-repeat: no-repeat !important; }
+
 /**
  * Basic typography style for copy text
  */
