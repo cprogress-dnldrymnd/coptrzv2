@@ -1233,6 +1233,12 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->add_fields(
+								'max_width',
+								array(
+									Field::make('text', 'max_width', 'Max Width')
+								)
+							)
+							->add_fields(
 								'alignment',
 								array(
 									Field::make('select', 'align_items', 'Align Items')
