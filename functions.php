@@ -181,6 +181,32 @@ function codemirror_enqueue_scripts($hook)
 	wp_enqueue_style('wp-codemirror');
 }
 
+function custom_textarea_to_tinymce()
+{
+	// Check if TinyMCE is available 
+	if (!did_action('wp_enqueue_editor')) {
+		wp_enqueue_editor(); // If not, enqueue the editor scripts
+	}
+
+	// Get existing content from custom_textarea
+	$content = get_post_meta(get_the_ID(), 'custom_textarea', true);
+
+	// Set up TinyMCE settings
+	$settings = array(
+		'textarea_name' => 'custom_textarea', // Match the textarea name
+		'wpautop' => true, // Format content with paragraphs (optional)
+		// Add other TinyMCE settings here if needed
+	);
+
+	// Initialize TinyMCE editor
+	wp_editor($content, 'custom_textarea_tinymce', $settings);
+}
+
+// Choose where to display the TinyMCE editor:
+add_action('admin_init', 'custom_textarea_to_tinymce'); // Admin pages
+// add_action('the_content', 'custom_textarea_to_tinymce'); // Front-end (if applicable)
+
+
 function get_date_diff($post_id)
 {
 	$datetime1 = new DateTime(get_the_date('', $post_id));
@@ -314,7 +340,7 @@ function action_admin_footer()
 
 			$selector.find('.select-page-selector').val($input);
 
-		
+
 		}
 
 		setTimeout(function() {
