@@ -1539,7 +1539,7 @@ Container::make('post_meta', 'Modules')
 																'value' => 'yes',
 															)
 														)
-													),,
+													),
 											)
 										)
 										->add_fields(
