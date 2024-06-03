@@ -1263,7 +1263,7 @@
 }
 
 .max-width {
-	border-radius: var(--max-width, 600px);
+	max-width: var(--max-width, 600px);
 }
 
 .image-absolute {

@@ -15007,7 +15007,7 @@ a.fancybox-gallery-img {
   border-radius: var(--border-radius, 15px); }
 
 .max-width {
-  border-radius: var(--max-width, 600px); }
+  max-width: var(--max-width, 600px); }
 
 .image-absolute {
   position: relative;
