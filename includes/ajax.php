@@ -136,7 +136,7 @@ function archive_ajax()
 
 
 ?>
-	<div class="row gy-3">
+	<div class="row g-4">
 		<?php
 		if ($the_query->have_posts()) {
 			while ($the_query->have_posts()) {
