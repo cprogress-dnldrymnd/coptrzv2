@@ -3,7 +3,7 @@
         <div class="inner rounded-corner <?= $classes ?>" id="<?= $module_id ?>">
             <div class="row g-4 align-items-end">
                 <div class="col-lg-6">
-                    <div class="column-holder">
+                    <div class="column-holder content-margin">
                         <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading" tag="' . $module['tag'] . '"]') ?>
                         <?= do_shortcode("[_description description='" . $module['description'] . "']") ?>
                     </div>
