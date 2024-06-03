@@ -91,7 +91,6 @@ a {
 }
 
 .button-box.button-box {
-
     /*> span,
     > a,
     > button {
@@ -595,16 +594,16 @@ select option {
 }
 
 .plus-minus {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     position: relative;
 
     @include before {
         content: "";
-        width: 5px;
-        height: 25px;
+        width: 3px;
+        height: 20px;
         background: var(--primary-color);
         position: absolute;
         left: 10px;
@@ -613,8 +612,8 @@ select option {
 
     @include after {
         content: "";
-        width: 25px;
-        height: 5px;
+        width: 20px;
+        height: 3px;
         background: var(--primary-color);
     }
 }
@@ -819,7 +818,7 @@ select option {
                     display: none;
 
                     &:checked {
-                        &+.privacy-policy-text {
+                        & + .privacy-policy-text {
                             .fake-checkbox {
                                 border-color: var(--accent-color);
                                 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.2.0 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons  Inc. --%3E%3Cpath fill='%23FFEE00' d='M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z'/%3E%3C/svg%3E");
@@ -917,7 +916,6 @@ select option {
                         }
 
                         @include responsive(sm-lg) {
-
                             &#fsRow5038672-15,
                             &#fsRow5038672-17,
                             &#fsRow5038672-19 {
@@ -1343,7 +1341,7 @@ select option {
             display: none;
 
             &:checked {
-                &+label {
+                & + label {
                     background-color: var(--black-color);
                     color: var(--white-color);
                 }
@@ -1405,7 +1403,7 @@ select option {
             display: none !important;
 
             &:checked {
-                &+label {
+                & + label {
                     border-color: var(--accent-color);
                 }
             }
@@ -1515,8 +1513,6 @@ select option {
         margin-right: 1.25rem;
     }
 }
-
-
 
 .content-wrapper {
     z-index: 2;
@@ -1839,7 +1835,7 @@ select option {
                     margin-left: auto !important;
                     margin-right: auto !important;
 
-                    >* {
+                    > * {
                         @include not-last-child {
                             margin-bottom: 1.5rem;
                         }
@@ -2087,14 +2083,14 @@ select option {
         }
     }
 
-    &+.swiper-pagination {
+    & + .swiper-pagination {
         margin-top: 2rem;
     }
 }
 
 body:not(.elementor-editor-active) {
     .elementor-swiper-slider {
-        >div {
+        > div {
             flex-direction: row !important;
             flex-wrap: nowrap !important;
 
@@ -2106,7 +2102,7 @@ body:not(.elementor-editor-active) {
     }
 
     .elementor-swiper-slider-js-vertical {
-        >div {
+        > div {
             flex-direction: column !important;
             flex-wrap: nowrap !important;
 
@@ -2150,7 +2146,7 @@ body.elementor-editor-active {
     }
 
     .elementor-swiper-slider {
-        >div {
+        > div {
             flex-direction: column !important;
             flex-wrap: wrap;
 
@@ -2161,7 +2157,7 @@ body.elementor-editor-active {
         }
 
         .swiper-slide {
-            >.e-con-inner:before {
+            > .e-con-inner:before {
                 content: "Swiper Slide";
                 display: block;
                 padding-left: 30px;
@@ -2176,7 +2172,7 @@ body.elementor-editor-active {
             }
         }
 
-        >.e-con-inner:before {
+        > .e-con-inner:before {
             content: "Swiper";
             display: block;
             padding-left: 30px;
@@ -2395,7 +2391,7 @@ body.elementor-editor-active {
 
 .ElementsWidget-prefix.ElementsWidget-prefix {
     .R-TextBody {
-        >div {
+        > div {
             @include button-style;
             @include button-accent;
             cursor: pointer;
@@ -2453,7 +2449,7 @@ body.elementor-editor-active {
     .filter-item {
         input {
             &:checked {
-                &+label {
+                & + label {
                     @include before {
                         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" fill="%232DA1FF"></path></svg>');
                     }
@@ -2906,7 +2902,6 @@ a.fancybox-gallery-img {
 .breadcrumbs {
     &.breadcrumbs-white {
         li {
-
             a,
             span {
                 color: var(--white-color);
@@ -3225,7 +3220,7 @@ a.fancybox-gallery-img {
 }
 
 .button-box {
-    &+.wcrp-rental-products-rental-form {
+    & + .wcrp-rental-products-rental-form {
         display: flex !important;
     }
 }
@@ -3366,7 +3361,6 @@ a.fancybox-gallery-img {
         .modal-content {
             border-radius: 0;
             border: none;
-
         }
 
         .form-holder {
@@ -3400,6 +3394,14 @@ a.fancybox-gallery-img {
                     padding-bottom: 30px !important;
                     background-color: transparent;
                     box-shadow: none !important;
+                    outline: none;
+                    &:not(.collapsed) {
+                        .plus-minus {
+                            &:before {
+                                display: none;
+                            }
+                        }
+                    }
                     span {
                         color: var(--black-color);
 

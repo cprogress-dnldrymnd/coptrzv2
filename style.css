@@ -11733,15 +11733,15 @@ select option {
     background-repeat: repeat; }
 
 .plus-minus {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   position: relative; }
   .plus-minus:before {
     content: "";
-    width: 5px;
-    height: 25px;
+    width: 3px;
+    height: 20px;
     background: var(--primary-color);
     position: absolute;
     left: 10px;
@@ -11752,8 +11752,8 @@ select option {
     transition: 300ms; }
   .plus-minus:after {
     content: "";
-    width: 25px;
-    height: 5px;
+    width: 20px;
+    height: 3px;
     background: var(--primary-color); }
 
 .wpcf7.wpcf7 p {
@@ -13928,11 +13928,14 @@ a.fancybox-gallery-img {
     object-fit: cover; }
 
 .accordion.accordion-v2 .accordion-item {
-  margin-bottom: 1rem; }
+  margin-bottom: 30px; }
   .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button {
     padding-bottom: 30px !important;
     background-color: transparent;
-    box-shadow: none !important; }
+    box-shadow: none !important;
+    outline: none; }
+    .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button:not(.collapsed) .plus-minus:before {
+      display: none; }
     .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button span {
       color: var(--black-color); }
       .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button span h4 {
