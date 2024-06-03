@@ -1,5 +1,5 @@
 <section class="columns <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
-    <div class="container">
+    <div class="container <?= $container_width_class ?>">
         <?php if ($module['display_heading_description'] && ($module['heading'] || $module['description'])) {  ?>
             <div class="section-heading-description content-margin mb-5 <?= $module['text_align'] ?>">
                 <?= do_shortcode('[_heading tag="' . $module['tag'] . '" heading="' . $module['heading'] . '" class="' . $module['size'] . '"]') ?>
@@ -7,7 +7,7 @@
             </div>
         <?php } ?>
 
-        <div class="column-items">
+        <div class="column-items" style="<?= $container_width_style_attribute ?>">
             <?php if ($module['columns']) { ?>
                 <div class="row g-4 <?= $classes_row ?>">
                     <?php foreach ($module['columns'] as $column) { ?>

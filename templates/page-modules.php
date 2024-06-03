@@ -16,6 +16,8 @@ $modules = get__post_meta('modules');
         $classes = '';
         $style_attribute = '';
         $classes_row = '';
+        $container_width_class = '';
+        $container_width_style_attribute = '';
         if ($styles) {
             foreach ($styles as $style) {
                 $style_type = $style['_type'];
@@ -49,6 +51,10 @@ $modules = get__post_meta('modules');
                     case 'text_color':
                         $classes .= ' ' . $style['text_color'];
                         $style_attribute .= 'color: ' . $style['text_color_custom'] . ';';
+                        break;
+                    case 'container_width':
+                        $container_width_class .= ' ' . $style['container_width'];
+                        $container_width_style_attribute .= 'max-width: ' . $style['custom_container_width'] . ';';
                         break;
                 }
             }
