@@ -13946,6 +13946,15 @@ a.fancybox-gallery-img {
     padding-top: 30px;
     padding-bottom: 30px; }
 
+.post-grid-style-1 {
+  padding: 2rem; }
+  @media screen and (max-width: 1199px) {
+    .post-grid-style-1 {
+      padding: 1.5rem; } }
+  @media screen and (max-width: 991px) {
+    .post-grid-style-1 {
+      padding: 1; } }
+
 /*Padding*/
 /*Extra Small Padding*/
 .xxs-padding-top {

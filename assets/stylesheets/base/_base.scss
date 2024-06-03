@@ -3423,3 +3423,13 @@ a.fancybox-gallery-img {
         }
     }
 }
+
+.post-grid-style-1 {
+    padding: 2rem;
+    @include responsive(xs-md) {
+        padding: 1.5rem;
+    }
+    @include responsive(xs-sm) {
+        padding: 1;
+    }
+}
