@@ -31,7 +31,7 @@ $modules = get__post_meta('modules');
                         $classes .= ' ' . $style['padding_top'] . ' ' . $style['padding_bottom'] . ' ' . $style['padding_left'] . ' ' . $style['padding_right'];
                         break;
                     case 'margin':
-                        $classes .= $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
+                        $classes .= ' ' . $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
                         break;
                     case 'border_radius':
                         $style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
