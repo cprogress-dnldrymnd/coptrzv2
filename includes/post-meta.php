@@ -1585,9 +1585,9 @@ Container::make('post_meta', 'Modules')
 													->set_options(
 														array(
 															'col-lg'  => 'Auto',
-															'col-lg-6' => 'Two',
-															'col-lg-4' => 'Three',
-															'col-lg-3' => 'Four',
+															'col-lg-6' => '50.00%',
+															'col-lg-4' => '33.33%',
+															'col-lg-3' => '25.00%',
 														)
 													),
 											)
