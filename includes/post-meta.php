@@ -912,7 +912,19 @@ Container::make('post_meta', 'Modules')
 							)
 
 							->set_layout('tabbed-vertical'),
-						Field::make('text', 'heading', __('Heading')),
+						Field::make('text', 'heading', __('Heading'))->set_width(50),
+						Field::make('select', 'tag', __('Tag'))->set_width(50)
+							->set_options(
+								array(
+									'h1' => 'h1',
+									'h2' => 'h2',
+									'h3' => 'h3',
+									'h4' => 'h4',
+									'h5' => 'h5',
+									'h6' => 'h6',
+								)
+							)
+							->set_default_value('h2'),
 						Field::make('textarea', 'description', __('Description')),
 						Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
 							->set_options(
