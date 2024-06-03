@@ -12,7 +12,6 @@ if ($button_type != 'popups' && $button_type != 'custom') {
 	$tag = 'button';
 	$link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $id . '"';
 }
-echo $link;
 ?>
 <div class="button-box <?= $class ?>" <?= $GetData->get_data_aos($data_aos) ?> <?= $button_attribute ? $button_attribute : '' ?>>
 	<<?= $tag ?> <?= $link ?> <?= $button_action ?> <?= $button_type == 'popup'  ? 'data-bs-toggle="modal"' : '' ?>>
