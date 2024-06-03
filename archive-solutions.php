@@ -8,7 +8,7 @@
 get_header(); // This fxn gets the header.php file and renders it 
 ?>
 
-<section class="archive-grid-v2">
+<section class="archive-grid-v2 md-padding">
     <div class="section-heading-description content-margin mb-5 text-center">
         <?= do_shortcode('[_heading heading="Explore our Industry Solutions"]') ?>
         <?= do_shortcode('[_description description="Before we can help, you need to tell us a bit about you. Which sector below suits your business needs the most? Then we’ll introduce you to your industry expert." ]') ?>
