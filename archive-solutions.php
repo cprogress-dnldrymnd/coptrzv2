@@ -24,7 +24,6 @@ get_header(); // This fxn gets the header.php file and renders it
                             <div class="content-margin h-100">
                                 <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . get_post_thumbnail_id() . '"]'); ?>
                                 <?= do_shortcode('[_heading heading="' . get_the_title() . '" tag="h3"]') ?>
-                                <?= do_shortcode('[_description description="' . get_the_excerpt() . '" ]') ?>
                                 <div class="button-box button-accent">
                                     <a href="<?= get_the_permalink() ?>">
                                         LEARN MORE
