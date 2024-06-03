@@ -1254,9 +1254,18 @@ Container::make('post_meta', 'Modules')
 												'large-container'  => 'Large',
 												'medium-container'  => 'Medium',
 												'small-container'  => 'Small',
+												'custom-container'  => 'Custom',
 											)
 										),
 									Field::make('text', 'custom_container_width', 'Custom Container Width')
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'container_width',
+													'value' => 'custom-container',
+												)
+											)
+										),
 								)
 							)
 							->add_fields(
