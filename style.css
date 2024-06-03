@@ -17211,6 +17211,7 @@ section.contact-form .form-holder {
   color: var(--black-color); }
 
 section.call-to-action .inner {
-  padding: 5rem 3rem 3rem 3rem; }
+  padding: 5rem 3rem 3rem 3rem;
+  --border-radius: 32px; }
 
 /*# sourceMappingURL=style.css.map */
