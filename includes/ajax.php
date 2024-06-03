@@ -143,105 +143,94 @@ function archive_ajax()
 				$the_query->the_post();
 		?>
 				<div class="<?= $class ?> col-sm-6 post-item">
-					<div class="product-box">
-						<div class="inner background-white d-block ">
-							<a href="<?= get_permalink() ?>" class="box-link"></a>
-							<div class="image-holder position-relative">
-								<?php
-								$DisplayData->image(
-									array(
-										'image_id'    => get_post_thumbnail_id(),
-										'size'        => 'medium',
-										'placeholder' => true
-									),
-									'position-relative image-cover-transform ' . (get_post_type() == 'post' ? 'image-post' : '')
-								);
-								if ($is_search) {
-									if (get_post_type() == 'post') {
-										$post_type_val = 'blog';
-									} else {
-										$post_type_val = get_post_type();
-									}
-
-									if (get_post_type() == 'post') {
-										$button_text = 'Read more';
-									} else if (get_post_type() == 'webinars') {
-										$button_text = 'Watch webinar';
-									} else if (get_post_type() == 'product') {
-										$button_text = 'View product';
-									} else if (get_post_type() == 'page') {
-										$button_text = 'View page';
-									} else if (get_post_type() == 'events') {
-										$button_text = 'View events';
-									}
-									echo '<span class="badge"> ' . $post_type_val . ' </span>';
+					<div class="post-grid h-100 rounded-corner">
+						<div class="image-holder position-relative">
+							<?php
+							echo do_shortcode('[_image size="medium" id="' . get_the_ID() . '"]');
+							if ($is_search) {
+								if (get_post_type() == 'post') {
+									$post_type_val = 'blog';
+								} else {
+									$post_type_val = get_post_type();
 								}
-								?>
-							</div>
-							<?php if (get_post_type() == 'post' || get_post_type() == 'casestudies' || get_post_type() == 'events') { ?>
-								<?php
 
 								if (get_post_type() == 'post') {
-									$post_tax = 'category';
-								} else if (get_post_type() == 'casestudies') {
-									$post_tax = 'case_study_category';
+									$button_text = 'Read more';
+								} else if (get_post_type() == 'webinars') {
+									$button_text = 'Watch webinar';
+								} else if (get_post_type() == 'product') {
+									$button_text = 'View product';
+								} else if (get_post_type() == 'page') {
+									$button_text = 'View page';
 								} else if (get_post_type() == 'events') {
-									$post_tax = 'events_category';
+									$button_text = 'View events';
 								}
-								$categories = get_the_terms(get_the_ID(), $post_tax);
-								?>
-								<div class="top-box">
-									<div class="meta-box d-flex flex-wrap">
-										<span class="date">
+								echo '<span class="badge"> ' . $post_type_val . ' </span>';
+							}
+							?>
+						</div>
+						<?php if (get_post_type() == 'post' || get_post_type() == 'casestudies' || get_post_type() == 'events') { ?>
+							<?php
+
+							if (get_post_type() == 'post') {
+								$post_tax = 'category';
+							} else if (get_post_type() == 'casestudies') {
+								$post_tax = 'case_study_category';
+							} else if (get_post_type() == 'events') {
+								$post_tax = 'events_category';
+							}
+							$categories = get_the_terms(get_the_ID(), $post_tax);
+							?>
+							<div class="top-box">
+								<div class="meta-box d-flex flex-wrap">
+									<span class="date">
+										<?php
+										foreach ($categories as $cat) {
+										?>
+											<a href="<?= get_term_link($cat->term_id, $post_tax) ?>"><?= $cat->name ?></a>
+										<?php
+										}
+										?>
+									</span>
+
+									<?php if (get_post_type() == 'post') { ?>
+										<div class="bull">&bull;</div>
+										<span class="author">
 											<?php
-											foreach ($categories as $cat) {
+											$author_id = get_post_field('post_author', get_the_ID());
+											$author_name = get_the_author_meta('display_name', $author_id);
 											?>
-												<a href="<?= get_term_link($cat->term_id, $post_tax) ?>"><?= $cat->name ?></a>
-											<?php
-											}
-											?>
+											<?= $author_name ?>
 										</span>
+									<?php } ?>
 
-										<?php if (get_post_type() == 'post') { ?>
-											<div class="bull">&bull;</div>
-											<span class="author">
-												<?php
-												$author_id = get_post_field('post_author', get_the_ID());
-												$author_name = get_the_author_meta('display_name', $author_id);
-												?>
-												<?= $author_name ?>
-											</span>
-										<?php } ?>
-
-									</div>
-								</div>
-							<?php } ?>
-							<div class="heading-box">
-								<h4>
-									<?= get_the_title() ?>
-								</h4>
-
-								<?php
-								$DisplayData->description(
-									array(
-										'description' => custom_excerpt_length(get_the_excerpt(), 20),
-									)
-								);
-								?>
-							</div>
-
-							<div class="bottom-box">
-
-								<div class="link-box">
-									<a href="<?= get_permalink() ?>" class="link-underline fw-medium">
-										<?= $button_text ? $button_text : 'Read more' ?>
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-											<path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-										</svg>
-									</a>
 								</div>
 							</div>
+						<?php } ?>
+						<div class="heading-box">
+							<h4>
+								<?= get_the_title() ?>
+							</h4>
 
+							<?php
+							$DisplayData->description(
+								array(
+									'description' => custom_excerpt_length(get_the_excerpt(), 20),
+								)
+							);
+							?>
+						</div>
+
+						<div class="bottom-box">
+
+							<div class="link-box">
+								<a href="<?= get_permalink() ?>" class="link-underline fw-medium">
+									<?= $button_text ? $button_text : 'Read more' ?>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+										<path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+									</svg>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
