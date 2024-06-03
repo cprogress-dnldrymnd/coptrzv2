@@ -6,7 +6,7 @@ $heading_small = isset($heading_small) ? $heading_small : false;
 if (isset($heading) && $heading != '') {
 	$tag = isset($tag) && $tag ? $tag : 'h2';
 ?>
-	<div class="heading-box<?= $GetData->get_class($class) ?>" <?= $GetData->get_data_aos($data_aos) ?>>
+	<div class="heading-box <?= $class ?>" <?= $GetData->get_data_aos($data_aos) ?>>
 		<?php if ($heading_small) { ?>
 			<span class="prefix"><?= $heading_small ?></span>
 		<?php } ?>
