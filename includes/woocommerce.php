@@ -1473,3 +1473,9 @@ function _price_format($price)
         return round(preg_replace("/[^0-9\.]/", '', $price), 2);
     }
 }
+
+add_filter('post_class', function ($classes, $class, $product_id) {
+    //only add these classes if we're on a product category page.
+    $classes = array_merge(['col-6', 'col-lg-4'], $classes);
+    return $classes;
+}, 10, 3);
