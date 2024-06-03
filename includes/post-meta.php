@@ -1233,6 +1233,39 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->add_fields(
+								'alignment',
+								array(
+									Field::make('select', 'align_items', 'Align Items')
+										->set_options(
+											array(
+												''               => 'Default',
+												'align-items-start'  => 'Start',
+												'align-items-center'  => 'Center',
+												'align-items-end'  => 'End',
+											)
+										),
+									Field::make('select', 'justify_content', 'Justify Content')
+										->set_options(
+											array(
+												''                  => 'Default',
+												'justify-content-start'  => 'Start',
+												'justify-content-center'  => 'Center',
+												'justify-content-end'  => 'End',
+												'justify-content-between'  => 'Between',
+											)
+										),
+									Field::make('select', 'text_align', 'Text Align')
+										->set_options(
+											array(
+												''                => 'Default',
+												'text-start'                => 'Left',
+												'text-center'                => 'Center',
+												'text-end'                => 'Right',
+											)
+										),
+								)
+							)
+							->add_fields(
 								'custom_class',
 								array(
 									Field::make('text', 'custom_class', 'Custom Class')
