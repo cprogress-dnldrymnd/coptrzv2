@@ -62,7 +62,7 @@ function codemirror() {
                 var textarea = jQuery(this);
                 $name = jQuery(this).attr('name');
                 // Replace textarea with TinyMCE editor
-
+                console.log($name);
 
                 tinymce.init({
                     selector: 'textarea[name="' + $name + '"]',
@@ -79,7 +79,7 @@ function codemirror() {
                 // Handle form submission (update textarea with TinyMCE content)
                 textarea.closest('form').submit(function (e) {
                     // Update the textarea's value before submitting the form
-                    textarea.val(tinymce.get('carbon_fields_compact_input[_modules][0][_description]').getContent());
+                    textarea.val(tinymce.get($name).getContent());
                 });
             });
             // Find the textarea element
