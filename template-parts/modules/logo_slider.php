@@ -1,10 +1,11 @@
 <section class="logo-slider <?= $classes ?>" id="<?= $module_id ?>">
     <div class="container">
-        <div class="section-heading-description">
-            <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="text-center mb-5" tag="h3"]') ?>
-            <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
-        </div>
-
+        <?php if ($module['display_heading_description'] && ($module['heading'] || $module['description'])) {  ?>
+            <div class="section-heading-description content-margin mb-5 <?= $module['text_align'] ?>">
+                <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="' . $module['size'] . '"]') ?>
+                <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
+            </div>
+        <?php } ?>
         <div class="logo-slider-box">
             <div class="swiper mySwiper-logoSwiper">
                 <div class="swiper-wrapper text-center align-items-center">
