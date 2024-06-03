@@ -1891,6 +1891,32 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->add_fields(
+								'text_color',
+								array(
+									Field::make('select', 'text_color', 'Text Color')
+										->set_options(
+											array(
+												'text-primary'   => 'Primary',
+												'text-secondary' => 'Secondary',
+												'text-accent'    => 'Accent',
+												'text-white'     => 'White',
+												'text-light-gray'     => 'Light Gray',
+												'text-body-color'     => 'Body',
+												'text-custom'    => 'Custom',
+											)
+										),
+									Field::make('color', 'text_color_custom', __('Text Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'text_color',
+													'value' => 'text-custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
 								'padding',
 								array(
 									Field::make('select', 'padding_top', 'Padding Top')
