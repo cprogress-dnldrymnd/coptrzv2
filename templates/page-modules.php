@@ -36,7 +36,9 @@ $modules = get__post_meta('modules');
                         $classes .= ' ' . $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
                         break;
                     case 'border_radius':
-                        $style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
+                        if ($style['border_radius']) {
+                            $style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
+                        }
                         break;
                     case 'custom_class':
                         $classes .= ' ' . $style['custom_class'];
@@ -50,11 +52,15 @@ $modules = get__post_meta('modules');
                         break;
                     case 'text_color':
                         $classes .= ' ' . $style['text_color'];
-                        $style_attribute .= 'color: ' . $style['text_color_custom'] . ';';
+                        if ($style['text_color_custom']) {
+                            $style_attribute .= 'color: ' . $style['text_color_custom'] . ';';
+                        }
                         break;
                     case 'container_width':
                         $container_width_class .= ' ' . $style['container_width'];
-                        $container_width_style_attribute .= 'max-width: ' . $style['custom_container_width'] . ';';
+                        if ($style['custom_container_width']) {
+                            $container_width_style_attribute .= 'max-width: ' . $style['custom_container_width'] . ';';
+                        }
                         break;
                 }
             }
