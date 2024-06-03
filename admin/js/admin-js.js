@@ -62,12 +62,19 @@ function codemirror() {
             var textarea = jQuery('textarea[name="carbon_fields_compact_input[_modules][0][_description]"]');
 
             // Replace textarea with TinyMCE editor
+      
+
             tinymce.init({
                 selector: 'textarea[name="carbon_fields_compact_input[_modules][0][_description]"]',
-                // Additional TinyMCE settings (customize as needed)
-                plugins: 'lists link image table code',
-                toolbar: 'formatselect | bold italic | bullist numlist | link image | table | code'
+                plugins: 'lists link charmap paste textcolor',
+                toolbar: 'formatselect | bold italic | bullist numlist | link | forecolor | charmap | pastetext | removeformat',
+                block_formats: 'Paragraph=p; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6; Preformatted=pre', // Like classic editor
+                toolbar_location: 'top',
+                menubar: false,
+                statusbar: false,
+                branding: false // Hide TinyMCE logo
             });
+    
 
             // Handle form submission (update textarea with TinyMCE content)
             textarea.closest('form').submit(function (e) {
