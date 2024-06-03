@@ -866,6 +866,8 @@ Container::make('post_meta', 'Modules')
 												'background-secondary' => 'Secondary',
 												'background-accent'    => 'Accent',
 												'background-white'     => 'White',
+												'background-light-gray'     => 'Light Gray',
+												'background-body-color'     => 'Body',
 												'background-custom'    => 'Custom',
 											)
 										),
@@ -931,6 +933,8 @@ Container::make('post_meta', 'Modules')
 												'background-secondary' => 'Secondary',
 												'background-accent'    => 'Accent',
 												'background-white'     => 'White',
+												'background-light-gray'     => 'Light Gray',
+												'background-body-color'     => 'Body',
 												'background-custom'    => 'Custom',
 											)
 										),
@@ -1082,6 +1086,8 @@ Container::make('post_meta', 'Modules')
 															'background-secondary' => 'Secondary',
 															'background-accent'    => 'Accent',
 															'background-white'     => 'White',
+															'background-light-gray'     => 'Light Gray',
+															'background-body-color'     => 'Body',
 															'background-custom'    => 'Custom',
 														)
 													),
@@ -1238,7 +1244,9 @@ Container::make('post_meta', 'Modules')
 															'post'      => 'Post',
 															'solutions' => 'Solution',
 															'popups'    => 'Popup',
-															'custom'    => 'Custom',
+															'background-light-gray'     => 'Light Gray',
+															'background-body-color'     => 'Body',
+															'background-custom'    => 'Custom',
 														)
 													),
 												Field::make('text', 'button_text', __('Button Text')),
@@ -1321,6 +1329,8 @@ Container::make('post_meta', 'Modules')
 												'background-secondary' => 'Secondary',
 												'background-accent'    => 'Accent',
 												'background-white'     => 'White',
+												'background-light-gray'     => 'Light Gray',
+												'background-body-color'     => 'Body',
 												'background-custom'    => 'Custom',
 											)
 										),
@@ -1390,6 +1400,8 @@ Container::make('post_meta', 'Modules')
 												'background-secondary' => 'Secondary',
 												'background-accent'    => 'Accent',
 												'background-white'     => 'White',
+												'background-light-gray'     => 'Light Gray',
+												'background-body-color'     => 'Body',
 												'background-custom'    => 'Custom',
 											)
 										),
@@ -1528,6 +1540,8 @@ Container::make('post_meta', 'Modules')
 												'background-secondary' => 'Secondary',
 												'background-accent'    => 'Accent',
 												'background-white'     => 'White',
+												'background-light-gray'     => 'Light Gray',
+												'background-body-color'     => 'Body',
 												'background-custom'    => 'Custom',
 											)
 										),
@@ -1681,6 +1695,8 @@ Container::make('post_meta', 'Modules')
 												'background-secondary' => 'Secondary',
 												'background-accent'    => 'Accent',
 												'background-white'     => 'White',
+												'background-light-gray'     => 'Light Gray',
+												'background-body-color'     => 'Body',
 												'background-custom'    => 'Custom',
 											)
 										),
