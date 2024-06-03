@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="column-holder">
-                        <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading"]') ?>
+                        <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading" tag="' . $module['tag'] . '"]') ?>
                         <?= do_shortcode("[_description description='" . $module['description'] . "']") ?>
                     </div>
                 </div>
