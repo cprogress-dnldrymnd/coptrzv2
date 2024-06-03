@@ -54,5 +54,10 @@ function codemirror() {
             wp.codeEditor.initialize(jQuery('textarea[name="carbon_fields_compact_input[_body_scripts]"'), cm_settings.ce_html);
         }
 
+        jQuery('.activate-tinymce').each(function (index, element) {
+            console.log('test');
+        });
+
+
     }, 500);
 }
