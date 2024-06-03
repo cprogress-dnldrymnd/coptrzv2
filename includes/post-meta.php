@@ -1232,12 +1232,7 @@ Container::make('post_meta', 'Modules')
 									Field::make('text', 'border_radius', 'Border Radius')
 								)
 							)
-							->add_fields(
-								'max_width',
-								array(
-									Field::make('text', 'max_width', 'Max Width')
-								)
-							)
+							
 							->add_fields(
 								'alignment',
 								array(
@@ -1478,6 +1473,12 @@ Container::make('post_meta', 'Modules')
 											'custom_class',
 											array(
 												Field::make('text', 'custom_class', 'Custom Class')
+											)
+										)
+										->add_fields(
+											'max_width',
+											array(
+												Field::make('text', 'max_width', 'Max Width')
 											)
 										)
 										->set_layout('tabbed-vertical'),
