@@ -1006,6 +1006,7 @@ Container::make('post_meta', 'Modules')
 									'post'      => 'Post',
 									'solutions' => 'Solution',
 									'popups'    => 'Popup',
+									'custom'    => 'Custom',
 								)
 							),
 						Field::make('text', 'button_text', __('Button Text')),
