@@ -3426,6 +3426,15 @@ a.fancybox-gallery-img {
 
 .post-grid-style-1 {
     padding: 2rem;
+    .image-holder {
+        margin-left: -2rem;
+        margin-top: -2rem;
+        margin-right: -2rem;
+    }
+    .placeholder-image {
+        background-color: var(--accent-color);
+        object-fit: contain !important;
+    }
     @include responsive(xs-md) {
         padding: 1.5rem;
     }

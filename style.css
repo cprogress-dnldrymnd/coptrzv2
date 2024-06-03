@@ -13948,6 +13948,13 @@ a.fancybox-gallery-img {
 
 .post-grid-style-1 {
   padding: 2rem; }
+  .post-grid-style-1 .image-holder {
+    margin-left: -2rem;
+    margin-top: -2rem;
+    margin-right: -2rem; }
+  .post-grid-style-1 .placeholder-image {
+    background-color: var(--accent-color);
+    object-fit: contain !important; }
   @media screen and (max-width: 1199px) {
     .post-grid-style-1 {
       padding: 1.5rem; } }
