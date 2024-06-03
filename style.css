@@ -17236,7 +17236,7 @@ ul.custom-products.custom-products.custom-products li.product .image-box {
   padding: 35%; }
 ul.custom-products.custom-products.custom-products li.product .button {
   margin-top: 1rem !important;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem !important; }
 
 .wysiwyg .woocommerce {
   max-width: 1400px;
