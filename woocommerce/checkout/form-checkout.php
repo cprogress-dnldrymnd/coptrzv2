@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Checkout Form
  *
@@ -18,6 +19,7 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+
 
 
 // If checkout registration is disabled and not logged in, the user cannot checkout.
@@ -63,7 +65,21 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
                                 </li>
                             </ul>
                         </div>
-
+                        <style>
+                            .custom-login a {
+                                margin-left: 2rem;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                                color: var(--accent-color);
+                                font-size: 22px;
+                                cursor: pointer;
+                            }
+                        </style>
+                        <?php if (!is_user_logged_in()) { ?>
+                            <div class="custom-login">
+                                Already have an account? <a href="#customer-login">Login</a>
+                            </div>
+                        <?php } ?>
 
                         <div class="previous-steps">
                             <div class="previous-step d-none contact">
