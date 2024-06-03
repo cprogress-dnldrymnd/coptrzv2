@@ -15,7 +15,6 @@ section.logo-slider {
     }
 }
 
-
 section.cta {
     .cta-inner {
         border-radius: 20px;
@@ -2787,6 +2786,7 @@ section.sticky-add-to-cart {
     }
 }
 
-.blog {
+.blog,
+.archive {
     background-color: var(--body-color);
 }
