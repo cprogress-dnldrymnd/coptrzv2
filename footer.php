@@ -1,4 +1,4 @@
-<?= do_shortcode('[customer_reviews]') ?>
+<?= do_shortcode('[coptrz_review]') ?>
 <footer id="footer" class="background-primary">
     <div class="container">
         <div class="row g-4">
