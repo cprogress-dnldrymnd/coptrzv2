@@ -56,6 +56,7 @@ function codemirror() {
 
         // Ensure TinyMCE is loaded (assuming you've enqueued it in WordPress)
         if (typeof tinymce !== 'undefined') {
+            console.log('TinyMCE is  loaded.');
 
             // Find the textarea element
             var textarea = jQuery('textarea[name="carbon_fields_compact_input[_modules][0][_description]"]');
@@ -74,7 +75,7 @@ function codemirror() {
                 textarea.val(tinymce.get('carbon_fields_compact_input[_modules][0][_description]').getContent());
             });
         } else {
-            console.error('TinyMCE is not loaded.');
+            console.log('TinyMCE is not loaded.');
         }
 
 
