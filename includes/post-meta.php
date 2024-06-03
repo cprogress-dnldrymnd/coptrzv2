@@ -1541,7 +1541,7 @@ Container::make('post_meta', 'Modules')
 														)
 													)
 													->set_default_value('h2'),
-												Field::make('radio', 'size', __('Heading Size'))
+												Field::make('select', 'size', __('Heading Size'))
 													->set_options(
 														array(
 															'' => 'Default',
