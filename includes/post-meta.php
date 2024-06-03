@@ -1560,9 +1560,7 @@ Container::make('post_meta', 'Modules')
 															'post'      => 'Post',
 															'solutions' => 'Solution',
 															'popups'    => 'Popup',
-															'background-light-gray'     => 'Light Gray',
-															'background-body-color'     => 'Body',
-															'background-custom'    => 'Custom',
+															'Custom'     => 'Custom',
 														)
 													),
 												Field::make('text', 'button_text', __('Button Text')),
