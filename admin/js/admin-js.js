@@ -62,8 +62,7 @@ function codemirror() {
 
             // Loop through each textarea
             textareas.each(function (index) {
-                var textareaId = 'custom_textarea_' + index;  // Create unique ID
-                jQuery(this).attr('id', textareaId); // Assign the ID to the textarea
+                var textareaId =  jQuery(this).attr('id'); 
                 console.log(textareaId);
                 // TinyMCE settings to mimic classic editor
                 tinymce.init({
