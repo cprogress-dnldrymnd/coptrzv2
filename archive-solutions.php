@@ -20,12 +20,22 @@ get_header(); // This fxn gets the header.php file and renders it
                 <?php while (have_posts()) {
                     the_post() ?>
                     <div class="col-lg-4">
-                        <?= do_shortcode('[post_grid  id="' . get_the_ID() . '"]') ?>
+                        <div class="post-grid h-100 rounded-corner p-5 post-<?= get_the_ID() ?>" style="--border-radius: 10px; --padding: 20%">
+                            <div class="content-margin h-100">
+                                <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . get_post_thumbnail_id() . '"]'); ?>
+                                <?= do_shortcode('[_heading heading="' . get_the_title() . '" tag="h3"]') ?>
+                                <?= do_shortcode('[_description description="' . get_the_excerpt() . '" ]') ?>
+                                <div class="button-box button-accent">
+                                    <a href="<?= get_the_permalink() ?>">
+                                        LEARN MORE
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
                     </div>
                 <?php } ?>
             </div>
-        <?php } ?>
-    </div>
 </section>
 
 
