@@ -143,7 +143,7 @@ function archive_ajax()
 				$the_query->the_post();
 		?>
 				<div class="<?= $class ?> col-sm-6 post-item">
-					<div class="post-grid h-100 rounded-corner overflow-hidden">
+					<div class="post-grid h-100 rounded-corner overflow-hidden p-5">
 						<div class="image-holder position-relative">
 							<?php
 							echo do_shortcode('[_image class="image-absolute image-absolute-contain" size="large" id="' . get_post_thumbnail_id(). '"]');
