@@ -54,40 +54,40 @@ function codemirror() {
             wp.codeEditor.initialize(jQuery('textarea[name="carbon_fields_compact_input[_body_scripts]"'), cm_settings.ce_html);
         }
 
-        // Ensure TinyMCE is loaded (assuming you've enqueued it in WordPress)
+        // Check if TinyMCE is loaded
         if (typeof tinymce !== 'undefined') {
-            console.log('TinyMCE is  loaded.');
 
-            jQuery('.activate-tinymce textarea').each(function (index, element) {
-                var textarea = jQuery(this);
-                $name = jQuery(this).attr('name');
-                // Replace textarea with TinyMCE editor
-                console.log($name);
+            // Select all textareas with the specified class
+            var textareas = jQuery('.activate-tinymce textarea');
 
+            // Loop through each textarea
+            textareas.each(function (index) {
+                var textareaId = 'custom_textarea_' + index;  // Create unique ID
+                jQuery(this).attr('id', textareaId); // Assign the ID to the textarea
+                console.log(textareaId);
+                // TinyMCE settings to mimic classic editor
                 tinymce.init({
-                    selector: 'textarea[name="' + $name + '"]',
+                    selector: '#' + textareaId,  // Use the unique ID
                     plugins: 'lists link charmap paste textcolor',
                     toolbar: 'formatselect | bold italic | bullist numlist | link | forecolor | charmap | pastetext | removeformat',
-                    block_formats: 'Paragraph=p; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6; Preformatted=pre', // Like classic editor
+                    block_formats: 'Paragraph=p; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6; Preformatted=pre',
                     toolbar_location: 'top',
                     menubar: false,
                     statusbar: false,
-                    branding: false // Hide TinyMCE logo
-                });
-
-
-                // Handle form submission (update textarea with TinyMCE content)
-                textarea.closest('form').submit(function (e) {
-                    // Update the textarea's value before submitting the form
-                    textarea.val(tinymce.get($name).getContent());
+                    branding: false
                 });
             });
-            // Find the textarea element
 
+            // Save content on form submission (adjust if your form has a different ID)
+            jQuery('form').submit(function (e) {
+                textareas.each(function () {
+                    var textareaId = jQuery(this).attr('id');
+                    jQuery(this).val(tinymce.get(textareaId).getContent());
+                });
+            });
         } else {
-            console.log('TinyMCE is not loaded.');
+            console.error('TinyMCE is not loaded.');
         }
-
 
     }, 500);
 }
