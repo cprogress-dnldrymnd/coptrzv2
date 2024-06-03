@@ -2,7 +2,7 @@
     <?php foreach ($accordion as $key => $accordion_item) { ?>
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-heading<?= $key ?>">
-                <button class="accordion-button justify-content-between p-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?= $key ?>" aria-expanded="<?= $key == 0 ? 'true' : 'false' ?>" aria-controls="flush-collapse<?= $key ?>">
+                <button class="accordion-button justify-content-between p-0 <?= $key == 0 ? '' : 'collapsed' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?= $key ?>" aria-expanded="<?= $key == 0 ? 'true' : 'false' ?>" aria-controls="flush-collapse<?= $key ?>">
                     <span>
                         <?= do_shortcode('[_heading heading="' . $accordion_item['heading'] . '" tag="h4"]') ?>
                     </span>
