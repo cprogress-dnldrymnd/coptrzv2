@@ -11,7 +11,7 @@
             <?php if ($module['columns']) { ?>
                 <div class="row g-4 <?= $classes_row ?>">
                     <?php foreach ($module['columns'] as $column) { ?>
-                        <div class="col-sm-12 col-lg">
+                        <div class="col-sm-12 <?= $column_class ? $column_class : 'col-lg' ?>">
                             <?php
                             $styles = $column['styles'];
                             $classes = '';
