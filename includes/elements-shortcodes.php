@@ -103,7 +103,7 @@ function _elements($data, $module_id, $same_height_images)
                 break;
             case 'image':
                 $same_height = $same_height_images ? 'same_height="true"' : 'same_height="false"';
-                $class = $d['rounder_corners'] ? 'rounded-corner' : '';
+                $class = $d['rounded_corners'] ? 'rounded-corner' : '';
                 echo do_shortcode('[_image class="' . $class . '" border_radius="' . $d['border_radius'] . '" ' . $same_height . '  id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
                 break;
             case 'button':

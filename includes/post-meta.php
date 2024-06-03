@@ -1530,13 +1530,13 @@ Container::make('post_meta', 'Modules')
 												Field::make('image', 'image', __('Image')),
 												Field::make('text', 'image_width', __('Custom Image Width')),
 												Field::make('text', 'image_height', __('Custom Image Height')),
-												Field::make('checkbox', 'rounder_corners', __('Rounder Corners')),
+												Field::make('checkbox', 'rounded_corners', __('Rounder Corners')),
 												Field::make('text', 'border_radius', __('Border Radius'))->set_help_text('Custom border radius')
 													->set_conditional_logic(
 														array(
 															array(
-																'field' => 'rounder_corners',
-																'value' => 'yes',
+																'field' => 'rounded_corners',
+																'value' => true,
 															)
 														)
 													),
