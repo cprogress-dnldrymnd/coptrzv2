@@ -15,6 +15,7 @@ $modules = get__post_meta('modules');
         $styles = $module['styles'];
         $classes = '';
         $style_attribute = '';
+        $classes_row = '';
         if ($styles) {
             foreach ($styles as $style) {
                 $style_type = $style['_type'];
@@ -22,8 +23,7 @@ $modules = get__post_meta('modules');
                     case 'background_color':
                         if ($style['background_color'] != 'background-custom') {
                             $classes .= ' ' . $style['background_color'];
-                        }
-                        else {
+                        } else {
                             $style_attribute = 'background-color: ' . $style['background_color_custom'] . ';';
                         }
                         break;
@@ -39,7 +39,9 @@ $modules = get__post_meta('modules');
                     case 'custom_class':
                         $classes .= ' ' . $style['custom_class'];
                         break;
-
+                    case 'alignment':
+                        $classes_row .= ' ' . $style['align_items'] . ' ' . $style['justify_content'] . ' ' . $style['text_align'];
+                        break;
                 }
             }
         }

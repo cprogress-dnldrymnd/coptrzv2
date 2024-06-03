@@ -9,7 +9,7 @@
 
         <div class="column-items">
             <?php if ($module['columns']) { ?>
-                <div class="row g-4">
+                <div class="row g-4 <?= $classes_row ?>">
                     <?php foreach ($module['columns'] as $column) { ?>
                         <div class="col-sm-12 col-lg">
                             <?php
