@@ -12,7 +12,16 @@ ul.custom-products.custom-products.custom-products {
             margin-bottom: 1.5rem;
         }
         .button {
-            margin-top: 1rem;
+            margin-top: 1rem !important;
         }
+    }
+}
+
+
+.wysiwyg {
+    .woocommerce {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
