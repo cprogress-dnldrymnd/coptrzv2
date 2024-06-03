@@ -8,10 +8,11 @@
 get_header(); // This fxn gets the header.php file and renders it 
 ?>
 
-<?php get_template_part('template-parts/section/content-breadcrumbs'); ?>
-<?php
-get_template_part('template-parts/archive/archive-post-ajax');
-?>
-
+<section class="archive-grid-v2">
+    <div class="section-heading-description content-margin mb-5 text-center">
+        <?= do_shortcode('[_heading heading="Explore our Industry Solutions"]') ?>
+        <?= do_shortcode('[_description description="Before we can help, you need to tell us a bit about you. Which sector below suits your business needs the most? Then we’ll introduce you to your industry expert." ]') ?>
+    </div>
+</section>
 <?php get_footer(); // This fxn gets the footer.php file and renders it 
 ?>
