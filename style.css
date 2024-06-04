@@ -15070,7 +15070,7 @@ a.fancybox-gallery-img {
   background-repeat: no-repeat !important; }
 
 .background-body-color {
-  background-color: var(--body-color); }
+  background-color: var(--body-color) !important; }
 
 /**
  * Basic typography style for copy text
