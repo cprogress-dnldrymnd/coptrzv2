@@ -18,21 +18,13 @@ jQuery(document).ready(function ($) {
 });
 
 function input_fields() {
-	// Select all input fields (you can refine this selector if needed)
-	jQuery("input").on("focus", function () {
-		// Check if the input has a value (not empty)
-		if (jQuery(this).val() !== "") {
-			// Add the "active" class to its parent
-			jQuery(this).parent().addClass("active");
+	jQuery('.wpforms-field input').each(function (index, element) {
+		if(jQuery(this).val() == '') {
+			jQuery(this).parent().addClass('input-active');
 		} else {
-			// Remove the "active" class if the input is empty
-			jQuery(this).parent().removeClass("active");
+			jQuery(this).parent().removeClass('input-active');
 		}
-	}).on("blur", function () {
-		// Check again on blur (losing focus) in case the input became empty
-		if (jQuery(this).val() === "") {
-			jQuery(this).parent().removeClass("active");
-		}
+		
 	});
 }
 
