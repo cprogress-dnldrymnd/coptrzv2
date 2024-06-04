@@ -16,6 +16,7 @@
                         $classes = '';
                         $style_attribute = '';
                         $style_attribute_inner = '';
+                        $column_class = '';
                         if ($styles) {
                             foreach ($styles as $style) {
                                 $style_type = $style['_type'];
@@ -46,7 +47,7 @@
                                         $style_attribute_inner .= 'max-width: ' . $style['max_width'] . ';';
                                         break;
                                     case 'column_width':
-                                        $column_class =  ' ' . $style['column_width'];
+                                        $column_class .=  ' ' . $style['column_width'];
                                         break;
                                     case 'column_width_tablet':
                                         $column_class .=  ' ' . $style['column_width_tablet'];
