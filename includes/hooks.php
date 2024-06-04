@@ -479,7 +479,7 @@ function utm_parameters()
 			return "";
 		}
 	</script>
-	<?php
+<?php
 }
 add_action('wp_footer', 'utm_parameters');
 
@@ -578,3 +578,13 @@ add_action('init', function () {
 		remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
 	}
 });
+
+
+function action_popups()
+{
+?>
+	<?= do_shortcode('[popup id=268179]') ?>
+<?php
+}
+
+add_action('wp_footer', 'action_popups');

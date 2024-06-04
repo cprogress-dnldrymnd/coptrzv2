@@ -26,7 +26,7 @@ if (!$hide_footer) {
         </div>
     </footer>
 
-    <?= do_shortcode('[popup id=268179]') ?>
+    
 <?php } ?>
 <?php wp_footer(); ?>
 </body>
