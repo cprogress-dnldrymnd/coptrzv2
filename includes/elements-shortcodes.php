@@ -102,10 +102,7 @@ function _elements($data, $module_id, $same_height_images)
                 echo do_shortcode('[_heading tag="' . $d['tag'] . '" heading="' . $d['heading'] . '" class="' . $d['size'] . '"]');
                 break;
             case 'description':
-                //echo '[_description description="' . $d['description'] . '"]';
-                 //echo do_shortcode('[_description description="' . $d['description'] . '"]');
                  echo do_shortcode("[_description description='".$d['description']."']");
-
                 break;
             case 'image':
                 $same_height = $same_height_images ? 'same_height="true"' : 'same_height="false"';
