@@ -48,11 +48,17 @@
                                     case 'column_width':
                                         $column_class = $style['column_width'];
                                         break;
+                                    case 'column_width_tablet':
+                                        $column_class = $style['column_width_tablet'];
+                                        break;
+                                    case 'column_width_mobile':
+                                        $column_class = $style['column_width_mobile'] ? $style['column_width_mobile'] : 'col-sm-12';
+                                        break;
                                 }
                             }
                         }
                         ?>
-                        <div class="col-sm-12 <?= $column_class ? $column_class : 'col-lg' ?>">
+                        <div class="<?= $column_class ? $column_class : 'col-lg' ?>">
                             <div class="column-holder h-100 d-flex overflow-hidden <?= $classes ?>" style="<?= $style_attribute ?>">
                                 <div class="inner content-margin w-100" style="<?= $style_attribute_inner ?>">
                                     <?= _elements($column['items'], $module_id, $module['same_height_images']) ?>
