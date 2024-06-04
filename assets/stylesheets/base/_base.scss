@@ -3461,8 +3461,7 @@ a.fancybox-gallery-img {
             padding-top: 0;
             padding-bottom: 0;
             margin-bottom: 1.5rem;
-            @include inputs {
-            }
+           
             .wpforms-field-label {
                 font-weight: 600;
                 position: absolute;
@@ -3480,7 +3479,7 @@ a.fancybox-gallery-img {
                     top: -13px;
                 }
             }
-            .wpforms-error {
+            em.wpforms-error {
                 position: absolute;
                 bottom: -8px;
                 font-size: 13px;
