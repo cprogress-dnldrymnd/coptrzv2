@@ -9,6 +9,8 @@ if ($button_type != 'popups' && $button_type != 'custom') {
 	$tag = 'a';
 	$link = 'href="' . $button_url_custom . '"';
 } else {
+	global $popups_id;
+	$popups_id[] = $id;
 	$tag = 'button';
 	$link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $id . '"';
 }
