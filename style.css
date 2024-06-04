@@ -13987,8 +13987,15 @@ a.fancybox-gallery-img {
     padding: 5px;
     font-size: 13px;
     line-height: 1;
-    top: 15px; }
-  .wpforms-form .wpforms-field-container .wpforms-field.filled {
+    top: 15px;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms; }
+  .wpforms-form .wpforms-field-container .wpforms-field.wpforms-field-select .wpforms-field-label {
+    top: -13px; }
+  .wpforms-form .wpforms-field-container .wpforms-field.filled .wpforms-field-label {
     top: -13px; }
 .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }

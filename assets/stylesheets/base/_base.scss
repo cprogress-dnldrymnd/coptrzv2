@@ -3462,7 +3462,6 @@ a.fancybox-gallery-img {
             padding-bottom: 0;
             margin-bottom: 1.5rem;
             @include inputs {
-                
             }
             .wpforms-field-label {
                 font-weight: 600;
@@ -3473,9 +3472,17 @@ a.fancybox-gallery-img {
                 font-size: 13px;
                 line-height: 1;
                 top: 15px;
+                @include transition(300ms);
+            }
+            &.wpforms-field-select {
+                .wpforms-field-label {
+                    top: -13px;
+                }
             }
             &.filled {
-                top: -13px;
+                .wpforms-field-label {
+                    top: -13px;
+                }
             }
         }
     }
