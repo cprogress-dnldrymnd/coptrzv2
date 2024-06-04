@@ -3471,8 +3471,11 @@ a.fancybox-gallery-img {
                 background-color: var(--white-color);
                 padding: 5px;
                 font-size: 13px;
-                top: -13px;
                 line-height: 1;
+                top: 15px;
+            }
+            &.filled {
+                top: -13px;
             }
         }
     }

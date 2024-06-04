@@ -13986,8 +13986,10 @@ a.fancybox-gallery-img {
     background-color: var(--white-color);
     padding: 5px;
     font-size: 13px;
-    top: -13px;
-    line-height: 1; }
+    line-height: 1;
+    top: 15px; }
+  .wpforms-form .wpforms-field-container .wpforms-field.filled {
+    top: -13px; }
 .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }
 
