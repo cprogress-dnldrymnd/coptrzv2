@@ -18,6 +18,7 @@ jQuery(document).ready(function ($) {
 });
 
 function input_fields() {
+	jQuery('select option[value="Select Sector"]').attr('value', '');
 
 	jQuery(".wpforms-field input, .wpforms-field select").on("blur input focus", function () {
 		if (this.value) {
@@ -34,6 +35,7 @@ function input_fields() {
 			jQuery(this).parent().removeClass("filled");
 		}
 	});
+
 
 }
 
