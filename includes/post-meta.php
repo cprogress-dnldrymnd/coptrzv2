@@ -1584,10 +1584,10 @@ Container::make('post_meta', 'Modules')
 										->add_fields(
 											'column_width',
 											array(
-												Field::make('select', 'column_width', __('Column Width'))
+												Field::make('select', 'column_width', __('Column Width Desktop'))
 													->set_options(
 														array(
-															'col-lg' 	=> 'Auto',
+															'col-lg' 	=> 'Default',
 															'col-12'    => '100.00%',
 															'col-lg-11' => '91.67%',
 															'col-lg-10' => '83.33%',
@@ -1599,6 +1599,40 @@ Container::make('post_meta', 'Modules')
 															'col-lg-3'  => '25.00%',
 															'col-lg-2'  => '16.67%',
 															'col-lg-1'  => '08.33%',
+														)
+													),
+												Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
+													->set_options(
+														array(
+															'' 	=> 'Default',
+															'col-12'    => '100.00%',
+															'col-md-11' => '91.67%',
+															'col-md-10' => '83.33%',
+															'col-md-9'  => '75.00%',
+															'col-md-7'  => '58.33%',
+															'col-md-6'  => '50.00%',
+															'col-md-5'  => '67.00%',
+															'col-md-4'  => '33.33%',
+															'col-md-3'  => '25.00%',
+															'col-md-2'  => '16.67%',
+															'col-md-1'  => '08.33%',
+														)
+													),
+												Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
+													->set_options(
+														array(
+															'' 	=> 'Default',
+															'col-12'    => '100.00%',
+															'col-sm-11' => '91.67%',
+															'col-sm-10' => '83.33%',
+															'col-sm-9'  => '75.00%',
+															'col-sm-7'  => '58.33%',
+															'col-sm-6'  => '50.00%',
+															'col-sm-5'  => '67.00%',
+															'col-sm-4'  => '33.33%',
+															'col-sm-3'  => '25.00%',
+															'col-sm-2'  => '16.67%',
+															'col-sm-1'  => '08.33%',
 														)
 													),
 											)
