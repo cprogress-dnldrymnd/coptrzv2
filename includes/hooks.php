@@ -589,7 +589,7 @@ function action_popups()
 			jQuery('button[data-bs-toggle="modal"]').each(function (index, element) {
 				$target = jQuery(this).attr('data-bs-target');
 				if(jQuery($target).length ==0) {
-					$html = jQuery('<?= do_shortcode('[popup id=268179]') ?>');
+					$html = jQuery(jQuery.trim('<?= do_shortcode('[popup id=268179]') ?>'));
 
 					console.log($html);
 				}
