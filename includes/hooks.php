@@ -584,6 +584,18 @@ function action_popups()
 {
 ?>
 	<?= do_shortcode('[popup id=268179]') ?>
+	<script>
+		jQuery(document).ready(function () {
+			jQuery('button[data-bs-toggle="modal"]').each(function (index, element) {
+				$target = jQuery(this).attr('data-bs-target');
+
+				if(jQuery($target).length ==0) {
+					console.log('mama mo');
+				}
+				
+			});
+		});
+	</script>
 <?php
 }
 
