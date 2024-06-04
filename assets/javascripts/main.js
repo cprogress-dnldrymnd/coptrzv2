@@ -21,6 +21,7 @@ function input_fields() {
 	jQuery('.wpforms-field input').each(function (index, element) {
 		if(jQuery(this).val() == '') {
 			jQuery(this).parent().addClass('input-active');
+			jQuery(this).parent().addClass('input-actives');
 		} else {
 			jQuery(this).parent().removeClass('input-active');
 		}
