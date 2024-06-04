@@ -15069,6 +15069,9 @@ a.fancybox-gallery-img {
 .background-no-repeat {
   background-repeat: no-repeat !important; }
 
+.background-body-color {
+  background-color: var(--body-color); }
+
 /**
  * Basic typography style for copy text
  */
