@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
 
 function input_fields() {
 	// Select all input fields (you can refine this selector if needed)
-	jQuery(".wpforms-field input").on(".wpforms-field input focus", function () {
+	jQuery("input").on("focus", function () {
 		// Check if the input has a value (not empty)
 		if (jQuery(this).val() !== "") {
 			// Add the "active" class to its parent
