@@ -1677,6 +1677,15 @@ Container::make('post_meta', 'Modules')
 															)
 														)
 													),
+												Field::make('select', 'button_style', __('Button Style'))
+													->set_options(
+														array(
+															'button-accent'      => 'Accent',
+															'button-primary'      => 'Primary',
+															'button-secondary' => 'Secondary',
+															'button-bordered'    => 'Bordered',
+														)
+													),
 
 											)
 										)
