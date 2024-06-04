@@ -56,6 +56,8 @@
                                         $column_class .=  ' ' . $style['column_width_mobile'] ? $style['column_width_mobile'] : 'col-sm-12';
                                         break;
                                 }
+                                echo $style['column_width_mobile'] ;
+                                echo $style['column_width_tablet'] ;
                             }
                         }
                         ?>
