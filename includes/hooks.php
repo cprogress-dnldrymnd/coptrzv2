@@ -582,7 +582,7 @@ add_action('init', function () {
 
 function action_popups()
 {
-?>sssssx
+?>
 	<?= do_shortcode('[popup id=268179]') ?>
 <?php
 }
