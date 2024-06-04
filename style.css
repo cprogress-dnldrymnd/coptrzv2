@@ -15206,7 +15206,8 @@ tspan {
   font-family: var(--primary-font) !important; }
 
 .description-box a {
-  text-decoration: underline; }
+  color: var(--accent-color);
+  font-weight: 500; }
 
 .heading-box .prefix {
   margin-bottom: 1.375rem;

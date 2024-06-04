@@ -155,7 +155,8 @@ tspan {
 
 .description-box {
     a {
-        text-decoration: underline;
+        color: var(--accent-color);
+        font-weight: 500;
     }
 }
 
