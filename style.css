@@ -13972,7 +13972,7 @@ a.fancybox-gallery-img {
     .post-grid-style-1 {
       padding: 1; } }
 
-.wpforms-container {
+.wpforms-container.wpforms-container {
   margin-bottom: 0; }
 
 .wpforms-form .wpforms-field-container .wpforms-field {
