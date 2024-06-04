@@ -18,29 +18,23 @@ jQuery(document).ready(function ($) {
 });
 
 function input_fields() {
-	jQuery('.wpforms-field input').each(function (index, element) {
-		if (jQuery(this).val() == '') {
-			jQuery(this).parent().addClass('input-active');
-		} else {
-			jQuery(this).parent().removeClass('input-active');
-		}
 
-		jQuery(this).on("focus", function () {
-			// Check if the input has a value (not empty)
-			if (jQuery(this).val() !== "") {
-				// Add the "active" class to its parent
-				jQuery(this).parent().addClass("input-active");
-			} else {
-				// Remove the "active" class if the input is empty
-				jQuery(this).parent().removeClass("input-active");
-			}
-		}).on("blur", function () {
-			// Check again on blur (losing focus) in case the input became empty
-			if (jQuery(this).val() === "") {
-				jQuery(this).parent().removeClass("input-active");
-			}
-		});
+	jQuery(".wpforms-field input").on("blur input focus", function () {
+		if (this.value) {
+			jQuery(this).parent().addClass("filled");
+		} else {
+			jQuery(this).parent().removeClass("filled");
+		}
 	});
+
+	jQuery(".wpforms-field input").on("focus", function () {
+		if (this) {
+			jQuery(this).parent().addClass("filled");
+		} else {
+			jQuery(this).parent().removeClass("filled");
+		}
+	});
+
 }
 
 function ajax_add_to_cart() {
