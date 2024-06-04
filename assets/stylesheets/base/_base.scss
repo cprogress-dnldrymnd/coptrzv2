@@ -3483,12 +3483,11 @@ a.fancybox-gallery-img {
                 }
             }
             em.wpforms-error {
-                position: absolute;
-                bottom: -8px;
+                margin-top: -8px;
                 font-size: 13px;
-                left: 13px;
                 background-color: var(--white-color);
                 line-height: 1;
+                margin-left: 13px;
             }
         }
     }
