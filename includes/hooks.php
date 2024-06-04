@@ -585,7 +585,6 @@ function action_popups()
 
 	global $popups_id;
 	$popups = array_unique($popups_id);
-	var_dump($popups);
 	foreach ($popups as $popup) {
 		echo do_shortcode('[popup id=' . $popup . ']');
 	}
