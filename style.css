@@ -13982,8 +13982,9 @@ a.fancybox-gallery-img {
     left: 10px;
     background-color: var(--white-color);
     padding: 5px;
-    font-size: 15px;
-    top: -13px; }
+    font-size: 13px;
+    top: -13px;
+    line-height: 1; }
 
 /*Padding*/
 /*Extra Small Padding*/
