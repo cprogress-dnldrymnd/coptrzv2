@@ -3452,12 +3452,15 @@ a.fancybox-gallery-img {
         padding: 1;
     }
 }
+.wpforms-container {
+    margin-bottom: 0;
+}
 .wpforms-form {
     .wpforms-field-container {
         .wpforms-field {
             padding-top: 0;
             padding-bottom: 0;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             @include inputs {
                 
             }
@@ -3472,5 +3475,8 @@ a.fancybox-gallery-img {
                 line-height: 1;
             }
         }
+    }
+    .wpforms-submit-container {
+        margin-top: 2rem;
     }
 }

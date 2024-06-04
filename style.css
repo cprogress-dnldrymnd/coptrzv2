@@ -13972,10 +13972,13 @@ a.fancybox-gallery-img {
     .post-grid-style-1 {
       padding: 1; } }
 
+.wpforms-container {
+  margin-bottom: 0; }
+
 .wpforms-form .wpforms-field-container .wpforms-field {
   padding-top: 0;
   padding-bottom: 0;
-  margin-bottom: 1rem; }
+  margin-bottom: 1.5rem; }
   .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
     font-weight: 600;
     position: absolute;
@@ -13985,6 +13988,8 @@ a.fancybox-gallery-img {
     font-size: 13px;
     top: -13px;
     line-height: 1; }
+.wpforms-form .wpforms-submit-container {
+  margin-top: 2rem; }
 
 /*Padding*/
 /*Extra Small Padding*/
