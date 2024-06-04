@@ -583,18 +583,11 @@ add_action('init', function () {
 function action_popups()
 {
 ?>
+	<?php
+	global $popups_id;
+	var_dump($popups_id);
+	?>
 	<?= do_shortcode('[popup id=268179]') ?>
-	<script>
-		jQuery(document).ready(function() {
-			jQuery('button[data-bs-toggle="modal"]').each(function(index, element) {
-				$target = jQuery(this).attr('data-bs-target');
-				if (jQuery($target).length == 0) {
-					$html = <?= do_shortcode('[popup id=268179]') ?>;
-					console.log($html);
-				}
-			});
-		});
-	</script>
 <?php
 }
 
