@@ -11,10 +11,30 @@ jQuery(document).ready(function ($) {
 	elementor_mega_menu();
 	get_started_modal();
 	ajax_add_to_cart();
+	input_fields();
 	if (jQuery('.archive-section').length > 0 && !jQuery('body').hasClass('post-type-archive-careers')) {
 		ajax();
 	}
 });
+
+function input_fields() {
+	// Select all input fields (you can refine this selector if needed)
+	jQuery(".wpforms-field input").on(".wpforms-field input focus", function () {
+		// Check if the input has a value (not empty)
+		if (jQuery(this).val() !== "") {
+			// Add the "active" class to its parent
+			jQuery(this).parent().addClass("active");
+		} else {
+			// Remove the "active" class if the input is empty
+			jQuery(this).parent().removeClass("active");
+		}
+	}).on("blur", function () {
+		// Check again on blur (losing focus) in case the input became empty
+		if (jQuery(this).val() === "") {
+			jQuery(this).parent().removeClass("active");
+		}
+	});
+}
 
 function ajax_add_to_cart() {
 	jQuery('body').on('added_to_cart', function () {
