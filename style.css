@@ -13972,6 +13972,18 @@ a.fancybox-gallery-img {
     .post-grid-style-1 {
       padding: 1; } }
 
+.wpforms-form .wpforms-field-container .wpforms-field {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 1rem; }
+  .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
+    position: absolute;
+    left: 10px;
+    background-color: var(--white-color);
+    padding: 5px;
+    font-size: 15px;
+    top: -13px; }
+
 /*Padding*/
 /*Extra Small Padding*/
 .xxs-padding-top {
