@@ -1003,6 +1003,9 @@ Container::make('post_meta', 'Modules')
 								array(
 									''          => 'Select Button Type',
 									'page'      => 'Page',
+									'product'      => 'Product',
+									'guides'      => 'Guides',
+									'casestudies'      => 'Case Studies',
 									'post'      => 'Post',
 									'solutions' => 'Solution',
 									'popups'    => 'Popup',
@@ -1643,6 +1646,9 @@ Container::make('post_meta', 'Modules')
 														array(
 															''          => 'Select Button Type',
 															'page'      => 'Page',
+															'product'      => 'Product',
+															'guides'      => 'Guides',
+															'casestudies'      => 'Case Studies',
 															'post'      => 'Post',
 															'solutions' => 'Solution',
 															'popups'    => 'Popup',
