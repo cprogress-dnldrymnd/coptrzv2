@@ -19,6 +19,8 @@ function action_after_setup_theme()
 	add_theme_support('woocommerce');
 
 	global $theme_settings, $popups_id;
+	
+	$popups_id[] = 268179;
 
 	$theme_settings = array(
 		array(

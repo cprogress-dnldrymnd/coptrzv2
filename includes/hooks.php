@@ -582,13 +582,11 @@ add_action('init', function () {
 
 function action_popups()
 {
-?>
-	<?php
+
 	global $popups_id;
-	var_dump($popups_id);
-	?>
-	<?= do_shortcode('[popup id=268179]') ?>
-<?php
+	foreach ($popups_id as $popup) {
+		echo do_shortcode('[popup id=' . $popup . ']');
+	}
 }
 
 add_action('wp_footer', 'action_popups');
