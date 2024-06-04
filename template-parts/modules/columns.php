@@ -46,13 +46,13 @@
                                         $style_attribute_inner .= 'max-width: ' . $style['max_width'] . ';';
                                         break;
                                     case 'column_width':
-                                        $column_class = $style['column_width'];
+                                        $column_class =  ' ' . $style['column_width'];
                                         break;
                                     case 'column_width_tablet':
-                                        $column_class .= $style['column_width_tablet'];
+                                        $column_class .=  ' ' . $style['column_width_tablet'];
                                         break;
                                     case 'column_width_mobile':
-                                        $column_class .= $style['column_width_mobile'] ? $style['column_width_mobile'] : 'col-sm-12';
+                                        $column_class .=  ' ' . $style['column_width_mobile'] ? $style['column_width_mobile'] : 'col-sm-12';
                                         break;
                                 }
                             }
