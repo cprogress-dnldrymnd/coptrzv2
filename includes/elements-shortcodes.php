@@ -101,7 +101,10 @@ function _elements($data, $module_id, $same_height_images)
             case 'heading':
                 echo do_shortcode('[_heading tag="' . $d['tag'] . '" heading="' . $d['heading'] . '" class="' . $d['size'] . '"]');
             case 'description':
-                echo $_description;
+                echo '<pre>';
+                echo $d['description'];
+                echo '</pre>';
+
                 echo do_shortcode('[_description description="' . $d['description'] . '"]');
                 break;
             case 'image':
