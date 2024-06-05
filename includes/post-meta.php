@@ -1019,6 +1019,28 @@ Container::make('post_meta', 'Modules')
 												'xxs-padding-bottom' => 'Extra Small',
 											)
 										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
+											)
+										),
 
 								)
 							)
@@ -1363,6 +1385,28 @@ Container::make('post_meta', 'Modules')
 												'xxs-padding-bottom' => 'Extra Small',
 											)
 										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
+											)
+										),
 
 								)
 							)
@@ -1648,6 +1692,28 @@ Container::make('post_meta', 'Modules')
 												'md-padding-bottom'  => 'Medium',
 												'sm-padding-bottom'  => 'Small',
 												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
 											)
 										),
 
@@ -2454,6 +2520,28 @@ Container::make('post_meta', 'Modules')
 												'xxs-padding-bottom' => 'Extra Small',
 											)
 										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
+											)
+										),
 
 								)
 							)
@@ -2809,6 +2897,28 @@ Container::make('post_meta', 'Modules')
 												'xxs-padding-bottom' => 'Extra Small',
 											)
 										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
+											)
+										),
 
 								)
 							)
@@ -3091,6 +3201,28 @@ Container::make('post_meta', 'Modules')
 												'md-padding-bottom'  => 'Medium',
 												'sm-padding-bottom'  => 'Small',
 												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
 											)
 										),
 
@@ -3376,6 +3508,28 @@ Container::make('post_meta', 'Modules')
 												'md-padding-bottom'  => 'Medium',
 												'sm-padding-bottom'  => 'Small',
 												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
 											)
 										),
 
@@ -3745,6 +3899,28 @@ Container::make('post_meta', 'Modules')
 												'md-padding-bottom'  => 'Medium',
 												'sm-padding-bottom'  => 'Small',
 												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
 											)
 										),
 
