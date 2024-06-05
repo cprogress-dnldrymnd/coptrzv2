@@ -13976,478 +13976,478 @@ a.fancybox-gallery-img {
 /*Padding*/
 /*Extra Small Padding*/
 .xxs-padding-top {
-  padding-top: 1.625rem; }
+  padding-top: 1.625rem !important; }
 
 .xxs-padding-bottom {
-  padding-bottom: 1.625rem; }
+  padding-bottom: 1.625rem !important; }
 
 .xxs-padding {
-  padding-top: 1.625rem;
-  padding-bottom: 1.625rem; }
+  padding-top: 1.625rem !important;
+  padding-bottom: 1.625rem !important; }
 
 /*End of Extra Small Padding*/
 /*Small Padding*/
 .sm-padding-top {
-  padding-top: 3.75rem; }
+  padding-top: 3.75rem !important; }
   @media screen and (max-width: 767px) {
     .sm-padding-top {
-      padding-top: 2rem; } }
+      padding-top: 2rem !important; } }
 
 .sm-padding-bottom {
-  padding-bottom: 3.75rem; }
+  padding-bottom: 3.75rem !important; }
   @media screen and (max-width: 767px) {
     .sm-padding-bottom {
-      padding-bottom: 2rem; } }
+      padding-bottom: 2rem !important; } }
 
 .sm-padding {
-  padding-top: 3.75rem;
-  padding-bottom: 3.75rem; }
+  padding-top: 3.75rem !important;
+  padding-bottom: 3.75rem !important; }
   @media screen and (max-width: 767px) {
     .sm-padding {
-      padding-top: 2rem;
-      padding-bottom: 2rem; } }
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important; } }
 
 /*End of Small Padding*/
 /*Medium Padding*/
 .md-padding-top {
-  padding-top: 5rem; }
+  padding-top: 5rem !important; }
   @media screen and (min-width: 992px) {
     .md-padding-top {
-      padding-top: 5rem; } }
+      padding-top: 5rem !important; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .md-padding-top {
-      padding-top: 4rem; } }
+      padding-top: 4rem !important; } }
   @media screen and (max-width: 767px) {
     .md-padding-top {
-      padding-top: 3rem; } }
+      padding-top: 3rem !important; } }
 
 .md-padding-bottom {
-  padding-bottom: 5rem; }
+  padding-bottom: 5rem !important; }
   @media screen and (min-width: 992px) {
     .md-padding-bottom {
-      padding-bottom: 5rem; } }
+      padding-bottom: 5rem !important; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .md-padding-bottom {
-      padding-bottom: 4rem; } }
+      padding-bottom: 4rem !important; } }
   @media screen and (max-width: 767px) {
     .md-padding-bottom {
-      padding-bottom: 3rem; } }
+      padding-bottom: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .md-padding {
-    padding-top: 5rem;
-    padding-bottom: 5rem; } }
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .md-padding {
-    padding-top: 4rem;
-    padding-bottom: 4rem; } }
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important; } }
 @media screen and (max-width: 767px) {
   .md-padding {
-    padding-top: 3rem;
-    padding-bottom: 3rem; } }
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important; } }
 
 /*End of Medium Padding*/
 /*Large Padding*/
 @media screen and (min-width: 992px) {
   .lg-padding-top {
-    padding-top: 7.25rem; } }
+    padding-top: 7.25rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .lg-padding-top {
-    padding-top: 5rem; } }
+    padding-top: 5rem !important; } }
 @media screen and (max-width: 767px) {
   .lg-padding-top {
-    padding-top: 4rem; } }
+    padding-top: 4rem !important; } }
 
 @media screen and (min-width: 992px) {
   .lg-padding-bottom {
-    padding-bottom: 7.25rem; } }
+    padding-bottom: 7.25rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .lg-padding-bottom {
-    padding-bottom: 6rem; } }
+    padding-bottom: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .lg-padding-bottom {
-    padding-bottom: 4rem; } }
+    padding-bottom: 4rem !important; } }
 
 @media screen and (min-width: 992px) {
   .lg-padding {
-    padding-top: 7.25rem;
-    padding-bottom: 7.25rem; } }
+    padding-top: 7.25rem !important;
+    padding-bottom: 7.25rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .lg-padding {
-    padding-top: 5rem;
-    padding-bottom: 6rem; } }
+    padding-top: 5rem !important;
+    padding-bottom: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .lg-padding {
-    padding-top: 4rem;
-    padding-bottom: 4rem; } }
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important; } }
 
 /*End of Large Padding*/
 /*Large Padding*/
 @media screen and (min-width: 992px) {
   .xl-padding-top {
-    padding-top: 9.5rem; } }
+    padding-top: 9.5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .xl-padding-top {
-    padding-top: 6rem; } }
+    padding-top: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .xl-padding-top {
-    padding-top: 5rem; } }
+    padding-top: 5rem !important; } }
 @media screen and (max-width: 575px) {
   .xl-padding-top {
-    padding-top: 3rem; } }
+    padding-top: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .xl-padding-bottom {
-    padding-bottom: 9.5rem; } }
+    padding-bottom: 9.5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .xl-padding-bottom {
-    padding-bottom: 6rem; } }
+    padding-bottom: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .xl-padding-bottom {
-    padding-bottom: 5rem; } }
+    padding-bottom: 5rem !important; } }
 @media screen and (max-width: 575px) {
   .xl-padding-bottom {
-    padding-bottom: 3rem; } }
+    padding-bottom: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .xl-padding {
-    padding-top: 9.5rem;
-    padding-bottom: 9.5rem; } }
+    padding-top: 9.5rem !important;
+    padding-bottom: 9.5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .xl-padding {
-    padding-top: 6rem;
-    padding-bottom: 6rem; } }
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .xl-padding {
-    padding-top: 5rem;
-    padding-bottom: 5rem; } }
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important; } }
 @media screen and (max-width: 575px) {
   .xl-padding {
-    padding-top: 3rem;
-    padding-bottom: 3rem; } }
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .xl-padding-left {
-    padding-left: 9.5rem; } }
+    padding-left: 9.5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .xl-padding-left {
-    padding-left: 6rem; } }
+    padding-left: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .xl-padding-left {
-    padding-left: 5rem; } }
+    padding-left: 5rem !important; } }
 @media screen and (max-width: 575px) {
   .xl-padding-left {
-    padding-left: 3rem; } }
+    padding-left: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .lg-padding-left {
-    padding-left: 7.25rem; } }
+    padding-left: 7.25rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .lg-padding-left {
-    padding-left: 5rem; } }
+    padding-left: 5rem !important; } }
 @media screen and (max-width: 767px) {
   .lg-padding-left {
-    padding-left: 4rem; } }
+    padding-left: 4rem !important; } }
 
 @media screen and (min-width: 992px) {
   .md-padding-left {
-    padding-left: 5rem; } }
+    padding-left: 5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .md-padding-left {
-    padding-left: 4rem; } }
+    padding-left: 4rem !important; } }
 @media screen and (max-width: 767px) {
   .md-padding-left {
-    padding-left: 3rem; } }
+    padding-left: 3rem !important; } }
 
 .sm-padding-left {
-  padding-left: 3.75rem; }
+  padding-left: 3.75rem !important; }
   @media screen and (max-width: 767px) {
     .sm-padding-left {
-      padding-left: 2rem; } }
+      padding-left: 2rem !important; } }
 
 .xxs-padding-left {
-  padding-left: 1.625rem; }
+  padding-left: 1.625rem !important; }
 
 @media screen and (min-width: 992px) {
   .xl-padding-right {
-    padding-right: 9.5rem; } }
+    padding-right: 9.5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .xl-padding-right {
-    padding-right: 6rem; } }
+    padding-right: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .xl-padding-right {
-    padding-right: 5rem; } }
+    padding-right: 5rem !important; } }
 @media screen and (max-width: 575px) {
   .xl-padding-right {
-    padding-right: 3rem; } }
+    padding-right: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .lg-padding-right {
-    padding-right: 7.25rem; } }
+    padding-right: 7.25rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .lg-padding-right {
-    padding-right: 5rem; } }
+    padding-right: 5rem !important; } }
 @media screen and (max-width: 767px) {
   .lg-padding-right {
-    padding-right: 4rem; } }
+    padding-right: 4rem !important; } }
 
 @media screen and (min-width: 992px) {
   .md-padding-right {
-    padding-right: 5rem; } }
+    padding-right: 5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .md-padding-right {
-    padding-right: 4rem; } }
+    padding-right: 4rem !important; } }
 @media screen and (max-width: 767px) {
   .md-padding-right {
-    padding-right: 3rem; } }
+    padding-right: 3rem !important; } }
 
 .sm-padding-right {
-  padding-right: 3.75rem; }
+  padding-right: 3.75rem !important; }
   @media screen and (max-width: 767px) {
     .sm-padding-right {
-      padding-right: 2rem; } }
+      padding-right: 2rem !important; } }
 
 .xxs-padding-right {
-  padding-right: 1.625rem; }
+  padding-right: 1.625rem !important; }
 
 /*End of Extra Large Padding*/
 /*margin*/
 /*Extra Small margin*/
 .xxs-margin-top {
-  margin-top: 1.625rem; }
+  margin-top: 1.625rem !important; }
 
 .xxs-margin-bottom {
-  margin-bottom: 1.625rem; }
+  margin-bottom: 1.625rem !important; }
 
 .xxs-margin {
-  margin-top: 1.625rem;
-  margin-bottom: 1.625rem; }
+  margin-top: 1.625rem !important;
+  margin-bottom: 1.625rem !important; }
 
 /*End of Extra Small margin*/
 /*Small margin*/
 .sm-margin-top {
-  margin-top: 3.75rem; }
+  margin-top: 3.75rem !important; }
   @media screen and (max-width: 767px) {
     .sm-margin-top {
-      margin-top: 2rem; } }
+      margin-top: 2rem !important; } }
 
 .sm-margin-bottom {
-  margin-bottom: 3.75rem; }
+  margin-bottom: 3.75rem !important; }
   @media screen and (max-width: 767px) {
     .sm-margin-bottom {
-      margin-bottom: 2rem; } }
+      margin-bottom: 2rem !important; } }
 
 .sm-margin {
-  margin-top: 3.75rem;
-  margin-bottom: 3.75rem; }
+  margin-top: 3.75rem !important;
+  margin-bottom: 3.75rem !important; }
   @media screen and (max-width: 767px) {
     .sm-margin {
-      margin-top: 2rem;
-      margin-bottom: 2rem; } }
+      margin-top: 2rem !important;
+      margin-bottom: 2rem !important; } }
 
 /*End of Small margin*/
 /*Medium margin*/
 .md-margin-top {
-  margin-top: 5rem; }
+  margin-top: 5rem !important; }
   @media screen and (min-width: 992px) {
     .md-margin-top {
-      margin-top: 5rem; } }
+      margin-top: 5rem !important; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .md-margin-top {
-      margin-top: 4rem; } }
+      margin-top: 4rem !important; } }
   @media screen and (max-width: 767px) {
     .md-margin-top {
-      margin-top: 3rem; } }
+      margin-top: 3rem !important; } }
 
 .md-margin-bottom {
-  margin-bottom: 5rem; }
+  margin-bottom: 5rem !important; }
   @media screen and (min-width: 992px) {
     .md-margin-bottom {
-      margin-bottom: 5rem; } }
+      margin-bottom: 5rem !important; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .md-margin-bottom {
-      margin-bottom: 4rem; } }
+      margin-bottom: 4rem !important; } }
   @media screen and (max-width: 767px) {
     .md-margin-bottom {
-      margin-bottom: 3rem; } }
+      margin-bottom: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .md-margin {
-    margin-top: 5rem;
-    margin-bottom: 5rem; } }
+    margin-top: 5rem !important;
+    margin-bottom: 5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .md-margin {
-    margin-top: 4rem;
-    margin-bottom: 4rem; } }
+    margin-top: 4rem !important;
+    margin-bottom: 4rem !important; } }
 @media screen and (max-width: 767px) {
   .md-margin {
-    margin-top: 3rem;
-    margin-bottom: 3rem; } }
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important; } }
 
 /*End of Medium margin*/
 /*Large margin*/
 @media screen and (min-width: 992px) {
   .lg-margin-top {
-    margin-top: 7.25rem; } }
+    margin-top: 7.25rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .lg-margin-top {
-    margin-top: 5rem; } }
+    margin-top: 5rem !important; } }
 @media screen and (max-width: 767px) {
   .lg-margin-top {
-    margin-top: 4rem; } }
+    margin-top: 4rem !important; } }
 
 @media screen and (min-width: 992px) {
   .lg-margin-bottom {
-    margin-bottom: 7.25rem; } }
+    margin-bottom: 7.25rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .lg-margin-bottom {
-    margin-bottom: 6rem; } }
+    margin-bottom: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .lg-margin-bottom {
-    margin-bottom: 4rem; } }
+    margin-bottom: 4rem !important; } }
 
 @media screen and (min-width: 992px) {
   .lg-margin {
-    margin-top: 7.25rem;
-    margin-bottom: 7.25rem; } }
+    margin-top: 7.25rem !important;
+    margin-bottom: 7.25rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .lg-margin {
-    margin-top: 5rem;
-    margin-bottom: 6rem; } }
+    margin-top: 5rem !important;
+    margin-bottom: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .lg-margin {
-    margin-top: 4rem;
-    margin-bottom: 4rem; } }
+    margin-top: 4rem !important;
+    margin-bottom: 4rem !important; } }
 
 /*End of Large margin*/
 /*Large margin*/
 @media screen and (min-width: 992px) {
   .xl-margin-top {
-    margin-top: 9.5rem; } }
+    margin-top: 9.5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .xl-margin-top {
-    margin-top: 6rem; } }
+    margin-top: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .xl-margin-top {
-    margin-top: 5rem; } }
+    margin-top: 5rem !important; } }
 @media screen and (max-width: 575px) {
   .xl-margin-top {
-    margin-top: 3rem; } }
+    margin-top: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .xl-margin-bottom {
-    margin-bottom: 9.5rem; } }
+    margin-bottom: 9.5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .xl-margin-bottom {
-    margin-bottom: 6rem; } }
+    margin-bottom: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .xl-margin-bottom {
-    margin-bottom: 5rem; } }
+    margin-bottom: 5rem !important; } }
 @media screen and (max-width: 575px) {
   .xl-margin-bottom {
-    margin-bottom: 3rem; } }
+    margin-bottom: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .xl-margin {
-    margin-top: 9.5rem;
-    margin-bottom: 9.5rem; } }
+    margin-top: 9.5rem !important;
+    margin-bottom: 9.5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .xl-margin {
-    margin-top: 6rem;
-    margin-bottom: 6rem; } }
+    margin-top: 6rem !important;
+    margin-bottom: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .xl-margin {
-    margin-top: 5rem;
-    margin-bottom: 5rem; } }
+    margin-top: 5rem !important;
+    margin-bottom: 5rem !important; } }
 @media screen and (max-width: 575px) {
   .xl-margin {
-    margin-top: 3rem;
-    margin-bottom: 3rem; } }
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important; } }
 
 /*End of Extra Large margin*/
 @media screen and (min-width: 992px) {
   .xl-margin-right {
-    margin-right: 9.5rem; } }
+    margin-right: 9.5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .xl-margin-right {
-    margin-right: 6rem; } }
+    margin-right: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .xl-margin-right {
-    margin-right: 5rem; } }
+    margin-right: 5rem !important; } }
 @media screen and (max-width: 575px) {
   .xl-margin-right {
-    margin-right: 3rem; } }
+    margin-right: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .lg-margin-right {
-    margin-right: 7.25rem; } }
+    margin-right: 7.25rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .lg-margin-right {
-    margin-right: 5rem; } }
+    margin-right: 5rem !important; } }
 @media screen and (max-width: 767px) {
   .lg-margin-right {
-    margin-right: 4rem; } }
+    margin-right: 4rem !important; } }
 
 @media screen and (min-width: 992px) {
   .md-margin-right {
-    margin-right: 5rem; } }
+    margin-right: 5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .md-margin-right {
-    margin-right: 4rem; } }
+    margin-right: 4rem !important; } }
 @media screen and (max-width: 767px) {
   .md-margin-right {
-    margin-right: 3rem; } }
+    margin-right: 3rem !important; } }
 
 .sm-margin-right {
-  margin-right: 3.75rem; }
+  margin-right: 3.75rem !important; }
   @media screen and (max-width: 767px) {
     .sm-margin-right {
-      margin-right: 2rem; } }
+      margin-right: 2rem !important; } }
 
 .xxs-margin-right {
-  margin-right: 1.625rem; }
+  margin-right: 1.625rem !important; }
 
 @media screen and (min-width: 992px) {
   .xl-margin-left {
-    margin-left: 9.5rem; } }
+    margin-left: 9.5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .xl-margin-left {
-    margin-left: 6rem; } }
+    margin-left: 6rem !important; } }
 @media screen and (max-width: 767px) {
   .xl-margin-left {
-    margin-left: 5rem; } }
+    margin-left: 5rem !important; } }
 @media screen and (max-width: 575px) {
   .xl-margin-left {
-    margin-left: 3rem; } }
+    margin-left: 3rem !important; } }
 
 @media screen and (min-width: 992px) {
   .lg-margin-left {
-    margin-left: 7.25rem; } }
+    margin-left: 7.25rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .lg-margin-left {
-    margin-left: 5rem; } }
+    margin-left: 5rem !important; } }
 @media screen and (max-width: 767px) {
   .lg-margin-left {
-    margin-left: 4rem; } }
+    margin-left: 4rem !important; } }
 
 @media screen and (min-width: 992px) {
   .md-margin-left {
-    margin-left: 5rem; } }
+    margin-left: 5rem !important; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .md-margin-left {
-    margin-left: 4rem; } }
+    margin-left: 4rem !important; } }
 @media screen and (max-width: 767px) {
   .md-margin-left {
-    margin-left: 3rem; } }
+    margin-left: 3rem !important; } }
 
 .sm-margin-left {
-  margin-left: 3.75rem; }
+  margin-left: 3.75rem !important; }
   @media screen and (max-width: 767px) {
     .sm-margin-left {
-      margin-left: 2rem; } }
+      margin-left: 2rem !important; } }
 
 .xxs-margin-left {
-  margin-left: 1.625rem; }
+  margin-left: 1.625rem !important; }
 
 /*Background*/
 .background-black,

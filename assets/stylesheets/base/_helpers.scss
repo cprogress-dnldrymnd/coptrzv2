@@ -4,94 +4,94 @@
 /*Padding*/
 /*Extra Small Padding*/
 .xxs-padding-top {
-	padding-top: 1.625rem;
+	padding-top: 1.625rem !important;
 }
 
 .xxs-padding-bottom {
-	padding-bottom: 1.625rem;
+	padding-bottom: 1.625rem !important;
 }
 
 .xxs-padding {
-	padding-top: 1.625rem;
-	padding-bottom: 1.625rem;
+	padding-top: 1.625rem !important;
+	padding-bottom: 1.625rem !important;
 }
 
 /*End of Extra Small Padding*/
 /*Small Padding*/
 .sm-padding-top {
-	padding-top: 3.75rem;
+	padding-top: 3.75rem !important;
 
 	@include responsive(xs) {
-		padding-top: 2rem;
+		padding-top: 2rem !important;
 	}
 }
 
 .sm-padding-bottom {
-	padding-bottom: 3.75rem;
+	padding-bottom: 3.75rem !important;
 
 	@include responsive(xs) {
-		padding-bottom: 2rem;
+		padding-bottom: 2rem !important;
 	}
 }
 
 .sm-padding {
-	padding-top: 3.75rem;
-	padding-bottom: 3.75rem;
+	padding-top: 3.75rem !important;
+	padding-bottom: 3.75rem !important;
 
 	@include responsive(xs) {
-		padding-top: 2rem;
-		padding-bottom: 2rem;
+		padding-top: 2rem !important;
+		padding-bottom: 2rem !important;
 	}
 }
 
 /*End of Small Padding*/
 /*Medium Padding*/
 .md-padding-top {
-	padding-top: 5rem;
+	padding-top: 5rem !important;
 
 	@include responsive(md-lg) {
-		padding-top: 5rem;
+		padding-top: 5rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-top: 4rem;
+		padding-top: 4rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-top: 3rem;
+		padding-top: 3rem !important;
 	}
 }
 
 .md-padding-bottom {
-	padding-bottom: 5rem;
+	padding-bottom: 5rem !important;
 
 	@include responsive(md-lg) {
-		padding-bottom: 5rem;
+		padding-bottom: 5rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-bottom: 4rem;
+		padding-bottom: 4rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-bottom: 3rem;
+		padding-bottom: 3rem !important;
 	}
 }
 
 .md-padding {
 	@include responsive(md-lg) {
-		padding-top: 5rem;
-		padding-bottom: 5rem;
+		padding-top: 5rem !important;
+		padding-bottom: 5rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-top: 4rem;
-		padding-bottom: 4rem;
+		padding-top: 4rem !important;
+		padding-bottom: 4rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-top: 3rem;
-		padding-bottom: 3rem;
+		padding-top: 3rem !important;
+		padding-bottom: 3rem !important;
 	}
 }
 
@@ -99,46 +99,46 @@
 /*Large Padding*/
 .lg-padding-top {
 	@include responsive(md-lg) {
-		padding-top: 7.25rem;
+		padding-top: 7.25rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-top: 5rem;
+		padding-top: 5rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-top: 4rem;
+		padding-top: 4rem !important;
 	}
 }
 
 .lg-padding-bottom {
 	@include responsive(md-lg) {
-		padding-bottom: 7.25rem;
+		padding-bottom: 7.25rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-bottom: 6rem;
+		padding-bottom: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-bottom: 4rem;
+		padding-bottom: 4rem !important;
 	}
 }
 
 .lg-padding {
 	@include responsive(md-lg) {
-		padding-top: 7.25rem;
-		padding-bottom: 7.25rem;
+		padding-top: 7.25rem !important;
+		padding-bottom: 7.25rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-top: 5rem;
-		padding-bottom: 6rem;
+		padding-top: 5rem !important;
+		padding-bottom: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-top: 4rem;
-		padding-bottom: 4rem;
+		padding-top: 4rem !important;
+		padding-bottom: 4rem !important;
 	}
 }
 
@@ -146,176 +146,176 @@
 /*Large Padding*/
 .xl-padding-top {
 	@include responsive(md-lg) {
-		padding-top: 9.5rem;
+		padding-top: 9.5rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-top: 6rem;
+		padding-top: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-top: 5rem;
+		padding-top: 5rem !important;
 	}
 
 	@include responsive(mobile) {
-		padding-top: 3rem;
+		padding-top: 3rem !important;
 	}
 }
 
 .xl-padding-bottom {
 	@include responsive(md-lg) {
-		padding-bottom: 9.5rem;
+		padding-bottom: 9.5rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-bottom: 6rem;
+		padding-bottom: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-bottom: 5rem;
+		padding-bottom: 5rem !important;
 	}
 
 	@include responsive(mobile) {
-		padding-bottom: 3rem;
+		padding-bottom: 3rem !important;
 	}
 }
 
 .xl-padding {
 	@include responsive(md-lg) {
-		padding-top: 9.5rem;
-		padding-bottom: 9.5rem;
+		padding-top: 9.5rem !important;
+		padding-bottom: 9.5rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-top: 6rem;
-		padding-bottom: 6rem;
+		padding-top: 6rem !important;
+		padding-bottom: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-top: 5rem;
-		padding-bottom: 5rem;
+		padding-top: 5rem !important;
+		padding-bottom: 5rem !important;
 	}
 
 	@include responsive(mobile) {
-		padding-top: 3rem;
-		padding-bottom: 3rem;
+		padding-top: 3rem !important;
+		padding-bottom: 3rem !important;
 	}
 }
 
 .xl-padding-left {
 	@include responsive(md-lg) {
-		padding-left: 9.5rem;
+		padding-left: 9.5rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-left: 6rem;
+		padding-left: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-left: 5rem;
+		padding-left: 5rem !important;
 	}
 
 	@include responsive(mobile) {
-		padding-left: 3rem;
+		padding-left: 3rem !important;
 	}
 }
 
 .lg-padding-left {
 	@include responsive(md-lg) {
-		padding-left: 7.25rem;
+		padding-left: 7.25rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-left: 5rem;
+		padding-left: 5rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-left: 4rem;
+		padding-left: 4rem !important;
 	}
 }
 
 .md-padding-left {
 	@include responsive(md-lg) {
-		padding-left: 5rem;
+		padding-left: 5rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-left: 4rem;
+		padding-left: 4rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-left: 3rem;
+		padding-left: 3rem !important;
 	}
 }
 
 .sm-padding-left {
-	padding-left: 3.75rem;
+	padding-left: 3.75rem !important;
 
 	@include responsive(xs) {
-		padding-left: 2rem;
+		padding-left: 2rem !important;
 	}
 }
 
 .xxs-padding-left {
-	padding-left: 1.625rem;
+	padding-left: 1.625rem !important;
 }
 
 .xl-padding-right {
 	@include responsive(md-lg) {
-		padding-right: 9.5rem;
+		padding-right: 9.5rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-right: 6rem;
+		padding-right: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-right: 5rem;
+		padding-right: 5rem !important;
 	}
 
 	@include responsive(mobile) {
-		padding-right: 3rem;
+		padding-right: 3rem !important;
 	}
 }
 
 .lg-padding-right {
 	@include responsive(md-lg) {
-		padding-right: 7.25rem;
+		padding-right: 7.25rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-right: 5rem;
+		padding-right: 5rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-right: 4rem;
+		padding-right: 4rem !important;
 	}
 }
 
 .md-padding-right {
 	@include responsive(md-lg) {
-		padding-right: 5rem;
+		padding-right: 5rem !important;
 	}
 
 	@include responsive(sm) {
-		padding-right: 4rem;
+		padding-right: 4rem !important;
 	}
 
 	@include responsive(xs) {
-		padding-right: 3rem;
+		padding-right: 3rem !important;
 	}
 }
 
 .sm-padding-right {
-	padding-right: 3.75rem;
+	padding-right: 3.75rem !important;
 
 	@include responsive(xs) {
-		padding-right: 2rem;
+		padding-right: 2rem !important;
 	}
 }
 
 .xxs-padding-right {
-	padding-right: 1.625rem;
+	padding-right: 1.625rem !important;
 }
 
 /*End of Extra Large Padding*/
@@ -323,94 +323,94 @@
 /*margin*/
 /*Extra Small margin*/
 .xxs-margin-top {
-	margin-top: 1.625rem;
+	margin-top: 1.625rem !important;
 }
 
 .xxs-margin-bottom {
-	margin-bottom: 1.625rem;
+	margin-bottom: 1.625rem !important;
 }
 
 .xxs-margin {
-	margin-top: 1.625rem;
-	margin-bottom: 1.625rem;
+	margin-top: 1.625rem !important;
+	margin-bottom: 1.625rem !important;
 }
 
 /*End of Extra Small margin*/
 /*Small margin*/
 .sm-margin-top {
-	margin-top: 3.75rem;
+	margin-top: 3.75rem !important;
 
 	@include responsive(xs) {
-		margin-top: 2rem;
+		margin-top: 2rem !important;
 	}
 }
 
 .sm-margin-bottom {
-	margin-bottom: 3.75rem;
+	margin-bottom: 3.75rem !important;
 
 	@include responsive(xs) {
-		margin-bottom: 2rem;
+		margin-bottom: 2rem !important;
 	}
 }
 
 .sm-margin {
-	margin-top: 3.75rem;
-	margin-bottom: 3.75rem;
+	margin-top: 3.75rem !important;
+	margin-bottom: 3.75rem !important;
 
 	@include responsive(xs) {
-		margin-top: 2rem;
-		margin-bottom: 2rem;
+		margin-top: 2rem !important;
+		margin-bottom: 2rem !important;
 	}
 }
 
 /*End of Small margin*/
 /*Medium margin*/
 .md-margin-top {
-	margin-top: 5rem;
+	margin-top: 5rem !important;
 
 	@include responsive(md-lg) {
-		margin-top: 5rem;
+		margin-top: 5rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-top: 4rem;
+		margin-top: 4rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-top: 3rem;
+		margin-top: 3rem !important;
 	}
 }
 
 .md-margin-bottom {
-	margin-bottom: 5rem;
+	margin-bottom: 5rem !important;
 
 	@include responsive(md-lg) {
-		margin-bottom: 5rem;
+		margin-bottom: 5rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-bottom: 4rem;
+		margin-bottom: 4rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-bottom: 3rem;
+		margin-bottom: 3rem !important;
 	}
 }
 
 .md-margin {
 	@include responsive(md-lg) {
-		margin-top: 5rem;
-		margin-bottom: 5rem;
+		margin-top: 5rem !important;
+		margin-bottom: 5rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-top: 4rem;
-		margin-bottom: 4rem;
+		margin-top: 4rem !important;
+		margin-bottom: 4rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-top: 3rem;
-		margin-bottom: 3rem;
+		margin-top: 3rem !important;
+		margin-bottom: 3rem !important;
 	}
 }
 
@@ -418,46 +418,46 @@
 /*Large margin*/
 .lg-margin-top {
 	@include responsive(md-lg) {
-		margin-top: 7.25rem;
+		margin-top: 7.25rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-top: 5rem;
+		margin-top: 5rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-top: 4rem;
+		margin-top: 4rem !important;
 	}
 }
 
 .lg-margin-bottom {
 	@include responsive(md-lg) {
-		margin-bottom: 7.25rem;
+		margin-bottom: 7.25rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-bottom: 6rem;
+		margin-bottom: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-bottom: 4rem;
+		margin-bottom: 4rem !important;
 	}
 }
 
 .lg-margin {
 	@include responsive(md-lg) {
-		margin-top: 7.25rem;
-		margin-bottom: 7.25rem;
+		margin-top: 7.25rem !important;
+		margin-bottom: 7.25rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-top: 5rem;
-		margin-bottom: 6rem;
+		margin-top: 5rem !important;
+		margin-bottom: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-top: 4rem;
-		margin-bottom: 4rem;
+		margin-top: 4rem !important;
+		margin-bottom: 4rem !important;
 	}
 }
 
@@ -465,59 +465,59 @@
 /*Large margin*/
 .xl-margin-top {
 	@include responsive(md-lg) {
-		margin-top: 9.5rem;
+		margin-top: 9.5rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-top: 6rem;
+		margin-top: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-top: 5rem;
+		margin-top: 5rem !important;
 	}
 
 	@include responsive(mobile) {
-		margin-top: 3rem;
+		margin-top: 3rem !important;
 	}
 }
 
 .xl-margin-bottom {
 	@include responsive(md-lg) {
-		margin-bottom: 9.5rem;
+		margin-bottom: 9.5rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-bottom: 6rem;
+		margin-bottom: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-bottom: 5rem;
+		margin-bottom: 5rem !important;
 	}
 
 	@include responsive(mobile) {
-		margin-bottom: 3rem;
+		margin-bottom: 3rem !important;
 	}
 }
 
 .xl-margin {
 	@include responsive(md-lg) {
-		margin-top: 9.5rem;
-		margin-bottom: 9.5rem;
+		margin-top: 9.5rem !important;
+		margin-bottom: 9.5rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-top: 6rem;
-		margin-bottom: 6rem;
+		margin-top: 6rem !important;
+		margin-bottom: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-top: 5rem;
-		margin-bottom: 5rem;
+		margin-top: 5rem !important;
+		margin-bottom: 5rem !important;
 	}
 
 	@include responsive(mobile) {
-		margin-top: 3rem;
-		margin-bottom: 3rem;
+		margin-top: 3rem !important;
+		margin-bottom: 3rem !important;
 	}
 }
 
@@ -525,118 +525,118 @@
 
 .xl-margin-right {
 	@include responsive(md-lg) {
-		margin-right: 9.5rem;
+		margin-right: 9.5rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-right: 6rem;
+		margin-right: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-right: 5rem;
+		margin-right: 5rem !important;
 	}
 
 	@include responsive(mobile) {
-		margin-right: 3rem;
+		margin-right: 3rem !important;
 	}
 }
 
 .lg-margin-right {
 	@include responsive(md-lg) {
-		margin-right: 7.25rem;
+		margin-right: 7.25rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-right: 5rem;
+		margin-right: 5rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-right: 4rem;
+		margin-right: 4rem !important;
 	}
 }
 
 .md-margin-right {
 	@include responsive(md-lg) {
-		margin-right: 5rem;
+		margin-right: 5rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-right: 4rem;
+		margin-right: 4rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-right: 3rem;
+		margin-right: 3rem !important;
 	}
 }
 
 .sm-margin-right {
-	margin-right: 3.75rem;
+	margin-right: 3.75rem !important;
 
 	@include responsive(xs) {
-		margin-right: 2rem;
+		margin-right: 2rem !important;
 	}
 }
 
 .xxs-margin-right {
-	margin-right: 1.625rem;
+	margin-right: 1.625rem !important;
 }
 
 .xl-margin-left {
 	@include responsive(md-lg) {
-		margin-left: 9.5rem;
+		margin-left: 9.5rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-left: 6rem;
+		margin-left: 6rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-left: 5rem;
+		margin-left: 5rem !important;
 	}
 
 	@include responsive(mobile) {
-		margin-left: 3rem;
+		margin-left: 3rem !important;
 	}
 }
 
 .lg-margin-left {
 	@include responsive(md-lg) {
-		margin-left: 7.25rem;
+		margin-left: 7.25rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-left: 5rem;
+		margin-left: 5rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-left: 4rem;
+		margin-left: 4rem !important;
 	}
 }
 
 .md-margin-left {
 	@include responsive(md-lg) {
-		margin-left: 5rem;
+		margin-left: 5rem !important;
 	}
 
 	@include responsive(sm) {
-		margin-left: 4rem;
+		margin-left: 4rem !important;
 	}
 
 	@include responsive(xs) {
-		margin-left: 3rem;
+		margin-left: 3rem !important;
 	}
 }
 
 .sm-margin-left {
-	margin-left: 3.75rem;
+	margin-left: 3.75rem !important;
 
 	@include responsive(xs) {
-		margin-left: 2rem;
+		margin-left: 2rem !important;
 	}
 }
 
 .xxs-margin-left {
-	margin-left: 1.625rem;
+	margin-left: 1.625rem !important;
 }
 
 /*Background*/
