@@ -11,7 +11,7 @@ $modules = get__post_meta('modules');
     <?php
     foreach ($modules as $key => $module) {
         $type = $module['_type'];
-        $module_id = 'module-' . get_the_ID() . '-' . $key;
+        $module_id = $module['module_id'] ? $$module['module_id'] : 'module-' . get_the_ID() . '-' . $key;
         $styles = $module['styles'];
         $classes = '';
         $style_attribute = '';
