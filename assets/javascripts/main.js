@@ -12,10 +12,25 @@ jQuery(document).ready(function ($) {
 	get_started_modal();
 	ajax_add_to_cart();
 	input_fields();
+	incrementing_numbers();
 	if (jQuery('.archive-section').length > 0 && !jQuery('body').hasClass('post-type-archive-careers')) {
 		ajax();
 	}
 });
+
+function incrementing_numbers() {
+	jQuery('.counter-number').each(function () {
+		jQueryjQuery(this).prop('Counter',0).animate({
+			Counter: $(this).text()
+		}, {
+			duration: 3000,
+			easing: 'swing',
+			step: function (now) {
+				jQuery(this).text(Math.ceil(now));
+			}
+		});
+	});
+}
 
 function input_fields() {
 	jQuery('.remove-first-option-value select option:first-child').attr('value', '');

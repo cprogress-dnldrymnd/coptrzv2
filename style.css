@@ -13959,7 +13959,7 @@ a.fancybox-gallery-img {
 .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }
 
-.number-counters-holder .counter {
+.number-counters-holder .counter .counter-number {
   font-size: 24px;
   font-weight: 600; }
 

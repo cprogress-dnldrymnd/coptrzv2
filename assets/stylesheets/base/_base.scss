@@ -3415,10 +3415,11 @@ a.fancybox-gallery-img {
     }
 }
 
-
 .number-counters-holder {
     .counter {
-        font-size: 24px;
-        font-weight: 600;
+        .counter-number {
+            font-size: 24px;
+            font-weight: 600;
+        }
     }
 }
