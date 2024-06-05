@@ -269,7 +269,7 @@ function modify_cpt_slug($args, $post_type)
 		$args['rewrite'] = array('with_front' => false);
 	} else if ($post_type == 'casestudies') {
 		$args['rewrite'] = array('with_front' => false, 'slug' => 'case-studies');
-	} else if ($post_type == 'solutions') {
+	} else if ($post_type == 'solutionsv2') {
 		$args['rewrite'] = array('with_front' => false, 'slug' => 'industry-solutions');
 	} else if ($post_type == 'careers') {
 		$args['rewrite'] = array('with_front' => false, 'slug' => 'careers/job-vacancies');
