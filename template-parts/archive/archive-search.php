@@ -5,9 +5,6 @@ $DisplayData = new DisplayData;
 $SVG = new SVG;
 
 ?>
-
-
-
 <section class="product-slider blog-section xl-padding-bottom archive-section search-section no-overflow">
     <div class="container">
         <div class="row g-4">
