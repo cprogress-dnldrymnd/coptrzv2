@@ -7,7 +7,7 @@
     ));
     ?>
     <div class="container position-relative <?= $container_width_class ?>">
-        <div class="inner" <?= $$container_width_style_attribute ?>>
+        <div class="inner" <?= $container_width_style_attribute ?>>
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <div class="column-holder content-margin max-width <?= $classes_text_color ?>">
