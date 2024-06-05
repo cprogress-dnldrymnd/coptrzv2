@@ -1120,7 +1120,7 @@ Container::make('post_meta', 'Modules')
 							),
 					)
 				)
-				->set_header_template('CTA <%- title  %>')
+				->set_header_template('CTA<% if (title) { %>: <%- title %> <% } %> ')
 				//End of CTA Fields
 				->add_fields(
 					'contact_form',
