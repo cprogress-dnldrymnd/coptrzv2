@@ -448,7 +448,6 @@ $Popup->publicly_queryable = true;
 $Popup->show_in_admin_bar = true;
 $Popup->has_archive = false;
 
-n_rest = true;
 
 $Model3d = new newPostType();
 $Model3d->name = 'Model Libraries';
