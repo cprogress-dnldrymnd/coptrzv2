@@ -190,6 +190,9 @@ tspan {
                 flex: 1 0 0%;
                 margin-left: 1rem;
             }
+            @include responsive(xs) {
+                margin-bottom: 1rem;
+            }
         }
         .suffix {
             display: none;
@@ -199,6 +202,13 @@ tspan {
             width: 50%;
             padding-left: 1rem;
             padding-right: 1rem;
+            @include responsive(xs) {
+                flex: 0 0 100%;
+                width: 100%;
+            }
+        }
+        @include responsive(xs) {
+            flex-direction: column;
         }
     }
 }
