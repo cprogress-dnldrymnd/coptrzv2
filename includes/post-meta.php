@@ -1190,7 +1190,7 @@ Container::make('post_meta', 'Modules')
 							->set_width(33),
 						//End of Heading Settings
 						Field::make('textarea', 'description', __('Description')),
-						Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+						Field::make('select', 'button_type', __('Button Type'))->set_width(20)->set_classes('trigger-selector')
 							->set_options(
 								array(
 									''          => 'Select Button Type',
@@ -1205,7 +1205,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'button_text', __('Button Text')),
-						Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+						Field::make('text', 'button_url', __('Button URL'))->set_width(20)->set_classes('field-url')
 							->set_conditional_logic(
 								array(
 									array(
@@ -1215,9 +1215,9 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('html', 'html')
+						Field::make('html', 'html')->set_width(20)
 							->set_html('<div class="page-selector">  </div>'),
-						Field::make('text', 'button_url_custom', __('Button URL'))
+						Field::make('text', 'button_url_custom', __('Button URL'))->set_width(20)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1226,7 +1226,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('select', 'button_style', __('Button Style'))
+						Field::make('select', 'button_style', __('Button Style'))->set_width(20)
 							->set_options(
 								array(
 									'button-accent'      => 'Accent',
