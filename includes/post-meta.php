@@ -2450,6 +2450,7 @@ Container::make('post_meta', 'Modules')
 														Field::make('image', 'icon', __('Icon')),
 													))
 													->set_layout('tabbed-vertical')
+													->set_header_template('<%- number %>')
 											)
 										)
 										->set_layout('tabbed-vertical')
