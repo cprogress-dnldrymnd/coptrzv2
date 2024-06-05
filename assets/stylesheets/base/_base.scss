@@ -2140,53 +2140,6 @@ body:not(.elementor-editor-active) {
     }
 }
 
-body.elementor-editor-active {
-    .the-content.d-none {
-        display: block !important;
-    }
-
-    .elementor-swiper-slider {
-        > div {
-            flex-direction: column !important;
-            flex-wrap: wrap;
-
-            .swiper-slide {
-                width: 100%;
-                flex: 0 0 100% !important;
-            }
-        }
-
-        .swiper-slide {
-            > .e-con-inner:before {
-                content: "Swiper Slide";
-                display: block;
-                padding-left: 30px;
-                font-size: 12px;
-                font-weight: 500;
-                color: var(--accent-color);
-                position: absolute;
-                top: 25px;
-                left: 0;
-                padding: 3px 10px;
-                background-color: #000;
-            }
-        }
-
-        > .e-con-inner:before {
-            content: "Swiper";
-            display: block;
-            padding-left: 30px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--accent-color);
-            position: absolute;
-            top: 0;
-            left: 25px;
-            padding: 3px 10px;
-            background-color: #000;
-        }
-    }
-}
 
 .image-box-style-1 {
     height: 100%;

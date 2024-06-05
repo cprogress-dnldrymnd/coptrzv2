@@ -12973,39 +12973,6 @@ body:not(.elementor-editor-active) .swiper-light .swiper-pagination-elementor .s
   margin-right: 5px !important;
   background-color: var(--secondary-color); }
 
-body.elementor-editor-active .the-content.d-none {
-  display: block !important; }
-body.elementor-editor-active .elementor-swiper-slider > div {
-  flex-direction: column !important;
-  flex-wrap: wrap; }
-  body.elementor-editor-active .elementor-swiper-slider > div .swiper-slide {
-    width: 100%;
-    flex: 0 0 100% !important; }
-body.elementor-editor-active .elementor-swiper-slider .swiper-slide > .e-con-inner:before {
-  content: "Swiper Slide";
-  display: block;
-  padding-left: 30px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--accent-color);
-  position: absolute;
-  top: 25px;
-  left: 0;
-  padding: 3px 10px;
-  background-color: #000; }
-body.elementor-editor-active .elementor-swiper-slider > .e-con-inner:before {
-  content: "Swiper";
-  display: block;
-  padding-left: 30px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--accent-color);
-  position: absolute;
-  top: 0;
-  left: 25px;
-  padding: 3px 10px;
-  background-color: #000; }
-
 .image-box-style-1 {
   height: 100%;
   background-color: var(--white-color); }
