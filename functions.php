@@ -216,7 +216,9 @@ function custom_excerpt_length($content, $length = 50)
 		preg_match('/^([^.!?\s]*[\.!?\s]+){0,' . $length . '}/', strip_tags($content), $abstract);
 		// pregmatch will return an array and the first 80 chars will be in the first element 
 		return $abstract[0] . '...';
-	} 
+	} else {
+		return '';
+	}
 }
 add_filter('excerpt_length', 'custom_excerpt_length', 999);
 
