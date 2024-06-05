@@ -1280,6 +1280,9 @@
 	@include inputs {
 		background-color: var(--body-color);
 	}
+	.wpforms-field-label {
+		background-color: var(--body-color) !important;
+	}
 }
 
 .rounded-corner {

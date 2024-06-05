@@ -15005,6 +15005,8 @@ a.fancybox-gallery-img {
 .form-style-2 select,
 .form-style-2 textarea {
   background-color: var(--body-color); }
+.form-style-2 .wpforms-field-label {
+  background-color: var(--body-color) !important; }
 
 .rounded-corner {
   border-radius: var(--border-radius, 15px); }
