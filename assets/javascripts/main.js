@@ -20,7 +20,7 @@ jQuery(document).ready(function ($) {
 function input_fields() {
 	jQuery('select option[value="Select Sector"]').attr('value', '');
 
-	jQuery(".wpforms-field input, .wpforms-field select").on("blur input focus", function () {
+	jQuery(".wpforms-field input, .wpforms-field select, .wpforms-field textarea").on("blur input focus", function () {
 		if (this.value) {
 			jQuery(this).parent().addClass("filled");
 		} else {
@@ -28,7 +28,7 @@ function input_fields() {
 		}
 	});
 
-	jQuery(".wpforms-field input, .wpforms-field select").on("focus", function () {
+	jQuery(".wpforms-field input, .wpforms-field select,  .wpforms-field textarea").on("focus", function () {
 		if (this) {
 			jQuery(this).parent().addClass("filled");
 		} else {
