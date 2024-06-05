@@ -132,7 +132,7 @@ a {
             top: 0;
             right: 0;
             bottom: 0;
-            z-index: 1
+            z-index: 1;
         }
     }
 
@@ -3378,8 +3378,9 @@ a.fancybox-gallery-img {
         .wpforms-field {
             padding-top: 0;
             padding-bottom: 0;
-            margin-bottom: 1.5rem;
-
+            &:not(.wpforms-field-layout) {
+                margin-bottom: 1.5rem;
+            }
             .wpforms-field-label {
                 font-weight: 600;
                 position: absolute;

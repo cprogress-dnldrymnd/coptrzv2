@@ -13929,8 +13929,9 @@ a.fancybox-gallery-img {
 
 .wpforms-form .wpforms-field-container .wpforms-field {
   padding-top: 0;
-  padding-bottom: 0;
-  margin-bottom: 1.5rem; }
+  padding-bottom: 0; }
+  .wpforms-form .wpforms-field-container .wpforms-field:not(.wpforms-field-layout) {
+    margin-bottom: 1.5rem; }
   .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
     font-weight: 600;
     position: absolute;
