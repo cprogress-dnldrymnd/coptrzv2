@@ -1204,7 +1204,7 @@ Container::make('post_meta', 'Modules')
 									'custom'    => 'Custom',
 								)
 							),
-						Field::make('text', 'button_text', __('Button Text')),
+						Field::make('text', 'button_text', __('Button Text'))->set_width(20),
 						Field::make('text', 'button_url', __('Button URL'))->set_width(20)->set_classes('field-url')
 							->set_conditional_logic(
 								array(
