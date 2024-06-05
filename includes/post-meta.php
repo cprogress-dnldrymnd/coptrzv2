@@ -941,6 +941,15 @@ Container::make('post_meta', 'Modules')
 												)
 											)
 										),
+									Field::make('text', 'background_overlay_image_opacity', 'Image Background Overlay Opacity')
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_overlay_type',
+													'value' => 'image',
+												)
+											)
+										),
 									Field::make('color', 'background_overlay_custom', 'Custom Background Overlay')
 										->set_alpha_enabled(true)
 										->set_conditional_logic(
