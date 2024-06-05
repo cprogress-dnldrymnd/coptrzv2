@@ -2007,6 +2007,27 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								array(
 									Field::make('text', 'label', __('Label')),
+									Field::make('text', 'button_url', __('Column URL'))->set_classes('field-url')
+										->set_conditional_logic(
+											array(
+												array(
+													'field'   => 'button_type',
+													'value'   => 'custom',
+													'compare' => '!='
+												)
+											)
+										),
+									Field::make('html', 'html')
+										->set_html('<div class="page-selector">  </div>'),
+									Field::make('text', 'button_url_custom', __('Button URL'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'button_type',
+													'value' => 'custom',
+												)
+											)
+										),
 									Field::make('complex', 'styles', __('Styles'))
 										->set_duplicate_groups_allowed(false)
 										->add_fields(
