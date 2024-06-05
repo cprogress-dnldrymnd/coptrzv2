@@ -1,4 +1,4 @@
-<section class="logo-slider position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
+<section class="logo-slider position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
     _background_image(array(
         'baground_image' => $baground_image,
