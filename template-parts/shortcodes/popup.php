@@ -16,13 +16,13 @@ while ($query->have_posts()) {
                         <div class="col-lg-6">
                             <div class="form-holder px-4 py-5 h-100 d-flex align-items-center">
                                 <div class="form-inner w-100">
-                                    <?= do_shortcode(get_the_content(NULL, false, $id)) ?>
+                                    <?php the_content() ?>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 bg-image">
                             <div class="position-relative h-100">
-                                <img src="<?= get_the_post_thumbnail_url($id, 'large') ?>" alt="<?= get_the_title($id) ?>">
+                                <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'large') ?>" alt="<?php the_title() ?>">
                             </div>
                         </div>
                     </div>
@@ -30,4 +30,5 @@ while ($query->have_posts()) {
             </div>
         </div>
     </div>
-<?php } ?>
+<?php }
+wp_reset_postdata() ?>
