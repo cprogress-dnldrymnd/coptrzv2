@@ -2442,7 +2442,10 @@ Container::make('post_meta', 'Modules')
 											array(
 												Field::make('complex', 'number_counters', __('Custom HTML'))
 													->add_fields(array(
-														Field::make('text', 'number', __('Number')),
+														Field::make('text', 'number', __('Number'))
+															->set_attribute('type', 'number'),
+														Field::make('text', 'prefix', __('Prefix')),
+														Field::make('text', 'suffix', __('Suffix')),
 														Field::make('textarea', 'description', __('Description')),
 														Field::make('image', 'icon', __('Icon')),
 													))
