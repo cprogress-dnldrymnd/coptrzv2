@@ -13959,6 +13959,10 @@ a.fancybox-gallery-img {
 .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }
 
+.number-counters-holder .counter {
+  font-size: 24px;
+  font-weight: 600; }
+
 /*Padding*/
 /*Extra Small Padding*/
 .xxs-padding-top {
