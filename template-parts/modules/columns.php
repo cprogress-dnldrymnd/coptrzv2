@@ -9,7 +9,6 @@
     <div class="container position-relative <?= $container_width_class ?>">
         <?php
         _section_heading_description(array(
-            'display_heading_description' => $module['display_heading_description'],
             'heading' => $module['heading'],
             'description' => $module['description'],
             'text_align' => $module['text_align'],

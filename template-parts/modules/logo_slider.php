@@ -7,12 +7,18 @@
     ));
     ?>
     <div class="container-fluid position-relative p-0 <?= $container_width_class ?>">
-        <?php if ($module['display_heading_description'] && ($module['heading'] || $module['description'])) {  ?>
-            <div class="section-heading-description content-margin mb-5 <?= $module['text_align'] ?>">
-                <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="' . $module['size'] . '"]') ?>
-                <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
-            </div>
-        <?php } ?>
+        <?php
+        _section_heading_description(array(
+            'heading' => $module['heading'],
+            'description' => $module['description'],
+            'text_align' => $module['text_align'],
+            'heading_prefix' => $module['heading_prefix'],
+            'heading_suffix' => $module['heading_suffix'],
+            'tag' => $module['tag'],
+            'size' => $module['size'],
+            'heading_with_line' => $module['heading_with_line'],
+        ));
+        ?>
         <div class="logo-slider-box">
             <div class="swiper mySwiper-logoSwiper">
                 <div class="swiper-wrapper text-center align-items-center">
