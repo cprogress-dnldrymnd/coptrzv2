@@ -18,6 +18,7 @@ $modules = get__post_meta('modules');
         $classes_row = '';
         $container_width_class = '';
         $container_width_style_attribute = '';
+        $background_image_class = '';
         if ($styles) {
             foreach ($styles as $style) {
                 $style_type = $style['_type'];
@@ -55,6 +56,7 @@ $modules = get__post_meta('modules');
                         if ($background_overlay_type == 'image') {
                             $background_overlay_image = $style['background_overlay_image'];
                             $style_attribute .= 'opacity: ' . $background_overlay_image_opacity;
+                            $background_image_class = 'no-overlay';
                         }
 
 
