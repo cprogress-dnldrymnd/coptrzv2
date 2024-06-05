@@ -6,10 +6,10 @@
         </div>
 
         <?php if (have_posts()) { ?>
-            <div class="row g-4">
+            <div class="row g-5">
                 <?php while (have_posts()) {
                     the_post() ?>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="post-grid h-100 background-white rounded-corner post-<?= get_the_ID() ?>" style="--border-radius: 10px; --padding: 30%">
                             <div class="content-margin h-100">
                                 <?= do_shortcode('[_image class="image-absolute" id="' . get_post_thumbnail_id(get_the_ID()) . '"]'); ?>
