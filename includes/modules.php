@@ -33,15 +33,14 @@ function _elements($data, $module_id, $same_height_images)
 
 function _background_image($baground_image, $background_image_class, $background_overlay_image)
 {
-    ob_start();
-?>
-<?php if ($baground_image) { ?>
-                <?= do_shortcode('[_image class="background-image ' . $background_image_class . '" id="' . $baground_image . '"]'); ?>
-            <?php } ?>
+    $return = '';
+    if ($baground_image) {
+        $return .= do_shortcode('[_image class="background-image ' . $background_image_class . '" id="' . $baground_image . '"]');
+    }
 
-            <?php if ($background_overlay_image) { ?>
-                <?= do_shortcode('[_image class="background-image-overlay" id="' . $background_overlay_image . '"]'); ?>
-            <?php } ?>
-    <?php
-    return ob_get_clean();
+    if ($background_overlay_image) {
+        $return .= do_shortcode('[_image class="background-image-overlay" id="' . $background_overlay_image . '"]');
+    }
+
+    return $return;
 }
