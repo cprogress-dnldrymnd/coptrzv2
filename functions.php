@@ -329,7 +329,7 @@ function action_admin_footer()
 			} else if ($value == 'product') {
 				$selector.html('<?= $select_product ?>');
 			} else if ($value == 'guides') {
-				$selector.html('<?= $select_guide ?>');
+				$selector.html('<?= $select_guide?>');
 			} else if ($value == 'casestudies') {
 				$selector.html('<?= $select_casestudies ?>');
 			} else if ($value == 'solutions') {
