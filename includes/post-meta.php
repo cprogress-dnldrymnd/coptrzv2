@@ -4377,17 +4377,6 @@ Container::make('post_meta', '3D Model Library Settings')
 	->or_where('post_type', '=', 'popup')
 	->add_fields(
 		array(
-			Field::make('image', 'captured_by', 'Captured by (Logo)'),
-			Field::make('association', 'related_blog', 'Related Blog')
-				->set_types(
-					array(
-						array(
-							'type'      => 'post',
-							'post_type' => 'post',
-						)
-					)
-				)
-				->set_max(1)
-
+			Field::make('text', 'contact_form_popup', 'Contact Form Popup'),
 		)
 	);
