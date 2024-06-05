@@ -866,6 +866,9 @@ Container::make('post_meta', 'Modules')
 				->add_fields(
 					'cta',
 					array(
+						Field::make('text', 'title', __('Module Title'))->set_width(33),
+						Field::make('text', 'module_id', __('Module ID'))->set_width(33),
+						Field::make('checkbox', 'disable_module', __('Disable Module'))->set_width(33),
 						Field::make('complex', 'styles', __('Styles'))
 							->set_duplicate_groups_allowed(false)
 							->add_fields(
