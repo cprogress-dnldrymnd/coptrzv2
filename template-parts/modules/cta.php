@@ -1,4 +1,7 @@
-<section class="call-to-action" id="<?= $module_id ?>">
+<section class="call-to-action position-relative" id="<?= $module_id ?>">
+    <?php if ($baground_image) { ?>
+        <?= do_shortcode('[_image class="background-image" id="' . $baground_image . '"]'); ?>
+    <?php } ?>
     <div class="container">
         <div class="inner rounded-corner <?= $classes ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
             <div class="row g-5 align-items-end">
