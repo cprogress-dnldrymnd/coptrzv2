@@ -40,7 +40,7 @@ $SVG = new SVG;
             </div>
         </div>
     </div>
-    <div class="bottom-header">
+    <div class="bottom-header background-white">
         <div class="container large-container">
             <?= do_shortcode('[mega_menu id=268186]'); ?>
             <?php
