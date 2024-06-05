@@ -174,10 +174,19 @@ tspan {
     &.heading-with-line {
         display: flex;
         flex-wrap: wrap;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        align-items: flex-start;
         .prefix {
+            font-weight: 500;
+            align-items: center;
             &:after {
-                content: '';
+                content: "";
                 display: flex;
+                flex: 0 0 auto;
+                height: 1px;
+                background-color: #e9e9e9;
+                flex: 1 0 0%;
             }
         }
         .suffix {

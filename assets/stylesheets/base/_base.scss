@@ -1005,81 +1005,32 @@ select option {
     }
 }
 
-.line-title-v2 {
-    .col {
-        @include first-child {
-            @include responsive(xs-sm) {
-                flex: 0 0 100%;
-                margin-bottom: 2rem;
-            }
-        }
-    }
-
-    .line {
-        background-color: #e9e9e9;
-        opacity: 1;
-    }
-
-    .text-content {
-        font-size: 2.5rem;
-        font-weight: 600;
-        letter-spacing: 0;
-
-        @include responsive(xs-md) {
-            font-size: 2rem;
-        }
-
-        @include responsive(xs) {
-            font-size: 1.5rem;
-        }
-    }
-}
-
-.line-title-bottom {
-    letter-spacing: 0.75px;
-
-    span.text {
-        padding-bottom: 1.5rem;
-    }
-
-    .line {
-        width: 100%;
-        height: 1px;
-        background-color: var(--white-color);
-        opacity: 0.1;
-    }
-}
-
 .description-box {
     ul:not(.not-styled) {
         list-style: none;
         padding-left: 0;
 
         li {
-            &:not(.elementor-icon-list-item) {
-                text-align: left;
-                @include display-flex;
-                @include align-items(center);
+            text-align: left;
+            @include display-flex;
+            @include align-items(center);
 
-                @include before {
-                    content: "";
-                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16.888' height='12.594' viewBox='0 0 16.888 12.594'%3E%3Cpath id='Icon_awesome-check' data-name='Icon awesome-check' d='M5.736 16.924.247 11.435a.844.844 0 0 1 0-1.194L1.442 9.047a.844.844 0 0 1 1.194 0l3.7 3.7 7.92-7.92a.844.844 0 0 1 1.194 0l1.194 1.194a.844.844 0 0 1 0 1.194L6.93 16.924A.844.844 0 0 1 5.736 16.924Z' transform='translate(0 -4.577)' fill='%232da1ff'/%3E%3C/svg%3E");
-                    width: 16.89px;
-                    height: 12.59px;
-                    margin-right: 1.15rem;
-                    display: block;
-                    flex: 0 0 16.89px;
-                }
+            @include before {
+                content: "";
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16.888' height='12.594' viewBox='0 0 16.888 12.594'%3E%3Cpath id='Icon_awesome-check' data-name='Icon awesome-check' d='M5.736 16.924.247 11.435a.844.844 0 0 1 0-1.194L1.442 9.047a.844.844 0 0 1 1.194 0l3.7 3.7 7.92-7.92a.844.844 0 0 1 1.194 0l1.194 1.194a.844.844 0 0 1 0 1.194L6.93 16.924A.844.844 0 0 1 5.736 16.924Z' transform='translate(0 -4.577)' fill='%232da1ff'/%3E%3C/svg%3E");
+                width: 16.89px;
+                height: 12.59px;
+                margin-right: 1.15rem;
+                display: block;
+                flex: 0 0 16.89px;
             }
         }
     }
 
     ul {
         li {
-            &:not(.elementor-icon-list-item) {
-                @include not-last-child {
-                    margin-bottom: 1.25rem;
-                }
+            @include not-last-child {
+                margin-bottom: 1.25rem;
             }
         }
     }
@@ -2139,7 +2090,6 @@ body:not(.elementor-editor-active) {
         }
     }
 }
-
 
 .image-box-style-1 {
     height: 100%;
@@ -3417,7 +3367,7 @@ a.fancybox-gallery-img {
             padding-top: 0;
             padding-bottom: 0;
             margin-bottom: 1.5rem;
-           
+
             .wpforms-field-label {
                 font-weight: 600;
                 position: absolute;
@@ -3429,7 +3379,7 @@ a.fancybox-gallery-img {
                 top: 15px;
                 @include transition(300ms);
             }
-        
+
             &.filled {
                 .wpforms-field-label {
                     top: -13px;
