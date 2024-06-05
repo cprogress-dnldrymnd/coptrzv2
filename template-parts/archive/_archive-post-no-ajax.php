@@ -14,18 +14,18 @@
                             <div class="content-margin h-100">
                                 <?= do_shortcode('[_image class="image-absolute" id="' . get_post_thumbnail_id(get_the_ID()) . '"]'); ?>
                                 <?= do_shortcode('[_heading heading="' . get_the_title() . '" tag="h3"]') ?>
-                                <?= do_shortcode('[_description description="' . custom_excerpt_length(get_the_excerpt(), 20) . '" ]') ?>
-                                <div class="button-box button-accent">
-                                    <a href="<?= get_the_permalink() ?>">
-                                        LEARN MORE
-                                    </a>
-                                </div>
+                                <?php if (get_the_excerpt()) { ?>
+                                    <?= do_shortcode('[_description description="' . custom_excerpt_length(get_the_excerpt(), 20) . '" ]') ?>
+                                <?php } ?>
+                                <a href="<?= get_the_permalink() ?>">
+                                    LEARN MORE
+                                </a>
                             </div>
                         </div>
                     </div>
-                <?php } ?>
             </div>
-
         <?php } ?>
     </div>
+
+<?php } ?>
 </section>
