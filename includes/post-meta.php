@@ -64,18 +64,7 @@ Container::make('post_meta', 'Page Options')
 		)
 	);
 
-/*-----------------------------------------------------------------------------------*/
-/* Industry Solution
-/*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', 'Industry Options')
-	->where('post_type', '=', 'solutions')
-	->add_fields(
-		array(
-			Field::make('checkbox', 'hide_on_list', 'Hide on List'),
-			Field::make('image', 'icon', 'Icon'),
-			Field::make('textarea', 'short_descr', 'Short Description'),
-		)
-	);
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Testimonial
