@@ -51,7 +51,7 @@ $modules = get__post_meta('modules');
                             $classes .= ' ' . $style['custom_class'];
                             break;
                         case 'alignment':
-                            $class .= ' ' . $style['text_align'];
+                            $classes .= ' ' . $style['text_align'];
                             $classes_row .= ' ' . $style['align_items'] . ' ' . $style['justify_content'];
                             break;
                         case 'background_image':
