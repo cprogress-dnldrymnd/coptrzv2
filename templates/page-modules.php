@@ -22,6 +22,7 @@ $modules = get__post_meta('modules');
             $container_width_class = '';
             $container_width_style_attribute = '';
             $background_image_class = '';
+            $baground_image = '';
             if ($styles) {
                 foreach ($styles as $style) {
                     $style_type = $style['_type'];
@@ -52,7 +53,7 @@ $modules = get__post_meta('modules');
                             $classes_row .= ' ' . $style['align_items'] . ' ' . $style['justify_content'] . ' ' . $style['text_align'];
                             break;
                         case 'background_image':
-                            $baground_image = $style['background_image'];
+                            $baground_image .= $style['background_image'];
                             $classes .= ' ' . $style['background_size'] . ' ' . $style['background_attachment'] . ' ' . $style['background_repeat'];
                             break;
                         case 'background_overlay':
