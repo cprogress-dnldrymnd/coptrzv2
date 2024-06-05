@@ -269,7 +269,7 @@ function modify_cpt_slug($args, $post_type)
 		$args['rewrite'] = array('with_front' => false);
 	} else if ($post_type == 'casestudies') {
 		$args['rewrite'] = array('with_front' => false, 'slug' => 'case-studies');
-	} else if ($post_type == 'solutionsv2') {
+	} else if ($post_type == 'solutions') {
 		$args['rewrite'] = array('with_front' => false, 'slug' => 'industry-solutions');
 	} else if ($post_type == 'careers') {
 		$args['rewrite'] = array('with_front' => false, 'slug' => 'careers/job-vacancies');
@@ -596,7 +596,7 @@ add_action('wp_footer', 'action_popups');
 function action_pre_get_posts($query)
 {
 
-	if (!is_admin() && $query->is_main_query() && is_post_type_archive('solutionsv2')) {
+	if (!is_admin() && $query->is_main_query() && is_post_type_archive('solutions')) {
 		$query->set('posts_per_page', -1);
 
 		// Append our meta query
