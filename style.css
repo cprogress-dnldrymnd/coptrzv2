@@ -14604,6 +14604,27 @@ a.fancybox-gallery-img {
     right: 0;
     bottom: 0; }
 
+.background-image-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0; }
+  .background-image-overlay > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%; }
+  .background-image-overlay + div {
+    position: relative; }
+  .background-image-overlay:not(.no-overlay):before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0; }
+
 .overlay:before {
   content: "";
   background-color: rgba(0, 0, 0, 0.4);

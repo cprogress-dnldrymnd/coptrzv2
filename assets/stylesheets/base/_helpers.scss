@@ -763,18 +763,32 @@
 .background-image {
 	@include absolute-corner;
 
-	>img {
+	> img {
 		object-fit: cover;
 		width: 100%;
 		height: 100%;
 	}
 
-	+div {
+	+ div {
 		position: relative;
 	}
 
 	&:not(.no-overlay) {
 		@include overlay;
+	}
+}
+
+.background-image-overlay {
+	@include absolute-corner;
+
+	> img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+
+	+ div {
+		position: relative;
 	}
 }
 
@@ -800,7 +814,7 @@
 
 /*Others*/
 .with-separator {
-	>* {
+	> * {
 		@include not-last-child {
 			@include after {
 				content: "";
@@ -1009,13 +1023,13 @@
 		bottom: 0;
 	}
 
-	>div {
+	> div {
 		position: relative;
 	}
 }
 
 .content-margin {
-	>* {
+	> * {
 		@include not-last-child {
 			margin-bottom: 2rem;
 		}
@@ -1023,7 +1037,7 @@
 }
 
 .content-margin-small {
-	>* {
+	> * {
 		@include not-last-child {
 			margin-bottom: 1rem;
 		}
@@ -1195,7 +1209,7 @@
 		display: block !important;
 	}
 
-	>.e-con-inner {
+	> .e-con-inner {
 		@include responsive(xs) {
 			display: block !important;
 		}
