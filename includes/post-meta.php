@@ -2007,18 +2007,11 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								array(
 									Field::make('text', 'label', __('Label')),
-									Field::make('text', 'button_url', __('Column URL'))->set_classes('field-url')
-										->set_conditional_logic(
-											array(
-												array(
-													'field'   => 'button_type',
-													'value'   => 'custom',
-													'compare' => '!='
-												)
-											)
-										),
+									Field::make('text', 'button_url', __('Column URL'))->set_classes('field-url'),
 									Field::make('html', 'html')
-										->set_html('<div class="page-selector">  </div>'),
+										->set_html('<div class="page-selector">  
+										<button type="button" class="button">Add URL</button>
+										</div>'),
 									Field::make('text', 'button_url_custom', __('Button URL'))
 										->set_conditional_logic(
 											array(
