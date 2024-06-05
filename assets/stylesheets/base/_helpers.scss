@@ -803,16 +803,24 @@
 
 /*Overlay*/
 /*Colors*/
+
 .text-white {
-	p {
+	color: var(--white-color) !important;
+	* {
 		color: inherit;
 	}
 }
 
 .text-primary {
 	color: var(--primary-color) !important;
+	* {
+		color: inherit;
+	}
+}
 
-	p {
+.text-accent {
+	color: var(--accent-color) !important;
+	* {
 		color: inherit;
 	}
 }

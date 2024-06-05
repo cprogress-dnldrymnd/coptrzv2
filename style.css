@@ -14603,12 +14603,19 @@ a.fancybox-gallery-img {
 
 /*Overlay*/
 /*Colors*/
-.text-white p {
-  color: inherit; }
+.text-white {
+  color: var(--white-color) !important; }
+  .text-white * {
+    color: inherit; }
 
 .text-primary {
   color: var(--primary-color) !important; }
-  .text-primary p {
+  .text-primary * {
+    color: inherit; }
+
+.text-accent {
+  color: var(--accent-color) !important; }
+  .text-accent * {
     color: inherit; }
 
 /*Others*/
