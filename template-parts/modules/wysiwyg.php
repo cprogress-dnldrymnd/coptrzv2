@@ -17,7 +17,7 @@
     'heading_with_line' => $module['heading_with_line'],
   ));
   ?>
-  <div class="container position-relative <?= $container_width_class ?>">
+  <div class="container position-relative <?= $container_width_class ?> <?= $classes_text_color ?>">
     <?= do_shortcode(wpautop($module['wysiwyg'])) ?>
   </div>
 </section>

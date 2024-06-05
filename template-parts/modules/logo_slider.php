@@ -6,7 +6,7 @@
         'background_overlay_image' => $background_overlay_image,
     ));
     ?>
-    <div class="container-fluid position-relative p-0 <?= $container_width_class ?>">
+    <div class="container-fluid position-relative p-0 <?= $container_width_class ?> <?= $classes_text_color ?>">
         <?php
         _section_heading_description(array(
             'heading' => $module['heading'],
