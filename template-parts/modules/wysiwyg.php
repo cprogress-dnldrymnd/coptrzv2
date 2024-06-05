@@ -1,4 +1,4 @@
-<section class="wysiwyg position-relative <?= $classes ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
+<section class="wysiwyg position-relative <?= $classes ?> <?= $classes_text_color ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
   <?php
   _background_image(array(
     'baground_image' => $baground_image,
@@ -17,7 +17,7 @@
     'heading_with_line' => $module['heading_with_line'],
   ));
   ?>
-  <div class="container position-relative <?= $container_width_class ?> <?= $classes_text_color ?>">
+  <div class="container position-relative <?= $container_width_class ?> ">
     <?= do_shortcode(wpautop($module['wysiwyg'])) ?>
   </div>
 </section>
