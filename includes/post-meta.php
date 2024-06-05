@@ -2437,6 +2437,17 @@ Container::make('post_meta', 'Modules')
 												Field::make('textarea', 'custom_html', __('Custom HTML')),
 											)
 										)
+										->add_fields(
+											'number_counters',
+											array(
+												Field::make('complex', 'number_counters', __('Custom HTML'))
+													->add_fields(array(
+														Field::make('text', 'number', __('Number')),
+														Field::make('textarea', 'description', __('Description')),
+														Field::make('image', 'icon', __('Icon')),
+													))
+											)
+										)
 										->set_layout('tabbed-vertical')
 								)
 							)
