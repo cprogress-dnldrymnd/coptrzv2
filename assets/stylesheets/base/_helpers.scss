@@ -777,7 +777,9 @@
 		@include overlay;
 	}
 	&.custom-overlay {
-		
+		@include before {
+			background-color: var(--background-overlay-custom);
+		}
 	}
 }
 
