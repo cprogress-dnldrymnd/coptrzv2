@@ -1,7 +1,8 @@
 <?php
 
-function _format_text($text) {
-    return str_replace("'","&#39;",$text);
+function _format_text($text)
+{
+    return str_replace("'", "&#39;", $text);
 }
 
 function _elements($data, $module_id, $same_height_images)
@@ -26,10 +27,18 @@ function _elements($data, $module_id, $same_height_images)
                 break;
             case 'accordion':
                 $accordion = $d['accordion'];
-                include locate_template('template-parts/components/accordion.php');
+                if ($accordion) {
+                    include locate_template('template-parts/components/accordion.php');
+                }
                 break;
             case 'custom_html':
                 echo $d['custom_html'];
+                break;
+            case 'number_counters':
+                $number_counters = $d['number_counters'];
+                if ($number_counters) {
+                    include locate_template('template-parts/components/number_counters.php');
+                }
                 break;
         }
     }
