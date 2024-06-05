@@ -1,4 +1,4 @@
-<section class="call-to-action position-relative" id="<?= $module_id ?>">
+<section class="call-to-action position-relative">
     <?php if ($baground_image) { ?>
         <?= do_shortcode('[_image class="background-image" id="' . $baground_image . '"]'); ?>
     <?php } ?>
