@@ -1,6 +1,6 @@
-<section class="call-to-action" id="<?= $module_id ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
+<section class="call-to-action" id="<?= $module_id ?>">
     <div class="container">
-        <div class="inner rounded-corner <?= $classes ?>" id="<?= $module_id ?>">
+        <div class="inner rounded-corner <?= $classes ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
             <div class="row g-5 align-items-end">
                 <div class="col-lg-7">
                     <div class="column-holder content-margin">
