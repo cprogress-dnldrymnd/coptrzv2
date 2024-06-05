@@ -15001,13 +15001,6 @@ a.fancybox-gallery-img {
     margin-left: 1rem;
     opacity: 0.1; }
 
-.form-style-2 input:not([type="submit"]):not(.qty):not([type="checkbox"]):not([type="radio"]):not(.search),
-.form-style-2 select,
-.form-style-2 textarea {
-  background-color: var(--body-color); }
-.form-style-2 .wpforms-field-label {
-  background-color: var(--body-color) !important; }
-
 .rounded-corner {
   border-radius: var(--border-radius, 15px); }
 

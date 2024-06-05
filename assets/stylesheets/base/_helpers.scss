@@ -1276,14 +1276,7 @@
 	}
 }
 
-.form-style-2 {
-	@include inputs {
-		background-color: var(--body-color);
-	}
-	.wpforms-field-label {
-		background-color: var(--body-color) !important;
-	}
-}
+
 
 .rounded-corner {
 	border-radius: var(--border-radius, 15px);
