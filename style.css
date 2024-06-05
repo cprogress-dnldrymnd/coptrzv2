@@ -15202,6 +15202,8 @@ tspan {
 .heading-box.heading-with-line {
   display: flex;
   flex-wrap: wrap; }
+  .heading-box.heading-with-line .prefix:after {
+    content: ''; }
   .heading-box.heading-with-line .suffix {
     display: none; }
   .heading-box.heading-with-line > * {
