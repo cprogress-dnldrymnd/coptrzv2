@@ -1392,16 +1392,6 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading', __('Heading'))
-							->set_width(20)
-							->set_conditional_logic(
-								array(
-									array(
-										'field' => 'display_heading_description',
-										'value' => true,
-									)
-								)
-							),
 						Field::make('text', 'text_left', __('Text Left'))
 							->set_width(20)
 							->set_conditional_logic(
@@ -1412,6 +1402,17 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
+						Field::make('text', 'heading', __('Heading'))
+							->set_width(20)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+
 						Field::make('select', 'tag', __('Tag'))
 							->set_options(
 								array(
