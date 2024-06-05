@@ -209,7 +209,6 @@ function get_time_diff($post_id)
 	$difference = round(abs($time2 - $time1) / 3600, 2);
 	return $difference;
 }
-/*
 function custom_excerpt_length($content, $length = 50)
 {
 	if ($content) {
@@ -220,7 +219,7 @@ function custom_excerpt_length($content, $length = 50)
 	}
 }
 add_filter('excerpt_length', 'custom_excerpt_length', 999);
-*/
+
 
 
 add_filter('mod_rewrite_rules', 'fix_rewritebase');
