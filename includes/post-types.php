@@ -137,6 +137,16 @@ class newTaxonomy
     }
 }
 
+
+$Solutions_CPT = new newPostType();
+$Solutions_CPT->name = 'Solutions';
+$Solutions_CPT->singular_name = 'Solution';
+$Solutions_CPT->icon = 'dashicons-portfolio';
+$Solutions_CPT->supports = array('title', 'revisions', 'editor', 'thumbnail', 'page-attributes');
+$Solutions_CPT->has_archive = true;
+$Solutions_CPT->hierarchical = true;
+$Solutions_CPT->show_in_rest = true;
+
 $Testimonials = new newPostType();
 $Testimonials->name = 'Testimonials';
 $Testimonials->singular_name = 'Testimonial';
@@ -154,6 +164,7 @@ $Events->icon = 'dashicons-camera-alt';
 $Events->supports = array('title', 'revisions', 'editor', 'thumbnail');
 $Events->rewrite = array('slug' => 'events');
 $Events->show_in_rest = true;
+
 
 
 
@@ -449,6 +460,7 @@ $Model3d->publicly_queryable = true;
 $Model3d->show_in_admin_bar = true;
 $Model3d->has_archive = false;
 $Model3d->show_in_rest = true;
+
 
 
 $Model3D = new newTaxonomy();
