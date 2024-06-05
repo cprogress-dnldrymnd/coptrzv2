@@ -3390,6 +3390,9 @@ a.fancybox-gallery-img {
                 line-height: 1;
                 top: 15px;
                 @include transition(300ms);
+                &.wpforms-label-hide {
+                    display: noen !important;
+                }
             }
 
             &.filled {
