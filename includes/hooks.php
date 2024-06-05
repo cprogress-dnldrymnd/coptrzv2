@@ -595,20 +595,6 @@ add_action('wp_footer', 'action_popups');
 
 function action_pre_get_posts($query)
 {
-	if (!is_admin() && $query->is_main_query() && is_post_type_archive('solutions')) {
-		$query->set('posts_per_page', -1);
-
-		// Append our meta query
-		$meta_query[] = [
-			'key' => '_hide_on_list',
-			'value' => 'yes',
-			'compare' => 'NOT IN',
-		];
-
-		$query->set('meta_query', $meta_query);
-
-		return;
-	}
 
 	if (!is_admin() && $query->is_main_query() && is_post_type_archive('solutionsv2')) {
 		$query->set('posts_per_page', -1);
