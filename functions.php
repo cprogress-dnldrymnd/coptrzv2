@@ -209,7 +209,18 @@ function get_time_diff($post_id)
 	$difference = round(abs($time2 - $time1) / 3600, 2);
 	return $difference;
 }
-
+/*
+function custom_excerpt_length($content, $length = 50)
+{
+	if ($content) {
+		// get the first 80 words from the content and added to the $abstract variable
+		preg_match('/^([^.!?\s]*[\.!?\s]+){0,' . $length . '}/', strip_tags($content), $abstract);
+		// pregmatch will return an array and the first 80 chars will be in the first element 
+		return $abstract[0] . '...';
+	}
+}
+add_filter('excerpt_length', 'custom_excerpt_length', 999);
+*/
 
 
 add_filter('mod_rewrite_rules', 'fix_rewritebase');
