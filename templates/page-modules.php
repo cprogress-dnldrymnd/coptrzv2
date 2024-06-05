@@ -55,7 +55,7 @@ $modules = get__post_meta('modules');
                         $background_overlay_type = $style['background_overlay_type'];
                         if ($background_overlay_type == 'image') {
                             $background_overlay_image = $style['background_overlay_image'];
-                            if ($style['background_overlay_image_opacity']) {
+                            if ($style['background_overlay_image_opacity'] || $style['background_overlay_image_opacity'] == 0) {
                                 $style_attribute .= '--background-image-opacity: ' . $style['background_overlay_image_opacity'];
                             }
                             $background_image_class = 'no-overlay';
