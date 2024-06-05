@@ -4,8 +4,15 @@ $terms = get_terms(array(
     'hide_empty' => false,
 ));
 ?>
-<section class="post-tabs <?= $classes ?>" id="<?= $module_id ?>">
-    <div class="container">
+<section class="post-tabs position-relative <?= $classes ?>" id="<?= $module_id ?>">
+    <?php
+    _background_image(array(
+        'baground_image' => $baground_image,
+        'background_image_class' => $background_image_class,
+        'background_overlay_image' => $background_overlay_image,
+    ));
+    ?>
+    <div class="container position-relative <?= $container_width_class ?>">
         <ul class="nav nav-tabs mb-5 justify-content-center" id="post-tab-<?= $module_id ?>" role="tablist">
             <?php foreach ($terms as $key => $term) { ?>
                 <li class="nav-item" role="presentation">

@@ -1,5 +1,12 @@
-<section class="columns <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
-    <div class="container <?= $container_width_class ?>">
+<section class="columns position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
+    <?php
+    _background_image(array(
+        'baground_image' => $baground_image,
+        'background_image_class' => $background_image_class,
+        'background_overlay_image' => $background_overlay_image,
+    ));
+    ?>
+    <div class="container position-relative <?= $container_width_class ?>">
         <?php
         _section_heading_description(array(
             'display_heading_description' => $module['display_heading_description'],
