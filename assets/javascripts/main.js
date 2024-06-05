@@ -20,7 +20,7 @@ jQuery(document).ready(function ($) {
 
 function incrementing_numbers() {
 	jQuery('.counter-number').each(function () {
-		jQueryjQuery(this).prop('Counter',0).animate({
+		jQuery(this).prop('Counter', 0).animate({
 			Counter: $(this).text()
 		}, {
 			duration: 3000,
