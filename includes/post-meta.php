@@ -4215,8 +4215,79 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_layout('tabbed-vertical'),
-						Field::make('text', 'heading', __('Heading')),
-						Field::make('textarea', 'description', __('Description')),
+						//Heading Settings
+						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
+						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33)
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('text', 'heading', __('Heading'))
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+
+						Field::make('select', 'tag', __('Tag'))
+							->set_options(
+								array(
+									'h1' => 'h1',
+									'h2' => 'h2',
+									'h3' => 'h3',
+									'h4' => 'h4',
+									'h5' => 'h5',
+									'h6' => 'h6',
+								)
+							)
+							->set_default_value('h2')
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('textarea', 'description', __('Description'))
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
 						Field::make('text', 'post_type_key', __('Post Type Key')),
 						Field::make('text', 'taxonomy_key', __('Taxonomy Key')),
 					)
