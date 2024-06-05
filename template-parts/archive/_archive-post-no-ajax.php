@@ -14,7 +14,6 @@
                             <div class="content-margin h-100">
                                 <?= do_shortcode('[_image class="image-absolute" id="' . get_post_thumbnail_id(get_the_ID()) . '"]'); ?>
                                 <?= do_shortcode('[_heading heading="' . get_the_title() . '" tag="h3"]') ?>
-                                <?= do_shortcode("[_description description='".get_the_excerpt()."' ]") ?>
                                 <?= get_the_excerpt() ?>
                                 <div class="button-box button-accent">
                                     <a href="<?= get_the_permalink() ?>">
