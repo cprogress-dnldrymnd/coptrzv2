@@ -36,6 +36,8 @@ class Elements_Shortcodes
                     'heading'       => '',
                     'heading_small' => '',
                     'tag'           => '',
+                    'heading_with_text_line'     => '',
+                    'text_left'     => '',
                     'class'         => '',
                     'data_aos'      => '',
                 ),
