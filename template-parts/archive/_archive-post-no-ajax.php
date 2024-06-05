@@ -10,7 +10,7 @@
                 <?php while (have_posts()) {
                     the_post() ?>
                     <div class="col-lg-3">
-                        <div class="post-grid h-100 background-white rounded-corner post-<?= get_the_ID() ?>" style="--border-radius: 15px; --padding: 30%">
+                        <div class="post-grid h-100 background-white overflow-hidden rounded-corner post-<?= get_the_ID() ?>" style="--border-radius: 15px; --padding: 30%">
                             <div class="content-margin h-100">
                                 <?= do_shortcode('[_image class="image-absolute" id="' . get_post_thumbnail_id(get_the_ID()) . '"]'); ?>
                                 <div class="content-box content-margin p-4">
