@@ -52,11 +52,12 @@ $modules = get__post_meta('modules');
                         break;
                     case 'background_overlay':
                         $background_overlay_type = $style['background_overlay_type'];
-                        if($background_overlay_type == 'image') {
+                        if ($background_overlay_type == 'image') {
                             $background_overlay_image = $style['background_overlay_image'];
+                            $style_attribute .= 'opacity: ' . $background_overlay_image_opacity;
                         }
-                        
-                        
+
+
                         $classes .= ' ' . $style['background_size'] . ' ' . $style['background_attachment'] . ' ' . $style['background_repeat'];
                         break;
                     case 'text_color':
