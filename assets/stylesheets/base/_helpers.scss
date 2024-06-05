@@ -780,7 +780,7 @@
 
 .background-image-overlay {
 	@include absolute-corner;
-
+	opacity: var(--background-image-overlay, 1);
 	> img {
 		object-fit: cover;
 		width: 100%;
