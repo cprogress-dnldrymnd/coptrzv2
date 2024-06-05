@@ -10,15 +10,17 @@
                 <?php while (have_posts()) {
                     the_post() ?>
                     <div class="col-lg-3">
-                        <div class="post-grid h-100 background-white rounded-corner post-<?= get_the_ID() ?>" style="--border-radius: 10px; --padding: 30%">
+                        <div class="post-grid h-100 background-white rounded-corner post-<?= get_the_ID() ?>" style="--border-radius: 15px; --padding: 30%">
                             <div class="content-margin h-100">
                                 <?= do_shortcode('[_image class="image-absolute" id="' . get_post_thumbnail_id(get_the_ID()) . '"]'); ?>
-                                <?= do_shortcode('[_heading heading="' . get_the_title() . '" tag="h3"]') ?>
-                                <?php if (get_the_excerpt()) { ?>
-                                    <?= do_shortcode('[_description description="' . custom_excerpt_length(get_the_excerpt(), 20) . '" ]') ?>
-                                <?php } ?>
+                                <div class="content-box content-margin p-4">
+                                    <?= do_shortcode('[_heading heading="' . get_the_title() . '" tag="h3"]') ?>
+                                    <?php if (get_the_excerpt()) { ?>
+                                        <?= do_shortcode('[_description description="' . custom_excerpt_length(get_the_excerpt(), 20) . '" ]') ?>
+                                    <?php } ?>
 
-                                <?= do_shortcode('[_button class="button-accent" id="' . get_the_ID() . '"  button_type="' . get_post_type() . '" button_text="LEARN MORE" ]'); ?>
+                                    <?= do_shortcode('[_button class="button-accent" id="' . get_the_ID() . '"  button_type="' . get_post_type() . '" button_text="LEARN MORE" ]'); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
