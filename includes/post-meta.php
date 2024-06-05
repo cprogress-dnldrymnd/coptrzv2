@@ -2007,11 +2007,33 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								array(
 									Field::make('text', 'label', __('Label')),
-									Field::make('text', 'button_url', __('Column URL'))->set_classes('field-url'),
+									Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+										->set_options(
+											array(
+												''          => 'Select Button Type',
+												'page'      => 'Page',
+												'product'      => 'Product',
+												'guides'      => 'Guides',
+												'casestudies'      => 'Case Studies',
+												'post'      => 'Post',
+												'solutions' => 'Solution',
+												'popups'    => 'Popup',
+												'custom'     => 'Custom',
+											)
+										),
+									Field::make('text', 'button_text', __('Text')),
+									Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+										->set_conditional_logic(
+											array(
+												array(
+													'field'   => 'button_type',
+													'value'   => 'custom',
+													'compare' => '!='
+												)
+											)
+										),
 									Field::make('html', 'html')
-										->set_html('<div class="page-selector">  
-										<button type="button" class="button">Add URL</button>
-										</div>'),
+										->set_html('<div class="page-selector">  </div>'),
 									Field::make('text', 'button_url_custom', __('Button URL'))
 										->set_conditional_logic(
 											array(
