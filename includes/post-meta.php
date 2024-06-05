@@ -41,7 +41,6 @@ Container::make('post_meta', 'Post Options')
 Container::make('post_meta', 'Tag Options')
 	->where('post_type', '=', 'page')
 	->or_where('post_type', '=', 'product')
-	->or_where('post_type', '=', 'solutions')
 	->or_where('post_type', '=', 'solutionsv2')
 	->set_context('side')
 	->add_fields(
@@ -69,7 +68,6 @@ Container::make('post_meta', 'Page Options')
 /* Industry Solution
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', 'Industry Options')
-	->where('post_type', '=', 'solutions')
 	->or_where('post_type', '=', 'solutionsv2')
 	->add_fields(
 		array(
