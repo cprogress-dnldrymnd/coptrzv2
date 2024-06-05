@@ -18,6 +18,7 @@ jQuery(document).ready(function ($) {
 });
 
 function input_fields() {
+	jQuery('select option[value="--empty-option--"]').attr('value', '').text('');
 	jQuery('select option[value="Select Sector"]').attr('value', '');
 
 	jQuery(".wpforms-field input, .wpforms-field select, .wpforms-field textarea").on("blur input focus", function () {
