@@ -13,7 +13,7 @@ if (isset($heading) && $heading != '') {
 			<?= $heading ?>
 		</<?= $tag ?>>
 		<?php if ($heading_suffix) { ?>
-			<span class="prefix"><?= $heading_suffix ?></span>
+			<span class="suffix"><?= $heading_suffix ?></span>
 		<?php } ?>
 	</div>
 <?php } ?>
