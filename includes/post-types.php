@@ -437,7 +437,7 @@ $Popup->exclude_from_search = true;
 $Popup->publicly_queryable = true;
 $Popup->show_in_admin_bar = true;
 $Popup->has_archive = false;
-$Model3d->show_in_rest = true;
+$Popup->show_in_rest = true;
 
 
 $Popup = new newPostType();
