@@ -2048,6 +2048,7 @@ Container::make('post_meta', 'Modules')
 											)
 										),
 									Field::make('color', 'background_overlay_custom', 'Custom Background Overlay')
+										->set_alpha_enabled(true)
 										->set_conditional_logic(
 											array(
 												array(
