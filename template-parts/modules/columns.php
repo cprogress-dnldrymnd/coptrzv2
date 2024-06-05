@@ -1,4 +1,4 @@
-<section class="columns position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
+<section class="columns position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
     _background_image(array(
         'baground_image' => $baground_image,
@@ -19,7 +19,7 @@
             'heading_with_line' => $module['heading_with_line'],
         ));
         ?>
-        <div class="column-items" style="<?= $container_width_style_attribute ?>">
+        <div class="column-items">
             <?php if ($module['columns']) { ?>
                 <div class="row g-4 <?= $classes_row ?>">
                     <?php foreach ($module['columns'] as $column) { ?>

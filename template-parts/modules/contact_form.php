@@ -1,4 +1,4 @@
-<section class="contact-form position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
+<section class="contact-form position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
     _background_image(array(
         'baground_image' => $baground_image,
@@ -7,7 +7,7 @@
     ));
     ?>
     <div class="container position-relative <?= $container_width_class ?>">
-        <div class="inner" style="<?= $container_width_style_attribute ?>">
+        <div class="inner">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <div class="column-holder content-margin max-width <?= $classes_text_color ?>">
