@@ -2028,6 +2028,37 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->add_fields(
+								'background_overlay',
+								array(
+									Field::make('select', 'background_overlay_type', 'Background Overlay Type')
+										->set_options(
+											array(
+												'default'    => 'Default',
+												'image'  => 'Image',
+												'custom'  => 'Custom',
+											)
+										),
+									Field::make('image', 'background_overlay_image', 'Image Background Overlay')
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_overlay_type',
+													'value' => 'image',
+												)
+											)
+										),
+									Field::make('color', 'background_overlay_custom', 'Custom Background Overlay')
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_overlay_type',
+													'value' => 'custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
 								'text_color',
 								array(
 									Field::make('select', 'text_color', 'Text Color')
