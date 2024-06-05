@@ -23,6 +23,7 @@ $modules = get__post_meta('modules');
             $container_width_style_attribute = '';
             $background_image_class = '';
             $baground_image = '';
+            $background_overlay_image = '';
             if ($styles) {
                 foreach ($styles as $style) {
                     $style_type = $style['_type'];
@@ -59,7 +60,7 @@ $modules = get__post_meta('modules');
                         case 'background_overlay':
                             $background_overlay_type = $style['background_overlay_type'];
                             if ($background_overlay_type == 'image') {
-                                $background_overlay_image = $style['background_overlay_image'];
+                                $background_overlay_image .= $style['background_overlay_image'];
                                 if ($style['background_overlay_image_opacity'] || $style['background_overlay_image_opacity'] == 0) {
                                     $style_attribute .= '--background-image-opacity: ' . $style['background_overlay_image_opacity'] . ';';
                                 }
