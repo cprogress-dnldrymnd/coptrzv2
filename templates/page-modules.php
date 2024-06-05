@@ -51,7 +51,6 @@ $modules = get__post_meta('modules');
                         $classes .= ' ' . $style['background_size'] . ' ' . $style['background_attachment'] . ' ' . $style['background_repeat'];
                         break;
                     case 'background_overlay':
-                        $baground_image = $style['background_image'];
                         $background_overlay_type = $style['background_overlay_type'];
                         if($background_overlay_type == 'image') {
                             $background_overlay_image = $style['background_overlay_image'];
