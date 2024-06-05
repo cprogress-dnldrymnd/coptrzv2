@@ -1,4 +1,4 @@
-<section class="accordion-section position-relative <?= $classes ?>" id="<?= $module_id ?>">
+<section class="accordion-section position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
   <?php
   _background_image(array(
     'baground_image' => $baground_image,
@@ -7,12 +7,18 @@
   ));
   ?>
   <div class="container position-relative <?= $container_width_class ?>">
-    <?php if ($module['display_heading_description'] && ($module['heading'] || $module['description'])) {  ?>
-      <div class="section-heading-description content-margin mb-5 <?= $module['text_align'] ?>">
-        <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="' . $module['size'] . '"]') ?>
-        <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
-      </div>
-    <?php } ?>
+    <?php
+    _section_heading_description(array(
+      'heading' => $module['heading'],
+      'description' => $module['description'],
+      'text_align' => $module['text_align'],
+      'heading_prefix' => $module['heading_prefix'],
+      'heading_suffix' => $module['heading_suffix'],
+      'tag' => $module['tag'],
+      'size' => $module['size'],
+      'heading_with_line' => $module['heading_with_line'],
+    ));
+    ?>
     <div class="accordion accordion-v2 accordion-flush" id="accordion-<?= $module_id ?>">
       <?php foreach ($module['accordion'] as $key => $accordion_item) { ?>
         <div class="accordion-item">
