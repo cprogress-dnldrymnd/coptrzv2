@@ -7,7 +7,7 @@
                     <div class="col-lg-6">
                         <div class="form-holder px-4 py-5 h-100 d-flex align-items-center">
                             <div class="form-inner w-100">
-                                <?= do_shortcode(get_the_content(NULL, false, $id)) ?>
+                                <?= get_the_content(NULL, false, $id) ?>
                             </div>
                         </div>
                     </div>
