@@ -161,15 +161,16 @@ tspan {
 }
 
 .heading-box {
-    .prefix,
-    .suffix {
-        margin-bottom: 0;
-        display: block;
-        font-size: 15px;
-        color: var(--accent-color);
-        font-weight: 500;
+    &:not(.heading-with-line) {
+        .prefix,
+        .suffix {
+            margin-bottom: 0;
+            display: block;
+            font-size: 15px;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
     }
-
     &.heading-with-line {
         display: flex;
         flex-wrap: wrap;

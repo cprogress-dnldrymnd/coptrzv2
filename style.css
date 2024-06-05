@@ -15192,8 +15192,8 @@ tspan {
   color: var(--accent-color);
   font-weight: 500; }
 
-.heading-box .prefix,
-.heading-box .suffix {
+.heading-box:not(.heading-with-line) .prefix,
+.heading-box:not(.heading-with-line) .suffix {
   margin-bottom: 0;
   display: block;
   font-size: 15px;
@@ -15206,7 +15206,9 @@ tspan {
     display: none; }
   .heading-box.heading-with-line > * {
     flex: 0 0 50%;
-    width: 50%; }
+    width: 50%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
 
 .elementor-widget-container,
 .elementor-heading-title,
