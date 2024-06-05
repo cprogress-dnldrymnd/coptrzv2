@@ -161,12 +161,27 @@ tspan {
 }
 
 .heading-box {
-    .prefix, .suffix {
+    .prefix,
+    .suffix {
         margin-bottom: 0;
         display: block;
         font-size: 15px;
         color: var(--accent-color);
         font-weight: 500;
+    }
+
+    &.heading-with-line {
+        display: flex;
+        flex-wrap: wrap;
+        .suffix {
+            display: none;
+        }
+        > * {
+            flex: 0 0 50%;
+            width: 50%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
     }
 }
 

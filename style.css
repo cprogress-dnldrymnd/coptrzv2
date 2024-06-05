@@ -15192,12 +15192,21 @@ tspan {
   color: var(--accent-color);
   font-weight: 500; }
 
-.heading-box .prefix, .heading-box .suffix {
+.heading-box .prefix,
+.heading-box .suffix {
   margin-bottom: 0;
   display: block;
   font-size: 15px;
   color: var(--accent-color);
   font-weight: 500; }
+.heading-box.heading-with-line {
+  display: flex;
+  flex-wrap: wrap; }
+  .heading-box.heading-with-line .suffix {
+    display: none; }
+  .heading-box.heading-with-line > * {
+    flex: 0 0 50%;
+    width: 50%; }
 
 .elementor-widget-container,
 .elementor-heading-title,
