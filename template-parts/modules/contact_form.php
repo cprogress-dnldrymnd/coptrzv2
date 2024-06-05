@@ -10,7 +10,7 @@
         <div class="row g-5 align-items-center">
             <div class="col-lg-6">
                 <div class="column-holder content-margin max-width">
-                    <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="' . ($module['size'] ? $module['size'] : 'big-heading') . ']') ?>
+                    <?= do_shortcode('[_heading heading_prefix="' . $module['heading_prefix'] . '" heading_suffix="' . $module['heading_suffix'] . '" heading="' . $module['heading'] . '" class="' . ($module['size'] ? $module['size'] : 'big-heading') . '" tag="' . $module['tag'] . '"]') ?>
                     <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
                 </div>
             </div>
