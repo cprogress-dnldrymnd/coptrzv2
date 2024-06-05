@@ -2021,7 +2021,7 @@ Container::make('post_meta', 'Modules')
 												'custom'     => 'Custom',
 											)
 										),
-									Field::make('text', 'button_text', __('Text')),
+									Field::make('httml', 'button_text', __('HTML'))->set_html(''),
 									Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
 										->set_conditional_logic(
 											array(
