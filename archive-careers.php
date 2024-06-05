@@ -8,13 +8,11 @@
 get_header(); // This fxn gets the header.php file and renders it 
 ?>
 
-<?php get_template_part('template-parts/section/content-breadcrumbs'); ?>
 <?php
-if (is_search()) {
-	get_template_part('template-parts/archive/archive', 'search');
-} else {
-	get_template_part('template-parts/archive/_archive-post-ajax');
-}
+get_template_part('template-parts/section/content-breadcrumbs');
+get_template_part('template-parts/archive/archive', 'careers');
 ?>
+
+
 
 <?php get_footer(); ?>
