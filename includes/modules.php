@@ -45,9 +45,15 @@ function _background_image($args)
     echo $return;
 }
 
-?>
-
-<?php
 function _section_heading_description($args)
 {
+    $return = '';
+
+    if ($args['display_heading_description']) {
+        $return .= '<div class="section-heading-description content-margin mb-5 ' . $args['text_align'] . '">';
+        $return .= do_shortcode('[_heading  heading_prefix="' . $args['heading_prefix'] . '" heading_suffix="' . $args['heading_suffix'] . '" text_left="' . $args['text_left'] . '"  tag="' . $args['tag'] . '" heading="' . $args['heading'] . '" class="' . $args['size'] . ' ' . ($args['heading_with_line'] ? 'heading-with-line' : '') . '"]');
+        $return .= do_shortcode("[_description description='" . $args['description'] . "']");
+        $return .= '</div>';
+        echo $return;
+    }
 }

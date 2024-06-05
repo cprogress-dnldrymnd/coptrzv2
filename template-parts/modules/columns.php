@@ -1,6 +1,20 @@
 <section class="columns <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
     <div class="container <?= $container_width_class ?>">
-    
+        <?php
+        _section_heading_description(array(
+            'display_heading_description' => $module['display_heading_description'],
+            'heading' => $module['heading'],
+            'description' => $module['description'],
+            'text_align' => $module['text_align'],
+            'heading_prefix' => $module['heading_prefix'],
+            'heading_suffix' => $module['heading_suffix'],
+            'tag' => $module['tag'],
+            'size' => $module['size'],
+            'heading_with_line' => $module['heading_with_line'],
+        ));
+        ?>
+
+
 
         <div class="column-items" style="<?= $container_width_style_attribute ?>">
             <?php if ($module['columns']) { ?>

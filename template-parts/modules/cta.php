@@ -1,7 +1,6 @@
-<section class="call-to-action ">
+<section class="call-to-action">
     <div class="container">
         <div class="inner position-relative rounded-corner overflow-hidden <?= $classes ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
-
             <?php
             _background_image(array(
                 'baground_image' => $baground_image,
