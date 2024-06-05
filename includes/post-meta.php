@@ -1166,11 +1166,8 @@ Container::make('post_meta', 'Modules')
 							->set_layout('tabbed-vertical'),
 
 						//Heading Settings
-						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33)
-							->set_width(33),
 						Field::make('text', 'heading_prefix', __('Heading Prefix'))
 							->set_width(33),
-
 						Field::make('text', 'heading_suffix', __('Heading Suffix'))
 							->set_width(33),
 						Field::make('text', 'heading', __('Heading'))
@@ -1542,47 +1539,12 @@ Container::make('post_meta', 'Modules')
 							)
 							->set_layout('tabbed-vertical'),
 						//Heading Settings
-						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
-						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33)
-							->set_width(33)
-							->set_conditional_logic(
-								array(
-									array(
-										'field' => 'display_heading_description',
-										'value' => true,
-									)
-								)
-							),
 						Field::make('text', 'heading_prefix', __('Heading Prefix'))
-							->set_width(33)
-							->set_conditional_logic(
-								array(
-									array(
-										'field' => 'display_heading_description',
-										'value' => true,
-									)
-								)
-							),
+							->set_width(33),
 						Field::make('text', 'heading_suffix', __('Heading Suffix'))
-							->set_width(33)
-							->set_conditional_logic(
-								array(
-									array(
-										'field' => 'display_heading_description',
-										'value' => true,
-									)
-								)
-							),
+							->set_width(33),
 						Field::make('text', 'heading', __('Heading'))
-							->set_width(33)
-							->set_conditional_logic(
-								array(
-									array(
-										'field' => 'display_heading_description',
-										'value' => true,
-									)
-								)
-							),
+							->set_width(33),
 
 						Field::make('select', 'tag', __('Tag'))
 							->set_options(
@@ -1596,15 +1558,7 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_default_value('h2')
-							->set_width(33)
-							->set_conditional_logic(
-								array(
-									array(
-										'field' => 'display_heading_description',
-										'value' => true,
-									)
-								)
-							),
+							->set_width(33),
 						//End of Heading Settings
 						Field::make('textarea', 'description', __('Description')),
 						Field::make('text', 'form_heading', __('Form Heading')),
