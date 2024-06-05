@@ -63,8 +63,6 @@ $modules = get__post_meta('modules');
                             $style_attribute = '--background-overlay-custom: ' . $style['background_overlay_custom'];
                             $background_image_class .= 'custom-overlay';
                         }
-
-
                         $classes .= ' ' . $style['background_size'] . ' ' . $style['background_attachment'] . ' ' . $style['background_repeat'];
                         break;
                     case 'text_color':

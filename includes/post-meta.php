@@ -2531,6 +2531,7 @@ Container::make('post_meta', 'Modules')
 						Field::make('text', 'taxonomy_key', __('Taxonomy Key')),
 					)
 				)
+				->set_collapsed(true)
 		)
 	);
 
