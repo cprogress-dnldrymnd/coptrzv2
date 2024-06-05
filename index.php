@@ -17,7 +17,7 @@ if (is_search()) {
 	if (locate_template($location . '.php')) {
 		get_template_part('template-parts/archive/archive', get_post_type());
 	} else {
-		get_template_part('template-parts/archive/archive', get_post_type());
+		get_template_part('template-parts/archive/_archive-post-ajax');
 	}
 }
 ?>
