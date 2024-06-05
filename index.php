@@ -13,11 +13,7 @@ get_header(); // This fxn gets the header.php file and renders it
 if (is_search()) {
 	get_template_part('template-parts/archive/archive', 'search');
 } else {
-	if(get_post_type() != 'careers') {
-		get_template_part('template-parts/archive/archive', 'careers');
-	} else {
-		get_template_part('template-parts/archive/archive-post-ajax');
-	}
+	get_template_part('template-parts/archive/archive', get_post_type());
 }
 ?>
 
