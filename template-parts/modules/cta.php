@@ -1,9 +1,13 @@
 <section class="call-to-action ">
     <div class="container">
         <div class="inner position-relative rounded-corner overflow-hidden <?= $classes ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
-            <?= _background_image($baground_image, $background_image_class, $background_overlay_image) ?>
-
-
+            <?php
+            _background_image(array(
+                'baground_image' => $baground_image,
+                'background_image_class' => $baground_image,
+                'background_overlay_image' => $background_overlay_image,
+            ));
+            ?>
             <div class="row g-5 align-items-end position-relative">
                 <div class="col-lg-7">
                     <div class="column-holder content-margin">

@@ -31,16 +31,23 @@ function _elements($data, $module_id, $same_height_images)
     return ob_get_clean();
 }
 
-function _background_image($baground_image, $background_image_class, $background_overlay_image)
+function _background_image($args)
 {
     $return = '';
-    if ($baground_image) {
-        $return .= do_shortcode('[_image class="background-image ' . $background_image_class . '" id="' . $baground_image . '"]');
+    if ($args['baground_image']) {
+        $return .= do_shortcode('[_image class="background-image ' . $args['background_image_class'] . '" id="' . $args['baground_image'] . '"]');
     }
 
-    if ($background_overlay_image) {
-        $return .= do_shortcode('[_image class="background-image-overlay" id="' . $background_overlay_image . '"]');
+    if ($args['background_overlay_image']) {
+        $return .= do_shortcode('[_image class="background-image-overlay" id="' . $args['background_overlay_image'] . '"]');
     }
 
-    return $return;
+    echo $return;
+}
+
+?>
+
+<?php
+function _section_heading_description($args)
+{
 }

@@ -1,11 +1,6 @@
 <section class="columns <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?>">
     <div class="container <?= $container_width_class ?>">
-        <?php if ($module['display_heading_description'] && ($module['heading'] || $module['description'])) {  ?>
-            <div class="section-heading-description content-margin mb-5 <?= $module['text_align'] ?>">
-                <?= do_shortcode('[_heading  heading_prefix="' . $module['heading_prefix'] . '" heading_suffix="' . $module['heading_suffix'] . '" text_left="' . $module['text_left'] . '"  tag="' . $module['tag'] . '" heading="' . $module['heading'] . '" class="' . $module['size'] . ' ' . ($module['heading_with_line'] ? 'heading-with-line' : '') . '"]') ?>
-                <?= do_shortcode("[_description description='" . $module['description'] . "']") ?>
-            </div>
-        <?php } ?>
+    
 
         <div class="column-items" style="<?= $container_width_style_attribute ?>">
             <?php if ($module['columns']) { ?>
