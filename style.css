@@ -14608,15 +14608,11 @@ a.fancybox-gallery-img {
   .text-white * {
     color: inherit; }
 
-.text-primary {
+.text-primary * {
   color: var(--primary-color) !important; }
-  .text-primary * {
-    color: inherit; }
 
-.text-accent {
+.text-accent * {
   color: var(--accent-color) !important; }
-  .text-accent * {
-    color: inherit; }
 
 /*Others*/
 .with-separator > *:not(:last-child):after {

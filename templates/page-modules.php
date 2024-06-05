@@ -18,6 +18,7 @@ $modules = get__post_meta('modules');
             $classes = '';
             $style_attribute = '';
             $classes_row = '';
+            $classes_text_color = '';
             $container_width_class = '';
             $container_width_style_attribute = '';
             $background_image_class = '';
@@ -68,7 +69,7 @@ $modules = get__post_meta('modules');
                             $classes .= ' ' . $style['background_size'] . ' ' . $style['background_attachment'] . ' ' . $style['background_repeat'];
                             break;
                         case 'text_color':
-                            $classes .= ' ' . $style['text_color'];
+                            $classes_text_color .= ' ' . $style['text_color'];
                             if ($style['text_color_custom']) {
                                 $style_attribute .= 'color: ' . $style['text_color_custom'] . ';';
                             }

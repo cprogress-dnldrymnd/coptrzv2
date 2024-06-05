@@ -644,7 +644,6 @@
 .background-primary,
 .background-secondary {
 	color: var(--white-color);
-
 	@include headings {
 		color: var(--white-color);
 	}
@@ -812,16 +811,14 @@
 }
 
 .text-primary {
-	color: var(--primary-color) !important;
 	* {
-		color: inherit;
+		color: var(--primary-color) !important;
 	}
 }
 
 .text-accent {
-	color: var(--accent-color) !important;
 	* {
-		color: inherit;
+		color: var(--accent-color) !important;
 	}
 }
 

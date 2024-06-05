@@ -10,7 +10,7 @@
             ?>
             <div class="row g-5 <?= $classes_row ?> position-relative">
                 <div class="col-lg-7">
-                    <div class="column-holder content-margin">
+                    <div class="column-holder content-margin <?= $classes_text_color ?>">
                         <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading" tag="' . $module['tag'] . '"]') ?>
                         <?= do_shortcode("[_description description='" . $module['description'] . "']") ?>
                     </div>
