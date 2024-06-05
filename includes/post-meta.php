@@ -1381,8 +1381,9 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_layout('tabbed-vertical'),
-						Field::make('checkbox', 'same_height_images', __('Same Height Images'))->set_width(20),
-						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(80),
+						Field::make('checkbox', 'same_height_images', __('Same Height Images'))->set_width(33),
+						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
+						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33),
 						Field::make('text', 'heading_prefix', __('Heading Prefix'))
 							->set_width(20)
 							->set_conditional_logic(
@@ -1393,7 +1394,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-							Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Heading Suffix'))
 							->set_width(20)
 							->set_conditional_logic(
 								array(
@@ -1403,7 +1404,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-							Field::make('text', 'heading', __('Heading'))
+						Field::make('text', 'heading', __('Heading'))
 							->set_width(20)
 							->set_conditional_logic(
 								array(
