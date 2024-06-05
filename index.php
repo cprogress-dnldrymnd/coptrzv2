@@ -19,6 +19,12 @@ if (is_search()) {
 	} else {
 		echo 'not-exist';
 	}
+
+	if(get_template_part('template-parts/archive/archive', get_post_type())) {
+		echo 'exists';
+	} else {
+		echo 'not-exist';
+	}
 	get_template_part('template-parts/archive/archive', get_post_type());
 }
 ?>
