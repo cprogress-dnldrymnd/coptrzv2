@@ -265,7 +265,7 @@ function action_admin_footer()
 	}
 	$select_post .= '</select>';
 
-	$solutions = get__posts('solutions');
+	$solutions = get__posts('solutionsv2');
 	$select_solution = '<label style="display: block" class="cf-field__label">Select Solution</label><select class="select-page-selector">';
 	foreach ($solutions as $key => $solution) {
 		$select_solution .= '<option value="' . $key . '"> ' . $solution . ' </option>';
