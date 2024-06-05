@@ -1,1 +1,1 @@
-<?php get_template_part('template-parts/archive/archive-post-ajax'); ?>
+<?php get_template_part('template-parts/archive/_archive-post'); ?>
