@@ -13,9 +13,6 @@
             'heading_with_line' => $module['heading_with_line'],
         ));
         ?>
-
-
-
         <div class="column-items" style="<?= $container_width_style_attribute ?>">
             <?php if ($module['columns']) { ?>
                 <div class="row g-4 <?= $classes_row ?>">

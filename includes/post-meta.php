@@ -863,6 +863,7 @@ Container::make('post_meta', 'Modules')
 						'singular_name' => 'Module',
 					)
 				)
+				//CTA Fields
 				->add_fields(
 					'cta',
 					array(
@@ -1119,6 +1120,8 @@ Container::make('post_meta', 'Modules')
 							),
 					)
 				)
+				->set_header_template('CTA <%- title  %>'),
+				//End of CTA Fields
 				->add_fields(
 					'contact_form',
 					array(
