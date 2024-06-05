@@ -8,7 +8,7 @@
                 'background_overlay_image' => $background_overlay_image,
             ));
             ?>
-            <div class="row g-5 align-items-end position-relative">
+            <div class="row g-5 <?= $classes_row ?> position-relative">
                 <div class="col-lg-7">
                     <div class="column-holder content-margin">
                         <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading" tag="' . $module['tag'] . '"]') ?>
