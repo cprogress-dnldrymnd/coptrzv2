@@ -934,7 +934,7 @@ Container::make('post_meta', 'Modules')
 							),
 					)
 				)
-				->set_header_template('CTA <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
+				->set_header_template('Call to Action <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//End of CTA Fields
 				//Contact Form Fields
 				->add_fields(
@@ -1221,7 +1221,7 @@ Container::make('post_meta', 'Modules')
 						Field::make('text', 'contact_form_shortcode', __('Contact Form Shortcode'))->set_classes('field-contact-form'),
 					)
 				)
-				->set_header_template('CTA <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
+				->set_header_template('Contact Form <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//End of Contact Form Fields
 				//Columns Fields
 				->add_fields(
@@ -2025,7 +2025,7 @@ Container::make('post_meta', 'Modules')
 							->set_header_template('<%- label  %>'),
 					)
 				)
-				->set_header_template('CTA <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
+				->set_header_template('Columns <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//End of Columns Fields
 				//Logo Slider Fields
 				->add_fields(
@@ -2380,7 +2380,7 @@ Container::make('post_meta', 'Modules')
 						Field::make('media_gallery', 'images', __('Image')),
 					)
 				)
-				->set_header_template('CTA <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
+				->set_header_template('Logo Slider <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//End of Logo Slider Fields
 				//Custom HTML Fields
 				->add_fields(
@@ -2664,7 +2664,7 @@ Container::make('post_meta', 'Modules')
 						Field::make('textarea', 'custom_html', __('Custom HTML')),
 					)
 				)
-				->set_header_template('CTA <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
+				->set_header_template('Custom HTML <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//End of Custom HTML
 				//WYSIWYG Fields
 				->add_fields(
@@ -2949,7 +2949,7 @@ Container::make('post_meta', 'Modules')
 						Field::make('rich_text', 'wysiwyg', __('WYSIWYG')),
 					)
 				)
-				->set_header_template('CTA <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
+				->set_header_template('WYSIWYG <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//End of WYSIWYG Fields
 				//Accordion Fields
 				->add_fields(
@@ -3318,7 +3318,7 @@ Container::make('post_meta', 'Modules')
 							->set_header_template('<%- heading  %>'),
 					)
 				)
-				->set_header_template('CTA <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
+				->set_header_template('Accordion <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//End of Accordion Fields
 				//Post Tabs Fields
 				->add_fields(
@@ -3605,7 +3605,7 @@ Container::make('post_meta', 'Modules')
 						Field::make('text', 'taxonomy_key', __('Taxonomy Key')),
 					)
 				)
-				->set_header_template('CTA <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
+				->set_header_template('Post Tabs <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//Enf of Post Tabs Fields
 				->set_collapsed(true)
 		)
