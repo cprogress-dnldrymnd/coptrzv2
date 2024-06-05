@@ -1205,7 +1205,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'button_text', __('Button Text'))->set_width(20),
-						Field::make('text', 'button_url', __('Button URL'))->set_width(20)->set_classes('field-url')
+						Field::make('text', 'button_url', __('Page ID'))->set_width(20)->set_classes('field-url')
 							->set_conditional_logic(
 								array(
 									array(
