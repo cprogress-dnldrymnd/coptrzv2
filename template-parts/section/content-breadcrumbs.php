@@ -68,7 +68,7 @@ if (is_page() || is_single()) {
         </div>
 
         <?= do_shortcode('[_heading heading="' . $title . '" class="big-heading"]') ?>
-        <?= do_shortcode('[_description description="' . $description . '" ]') ?>
+        <?= do_shortcode('[_description description="' . _format_text($description) . '" ]') ?>
         <?php if (is_single()) { ?>
 
             <div class="meta-box d-flex mt-3">

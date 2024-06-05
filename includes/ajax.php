@@ -215,7 +215,7 @@ function archive_ajax()
 							</h4>
 
 							<?php
-							echo do_shortcode('[_description description="' . custom_excerpt_length(get_the_excerpt(), 20) . '"]');
+							echo do_shortcode('[_description description="' . _format_text(custom_excerpt_length(get_the_excerpt(), 20)) . '"]');
 							?>
 						</div>
 

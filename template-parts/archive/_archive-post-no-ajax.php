@@ -16,7 +16,7 @@
                                 <div class="content-box content-margin p-4">
                                     <?= do_shortcode('[_heading heading="' . get_the_title() . '" tag="h3" class="small-heading"]') ?>
                                     <?php if (get_the_excerpt()) { ?>
-                                        <?= do_shortcode('[_description description="' . custom_excerpt_length(get_the_excerpt(), 20) . '" ]') ?>
+                                        <?= do_shortcode('[_description description="' . _format_text(custom_excerpt_length(get_the_excerpt(), 20)) . '" ]') ?>
                                     <?php } ?>
 
                                     <?= do_shortcode('[_button class="button-accent" id="' . get_the_ID() . '"  button_type="' . get_post_type() . '" button_text="LEARN MORE" ]'); ?>

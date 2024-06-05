@@ -12,7 +12,7 @@
                 <div class="col-lg-6">
                     <div class="column-holder content-margin max-width <?= $classes_text_color ?>">
                         <?= do_shortcode('[_heading heading_prefix="' . $module['heading_prefix'] . '" heading_suffix="' . $module['heading_suffix'] . '" heading="' . $module['heading'] . '" class="' . ($module['size'] ? $module['size'] : 'big-heading') . '" tag="' . $module['tag'] . '"]') ?>
-                        <?= do_shortcode('[_description description="' . $module['description'] . '" ]') ?>
+                        <?= do_shortcode('[_description description="' . _format_text($module['description']) . '" ]') ?>
                     </div>
                 </div>
                 <div class="col-lg-6">

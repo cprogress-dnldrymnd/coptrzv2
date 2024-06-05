@@ -31,7 +31,7 @@
             </button>
           </h2>
           <div id="flush-collapse<?= $key ?>" class="accordion-collapse collapse <?= $key == 0 ? 'show' : '' ?>" aria-labelledby="flush-heading<?= $key ?>" data-bs-parent="#accordion-<?= $module_id ?>">
-            <?= do_shortcode('[_description description="' . $accordion_item['description'] . '" ]') ?>
+            <?= do_shortcode('[_description description="' . _format_text($accordion_item['description']) . '" ]') ?>
           </div>
         </div>
       <?php } ?>

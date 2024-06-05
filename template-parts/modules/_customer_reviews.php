@@ -71,7 +71,7 @@ $testimonial_rating = get__theme_option('testimonial_rating');
                             <?php SVG::quote() ?>
                         </div>
                         <div class="review-content">
-                            <?= do_shortcode('[_description class="review-text" description="' . $testimonial['description'] . '" ]') ?>
+                            <?= do_shortcode('[_description class="review-text" description="' . _format_text($testimonial['description']) . '" ]') ?>
 
                             <div class="author d-flex align-items-center">
                                 <span>
