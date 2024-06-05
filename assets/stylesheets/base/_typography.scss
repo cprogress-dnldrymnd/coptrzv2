@@ -178,6 +178,7 @@ tspan {
         margin-right: -1rem;
         align-items: flex-start;
         .prefix {
+            display: flex;
             font-weight: 500;
             align-items: center;
             &:after {
