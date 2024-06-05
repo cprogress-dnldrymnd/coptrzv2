@@ -64,7 +64,7 @@ $modules = get__post_meta('modules');
                                 }
                                 $background_image_class .= 'no-overlay';
                             } else if ($background_overlay_type == 'custom') {
-                                $style_attribute = '--background-overlay-custom: ' . $style['background_overlay_custom'] . ';';
+                                $style_attribute .= '--background-overlay-custom: ' . $style['background_overlay_custom'] . ';';
                                 $background_image_class .= 'custom-overlay';
                             }
                             $classes .= ' ' . $style['background_size'] . ' ' . $style['background_attachment'] . ' ' . $style['background_repeat'];
