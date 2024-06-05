@@ -1067,6 +1067,7 @@ Container::make('post_meta', 'Modules')
 									'button-accent'      => 'Accent',
 									'button-primary'      => 'Primary',
 									'button-secondary' => 'Secondary',
+									'button-white' => 'White',
 									'button-bordered'    => 'Bordered',
 								)
 							),
@@ -1744,6 +1745,7 @@ Container::make('post_meta', 'Modules')
 															'button-accent'      => 'Accent',
 															'button-primary'      => 'Primary',
 															'button-secondary' => 'Secondary',
+															'button-white' => 'White',
 															'button-bordered'    => 'Bordered',
 														)
 													),
