@@ -1384,7 +1384,7 @@ Container::make('post_meta', 'Modules')
 						Field::make('checkbox', 'same_height_images', __('Same Height Images'))->set_width(33),
 						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
 						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33)
-							->set_width(20)
+							->set_width(33)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1394,7 +1394,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'heading_prefix', __('Heading Prefix'))
-							->set_width(20)
+							->set_width(33)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1404,7 +1404,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'heading_suffix', __('Heading Suffix'))
-							->set_width(20)
+							->set_width(33)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1414,7 +1414,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'heading', __('Heading'))
-							->set_width(20)
+							->set_width(33)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1436,7 +1436,7 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_default_value('h2')
-							->set_width(20)
+							->set_width(33)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1455,7 +1455,7 @@ Container::make('post_meta', 'Modules')
 									'text-justify'                => 'Justify',
 								)
 							)
-							->set_width(20)
+							->set_width(33)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1473,7 +1473,7 @@ Container::make('post_meta', 'Modules')
 									'small-heading' => 'Small Heading',
 								)
 							)
-							->set_width(20)
+							->set_width(33)
 							->set_conditional_logic(
 								array(
 									array(
