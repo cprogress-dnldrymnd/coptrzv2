@@ -596,7 +596,6 @@ add_action('wp_footer', 'action_popups');
 function action_pre_get_posts($query)
 {
 	if (!is_admin() && $query->is_main_query() && is_post_type_archive('solutions')) {
-		// Display 50 posts for a custom post type called 'movie'
 		$query->set('posts_per_page', -1);
 
 		// Append our meta query
