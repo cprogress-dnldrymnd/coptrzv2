@@ -164,6 +164,15 @@ $Solutions->has_archive = true;
 $Solutions->hierarchical = true;
 $Solutions->show_in_rest = true;
 
+$Solutions = new newPostType();
+$Solutions->name = 'Solutionsv2';
+$Solutions->singular_name = 'Solutionv2';
+$Solutions->icon = 'dashicons-portfolio';
+$Solutions->supports = array('title', 'revisions', 'editor', 'thumbnail', 'page-attributes');
+$Solutions->has_archive = true;
+$Solutions->hierarchical = true;
+$Solutions->show_in_rest = true;
+
 
 $Webinars = new newPostType();
 $Webinars->name = 'Webinars';
