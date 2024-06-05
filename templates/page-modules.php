@@ -59,7 +59,7 @@ $modules = get__post_meta('modules');
                                 $style_attribute .= '--background-image-opacity: ' . $style['background_overlay_image_opacity'];
                             } else if ($background_overlay_type == 'custom') {
                                 $style_attribute = '--background-overlay-custom: ' . $style['background_overlay_custom'];
-                                $background_image_class = 'no-overlay';
+                                $background_image_class = 'custom-overlay';
                             }
                             $background_image_class = 'no-overlay';
                         }
