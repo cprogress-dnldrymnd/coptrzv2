@@ -23,9 +23,8 @@
                             </div>
                         </div>
                     </div>
+                <?php } ?>
             </div>
         <?php } ?>
     </div>
-
-<?php } ?>
 </section>
