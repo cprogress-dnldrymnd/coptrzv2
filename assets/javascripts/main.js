@@ -18,7 +18,7 @@ jQuery(document).ready(function ($) {
 });
 
 function input_fields() {
-	jQuery('.remove-first-option-value select option[value="--empty-option--"]').attr('value', '');
+	jQuery('.remove-first-option-value select option:first-child').attr('value', '');
 
 	jQuery(".wpforms-field input, .wpforms-field select, .wpforms-field textarea").on("blur input focus", function () {
 		if (this.value) {
