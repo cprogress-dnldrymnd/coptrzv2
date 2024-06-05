@@ -13946,7 +13946,7 @@ a.fancybox-gallery-img {
     -o-transition: 300ms;
     transition: 300ms; }
     .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label.wpforms-label-hide {
-      display: noen !important; }
+      display: none !important; }
   .wpforms-form .wpforms-field-container .wpforms-field.filled .wpforms-field-label {
     top: -13px; }
   .wpforms-form .wpforms-field-container .wpforms-field em.wpforms-error {
