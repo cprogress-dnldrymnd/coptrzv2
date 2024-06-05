@@ -2713,9 +2713,9 @@ Container::make('post_meta', 'Modules')
 							)
 							->set_layout('tabbed-vertical'),
 
-						//Heading Settings
+						//Heading Settings Logo Slider
 						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
-						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33)
+						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(67)
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -3087,7 +3087,7 @@ Container::make('post_meta', 'Modules')
 							->set_layout('tabbed-vertical'),
 						//Heading Settings
 						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
-						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33)
+						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(67)
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -3459,7 +3459,7 @@ Container::make('post_meta', 'Modules')
 
 						//Heading Settings
 						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
-						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33)
+						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(67)
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -3831,7 +3831,7 @@ Container::make('post_meta', 'Modules')
 
 						//Heading Settings
 						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
-						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33)
+						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(67)
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -4217,7 +4217,7 @@ Container::make('post_meta', 'Modules')
 							->set_layout('tabbed-vertical'),
 						//Heading Settings
 						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
-						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33)
+						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(67)
 							->set_width(33)
 							->set_conditional_logic(
 								array(
