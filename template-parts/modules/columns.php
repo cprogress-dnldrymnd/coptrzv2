@@ -67,7 +67,11 @@
                         <div class="<?= $column_class ? $column_class : 'col-lg' ?>">
                             <div class="column-holder h-100 d-flex overflow-hidden <?= $classes ?>" style="<?= $style_attribute ?>">
                                 <div class="inner content-margin position-relative w-100" style="<?= $style_attribute_inner ?>">
-                                    <?= do_shortcode('[_button class="column-button" id="' . $column['button_url'] . '" button_url_custom="' . $column['button_url_custom'] . '" button_type="' . $column['button_type'] . '" button_text="" ]'); ?>
+                                    <?php
+                                    if ($column['button_url']) {
+                                        echo do_shortcode('[_button class="column-button" id="' . $column['button_url'] . '" button_url_custom="' . $column['button_url_custom'] . '" button_type="' . $column['button_type'] . '" button_text="" ]');
+                                    }
+                                    ?>
                                     <?= _elements($column['items'], $module_id, $module['same_height_images']) ?>
                                 </div>
                             </div>
