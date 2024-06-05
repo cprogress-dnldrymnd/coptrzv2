@@ -2,7 +2,7 @@
 
     <div class="container">
 
-        <div class="inner position-relative rounded-corner <?= $classes ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
+        <div class="inner position-relative rounded-corner overflow-hidden <?= $classes ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
             <?php if ($baground_image) { ?>
                 <?= do_shortcode('[_image class="background-image" id="' . $baground_image . '"]'); ?>
             <?php } ?>
