@@ -14610,7 +14610,7 @@ a.fancybox-gallery-img {
   top: 0;
   right: 0;
   bottom: 0;
-  opacity: var(--background-image-overlay, 1); }
+  opacity: var(--background-image-opacity, 1); }
   .background-image-overlay > img {
     object-fit: cover;
     width: 100%;
