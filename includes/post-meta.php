@@ -2007,7 +2007,7 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								array(
 									Field::make('text', 'label', __('Label')),
-									Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+									Field::make('select', 'button_type', __('URL Type'))->set_classes('trigger-selector')
 										->set_options(
 											array(
 												''          => 'Select Button Type',
@@ -2022,7 +2022,7 @@ Container::make('post_meta', 'Modules')
 											)
 										),
 									Field::make('html', 'button_text', __('HTML'))->set_html(''),
-									Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+									Field::make('text', 'button_url', __('Column URL'))->set_classes('field-url')
 										->set_conditional_logic(
 											array(
 												array(
