@@ -1167,11 +1167,11 @@ Container::make('post_meta', 'Modules')
 
 						//Heading Settings
 						Field::make('text', 'heading_prefix', __('Heading Prefix'))
-							->set_width(33),
+							->set_width(20),
 						Field::make('text', 'heading_suffix', __('Heading Suffix'))
-							->set_width(33),
+							->set_width(20),
 						Field::make('text', 'heading', __('Heading'))
-							->set_width(33),
+							->set_width(20),
 						Field::make('select', 'tag', __('Tag'))
 							->set_options(
 								array(
@@ -1184,7 +1184,16 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_default_value('h2')
-							->set_width(33),
+							->set_width(20),
+						Field::make('select', 'size', __('Heading Size'))->set_width(20)
+							->set_options(
+								array(
+									'' => 'Default',
+									'big-heading' => 'Big Heading',
+									'medium-heading' => 'Medium Heading',
+									'small-heading' => 'Small Heading',
+								)
+							),
 						//End of Heading Settings
 						Field::make('textarea', 'description', __('Description')),
 						Field::make('select', 'button_type', __('Button Type'))->set_width(20)->set_classes('trigger-selector')
