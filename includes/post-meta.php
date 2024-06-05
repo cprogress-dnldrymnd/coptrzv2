@@ -1080,6 +1080,30 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->add_fields(
+								'container_width',
+								array(
+									Field::make('select', 'container_width', 'Container Width')
+										->set_options(
+											array(
+												''               => 'Default',
+												'large-container'  => 'Large',
+												'medium-container'  => 'Medium',
+												'small-container'  => 'Small',
+												'custom-container'  => 'Custom',
+											)
+										),
+									Field::make('text', 'custom_container_width', 'Custom Container Width')
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'container_width',
+													'value' => 'custom-container',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
 								'border_radius',
 								array(
 									Field::make('text', 'border_radius', 'Border Radius')
