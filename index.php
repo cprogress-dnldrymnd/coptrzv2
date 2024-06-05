@@ -13,19 +13,9 @@ get_header(); // This fxn gets the header.php file and renders it
 if (is_search()) {
 	get_template_part('template-parts/archive/archive', 'search');
 } else {
-	$location = 'template-parts/archive/archive-'.get_post_type();
-	if(locate_template( $location.'.php' )) {
-		echo 'exists';
-	} else {
-		echo 'not-exist';
+	if(!get_template_part('template-parts/archive/archive', get_post_type())) {
+		get_template_part('template-parts/archive/_archive-post-ajax');
 	}
-
-	if(get_template_part('template-parts/archive/archive', get_post_type())) {
-		echo 'exists';
-	} else {
-		echo 'not-exist';
-	}
-	get_template_part('template-parts/archive/archive', get_post_type());
 }
 ?>
 
