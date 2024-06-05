@@ -1,15 +1,8 @@
 <section class="call-to-action ">
-
     <div class="container">
-
         <div class="inner position-relative rounded-corner overflow-hidden <?= $classes ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
-            <?php if ($baground_image) { ?>
-                <?= do_shortcode('[_image class="background-image ' . $background_image_class . '" id="' . $baground_image . '"]'); ?>
-            <?php } ?>
+            <?= _background_image($baground_image, $background_image_class, $background_overlay_image) ?>
 
-            <?php if ($background_overlay_image) { ?>
-                <?= do_shortcode('[_image class="background-image-overlay" id="' . $background_overlay_image . '"]'); ?>
-            <?php } ?>
 
             <div class="row g-5 align-items-end position-relative">
                 <div class="col-lg-7">
