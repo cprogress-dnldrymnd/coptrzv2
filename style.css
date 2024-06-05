@@ -17299,6 +17299,12 @@ section.contact-form .form-holder {
 section.call-to-action .inner {
   padding: 5rem 3rem 3rem 3rem;
   --border-radius: 32px; }
+section.call-to-action .row {
+  -webkit-box-align: end;
+  -moz-box-align: end;
+  -ms-flex-align: end;
+  -webkit-align-end: center;
+  align-items: end; }
 
 ul.custom-products.custom-products.custom-products li.product .inner {
   border-radius: 10px;
