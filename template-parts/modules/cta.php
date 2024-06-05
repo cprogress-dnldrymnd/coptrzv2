@@ -1,10 +1,12 @@
-<section class="call-to-action position-relative">
-    <?php if ($baground_image) { ?>
-        <?= do_shortcode('[_image class="background-image" id="' . $baground_image . '"]'); ?>
-    <?php } ?>
+<section class="call-to-action ">
+
     <div class="container">
-        <div class="inner rounded-corner <?= $classes ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
-            <div class="row g-5 align-items-end">
+
+        <div class="inner position-relative rounded-corner <?= $classes ?>" style="<?= $style_attribute ?>" id="<?= $module_id ?>">
+            <?php if ($baground_image) { ?>
+                <?= do_shortcode('[_image class="background-image" id="' . $baground_image . '"]'); ?>
+            <?php } ?>
+            <div class="row g-5 align-items-end position-relative">
                 <div class="col-lg-7">
                     <div class="column-holder content-margin">
                         <?= do_shortcode('[_heading heading="' . $module['heading'] . '" class="big-heading" tag="' . $module['tag'] . '"]') ?>
