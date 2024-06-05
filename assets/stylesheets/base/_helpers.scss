@@ -776,6 +776,9 @@
 	&:not(.no-overlay) {
 		@include overlay;
 	}
+	&.custom-overlay {
+		
+	}
 }
 
 .background-image-overlay {
