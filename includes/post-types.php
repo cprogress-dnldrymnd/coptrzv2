@@ -167,8 +167,6 @@ $Events->show_in_rest = true;
 
 
 
-
-
 $Webinars = new newPostType();
 $Webinars->name = 'Webinars';
 $Webinars->singular_name = 'Webinar';
@@ -463,10 +461,10 @@ $Model3d->show_in_rest = true;
 
 
 
-$Model3D = new newTaxonomy();
-$Model3D->taxonomy = 'Model3d_Category';
-$Model3D->post_type = '3dmodellibraries';
-$Model3D->args = array(
+$Model3D_Category = new newTaxonomy();
+$Model3D_Category->taxonomy = 'Model3d_Category';
+$Model3D_Category->post_type = '3dmodellibraries';
+$Model3D_Category->args = array(
     'label'        => 'Categories',
     'labels' => array(
         'name'                       => _x('Categories', 'Taxonomy General Name', 'text_domain'),
