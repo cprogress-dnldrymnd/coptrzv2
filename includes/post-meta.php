@@ -4053,6 +4053,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
+						Field::make('checkbox', 'open_first_item', __('Open First Item')),
 						Field::make('select', 'accordion_source', __('Accordion Source'))
 							->set_options(
 								array(
