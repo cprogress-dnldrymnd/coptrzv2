@@ -2828,8 +2828,33 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
+						Field::make('select', 'text_align', 'Text Align')
+							->set_options(
+								array(
+									''                => 'Default',
+									'text-start'                => 'Left',
+									'text-center'                => 'Center',
+									'text-end'                => 'Right',
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
 						//End of Heading Settings
-						Field::make('textarea', 'description', __('Description')),
+						Field::make('textarea', 'description', __('Description'))
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
 						Field::make('media_gallery', 'images', __('Image')),
 					)
 				)
