@@ -816,6 +816,7 @@ class Shortcodes
 			shortcode_atts(
 				array(
 					'id' => '',
+					'is_shortcode' => true
 				),
 				$atts
 			)

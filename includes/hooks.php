@@ -593,6 +593,7 @@ function action_popups()
 		if ($query->have_posts()) {
 			while ($query->have_posts()) {
 				$query->the_post();
+				$is_shortcode = false;
 				include locate_template('template-parts/shortcodes/popup.php');
 			}
 			wp_reset_postdata();
