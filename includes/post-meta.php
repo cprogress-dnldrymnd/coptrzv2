@@ -2441,8 +2441,8 @@ Container::make('post_meta', 'Modules')
 														array(
 															array(
 																'field' => 'accordion_source',
-																'value' => 'faqs',
-																'comapre' => '!='
+																'value' => '',
+																'comapre' => '='
 															)
 														)
 													),
