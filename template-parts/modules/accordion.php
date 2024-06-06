@@ -19,7 +19,7 @@
       'heading_with_line' => $module['heading_with_line'],
     ));
 
-
+echo $xxx;
     $accordion = $module['accordion'];
     $accordion_source = $module['accordion_source'];
     $faqs = $module['faqs'];
