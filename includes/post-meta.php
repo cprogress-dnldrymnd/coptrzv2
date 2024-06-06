@@ -4001,6 +4001,13 @@ Container::make('post_meta', 'Modules')
 							),
 						//End of Heading Settings
 						Field::make('textarea', 'description', __('Description')),
+						Field::make('select', 'accordion_source', __('Accordion Source'))
+							->set_options(
+								array(
+									''      => 'Custom',
+									'faqs'      => 'FAQs',
+								)
+							),
 						Field::make('complex', 'accordion', __('Accordion'))
 							->setup_labels(
 								array(
@@ -4015,7 +4022,34 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_layout('tabbed-vertical')
-							->set_header_template('<%- heading  %>'),
+							->set_header_template('<%- heading  %>')
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'accordion_source',
+										'value' => '',
+										'comapre' => '='
+									)
+								)
+							),
+						Field::make('association', 'faqs', 'Select FAQs')
+							->set_types(
+								array(
+									array(
+										'type'      => 'post',
+										'post_type' => 'faq',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'accordion_source',
+										'value' => 'faqs',
+										'comapre' => '='
+									)
+								)
+							),
 					)
 				)
 				->set_header_template('Accordion <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
