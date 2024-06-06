@@ -4379,6 +4379,12 @@ Container::make('post_meta', '3D Model Library Settings')
 	->or_where('post_type', '=', 'popups')
 	->add_fields(
 		array(
-			Field::make('checkbox', 'is_contact_form_popup', 'Is Contact Form Popup'),
+			Field::make('select', 'popup_layout', 'Popup Layout')
+				->set_options(
+					array(
+						''				=> 'Default',
+						'contact_form' 	=> 'Contact Form',
+					)
+				),
 		)
 	);
