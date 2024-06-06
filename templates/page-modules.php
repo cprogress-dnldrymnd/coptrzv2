@@ -9,9 +9,9 @@ $modules = get__post_meta('modules');
 ?>
 <div class="modules">
     <?php
-    $content = file_get_contents('https://dev.coptrz.com/wp-content/uploads/2024/06/rulers.svg');
+    $content = file_get_contents('/home/devcoptrz/public_html/wp-conten/uploads/2024/06/rulers.svg');
     echo $content;
-    echo get_stylesheet_directory();
+
     foreach ($modules as $key => $module) {
         $type = $module['_type'];
         $disable_module = $module['disable_module'];
