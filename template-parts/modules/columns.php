@@ -74,6 +74,7 @@
                                         echo do_shortcode('[_button class="column-button" id="' . $column['button_url'] . '" button_url_custom="' . $column['button_url_custom'] . '" button_type="' . $column['button_type'] . '" button_text="" ]');
                                     }
                                     echo $column['button_url'];
+                                    echo 'test';
                                     ?>
                                     <?= _elements($column['items'], $column_id, $module['same_height_images']) ?>
                                 </div>
