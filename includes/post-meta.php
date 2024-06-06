@@ -5339,7 +5339,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'heading', __('Heading'))
-							->set_width(33)
+							->set_width(20)
 							->set_conditional_logic(
 								array(
 									array(
