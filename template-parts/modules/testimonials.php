@@ -24,7 +24,14 @@ if ($type == 'product-reviews') {
 $testimonial_heading = get__theme_option('testimonial_heading');
 $testimonial_rating = get__theme_option('testimonial_rating');
 ?>
-<section class="customer-reviews">
+<section class="customer-reviews position-relative">
+    <?php
+    _background_image(array(
+        'baground_image' => $baground_image,
+        'background_image_class' => $background_image_class,
+        'background_overlay_image' => $background_overlay_image,
+    ));
+    ?>
     <?php if ($display_testimonial_default_text) { ?>
         <div class="container">
             <div class="row g-4 white-color mb-7 justify-content-between">
@@ -62,6 +69,18 @@ $testimonial_rating = get__theme_option('testimonial_rating');
         </div>
     <?php  } ?>
     <div class="container">
+        <?php
+        _section_heading_description(array(
+            'heading' => $module['heading'],
+            'description' => $module['description'],
+            'text_align' => $module['text_align'],
+            'heading_prefix' => $module['heading_prefix'],
+            'heading_suffix' => $module['heading_suffix'],
+            'tag' => $module['tag'],
+            'size' => $module['size'],
+            'heading_with_line' => $module['heading_with_line'],
+        ));
+        ?>
         <div class="review-holder <?= $type == 'case-study' ? 'review-holder-case-study' : '' ?>">
             <div class="swiper  mySwiper-Reviews <?= $class ? $class : 'mySwiper-ReviewsDefault' ?>">
                 <div class="swiper-wrapper align-items-center">
