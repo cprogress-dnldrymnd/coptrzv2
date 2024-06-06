@@ -29,6 +29,7 @@ function _elements($data, $module_id, $same_height_images)
                 $accordion = $d['accordion'];
                 $accordion_source = $d['accordion_source'];
                 $faqs = $d['faqs'];
+                $faqs_category = $d['faqs_category'];
                 if ($accordion || $faqs) {
                     include locate_template('template-parts/components/accordion.php');
                 }

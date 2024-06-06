@@ -7,6 +7,30 @@ if ($accordion_source == 'faqs') {
             'description' => get_the_content(null, false, $faq['id']),
         );
     }
+} else if ($accordion_source == 'faqs_category') {
+    $faqs_cat_id = array();
+    foreach ($faqs_category as $faqs_cat) {
+        $faqs_cat_id[] = $faqs_cat['id'];
+    }
+    $args = array(
+        'post_type' => '',
+        'post_status' => 'publish',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'faqs_category',
+                'field'    => 'term_id',
+                'terms'    => $faqs_cat_id
+            )
+        )
+    );
+    $faqs = get_posts($args);
+
+    foreach ($faqs as $faq) {
+        $accordion[$faq->ID] = array(
+            'heading' => get_the_title($faq->ID),
+            'description' => $faq->post_content
+        );
+    }
 } else {
     $accordion = $accordion;
 }
