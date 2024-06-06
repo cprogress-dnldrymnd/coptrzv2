@@ -1,7 +1,6 @@
 <?php
-$url = wp_get_attachment_url($id);
-$content = file_get_contents('https://dev.coptrz.com/');
-echo $content;
+$url = wp_get_original_image_path($id);
+echo $url;
 ?>
 <div class="icon-box <?= $class ?>">
     <?= output_svg_from_url($url) ?>
