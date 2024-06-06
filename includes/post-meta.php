@@ -2426,7 +2426,7 @@ Container::make('post_meta', 'Modules')
 											'icon',
 											array(
 												Field::make('file', 'icon', __('Icon'))
-												->set_type( arry('image/svg+xml') ),
+												->set_type( array('image/svg+xml') ),
 												Field::make('select', 'icon_color', 'Text Color')
 													->set_options(
 														array(
