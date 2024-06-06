@@ -520,6 +520,37 @@ function swiper_slider() {
 		$number_of_slides_tablet = jQuery(this).attr('number_of_slides_tablet');
 		$number_of_slides_mobile = jQuery(this).attr('number_of_slides_mobile');
 
+
+		var logoSwiper = new Swiper(".mySwiper-logoSwiper", {
+			loop: true,
+			freeMode: true,
+			centeredSlides: true,
+			speed: 5000,
+			autoplay: {
+				delay: 0,
+				disableOnInteraction: false
+			},
+			breakpoints: {
+				0: {
+					slidesPerView: $number_of_slides_mobile,
+				},
+
+				768: {
+					slidesPerView: $number_of_slides_tablet,
+				},
+				
+
+				992: {
+					slidesPerView: $number_of_slides,
+				},
+				
+
+
+			},
+
+		});
+
+
 	});
 
 

@@ -24,7 +24,7 @@
         $number_of_slides_mobile = $module['number_of_slides_mobile'] ?  $module['number_of_slides_mobile'] : ($number_of_slides_tablet ? $number_of_slides_tablet : $number_of_slides);
         ?>
         <div class="logo-slider-box">
-            <div class="swiper mySwiper-logoSwiper-Module" number_of_slides="<?= $number_of_slides ?>" number_of_slides_tablet="<?= $number_of_slides_tablet ?>" number_of_slides_mobile="<?= $number_of_slides_mobile ?>">
+            <div class="swiper mySwiper-logoSwiper-Module" id="logo-slider-<?= $module_id ?>" number_of_slides="<?= $number_of_slides ?>" number_of_slides_tablet="<?= $number_of_slides_tablet ?>" number_of_slides_mobile="<?= $number_of_slides_mobile ?>">
                 <div class="swiper-wrapper text-center align-items-center">
                     <?php foreach ($module['images'] as $logo) { ?>
                         <div class="swiper-slide">
