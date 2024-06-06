@@ -4392,7 +4392,7 @@ Container::make('post_meta', 'Popup Settings')
 						'popup-default'	=> 'Default',
 						'popup-small' 	=> 'Small',
 						'popup-medium' 	=> 'Medium',
-						'popup-small' 	=> 'Large',
+						'popup-large' 	=> 'Large',
 					)
 				),
 		)
