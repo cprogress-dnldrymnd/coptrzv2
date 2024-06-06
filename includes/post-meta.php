@@ -4356,17 +4356,6 @@ Container::make('post_meta', '3D Model Library Settings')
 	->add_fields(
 		array(
 			Field::make('image', 'captured_by', 'Captured by (Logo)'),
-			Field::make('association', 'related_blog', 'Related Blog')
-				->set_types(
-					array(
-						array(
-							'type'      => 'post',
-							'post_type' => 'post',
-						)
-					)
-				)
-				->set_max(1)
-
 		)
 	);
 
@@ -4395,28 +4384,6 @@ Container::make('post_meta', 'Popup Settings')
 						'popup-small' 	=> 'Small',
 						'popup-medium' 	=> 'Medium',
 						'popup-large' 	=> 'Large',
-					)
-				),
-		)
-	);
-
-
-
-/*-----------------------------------------------------------------------------------*/
-/* Product Attributes
-/*-----------------------------------------------------------------------------------*/
-Container::make('term_meta', __('Category Properties'))
-	->where('term_taxonomy', '=', 'Model3d_Category')
-	->add_fields(
-		array(
-			Field::make('image', 'category_image', 'Category Image'),
-			Field::make('association', 'brands', 'Select Related Brand')
-				->set_types(
-					array(
-						array(
-							'type'      => 'term',
-							'taxonomy' => 'pa_brands',
-						)
 					)
 				),
 		)
