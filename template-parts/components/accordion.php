@@ -23,9 +23,9 @@ if ($accordion_source == 'faqs') {
             )
         )
     );
-    $faqs = get_posts($args);
+    $faqs_lists = get_posts($args);
 
-    foreach ($faqs as $faq) {
+    foreach ($faqs_lists as $faq) {
         $accordion[$faq->ID] = array(
             'heading' => get_the_title($faq->ID),
             'description' => $faq->post_content
