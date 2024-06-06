@@ -5319,7 +5319,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'heading_prefix', __('Heading Prefix'))
-							->set_width(33)
+							->set_width(20)
 							->set_conditional_logic(
 								array(
 									array(
@@ -5329,7 +5329,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'heading_suffix', __('Heading Suffix'))
-							->set_width(33)
+							->set_width(20)
 							->set_conditional_logic(
 								array(
 									array(
@@ -5361,13 +5361,23 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_default_value('h2')
-							->set_width(33)
+							->set_width(20)
 							->set_conditional_logic(
 								array(
 									array(
 										'field' => 'display_heading_description',
 										'value' => true,
 									)
+								)
+							),
+						Field::make('select', 'text_align', 'Text Align')
+							->set_width(20)
+							->set_options(
+								array(
+									''                => 'Default',
+									'text-start'                => 'Left',
+									'text-center'                => 'Center',
+									'text-end'                => 'Right',
 								)
 							),
 						Field::make('textarea', 'description', __('Description'))
@@ -5386,7 +5396,7 @@ Container::make('post_meta', 'Modules')
 									'testimonial_category'      => 'Select by Category',
 								)
 							),
-					
+
 						Field::make('association', 'faqs', 'Select Testimonials')
 							->set_types(
 								array(
