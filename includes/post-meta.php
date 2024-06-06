@@ -4395,17 +4395,8 @@ Container::make('post_meta', 'Popup Settings')
 						'background-white'     => 'White',
 						'background-light-gray'     => 'Light Gray',
 						'background-body-color'     => 'Body',
-						'background-custom'    => 'Custom',
 					)
 				),
-			Field::make('color', 'background_color_custom', __('Background Color'))
-				->set_conditional_logic(
-					array(
-						array(
-							'field' => 'background_color',
-							'value' => 'background-custom',
-						)
-					)
-				),
+		
 		)
 	);
