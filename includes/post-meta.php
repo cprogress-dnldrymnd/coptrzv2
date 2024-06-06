@@ -2448,9 +2448,8 @@ Container::make('post_meta', 'Modules')
 															)
 														)
 													),
-												Field::make('text', 'image_width', __('Custom Icon Width')),
-												Field::make('text', 'image_height', __('Custom Icon Height'))
-
+												Field::make('text', 'icon_width', __('Custom Icon Width')),
+												Field::make('text', 'icon_height', __('Custom Icon Height'))
 
 											)
 										)

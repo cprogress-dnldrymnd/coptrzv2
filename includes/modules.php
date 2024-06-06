@@ -4,7 +4,22 @@ function _format_text($text)
 {
     return str_replace("'", "&#39;", $text);
 }
+function output_svg_from_url($url)
+{
+    $content = file_get_contents($url);
 
+    // Security: Sanitize SVG Content (Essential)
+    $allowed_tags = array(
+        'svg' => array('xmlns', 'width', 'height', 'viewbox', 'class'),
+        'path' => array('d', 'fill', 'stroke', 'stroke-width'),
+        'rect', 'circle', 'ellipse', 'line', 'polygon', 'polyline',
+        'text', 'tspan' // Add more as needed
+    );
+    $content = wp_kses($content, $allowed_tags);
+
+    // Output the sanitized SVG
+    echo $content;
+}
 function _elements($data, $module_id, $same_height_images)
 {
     ob_start();
@@ -21,6 +36,9 @@ function _elements($data, $module_id, $same_height_images)
                 $same_height = $same_height_images ? 'same_height="true"' : 'same_height="false"';
                 $rounded_corners = $d['rounded_corners'] ? 'true' : 'false';
                 echo do_shortcode('[_image size="' . $d['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $d['border_radius'] . '" ' . $same_height . '  id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
+                break;
+            case 'icon':
+                echo do_shortcode('_icon id="' . $d['icon'] . '" class="' . $d['icon_color'] . '" icon_color_custom="' . $d['icon_color_custom'] . '" icon_width="' . $d['icon_width'] . '" icon_height="' . $d['icon_height'] . '"]');
                 break;
             case 'button':
                 echo do_shortcode('[_button class="' . $d['button_style'] . '" id="' . $d['button_url'] . '" button_url_custom="' . $d['button_url_custom'] . '" button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" ]');
