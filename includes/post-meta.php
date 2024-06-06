@@ -2419,7 +2419,8 @@ Container::make('post_meta', 'Modules')
 													->set_options(
 														array(
 															''      => 'Custom',
-															'faqs'      => 'FAQs',
+															'faqs'      => 'FAQs Select Manually',
+															'faqs_category'      => 'FAQs by Category',
 														)
 													),
 												Field::make('complex', 'accordion', __('Accordion'))
@@ -2460,6 +2461,24 @@ Container::make('post_meta', 'Modules')
 															array(
 																'field' => 'accordion_source',
 																'value' => 'faqs',
+																'comapre' => '='
+															)
+														)
+													),
+												Field::make('association', 'faqs', 'Select FAQs')
+													->set_types(
+														array(
+															array(
+																'type'      => 'term',
+																'taxonomy' => 'faqs_category',
+															)
+														)
+													)
+													->set_conditional_logic(
+														array(
+															array(
+																'field' => 'accordion_source',
+																'value' => 'faqs_category',
 																'comapre' => '='
 															)
 														)
