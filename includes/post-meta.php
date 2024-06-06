@@ -4389,6 +4389,7 @@ Container::make('post_meta', 'Popup Settings')
 			Field::make('select', 'background_color', 'Background Color')
 				->set_options(
 					array(
+						''   => 'None',
 						'background-primary'   => 'Primary',
 						'background-secondary' => 'Secondary',
 						'background-accent'    => 'Accent',
