@@ -35,7 +35,6 @@ if ($accordion_source == 'faqs') {
     $accordion = $accordion;
 }
 var_dump($faqs_category);
-echo 'xxxx';
 ?>
 
 

@@ -18,23 +18,15 @@
       'size' => $module['size'],
       'heading_with_line' => $module['heading_with_line'],
     ));
+
+
+    $accordion = $module['accordion'];
+    $accordion_source = $module['accordion_source'];
+    $faqs = $module['faqs'];
+    $faqs_category = $module['faqs_category'];
+    if ($accordion || $faqs ||$faqs_category ) {
+        include locate_template('template-parts/components/accordion.php');
+    }
     ?>
-    <div class="accordion accordion-v2 accordion-flush" id="accordion-<?= $module_id ?>">
-      <?php foreach ($module['accordion'] as $key => $accordion_item) { ?>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-heading<?= $key ?>">
-            <button class="accordion-button justify-content-between p-0 <?= $key == 0 ? '' : 'collapsed' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?= $key ?>" aria-expanded="<?= $key == 0 ? 'true' : 'false' ?>" aria-controls="flush-collapse<?= $key ?>">
-              <span>
-                <?= do_shortcode('[_heading heading="' . $accordion_item['heading'] . '" tag="h4"]') ?>
-              </span>
-              <span class="plus-minus"></span>
-            </button>
-          </h2>
-          <div id="flush-collapse<?= $key ?>" class="accordion-collapse collapse <?= $key == 0 ? 'show' : '' ?>" aria-labelledby="flush-heading<?= $key ?>" data-bs-parent="#accordion-<?= $module_id ?>">
-            <?= do_shortcode('[_description description="' . _format_text($accordion_item['description']) . '" ]') ?>
-          </div>
-        </div>
-      <?php } ?>
-    </div>
   </div>
 </section>
