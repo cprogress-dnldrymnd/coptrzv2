@@ -35,6 +35,9 @@ if ($accordion_source == 'faqs') {
 } else {
     $accordion = $accordion;
 }
+
+
+
 ?>
 
 
@@ -42,14 +45,14 @@ if ($accordion_source == 'faqs') {
     <?php foreach ($accordion as $key => $accordion_item) { ?>
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-heading<?= $key ?>">
-                <button class="accordion-button justify-content-between p-0 <?= $key == 0 ? '' : 'collapsed' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?= $key ?>" aria-expanded="<?= $key == 0 ? 'true' : 'false' ?>" aria-controls="flush-collapse<?= $key ?>">
+                <button class="accordion-button justify-content-between p-0 <?= ($key == 0 && $open_first_item) ? '' : 'collapsed' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?= $key ?>" aria-expanded="<?= ($key == 0 && $open_first_item) ? 'true' : 'false' ?>" aria-controls="flush-collapse<?= $key ?>">
                     <span>
                         <?= do_shortcode('[_heading heading="' . $accordion_item['heading'] . '" tag="h4"]') ?>
                     </span>
                     <span class="plus-minus"></span>
                 </button>
             </h2>
-            <div id="flush-collapse<?= $key ?>" class="accordion-collapse collapse <?= $key == 0 ? 'show' : '' ?>" aria-labelledby="flush-heading<?= $key ?>" data-bs-parent="#accordion-<?= $module_id ?>">
+            <div id="flush-collapse<?= $key ?>" class="accordion-collapse collapse <?= ($key == 0 && $open_first_item) ? 'show' : '' ?>" aria-labelledby="flush-heading<?= $key ?>" data-bs-parent="#accordion-<?= $module_id ?>">
                 <?= do_shortcode('[_description description="' . _format_text($accordion_item['description']) . '" ]') ?>
             </div>
         </div>
