@@ -515,6 +515,17 @@ function swiper_slider() {
 
 	});
 
+	jQuery('.mySwiper-logoSwiper-Module').each(function (index, element) {
+		$number_of_slides = jQuery(this).attr('number_of_slides');
+		$number_of_slides_tablet = jQuery(this).attr('number_of_slides_tablet');
+		$number_of_slides_mobile = jQuery(this).attr('number_of_slides_mobile');
+
+	});
+
+
+
+
+
 
 	var vendorSwiper = new Swiper(".mySwiper-vendorCategory", {
 		loop: false,
