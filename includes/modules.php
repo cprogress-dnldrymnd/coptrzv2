@@ -4,13 +4,7 @@ function _format_text($text)
 {
     return str_replace("'", "&#39;", $text);
 }
-function output_svg_from_url($url)
-{
-    $content = file_get_contents($url);
 
-    // Output the sanitized SVG
-    echo $content;
-}
 function _elements($data, $module_id, $same_height_images)
 {
     ob_start();
