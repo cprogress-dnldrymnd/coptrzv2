@@ -588,6 +588,7 @@ function action_popups()
 	foreach ($popups as $popup) {
 		$args = array(
 			'p' => $popup,
+			'post_type' => 'popups'
 		);
 		$query = new WP_Query($args);
 		if ($query->have_posts()) {
