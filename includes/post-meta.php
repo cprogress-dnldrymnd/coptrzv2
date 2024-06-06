@@ -2423,6 +2423,37 @@ Container::make('post_meta', 'Modules')
 											)
 										)
 										->add_fields(
+											'icon',
+											array(
+												Field::make('image', 'icon', __('Icon')),
+												Field::make('select', 'icon_color', 'Text Color')
+													->set_options(
+														array(
+															'text-primary'   => 'Primary',
+															'text-secondary' => 'Secondary',
+															'text-accent'    => 'Accent',
+															'text-white'     => 'White',
+															'text-light-gray'     => 'Light Gray',
+															'text-body-color'     => 'Body',
+															'text-custom'    => 'Custom',
+														)
+													),
+												Field::make('color', 'icon_color_custom', __('Text Color'))
+													->set_conditional_logic(
+														array(
+															array(
+																'field' => 'icon_color',
+																'value' => 'text-custom',
+															)
+														)
+													),
+												Field::make('text', 'image_width', __('Custom Icon Width')),
+												Field::make('text', 'image_height', __('Custom Icon Height'))
+
+
+											)
+										)
+										->add_fields(
 											'accordion',
 											array(
 												Field::make('checkbox', 'open_first_item', __('Open First Item')),
