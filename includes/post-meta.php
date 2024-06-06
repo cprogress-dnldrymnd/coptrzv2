@@ -5397,12 +5397,12 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 
-						Field::make('association', 'faqs', 'Select Testimonials')
+						Field::make('association', 'testimonials', 'Select Testimonials')
 							->set_types(
 								array(
 									array(
 										'type'      => 'post',
-										'post_type' => 'faq',
+										'post_type' => 'testimonials',
 									)
 								)
 							)

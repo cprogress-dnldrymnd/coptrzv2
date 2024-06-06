@@ -4,25 +4,17 @@ $Helpers = new Helpers;
 $GetData = new GetData;
 $SVG = new SVG;
 $testimonials_arr = array();
-if ($type == 'product-reviews') {
-    $testimonials = carbon_get_the_post_meta('reviews');
-    foreach ($testimonials as $testimonial) {
-        $testimonials_arr[] = array(
-            'author' => $testimonial['author'],
-            'description' => $testimonial['review_content']
-        );
-    }
-} else {
-    $testimonials = $GetData->get_posts_ids('testimonials');
-    foreach ($testimonials as $key => $testimonial) {
-        $testimonials_arr[] = array(
-            'author' => $testimonial,
-            'description' => get__post_meta_by_id($key, 'testimonial_content')
-        );
-    }
+$testimonials = $GetData->get_posts_ids('testimonials');
+
+foreach ($testimonials as $key => $testimonial) {
+    $testimonial_source = $module['testimonial_source'];
+    $testimonials = $module['testimonials'];
+    $testimonial_category = $module['testimonial_category'];
+    $testimonials_arr[] = array(
+        'author' => $testimonial,
+        'description' => get__post_meta_by_id($key, 'testimonial_content')
+    );
 }
-$testimonial_heading = get__theme_option('testimonial_heading');
-$testimonial_rating = get__theme_option('testimonial_rating');
 ?>
 <section class="customer-reviews position-relative">
     <?php
