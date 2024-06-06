@@ -522,7 +522,7 @@ function swiper_slider() {
 		$number_of_slides_mobile = jQuery(this).attr('number_of_slides_mobile');
 
 
-		var logoSwiper = new Swiper(".mySwiper-logoSwiper", {
+		var logoSwiper = new Swiper($id, {
 			loop: true,
 			freeMode: true,
 			centeredSlides: true,
