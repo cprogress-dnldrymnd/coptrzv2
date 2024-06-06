@@ -4534,7 +4534,7 @@ Container::make('post_meta', 'Modules')
 					)
 				)
 				->set_header_template('Post Tabs <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
-				//Enf of Post Tabs Fields
+				//End of Post Grid Fields
 				->add_fields(
 					'post_grid',
 					array(
@@ -5005,7 +5005,479 @@ Container::make('post_meta', 'Modules')
 					)
 				)
 				->set_header_template('Post Grid <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
-				//Enf of Post Tabs Fields
+				//Enf of Post Grid Fields
+				//End of Testimonial Fields
+				->add_fields(
+					'testimonials',
+					array(
+						//Module Settings
+						Field::make('text', 'title', __('Module Title'))->set_width(33),
+						Field::make('text', 'module_id', __('Module ID'))->set_width(33),
+						Field::make('checkbox', 'disable_module', __('Disable Module'))->set_width(33),
+						//End of Module Settings
+						Field::make('complex', 'styles', __('Styles'))
+							->set_duplicate_groups_allowed(false)
+							->add_fields(
+								'background_color',
+								array(
+									Field::make('select', 'background_color', 'Background Color')
+										->set_options(
+											array(
+												'background-primary'   => 'Primary',
+												'background-secondary' => 'Secondary',
+												'background-accent'    => 'Accent',
+												'background-white'     => 'White',
+												'background-light-gray'     => 'Light Gray',
+												'background-body-color'     => 'Body',
+												'background-custom'    => 'Custom',
+											)
+										),
+									Field::make('color', 'background_color_custom', __('Background Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_color',
+													'value' => 'background-custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
+								'background_image',
+								array(
+									Field::make('image', 'background_image', 'Background Image'),
+									Field::make('select', 'background_size', 'Background Size')
+										->set_options(
+											array(
+												'background-cover' => 'Cover',
+												'background-contain'  => 'Contain',
+											)
+										),
+									Field::make('select', 'background_attachment', 'Background Attachment')
+										->set_options(
+											array(
+												'background-scroll'    => 'Scroll',
+												'background-fixed'  => 'Fixed',
+											)
+										),
+									Field::make('select', 'background_repeat', 'Background Repeat')
+										->set_options(
+											array(
+												'background-no-repeat'    => 'No Repeat',
+												'background-repeat'  => 'No Repeat',
+											)
+										),
+								)
+							)
+							->add_fields(
+								'background_overlay',
+								array(
+									Field::make('select', 'background_overlay_type', 'Background Overlay Type')
+										->set_options(
+											array(
+												'default'    => 'Default',
+												'image'  => 'Image',
+												'custom'  => 'Custom',
+											)
+										),
+									Field::make('image', 'background_overlay_image', 'Image Background Overlay')
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_overlay_type',
+													'value' => 'image',
+												)
+											)
+										),
+									Field::make('text', 'background_overlay_image_opacity', 'Image Background Overlay Opacity')
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_overlay_type',
+													'value' => 'image',
+												)
+											)
+										),
+									Field::make('color', 'background_overlay_custom', 'Custom Background Overlay')
+										->set_alpha_enabled(true)
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_overlay_type',
+													'value' => 'custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
+								'text_color',
+								array(
+									Field::make('select', 'text_color', 'Text Color')
+										->set_options(
+											array(
+												'text-primary'   => 'Primary',
+												'text-secondary' => 'Secondary',
+												'text-accent'    => 'Accent',
+												'text-white'     => 'White',
+												'text-light-gray'     => 'Light Gray',
+												'text-body-color'     => 'Body',
+												'text-custom'    => 'Custom',
+											)
+										),
+									Field::make('color', 'text_color_custom', __('Text Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'text_color',
+													'value' => 'text-custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
+								'padding',
+								array(
+									Field::make('select', 'padding_top', 'Padding Top')
+										->set_options(
+											array(
+												''                => 'No Padding',
+												'xl-padding-top'  => 'Extra Large',
+												'lg-padding-top'  => 'Large',
+												'md-padding-top'  => 'Medium',
+												'sm-padding-top'  => 'Small',
+												'xxs-padding-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_bottom', 'Padding Bottom')
+										->set_options(
+											array(
+												''                   => 'No Padding',
+												'xl-padding-bottom'  => 'Extra Large',
+												'lg-padding-bottom'  => 'Large',
+												'md-padding-bottom'  => 'Medium',
+												'sm-padding-bottom'  => 'Small',
+												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
+											)
+										),
+
+								)
+							)
+							->add_fields(
+								'margin',
+								array(
+									Field::make('select', 'margin_top', 'margin Top')
+										->set_options(
+											array(
+												''               => 'No margin',
+												'xl-margin-top'  => 'Extra Large',
+												'lg-margin-top'  => 'Large',
+												'md-margin-top'  => 'Medium',
+												'sm-margin-top'  => 'Small',
+												'xxs-margin-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_bottom', 'margin Bottom')
+										->set_options(
+											array(
+												''                  => 'No margin',
+												'xl-margin-bottom'  => 'Extra Large',
+												'lg-margin-bottom'  => 'Large',
+												'md-margin-bottom'  => 'Medium',
+												'sm-margin-bottom'  => 'Small',
+												'xxs-margin-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_left', 'margin left')
+										->set_options(
+											array(
+												''                => 'No margin',
+												'xl-margin-left'  => 'Extra Large',
+												'lg-margin-left'  => 'Large',
+												'md-margin-left'  => 'Medium',
+												'sm-margin-left'  => 'Small',
+												'xxs-margin-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_right', 'margin right')
+										->set_options(
+											array(
+												''                 => 'No margin',
+												'xl-margin-right'  => 'Extra Large',
+												'lg-margin-right'  => 'Large',
+												'md-margin-right'  => 'Medium',
+												'sm-margin-right'  => 'Small',
+												'xxs-margin-right' => 'Extra Small',
+											)
+										),
+
+								)
+							)
+							->add_fields(
+								'alignment',
+								array(
+									Field::make('select', 'align_items', 'Align Items')
+										->set_options(
+											array(
+												''               => 'Default',
+												'align-items-start'  => 'Start',
+												'align-items-center'  => 'Center',
+												'align-items-end'  => 'End',
+											)
+										),
+									Field::make('select', 'justify_content', 'Justify Content')
+										->set_options(
+											array(
+												''                  => 'Default',
+												'justify-content-start'  => 'Start',
+												'justify-content-center'  => 'Center',
+												'justify-content-end'  => 'End',
+												'justify-content-between'  => 'Between',
+											)
+										),
+									Field::make('select', 'text_align', 'Text Align')
+										->set_options(
+											array(
+												''                => 'Default',
+												'text-start'                => 'Left',
+												'text-center'                => 'Center',
+												'text-end'                => 'Right',
+											)
+										),
+								)
+							)
+							->add_fields(
+								'container_width',
+								array(
+									Field::make('select', 'container_width', 'Container Width')
+										->set_options(
+											array(
+												''               => 'Default',
+												'large-container'  => 'Large',
+												'medium-container'  => 'Medium',
+												'small-container'  => 'Small',
+												'custom-container'  => 'Custom',
+											)
+										),
+									Field::make('text', 'custom_container_width', 'Custom Container Width')
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'container_width',
+													'value' => 'custom-container',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
+								'border_radius',
+								array(
+									Field::make('text', 'border_radius', 'Border Radius')
+								)
+							)
+							->add_fields(
+								'custom_class',
+								array(
+									Field::make('text', 'custom_class', 'Custom Class')
+								)
+							)
+							->set_layout('tabbed-vertical'),
+						//Heading Settings
+						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
+						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(67)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('text', 'heading', __('Heading'))
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+
+						Field::make('select', 'tag', __('Tag'))
+							->set_options(
+								array(
+									'h1' => 'h1',
+									'h2' => 'h2',
+									'h3' => 'h3',
+									'h4' => 'h4',
+									'h5' => 'h5',
+									'h6' => 'h6',
+								)
+							)
+							->set_default_value('h2')
+							->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('textarea', 'description', __('Description'))
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'display_heading_description',
+										'value' => true,
+									)
+								)
+							),
+						Field::make('select', 'source', 'Source')
+							->set_options(
+								array(
+									'post' 	=> 'Post',
+									'product' 	=> 'Product',
+									'solutions' 	=> 'Solutions',
+									'guides' 	=> 'Guides',
+									'casestudies' 	=> 'Case Studies',
+								)
+							),
+						Field::make('association', 'post', 'Select Post')
+							->set_types(
+								array(
+									array(
+										'type'      => 'post',
+										'post_type' => 'post',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'source',
+										'value' => 'post',
+									)
+								)
+							),
+						Field::make('association', 'product', 'Select product')
+							->set_types(
+								array(
+									array(
+										'type'      => 'post',
+										'post_type' => 'product',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'source',
+										'value' => 'product',
+									)
+								)
+							),
+						Field::make('association', 'guides', 'Select guides')
+							->set_types(
+								array(
+									array(
+										'type'      => 'post',
+										'post_type' => 'guides',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'source',
+										'value' => 'guides',
+									)
+								)
+							),
+						Field::make('association', 'casestudies', 'Select casestudies')
+							->set_types(
+								array(
+									array(
+										'type'      => 'post',
+										'post_type' => 'casestudies',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'source',
+										'value' => 'casestudies',
+									)
+								)
+							),
+						Field::make('association', 'solutions', 'Select solutions')
+							->set_types(
+								array(
+									array(
+										'type'      => 'post',
+										'post_type' => 'solutions',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'source',
+										'value' => 'solutions',
+									)
+								)
+							),
+					)
+				)
+				->set_header_template('Post Grid <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
+				//Enf of Testimonial Fields
 				->set_collapsed(true)
 		)
 	);
