@@ -4,22 +4,7 @@ function _format_text($text)
 {
     return str_replace("'", "&#39;", $text);
 }
-function output_svg_from_url($url)
-{
-    $content = file_get_contents($url);
 
-    // Security: Sanitize SVG Content (Essential)
-    $allowed_tags = array(
-        'svg' => array('xmlns', 'width', 'height', 'viewbox', 'class'),
-        'path' => array('d', 'fill', 'stroke', 'stroke-width'),
-        'rect', 'circle', 'ellipse', 'line', 'polygon', 'polyline',
-        'text', 'tspan' // Add more as needed
-    );
-    $content = wp_kses($content, $allowed_tags);
-
-    // Output the sanitized SVG
-    echo $content;
-}
 function _elements($data, $module_id, $same_height_images)
 {
     ob_start();
