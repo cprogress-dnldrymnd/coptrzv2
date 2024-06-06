@@ -10,6 +10,8 @@ if ($accordion_source == 'faqs') {
 } else {
     $accordion = $accordion;
 }
+
+echo $accordion_source;
 ?>
 
 
