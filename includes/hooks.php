@@ -585,20 +585,18 @@ function action_popups()
 
 	global $popups_id;
 	$popups = array_unique($popups_id);
-	foreach ($popups as $popup) {
-		$args = array(
-			'p' => $popup,
-			'post_type' => 'popups'
-		);
-		$query = new WP_Query($args);
-		if ($query->have_posts()) {
-			while ($query->have_posts()) {
-				$query->the_post();
-				$is_shortcode = false;
-				include locate_template('template-parts/shortcodes/popup.php');
-			}
-			wp_reset_postdata();
+	$args = array(
+		'post__in' => $popups,
+		'post_type' => 'popups'
+	);
+	$query = new WP_Query($args);
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			$is_shortcode = false;
+			include locate_template('template-parts/shortcodes/popup.php');
 		}
+		wp_reset_postdata();
 	}
 }
 
