@@ -4994,7 +4994,7 @@ Container::make('post_meta', 'Modules')
 							),
 					)
 				)
-				->set_header_template('Post Tabs <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
+				->set_header_template('Post Grid <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//Enf of Post Tabs Fields
 				->set_collapsed(true)
 		)
