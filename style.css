@@ -14451,16 +14451,16 @@ a.fancybox-gallery-img {
   /*End of Large margin*/
   /*Large margin*/ }
   .remove-image-padding.xxs-padding-top .image-box {
-    margin-top: 1.625rem !important; }
+    margin-top: -1.625rem !important; }
   .remove-image-padding.xxs-padding-left .image-box {
     margin-left: -1.625rem !important; }
   .remove-image-padding.xxs-padding-right .image-box {
     margin-right: -1.625rem !important; }
   .remove-image-padding.sm-padding-top .image-box {
-    margin-top: 3.75rem !important; }
+    margin-top: -3.75rem !important; }
     @media screen and (max-width: 767px) {
       .remove-image-padding.sm-padding-top .image-box {
-        margin-top: 2rem !important; } }
+        margin-top: -2rem !important; } }
   .remove-image-padding.sm-padding-left .image-box {
     margin-left: -3.75rem !important; }
     @media screen and (max-width: 767px) {
@@ -14472,16 +14472,16 @@ a.fancybox-gallery-img {
       .remove-image-padding.sm-padding-right .image-box {
         margin-right: -2rem !important; } }
   .remove-image-padding.md-padding-top .image-box {
-    margin-top: 5rem !important; }
+    margin-top: -5rem !important; }
     @media screen and (min-width: 992px) {
       .remove-image-padding.md-padding-top .image-box {
-        margin-top: 5rem !important; } }
+        margin-top: -5rem !important; } }
     @media (min-width: 768px) and (max-width: 991px) {
       .remove-image-padding.md-padding-top .image-box {
-        margin-top: 4rem !important; } }
+        margin-top: -4rem !important; } }
     @media screen and (max-width: 767px) {
       .remove-image-padding.md-padding-top .image-box {
-        margin-top: 3rem !important; } }
+        margin-top: -3rem !important; } }
   @media screen and (min-width: 992px) {
     .remove-image-padding.md-padding-left .image-box {
       margin-left: -5rem !important; } }
@@ -14502,13 +14502,13 @@ a.fancybox-gallery-img {
       margin-right: -3rem !important; } }
   @media screen and (min-width: 992px) {
     .remove-image-padding.lg-padding-top .image-box {
-      margin-top: 7.25rem !important; } }
+      margin-top: -7.25rem !important; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .remove-image-padding.lg-padding-top .image-box {
-      margin-top: 5rem !important; } }
+      margin-top: -5rem !important; } }
   @media screen and (max-width: 767px) {
     .remove-image-padding.lg-padding-top .image-box {
-      margin-top: 4rem !important; } }
+      margin-top: -4rem !important; } }
   @media screen and (min-width: 992px) {
     .remove-image-padding.lg-padding-left .image-box {
       margin-left: -7.25rem !important; } }
@@ -14529,16 +14529,16 @@ a.fancybox-gallery-img {
       margin-right: -4rem !important; } }
   @media screen and (min-width: 992px) {
     .remove-image-padding.xl-padding-top .image-box {
-      margin-top: 9.5rem !important; } }
+      margin-top: -9.5rem !important; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .remove-image-padding.xl-padding-top .image-box {
-      margin-top: 6rem !important; } }
+      margin-top: -6rem !important; } }
   @media screen and (max-width: 767px) {
     .remove-image-padding.xl-padding-top .image-box {
-      margin-top: 5rem !important; } }
+      margin-top: -5rem !important; } }
   @media screen and (max-width: 575px) {
     .remove-image-padding.xl-padding-top .image-box {
-      margin-top: 3rem !important; } }
+      margin-top: -3rem !important; } }
   @media screen and (min-width: 992px) {
     .remove-image-padding.xl-padding-left .image-box {
       margin-left: -9.5rem !important; } }
