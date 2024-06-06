@@ -1897,6 +1897,15 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
+						Field::make('text', 'image_size_ratio', __('Image Size Ratio'))->set_width(33)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'same_height_images',
+										'value' => true,
+									)
+								)
+							),
 						Field::make('text', 'heading_prefix', __('Heading Prefix'))
 							->set_width(33)
 							->set_conditional_logic(
@@ -4907,7 +4916,7 @@ Container::make('post_meta', 'Modules')
 									'casestudies' 	=> 'Case Studies',
 								)
 							),
-							Field::make('association', 'post', 'Select Post')
+						Field::make('association', 'post', 'Select Post')
 							->set_types(
 								array(
 									array(
