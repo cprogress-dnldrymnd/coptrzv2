@@ -862,6 +862,7 @@ class Shortcodes
 				array(
 					'id' => '',
 					'class' => '',
+					'popup_id' => false
 				),
 				$atts
 			)

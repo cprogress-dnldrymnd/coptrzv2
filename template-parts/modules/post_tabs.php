@@ -65,7 +65,7 @@ $popups_id[] = $popup_id;
                         <div class="row">
                             <?php foreach ($posts as $post) { ?>
                                 <div class="col-lg-4">
-                                    <?= do_shortcode('[post_grid class="background-primary" id="' . $post->ID . '"]') ?>
+                                    <?= do_shortcode('[post_grid popup_id="' . $popup_id . '" class="background-primary" id="' . $post->ID . '"]') ?>
                                 </div>
                             <?php } ?>
                         </div>
