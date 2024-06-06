@@ -136,14 +136,7 @@ function enqueue_scripts()
 add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn and allow Wordpress to call it automatcally in the header
 
 
-function action_wp_footer()
-{
-	$page_footer_scripts = get__post_meta('page_footer_scripts');
-	if ($page_footer_scripts) {
-		echo do_shortcode($page_footer_scripts);
-	}
-}
-add_action('wp_footer', 'action_wp_footer');
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Require Files

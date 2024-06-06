@@ -289,6 +289,27 @@ function modify_taxonomy_slug($args, $taxonomy)
 }
 add_filter('register_taxonomy_args', 'modify_taxonomy_slug', 10, 2);
 
+function action_popups()
+{
+
+	global $popups_id;
+	$popups = array_unique($popups_id);
+	$args = array(
+		'post__in' => $popups,
+		'post_type' => 'popups'
+	);
+	$query = new WP_Query($args);
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			$is_shortcode = false;
+			include locate_template('template-parts/shortcodes/popup.php');
+		}
+		wp_reset_postdata();
+	}
+}
+
+add_action('wp_footer', 'action_popups');
 
 function action_wp_footer_scripts()
 {
@@ -338,6 +359,15 @@ function action_wp_footer_scripts()
 <?php
 
 }
+
+function action_wp_footer()
+{
+	$page_footer_scripts = get__post_meta('page_footer_scripts');
+	if ($page_footer_scripts) {
+		echo do_shortcode($page_footer_scripts);
+	}
+}
+add_action('wp_footer', 'action_wp_footer');
 
 add_action('wp_footer', 'action_wp_footer_scripts');
 
@@ -580,27 +610,6 @@ add_action('init', function () {
 });
 
 
-function action_popups()
-{
-
-	global $popups_id;
-	$popups = array_unique($popups_id);
-	$args = array(
-		'post__in' => $popups,
-		'post_type' => 'popups'
-	);
-	$query = new WP_Query($args);
-	if ($query->have_posts()) {
-		while ($query->have_posts()) {
-			$query->the_post();
-			$is_shortcode = false;
-			include locate_template('template-parts/shortcodes/popup.php');
-		}
-		wp_reset_postdata();
-	}
-}
-
-add_action('wp_footer', 'action_popups');
 
 
 function action_pre_get_posts($query)
