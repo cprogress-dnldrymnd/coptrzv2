@@ -38,7 +38,7 @@ function _elements($data, $module_id, $same_height_images)
                 echo do_shortcode('[_image size="' . $d['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $d['border_radius'] . '" ' . $same_height . '  id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
                 break;
             case 'icon':
-                $content = file_get_contents('https://dev.coptrz.com/wp-content/uploads/2024/06/rulers.svg');
+                $content = file_get_contents('/home/devcoptrz/public_html/wp-content/uploads/2024/06/rulers.svg');
                 echo $content;
                 echo 'xx';
                 echo get_stylesheet_directory();
