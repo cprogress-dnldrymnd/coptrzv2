@@ -4,6 +4,7 @@ $testimonials_arr = array();
 $testimonial_source = $module['testimonial_source'];
 $testimonials = $module['testimonials'];
 $testimonial_category = $module['testimonial_category'];
+echo $testimonial_source;
 if ($testimonial_source == 'testimonial') {
     $testimonials_arr = array();
     foreach ($testimonials as $testimonial) {
