@@ -22,6 +22,7 @@
     $accordion = $module['accordion'];
     $accordion_source = $module['accordion_source'];
     $faqs = $module['faqs'];
+    $open_first_item = $module['open_first_item'];
     $faqs_category = $module['faqs_category'];
     if ($accordion || $faqs ||$faqs_category ) {
         include locate_template('template-parts/components/accordion.php');
