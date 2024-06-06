@@ -17391,6 +17391,8 @@ section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) {
     @media screen and (max-width: 991px) {
       section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) .review-box {
         padding: 2rem; } }
+section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .swiper-slide {
+  height: auto; }
 section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box {
   padding: 2rem; }
   section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box .quote svg path {

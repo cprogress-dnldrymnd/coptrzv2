@@ -78,7 +78,9 @@ section.customer-reviews {
         }
 
         &.mySwiper-ReviewsCaseStudy {
-
+            .swiper-slide {
+                height: auto;
+            }
             .review-box {
                 padding: 2rem;
 
