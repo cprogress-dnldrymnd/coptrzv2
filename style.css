@@ -13873,6 +13873,8 @@ a.fancybox-gallery-img {
   .modal.popup-form .modal-content {
     border-radius: 0;
     border: none; }
+    .modal.popup-form .modal-content.background-primary a {
+      color: var(--white-color); }
   .modal.popup-form .form-holder .form-inner .wpforms-field-container {
     margin-top: 2rem; }
   .modal.popup-form .form-holder .form-inner input {
