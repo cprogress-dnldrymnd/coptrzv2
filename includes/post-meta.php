@@ -4380,7 +4380,7 @@ Container::make('post_meta', 'Modules')
 									'button-bordered'    => 'Bordered',
 								)
 							),
-						Field::make('text', 'popup_id', __('Popup ID'))->set_width(20),
+						Field::make('text', 'popup_id', __('Popup ID')),
 						Field::make('text', 'post_type_key', __('Post Type Key')),
 						Field::make('text', 'taxonomy_key', __('Taxonomy Key')),
 					)
