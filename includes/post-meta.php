@@ -2415,6 +2415,13 @@ Container::make('post_meta', 'Modules')
 										->add_fields(
 											'accordion',
 											array(
+												Field::make('select', 'accordion_source', __('Accordion Source'))
+													->set_options(
+														array(
+															''      => 'Custom',
+															'faqs'      => 'FAQs',
+														)
+													),
 												Field::make('complex', 'accordion', __('Accordion'))
 													->setup_labels(
 														array(
@@ -2429,7 +2436,16 @@ Container::make('post_meta', 'Modules')
 														)
 													)
 													->set_layout('tabbed-vertical')
-													->set_header_template('<%- heading  %>'),
+													->set_header_template('<%- heading  %>')
+													->set_conditional_logic(
+														array(
+															array(
+																'field' => 'accordion_source',
+																'value' => 'faqs',
+																'comapre' => '!='
+															)
+														)
+													),
 											)
 										)
 										->add_fields(
