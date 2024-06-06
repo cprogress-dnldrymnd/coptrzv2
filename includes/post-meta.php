@@ -4936,7 +4936,7 @@ Container::make('post_meta', 'Modules')
 							->set_conditional_logic(
 								array(
 									array(
-										'field' => 'post',
+										'field' => 'source',
 										'value' => 'product',
 									)
 								)
@@ -4953,7 +4953,7 @@ Container::make('post_meta', 'Modules')
 							->set_conditional_logic(
 								array(
 									array(
-										'field' => 'post',
+										'field' => 'source',
 										'value' => 'guides',
 									)
 								)
@@ -4970,7 +4970,7 @@ Container::make('post_meta', 'Modules')
 							->set_conditional_logic(
 								array(
 									array(
-										'field' => 'post',
+										'field' => 'source',
 										'value' => 'casestudies',
 									)
 								)
