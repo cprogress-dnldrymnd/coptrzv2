@@ -4376,7 +4376,7 @@ Container::make('post_meta', '3D Model Library Settings')
 Container::make('post_meta', '3D Model Library Settings')
 	->set_priority('high')
 	->set_context('side')
-	->or_where('post_type', '=', 'popup')
+	->or_where('post_type', '=', 'popups')
 	->add_fields(
 		array(
 			Field::make('text', 'contact_form_popup', 'Contact Form Popup'),
