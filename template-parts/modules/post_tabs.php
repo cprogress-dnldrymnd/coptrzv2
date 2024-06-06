@@ -2,6 +2,13 @@
 $terms = get_terms(array(
     'taxonomy'   => $module['taxonomy_key'],
     'hide_empty' => false,
+    'meta_query' => array(
+        [
+            'key' => '_menu_order',
+        ]
+    ),
+    'meta_key' => '_menu_order',
+    'orderby' => '_menu_order'
 ));
 
 $popup_id = $module['popup_id'];
