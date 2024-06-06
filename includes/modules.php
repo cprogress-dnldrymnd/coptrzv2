@@ -4,19 +4,11 @@ function _format_text($text)
 {
     return str_replace("'", "&#39;", $text);
 }
-function output_svg_from_url($url) {
-    if ( ! filter_var($url, FILTER_VALIDATE_URL) || ! preg_match('/\.svg$/i', $url)) {
-        return; // Invalid URL or not an SVG
-    }
+function output_svg_from_url($url)
+{
+    $content = file_get_contents($url);
 
-    // Fetch SVG Content
-    $response = wp_remote_get($url);
-    if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
-        return; // Failed to fetch or not a successful response
-    }
-    $content = wp_remote_retrieve_body($response);
-
-    // Security: Sanitize SVG Content
+    // Security: Sanitize SVG Content (Essential)
     $allowed_tags = array(
         'svg' => array('xmlns', 'width', 'height', 'viewbox', 'class'),
         'path' => array('d', 'fill', 'stroke', 'stroke-width'),
