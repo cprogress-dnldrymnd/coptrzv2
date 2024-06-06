@@ -88,7 +88,7 @@ $testimonial_rating = get__theme_option('testimonial_rating');
                 <div class="swiper-wrapper align-items-center">
                     <?php foreach ($testimonials_arr as $testimonial) { ?>
                         <div class="swiper-slide">
-                            <div class="review-box <?= $type == 'case-study' ? '' : 'background-secondary' ?> d-flex">
+                            <div class="review-box case-study d-flex">
                                 <div class="quote">
                                     <?php SVG::quote() ?>
                                 </div>
