@@ -4945,7 +4945,7 @@ Container::make('post_meta', 'Modules')
 							->set_types(
 								array(
 									array(
-										'type'      => 'guides',
+										'type'      => 'post',
 										'post_type' => 'guides',
 									)
 								)
@@ -4962,7 +4962,7 @@ Container::make('post_meta', 'Modules')
 							->set_types(
 								array(
 									array(
-										'type'      => 'casestudies',
+										'type'      => 'post',
 										'post_type' => 'casestudies',
 									)
 								)
