@@ -81,8 +81,8 @@ $testimonial_rating = get__theme_option('testimonial_rating');
             'heading_with_line' => $module['heading_with_line'],
         ));
         ?>
-        <div class="review-holder <?= $type == 'case-study' ? 'review-holder-case-study' : '' ?>">
-            <div class="swiper  mySwiper-Reviews <?= $class ? $class : 'mySwiper-ReviewsDefault' ?>">
+        <div class="review-holder review-holder-case-study">
+            <div class="swiper  mySwiper-Reviews mySwiper-ReviewsCaseStudy">
                 <div class="swiper-wrapper align-items-center">
                     <?php foreach ($testimonials_arr as $testimonial) { ?>
                         <div class="swiper-slide">
