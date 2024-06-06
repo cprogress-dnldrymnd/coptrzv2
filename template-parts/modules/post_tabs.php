@@ -4,7 +4,7 @@ $terms = get_terms(array(
     'hide_empty' => false,
 ));
 
-$popup_id = get__post_meta_by_id($id, 'popup_id');
+$popup_id = $module['popup_id'];
 global $popups_id;
 $popups_id = $popup_id;
 ?>
