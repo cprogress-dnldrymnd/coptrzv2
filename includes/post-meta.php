@@ -2908,9 +2908,13 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'number_of_slides', __('Number of Slides'))
+						Field::make('text', 'number_of_slides', __('Number of Slides Desktop'))
 							->set_default_value(4)
 							->set_required(true)
+							->set_attribute('type', 'number'),
+						Field::make('text', 'number_of_slides_tablet', __('Number of Slides Table'))
+							->set_attribute('type', 'number'),
+						Field::make('text', 'number_of_slides_mobile', __('Number of Slides Mobile'))
 							->set_attribute('type', 'number'),
 						Field::make('media_gallery', 'images', __('Image')),
 					)
