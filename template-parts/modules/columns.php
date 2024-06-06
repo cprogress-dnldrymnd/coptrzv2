@@ -22,12 +22,13 @@
         <div class="column-items">
             <?php if ($module['columns']) { ?>
                 <div class="row g-4 <?= $classes_row ?>">
-                    <?php foreach ($module['columns'] as $column) { ?>
+                    <?php foreach ($module['columns'] as $key => $column) { ?>
                         <?php
                         $styles = $column['styles'];
                         $classes = '';
                         $style_attribute = '';
                         $style_attribute_inner = '';
+                        $column_id = 'column-' . $key . '-' . $module_id;
                         if ($styles) {
                             foreach ($styles as $style) {
                                 $style_type = $style['_type'];
@@ -65,7 +66,7 @@
                             }
                         }
                         ?>
-                        <div class="<?= $column_class ? $column_class : 'col-lg' ?>">
+                        <div class="<?= $column_class ? $column_class : 'col-lg' ?>" id="<?= $column_id ?>">
                             <div class="column-holder h-100 d-flex overflow-hidden <?= $classes ?>" style="<?= $style_attribute ?>">
                                 <div class="inner content-margin position-relative w-100" style="<?= $style_attribute_inner ?>">
                                     <?php
@@ -73,7 +74,7 @@
                                         echo do_shortcode('[_button class="column-button" id="' . $column['button_url'] . '" button_url_custom="' . $column['button_url_custom'] . '" button_type="' . $column['button_type'] . '" button_text="" ]');
                                     }
                                     ?>
-                                    <?= _elements($column['items'], $module_id, $module['same_height_images']) ?>
+                                    <?= _elements($column['items'], $column_id, $module['same_height_images']) ?>
                                 </div>
                             </div>
                         </div>
