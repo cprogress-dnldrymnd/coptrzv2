@@ -4373,7 +4373,7 @@ Container::make('post_meta', '3D Model Library Settings')
 /*-----------------------------------------------------------------------------------*/
 /* 3D Model Library
 /*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', '3D Model Library Settings')
+Container::make('post_meta', 'Popup Settings')
 	->set_priority('high')
 	->set_context('side')
 	->or_where('post_type', '=', 'popups')
