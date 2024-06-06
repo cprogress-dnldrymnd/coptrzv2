@@ -7,7 +7,7 @@ function _format_text($text)
 function output_svg_from_url($url)
 {
     $content = file_get_contents($url);
-    file_get_contents('/home/devcoptrz/public_html/wp-content/uploads/2024/06/rulers.svg')
+
     // Security: Sanitize SVG Content (Essential)
     $allowed_tags = array(
         'svg' => array('xmlns', 'width', 'height', 'viewbox', 'class'),
@@ -38,7 +38,6 @@ function _elements($data, $module_id, $same_height_images)
                 echo do_shortcode('[_image size="' . $d['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $d['border_radius'] . '" ' . $same_height . '  id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
                 break;
             case 'icon':
-                echo get_stylesheet_directory();
                 echo do_shortcode('[_icon id="' . $d['icon'] . '" class="' . $d['icon_color'] . '" icon_color_custom="' . $d['icon_color_custom'] . '" icon_width="' . $d['icon_width'] . '" icon_height="' . $d['icon_height'] . '"]');
                 break;
             case 'button':
