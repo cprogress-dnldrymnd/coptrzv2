@@ -27,6 +27,8 @@ function _elements($data, $module_id, $same_height_images)
                 break;
             case 'accordion':
                 $accordion = $d['accordion'];
+                $accordion_source = $d['accordion_source'];
+                $faqs = $d['faqs'];
                 if ($accordion) {
                     include locate_template('template-parts/components/accordion.php');
                 }

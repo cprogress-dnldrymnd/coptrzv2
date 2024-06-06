@@ -1,3 +1,18 @@
+<?php
+if ($accordion_source == 'faqs') {
+    $accordion = array();
+    foreach ($faqs as $faq) {
+        $accordion[$faq['id']] = array(
+            'heading' => get_the_title($faq['id']),
+            'description' => get_the_content(null, false, $faq['id']),
+        );
+    }
+} else {
+    $accordion = $accordion;
+}
+?>
+
+
 <div class="accordion accordion-v2 accordion-flush" id="accordion-<?= $module_id ?>">
     <?php foreach ($accordion as $key => $accordion_item) { ?>
         <div class="accordion-item">
