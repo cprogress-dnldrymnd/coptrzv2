@@ -13,7 +13,7 @@ if ($accordion_source == 'faqs') {
         $faqs_cat_id[] = $faqs_cat['id'];
     }
     $args = array(
-        'post_type' => '',
+        'post_type' => 'faq',
         'post_status' => 'publish',
         'tax_query' => array(
             array(
