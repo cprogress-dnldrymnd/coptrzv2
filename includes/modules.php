@@ -30,7 +30,7 @@ function _elements($data, $module_id, $same_height_images)
                 $accordion_source = $d['accordion_source'];
                 $faqs = $d['faqs'];
                 $faqs_category = $d['faqs_category'];
-                if ($accordion || $faqs) {
+                if ($accordion || $faqs ||$faqs_category ) {
                     include locate_template('template-parts/components/accordion.php');
                 }
                 break;
