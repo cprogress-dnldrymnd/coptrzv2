@@ -24,68 +24,71 @@ if ($type == 'product-reviews') {
 $testimonial_heading = get__theme_option('testimonial_heading');
 $testimonial_rating = get__theme_option('testimonial_rating');
 ?>
-
-<?php if ($type != 'product-reviews' && $type != 'case-study') { ?>
-    <div class="container">
-        <div class="row g-4 white-color mb-7 justify-content-between">
-            <div class="col-auto ">
-                <span class="text-style-1  left fw-medium">
-                    COPTRZ CUSTOMER REVIEWS
-                </span>
-            </div>
-            <div class="col-auto">
-                <div class="heading-box mb-6">
-                    <h2>
-                        <?= $testimonial_heading ?>
-                    </h2>
-
+<section class="customer-reviews">
+    <?php if ($display_testimonial_default_text) { ?>
+        <div class="container">
+            <div class="row g-4 white-color mb-7 justify-content-between">
+                <div class="col-auto ">
+                    <span class="text-style-1  left fw-medium">
+                        COPTRZ CUSTOMER REVIEWS
+                    </span>
                 </div>
-                <div class="review-score d-flex align-items-center">
-                    <div class="score">
-                        <?= $testimonial_rating ?>
-                    </div>
-                    <div class="stars-holder">
-                        <div class="stars d-flex">
-                            <?php SVG::star() ?>
-                            <?php SVG::star() ?>
-                            <?php SVG::star() ?>
-                            <?php SVG::star() ?>
-                            <?php SVG::star_half() ?>
-                        </div>
-                        <div class="star-text">
-                            <span>Score on <a targe="_blank" style="color: #fff" href="https://www.google.com/search?q=coptrz+google+review&rlz=1C1VDKB_enPH1019PH1019&oq=coptrz+google+review&aqs=chrome..69i57j69i64l2.3639j0j7&sourceid=chrome&ie=UTF-8">Google</a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php  } ?>
-<div class="review-holder <?= $type == 'case-study' ? 'review-holder-case-study' : '' ?>">
-    <div class="swiper  mySwiper-Reviews <?= $class ? $class : 'mySwiper-ReviewsDefault' ?>">
-        <div class="swiper-wrapper align-items-center">
-            <?php foreach ($testimonials_arr as $testimonial) { ?>
-                <div class="swiper-slide">
-                    <div class="review-box <?= $type == 'case-study' ? '' : 'background-secondary' ?> d-flex">
-                        <div class="quote">
-                            <?php SVG::quote() ?>
-                        </div>
-                        <div class="review-content">
-                            <?= do_shortcode('[_description class="review-text" description="' . _format_text($testimonial['description']) . '" ]') ?>
+                <div class="col-auto">
+                    <div class="heading-box mb-6">
+                        <h2>
+                            <?= $testimonial_heading ?>
+                        </h2>
 
-                            <div class="author d-flex align-items-center">
-                                <span>
-                                    <?= $testimonial['author'] ?>
-                                </span>
+                    </div>
+                    <div class="review-score d-flex align-items-center">
+                        <div class="score">
+                            <?= $testimonial_rating ?>
+                        </div>
+                        <div class="stars-holder">
+                            <div class="stars d-flex">
+                                <?php SVG::star() ?>
+                                <?php SVG::star() ?>
+                                <?php SVG::star() ?>
+                                <?php SVG::star() ?>
+                                <?php SVG::star_half() ?>
+                            </div>
+                            <div class="star-text">
+                                <span>Score on <a targe="_blank" style="color: #fff" href="https://www.google.com/search?q=coptrz+google+review&rlz=1C1VDKB_enPH1019PH1019&oq=coptrz+google+review&aqs=chrome..69i57j69i64l2.3639j0j7&sourceid=chrome&ie=UTF-8">Google</a></span>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            <?php } ?>
+            </div>
         </div>
-        <?php if ($type == 'case-study') { ?>
-            <div class="swiper-pagination d-flex justify-content-center align-items-center"></div>
-        <?php } ?>
+    <?php  } ?>
+    <div class="container">
+        <div class="review-holder <?= $type == 'case-study' ? 'review-holder-case-study' : '' ?>">
+            <div class="swiper  mySwiper-Reviews <?= $class ? $class : 'mySwiper-ReviewsDefault' ?>">
+                <div class="swiper-wrapper align-items-center">
+                    <?php foreach ($testimonials_arr as $testimonial) { ?>
+                        <div class="swiper-slide">
+                            <div class="review-box <?= $type == 'case-study' ? '' : 'background-secondary' ?> d-flex">
+                                <div class="quote">
+                                    <?php SVG::quote() ?>
+                                </div>
+                                <div class="review-content">
+                                    <?= do_shortcode('[_description class="review-text" description="' . _format_text($testimonial['description']) . '" ]') ?>
+
+                                    <div class="author d-flex align-items-center">
+                                        <span>
+                                            <?= $testimonial['author'] ?>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php } ?>
+                </div>
+                <?php if ($type == 'case-study') { ?>
+                    <div class="swiper-pagination d-flex justify-content-center align-items-center"></div>
+                <?php } ?>
+            </div>
+        </div>
     </div>
-</div>
+</section>
