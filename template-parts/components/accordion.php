@@ -12,6 +12,7 @@ if ($accordion_source == 'faqs') {
 }
 var_dump($faqs);
 echo $accordion_source;
+echo 'sdsdsd';
 ?>
 
 
