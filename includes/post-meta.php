@@ -1898,6 +1898,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'image_size_ratio', __('Image Size Ratio'))->set_width(33)
+							->set_help_text('Default is 30%')
 							->set_conditional_logic(
 								array(
 									array(
