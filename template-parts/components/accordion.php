@@ -15,6 +15,7 @@ if ($accordion_source == 'faqs') {
     $args = array(
         'post_type' => 'faq',
         'post_status' => 'publish',
+        'numberposts' => -1,
         'tax_query' => array(
             array(
                 'taxonomy' => 'faqs_category',
