@@ -20,7 +20,7 @@
         ));
         ?>
         <div class="logo-slider-box">
-            <div class="swiper mySwiper-logoSwiper">
+            <div class="swiper mySwiper-logoSwiper" number_of_slides="<?= $module['number_of_slides'] ?>">
                 <div class="swiper-wrapper text-center align-items-center">
                     <?php foreach ($module['images'] as $logo) { ?>
                         <div class="swiper-slide">
