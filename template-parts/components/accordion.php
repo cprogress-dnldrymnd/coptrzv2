@@ -25,7 +25,7 @@ if ($accordion_source == 'faqs') {
         )
     );
     $faqs_lists = get_posts($args);
-
+    $accordion = array();
     foreach ($faqs_lists as $faq) {
         $accordion[$faq->ID] = array(
             'heading' => $faq->post_title,
