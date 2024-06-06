@@ -17394,7 +17394,8 @@ section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) {
 section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .swiper-slide {
   height: auto; }
 section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box {
-  padding: 2rem; }
+  padding: 2rem;
+  height: 100%; }
   section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box .quote svg path {
     fill: var(--white-color); }
   section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box .review-content .review-text {
