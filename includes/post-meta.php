@@ -2908,6 +2908,8 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
+						Field::make('text', 'number_of_slides', __('Number of Slides'))
+							->set_attribute('type', 'number'),
 						Field::make('media_gallery', 'images', __('Image')),
 					)
 				)
