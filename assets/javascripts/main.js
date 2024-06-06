@@ -735,8 +735,7 @@ function swiper_slider() {
 
 	var testimonialSwiper = new Swiper(".mySwiper-ReviewsCaseStudy", {
 		loop: true,
-		spaceBetween: 0,
-		autoHeight: true,
+		spaceBetween: 30,
 		slidesPerView: 2,
 		autoplay: {
 			delay: 5000,

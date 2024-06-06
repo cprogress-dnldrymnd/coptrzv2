@@ -17391,10 +17391,8 @@ section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) {
     @media screen and (max-width: 991px) {
       section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) .review-box {
         padding: 2rem; } }
-section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .swiper-slide:not(.swiper-slide-next) {
-  border-right: 3px solid rgba(255, 255, 255, 0.25); }
 section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box {
-  padding: 0 2rem; }
+  padding: 2rem; }
   section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box .quote svg path {
     fill: var(--white-color); }
   section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box .review-content .review-text {

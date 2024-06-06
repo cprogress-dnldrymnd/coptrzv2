@@ -78,14 +78,9 @@ section.customer-reviews {
         }
 
         &.mySwiper-ReviewsCaseStudy {
-            .swiper-slide {
-                &:not(.swiper-slide-next) {
-                    border-right: 3px solid rgba(255, 255, 255, 0.25);
-                }
-            }
 
             .review-box {
-                padding: 0 2rem;
+                padding: 2rem;
 
                 .quote {
                     svg {
