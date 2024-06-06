@@ -38,7 +38,7 @@ function _elements($data, $module_id, $same_height_images)
                 echo do_shortcode('[_image size="' . $d['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $d['border_radius'] . '" ' . $same_height . '  id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
                 break;
             case 'icon':
-                echo do_shortcode('_icon id="' . $d['icon'] . '" class="' . $d['icon_color'] . '" icon_color_custom="' . $d['icon_color_custom'] . '" icon_width="' . $d['icon_width'] . '" icon_height="' . $d['icon_height'] . '"]');
+                echo do_shortcode('[_icon id="' . $d['icon'] . '" class="' . $d['icon_color'] . '" icon_color_custom="' . $d['icon_color_custom'] . '" icon_width="' . $d['icon_width'] . '" icon_height="' . $d['icon_height'] . '"]');
                 break;
             case 'button':
                 echo do_shortcode('[_button class="' . $d['button_style'] . '" id="' . $d['button_url'] . '" button_url_custom="' . $d['button_url_custom'] . '" button_type="' . $d['button_type'] . '" button_text="' . $d['button_text'] . '" ]');
