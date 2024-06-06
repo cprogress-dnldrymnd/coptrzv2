@@ -2451,7 +2451,7 @@ Container::make('post_meta', 'Modules')
 														array(
 															array(
 																'type'      => 'post',
-																'post_type' => 'faqs',
+																'post_type' => 'faq',
 															)
 														)
 													)
