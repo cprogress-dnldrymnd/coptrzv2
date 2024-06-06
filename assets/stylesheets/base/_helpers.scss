@@ -642,20 +642,20 @@
 /*margin*/
 /*Extra Small margin*/
 .remove-image-padding {
-    &.xxs-margin-top {
+    &.xxs-padding-top {
         margin-top: 1.625rem !important;
     }
 
-    &.xxs-margin-left {
+    &.xxs-padding-left {
         margin-left: -1.625rem !important;
     }
 
-    &.xxs-margin-right {
+    &.xxs-padding-right {
         margin-right: -1.625rem !important;
     }
     /*End of Extra Small margin*/
     /*Small margin*/
-    &.sm-margin-top {
+    &.sm-padding-top {
         margin-top: 3.75rem !important;
 
         @include responsive(xs) {
@@ -663,7 +663,7 @@
         }
     }
 
-    &.sm-margin-left {
+    &.sm-padding-left {
         margin-left: -3.75rem !important;
 
         @include responsive(xs) {
@@ -671,7 +671,7 @@
         }
     }
 
-    &.sm-margin-right {
+    &.sm-padding-right {
         margin-right: -3.75rem !important;
 
         @include responsive(xs) {
@@ -681,7 +681,7 @@
 
     /*End of Small margin*/
     /*Medium margin*/
-    &.md-margin-top {
+    &.md-padding-top {
         margin-top: 5rem !important;
 
         @include responsive(md-lg) {
@@ -696,7 +696,7 @@
             margin-top: 3rem !important;
         }
     }
-    &.md-margin-left {
+    &.md-padding-left {
         @include responsive(md-lg) {
             margin-left: -5rem !important;
         }
@@ -709,7 +709,7 @@
             margin-left: -3rem !important;
         }
     }
-    &.md-margin-right {
+    &.md-padding-right {
         @include responsive(md-lg) {
             margin-right: -5rem !important;
         }
@@ -724,7 +724,7 @@
     }
     /*End of Medium margin*/
     /*Large margin*/
-    &.lg-margin-top {
+    &.lg-padding-top {
         @include responsive(md-lg) {
             margin-top: 7.25rem !important;
         }
@@ -738,7 +738,7 @@
         }
     }
 
-    &.lg-margin-left {
+    &.lg-padding-left {
         @include responsive(md-lg) {
             margin-left: -7.25rem !important;
         }
@@ -751,7 +751,7 @@
             margin-left: -4rem !important;
         }
     }
-    &.lg-margin-right {
+    &.lg-padding-right {
         @include responsive(md-lg) {
             margin-right: -7.25rem !important;
         }
@@ -767,7 +767,7 @@
 
     /*End of Large margin*/
     /*Large margin*/
-    &.xl-margin-top {
+    &.xl-padding-top {
         @include responsive(md-lg) {
             margin-top: 9.5rem !important;
         }
@@ -785,7 +785,7 @@
         }
     }
 
-    &.xl-margin-left {
+    &.xl-padding-left {
         @include responsive(md-lg) {
             margin-left: -9.5rem !important;
         }
@@ -803,7 +803,7 @@
         }
     }
 
-    &.xl-margin-right {
+    &.xl-padding-right {
         @include responsive(md-lg) {
             margin-right: -9.5rem !important;
         }
