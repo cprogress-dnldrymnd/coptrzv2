@@ -1761,7 +1761,6 @@ Container::make('post_meta', 'Modules')
 												'xxs-padding-right' => 'Extra Small',
 											)
 										),
-									Field::make('checkbox', 'remove_image_padding', 'Remove Image Padding')
 
 								)
 							)
@@ -2119,6 +2118,7 @@ Container::make('post_meta', 'Modules')
 															'xxs-padding-right' => 'Extra Small',
 														)
 													),
+												Field::make('checkbox', 'remove_image_padding', 'Remove Image Padding')
 
 											)
 										)
