@@ -37,7 +37,7 @@ $background_color = get__post_meta_by_id($id, 'background_color');
                         <?php } ?>
                     </div>
                 <?php } else {  ?>
-                    <div class="popup-content-default p-4">
+                    <div class="popup-content-default p-5">
                         <?php
                         if ($is_shortcode == true) {
                             echo do_shortcode(get_the_content(NULL, false, $id));
