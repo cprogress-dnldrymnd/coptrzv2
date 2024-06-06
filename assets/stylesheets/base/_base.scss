@@ -3453,3 +3453,9 @@ a.fancybox-gallery-img {
         }
     }
 }
+.icon-box {
+    svg {
+        width: var(--width);
+        height: var(--height);
+    }
+}
