@@ -2465,7 +2465,7 @@ Container::make('post_meta', 'Modules')
 															)
 														)
 													),
-												Field::make('association', 'faqs', 'Select FAQs')
+												Field::make('association', 'faqs_category', 'Select FAQs Category')
 													->set_types(
 														array(
 															array(
