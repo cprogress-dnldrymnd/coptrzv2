@@ -14,7 +14,7 @@ if ($testimonial_source == 'testimonial') {
             'position' => get__post_meta_by_id($testimonial['id'], 'testimonial_title'),
         );
     }
-} else if ($testimonial_source == 'testimonials_category') {
+} else if ($testimonial_source == 'testimonial_category') {
     $testimonials_cat_id = array();
     foreach ($testimonial_category as $testimonials_cat) {
         $testimonials_cat_id[] = $testimonials_cat['id'];
