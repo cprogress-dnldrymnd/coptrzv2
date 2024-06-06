@@ -639,6 +639,189 @@
 	margin-left: 1.625rem !important;
 }
 
+/*margin*/
+/*Extra Small margin*/
+.remove-image-margin {
+    &.xxs-margin-top {
+        margin-top: 1.625rem !important;
+    }
+
+    &.xxs-margin-left {
+        margin-left: -1.625rem !important;
+    }
+
+    &.xxs-margin-right {
+        margin-right: -1.625rem !important;
+    }
+    /*End of Extra Small margin*/
+    /*Small margin*/
+    &.sm-margin-top {
+        margin-top: 3.75rem !important;
+
+        @include responsive(xs) {
+            margin-top: 2rem !important;
+        }
+    }
+
+    &.sm-margin-left {
+        margin-left: -3.75rem !important;
+
+        @include responsive(xs) {
+            margin-left: -2rem !important;
+        }
+    }
+
+    &.sm-margin-right {
+        margin-right: -3.75rem !important;
+
+        @include responsive(xs) {
+            margin-right: -2rem !important;
+        }
+    }
+
+    /*End of Small margin*/
+    /*Medium margin*/
+    &.md-margin-top {
+        margin-top: 5rem !important;
+
+        @include responsive(md-lg) {
+            margin-top: 5rem !important;
+        }
+
+        @include responsive(sm) {
+            margin-top: 4rem !important;
+        }
+
+        @include responsive(xs) {
+            margin-top: 3rem !important;
+        }
+    }
+    &.md-margin-left {
+        @include responsive(md-lg) {
+            margin-left: -5rem !important;
+        }
+
+        @include responsive(sm) {
+            margin-left: -4rem !important;
+        }
+
+        @include responsive(xs) {
+            margin-left: -3rem !important;
+        }
+    }
+    &.md-margin-right {
+        @include responsive(md-lg) {
+            margin-right: -5rem !important;
+        }
+
+        @include responsive(sm) {
+            margin-right: -4rem !important;
+        }
+
+        @include responsive(xs) {
+            margin-right: -3rem !important;
+        }
+    }
+    /*End of Medium margin*/
+    /*Large margin*/
+    &.lg-margin-top {
+        @include responsive(md-lg) {
+            margin-top: 7.25rem !important;
+        }
+
+        @include responsive(sm) {
+            margin-top: 5rem !important;
+        }
+
+        @include responsive(xs) {
+            margin-top: 4rem !important;
+        }
+    }
+
+    &.lg-margin-left {
+        @include responsive(md-lg) {
+            margin-left: -7.25rem !important;
+        }
+
+        @include responsive(sm) {
+            margin-left: -5rem !important;
+        }
+
+        @include responsive(xs) {
+            margin-left: -4rem !important;
+        }
+    }
+    &.lg-margin-right {
+        @include responsive(md-lg) {
+            margin-right: -7.25rem !important;
+        }
+
+        @include responsive(sm) {
+            margin-right: -5rem !important;
+        }
+
+        @include responsive(xs) {
+            margin-right: -4rem !important;
+        }
+    }
+
+    /*End of Large margin*/
+    /*Large margin*/
+    &.xl-margin-top {
+        @include responsive(md-lg) {
+            margin-top: 9.5rem !important;
+        }
+
+        @include responsive(sm) {
+            margin-top: 6rem !important;
+        }
+
+        @include responsive(xs) {
+            margin-top: 5rem !important;
+        }
+
+        @include responsive(mobile) {
+            margin-top: 3rem !important;
+        }
+    }
+
+    &.xl-margin-left {
+        @include responsive(md-lg) {
+            margin-left: -9.5rem !important;
+        }
+
+        @include responsive(sm) {
+            margin-left: -6rem !important;
+        }
+
+        @include responsive(xs) {
+            margin-left: -5rem !important;
+        }
+
+        @include responsive(mobile) {
+            margin-left: -3rem !important;
+        }
+    }
+
+    &.xl-margin-right {
+        @include responsive(md-lg) {
+            margin-right: -9.5rem !important;
+        }
+
+        @include responsive(sm) {
+            margin-right: -6rem !important;
+        }
+
+        @include responsive(xs) {
+            margin-right: -5rem !important;
+        }
+
+        @include responsive(mobile) {
+            margin-right: -3rem !important;
+        }
+    }
+}
+
 /*Background*/
 .background-black,
 .background-primary,
