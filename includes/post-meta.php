@@ -4379,6 +4379,6 @@ Container::make('post_meta', '3D Model Library Settings')
 	->or_where('post_type', '=', 'popups')
 	->add_fields(
 		array(
-			Field::make('text', 'contact_form_popup', 'Contact Form Popup'),
+			Field::make('checkbox', 'is_contact_form_popup', 'Is Contact Form Popup'),
 		)
 	);
