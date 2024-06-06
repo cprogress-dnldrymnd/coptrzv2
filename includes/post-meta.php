@@ -4907,7 +4907,91 @@ Container::make('post_meta', 'Modules')
 									'casestudies' 	=> 'Case Studies',
 								)
 							),
-						
+							Field::make('association', 'post', 'Select Post')
+							->set_types(
+								array(
+									array(
+										'type'      => 'post',
+										'post_type' => 'post',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'post',
+										'value' => 'post',
+									)
+								)
+							),
+						Field::make('association', 'product', 'Select product')
+							->set_types(
+								array(
+									array(
+										'type'      => 'post',
+										'post_type' => 'product',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'post',
+										'value' => 'product',
+									)
+								)
+							),
+						Field::make('association', 'guides', 'Select guides')
+							->set_types(
+								array(
+									array(
+										'type'      => 'guides',
+										'post_type' => 'guides',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'post',
+										'value' => 'guides',
+									)
+								)
+							),
+						Field::make('association', 'casestudies', 'Select casestudies')
+							->set_types(
+								array(
+									array(
+										'type'      => 'casestudies',
+										'post_type' => 'casestudies',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'post',
+										'value' => 'casestudies',
+									)
+								)
+							),
+						Field::make('association', 'solutions', 'Select solutions')
+							->set_types(
+								array(
+									array(
+										'type'      => 'post',
+										'post_type' => 'solutions',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'source',
+										'value' => 'solutions',
+									)
+								)
+							),
 					)
 				)
 				->set_header_template('Post Tabs <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
