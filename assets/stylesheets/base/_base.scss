@@ -3272,6 +3272,15 @@ a.fancybox-gallery-img {
         .modal-dialog {
             max-width: 800px;
         }
+        &.popup-small {
+            max-width: 600px;
+        }
+        &.popup-medium {
+            max-width: 1000px;
+        }
+        &.popup-large {
+            max-width: 1200px;
+        }
 
         .modal-content {
             border-radius: 0;

@@ -4389,8 +4389,10 @@ Container::make('post_meta', '3D Model Library Settings')
 			Field::make('select', 'popup_max_width', 'Popup Max Width')
 				->set_options(
 					array(
-						''				=> 'Default',
-						'contact_form' 	=> 'Contact Form',
+						'popup-default'	=> 'Default',
+						'popup-small' 	=> 'Small',
+						'popup-medium' 	=> 'Medium',
+						'popup-small' 	=> 'Large',
 					)
 				),
 		)

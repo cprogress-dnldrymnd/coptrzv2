@@ -13864,6 +13864,12 @@ a.fancybox-gallery-img {
   z-index: 999999; }
   .modal.popup-form .modal-dialog {
     max-width: 800px; }
+  .modal.popup-form.popup-small {
+    max-width: 600px; }
+  .modal.popup-form.popup-medium {
+    max-width: 1000px; }
+  .modal.popup-form.popup-large {
+    max-width: 1200px; }
   .modal.popup-form .modal-content {
     border-radius: 0;
     border: none; }
