@@ -2446,6 +2446,24 @@ Container::make('post_meta', 'Modules')
 															)
 														)
 													),
+												Field::make('association', 'faqs', 'Select FAQs')
+													->set_types(
+														array(
+															array(
+																'type'      => 'post',
+																'post_type' => 'faqs',
+															)
+														)
+													)
+													->set_conditional_logic(
+														array(
+															array(
+																'field' => 'accordion_source',
+																'value' => 'faqs',
+																'comapre' => '='
+															)
+														)
+													),
 											)
 										)
 										->add_fields(
