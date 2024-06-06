@@ -1,3 +1,7 @@
+<?php
+$popup_id = get__post_meta_by_id($id, 'popup_id');
+?>
+
 <div class="post-grid h-100 rounded-corner p-5 post-<?= $id ?> <?= $class ?>" style="--border-radius: 10px; --padding: 20%">
     <div class="content-margin h-100">
         <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . get_post_thumbnail_id($id) . '"]'); ?>
