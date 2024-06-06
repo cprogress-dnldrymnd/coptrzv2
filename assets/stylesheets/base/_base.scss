@@ -3273,13 +3273,19 @@ a.fancybox-gallery-img {
             max-width: 800px;
         }
         &.popup-small {
-            max-width: 600px;
+            .modal-dialog {
+                max-width: 600px;
+            }
         }
         &.popup-medium {
-            max-width: 1000px;
+            .modal-dialog {
+                max-width: 1000px;
+            }
         }
         &.popup-large {
-            max-width: 1200px;
+            .modal-dialog {
+                max-width: 1200px;
+            }
         }
 
         .modal-content {

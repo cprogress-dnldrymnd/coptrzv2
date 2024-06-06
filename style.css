@@ -13864,11 +13864,11 @@ a.fancybox-gallery-img {
   z-index: 999999; }
   .modal.popup-form .modal-dialog {
     max-width: 800px; }
-  .modal.popup-form.popup-small {
+  .modal.popup-form.popup-small .modal-dialog {
     max-width: 600px; }
-  .modal.popup-form.popup-medium {
+  .modal.popup-form.popup-medium .modal-dialog {
     max-width: 1000px; }
-  .modal.popup-form.popup-large {
+  .modal.popup-form.popup-large .modal-dialog {
     max-width: 1200px; }
   .modal.popup-form .modal-content {
     border-radius: 0;
