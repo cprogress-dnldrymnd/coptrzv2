@@ -4415,7 +4415,7 @@ Container::make('term_meta', __('Category Properties'))
 					array(
 						array(
 							'type'      => 'term',
-							'post_type' => 'pa_brands',
+							'taxonomy' => 'pa_brands',
 						)
 					)
 				),
