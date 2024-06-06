@@ -45,7 +45,7 @@ if ($testimonial_source == 'testimonial') {
 }
 
 ?>
-<section class="customer-reviews position-relative">
+<section class="customer-reviews position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
     _background_image(array(
         'baground_image' => $baground_image,
