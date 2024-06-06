@@ -1,20 +1,49 @@
 <?php
-$DisplayData = new DisplayData;
-$Helpers = new Helpers;
-$GetData = new GetData;
 $SVG = new SVG;
 $testimonials_arr = array();
-$testimonials = $GetData->get_posts_ids('testimonials');
-
-foreach ($testimonials as $key => $testimonial) {
-    $testimonial_source = $module['testimonial_source'];
-    $testimonials = $module['testimonials'];
-    $testimonial_category = $module['testimonial_category'];
-    $testimonials_arr[] = array(
-        'author' => $testimonial,
-        'description' => get__post_meta_by_id($key, 'testimonial_content')
+$testimonial_source = $module['testimonial_source'];
+$testimonials = $module['testimonials'];
+$testimonial_category = $module['testimonial_category'];
+if ($testimonial_source == 'testimonial') {
+    $testimonials_arr = array();
+    foreach ($testimonials as $testimonial) {
+        $testimonials_arr[$testimonial['id']] = array(
+            'author' => get_the_title($testimonial['id']),
+            'description' => get__post_meta_by_id($testimonial['id'], 'testimonial_content'),
+            'position' => get__post_meta_by_id($testimonial['id'], 'testimonial_title'),
+        );
+    }
+} else if ($testimonial_source == 'testimonials_category') {
+    $testimonials_cat_id = array();
+    foreach ($testimonial_category as $testimonials_cat) {
+        $testimonials_cat_id[] = $testimonials_cat['id'];
+    }
+    $args = array(
+        'post_type' => 'testimonials',
+        'post_status' => 'publish',
+        'numberposts' => -1,
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'testimonial_category',
+                'field'    => 'term_id',
+                'terms'    => $testimonials_cat_id
+            )
+        )
     );
+    $testimonials_lists = get_posts($args);
+    $testimonials_arr = array();
+    foreach ($testimonials_lists as $testimonial) {
+        $testimonials_arr[$testimonial->ID] = array(
+            'author' => $testimonial->post_title,
+            'description' => get__post_meta_by_id($testimonial->ID, 'testimonial_content'),
+            'position' => get__post_meta_by_id($testimonial->ID, 'testimonial_title'),
+
+        );
+    }
+} else {
+    $testimonial = $testimonial;
 }
+
 ?>
 <section class="customer-reviews position-relative">
     <?php
