@@ -30,6 +30,7 @@ function _elements($data, $module_id, $same_height_images)
                 $accordion_source = $d['accordion_source'];
                 $faqs = $d['faqs'];
                 $faqs_category = $d['faqs_category'];
+                $open_first_item = $d['open_first_item'];
                 if ($accordion || $faqs || $faqs_category) {
                     include locate_template('template-parts/components/accordion.php');
                 }
