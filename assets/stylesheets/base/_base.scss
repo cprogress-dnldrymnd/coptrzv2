@@ -3287,10 +3287,17 @@ a.fancybox-gallery-img {
                 max-width: 1200px;
             }
         }
+        
 
         .modal-content {
             border-radius: 0;
             border: none;
+        }
+
+        .background-primary {
+            a {
+                color: var(--white-color);
+            }
         }
 
         .form-holder {
