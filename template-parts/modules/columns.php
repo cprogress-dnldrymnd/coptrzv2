@@ -1,4 +1,4 @@
-<section class="columns position-relative <?= $classes ?> " id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?><?= $image_size_ratio ? 'padding: ' . $image_size_ratio : '' ?>">
+<section class="columns position-relative <?= $classes ?> " id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?><?= $module['image_size_ratio'] ? 'padding: ' . $module['image_size_ratio'] : '' ?>">
     <?php
     _background_image(array(
         'baground_image' => $baground_image,
