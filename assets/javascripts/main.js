@@ -516,6 +516,7 @@ function swiper_slider() {
 	});
 
 	jQuery('.mySwiper-logoSwiper-Module').each(function (index, element) {
+		$id = jQuery(this).attr('id');
 		$number_of_slides = jQuery(this).attr('number_of_slides');
 		$number_of_slides_tablet = jQuery(this).attr('number_of_slides_tablet');
 		$number_of_slides_mobile = jQuery(this).attr('number_of_slides_mobile');
@@ -538,12 +539,12 @@ function swiper_slider() {
 				768: {
 					slidesPerView: $number_of_slides_tablet,
 				},
-				
+
 
 				992: {
 					slidesPerView: $number_of_slides,
 				},
-				
+
 
 
 			},
