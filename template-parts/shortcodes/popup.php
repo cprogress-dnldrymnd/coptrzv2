@@ -7,8 +7,9 @@ if ($is_shortcode == true) {
 }
 $popup_layout = get__post_meta_by_id($id, 'popup_layout');
 $popup_max_width = get__post_meta_by_id($id, 'popup_max_width');
+$background_color = get__post_meta_by_id($id, 'background_color');
 ?>
-<div class="modal fade modal-v2 popup-form <?= $popup_max_width ?>" id="modal-<?= $id ?>" tabindex="-1" aria-labelledby="modalSearchLabel" aria-hidden="true">
+<div class="modal fade modal-v2 popup-form <?= $background_color ?> <?= $popup_max_width ?>" id="modal-<?= $id ?>" tabindex="-1" aria-labelledby="modalSearchLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content background-white">
             <div class="modal-body p-0">
