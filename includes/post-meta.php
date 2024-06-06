@@ -4919,7 +4919,7 @@ Container::make('post_meta', 'Modules')
 							->set_conditional_logic(
 								array(
 									array(
-										'field' => 'source',
+										'field' => 'post',
 										'value' => 'post',
 									)
 								)
@@ -4929,14 +4929,14 @@ Container::make('post_meta', 'Modules')
 								array(
 									array(
 										'type'      => 'product',
-										'product_type' => 'product',
+										'post_type' => 'product',
 									)
 								)
 							)
 							->set_conditional_logic(
 								array(
 									array(
-										'field' => 'source',
+										'field' => 'post',
 										'value' => 'product',
 									)
 								)
@@ -4946,14 +4946,14 @@ Container::make('post_meta', 'Modules')
 								array(
 									array(
 										'type'      => 'guides',
-										'guides_type' => 'guides',
+										'post_type' => 'guides',
 									)
 								)
 							)
 							->set_conditional_logic(
 								array(
 									array(
-										'field' => 'source',
+										'field' => 'post',
 										'value' => 'guides',
 									)
 								)
@@ -4963,14 +4963,14 @@ Container::make('post_meta', 'Modules')
 								array(
 									array(
 										'type'      => 'casestudies',
-										'casestudies_type' => 'casestudies',
+										'post_type' => 'casestudies',
 									)
 								)
 							)
 							->set_conditional_logic(
 								array(
 									array(
-										'field' => 'source',
+										'field' => 'post',
 										'value' => 'casestudies',
 									)
 								)
@@ -4979,8 +4979,8 @@ Container::make('post_meta', 'Modules')
 							->set_types(
 								array(
 									array(
-										'type'      => 'solutions',
-										'solutions_type' => 'solutions',
+										'type'      => 'post',
+										'post_type' => 'solutions',
 									)
 								)
 							)
