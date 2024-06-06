@@ -15535,104 +15535,6 @@ section.cta .style-2 .content-holder {
 section.cta.cta-slim .cta-inner {
   padding: 9% 3% 3% 3%; }
 
-section.customer-reviews.customer-reviews-v2 {
-  margin-left: -2rem;
-  margin-right: -2rem; }
-  section.customer-reviews.customer-reviews-v2 > .container {
-    display: none !important; }
-  section.customer-reviews.customer-reviews-v2 .review-holder .mySwiper-Reviews .review-box {
-    padding: 2rem; }
-    section.customer-reviews.customer-reviews-v2 .review-holder .mySwiper-Reviews .review-box .quote svg {
-      width: 30px; }
-    section.customer-reviews.customer-reviews-v2 .review-holder .mySwiper-Reviews .review-box .review-content {
-      margin-left: 15px; }
-      section.customer-reviews.customer-reviews-v2 .review-holder .mySwiper-Reviews .review-box .review-content .review-text {
-        font-size: 1rem;
-        margin-bottom: 0; }
-      section.customer-reviews.customer-reviews-v2 .review-holder .mySwiper-Reviews .review-box .review-content .author {
-        margin-top: 15px;
-        font-size: 1rem; }
-  section.customer-reviews.customer-reviews-v2:before {
-    content: "";
-    position: absolute; }
-section.customer-reviews .review-score .score {
-  font-size: 5rem;
-  font-weight: 600;
-  line-height: 1; }
-section.customer-reviews .review-score .stars-holder {
-  margin-left: 2rem; }
-section.customer-reviews .review-score .stars svg {
-  width: 2.5rem;
-  color: var(--accent-color); }
-  section.customer-reviews .review-score .stars svg:not(:last-child) {
-    margin-right: 10px; }
-section.customer-reviews .review-holder-case-study {
-  background-color: var(--accent-color);
-  border-radius: 40px;
-  padding: 2vw; }
-section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) {
-  padding-left: 7vw;
-  padding-right: 7vw; }
-  section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) .review-box {
-    padding: 3vw; }
-    @media screen and (max-width: 991px) {
-      section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) .review-box {
-        padding: 2rem; } }
-section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .swiper-slide:not(.swiper-slide-next) {
-  border-right: 3px solid rgba(255, 255, 255, 0.25); }
-section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box {
-  padding: 0 2rem; }
-  section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box .quote svg path {
-    fill: var(--white-color); }
-  section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box .review-content .review-text {
-    font-size: 1.5rem; }
-section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .swiper-pagination .swiper-pagination-bullet {
-  width: 21px;
-  height: 21px;
-  border-radius: 50%;
-  margin-left: 4px;
-  margin-right: 4px; }
-section.customer-reviews .mySwiper-Reviews .review-box {
-  color: var(--white-color);
-  line-height: 1.2;
-  border-radius: 20px; }
-  @media screen and (max-width: 575px) {
-    section.customer-reviews .mySwiper-Reviews .review-box .quote {
-      margin-bottom: 1rem; } }
-  section.customer-reviews .mySwiper-Reviews .review-box .review-content {
-    margin-left: 3.5vw; }
-    section.customer-reviews .mySwiper-Reviews .review-box .review-content .review-text {
-      margin-bottom: 4.375rem;
-      font-size: 1.75rem; }
-      @media screen and (max-width: 1199px) {
-        section.customer-reviews .mySwiper-Reviews .review-box .review-content .review-text {
-          font-size: 1.5rem; } }
-      @media screen and (max-width: 991px) {
-        section.customer-reviews .mySwiper-Reviews .review-box .review-content .review-text {
-          font-size: 1.25rem;
-          margin-bottom: 3rem; } }
-    section.customer-reviews .mySwiper-Reviews .review-box .review-content .author {
-      font-weight: 600;
-      font-size: 1.25rem; }
-      section.customer-reviews .mySwiper-Reviews .review-box .review-content .author:before {
-        content: "";
-        width: 68px;
-        height: 4px;
-        background-color: var(--white-color);
-        margin-right: 1.25rem; }
-        @media screen and (max-width: 575px) {
-          section.customer-reviews .mySwiper-Reviews .review-box .review-content .author:before {
-            width: 30px; } }
-    @media screen and (max-width: 1199px) {
-      section.customer-reviews .mySwiper-Reviews .review-box .review-content {
-        margin-left: 2.5vw; } }
-    @media screen and (max-width: 991px) {
-      section.customer-reviews .mySwiper-Reviews .review-box .review-content {
-        margin-left: 1.5vw; } }
-  @media screen and (max-width: 575px) {
-    section.customer-reviews .mySwiper-Reviews .review-box {
-      flex-direction: column; } }
-
 section.page-banner h2 {
   font-weight: bold; }
 
@@ -17449,6 +17351,100 @@ section.call-to-action .row {
   -ms-flex-align: end;
   -webkit-align-end: center;
   align-items: end; }
+
+section.customer-reviews.customer-reviews-v2 {
+  margin-left: -2rem;
+  margin-right: -2rem; }
+  section.customer-reviews.customer-reviews-v2 > .container {
+    display: none !important; }
+  section.customer-reviews.customer-reviews-v2 .review-holder .mySwiper-Reviews .review-box {
+    padding: 2rem; }
+    section.customer-reviews.customer-reviews-v2 .review-holder .mySwiper-Reviews .review-box .quote svg {
+      width: 30px; }
+    section.customer-reviews.customer-reviews-v2 .review-holder .mySwiper-Reviews .review-box .review-content {
+      margin-left: 15px; }
+      section.customer-reviews.customer-reviews-v2 .review-holder .mySwiper-Reviews .review-box .review-content .review-text {
+        font-size: 1rem;
+        margin-bottom: 0; }
+      section.customer-reviews.customer-reviews-v2 .review-holder .mySwiper-Reviews .review-box .review-content .author {
+        margin-top: 15px;
+        font-size: 1rem; }
+  section.customer-reviews.customer-reviews-v2:before {
+    content: "";
+    position: absolute; }
+section.customer-reviews .review-score .score {
+  font-size: 5rem;
+  font-weight: 600;
+  line-height: 1; }
+section.customer-reviews .review-score .stars-holder {
+  margin-left: 2rem; }
+section.customer-reviews .review-score .stars svg {
+  width: 2.5rem;
+  color: var(--accent-color); }
+  section.customer-reviews .review-score .stars svg:not(:last-child) {
+    margin-right: 10px; }
+section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) {
+  padding-left: 7vw;
+  padding-right: 7vw; }
+  section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) .review-box {
+    padding: 3vw; }
+    @media screen and (max-width: 991px) {
+      section.customer-reviews .mySwiper-Reviews:not(.mySwiper-ReviewsCaseStudy) .review-box {
+        padding: 2rem; } }
+section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .swiper-slide:not(.swiper-slide-next) {
+  border-right: 3px solid rgba(255, 255, 255, 0.25); }
+section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box {
+  padding: 0 2rem; }
+  section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box .quote svg path {
+    fill: var(--white-color); }
+  section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .review-box .review-content .review-text {
+    font-size: 1.5rem; }
+section.customer-reviews .mySwiper-Reviews.mySwiper-ReviewsCaseStudy .swiper-pagination .swiper-pagination-bullet {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  margin-left: 4px;
+  margin-right: 4px; }
+section.customer-reviews .mySwiper-Reviews .review-box {
+  color: var(--white-color);
+  line-height: 1.2;
+  border-radius: 20px; }
+  @media screen and (max-width: 575px) {
+    section.customer-reviews .mySwiper-Reviews .review-box .quote {
+      margin-bottom: 1rem; } }
+  section.customer-reviews .mySwiper-Reviews .review-box .review-content {
+    margin-left: 3.5vw; }
+    section.customer-reviews .mySwiper-Reviews .review-box .review-content .review-text {
+      margin-bottom: 4.375rem;
+      font-size: 1.75rem; }
+      @media screen and (max-width: 1199px) {
+        section.customer-reviews .mySwiper-Reviews .review-box .review-content .review-text {
+          font-size: 1.5rem; } }
+      @media screen and (max-width: 991px) {
+        section.customer-reviews .mySwiper-Reviews .review-box .review-content .review-text {
+          font-size: 1.25rem;
+          margin-bottom: 3rem; } }
+    section.customer-reviews .mySwiper-Reviews .review-box .review-content .author {
+      font-weight: 600;
+      font-size: 1.25rem; }
+      section.customer-reviews .mySwiper-Reviews .review-box .review-content .author:before {
+        content: "";
+        width: 68px;
+        height: 4px;
+        background-color: var(--white-color);
+        margin-right: 1.25rem; }
+        @media screen and (max-width: 575px) {
+          section.customer-reviews .mySwiper-Reviews .review-box .review-content .author:before {
+            width: 30px; } }
+    @media screen and (max-width: 1199px) {
+      section.customer-reviews .mySwiper-Reviews .review-box .review-content {
+        margin-left: 2.5vw; } }
+    @media screen and (max-width: 991px) {
+      section.customer-reviews .mySwiper-Reviews .review-box .review-content {
+        margin-left: 1.5vw; } }
+  @media screen and (max-width: 575px) {
+    section.customer-reviews .mySwiper-Reviews .review-box {
+      flex-direction: column; } }
 
 ul.custom-products.custom-products.custom-products li.product .inner {
   border-radius: 10px;
