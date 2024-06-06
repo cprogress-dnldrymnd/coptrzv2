@@ -34,7 +34,6 @@ if ($accordion_source == 'faqs') {
 } else {
     $accordion = $accordion;
 }
-var_dump($faqs_category);
 ?>
 
 
