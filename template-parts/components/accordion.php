@@ -12,6 +12,7 @@ if ($accordion_source == 'faqs') {
     foreach ($faqs_category as $faqs_cat) {
         $faqs_cat_id[] = $faqs_cat['id'];
     }
+    var_dump($faqs_category);
     $args = array(
         'post_type' => 'faq',
         'post_status' => 'publish',
