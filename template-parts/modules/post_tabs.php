@@ -6,7 +6,7 @@ $terms = get_terms(array(
 
 $popup_id = $module['popup_id'];
 global $popups_id;
-$popups_id = $popup_id;
+$popups_id[] = $popup_id;
 ?>
 <section class="post-tabs position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
