@@ -4354,6 +4354,7 @@ Container::make('post_meta', '3D Model Library Settings')
 	->add_fields(
 		array(
 			Field::make('image', 'captured_by', 'Captured by (Logo)'),
+			Field::make('textarea', 'embed', 'Embed'),
 			Field::make('association', 'related_blog', 'Related Blog')
 				->set_types(
 					array(
