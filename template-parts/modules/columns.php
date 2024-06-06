@@ -40,7 +40,8 @@
                                         }
                                         break;
                                     case 'padding':
-                                        $classes .= ' ' . $style['padding_top'] . ' ' . $style['padding_bottom'] . ' ' . $style['padding_left'] . ' ' . $style['padding_right'];
+                                        $remove_image_padding = $style['remove_image_padding'] ? 'remove-image-padding' : '';
+                                        $classes .= ' ' . $style['padding_top'] . ' ' . $style['padding_bottom'] . ' ' . $style['padding_left'] . ' ' . $style['padding_right'] . ' ' . $remove_image_padding;
                                         break;
                                     case 'margin':
                                         $classes .= ' ' . $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
