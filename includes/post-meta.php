@@ -4386,5 +4386,12 @@ Container::make('post_meta', '3D Model Library Settings')
 						'contact_form' 	=> 'Contact Form',
 					)
 				),
+			Field::make('select', 'popup_max_width', 'Popup Max Width')
+				->set_options(
+					array(
+						''				=> 'Default',
+						'contact_form' 	=> 'Contact Form',
+					)
+				),
 		)
 	);

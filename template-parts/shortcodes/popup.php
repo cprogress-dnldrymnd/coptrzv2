@@ -35,7 +35,7 @@ $popup_layout = get__post_meta_by_id($id, 'popup_layout');
                         <?php } ?>
                     </div>
                 <?php } else {  ?>
-                    <div class="popup-content-default">
+                    <div class="popup-content-default p-4">
                         <?php
                         if ($is_shortcode == true) {
                             echo do_shortcode(get_the_content(NULL, false, $id));
