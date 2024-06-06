@@ -4409,6 +4409,9 @@ Container::make('term_meta', __('Category Properties'))
 	->where('term_taxonomy', '=', 'Model3d_Category')
 	->add_fields(
 		array(
-			Field::make('text', 'menu_order', 'Menu Order'),
+			Field::make('text', 'menu_order', 'Menu Order')
+				->set_attribute('type', 'number')
+				->set_required(true)
+				->set_default_value(0),
 		)
 	);
