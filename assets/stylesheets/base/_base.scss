@@ -3293,7 +3293,7 @@ a.fancybox-gallery-img {
             border: none;
             &.background-primary {
                 a {
-                    color: var(--white-color);
+                    color: var(--white-color) !important;
                 }
             }
         }
@@ -3308,6 +3308,7 @@ a.fancybox-gallery-img {
                 }
             }
         }
+
 
         .bg-image {
             img {
