@@ -7,8 +7,8 @@
             <?php
             $captured_by = get__post_meta_by_id($id, 'captured_by');
             ?>
-            <div class="button-box button-accent" id="modal-button-<?= $id ?>" data-bs-toggle="modal" data-bs-target="#modal-<?= $popup_id ?>">
-                <button description='<?= _format_text(get_the_content(null, false, $id)) ?>' title="<?= get_the_title($id) ?>">
+            <div class="button-box button-accent" >
+                <button description='<?= _format_text(get_the_content(null, false, $id)) ?>' title="<?= get_the_title($id) ?>" id="modal-button-<?= $id ?>" data-bs-toggle="modal" data-bs-target="#modal-<?= $popup_id ?>">
                     View Model
                 </button>
             </div>
