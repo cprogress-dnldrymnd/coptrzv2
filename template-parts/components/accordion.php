@@ -10,7 +10,7 @@ if ($accordion_source == 'faqs') {
 } else {
     $accordion = $accordion;
 }
-
+var_dump($faqs);
 echo $accordion_source;
 ?>
 
