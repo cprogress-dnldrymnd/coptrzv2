@@ -2010,7 +2010,7 @@ Container::make('post_meta', 'Modules')
 									Field::make('select', 'button_type', __('URL Type'))->set_classes('trigger-selector')
 										->set_options(
 											array(
-												''          => 'Select Button Type',
+												''          => 'None',
 												'page'      => 'Page',
 												'product'      => 'Product',
 												'guides'      => 'Guides',
