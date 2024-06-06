@@ -2777,7 +2777,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'heading_prefix', __('Heading Prefix'))
-							->set_width(33)
+							->set_width(20)
 							->set_conditional_logic(
 								array(
 									array(
@@ -2787,7 +2787,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'heading_suffix', __('Heading Suffix'))
-							->set_width(33)
+							->set_width(20)
 							->set_conditional_logic(
 								array(
 									array(
@@ -2797,7 +2797,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'heading', __('Heading'))
-							->set_width(33)
+							->set_width(20)
 							->set_conditional_logic(
 								array(
 									array(
@@ -2819,7 +2819,7 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_default_value('h2')
-							->set_width(33)
+							->set_width(20)
 							->set_conditional_logic(
 								array(
 									array(
@@ -2828,7 +2828,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('select', 'text_align', 'Text Align')
+						Field::make('select', 'text_align', 'Text Align')->set_width(20)
 							->set_options(
 								array(
 									''                => 'Default',
