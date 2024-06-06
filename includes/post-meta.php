@@ -5379,101 +5379,51 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('select', 'source', 'Source')
+						Field::make('select', 'testimonial_source', __('Testimonial Source'))
 							->set_options(
 								array(
-									'post' 	=> 'Post',
-									'product' 	=> 'Product',
-									'solutions' 	=> 'Solutions',
-									'guides' 	=> 'Guides',
-									'casestudies' 	=> 'Case Studies',
+									'testimonial'      => 'Testimonial Select Manually',
+									'testimonial_category'      => 'Testimonial by Category',
 								)
 							),
-						Field::make('association', 'post', 'Select Post')
+					
+						Field::make('association', 'faqs', 'Select FAQs')
 							->set_types(
 								array(
 									array(
 										'type'      => 'post',
-										'post_type' => 'post',
+										'post_type' => 'faq',
 									)
 								)
 							)
 							->set_conditional_logic(
 								array(
 									array(
-										'field' => 'source',
-										'value' => 'post',
+										'field' => 'testimonial_source',
+										'value' => 'testimonial',
+										'comapre' => '='
 									)
 								)
 							),
-						Field::make('association', 'product', 'Select product')
+						Field::make('association', 'testimonial_category', 'Select FAQs Category')
 							->set_types(
 								array(
 									array(
-										'type'      => 'post',
-										'post_type' => 'product',
+										'type'      => 'term',
+										'taxonomy' => 'testimonial_category',
 									)
 								)
 							)
 							->set_conditional_logic(
 								array(
 									array(
-										'field' => 'source',
-										'value' => 'product',
+										'field' => 'testimonial_source',
+										'value' => 'testimonial_category',
+										'comapre' => '='
 									)
 								)
 							),
-						Field::make('association', 'guides', 'Select guides')
-							->set_types(
-								array(
-									array(
-										'type'      => 'post',
-										'post_type' => 'guides',
-									)
-								)
-							)
-							->set_conditional_logic(
-								array(
-									array(
-										'field' => 'source',
-										'value' => 'guides',
-									)
-								)
-							),
-						Field::make('association', 'casestudies', 'Select casestudies')
-							->set_types(
-								array(
-									array(
-										'type'      => 'post',
-										'post_type' => 'casestudies',
-									)
-								)
-							)
-							->set_conditional_logic(
-								array(
-									array(
-										'field' => 'source',
-										'value' => 'casestudies',
-									)
-								)
-							),
-						Field::make('association', 'solutions', 'Select solutions')
-							->set_types(
-								array(
-									array(
-										'type'      => 'post',
-										'post_type' => 'solutions',
-									)
-								)
-							)
-							->set_conditional_logic(
-								array(
-									array(
-										'field' => 'source',
-										'value' => 'solutions',
-									)
-								)
-							),
+
 					)
 				)
 				->set_header_template('Post Grid <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
