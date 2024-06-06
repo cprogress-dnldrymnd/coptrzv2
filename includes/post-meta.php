@@ -4335,7 +4335,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('text', 'popup_id', __('Popup ID')),
-							
+
 						Field::make('text', 'post_type_key', __('Post Type Key')),
 						Field::make('text', 'taxonomy_key', __('Taxonomy Key')),
 					)
@@ -4395,6 +4395,28 @@ Container::make('post_meta', 'Popup Settings')
 						'popup-small' 	=> 'Small',
 						'popup-medium' 	=> 'Medium',
 						'popup-large' 	=> 'Large',
+					)
+				),
+		)
+	);
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Product Attributes
+/*-----------------------------------------------------------------------------------*/
+Container::make('term_meta', __('Category Properties'))
+	->where('term_taxonomy', '=', 'Model3d_Category')
+	->add_fields(
+		array(
+			Field::make('image', 'category_image', 'Category Image'),
+			Field::make('association', 'brands', 'Select Related Brand')
+				->set_types(
+					array(
+						array(
+							'type'      => 'term',
+							'post_type' => 'pa_brands',
+						)
 					)
 				),
 		)
