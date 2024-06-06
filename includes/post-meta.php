@@ -4398,6 +4398,17 @@ Container::make('post_meta', 'Popup Settings')
 						'background-body-color'     => 'Body',
 					)
 				),
-		
+
+		)
+	);
+
+/*-----------------------------------------------------------------------------------*/
+/* 3D Model Category
+/*-----------------------------------------------------------------------------------*/
+Container::make('term_meta', __('Category Properties'))
+	->where('term_taxonomy', '=', 'Model3d_Category')
+	->add_fields(
+		array(
+			Field::make('text', 'menu_order', 'Menu Order'),
 		)
 	);
