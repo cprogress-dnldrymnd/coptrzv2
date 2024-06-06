@@ -4386,5 +4386,26 @@ Container::make('post_meta', 'Popup Settings')
 						'popup-large' 	=> 'Large',
 					)
 				),
+			Field::make('select', 'background_color', 'Background Color')
+				->set_options(
+					array(
+						'background-primary'   => 'Primary',
+						'background-secondary' => 'Secondary',
+						'background-accent'    => 'Accent',
+						'background-white'     => 'White',
+						'background-light-gray'     => 'Light Gray',
+						'background-body-color'     => 'Body',
+						'background-custom'    => 'Custom',
+					)
+				),
+			Field::make('color', 'background_color_custom', __('Background Color'))
+				->set_conditional_logic(
+					array(
+						array(
+							'field' => 'background_color',
+							'value' => 'background-custom',
+						)
+					)
+				),
 		)
 	);
