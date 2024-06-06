@@ -9,10 +9,10 @@ $popup_layout = get__post_meta_by_id($id, 'popup_layout');
 $popup_max_width = get__post_meta_by_id($id, 'popup_max_width');
 $background_color = get__post_meta_by_id($id, 'background_color');
 ?>
-<div class="modal fade modal-v2 popup-form <?= $background_color ?> <?= $popup_max_width ?>" id="modal-<?= $id ?>" tabindex="-1" aria-labelledby="modalSearchLabel" aria-hidden="true">
+<div class="modal fade modal-v2 popup-form <?= $popup_max_width ?>" id="modal-<?= $id ?>" tabindex="-1" aria-labelledby="modalSearchLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content background-white">
-            <div class="modal-body p-0">
+        <div class="modal-content  <?= $background_color ? $background_color : 'background-white' ?> ">
+            <div class="modal-body p-0 ">
                 <?php if ($popup_layout == 'contact_form') { ?>
                     <div class="row g-0">
                         <div class="<?= get_the_post_thumbnail_url($id) ? 'col-lg-6 ' : 'col-12' ?>">
