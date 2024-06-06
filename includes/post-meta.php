@@ -5382,12 +5382,12 @@ Container::make('post_meta', 'Modules')
 						Field::make('select', 'testimonial_source', __('Testimonial Source'))
 							->set_options(
 								array(
-									'testimonial'      => 'Testimonial Select Manually',
-									'testimonial_category'      => 'Testimonial by Category',
+									'testimonial'      => 'Select Manually',
+									'testimonial_category'      => 'Select by Category',
 								)
 							),
 					
-						Field::make('association', 'faqs', 'Select FAQs')
+						Field::make('association', 'faqs', 'Select Testimonials')
 							->set_types(
 								array(
 									array(
@@ -5405,7 +5405,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('association', 'testimonial_category', 'Select FAQs Category')
+						Field::make('association', 'testimonial_category', 'Select Testimonial Categories')
 							->set_types(
 								array(
 									array(
