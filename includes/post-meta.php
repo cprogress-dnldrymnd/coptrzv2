@@ -4979,6 +4979,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('complex', 'post_elements', 'Post Elements')
+							->set_duplicate_groups_allowed(false)
 							->add_fields(
 								'post_title',
 								array(
@@ -5005,7 +5006,6 @@ Container::make('post_meta', 'Modules')
 										),
 								)
 							)
-							->set_duplicate_groups_allowed(false)
 							->add_fields(
 								'featured_image',
 								array(
@@ -5022,7 +5022,6 @@ Container::make('post_meta', 'Modules')
 										),
 								)
 							)
-							->set_duplicate_groups_allowed(true)
 							->add_fields(
 								'permalink',
 								array(
@@ -5040,6 +5039,36 @@ Container::make('post_meta', 'Modules')
 												'custom'    => 'Custom',
 											)
 										),
+								)
+							)
+							->add_fields(
+								'custom_field_1',
+								array(
+									Field::make('text', 'custom_field_key', __('Custom Field Key')),
+								)
+							)
+							->add_fields(
+								'custom_field_2',
+								array(
+									Field::make('text', 'custom_field_key', __('Custom Field Key')),
+								)
+							)
+							->add_fields(
+								'custom_field_3',
+								array(
+									Field::make('text', 'custom_field_key', __('Custom Field Key')),
+								)
+							)
+							->add_fields(
+								'custom_field_4',
+								array(
+									Field::make('text', 'custom_field_key', __('Custom Field Key')),
+								)
+							)
+							->add_fields(
+								'custom_field_5',
+								array(
+									Field::make('text', 'custom_field_key', __('Custom Field Key')),
 								)
 							)
 							->set_header_template('<%- heading  %>'),
