@@ -4986,8 +4986,8 @@ Container::make('post_meta', 'Modules')
 									'col-lg-4'                => 3,
 									'col-lg-3'                => 4,
 								)
-									->set_default_value(4)
-							),
+							)
+							->set_default_value(4),
 						Field::make('complex', 'post_elements', 'Post Elements')
 							->set_duplicate_groups_allowed(false)
 							->add_fields(
