@@ -2,12 +2,10 @@
 $source = $module['source'];
 $posts = $module[$source];
 $posts_ids = array();
-
+/*
 foreach ($posts as $post) {
     $posts_ids[] = $post['id'];
-}
-
-
+}*/
 ?>
 <section class="post-grid position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
@@ -46,7 +44,10 @@ foreach ($posts as $post) {
             <div class="row g-4">
                 <?php foreach ($posts as $post) { ?>
                     <div class="col-lg-4">
-                        <?= do_shortcode('[post_grid id="' . $post->ID . '"]') ?>
+                        <?php
+                        $id = $post->ID;
+                        locate_template('template-parts/shortcodes/post_grid.php');
+                        ?>
                     </div>
                 <?php } ?>
             </div>

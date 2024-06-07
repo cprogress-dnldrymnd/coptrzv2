@@ -5082,119 +5082,114 @@ Container::make('post_meta', 'Modules')
 							)
 							->set_header_template('<%- custom_field_key  %>')
 							->set_layout('tabbed-vertical'),
-						Field::make('select', 'source', 'Source')
-							->set_options(
+						Field::make('complex', 'source', 'Source')
+							->set_duplicate_groups_allowed(false)
+							->set_max(1)
+							->add_fields(
+								'post',
 								array(
-									'post' 	=> 'Post',
-									'product' 	=> 'Product',
-									'solutions' 	=> 'Solutions',
-									'guides' 	=> 'Guides',
-									'casestudies' 	=> 'Case Studies',
-									'team' 	=> 'Teams',
-								)
-							),
-						Field::make('association', 'post', 'Select Post')
-							->set_types(
-								array(
-									array(
-										'type'      => 'post',
-										'post_type' => 'post',
-									)
+									Field::make('association', 'post', 'Select Post')
+										->set_types(
+											array(
+												array(
+													'type'      => 'post',
+													'post_type' => 'post',
+												)
+											)
+										)
 								)
 							)
-							->set_conditional_logic(
+							->add_fields(
+								'product',
 								array(
-									array(
-										'field' => 'source',
-										'value' => 'post',
-									)
-								)
-							),
-						Field::make('association', 'product', 'Select product')
-							->set_types(
-								array(
-									array(
-										'type'      => 'post',
-										'post_type' => 'product',
-									)
+									Field::make('association', 'product', 'Select product')
+										->set_types(
+											array(
+												array(
+													'type'      => 'post',
+													'post_type' => 'product',
+												)
+											)
+										)
+
 								)
 							)
-							->set_conditional_logic(
+							->add_fields(
+								'guides',
 								array(
-									array(
-										'field' => 'source',
-										'value' => 'product',
-									)
-								)
-							),
-						Field::make('association', 'guides', 'Select guides')
-							->set_types(
-								array(
-									array(
-										'type'      => 'post',
-										'post_type' => 'guides',
-									)
-								)
-							)
-							->set_conditional_logic(
-								array(
-									array(
-										'field' => 'source',
-										'value' => 'guides',
-									)
-								)
-							),
-						Field::make('association', 'team', 'Select Teams')
-							->set_types(
-								array(
-									array(
-										'type'      => 'post',
-										'post_type' => 'team',
-									)
+									Field::make('association', 'guides', 'Select guides')
+										->set_types(
+											array(
+												array(
+													'type'      => 'post',
+													'post_type' => 'guides',
+												)
+											)
+										)
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'source',
+													'value' => 'guides',
+												)
+											)
+										),
 								)
 							)
-							->set_conditional_logic(
+							->add_fields(
+								'teams',
 								array(
-									array(
-										'field' => 'source',
-										'value' => 'team',
-									)
-								)
-							),
-						Field::make('association', 'casestudies', 'Select casestudies')
-							->set_types(
-								array(
-									array(
-										'type'      => 'post',
-										'post_type' => 'casestudies',
-									)
+									Field::make('association', 'team', 'Select Teams')
+										->set_types(
+											array(
+												array(
+													'type'      => 'post',
+													'post_type' => 'team',
+												)
+											)
+										)
 								)
 							)
-							->set_conditional_logic(
+							->add_fields(
+								'casestudies',
 								array(
-									array(
-										'field' => 'source',
-										'value' => 'casestudies',
-									)
-								)
-							),
-						Field::make('association', 'solutions', 'Select solutions')
-							->set_types(
-								array(
-									array(
-										'type'      => 'post',
-										'post_type' => 'solutions',
-									)
+
+									Field::make('association', 'casestudies', 'Select casestudies')
+										->set_types(
+											array(
+												array(
+													'type'      => 'post',
+													'post_type' => 'casestudies',
+												)
+											)
+										)
+
 								)
 							)
-							->set_conditional_logic(
+							->add_fields(
+								'solutions',
 								array(
-									array(
-										'field' => 'source',
-										'value' => 'solutions',
-									)
+
+
+									Field::make('association', 'solutions', 'Select solutions')
+										->set_types(
+											array(
+												array(
+													'type'      => 'post',
+													'post_type' => 'solutions',
+												)
+											)
+										)
+
+
 								)
-							),
+							)
+							->set_layout('tabbed-vertical')
+
+
+
+
+
 					)
 				)
 				->set_header_template('Post Grid <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
