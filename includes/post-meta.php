@@ -5019,7 +5019,6 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'featured_image',
 								array(
-									Field::make('image', 'image', 'Image'),
 									Field::make('checkbox', 'rounded_corners', __('Rounder Corners')),
 									Field::make('text', 'border_radius', __('Border Radius'))->set_help_text('Custom border radius')
 										->set_conditional_logic(
