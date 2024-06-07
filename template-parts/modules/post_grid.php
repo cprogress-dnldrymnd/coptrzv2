@@ -6,7 +6,7 @@ $category = $module['post_type'][0]['category'];
 
 
 
-
+$posts_ids = array();
 foreach ($posts as $post) {
     $posts_ids[] = $post['id'];
 }
