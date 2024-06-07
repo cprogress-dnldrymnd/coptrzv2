@@ -4979,6 +4979,7 @@ Container::make('post_meta', 'Modules')
 								)
 							),
 						Field::make('complex', 'post_box_styles', __('Post Box Styles'))
+							->set_width(33)
 							->set_duplicate_groups_allowed(false)
 							->add_fields(
 								'background_color',
@@ -5217,6 +5218,7 @@ Container::make('post_meta', 'Modules')
 							->set_layout('tabbed-vertical'),
 						Field::make('complex', 'post_elements', 'Post Elements')
 							->set_duplicate_groups_allowed(false)
+							->set_width(33)
 							->add_fields(
 								'post_title',
 								array(
@@ -5343,6 +5345,7 @@ Container::make('post_meta', 'Modules')
 							->set_layout('tabbed-vertical'),
 						Field::make('complex', 'post_type', 'Post Type')
 							->set_duplicate_groups_allowed(false)
+							->set_width(33)
 							->set_max(1)
 							->add_fields(
 								'post',
