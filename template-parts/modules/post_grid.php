@@ -7,6 +7,8 @@ foreach ($posts as $post) {
     $posts_ids[] = $post['id'];
 }
 
+var_dump($posts_ids);
+
 ?>
 <section class="post-grid position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
