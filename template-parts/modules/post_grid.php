@@ -71,7 +71,7 @@ $source = $module['post_type'][0]['source'];
                             if ($style['background_color'] != 'background-custom') {
                                 $classes .= ' ' . $style['background_color'];
                             } else {
-                                $style_attribute = 'background-color: ' . $style['background_color_custom'] . ';';
+                                $style_attribute .= 'background-color: ' . $style['background_color_custom'] . ';';
                             }
                             break;
                         case 'padding':

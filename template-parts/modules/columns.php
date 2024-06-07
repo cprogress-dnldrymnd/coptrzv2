@@ -42,7 +42,7 @@ $numbered_boxes = $module['numbered_boxes'] ? 'numbered-boxes' : '';
                                         if ($style['background_color'] != 'background-custom') {
                                             $classes .= ' ' . $style['background_color'];
                                         } else {
-                                            $style_attribute = 'background-color: ' . $style['background_color_custom'] . ';';
+                                            $style_attribute .= 'background-color: ' . $style['background_color_custom'] . ';';
                                         }
                                         break;
                                     case 'padding':
