@@ -3,10 +3,11 @@ section.columns {
         .row {
             counter-reset: section;
             > [class*="col-"] {
-                .inner {
+                .column-holder {
                     counter-increment: section;
                     &:before {
                         content: "0" counter(section);
+                        font-size: 150px;
                     }
                 }
             }

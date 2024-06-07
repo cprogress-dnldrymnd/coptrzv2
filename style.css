@@ -17463,10 +17463,11 @@ section.customer-reviews .mySwiper-Reviews .review-box {
 
 section.columns.numbered-boxes .row {
   counter-reset: section; }
-  section.columns.numbered-boxes .row > [class*="col-"] .inner {
+  section.columns.numbered-boxes .row > [class*="col-"] .column-holder {
     counter-increment: section; }
-    section.columns.numbered-boxes .row > [class*="col-"] .inner:before {
-      content: "0" counter(section); }
+    section.columns.numbered-boxes .row > [class*="col-"] .column-holder:before {
+      content: "0" counter(section);
+      font-size: 150px; }
 
 ul.custom-products.custom-products.custom-products li.product .inner {
   border-radius: 10px;
