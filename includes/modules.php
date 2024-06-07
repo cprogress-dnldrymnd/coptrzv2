@@ -2,7 +2,8 @@
 
 function _format_text($text)
 {
-    return str_replace("'", "&#39;", $text);
+    $text = str_replace("'", "&#39;", $text);
+    return $text;
 }
 function output_svg_from_url($url)
 {
