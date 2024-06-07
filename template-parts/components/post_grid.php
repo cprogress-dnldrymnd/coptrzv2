@@ -33,7 +33,6 @@ $post_elements = $module['post_elements'];
         }
 
         ?>
-        <?= ?>
         <?php if (get_post_type($id) == '3dmodellibraries') { ?>
             <?php
             $captured_by = get__post_meta_by_id($id, 'captured_by');
