@@ -1,15 +1,15 @@
 <?php
 $post_type = $module['post_type'][0]['_type'];
 $source = $module['post_type'][0]['source'];
-$post = $module['post_type'][0]['post'];
+$posts = $module['post_type'][0]['post'];
 $category = $module['post_type'][0]['category'];
 
 
 
-/*
+
 foreach ($posts as $post) {
     $posts_ids[] = $post['id'];
-}*/
+}
 ?>
 <section class="post-grid position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
@@ -34,14 +34,13 @@ foreach ($posts as $post) {
         ?>
         <?php
         // Build the args
-        $args = array(
-            'post_type' => $post_type,
-            'post__in' => $posts_ids,
-            'posts_per_page' => -1,
-        );
-        
-        if($source == 'category') {
-            
+        $args['post_type'] = $post_type;
+        $args['posts_per_page'] = -1;
+
+
+        if ($source == 'category') {
+        } else if ($source == 'manually') {
+            $args['post__in'] = $posts_ids;
         }
 
         // Get the posts
