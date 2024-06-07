@@ -32,9 +32,7 @@ $numbered_boxes = $module['numbered_boxes'] ? 'numbered-boxes' : '';
                         $classes = '';
                         $style_attribute = '';
                         $style_attribute_inner = '';
-                        if($numbered_boxes) {
-                            $classes .= 'ms-auto me-auto';
-                        }
+
                         $column_id = 'column-' . $key . '-' . $module_id;
                         if ($styles) {
                             foreach ($styles as $style) {
@@ -64,6 +62,9 @@ $numbered_boxes = $module['numbered_boxes'] ? 'numbered-boxes' : '';
                                         $classes .= ' ' .  $style['custom_class'];
                                         break;
                                     case 'max_width':
+                                        if ($numbered_boxes) {
+                                            $classes .= 'ms-auto me-auto';
+                                        }
                                         $style_attribute_inner .= 'max-width: ' . $style['max_width'] . ';';
                                         break;
                                     case 'column_width':
