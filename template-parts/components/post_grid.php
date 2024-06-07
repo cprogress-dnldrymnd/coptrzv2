@@ -1,7 +1,6 @@
 <div class="post-grid h-100 rounded-corner p-5 post-<?= $id ?> <?= $class ?>" style="--border-radius: 10px; --padding: 40%">
     <div class="content-margin h-100">
         <?php
-        $post_elements = $module['post_elements'];
         foreach ($post_elements as $el) {
             $type = $el['_type'];
             switch ($type) {
@@ -44,7 +43,6 @@
                     break;
             }
         }
-        $post_elements = array();
         ?>
     </div>
 </div>

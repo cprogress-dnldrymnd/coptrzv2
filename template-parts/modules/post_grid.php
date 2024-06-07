@@ -53,11 +53,15 @@ foreach ($posts as $post) {
 
         <?php if ($posts_lists) { ?>
             <div class="row g-4">
+                <?php
+                $post_elements = $module['post_elements'];
+                ?>
                 <?php foreach ($posts_lists as $post) { ?>
                     <div class="<?= $number_of_columns ? $number_of_columns : 'col-lg-4' ?>">
                         <?php
                         $id = $post->ID;
                         include locate_template('template-parts/components/post_grid.php');
+                        $post_elements = array();
                         ?>
                     </div>
                 <?php } ?>
