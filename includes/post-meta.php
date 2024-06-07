@@ -2320,6 +2320,7 @@ Container::make('post_meta', 'Modules')
 												Field::make('select', 'text_color', 'Text Color')
 													->set_options(
 														array(
+															''   => 'Default',
 															'text-primary'   => 'Primary',
 															'text-secondary' => 'Secondary',
 															'text-accent'    => 'Accent',
