@@ -22,7 +22,6 @@ function _elements($data, $module_id, $same_height_images)
             case 'heading':
                 $class = $d['size'];
                 $class .= $d['text_color'];
-                echo $d['text_color'];
                 echo do_shortcode('[_heading tag="' . $d['tag'] . '" heading="' . $d['heading'] . '" class="' . $class . '"]');
                 break;
             case 'description':
