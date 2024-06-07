@@ -44,6 +44,7 @@
                     break;
             }
         }
+        $post_elements = array();
         ?>
     </div>
 </div>
