@@ -39,9 +39,8 @@ function _elements($data, $module_id, $same_height_images)
                 break;
             case 'image':
                 $same_height = $same_height_images ? 'same_height="true"' : 'same_height="false"';
-                $numbered_boxes = $d['numbered_boxes'] ? 'numbered-boxes' : '';
                 $rounded_corners = $d['rounded_corners'] ? 'true' : 'false';
-                echo do_shortcode('[_image class="' . $numbered_boxes . '" size="' . $d['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $d['border_radius'] . '" ' . $same_height . '  id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
+                echo do_shortcode('[_image size="' . $d['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $d['border_radius'] . '" ' . $same_height . '  id="' . $d['image'] . '" image_width="' . $d['image_width'] . '" image_height="' . $d['image_height'] . '"]');
                 break;
             case 'icon':
                 echo do_shortcode('[_icon id="' . $d['icon'] . '" class="' . $d['icon_color'] . '" icon_color_custom="' . $d['icon_color_custom'] . '" icon_width="' . $d['icon_width'] . '" icon_height="' . $d['icon_height'] . '"]');
