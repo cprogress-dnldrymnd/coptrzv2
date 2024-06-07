@@ -34,6 +34,9 @@
                     break;
                 case 'custom_field_1':
                 case 'custom_field_2':
+                case 'custom_field_3':
+                case 'custom_field_4':
+                case 'custom_field_5':
                     $custom_field_type = $el['custom_field_type'];
                     switch ($custom_field_type) {
                         case 'text':
