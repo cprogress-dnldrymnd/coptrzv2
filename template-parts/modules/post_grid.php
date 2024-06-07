@@ -1,5 +1,5 @@
 <?php
-$post_type = $module['post_type']['_type'];
+$post_type = $module['post_type'][0]['_type'];
 echo $post_type;
 /*
 foreach ($posts as $post) {
