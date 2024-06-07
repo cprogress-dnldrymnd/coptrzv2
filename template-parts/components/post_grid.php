@@ -43,7 +43,6 @@ $post_elements = $module['post_elements'];
                             echo '</div>';
                             break;
                     }
-                    echo 'test';
                     break;
             }
         }
