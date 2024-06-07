@@ -5040,7 +5040,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('association', 'teams', 'Select Teams')
+						Field::make('association', 'team', 'Select Teams')
 							->set_types(
 								array(
 									array(
