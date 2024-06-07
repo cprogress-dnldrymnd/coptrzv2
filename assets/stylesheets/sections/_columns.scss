@@ -7,9 +7,10 @@ section.columns {
                     counter-increment: section;
                     &:before {
                         content: "0" counter(section);
-                        font-size: 150px;
+                        font-size: 100px;
                         line-height: 1;
                         margin-right: 1rem;
+                        color: var(--accent-color);
                     }
                 }
             }
