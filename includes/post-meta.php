@@ -1885,10 +1885,10 @@ Container::make('post_meta', 'Modules')
 							)
 							->set_layout('tabbed-vertical'),
 
-						Field::make('checkbox', 'same_height_images', __('Same Height Images'))->set_width(33),
+						Field::make('checkbox', 'same_height_images', __('Same Height Images'))->set_width(20),
 						//Heading Settings
-						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(33),
-						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(33)
+						Field::make('checkbox', 'display_heading_description', __('Display Section Heading and Description'))->set_width(20),
+						Field::make('checkbox', 'heading_with_line', __('Heading with prefix on left with line'))->set_width(20)
 							->set_conditional_logic(
 								array(
 									array(
@@ -1897,6 +1897,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
+						Field::make('checkbox', 'numbered_boxes', __('Numbered Boxes'))->set_width(20),
 						Field::make('text', 'image_size_ratio', __('Image Size Ratio'))->set_width(100)
 							->set_help_text('Default is 30%')
 							->set_conditional_logic(
