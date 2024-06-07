@@ -5029,6 +5029,16 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'featured_image',
 								array(
+									Field::make('select', 'size', __('Size'))
+										->set_options(
+											array(
+												''          => 'Default',
+												'full'      => 'Full',
+												'large'      => 'Large',
+												'medium' => 'Medium',
+												'thumbnail'    => 'Thumbnail',
+											)
+										),
 									Field::make('checkbox', 'rounded_corners', __('Rounder Corners')),
 									Field::make('text', 'border_radius', __('Border Radius'))->set_help_text('Custom border radius')
 										->set_conditional_logic(
