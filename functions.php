@@ -209,7 +209,7 @@ function custom_excerpt_length($content, $length = 50)
 	// pregmatch will return an array and the first 80 chars will be in the first element 
 	return $abstract[0] . '...';
 }
-add_filter('excerpt_length', 'custom_excerpt_length', 999);
+//add_filter('excerpt_length', 'custom_excerpt_length', 999);
 
 
 
