@@ -2,7 +2,7 @@
 $post_elements = $module['post_elements'];
 ?>
 
-<div class="post-grid h-100 rounded-corner p-5 post-<?= $id ?> <?= $class ?>" style="--border-radius: 10px; --padding: 20%">
+<div class="post-grid h-100 rounded-corner p-5 post-<?= $id ?> <?= $class ?>" style="--border-radius: 10px; --padding: 40%">
     <div class="content-margin h-100">
         <?php
         foreach ($post_elements as $el) {
