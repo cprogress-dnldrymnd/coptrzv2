@@ -32,7 +32,10 @@ $post_elements = $module['post_elements'];
                     break;
                 case 'permalink':
                     echo do_shortcode('[_button class="' . $el['button_style'] . '" id="' . $id . '"  button_type="' . get_post_type($id) . '" button_text="Read More" ]');
-
+                    break;
+                case 'custom_field_1':
+                case 'custom_field_2':
+                    echo 'test';
                     break;
             }
         }
