@@ -5,6 +5,8 @@
             $type = $el['_type'];
             switch ($type) {
                 case 'post_title':
+                    $class = '';
+                    $style_attribute = '';
                     if ($el['size']) {
                         $class .= $el['size'] . ' ';
                     }
