@@ -49,6 +49,7 @@ foreach ($posts as $post) {
 
         // Get the posts
         $posts_lists = get_posts($args);
+        $post_elements = $module['post_elements'];
         ?>
 
         <?php if ($posts_lists) { ?>
@@ -57,7 +58,6 @@ foreach ($posts as $post) {
                     <div class="<?= $number_of_columns ? $number_of_columns : 'col-lg-4' ?>">
                         <?php
                         $id = $post->ID;
-                        $post_elements = $module['post_elements'];
                         include locate_template('template-parts/components/post_grid.php');
                         ?>
                     </div>
