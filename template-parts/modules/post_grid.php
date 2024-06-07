@@ -2,15 +2,6 @@
 $number_of_columns = $module['number_of_columns'];
 $post_type = $module['post_type'][0]['_type'];
 $source = $module['post_type'][0]['source'];
-$posts = $module['post_type'][0]['post'];
-$category = $module['post_type'][0]['category'];
-
-
-
-$posts_ids = array();
-foreach ($posts as $post) {
-    $posts_ids[] = $post['id'];
-}
 ?>
 <section class="post-grid position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
@@ -40,7 +31,25 @@ foreach ($posts as $post) {
 
 
         if ($source == 'category') {
+            $category_ids = array();
+            $categories = $module['post_type'][0]['category'];
+            $taxonomy_key = $module['post_type'][0]['taxonomy_key'];
+            foreach ($categories as $category) {
+                $category_ids[] = $category['id'];
+            }
+            $args['tax_query'] =  array(
+                array(
+                    'taxonomy' => $taxonomy_key,
+                    'field' => 'id',
+                    'terms' => $term->term_id,
+                )
+            );
         } else if ($source == 'manually') {
+            $posts = $module['post_type'][0]['post'];
+            $posts_ids = array();
+            foreach ($posts as $post) {
+                $posts_ids[] = $post['id'];
+            }
             $args['post__in'] = $posts_ids;
         }
         // Get the posts
