@@ -1,7 +1,6 @@
 <?php
-$source = $module['source'];
-$posts = $module[$source];
-$posts_ids = array();
+$post_type = $module['post_type']['_type'];
+echo $post_type;
 /*
 foreach ($posts as $post) {
     $posts_ids[] = $post['id'];
