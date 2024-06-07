@@ -2316,7 +2316,28 @@ Container::make('post_meta', 'Modules')
 															'medium-heading' => 'Medium Heading',
 															'small-heading' => 'Small Heading',
 														)
-													)
+													),
+												Field::make('select', 'text_color', 'Text Color')
+													->set_options(
+														array(
+															'text-primary'   => 'Primary',
+															'text-secondary' => 'Secondary',
+															'text-accent'    => 'Accent',
+															'text-white'     => 'White',
+															'text-light-gray'     => 'Light Gray',
+															'text-body-color'     => 'Body',
+															'text-custom'    => 'Custom',
+														)
+													),
+												Field::make('color', 'text_color_custom', __('Text Color'))
+													->set_conditional_logic(
+														array(
+															array(
+																'field' => 'text_color',
+																'value' => 'text-custom',
+															)
+														)
+													),
 											)
 										)
 										->add_fields(
@@ -2426,7 +2447,7 @@ Container::make('post_meta', 'Modules')
 											'icon',
 											array(
 												Field::make('file', 'icon', __('Icon'))
-												->set_type( array('image/svg+xml') ),
+													->set_type(array('image/svg+xml')),
 												Field::make('select', 'icon_color', 'Text Color')
 													->set_options(
 														array(
