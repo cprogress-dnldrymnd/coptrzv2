@@ -5076,7 +5076,7 @@ Container::make('post_meta', 'Modules')
 									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
-							->set_header_template('<%- heading  %>'),
+							->set_layout('tabbed-vertical'),
 						Field::make('select', 'source', 'Source')
 							->set_options(
 								array(
