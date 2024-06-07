@@ -5313,6 +5313,7 @@ Container::make('post_meta', 'Modules')
 								array(
 									Field::make('text', 'custom_field_key', __('Custom Field Key')),
 									Field::make('text', 'custom_field_type', __('Custom Field Type')),
+									Field::make('text', 'custom_field_class', __('Wrapper Class')),
 								)
 							)
 							->set_header_template('Custom Field: <%- custom_field_key  %>')
@@ -5321,6 +5322,7 @@ Container::make('post_meta', 'Modules')
 								array(
 									Field::make('text', 'custom_field_key', __('Custom Field Key')),
 									Field::make('text', 'custom_field_type', __('Custom Field Type')),
+									Field::make('text', 'custom_field_class', __('Wrapper Class')),
 								)
 							)
 							->set_header_template('Custom Field: <%- custom_field_key  %>')
@@ -5329,6 +5331,7 @@ Container::make('post_meta', 'Modules')
 								array(
 									Field::make('text', 'custom_field_key', __('Custom Field Key')),
 									Field::make('text', 'custom_field_type', __('Custom Field Type')),
+									Field::make('text', 'custom_field_class', __('Wrapper Class')),
 								)
 							)
 							->set_header_template('Custom Field: <%- custom_field_key  %>')
@@ -5337,6 +5340,7 @@ Container::make('post_meta', 'Modules')
 								array(
 									Field::make('text', 'custom_field_key', __('Custom Field Key')),
 									Field::make('text', 'custom_field_type', __('Custom Field Type')),
+									Field::make('text', 'custom_field_class', __('Wrapper Class')),
 								)
 							)
 							->set_header_template('Custom Field: <%- custom_field_key  %>')
