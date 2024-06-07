@@ -4978,7 +4978,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('complex', 'styles', __('Styles'))
+						Field::make('complex', 'post_box_styles', __('Post Box Styles'))
 							->set_duplicate_groups_allowed(false)
 							->add_fields(
 								'background_color',
@@ -5112,7 +5112,6 @@ Container::make('post_meta', 'Modules')
 									Field::make('text', 'border_radius', 'Border Radius')
 								)
 							)
-
 							->add_fields(
 								'alignment',
 								array(
