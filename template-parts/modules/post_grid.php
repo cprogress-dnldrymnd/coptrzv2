@@ -61,7 +61,7 @@ $source = $module['post_type'][0]['source'];
             <?php
             $styles = $module['post_box_styles'];
             $classes = '';
-            $style_attribute = '';
+            $style_attribute_post = '';
             $style_attribute_inner = '';
             if ($styles) {
                 foreach ($styles as $style) {
@@ -71,7 +71,7 @@ $source = $module['post_type'][0]['source'];
                             if ($style['background_color'] != 'background-custom') {
                                 $classes .= ' ' . $style['background_color'];
                             } else {
-                                $style_attribute .= 'background-color: ' . $style['background_color_custom'] . ';';
+                                $style_attribute_post .= 'background-color: ' . $style['background_color_custom'] . ';';
                             }
                             break;
                         case 'padding':
@@ -82,8 +82,7 @@ $source = $module['post_type'][0]['source'];
                             $classes .= ' ' . $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
                             break;
                         case 'border_radius':
-                            echo $style['border_radius'];
-                            $style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
+                            $style_attribute_post .= 'border-radius: ' . $style['border_radius'] . ';';
                             break;
                         case 'alignment':
                             $classes .= ' ' . $style['align_items'] . ' ' . $style['justify_content'] . ' ' . $style['text_align'];
