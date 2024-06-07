@@ -96,7 +96,7 @@ $source = $module['post_type'][0]['source'];
                                     $style_attribute_inner .= 'max-width: ' . $style['max_width'] . ';';
                                     break;
                                 case 'column_width':
-                                    $column_class =  ($style['column_width'] ? $style['column_width'] : 'col-lg-4') . ' ' . $style['column_width_tablet'] . ' ' . ($style['column_width_mobile'] ? $style['column_width_mobile'] : 'col-sm-12');
+                                    $column_class =  ($style['column_width'] ? $style['column_width'] : 'col-lg-3') . ' ' . $style['column_width_tablet'] . ' ' . ($style['column_width_mobile'] ? $style['column_width_mobile'] : 'col-sm-12');
                                     break;
                             }
                         }
