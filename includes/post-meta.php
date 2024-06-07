@@ -4978,7 +4978,50 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('checkbox', 'disable_button', 'Disable Button'),
+						Field::make('complex', 'post_elements', 'Post Elements')
+							->add_fields(
+								'post_title',
+								array(
+									Field::make('select', 'text_color', 'Text Color')
+										->set_options(
+											array(
+												'text-primary'   => 'Primary',
+												'text-secondary' => 'Secondary',
+												'text-accent'    => 'Accent',
+												'text-white'     => 'White',
+												'text-light-gray'     => 'Light Gray',
+												'text-body-color'     => 'Body',
+												'text-custom'    => 'Custom',
+											)
+										),
+									Field::make('color', 'text_color_custom', __('Text Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'text_color',
+													'value' => 'text-custom',
+												)
+											)
+										),
+								)
+							)
+							->add_fields(
+								'featured_image',
+								array(
+									Field::make('image', 'image', 'Image'),
+									Field::make('checkbox', 'rounded_corners', __('Rounder Corners')),
+									Field::make('text', 'border_radius', __('Border Radius'))->set_help_text('Custom border radius')
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'rounded_corners',
+													'value' => true,
+												)
+											)
+										),
+								)
+							)
+							->set_header_template('<%- heading  %>'),
 						Field::make('select', 'source', 'Source')
 							->set_options(
 								array(
