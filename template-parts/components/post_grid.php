@@ -29,7 +29,6 @@ $post_elements = $module['post_elements'];
         }
 
         ?>
-        <?= do_shortcode('[_heading heading="' . get_the_title($id) . '" tag="h3"]') ?>
         <?= do_shortcode('[_description description="' . _format_text(get_the_excerpt($id)) . '" ]') ?>
         <?php if (get_post_type($id) == '3dmodellibraries') { ?>
             <?php
