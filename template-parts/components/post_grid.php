@@ -24,7 +24,7 @@ $post_elements = $module['post_elements'];
                 case 'featured_image':
                     $rounded_corners = $el['rounded_corners'] ? 'true' : 'false';
                     $image_id = get_post_thumbnail_id($id);
-                    echo do_shortcode('[_image size="' . $el['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $el['border_radius'] . '" id="' . $image_id . '" ]');
+                    echo do_shortcode('[_image class="image-absolute" size="' . $el['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $el['border_radius'] . '" id="' . $image_id . '" ]');
                     break;
             }
         }
