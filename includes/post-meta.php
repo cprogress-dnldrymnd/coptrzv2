@@ -5096,6 +5096,7 @@ Container::make('post_meta', 'Modules')
 												'category'      => 'Select by Category',
 											)
 										),
+
 									Field::make('association', 'post', 'Select Post')
 										->set_types(
 											array(
@@ -5110,6 +5111,24 @@ Container::make('post_meta', 'Modules')
 												array(
 													'field' => 'source',
 													'value' => 'manually',
+												)
+											)
+										),
+									Field::make('association', 'category', 'Select Testimonial Categories')
+										->set_types(
+											array(
+												array(
+													'type'      => 'term',
+													'taxonomy' => 'category',
+												)
+											)
+										)
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'source',
+													'value' => 'category',
+													'comapre' => '='
 												)
 											)
 										),
