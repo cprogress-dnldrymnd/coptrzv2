@@ -5045,30 +5045,35 @@ Container::make('post_meta', 'Modules')
 								'custom_field_1',
 								array(
 									Field::make('text', 'custom_field_key', __('Custom Field Key')),
+									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
 							->add_fields(
 								'custom_field_2',
 								array(
 									Field::make('text', 'custom_field_key', __('Custom Field Key')),
+									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
 							->add_fields(
 								'custom_field_3',
 								array(
 									Field::make('text', 'custom_field_key', __('Custom Field Key')),
+									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
 							->add_fields(
 								'custom_field_4',
 								array(
 									Field::make('text', 'custom_field_key', __('Custom Field Key')),
+									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
 							->add_fields(
 								'custom_field_5',
 								array(
 									Field::make('text', 'custom_field_key', __('Custom Field Key')),
+									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
 							->set_header_template('<%- heading  %>'),
