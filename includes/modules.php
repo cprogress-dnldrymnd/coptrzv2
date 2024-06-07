@@ -18,10 +18,16 @@ function _elements($data, $module_id, $same_height_images)
     ob_start();
     foreach ($data as $d) {
         $type = $d['_type'];
+        $class = '';
         switch ($type) {
             case 'heading':
-                $class = $d['size'];
-                $class .= $d['text_color'];
+                if ($d['size']) {
+                    $class .= $d['size'] . ' ';
+                }
+                if ($d['text_color']) {
+                    $class .= $d['text_color'] . ' ';
+                }
+
                 echo do_shortcode('[_heading tag="' . $d['tag'] . '" heading="' . $d['heading'] . '" class="' . $class . '"]');
                 break;
             case 'description':
