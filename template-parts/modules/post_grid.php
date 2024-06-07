@@ -1,6 +1,11 @@
 <?php
 $post_type = $module['post_type'][0]['_type'];
-echo $post_type;
+$source = $module['post_type'][0]['source'];
+$post = $module['post_type'][0]['post'];
+$category = $module['post_type'][0]['category'];
+
+
+
 /*
 foreach ($posts as $post) {
     $posts_ids[] = $post['id'];
@@ -30,10 +35,14 @@ foreach ($posts as $post) {
         <?php
         // Build the args
         $args = array(
-            'post_type' => $source,
+            'post_type' => $post_type,
             'post__in' => $posts_ids,
             'posts_per_page' => -1,
         );
+        
+        if($source == 'category') {
+            
+        }
 
         // Get the posts
         $posts = get_posts($args);
