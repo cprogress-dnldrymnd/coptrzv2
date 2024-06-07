@@ -60,7 +60,50 @@ $source = $module['post_type'][0]['source'];
         <?php if ($posts_lists) { ?>
             <div class="row g-4">
                 <?php foreach ($posts_lists as $post) { ?>
-                    <div class="<?= $number_of_columns ? $number_of_columns : 'col-lg-4' ?>">
+                    <?php
+                    $styles = $column['styles'];
+                    $classes = '';
+                    $style_attribute = '';
+                    $style_attribute_inner = '';
+                    if ($styles) {
+                        foreach ($styles as $style) {
+                            $style_type = $style['_type'];
+                            switch ($style_type) {
+                                case 'background_color':
+                                    if ($style['background_color'] != 'background-custom') {
+                                        $classes .= ' ' . $style['background_color'];
+                                    } else {
+                                        $style_attribute = 'background-color: ' . $style['background_color_custom'] . ';';
+                                    }
+                                    break;
+                                case 'padding':
+                                    $remove_image_padding = $style['remove_image_padding'] ? 'remove-image-padding' : '';
+                                    $classes .= ' ' . $style['padding_top'] . ' ' . $style['padding_bottom'] . ' ' . $style['padding_left'] . ' ' . $style['padding_right'] . ' ' . $remove_image_padding;
+                                    break;
+                                case 'margin':
+                                    $classes .= ' ' . $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
+                                    break;
+                                case 'border_radius':
+                                    $style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
+                                    break;
+                                case 'alignment':
+                                    $classes .= ' ' . $style['align_items'] . ' ' . $style['justify_content'] . ' ' . $style['text_align'];
+                                    break;
+                                case 'custom_class':
+                                    $classes .= ' ' .  $style['custom_class'];
+                                    break;
+                                case 'max_width':
+                                    $style_attribute_inner .= 'max-width: ' . $style['max_width'] . ';';
+                                    break;
+                                case 'column_width':
+                                    $column_class =  ($style['column_width'] ? $style['column_width'] : 'col-lg-4') . ' ' . $style['column_width_tablet'] . ' ' . ($style['column_width_mobile'] ? $style['column_width_mobile'] : 'col-sm-12');
+                                    break;
+                            }
+                        }
+                    }
+                    ?>
+
+                    <div class="<?= $column_class ?>">
                         <?php
                         $id = $post->ID;
                         include locate_template('template-parts/components/post_grid.php');

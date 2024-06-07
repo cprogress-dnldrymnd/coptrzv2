@@ -1,5 +1,5 @@
-<div class="post-grid h-100 rounded-corner p-5 post-<?= $id ?> <?= $class ?>" style="--border-radius: 10px; --padding: 40%">
-    <div class="content-margin h-100">
+<div class="post-grid post-<?= $id ?> <?= $classes ?>" style="<?= $style_attribute ?>;--padding: 40%">
+    <div class="inner content-margin <?= $style_attribute_inner ?>">
         <?php
         foreach ($post_elements as $el) {
             $type = $el['_type'];
