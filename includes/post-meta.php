@@ -5081,7 +5081,7 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->set_header_template('<%- custom_field_key  %>')
-							->set_layout('tabbed-vertical')
+							->set_layout('tabbed-vertical'),
 						Field::make('select', 'source', 'Source')
 							->set_options(
 								array(
