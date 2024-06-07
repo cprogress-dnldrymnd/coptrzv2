@@ -21,15 +21,14 @@ $post_elements = $module['post_elements'];
                     }
                     echo do_shortcode('[_heading style="' . $style_attribute . '" class="' . $class . '" heading="' . get_the_title($id) . '" tag="h3"]');
                     break;
-                case 'post_title':
-                    $class = $el['text_color'];
-                    echo do_shortcode('[_heading class="' . $class . '" heading="' . get_the_title($id) . '" tag="h3"]');
+                case 'featured_image':
+                    $rounded_corners = $el['rounded_corners'] ? 'true' : 'false';
+                    echo do_shortcode('[_image size="' . $el['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $el['border_radius'] . '" id="' . $el['image'] . '" ]');
                     break;
             }
         }
 
         ?>
-        <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . get_post_thumbnail_id($id) . '"]'); ?>
         <?= do_shortcode('[_heading heading="' . get_the_title($id) . '" tag="h3"]') ?>
         <?= do_shortcode('[_description description="' . _format_text(get_the_excerpt($id)) . '" ]') ?>
         <?php if (get_post_type($id) == '3dmodellibraries') { ?>
