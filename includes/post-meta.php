@@ -5082,12 +5082,20 @@ Container::make('post_meta', 'Modules')
 							)
 							->set_header_template('<%- custom_field_key  %>')
 							->set_layout('tabbed-vertical'),
-						Field::make('complex', 'source', 'Source')
+						Field::make('complex', 'post_type', 'Post Type')
 							->set_duplicate_groups_allowed(false)
 							->set_max(1)
 							->add_fields(
 								'post',
 								array(
+									Field::make('select', 'source', __('Source'))
+										->set_options(
+											array(
+												'all'      => 'Select All',
+												'manually'      => 'Select Manually',
+												'category'      => 'Select by Category',
+											)
+										),
 									Field::make('association', 'post', 'Select Post')
 										->set_types(
 											array(
@@ -5097,6 +5105,14 @@ Container::make('post_meta', 'Modules')
 												)
 											)
 										)
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'source',
+													'value' => 'manually',
+												)
+											)
+										),
 								)
 							)
 							->add_fields(
