@@ -1,5 +1,5 @@
 <div class="post-grid d-flex post-<?= $id ?> <?= $classes ?>" style="<?= $style_attribute_post ?>--padding: 40%">
-    <div class="inner content-margin-small" style="<?= $style_attribute_inner ?>">
+    <div class="inner content-margin-small w-100" style="<?= $style_attribute_inner ?>">
         <?php
         foreach ($post_elements as $el) {
             $type = $el['_type'];
