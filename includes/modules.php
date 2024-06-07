@@ -19,6 +19,7 @@ function _elements($data, $module_id, $same_height_images)
     foreach ($data as $d) {
         $type = $d['_type'];
         $class = '';
+        $style_attribute = '';
         switch ($type) {
             case 'heading':
                 if ($d['size']) {
@@ -28,7 +29,10 @@ function _elements($data, $module_id, $same_height_images)
                     $class .= $d['text_color'] . ' ';
                 }
 
-                echo do_shortcode('[_heading tag="' . $d['tag'] . '" heading="' . $d['heading'] . '" class="' . $class . '"]');
+                if ($d['text_color_custom']) {
+                    $style_attribute .= '--color: ' . $d['text_color_custom'];
+                }
+                echo do_shortcode('[_heading tag="' . $d['tag'] . '" heading="' . $d['heading'] . '" class="' . $class . '" style="' . $style_attribute . '"]');
                 break;
             case 'description':
                 echo do_shortcode("[_description description='" . _format_text($d['description']) . "']");

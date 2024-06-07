@@ -35,6 +35,7 @@ class Elements_Shortcodes
                 array(
                     'heading'       => '',
                     'heading_small' => '',
+                    'style' => '',
                     'tag'           => '',
                     'heading_prefix'     => '',
                     'heading_suffix'     => '',
