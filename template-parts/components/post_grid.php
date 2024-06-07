@@ -23,7 +23,8 @@ $post_elements = $module['post_elements'];
                     break;
                 case 'featured_image':
                     $rounded_corners = $el['rounded_corners'] ? 'true' : 'false';
-                    echo do_shortcode('[_image size="' . $el['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $el['border_radius'] . '" id="' . $el['image'] . '" ]');
+                    $image_id = get_post_thumbnail_id($id);
+                    echo do_shortcode('[_image size="' . $el['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $el['border_radius'] . '" id="' . $image_id . '" ]');
                     break;
             }
         }
