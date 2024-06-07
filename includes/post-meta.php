@@ -4969,7 +4969,7 @@ Container::make('post_meta', 'Modules')
 									'solutions' 	=> 'Solutions',
 									'guides' 	=> 'Guides',
 									'casestudies' 	=> 'Case Studies',
-									'teams' 	=> 'Teams',
+									'team' 	=> 'Teams',
 								)
 							),
 						Field::make('association', 'post', 'Select Post')
@@ -5028,7 +5028,7 @@ Container::make('post_meta', 'Modules')
 								array(
 									array(
 										'type'      => 'post',
-										'post_type' => 'teams',
+										'post_type' => 'team',
 									)
 								)
 							)
@@ -5036,7 +5036,7 @@ Container::make('post_meta', 'Modules')
 								array(
 									array(
 										'field' => 'source',
-										'value' => 'teams',
+										'value' => 'team',
 									)
 								)
 							),
