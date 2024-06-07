@@ -4983,8 +4983,7 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'post_title',
 								array(
-									->set_width(20),
-									Field::make('select', 'size', __('Heading Size'))->set_width(20)
+									Field::make('select', 'size', __('Heading Size'))
 										->set_options(
 											array(
 												'' => 'Default',
