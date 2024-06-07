@@ -61,7 +61,6 @@ foreach ($posts as $post) {
                         <?php
                         $id = $post->ID;
                         include locate_template('template-parts/components/post_grid.php');
-                        $post_elements = array();
                         ?>
                     </div>
                 <?php } ?>
