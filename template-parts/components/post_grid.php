@@ -35,6 +35,14 @@ $post_elements = $module['post_elements'];
                     break;
                 case 'custom_field_1':
                 case 'custom_field_2':
+                    $custom_field_type = $el['custom_field_type'];
+                    switch ($custom_field_type) {
+                        case 'text':
+                            echo '<div class="custom-field ' . $el['custom_field_class'] . '">';
+                            echo get_post_meta($id, $el['custom_field_key'], true);
+                            echo '</div>';
+                            break;
+                    }
                     echo 'test';
                     break;
             }
