@@ -4983,6 +4983,16 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'post_title',
 								array(
+									->set_width(20),
+									Field::make('select', 'size', __('Heading Size'))->set_width(20)
+										->set_options(
+											array(
+												'' => 'Default',
+												'big-heading' => 'Big Heading',
+												'medium-heading' => 'Medium Heading',
+												'small-heading' => 'Small Heading',
+											)
+										),
 									Field::make('select', 'text_color', 'Text Color')
 										->set_options(
 											array(

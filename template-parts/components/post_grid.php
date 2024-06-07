@@ -5,11 +5,25 @@ $post_elements = $module['post_elements'];
 <div class="post-grid h-100 rounded-corner p-5 post-<?= $id ?> <?= $class ?>" style="--border-radius: 10px; --padding: 20%">
     <div class="content-margin h-100">
         <?php
-        foreach ($post_elements as $post_elements) {
-            $type = $post_elements['_type'];
+        foreach ($post_elements as $el) {
+            $type = $el['_type'];
             switch ($type) {
                 case 'post_title':
-                    do_shortcode('[_heading heading="' . get_the_title($id) . '" tag="h3"]');
+                    if ($el['size']) {
+                        $class .= $el['size'] . ' ';
+                    }
+                    if ($el['text_color']) {
+                        $class .= $el['text_color'] . ' ';
+                    }
+
+                    if ($el['text_color_custom']) {
+                        $style_attribute .= '--color: ' . $el['text_color_custom'];
+                    }
+                    echo do_shortcode('[_heading style="' . $style_attribute . '" class="' . $class . '" heading="' . get_the_title($id) . '" tag="h3"]');
+                    break;
+                case 'post_title':
+                    $class = $el['text_color'];
+                    echo do_shortcode('[_heading class="' . $class . '" heading="' . get_the_title($id) . '" tag="h3"]');
                     break;
             }
         }

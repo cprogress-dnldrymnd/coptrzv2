@@ -13,6 +13,7 @@ function output_svg_from_url($url)
     // Output the sanitized SVG
     echo $content;
 }
+
 function _elements($data, $module_id, $same_height_images)
 {
     ob_start();
