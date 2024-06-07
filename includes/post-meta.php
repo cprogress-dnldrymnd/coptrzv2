@@ -4969,6 +4969,7 @@ Container::make('post_meta', 'Modules')
 									'solutions' 	=> 'Solutions',
 									'guides' 	=> 'Guides',
 									'casestudies' 	=> 'Case Studies',
+									'teams' 	=> 'Teams',
 								)
 							),
 						Field::make('association', 'post', 'Select Post')
