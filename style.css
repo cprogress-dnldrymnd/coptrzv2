@@ -13912,7 +13912,7 @@ a.fancybox-gallery-img {
     .accordion.accordion-v2 .accordion-item .accordion-header .accordion-button:after {
       display: none; }
   .accordion.accordion-v2 .accordion-item .description-box {
-    padding-top: 30px;
+    padding-top: 0;
     padding-bottom: 30px; }
 
 .post-grid-style-1 {
