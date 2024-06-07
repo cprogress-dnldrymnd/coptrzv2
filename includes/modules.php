@@ -2,7 +2,7 @@
 
 function _format_text($text)
 {
-    return html_entity_encode($text);
+    return htmlentities($text);
 }
 function output_svg_from_url($url)
 {
