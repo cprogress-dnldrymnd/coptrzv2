@@ -1,6 +1,5 @@
 <?php
 $number_of_columns = $module['number_of_columns'];
-$post_elements = $module['post_elements'];
 $post_type = $module['post_type'][0]['_type'];
 $source = $module['post_type'][0]['source'];
 $posts = $module['post_type'][0]['post'];
