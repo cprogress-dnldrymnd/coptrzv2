@@ -17468,7 +17468,8 @@ section.columns.numbered-boxes .row {
     section.columns.numbered-boxes .row > [class*="col-"] .column-holder:before {
       content: "0" counter(section);
       font-size: 150px;
-      line-height: 1; }
+      line-height: 1;
+      margin-right: 1rem; }
 
 ul.custom-products.custom-products.custom-products li.product .inner {
   border-radius: 10px;
