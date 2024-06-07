@@ -1,4 +1,5 @@
 <?php
+$number_of_columns = $module['number_of_columns'];
 $post_elements = $module['post_elements'];
 $post_type = $module['post_type'][0]['_type'];
 $source = $module['post_type'][0]['source'];
@@ -54,7 +55,7 @@ foreach ($posts as $post) {
         <?php if ($posts_lists) { ?>
             <div class="row g-4">
                 <?php foreach ($posts_lists as $post) { ?>
-                    <div class="col-lg-4">
+                    <div class="<?= $number_of_columns ? 'number_of_columns' : 'col-lg-4' ?>">
                         <?php
                         $id = $post->ID;
                         include locate_template('template-parts/components/post_grid.php');
