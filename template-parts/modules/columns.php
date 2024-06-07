@@ -32,6 +32,9 @@ $numbered_boxes = $module['numbered_boxes'] ? 'numbered-boxes' : '';
                         $classes = '';
                         $style_attribute = '';
                         $style_attribute_inner = '';
+                        if($numbered_boxes) {
+                            $classes .= 'ms-auto me-auto';
+                        }
                         $column_id = 'column-' . $key . '-' . $module_id;
                         if ($styles) {
                             foreach ($styles as $style) {
@@ -71,8 +74,8 @@ $numbered_boxes = $module['numbered_boxes'] ? 'numbered-boxes' : '';
                         }
                         ?>
                         <div class="<?= $column_class ? $column_class : 'col-lg' ?>" id="<?= $column_id ?>">
-                            <div class="column-holder h-100 d-flex overflow-hidden <?= $classes ?>" style="<?= $style_attribute ?>">
-                                <div class="inner content-margin position-relative w-100" style="<?= $style_attribute_inner ?>">
+                            <div class="column-holder h-100 d-flex overflow-hidden <?= $classes ?> " style="<?= $style_attribute ?> <?= $numbered_boxes ? $style_attribute_inner : ''  ?>">
+                                <div class="inner content-margin position-relative w-100" style="<?= $numbered_boxes ? '' : $style_attribute_inner ?>">
                                     <?php
                                     if ($column['button_url']) {
                                         echo do_shortcode('[_button class="column-button" id="' . $column['button_url'] . '" button_url_custom="' . $column['button_url_custom'] . '" button_type="' . $column['button_type'] . '" button_text="" ]');

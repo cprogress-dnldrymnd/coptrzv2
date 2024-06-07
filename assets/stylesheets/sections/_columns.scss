@@ -8,6 +8,7 @@ section.columns {
                     &:before {
                         content: "0" counter(section);
                         font-size: 150px;
+                        line-height: 1;
                     }
                 }
             }
