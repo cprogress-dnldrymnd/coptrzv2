@@ -5063,7 +5063,7 @@ Container::make('post_meta', 'Modules')
 									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
-							->set_header_template('<%- custom_field_key  %>')
+							->set_header_template('Custom Field: <%- custom_field_key  %>')
 							->add_fields(
 								'custom_field_2',
 								array(
@@ -5071,7 +5071,7 @@ Container::make('post_meta', 'Modules')
 									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
-							->set_header_template('<%- custom_field_key  %>')
+							->set_header_template('Custom Field: <%- custom_field_key  %>')
 							->add_fields(
 								'custom_field_3',
 								array(
@@ -5079,7 +5079,7 @@ Container::make('post_meta', 'Modules')
 									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
-							->set_header_template('<%- custom_field_key  %>')
+							->set_header_template('Custom Field: <%- custom_field_key  %>')
 							->add_fields(
 								'custom_field_4',
 								array(
@@ -5087,7 +5087,7 @@ Container::make('post_meta', 'Modules')
 									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
-							->set_header_template('<%- custom_field_key  %>')
+							->set_header_template('Custom Field: <%- custom_field_key  %>')
 							->add_fields(
 								'custom_field_5',
 								array(
@@ -5095,7 +5095,7 @@ Container::make('post_meta', 'Modules')
 									Field::make('text', 'custom_field_type', __('Custom Field Type')),
 								)
 							)
-							->set_header_template('<%- custom_field_key  %>')
+							->set_header_template('Custom Field: <%- custom_field_key  %>')
 							->set_layout('tabbed-vertical'),
 						Field::make('complex', 'post_type', 'Post Type')
 							->set_duplicate_groups_allowed(false)
