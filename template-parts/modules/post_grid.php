@@ -82,6 +82,7 @@ $source = $module['post_type'][0]['source'];
                             $classes .= ' ' . $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
                             break;
                         case 'border_radius':
+                            echo $style['border_radius'];
                             $style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
                             break;
                         case 'alignment':
