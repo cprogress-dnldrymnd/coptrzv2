@@ -1,4 +1,4 @@
-<div class="post-grid post-<?= $id ?> <?= $classes ?>" style="<?= $style_attribute ?>;--padding: 40%">
+<div class="post-grid d-flex post-<?= $id ?> <?= $classes ?>" style="<?= $style_attribute ?>;--padding: 40%">
     <div class="inner content-margin" style="<?= $style_attribute_inner ?>">
         <?php
         foreach ($post_elements as $el) {
