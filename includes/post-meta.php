@@ -4978,6 +4978,15 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
+						Field::make('select', 'number_of_columns', 'Number of Columns')->set_width(20)
+							->set_options(
+								array(
+									'col-lg-12'                => '1',
+									'col-lg-6'                => '2',
+									'col-lg-4'                => '3',
+									'col-lg-3'                => '4',
+								)
+							),
 						Field::make('complex', 'post_elements', 'Post Elements')
 							->set_duplicate_groups_allowed(false)
 							->add_fields(
@@ -5147,7 +5156,7 @@ Container::make('post_meta', 'Modules')
 										),
 								)
 							)
-							
+
 							->add_fields(
 								'team',
 								array(
@@ -5198,7 +5207,7 @@ Container::make('post_meta', 'Modules')
 										),
 								)
 							)
-							
+
 							->add_fields(
 								'product',
 								array(
@@ -5236,7 +5245,7 @@ Container::make('post_meta', 'Modules')
 										),
 								)
 							)
-						
+
 							->add_fields(
 								'casestudies',
 								array(
