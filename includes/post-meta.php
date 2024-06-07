@@ -5040,20 +5040,15 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'permalink',
 								array(
-									Field::make('select', 'button_type', __('Button Type'))->set_width(20)->set_classes('trigger-selector')
+									Field::make('select', 'button_style', __('Button Style'))->set_width(20)
 										->set_options(
 											array(
-												''          => 'Select Button Type',
-												'page'      => 'Page',
-												'product'      => 'Product',
-												'guides'      => 'Guides',
-												'casestudies'      => 'Case Studies',
-												'post'      => 'Post',
-												'solutions' => 'Solution',
-												'popups'    => 'Popup',
-												'custom'    => 'Custom',
+												'button-accent'      => 'Accent',
+												'button-primary'      => 'Primary',
+												'button-secondary' => 'Secondary',
+												'button-white' => 'White',
+												'button-bordered'    => 'Bordered',
 											)
-										),
 								)
 							)
 							->add_fields(

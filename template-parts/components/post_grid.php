@@ -27,32 +27,15 @@ $post_elements = $module['post_elements'];
                     echo do_shortcode('[_image class="image-absolute" size="' . $el['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $el['border_radius'] . '" id="' . $image_id . '" ]');
                     break;
                 case 'post_excerpt':
-                    echo do_shortcode('[_description description="' . _format_text(get_the_excerpt($id)) . '" ]') ;
+                    echo do_shortcode('[_description description="' . _format_text(get_the_excerpt($id)) . '" ]');
+                    break;
+
+                case 'permalink':
+                    echo do_shortcode('[_button id="' . $id . '"  button_type="' . get_post_type($id) . '" button_text="Read More" ]');
+
                     break;
             }
         }
-
         ?>
-        <?php if (get_post_type($id) == '3dmodellibraries') { ?>
-            <?php
-            $captured_by = get__post_meta_by_id($id, 'captured_by');
-            ?>
-            <div class="button-box button-accent">
-                <button description='<?= _format_text(get_the_content(null, false, $id)) ?>' title="<?= get_the_title($id) ?>" id="modal-button-<?= $id ?>" data-bs-toggle="modal" data-bs-target="#modal-<?= $popup_id ?>">
-                    View Model
-                </button>
-            </div>
-
-            <?php if ($captured_by) { ?>
-                <p>
-                    Captured by
-                </p>
-                <?= do_shortcode('[_image id="' . $captured_by . '"]'); ?>
-            <?php } ?>
-        <?php } else { ?>
-
-            <?= do_shortcode('[_button id="' . $id . '"  button_type="' . get_post_type($id) . '" button_text="Read More" ]'); ?>
-
-        <?php } ?>
     </div>
 </div>
