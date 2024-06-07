@@ -1,6 +1,5 @@
 <?php
 $source = $module['source'];
-echo $source;
 ?>
 <section class="post-grid position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
@@ -26,15 +25,8 @@ echo $source;
         <?php
         // Build the args
         $args = array(
-            'post_type' => $module['post_type_key'],
+            'post_type' => $source,
             'posts_per_page' => -1,
-            'tax_query' => array(
-                array(
-                    'taxonomy' => $module['taxonomy_key'],
-                    'field' => 'id',
-                    'terms' => $term->term_id,
-                )
-            )
         );
 
         // Get the posts
