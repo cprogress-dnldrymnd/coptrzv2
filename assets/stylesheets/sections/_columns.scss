@@ -1,0 +1,13 @@
+section.columns {
+    &.numbered-boxes {
+        .row {
+            counter-reset: section;
+            > [class*="col-"] {
+                counter-increment: section;
+                &:before {
+                    content: counter(section);
+                }
+            }
+        }
+    }
+}

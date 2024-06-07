@@ -17461,6 +17461,13 @@ section.customer-reviews .mySwiper-Reviews .review-box {
     section.customer-reviews .mySwiper-Reviews .review-box {
       flex-direction: column; } }
 
+section.columns.numbered-boxes .row {
+  counter-reset: section; }
+  section.columns.numbered-boxes .row > [class*="col-"] {
+    counter-increment: section; }
+    section.columns.numbered-boxes .row > [class*="col-"]:before {
+      content: counter(section); }
+
 ul.custom-products.custom-products.custom-products li.product .inner {
   border-radius: 10px;
   overflow: hidden;
