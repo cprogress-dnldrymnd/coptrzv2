@@ -14778,6 +14778,9 @@ a.fancybox-gallery-img {
 .text-accent * {
   color: var(--accent-color) !important; }
 
+.text-custom * {
+  color: var(--color); }
+
 /*Others*/
 .with-separator > *:not(:last-child):after {
   content: "";
