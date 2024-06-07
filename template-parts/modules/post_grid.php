@@ -1,5 +1,12 @@
 <?php
 $source = $module['source'];
+$posts = $module[$source];
+$posts_ids = array();
+
+foreach ($posts as $post) {
+    $posts_ids[] = $post['id'];
+}
+
 ?>
 <section class="post-grid position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
     <?php
@@ -26,6 +33,7 @@ $source = $module['source'];
         // Build the args
         $args = array(
             'post_type' => $source,
+            'post__in' => $posts_ids,
             'posts_per_page' => -1,
         );
 
