@@ -43,7 +43,7 @@ foreach ($posts as $post) {
         ?>
 
         <?php if ($posts) { ?>
-            <div class="row">
+            <div class="row g-4">
                 <?php foreach ($posts as $post) { ?>
                     <div class="col-lg-4">
                         <?= do_shortcode('[post_grid popup_id="' . $popup_id . '" class="background-primary" id="' . $post->ID . '"]') ?>
