@@ -5049,6 +5049,7 @@ Container::make('post_meta', 'Modules')
 												'button-white' => 'White',
 												'button-bordered'    => 'Bordered',
 											)
+										),
 								)
 							)
 							->add_fields(
