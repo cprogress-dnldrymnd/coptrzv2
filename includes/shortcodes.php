@@ -592,7 +592,7 @@ class Shortcodes
 		$type = 'case-study';
 		$class = 'mySwiper-ReviewsCaseStudy';
 		echo '<section class="customer-reviews">';
-		locate_template('template-parts/modules/_customer_reviews.php');
+		include(get_stylesheet_directory() . '/template-parts/modules/_customer_reviews.php');
 		echo '</section>';
 
 		return ob_get_clean();
@@ -602,7 +602,7 @@ class Shortcodes
 	{
 		ob_start();
 		echo '<section class="customer-reviews background-primary md-padding">';
-		locate_template('template-parts/modules/_customer_reviews.php');
+		include(get_stylesheet_directory() . '/template-parts/modules/_customer_reviews.php');
 		echo '</section>';
 
 		return ob_get_clean();
@@ -745,7 +745,7 @@ class Shortcodes
 	function related_posts()
 	{
 		ob_start();
-		locate_template('template-parts/single/single-post/related.php');
+		include(get_stylesheet_directory() . '/template-parts/single/single-post/related.php');
 		return ob_get_clean();
 	}
 
@@ -754,14 +754,14 @@ class Shortcodes
 	{
 		ob_start();
 		$post_is_global = true;
-		locate_template('template-parts/modules/_scrolling_section.php');
+		include(get_stylesheet_directory() . '/template-parts/modules/_scrolling_section.php');
 		return ob_get_clean();
 	}
 
 	function brands_slider()
 	{
 		ob_start();
-		locate_template('template-parts/global/vendor-slider.php');
+		include(get_stylesheet_directory() . '/template-parts/global/vendor-slider.php');
 		return ob_get_clean();
 	}
 
@@ -821,21 +821,21 @@ class Shortcodes
 				$atts
 			)
 		);
-		locate_template('template-parts/shortcodes/popup.php');
+		include(get_stylesheet_directory() . '/template-parts/shortcodes/popup.php');
 		return ob_get_clean();
 	}
 
 	function mini_cart()
 	{
 		ob_start();
-		locate_template('template-parts/shortcodes/mini_cart.php');
+		include(get_stylesheet_directory() . '/template-parts/shortcodes/mini_cart.php');
 		return ob_get_clean();
 	}
 
 	function search_form()
 	{
 		ob_start();
-		locate_template('template-parts/shortcodes/search_form.php');
+		include(get_stylesheet_directory() . '/template-parts/shortcodes/search_form.php');
 		return ob_get_clean();
 	}
 
@@ -850,7 +850,7 @@ class Shortcodes
 				$atts
 			)
 		);
-		locate_template('template-parts/shortcodes/mega_menu.php');
+		include(get_stylesheet_directory() . '/template-parts/shortcodes/mega_menu.php');
 		return ob_get_clean();
 	}
 
@@ -868,7 +868,7 @@ class Shortcodes
 				$atts
 			)
 		);
-		locate_template('template-parts/shortcodes/post_grid.php');
+		include(get_stylesheet_directory() . '/template-parts/shortcodes/post_grid.php');
 		return ob_get_clean();
 	}
 	function brands_grid($atts)
@@ -882,7 +882,7 @@ class Shortcodes
 				$atts
 			)
 		);
-		locate_template('template-parts/shortcodes/brands.php');
+		include(get_stylesheet_directory() . '/template-parts/shortcodes/brands.php');
 		return ob_get_clean();
 	}
 }
