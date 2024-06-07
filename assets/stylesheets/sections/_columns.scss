@@ -5,7 +5,7 @@ section.columns {
             > [class*="col-"] {
                 counter-increment: section;
                 &:before {
-                    content: counter(section);
+                    content: "0" counter(section);
                 }
             }
         }
