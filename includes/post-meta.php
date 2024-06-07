@@ -5005,6 +5005,7 @@ Container::make('post_meta', 'Modules')
 										),
 								)
 							)
+							->set_duplicate_groups_allowed(false)
 							->add_fields(
 								'featured_image',
 								array(
@@ -5017,6 +5018,26 @@ Container::make('post_meta', 'Modules')
 													'field' => 'rounded_corners',
 													'value' => true,
 												)
+											)
+										),
+								)
+							)
+							->set_duplicate_groups_allowed(true)
+							->add_fields(
+								'permalink',
+								array(
+									Field::make('select', 'button_type', __('Button Type'))->set_width(20)->set_classes('trigger-selector')
+										->set_options(
+											array(
+												''          => 'Select Button Type',
+												'page'      => 'Page',
+												'product'      => 'Product',
+												'guides'      => 'Guides',
+												'casestudies'      => 'Case Studies',
+												'post'      => 'Post',
+												'solutions' => 'Solution',
+												'popups'    => 'Popup',
+												'custom'    => 'Custom',
 											)
 										),
 								)
