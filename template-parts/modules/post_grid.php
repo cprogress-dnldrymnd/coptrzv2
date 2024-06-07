@@ -42,14 +42,15 @@ foreach ($posts as $post) {
         } else if ($source == 'manually') {
             $args['post__in'] = $posts_ids;
         }
+        var_dump($args);
 
         // Get the posts
-        $posts = get_posts($args);
+        $posts_lists = get_posts($args);
         ?>
 
-        <?php if ($posts) { ?>
+        <?php if ($posts_lists) { ?>
             <div class="row g-4">
-                <?php foreach ($posts as $post) { ?>
+                <?php foreach ($posts_lists as $post) { ?>
                     <div class="col-lg-4">
                         <?php
                         $id = $post->ID;
