@@ -17,7 +17,7 @@
                     if ($el['text_color_custom']) {
                         $style_attribute .= '--color: ' . $el['text_color_custom'];
                     }
-                    echo do_shortcode('[_heading style="' . $style_attribute . '" class="' . $class . '" heading="' . get_the_title($id) . '" tag="h3"]');
+                    echo do_shortcode('[_heading size="' . $el['size'] . '" style="' . $style_attribute . '" class="' . $class . '" heading="' . get_the_title($id) . '" tag="h3"]');
                     break;
                 case 'featured_image':
                     $rounded_corners = $el['rounded_corners'] ? 'true' : 'false';
