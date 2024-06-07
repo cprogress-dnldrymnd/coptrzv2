@@ -43,10 +43,6 @@ foreach ($posts as $post) {
         } else if ($source == 'manually') {
             $args['post__in'] = $posts_ids;
         }
-        echo '<pre>';
-        var_dump($args);
-        echo '</pre>';
-
         // Get the posts
         $posts_lists = get_posts($args);
         $post_elements = $module['post_elements'];
