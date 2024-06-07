@@ -34,6 +34,7 @@ $post_elements = $module['post_elements'];
                     echo do_shortcode('[_button class="' . $el['button_style'] . '" id="' . $id . '"  button_type="' . get_post_type($id) . '" button_text="Read More" ]');
                     break;
                 case 'custom_field_1':
+                case 'custom_field_2':
                     $custom_field_type = $el['custom_field_type'];
                     switch ($custom_field_type) {
                         case 'text':
