@@ -3,9 +3,11 @@ section.columns {
         .row {
             counter-reset: section;
             > [class*="col-"] {
-                counter-increment: section;
-                &:before {
-                    content: "0" counter(section);
+                .inner {
+                    counter-increment: section;
+                    &:before {
+                        content: "0" counter(section);
+                    }
                 }
             }
         }

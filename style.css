@@ -17463,9 +17463,9 @@ section.customer-reviews .mySwiper-Reviews .review-box {
 
 section.columns.numbered-boxes .row {
   counter-reset: section; }
-  section.columns.numbered-boxes .row > [class*="col-"] {
+  section.columns.numbered-boxes .row > [class*="col-"] .inner {
     counter-increment: section; }
-    section.columns.numbered-boxes .row > [class*="col-"]:before {
+    section.columns.numbered-boxes .row > [class*="col-"] .inner:before {
       content: "0" counter(section); }
 
 ul.custom-products.custom-products.custom-products li.product .inner {
