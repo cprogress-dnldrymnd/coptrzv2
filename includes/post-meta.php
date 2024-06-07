@@ -5088,7 +5088,7 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'post',
 								array(
-									Field::make('text', 'taxonomy_key', __('Taxonomy Key'))->set_default_value('category'),
+									Field::make('hidden', 'taxonomy_key', __('Taxonomy Key'))->set_default_value('category'),
 									Field::make('select', 'source', __('Source'))
 										->set_options(
 											array(
