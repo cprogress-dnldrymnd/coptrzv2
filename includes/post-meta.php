@@ -4978,16 +4978,244 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('select', 'number_of_columns', 'Number of Columns')->set_width(20)
-							->set_options(
+						Field::make('complex', 'styles', __('Styles'))
+							->set_duplicate_groups_allowed(false)
+							->add_fields(
+								'background_color',
 								array(
-									'col-lg-12'                => 1,
-									'col-lg-6'                => 2,
-									'col-lg-4'                => 3,
-									'col-lg-3'                => 4,
+									Field::make('select', 'background_color', 'Background Color')
+										->set_options(
+											array(
+												'background-primary'   => 'Primary',
+												'background-secondary' => 'Secondary',
+												'background-accent'    => 'Accent',
+												'background-white'     => 'White',
+												'background-light-gray'     => 'Light Gray',
+												'background-body-color'     => 'Body',
+												'background-custom'    => 'Custom',
+											)
+										),
+									Field::make('color', 'background_color_custom', __('Background Color'))
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'background_color',
+													'value' => 'background-custom',
+												)
+											)
+										),
 								)
 							)
-							->set_default_value('col-lg-3'),
+							->add_fields(
+								'padding',
+								array(
+									Field::make('select', 'padding_top', 'Padding Top')
+										->set_options(
+											array(
+												''                => 'No Padding',
+												'xl-padding-top'  => 'Extra Large',
+												'lg-padding-top'  => 'Large',
+												'md-padding-top'  => 'Medium',
+												'sm-padding-top'  => 'Small',
+												'xxs-padding-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_bottom', 'Padding Bottom')
+										->set_options(
+											array(
+												''                   => 'No Padding',
+												'xl-padding-bottom'  => 'Extra Large',
+												'lg-padding-bottom'  => 'Large',
+												'md-padding-bottom'  => 'Medium',
+												'sm-padding-bottom'  => 'Small',
+												'xxs-padding-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_left', 'Padding left')
+										->set_options(
+											array(
+												''                 => 'No Padding',
+												'xl-padding-left'  => 'Extra Large',
+												'lg-padding-left'  => 'Large',
+												'md-padding-left'  => 'Medium',
+												'sm-padding-left'  => 'Small',
+												'xxs-padding-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'padding_right', 'Padding right')
+										->set_options(
+											array(
+												''                  => 'No Padding',
+												'xl-padding-right'  => 'Extra Large',
+												'lg-padding-right'  => 'Large',
+												'md-padding-right'  => 'Medium',
+												'sm-padding-right'  => 'Small',
+												'xxs-padding-right' => 'Extra Small',
+											)
+										),
+									Field::make('checkbox', 'remove_image_padding', 'Remove Image Padding')
+
+								)
+							)
+							->add_fields(
+								'margin',
+								array(
+									Field::make('select', 'margin_top', 'margin Top')
+										->set_options(
+											array(
+												''               => 'No margin',
+												'xl-margin-top'  => 'Extra Large',
+												'lg-margin-top'  => 'Large',
+												'md-margin-top'  => 'Medium',
+												'sm-margin-top'  => 'Small',
+												'xxs-margin-top' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_bottom', 'margin Bottom')
+										->set_options(
+											array(
+												''                  => 'No margin',
+												'xl-margin-bottom'  => 'Extra Large',
+												'lg-margin-bottom'  => 'Large',
+												'md-margin-bottom'  => 'Medium',
+												'sm-margin-bottom'  => 'Small',
+												'xxs-margin-bottom' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_left', 'margin left')
+										->set_options(
+											array(
+												''                => 'No margin',
+												'xl-margin-left'  => 'Extra Large',
+												'lg-margin-left'  => 'Large',
+												'md-margin-left'  => 'Medium',
+												'sm-margin-left'  => 'Small',
+												'xxs-margin-left' => 'Extra Small',
+											)
+										),
+									Field::make('select', 'margin_right', 'margin right')
+										->set_options(
+											array(
+												''                 => 'No margin',
+												'xl-margin-right'  => 'Extra Large',
+												'lg-margin-right'  => 'Large',
+												'md-margin-right'  => 'Medium',
+												'sm-margin-right'  => 'Small',
+												'xxs-margin-right' => 'Extra Small',
+											)
+										),
+								)
+							)
+							->add_fields(
+								'border_radius',
+								array(
+									Field::make('text', 'border_radius', 'Border Radius')
+								)
+							)
+
+							->add_fields(
+								'alignment',
+								array(
+									Field::make('select', 'align_items', 'Align Items')
+										->set_options(
+											array(
+												''               => 'Default',
+												'align-items-start'  => 'Start',
+												'align-items-center'  => 'Center',
+												'align-items-end'  => 'End',
+											)
+										),
+									Field::make('select', 'justify_content', 'Justify Content')
+										->set_options(
+											array(
+												''                  => 'Default',
+												'justify-content-start'  => 'Start',
+												'justify-content-center'  => 'Center',
+												'justify-content-end'  => 'End',
+												'justify-content-between'  => 'Between',
+											)
+										),
+									Field::make('select', 'text_align', 'Text Align')
+										->set_options(
+											array(
+												''                => 'Default',
+												'text-start'                => 'Left',
+												'text-center'                => 'Center',
+												'text-end'                => 'Right',
+												'text-justify'                => 'Justify',
+											)
+										),
+								)
+							)
+							->add_fields(
+								'custom_class',
+								array(
+									Field::make('text', 'custom_class', 'Custom Class')
+								)
+							)
+							->add_fields(
+								'max_width',
+								array(
+									Field::make('text', 'max_width', 'Max Width')
+								)
+							)
+							->add_fields(
+								'column_width',
+								array(
+									Field::make('select', 'column_width', __('Column Width Desktop'))
+										->set_options(
+											array(
+												'col-lg' 	=> 'Default',
+												'col-12'    => '100.00%',
+												'col-lg-11' => '91.67%',
+												'col-lg-10' => '83.33%',
+												'col-lg-9'  => '75.00%',
+												'col-lg-7'  => '58.33%',
+												'col-lg-6'  => '50.00%',
+												'col-lg-5'  => '67.00%',
+												'col-lg-4'  => '33.33%',
+												'col-lg-3'  => '25.00%',
+												'col-lg-2'  => '16.67%',
+												'col-lg-1'  => '08.33%',
+											)
+										),
+									Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
+										->set_options(
+											array(
+												'' 	=> 'Default',
+												'col-12'    => '100.00%',
+												'col-md-11' => '91.67%',
+												'col-md-10' => '83.33%',
+												'col-md-9'  => '75.00%',
+												'col-md-7'  => '58.33%',
+												'col-md-6'  => '50.00%',
+												'col-md-5'  => '67.00%',
+												'col-md-4'  => '33.33%',
+												'col-md-3'  => '25.00%',
+												'col-md-2'  => '16.67%',
+												'col-md-1'  => '08.33%',
+											)
+										),
+									Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
+										->set_options(
+											array(
+												'' 	=> 'Default',
+												'col-12'    => '100.00%',
+												'col-sm-11' => '91.67%',
+												'col-sm-10' => '83.33%',
+												'col-sm-9'  => '75.00%',
+												'col-sm-7'  => '58.33%',
+												'col-sm-6'  => '50.00%',
+												'col-sm-5'  => '67.00%',
+												'col-sm-4'  => '33.33%',
+												'col-sm-3'  => '25.00%',
+												'col-sm-2'  => '16.67%',
+												'col-sm-1'  => '08.33%',
+											)
+										),
+								)
+							)
+							->set_layout('tabbed-vertical'),
 						Field::make('complex', 'post_elements', 'Post Elements')
 							->set_duplicate_groups_allowed(false)
 							->add_fields(
