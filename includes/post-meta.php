@@ -5034,7 +5034,7 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'post_excerpt',
 								array(
-									Field::make('text', 'excerpt_length')->set_html('Custom Excerpt Length'),
+									Field::make('text', 'excerpt_length', 'Custom Excerpt Length')
 								)
 							)
 							->add_fields(
