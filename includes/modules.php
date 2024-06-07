@@ -20,7 +20,9 @@ function _elements($data, $module_id, $same_height_images)
         $type = $d['_type'];
         switch ($type) {
             case 'heading':
-                echo do_shortcode('[_heading tag="' . $d['tag'] . '" heading="' . $d['heading'] . '" class="' . $d['size'] . '"]');
+                $class = $d['size'];
+                $class .= $d['text_color'];
+                echo do_shortcode('[_heading tag="' . $d['tag'] . '" heading="' . $d['heading'] . '" class="' . $class . '"]');
                 break;
             case 'description':
                 echo do_shortcode("[_description description='" . _format_text($d['description']) . "']");
