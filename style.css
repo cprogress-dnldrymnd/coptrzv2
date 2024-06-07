@@ -17466,7 +17466,7 @@ section.columns.numbered-boxes .row {
   section.columns.numbered-boxes .row > [class*="col-"] {
     counter-increment: section; }
     section.columns.numbered-boxes .row > [class*="col-"]:before {
-      content: "Section " counter(section); }
+      content: "0" counter(section); }
 
 ul.custom-products.custom-products.custom-products li.product .inner {
   border-radius: 10px;
