@@ -56,7 +56,7 @@ foreach ($posts as $post) {
                     <div class="col-lg-4">
                         <?php
                         $id = $post->ID;
-                        locate_template('template-parts/shortcodes/post_grid.php');
+                        locate_template('template-parts/components/post_grid.php');
                         ?>
                     </div>
                 <?php } ?>
