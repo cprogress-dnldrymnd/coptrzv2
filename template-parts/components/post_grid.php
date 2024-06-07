@@ -27,7 +27,7 @@ $post_elements = $module['post_elements'];
                     echo do_shortcode('[_image class="image-absolute" size="' . $el['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $el['border_radius'] . '" id="' . $image_id . '" ]');
                     break;
                 case 'post_excerpt':
-                    echo do_shortcode('[_description description="' . _format_text(get_the_excerpt($id)) . '" ]');
+                    echo do_shortcode('[_description description="' . _format_text(custom_excerpt_length(get_the_excerpt(),  $el['excerpt_length'] ? $el['excerpt_length'] : 50)) . '" ]');
                     break;
 
                 case 'permalink':
