@@ -4978,6 +4978,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
+						Field::make('checkbox', 'disable_button', 'Disable Button'),
 						Field::make('select', 'source', 'Source')
 							->set_options(
 								array(

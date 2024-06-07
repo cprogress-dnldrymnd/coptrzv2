@@ -862,7 +862,8 @@ class Shortcodes
 				array(
 					'id' => '',
 					'class' => '',
-					'popup_id' => false
+					'popup_id' => false,
+					'disable_button' => false
 				),
 				$atts
 			)
@@ -870,7 +871,8 @@ class Shortcodes
 		include(get_stylesheet_directory() . '/template-parts/shortcodes/post_grid.php');
 		return ob_get_clean();
 	}
-	function brands_grid($atts) {
+	function brands_grid($atts)
+	{
 		ob_start();
 		extract(
 			shortcode_atts(
@@ -880,7 +882,7 @@ class Shortcodes
 				$atts
 			)
 		);
-		include (get_stylesheet_directory() . '/template-parts/shortcodes/brands.php');
+		include(get_stylesheet_directory() . '/template-parts/shortcodes/brands.php');
 		return ob_get_clean();
 	}
 }
