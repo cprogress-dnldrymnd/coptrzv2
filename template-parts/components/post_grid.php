@@ -28,10 +28,10 @@ $post_elements = $module['post_elements'];
                     break;
                 case 'post_excerpt':
                     echo get_the_excerpt();
-                   // echo do_shortcode('[_description description="' . _format_text(get_the_excerpt()) . '" ]');
+                    // echo do_shortcode('[_description description="' . _format_text(get_the_excerpt()) . '" ]');
                     break;
                 case 'permalink':
-                    echo do_shortcode('[_button class="' . $el['button_type'] . '" id="' . $id . '"  button_type="' . get_post_type($id) . '" button_text="Read More" ]');
+                    echo do_shortcode('[_button class="' . $el['button_class'] . '" id="' . $id . '"  button_type="' . get_post_type($id) . '" button_text="Read More" ]');
 
                     break;
             }
