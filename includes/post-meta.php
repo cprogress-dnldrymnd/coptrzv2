@@ -5032,6 +5032,12 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->add_fields(
+								'post_excerpt',
+								array(
+									Field::make('html', 'html')->set_html('This will display the post excerpt'),
+								)
+							)
+							->add_fields(
 								'permalink',
 								array(
 									Field::make('select', 'button_type', __('Button Type'))->set_width(20)->set_classes('trigger-selector')
