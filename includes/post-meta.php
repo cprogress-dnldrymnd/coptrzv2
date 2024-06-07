@@ -5023,6 +5023,23 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
+						Field::make('association', 'teams', 'Select Teams')
+							->set_types(
+								array(
+									array(
+										'type'      => 'post',
+										'post_type' => 'teams',
+									)
+								)
+							)
+							->set_conditional_logic(
+								array(
+									array(
+										'field' => 'source',
+										'value' => 'teams',
+									)
+								)
+							),
 						Field::make('association', 'casestudies', 'Select casestudies')
 							->set_types(
 								array(
