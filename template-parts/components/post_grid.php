@@ -1,18 +1,7 @@
 <?php
-$key = array_search('permalink', $post_elements);
-echo $key;
-echo 'test';
-echo '<pre>';
-
 $arr = array_column($post_elements, '_type');
-if (in_array('permalink', $arr)) {
-    echo 'testl';
-}
-echo '</pre>';
-
-
 ?>
-<div class="post-grid post-grid-style-2 h-100 d-flex post-<?= $id ?> <?= $classes ?>" style="<?= $style_attribute_post ?>--padding: 40%">
+<div class="post-grid post-grid-style-2 h-100 d-flex <?= in_array('permalink', $arr) ? 'has-permalink' : '' ?> post-<?= $id ?> <?= $classes ?>" style="<?= $style_attribute_post ?>--padding: 40%">
     <div class="inner position-relative content-margin-small w-100" style="<?= $style_attribute_inner ?>">
         <?php
         foreach ($post_elements as $el) {
