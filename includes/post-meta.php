@@ -3647,7 +3647,8 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'max_width',
 								array(
-									Field::make('text', 'max_width', 'Max Width')
+									Field::make('text', 'max_width', 'Max Width'),
+									Field::make('text', 'centred', 'Centred'),
 								)
 							)
 							->add_fields(
