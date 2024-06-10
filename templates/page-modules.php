@@ -20,7 +20,7 @@ function add_carbon_fields_block_to_page($page_id)
 
     // Create your Carbon Fields block data as an array
     $block_data = array(
-        'blockName' => 'carbon-fields/modules', // Replace with your actual block name
+        'blockName' => 'carbon-fields/modules-1', // Replace with your actual block name
         'attrs' => array(
             // Your Carbon Fields data here. Example:
             'modules' => $modules,
