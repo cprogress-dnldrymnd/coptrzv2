@@ -11272,7 +11272,7 @@ Block::make(__('My Shiny Gutenberg Block'))
 	))
 	->set_render_callback(function ($fields, $attributes, $inner_blocks) {
 
-		foreach ($modules as $key => $module) {
+		foreach ($fields['modules'] as $key => $module) {
 			$type = $module['_type'];
 			$disable_module = $module['disable_module'];
 			if (!$disable_module) {
