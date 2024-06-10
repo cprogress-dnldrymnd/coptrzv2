@@ -93,7 +93,7 @@ $modules = get__post_meta('modules');
                                 $inner_class = ' max-width';
                                 $inner_style_attribute .= 'max-width: ' . $style['max_width'] . '; ';
                                 if ($style['centred']) {
-                                    $inner_style_attribute .= 'margin-left: auto; margin-right: auto;';
+                                    $inner_class .= ' me-auto ms-auto';
                                 }
                             }
                             break;

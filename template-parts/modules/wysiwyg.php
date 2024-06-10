@@ -7,8 +7,8 @@
   ));
 
   ?>
-  <div class="container position-relative <?= $container_width_class ?> " style="<?= $container_width_style_attribute ?>"> 
-    <div class="inner content-margin-small <?= $inner_class ?>" >
+  <div class="container position-relative <?= $container_width_class ?> " style="<?= $container_width_style_attribute ?>">
+    <div class="inner content-margin-small <?= $inner_class ?>" style="<?= $inner_style_attribute ?>">
       <?php
       _section_heading_description(array(
         'heading' => $module['heading'],
