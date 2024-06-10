@@ -11368,9 +11368,8 @@ Block::make(__('Modules'))
 	function generate_carbon_field_block_content($block_name, $field_values) {
 		ob_start(); // Start output buffering
 	
-		
 		// Render Carbon Fields block template
-		Carbon_Fields\Block::render($block_name, $field_values);
+		Carbon_Fields\Block_Template::render($block_name, $field_values);
 	
 		return ob_get_clean(); // Return buffered content
 	}
