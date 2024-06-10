@@ -2349,7 +2349,7 @@ Container::make('post_meta', 'Modules')
 											)
 										)
 										->add_fields(
-											'description',
+											'embed',
 											array(
 												Field::make('oembed', 'embed', __('Embed')),
 											)
