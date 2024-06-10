@@ -1166,9 +1166,9 @@ Container::make('post_meta', 'Modules')
 							->set_layout('tabbed-vertical'),
 
 						//Heading Settings
-						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+						Field::make('text', 'heading_prefix', __('Prefix'))
 							->set_width(20),
-						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Suffix'))
 							->set_width(20),
 						Field::make('text', 'heading', __('Heading'))
 							->set_width(20),
@@ -1548,9 +1548,9 @@ Container::make('post_meta', 'Modules')
 							)
 							->set_layout('tabbed-vertical'),
 						//Heading Settings
-						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+						Field::make('text', 'heading_prefix', __('Prefix'))
 							->set_width(20),
-						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Suffix'))
 							->set_width(20),
 						Field::make('text', 'heading', __('Heading'))
 							->set_width(20),
@@ -1908,7 +1908,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+						Field::make('text', 'heading_prefix', __('Prefix'))
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -1918,7 +1918,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Suffix'))
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -3309,7 +3309,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+						Field::make('text', 'heading_prefix', __('Prefix'))
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -3319,7 +3319,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Suffix'))
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -3687,7 +3687,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+						Field::make('text', 'heading_prefix', __('Prefix'))
 							->set_width(20)
 							->set_conditional_logic(
 								array(
@@ -3697,7 +3697,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Suffix'))
 							->set_width(20)
 							->set_conditional_logic(
 								array(
@@ -4074,7 +4074,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+						Field::make('text', 'heading_prefix', __('Prefix'))
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -4084,7 +4084,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Suffix'))
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -4538,7 +4538,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+						Field::make('text', 'heading_prefix', __('Prefix'))
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -4548,7 +4548,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Suffix'))
 							->set_width(33)
 							->set_conditional_logic(
 								array(
@@ -4918,7 +4918,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+						Field::make('text', 'heading_prefix', __('Prefix'))
 							->set_width(20)
 							->set_conditional_logic(
 								array(
@@ -4928,7 +4928,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Suffix'))
 							->set_width(20)
 							->set_conditional_logic(
 								array(
@@ -5865,7 +5865,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+						Field::make('text', 'heading_prefix', __('Prefix'))
 							->set_width(20)
 							->set_conditional_logic(
 								array(
@@ -5875,7 +5875,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Suffix'))
 							->set_width(20)
 							->set_conditional_logic(
 								array(
