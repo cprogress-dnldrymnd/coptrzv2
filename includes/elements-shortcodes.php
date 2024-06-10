@@ -107,6 +107,22 @@ class Elements_Shortcodes
         include locate_template('template-parts/components/icon.php');
         return ob_get_clean();
     }
+
+    function _embed()
+    {
+        ob_start();
+        extract(
+            shortcode_atts(
+                array(
+                    'src'           => '',
+                ),
+                $atts
+            )
+        );
+
+        include locate_template('template-parts/components/embed.php');
+        return ob_get_clean();
+    }
 }
 
 $Elements_Shortcodes = new Elements_Shortcodes;
@@ -115,3 +131,4 @@ add_shortcode('_icon', array($Elements_Shortcodes, '_icon'));
 add_shortcode('_heading', array($Elements_Shortcodes, '_heading'));
 add_shortcode('_description', array($Elements_Shortcodes, '_description'));
 add_shortcode('_button', array($Elements_Shortcodes, '_button'));
+add_shortcode('_embed', array($Elements_Shortcodes, '_embed'));

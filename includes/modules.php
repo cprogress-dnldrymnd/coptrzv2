@@ -66,6 +66,11 @@ function _elements($data, $module_id, $same_height_images)
                     include locate_template('template-parts/components/number_counters.php');
                 }
                 break;
+
+            case 'embed':
+                $embed = $d['embed'];
+                echo do_shortcode('[_embed src="' . $embed . '"]');
+                break;
         }
     }
     return ob_get_clean();
