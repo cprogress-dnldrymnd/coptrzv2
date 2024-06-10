@@ -6023,6 +6023,18 @@ Container::make('post_meta', 'Modules')
 				)
 				->set_header_template('Testimonials <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//Enf of Testimonial Fields
+				->add_fields('templates', array(
+					Field::make('association', 'template', 'Select Template')
+						->set_types(
+							array(
+								array(
+									'type'      => 'post',
+									'post_type' => 'templates',
+								)
+							)
+						),
+				))
+				->set_max(1)
 				->set_collapsed(true)
 		)
 	);
