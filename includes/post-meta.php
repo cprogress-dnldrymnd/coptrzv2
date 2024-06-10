@@ -6481,8 +6481,8 @@ Block::make(__('Call to Action'))
 		$type = 'cta';
 		$disable_module = $module['disable_module'];
 		if (!$disable_module) {
-			$module_id = $module['module_id'] ? $module['module_id'] : 'module-' . get_the_ID() . '-' . $key;
-			$styles = $module['styles'];
+			$module_id = $fields['module_id'] ? $fields['module_id'] : 'module-' . get_the_ID() . '-' . $key;
+			$styles = $fields['styles'];
 			$classes = '';
 			$style_attribute = '';
 			$classes_row = '';
