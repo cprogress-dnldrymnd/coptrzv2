@@ -33,7 +33,8 @@ $arr = array_column($post_elements, '_type');
                     }
                     break;
                 case 'permalink':
-                    echo do_shortcode('[_button class="' . $el['button_style'] . '" id="' . $id . '"  button_type="' . get_post_type($id) . '" button_text=" ' . ($el['button_text']) ? $el['button_text'] : 'Read More' . '" ]');
+                    $button_text = $el['button_text'] ? $el['button_text']  : 'Read More';
+                    echo do_shortcode('[_button class="' . $el['button_style'] . '" id="' . $id . '"  button_type="' . get_post_type($id) . '" button_text="' . $button_text . '" ]');
                     break;
                 case 'custom_field_1':
                 case 'custom_field_2':
