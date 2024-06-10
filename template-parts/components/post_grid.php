@@ -5,7 +5,9 @@ echo 'test';
 echo '<pre>';
 
 $arr = array_column($post_elements, '_type');
-var_dump($arr);
+if (in_array('permalink', $arr)) {
+    echo 'testl';
+}
 echo '</pre>';
 
 
