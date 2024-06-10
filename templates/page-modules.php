@@ -1,7 +1,7 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
 /* Template Name: Modules 
-/* Template Post Type: page, templates
+/* Template Post Type: page, coptrztemplates
 /*-----------------------------------------------------------------------------------*/
 ?>
 <?php get_header(); ?>
