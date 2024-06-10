@@ -6032,7 +6032,7 @@ Container::make('post_meta', 'Modules')
 							array(
 								array(
 									'type'      => 'post',
-									'post_type' => 'templates',
+									'post_type' => 'coptrztemplates',
 								)
 							)
 						)
