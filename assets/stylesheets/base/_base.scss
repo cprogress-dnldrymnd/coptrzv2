@@ -3459,3 +3459,16 @@ a.fancybox-gallery-img {
         height: var(--height);
     }
 }
+
+
+.embed-box {
+    padding: 28.1%;
+    iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        object-fit: cover;
+    }
+}
