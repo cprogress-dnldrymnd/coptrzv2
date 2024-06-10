@@ -8,19 +8,19 @@
 
   ?>
   <div class="container position-relative <?= $container_width_class ?>" style="<?= $container_width_style_attribute ?>">
-    <div class="inner content-margin ">
-      <?php
-      _section_heading_description(array(
-        'heading' => $module['heading'],
-        'description' => $module['description'],
-        'text_align' => $module['text_align'],
-        'heading_prefix' => $module['heading_prefix'],
-        'heading_suffix' => $module['heading_suffix'],
-        'tag' => $module['tag'],
-        'size' => $module['size'],
-        'heading_with_line' => $module['heading_with_line'],
-      ));
-      ?>
+    <?php
+    _section_heading_description(array(
+      'heading' => $module['heading'],
+      'description' => $module['description'],
+      'text_align' => $module['text_align'],
+      'heading_prefix' => $module['heading_prefix'],
+      'heading_suffix' => $module['heading_suffix'],
+      'tag' => $module['tag'],
+      'size' => $module['size'],
+      'heading_with_line' => $module['heading_with_line'],
+    ));
+    ?>
+    <div class="inner content-margin-small">
       <?= do_shortcode(wpautop($module['wysiwyg'])) ?>
     </div>
   </div>
