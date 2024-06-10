@@ -26,6 +26,8 @@ $modules = get__post_meta('modules');
             $background_image_class = '';
             $baground_image = '';
             $background_overlay_image = '';
+            $inner_class = '';
+            $inner_style_attribute = '';
             if ($styles) {
                 foreach ($styles as $style) {
                     $style_type = $style['_type'];
@@ -84,6 +86,15 @@ $modules = get__post_meta('modules');
                             $container_width_class .= ' ' . $style['container_width'];
                             if ($style['custom_container_width']) {
                                 $container_width_style_attribute .= 'max-width: ' . $style['custom_container_width'] . '; margin-left: auto; margin-right: auto';
+                            }
+                            break;
+                        case 'max_width':
+                            $inner_class .= ' max-width';
+                            if ($style['max_width']) {
+                                $inner_class .= 'max-width: ' . $style['max_width'] . '; ';
+                                if ($style['centred']) {
+                                    $inner_class .= 'margin-left: auto; margin-right: auto;';
+                                }
                             }
                             break;
                     }
