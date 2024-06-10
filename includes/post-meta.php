@@ -6480,7 +6480,6 @@ Block::make(__('Call to Action'))
 			),
 	))
 	->set_render_callback(function ($fields, $attributes, $inner_blocks) {
-		$type = 'cta';
 		$disable_module = $module['disable_module'];
 		if (!$disable_module) {
 			$module_id = $fields['module_id'] ? $fields['module_id'] : 'module-' . get_the_ID() . '-' . $key;
@@ -6568,6 +6567,6 @@ Block::make(__('Call to Action'))
 					}
 				}
 			}
-			include locate_template('template-parts/gutenberg/' . $type . '.php');
+			include locate_template('template-parts/gutenberg/cta.php');
 		}
 	});
