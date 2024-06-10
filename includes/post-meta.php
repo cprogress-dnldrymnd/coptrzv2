@@ -3645,6 +3645,12 @@ Container::make('post_meta', 'Modules')
 								)
 							)
 							->add_fields(
+								'max_width',
+								array(
+									Field::make('text', 'max_width', 'Max Width')
+								)
+							)
+							->add_fields(
 								'border_radius',
 								array(
 									Field::make('text', 'border_radius', 'Border Radius')
