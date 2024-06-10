@@ -2,6 +2,9 @@
 $key = array_search('permalink', $post_elements);
 echo $key;
 echo 'test';
+echo '<pre>';
+var_dump($post_elements);
+echo '</pre>';
 ?>
 <div class="post-grid post-grid-style-2 h-100 d-flex post-<?= $id ?> <?= $classes ?>" style="<?= $style_attribute_post ?>--padding: 40%">
     <div class="inner position-relative content-margin-small w-100" style="<?= $style_attribute_inner ?>">
