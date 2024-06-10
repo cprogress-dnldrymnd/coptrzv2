@@ -45,7 +45,7 @@ if ($testimonial_source == 'testimonial') {
 }
 
 ?>
-<section class="customer-reviews position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
+<section class="customer-reviews position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute  ?>">
     <?php
     _background_image(array(
         'baground_image' => $baground_image,
@@ -89,7 +89,7 @@ if ($testimonial_source == 'testimonial') {
             </div>
         </div>
     <?php  } ?>
-    <div class="container">
+    <div class="container <?= $container_width_class ?>" style="<?= $container_width_style_attribute ?>">
 
         <?php
         _section_heading_description(array(

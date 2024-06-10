@@ -1,4 +1,4 @@
-<section class="logo-slider position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
+<section class="logo-slider position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute  ?>">
     <?php
     _background_image(array(
         'baground_image' => $baground_image,
@@ -6,7 +6,7 @@
         'background_overlay_image' => $background_overlay_image,
     ));
     ?>
-    <div class="container-fluid position-relative p-0 <?= $container_width_class ?> <?= $classes_text_color ?>">
+    <div class="container-fluid position-relative p-0 <?= $container_width_class ?> <?= $classes_text_color ?>" style="<?= $container_width_style_attribute ?>">
         <?php
         _section_heading_description(array(
             'heading' => $module['heading'],
