@@ -6099,7 +6099,7 @@ Container::make('term_meta', __('Category Properties'))
 /*-----------------------------------------------------------------------------------*/
 /* Gutenberg Blocks
 /*-----------------------------------------------------------------------------------*/
-Block::make(__('Moduless'))
+Block::make(__('Modules'))
 	->add_fields(array(
 		Field::make('complex', 'modules', __('Modules'))
 			->setup_labels(
