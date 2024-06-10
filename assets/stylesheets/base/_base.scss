@@ -3460,7 +3460,6 @@ a.fancybox-gallery-img {
     }
 }
 
-
 .embed-box {
     padding: 28.1%;
     iframe {
@@ -3470,5 +3469,16 @@ a.fancybox-gallery-img {
         left: 0;
         top: 0;
         object-fit: cover;
+    }
+}
+
+.post-grid-style-2 {
+    .inner {
+        padding-bottom: calc(52px + 1rem);
+    }
+    .button-box {
+        position: absolute;
+        bottom: 0;
+        left: 0;
     }
 }

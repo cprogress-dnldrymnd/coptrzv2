@@ -13994,6 +13994,13 @@ a.fancybox-gallery-img {
     top: 0;
     object-fit: cover; }
 
+.post-grid-style-2 .inner {
+  padding-bottom: calc(52px + 1rem); }
+.post-grid-style-2 .button-box {
+  position: absolute;
+  bottom: 0;
+  left: 0; }
+
 /*Padding*/
 /*Extra Small Padding*/
 .xxs-padding-top {
