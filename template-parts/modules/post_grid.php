@@ -101,7 +101,7 @@ $source = $module['post_type'][0]['source'];
             }
             ?>
 
-            <div class="row g-4">
+            <div class="row g-4 <?= $classes_row ?>">
                 <?php foreach ($posts_lists as $post) { ?>
 
                     <div class="<?= $column_class ?>">
