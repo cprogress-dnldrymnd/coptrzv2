@@ -3,7 +3,7 @@ $number_of_columns = $module['number_of_columns'];
 $post_type = $module['post_type'][0]['_type'];
 $source = $module['post_type'][0]['source'];
 ?>
-<section class="post-grid position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?>">
+<section class="post-grid position-relative <?= $classes ?>" id="<?= $module_id ?>" style="<?= $style_attribute  ?>">
     <?php
     _background_image(array(
         'baground_image' => $baground_image,
@@ -11,7 +11,7 @@ $source = $module['post_type'][0]['source'];
         'background_overlay_image' => $background_overlay_image,
     ));
     ?>
-    <div class="container">
+    <div class="container <?= $container_width_class ?>" style="<?= $container_width_style_attribute ?>">
         <?php
         _section_heading_description(array(
             'heading' => $module['heading'],

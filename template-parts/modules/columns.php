@@ -2,7 +2,7 @@
 $numbered_boxes = $module['numbered_boxes'] ? 'numbered-boxes' : '';
 ?>
 
-<section class="columns position-relative <?= $classes ?> <?= $numbered_boxes ?>" id="<?= $module_id ?>" style="<?= $style_attribute . $container_width_style_attribute ?><?= $module['image_size_ratio'] ? '--padding: ' . $module['image_size_ratio'] : '' ?>">
+<section class="columns position-relative <?= $classes ?> <?= $numbered_boxes ?>" id="<?= $module_id ?>" style="<?= $style_attribute ?><?= $module['image_size_ratio'] ? '--padding: ' . $module['image_size_ratio'] : '' ?>">
     <?php
     _background_image(array(
         'baground_image' => $baground_image,
@@ -10,7 +10,7 @@ $numbered_boxes = $module['numbered_boxes'] ? 'numbered-boxes' : '';
         'background_overlay_image' => $background_overlay_image,
     ));
     ?>
-    <div class="container position-relative <?= $container_width_class ?> <?= $classes_text_color ?>">
+    <div class="container position-relative <?= $container_width_class ?> <?= $classes_text_color ?>" style="<?= $container_width_style_attribute ?>">
         <?php
         _section_heading_description(array(
             'heading' => $module['heading'],
