@@ -3642,10 +3642,15 @@ Container::make('post_meta', 'Modules')
 												)
 											)
 										),
+								)
+							)
+							->add_fields(
+								'max_width',
+								array(
+									Field::make('text', 'max_width', 'Max Width'),
 									Field::make('checkbox', 'centred', 'Centred'),
 								)
 							)
-							
 							->add_fields(
 								'border_radius',
 								array(
