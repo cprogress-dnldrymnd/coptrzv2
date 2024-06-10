@@ -6,37 +6,31 @@
 <?php get_header(); ?>
 <?php
 $modules = get__post_meta('modules');
-function insert_carbon_block_into_page( $page_id ) {
-    $blocks = parse_blocks( get_post_field( 'post_content', $page_id ) );
+function insert_carbon_block_into_page($page_id)
+{
+
+    $blocks = parse_blocks(get_post_field('post_content', $page_id));
+
+    // Find the index where you want to insert the block
     $insert_index = 2; // Example: Insert after the second block
 
     // Create the Carbon Fields block
     $carbon_block = array(
-        'blockName' => 'carbon-fields/call-to-action', // Correct block name
-        'attrs' => array(),  // Initialize attrs as an empty array
-        'innerBlocks' => array() // Added for innerBlocks
-    );
-
-    // Add fields to the innerBlocks
-    $carbon_block['innerBlocks'][] = array(
-        'blockName' => 'carbon-fields/field', // Field block name
+        'blockName' => 'carbon-fields/call-to-action',
         'attrs' => array(
-            'field_name' => 'title',   // Correct field name
-            'value' => 'This is a dynamic heading' 
+            'title' => 'This is a dynamic heading',
+            'module_id' => 'Dynamic content from Carbon Fields!'
         )
     );
 
-   
-
-
     // Insert the block
-    array_splice( $blocks, $insert_index, 0, array( $carbon_block ) );
+    array_splice($blocks, $insert_index, 0, array($carbon_block));
 
     // Update the post content
-    wp_update_post( array(
+    wp_update_post(array(
         'ID' => $page_id,
-        'post_content' => serialize_blocks( $blocks )
-    ) );
+        'post_content' => serialize_blocks($blocks)
+    ));
 }
 
 // Example usage (run this once to insert the block):
