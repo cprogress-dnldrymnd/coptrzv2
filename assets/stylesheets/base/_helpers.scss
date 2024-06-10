@@ -988,8 +988,10 @@
 
 .text-white {
 	color: var(--white-color) !important;
-	* {
-		color: inherit;
+	div:not(.background-white) {
+		* {
+			color: inherit;
+		}
 	}
 }
 
@@ -1414,7 +1416,6 @@
 		}
 	}
 }
-
 
 .color-white-sm {
 	@include responsive(xs-sm) {
