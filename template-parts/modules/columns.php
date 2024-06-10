@@ -32,6 +32,7 @@ $numbered_boxes = $module['numbered_boxes'] ? 'numbered-boxes' : '';
                         $classes = '';
                         $style_attribute = '';
                         $style_attribute_inner = '';
+                        $column_class = '';
 
                         $column_id = 'column-' . $key . '-' . $module_id;
                         if ($styles) {
@@ -68,7 +69,7 @@ $numbered_boxes = $module['numbered_boxes'] ? 'numbered-boxes' : '';
                                         $style_attribute_inner .= 'max-width: ' . $style['max_width'] . ';';
                                         break;
                                     case 'column_width':
-                                        $column_class =  ($style['column_width'] ? $style['column_width'] : 'col-lg') . ' ' . $style['column_width_tablet'] . ' ' . ($style['column_width_mobile'] ? $style['column_width_mobile'] : 'col-sm-12');
+                                        $column_class .=  ($style['column_width'] ? $style['column_width'] : 'col-lg') . ' ' . $style['column_width_tablet'] . ' ' . ($style['column_width_mobile'] ? $style['column_width_mobile'] : 'col-sm-12');
                                         break;
                                 }
                             }
