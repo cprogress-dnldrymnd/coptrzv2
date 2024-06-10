@@ -500,7 +500,6 @@ $Templates = new newPostType();
 $Templates->name = 'Templates';
 $Templates->singular_name = 'Template';
 $Templates->icon = 'dashicons-testimonial';
-$Templates->supports = array('title', 'revisions', 'editor');
 $Templates->exclude_from_search = true;
 $Templates->publicly_queryable = false;
 $Templates->show_in_admin_bar = false;
