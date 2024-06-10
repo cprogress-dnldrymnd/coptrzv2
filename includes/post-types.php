@@ -496,6 +496,17 @@ $Slides->show_in_admin_bar = false;
 $Slides->has_archive = false;
 
 
+$Slides = new newPostType();
+$Slides->name = 'Templates';
+$Slides->singular_name = 'Template';
+$Slides->icon = 'dashicons-testimonial';
+$Slides->supports = array('title', 'revisions');
+$Slides->exclude_from_search = true;
+$Slides->publicly_queryable = false;
+$Slides->show_in_admin_bar = false;
+$Slides->has_archive = false;
+
+
 $Popup = new newPostType();
 $Popup->name = 'Popups';
 $Popup->singular_name = 'Popup';
