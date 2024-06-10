@@ -988,7 +988,7 @@
 
 .text-white {
 	color: var(--white-color) !important;
-	div:not(.background-white) {
+	:not(.background-white) {
 		* {
 			color: inherit;
 		}
