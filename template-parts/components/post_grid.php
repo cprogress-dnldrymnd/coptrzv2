@@ -1,7 +1,7 @@
 <?php
 $arr = array_column($post_elements, '_type');
 ?>
-<div class="post-grid position-relative post-grid-style-2 h-100 d-flex <?= in_array('permalink', $arr) ? 'has-permalink' : '' ?> post-<?= $id ?> <?= $classes ?>" style="<?= $style_attribute_post ?>--padding: 40%">
+<div class="post-grid overflow-hidden post-grid-style-2 h-100 d-flex <?= in_array('permalink', $arr) ? 'has-permalink' : '' ?> post-<?= $id ?> <?= $classes ?>" style="<?= $style_attribute_post ?>--padding: 40%">
     <div class="inner position-relative content-margin-small w-100" style="<?= $style_attribute_inner ?>">
         <?php
         foreach ($post_elements as $el) {
