@@ -384,3 +384,30 @@ function get__posts($post_type)
 }
 
 
+function inject_carbon_fields_blocks() {
+    // Target a specific page (adjust as needed)
+    if ( is_page( 'your-target-page' ) ) {
+
+        // Get the existing page content
+        $page_content = get_post_field( 'post_content', 64544);
+
+        // Carbon Fields data (example)
+        $carbon_fields_data = array(
+            'title' => 'This is some text from a Carbon Fields field',
+        );
+
+        // Generate the block content dynamically
+        $block_content = '';
+
+        // Insert the block at the beginning of the page content
+        $updated_content = $block_content . $page_content;
+
+        // Update the page content
+        wp_update_post( array(
+            'ID'           => 64544,
+            'post_content' => $updated_content
+        ) );
+    }
+}
+
+add_action( 'wp', 'inject_carbon_fields_blocks' );
