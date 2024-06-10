@@ -11,7 +11,7 @@ $source = $module['post_type'][0]['source'];
         'background_overlay_image' => $background_overlay_image,
     ));
     ?>
-    <div class="container <?= $container_width_class ?>" style="<?= $container_width_style_attribute ?>">
+    <div class="container <?= $container_width_class ?> <?= $classes_text_color ?>" style="<?= $container_width_style_attribute ?>">
         <?php
         _section_heading_description(array(
             'heading' => $module['heading'],
