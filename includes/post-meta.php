@@ -2349,6 +2349,12 @@ Container::make('post_meta', 'Modules')
 											)
 										)
 										->add_fields(
+											'description',
+											array(
+												Field::make('oembed', 'embed', __('Embed')),
+											)
+										)
+										->add_fields(
 											'button',
 											array(
 												Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
