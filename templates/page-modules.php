@@ -88,7 +88,9 @@ $modules = get__post_meta('modules');
                                 $container_width_style_attribute .= 'max-width: ' . $style['custom_container_width'] . '; ';
                             }
                             if ($style['centred']) {
-                                $container_width_class .= 'margin-left: auto; margin-right: auto;';
+                                $container_width_class .= 'me-auto ms-auto';
+                            }  else {
+                                $container_width_class .= 'ms-0';
                             }
                             break;
                     }
