@@ -6022,6 +6022,7 @@ Container::make('post_meta', 'Modules')
 				)
 				->set_header_template('Testimonials <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//Enf of Testimonial Fields
+				->set_layout('tabbed-vertical')
 		)
 	);
 
