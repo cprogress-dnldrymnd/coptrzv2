@@ -6099,7 +6099,7 @@ Container::make('term_meta', __('Category Properties'))
 /*-----------------------------------------------------------------------------------*/
 /* Gutenberg Blocks
 /*-----------------------------------------------------------------------------------*/
-Block::make(__('Modules'))
+Block::make(__('My Shiny Gutenberg Block'))
 	->add_fields(array(
 		Field::make('complex', 'modules', __('Modules'))
 			->setup_labels(
@@ -11270,97 +11270,21 @@ Block::make(__('Modules'))
 			->set_collapsed(true)
 	))
 	->set_render_callback(function ($fields, $attributes, $inner_blocks) {
-		echo 'test';
-		foreach ($fields['modules'] as $key => $module) {
-			$type = $module['_type'];
-			$disable_module = $module['disable_module'];
-			if (!$disable_module) {
-				$module_id = $module['module_id'] ? $module['module_id'] : 'module-' . get_the_ID() . '-' . $key;
-				$styles = $module['styles'];
-				$classes = '';
-				$style_attribute = '';
-				$classes_row = '';
-				$classes_text_color = '';
-				$container_width_class = '';
-				$container_width_style_attribute = '';
-				$background_image_class = '';
-				$baground_image = '';
-				$background_overlay_image = '';
-				$inner_class = '';
-				$inner_style_attribute = '';
-				if ($styles) {
-					foreach ($styles as $style) {
-						$style_type = $style['_type'];
-						switch ($style_type) {
-							case 'background_color':
-								if ($style['background_color'] != 'background-custom') {
-									$classes .= ' ' . $style['background_color'];
-								} else {
-									$style_attribute = 'background-color: ' . $style['background_color_custom'] . ';';
-								}
-								break;
-							case 'padding':
-								$classes .= ' ' . $style['padding_top'] . ' ' . $style['padding_bottom'] . ' ' . $style['padding_left'] . ' ' . $style['padding_right'];
-								break;
-							case 'margin':
-								$classes .= ' ' . $style['margin_top'] . ' ' . $style['margin_bottom'] . ' ' . $style['margin_left'] . ' ' . $style['margin_right'];
-								break;
-							case 'border_radius':
-								$classes .= ' rounded-corner';
-								if ($style['border_radius']) {
-									$style_attribute .= 'border-radius: ' . $style['border_radius'] . ';';
-								}
-								break;
-							case 'custom_class':
-								$classes .= ' ' . $style['custom_class'];
-								break;
-							case 'alignment':
-								$classes .= ' ' . $style['text_align'];
-								$classes_row .= ' ' . $style['align_items'] . ' ' . $style['justify_content'];
-								break;
-							case 'background_image':
-								$baground_image .= $style['background_image'];
-								$classes .= ' ' . $style['background_size'] . ' ' . $style['background_attachment'] . ' ' . $style['background_repeat'];
-								break;
-							case 'background_overlay':
-								$background_overlay_type = $style['background_overlay_type'];
-								if ($background_overlay_type == 'image') {
-									$background_overlay_image .= $style['background_overlay_image'];
-									if ($style['background_overlay_image_opacity'] || $style['background_overlay_image_opacity'] == 0) {
-										$style_attribute .= '--background-image-opacity: ' . $style['background_overlay_image_opacity'] . ';';
-									}
-									$background_image_class .= 'no-overlay';
-								} else if ($background_overlay_type == 'custom') {
-									$style_attribute .= '--background-overlay-custom: ' . $style['background_overlay_custom'] . ';';
-									$background_image_class .= 'custom-overlay';
-								}
-								$classes .= ' ' . $style['background_size'] . ' ' . $style['background_attachment'] . ' ' . $style['background_repeat'];
-								break;
-							case 'text_color':
-								$classes_text_color .= ' ' . $style['text_color'];
-								if ($style['text_color_custom']) {
-									$style_attribute .= 'color: ' . $style['text_color_custom'] . ';';
-								}
-								break;
-							case 'container_width':
-								$container_width_class .= ' ' . $style['container_width'];
-								if ($style['custom_container_width']) {
-									$container_width_style_attribute .= 'max-width: ' . $style['custom_container_width'] . ';';
-								}
-								break;
-							case 'max_width':
-								if ($style['max_width']) {
-									$inner_class = ' max-width';
-									$inner_style_attribute .= 'max-width: ' . $style['max_width'] . '; ';
-									if ($style['centred']) {
-										$inner_class .= ' me-auto ms-auto';
-									}
-								}
-								break;
-						}
-					}
-				}
-				include locate_template('template-parts/modules/' . $type . '.php');
-			}
-		}
+?>
+
+	<div class="block">
+		<div class="block__heading">
+			<h1><?php echo esc_html($fields['heading']); ?></h1>
+		</div><!-- /.block__heading -->
+
+		<div class="block__image">
+			<?php echo wp_get_attachment_image($fields['image'], 'full'); ?>
+		</div><!-- /.block__image -->
+
+		<div class="block__content">
+			<?php echo apply_filters('the_content', $fields['content']); ?>
+		</div><!-- /.block__content -->
+	</div><!-- /.block -->
+
+<?php
 	});
