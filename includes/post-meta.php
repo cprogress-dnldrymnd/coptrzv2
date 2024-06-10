@@ -5308,6 +5308,7 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'permalink',
 								array(
+									Field::make('text', 'button_text', 'Button Text')
 									Field::make('select', 'button_style', __('Button Style'))->set_width(20)
 										->set_options(
 											array(
