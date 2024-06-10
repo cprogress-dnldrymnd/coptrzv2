@@ -505,7 +505,7 @@ $Templates->exclude_from_search = true;
 $Templates->publicly_queryable = false;
 $Templates->show_in_admin_bar = false;
 $Templates->has_archive = false;
-$Popup->show_in_rest = true;
+$Templates->show_in_rest = true;
 
 
 $Popup = new newPostType();
