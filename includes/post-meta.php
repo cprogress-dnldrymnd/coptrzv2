@@ -11270,6 +11270,7 @@ Block::make(__('Modules'))
 			->set_collapsed(true)
 	))
 	->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+		echo 'test';
 		foreach ($fields['modules'] as $key => $module) {
 			$type = $module['_type'];
 			$disable_module = $module['disable_module'];
