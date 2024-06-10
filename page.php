@@ -20,40 +20,7 @@ get_header(); // This fxn gets the header.php file and renders it
 		if (!is_checkout()) {
 			get_template_part('template-parts/section/content-breadcrumbs');
 		}
-		// Update post 37
-		$my_post = array(
-			'ID'           => get_the_ID(),
-			'post_content' => '<section class="call-to-action">
-    <div class="container " style="">
-        <div class="inner position-relative rounded-corner overflow-hidden " style="" id="module-64544-0">
-                        <div class="row g-5  position-relative">
-                <div class="col-lg-7">
-                    <div class="column-holder content-margin ">
-                        	<div class="heading-box big-heading">
-				<h2>
-			test		</h2>
-			</div>
-                        	<div class="description-box ">
-		<p>test</p>
-	</div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="column-holder text-lg-end">
-                        <div class="button-box ">
-	<a href="https://dev.coptrz.com/elcas-approved-drone-courses-new/">
-				<span class="text">ELCAS Approved Drone Courses</span>
-	</a>
-</div>                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>',
-		);
-	  
-	  // Update the post into the database
-		wp_update_post( $my_post );
+		
 		?>
 		<section class="the-content lg-padding no-overflow">
 			<div class="container pt-medium pb-medium">

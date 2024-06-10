@@ -6,8 +6,45 @@
 <?php get_header(); ?>
 <?php
 $modules = get__post_meta('modules');
+function add_carbon_fields_block_to_page($page_id)
+{
+    $modules = get__post_meta('modules');
 
+    // Ensure the page exists
+    if (get_post_status($page_id) === false) {
+        return;
+    }
+
+    // Get the page's content
+    $page_content = get_post_field('post_content', $page_id);
+
+    // Create your Carbon Fields block data as an array
+    $block_data = array(
+        'blockName' => 'carbon-fields/modules', // Replace with your actual block name
+        'attrs' => array(
+            // Your Carbon Fields data here. Example:
+            'modules' => $modules,
+        ),
+    );
+
+    // Serialize the block data for insertion
+    $block_content = serialize_block($block_data);
+
+    // Insert the block at the beginning of the page content
+    $updated_content = $block_content . $page_content;
+
+    // Update the page with the new content
+    wp_update_post(array(
+        'ID' => $page_id,
+        'post_content' => $updated_content,
+    ));
+}
+
+// Example usage: add the block to the page with ID 123
+add_carbon_fields_block_to_page(get_the_ID());
 ?>
+
+
 <div class="modules">
     <?php
     foreach ($modules as $key => $module) {
@@ -106,13 +143,3 @@ $modules = get__post_meta('modules');
 </div>
 
 <?php get_footer(); ?>
-<script>
-    var content = "Test content";
-    var el = wp.element.createElement;
-    var name = 'core/paragraph';
-    // var name = 'core/html';
-    insertedBlock = wp.blocks.createBlock(name, {
-        content: content,
-    });
-    wp.data.dispatch('core/editor').insertBlocks(insertedBlock);
-</script>
