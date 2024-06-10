@@ -35,8 +35,8 @@ $arr = array_column($post_elements, '_type');
                     echo do_shortcode('[_image class="image-absolute" size="' . $el['size'] . '" rounded_corners="' . $rounded_corners . '" border_radius="' . $el['border_radius'] . '" id="' . $image_id . '" ]');
                     break;
                 case 'post_excerpt':
-                    if (get_the_excerpt()) {
-                        echo do_shortcode('[_description description="' . _format_text(custom_excerpt_length(get_the_excerpt())) . '" ]');
+                    if (get_the_excerpt($id)) {
+                        echo do_shortcode('[_description description="' . _format_text(custom_excerpt_length(get_the_excerpt($id))) . '" ]');
                     }
                     break;
                 case 'permalink':
