@@ -8,7 +8,7 @@
 
   ?>
   <div class="container position-relative <?= $container_width_class ?> ">
-    <div class="inner <?= $inner_class ?>">
+    <div class="inner content-margin <?= $inner_class ?>">
       <?php
       _section_heading_description(array(
         'heading' => $module['heading'],
