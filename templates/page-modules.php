@@ -6,6 +6,35 @@
 <?php get_header(); ?>
 <?php
 $modules = get__post_meta('modules');
+function insert_carbon_block_into_page($page_id)
+{
+
+    $blocks = parse_blocks(get_post_field('post_content', $page_id));
+
+    // Find the index where you want to insert the block
+    $insert_index = 2; // Example: Insert after the second block
+
+    // Create the Carbon Fields block
+    $carbon_block = array(
+        'blockName' => 'carbon-fields/call-to-action',
+        'attrs' => array(
+            'title' => 'This is a dynamic heading',
+        )
+    );
+
+    // Insert the block
+    array_splice($blocks, $insert_index, 0, array($carbon_block));
+
+    // Update the post content
+    wp_update_post(array(
+        'ID' => $page_id,
+        'post_content' => serialize_blocks($blocks)
+    ));
+}
+
+// Example usage (run this once to insert the block):
+$page_id_to_modify = 64544; // Replace with your actual page ID
+insert_carbon_block_into_page($page_id_to_modify);
 ?>
 
 
