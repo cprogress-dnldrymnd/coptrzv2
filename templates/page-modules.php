@@ -89,11 +89,11 @@ $modules = get__post_meta('modules');
                             }
                             break;
                         case 'max_width':
-                            $inner_class .= ' max-width';
                             if ($style['max_width']) {
-                                $inner_class .= 'max-width: ' . $style['max_width'] . '; ';
+                                $inner_class = ' max-width';
+                                $inner_style_attribute .= '--max-width: ' . $style['max_width'] . '; ';
                                 if ($style['centred']) {
-                                    $inner_class .= 'margin-left: auto; margin-right: auto;';
+                                    $inner_style_attribute .= 'margin-left: auto; margin-right: auto;';
                                 }
                             }
                             break;
