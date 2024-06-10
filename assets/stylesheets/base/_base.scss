@@ -3473,12 +3473,14 @@ a.fancybox-gallery-img {
 }
 
 .post-grid-style-2 {
-    .inner {
-        padding-bottom: calc(52px + 1rem);
-    }
-    .button-box {
-        position: absolute;
-        bottom: 0;
-        left: 0;
+    &.has-permalink {
+        .inner {
+            padding-bottom: calc(52px + 1rem);
+        }
+        .button-box {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
     }
 }
