@@ -31,7 +31,7 @@ function _elements($data, $module_id, $same_height_images)
                 if ($d['text_color_custom']) {
                     $style_attribute .= '--color: ' . $d['text_color_custom'];
                 }
-                echo do_shortcode('[_heading prefix="' . $d['prefix'] . '" suffix="' . $d['suffix'] . '" tag="' . $d['tag'] . '" heading="' . $d['heading'] . '" class="' . $class . '" style="' . $style_attribute . '"]');
+                echo do_shortcode('[_heading heading_prefix="' . $d['prefix'] . '" heading_prefix="' . $d['suffix'] . '" tag="' . $d['tag'] . '" heading="' . $d['heading'] . '" class="' . $class . '" style="' . $style_attribute . '"]');
                 break;
             case 'description':
                 echo do_shortcode("[_description description='" . _format_text($d['description']) . "']");
