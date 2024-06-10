@@ -14000,6 +14000,13 @@ a.fancybox-gallery-img {
   position: absolute;
   bottom: 0;
   left: 0; }
+.post-grid-style-2.has-permalink.text-center .button-box {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%); }
 
 /*Padding*/
 /*Extra Small Padding*/

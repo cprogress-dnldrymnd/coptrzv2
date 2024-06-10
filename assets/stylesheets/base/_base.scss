@@ -3482,5 +3482,11 @@ a.fancybox-gallery-img {
             bottom: 0;
             left: 0;
         }
+        &.text-center {
+            .button-box {
+                left: 50%;
+                @include transform(translateX(-50%));
+            }
+        }
     }
 }
