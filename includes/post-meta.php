@@ -6098,9 +6098,9 @@ Container::make('term_meta', __('Category Properties'))
 	);
 
 /*-----------------------------------------------------------------------------------*/
-/* 3D Model Category
+/* Gutenberg Block
 /*-----------------------------------------------------------------------------------*/
-Block::make(__('My Shiny Gutenberg Block'))
+Block::make(__('CTA'))
 	->add_fields(array(
 		array(
 			//Module Settings
