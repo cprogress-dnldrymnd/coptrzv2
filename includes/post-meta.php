@@ -2259,7 +2259,7 @@ Container::make('post_meta', 'Modules')
 												Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
 													->set_options(
 														array(
-															'col-md' 	=> 'Default',
+															'' 	=> 'Default',
 															'col-md-12'    => '100.00%',
 															'col-md-11' => '91.67%',
 															'col-md-10' => '83.33%',
@@ -2277,7 +2277,7 @@ Container::make('post_meta', 'Modules')
 												Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
 													->set_options(
 														array(
-															'col' 	=> 'Default',
+															'' 	=> 'Default',
 															'col-12' => '100%',
 															'col-11' => '91.67%',
 															'col-10' => '83.33%',
