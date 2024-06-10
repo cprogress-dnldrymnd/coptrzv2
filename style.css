@@ -14786,7 +14786,7 @@ a.fancybox-gallery-img {
 /*Colors*/
 .text-white {
   color: var(--white-color) !important; }
-  .text-white div[clas*='background-'] * {
+  .text-white div[class*="background-"]:not(.background-white) * {
     color: inherit; }
 
 .text-primary * {

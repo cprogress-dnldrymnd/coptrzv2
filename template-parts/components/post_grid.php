@@ -24,7 +24,7 @@ $arr = array_column($post_elements, '_type');
 
                     if(get_post_type($id) == 'product') {
                         $product = wc_get_product( $id );
-                        echo '<div class="price-box">';
+                        echo '<div class="price-box fw-medium">';
                         echo $product->get_price_html();
                         echo '</div>';
                     }
