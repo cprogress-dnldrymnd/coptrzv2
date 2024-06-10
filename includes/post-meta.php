@@ -11370,7 +11370,7 @@ Block::make(__('Modules'))
 	
 		
 		// Render Carbon Fields block template
-		Carbon_Fields\Template::render($block_name, $field_values);
+		Carbon_Fields\Block::render($block_name, $field_values);
 	
 		return ob_get_clean(); // Return buffered content
 	}
