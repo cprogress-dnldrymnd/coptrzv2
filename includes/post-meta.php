@@ -5475,7 +5475,17 @@ Container::make('post_meta', 'Modules')
 							->add_fields(
 								'product',
 								array(
-									Field::make('association', 'product', 'Select product')
+									Field::make('hidden', 'taxonomy_key', '')->set_default_value('product_cat'),
+									Field::make('select', 'source', __('Source'))
+										->set_options(
+											array(
+												'all'      => 'Select All',
+												'manually'      => 'Select Manually',
+												'category'      => 'Select by Category',
+											)
+										),
+
+									Field::make('association', 'post', 'Select Products')
 										->set_types(
 											array(
 												array(
@@ -5484,6 +5494,32 @@ Container::make('post_meta', 'Modules')
 												)
 											)
 										)
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'source',
+													'value' => 'manually',
+												)
+											)
+										),
+									Field::make('association', 'category', 'Select Testimonial Categories')
+										->set_types(
+											array(
+												array(
+													'type'      => 'term',
+													'taxonomy' => 'category',
+												)
+											)
+										)
+										->set_conditional_logic(
+											array(
+												array(
+													'field' => 'source',
+													'value' => 'category',
+													'comapre' => '='
+												)
+											)
+										),
 
 								)
 							)
