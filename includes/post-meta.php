@@ -2297,6 +2297,8 @@ Container::make('post_meta', 'Modules')
 											'heading',
 											array(
 												Field::make('text', 'heading', __('Heading')),
+												Field::make('text', 'prefix', __('Prefix')),
+												Field::make('text', 'suffix', __('Suffix')),
 												Field::make('select', 'tag', __('Tag'))
 													->set_options(
 														array(
@@ -2900,7 +2902,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_prefix', __('Heading Prefix'))
+						Field::make('text', 'heading_prefix', __('Prefix'))
 							->set_width(20)
 							->set_conditional_logic(
 								array(
@@ -2910,7 +2912,7 @@ Container::make('post_meta', 'Modules')
 									)
 								)
 							),
-						Field::make('text', 'heading_suffix', __('Heading Suffix'))
+						Field::make('text', 'heading_suffix', __('Suffix'))
 							->set_width(20)
 							->set_conditional_logic(
 								array(
