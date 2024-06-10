@@ -21,6 +21,13 @@ $arr = array_column($post_elements, '_type');
                         $style_attribute .= '--color: ' . $el['text_color_custom'];
                     }
                     echo do_shortcode('[_heading size="' . $el['size'] . '" style="' . $style_attribute . '" class="' . $class . '" heading="' . get_the_title($id) . '" tag="h3"]');
+
+                    if(get_post_type($id) == 'product') {
+                        $product = wc_get_product( $id );
+                        echo '<div class="price-box">';
+                        echo $product->get_price_html();
+                        echo '</div>';
+                    }
                     break;
                 case 'featured_image':
                     $rounded_corners = $el['rounded_corners'] ? 'true' : 'false';
