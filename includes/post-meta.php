@@ -5400,7 +5400,7 @@ Container::make('post_meta', 'Modules')
 												)
 											)
 										),
-									Field::make('association', 'category', 'Select Testimonial Categories')
+									Field::make('association', 'category', 'Select Post Categories')
 										->set_types(
 											array(
 												array(
@@ -5451,7 +5451,7 @@ Container::make('post_meta', 'Modules')
 												)
 											)
 										),
-									Field::make('association', 'category', 'Select Testimonial Categories')
+									Field::make('association', 'category', 'Select Team Categories')
 										->set_types(
 											array(
 												array(
@@ -5502,7 +5502,7 @@ Container::make('post_meta', 'Modules')
 												)
 											)
 										),
-									Field::make('association', 'category', 'Select Testimonial Categories')
+									Field::make('association', 'category', 'Select Product Categories')
 										->set_types(
 											array(
 												array(
