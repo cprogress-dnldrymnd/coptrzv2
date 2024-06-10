@@ -6024,6 +6024,9 @@ Container::make('post_meta', 'Modules')
 				->set_header_template('Testimonials <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				//Enf of Testimonial Fields
 				->add_fields('templates', array(
+					Field::make('text', 'title', __('Module Title'))->set_width(33),
+					Field::make('text', 'module_id', __('Module ID'))->set_width(33),
+					Field::make('checkbox', 'disable_module', __('Disable Module'))->set_width(33),
 					Field::make('association', 'template', 'Select Templates')
 						->set_types(
 							array(
@@ -6035,6 +6038,7 @@ Container::make('post_meta', 'Modules')
 						)
 
 				))
+				->set_header_template('Templates <% if (title) { %>[Title: <%- title %>] <% } %> <% if (module_id) { %>[Module ID: <%- module_id %>]<% } %>')
 				->set_collapsed(true)
 		)
 	);
