@@ -507,6 +507,18 @@ $Templates->show_in_admin_bar = true;
 $Templates->has_archive = false;
 $Templates->show_in_rest = true;
 
+$Templates = new newPostType();
+$Templates->name = 'Coptrz Templates';
+$Templates->singular_name = 'Coptrz Template';
+$Templates->icon = 'dashicons-testimonial';
+$Templates->supports = array('title', 'revisions', 'thumbnail', 'editor');
+$Templates->exclude_from_search = true;
+$Templates->publicly_queryable = true;
+$Templates->show_in_admin_bar = true;
+$Templates->has_archive = false;
+$Templates->show_in_rest = true;
+
+
 $Popup = new newPostType();
 $Popup->name = 'Popups';
 $Popup->singular_name = 'Popup';
