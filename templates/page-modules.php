@@ -42,6 +42,8 @@ function add_carbon_fields_block_to_page($page_id)
 
 // Example usage: add the block to the page with ID 123
 add_carbon_fields_block_to_page(get_the_ID());
+
+var_dump($modules);
 ?>
 
 
