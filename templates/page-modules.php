@@ -23,7 +23,7 @@ function add_carbon_fields_block_to_page($page_id)
         'blockName' => 'carbon-fields/call-to-action', // Replace with your actual block name
         'attrs' => array(
             // Your Carbon Fields data here. Example:
-            '_title' => 'test',
+            'module_id' => 'test',
         ),
     );
 
