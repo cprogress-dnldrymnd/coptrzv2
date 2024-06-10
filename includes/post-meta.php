@@ -6568,6 +6568,6 @@ Block::make(__('Call to Action'))
 					}
 				}
 			}
-			include locate_template('template-parts/modules/' . $type . '.php');
+			include locate_template('template-parts/gutenberg/' . $type . '.php');
 		}
 	});
