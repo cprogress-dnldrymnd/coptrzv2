@@ -6097,9 +6097,9 @@ Container::make('term_meta', __('Category Properties'))
 		)
 	);
 /*-----------------------------------------------------------------------------------*/
-/* Call to Action
+/* Call to Action Gutenberg
 /*-----------------------------------------------------------------------------------*/
-Block::make(__('Modules'))
+Block::make(__('Call to Action'))
 	->add_fields(array(
 		//Module Settings
 		Field::make('text', 'title', __('Module Title'))->set_width(33),
