@@ -6,18 +6,7 @@
 <?php get_header(); ?>
 <?php
 $modules = get__post_meta('modules');
-// Example block data (replace with your actual block names and field values)
-$blocks_data = array(
-    array(
-        'name' => 'modules',
-        'fields' => array(
-            'modules' => $modules,
-        )
-    ),
-);
 
-// Insert the blocks into a post with ID 123
-insert_carbon_field_blocks_into_post(get_the_ID(), $blocks_data);
 ?>
 <div class="modules">
     <?php
@@ -117,3 +106,13 @@ insert_carbon_field_blocks_into_post(get_the_ID(), $blocks_data);
 </div>
 
 <?php get_footer(); ?>
+<script>
+    var content = "Test content";
+    var el = wp.element.createElement;
+    var name = 'core/paragraph';
+    // var name = 'core/html';
+    insertedBlock = wp.blocks.createBlock(name, {
+        content: content,
+    });
+    wp.data.dispatch('core/editor').insertBlocks(insertedBlock);
+</script>
