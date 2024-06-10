@@ -6032,9 +6032,10 @@ Container::make('post_meta', 'Modules')
 									'post_type' => 'templates',
 								)
 							)
-						),
+						)
+						->set_max(1)
+
 				))
-				->set_max(1)
 				->set_collapsed(true)
 		)
 	);
