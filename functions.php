@@ -359,7 +359,7 @@ function action_admin_footer()
 <?php
 }
 
-add_action('admin_footer', 'action_admin_footer');
+//add_action('admin_footer', 'action_admin_footer');
 
 function get__posts($post_type)
 {
