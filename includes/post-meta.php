@@ -11363,3 +11363,33 @@ Block::make(__('Modules'))
 			}
 		}
 	});
+
+
+	function generate_carbon_field_block_content($block_name, $field_values) {
+		ob_start(); // Start output buffering
+	
+		// Render Carbon Fields block template
+		Carbon_Fields\Block_Template::render($block_name, $field_values);
+	
+		return ob_get_clean(); // Return buffered content
+	}
+	
+	function insert_carbon_field_blocks_into_post($post_id, $blocks_data) {
+		$post = get_post($post_id); // Fetch the post object
+		$content = $post->post_content; 
+	
+		foreach ($blocks_data as $block_data) {
+			$block_name = $block_data['name'];
+			$field_values = $block_data['fields'];
+			$block_content = generate_carbon_field_block_content($block_name, $field_values);
+	
+			// Append the block content to the existing post content
+			$content .= $block_content;
+		}
+	
+		// Update the post with the new content
+		wp_update_post(array(
+			'ID' => $post_id,
+			'post_content' => $content
+		));
+	}
