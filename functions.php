@@ -157,7 +157,7 @@ function action_admin_enqueue_scripts($hook)
 
 	wp_enqueue_script('select_2_js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js', array(), '1.0');
 
-	wp_enqueue_script('admin_js', get_template_directory_uri() . '/admin/js/admin-js.js', array(), '1.3');
+	//wp_enqueue_script('admin_js', get_template_directory_uri() . '/admin/js/admin-js.js', array(), '1.3');
 }
 add_action('admin_enqueue_scripts', 'action_admin_enqueue_scripts');
 
