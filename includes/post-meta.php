@@ -6478,7 +6478,7 @@ Block::make(__('Call to Action'))
 			),
 	))
 	->set_render_callback(function ($fields, $attributes, $inner_blocks) {
-		$type = $cta;
+		$type = 'cta';
 		$disable_module = $module['disable_module'];
 		if (!$disable_module) {
 			$module_id = $module['module_id'] ? $module['module_id'] : 'module-' . get_the_ID() . '-' . $key;
