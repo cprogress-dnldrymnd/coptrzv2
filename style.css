@@ -14032,8 +14032,14 @@ a.fancybox-gallery-img {
 #post-content img {
   height: auto;
   border-radius: 15px; }
-#post-content .wp-video-shortcode video, #post-content video.wp-video-shortcode {
+#post-content .wp-video-shortcode video,
+#post-content video.wp-video-shortcode {
   width: 100% !important; }
+#post-content .is-provider-youtube .wp-block-embed__wrapper {
+  position: relative;
+  padding: 28%; }
+  #post-content .is-provider-youtube .wp-block-embed__wrapper iframe {
+    height: 525px; }
 
 .wp-element-button:hover, .wp-element-button:active, .wp-element-button:focus {
   background-color: var(--accent-color);

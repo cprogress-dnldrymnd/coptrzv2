@@ -3526,11 +3526,21 @@ a.fancybox-gallery-img {
         height: auto;
         border-radius: 15px;
     }
-    .wp-video-shortcode video, video.wp-video-shortcode {
+    .wp-video-shortcode video,
+    video.wp-video-shortcode {
         width: 100% !important;
     }
-}
 
+    .is-provider-youtube {
+        .wp-block-embed__wrapper {
+            position: relative;
+            padding: 28%;
+            iframe {
+                height: 525px;
+            }
+        }
+    }
+}
 
 .wp-element-button {
     @include on-event {
