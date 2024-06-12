@@ -14032,7 +14032,8 @@ a.fancybox-gallery-img {
   border-radius: 15px; }
 
 .wp-element-button:hover, .wp-element-button:active, .wp-element-button:focus {
-  background-color: var(--accent-color); }
+  background-color: var(--accent-color);
+  color: var(--white-color); }
 
 /*Padding*/
 /*Extra Small Padding*/
