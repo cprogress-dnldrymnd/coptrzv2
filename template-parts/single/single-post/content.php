@@ -23,7 +23,10 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="column-holder">
+                    <?= do_shortcode('[_heading heading="Contents"]') ?>
+                    <ul id="post-navigation" class="d-flex flex-wrap list-inline">
 
+                    </ul>
                 </div>
             </div>
             <div class="col-lg-6">
