@@ -3549,6 +3549,14 @@ a.fancybox-gallery-img {
             }
         }
     }
+    > ul,
+    > ol {
+        li {
+            @include not-last-child {
+                margin-bottom: 1rem;
+            }
+        }
+    }
 }
 
 .wp-element-button {
