@@ -1,6 +1,14 @@
 <section class="post-details">
     <div class="container">
         <?= do_shortcode('[_image id="' . get_post_thumbnail_id(get_the_ID()) . '"]') ?>
+        <div class="row g-4 justify-content-between">
+            <div class="col-auto">
+                <?= do_shortcode('[blog_meta]') ?>
+            </div>
+            <div class="col-auto">
+                <?= do_shortcode('   [post_link]') ?>
+            </div>
+        </div>
     </div>
 </section>
 
