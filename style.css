@@ -15425,71 +15425,77 @@ tspan {
   padding-top: 10px;
   padding-bottom: 10px; }
 
-#header .top-header .search-form {
-  border: 1px solid var(--border-color);
-  max-width: 890px; }
-  #header .top-header .search-form > * {
-    height: 54px;
-    border-radius: 0;
-    border: none; }
-  #header .top-header .search-form select {
-    width: 40%; }
-  #header .top-header .search-form input {
-    width: calc(60% - 54px);
-    border-right: 1px solid var(--border-color);
-    border-left: 1px solid var(--border-color); }
-  #header .top-header .search-form button {
-    background-color: var(--accent-color);
-    color: var(--white-color);
-    width: 54px; }
-#header .bottom-header {
-  border-bottom: 1px solid var(--body-color); }
-  #header .bottom-header ul .menu-item .nav-link {
-    color: var(--black-color);
-    font-size: 15px;
-    padding-top: 30px;
-    padding-bottom: 30px; }
-  #header .bottom-header .mega-menu .mega-menu-link {
-    color: var(--black-color);
-    font-size: 15px;
-    padding-top: 30px;
-    padding-bottom: 30px; }
-    #header .bottom-header .mega-menu .mega-menu-link.has-submenu:after {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-left: 2px solid;
-      border-top: 2px solid;
-      -webkit-transform: rotate(225deg) translateY(5px);
-      -moz-transform: rotate(225deg) translateY(5px);
-      -ms-transform: rotate(225deg) translateY(5px);
-      -o-transform: rotate(225deg) translateY(5px);
-      transform: rotate(225deg) translateY(5px);
-      display: inline-block; }
-  #header .bottom-header .mega-menu .menu-holder:hover .submenu-holder, #header .bottom-header .mega-menu .menu-holder:active .submenu-holder, #header .bottom-header .mega-menu .menu-holder:focus .submenu-holder {
-    display: block; }
-  #header .bottom-header .mega-menu .submenu-holder {
-    position: absolute;
-    left: 0;
-    right: 0;
-    background-color: var(--white-color);
-    z-index: 99999;
-    display: none; }
-    #header .bottom-header .mega-menu .submenu-holder .container {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem; }
-    #header .bottom-header .mega-menu .submenu-holder .submenu-item-title {
-      padding-bottom: 15px;
-      margin-bottom: 15px;
-      border-style: solid;
-      border-width: 0px 0px 1px 0px;
-      border-color: #d8d8d8; }
-    #header .bottom-header .mega-menu .submenu-holder .image-box img {
-      border-radius: 10px; }
-    #header .bottom-header .mega-menu .submenu-holder .menu-items li a {
-      font-weight: 400; }
-    #header .bottom-header .mega-menu .submenu-holder .menu-items li:not(:last-child) {
-      margin-bottom: 15px; }
+.admin-bar #header {
+  top: calc(88 + 3+ 32px); }
+
+#header {
+  position: sticky;
+  top: calc(88 + 32px); }
+  #header .top-header .search-form {
+    border: 1px solid var(--border-color);
+    max-width: 890px; }
+    #header .top-header .search-form > * {
+      height: 54px;
+      border-radius: 0;
+      border: none; }
+    #header .top-header .search-form select {
+      width: 40%; }
+    #header .top-header .search-form input {
+      width: calc(60% - 54px);
+      border-right: 1px solid var(--border-color);
+      border-left: 1px solid var(--border-color); }
+    #header .top-header .search-form button {
+      background-color: var(--accent-color);
+      color: var(--white-color);
+      width: 54px; }
+  #header .bottom-header {
+    border-bottom: 1px solid var(--body-color); }
+    #header .bottom-header ul .menu-item .nav-link {
+      color: var(--black-color);
+      font-size: 15px;
+      padding-top: 30px;
+      padding-bottom: 30px; }
+    #header .bottom-header .mega-menu .mega-menu-link {
+      color: var(--black-color);
+      font-size: 15px;
+      padding-top: 30px;
+      padding-bottom: 30px; }
+      #header .bottom-header .mega-menu .mega-menu-link.has-submenu:after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-left: 2px solid;
+        border-top: 2px solid;
+        -webkit-transform: rotate(225deg) translateY(5px);
+        -moz-transform: rotate(225deg) translateY(5px);
+        -ms-transform: rotate(225deg) translateY(5px);
+        -o-transform: rotate(225deg) translateY(5px);
+        transform: rotate(225deg) translateY(5px);
+        display: inline-block; }
+    #header .bottom-header .mega-menu .menu-holder:hover .submenu-holder, #header .bottom-header .mega-menu .menu-holder:active .submenu-holder, #header .bottom-header .mega-menu .menu-holder:focus .submenu-holder {
+      display: block; }
+    #header .bottom-header .mega-menu .submenu-holder {
+      position: absolute;
+      left: 0;
+      right: 0;
+      background-color: var(--white-color);
+      z-index: 99999;
+      display: none; }
+      #header .bottom-header .mega-menu .submenu-holder .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem; }
+      #header .bottom-header .mega-menu .submenu-holder .submenu-item-title {
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-style: solid;
+        border-width: 0px 0px 1px 0px;
+        border-color: #d8d8d8; }
+      #header .bottom-header .mega-menu .submenu-holder .image-box img {
+        border-radius: 10px; }
+      #header .bottom-header .mega-menu .submenu-holder .menu-items li a {
+        font-weight: 400; }
+      #header .bottom-header .mega-menu .submenu-holder .menu-items li:not(:last-child) {
+        margin-bottom: 15px; }
 
 /* Basic Dropdown Styling */
 .cart-dropdown {

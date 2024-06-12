@@ -3,8 +3,14 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-
+.admin-bar {
+	#header {
+		top: calc(88 + 38px+ 32px);
+	}
+}
 #header {
+	position: sticky;
+	top: calc(88 + 32px);
 	.top-header {
 		.search-form {
 			border: 1px solid var(--border-color);
