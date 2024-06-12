@@ -14018,6 +14018,12 @@ a.fancybox-gallery-img {
   padding: 0;
   margin-bottom: 0; }
 
+#post-content figcaption {
+  text-align: center; }
+#post-content figure {
+  padding: 1rem;
+  border: 1px solid var(--light-gray);
+  border-radius: 15px; }
 #post-content img {
   height: auto;
   border-radius: 15px; }
