@@ -8,7 +8,6 @@
                     </div>
                 </div>
             </div>
-
             <?php if (get_the_post_thumbnail()) { ?>
                 <div class="col-lg-6 col-image col-right">
                     <div class="column-holder ">
@@ -17,7 +16,6 @@
                         </div>
                     </div>
                 </div>
-
             <?php } ?>
         </div>
     </div>

@@ -7,25 +7,19 @@
 
 get_header(); // This fxn gets the header.php file and renders it 
 ?>
-<?php if (have_posts()):
+<?php if (have_posts()) :
 	// Do we have any posts in the databse that match our query?
-	?>
+?>
 
-	<?php while (have_posts()):
+	<?php while (have_posts()) :
 		the_post();
 		// If we have a post to show, start a loop that will display it
-		?>
+	?>
 		<?php
 		if (!get__post_meta('hide_page_banner') && get_post_type() != 'webinars' && get_post_type() != 'careers') {
-			get_template_part('template-parts/section/content', 'banner');
+			get_template_part('template-parts/section/content', 'breadcrumbs');
 		}
-
-		if (get_post_type() == 'elementor_library') {
-			the_content();
-		}
-		else {
-			get_template_part('template-parts/single/content-post', get_post_type());
-		}
+		get_template_part('template-parts/single/content-post', get_post_type());
 		?>
 
 
@@ -39,8 +33,8 @@ get_header(); // This fxn gets the header.php file and renders it
 	?>
 
 
-<?php else: // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) 
-	?>
+<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) 
+?>
 
 	<article class="post error">
 		<h1 class="404">Nothing has been posted like that yet</h1>

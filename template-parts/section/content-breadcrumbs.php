@@ -1,9 +1,6 @@
 <?php
 
 $DisplayData = new DisplayData;
-
-
-
 if (is_home()) {
     $title = 'Blog';
 } else if (is_category()) {
