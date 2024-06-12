@@ -35,8 +35,8 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="column-holder">
-
+                <div class="column-holder" id="blog-sidebar">
+                    <?php dynamic_sidebar('blog_sidebar') ?>
                 </div>
             </div>
         </div>
