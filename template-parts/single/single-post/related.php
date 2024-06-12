@@ -37,7 +37,7 @@ $categories = get_the_category(get_the_ID());
 
                     $post_elements = array(
                         array('_type' => 'featured_image'),
-                        array('_type' => 'post_title'),
+                        array('_type' => 'post_title', 'size' => 'small-heading'),
                         array('_type' => 'post_excerpt'),
                         array('_type' => 'permalink', 'button_style' => 'button-accent'),
                     );
