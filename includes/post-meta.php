@@ -6116,8 +6116,8 @@ Container::make('term_meta', __('Category Properties'))
 
 Block::make(__('CTA'))
 	->add_fields(array(
-		Field::make('text', 'heading', __('Block Heading')),
-		Field::make('rich_text', 'content', __('Block Content')),
+		Field::make('text', 'heading', __('Heading')),
+		Field::make('rich_text', 'description', __('Description')),
 		Field::make('select', 'button_type', __('Button Type'))->set_width(20)->set_classes('trigger-selector')
 			->set_options(
 				array(
@@ -6167,20 +6167,12 @@ Block::make(__('CTA'))
 	))
 	->set_render_callback(function ($fields, $attributes, $inner_blocks) {
 ?>
-
-	<div class="block">
-		<div class="block__heading">
-			<h1><?php echo esc_html($fields['heading']); ?></h1>
-		</div><!-- /.block__heading -->
-
-		<div class="block__image">
-			<?php echo wp_get_attachment_image($fields['image'], 'full'); ?>
-		</div><!-- /.block__image -->
-
-		<div class="block__content">
-			<?php echo apply_filters('the_content', $fields['content']); ?>
-		</div><!-- /.block__content -->
-	</div><!-- /.block -->
-
+	<div class="block-cta p-5 background-accent rounded-corner">
+		<div class="inner content-margin">
+			<?= do_shortcode('[_heading heading="' . $fields['heading'] . '" tag="h3"]') ?>
+			<?= do_shortcode("[_description description='" . _format_text($fields['description']) . "']") ?>
+			<?= do_shortcode('[_button class="' . $fields['button_style'] . '" id="' . $fields['button_url'] . '" custom_url="' . $fields['button_url_custom'] . '" button_type="' . $fields['button_type'] . '" button_text="' . $fields['button_text'] . '" ]'); ?>
+		</div>
+	</div>
 <?php
 	});
