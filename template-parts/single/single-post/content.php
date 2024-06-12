@@ -11,9 +11,11 @@
             <div class="col-auto">
                 <?= do_shortcode('[blog_meta]') ?>
             </div>
-            <div class="col-auto d-flex justify-content-end">
-                <?= do_shortcode('[post_link]') ?>
-                <?= do_shortcode('[social_share]') ?>
+            <div class="col-auto ">
+                <div class="d-flex justify-content-end">
+                    <?= do_shortcode('[post_link]') ?>
+                    <?= do_shortcode('[social_share]') ?>
+                </div>
             </div>
         </div>
     </div>
