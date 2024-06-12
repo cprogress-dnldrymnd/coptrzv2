@@ -14021,6 +14021,8 @@ a.fancybox-gallery-img {
 #post-content figcaption {
   margin-top: 10px;
   margin-bottom: 0; }
+#post-content iframe {
+  width: 100%; }
 #post-content figure {
   text-align: center; }
   #post-content figure.has-caption {

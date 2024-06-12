@@ -3511,6 +3511,9 @@ a.fancybox-gallery-img {
         margin-top: 10px;
         margin-bottom: 0;
     }
+    iframe {
+        width: 100%;
+    }
     figure {
         text-align: center;
         &.has-caption {
