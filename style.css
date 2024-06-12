@@ -15238,7 +15238,7 @@ a {
   -o-transition: 300ms;
   transition: 300ms;
   line-height: 1.2;
-  color: var(--acccent-color); }
+  color: var(--accent-color); }
 
 p,
 li {
