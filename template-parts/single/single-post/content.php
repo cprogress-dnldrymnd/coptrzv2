@@ -1,7 +1,10 @@
 <section class="post-details">
     <div class="container content-margin">
-        <?= get_the_excerpt() ?>
-        <?= do_shortcode('[_description description="' . _format_text(custom_excerpt_length(get_the_excerpt()), 200) . '" ]') ?>
+        <?php
+        if (has_excerpt()) {
+            do_shortcode('[_description description="' . _format_text(custom_excerpt_length(get_the_excerpt()), 200) . '" ]');
+        }
+        ?>
         <?= do_shortcode('[_image class="blog-image image-absolute rounded-corner overflow-hidden" id="' . get_post_thumbnail_id(get_the_ID()) . '"]') ?>
 
         <div class="row g-4 justify-content-between">
