@@ -14018,6 +14018,8 @@ a.fancybox-gallery-img {
   padding: 0;
   margin-bottom: 0; }
 
+#post-content .col-post-nav .column-holder {
+  position: sticky; }
 #post-content figcaption {
   margin-top: 10px; }
 #post-content figure {

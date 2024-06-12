@@ -18,7 +18,7 @@
     </div>
 </section>
 
-<section class="post-content-v2 md-padding">
+<section class="post-content-v2 md-padding no-overflow">
     <div class="container">
         <div class="row g-5">
             <div class="col col-post-nav">
