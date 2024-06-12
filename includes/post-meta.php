@@ -6157,6 +6157,7 @@ Block::make(__('CTA'))
 		Field::make('select', 'button_style', __('Button Style'))->set_width(20)
 			->set_options(
 				array(
+					''      => 'Select',
 					'button-accent'      => 'Accent',
 					'button-primary'      => 'Primary',
 					'button-secondary' => 'Secondary',
