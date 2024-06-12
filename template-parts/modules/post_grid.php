@@ -61,7 +61,7 @@ $source = $module['post_type'][0]['source'];
             <?php
             $styles = $module['post_box_styles'];
             $classes = '';
-            $style_attribute_post = '';
+            $style_attribute_post = 'padding: 40%;';
             $style_attribute_inner = '';
             if ($styles) {
                 foreach ($styles as $style) {

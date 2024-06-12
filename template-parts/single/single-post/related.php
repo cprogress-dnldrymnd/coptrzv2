@@ -42,7 +42,7 @@ $categories = get_the_category(get_the_ID());
                         array('_type' => 'permalink', 'button_style' => 'button-accent'),
                     );
 
-                    $style_attribute_post = '';
+                    $style_attribute_post = '--padding: 20%';
                     $classes = 'xxs-padding-top xxs-padding-left xxs-padding-right xxs-padding-bottom background-white rounded-corner';
                     $limit = 30;
                     ?>
@@ -53,7 +53,7 @@ $categories = get_the_category(get_the_ID());
                             $query->the_post();
                             $id = get_the_ID();
                             ?>
-                            <div class="swiper-slide product-box">
+                            <div class="swiper-slide">
                                 <?php
                                 include locate_template('template-parts/components/post_grid.php');
                                 ?>
