@@ -14054,17 +14054,23 @@ a.fancybox-gallery-img {
   background-color: var(--accent-color);
   color: var(--white-color); }
 
-.social-share-buttons a {
-  border-radius: 5px;
-  border: 1px solid #a0a1a8;
-  background-color: transparent;
-  color: var(--primary-color);
-  text-transform: initial;
-  font-size: 1rem;
-  padding: 8.5px 20px; }
-  .social-share-buttons a svg {
-    width: 25px;
-    height: 25px; }
+.social-share-buttons {
+  margin-left: 1rem; }
+  .social-share-buttons a {
+    border-radius: 5px;
+    border: 1px solid #a0a1a8;
+    background-color: transparent;
+    color: var(--primary-color);
+    text-transform: initial;
+    font-size: 1rem;
+    padding: 8.5px 20px;
+    height: 42px;
+    display: inline-block; }
+    .social-share-buttons a:not(:last-child) {
+      margin-right: 1rem; }
+    .social-share-buttons a svg {
+      width: 25px;
+      height: 25px; }
 
 .post-link-copy.post-link-copy.post-link-copy {
   border-radius: 5px;
