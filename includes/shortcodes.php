@@ -939,6 +939,7 @@ add_shortcode('breadcrumbs', array($Shortcodes, 'breadcrumbs'));
 add_shortcode('testimonial_carousel', array($Shortcodes, 'testimonial_carousel'));
 add_shortcode('featured_blogs', array($Shortcodes, 'featured_blogs'));
 add_shortcode('blog_meta', array($Shortcodes, 'blog_meta'));
+add_shortcode('social_share', array($Shortcodes, 'social_share'));
 add_shortcode('post_link', array($Shortcodes, 'post_link'));
 add_shortcode('coptrz_review', array($Shortcodes, 'coptrz_review'));
 
