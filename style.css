@@ -14065,7 +14065,8 @@ a.fancybox-gallery-img {
     font-size: 1rem;
     padding: 8.5px 20px;
     height: 42px;
-    display: inline-block; }
+    display: inline-block;
+    color: var(--accent-color); }
     .social-share-buttons a:not(:last-child) {
       margin-right: 1rem; }
     .social-share-buttons a svg {
