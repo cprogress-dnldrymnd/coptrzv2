@@ -14019,7 +14019,8 @@ a.fancybox-gallery-img {
   margin-bottom: 0; }
 
 #post-content figcaption {
-  margin-top: 10px; }
+  margin-top: 10px;
+  margin-bottom: 0; }
 #post-content figure {
   text-align: center;
   padding: 1rem;
