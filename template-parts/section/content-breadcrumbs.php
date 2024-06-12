@@ -64,35 +64,6 @@ if (is_page() || is_single()) {
 
         <?= do_shortcode('[_heading heading="' . $title . '" class="big-heading"]') ?>
         <?= do_shortcode('[_description description="' . _format_text($description) . '" ]') ?>
-        <?php if (is_single()) { ?>
-
-            <div class="meta-box d-flex mt-3">
-
-                <span class="date">
-
-                    <?= get_the_date('d/m/Y', get_the_ID()) ?>
-
-                </span>
-
-                <div class="bull">&bull;</div>
-
-                <span class="author">
-
-                    <?php
-
-                    $author_id = get_post_field('post_author', get_the_ID());
-
-                    $author_name = get_the_author_meta('display_name', $author_id);
-
-                    ?>
-
-                    <?= $author_name ?>
-
-                </span>
-
-            </div>
-
-        <?php } ?>
 
     </div>
 
