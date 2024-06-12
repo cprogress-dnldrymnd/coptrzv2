@@ -14019,7 +14019,7 @@ a.fancybox-gallery-img {
   margin-bottom: 0; }
 
 #post-content figcaption {
-  text-align: center; }
+  margin-top: 10px; }
 #post-content figure {
   padding: 1rem;
   border: 1px solid var(--light-gray);
