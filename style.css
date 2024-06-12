@@ -14039,7 +14039,11 @@ a.fancybox-gallery-img {
   position: relative;
   padding: 28%; }
   #post-content .is-provider-youtube .wp-block-embed__wrapper iframe {
-    height: 525px; }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 0;
+    top: 0; }
 
 .wp-element-button:hover, .wp-element-button:active, .wp-element-button:focus {
   background-color: var(--accent-color);
