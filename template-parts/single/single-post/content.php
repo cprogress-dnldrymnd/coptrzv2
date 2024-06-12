@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="column-holder the-content content-margin">
+                <div class="column-holder the-content content-margin" id="post-content">
                     <?php the_content() ?>
                 </div>
             </div>
