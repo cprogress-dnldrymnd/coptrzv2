@@ -39,7 +39,7 @@ $categories = get_the_category(get_the_ID());
                         array('_type' => 'featured_image'),
                         array('_type' => 'post_title'),
                         array('_type' => 'post_excerpt'),
-                        array('_type' => 'permalink', 'button_style' => 'buton-accent'),
+                        array('_type' => 'permalink', 'button_style' => 'button-accent'),
                     );
 
                     $style_attribute_post = '';
