@@ -713,6 +713,20 @@ class Shortcodes
 		return ob_get_clean();
 	}
 
+	function social_share()
+	{
+		global $post;
+		$url = get_permalink($post->ID);
+		$title = str_replace(' ', '%20', get_the_title($post->ID));
+		
+		$social_buttons = '';
+		$social_buttons .= '<div class="social-share-buttons">';
+		$social_buttons .= '<a href="https://www.facebook.com/sharer.php?u=' . $url . '&t=' . $title . '" target="_blank">Share on Facebook</a>';
+		$social_buttons .= '<a href="https://twitter.com/share?url=' . $url . '&text=' . $title . '" target="_blank">Share on Twitter</a>';
+		// Add more social networks here (e.g., LinkedIn, Pinterest, etc.)
+		$social_buttons .= '</div>';
+		return $social_buttons;
+	}
 
 
 	function post_link()
