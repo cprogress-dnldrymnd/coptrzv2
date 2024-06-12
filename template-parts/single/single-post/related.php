@@ -44,14 +44,14 @@ $categories = get_the_category(get_the_ID());
 
                     $style_attribute_post = '';
                     $rounded_corners = 'true'; 
-                    $classes = 'xs-padding';
+                    $classes = 'xxs-padding-top xxs-padding-left xxs-padding-right xxs-padding-bottom';
                     ?>
                     <?php if ($query->have_posts()) { ?>
 
                         <?php while ($query->have_posts()) { ?>
                             <?php
                             $query->the_post();
-                            $post_id = get_the_ID();
+                            $id = get_the_ID();
                             ?>
                             <div class="swiper-slide product-box">
                                 <div class="inner background-white d-block ">
