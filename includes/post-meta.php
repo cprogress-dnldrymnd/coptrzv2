@@ -6133,7 +6133,7 @@ Block::make(__('CTA'))
 				)
 			),
 		Field::make('text', 'button_text', __('Button Text'))->set_width(20),
-		Field::make('text', 'button_url', __('Page ID'))->set_width(20)->set_classes('field-url')
+		Field::make('text', 'button_url', __('ID'))->set_width(20)->set_classes('field-url')
 			->set_conditional_logic(
 				array(
 					array(
@@ -6143,8 +6143,6 @@ Block::make(__('CTA'))
 					)
 				)
 			),
-		Field::make('html', 'html')->set_width(20)
-			->set_html('<div class="page-selector">  </div>'),
 		Field::make('text', 'button_url_custom', __('Button URL'))->set_width(20)
 			->set_conditional_logic(
 				array(
