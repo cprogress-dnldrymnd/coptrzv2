@@ -1,7 +1,7 @@
 <?php
 $SVG = new SVG;
 ?>
-<header id="header">
+<header id="header" class="background-white">
     <div class="top-header py-3 background-body">
         <div class="container large-container">
             <div class="row align-items-center">
