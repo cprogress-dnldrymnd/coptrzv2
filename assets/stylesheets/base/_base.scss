@@ -3526,6 +3526,9 @@ a.fancybox-gallery-img {
         height: auto;
         border-radius: 15px;
     }
+    .wp-video-shortcode video, video.wp-video-shortcode {
+        width: 100 !important;
+    }
 }
 
 
