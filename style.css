@@ -15426,11 +15426,11 @@ tspan {
   padding-bottom: 10px; }
 
 .admin-bar #header {
-  top: calc(88px + 38px+ 32px); }
+  top: -56px; }
 
 #header {
   position: sticky;
-  top: -calc(88px + 32px);
+  top: -88px;
   z-index: 999; }
   #header .top-header .search-form {
     border: 1px solid var(--border-color);

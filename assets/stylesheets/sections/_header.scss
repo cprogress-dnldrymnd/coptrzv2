@@ -5,12 +5,12 @@
 }
 .admin-bar {
 	#header {
-		top: calc(88px + 38px+ 32px);
+		top: -56px;
 	}
 }
 #header {
 	position: sticky;
-	top: -(calc(88px + 32px));
+	top: -88px;
 	z-index: 999;
 	.top-header {
 		.search-form {
