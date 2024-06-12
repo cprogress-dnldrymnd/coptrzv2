@@ -20,7 +20,7 @@
 
 <section class="post-content-v2 md-padding">
     <div class="container">
-        <div class="row">
+        <div class="row g-5">
             <div class="col-lg-3">
                 <div class="column-holder">
                     <?= do_shortcode('[_heading heading="Contents"]') ?>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="column-holder" id="blog-sidebar">
+                <div class="column-holder" id="blog-single-sidebar">
                     <?php dynamic_sidebar('blog_single_sidebar') ?>
                 </div>
             </div>

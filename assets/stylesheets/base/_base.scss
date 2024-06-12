@@ -3495,3 +3495,13 @@ a.fancybox-gallery-img {
     --padding: 15%;
     --border-radius: 20px;
 }
+#blog-single-sidebar {
+    img {
+        border-radius: 10px;
+    }
+
+    .widget-inner {
+        padding: 0;
+        margin-bottom: 0;
+    }
+}
