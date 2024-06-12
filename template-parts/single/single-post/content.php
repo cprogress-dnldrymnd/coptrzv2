@@ -1,5 +1,5 @@
 <section class="post-details">
-    <div class="container">
+    <div class="container content-margin">
         <?= do_shortcode('[_image class="blog-image image-absolute rounded-corner overflow-hidden" id="' . get_post_thumbnail_id(get_the_ID()) . '"]') ?>
         <div class="row g-4 justify-content-between">
             <div class="col-auto">
