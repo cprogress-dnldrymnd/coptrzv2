@@ -1,6 +1,8 @@
 <section class="post-details">
     <div class="container content-margin">
         <?= do_shortcode('[_image class="blog-image image-absolute rounded-corner overflow-hidden" id="' . get_post_thumbnail_id(get_the_ID()) . '"]') ?>
+        <?= do_shortcode('[_description description="' . _format_text(get_the_excerpt()) . '" ]') ?>
+
         <div class="row g-4 justify-content-between">
             <div class="col-auto">
                 <?= do_shortcode('[blog_meta]') ?>

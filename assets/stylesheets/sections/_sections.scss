@@ -2609,3 +2609,10 @@ section.sticky-add-to-cart {
 .archive {
     background-color: var(--body-color);
 }
+
+
+.single-post {
+    .breadcrumbs-title {
+        padding-bottom: 1.5rem !important;
+    }
+}

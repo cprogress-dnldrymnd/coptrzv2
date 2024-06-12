@@ -17368,6 +17368,9 @@ section.sticky-add-to-cart {
 .archive {
   background-color: var(--body-color); }
 
+.single-post .breadcrumbs-title {
+  padding-bottom: 1.5rem !important; }
+
 section.contact-form .form-holder {
   background-color: var(--white-color);
   padding: 2rem;
