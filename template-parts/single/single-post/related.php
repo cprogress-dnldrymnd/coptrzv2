@@ -42,7 +42,7 @@ $categories = get_the_category(get_the_ID());
                         array('_type' => 'permalink', 'button_style' => 'button-accent'),
                     );
 
-                    $style_attribute_post = '--padding: 20%';
+                    $style_attribute_post = '--padding: 30%';
                     $classes = 'xxs-padding-top xxs-padding-left xxs-padding-right xxs-padding-bottom background-white rounded-corner';
                     $limit = 30;
                     ?>
