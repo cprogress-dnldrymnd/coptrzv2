@@ -14031,6 +14031,9 @@ a.fancybox-gallery-img {
   height: auto;
   border-radius: 15px; }
 
+.wp-element-button:hover, .wp-element-button:active, .wp-element-button:focus {
+  background-color: var(--accent-color); }
+
 /*Padding*/
 /*Extra Small Padding*/
 .xxs-padding-top {

@@ -3524,3 +3524,11 @@ a.fancybox-gallery-img {
         border-radius: 15px;
     }
 }
+
+
+.wp-element-button {
+    @include on-event {
+        background-color: var(--accent-color);
+        color: var(--white-color);
+    }
+}
