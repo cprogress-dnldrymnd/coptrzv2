@@ -1,3 +1,9 @@
+<section class="post-details">
+    <div class="container">
+        
+    </div>
+</section>
+
 <section class="post-content background-secondary scrolling-section-v2">
     <div class="container-fluid p-0">
         <div class="row gx-0 gy-4">
