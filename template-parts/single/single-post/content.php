@@ -35,6 +35,7 @@
             <div class="col-lg-7 col-post-content">
                 <div class="column-holder the-content content-margin" id="post-content">
                     <?php the_content() ?>
+                    <?= do_shortcode('[social_share]') ?>
                 </div>
             </div>
             <div class="col col-sidebar">
