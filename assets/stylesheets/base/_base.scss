@@ -3549,8 +3549,8 @@ a.fancybox-gallery-img {
             }
         }
     }
-    > ul,
-    > ol {
+    ul,
+    ol {
         li {
             @include not-last-child {
                 margin-bottom: 1rem;

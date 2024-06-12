@@ -14049,8 +14049,8 @@ a.fancybox-gallery-img {
     object-fit: cover;
     left: 0;
     top: 0; }
-#post-content > ul li:not(:last-child),
-#post-content > ol li:not(:last-child) {
+#post-content ul li:not(:last-child),
+#post-content ol li:not(:last-child) {
   margin-bottom: 1rem; }
 
 .wp-element-button:hover, .wp-element-button:active, .wp-element-button:focus {
