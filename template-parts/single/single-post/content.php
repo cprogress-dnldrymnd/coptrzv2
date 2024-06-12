@@ -18,7 +18,7 @@
     </div>
 </section>
 
-<section class="post-content-v2">
+<section class="post-content-v2 md-padding">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
