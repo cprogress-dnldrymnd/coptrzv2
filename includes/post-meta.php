@@ -6112,3 +6112,75 @@ Container::make('term_meta', __('Category Properties'))
 				->set_default_value(0),
 		)
 	);
+
+
+Block::make(__('CTA'))
+	->add_fields(array(
+		Field::make('text', 'heading', __('Block Heading')),
+		Field::make('rich_text', 'content', __('Block Content')),
+		Field::make('select', 'button_type', __('Button Type'))->set_width(20)->set_classes('trigger-selector')
+			->set_options(
+				array(
+					''          => 'Select Button Type',
+					'page'      => 'Page',
+					'product'      => 'Product',
+					'guides'      => 'Guides',
+					'casestudies'      => 'Case Studies',
+					'post'      => 'Post',
+					'solutions' => 'Solution',
+					'popups'    => 'Popup',
+					'custom'    => 'Custom',
+				)
+			),
+		Field::make('text', 'button_text', __('Button Text'))->set_width(20),
+		Field::make('text', 'button_url', __('Page ID'))->set_width(20)->set_classes('field-url')
+			->set_conditional_logic(
+				array(
+					array(
+						'field'   => 'button_type',
+						'value'   => 'custom',
+						'compare' => '!='
+					)
+				)
+			),
+		Field::make('html', 'html')->set_width(20)
+			->set_html('<div class="page-selector">  </div>'),
+		Field::make('text', 'button_url_custom', __('Button URL'))->set_width(20)
+			->set_conditional_logic(
+				array(
+					array(
+						'field' => 'button_type',
+						'value' => 'custom',
+					)
+				)
+			),
+		Field::make('select', 'button_style', __('Button Style'))->set_width(20)
+			->set_options(
+				array(
+					'button-accent'      => 'Accent',
+					'button-primary'      => 'Primary',
+					'button-secondary' => 'Secondary',
+					'button-white' => 'White',
+					'button-bordered'    => 'Bordered',
+				)
+			),
+	))
+	->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+?>
+
+	<div class="block">
+		<div class="block__heading">
+			<h1><?php echo esc_html($fields['heading']); ?></h1>
+		</div><!-- /.block__heading -->
+
+		<div class="block__image">
+			<?php echo wp_get_attachment_image($fields['image'], 'full'); ?>
+		</div><!-- /.block__image -->
+
+		<div class="block__content">
+			<?php echo apply_filters('the_content', $fields['content']); ?>
+		</div><!-- /.block__content -->
+	</div><!-- /.block -->
+
+<?php
+	});
