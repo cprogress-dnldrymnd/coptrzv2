@@ -14039,6 +14039,7 @@ a.fancybox-gallery-img {
   position: relative;
   padding: 28%; }
   #post-content .is-provider-youtube .wp-block-embed__wrapper iframe {
+    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
