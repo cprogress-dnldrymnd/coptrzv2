@@ -595,7 +595,7 @@ function swiper_slider() {
 
 	});
 
-	var vendorProduct = new Swiper(".mySwiper-productSwiper", {
+	var vendorProduct = new Swiper(".mySwiper-Post", {
 		loop: false,
 		spaceBetween: 20,
 		autoplay: false,
