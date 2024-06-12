@@ -14028,6 +14028,8 @@ a.fancybox-gallery-img {
 #post-content img {
   height: auto;
   border-radius: 15px; }
+#post-content b {
+  font-size: 2rem; }
 
 /*Padding*/
 /*Extra Small Padding*/
@@ -17394,6 +17396,10 @@ section.sticky-add-to-cart {
 
 .single-post .breadcrumbs-title {
   padding-bottom: 1.5rem !important; }
+
+.post-content-v2 .col-post-nav .column-holder {
+  position: sticky;
+  top: 50px; }
 
 section.contact-form .form-holder {
   background-color: var(--white-color);
