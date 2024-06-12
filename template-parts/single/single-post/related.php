@@ -34,6 +34,17 @@ $categories = get_the_category(get_the_ID());
 
                     );
                     $query = new WP_Query($args);
+
+                    $post_elements = array(
+                        array('_type' => 'featured_image'),
+                        array('_type' => 'post_title'),
+                        array('_type' => 'post_excerpt'),
+                        array('_type' => 'permalink', 'button_style' => 'buton-accent'),
+                    );
+
+                    $style_attribute_post = '';
+                    $rounded_corners = 'true'; 
+                    $classes = 'xs-padding';
                     ?>
                     <?php if ($query->have_posts()) { ?>
 
@@ -45,12 +56,7 @@ $categories = get_the_category(get_the_ID());
                             <div class="swiper-slide product-box">
                                 <div class="inner background-white d-block ">
                                     <?php
-                                    $post_elements = array(
-                                        array('_type' => 'featured_image'),
-                                        array('_type' => 'post_title'),
-                                        array('_type' => 'post_excerpt'),
-                                        array('_type' => 'permalink', 'button_style' => 'buton-accent'),
-                                    );
+
                                     include locate_template('template-parts/components/post_grid.php');
                                     ?>
                                 </div>
