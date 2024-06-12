@@ -46,6 +46,12 @@ $categories = get_the_category(get_the_ID());
                             <div class="swiper-slide product-box">
                                 <div class="inner background-white d-block ">
                                     <?php
+                                    $post_elements = array(
+                                        array('_type' => 'featured_image'),
+                                        array('_type' => 'post_title'),
+                                        array('_type' => 'post_excerpt'),
+                                        array('_type' => 'permalink'),
+                                    );
                                     include locate_template('template-parts/components/post_grid.php');
                                     ?>
                                 </div>
