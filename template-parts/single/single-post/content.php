@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="column-holder the-content">
+                <div class="column-holder the-content content-margin">
                     <?php the_content() ?>
                 </div>
             </div>
