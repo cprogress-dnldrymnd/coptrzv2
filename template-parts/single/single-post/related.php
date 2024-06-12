@@ -15,9 +15,8 @@ $categories = get_the_category(get_the_ID());
             </div>
         </div>
     </div>
-    <div class="container extend-right">
-
-        <div class="product-slider-box">
+    <div class="container">
+        <div class="swiper-post-box">
             <div class="swiper mySwiper-Post">
                 <div class="swiper-wrapper">
 
@@ -50,7 +49,7 @@ $categories = get_the_category(get_the_ID());
                                         array('_type' => 'featured_image'),
                                         array('_type' => 'post_title'),
                                         array('_type' => 'post_excerpt'),
-                                        array('_type' => 'permalink'),
+                                        array('_type' => 'permalink', 'button_style' => 'buton-accent'),
                                     );
                                     include locate_template('template-parts/components/post_grid.php');
                                     ?>
