@@ -22,8 +22,8 @@ $arr = array_column($post_elements, '_type');
                     }
                     echo do_shortcode('[_heading size="' . $el['size'] . '" style="' . $style_attribute . '" class="' . $class . '" heading="' . get_the_title($id) . '" tag="h3"]');
 
-                    if(get_post_type($id) == 'product') {
-                        $product = wc_get_product( $id );
+                    if (get_post_type($id) == 'product') {
+                        $product = wc_get_product($id);
                         echo '<div class="price-box fw-medium">';
                         echo $product->get_price_html();
                         echo '</div>';
@@ -36,7 +36,7 @@ $arr = array_column($post_elements, '_type');
                     break;
                 case 'post_excerpt':
                     if (get_the_excerpt($id)) {
-                        echo do_shortcode('[_description description="' . _format_text(custom_excerpt_length(get_the_excerpt($id))) . '" ]');
+                        echo do_shortcode('[_description description="' . _format_text(custom_excerpt_length(get_the_excerpt($id), ($limit ? $limit : 50))) . '" ]');
                     }
                     break;
                 case 'permalink':
