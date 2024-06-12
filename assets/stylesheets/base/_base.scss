@@ -3506,13 +3506,15 @@ a.fancybox-gallery-img {
     }
 }
 
-#post-content {
+.post-content-v2 {
     .col-post-nav {
         .column-holder {
             position: sticky;
             top: 50px;
         }
     }
+}
+#post-content {
     figcaption {
         margin-top: 10px;
     }
