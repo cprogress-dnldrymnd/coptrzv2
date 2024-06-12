@@ -14054,6 +14054,10 @@ a.fancybox-gallery-img {
   background-color: var(--accent-color);
   color: var(--white-color); }
 
+.social-share-buttons svg {
+  width: 25px;
+  height: 25px; }
+
 /*Padding*/
 /*Extra Small Padding*/
 .xxs-padding-top {
