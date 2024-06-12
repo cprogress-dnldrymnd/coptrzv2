@@ -14033,11 +14033,15 @@ a.fancybox-gallery-img {
   height: auto;
   border-radius: 15px; }
 #post-content .wp-video-shortcode video,
-#post-content video.wp-video-shortcode {
-  width: 100% !important; }
+#post-content video.wp-video-shortcode,
+#post-content video {
+  width: 100% !important;
+  border-radius: 15px; }
 #post-content .is-provider-youtube .wp-block-embed__wrapper {
   position: relative;
-  padding: 28%; }
+  padding: 28%;
+  border-radius: 15px;
+  overflow: hidden; }
   #post-content .is-provider-youtube .wp-block-embed__wrapper iframe {
     position: absolute;
     width: 100%;

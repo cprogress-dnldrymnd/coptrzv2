@@ -3527,14 +3527,18 @@ a.fancybox-gallery-img {
         border-radius: 15px;
     }
     .wp-video-shortcode video,
-    video.wp-video-shortcode {
+    video.wp-video-shortcode,
+    video {
         width: 100% !important;
+        border-radius: 15px;
     }
 
     .is-provider-youtube {
         .wp-block-embed__wrapper {
             position: relative;
             padding: 28%;
+            border-radius: 15px;
+            overflow: hidden;
             iframe {
                 position: absolute;
                 width: 100%;
