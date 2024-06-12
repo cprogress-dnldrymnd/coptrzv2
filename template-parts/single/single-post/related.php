@@ -45,9 +45,7 @@ $categories = get_the_category(get_the_ID());
                             ?>
                             <div class="swiper-slide product-box">
                                 <div class="inner background-white d-block ">
-                                    <?php
-                                    include locate_template('template-parts/components/post_grid.php');
-                                    ?>
+                                    <?= do_shortcode('[post_grid id="' . $post_id . '"]') ?>
                                 </div>
                             </div>
 

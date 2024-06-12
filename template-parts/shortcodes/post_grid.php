@@ -2,7 +2,7 @@
     <div class="content-margin h-100">
         <?= do_shortcode('[_image class="image-absolute image-absolute-contain" id="' . get_post_thumbnail_id($id) . '"]'); ?>
         <?= do_shortcode('[_heading heading="' . get_the_title($id) . '" tag="h3"]') ?>
-        <?= do_shortcode('[_description description="' . _format_text(get_the_excerpt($id)) . '" ]') ?>
+        <?= do_shortcode('[_description description="' . _format_text(custom_excerpt_length(get_the_excerpt($post), 50)) . '" ]') ?>
         <?php if (get_post_type($id) == '3dmodellibraries') { ?>
             <?php
             $captured_by = get__post_meta_by_id($id, 'captured_by');
