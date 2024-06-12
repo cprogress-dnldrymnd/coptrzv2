@@ -21,7 +21,7 @@
 <section class="post-content-v2 md-padding">
     <div class="container">
         <div class="row g-5">
-            <div class="col-lg-3">
+            <div class="col col-post-nav">
                 <div class="column-holder">
                     <?= do_shortcode('[_heading heading="Contents"]') ?>
                     <ul id="post-navigation" class="d-flex flex-wrap list-inline">
@@ -29,12 +29,12 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-7 col-post-content">
                 <div class="column-holder the-content content-margin" id="post-content">
                     <?php the_content() ?>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col col-sidebar">
                 <div class="column-holder" id="blog-single-sidebar">
                     <?php dynamic_sidebar('blog_single_sidebar') ?>
                 </div>

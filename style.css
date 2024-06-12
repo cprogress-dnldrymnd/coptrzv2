@@ -14018,6 +14018,10 @@ a.fancybox-gallery-img {
   padding: 0;
   margin-bottom: 0; }
 
+#post-content img {
+  height: auto;
+  border-radius: 15px; }
+
 /*Padding*/
 /*Extra Small Padding*/
 .xxs-padding-top {
