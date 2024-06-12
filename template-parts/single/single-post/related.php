@@ -43,7 +43,7 @@ $categories = get_the_category(get_the_ID());
                     );
 
                     $style_attribute_post = '';
-                    $classes = 'xxs-padding-top xxs-padding-left xxs-padding-right xxs-padding-bottom rounded-corner';
+                    $classes = 'xxs-padding-top xxs-padding-left xxs-padding-right xxs-padding-bottom';
                     ?>
                     <?php if ($query->have_posts()) { ?>
 
