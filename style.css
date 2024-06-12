@@ -17398,7 +17398,7 @@ section.sticky-add-to-cart {
 
 .post-content-v2 .col-post-nav .column-holder {
   position: sticky;
-  top: 50px; }
+  top: 120px; }
 
 section.contact-form .form-holder {
   background-color: var(--white-color);
