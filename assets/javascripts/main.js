@@ -12,6 +12,7 @@ jQuery(document).ready(function ($) {
 	get_started_modal();
 	ajax_add_to_cart();
 	input_fields();
+	image_caption();
 	incrementing_numbers();
 	if (jQuery('.archive-section').length > 0 && !jQuery('body').hasClass('post-type-archive-careers')) {
 		ajax();
@@ -137,6 +138,12 @@ function download_guide_responsive() {
 	} else {
 		jQuery('.col-side-start .guide-row-end').appendTo('.col-side-end .guide-row-holder');
 	}
+}
+
+function image_caption() {
+	jQuery('.wp-element-caption').each(function (index, element) {
+		jQuery(this).parent().addClass('has-caption');
+	});
 }
 
 function post_navigation() {

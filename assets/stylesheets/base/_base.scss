@@ -3506,7 +3506,6 @@ a.fancybox-gallery-img {
     }
 }
 
-
 #post-content {
     figcaption {
         margin-top: 10px;
@@ -3514,9 +3513,11 @@ a.fancybox-gallery-img {
     }
     figure {
         text-align: center;
-        padding: 1rem;
-        border: 1px solid var(--light-gray);
-        border-radius: 15px;
+        &.has-caption {
+            padding: 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 15px;
+        }
     }
     img {
         height: auto;

@@ -14022,10 +14022,11 @@ a.fancybox-gallery-img {
   margin-top: 10px;
   margin-bottom: 0; }
 #post-content figure {
-  text-align: center;
-  padding: 1rem;
-  border: 1px solid var(--light-gray);
-  border-radius: 15px; }
+  text-align: center; }
+  #post-content figure.has-caption {
+    padding: 1rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 15px; }
 #post-content img {
   height: auto;
   border-radius: 15px; }
