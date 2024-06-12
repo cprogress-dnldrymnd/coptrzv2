@@ -14,6 +14,16 @@ function action_widgets_init()
 	);
 	register_sidebar(
 		array(
+			'name'          => 'Blog Single Sidebar',
+			'id'            => 'blog_single_sidebar',
+			'before_widget' => '<div class="widget-inner">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h5 class="widget-title">',
+			'after_title'   => '</h5>',
+		)
+	);
+	register_sidebar(
+		array(
 			'name'          => 'Footer Column 1',
 			'id'            => 'footer_column_1',
 			'before_widget' => '<div>',
