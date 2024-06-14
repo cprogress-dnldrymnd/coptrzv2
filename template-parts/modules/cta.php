@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="column-holder text-lg-end">
-                        <?= do_shortcode('[_button class="' . $module['button_style'] . '" id="' . $module['button_url'] . '" custom_url="' . $module['button_url_custom'] . '" button_type="' . $module['button_type'] . '" button_text="' . $module['button_text'] . '" ]'); ?>
+                        <?= do_shortcode('[_button class="' . $module['button_style'] . '" id="' . $module['button_url'] . '" button_url_custom="' . $module['button_url_custom'] . '" button_type="' . $module['button_type'] . '" button_text="' . $module['button_text'] . '" ]'); ?>
                     </div>
                 </div>
             </div>
