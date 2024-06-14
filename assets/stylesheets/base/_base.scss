@@ -164,9 +164,12 @@ a {
         @include button {
             border-color: var(--primary-color);
             background-color: var(--primary-color);
-            color: var(--accent-color);
+            color: var(--white-color);
 
             @include on-event {
+                border-color: var(--primary-color);
+                background-color: var(--white-color);
+                color: var(--primary-color);
                 svg {
                     &.fill-hover {
                         path {

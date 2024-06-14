@@ -11275,29 +11275,42 @@ a {
   .button-box.button-box.button-primary > input[type="submit"] {
     border-color: var(--primary-color);
     background-color: var(--primary-color);
-    color: var(--accent-color); }
-    .button-box.button-box.button-primary > a:hover svg.fill-hover path, .button-box.button-box.button-primary > a:active svg.fill-hover path, .button-box.button-box.button-primary > a:focus svg.fill-hover path,
-    .button-box.button-box.button-primary > span:not(.wpcf7-spinner):hover svg.fill-hover path,
-    .button-box.button-box.button-primary > span:not(.wpcf7-spinner):active svg.fill-hover path,
-    .button-box.button-box.button-primary > span:not(.wpcf7-spinner):focus svg.fill-hover path,
-    .button-box.button-box.button-primary > button:hover svg.fill-hover path,
-    .button-box.button-box.button-primary > button:active svg.fill-hover path,
-    .button-box.button-box.button-primary > button:focus svg.fill-hover path,
-    .button-box.button-box.button-primary > input[type="submit"]:hover svg.fill-hover path,
-    .button-box.button-box.button-primary > input[type="submit"]:active svg.fill-hover path,
-    .button-box.button-box.button-primary > input[type="submit"]:focus svg.fill-hover path {
-      fill: var(--primary-color); }
-    .button-box.button-box.button-primary > a:hover svg.stroke-hover path, .button-box.button-box.button-primary > a:active svg.stroke-hover path, .button-box.button-box.button-primary > a:focus svg.stroke-hover path,
-    .button-box.button-box.button-primary > span:not(.wpcf7-spinner):hover svg.stroke-hover path,
-    .button-box.button-box.button-primary > span:not(.wpcf7-spinner):active svg.stroke-hover path,
-    .button-box.button-box.button-primary > span:not(.wpcf7-spinner):focus svg.stroke-hover path,
-    .button-box.button-box.button-primary > button:hover svg.stroke-hover path,
-    .button-box.button-box.button-primary > button:active svg.stroke-hover path,
-    .button-box.button-box.button-primary > button:focus svg.stroke-hover path,
-    .button-box.button-box.button-primary > input[type="submit"]:hover svg.stroke-hover path,
-    .button-box.button-box.button-primary > input[type="submit"]:active svg.stroke-hover path,
-    .button-box.button-box.button-primary > input[type="submit"]:focus svg.stroke-hover path {
-      stroke: var(--primary-color); }
+    color: var(--white-color); }
+    .button-box.button-box.button-primary > a:hover, .button-box.button-box.button-primary > a:active, .button-box.button-box.button-primary > a:focus,
+    .button-box.button-box.button-primary > span:not(.wpcf7-spinner):hover,
+    .button-box.button-box.button-primary > span:not(.wpcf7-spinner):active,
+    .button-box.button-box.button-primary > span:not(.wpcf7-spinner):focus,
+    .button-box.button-box.button-primary > button:hover,
+    .button-box.button-box.button-primary > button:active,
+    .button-box.button-box.button-primary > button:focus,
+    .button-box.button-box.button-primary > input[type="submit"]:hover,
+    .button-box.button-box.button-primary > input[type="submit"]:active,
+    .button-box.button-box.button-primary > input[type="submit"]:focus {
+      border-color: var(--primary-color);
+      background-color: var(--white-color);
+      color: var(--primary-color); }
+      .button-box.button-box.button-primary > a:hover svg.fill-hover path, .button-box.button-box.button-primary > a:active svg.fill-hover path, .button-box.button-box.button-primary > a:focus svg.fill-hover path,
+      .button-box.button-box.button-primary > span:not(.wpcf7-spinner):hover svg.fill-hover path,
+      .button-box.button-box.button-primary > span:not(.wpcf7-spinner):active svg.fill-hover path,
+      .button-box.button-box.button-primary > span:not(.wpcf7-spinner):focus svg.fill-hover path,
+      .button-box.button-box.button-primary > button:hover svg.fill-hover path,
+      .button-box.button-box.button-primary > button:active svg.fill-hover path,
+      .button-box.button-box.button-primary > button:focus svg.fill-hover path,
+      .button-box.button-box.button-primary > input[type="submit"]:hover svg.fill-hover path,
+      .button-box.button-box.button-primary > input[type="submit"]:active svg.fill-hover path,
+      .button-box.button-box.button-primary > input[type="submit"]:focus svg.fill-hover path {
+        fill: var(--primary-color); }
+      .button-box.button-box.button-primary > a:hover svg.stroke-hover path, .button-box.button-box.button-primary > a:active svg.stroke-hover path, .button-box.button-box.button-primary > a:focus svg.stroke-hover path,
+      .button-box.button-box.button-primary > span:not(.wpcf7-spinner):hover svg.stroke-hover path,
+      .button-box.button-box.button-primary > span:not(.wpcf7-spinner):active svg.stroke-hover path,
+      .button-box.button-box.button-primary > span:not(.wpcf7-spinner):focus svg.stroke-hover path,
+      .button-box.button-box.button-primary > button:hover svg.stroke-hover path,
+      .button-box.button-box.button-primary > button:active svg.stroke-hover path,
+      .button-box.button-box.button-primary > button:focus svg.stroke-hover path,
+      .button-box.button-box.button-primary > input[type="submit"]:hover svg.stroke-hover path,
+      .button-box.button-box.button-primary > input[type="submit"]:active svg.stroke-hover path,
+      .button-box.button-box.button-primary > input[type="submit"]:focus svg.stroke-hover path {
+        stroke: var(--primary-color); }
   .button-box.button-box.button-white > a,
   .button-box.button-box.button-white > span:not(.wpcf7-spinner),
   .button-box.button-box.button-white > button,
