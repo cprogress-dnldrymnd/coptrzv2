@@ -167,7 +167,7 @@ a {
             color: var(--white-color);
 
             @include on-event {
-                border-color: var(--primary-color);
+                border-color: var(--white-color);
                 background-color: var(--white-color);
                 color: var(--primary-color);
                 svg {
