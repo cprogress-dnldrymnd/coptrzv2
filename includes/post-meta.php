@@ -6170,6 +6170,10 @@ Block::make(__('CTA'))
 		<div class="inner content-margin">
 			<?= do_shortcode('[_heading heading="' . $fields['heading'] . '" tag="h3"]') ?>
 			<?= do_shortcode("[_description description='" . _format_text($fields['description']) . "']") ?>
+
+			<?php
+			$fields['button_url_custom'];
+			?>
 			<?= do_shortcode('[_button class="' . $fields['button_style'] . '" id="' . $fields['button_url'] . '" custom_url="' . $fields['button_url_custom'] . '" button_type="' . $fields['button_type'] . '" button_text="' . $fields['button_text'] . '" ]'); ?>
 		</div>
 	</div>
