@@ -11286,7 +11286,7 @@ a {
     .button-box.button-box.button-primary > input[type="submit"]:hover,
     .button-box.button-box.button-primary > input[type="submit"]:active,
     .button-box.button-box.button-primary > input[type="submit"]:focus {
-      border-color: var(--primary-color);
+      border-color: var(--white-color);
       background-color: var(--white-color);
       color: var(--primary-color); }
       .button-box.button-box.button-primary > a:hover svg.fill-hover path, .button-box.button-box.button-primary > a:active svg.fill-hover path, .button-box.button-box.button-primary > a:focus svg.fill-hover path,
