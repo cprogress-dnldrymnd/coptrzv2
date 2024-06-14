@@ -6172,7 +6172,10 @@ Block::make(__('CTA'))
 			<?= do_shortcode("[_description description='" . _format_text($fields['description']) . "']") ?>
 
 			<?php
-			echo $fields['button_url_custom'];
+			echo $fields['button_type'];
+			echo $fields['button_style'];
+			echo $fields['button_text'];
+			echo $fields['button_url'];
 			?>
 			<?= do_shortcode('[_button class="' . $fields['button_style'] . '" id="' . $fields['button_url'] . '" custom_url="' . $fields['button_url_custom'] . '" button_type="' . $fields['button_type'] . '" button_text="' . $fields['button_text'] . '" ]'); ?>
 		</div>
