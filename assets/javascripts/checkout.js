@@ -93,26 +93,16 @@ function steps() {
 
 
 function validate() {
-
+    jQuery('html').addClass('disable-scrolling');
     jQuery('#place_order').click();
-
     if (jQuery('.step-box.active .woocommerce-invalid').length == 0) {
         jQuery('.step-box.active').addClass('d-none').removeClass('active').next().removeClass('d-none').addClass('active');
         jQuery('.nav-box ul li.active').removeClass('active').next().addClass('active');
         $step = jQuery('.step-box.active').attr('step');
         previous_step($step);
     } else {
-        // lock scroll position, but retain settings for later
-        var scrollPosition = [
-            self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
-            self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        ];
-        var html = jQuery('html'); // it would make more sense to apply this to body, but IE7 won't have that
-        html.data('scroll-position', scrollPosition);
-        html.data('previous-overflow', html.css('overflow'));
-        html.css('overflow', 'hidden');
-        html.css('padding-right', '32px');
-        window.scrollTo(scrollPosition[0], scrollPosition[1]);
+       
+       
     }
 }
 

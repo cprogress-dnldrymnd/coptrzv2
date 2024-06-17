@@ -498,3 +498,10 @@ body {
         display: none !important;
     }
 }
+
+html {
+    &.disable-scrolling {
+        overflow: hidden !important;
+        padding-right: 32px;
+    }
+}
