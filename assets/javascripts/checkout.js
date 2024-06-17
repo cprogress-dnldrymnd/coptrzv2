@@ -3,7 +3,16 @@ jQuery(document).ready(function () {
     steps();
     apply_coupon_custom();
     input_fields_checkout();
+    phone_input();
 });
+
+function phone_input() {
+    const input = document.querySelector("#billing_phone");
+    window.intlTelInput(input, {
+        initialCountry: "us",
+        strictMode: true,
+    });
+}
 function input_fields_checkout() {
 
     jQuery(".form-row input, .form-row select, .form-row textarea").each(function (index, element) {
