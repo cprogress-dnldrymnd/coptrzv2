@@ -11051,5 +11051,7 @@ html.disable-scrolling {
     margin-bottom: 10px; }
   .error-lists ul {
     margin-bottom: 0; }
+    .error-lists ul li .required {
+      display: none !important; }
 
 /*# sourceMappingURL=checkout.css.map */
