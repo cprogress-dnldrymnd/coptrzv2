@@ -30,6 +30,7 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 
 ?>
 <div class="checkout-section">
+    <div class="blockUI blockOverlay steps-ui" style="z-index: 1000; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background: rgb(255, 255, 255); opacity: 0.6; cursor: default; position: absolute;"></div>
     <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data">
         <div class="container">
             <div class="row g-5">
