@@ -222,7 +222,6 @@ body {
             line-height: 1.3;
             font-weight: 400;
         }
-       
     }
     tfoot {
         tr {
@@ -502,6 +501,8 @@ body {
 html {
     &.disable-scrolling {
         overflow: hidden !important;
-        padding-right: 13px;
+        @include responsive(mobile) {
+            padding-right: 13px;
+        }
     }
 }
