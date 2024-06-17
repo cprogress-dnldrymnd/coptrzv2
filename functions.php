@@ -137,6 +137,18 @@ add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn
 
 
 
+function get_woocommerce_selling_countries() {
+    // Access the WooCommerce countries class
+    $countries_obj = new WC_Countries();
+
+    // Get the array of allowed countries (key = country code, value = country name)
+    $allowed_countries = $countries_obj->get_allowed_countries();
+
+    // Optional: Sort the countries alphabetically by name
+    asort($allowed_countries);
+
+    return $allowed_countries;
+}
 
 /*-----------------------------------------------------------------------------------*/
 /* Require Files
