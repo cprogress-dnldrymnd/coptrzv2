@@ -14109,9 +14109,9 @@ a.fancybox-gallery-img {
     font-weight: 500;
     font-size: 1rem; }
 
-.checkout-section .form-row {
+.checkout-section.checkout-section.checkout-section .form-row {
   position: relative; }
-  .checkout-section .form-row label {
+  .checkout-section.checkout-section.checkout-section .form-row label {
     font-weight: 600;
     position: absolute;
     left: 10px;
@@ -14125,7 +14125,7 @@ a.fancybox-gallery-img {
     -ms-transition: 300ms;
     -o-transition: 300ms;
     transition: 300ms; }
-  .checkout-section .form-row.filled label {
+  .checkout-section.checkout-section.checkout-section .form-row.filled label {
     top: -13px; }
 
 /*Padding*/
