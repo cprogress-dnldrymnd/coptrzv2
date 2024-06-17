@@ -129,7 +129,14 @@ function enqueue_scripts()
 		wp_enqueue_style('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/css/intlTelInput.css', NULL, coptz_version);
 		wp_enqueue_style('checkout-style', assets_dir . 'stylesheets/checkout/checkout.css', NULL, coptz_version);
 		wp_enqueue_script('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/js/intlTelInput.min.js', NULL, coptz_version);
-		wp_enqueue_script('checkout-js', assets_dir . 'javascripts/checkout.js', ['jquery'], coptz_version);
+		wp_register_script('checkout-js', assets_dir . 'javascripts/checkout.js', ['jquery'], coptz_version);
+
+		$countries_obj = new WC_Countries();
+
+		// Get the array of allowed countries (key = country code, value = country name)
+		$allowed_countries = $countries_obj->get_allowed_countries();
+		wp_localize_script('checkout-js', 'countries', $allowed_countries);
+		wp_register_script('checkout-js');
 	}
 }
 
@@ -137,17 +144,18 @@ add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn
 
 
 
-function get_woocommerce_selling_countries() {
-    // Access the WooCommerce countries class
-    $countries_obj = new WC_Countries();
+function get_woocommerce_selling_countries()
+{
+	// Access the WooCommerce countries class
+	$countries_obj = new WC_Countries();
 
-    // Get the array of allowed countries (key = country code, value = country name)
-    $allowed_countries = $countries_obj->get_allowed_countries();
+	// Get the array of allowed countries (key = country code, value = country name)
+	$allowed_countries = $countries_obj->get_allowed_countries();
 
-    // Optional: Sort the countries alphabetically by name
-    asort($allowed_countries);
+	// Optional: Sort the countries alphabetically by name
+	asort($allowed_countries);
 
-    return $allowed_countries;
+	return $allowed_countries;
 }
 
 /*-----------------------------------------------------------------------------------*/
