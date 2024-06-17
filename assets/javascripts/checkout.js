@@ -83,6 +83,7 @@ function steps() {
     });
     jQuery(document).on('click', '.back-to', function () {
         jQuery('.steps-ui').addClass('active');
+        jQuery('html').addClass('disable-scrolling');
 
         jQuery('.step-box.active').addClass('d-none').removeClass('active').prev().removeClass('d-none').addClass('active');
 
@@ -92,6 +93,7 @@ function steps() {
         previous_step($step);
         setTimeout(function () {
             jQuery('.steps-ui').removeClass('active');
+            jQuery('html').removeClass('disable-scrolling');
         }, 1000);
     });
 }
@@ -100,6 +102,7 @@ function steps() {
 function validate() {
     jQuery('#place_order').click();
     jQuery('.steps-ui').addClass('active');
+    jQuery('html').addClass('disable-scrolling');
     if (jQuery('.step-box.active .woocommerce-invalid').length == 0) {
         jQuery('.step-box.active').addClass('d-none').removeClass('active').next().removeClass('d-none').addClass('active');
         jQuery('.nav-box ul li.active').removeClass('active').next().addClass('active');
@@ -109,6 +112,7 @@ function validate() {
 
     setTimeout(function () {
         jQuery('.steps-ui').removeClass('active');
+        jQuery('html').removeClass('disable-scrolling');
     }, 1000);
 }
 
