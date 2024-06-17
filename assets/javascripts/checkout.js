@@ -82,12 +82,17 @@ function steps() {
         validate();
     });
     jQuery(document).on('click', '.back-to', function () {
+        jQuery('.steps-ui').addClass('active');
+
         jQuery('.step-box.active').addClass('d-none').removeClass('active').prev().removeClass('d-none').addClass('active');
 
         jQuery('.nav-box ul li.active').removeClass('active').prev().addClass('active');
         $step = jQuery('.step-box.active').attr('step');
 
         previous_step($step);
+        setTimeout(function () {
+            jQuery('.steps-ui').removeClass('active');
+        }, 1000);
     });
 }
 
@@ -95,7 +100,6 @@ function steps() {
 function validate() {
     jQuery('#place_order').click();
     jQuery('.steps-ui').addClass('active');
-
     if (jQuery('.step-box.active .woocommerce-invalid').length == 0) {
         jQuery('.step-box.active').addClass('d-none').removeClass('active').next().removeClass('d-none').addClass('active');
         jQuery('.nav-box ul li.active').removeClass('active').next().addClass('active');
@@ -111,8 +115,6 @@ function validate() {
 
 
 function previous_step($step) {
-    jQuery('.steps-ui').addClass('active');
-
     if ($step == 1) {
         jQuery('.previous-step').addClass('d-none');
     } else if ($step == 2) {
@@ -133,9 +135,6 @@ function previous_step($step) {
         jQuery('.previous-step.address .address').text($address);
 
     }
-    setTimeout(function () {
-        jQuery('.steps-ui').removeClass('active');
-    }, 1000);
 }
 
 function apply_coupon_custom() {
