@@ -38,17 +38,17 @@ function input_fields() {
 
 	jQuery(".wpforms-field input, .wpforms-field select, .wpforms-field textarea").on("blur input focus", function () {
 		if (this.value) {
-			jQuery(this).parent().addClass("filled");
+			jQuery(this).parent().parent().addClass("filled");
 		} else {
-			jQuery(this).parent().removeClass("filled");
+			jQuery(this).parent().parent().removeClass("filled");
 		}
 	});
 
 	jQuery(".wpforms-field input, .wpforms-field select,  .wpforms-field textarea").on("focus", function () {
 		if (this) {
-			jQuery(this).parent().addClass("filled");
+			jQuery(this).parent().parent().addClass("filled");
 		} else {
-			jQuery(this).parent().removeClass("filled");
+			jQuery(this).parent().parent().removeClass("filled");
 		}
 	});
 
