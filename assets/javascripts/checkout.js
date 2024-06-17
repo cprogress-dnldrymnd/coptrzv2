@@ -96,14 +96,12 @@ function validate() {
 
     jQuery('#place_order').click();
 
-    if (jQuery('.step-box.active .woocommerce-invalid').length > 0) {
-
-    } else {
+    if (jQuery('.step-box.active .woocommerce-invalid').length == 0) {
         jQuery('.step-box.active').addClass('d-none').removeClass('active').next().removeClass('d-none').addClass('active');
         jQuery('.nav-box ul li.active').removeClass('active').next().addClass('active');
         $step = jQuery('.step-box.active').attr('step');
         previous_step($step);
-    }
+    } 
 }
 
 
