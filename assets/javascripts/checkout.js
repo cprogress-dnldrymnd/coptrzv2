@@ -107,6 +107,7 @@ function validate() {
         jQuery('.step-box.active').addClass('d-none').removeClass('active').next().removeClass('d-none').addClass('active');
         jQuery('.nav-box ul li.active').removeClass('active').next().addClass('active');
         $step = jQuery('.step-box.active').attr('step');
+        jQuery('.error-lists').remove();
         previous_step($step);
     } else {
         $errors = '';
