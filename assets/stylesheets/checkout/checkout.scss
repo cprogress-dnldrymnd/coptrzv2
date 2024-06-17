@@ -455,21 +455,23 @@ body {
     .form-row {
         position: relative;
         margin-bottom: 2rem !important;
-        label {
-            font-weight: 600;
-            position: absolute;
-            left: 10px;
-            background-color: var(--white-color);
-            padding: 5px;
-            font-size: 13px;
-            line-height: 1;
-            top: 15px;
-            @include transition(300ms);
-            z-index: 1;
-        }
-        &.filled {
+        &:not(#checkbox_trigger_field) {
             label {
-                top: -13px;
+                font-weight: 600;
+                position: absolute;
+                left: 10px;
+                background-color: var(--white-color);
+                padding: 5px;
+                font-size: 13px;
+                line-height: 1;
+                top: 15px;
+                @include transition(300ms);
+                z-index: 1;
+            }
+            &.filled {
+                label {
+                    top: -13px;
+                }
             }
         }
     }
@@ -505,4 +507,17 @@ html {
             padding-right: 13px;
         }
     }
+}
+
+.woocommerce-terms-and-conditions {
+    & + .form-row.form-row.form-row.form-row {
+        position: static;
+        margin-top: 2rem;
+        display: block;
+        padding: 0;
+    }
+}
+
+.place-order.place-order {
+    padding: 0;
 }

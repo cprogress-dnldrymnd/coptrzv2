@@ -10984,7 +10984,7 @@ body {
 .checkout-section.checkout-section.checkout-section .form-row {
   position: relative;
   margin-bottom: 2rem !important; }
-  .checkout-section.checkout-section.checkout-section .form-row label {
+  .checkout-section.checkout-section.checkout-section .form-row:not(#checkbox_trigger_field) label {
     font-weight: 600;
     position: absolute;
     left: 10px;
@@ -10999,7 +10999,7 @@ body {
     -o-transition: 300ms;
     transition: 300ms;
     z-index: 1; }
-  .checkout-section.checkout-section.checkout-section .form-row.filled label {
+  .checkout-section.checkout-section.checkout-section .form-row:not(#checkbox_trigger_field).filled label {
     top: -13px; }
 .checkout-section.checkout-section.checkout-section .select2-selection__rendered {
   line-height: 54px !important; }
@@ -11020,5 +11020,14 @@ html.disable-scrolling {
   @media screen and (max-width: 575px) {
     html.disable-scrolling {
       padding-right: 13px; } }
+
+.woocommerce-terms-and-conditions + .form-row.form-row.form-row.form-row {
+  position: static;
+  margin-top: 2rem;
+  display: block;
+  padding: 0; }
+
+.place-order.place-order {
+  padding: 0; }
 
 /*# sourceMappingURL=checkout.css.map */
