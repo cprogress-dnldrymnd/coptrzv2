@@ -9,6 +9,7 @@ jQuery(document).ready(function () {
 function phone_input() {
     const input = document.querySelector("#billing_phone");
     window.intlTelInput(input, {
+        initialCountry: "gb",
         onlyCountries: countries,
         strictMode: true,
     });
