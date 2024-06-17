@@ -10981,6 +10981,8 @@ body {
 
 .checkout-section.checkout-section.checkout-section h2 {
   margin-bottom: 2rem; }
+.checkout-section.checkout-section.checkout-section label[for="wc-stripe-new-payment-method"] {
+  margin: 0 !important; }
 .checkout-section.checkout-section.checkout-section .woocommerce-shipping-fields .form-row,
 .checkout-section.checkout-section.checkout-section .woocommerce-billing-fields .form-row {
   position: relative; }

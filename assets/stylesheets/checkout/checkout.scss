@@ -452,6 +452,9 @@ body {
     h2 {
         margin-bottom: 2rem;
     }
+    label[for="wc-stripe-new-payment-method"] {
+        margin: 0 !important;
+    }
     .woocommerce-shipping-fields,
     .woocommerce-billing-fields {
         .form-row {
