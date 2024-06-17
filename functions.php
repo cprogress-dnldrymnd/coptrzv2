@@ -129,7 +129,7 @@ function enqueue_scripts()
 		wp_enqueue_style('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/css/intlTelInput.css', NULL, coptz_version);
 		wp_enqueue_style('checkout-style', assets_dir . 'stylesheets/checkout/checkout.css', NULL, coptz_version);
 		wp_enqueue_script('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/js/intlTelInput.min.js', NULL, coptz_version);
-		wp_enqueue_script('checkout-js', assets_dir . 'javascripts/checkout.js', ['jquery'], coptz_version);
+		//wp_enqueue_script('checkout-js', assets_dir . 'javascripts/checkout.js', ['jquery'], coptz_version);
 	}
 }
 
