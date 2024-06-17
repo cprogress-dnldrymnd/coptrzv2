@@ -12,6 +12,7 @@ function phone_input() {
         initialCountry: "gb",
         onlyCountries: countries,
         strictMode: true,
+        countrySearch:false,
     });
 }
 function input_fields_checkout() {
