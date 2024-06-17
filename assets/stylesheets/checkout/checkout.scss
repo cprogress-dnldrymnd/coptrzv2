@@ -452,45 +452,48 @@ body {
     h2 {
         margin-bottom: 2rem;
     }
-    .form-row {
-        position: relative;
-        &:not(#checkbox_trigger_field) {
-            margin-bottom: 2rem !important;
+    .woocommerce-shipping-fields,
+    .woocommerce-billing-fields {
+        .form-row {
+            position: relative;
+            &:not(#checkbox_trigger_field) {
+                margin-bottom: 2rem !important;
 
-            label {
-                font-weight: 600;
-                position: absolute;
-                left: 10px;
-                background-color: var(--white-color);
-                padding: 5px;
-                font-size: 13px;
-                line-height: 1;
-                top: 15px;
-                @include transition(300ms);
-                z-index: 1;
-            }
-            &.filled {
                 label {
-                    top: -13px;
+                    font-weight: 600;
+                    position: absolute;
+                    left: 10px;
+                    background-color: var(--white-color);
+                    padding: 5px;
+                    font-size: 13px;
+                    line-height: 1;
+                    top: 15px;
+                    @include transition(300ms);
+                    z-index: 1;
+                }
+                &.filled {
+                    label {
+                        top: -13px;
+                    }
                 }
             }
         }
-    }
-    .select2-selection__rendered {
-        line-height: 54px !important;
-    }
-    .select2-container .select2-selection--single {
-        height: 54px !important;
-    }
-    .select2-selection__arrow {
-        height: 54px !important;
-    }
-    .woocommerce-additional-fields {
-        label[for="order_comments"] {
-            display: none;
+        .select2-selection__rendered {
+            line-height: 54px !important;
         }
-        h3 {
-            display: none;
+        .select2-container .select2-selection--single {
+            height: 54px !important;
+        }
+        .select2-selection__arrow {
+            height: 54px !important;
+        }
+        .woocommerce-additional-fields {
+            label[for="order_comments"] {
+                display: none;
+            }
+            h3 {
+                display: none;
+            }
         }
     }
 }
