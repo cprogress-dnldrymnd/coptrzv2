@@ -94,6 +94,7 @@ function steps() {
 
 function validate() {
     jQuery('#place_order').click();
+    jQuery('.steps-ui').addClass('active');
     
     if (jQuery('.step-box.active .woocommerce-invalid').length == 0) {
         jQuery('.step-box.active').addClass('d-none').removeClass('active').next().removeClass('d-none').addClass('active');
