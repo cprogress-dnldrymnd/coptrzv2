@@ -187,6 +187,7 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
                         </div>
                         <?php do_action('woocommerce_checkout_before_order_review'); ?>
                         <div id="order_review" class="woocommerce-checkout-review-order">
+                            <div class="blockUI blockOverlay coupon-ui" style="z-index: 1000; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background: rgb(255, 255, 255); opacity: 0.6; cursor: default; position: absolute;"></div>
                             <?php do_action('woocommerce_checkout_order_review'); ?>
                         </div>
                     </div>

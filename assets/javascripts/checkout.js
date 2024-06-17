@@ -134,7 +134,7 @@ function previous_step($step) {
 function apply_coupon_custom() {
 
     jQuery(document).on('click', '.apply_coupon_custom', function () {
-        jQuery('.td-coupon .blockUI').addClass('active');
+        jQuery('.blockUI.coupon-ui').addClass('active');
         coupon_ajax();
     });
 
@@ -169,7 +169,7 @@ function coupon_ajax() {
                 jQuery(document.body).on('updated_checkout', function () {
                     jQuery('.coupon-message').html(response);
                 });
-                jQuery('.td-coupon .blockUI').removeClass('active');
+                jQuery('.blockUI.coupon-ui').removeClass('active');
 
             },
             error: function (e) {
