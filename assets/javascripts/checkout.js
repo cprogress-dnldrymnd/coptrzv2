@@ -2,8 +2,28 @@ jQuery(document).ready(function () {
     quantity_plus_minus();
     coupon_code();
     steps();
+    input_fields_checkout();
 });
+function input_fields_checkout() {
+	jQuery('.remove-first-option-value select option:first-child').attr('value', '');
 
+	jQuery(".wpforms-field input, .wpforms-field select, .wpforms-field textarea").on("blur input focus", function () {
+		if (this.value) {
+			jQuery(this).parent().addClass("filled");
+		} else {
+			jQuery(this).parent().removeClass("filled");
+		}
+	});
+
+	jQuery(".wpforms-field input, .wpforms-field select,  .wpforms-field textarea").on("focus", function () {
+		if (this) {
+			jQuery(this).parent().addClass("filled");
+		} else {
+			jQuery(this).parent().removeClass("filled");
+		}
+	});
+
+}
 function coupon_code() {
     jQuery('.checkout_coupon_form input[name="coupon_code"]').keypress(function (e) {
         jQuery('input[name="coupon_code"]').val(jQuery(this).val());

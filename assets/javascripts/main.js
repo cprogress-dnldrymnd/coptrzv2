@@ -52,7 +52,6 @@ function input_fields() {
 		}
 	});
 
-
 }
 
 function ajax_add_to_cart() {
