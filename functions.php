@@ -135,7 +135,11 @@ function enqueue_scripts()
 
 		// Get the array of allowed countries (key = country code, value = country name)
 		$allowed_countries = $countries_obj->get_allowed_countries();
-		wp_localize_script('checkout-js', 'countries', $allowed_countries);
+		$countries = [];
+		foreach ($allowed_countries as $key => $country) {
+			$countries[] = $key;
+		}
+		wp_localize_script('checkout-js', 'countries', $countries);
 		wp_register_script('checkout-js');
 	}
 }
