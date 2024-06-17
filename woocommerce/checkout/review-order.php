@@ -83,6 +83,7 @@ defined('ABSPATH') || exit;
 				<div class="notice">
 					<strong>Important:</strong> Before purchasing if you’re intending to use hardware for commercial international use, please enquire directly to explore export regulations and guidelines from our expert sales team, purchases that breach manufacturers international sales policies are not eligible for refund.
 				</div>
+				<div class="blockUI blockOverlay" style="z-index: 1000; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background: rgb(255, 255, 255); opacity: 0.6; cursor: default; position: absolute;"></div>
 			</td>
 		</tr>
 
