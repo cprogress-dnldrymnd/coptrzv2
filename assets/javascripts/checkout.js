@@ -111,6 +111,7 @@ function validate() {
         html.data('scroll-position', scrollPosition);
         html.data('previous-overflow', html.css('overflow'));
         html.css('overflow', 'hidden');
+        html.css('padding-right', '32px');
         window.scrollTo(scrollPosition[0], scrollPosition[1]);
     }
 }
