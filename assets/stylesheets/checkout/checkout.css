@@ -10997,7 +10997,8 @@ body {
     -moz-transition: 300ms;
     -ms-transition: 300ms;
     -o-transition: 300ms;
-    transition: 300ms; }
+    transition: 300ms;
+    z-index: 1; }
   .checkout-section.checkout-section.checkout-section .form-row.filled label {
     top: -13px; }
 .checkout-section.checkout-section.checkout-section .select2-selection__rendered {
