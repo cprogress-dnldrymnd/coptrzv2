@@ -8,17 +8,17 @@ function input_fields_checkout() {
 
 	jQuery(".form-row input, .form-row select, .form-row textarea").on("blur input focus", function () {
 		if (this.value) {
-			jQuery(this).parent().addClass("filled");
+			jQuery(this).parent().parent().addClass("filled");
 		} else {
-			jQuery(this).parent().removeClass("filled");
+			jQuery(this).parent().parent().removeClass("filled");
 		}
 	});
 
 	jQuery(".form-row input, .form-row select,  .form-row textarea").on("focus", function () {
 		if (this) {
-			jQuery(this).parent().addClass("filled");
+			jQuery(this).parent().parent().addClass("filled");
 		} else {
-			jQuery(this).parent().removeClass("filled");
+			jQuery(this).parent().parent().removeClass("filled");
 		}
 	});
 
