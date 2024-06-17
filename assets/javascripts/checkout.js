@@ -113,7 +113,7 @@ function validate() {
         jQuery('.step-box.active .woocommerce-invalid').each(function (index, element) {
 
             $label = jQuery(this).find('label').text();
-            $error_text = $label + ' is invalid';
+            $error_text = '<p>' + $label + ' is invalid' + '</p>';
             $errors = $errors + $error_text;
         });
         jQuery('<div class="error-lists">' + $errors + '</div>').appendTo('.nav-box');
