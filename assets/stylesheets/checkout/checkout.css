@@ -11012,7 +11012,7 @@ body {
 .checkout-section.checkout-section.checkout-section .woocommerce-additional-fields h3 {
   display: none; }
 
-.blockUI.coupon-ui:not(.active) {
+.custom-ui.custom-ui:not(.active) {
   display: none !important; }
 
 /*# sourceMappingURL=checkout.css.map */
