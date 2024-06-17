@@ -116,7 +116,7 @@ function validate() {
             $error_text = '<p>' + $label + ' is invalid' + '</p>';
             $errors = $errors + $error_text;
         });
-        jQuery('<div class="error-lists">' + $errors + '</div>').appendTo('.nav-box');
+        jQuery('<div class="error-lists">' + $errors + '</div>').insertAfter('.nav-box');
     }
 
     setTimeout(function () {
