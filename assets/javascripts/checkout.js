@@ -5,7 +5,6 @@ jQuery(document).ready(function () {
     input_fields_checkout();
 });
 function input_fields_checkout() {
-	jQuery('.remove-first-option-value select option:first-child').attr('value', '');
 
 	jQuery(".form-row input, .form-row select, .form-row textarea").on("blur input focus", function () {
 		if (this.value) {
