@@ -11040,4 +11040,16 @@ html.disable-scrolling {
 .place-order.place-order {
   padding: 0; }
 
+.error-lists {
+  padding: 1rem;
+  background-color: #ffe1e1;
+  border: 1px solid red;
+  border-radius: 10px;
+  font-size: 14px; }
+  .error-lists p {
+    font-weight: 500;
+    margin-bottom: 10px; }
+  .error-lists ul {
+    margin-bottom: 0; }
+
 /*# sourceMappingURL=checkout.css.map */

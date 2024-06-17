@@ -116,7 +116,7 @@ function validate() {
             $error_text = '<li>' + $label + '</li>';
             $errors = $errors + $error_text;
         });
-        jQuery('<div class="error-lists"><p>Please check the following fields</p><ul>' + $errors + '</ul></div>').insertAfter('.nav-box');
+        jQuery('<div class="error-lists"><p>Please check the following fields are correct and valid</p><ul>' + $errors + '</ul></div>').insertAfter('.nav-box');
     }
 
     setTimeout(function () {

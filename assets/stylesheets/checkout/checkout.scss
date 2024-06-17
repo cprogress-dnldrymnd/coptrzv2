@@ -530,5 +530,17 @@ html {
 }
 
 .error-lists {
-    
+    padding: 1rem;
+    background-color: #ffe1e1;
+    border: 1px solid red;
+    border-radius: 10px;
+    font-size: 14px;
+    p {
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    ul {
+        margin-bottom: 0;
+        li {}
+    }
 }
