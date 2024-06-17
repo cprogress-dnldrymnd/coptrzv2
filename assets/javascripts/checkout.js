@@ -180,6 +180,7 @@ function coupon_ajax() {
 
     } else {
         jQuery('.coupon-message').html('<span class="failed">Please enter a valid coupon code.</span>');
+        jQuery('.td-coupon .blockUI').removeClass('active');
 
     }
 }
