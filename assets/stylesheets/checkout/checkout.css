@@ -11000,5 +11000,11 @@ body {
     transition: 300ms; }
   .checkout-section.checkout-section.checkout-section .form-row.filled label {
     top: -13px; }
+.checkout-section.checkout-section.checkout-section .select2-selection__rendered {
+  line-height: 54px !important; }
+.checkout-section.checkout-section.checkout-section .select2-container .select2-selection--single {
+  height: 54px !important; }
+.checkout-section.checkout-section.checkout-section .select2-selection__arrow {
+  height: 54px !important; }
 
 /*# sourceMappingURL=checkout.css.map */

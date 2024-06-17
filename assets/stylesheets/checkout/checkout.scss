@@ -1,20 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 /*-----------------------------------------------------------------------------------*/
 /* Vendors
 /*-----------------------------------------------------------------------------------*/
-@import '../../coptrz_vendors/bootstrap/bootstrap';
+@import "../../coptrz_vendors/bootstrap/bootstrap";
 /*-----------------------------------------------------------------------------------*/
 /* Utils
 /*-----------------------------------------------------------------------------------*/
-@import '../../stylesheets/utils/mixins',
-'../../stylesheets/utils/variables'
-;
+@import "../../stylesheets/utils/mixins", "../../stylesheets/utils/variables";
 /*-----------------------------------------------------------------------------------*/
 /* Base
 /*-----------------------------------------------------------------------------------*/
-@import
-'../../stylesheets/base/helpers',
-'../../stylesheets/base/typography';
+@import "../../stylesheets/base/helpers", "../../stylesheets/base/typography";
 body {
     color: var(--primary-color);
 }
@@ -443,7 +439,6 @@ body {
     }
 }
 
-
 .stripe-source-errors {
     .woocommerce-error.woocommerce-error.woocommerce-error {
         display: block !important;
@@ -476,5 +471,14 @@ body {
                 top: -13px;
             }
         }
+    }
+    .select2-selection__rendered {
+        line-height: 54px !important;
+    }
+    .select2-container .select2-selection--single {
+        height: 54px !important;
+    }
+    .select2-selection__arrow {
+        height: 54px !important;
     }
 }
