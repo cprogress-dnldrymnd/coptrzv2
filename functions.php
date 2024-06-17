@@ -140,7 +140,7 @@ function enqueue_scripts()
 			$countries[] = $key;
 		}
 		wp_localize_script('checkout-js', 'countries', $countries);
-		wp_register_script('checkout-js');
+		wp_enqueue_script('checkout-js');
 	}
 }
 
