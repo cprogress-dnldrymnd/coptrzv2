@@ -454,8 +454,9 @@ body {
     }
     .form-row {
         position: relative;
-        margin-bottom: 2rem !important;
         &:not(#checkbox_trigger_field) {
+            margin-bottom: 2rem !important;
+
             label {
                 font-weight: 600;
                 position: absolute;
