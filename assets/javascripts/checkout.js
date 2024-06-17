@@ -112,11 +112,11 @@ function validate() {
         $errors = '';
         jQuery('.step-box.active .woocommerce-invalid').each(function (index, element) {
 
-            $label = jQuery(this).find('label').text();
-            $error_text = '<p>' + $label + ' is invalid' + '</p>';
+            $label = jQuery(this).find('label').html();
+            $error_text = '<li>' + $label + '</li>';
             $errors = $errors + $error_text;
         });
-        jQuery('<div class="error-lists">' + $errors + '</div>').insertAfter('.nav-box');
+        jQuery('<div class="error-lists"><p>Please check the following fields</p><ul>' + $errors + '</ul></div>').insertAfter('.nav-box');
     }
 
     setTimeout(function () {
