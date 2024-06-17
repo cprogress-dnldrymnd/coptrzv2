@@ -180,12 +180,12 @@ add_filter('wc_stripe_upe_params', function ($stripe_params) {
     // Removes all default font families set in appearance rules and sets a global fontFamily variable to `sans-serif`.
     if (isset($stripe_params['appearance']) && is_object($stripe_params['appearance'])) {
         $removeFontFamily($stripe_params['appearance']);
-        $stripe_params['appearance']->variables = (object) ['fontFamily' => 'sans-serif'];
+        $stripe_params['appearance']->variables = (object) ['fontFamily' => 'Inter, Helvetica, Arial, sans-serif'];
     }
 
     if (isset($stripe_params['upeAppearance']) && is_object($stripe_params['upeAppearance'])) {
         $removeFontFamily($stripe_params['upeAppearance']);
-        $stripe_params['upeAppearance']->variables = (object) ['fontFamily' => 'sans-serif'];
+        $stripe_params['upeAppearance']->variables = (object) ['fontFamily' => 'Inter, Helvetica, Arial, sans-serif'];
     }
 
     return $stripe_params;
