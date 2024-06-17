@@ -11015,11 +11015,9 @@ body {
 .checkout-section.checkout-section.checkout-section .woocommerce-shipping-fields .select2-selection__arrow,
 .checkout-section.checkout-section.checkout-section .woocommerce-billing-fields .select2-selection__arrow {
   height: 54px !important; }
-.checkout-section.checkout-section.checkout-section .woocommerce-shipping-fields .woocommerce-additional-fields label[for="order_comments"],
-.checkout-section.checkout-section.checkout-section .woocommerce-billing-fields .woocommerce-additional-fields label[for="order_comments"] {
+.checkout-section.checkout-section.checkout-section .woocommerce-additional-fields label[for="order_comments"] {
   display: none; }
-.checkout-section.checkout-section.checkout-section .woocommerce-shipping-fields .woocommerce-additional-fields h3,
-.checkout-section.checkout-section.checkout-section .woocommerce-billing-fields .woocommerce-additional-fields h3 {
+.checkout-section.checkout-section.checkout-section .woocommerce-additional-fields h3 {
   display: none; }
 
 .custom-ui.custom-ui:not(.active) {
