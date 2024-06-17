@@ -7,7 +7,7 @@ jQuery(document).ready(function () {
 function input_fields_checkout() {
 
     jQuery(".form-row input, .form-row select, .form-row textarea").each(function (index, element) {
-        if (this) {
+        if (this.value) {
             jQuery(this).parent().parent().addClass("filled");
         } else {
             jQuery(this).parent().parent().removeClass("filled");
