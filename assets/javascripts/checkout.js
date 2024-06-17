@@ -108,6 +108,15 @@ function validate() {
         jQuery('.nav-box ul li.active').removeClass('active').next().addClass('active');
         $step = jQuery('.step-box.active').attr('step');
         previous_step($step);
+    } else {
+        $errors = '';
+        jQuery('.step-box.active .woocommerce-invalid').each(function (index, element) {
+
+            $label = jQuery(this).find('label').text();
+            $error_text = $label + ' is invalid';
+            $errors = $errors + $error_text;
+        });
+        jQuery('<div class="error-lists">' + $errors + '</div>').appendTo('.nav-box');
     }
 
     setTimeout(function () {
