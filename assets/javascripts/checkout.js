@@ -1,4 +1,4 @@
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     quantity_plus_minus();
     steps();
     apply_coupon_custom();
@@ -6,21 +6,29 @@ jQuery(document).ready(function() {
 });
 function input_fields_checkout() {
 
-	jQuery(".form-row input, .form-row select, .form-row textarea").on("blur input focus", function () {
-		if (this.value) {
-			jQuery(this).parent().parent().addClass("filled");
-		} else {
-			jQuery(this).parent().parent().removeClass("filled");
-		}
-	});
+    jQuery(".form-row input, .form-row select, .form-row textarea").each(function (index, element) {
+        if (this) {
+            jQuery(this).parent().parent().addClass("filled");
+        } else {
+            jQuery(this).parent().parent().removeClass("filled");
+        }
+    });
 
-	jQuery(".form-row input, .form-row select,  .form-row textarea").on("focus", function () {
-		if (this) {
-			jQuery(this).parent().parent().addClass("filled");
-		} else {
-			jQuery(this).parent().parent().removeClass("filled");
-		}
-	});
+    jQuery(".form-row input, .form-row select, .form-row textarea").on("blur input focus", function () {
+        if (this.value) {
+            jQuery(this).parent().parent().addClass("filled");
+        } else {
+            jQuery(this).parent().parent().removeClass("filled");
+        }
+    });
+
+    jQuery(".form-row input, .form-row select,  .form-row textarea").on("focus", function () {
+        if (this) {
+            jQuery(this).parent().parent().addClass("filled");
+        } else {
+            jQuery(this).parent().parent().removeClass("filled");
+        }
+    });
 
 }
 function coupon_code() {
@@ -31,7 +39,7 @@ function coupon_code() {
 }
 
 function quantity_plus_minus() {
-    jQuery(document).on('click', 'button.plus, button.minus', function() {
+    jQuery(document).on('click', 'button.plus, button.minus', function () {
         target = jQuery(this).attr('target');
         var qty = jQuery('input[name="' + target + '"]');
         var val = parseFloat(qty.val());
@@ -58,7 +66,7 @@ function quantity_plus_minus() {
 
     });
 
-    jQuery(document).on('click', '.remove-item', function() {
+    jQuery(document).on('click', '.remove-item', function () {
         target = jQuery(this).attr('target');
         var qty = jQuery('input[name="' + target + '"]');
         qty.val(0);
@@ -70,10 +78,10 @@ function quantity_plus_minus() {
 }
 
 function steps() {
-    jQuery(document).on('click', '.continue', function() {
+    jQuery(document).on('click', '.continue', function () {
         validate();
     });
-    jQuery(document).on('click', '.back-to', function() {
+    jQuery(document).on('click', '.back-to', function () {
         jQuery('.step-box.active').addClass('d-none').removeClass('active').prev().removeClass('d-none').addClass('active');
 
         jQuery('.nav-box ul li.active').removeClass('active').prev().addClass('active');
@@ -125,13 +133,13 @@ function previous_step($step) {
 
 function apply_coupon_custom() {
 
-    jQuery(document).on('click', '.apply_coupon_custom', function() {
+    jQuery(document).on('click', '.apply_coupon_custom', function () {
         coupon_ajax();
     });
 
-    jQuery(document).on('click', '.woocommerce-remove-coupon', function() {
+    jQuery(document).on('click', '.woocommerce-remove-coupon', function () {
 
-        jQuery(document.body).on('updated_checkout', function() {
+        jQuery(document.body).on('updated_checkout', function () {
             jQuery('.coupon-message').html('<span>Coupon has been removed.</span>');
 
         });
@@ -155,13 +163,13 @@ function coupon_ajax() {
                 coupon_code: $coupon_code,
             },
 
-            success: function(response) {
+            success: function (response) {
                 jQuery('body').trigger('update_checkout');
-                jQuery(document.body).on('updated_checkout', function() {
+                jQuery(document.body).on('updated_checkout', function () {
                     jQuery('.coupon-message').html(response);
                 });
             },
-            error: function(e) {
+            error: function (e) {
                 console.log(e);
             }
 
