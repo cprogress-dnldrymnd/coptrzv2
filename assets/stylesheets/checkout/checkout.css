@@ -11054,4 +11054,11 @@ html.disable-scrolling {
     .error-lists ul li .required {
       display: none !important; }
 
+.iti--inline-dropdown {
+  width: 100%; }
+  .iti--inline-dropdown input {
+    padding-right: var(--iti-input-padding) !important;
+    padding-left: var(--iti-selected-country-arrow-padding) !important;
+    margin-left: 0 !important; }
+
 /*# sourceMappingURL=checkout.css.map */
