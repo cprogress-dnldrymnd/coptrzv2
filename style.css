@@ -14111,7 +14111,7 @@ a.fancybox-gallery-img {
 
 .checkout-section.checkout-section.checkout-section .form-row {
   position: relative;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem !important; }
   .checkout-section.checkout-section.checkout-section .form-row:not(#sector_field) label {
     font-weight: 600;
     position: absolute;

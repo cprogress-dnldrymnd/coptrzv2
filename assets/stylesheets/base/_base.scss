@@ -3618,7 +3618,7 @@ a.fancybox-gallery-img {
 .checkout-section.checkout-section.checkout-section {
     .form-row {
         position: relative;
-        margin-bottom: 2rem;
+        margin-bottom: 2rem !important;
         &:not(#sector_field) {
             label {
                 font-weight: 600;
