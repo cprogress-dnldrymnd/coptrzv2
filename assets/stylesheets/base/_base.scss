@@ -3614,26 +3614,3 @@ a.fancybox-gallery-img {
         font-size: 1rem;
     }
 }
-
-.checkout-section.checkout-section.checkout-section {
-    .form-row {
-        position: relative;
-        margin-bottom: 2rem !important;
-        label {
-            font-weight: 600;
-            position: absolute;
-            left: 10px;
-            background-color: var(--white-color);
-            padding: 5px;
-            font-size: 13px;
-            line-height: 1;
-            top: 15px;
-            @include transition(300ms);
-        }
-        &.filled {
-            label {
-                top: -13px;
-            }
-        }
-    }
-}
