@@ -482,4 +482,12 @@ body {
     .select2-selection__arrow {
         height: 54px !important;
     }
+    .woocommerce-additional-fields {
+        label[for="order_comments"] {
+            display: none;
+        }
+        h3 {
+            display: none;
+        }
+    }
 }

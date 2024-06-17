@@ -11007,5 +11007,9 @@ body {
   height: 54px !important; }
 .checkout-section.checkout-section.checkout-section .select2-selection__arrow {
   height: 54px !important; }
+.checkout-section.checkout-section.checkout-section .woocommerce-additional-fields label[for="order_comments"] {
+  display: none; }
+.checkout-section.checkout-section.checkout-section .woocommerce-additional-fields h3 {
+  display: none; }
 
 /*# sourceMappingURL=checkout.css.map */
