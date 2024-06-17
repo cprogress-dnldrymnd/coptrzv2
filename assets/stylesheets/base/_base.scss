@@ -3617,6 +3617,7 @@ a.fancybox-gallery-img {
 
 .checkout-section {
     .form-row {
+        position: relative;
         label {
             font-weight: 600;
             position: absolute;
@@ -3627,6 +3628,11 @@ a.fancybox-gallery-img {
             line-height: 1;
             top: 15px;
             @include transition(300ms);
+        }
+        &.filled {
+            label {
+                top: -13px;
+            }
         }
     }
 }

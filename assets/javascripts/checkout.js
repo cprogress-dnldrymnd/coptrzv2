@@ -7,7 +7,7 @@ jQuery(document).ready(function () {
 function input_fields_checkout() {
 	jQuery('.remove-first-option-value select option:first-child').attr('value', '');
 
-	jQuery(".wpforms-field input, .wpforms-field select, .wpforms-field textarea").on("blur input focus", function () {
+	jQuery(".form-row input, .form-row select, .form-row textarea").on("blur input focus", function () {
 		if (this.value) {
 			jQuery(this).parent().addClass("filled");
 		} else {
@@ -15,7 +15,7 @@ function input_fields_checkout() {
 		}
 	});
 
-	jQuery(".wpforms-field input, .wpforms-field select,  .wpforms-field textarea").on("focus", function () {
+	jQuery(".form-row input, .form-row select,  .form-row textarea").on("focus", function () {
 		if (this) {
 			jQuery(this).parent().addClass("filled");
 		} else {
