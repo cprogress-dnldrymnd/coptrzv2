@@ -541,6 +541,10 @@ html {
     }
     ul {
         margin-bottom: 0;
-        li {}
+        li {
+            .required {
+                display: none !important;
+            }
+        }
     }
 }
