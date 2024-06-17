@@ -14110,7 +14110,8 @@ a.fancybox-gallery-img {
     font-size: 1rem; }
 
 .checkout-section.checkout-section.checkout-section .form-row {
-  position: relative; }
+  position: relative;
+  margin-bottom: 2rem; }
   .checkout-section.checkout-section.checkout-section .form-row label {
     font-weight: 600;
     position: absolute;
