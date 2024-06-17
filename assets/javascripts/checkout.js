@@ -103,11 +103,12 @@ function validate() {
     jQuery('#place_order').click();
     jQuery('.steps-ui').addClass('active');
     jQuery('html').addClass('disable-scrolling');
+    jQuery('.error-lists').remove();
+
     if (jQuery('.step-box.active .woocommerce-invalid').length == 0) {
         jQuery('.step-box.active').addClass('d-none').removeClass('active').next().removeClass('d-none').addClass('active');
         jQuery('.nav-box ul li.active').removeClass('active').next().addClass('active');
         $step = jQuery('.step-box.active').attr('step');
-        jQuery('.error-lists').remove();
         previous_step($step);
     } else {
         $errors = '';
