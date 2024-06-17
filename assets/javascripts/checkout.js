@@ -134,7 +134,6 @@ function previous_step($step) {
 function apply_coupon_custom() {
 
     jQuery(document).on('click', '.apply_coupon_custom', function () {
-        jQuery('.blockUI.coupon-ui').addClass('active');
         coupon_ajax();
     });
 
@@ -151,8 +150,8 @@ function apply_coupon_custom() {
 
 function coupon_ajax() {
     $coupon_code = jQuery('input[name="coupon_code_custom"]').val();
-    console.log($coupon_code);
     if ($coupon_code) {
+        jQuery('.blockUI.coupon-ui').addClass('active');
         jQuery.ajax({
             type: "POST",
 
@@ -180,7 +179,6 @@ function coupon_ajax() {
 
     } else {
         jQuery('.coupon-message').html('<span class="failed">Please enter a valid coupon code.</span>');
-        jQuery('.blockUI.coupon-ui').removeClass('active');
 
     }
 }
