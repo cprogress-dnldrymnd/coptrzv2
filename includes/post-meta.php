@@ -83,12 +83,12 @@ Container::make('post_meta', __('Modules'))
 
                     ->add_fields('column', array(
                         Field::make('complex', 'items', __('Items'))
-                        ->set_layout('tabbed-vertical')
                             ->setup_labels(
                                 array(
                                     'plural_name'   => 'Items',
                                     'singular_name' => 'Item',
                                 )
+                            )
                             ->set_collapsed(true)
                             ->add_fields('heading', $heading_fields)
                             ->add_fields(
@@ -237,7 +237,7 @@ Container::make('post_meta', __('Modules'))
                                     Field::make('textarea', 'custom_html', __('Custom HTML')),
                                 )
                             )
-                            
+
                     ))
 
             ))
