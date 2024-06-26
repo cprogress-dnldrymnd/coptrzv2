@@ -28,6 +28,7 @@ if (!$hide_footer) {
 
     
 <?php } ?>
+</main>
 <?php wp_footer(); ?>
 </body>
 
