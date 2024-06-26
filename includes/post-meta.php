@@ -30,7 +30,8 @@ Container::make('post_meta', __('Sections'))
                             'singular_name' => 'Section Items',
                         )
                     )
-                    ->add_fields('column', array(
+                    ->add_fields('heading', array())
+                    ->add_fields('columns', array(
                         Field::make('complex', 'columns', __('Columns'))
                             ->setup_labels(
                                 array(
@@ -39,7 +40,7 @@ Container::make('post_meta', __('Sections'))
                                 )
                             )
                             ->set_classes('columns')
-                            ->add_fields('column', array(
+                            ->add_fields(array(
                                 Field::make('complex', 'items', __(''))
                                     ->set_classes('items')
                                     ->setup_labels(
