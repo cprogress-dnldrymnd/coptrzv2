@@ -16,8 +16,8 @@ Container::make('post_meta', __('Book Data'))
         Field::make('complex', 'module', __('Module'))
             ->add_fields(array(
                 Field::make('complex', 'row', __('Row'))
-                    ->add_fields('movie', array(
-                        
+                    ->add_fields('column', array(
+
                     ))
             ))
 
