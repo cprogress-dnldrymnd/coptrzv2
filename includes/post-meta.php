@@ -15,13 +15,18 @@ Container::make('post_meta', __('Book Data'))
     ->add_fields(array(
         Field::make('complex', 'module', __('Module'))
             ->add_fields(array(
-                Field::make('complex', 'title', __('Title')),
+                Field::make('text', 'title', __('Title')),
                 Field::make('complex', 'row', __('Row'))
                     ->add_fields('column', array(
                         Field::make('complex', 'title', __('Title')),
                     ))
             ))
             ->set_header_template('<%- title %>')
-
+            ->setup_labels(
+                array(
+                    'plural_name'   => 'Modules',
+                    'singular_name' => 'Module',
+                )
+            )
 
     ));
