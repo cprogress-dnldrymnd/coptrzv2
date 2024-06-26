@@ -71,7 +71,7 @@ Container::make('post_meta', __('Modules'))
             )
             ->set_collapsed(true)
             ->add_fields(array(
-                Field::make('text', 'title', __('Title'))
+                $ststs = Field::make('text', 'title', __('Title'))
                     ->set_required(true),
                 Field::make('complex', 'columns', __('Columns'))
                     ->setup_labels(
