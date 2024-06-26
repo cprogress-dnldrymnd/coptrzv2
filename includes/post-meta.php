@@ -14,8 +14,11 @@ Container::make('post_meta', __('Book Data'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->add_fields(array(
         Field::make('complex', 'module', __('Module'))
-            ->add_fields('section', array(
-              
+            ->add_fields(array(
+                Field::make('complex', 'row', __('Row'))
+                    ->add_fields('movie', array(
+                        
+                    ))
             ))
 
 
