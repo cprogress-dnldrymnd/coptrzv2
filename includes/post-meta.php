@@ -8,6 +8,11 @@ use Carbon_Fields\Field;
 /* Section
 /*-----------------------------------------------------------------------------------*/
 
+Container::make('post_meta', __('Hero'))
+    ->add_fields(array(
+        Field::make('text', 'heading', __('Heading'))->set_help_text('Defaults to page title'),
+        Field::make('rich_text', 'description', __('Description'))
+    ));
 Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->add_fields(array(
