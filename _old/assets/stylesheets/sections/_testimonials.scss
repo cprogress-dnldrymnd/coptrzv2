@@ -1,0 +1,172 @@
+section.customer-reviews {
+    &.customer-reviews-v2 {
+        margin-left: -2rem;
+        margin-right: -2rem;
+
+        > .container {
+            display: none !important;
+        }
+
+        .review-holder .mySwiper-Reviews {
+            .review-box {
+                padding: 2rem;
+
+                .quote {
+                    svg {
+                        width: 30px;
+                    }
+                }
+
+                .review-content {
+                    margin-left: 15px;
+
+                    .review-text {
+                        font-size: 1rem;
+                        margin-bottom: 0;
+                    }
+
+                    .author {
+                        margin-top: 15px;
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+
+        @include before {
+            content: "";
+            position: absolute;
+        }
+    }
+
+    .review-score {
+        .score {
+            font-size: 5rem;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .stars-holder {
+            margin-left: 2rem;
+        }
+
+        .stars {
+            svg {
+                width: 2.5rem;
+                color: var(--accent-color);
+
+                @include not-last-child {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+
+    .mySwiper-Reviews {
+        &:not(.mySwiper-ReviewsCaseStudy) {
+            padding-left: 7vw;
+            padding-right: 7vw;
+
+            .review-box {
+                padding: 3vw;
+
+                @include responsive(xs-sm) {
+                    padding: 2rem;
+                }
+            }
+        }
+
+        &.mySwiper-ReviewsCaseStudy {
+            .swiper-slide {
+                height: auto;
+            }
+            .review-box {
+                padding: 2rem;
+                height: 100%;
+                .quote {
+                    svg {
+                        path {
+                            fill: var(--white-color);
+                        }
+                    }
+                }
+
+                .review-content {
+                    .review-text {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+
+            .swiper-pagination {
+                .swiper-pagination-bullet {
+                    width: 21px;
+                    height: 21px;
+                    border-radius: 50%;
+                    margin-left: 4px;
+                    margin-right: 4px;
+                }
+            }
+        }
+
+        .review-box {
+            color: var(--white-color);
+            line-height: 1.2;
+            border-radius: 20px;
+
+            .quote {
+                @include responsive(mobile) {
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .review-content {
+                margin-left: 3.5vw;
+
+                .review-text {
+                    margin-bottom: 4.375rem;
+                    font-size: 1.75rem;
+
+                    @include responsive(xs-md) {
+                        font-size: 1.5rem;
+                    }
+
+                    @include responsive(xs-sm) {
+                        font-size: 1.25rem;
+                        margin-bottom: 3rem;
+                    }
+                }
+
+                .author {
+                    font-weight: 600;
+                    font-size: 1.25rem;
+
+                    &:before {
+                        content: "";
+                        width: 68px;
+                        height: 4px;
+                        background-color: var(--white-color);
+                        margin-right: 1.25rem;
+
+                        @include responsive(mobile) {
+                            width: 30px;
+                        }
+                    }
+                }
+
+                @include responsive(xs-md) {
+                    margin-left: 2.5vw;
+                }
+
+                @include responsive(xs-sm) {
+                    margin-left: 1.5vw;
+                }
+            }
+
+            @include responsive(mobile) {
+                flex-direction: column;
+            }
+        }
+    }
+}

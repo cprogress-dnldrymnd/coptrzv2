@@ -1,0 +1,13 @@
+section.call-to-action {
+    .inner {
+        padding: 5rem 3rem 3rem 3rem;
+        --border-radius: 32px;
+    }
+    .row {
+        -webkit-box-align: end;
+        -moz-box-align: end;
+        -ms-flex-align: end;
+        -webkit-align-end: center;
+        align-items: end;
+    }
+}

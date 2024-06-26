@@ -1,0 +1,19 @@
+section.columns {
+    &.numbered-boxes {
+        .row {
+            counter-reset: section;
+            > [class*="col-"] {
+                .column-holder {
+                    counter-increment: section;
+                    &:before {
+                        content: "0" counter(section);
+                        font-size: 100px;
+                        line-height: 1;
+                        margin-right: 1rem;
+                        color: var(--accent-color);
+                    }
+                }
+            }
+        }
+    }
+}

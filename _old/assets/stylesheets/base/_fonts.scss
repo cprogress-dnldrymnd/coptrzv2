@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------------
+// This file contains all @font-face declarations, if any.
+// -----------------------------------------------------------------------------
+
+
+
+$poppins: (
+    "Light": 300,
+    "Regular": 400,
+    "Medium": 500,
+    "SemiBold": 600,
+    "Bold": 700,
+    "ExtraBold": 800,
+);
+
+@include font-face("Poppins", $font-url + "poppins/", "Poppins", normal, $poppins);
