@@ -82,3 +82,14 @@ add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn
 /* Require Files
 /*-----------------------------------------------------------------------------------*/
 require_once('includes/_required_files.php');
+
+function action_admin_head()
+{
+?>
+	<style>
+
+	</style>
+<?php
+}
+
+add_action('admin_head', 'action_admin_head');

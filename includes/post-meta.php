@@ -80,6 +80,7 @@ Container::make('post_meta', __('Modules'))
                             'singular_name' => 'Column',
                         )
                     )
+                    ->set_classes($columns)
                     ->add_fields('column', array(
                         Field::make('complex', 'items', __('Items'))
                             ->setup_labels(
