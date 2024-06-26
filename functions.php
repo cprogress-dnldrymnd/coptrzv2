@@ -46,33 +46,29 @@ function tissue_paper_register_custom_fields()
 }
 function get__post_meta($value)
 {
-	return carbon_get_the_post_meta($value);
+	if (function_exists('carbon_get_the_post_meta')) {
+		return carbon_get_the_post_meta($value);
+	}
 }
 
 function get__term_meta($term_id, $value)
 {
-	return get_term_meta($term_id, '_' . $value, true);
+	if (function_exists('get_term_meta')) {
+		return get_term_meta($term_id, '_' . $value, true);
+	}
 }
 
 function get__post_meta_by_id($id, $value)
 {
-	return carbon_get_post_meta($id, $value);
+	if (function_exists('carbon_get_post_meta')) {
+		return carbon_get_post_meta($id, $value);
+	}
 }
 function get__theme_option($value)
 {
 	return get_option('_' . $value);
 }
 
-
-
-function get__post_thumbnail_id($post_id)
-{
-	if (get_post_thumbnail_id($post_id)) {
-		return get_post_thumbnail_id($post_id);
-	} else {
-		return get__theme_option('placeholder_image');
-	}
-}
 
 
 /*-----------------------------------------------------------------------------------*/
