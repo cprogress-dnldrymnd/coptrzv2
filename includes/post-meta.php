@@ -58,6 +58,59 @@ $heading_fields = array(
             )
         ),
 );
+$description_fields = array(
+    Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
+);
+
+$button_fields = array(
+    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+        ->set_options(
+            array(
+                ''          => 'Select Button Type',
+                'page'      => 'Page',
+                'product'      => 'Product',
+                'guides'      => 'Guides',
+                'casestudies'      => 'Case Studies',
+                'post'      => 'Post',
+                'solutions' => 'Solution',
+                'popups'    => 'Popup',
+                'custom'     => 'Custom',
+            )
+        ),
+    Field::make('text', 'button_text', __('Button Text')),
+    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+        ->set_conditional_logic(
+            array(
+                array(
+                    'field'   => 'button_type',
+                    'value'   => 'custom',
+                    'compare' => '!='
+                )
+            )
+        ),
+    Field::make('html', 'html')
+        ->set_html('<div class="page-selector">  </div>'),
+    Field::make('text', 'button_url_custom', __('Button URL'))
+        ->set_conditional_logic(
+            array(
+                array(
+                    'field' => 'button_type',
+                    'value' => 'custom',
+                )
+            )
+        ),
+    Field::make('select', 'button_style', __('Button Style'))
+        ->set_options(
+            array(
+                'button-accent'      => 'Accent',
+                'button-primary'      => 'Primary',
+                'button-secondary' => 'Secondary',
+                'button-white' => 'White',
+                'button-bordered'    => 'Bordered',
+            )
+        ),
+
+);
 
 Container::make('post_meta', __('Modules'))
     ->where('post_template', '=', 'templates/page-modules.php')
@@ -92,70 +145,8 @@ Container::make('post_meta', __('Modules'))
                             )
                             ->set_collapsed(true)
                             ->add_fields('heading', $heading_fields)
-                            ->add_fields(
-                                'description',
-                                array(
-                                    Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
-                                )
-                            )
-                            ->add_fields(
-                                'embed',
-                                array(
-                                    Field::make('oembed', 'embed', __('Embed')),
-                                )
-                            )
-                            ->add_fields(
-                                'button',
-                                array(
-                                    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
-                                        ->set_options(
-                                            array(
-                                                ''          => 'Select Button Type',
-                                                'page'      => 'Page',
-                                                'product'      => 'Product',
-                                                'guides'      => 'Guides',
-                                                'casestudies'      => 'Case Studies',
-                                                'post'      => 'Post',
-                                                'solutions' => 'Solution',
-                                                'popups'    => 'Popup',
-                                                'custom'     => 'Custom',
-                                            )
-                                        ),
-                                    Field::make('text', 'button_text', __('Button Text')),
-                                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
-                                        ->set_conditional_logic(
-                                            array(
-                                                array(
-                                                    'field'   => 'button_type',
-                                                    'value'   => 'custom',
-                                                    'compare' => '!='
-                                                )
-                                            )
-                                        ),
-                                    Field::make('html', 'html')
-                                        ->set_html('<div class="page-selector">  </div>'),
-                                    Field::make('text', 'button_url_custom', __('Button URL'))
-                                        ->set_conditional_logic(
-                                            array(
-                                                array(
-                                                    'field' => 'button_type',
-                                                    'value' => 'custom',
-                                                )
-                                            )
-                                        ),
-                                    Field::make('select', 'button_style', __('Button Style'))
-                                        ->set_options(
-                                            array(
-                                                'button-accent'      => 'Accent',
-                                                'button-primary'      => 'Primary',
-                                                'button-secondary' => 'Secondary',
-                                                'button-white' => 'White',
-                                                'button-bordered'    => 'Bordered',
-                                            )
-                                        ),
-
-                                )
-                            )
+                            ->add_fields('description', $description_fields)
+                            ->add_fields('button', $button_fields)
                             ->add_fields(
                                 'image',
                                 array(
