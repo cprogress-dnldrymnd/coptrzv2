@@ -18,6 +18,12 @@ Container::make('post_meta', __('Modules'))
                 Field::make('text', 'title', __('Title'))
                     ->set_required(true),
                 Field::make('complex', 'columns', __('Columns'))
+                    ->setup_labels(
+                        array(
+                            'plural_name'   => 'Row',
+                            'singular_name' => 'Column',
+                        )
+                    )
                     ->add_fields('column', array(
                         Field::make('complex', 'items', __('Items'))
                             ->add_fields(
@@ -225,12 +231,7 @@ Container::make('post_meta', __('Modules'))
                                 )
                             )
                     ))
-                    ->setup_labels(
-                        array(
-                            'plural_name'   => 'Columns',
-                            'singular_name' => 'Column',
-                        )
-                    )
+
             ))
             ->set_header_template('<%- title %>')
             ->setup_labels(
