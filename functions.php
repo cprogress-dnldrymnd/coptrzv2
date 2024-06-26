@@ -93,6 +93,7 @@ function action_admin_head()
 
 		.columns>.cf-field__body>.cf-complex__groups>.cf-complex__group {
 		    flex: 1;
+			padding: 5px;
 		}
 	</style>
 <?php
