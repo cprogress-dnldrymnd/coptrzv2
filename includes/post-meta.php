@@ -16,10 +16,16 @@ Container::make('post_meta', __('Modules'))
         Field::make('complex', 'module', __('Module'))
             ->add_fields(array(
                 Field::make('text', 'title', __('Title')),
-                Field::make('complex', 'row', __('Row'))
+                Field::make('complex', 'columns', __('Columns'))
                     ->add_fields('column', array(
                         Field::make('complex', 'title', __('Title')),
                     ))
+                    ->setup_labels(
+                        array(
+                            'plural_name'   => 'Columns',
+                            'singular_name' => 'Column',
+                        )
+                    )
             ))
             ->set_header_template('<%- title %>')
             ->setup_labels(
