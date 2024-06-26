@@ -63,6 +63,13 @@ Container::make('post_meta', __('Modules'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->add_fields(array(
         Field::make('complex', 'module', __('Module'))
+            ->setup_labels(
+                array(
+                    'plural_name'   => 'Modules',
+                    'singular_name' => 'Module',
+                )
+            )
+            ->set_collapse(true)
             ->add_fields(array(
                 Field::make('text', 'title', __('Title'))
                     ->set_required(true),
@@ -233,11 +240,6 @@ Container::make('post_meta', __('Modules'))
 
             ))
             ->set_header_template('<%- title %>')
-            ->setup_labels(
-                array(
-                    'plural_name'   => 'Modules',
-                    'singular_name' => 'Module',
-                )
-            )
+
 
     ));
