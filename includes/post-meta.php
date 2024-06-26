@@ -15,7 +15,8 @@ Container::make('post_meta', __('Modules'))
     ->add_fields(array(
         Field::make('complex', 'module', __('Module'))
             ->add_fields(array(
-                Field::make('text', 'title', __('Title')),
+                Field::make('text', 'title', __('Title'))
+                ->set_required(true),
                 Field::make('complex', 'columns', __('Columns'))
                     ->add_fields('column', array(
                         Field::make('complex', 'title', __('Title')),
