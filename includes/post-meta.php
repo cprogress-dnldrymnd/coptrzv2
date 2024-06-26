@@ -13,8 +13,8 @@ use Carbon_Fields\Field;
 Container::make('post_meta', __('Book Data'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->add_fields(array(
-        Field::make('complex', 'Module')
-            ->add_fields('Section', array(
+        Field::make('complex', 'module')
+            ->add_fields('section', array(
                 Field::make('image', 'image'),
                 Field::make('text', 'caption'),
             ))
