@@ -83,6 +83,7 @@ Container::make('post_meta', __('Modules'))
                     ->set_classes('columns')
                     ->add_fields('column', array(
                         Field::make('complex', 'items', __(''))
+                            ->set_classes('items')
                             ->setup_labels(
                                 array(
                                     'plural_name'   => 'Items',
