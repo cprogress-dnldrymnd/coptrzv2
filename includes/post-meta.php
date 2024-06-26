@@ -23,7 +23,6 @@ Container::make('post_meta', __('Sections'))
                 Field::make('text', 'title', __('Section Title'))->set_required(true)->set_width(33),
                 Field::make('text', 'module_id', __('Section ID'))->set_width(33),
                 Field::make('checkbox', 'disable_sction', __('Disable Section'))->set_width(33),
-                Field::make('complex', 'section_items', __('Section Items'))
 
 
                 Field::make('complex', 'columns', __('Columns'))
