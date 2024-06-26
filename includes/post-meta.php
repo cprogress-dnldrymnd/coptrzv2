@@ -1,5 +1,4 @@
 <?php
-
 use Carbon_Fields\Block;
 use Carbon_Fields\Container;
 use Carbon_Fields\Complex_Container;
@@ -15,8 +14,7 @@ Container::make('post_meta', __('Book Data'))
     ->add_fields(array(
         Field::make('complex', 'module')
             ->add_fields('section', array(
-                Field::make('image', 'image'),
-                Field::make('text', 'caption'),
+           
             ))
             ->add_fields('movie', array(
                 Field::make('file', 'video'),
