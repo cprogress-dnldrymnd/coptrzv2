@@ -475,6 +475,32 @@ $styles_fields = Field::make('complex', 'styles', __('Styles'))
         )
     )
     ->set_layout('tabbed-vertical');
+
+$items_fields = Field::make('complex', 'items', __(''))
+    ->set_classes('items')
+    ->setup_labels(
+        array(
+            'plural_name'   => 'Items',
+            'singular_name' => 'Item',
+        )
+    )
+    ->set_collapsed(true)
+    ->add_fields('heading', $heading_fields)
+    ->add_fields('description', $description_fields)
+    ->add_fields('button', $button_fields)
+    ->add_fields('image', $image_fields)
+    ->add_fields('icon', $icon_fields)
+    ->add_fields(
+        'custom_html',
+        array(
+            Field::make('textarea', 'custom_html', __('Custom HTML')),
+        )
+    );
+
+$columns_fields = array(
+    $items_fields,
+    $styles_fields
+);
 Container::make('post_meta', __('Modules'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->add_fields(array(
@@ -497,31 +523,7 @@ Container::make('post_meta', __('Modules'))
                         )
                     )
                     ->set_classes('columns')
-                    ->add_fields('column', array(
-                        Field::make('complex', 'items', __(''))
-                            ->set_classes('items')
-                            ->setup_labels(
-                                array(
-                                    'plural_name'   => 'Items',
-                                    'singular_name' => 'Item',
-                                )
-                            )
-                            ->set_collapsed(true)
-                            ->add_fields('heading', $heading_fields)
-                            ->add_fields('description', $description_fields)
-                            ->add_fields('button', $button_fields)
-                            ->add_fields('image', $image_fields)
-                            ->add_fields('icon', $icon_fields)
-                            ->add_fields(
-                                'custom_html',
-                                array(
-                                    Field::make('textarea', 'custom_html', __('Custom HTML')),
-                                )
-                            ),
-                        $styles_fields
-
-
-                    ))
+                    ->add_fields('column', $columns_fields)
 
 
             ))
