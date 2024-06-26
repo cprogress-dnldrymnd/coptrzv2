@@ -10,7 +10,7 @@ use Carbon_Fields\Field;
 /* Modules
 /*-----------------------------------------------------------------------------------*/
 
-Container::make('post_meta', __('Book Data'))
+Container::make('post_meta', __('Modules'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->add_fields(array(
         Field::make('complex', 'module', __('Module'))
