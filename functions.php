@@ -1,7 +1,4 @@
 <?php
-/*if (!session_id()) {
-	session_start();
-}*/
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
@@ -69,14 +66,11 @@ function get__theme_option($value)
 	return get_option('_' . $value);
 }
 
-
-
 /*-----------------------------------------------------------------------------------*/
 /* Enqueue Styles and Scripts
 /*-----------------------------------------------------------------------------------*/
 function enqueue_scripts()
 {
-
 	wp_enqueue_style('coptz-style', theme_dir . 'style.css', NULL, coptz_version);
 
 	wp_enqueue_script('coptz-bootstrap-js', vendor_dir . 'bootstrap/bootstrap.min.js');
@@ -94,16 +88,12 @@ function enqueue_scripts()
 		$data['page']['type'] = 'page';
 		$data['page']['page_url'] = get_permalink();
 	}
-
-
 	if (!is_product() && !is_checkout()) {
 		wp_register_script('coptz', assets_dir . 'javascripts/main.js', ['jquery', 'coptz-swiper'], coptz_version);
 		wp_localize_script('coptz', 'data', $data);
 		wp_enqueue_script('coptz');
 	}
-
 	if (is_product()) {
-
 		$product = wc_get_product(get_the_ID());
 		if ($product->get_type() == 'variable') {
 			$gtin = array();
@@ -149,247 +139,3 @@ add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn
 /* Require Files
 /*-----------------------------------------------------------------------------------*/
 require_once('includes/_required_files.php');
-
-/*-----------------------------------------------------------------------------------*/
-/* Admin Settings
-/*-----------------------------------------------------------------------------------*/
-function action_admin_enqueue_scripts($hook)
-{
-
-	wp_enqueue_style('my_custom_script', get_template_directory_uri() . '/admin/css/admin-css.css', array(), '1.1');
-
-	wp_enqueue_style('select_2_css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css', array(), '1.0');
-
-	wp_enqueue_style('karla', 'https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&display=swap', array(), '1.0');
-
-	wp_enqueue_script('select_2_js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js', array(), '1.0');
-
-	wp_enqueue_script('admin_js', get_template_directory_uri() . '/admin/js/admin-js.js', array(), '1.3');
-}
-add_action('admin_enqueue_scripts', 'action_admin_enqueue_scripts');
-
-
-/*-----------------------------------------------------------------------------------*/
-/* Code Miror
-/*-----------------------------------------------------------------------------------*/
-add_action('admin_enqueue_scripts', 'codemirror_enqueue_scripts');
-
-function codemirror_enqueue_scripts($hook)
-{
-	$cm_settings = array(
-		'ce_css'  => wp_enqueue_code_editor(array('type' => 'text/css', 'codemirror' => array('autoRefresh' => true))),
-		'ce_html' => wp_enqueue_code_editor(array('type' => 'text/html', 'codemirror' => array('autoRefresh' => true)))
-	);
-	wp_localize_script('jquery', 'cm_settings', $cm_settings);
-
-	wp_enqueue_style('wp-codemirror');
-}
-
-
-
-function get_date_diff($post_id)
-{
-	$datetime1 = new DateTime(get_the_date('', $post_id));
-	$datetime2 = new DateTime(''); // current date
-	$interval = $datetime1->diff($datetime2);
-	$days_ago = $interval->format('%a');
-	if ($days_ago == 0) {
-		return 'Today at ' . get_the_time('', $post_id);
-	} else if ($days_ago == 1) {
-		return $interval->format('%a day ago');
-	} else {
-		return $interval->format('%a days ago');
-	}
-}
-
-function get_time_diff($post_id)
-{
-	$time1 = strtotime('08:00:00');
-	$time2 = strtotime('09:30:00');
-	$difference = round(abs($time2 - $time1) / 3600, 2);
-	return $difference;
-}
-function custom_excerpt_length($content, $length = 50)
-{
-	if ($length != -1) {
-		// get the first 80 words from the content and added to the $abstract variable
-		preg_match('/^([^.!?\s]*[\.!?\s]+){0,' . $length . '}/', strip_tags($content), $abstract);
-		// pregmatch will return an array and the first 80 chars will be in the first element 
-		return $abstract[0] . '...';
-	} else {
-		return $content;
-	}
-}
-//add_filter('excerpt_length', 'custom_excerpt_length', 999);
-
-
-
-add_filter('mod_rewrite_rules', 'fix_rewritebase');
-function fix_rewritebase($rules)
-{
-	$home_root = parse_url(home_url());
-	if (isset($home_root['path'])) {
-		$home_root = trailingslashit($home_root['path']);
-	} else {
-		$home_root = '/';
-	}
-
-	$wpml_root = parse_url(get_option('home'));
-	if (isset($wpml_root['path'])) {
-		$wpml_root = trailingslashit($wpml_root['path']);
-	} else {
-		$wpml_root = '/';
-	}
-
-	$rules = str_replace("RewriteBase $home_root", "RewriteBase $wpml_root", $rules);
-	$rules = str_replace("RewriteRule . $home_root", "RewriteRule . $wpml_root", $rules);
-
-	return $rules;
-}
-
-if (version_compare(phpversion(), '7.1', '>=')) {
-	ini_set('precision', 17);
-	ini_set('serialize_precision', -1);
-}
-
-
-function action_admin_footer()
-{
-	$pages = get__posts('page');
-	$select_page = '<label style="display: block" class="cf-field__label" >Select Page</label><select class="select-page-selector">';
-	foreach ($pages as $key => $page) {
-		$select_page .= '<option value="' . $key . '"> ' . $page . ' </option>';
-	}
-	$select_page .= '</select>';
-
-	$posts = get__posts('post');
-	$select_post = '<label style="display: block" class="cf-field__label" >Select Post</label><select class="select-page-selector">';
-	foreach ($posts as $key => $post) {
-		$select_post .= '<option value="' . $key . '"> ' . $post . ' </option>';
-	}
-	$select_post .= '</select>';
-
-	$solutions = get__posts('solutions');
-	$select_solution = '<label style="display: block" class="cf-field__label">Select Solution</label><select class="select-page-selector">';
-	foreach ($solutions as $key => $solution) {
-		$select_solution .= '<option value="' . $key . '"> ' . $solution . ' </option>';
-	}
-	$select_solution .= '</select>';
-
-	$popups = get__posts('popups');
-	$select_popup = '<label style="display: block" class="cf-field__label">Select Popup</label><select class="select-page-selector">';
-	foreach ($popups as $key => $popup) {
-		$select_popup .= '<option value="' . $key . '"> ' . $popup . ' </option>';
-	}
-	$select_popup .= '</select>';
-
-	$products = get__posts('product');
-	$select_product = '<label style="display: block" class="cf-field__label">Select product</label><select class="select-page-selector">';
-	foreach ($products as $key => $product) {
-		$select_product .= '<option value="' . $key . '"> ' . $product . ' </option>';
-	}
-	$select_product .= '</select>';
-
-	$guides = get__posts('guides');
-	$select_guide = '<label style="display: block" class="cf-field__label">Select guide</label><select class="select-page-selector">';
-	foreach ($guides as $key => $guide) {
-		$select_guide .= '<option value="' . $key . '"> ' . $guide . ' </option>';
-	}
-	$select_guide .= '</select>';
-
-	$casestudies = get__posts('casestudies');
-	$select_casestudies = '<label style="display: block" class="cf-field__label">Select casestudies</label><select class="select-page-selector">';
-	foreach ($casestudies as $key => $casestudies) {
-		$select_casestudies .= '<option value="' . $key . '"> ' . $casestudies . ' </option>';
-	}
-	$select_casestudies .= '</select>';
-?>
-	<script>
-		jQuery(document).on("change", '.trigger-selector select', function(event) {
-			$value = jQuery(this).val();
-			$selector = jQuery(this).parent().parent().parent().find('.page-selector');
-			active_link_type($selector, $value)
-		});
-
-
-		jQuery(document).on("change", '.trigger-selector-single select', function(event) {
-			$value = jQuery(this).val();
-			$selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
-			active_link_type($selector, $value)
-		});
-
-		jQuery(document).on("change", '.select-page-selector', function(event) {
-			$value = jQuery(this).val();
-			$input = jQuery(this).parent().parent().parent().parent().parent().find('.field-url input');
-			$input.val($value);
-		});
-
-
-		function active_link_type($selector, $value, $input = '') {
-			if ($value == 'page') {
-				$selector.html('<?= $select_page ?>');
-			} else if ($value == 'post') {
-				$selector.html('<?= $select_post ?>');
-			} else if ($value == 'product') {
-				$selector.html('<?= $select_product ?>');
-			} else if ($value == 'guides') {
-				$selector.html('<?= $select_guide ?>');
-			} else if ($value == 'casestudies') {
-				$selector.html('<?= $select_casestudies ?>');
-			} else if ($value == 'solutions') {
-				$selector.html('<?= $select_solution ?>');
-			} else if ($value == 'popups') {
-				$selector.html('<?= $select_popup ?>');
-			} else {
-				$selector.html('');
-			}
-
-			$selector.find('.select-page-selector').val($input);
-
-
-		}
-
-		setTimeout(function() {
-			jQuery('.trigger-selector select').each(function(index, element) {
-				$value = jQuery(this).val();
-				$selector = jQuery(this).parent().parent().parent().find('.page-selector');
-				$input = jQuery(this).parent().parent().parent().find('.field-url input').val();
-				active_link_type($selector, $value, $input)
-			});
-
-
-			jQuery('.trigger-selector-single select').each(function(index, element) {
-				$value = jQuery(this).val();
-				$selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
-				$input = jQuery(this).parent().parent().next().next().find('input').val();
-				active_link_type($selector, $value, $input)
-			});
-
-		}, 2000);
-	</script>
-<?php
-}
-
-add_action('admin_footer', 'action_admin_footer');
-
-function get__posts($post_type)
-{
-	$pages_array = array(); // Initialize an empty array
-
-	$args = array(
-		'post_type'      => $post_type, // Get only pages
-		'posts_per_page' => -1, // Get all pages
-		'post_status'    => 'publish', // Get only published pages
-		'fields'         => 'ids', // Only retrieve post IDs for efficiency
-	);
-
-	$posts = get_posts($args);
-
-	if ($posts) {
-		foreach ($posts as $post) {
-			$pages_array[$post] = get_the_title($post); // Add ID => title to the array
-		}
-	}
-
-	return $pages_array;
-}
