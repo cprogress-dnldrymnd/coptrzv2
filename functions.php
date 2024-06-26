@@ -87,7 +87,13 @@ function action_admin_head()
 {
 ?>
 	<style>
+		.columns>.cf-field__body>.cf-complex__groups {
+			display: flex
+		}
 
+		.columns>.cf-field__body>.cf-complex__groups>.cf-complex__group {
+		    flex: 1;
+		}
 	</style>
 <?php
 }
