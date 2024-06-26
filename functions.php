@@ -91,8 +91,8 @@ function action_admin_head()
 			display: flex
 		}
 
-		.columns>.cf-field__body>.cf-complex__groups>.cf-complex__group {
-		    flex: 1;
+		.columns>.cf-field__body>.cf-complex__groups> div {
+			flex: 1;
 			padding: 5px;
 		}
 	</style>
