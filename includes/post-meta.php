@@ -11,7 +11,7 @@ use Carbon_Fields\Field;
 Container::make('post_meta', __('Hero'))
     ->add_fields(array(
         Field::make('text', 'heading', __('Heading'))->set_help_text('Defaults to page title'),
-        Field::make('rich_text', 'description', __('Description'))
+        Field::make('textarea', 'description', __('Description'))
     ));
 Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
