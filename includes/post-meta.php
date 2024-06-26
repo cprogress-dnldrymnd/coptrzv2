@@ -69,7 +69,7 @@ Container::make('post_meta', __('Modules'))
                     'singular_name' => 'Module',
                 )
             )
-            ->set_collapse(true)
+            ->set_collapsed(true)
             ->add_fields(array(
                 Field::make('text', 'title', __('Title'))
                     ->set_required(true),
