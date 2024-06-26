@@ -10,6 +10,55 @@ use Carbon_Fields\Field;
 /* Modules
 /*-----------------------------------------------------------------------------------*/
 
+$heading_fields = array(
+    Field::make('text', 'heading', __('Heading')),
+    Field::make('text', 'prefix', __('Prefix')),
+    Field::make('text', 'suffix', __('Suffix')),
+    Field::make('select', 'tag', __('Tag'))
+        ->set_options(
+            array(
+                'h1' => 'h1',
+                'h2' => 'h2',
+                'h3' => 'h3',
+                'h4' => 'h4',
+                'h5' => 'h5',
+                'h6' => 'h6',
+            )
+        )
+        ->set_default_value('h2'),
+    Field::make('select', 'size', __('Heading Size'))
+        ->set_options(
+            array(
+                '' => 'Default',
+                'big-heading' => 'Big Heading',
+                'medium-heading' => 'Medium Heading',
+                'small-heading' => 'Small Heading',
+            )
+        ),
+    Field::make('select', 'text_color', 'Text Color')
+        ->set_options(
+            array(
+                ''   => 'Default',
+                'text-primary'   => 'Primary',
+                'text-secondary' => 'Secondary',
+                'text-accent'    => 'Accent',
+                'text-white'     => 'White',
+                'text-light-gray'     => 'Light Gray',
+                'text-body-color'     => 'Body',
+                'text-custom'    => 'Custom',
+            )
+        ),
+    Field::make('color', 'text_color_custom', __('Text Color'))
+        ->set_conditional_logic(
+            array(
+                array(
+                    'field' => 'text_color',
+                    'value' => 'text-custom',
+                )
+            )
+        ),
+);
+
 Container::make('post_meta', __('Modules'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->add_fields(array(
@@ -26,57 +75,7 @@ Container::make('post_meta', __('Modules'))
                     )
                     ->add_fields('column', array(
                         Field::make('complex', 'items', __('Items'))
-                            ->add_fields(
-                                'heading',
-                                array(
-                                    Field::make('text', 'heading', __('Heading')),
-                                    Field::make('text', 'prefix', __('Prefix')),
-                                    Field::make('text', 'suffix', __('Suffix')),
-                                    Field::make('select', 'tag', __('Tag'))
-                                        ->set_options(
-                                            array(
-                                                'h1' => 'h1',
-                                                'h2' => 'h2',
-                                                'h3' => 'h3',
-                                                'h4' => 'h4',
-                                                'h5' => 'h5',
-                                                'h6' => 'h6',
-                                            )
-                                        )
-                                        ->set_default_value('h2'),
-                                    Field::make('select', 'size', __('Heading Size'))
-                                        ->set_options(
-                                            array(
-                                                '' => 'Default',
-                                                'big-heading' => 'Big Heading',
-                                                'medium-heading' => 'Medium Heading',
-                                                'small-heading' => 'Small Heading',
-                                            )
-                                        ),
-                                    Field::make('select', 'text_color', 'Text Color')
-                                        ->set_options(
-                                            array(
-                                                ''   => 'Default',
-                                                'text-primary'   => 'Primary',
-                                                'text-secondary' => 'Secondary',
-                                                'text-accent'    => 'Accent',
-                                                'text-white'     => 'White',
-                                                'text-light-gray'     => 'Light Gray',
-                                                'text-body-color'     => 'Body',
-                                                'text-custom'    => 'Custom',
-                                            )
-                                        ),
-                                    Field::make('color', 'text_color_custom', __('Text Color'))
-                                        ->set_conditional_logic(
-                                            array(
-                                                array(
-                                                    'field' => 'text_color',
-                                                    'value' => 'text-custom',
-                                                )
-                                            )
-                                        ),
-                                )
-                            )
+                            ->add_fields('heading', $heading_fields)
                             ->add_fields(
                                 'description',
                                 array(
