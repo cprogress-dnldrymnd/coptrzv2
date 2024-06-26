@@ -112,6 +112,76 @@ $button_fields = array(
 
 );
 
+$image_fields = array(
+    Field::make('image', 'image', __('Image')),
+    Field::make('select', 'size', __('Size'))
+        ->set_options(
+            array(
+                ''          => 'Default',
+                'full'      => 'Full',
+                'large'      => 'Large',
+                'medium' => 'Medium',
+                'thumbnail'    => 'Thumbnail',
+            )
+        ),
+    Field::make('checkbox', 'custom_size', __('Custom Size')),
+    Field::make('text', 'image_width', __('Custom Image Width'))
+        ->set_conditional_logic(
+            array(
+                array(
+                    'field' => 'custom_size',
+                    'value' => true,
+                )
+            )
+        ),
+    Field::make('text', 'image_height', __('Custom Image Height'))
+        ->set_conditional_logic(
+            array(
+                array(
+                    'field' => 'custom_size',
+                    'value' => true,
+                )
+            )
+        ),
+    Field::make('checkbox', 'rounded_corners', __('Rounder Corners')),
+    Field::make('text', 'border_radius', __('Border Radius'))->set_help_text('Custom border radius')
+        ->set_conditional_logic(
+            array(
+                array(
+                    'field' => 'rounded_corners',
+                    'value' => true,
+                )
+            )
+        ),
+);
+$icon_fields = array(
+    Field::make('file', 'icon', __('Icon'))
+        ->set_type(array('image/svg+xml')),
+    Field::make('select', 'icon_color', 'Text Color')
+        ->set_options(
+            array(
+                'text-primary'   => 'Primary',
+                'text-secondary' => 'Secondary',
+                'text-accent'    => 'Accent',
+                'text-white'     => 'White',
+                'text-light-gray'     => 'Light Gray',
+                'text-body-color'     => 'Body',
+                'text-custom'    => 'Custom',
+            )
+        ),
+    Field::make('color', 'icon_color_custom', __('Text Color'))
+        ->set_conditional_logic(
+            array(
+                array(
+                    'field' => 'icon_color',
+                    'value' => 'text-custom',
+                )
+            )
+        ),
+    Field::make('text', 'icon_width', __('Custom Icon Width')),
+    Field::make('text', 'icon_height', __('Custom Icon Height'))
+
+);
 Container::make('post_meta', __('Modules'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->add_fields(array(
@@ -147,82 +217,8 @@ Container::make('post_meta', __('Modules'))
                             ->add_fields('heading', $heading_fields)
                             ->add_fields('description', $description_fields)
                             ->add_fields('button', $button_fields)
-                            ->add_fields(
-                                'image',
-                                array(
-                                    Field::make('image', 'image', __('Image')),
-                                    Field::make('select', 'size', __('Size'))
-                                        ->set_options(
-                                            array(
-                                                ''          => 'Default',
-                                                'full'      => 'Full',
-                                                'large'      => 'Large',
-                                                'medium' => 'Medium',
-                                                'thumbnail'    => 'Thumbnail',
-                                            )
-                                        ),
-                                    Field::make('checkbox', 'custom_size', __('Custom Size')),
-                                    Field::make('text', 'image_width', __('Custom Image Width'))
-                                        ->set_conditional_logic(
-                                            array(
-                                                array(
-                                                    'field' => 'custom_size',
-                                                    'value' => true,
-                                                )
-                                            )
-                                        ),
-                                    Field::make('text', 'image_height', __('Custom Image Height'))
-                                        ->set_conditional_logic(
-                                            array(
-                                                array(
-                                                    'field' => 'custom_size',
-                                                    'value' => true,
-                                                )
-                                            )
-                                        ),
-                                    Field::make('checkbox', 'rounded_corners', __('Rounder Corners')),
-                                    Field::make('text', 'border_radius', __('Border Radius'))->set_help_text('Custom border radius')
-                                        ->set_conditional_logic(
-                                            array(
-                                                array(
-                                                    'field' => 'rounded_corners',
-                                                    'value' => true,
-                                                )
-                                            )
-                                        ),
-                                )
-                            )
-                            ->add_fields(
-                                'icon',
-                                array(
-                                    Field::make('file', 'icon', __('Icon'))
-                                        ->set_type(array('image/svg+xml')),
-                                    Field::make('select', 'icon_color', 'Text Color')
-                                        ->set_options(
-                                            array(
-                                                'text-primary'   => 'Primary',
-                                                'text-secondary' => 'Secondary',
-                                                'text-accent'    => 'Accent',
-                                                'text-white'     => 'White',
-                                                'text-light-gray'     => 'Light Gray',
-                                                'text-body-color'     => 'Body',
-                                                'text-custom'    => 'Custom',
-                                            )
-                                        ),
-                                    Field::make('color', 'icon_color_custom', __('Text Color'))
-                                        ->set_conditional_logic(
-                                            array(
-                                                array(
-                                                    'field' => 'icon_color',
-                                                    'value' => 'text-custom',
-                                                )
-                                            )
-                                        ),
-                                    Field::make('text', 'icon_width', __('Custom Icon Width')),
-                                    Field::make('text', 'icon_height', __('Custom Icon Height'))
-
-                                )
-                            )
+                            ->add_fields('image', $image_fields)
+                            ->add_fields('icon', $icon_fields)
                             ->add_fields(
                                 'custom_html',
                                 array(
