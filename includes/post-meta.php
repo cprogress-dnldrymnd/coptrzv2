@@ -218,6 +218,12 @@ Container::make('post_meta', __('Modules'))
                                 )
                             )
                             ->set_layout('tabbed-vertical')
+                            ->setup_labels(
+                                array(
+                                    'plural_name'   => 'Items',
+                                    'singular_name' => 'Item',
+                                )
+                            )
                     ))
                     ->setup_labels(
                         array(
