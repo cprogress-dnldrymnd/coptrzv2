@@ -83,6 +83,7 @@ Container::make('post_meta', __('Modules'))
 
                     ->add_fields('column', array(
                         Field::make('complex', 'items', __('Items'))
+                            ->set_layout('tabbed-horizontal')
                             ->setup_labels(
                                 array(
                                     'plural_name'   => 'Items',
