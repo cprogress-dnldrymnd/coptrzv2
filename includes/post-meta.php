@@ -76,7 +76,7 @@ Container::make('post_meta', __('Modules'))
                 Field::make('complex', 'columns', __('Columns'))
                     ->setup_labels(
                         array(
-                            'plural_name'   => 'Row',
+                            'plural_name'   => 'Columns',
                             'singular_name' => 'Column',
                         )
                     )
