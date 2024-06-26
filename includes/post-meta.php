@@ -32,7 +32,6 @@ Container::make('post_meta', __('Sections'))
                             'singular_name' => 'Column',
                         )
                     )
-                    ->set_header_template('Column')
                     ->set_classes('columns')
                     ->add_fields(array(
                         Field::make('complex', 'items', __(''))
