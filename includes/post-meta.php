@@ -184,10 +184,10 @@ $icon_fields = array(
 );
 
 
-Container::make('post_meta', __('Modules'))
+Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->add_fields(array(
-        Field::make('complex', 'module', __('Module'))
+        Field::make('complex', 'sections', __(''))
             ->setup_labels(
                 array(
                     'plural_name'   => 'Modules',
