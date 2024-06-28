@@ -41,7 +41,6 @@ Container::make('post_meta', __('Sections'))
                         )
                     )
                     ->set_duplicate_groups_allowed(false)
-                    ->set_layout('tabbed-vertical')
                     ->add_fields('heading', array(
                         Field::make('text', 'heading', __('Heading')),
                         Field::make('text', 'prefix', __('Prefix')),
