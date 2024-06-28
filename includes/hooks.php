@@ -43,7 +43,7 @@ function action_admin_head()
             padding: 5px;
         }
 
-        .inline-field.inline-field {
+        .inline-field.inline-field:not([hidden]) {
             display: flex;
             flex-wrap: wrap;
         }
