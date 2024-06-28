@@ -9320,9 +9320,9 @@ textarea.form-control-lg {
 :root {
   --primary-font: Poppins, sans-serif;
   --bs-primary: #000;
-  --bs-primary-rgb: rgb(0,0,0);
-  --bs-secondary: #0F0F0F;
-  --bs-secondary-rgb: #0F0F0F; }
+  --bs-primary-rgb: 0, 0, 0;
+  --bs-secondary: #0f0f0f;
+  --bs-secondary-rgb: 15, 15, 15 ; }
 
 @font-face {
   font-family: "Poppins";
