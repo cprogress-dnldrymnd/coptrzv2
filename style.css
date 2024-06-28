@@ -9405,6 +9405,6 @@ body {
 /* Sections
 /*-----------------------------------------------------------------------------------*/
 section.hero {
-  min-height: 85px; }
+  min-height: 85vh; }
 
 /*# sourceMappingURL=style.css.map */

@@ -35,7 +35,7 @@ function ___hero()
     if (!$hero_hidden) {
         global $styles;
         $styles[] = ".hero{ background-image: $hero_background_url}";
-        $hero = "<section class='hero rounded-10px bg-primary text-white d-flex align-items-end'><div class='container'>";
+        $hero = "<section class='hero text-center rounded-10px bg-primary text-white d-flex align-items-end'><div class='container'>";
         $hero .= do_shortcode("[__heading heading='$hero_heading_val']");
         $hero .= do_shortcode("[__description description='$hero_description']");
         $hero .= "</div></section>";
