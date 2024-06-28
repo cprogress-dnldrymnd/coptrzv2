@@ -32,8 +32,7 @@ function ___hero()
     $hero_background = get__post_meta('hero_background');
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
-        $hero = "<section class='hero pb-50px background-image text-center rounded-10px bg-primary text-white d-flex align-items-end mx-20px'><div class='container'>";
-        $hero .= "<div class='background-overlay'> <img src='$hero_background_url'/> </div>";
+        $hero = "<section class='hero pb-50px background-image text-center rounded-10px bg-primary text-white d-flex align-items-end mx-20px position-relative'><div class='container'>";
         $hero .= do_shortcode("[__heading class='large-heading' tag='h1' heading='$hero_heading_val']");
         $hero .= do_shortcode("[__description description='$hero_description']");
         $hero .= "</div></section>";
