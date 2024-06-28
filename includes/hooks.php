@@ -2,7 +2,7 @@
 function action_wp_head()
 {
 ?>
-    <style>
+    <style id="wp-head">
         <?php
         if (isset($_GET['preview'])) {
             echo '#wpadminbar{ display: none !important }';
