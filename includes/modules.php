@@ -31,7 +31,7 @@ function ___hero()
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
         $hero = "<section class='hero'><div class='container'>";
-        $hero .= do_shortcode("[_heading heading='$hero_heading_val']");
+        $hero .= do_shortcode("[__heading heading='$hero_heading_val']");
 
         $hero .= "</div></section>";
 

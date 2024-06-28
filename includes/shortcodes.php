@@ -20,5 +20,5 @@ class Shortcodes
         }
     }
 }
-
-add_shortcode('_heading', array($Shortcodes, '_heading'));
+$Shortcodes = new Shortcodes;
+add_shortcode('_heading', array($Shortcodes, '__heading'));
