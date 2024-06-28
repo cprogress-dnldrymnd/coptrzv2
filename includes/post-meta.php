@@ -40,6 +40,7 @@ Container::make('post_meta', __('Sections'))
                             'singular_name' => 'Section Item',
                         )
                     )
+                    ->set_duplicate_groups_allowed(false)
                     ->add_fields('heading', array(
                         Field::make('text', 'heading', __('Heading')),
                         Field::make('text', 'prefix', __('Prefix')),
