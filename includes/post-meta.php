@@ -131,10 +131,6 @@ Container::make('post_meta', __('Sections'))
                                         'field' => 'text_color',
                                         'value' => 'text-custom',
                                     ),
-                                    array(
-                                        'field' => 'has_custom_heading_settings',
-                                        'value' => true,
-                                    )
                                 )
                             ),
                     ))
