@@ -63,7 +63,7 @@ class Shortcodes
         } else {
             $image = wp_get_attachment_image($image_id, $size);
         }
-        if ($image__id) {
+        if ($image) {
             $_attributes = _attributes(array(
                 array('class', $class),
                 array('class', 'image-box'),
