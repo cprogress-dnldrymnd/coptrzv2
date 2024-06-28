@@ -15,7 +15,7 @@ class Shortcodes
             )
         );
         $_attributes = _attributes(array(
-            'class', $class
+            array('class', $class)
         ));
         if ($heading) {
             return "<$tag $_attributes>$heading</$tag>";

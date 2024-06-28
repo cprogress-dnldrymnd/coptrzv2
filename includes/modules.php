@@ -5,19 +5,21 @@ function action_module_content()
     if (did_action('post_updated')) {
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-        $post_content = '<!-- wp:html -->';
+        if (get_page_template_slug() == '>templates/page-modules.php') {
+            $post_content = '<!-- wp:html -->';
 
-        $post_content .= ___hero();
+            $post_content .= ___hero();
 
-        $post_content .= get_page_template_slug().'<!-- /wp:html -->';
+            $post_content .= '<!-- /wp:html -->';
 
-        $my_post = array(
-            'ID'           => get_the_ID(),
-            'post_content' => $post_content,
-        );
+            $my_post = array(
+                'ID'           => get_the_ID(),
+                'post_content' => $post_content,
+            );
 
-        // Update the post into the database
-        wp_update_post($my_post);
+            // Update the post into the database
+            wp_update_post($my_post);
+        }
     }
 }
 add_action('shutdown', 'action_module_content');
