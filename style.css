@@ -9390,6 +9390,9 @@ body {
 .pb-10px {
   padding-bottom: 10px; }
 
+.pt-10px {
+  padding-top: 10px; }
+
 .rounded-15px {
   border-radius: 15px; }
 
@@ -9405,6 +9408,9 @@ body {
 
 .pb-15px {
   padding-bottom: 15px; }
+
+.pt-15px {
+  padding-top: 15px; }
 
 .rounded-20px {
   border-radius: 20px; }
@@ -9422,6 +9428,9 @@ body {
 .pb-20px {
   padding-bottom: 20px; }
 
+.pt-20px {
+  padding-top: 20px; }
+
 .rounded-25px {
   border-radius: 25px; }
 
@@ -9437,6 +9446,9 @@ body {
 
 .pb-25px {
   padding-bottom: 25px; }
+
+.pt-25px {
+  padding-top: 25px; }
 
 .rounded-35px {
   border-radius: 35px; }
@@ -9454,6 +9466,9 @@ body {
 .pb-35px {
   padding-bottom: 35px; }
 
+.pt-35px {
+  padding-top: 35px; }
+
 .rounded-40px {
   border-radius: 40px; }
 
@@ -9469,6 +9484,9 @@ body {
 
 .pb-40px {
   padding-bottom: 40px; }
+
+.pt-40px {
+  padding-top: 40px; }
 
 .rounded-45px {
   border-radius: 45px; }
@@ -9486,6 +9504,9 @@ body {
 .pb-45px {
   padding-bottom: 45px; }
 
+.pt-45px {
+  padding-top: 45px; }
+
 .rounded-50px {
   border-radius: 50px; }
 
@@ -9501,6 +9522,9 @@ body {
 
 .pb-50px {
   padding-bottom: 50px; }
+
+.pt-50px {
+  padding-top: 50px; }
 
 .background-image {
   background-position: center;
