@@ -8,6 +8,10 @@ use Carbon_Fields\Field;
 /* Section
 /*-----------------------------------------------------------------------------------*/
 
+Container::make('post_meta', __('Preview'))
+    ->add_fields(array(
+        Field::make('html', 'preview')->set_html(the_content())
+    ));
 Container::make('post_meta', __('Hero'))
     ->add_fields(array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_classes('inline-field'),
