@@ -118,6 +118,12 @@ function action_admin_head()
 		.inline-field.inline-field .cf-field__help {
 			margin-left: 10%;
 		}
+		.postbox-header {
+			background-color: lightblue;
+		}
+		.edit-post-meta-boxes-area .postbox {
+			margin-bottom: 10px;
+		}
 	</style>
 <?php
 }
