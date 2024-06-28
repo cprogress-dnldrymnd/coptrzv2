@@ -53,8 +53,8 @@ function ___sections()
         if (!$disable_section) {
             $section_id = $section['section_id'];
             $section_attribute = _attributes(array(
-                'class' => 'section section-' . $key,
-                'id' => $section_id ? $section_id : 'section-' . $key
+                array('class', 'section section-' . $key),
+                array('id', $section_id ? $section_id : 'section-' . $key,),
             ));
 
             $sections_var .= "<section $section_attribute>";
