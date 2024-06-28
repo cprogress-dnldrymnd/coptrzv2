@@ -134,6 +134,8 @@ Container::make('post_meta', __('Sections'))
                                 )
                             ),
                     ))
+                    ->set_header_template('<%- heading %>')
+
                     ->add_fields('description',  array(
                         Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
                     ))
