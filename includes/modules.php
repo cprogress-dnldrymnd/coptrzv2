@@ -36,9 +36,7 @@ function ___hero()
         $hero = "<section class='hero rounded-10px bg-primary text-white d-flex align-items-end'><div class='container'>";
         $hero .= do_shortcode("[__heading heading='$hero_heading_val']");
         $hero .= do_shortcode("[__description description='$hero_description']");
-
         $hero .= "</div></section>";
-
         return $hero;
     }
 }
