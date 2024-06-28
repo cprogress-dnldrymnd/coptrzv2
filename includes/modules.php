@@ -49,7 +49,7 @@ function _attributes($attributes)
         $class_attr = "class='";
         foreach ($attributes as $attribute) {
             if ($attribute[0] == 'class') {
-                $class_attr .= $attribute[1] . ';';
+                $class_attr .= $attribute[1] . ' ';
             }
         }
         $class_attr .= "'";
