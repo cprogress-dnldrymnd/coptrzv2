@@ -43,6 +43,35 @@ class Shortcodes
             return "<div $_attributes>$description_val</div>";
         }
     }
+
+    function __image($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'featured_image' => false,
+                    'image_id' => '',
+                    'size' => '',
+                    'class' => '',
+                ),
+                $atts
+            )
+        );
+
+        if ($featured_image) {
+            $image = get_the_post_thumbnail(get_the_ID(), $size);
+        } else {
+            $image = wp_get_attachment_image($image_id, $size);
+        }
+        if ($image__id) {
+            $_attributes = _attributes(array(
+                array('class', $class),
+                array('class', 'image-box'),
+            ));
+
+            return "<div $_attributes>$image</div>";
+        }
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('__heading', array($Shortcodes, '__heading'));

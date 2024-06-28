@@ -1,0 +1,16 @@
+
+.background-overlay {
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%;
+    }
+    > div {
+        position: relative;
+        z-index: 1;
+    }
+}
