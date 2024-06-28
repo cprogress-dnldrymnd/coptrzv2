@@ -102,6 +102,7 @@ Container::make('post_meta', __('Sections'))
                                 )
                             )
                             ->set_header_template('<%- column_title %>')
+                            ->set_layout('tabbed-vertical')
                             ->add_fields(array(
                                 Field::make('text', 'column_title', __('Column Title')),
                                 Field::make('complex', 'items', __(''))
