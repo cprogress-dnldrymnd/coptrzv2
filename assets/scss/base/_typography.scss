@@ -30,3 +30,9 @@ h1,h2 {
 @include headings {
     font-weight: 500;
 }
+
+p {
+    @include last-child {
+        margin-bottom: 0;
+    }
+}

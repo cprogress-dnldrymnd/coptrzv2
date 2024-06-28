@@ -9409,6 +9409,9 @@ h6,
 .h6 {
   font-weight: 500; }
 
+p:last-child {
+  margin-bottom: 0; }
+
 .rounded-10px {
   border-radius: 10px; }
 
