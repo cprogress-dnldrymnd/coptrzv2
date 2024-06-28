@@ -89,6 +89,7 @@ class Shortcodes
 
         if ($video_url) {
             $_attributes = _attributes(array(
+                array('class', $class),
                 array('class', 'video-box'),
             ));
 
