@@ -72,7 +72,7 @@ function action_admin_head()
 
         <?php
         if (_is_module()) {
-            echo '.wp-block-post-content { display: none !important }';
+            //echo '.wp-block-post-content { display: none !important }';
             echo '.edit-post-header__toolbar, .editor-preview-dropdown__toggle, button[aria-controls="tabs-0-edit-post/block-view"] { display: none !important; }';
         }
 
