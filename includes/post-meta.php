@@ -300,6 +300,12 @@ Container::make('post_meta', __('Sections'))
                                                 )
                                             ),
                                     ))
+                                    ->add_fields(
+                                        'gallery',
+                                        array(
+                                            Field::make('media_gallery', 'gallery', __('Gallery')),
+                                        )
+                                    )
                                     ->add_fields('icon', array(
                                         Field::make('file', 'icon', __('Icon'))
                                             ->set_type(array('image/svg+xml')),
