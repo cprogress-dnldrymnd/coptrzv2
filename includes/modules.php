@@ -40,9 +40,14 @@ function ___hero()
 }
 
 
-function _class($class)
+function _attributes($attributes)
 {
-    if ($class) {
-        return "class='$class'";
+    if ($attributes) {
+        $attribute = '';
+
+        foreach ($attributes as $attribute) {
+            $attribute .= $attribute[0] . '=' . $attribute[1];
+        }
+        return $attribute;
     }
 }

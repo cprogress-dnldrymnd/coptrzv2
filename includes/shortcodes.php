@@ -14,9 +14,11 @@ class Shortcodes
                 $atts
             )
         );
-        $class_val = _class($class);
+        $_attributes = _attributes(array(
+            'class', $class
+        ));
         if ($heading) {
-            return "<$tag $class_val>$heading</$tag>";
+            return "<$tag $_attributes>$heading</$tag>";
         }
     }
 }
