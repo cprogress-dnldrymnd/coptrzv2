@@ -14,7 +14,7 @@ Container::make('post_meta', __('Hero'))
         Field::make('text', 'hero_heading', __('Heading'))->set_help_text('Defaults to page title'),
         Field::make('textarea', 'hero_description', __('Description')),
         Field::make('file', 'hero_background', __('Hero Background'))
-        ->set_type( array( 'video', 'image' ) )
+            ->set_type(array('video', 'image'))
     ));
 Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
@@ -41,7 +41,58 @@ Container::make('post_meta', __('Sections'))
                         )
                     )
                     ->set_classes('columns')
-                    ->add_fields(array(
+                    ->add_fields('heading', array(
+                        Field::make('text', 'heading', __('Heading')),
+                        Field::make('text', 'prefix', __('Prefix')),
+                        Field::make('text', 'suffix', __('Suffix')),
+                        Field::make('select', 'tag', __('Tag'))
+                            ->set_options(
+                                array(
+                                    'h1' => 'h1',
+                                    'h2' => 'h2',
+                                    'h3' => 'h3',
+                                    'h4' => 'h4',
+                                    'h5' => 'h5',
+                                    'h6' => 'h6',
+                                )
+                            )
+                            ->set_default_value('h2'),
+                        Field::make('select', 'size', __('Heading Size'))
+                            ->set_options(
+                                array(
+                                    '' => 'Default',
+                                    'big-heading' => 'Big Heading',
+                                    'medium-heading' => 'Medium Heading',
+                                    'small-heading' => 'Small Heading',
+                                )
+                            ),
+                        Field::make('select', 'text_color', 'Text Color')
+                            ->set_options(
+                                array(
+                                    ''   => 'Default',
+                                    'text-primary'   => 'Primary',
+                                    'text-secondary' => 'Secondary',
+                                    'text-accent'    => 'Accent',
+                                    'text-white'     => 'White',
+                                    'text-light-gray'     => 'Light Gray',
+                                    'text-body-color'     => 'Body',
+                                    'text-custom'    => 'Custom',
+                                )
+                            ),
+                        Field::make('color', 'text_color_custom', __('Text Color'))
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'text_color',
+                                        'value' => 'text-custom',
+                                    )
+                                )
+                            ),
+                    ))
+                    ->add_fields('description',  array(
+                        Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
+                    ))
+                    ->add_fields('columns', array(
                         Field::make('complex', 'items', __(''))
                             ->set_classes('items')
                             ->setup_labels(
