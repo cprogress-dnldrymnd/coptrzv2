@@ -101,7 +101,6 @@ Container::make('post_meta', __('Sections'))
                                     'singular_name' => 'Column',
                                 )
                             )
-                            ->set_header_template('<%- column_title %>')
                             ->set_layout('tabbed-vertical')
                             ->add_fields(array(
                                 Field::make('text', 'column_title', __('Column Title')),
@@ -292,6 +291,7 @@ Container::make('post_meta', __('Sections'))
                                     )
 
                             ))
+                            ->set_header_template('<%- column_title %>')
                     )),
                 Field::make('complex', 'styles', __('Styles'))
                     ->set_duplicate_groups_allowed(false)
