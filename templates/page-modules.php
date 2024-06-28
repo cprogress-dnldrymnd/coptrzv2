@@ -13,8 +13,6 @@ $modules = get__post_meta('modules');
 <div class="modules">
     <?php
     the_content();
-    echo do_shortcode('[__heading heading="test"]');
-    // echo modules($modules);
     ?>
 </div>
 
