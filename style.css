@@ -9370,27 +9370,33 @@ textarea.form-control-lg {
 /*-----------------------------------------------------------------------------------*/
 /* Base
 /*-----------------------------------------------------------------------------------*/
-.rounded-10 {
-  border-radius: 10px; }
-
-.rounded-15 {
-  border-radius: 10px; }
-
-.rounded-20 {
-  border-radius: 10px; }
-
-.rounded-25 {
-  border-radius: 10px; }
-
-.rounded-30 {
-  border-radius: 10px; }
-
-.rounded-35 {
-  border-radius: 10px; }
-
 body {
   font-family: var(--primary-font);
   color: var(--primary-color); }
+
+.rounded-10px {
+  font-size: 10px; }
+
+.rounded-15px {
+  font-size: 15px; }
+
+.rounded-20px {
+  font-size: 20px; }
+
+.rounded-25px {
+  font-size: 25px; }
+
+.rounded-35px {
+  font-size: 35px; }
+
+.rounded-40px {
+  font-size: 40px; }
+
+.rounded-45px {
+  font-size: 45px; }
+
+.rounded-50px {
+  font-size: 50px; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
