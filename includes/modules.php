@@ -33,7 +33,7 @@ function ___hero()
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
         $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
-        $hero .= do_shortcode("[__image class='background-image background-overlay' image_id='$hero_background']");
+        $hero .= _bg_image($hero_background);
         $hero .= "<div class='container'>";
         $hero .= do_shortcode("[__heading class='large-heading' tag='h1' heading='$hero_heading_val']");
         $hero .= do_shortcode("[__description description='$hero_description']");
@@ -73,4 +73,10 @@ function _is_module()
     } else {
         return false;
     }
+}
+
+function _bg_image($hero_background)
+{
+    return get_post_mime_type($hero_background);
+    //return do_shortcode("[__image class='background-image background-overlay' image_id='$hero_background']");
 }
