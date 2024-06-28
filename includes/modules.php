@@ -9,7 +9,7 @@ function action_module_content()
 
         $post_content .= ___hero();
 
-        $post_content .= '<!-- /wp:html -->';
+        $post_content .= get_page_template_slug().'<!-- /wp:html -->';
 
         $my_post = array(
             'ID'           => get_the_ID(),
