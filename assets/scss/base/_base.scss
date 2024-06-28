@@ -1,4 +1,3 @@
-
 .background-overlay {
     &:before {
         content: "";
@@ -9,7 +8,6 @@
         bottom: 0;
         background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%;
     }
-   
 }
 
 .background-image {
@@ -23,7 +21,7 @@
         height: 100%;
         object-fit: cover;
     }
-    > div {
+    & + div {
         position: relative;
         z-index: 1;
     }

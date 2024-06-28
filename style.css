@@ -9660,7 +9660,7 @@ h6,
     width: 100%;
     height: 100%;
     object-fit: cover; }
-  .background-image > div {
+  .background-image + div {
     position: relative;
     z-index: 1; }
 
