@@ -72,18 +72,21 @@ function ___sections()
                 $tag = $items['tag'];
                 $size = $items['size'];
                 $text_color = $items['text_color'];
-                $tag = $items['tag'];
                 $text_color_custom = $items['text_color_custom'];
 
                 switch ($type) {
                     case 'heading':
                         $attributes_args = array();
                         if ($has_custom_heading_settings) {
-                            $attributes_args[] = array('tag', $tag);
-                            $attributes_args[] = array('size', $size);
-                            $attributes_args[] = array('text_color', $text_color);
-                            $attributes_args[] = array('text_color', $text_color);
-                            $attributes_args[] = array('size', $size);
+                            if ($tag) {
+                                $attributes_args[] = array('tag', $tag);
+                            }
+                            if ($size) {
+                                $attributes_args[] = array('size', $size);
+                            }
+                            if ($text_color) {
+                                $attributes_args[] = array('text_color', $text_color);
+                            }
                         }
                         $attributes = _attributes($attributes_args);
                         $sections_var .= do_shortcode("[__heading $attributes heading='$heading']");
