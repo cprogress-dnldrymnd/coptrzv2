@@ -11,6 +11,10 @@
 
 
 <body <?php body_class(); ?>>
+	<?php 
+	global $styles;
+	var_dump($styles);
+	?>
 	<header class="header">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">

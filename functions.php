@@ -12,27 +12,15 @@ define('vendor_dir', assets_dir . 'coptrz_vendors/');
 /*-----------------------------------------------------------------------------------*/
 function action_after_setup_theme()
 {
-	require_once( 'vendor/autoload.php' );
-    \Carbon_Fields\Carbon_Fields::boot();
-	
+	require_once('vendor/autoload.php');
+	\Carbon_Fields\Carbon_Fields::boot();
+
 	add_theme_support('post-thumbnails');
 	add_theme_support('woocommerce');
 
-	global $theme_settings, $popups_id;
+	global $popups_id, $styles;
 
 	$popups_id[] = 268179;
-
-	$theme_settings = array(
-		array(
-			'id'    => 'general_settings',
-			'label' => 'General Settings'
-		),
-		array(
-			'id'    => 'brand_details',
-			'label' => 'Brand Details'
-		),
-
-	);
 }
 add_action('after_setup_theme', 'action_after_setup_theme');
 
@@ -94,7 +82,7 @@ function action_admin_head()
 			display: flex
 		}
 
-		.columns>.cf-field__body>.cf-complex__groups> div {
+		.columns>.cf-field__body>.cf-complex__groups>div {
 			flex: 1;
 			padding: 5px;
 		}
