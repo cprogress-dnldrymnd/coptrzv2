@@ -18,7 +18,8 @@ class Shortcodes
             array('class', $class)
         ));
         if ($heading) {
-            return "<$tag $_attributes>$heading</$tag>";
+            $format = '<%d>%s</%d>';
+            return sprintf($format, $tag, $heading);
         }
     }
 }
