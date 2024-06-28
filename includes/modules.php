@@ -48,7 +48,7 @@ function _attributes($attributes)
         $attribute_val = '';
 
         foreach ($attributes as $attribute) {
-            $attribute_val .= $attribute[0] . '=' . $attribute[1];
+            $attribute_val .= $attribute[0] . '="' . $attribute[1] . '"';
         }
         return $attribute_val;
     }

@@ -19,7 +19,6 @@ class Shortcodes
         ));
         if ($heading) {
             return "<$tag $_attributes>$heading</$tag>";
-            return '<' . $tag . $_attributes . '> ' . $heading . '</' . $tag . '>';
         }
     }
 }
