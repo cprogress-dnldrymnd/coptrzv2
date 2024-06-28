@@ -15,6 +15,13 @@ $sizes: 10px, 15px, 20px, 25px, 35px, 40px, 45px, 50px;
         margin-left: $size;
         margin-right: $size;
     }
+
+    .pb-#{$size} {
+        padding-bottom: $size;
+    }
+    .pt-#{$size} {
+        padding-top: $size;
+    }
 }
 
 .background-image {
