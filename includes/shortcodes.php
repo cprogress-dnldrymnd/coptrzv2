@@ -100,3 +100,4 @@ $Shortcodes = new Shortcodes;
 add_shortcode('__heading', array($Shortcodes, '__heading'));
 add_shortcode('__description', array($Shortcodes, '__description'));
 add_shortcode('__image', array($Shortcodes, '__image'));
+add_shortcode('__video', array($Shortcodes, '__video'));
