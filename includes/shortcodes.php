@@ -14,9 +14,9 @@ class Shortcodes
                 $atts
             )
         );
-
+        $class_val = _class($class);
         if ($heading) {
-            return "<$tag class='$class'>$heading</$tag>";
+            return "<$tag $class_val>$heading</$tag>";
         }
     }
 }

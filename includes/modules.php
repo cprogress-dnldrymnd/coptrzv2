@@ -38,3 +38,11 @@ function ___hero()
         return $hero;
     }
 }
+
+
+function _class($class)
+{
+    if ($class) {
+        return "class='$class'";
+    }
+}
