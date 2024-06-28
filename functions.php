@@ -132,10 +132,10 @@ function action_admin_head()
 
 add_action('admin_head', 'action_admin_head');
 
-add_action('enqueue_block_editor_assets', 'gutenberg_editor_assets');
-
-function gutenberg_editor_assets() {
-  // Load the theme styles within Gutenberg.
-  wp_enqueue_style('coptz-style', theme_dir . 'style.css', NULL, coptz_version);
-
+/**
+ * Enqueue Editor assets.
+ */
+function example_enqueue_editor_assets() {
+	wp_enqueue_style('coptz-style', theme_dir . 'style.css', NULL, coptz_version);
 }
+add_action( 'enqueue_block_editor_assets', 'example_enqueue_editor_assets' );
