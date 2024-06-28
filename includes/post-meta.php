@@ -10,7 +10,7 @@ use Carbon_Fields\Field;
 
 Container::make('post_meta', __('Preview'))
     ->add_fields(array(
-        Field::make('html', 'preview')->set_html(the_content())
+        Field::make('html', 'preview')->set_html(get_the_content(NULL, false, $_GET['post']))
     ));
 Container::make('post_meta', __('Hero'))
     ->add_fields(array(
