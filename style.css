@@ -9673,12 +9673,12 @@ h6,
 header {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 20px;
   right: 0;
   z-index: 999999; }
 
 .admin-bar header {
-  top: 32px; }
+  top: 52px; }
 
 section.hero {
   min-height: 85vh; }

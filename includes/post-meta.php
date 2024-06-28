@@ -13,7 +13,8 @@ Container::make('post_meta', __('Hero'))
         Field::make('checkbox', 'hero_hidden', __('Hide Hero')),
         Field::make('text', 'hero_heading', __('Heading'))->set_help_text('Defaults to page title'),
         Field::make('textarea', 'hero_description', __('Description')),
-        Field::make('image', 'hero_background', __('Background Image')),
+        Field::make('file', 'hero_background', __('Hero Background'))
+        ->set_type( array( 'video', 'image' ) )
     ));
 Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
