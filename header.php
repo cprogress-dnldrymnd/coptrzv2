@@ -14,7 +14,7 @@
 	<header class="header">
 		<div class="container">
 			<div class="header-inner mt-20px rounded-10px">
-				<nav class="navbar navbar-expand-lg">
+				<nav class="navbar navbar-expand-lg text-white">
 					<div class="container-fluid">
 						<a class="navbar-brand" href="#">
 							<svg fill="#fff"xmlns="http://www.w3.org/2000/svg" width="256" height="26.026" viewBox="0 0 256 26.026" class="svg-image replaced-svg">
