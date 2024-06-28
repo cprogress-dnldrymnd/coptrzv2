@@ -5,11 +5,15 @@ function action_module_content()
     if (did_action('post_updated')) {
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+        $post_content = '<!-- wp:html -->';
+        
+        $hero = ___hero();
+   
+        $post_content .= '<!-- /wp:html -->';
 
-        // Update post 37
         $my_post = array(
             'ID'           => get_the_ID(),
-            'post_content' => '<!-- wp:html -->This is the updated content.<!-- /wp:html -->',
+            'post_content' => $post_content,
         );
 
         // Update the post into the database
@@ -17,3 +21,7 @@ function action_module_content()
     }
 }
 add_action('shutdown', 'action_module_content');
+
+function ___hero() {
+    $heading = 
+}
