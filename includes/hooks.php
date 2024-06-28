@@ -63,23 +63,15 @@ function action_admin_head()
             display: none !important
         }
 
-        .edit-post-header__toolbar {
-            display: none;
+        .edit-post-header__toolbar,
+        .editor-preview-dropdown__toggle,
+        button[aria-controls="tabs-0-edit-post/block-view"] {
+            display: none !important;
         }
 
         <?php } ?>
     </style>
 
 <?php
-
 }
-
 add_action('admin_head', 'action_admin_head');
-
-
-function my_plugin_add_editor_styles()
-{
-	add_editor_style('style.css');
-
-}
-add_action('enqueue_block_editor_assets', 'my_plugin_add_editor_styles');
