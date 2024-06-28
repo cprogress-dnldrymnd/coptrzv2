@@ -9387,14 +9387,27 @@ body {
     .large-heading {
       font-size: 4.5rem; } }
 
-h2, .h2 {
+h1, .h1, h2, .h2 {
   font-size: 2rem; }
   @media (min-width: 992px) {
-    h2, .h2 {
+    h1, .h1, h2, .h2 {
       font-size: 2.5rem; } }
   @media (min-width: 1200px) {
-    h2, .h2 {
+    h1, .h1, h2, .h2 {
       font-size: 3.375rem; } }
+
+h1, .h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-weight: 500; }
 
 .rounded-10px {
   border-radius: 10px; }
@@ -9558,6 +9571,15 @@ h2, .h2 {
 /*-----------------------------------------------------------------------------------*/
 /* Sections
 /*-----------------------------------------------------------------------------------*/
+header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0; }
+
+.admin-bar header {
+  top: 32px; }
+
 section.hero {
   min-height: 85vh; }
 
