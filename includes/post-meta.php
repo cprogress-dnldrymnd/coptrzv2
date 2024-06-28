@@ -95,8 +95,12 @@ Container::make('post_meta', __('Sections'))
                     ))
                     ->add_fields('columns', array(
                         Field::make('complex', 'columns', __(''))
-                          
-                            ->set_layout('tabbed-vertical')
+                            ->setup_labels(
+                                array(
+                                    'plural_name'   => 'Columns',
+                                    'singular_name' => 'Column',
+                                )
+                            )
                             ->add_fields(array(
                                 Field::make('text', 'column_title', __('Column Title')),
                                 Field::make('complex', 'items', __(''))
