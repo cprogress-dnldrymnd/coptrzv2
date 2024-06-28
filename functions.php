@@ -104,6 +104,7 @@ function action_admin_head()
 
 		.inline-field.inline-field {
 			display: flex;
+			flex-wrap: wrap;
 		}
 
 		.inline-field.inline-field .cf-field__head {
