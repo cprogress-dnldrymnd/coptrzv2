@@ -106,15 +106,18 @@ function _attributes($attributes)
 {
     if ($attributes) {
         $attribute_val = '';
-        $class_attr = "class='";
+        $class_attr_val = '';
         foreach ($attributes as $attribute) {
             if ($attribute[0] == 'class') {
-                $class_attr .= $attribute[1] . ' ';
+                $class_attr_val .= $attribute[1] . ' ';
             } else {
                 $attribute_val .= $attribute[0] . "='$attribute[1]'";
             }
         }
-        $class_attr .= "'";
+        if ($class_attr_val) {
+            $class_attr = "class='$class_attr_val'";
+        }
+
 
         $attribute_val .= $class_attr;
         return $attribute_val;
