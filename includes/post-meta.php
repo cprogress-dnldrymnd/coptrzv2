@@ -11,7 +11,7 @@ use Carbon_Fields\Field;
 Container::make('post_meta', __('Hero'))
     ->add_fields(array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_classes('inline-field'),
-        Field::make('text', 'hero_heading', __('Heading'))->set_help_text('Defaults to page title')->set_classes('inline-field'),
+        Field::make('text', 'hero_heading', __('Heading'))->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to page title'),
         Field::make('textarea', 'hero_description', __('Description'))->set_classes('inline-field'),
         Field::make('file', 'hero_background', __('Hero Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
     ));
