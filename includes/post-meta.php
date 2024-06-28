@@ -8,12 +8,7 @@ use Carbon_Fields\Field;
 /* Section
 /*-----------------------------------------------------------------------------------*/
 
-if (isset($_GET['post'])) {
-    Container::make('post_meta', __('Preview'))
-        ->add_fields(array(
-            Field::make('html', 'preview')->set_html('<iframe src="' . get_permalink($_GET['post']) . '?prev=true"></iframe>')->set_classes('preview')
-        ));
-}
+
 Container::make('post_meta', __('Hero'))
     ->add_fields(array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_classes('inline-field'),
@@ -654,3 +649,10 @@ Container::make('post_meta', __('Sections'))
 
 
     ));
+
+if (isset($_GET['post'])) {
+    Container::make('post_meta', __('Preview'))
+        ->add_fields(array(
+            Field::make('html', 'preview')->set_html('<iframe src="' . get_permalink($_GET['post']) . '?prev=true"></iframe>')->set_classes('preview')
+        ));
+}
