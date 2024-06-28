@@ -9641,10 +9641,6 @@ h6,
 .pt-50px {
   padding-top: 50px; }
 
-.background-image {
-  background-position: center;
-  background-size: cover; }
-
 .background-overlay:before {
   content: "";
   position: absolute;
@@ -9653,9 +9649,16 @@ h6,
   right: 0;
   bottom: 0;
   background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%; }
-.background-overlay > div {
-  position: relative;
-  z-index: 1; }
+
+.background-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0; }
+  .background-image > div {
+    position: relative;
+    z-index: 1; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer

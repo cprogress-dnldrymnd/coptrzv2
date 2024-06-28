@@ -9,6 +9,20 @@
         bottom: 0;
         background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%;
     }
+   
+}
+
+.background-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
     > div {
         position: relative;
         z-index: 1;
