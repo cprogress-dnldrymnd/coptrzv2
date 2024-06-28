@@ -22,7 +22,7 @@ class Shortcodes
         }
     }
 
-    function _description($atts)
+    function __description($atts)
     {
         extract(
             shortcode_atts(
@@ -46,4 +46,4 @@ class Shortcodes
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('__heading', array($Shortcodes, '__heading'));
-add_shortcode('_description', array($Shortcodes, '_description'));
+add_shortcode('__description', array($Shortcodes, '__description'));
