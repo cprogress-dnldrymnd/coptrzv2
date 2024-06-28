@@ -51,7 +51,6 @@ function _attributes($attributes)
             if ($attribute[0] == 'class') {
                 $class_attr .= $attribute[1] . ';';
             }
-            $attribute_val .= $attribute[0] . '="' . $attribute[1] . '"';
         }
         $class_attr .= "'";
 
