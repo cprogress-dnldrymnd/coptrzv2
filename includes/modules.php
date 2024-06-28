@@ -2,7 +2,7 @@
 function action_module_content()
 {
     // Check if a post was updated (add your specific conditions here)
-    if (did_action('post_updated') && is_single()) {
+    if (did_action('post_updated')) {
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
