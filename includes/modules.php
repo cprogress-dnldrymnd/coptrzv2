@@ -9,6 +9,8 @@ function action_module_content()
             $post_content = '<!-- wp:html -->';
 
             $post_content .= ___hero();
+            $post_content .= ___sections();
+
 
             $post_content .= '<!-- /wp:html -->';
 
@@ -42,17 +44,39 @@ function ___hero()
     }
 }
 
+function ___sections()
+{
+    $sections = get__post_meta('sections');
+    $sections_var = '';
+    foreach ($sections as $key => $section) {
+        $disable_section = $section['disable_section'];
+        if (!$disable_section) {
+            $section_id = $section['section_id'];
+            $sections_var .= '<section >';
+            $section_attribute = _attributes(array(
+                'class' => 'section section-' . $key,
+                'id' => $section_id ? $section_id : 'section-' . $key
+            ));
+            $sections_var .= '</section>';
+        }
+    }
+}
+
 function _attributes($attributes)
 {
     if ($attributes) {
         $attribute_val = '';
         $class_attr = "class='";
+        $id_attr = "id='";
         foreach ($attributes as $attribute) {
             if ($attribute[0] == 'class') {
                 $class_attr .= $attribute[1] . ' ';
+            } else {
+                $attribute_val .= $attribute[0] . "='$attribute[1]'";
             }
         }
         $class_attr .= "'";
+        $id_attr .= "'";
 
         $attribute_val .= $class_attr;
         return $attribute_val;
