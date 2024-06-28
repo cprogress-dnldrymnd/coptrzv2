@@ -12,6 +12,7 @@ $modules = get__post_meta('modules');
 
 <div class="modules">
     <?php
+    the_content();
    // echo modules($modules);
     ?>
 </div>
