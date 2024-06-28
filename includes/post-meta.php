@@ -58,15 +58,15 @@ Container::make('post_meta', __('Sections'))
                                 )
                             ),
                         Field::make('text', 'suffix', __('Suffix'))
-                        ->set_conditional_logic(
-                            array(
+                            ->set_conditional_logic(
                                 array(
-                                    'field' => 'has_suffix',
-                                    'value' => true,
+                                    array(
+                                        'field' => 'has_suffix',
+                                        'value' => true,
+                                    )
                                 )
-                            )
-                        ),
-                        Field::make('select', 'tag', __('Tag'))
+                            ),
+                        Field::make('select', 'tag', __('Tag'))->set_width(25)
                             ->set_options(
                                 array(
                                     'h1' => 'h1',
@@ -77,8 +77,16 @@ Container::make('post_meta', __('Sections'))
                                     'h6' => 'h6',
                                 )
                             )
-                            ->set_default_value('h2'),
-                        Field::make('select', 'size', __('Heading Size'))
+                            ->set_default_value('h2')
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'has_custom_heading_settings',
+                                        'value' => true,
+                                    )
+                                )
+                            ),
+                        Field::make('select', 'size', __('Heading Size'))->set_width(25)
                             ->set_options(
                                 array(
                                     '' => 'Default',
@@ -86,8 +94,16 @@ Container::make('post_meta', __('Sections'))
                                     'medium-heading' => 'Medium Heading',
                                     'small-heading' => 'Small Heading',
                                 )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'has_custom_heading_settings',
+                                        'value' => true,
+                                    )
+                                )
                             ),
-                        Field::make('select', 'text_color', 'Text Color')
+                        Field::make('select', 'text_color', 'Text Color')->set_width(25)
                             ->set_options(
                                 array(
                                     ''   => 'Default',
@@ -99,13 +115,25 @@ Container::make('post_meta', __('Sections'))
                                     'text-body-color'     => 'Body',
                                     'text-custom'    => 'Custom',
                                 )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'has_custom_heading_settings',
+                                        'value' => true,
+                                    )
+                                )
                             ),
-                        Field::make('color', 'text_color_custom', __('Text Color'))
+                        Field::make('color', 'text_color_custom', __('Text Color'))->set_width(25)
                             ->set_conditional_logic(
                                 array(
                                     array(
                                         'field' => 'text_color',
                                         'value' => 'text-custom',
+                                    ),
+                                    array(
+                                        'field' => 'has_custom_heading_settings',
+                                        'value' => true,
                                     )
                                 )
                             ),
