@@ -100,6 +100,12 @@ function action_admin_head()
 			background-color: var(--wp-admin-theme-color);
 			padding: 5px;
 		}
+		.inline-field.inline-field {
+			display: flex;
+		} 
+		.inline-field.inline-field .cf-field__head {
+			flex: 0 0 10%;
+		}
 	</style>
 <?php
 }
