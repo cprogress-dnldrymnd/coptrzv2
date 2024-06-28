@@ -1,17 +1,11 @@
 <?php
-class Fruit
+function action_update_zip_url()
 {
-    // Properties
-    public $name;
-    public $color;
+    // Check if a post was updated (add your specific conditions here)
+    if (did_action('post_updated') && is_single()) {
+        // Check if this is an autosave
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
-    // Methods
-    function set_name($name)
-    {
-        $this->name = $name;
-    }
-    function get_name()
-    {
-        return $this->name;
     }
 }
+add_action('shutdown', 'action_update_zip_url');

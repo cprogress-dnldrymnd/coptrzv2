@@ -11,6 +11,7 @@
 
 
 <body <?php body_class(); ?>>
+	<?= get_page_template_slug () ?>
 	<header class="header">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
