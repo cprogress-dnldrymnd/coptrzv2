@@ -8,7 +8,9 @@ License: GNU General Public License
 :root {
   --primary-font: Poppins, sans-serif;
   --bs-primary: #000;
-  --bs-primary-rgb: #000; }
+  --bs-primary-rgb: #000;
+  --bs-secondary: #0F0F0F;
+  --bs-secondary: #0F0F0F; }
 
 @font-face {
   font-family: "Poppins";
