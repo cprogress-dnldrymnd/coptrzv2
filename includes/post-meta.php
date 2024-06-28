@@ -10,6 +10,7 @@ use Carbon_Fields\Field;
 
 Container::make('post_meta', __('Hero'))
     ->add_fields(array(
+        Field::make('checkbox', 'hero_hidden', __('Hide Hero')),
         Field::make('text', 'hero_heading', __('Heading'))->set_help_text('Defaults to page title'),
         Field::make('textarea', 'hero_description', __('Description'))
     ));

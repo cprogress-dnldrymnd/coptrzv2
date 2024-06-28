@@ -6,9 +6,9 @@ function action_module_content()
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
         $post_content = '<!-- wp:html -->';
-        
+
         $hero = ___hero();
-   
+
         $post_content .= '<!-- /wp:html -->';
 
         $my_post = array(
@@ -22,6 +22,15 @@ function action_module_content()
 }
 add_action('shutdown', 'action_module_content');
 
-function ___hero() {
-    $heading = 
+function ___hero()
+{
+    $hero_heading = get__post_meta('hero_heading');
+    $hero_description = get__post_meta('hero_description');
+
+    $hero = "<section><div class='container'>";
+    $hero .= do_shortcode("[__heading heading='$hero_heading']");
+
+    $hero .= "</div></section>";
+
+    return $hero;
 }
