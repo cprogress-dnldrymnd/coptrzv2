@@ -50,6 +50,6 @@ function _attributes($attributes)
         foreach ($attributes as $attribute) {
             $attribute_val .= $attribute[0] . '=' . $attribute[1];
         }
-        return $attribute;
+        return $attribute_val;
     }
 }
