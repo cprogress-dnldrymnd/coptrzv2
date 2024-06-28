@@ -6,7 +6,7 @@ function action_wp_head()
         $hero_background = get__post_meta('hero_background');
         $hero_background_url = wp_get_attachment_image_url($hero_background, 'full');
         $style = ".hero{ background-image: $hero_background_url}";
-        echo '<style>';
+        echo '<style id="hero-styles">';
         echo $style;
         echo '</style>';
     }
