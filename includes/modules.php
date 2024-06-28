@@ -7,7 +7,7 @@ function action_module_content()
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
         $post_content = '<!-- wp:html -->';
 
-        $hero = ___hero();
+        $post_content .= ___hero();
 
         $post_content .= '<!-- /wp:html -->';
 
@@ -24,13 +24,17 @@ add_action('shutdown', 'action_module_content');
 
 function ___hero()
 {
+    $hero_hidden = get__post_meta('hero_hidden');
     $hero_heading = get__post_meta('hero_heading');
     $hero_description = get__post_meta('hero_description');
 
-    $hero = "<section><div class='container'>";
-    $hero .= do_shortcode("[__heading heading='$hero_heading']");
+    $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
+    if (!$hero_hidden) {
+        $hero = "<section><div class='container'>";
+        $hero .= do_shortcode("[__heading heading='$hero_heading_val']");
 
-    $hero .= "</div></section>";
+        $hero .= "</div></section>";
 
-    return $hero;
+        return $hero;
+    }
 }
