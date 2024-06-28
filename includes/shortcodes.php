@@ -93,7 +93,7 @@ class Shortcodes
                 array('class', 'video-box'),
             ));
 
-            return "<div $_attributes><video src='$video_url'></video></div>";
+            return "<div $_attributes><video autoplay loop muted src='$video_url'></video></div>";
         }
     }
 }
