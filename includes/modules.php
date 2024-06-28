@@ -52,13 +52,21 @@ function ___sections()
         $disable_section = $section['disable_section'];
         if (!$disable_section) {
             $section_id = $section['section_id'];
+            $section_items = $section['section_items'];
             $section_attribute = _attributes(array(
                 array('class', 'section section-' . $key),
                 array('id', $section_id ? $section_id : 'section-' . $key,),
             ));
 
             $sections_var .= "<section $section_attribute>";
+            $sections_var .= "<div class='container'>";
 
+            foreach ($section_items as $items) {
+                $type = $items['_type'];
+                $sections_var .= $type;
+            }
+
+            $sections_var .= "</div>";
             $sections_var .= "</section>";
         }
     }
