@@ -1,6 +1,15 @@
 <?php
 function action_wp_head()
 {
+?>
+    <style>
+        <?php
+        if (isset($_GET['preview'])) {
+            echo '#wpadminbar{ display: none !important }';
+        }
+        ?>
+    </style>
+<?php
 }
 
 add_action('wp_head', 'action_wp_head');
@@ -69,9 +78,7 @@ function action_admin_head()
             echo '.wp-block-post-content { display: none !important }';
             echo '.edit-post-header__toolbar, .editor-preview-dropdown__toggle, button[aria-controls="tabs-0-edit-post/block-view"] { display: none !important; }';
         }
-        if (isset($_GET['preview'])) {
-            echo '#wpadminbar{ display: none !important }';
-        }
+
         ?>
     </style>
 
