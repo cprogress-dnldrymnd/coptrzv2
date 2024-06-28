@@ -59,6 +59,11 @@ function action_admin_head()
             margin-bottom: 10px;
         }
 
+        .preview iframe {
+            width: 100%;
+            min-height: 100vh;
+        }
+
         <?php if (_is_module()) { ?>.wp-block-post-content {
             display: none !important
         }

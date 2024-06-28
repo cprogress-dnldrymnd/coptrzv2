@@ -11,7 +11,7 @@ use Carbon_Fields\Field;
 if (isset($_GET['post'])) {
     Container::make('post_meta', __('Preview'))
         ->add_fields(array(
-            Field::make('html', 'preview')->set_html('<iframe src="' . get_permalink($_GET['post']) . '"></iframe>')
+            Field::make('html', 'preview')->set_html('<iframe src="' . get_permalink($_GET['post']) . '?preview=true"></iframe>')->set_classes('preview')
         ));
 }
 Container::make('post_meta', __('Hero'))
