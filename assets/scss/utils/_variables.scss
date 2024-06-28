@@ -21,17 +21,5 @@ $border-color: #E7E7E7;
 
 :root {
 	--primary-font: #{$primary-font};
-	--primary-color: #{$primary-color};
-	--secondary-color: #{$secondary-color};
-	--accent-color: #{$accent-color};
-	--white-color: #{$white-color};
-	--black-color: #{$black-color};
-	--text-color: #{$text-color};
-	--light-blue: #{$light-blue};
-	--gray-color: #{$gray-color};
-	--dark-gray-color: #{$dark-gray-color};
-	--light-color: #{$light-color};
-	--body-color: #{$body-color};
-	--light-gray: #{$light-gray};
-	--border-color: #{$border-color};
+	--bs-primary: #000;
 }
