@@ -79,6 +79,7 @@ add_action('admin_head', 'action_admin_head');
 
 function my_plugin_add_editor_styles()
 {
-    add_editor_style('my-editor-styles', 'https://dev.coptrz.com/wp-content/themes/coptrz/style.css');
+	add_editor_style('coptz-style', theme_dir . 'style.css');
+
 }
 add_action('enqueue_block_editor_assets', 'my_plugin_add_editor_styles');
