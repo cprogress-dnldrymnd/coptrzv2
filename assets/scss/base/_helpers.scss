@@ -10,6 +10,11 @@ $sizes: 10px, 15px, 20px, 25px, 35px, 40px, 45px, 50px;
     .me-#{$rad} {
         margin-right: $size;
     }
+
+    .mx-#{$rad} {
+        margin-left: $size;
+        margin-right: $size;
+    }
 }
 
 .background-image {
