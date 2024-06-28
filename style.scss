@@ -6,11 +6,13 @@ Description: Bespoke Theme
 Version: 1.1
 License: GNU General Public License
 */
-@import "assets/scss/utils/mixins", "assets/scss/utils/variables", "assets/scss/base/fonts";
-/*-----------------------------------------------------------------------------------*/
 /* Vendors
 /*-----------------------------------------------------------------------------------*/
 @import "vendor/twbs/bootstrap/scss/bootstrap";
+
+@import "assets/scss/utils/mixins", "assets/scss/utils/variables", "assets/scss/base/fonts";
+/*-----------------------------------------------------------------------------------*/
+
 /*-----------------------------------------------------------------------------------*/
 /* Base
 /*-----------------------------------------------------------------------------------*/
