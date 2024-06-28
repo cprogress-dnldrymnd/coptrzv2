@@ -28,12 +28,14 @@ function ___hero()
 {
     $hero_hidden = get__post_meta('hero_hidden');
     $hero_heading = get__post_meta('hero_heading');
-    $hero_description = get__post_meta('hero_description');
+    $hero_description = _format_text(get__post_meta('hero_description'));
+    $hero_background = get__post_meta('hero_background');
 
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
         $hero = "<section class='hero rounded-10px bg-primary text-white d-flex align-items-end'><div class='container'>";
-        $hero .= do_shortcode("[__heading class='mama mo' heading='$hero_heading_val']");
+        $hero .= do_shortcode("[__heading heading='$hero_heading_val']");
+        $hero .= do_shortcode("[__description description='$hero_description']");
 
         $hero .= "</div></section>";
 
@@ -52,4 +54,10 @@ function _attributes($attributes)
         }
         return $attribute_val;
     }
+}
+
+
+function _format_text($text)
+{
+    return htmlentities($text);
 }
