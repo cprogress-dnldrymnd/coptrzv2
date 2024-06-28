@@ -1,17 +1,17 @@
 $sizes: 10px, 15px, 20px, 25px, 35px, 40px, 45px, 50px;
 @each $size in $sizes {
-    .rounded-#{$rad} {
+    .rounded-#{$size} {
         border-radius: $size;
     }
 
-    .ms-#{$rad} {
+    .ms-#{$size} {
         margin-left: $size;
     }
-    .me-#{$rad} {
+    .me-#{$size} {
         margin-right: $size;
     }
 
-    .mx-#{$rad} {
+    .mx-#{$size} {
         margin-left: $size;
         margin-right: $size;
     }
