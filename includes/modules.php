@@ -29,12 +29,9 @@ function ___hero()
     $hero_heading = get__post_meta('hero_heading');
     $hero_description = _format_text(get__post_meta('hero_description'));
     $hero_hidden = get__post_meta('hero_hidden');
-    $hero_background = get__post_meta('hero_background');
-    $hero_background_url = wp_get_attachment_image_url($hero_background, 'full');
+
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
-        global $styles;
-        $styles[] = ".hero{ background-image: $hero_background_url}";
         $hero = "<section class='hero text-center rounded-10px bg-primary text-white d-flex align-items-end'><div class='container'>";
         $hero .= do_shortcode("[__heading heading='$hero_heading_val']");
         $hero .= do_shortcode("[__description description='$hero_description']");
