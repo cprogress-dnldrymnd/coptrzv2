@@ -96,15 +96,26 @@ function action_admin_head()
 			font-weight: bold;
 			text-transform: uppercase;
 		}
+
 		.cb-label-end.cb-label-end.cb-label-end {
 			background-color: var(--wp-admin-theme-color);
 			padding: 5px;
 		}
+
 		.inline-field.inline-field {
 			display: flex;
-		} 
+		}
+
 		.inline-field.inline-field .cf-field__head {
 			flex: 0 0 10%;
+		}
+
+		.inline-field.inline-field .cf-field__body {
+			flex: 0 0 90%;
+		}
+
+		.inline-field.inline-field .cf-field__help {
+			margin-left: 10%;
 		}
 	</style>
 <?php
