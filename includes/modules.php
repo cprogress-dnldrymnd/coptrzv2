@@ -52,12 +52,14 @@ function ___sections()
         $disable_section = $section['disable_section'];
         if (!$disable_section) {
             $section_id = $section['section_id'];
-            $sections_var .= '<section >';
             $section_attribute = _attributes(array(
                 'class' => 'section section-' . $key,
                 'id' => $section_id ? $section_id : 'section-' . $key
             ));
-            $sections_var .= '</section>';
+
+            $sections_var .= "<section $section_attribute>";
+
+            $sections_var .= "</section>";
         }
     }
 }
