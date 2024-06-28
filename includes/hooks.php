@@ -64,17 +64,15 @@ function action_admin_head()
             min-height: 100vh;
         }
 
-        <?php if (_is_module()) { ?>.wp-block-post-content {
-            display: none !important
+        <?php
+        if (_is_module()) {
+            echo '.wp-block-post-content { display: none !important }';
+            echo '.edit-post-header__toolbar, .editor-preview-dropdown__toggle, button[aria-controls="tabs-0-edit-post/block-view"] { display: none !important; }';
         }
-
-        .edit-post-header__toolbar,
-        .editor-preview-dropdown__toggle,
-        button[aria-controls="tabs-0-edit-post/block-view"] {
-            display: none !important;
+        if (isset($_GET['preview'])) {
+            echo '#wpadminbar{ display: none !important }';
         }
-
-        <?php } ?>
+        ?>
     </style>
 
 <?php
