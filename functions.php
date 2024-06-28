@@ -118,24 +118,20 @@ function action_admin_head()
 		.inline-field.inline-field .cf-field__help {
 			margin-left: 10%;
 		}
+
 		.postbox-header {
 			background-color: lightblue;
 		}
+
 		.edit-post-meta-boxes-area .postbox {
 			margin-bottom: 10px;
 		}
+
+		<?php if (_is_module()) { ?>.wp-block-post-content{display: none !important}<?php } ?>
 	</style>
-	
+
 <?php
 
 }
 
 add_action('admin_head', 'action_admin_head');
-
-/**
- * Enqueue Editor assets.
- */
-function example_enqueue_editor_assets() {
-	wp_enqueue_style('coptz-style', theme_dir . 'style.css', NULL, coptz_version);
-}
-add_action( 'enqueue_block_editor_assets', 'example_enqueue_editor_assets' );
