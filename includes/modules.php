@@ -46,10 +46,16 @@ function _attributes($attributes)
 {
     if ($attributes) {
         $attribute_val = '';
-
+        $class_attr = "class='";
         foreach ($attributes as $attribute) {
+            if ($attribute[0] == 'class') {
+                $class_attr .= $attribute[1] . ';';
+            }
             $attribute_val .= $attribute[0] . '="' . $attribute[1] . '"';
         }
+        $class_attr .= "'";
+
+        $attribute_val .= $class_attr;
         return $attribute_val;
     }
 }
