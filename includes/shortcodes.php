@@ -2,7 +2,7 @@
 
 class Shortcodes
 {
-    function _heading($atts)
+    function __heading($atts)
     {
         extract(
             shortcode_atts(
@@ -21,4 +21,4 @@ class Shortcodes
     }
 }
 $Shortcodes = new Shortcodes;
-add_shortcode('_heading', array($Shortcodes, '__heading'));
+add_shortcode('__heading', array($Shortcodes, '__heading'));
