@@ -9380,7 +9380,8 @@ textarea.form-control-lg {
 /* Base
 /*-----------------------------------------------------------------------------------*/
 body {
-  font-family: var(--primary-font); }
+  font-family: var(--primary-font);
+  color: var(--primary-color); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
