@@ -45,10 +45,10 @@ function ___hero()
 function _attributes($attributes)
 {
     if ($attributes) {
-        $attribute = '';
+        $attribute_val = '';
 
         foreach ($attributes as $attribute) {
-            $attribute .= $attribute[0] . '=' . $attribute[1];
+            $attribute_val .= $attribute[0] . '=' . $attribute[1];
         }
         return $attribute;
     }
