@@ -13,7 +13,7 @@
 <body <?php body_class(); ?>>
 	<header class="header">
 		<div class="container">
-			<div class="header-inner pt-20px rounded-10px">
+			<div class="header-inner mt-20px rounded-10px">
 				<nav class="navbar navbar-expand-lg">
 					<div class="container-fluid">
 						<a class="navbar-brand" href="#">Navbar</a>
