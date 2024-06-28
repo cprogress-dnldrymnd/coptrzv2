@@ -125,7 +125,10 @@ function action_admin_head()
 			margin-bottom: 10px;
 		}
 	</style>
+	
 <?php
+	wp_enqueue_style('coptz-style', theme_dir . 'style.css', NULL, coptz_version);
+
 }
 
 add_action('admin_head', 'action_admin_head');
