@@ -9656,6 +9656,10 @@ h6,
   top: 0;
   right: 0;
   bottom: 0; }
+  .background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
   .background-image > div {
     position: relative;
     z-index: 1; }
