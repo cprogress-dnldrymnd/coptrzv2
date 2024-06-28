@@ -62,6 +62,7 @@ function ___sections()
             $sections_var .= "</section>";
         }
     }
+    return $sections_var;
 }
 
 function _attributes($attributes)
