@@ -43,9 +43,9 @@ Container::make('post_meta', __('Sections'))
                     ->set_duplicate_groups_allowed(false)
                     ->add_fields('heading', array(
                         Field::make('html', 'html_1')->set_html('<label>Options</label>')->set_classes('cb-label'),
-                        Field::make('checkbox', 'has_prefix', __('Has Prefix'))->set_width(25),
-                        Field::make('checkbox', 'has_suffix', __('Has Suffix'))->set_width(25),
-                        Field::make('checkbox', 'has_custom_heading_settings', __('Custom Heading Settings'))->set_width(50),
+                        Field::make('checkbox', 'has_prefix', __('Has Prefix'))->set_width(20),
+                        Field::make('checkbox', 'has_suffix', __('Has Suffix'))->set_width(20),
+                        Field::make('checkbox', 'has_custom_heading_settings', __('Custom Heading Settings'))->set_width(60),
                         Field::make('text', 'heading', __('Heading')),
                         Field::make('text', 'prefix', __('Prefix')),
                         Field::make('text', 'suffix', __('Suffix')),
