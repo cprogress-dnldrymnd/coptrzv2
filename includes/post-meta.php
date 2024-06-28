@@ -32,7 +32,6 @@ Container::make('post_meta', __('Sections'))
                 Field::make('text', 'module_id', __('Section ID'))->set_width(33),
                 Field::make('checkbox', 'disable_sction', __('Disable Section'))->set_width(33),
 
-
                 Field::make('complex', 'section_items', __('Section Items'))
                     ->setup_labels(
                         array(
@@ -47,8 +46,8 @@ Container::make('post_meta', __('Sections'))
                         Field::make('checkbox', 'has_suffix', __('Has Suffix'))->set_width(20),
                         Field::make('checkbox', 'has_custom_heading_settings', __('Custom Heading Settings'))->set_width(50),
                         Field::make('html', 'html_2')->set_html('')->set_classes('cb-label-end'),
-                        Field::make('text', 'heading', __('Heading')),
-                        Field::make('text', 'prefix', __('Prefix'))
+                        Field::make('text', 'heading', __('Heading'))->set_classes('inline-field'),
+                        Field::make('text', 'prefix', __('Prefix'))->set_classes('inline-field')
                             ->set_conditional_logic(
                                 array(
                                     array(
@@ -57,7 +56,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('text', 'suffix', __('Suffix'))
+                        Field::make('text', 'suffix', __('Suffix'))->set_classes('inline-field')
                             ->set_conditional_logic(
                                 array(
                                     array(
