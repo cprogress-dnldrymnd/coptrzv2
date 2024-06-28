@@ -11,7 +11,7 @@ use Carbon_Fields\Field;
 Container::make('post_meta', __('Hero'))
     ->add_fields(array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_classes('inline-field'),
-        Field::make('text', 'hero_heading', __('Heading'))->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to page title'),
+        Field::make('text', 'hero_heading', __('Heading'))->set_help_text('')->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to page title'),
         Field::make('textarea', 'hero_description', __('Description'))->set_classes('inline-field'),
         Field::make('file', 'hero_background', __('Hero Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
     ));
@@ -45,7 +45,7 @@ Container::make('post_meta', __('Sections'))
                         Field::make('checkbox', 'has_prefix', __('Has Prefix'))->set_width(20),
                         Field::make('checkbox', 'has_suffix', __('Has Suffix'))->set_width(20),
                         Field::make('checkbox', 'has_custom_heading_settings', __('Custom Heading Settings'))->set_width(50),
-                        Field::make('html', 'html_1')->set_html('')->set_classes('cb-label-end'),
+                        Field::make('html', 'html_2')->set_html('')->set_classes('cb-label-end'),
                         Field::make('text', 'heading', __('Heading')),
                         Field::make('text', 'prefix', __('Prefix'))
                             ->set_conditional_logic(
