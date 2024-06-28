@@ -9575,7 +9575,8 @@ header {
   position: absolute;
   left: 0;
   top: 0;
-  right: 0; }
+  right: 0;
+  z-index: 999999; }
 
 .admin-bar header {
   top: 32px; }
