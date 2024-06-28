@@ -4,7 +4,7 @@ function action_wp_head()
 ?>
     <style id="wp-head">
         <?php
-        if (isset($_GET['preview'])) {
+        if (isset($_GET['prev'])) {
             echo '#wpadminbar{ display: none !important }';
         }
         ?>
