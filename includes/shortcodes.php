@@ -72,6 +72,29 @@ class Shortcodes
             return "<div $_attributes>$image</div>";
         }
     }
+
+    function __video($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'video_id' => '',
+                    'class' => '',
+                ),
+                $atts
+            )
+        );
+
+        $video_url = wp_get_attachment_url($video_id);
+
+        if ($video_url) {
+            $_attributes = _attributes(array(
+                array('class', 'video-box'),
+            ));
+
+            return "<div $_attributes><video src='$video_url'></video></div>";
+        }
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('__heading', array($Shortcodes, '__heading'));
