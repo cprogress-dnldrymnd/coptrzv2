@@ -86,6 +86,20 @@ function action_admin_head()
 			flex: 1;
 			padding: 5px;
 		}
+
+		.cb-label {
+			background-color: var(--wp-admin-theme-color);
+			color: #fff;
+			font-family: Courier;
+			font-size: 16px;
+			padding: 5px;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		.cb-label-end {
+			background-color: var(--wp-admin-theme-color);
+			padding: 5px;
+		}
 	</style>
 <?php
 }
