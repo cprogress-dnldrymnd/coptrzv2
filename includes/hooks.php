@@ -1,7 +1,6 @@
 <?php
 function action_wp_head()
 {
-  
 }
 
 add_action('wp_head', 'action_wp_head');
@@ -10,69 +9,76 @@ add_action('wp_head', 'action_wp_head');
 function action_admin_head()
 {
 ?>
-	<style>
-		.columns>.cf-field__body>.cf-complex__groups {
-			display: flex
-		}
+    <style>
+        .columns>.cf-field__body>.cf-complex__groups {
+            display: flex
+        }
 
-		.columns>.cf-field__body>.cf-complex__groups>div {
-			flex: 1;
-			padding: 5px;
-		}
+        .columns>.cf-field__body>.cf-complex__groups>div {
+            flex: 1;
+            padding: 5px;
+        }
 
-		.cb-label.cb-label.cb-label {
-			background-color: var(--wp-admin-theme-color);
-			color: #fff;
-			font-family: Courier;
-			font-size: 16px;
-			padding: 5px;
-			font-weight: bold;
-			text-transform: uppercase;
-		}
+        .cb-label.cb-label.cb-label {
+            background-color: var(--wp-admin-theme-color);
+            color: #fff;
+            font-family: Courier;
+            font-size: 16px;
+            padding: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-		.cb-label-end.cb-label-end.cb-label-end {
-			background-color: var(--wp-admin-theme-color);
-			padding: 5px;
-		}
+        .cb-label-end.cb-label-end.cb-label-end {
+            background-color: var(--wp-admin-theme-color);
+            padding: 5px;
+        }
 
-		.inline-field.inline-field {
-			display: flex;
-			flex-wrap: wrap;
-		}
+        .inline-field.inline-field {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-		.inline-field.inline-field .cf-field__head {
-			flex: 0 0 10%;
-		}
+        .inline-field.inline-field .cf-field__head {
+            flex: 0 0 10%;
+        }
 
-		.inline-field.inline-field .cf-field__body {
-			flex: 0 0 90%;
-		}
+        .inline-field.inline-field .cf-field__body {
+            flex: 0 0 90%;
+        }
 
-		.inline-field.inline-field .cf-field__help {
-			margin-left: 10%;
-		}
+        .inline-field.inline-field .cf-field__help {
+            margin-left: 10%;
+        }
 
-		.postbox-header {
-			background-color: lightblue;
-		}
+        .postbox-header {
+            background-color: lightblue;
+        }
 
-		.edit-post-meta-boxes-area .postbox {
-			margin-bottom: 10px;
-		}
+        .edit-post-meta-boxes-area .postbox {
+            margin-bottom: 10px;
+        }
 
-		<?php if (_is_module()) { ?>.wp-block-post-content {
-			display: none !important
-		}
+        <?php if (_is_module()) { ?>.wp-block-post-content {
+            display: none !important
+        }
 
-		.edit-post-header__toolbar {
-			display: none;
-		}
+        .edit-post-header__toolbar {
+            display: none;
+        }
 
-		<?php } ?>
-	</style>
+        <?php } ?>
+    </style>
 
 <?php
 
 }
 
 add_action('admin_head', 'action_admin_head');
+
+
+function my_plugin_add_editor_styles()
+{
+    add_editor_style('my-editor-styles', 'https://dev.coptrz.com/wp-content/themes/coptrz/style.css');
+}
+add_action('enqueue_block_editor_assets', 'my_plugin_add_editor_styles');
