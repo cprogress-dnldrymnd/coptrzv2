@@ -9,7 +9,7 @@ function action_module_content()
         // Update post 37
         $my_post = array(
             'ID'           => get_the_ID(),
-            'post_content' => 'This is the updated content.',
+            'post_content' => '<!-- wp:html -->This is the updated content.<!-- /wp:html -->',
         );
 
         // Update the post into the database
