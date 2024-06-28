@@ -36,8 +36,8 @@ Container::make('post_meta', __('Sections'))
                 Field::make('complex', 'section_items', __('Section Items'))
                     ->setup_labels(
                         array(
-                            'plural_name'   => 'Columns',
-                            'singular_name' => 'Column',
+                            'plural_name'   => 'Section Items',
+                            'singular_name' => 'Section Item',
                         )
                     )
                     ->add_fields('heading', array(
@@ -92,7 +92,13 @@ Container::make('post_meta', __('Sections'))
                         Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
                     ))
                     ->add_fields('columns', array(
-                        Field::make('complex', 'items', __(''))
+                        Field::make('complex', 'columns', __(''))
+                            ->setup_labels(
+                                array(
+                                    'plural_name'   => 'Columns',
+                                    'singular_name' => 'Column',
+                                )
+                            )
                             ->add_fields(array(
                                 Field::make('complex', 'items', __(''))
                                     ->set_classes('items')
