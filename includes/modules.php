@@ -5,7 +5,7 @@ function action_module_content()
     if (did_action('post_updated')) {
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-        if (get_page_template_slug() == '>templates/page-modules.php') {
+        if (get_page_template_slug() == 'templates/page-modules.php') {
             $post_content = '<!-- wp:html -->';
 
             $post_content .= ___hero();
