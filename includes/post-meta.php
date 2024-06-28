@@ -42,6 +42,7 @@ Container::make('post_meta', __('Sections'))
                     )
                     ->set_duplicate_groups_allowed(false)
                     ->add_fields('heading', array(
+                        Field::make('html', 'html_1')->set_html('<label>Options</label>')->set_classes('cb-label'),
                         Field::make('text', 'heading', __('Heading')),
                         Field::make('text', 'prefix', __('Prefix')),
                         Field::make('text', 'suffix', __('Suffix')),
