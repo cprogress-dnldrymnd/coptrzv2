@@ -11,10 +11,25 @@ $sizes: 10px, 15px, 20px, 25px, 35px, 40px, 45px, 50px;
         margin-right: $size;
     }
 
+    
+    .mt-#{$size} {
+        margin-top: $size;
+    }
+    .mb-#{$size} {
+        margin-bottom: $size;
+    }
+
     .mx-#{$size} {
         margin-left: $size;
         margin-right: $size;
     }
+
+    .my-#{$size} {
+        margin-top: $size;
+        margin-bottom: $size;
+    }
+
+    
 
     .pb-#{$size} {
         padding-bottom: $size;
