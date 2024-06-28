@@ -104,7 +104,6 @@ function _attributes($attributes)
     if ($attributes) {
         $attribute_val = '';
         $class_attr = "class='";
-        $id_attr = "id='";
         foreach ($attributes as $attribute) {
             if ($attribute[0] == 'class') {
                 $class_attr .= $attribute[1] . ' ';
@@ -113,7 +112,6 @@ function _attributes($attributes)
             }
         }
         $class_attr .= "'";
-        $id_attr .= "'";
 
         $attribute_val .= $class_attr;
         return $attribute_val;
