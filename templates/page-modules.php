@@ -14,7 +14,7 @@ $modules = get__post_meta('modules');
     <?php
     the_content();
     echo do_shortcode('[__heading heading="test"]');
-   // echo modules($modules);
+    // echo modules($modules);
     ?>
 </div>
 

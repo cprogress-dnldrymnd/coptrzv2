@@ -9375,6 +9375,27 @@ body {
   color: var(--primary-color);
   font-size: 1.125rem; }
 
+.large-heading {
+  font-size: 2rem; }
+  @media (min-width: 992px) {
+    .large-heading {
+      font-size: 2.5rem; } }
+  @media (min-width: 1200px) {
+    .large-heading {
+      font-size: 3.375rem; } }
+  @media (min-width: 1440px) {
+    .large-heading {
+      font-size: 4.5rem; } }
+
+h2, .h2 {
+  font-size: 2rem; }
+  @media (min-width: 992px) {
+    h2, .h2 {
+      font-size: 2.5rem; } }
+  @media (min-width: 1200px) {
+    h2, .h2 {
+      font-size: 3.375rem; } }
+
 .rounded-10px {
   border-radius: 10px; }
 
