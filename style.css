@@ -9372,7 +9372,8 @@ textarea.form-control-lg {
 /*-----------------------------------------------------------------------------------*/
 body {
   font-family: var(--primary-font);
-  color: var(--primary-color); }
+  color: var(--primary-color);
+  font-size: 1.125rem; }
 
 .rounded-10px {
   border-radius: 10px; }
