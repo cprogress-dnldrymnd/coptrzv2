@@ -127,8 +127,15 @@ function action_admin_head()
 	</style>
 	
 <?php
-	wp_enqueue_style('coptz-style', theme_dir . 'style.css', NULL, coptz_version);
 
 }
 
 add_action('admin_head', 'action_admin_head');
+
+add_action('enqueue_block_editor_assets', 'gutenberg_editor_assets');
+
+function gutenberg_editor_assets() {
+  // Load the theme styles within Gutenberg.
+  wp_enqueue_style('coptz-style', theme_dir . 'style.css', NULL, coptz_version);
+
+}
