@@ -179,10 +179,23 @@ function ____gallery_modules($gallery, $gallery_style)
 {
     if ($gallery) {
         $html  = "<div class='gallery $gallery_style'>";
+
+        if ($gallery_style == 'logo-slider') {
+            $html .= '<div class="swiper swiper-logo-slider">';
+            $html .= '<div class="swiper-wrapper>';
+        }
+
         foreach ($gallery as $image) {
-            $html .= __image(array(
-                'image_id' => $image
-            ));
+            $image_args['image_id'] = $image;
+            if ($gallery_style == 'logo-slider') {
+                $image_args['class'] = _attribute('class', array('swiper-slide'));
+            }
+
+            $html .= __image($image);
+        }
+        if ($gallery_style == 'logo-slider') {
+            $html  .= "<div>";
+            $html  .= "<div>";
         }
         $html  .= "<div>";
     }
