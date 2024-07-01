@@ -9813,9 +9813,7 @@ p:last-child {
     position: relative;
     z-index: 1; }
 
-.content-margin > div:not(:last-child),
-.content-margin > h2:not(:last-child),
-.content-margin > .h2:not(:last-child) {
+.content-margin > *:not(:last-child) {
   margin-bottom: 1.5rem; }
 
 .icon-box svg {
