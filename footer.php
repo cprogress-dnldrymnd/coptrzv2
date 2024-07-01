@@ -3,8 +3,7 @@
 $hide_footer = get__post_meta('hide_footer');
 if (!$hide_footer) {
 ?>
-    <?= do_shortcode('[coptrz_review]') ?>
-    <footer id="footer" class="background-primary">
+    <footer id="footer" class="bs-black">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg col-md-12">
@@ -26,7 +25,6 @@ if (!$hide_footer) {
         </div>
     </footer>
 
-    
 <?php } ?>
 </main>
 <?php wp_footer(); ?>
