@@ -41,7 +41,7 @@ function ___hero()
         $hero .= __heading(array(
             'heading' => $hero_heading_val,
             'tag' => 'h1',
-            'class' => _attributes_v2('class', 'large-heading'),
+            'class' => _attribute('class', 'large-heading'),
             ''
         ));
         $hero .= __description(array(
@@ -119,7 +119,7 @@ function ____heading_modules($items)
         }
     }
 
-    
+
     if ($has_suffix) {
         $heading_data['suffix'] = $suffix;
         $class_args['class'] = 'heading-box';
@@ -128,14 +128,14 @@ function ____heading_modules($items)
         $heading_data['prefix'] = $prefix;
         $class_args['class'] = 'heading-box';
     }
-    if($class_args) {
+    if ($class_args) {
         $heading_data['class'] = implode(' ', $class_args);
     }
 
     return __heading($heading_data);
 }
 
-function _attributes_v2($name, $attributes, $separator = ' ')
+function _attribute($name, $attributes, $separator = ' ')
 {
     $html = "$name='";
     $html .= implode($separator, $attributes);
@@ -145,25 +145,12 @@ function _attributes_v2($name, $attributes, $separator = ' ')
 
 function _attributes($attributes)
 {
-    if ($attributes) {
-        $attribute_val = '';
-        $class_attr_arr = [];
-        foreach ($attributes as $attribute) {
-            if ($attribute[0] == 'class') {
-                $class_attr_arr[] .= $attribute[1];
-            } else {
-                $attribute_val .= $attribute[0] . "='$attribute[1]'";
-            }
-        }
-        if ($class_attr_arr) {
-            $class_val = implode(' ', $class_attr_arr);
-            $class_attr = "class='$class_val'";
-        }
-
-
-        $attribute_val .= $class_attr;
-        return $attribute_val;
+    $html = '';
+    foreach ($attributes as $attribute) {
+        $html .= $attribute;
     }
+
+    return $html;
 }
 
 
