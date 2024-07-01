@@ -557,6 +557,9 @@ function ____columns_modules($items, $id)
                         'number_of_slides_mobile' => $item['number_of_slides_mobile'],
                     ));
                     break;
+                case 'buttons':
+                    $html .= ____button_modules($items['buttons']);
+                    break;
             }
         }
         if (count($columns) > 1) {
