@@ -260,8 +260,7 @@ function ____columns_modules($items)
                             $styles[] = 'border-width: ' . $border_width;
                         }
                     } else {
-                        $classes[] = $column_style['border_style'];
-                        $classes[] = $column_style['border_color'];
+                        $classes[] = 'border-default';
                     }
 
                     break;
