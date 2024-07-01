@@ -132,7 +132,7 @@ function ____columns_modules($columns)
                     break;
                 case 'description':
                     $html .= __description(array(
-                        'description' => $items['description'],
+                        'description' => $item['description'],
                         'class' => _attribute('class', array('description-box'))
                     ));
                     break;
