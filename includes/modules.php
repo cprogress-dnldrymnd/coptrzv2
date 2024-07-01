@@ -167,6 +167,16 @@ function ___sections()
                             'class' => _attribute('class', array('description-box'))
                         ));
                         break;
+                    case 'gallery':
+                        $html .= ____gallery_modules(array(
+                            'id' => $section_id_val,
+                            'gallery' => $items['gallery'],
+                            'gallery_style' => $items['gallery_style'],
+                            'number_of_slides' => $items['number_of_slides'],
+                            'number_of_slides_tablet' => $items['number_of_slides_tablet'],
+                            'number_of_slides_mobile' => $items['number_of_slides_mobile'],
+                        ));
+                        break;
                 }
             }
 
