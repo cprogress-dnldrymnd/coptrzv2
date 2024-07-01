@@ -23,8 +23,8 @@ Container::make('post_meta', __('Sections'))
         Field::make('complex', 'sections', __(''))
             ->setup_labels(
                 array(
-                    'plural_name'   => 'Modules',
-                    'singular_name' => 'Module',
+                    'plural_name'   => 'Sections',
+                    'singular_name' => 'Section',
                 )
             )
             ->set_collapsed(true)
