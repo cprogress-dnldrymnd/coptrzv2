@@ -195,7 +195,7 @@ function ____gallery_modules($gallery, $gallery_style)
                 $image_args['class'] = _attribute('class', array('col-lg-4'));
             }
 
-            $html .= __image($image);
+            $html .= __image($image_args);
         }
         if ($gallery_style == 'logo-slider') {
             $html  .= "<div>";
