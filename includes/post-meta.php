@@ -1559,7 +1559,7 @@ Container::make('post_meta', __('Sections'))
                                 ->set_duplicate_groups_allowed(false)
                                 ->set_max(1)
                                 ->add_fields(
-                                    'post',
+                                    'solutions',
                                     array(
                                         Field::make('hidden', 'taxonomy_key', '')->set_default_value('category'),
                                         Field::make('select', 'source', __('Source'))
