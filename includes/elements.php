@@ -91,3 +91,21 @@ function __video($data)
         return "<div $_attributes><video autoplay loop muted src='$video_url'></video></div>";
     }
 }
+
+function _bg_image($hero_background)
+{
+    $mime_type =  get_post_mime_type($hero_background);
+
+    if (str_contains($mime_type, 'video')) {
+        return __video(array(
+            'video_id' => $hero_background,
+            'class' => _attribute('class', array('background-image', 'background-overlay'))
+        ));
+    } else {
+        return __image(array(
+            'image_id' => $hero_background,
+            'class' => _attribute('class', array('background-image', 'background-overlay')),
+            'size' => 'full'
+        ));
+    }
+}

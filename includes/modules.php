@@ -168,16 +168,3 @@ function _is_module()
     }
 }
 
-function _bg_image($hero_background)
-{
-    $mime_type =  get_post_mime_type($hero_background);
-
-    if (str_contains($mime_type, 'video')) {
-        return __video(array(
-            'video_id' => $hero_background,
-            'class' => _attribute('class', array('background-image', 'background-overlay'))
-        ));
-    } else {
-        return do_shortcode("[__image class='background-image background-overlay' image_id='$hero_background']");
-    }
-}
