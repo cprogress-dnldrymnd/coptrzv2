@@ -43,3 +43,7 @@
         height: var(--height, 50px);
     }
 }
+
+.rounded-corner {
+    border-radius: var(--border-radius, 15px);
+}
