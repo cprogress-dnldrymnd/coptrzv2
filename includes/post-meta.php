@@ -1243,7 +1243,7 @@ Container::make('post_meta', __('Sections'))
                                         'lg-padding-bottom'  => 'Large',
                                         'md-padding-bottom'  => 'Medium',
                                         'sm-padding-bottom'  => 'Small',
-                                        'xxs-padding-bottom' => 'Extra Small',
+                                        'xs-padding-bottom' => 'Extra Small',
                                     )
                                 ),
                             Field::make('select', 'padding_left', 'Padding left')
