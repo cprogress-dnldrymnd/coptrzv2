@@ -194,7 +194,7 @@ function ____gallery_modules($data)
             $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
             $attributes = _attributes($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr);
 
-            $html .= "<div class='swiper swiper-logo-slider' $attributes";
+            $html .= "<div class='swiper swiper-logo-slider' $attributes>";
             $html .= '<div class="swiper-wrapper">';
         } else {
             $html .= '<div class="row g-5">';
