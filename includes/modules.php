@@ -346,7 +346,7 @@ function ____columns_modules($items, $id)
                     break;
                 case 'gallery':
                     $html .= ____gallery_modules(array(
-                        'id' => $id . $key,
+                        'id' => $id,
                         'gallery' => $item['gallery'],
                         'gallery_style' => $item['gallery_style'],
                         'number_of_slides' => $item['number_of_slides'],
