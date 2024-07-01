@@ -63,7 +63,8 @@ function ___sections()
             $section_id = $section['section_id'];
             $section_items = $section['section_items'];
             $classes = _attribute('class', array('section', 'section-' . $key));
-            $id = _attribute('id', $section_id ? $section_id : 'section-' . $key);
+            $id = _attribute('id', array($section_id ? $section_id : 'section-' . $key));
+
             $section_attribute = _attributes($classes, $id);
 
             $sections_var .= "<section $section_attribute>";
