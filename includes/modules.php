@@ -62,8 +62,9 @@ function ___sections()
         if (!$disable_section) {
             $section_id = $section['section_id'];
             $section_items = $section['section_items'];
+            $section_id_val  = $section_id ? $section_id : 'section-' . $key;
             $classes = _attribute('class', array('section', 'section-' . $key));
-            $id = _attribute('id', array($section_id ? $section_id : 'section-' . $key));
+            $id = _attribute('id', array($section_id_val));
 
             $section_attribute = _attributes($classes, $id);
 
