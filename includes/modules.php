@@ -558,7 +558,7 @@ function ____columns_modules($items, $id)
                     ));
                     break;
                 case 'buttons':
-                    $html .= ____button_modules($items['buttons']);
+                    $html .= ____button_modules($item['buttons']);
                     break;
             }
         }
