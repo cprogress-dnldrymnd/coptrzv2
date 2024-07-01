@@ -118,7 +118,7 @@ function ____columns_modules($columns)
             $type = $item['_type'];
             switch ($type) {
                 case 'heading':
-                    $html .= ____heading_modules($items);
+                    $html .= ____heading_modules($item);
                     break;
             }
         }
