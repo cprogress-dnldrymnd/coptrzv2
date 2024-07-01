@@ -141,6 +141,7 @@ function _attributes_v2($name, $attributes, $separator = ' ')
         $html . implode($separator, $attributes);
     }
     $html .= "'";
+    return $html;
 }
 
 function _attributes($attributes)
