@@ -41,14 +41,15 @@ function swipers() {
     });
 
     jQuery('.style-1 .swiper-sliders').each(function (index, element) {
-        var $ids = '#' + jQuery(this).attr('id');
+        var $id = '#' + jQuery(this).attr('id');
 
-        var swiperSlide = new Swiper($ids, {
+        var swiperSlide = new Swiper($id, {
             loop: false,
             autoplay: {
                 delay: 3000,
                 disableOnInteraction: false
             },
+            slidesPerView: 'auto',
             spaceBetween: 20,
 
         });
