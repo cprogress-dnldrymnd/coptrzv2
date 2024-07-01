@@ -9932,6 +9932,8 @@ p:last-child {
   color: var(--bs-white);
   border-color: var(--bs-accent);
   background-color: var(--bs-accent); }
+.button-box.button-smal a, .button-box.button-smal button {
+  padding: 0.625rem 1.25rem; }
 
 .site-logo svg,
 .site-logo img {

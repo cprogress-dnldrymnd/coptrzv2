@@ -61,7 +61,7 @@
 					</div>
 					<div class="col-auto">
 						<div class="button-box button-accent button-small">
-							<a href="#">Enquire Now</a>
+							<a href="#" class="rounded-10px">Enquire Now</a>
 						</div>
 					</div>
 				</div>
