@@ -180,10 +180,10 @@ function ____columns_modules($items)
     $columns = $items['columns'];
     $column_styles = $items['column_styles'];
     $individual_column_settings = $items['individual_column_settings'];
+    $classes = [];
+    $styles = [];
+    $container_styles = [];
     if (!$individual_column_settings) {
-        $classes = [];
-        $styles = [];
-        $container_styles = [];
         foreach ($column_styles as $column_style) {
             $type = $column_style['_type'];
             switch ($type) {
@@ -241,8 +241,6 @@ function ____columns_modules($items)
                     break;
                 case 'border':
                     $border_style = $column_style['border_style'];
-
-
 
                     if ($column_style['border_radius']) {
                         $styles[] = '--border-radius: ' . $column_style['border_radius'];
