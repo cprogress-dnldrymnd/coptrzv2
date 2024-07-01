@@ -434,7 +434,7 @@ function ____columns_modules($items, $id, $html = '')
     $number_of_slides_mobile = $items['number_of_slides_mobile'];
     $classes = array();
     $styles = array();
-    $classes[] = 'column-holder content-margin overflow-hidden position-relative';
+    $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
     if (!$individual_column_settings) {
         foreach ($column_styles as $column_style) {
             $type = $column_style['_type'];
