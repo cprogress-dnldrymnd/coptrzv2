@@ -182,7 +182,7 @@ function ____gallery_modules($gallery, $gallery_style)
 
         if ($gallery_style == 'logo-slider') {
             $html .= '<div class="swiper swiper-logo-slider">';
-            $html .= '<div class="swiper-wrapper>';
+            $html .= '<div class="swiper-wrapper">';
         } else {
             $html .= '<div class="row g-5">';
         }
