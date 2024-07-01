@@ -60,7 +60,6 @@ function _icon($data, $html = '')
 
 
         $html .= "<div >";
-        $html .= _output_svg_from_url($url);
         $html .= '</div>';
     }
 
