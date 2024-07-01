@@ -338,7 +338,7 @@ function ____post_grid($data)
                     break;
                 case 'featured_image':
                     $is_background_image = $item['is_background_image'];
-                    $image_args['featured_image'] = true;
+                    $image_args['featured_image'] = $post->ID;
                     $image_args['size'] = $item['size'];
                     if ($is_background_image) {
                         $image_args['class'] = _attribute('class', array('background-image', 'background-overlay'));

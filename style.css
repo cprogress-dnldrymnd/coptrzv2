@@ -9833,7 +9833,7 @@ p:last-child {
   background-repeat: no-repeat; }
 
 .bg-accent {
-  background-color: var(--accent-color); }
+  background-color: var(--bs-accent); }
 
 .background-overlay:before {
   content: "";
