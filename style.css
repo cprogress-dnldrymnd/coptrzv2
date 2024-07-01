@@ -9866,6 +9866,9 @@ p:last-child {
 .rounded-corner {
   border-radius: var(--border-radius, 15px); }
 
+.border-default {
+  border: 1px solid var(--border-color); }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/

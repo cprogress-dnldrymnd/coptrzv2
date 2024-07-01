@@ -158,7 +158,7 @@ function ___sections()
                         $sections_var .= ____heading_modules($items);
                         break;
                     case 'columns':
-                        $sections_var .= ____columns_modules($items['columns']);
+                        $sections_var .= ____columns_modules($items);
                         break;
                     case 'description':
                         $sections_var .= __description(array(
@@ -175,12 +175,21 @@ function ___sections()
     }
     return $sections_var;
 }
-function ____columns_modules($columns)
+function ____columns_modules($items)
 {
+    $columns = $items['columns'];
+    $column_styles = $items['column_styles'];
+    $individual_column_settings = $items['individual_column_settings'];
     $html = "<div class='row'>";
     foreach ($columns as $column) {
         $items = $column['items'];
+
         $html .= '<div class="col">';
+
+        if(!$individual_column_settings) {
+            
+        }
+
         $html .= '<div class="column-holder content-margin">';
         foreach ($items as $item) {
             $type = $item['_type'];
