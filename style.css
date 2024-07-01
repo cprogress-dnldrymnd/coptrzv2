@@ -9961,7 +9961,11 @@ p:last-child {
   width: 61px;
   height: 61px;
   border: 1px solid;
-  color: var(--bs-black); }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bs-black);
+  border-radius: 10px; }
   .swiper-button-next:after,
   .swiper-button-prev:after {
     font-size: 15px; }

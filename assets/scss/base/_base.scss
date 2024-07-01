@@ -188,6 +188,7 @@
     align-items: center;
     justify-content: center;
     color: var(--bs-black);
+    border-radius: 10px;
     @include after {
         font-size: 15px;
     }
