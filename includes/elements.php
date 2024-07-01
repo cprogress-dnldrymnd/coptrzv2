@@ -17,10 +17,17 @@ function __description($data)
     $description = $data['description'];
     $class = $data['class'];
 
-    $_attributes = _attributes(array(
-        array('class', $class),
+    $attributes_args = array(
         array('class', 'description-box'),
-    ));
+    );
+    $_attributes = _attributes($attributes_args);
+
+    if ($class) {
+        $attributes_args[] = array(
+            array('class', $class),
+        );
+    }
+
 
     if ($description) {
         return "<div $_attributes>$description</div>";
