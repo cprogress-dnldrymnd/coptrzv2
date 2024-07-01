@@ -41,21 +41,21 @@ function __description($data)
     $description = isset($data['description']) ? $data['description'] : false;
     $class = isset($data['class']) ? $data['class'] : false;
 
-    $attributes_args = array(
-        array('class', 'description-box'),
-    );
-
+    $attributes_args = [];
     if ($class) {
-        $attributes_args[] = array(
-            array('class', $class),
-        );
+        $attributes_args[] = $class;
     }
-
+  
     $_attributes = _attributes($attributes_args);
 
     if ($description) {
         return "<div $_attributes>$description</div>";
     }
+}
+
+function _icon()
+{
+    $url = wp_get_original_image_path($id);
 }
 
 function __image($data)
