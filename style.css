@@ -9814,7 +9814,7 @@ p:last-child {
 
 .icon-box svg {
   width: var(--width, 50px);
-  width: var(--width, 50px); }
+  height: var(--height, 50px); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
