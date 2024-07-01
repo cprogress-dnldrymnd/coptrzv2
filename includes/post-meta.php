@@ -391,7 +391,7 @@ Container::make('post_meta', __('Sections'))
                                                 ->set_options(
                                                     array(
                                                         'logo-slider'   => 'Logo Slider',
-                                                        'Grid' => 'Grid',
+                                                        'grid' => 'Grid',
                                                     )
                                                 ),
                                             Field::make('media_gallery', 'gallery', __('Gallery')),

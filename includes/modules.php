@@ -166,6 +166,9 @@ function ___sections()
                             'class' => _attribute('class', array('description-box'))
                         ));
                         break;
+                    case 'gallery':
+                        $sections_var .= ____gallery_modules($items['gallery'], $items['gallery_style']);
+                        break;
                 }
             }
 
@@ -174,6 +177,20 @@ function ___sections()
         }
     }
     return $sections_var;
+}
+function ____gallery_modules($gallery, $gallery_style)
+{
+    if ($gallery) {
+        $html  = "<div class='gallery $gallery_style'>";
+        foreach ($gallery as $image) {
+            $html .= __image(array(
+                'image_id' => $image
+            ));
+        }
+        $html  .= "<div>";
+    }
+
+    return $html;
 }
 function ____columns_modules($items)
 {
