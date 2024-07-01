@@ -59,8 +59,7 @@ function _icon($data, $html = '')
     if ($id) {
 
 
-        $url = wp_get_original_image_path($id);
-        $html .= "<div $_attributes>";
+        $html .= "<div >";
         $html .= _output_svg_from_url($url);
         $html .= '</div>';
     }
