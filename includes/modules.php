@@ -37,7 +37,11 @@ function ___hero()
         $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
         $hero .= _bg_image($hero_background);
         $hero .= "<div class='container'>";
-        $hero .= do_shortcode("[__heading class='large-heading' tag='h1' heading='$hero_heading_val']");
+        $hero .= __heading(array(
+            'heading' => $hero_heading_val,
+            'tag' => 'h1',
+            'class' => 'large-heading',
+        ));
         $hero .= do_shortcode("[__description description='$hero_description']");
         $hero .= "</div></section>";
         return $hero;
