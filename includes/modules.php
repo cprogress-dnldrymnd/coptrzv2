@@ -596,6 +596,7 @@ function ____columns_modules($items, $id, $html = '')
     $html .= '</div>'; //end row // end-swiper-wrapper
     if ($is_slider) {
         $html .= '</div>'; //end swiper
+        $html .= '<div class="swiper-button-next"></div> <div class="swiper-button-prev"></div>';
         $html .= '</div>'; //end swiper-holder
     }
     return $html;

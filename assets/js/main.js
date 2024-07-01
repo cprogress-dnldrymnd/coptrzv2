@@ -45,10 +45,7 @@ function swipers() {
 
         var swiper_sliders = new Swiper($id, {
             loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false
-            },
+            autoplay: false,
             slidesPerView: 'auto',
             spaceBetween: 20,
 
