@@ -429,6 +429,9 @@ function ____columns_modules($items, $id, $html = '')
     $individual_column_settings = $items['individual_column_settings'];
     $is_slider = $items['is_slider'];
     $slider_style = $items['slider_style'];
+    $number_of_slides = $items['number_of_slides'];
+    $number_of_slides_tablet = $items['number_of_slides_tablet'];
+    $number_of_slides_mobile = $items['number_of_slides_mobile'];
     $classes = [];
     $styles = [];
     if (!$individual_column_settings) {
@@ -516,8 +519,13 @@ function ____columns_modules($items, $id, $html = '')
     $classes[] = 'content-margin';
 
     if ($is_slider) {
-        $swiper_id = $id.'-swiper';
-        $html .= "<div class='swiper-holder'>"; //swiper-holder
+        $swiper_id = $id . '-swiper';
+        $number_of_slides_attr = _attribute('number_of_slides', array($number_of_slides));
+        $number_of_slides_tablet_attr = _attribute('number_of_slides_tablet', array($number_of_slides_tablet));
+        $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
+        $slides_attr = _attributes(array($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr));
+
+        $html .= "<div class='swiper-holder $slider_style' $slides_attr>"; //swiper-holder
         $html .= "<div class='swiper swiper-sliders' id='$swiper_id'>"; //swiper
     }
 
