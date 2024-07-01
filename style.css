@@ -9910,7 +9910,8 @@ p:last-child {
   padding: 1.25rem 2.5rem;
   border: 1px solid;
   display: inline-block;
-  color: var(--bs-black); }
+  color: var(--bs-black);
+  text-decoration: underline; }
 .button-box.button-accent a,
 .button-box.button-accent button {
   color: var(--bs-white);
