@@ -295,16 +295,23 @@ function ____post_grid($data)
             foreach ($items as $item) {
                 $type = $item['_type'];
                 switch ($type) {
-                    case 'heading':
+                    case 'post_title':
                         $html .= ____heading_modules($item);
                         break;
-                    case 'icon':
-                        $html .= ____icon_modules($item);
-                        break;
-                    case 'description':
+                    case 'excerpt':
                         $html .= __description(array(
                             'description' => $item['description'],
                             'class' => _attribute('class', array('description-box'))
+                        ));
+                        break;
+                    case 'permalink':
+                        $html .= $html .= __button(array(
+                            'button_type' => get_post_type(),
+                            'button_text' => $item['button_text'],
+                            'button_url' => $post->ID,
+                            'button_url_custom' => $item['button_url_custom'],
+                            'button_style' => $item['button_style'],
+                            'button_target' => $item['button_target'],
                         ));
                         break;
                 }
