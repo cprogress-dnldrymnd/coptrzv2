@@ -155,8 +155,7 @@ function __button($data)
     if ($button_text && $button_url) {
         $attributes_args = [];
         $attributes_args[] = _attribute('class', array($button_style));
-        $attributes_args[] = $button_target;
         $_attributes = _attributes($attributes_args);
-        return "<div $button_target href='$button_url' $_attributes><a>$button_text</a></div>";
+        return "<div $_attributes><a $button_target href='$button_url'>$button_text</a></div>";
     }
 }
