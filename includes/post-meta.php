@@ -578,7 +578,7 @@ Container::make('post_meta', __('Sections'))
                                                         'lg-padding-top'  => 'Large',
                                                         'md-padding-top'  => 'Medium',
                                                         'sm-padding-top'  => 'Small',
-                                                        'xxs-padding-top' => 'Extra Small',
+                                                        'xs-padding-top' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'padding_bottom', 'Padding Bottom')
@@ -589,7 +589,7 @@ Container::make('post_meta', __('Sections'))
                                                         'lg-padding-bottom'  => 'Large',
                                                         'md-padding-bottom'  => 'Medium',
                                                         'sm-padding-bottom'  => 'Small',
-                                                        'xxs-padding-bottom' => 'Extra Small',
+                                                        'xs-padding-bottom' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'padding_left', 'Padding left')
@@ -600,7 +600,7 @@ Container::make('post_meta', __('Sections'))
                                                         'lg-padding-left'  => 'Large',
                                                         'md-padding-left'  => 'Medium',
                                                         'sm-padding-left'  => 'Small',
-                                                        'xxs-padding-left' => 'Extra Small',
+                                                        'xs-padding-left' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'padding_right', 'Padding right')
@@ -611,7 +611,7 @@ Container::make('post_meta', __('Sections'))
                                                         'lg-padding-right'  => 'Large',
                                                         'md-padding-right'  => 'Medium',
                                                         'sm-padding-right'  => 'Small',
-                                                        'xxs-padding-right' => 'Extra Small',
+                                                        'xs-padding-right' => 'Extra Small',
                                                     )
                                                 ),
 
@@ -628,7 +628,7 @@ Container::make('post_meta', __('Sections'))
                                                         'lg-margin-top'  => 'Large',
                                                         'md-margin-top'  => 'Medium',
                                                         'sm-margin-top'  => 'Small',
-                                                        'xxs-margin-top' => 'Extra Small',
+                                                        'xs-margin-top' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'margin_bottom', 'margin Bottom')
@@ -639,7 +639,7 @@ Container::make('post_meta', __('Sections'))
                                                         'lg-margin-bottom'  => 'Large',
                                                         'md-margin-bottom'  => 'Medium',
                                                         'sm-margin-bottom'  => 'Small',
-                                                        'xxs-margin-bottom' => 'Extra Small',
+                                                        'xs-margin-bottom' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'margin_left', 'margin left')
@@ -650,7 +650,7 @@ Container::make('post_meta', __('Sections'))
                                                         'lg-margin-left'  => 'Large',
                                                         'md-margin-left'  => 'Medium',
                                                         'sm-margin-left'  => 'Small',
-                                                        'xxs-margin-left' => 'Extra Small',
+                                                        'xs-margin-left' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'margin_right', 'margin right')
@@ -661,7 +661,7 @@ Container::make('post_meta', __('Sections'))
                                                         'lg-margin-right'  => 'Large',
                                                         'md-margin-right'  => 'Medium',
                                                         'sm-margin-right'  => 'Small',
-                                                        'xxs-margin-right' => 'Extra Small',
+                                                        'xs-margin-right' => 'Extra Small',
                                                     )
                                                 ),
 
@@ -887,7 +887,7 @@ Container::make('post_meta', __('Sections'))
                                                 'lg-padding-top'  => 'Large',
                                                 'md-padding-top'  => 'Medium',
                                                 'sm-padding-top'  => 'Small',
-                                                'xxs-padding-top' => 'Extra Small',
+                                                'xs-padding-top' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'padding_bottom', 'Padding Bottom')
@@ -898,7 +898,7 @@ Container::make('post_meta', __('Sections'))
                                                 'lg-padding-bottom'  => 'Large',
                                                 'md-padding-bottom'  => 'Medium',
                                                 'sm-padding-bottom'  => 'Small',
-                                                'xxs-padding-bottom' => 'Extra Small',
+                                                'xs-padding-bottom' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'padding_left', 'Padding left')
@@ -909,7 +909,7 @@ Container::make('post_meta', __('Sections'))
                                                 'lg-padding-left'  => 'Large',
                                                 'md-padding-left'  => 'Medium',
                                                 'sm-padding-left'  => 'Small',
-                                                'xxs-padding-left' => 'Extra Small',
+                                                'xs-padding-left' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'padding_right', 'Padding right')
@@ -920,7 +920,7 @@ Container::make('post_meta', __('Sections'))
                                                 'lg-padding-right'  => 'Large',
                                                 'md-padding-right'  => 'Medium',
                                                 'sm-padding-right'  => 'Small',
-                                                'xxs-padding-right' => 'Extra Small',
+                                                'xs-padding-right' => 'Extra Small',
                                             )
                                         ),
 
@@ -937,7 +937,7 @@ Container::make('post_meta', __('Sections'))
                                                 'lg-margin-top'  => 'Large',
                                                 'md-margin-top'  => 'Medium',
                                                 'sm-margin-top'  => 'Small',
-                                                'xxs-margin-top' => 'Extra Small',
+                                                'xs-margin-top' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'margin_bottom', 'margin Bottom')
@@ -948,7 +948,7 @@ Container::make('post_meta', __('Sections'))
                                                 'lg-margin-bottom'  => 'Large',
                                                 'md-margin-bottom'  => 'Medium',
                                                 'sm-margin-bottom'  => 'Small',
-                                                'xxs-margin-bottom' => 'Extra Small',
+                                                'xs-margin-bottom' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'margin_left', 'margin left')
@@ -959,7 +959,7 @@ Container::make('post_meta', __('Sections'))
                                                 'lg-margin-left'  => 'Large',
                                                 'md-margin-left'  => 'Medium',
                                                 'sm-margin-left'  => 'Small',
-                                                'xxs-margin-left' => 'Extra Small',
+                                                'xs-margin-left' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'margin_right', 'margin right')
@@ -970,7 +970,7 @@ Container::make('post_meta', __('Sections'))
                                                 'lg-margin-right'  => 'Large',
                                                 'md-margin-right'  => 'Medium',
                                                 'sm-margin-right'  => 'Small',
-                                                'xxs-margin-right' => 'Extra Small',
+                                                'xs-margin-right' => 'Extra Small',
                                             )
                                         ),
 
@@ -1232,7 +1232,7 @@ Container::make('post_meta', __('Sections'))
                                         'lg-padding-top'  => 'Large',
                                         'md-padding-top'  => 'Medium',
                                         'sm-padding-top'  => 'Small',
-                                        'xxs-padding-top' => 'Extra Small',
+                                        'xs-padding-top' => 'Extra Small',
                                     )
                                 ),
                             Field::make('select', 'padding_bottom', 'Padding Bottom')
@@ -1254,7 +1254,7 @@ Container::make('post_meta', __('Sections'))
                                         'lg-padding-left'  => 'Large',
                                         'md-padding-left'  => 'Medium',
                                         'sm-padding-left'  => 'Small',
-                                        'xxs-padding-left' => 'Extra Small',
+                                        'xs-padding-left' => 'Extra Small',
                                     )
                                 ),
                             Field::make('select', 'padding_right', 'Padding right')
@@ -1265,7 +1265,7 @@ Container::make('post_meta', __('Sections'))
                                         'lg-padding-right'  => 'Large',
                                         'md-padding-right'  => 'Medium',
                                         'sm-padding-right'  => 'Small',
-                                        'xxs-padding-right' => 'Extra Small',
+                                        'xs-padding-right' => 'Extra Small',
                                     )
                                 ),
 
@@ -1282,7 +1282,7 @@ Container::make('post_meta', __('Sections'))
                                         'lg-margin-top'  => 'Large',
                                         'md-margin-top'  => 'Medium',
                                         'sm-margin-top'  => 'Small',
-                                        'xxs-margin-top' => 'Extra Small',
+                                        'xs-margin-top' => 'Extra Small',
                                     )
                                 ),
                             Field::make('select', 'margin_bottom', 'margin Bottom')
@@ -1293,7 +1293,7 @@ Container::make('post_meta', __('Sections'))
                                         'lg-margin-bottom'  => 'Large',
                                         'md-margin-bottom'  => 'Medium',
                                         'sm-margin-bottom'  => 'Small',
-                                        'xxs-margin-bottom' => 'Extra Small',
+                                        'xs-margin-bottom' => 'Extra Small',
                                     )
                                 ),
                             Field::make('select', 'margin_left', 'margin left')
@@ -1304,7 +1304,7 @@ Container::make('post_meta', __('Sections'))
                                         'lg-margin-left'  => 'Large',
                                         'md-margin-left'  => 'Medium',
                                         'sm-margin-left'  => 'Small',
-                                        'xxs-margin-left' => 'Extra Small',
+                                        'xs-margin-left' => 'Extra Small',
                                     )
                                 ),
                             Field::make('select', 'margin_right', 'margin right')
@@ -1315,7 +1315,7 @@ Container::make('post_meta', __('Sections'))
                                         'lg-margin-right'  => 'Large',
                                         'md-margin-right'  => 'Medium',
                                         'sm-margin-right'  => 'Small',
-                                        'xxs-margin-right' => 'Extra Small',
+                                        'xs-margin-right' => 'Extra Small',
                                     )
                                 ),
 
