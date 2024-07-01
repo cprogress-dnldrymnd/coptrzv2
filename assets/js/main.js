@@ -48,7 +48,7 @@ function swipers() {
 
         var swiperSlide = new Swiper($id, {
             loop: true,
-            autoplay: false,
+            autoplay: true,
             breakpoints: {
                 0: {
                     slidesPerView: $number_of_slides_mobile,
