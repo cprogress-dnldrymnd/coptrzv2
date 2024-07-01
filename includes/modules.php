@@ -114,7 +114,7 @@ function ____heading_modules($items)
             $heading_data['style'] = 'color: ' . $text_color_custom;
         } else {
             if ($text_color) {
-                $classes['class'] = $text_color;
+                $classes = $text_color;
             }
         }
     }
@@ -122,11 +122,11 @@ function ____heading_modules($items)
 
     if ($has_suffix) {
         $heading_data['suffix'] = $suffix;
-        $classes['class'] = 'heading-box';
+        $classes = 'heading-box';
     }
     if ($has_prefix) {
         $heading_data['prefix'] = $prefix;
-        $classes['class'] = 'heading-box';
+        $classes = 'heading-box';
     }
     if ($classes) {
         $heading_data['class'] = _attribute('class', $classes);
