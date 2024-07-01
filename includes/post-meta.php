@@ -431,7 +431,7 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('textarea', 'custom_html', __('Custom HTML')),
                                         )
                                     ),
-                                    //Individual Columns Styles
+                                //All Columns Styles
                                 Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label')
                                     ->set_conditional_logic(
                                         array(
@@ -748,25 +748,9 @@ Container::make('post_meta', __('Sections'))
 
                             ))
                             ->set_header_template('<%- column_title %>'),
-                        Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label')
-                        ->set_conditional_logic(
-                            array(
-                                array(
-                                    'field' => 'individual_column_settings',
-                                    'value' => false,
-                                )
-                            )
-                        ),
+                        Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label'),
                         //All columns styles
                         Field::make('complex', 'column_styles', __(''))
-                        ->set_conditional_logic(
-                            array(
-                                array(
-                                    'field' => 'individual_column_settings',
-                                    'value' => false,
-                                )
-                            )
-                        )
                             ->setup_labels(
                                 array(
                                     'plural_name'   => 'Styles',
@@ -1053,13 +1037,6 @@ Container::make('post_meta', __('Sections'))
                                 'border_radius',
                                 array(
                                     Field::make('text', 'border_radius', 'Border Radius')
-                                )
-                            )
-                            ->add_fields(
-                                'border',
-                                array(
-                                    Field::make('text', 'border_width', 'Border Width'),
-                                    Field::make('color', 'border_color', 'Border Color'),
                                 )
                             )
                             ->add_fields(
@@ -1361,16 +1338,15 @@ Container::make('post_meta', __('Sections'))
                             Field::make('text', 'border_radius', 'Border Radius')
                         )
                     )
-                  
-                    
+
+
                     ->add_fields(
                         'custom_class',
                         array(
                             Field::make('text', 'custom_class', 'Custom Class')
                         )
                     )
-                 
-                    )
+
                     ->set_layout('tabbed-vertical')
 
             ))
