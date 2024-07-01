@@ -325,7 +325,6 @@ Container::make('post_meta', __('Sections'))
                                                     )
                                                 )
                                             ),
-                                        Field::make('checkbox', 'is_background_image', __('Is Background Image')),
                                         Field::make('checkbox', 'rounded_corners', __('Rounder Corners')),
                                         Field::make('text', 'border_radius', __('Border Radius'))->set_help_text('Custom border radius')
                                             ->set_conditional_logic(
@@ -1429,6 +1428,7 @@ Container::make('post_meta', __('Sections'))
                                                     'thumbnail'    => 'Thumbnail',
                                                 )
                                             ),
+                                        Field::make('checkbox', 'is_background_image', __('Is Background Image')),
                                         Field::make('checkbox', 'rounded_corners', __('Rounder Corners')),
                                         Field::make('text', 'border_radius', __('Border Radius'))->set_help_text('Custom border radius')
                                             ->set_conditional_logic(
