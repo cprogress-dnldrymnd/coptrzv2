@@ -130,6 +130,12 @@ function ____columns_modules($columns)
                 case 'icon':
                     $html .= ____icon_modules($item);
                     break;
+                case 'description':
+                    $html .= __description(array(
+                        'description' => $items['description'],
+                        'class' => _attribute('class', array('description-box'))
+                    ));
+                    break;
             }
         }
         $html .= '</div>';
