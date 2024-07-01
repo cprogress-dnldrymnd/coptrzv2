@@ -9901,6 +9901,9 @@ p:last-child {
 .section .container > *:not(:last-child) {
   margin-bottom: 2rem; }
 
+.button-box a, .button-box button {
+  padding: 1.25rem 2.5rem; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
