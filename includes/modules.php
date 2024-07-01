@@ -189,15 +189,18 @@ function ____gallery_modules($data)
 
         if ($gallery_style == 'logo-slider') {
             $image_args['class'] = _attribute('class', array('swiper-slide'));
-
             $number_of_slides_attr = _attribute('number_of_slides', array($number_of_slides));
             $number_of_slides_tablet_attr = _attribute('number_of_slides_tablet', array($number_of_slides_tablet));
             $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
             $attributes = _attributes($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr);
+            $image_args['size'] = 'medium';
+
 
             $html .= "<div id='$id' class='swiper swiper-logo-slider' $attributes>";
             $html .= '<div class="swiper-wrapper align-items-center">';
         } else {
+            $image_args['size'] = 'large';
+
             $html .= '<div class="row g-5">';
             $image_args['class'] = _attribute('class', array('col-lg-4'));
         }
