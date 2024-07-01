@@ -9407,7 +9407,7 @@ h2,
 
 h3, .h3 {
   font-size: 1.5rem;
-  margin-bottom: 2rem; }
+  margin-bottom: 1rem; }
   @media (min-width: 992px) {
     h3, .h3 {
       font-size: 1.75rem; } }
@@ -9910,6 +9910,7 @@ p:last-child {
   color: currentCOlor; }
 .button-box.button-accent a,
 .button-box.button-accent button {
+  color: var(--bs-white);
   color: var(--bs-white);
   background-color: var(--bs-accent); }
 
