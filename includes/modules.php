@@ -183,18 +183,24 @@ function ____gallery_modules($gallery, $gallery_style)
         if ($gallery_style == 'logo-slider') {
             $html .= '<div class="swiper swiper-logo-slider">';
             $html .= '<div class="swiper-wrapper>';
+        } else {
+            $html .= '<div class="row g-5">';
         }
 
         foreach ($gallery as $image) {
             $image_args['image_id'] = $image;
             if ($gallery_style == 'logo-slider') {
                 $image_args['class'] = _attribute('class', array('swiper-slide'));
+            } else {
+                $image_args['class'] = _attribute('class', array('col-lg-4'));
             }
 
             $html .= __image($image);
         }
         if ($gallery_style == 'logo-slider') {
             $html  .= "<div>";
+            $html  .= "<div>";
+        } else {
             $html  .= "<div>";
         }
         $html  .= "<div>";
