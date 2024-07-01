@@ -9946,6 +9946,10 @@ p:last-child {
     width: 40% !important; }
     .style-1 .swiper-slide .column-holder > *:not(.background-image) {
       position: relative; }
+  .style-1 .swiper-button-next,
+  .style-1 .swiper-button-prev {
+    position: static !important;
+    transform: non; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
