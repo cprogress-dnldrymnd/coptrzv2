@@ -101,10 +101,10 @@ function ___sections()
                             }
                         }
                         if ($has_suffix) {
-                            $heading_data['suffix'] = $has_suffix;
+                            $heading_data['suffix'] = $suffix;
                         }
                         if ($has_prefix) {
-                            $heading_data['suffix'] = $prefix;
+                            $heading_data['prefix'] = $prefix;
                         }
                         $sections_var .= __heading($heading_data);
                         break;
