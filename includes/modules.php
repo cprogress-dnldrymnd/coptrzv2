@@ -128,8 +128,9 @@ function ____heading_modules($items)
         $heading_data['prefix'] = $prefix;
         $class_args['class'] = 'heading-box';
     }
-
-    $heading_data['class'] = implode(' ', $class_args);
+    if($class_args) {
+        $heading_data['class'] = implode(' ', $class_args);
+    }
 
     return __heading($heading_data);
 }
