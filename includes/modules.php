@@ -113,16 +113,17 @@ function _attributes($attributes)
 {
     if ($attributes) {
         $attribute_val = '';
-        $class_attr_val = '';
+        $class_attr_arr = [];
         foreach ($attributes as $attribute) {
             if ($attribute[0] == 'class') {
-                $class_attr_val .= $attribute[1] . ' ';
+                $class_attr_arr[] .= $attribute[1];
             } else {
                 $attribute_val .= $attribute[0] . "='$attribute[1]'";
             }
         }
-        if ($class_attr_val) {
-            $class_attr = "class='$class_attr_val'";
+        if ($class_attr_arr) {
+            $class_val = implode(' ', $class_attr_arr);
+            $class_attr = "class='$class_val'";
         }
 
 
