@@ -205,6 +205,38 @@ function ____post_grid($data)
     $source = $data['post_type'][0]['source'];
 
 
+    // Build the args
+    $args['post_type'] = $post_type;
+    $args['posts_per_page'] = -1;
+
+    if ($source == 'category') {
+        $category_ids = array();
+        $categories = $data['post_type'][0]['category'];
+        $taxonomy_key = $data['post_type'][0]['taxonomy_key'];
+        foreach ($categories as $category) {
+            $category_ids[] = $category['id'];
+        }
+        $args['tax_query'] =  array(
+            array(
+                'taxonomy' => $taxonomy_key,
+                'field' => 'id',
+                'terms' => $category_ids,
+            )
+        );
+    } else if ($source == 'manually') {
+        $posts = $data['post_type'][0]['post'];
+        $posts_ids = array();
+        foreach ($posts as $post) {
+            $posts_ids[] = $post['id'];
+        }
+        $args['post__in'] = $posts_ids;
+    }
+    // Get the posts
+    $posts_lists = get_posts($args);
+
+    $classes[] = 'column-holder';
+    $classes[] = 'position-relative';
+
     $styles = array();
     $classes = array();
     $column_classes = array();
@@ -261,37 +293,6 @@ function ____post_grid($data)
                 break;
         }
     }
-    // Build the args
-    $args['post_type'] = $post_type;
-    $args['posts_per_page'] = -1;
-
-    if ($source == 'category') {
-        $category_ids = array();
-        $categories = $data['post_type'][0]['category'];
-        $taxonomy_key = $data['post_type'][0]['taxonomy_key'];
-        foreach ($categories as $category) {
-            $category_ids[] = $category['id'];
-        }
-        $args['tax_query'] =  array(
-            array(
-                'taxonomy' => $taxonomy_key,
-                'field' => 'id',
-                'terms' => $category_ids,
-            )
-        );
-    } else if ($source == 'manually') {
-        $posts = $data['post_type'][0]['post'];
-        $posts_ids = array();
-        foreach ($posts as $post) {
-            $posts_ids[] = $post['id'];
-        }
-        $args['post__in'] = $posts_ids;
-    }
-    // Get the posts
-    $posts_lists = get_posts($args);
-
-    $classes[] = 'column-holder';
-    $classes[] = 'position-relative';
 
     if ($styles) {
         $styles_val = _attribute('style', $styles, ';');
@@ -308,7 +309,6 @@ function ____post_grid($data)
 
     $post_attribute = _attributes(array($classes_val, $styles_val));
     $column_attribute = _attributes(array($column_classes_val));
-
 
     $html = '';
     $html .= "<div class='post-grid'>";
