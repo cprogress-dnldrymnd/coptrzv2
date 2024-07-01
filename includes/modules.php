@@ -128,6 +128,8 @@ function ____columns_modules($columns)
         $html .= '</div>';
     }
     $html .= '</div>';
+
+    return $html;
 }
 function ____heading_modules($items)
 {
