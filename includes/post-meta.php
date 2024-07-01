@@ -431,7 +431,7 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('textarea', 'custom_html', __('Custom HTML')),
                                         )
                                     ),
-                                Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label')
+                                Field::make('html', 'html_6')->set_html('<label>Columns Styles</label>')->set_classes('cb-label')
                                     ->set_conditional_logic(
                                         array(
                                             array(

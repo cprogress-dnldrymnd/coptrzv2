@@ -238,6 +238,9 @@ function ____heading_modules($items)
     return __heading($heading_data);
 }
 
+function _styles()
+{
+}
 function _attribute($name, $attributes, $separator = ' ')
 {
     $html = "$name='";
