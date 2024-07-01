@@ -9911,7 +9911,7 @@ p:last-child {
   border: 1px solid;
   display: inline-block;
   color: var(--bs-black);
-  text-decoration: underline; }
+  text-decoration: none; }
 .button-box.button-accent a,
 .button-box.button-accent button {
   color: var(--bs-white);
