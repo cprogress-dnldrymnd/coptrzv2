@@ -256,8 +256,8 @@ function ____post_grid($data)
                 break;
             case 'column_width':
                 $column_classes[] = $style['column_width'];
-                $column_width_tablet[] = $style['column_width_tablet'];
-                $column_width_mobile[] = $style['column_width_mobile'];
+                $column_classes[] = $style['column_width_tablet'];
+                $column_classes[] = $style['column_width_mobile'];
                 break;
         }
     }
