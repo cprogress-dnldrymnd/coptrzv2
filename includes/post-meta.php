@@ -1550,52 +1550,55 @@ Container::make('post_meta', __('Sections'))
                     ->add_fields(
                         'buttons',
                         array(
-                            Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
-                                ->set_options(
-                                    array(
-                                        ''          => 'Select Button Type',
-                                        'page'      => 'Page',
-                                        'product'      => 'Product',
-                                        'guides'      => 'Guides',
-                                        'casestudies'      => 'Case Studies',
-                                        'post'      => 'Post',
-                                        'solutions' => 'Solution',
-                                        'popups'    => 'Popup',
-                                        'custom'     => 'Custom',
-                                    )
-                                ),
-                            Field::make('text', 'button_text', __('Button Text')),
-                            Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
-                                ->set_conditional_logic(
-                                    array(
-                                        array(
-                                            'field'   => 'button_type',
-                                            'value'   => 'custom',
-                                            'compare' => '!='
-                                        )
-                                    )
-                                ),
-                            Field::make('html', 'html')
-                                ->set_html('<div class="page-selector">  </div>'),
-                            Field::make('text', 'button_url_custom', __('Button URL'))
-                                ->set_conditional_logic(
-                                    array(
-                                        array(
-                                            'field' => 'button_type',
-                                            'value' => 'custom',
-                                        )
-                                    )
-                                ),
-                            Field::make('select', 'button_style', __('Button Style'))
-                                ->set_options(
-                                    array(
-                                        'button-accent'      => 'Accent',
-                                        'button-primary'      => 'Primary',
-                                        'button-secondary' => 'Secondary',
-                                        'button-white' => 'White',
-                                        'button-bordered'    => 'Bordered',
-                                    )
-                                ),
+                            Field::make('complex', 'buttons', __('Buttons'))
+                                ->add_fields(array(
+                                    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+                                        ->set_options(
+                                            array(
+                                                ''          => 'Select Button Type',
+                                                'page'      => 'Page',
+                                                'product'      => 'Product',
+                                                'guides'      => 'Guides',
+                                                'casestudies'      => 'Case Studies',
+                                                'post'      => 'Post',
+                                                'solutions' => 'Solution',
+                                                'popups'    => 'Popup',
+                                                'custom'     => 'Custom',
+                                            )
+                                        ),
+                                    Field::make('text', 'button_text', __('Button Text')),
+                                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+                                        ->set_conditional_logic(
+                                            array(
+                                                array(
+                                                    'field'   => 'button_type',
+                                                    'value'   => 'custom',
+                                                    'compare' => '!='
+                                                )
+                                            )
+                                        ),
+                                    Field::make('html', 'html')
+                                        ->set_html('<div class="page-selector">  </div>'),
+                                    Field::make('text', 'button_url_custom', __('Button URL'))
+                                        ->set_conditional_logic(
+                                            array(
+                                                array(
+                                                    'field' => 'button_type',
+                                                    'value' => 'custom',
+                                                )
+                                            )
+                                        ),
+                                    Field::make('select', 'button_style', __('Button Style'))
+                                        ->set_options(
+                                            array(
+                                                'button-accent'      => 'Accent',
+                                                'button-primary'      => 'Primary',
+                                                'button-secondary' => 'Secondary',
+                                                'button-white' => 'White',
+                                                'button-bordered'    => 'Bordered',
+                                            )
+                                        ),
+                                ))
                         )
                     ),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
