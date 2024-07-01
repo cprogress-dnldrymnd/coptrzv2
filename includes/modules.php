@@ -298,7 +298,7 @@ function ____post_grid($data)
     if ($styles) {
         $styles_val = _attribute('style', $styles, ';');
     }
-    
+
 
     if ($classes) {
         $classes_val = _attribute('class', $classes, ' ');
@@ -326,7 +326,7 @@ function ____post_grid($data)
                     $html .= __heading(array(
                         'tag' => 'h3',
                         'heading' => $post->post_title,
-                        'class' => _attribute('class', array('post-title'))
+                        'class' => _attribute('class', array('post-title position-relative'))
                     ));
                     break;
                 case 'permalink':
@@ -335,7 +335,7 @@ function ____post_grid($data)
                         'button_text' => $item['button_text'],
                         'button_url' => $post->ID,
                         'button_url_custom' => $item['button_url_custom'],
-                        'button_style' => $item['button_style'],
+                        'button_style' => $item['button_style'] . ' position-relative',
                         'button_target' => $item['button_target'],
                     ));
                     break;
