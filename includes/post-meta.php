@@ -8,6 +8,7 @@ use Carbon_Fields\Field;
 /* Section
 /*-----------------------------------------------------------------------------------*/
 
+$animate_on_scroll = array("fade-up", "fade-down", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-right", "fade-down-left", "flip-left", "flip-right", "flip-up", "flip-down", "zoom-in", "zoom-in-up", "zoom-in-down", "zoom-in-left", "zoom-in-right", "zoom-out", "zoom-out-up", "zoom-out-down", "zoom-out-right", "zoom-out-left");
 
 Container::make('post_meta', __('Hero'))
     ->add_fields(array(
@@ -45,7 +46,6 @@ Container::make('post_meta', __('Sections'))
                         Field::make('checkbox', 'has_prefix', __('Has Prefix'))->set_width(20),
                         Field::make('checkbox', 'has_suffix', __('Has Suffix'))->set_width(20),
                         Field::make('checkbox', 'has_custom_heading_settings', __('Custom Heading Settings'))->set_width(50),
-                        Field::make('html', 'html_2')->set_html('')->set_classes('cb-label-end'),
                         Field::make('text', 'heading', __('Heading'))->set_classes('inline-field'),
                         Field::make('text', 'prefix', __('Prefix'))->set_classes('inline-field')
                             ->set_conditional_logic(
