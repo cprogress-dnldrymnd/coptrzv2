@@ -301,14 +301,20 @@ function ____post_grid($data)
         $classes_val = _attribute('class', $classes, ' ');
     }
 
+
+    if ($column_classes) {
+        $column_classes_val = _attribute('class', $column_classes, ' ');
+    }
+
     $post_attribute = _attributes(array($classes_val, $styles_val));
+    $column_attribute = _attributes(array($column_classes_val));
 
 
     $html = '';
     $html .= "<div class='post-grid'>";
     $html .= "<div class='row g-4'>";
     foreach ($posts_lists as $post) {
-        $html .= "<div class='$column_classes'>";
+        $html .= "<div class='$column_attribute'>";
         $html .= "<div $post_attribute";
         foreach ($post_elements as $item) {
             $type = $item['_type'];
