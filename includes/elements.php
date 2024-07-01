@@ -1,8 +1,8 @@
 <?php
 function __heading($data)
 {
-    $class = $data['tag'];
     $heading = $data['heading'];
+    $class = $data['class'];
     $tag = $data['tag'];
     $_attributes = _attributes(array(
         array('class', $class)
@@ -12,25 +12,18 @@ function __heading($data)
     }
 }
 
-function __description($atts)
+function __description($data)
 {
-    extract(
-        shortcode_atts(
-            array(
-                'description' => '',
-                'class' => '',
-            ),
-            $atts
-        )
-    );
+    $description = $data['description'];
+    $class = $data['class'];
+
     $_attributes = _attributes(array(
         array('class', $class),
         array('class', 'description-box'),
     ));
 
-    $description_val = do_shortcode(wpautop(html_entity_decode($description)));
     if ($description) {
-        return "<div $_attributes>$description_val</div>";
+        return "<div $_attributes>$description</div>";
     }
 }
 
