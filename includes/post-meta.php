@@ -460,6 +460,7 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('textarea', 'custom_html', __('Custom HTML')),
                                         )
                                     ),
+
                                 //Individual Columns Styles
                                 Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label')
                                     ->set_conditional_logic(
@@ -1138,7 +1139,49 @@ Container::make('post_meta', __('Sections'))
                             )
                             ->set_layout('tabbed-vertical')
 
-                    )),
+                    ))
+                    ->add_fields(
+                        'gallery',
+                        array(
+                            Field::make('select', 'gallery_style', 'Gallery Style')
+                                ->set_options(
+                                    array(
+                                        'logo-slider'   => 'Logo Slider',
+                                        'grid' => 'Grid',
+                                    )
+                                ),
+                            Field::make('media_gallery', 'gallery', __('Gallery')),
+                            Field::make('text', 'number_of_slides', __('Number of Slides Desktop'))->set_default_value(6)->set_required(true)->set_attribute('type', 'number')
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'gallery_style',
+                                            'value' => 'logo-slider',
+                                        )
+                                    )
+                                ),
+                            Field::make('text', 'number_of_slides_tablet', __('Number of Slides Tablet'))
+                                ->set_attribute('type', 'number')
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'gallery_style',
+                                            'value' => 'logo-slider',
+                                        )
+                                    )
+                                ),
+                            Field::make('text', 'number_of_slides_mobile', __('Number of Slides Mobile'))
+                                ->set_attribute('type', 'number')
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'gallery_style',
+                                            'value' => 'logo-slider',
+                                        )
+                                    )
+                                ),
+                        )
+                    ),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
                     ->setup_labels(
