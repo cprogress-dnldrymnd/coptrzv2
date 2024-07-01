@@ -180,6 +180,14 @@ function ___sections()
                     case 'buttons':
                         $html .= ____button_modules($items['buttons']);
                         break;
+                    case 'post_grid':
+                        $html .= ____post_grid(array(
+                            'post_box_styles' => $items['post_box_styles'],
+                            'post_elements' => $items['post_elements'],
+                            'post_type' => $items['post_type'],
+                            'post_box_styles' => $items['post_box_styles'],
+                        ));
+                        break;
                 }
             }
 
@@ -187,6 +195,15 @@ function ___sections()
             $html .= "</section>";
         }
     }
+    return $html;
+}
+function ____post_grid($data)
+{
+    $html = '';
+    $html .= "<div class='post-grid'>";
+    
+    $html .= "</div>";
+
     return $html;
 }
 function ____button_modules($buttons)
