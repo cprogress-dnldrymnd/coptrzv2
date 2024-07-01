@@ -90,7 +90,7 @@ Container::make('post_meta', __('Sections'))
                             ->set_options(
                                 array(
                                     '' => 'Default',
-                                    'big-heading' => 'Big Heading',
+                                    'large-heading' => 'Large Heading',
                                     'medium-heading' => 'Medium Heading',
                                     'small-heading' => 'Small Heading',
                                 )
@@ -180,7 +180,7 @@ Container::make('post_meta', __('Sections'))
                                             ->set_options(
                                                 array(
                                                     '' => 'Default',
-                                                    'big-heading' => 'Big Heading',
+                                                    'large-heading' => 'Large Heading',
                                                     'medium-heading' => 'Medium Heading',
                                                     'small-heading' => 'Small Heading',
                                                 )
