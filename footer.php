@@ -4,8 +4,8 @@ $hide_footer = get__post_meta('hide_footer');
 if (!$hide_footer) {
 ?>
     <footer id="footer" class="bg-black text-white md-padding-top">
-        <div class="container">
-            <div class="footer-columns">
+        <div class="footer-columns">
+            <div class="container">
                 <div class="row g-4">
                     <div class="col-lg col-md-12">
                         <?php dynamic_sidebar('footer_column_1') ?>
@@ -24,7 +24,9 @@ if (!$hide_footer) {
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
                 <div class="row g-4">
                     <div class="col-lg-6">
                         <?php dynamic_sidebar('footer_bottom_left') ?>
