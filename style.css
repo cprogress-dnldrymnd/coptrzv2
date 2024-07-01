@@ -9877,7 +9877,7 @@ p:last-child {
   .container {
     max-width: 1520px; } }
 
-.full-width {
+.full-width .container {
   max-width: 100%;
   --bs-gutter-x: 0; }
 
