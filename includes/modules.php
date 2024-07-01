@@ -57,7 +57,7 @@ function ___hero()
 function ___sections()
 {
     $sections = get__post_meta('sections');
-    $sections_var = '';
+    $html = '';
     foreach ($sections as $key => $section) {
         $disable_section = $section['disable_section'];
         if (!$disable_section) {
@@ -148,35 +148,32 @@ function ___sections()
 
             $section_attribute = _attributes(array($classes_attr, $id, $styles_val));
 
-            $sections_var .= "<section $section_attribute>";
-            $sections_var .= "<div class='container' $container_styles_val>";
+            $html .= "<section $section_attribute>";
+            $html .= "<div class='container' $container_styles_val>";
 
             foreach ($section_items as $items) {
                 $type = $items['_type'];
                 switch ($type) {
                     case 'heading':
-                        $sections_var .= ____heading_modules($items);
+                        $html .= ____heading_modules($items);
                         break;
                     case 'columns':
-                        $sections_var .= ____columns_modules($items);
+                        $html .= ____columns_modules($items);
                         break;
                     case 'description':
-                        $sections_var .= __description(array(
+                        $html .= __description(array(
                             'description' => $items['description'],
                             'class' => _attribute('class', array('description-box'))
                         ));
                         break;
-                    case 'gallery':
-                        $sections_var .= ____gallery_modules($items['gallery'], $items['gallery_style']);
-                        break;
                 }
             }
 
-            $sections_var .= "</div>";
-            $sections_var .= "</section>";
+            $html .= "</div>";
+            $html .= "</section>";
         }
     }
-    return $sections_var;
+    return $html;
 }
 function ____gallery_modules($gallery, $gallery_style)
 {
@@ -319,6 +316,9 @@ function ____columns_modules($items)
                         'description' => $item['description'],
                         'class' => _attribute('class', array('description-box'))
                     ));
+                    break;
+                case 'gallery':
+                    $html .= ____gallery_modules($items['gallery'], $items['gallery_style']);
                     break;
             }
         }
