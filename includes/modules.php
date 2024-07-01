@@ -293,7 +293,7 @@ function ____post_grid($data)
                 break;
         }
     }
-    $classes[] = 'column-holder position-relative overflow-hidden';
+    $classes[] = 'column-holder position-relative overflow-hidden h-100';
 
     if ($styles) {
         $styles_val = _attribute('style', $styles, ';');
