@@ -139,13 +139,13 @@ function _bg_image($hero_background)
 
 function __button($data)
 {
-    $button_type = isset($data['button_type']) ? $data['button_type'] : false;
-    $button_text = isset($data['button_text']) ? $data['button_text'] : false;
-    $button_url = isset($data['button_url']) ? $data['button_url'] : false;
-    $button_url_custom = isset($data['button_url_custom']) ? $data['button_url_custom'] : false;
-    $button_style = isset($data['button_style']) ? $data['button_style'] : false;
-    $button_text = isset($data['button_text']) ? $data['button_text'] : false;
-    $button_target = isset($data['button_target']) ? $data['button_target'] : false;
+    $button_type        = isset($data['button_type']) ? $data['button_type'] : false;
+    $button_text        = isset($data['button_text']) ? $data['button_text'] : false;
+    $button_url         = isset($data['button_url']) ? $data['button_url'] : false;
+    $button_url_custom  = isset($data['button_url_custom']) ? $data['button_url_custom'] : false;
+    $button_style       = isset($data['button_style']) ? $data['button_style'] : false;
+    $button_text        = isset($data['button_text']) ? $data['button_text'] : false;
+    $button_target      = isset($data['button_target']) ? $data['button_target'] : false;
 
     if ($button_type != 'custom') {
         $button_url = get_permalink($button_url);
