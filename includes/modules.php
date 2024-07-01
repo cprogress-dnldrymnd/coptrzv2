@@ -291,28 +291,26 @@ function ____post_grid($data)
     foreach ($posts_lists as $post) {
         $html .= "<div class='col'>";
         $html .= "<div class='column-holder'>";
-        foreach ($post_elements as $items) {
-            foreach ($items as $item) {
-                $type = $item['_type'];
-                switch ($type) {
-                    case 'post_title':
-                        $html .= __heading(array(
-                            'tag' => 'h3',
-                            'heading' => $post->post_title,
-                            'class' => _attribute('class', 'post-title')
-                        ));
-                        break;
-                    case 'permalink':
-                        $html .= __button(array(
-                            'button_type' => get_post_type(),
-                            'button_text' => $item['button_text'],
-                            'button_url' => $post->ID,
-                            'button_url_custom' => $item['button_url_custom'],
-                            'button_style' => $item['button_style'],
-                            'button_target' => $item['button_target'],
-                        ));
-                        break;
-                }
+        foreach ($post_elements as $item) {
+            $type = $item['_type'];
+            switch ($type) {
+                case 'post_title':
+                    $html .= __heading(array(
+                        'tag' => 'h3',
+                        'heading' => $post->post_title,
+                        'class' => _attribute('class', 'post-title')
+                    ));
+                    break;
+                case 'permalink':
+                    $html .= __button(array(
+                        'button_type' => get_post_type(),
+                        'button_text' => $item['button_text'],
+                        'button_url' => $post->ID,
+                        'button_url_custom' => $item['button_url_custom'],
+                        'button_style' => $item['button_style'],
+                        'button_target' => $item['button_target'],
+                    ));
+                    break;
             }
         }
         $html .= "</div>";
