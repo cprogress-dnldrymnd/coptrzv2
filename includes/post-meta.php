@@ -1045,7 +1045,7 @@ Container::make('post_meta', __('Sections'))
                                             )
                                         ),
 
-                                    Field::make('select', 'border_style', 'Border Color')
+                                    Field::make('select', 'border_ccolor', 'Border Color')
                                         ->set_options(
                                             array(
                                                 'text-primary'   => 'Primary',
