@@ -120,6 +120,9 @@ function ____columns_modules($columns)
                 case 'heading':
                     $html .= ____heading_modules($item);
                     break;
+                case 'icon':
+                    $html .= ____heading_modules($item);
+                    break;
             }
         }
         $html .= '</div>';
@@ -128,6 +131,36 @@ function ____columns_modules($columns)
     $html .= '</div>';
 
     return $html;
+}
+
+function ____icon_modules($items)
+{
+    $icon_data['id'] = $items['id'];
+
+    $icon_color_custom = $items['icon_color_custom'];
+    $icon_width = $items['icon_width'];
+    $icon_height = $items['icon_height'];
+    $classes[] = 'icon-box';
+    $styles = [];
+    if ($icon_color_custom) {
+        $classes[] = $icon_color_custom;
+    }
+
+    if ($icon_width) {
+        $styles[] = '--width: ' . $icon_width;
+    }
+    if ($icon_height) {
+        $styles[] = '--height: ' . $icon_height;
+    }
+
+    if ($classes) {
+        $icon_data['class'] = _attribute('class', $classes);
+    }
+    if ($styles) {
+        $icon_data['styles'] = _attribute('style', $styles, ';');
+    }
+
+    return _icon($icon_data);
 }
 function ____heading_modules($items)
 {

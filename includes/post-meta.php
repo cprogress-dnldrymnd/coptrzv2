@@ -402,6 +402,7 @@ Container::make('post_meta', __('Sections'))
                                         Field::make('select', 'icon_color', 'Text Color')
                                             ->set_options(
                                                 array(
+                                                    ''   => 'Default',
                                                     'text-primary'   => 'Primary',
                                                     'text-secondary' => 'Secondary',
                                                     'text-accent'    => 'Accent',

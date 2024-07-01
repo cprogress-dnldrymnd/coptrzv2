@@ -45,7 +45,7 @@ function __description($data)
     if ($class) {
         $attributes_args[] = $class;
     }
-  
+
     $_attributes = _attributes($attributes_args);
 
     if ($description) {
@@ -53,9 +53,28 @@ function __description($data)
     }
 }
 
-function _icon()
+function _icon($data, $html = '')
 {
-    $url = wp_get_original_image_path($id);
+    $id = isset($data['id']) ? $data['id'] : false;
+    if ($id) {
+        $class = isset($data['class']) ? $data['class'] : false;
+        $styles = isset($data['styles']) ? $data['styles'] : false;
+
+
+        $attributes_args = [];
+        if ($class) {
+            $attributes_args[] = $class;
+        }
+        if ($styles) {
+            $attributes_args[] = $styles;
+        }
+        $_attributes = _attributes($attributes_args);
+
+        $url = wp_get_original_image_path($id);
+        $html .= "<div>";
+        $html .= _output_svg_from_url($url);
+        $html .= '</div>';
+    }
 }
 
 function __image($data)
