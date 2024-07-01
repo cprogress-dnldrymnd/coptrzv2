@@ -198,7 +198,7 @@ function ___sections()
 }
 function ____post_grid($data)
 {
-    $styles = $data['post_box_styles'];
+    $post_box_styles = $data['post_box_styles'];
     $post_elements = $data['post_elements'];
 
     $post_type = $data['post_type'][0]['_type'];
@@ -240,56 +240,56 @@ function ____post_grid($data)
     $styles = array();
     $classes = array();
     $column_classes = array();
-    foreach ($styles as $style) {
-        $type = $style['_type'];
+    foreach ($post_box_styles as $post_box_style) {
+        $type = $post_box_style['_type'];
         switch ($type) {
             case 'padding':
-                $classes[] = $style['padding_top'];
-                $classes[] = $style['padding_bottom'];
-                $classes[] = $style['padding_left'];
-                $classes[] = $style['padding_right'];
+                $classes[] = $post_box_style['padding_top'];
+                $classes[] = $post_box_style['padding_bottom'];
+                $classes[] = $post_box_style['padding_left'];
+                $classes[] = $post_box_style['padding_right'];
                 break;
             case 'margin':
-                $classes[] = $style['margin_top'];
-                $classes[] = $style['margin_bottom'];
-                $classes[] = $style['margin_left'];
-                $classes[] = $style['margin_right'];
+                $classes[] = $post_box_style['margin_top'];
+                $classes[] = $post_box_style['margin_bottom'];
+                $classes[] = $post_box_style['margin_left'];
+                $classes[] = $post_box_style['margin_right'];
                 break;
             case 'custom_class':
-                $classes[] = $style['custom_class'];
+                $classes[] = $post_box_style['custom_class'];
                 break;
             case 'alignment':
-                $classes[] = $style['align_items'];
-                $classes[] = $style['justify_content'];
-                $classes[] = $style['text_align'];
-                if ($style['align_items'] || $style['justify_content']) {
+                $classes[] = $post_box_style['align_items'];
+                $classes[] = $post_box_style['justify_content'];
+                $classes[] = $post_box_style['text_align'];
+                if ($post_box_style['align_items'] || $post_box_style['justify_content']) {
                     $classes[] = 'd-flex';
                 }
                 break;
             case 'text_color':
-                $text_color_custom = $style['text_color_custom'];
-                $classes[] = $style['text_color'];
+                $text_color_custom = $post_box_style['text_color_custom'];
+                $classes[] = $post_box_style['text_color'];
                 if ($text_color_custom) {
                     $styles[] = 'color: ' . $text_color_custom;
                 }
                 break;
             case 'background_color':
-                $background_color_custom = $style['background_color_custom'];
-                $classes[] = $style['background_color'];
+                $background_color_custom = $post_box_style['background_color_custom'];
+                $classes[] = $post_box_style['background_color'];
                 if ($background_color_custom) {
                     $styles[] = 'background-color: ' . $background_color_custom;
                 }
                 break;
             case 'border':
-                if ($style['border_radius']) {
-                    $styles[] = '--border-radius: ' . $style['border_radius'];
+                if ($post_box_style['border_radius']) {
+                    $styles[] = '--border-radius: ' . $post_box_style['border_radius'];
                     $classes[] = 'rounded-corner';
                 }
                 break;
             case 'column_width':
-                $column_classes[] = $style['column_width'];
-                $column_classes[] = $style['column_width_tablet'];
-                $column_classes[] = $style['column_width_mobile'];
+                $column_classes[] = $post_box_style['column_width'];
+                $column_classes[] = $post_box_style['column_width_tablet'];
+                $column_classes[] = $post_box_style['column_width_mobile'];
                 break;
         }
     }
