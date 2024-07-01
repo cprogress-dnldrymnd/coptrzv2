@@ -9644,6 +9644,66 @@ p:last-child {
 .pt-50px {
   padding-top: 50px; }
 
+.xl-padding-top {
+  padding-top: 12.5rem; }
+
+.xl-padding-bottom {
+  padding-bottom: 12.5rem; }
+
+.xl-padding-left {
+  padding-left: 12.5rem; }
+
+.xl-padding-right {
+  padding-right: 12.5rem; }
+
+.lg-padding-top {
+  padding-top: 9.375rem; }
+
+.lg-padding-bottom {
+  padding-bottom: 9.375rem; }
+
+.lg-padding-left {
+  padding-left: 9.375rem; }
+
+.lg-padding-right {
+  padding-right: 9.375rem; }
+
+.md-padding-top {
+  padding-top: 6.25rem; }
+
+.md-padding-bottom {
+  padding-bottom: 6.25rem; }
+
+.md-padding-left {
+  padding-left: 6.25rem; }
+
+.md-padding-right {
+  padding-right: 6.25rem; }
+
+.sm-padding-top {
+  padding-top: 3.125rem; }
+
+.sm-padding-bottom {
+  padding-bottom: 3.125rem; }
+
+.sm-padding-left {
+  padding-left: 3.125rem; }
+
+.sm-padding-right {
+  padding-right: 3.125rem; }
+
+.xs-padding-top {
+  padding-top: 2rem; }
+
+.xs-padding-bottom {
+  padding-bottom: 2rem; }
+
+.xs-padding-left {
+  padding-left: 2rem; }
+
+.xs-padding-right {
+  padding-right: 2rem; }
+
 .background-overlay:before {
   content: "";
   position: absolute;

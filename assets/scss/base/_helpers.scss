@@ -11,7 +11,6 @@ $sizes: 10px, 15px, 20px, 25px, 35px, 40px, 45px, 50px;
         margin-right: $size;
     }
 
-    
     .mt-#{$size} {
         margin-top: $size;
     }
@@ -29,12 +28,45 @@ $sizes: 10px, 15px, 20px, 25px, 35px, 40px, 45px, 50px;
         margin-bottom: $size;
     }
 
-    
-
     .pb-#{$size} {
         padding-bottom: $size;
     }
     .pt-#{$size} {
         padding-top: $size;
+    }
+}
+
+$spacings: (
+    "xl": 12.5rem,
+    "lg": 9.375rem,
+    "md": 6.25rem,
+    "sm": 3.125rem,
+    "xs": 2rem
+);
+
+@each $size, $spacing in $spacings {
+    .#{$size}-padding-top {
+        padding-top: $spacing;
+    }
+    .#{$size}-padding-bottom {
+        padding-bottom: $spacing;
+    }
+    .#{$size}-padding-left {
+        padding-left: $spacing;
+    }
+    .#{$size}-padding-right {
+        padding-right: $spacing;
+    }
+    .#{$size}-margin-top {
+        margin-top: $spacing;
+    }
+    .#{$size}-margin-bottom {
+        margin-bottom: $spacing;
+    }
+    .#{$size}-margin-left {
+        margin-left: $spacing;
+    }
+    .#{$size}-margin-right {
+        margin-right: $spacing;
     }
 }
