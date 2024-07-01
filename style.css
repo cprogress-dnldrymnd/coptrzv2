@@ -10002,9 +10002,9 @@ header {
   #footer .footer-bottom {
     border-top: 1px solid #3C3C3C;
     padding-top: 13px;
-    padding-botom: 13px; }
+    padding-bottom: 13px; }
     #footer .footer-bottom .footer-right ul {
-      display: flex;
+      display: inline-flex;
       align-items: center; }
       #footer .footer-bottom .footer-right ul li:not(:last-child) {
         margin-right: 1rem; }

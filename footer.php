@@ -31,7 +31,7 @@ if (!$hide_footer) {
                     <div class="col-lg-6">
                         <?php dynamic_sidebar('footer_bottom_left') ?>
                     </div>
-                    <div class="col-lg-6 footer-right">
+                    <div class="col-lg-6 footer-right text-end">
                         <?php dynamic_sidebar('footer_bottom_right') ?>
                     </div>
                 </div>
