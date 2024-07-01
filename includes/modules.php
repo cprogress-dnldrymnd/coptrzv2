@@ -103,6 +103,7 @@ function ____heading_modules($items)
     $heading_data['heading'] = $heading;
 
     $classes = [];
+    $styles = [];
     if ($has_custom_heading_settings) {
         if ($tag) {
             $heading_data['tag'] = $tag;
@@ -110,12 +111,12 @@ function ____heading_modules($items)
         if ($size) {
             $classes[] = $size;
         }
-        if($text_align) {
+        if ($text_align) {
             $classes[] = $text_align;
         }
 
         if ($text_color == 'text-custom') {
-            $heading_data['style'] = 'color: ' . $text_color_custom;
+            $styles = 'color: ' . $text_color_custom;
         } else {
             if ($text_color) {
                 $classes[] = $text_color;
@@ -135,7 +136,9 @@ function ____heading_modules($items)
     if ($classes) {
         $heading_data['class'] = _attribute('class', $classes);
     }
-
+    if ($styles) {
+        $heading_data['styles'] = _attribute('style', $styles);
+    }
     return __heading($heading_data);
 }
 
@@ -171,4 +174,3 @@ function _is_module()
         return false;
     }
 }
-

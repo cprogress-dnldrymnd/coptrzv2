@@ -6,9 +6,14 @@ function __heading($data, $html = '')
     $tag = isset($data['tag']) ? $data['tag'] : 'h2';
     $prefix = isset($data['prefix']) ? $data['prefix'] : false;
     $suffix = isset($data['prefix']) ? $data['suffix'] : false;
+    $styles = isset($data['styles']) ? $data['styles'] : false;
+
     $attributes_args = [];
     if ($class) {
         $attributes_args[] = $class;
+    }
+    if ($styles) {
+        $attributes_args[] = $styles;
     }
     $_attributes = _attributes($attributes_args);
 
