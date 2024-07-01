@@ -85,7 +85,7 @@ function ___sections()
                         $classes[] = $section_style['margin_right'];
                         break;
                     case 'custom_class':
-                        $classes[] = explode(" ", $section_style['custom_class']);
+                        $classes[] = array_merge($classes, explode(" ", $section_style['custom_class']));
                         break;
                     case 'alignment':
                         $classes[] = $section_style['align_items'];
