@@ -43,7 +43,7 @@ function swipers() {
     jQuery('.style-1 .swiper-sliders').each(function (index, element) {
         var $id = '#' + jQuery(this).attr('id');
 
-        var swiperSlide = new Swiper($id, {
+        var swiper_sliders = new Swiper($id, {
             loop: false,
             autoplay: {
                 delay: 3000,
