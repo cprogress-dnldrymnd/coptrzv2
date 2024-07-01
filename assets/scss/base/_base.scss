@@ -165,14 +165,30 @@
             }
         }
     }
-   
+    .swiper-nav {
+        margin-top: 2rem;
+    }
     .swiper-button-next,
     .swiper-button-prev {
         position: static !important;
-        transform: none !important;
+        transform: none;
         margin: 0;
     }
     .swiper-button-prev {
         margin-right: 1rem;
+    }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 61px;
+    height: 61px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bs-black);
+    @include after {
+        font-size: 15px;
     }
 }
