@@ -143,7 +143,13 @@ function ___sections()
                     case 'container_width':
                         $classes[] = $section_style['container_width'];
                         if ($section_style['custom_container_width']) {
-                            $container_styles[] = 'max-width: ' . $section_style['custom_container_width'] . ';';
+                            $container_styles[] = 'max-width: ' . $section_style['custom_container_width'];
+                        }
+                        break;
+                    case 'border_radius':
+                        $classes[] = ' rounded-corner';
+                        if ($section_style['border_radius']) {
+                            $styles[] = 'border-radius: ' . $section_style['border_radius'];
                         }
                         break;
                 }
