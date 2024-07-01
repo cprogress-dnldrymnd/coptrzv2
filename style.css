@@ -9681,6 +9681,12 @@ p:last-child {
 .xl-padding-right {
   padding-right: 12.5rem; }
 
+.xl-padding {
+  padding: 12.5rem; }
+
+.xl-margin {
+  margin: 12.5rem; }
+
 .xl-margin-top {
   margin-top: 12.5rem; }
 
@@ -9704,6 +9710,12 @@ p:last-child {
 
 .lg-padding-right {
   padding-right: 9.375rem; }
+
+.lg-padding {
+  padding: 9.375rem; }
+
+.lg-margin {
+  margin: 9.375rem; }
 
 .lg-margin-top {
   margin-top: 9.375rem; }
@@ -9729,6 +9741,12 @@ p:last-child {
 .md-padding-right {
   padding-right: 6.25rem; }
 
+.md-padding {
+  padding: 6.25rem; }
+
+.md-margin {
+  margin: 6.25rem; }
+
 .md-margin-top {
   margin-top: 6.25rem; }
 
@@ -9753,6 +9771,12 @@ p:last-child {
 .sm-padding-right {
   padding-right: 3.125rem; }
 
+.sm-padding {
+  padding: 3.125rem; }
+
+.sm-margin {
+  margin: 3.125rem; }
+
 .sm-margin-top {
   margin-top: 3.125rem; }
 
@@ -9776,6 +9800,12 @@ p:last-child {
 
 .xs-padding-right {
   padding-right: 2rem; }
+
+.xs-padding {
+  padding: 2rem; }
+
+.xs-margin {
+  margin: 2rem; }
 
 .xs-margin-top {
   margin-top: 2rem; }

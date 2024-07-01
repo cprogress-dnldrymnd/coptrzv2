@@ -57,6 +57,12 @@ $spacings: (
     .#{$size}-padding-right {
         padding-right: $spacing;
     }
+    .#{$size}-padding {
+        padding: $spacing;
+    }
+    .#{$size}-margin {
+        margin: $spacing;
+    }
     .#{$size}-margin-top {
         margin-top: $spacing;
     }
