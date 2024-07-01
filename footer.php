@@ -4,7 +4,7 @@ $hide_footer = get__post_meta('hide_footer');
 if (!$hide_footer) {
 ?>
     <footer id="footer" class="bg-black text-white">
-        <div class="footer-columns md-padding-top xs-padding-bottom">
+        <div class="footer-columns md-padding-top sm-padding-bottom">
             <div class="container">
                 <div class="row g-4">
                     <div class="col-lg col-md-12">
