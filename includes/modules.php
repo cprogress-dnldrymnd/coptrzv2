@@ -91,13 +91,13 @@ function ___sections()
                         $classes[] = $section_style['align_items'];
                         $classes[] = $section_style['justify_content'];
                         $classes[] = $section_style['text_align'];
+                        if($section_style['align_items'] || $section_style['justify_content']) {
+                            $classes[] = 'd-flex';
+                        }
                         break;
-             
                     case 'text_color':
                         $text_color_custom = $section_style['text_color_custom'];
                         $classes[] = $section_style['text_color'];
-                        $classes[] = $section_style['justify_content'];
-                        $classes[] = $section_style['text_align'];
                         if ($text_color_custom) {
                             $styles[] = 'color: ' . $text_color_custom;
                         }
