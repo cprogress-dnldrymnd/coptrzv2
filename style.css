@@ -9969,6 +9969,12 @@ p:last-child {
   .swiper-button-prev:after {
     font-size: 15px; }
 
+.socials ul li svg {
+  width: 21px;
+  height: 21px; }
+.socials ul li:not(:last-child) {
+  margin-right: 2rem; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/

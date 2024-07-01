@@ -192,3 +192,17 @@
         font-size: 15px;
     }
 }
+
+.socials {
+    ul {
+        li {
+            svg {
+                width: 21px;
+                height: 21px;
+            }
+            @include not-last-child {
+                margin-right: 2rem;
+            }
+        }
+    }
+}
