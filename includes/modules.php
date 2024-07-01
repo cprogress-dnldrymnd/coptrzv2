@@ -46,6 +46,7 @@ function ___hero()
         ));
         $hero .= __description(array(
             'description' => $hero_description,
+            'class' => _attribute('class', array('description-box')),
         ));
         $hero .= "</div>";
         $hero .= "</section>";
@@ -97,6 +98,12 @@ function ___sections()
                         break;
                     case 'columns':
                         $sections_var .= ____columns_modules($items['columns']);
+                        break;
+                    case 'description':
+                        $sections_var .= __description(array(
+                            'description' => $items['description'],
+                            'class' => _attribute('class', array('description-box'))
+                        ));
                         break;
                 }
             }
