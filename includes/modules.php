@@ -251,15 +251,17 @@ function ____columns_modules($items)
 
                     if ($border_style == 'border-custom') {
                         $border_color = $column_style['border_color'];
+                        $border_color_custom = $column_style['border_color_custom'];
                         $border_width = $column_style['border_width'];
                         if ($border_color) {
-                            $styles[] = 'border-color: ' . $border_color;
+                            $styles[] = 'border-color: ' . $border_color_custom;
                         }
                         if ($border_width) {
                             $styles[] = 'border-width: ' . $border_width;
                         }
                     } else {
                         $classes[] = $column_style['border_style'];
+                        $classes[] = $column_style['border_color'];
                     }
 
                     break;

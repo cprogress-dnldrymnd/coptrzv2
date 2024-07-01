@@ -1045,7 +1045,7 @@ Container::make('post_meta', __('Sections'))
                                             )
                                         ),
 
-                                    Field::make('select', 'border_ccolor', 'Border Color')
+                                    Field::make('select', 'border_color', 'Border Color')
                                         ->set_options(
                                             array(
                                                 'text-primary'   => 'Primary',
@@ -1064,7 +1064,7 @@ Container::make('post_meta', __('Sections'))
                                                 )
                                             )
                                         ),
-                                    Field::make('color', 'border_color', __('Border Color'))
+                                    Field::make('color', 'border_color_custom', __('Border Color'))
                                         ->set_conditional_logic(
                                             array(
                                                 array(
