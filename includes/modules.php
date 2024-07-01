@@ -115,7 +115,7 @@ function ____columns_modules($columns)
         $html .= '<div class="col">';
         $html .= '<div class="column-holder">';
         foreach ($items as $item) {
-            $type = $items['_type'];
+            $type = $item['_type'];
             switch ($type) {
                 case 'heading':
                     $html .= ____heading_modules($items);
