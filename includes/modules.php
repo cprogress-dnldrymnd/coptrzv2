@@ -112,8 +112,11 @@ function ___sections()
 
             $id = _attribute('id', array($section_id_val));
             $classes_attr = _attribute('class', $classes);
+            if ($styles) {
+                $icon_data['styles'] = _attribute('style', $styles, ';');
+            }
 
-            $section_attribute = _attributes(array($classes_attr, $id));
+            $section_attribute = _attributes(array($classes_attr, $id, $styles));
 
             $sections_var .= "<section $section_attribute>";
             $sections_var .= "<div class='container'>";
