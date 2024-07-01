@@ -39,7 +39,7 @@ if (!$hide_footer) {
                 </div>
             </div>
         </div>
-        <div class="footer-columns md-padding-top sm-padding-bottom">
+        <div class="footer-columns sm-padding-top sm-padding-bottom">
             <div class="container">
                 <div class="row g-4">
                     <div class="col-lg col-md-12">
