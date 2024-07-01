@@ -102,12 +102,18 @@ function ___sections()
                             $styles[] = 'color: ' . $text_color_custom;
                         }
                         break;
-                    case 'background':
+                    case 'background_color':
                         $background_color_custom = $section_style['background_color_custom'];
                         $classes[] = $section_style['background_color'];
                         if ($background_color_custom) {
                             $styles[] = 'background-color: ' . $background_color_custom;
                         }
+                        break;
+                    case 'background_image':
+                        $classes[] = $section_style['background_attachment'];
+                        $classes[] = $section_style['background_size'];
+                        $classes[] = $section_style['background_repeat'];
+
                         break;
                 }
             }
