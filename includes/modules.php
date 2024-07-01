@@ -207,7 +207,7 @@ function ____post_grid($data)
 
     $styles = array();
     $classes = array();
-
+    $column_classes = array();
     foreach ($styles as $style) {
         $type = $style['_type'];
         switch ($type) {
@@ -253,6 +253,11 @@ function ____post_grid($data)
                     $styles[] = '--border-radius: ' . $style['border_radius'];
                     $classes[] = 'rounded-corner';
                 }
+                break;
+            case 'column_width':
+                $column_classes[] = $style['column_width'];
+                $column_width_tablet[] = $style['column_width_tablet'];
+                $column_width_mobile[] = $style['column_width_mobile'];
                 break;
         }
     }
@@ -303,7 +308,7 @@ function ____post_grid($data)
     $html .= "<div class='post-grid'>";
     $html .= "<div class='row g-4'>";
     foreach ($posts_lists as $post) {
-        $html .= "<div class='col'>";
+        $html .= "<div class='$column_classes'>";
         $html .= "<div $post_attribute";
         foreach ($post_elements as $item) {
             $type = $item['_type'];
