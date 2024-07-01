@@ -177,7 +177,7 @@ function ___sections()
                             'number_of_slides_mobile' => $items['number_of_slides_mobile'],
                         ));
                         break;
-                    case 'gallery':
+                    case 'buttons':
                         $html .= ____button_modules($items['buttons']);
                         break;
                 }
