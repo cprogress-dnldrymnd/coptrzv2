@@ -306,6 +306,7 @@ Container::make('post_meta', __('Sections'))
                                                     'thumbnail'    => 'Thumbnail',
                                                 )
                                             ),
+                                        Field::make('checkbox', 'is_background_image', __('Is background image')),
                                         Field::make('checkbox', 'custom_size', __('Custom Size')),
                                         Field::make('text', 'image_width', __('Custom Image Width'))
                                             ->set_conditional_logic(
