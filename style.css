@@ -9923,7 +9923,7 @@ p:last-child {
 .style-1 .swiper-wrapper {
   overflow: visible; }
 .style-1 .swiper-slide {
-  width: 600px !important; }
+  width: 40% !important; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
