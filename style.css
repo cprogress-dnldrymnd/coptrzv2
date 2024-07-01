@@ -9804,7 +9804,8 @@ p:last-child {
   top: 0;
   right: 0;
   bottom: 0; }
-  .background-image img, .background-image video {
+  .background-image img,
+  .background-image video {
     width: 100%;
     height: 100%;
     object-fit: cover; }

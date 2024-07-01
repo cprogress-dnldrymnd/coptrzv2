@@ -120,7 +120,7 @@ function ____columns_modules($columns)
     foreach ($columns as $column) {
         $items = $column['items'];
         $html .= '<div class="col">';
-        $html .= '<div class="column-holder">';
+        $html .= '<div class="column-holder content-margin">';
         foreach ($items as $item) {
             $type = $item['_type'];
             switch ($type) {
