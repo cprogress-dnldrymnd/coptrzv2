@@ -275,12 +275,7 @@ function ____columns_modules($items, $id)
                         $styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
                     }
                     break;
-                case 'container_width':
-                    $classes[] = $column_style['container_width'];
-                    if ($column_style['custom_container_width']) {
-                        $container_styles[] = 'max-width: ' . $column_style['custom_container_width'];
-                    }
-                    break;
+
                 case 'border':
                     $border_style = $column_style['border_style'];
 

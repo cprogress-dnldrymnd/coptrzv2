@@ -54,13 +54,15 @@
 .container {
     @media (min-width: 1500px) {
         max-width: 1420px;
-    }  
+    }
     @media (min-width: 1600px) {
         max-width: 1520px;
-    }   
+    }
 }
 
 .full-width {
-    max-width: 100%;
-    --bs-gutter-x: 0;
+    .container {
+        max-width: 100%;
+        --bs-gutter-x: 0;
+    }
 }
