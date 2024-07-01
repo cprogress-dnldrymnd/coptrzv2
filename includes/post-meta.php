@@ -1393,6 +1393,7 @@ Container::make('post_meta', __('Sections'))
                                         'large-container'  => 'Large',
                                         'medium-container'  => 'Medium',
                                         'small-container'  => 'Small',
+                                        'full-width'  => 'Full',
                                         'custom-container'  => 'Custom',
                                     )
                                 ),
