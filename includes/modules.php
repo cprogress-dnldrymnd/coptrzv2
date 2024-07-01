@@ -137,7 +137,7 @@ function ____heading_modules($items)
         $heading_data['class'] = _attribute('class', $classes);
     }
     if ($styles) {
-        $heading_data['styles'] = _attribute('style', $styles);
+        $heading_data['styles'] = _attribute('style', $styles, ';');
     }
     return __heading($heading_data);
 }
