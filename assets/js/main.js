@@ -45,7 +45,10 @@ function swipers() {
 
         var swiperSlide = new Swiper($id, {
             loop: true,
-            autoplay: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false
+            },
             spaceBetween: 20,
 
         });
