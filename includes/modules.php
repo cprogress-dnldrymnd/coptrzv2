@@ -9,6 +9,7 @@ function action_module_content()
             $post_content = '<!-- wp:html -->';
 
             $post_content .= ___hero();
+            $post_content .= ___sections();
 
 
             $post_content .= '<!-- /wp:html -->';
@@ -37,7 +38,12 @@ function ___hero()
         $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
         $hero .= _bg_image($hero_background);
         $hero .= "<div class='container'>";
-       
+        $hero .= __heading(array(
+            'heading' => $hero_heading_val,
+            'tag' => 'h1',
+            'class' => _attribute('class', array('large-heading')),
+            ''
+        ));
         $hero .= __description(array(
             'description' => $hero_description,
         ));
