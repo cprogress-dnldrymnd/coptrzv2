@@ -48,7 +48,10 @@ function swipers() {
             autoplay: false,
             slidesPerView: 'auto',
             spaceBetween: 20,
-
+            navigation: {
+                nextEl: $id + ".swiper-button-next",
+                prevEl: $$id + ".swiper-button-prev",
+            },
         });
 
     });
