@@ -27,7 +27,7 @@ if (!$hide_footer) {
         </div>
         <div class="footer-bottom">
             <div class="container">
-                <div class="row g-4">
+                <div class="row g-4 align-items-center">
                     <div class="col-lg-6">
                         <?php dynamic_sidebar('footer_bottom_left') ?>
                     </div>
