@@ -143,13 +143,22 @@ function ____columns_modules($columns)
 function ____icon_modules($items)
 {
     $icon_data['id'] = $items['icon'];
+    $icon_color = $items['icon_color'];
     $icon_color_custom = $items['icon_color_custom'];
     $icon_width = $items['icon_width'];
     $icon_height = $items['icon_height'];
     $classes[] = 'icon-box';
     $styles = [];
-    if ($icon_color_custom) {
-        $classes[] = $icon_color_custom;
+    if ($icon_color) {
+        $classes[] = $icon_color;
+    }
+
+    if ($icon_color == 'text-custom') {
+        $styles[] = 'color: ' . $icon_color_custom;
+    } else {
+        if ($icon_color) {
+            $classes[] = $icon_color;
+        }
     }
 
     if ($icon_width) {
