@@ -121,7 +121,6 @@ function ____columns_modules($columns)
                     $html .= ____heading_modules($items);
                     break;
             }
-            $sections_var .= $type;
         }
         $html .= '</div>';
         $html .= '</div>';
