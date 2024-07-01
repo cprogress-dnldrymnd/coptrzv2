@@ -165,6 +165,14 @@ Container::make('post_meta', __('Sections'))
                                 array(
                                     'style-1' => 'Style 1',
                                 )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => true,
+                                    )
+                                )
                             ),
                         Field::make('html', 'html_42')->set_html('<label>Section Columns Settings</label>')->set_classes('cb-label'),
                         Field::make('complex', 'columns', __(''))
