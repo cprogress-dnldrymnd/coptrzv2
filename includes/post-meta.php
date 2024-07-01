@@ -431,9 +431,22 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('textarea', 'custom_html', __('Custom HTML')),
                                         )
                                     ),
-                                Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label'),
-
+                                Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label')
+                                    ->set_conditional_logic(
+                                        array(
+                                            array(
+                                                'field' => 'parent.individual_column_settings',
+                                                'value' => true,
+                                            )
+                                        )
+                                    ),
                                 Field::make('complex', 'column_styles', __(''))
+                                    ->setup_labels(
+                                        array(
+                                            'plural_name'   => 'Styles',
+                                            'singular_name' => 'Style',
+                                        )
+                                    )
                                     ->set_duplicate_groups_allowed(false)
                                     ->add_fields(
                                         'background_color',
@@ -737,6 +750,12 @@ Container::make('post_meta', __('Sections'))
                         Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label'),
 
                         Field::make('complex', 'column_styles', __(''))
+                            ->setup_labels(
+                                array(
+                                    'plural_name'   => 'Styles',
+                                    'singular_name' => 'Style',
+                                )
+                            )
                             ->set_duplicate_groups_allowed(false)
                             ->add_fields(
                                 'background_color',
@@ -1030,6 +1049,12 @@ Container::make('post_meta', __('Sections'))
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
+                    ->setup_labels(
+                        array(
+                            'plural_name'   => 'Styles',
+                            'singular_name' => 'Style',
+                        )
+                    )
                     ->set_duplicate_groups_allowed(false)
                     ->add_fields(
                         'background_color',
