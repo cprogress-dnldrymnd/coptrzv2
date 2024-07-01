@@ -75,6 +75,8 @@ function _icon($data, $html = '')
         $html .= _output_svg_from_url($url);
         $html .= '</div>';
     }
+
+    return $html;
 }
 
 function __image($data)
