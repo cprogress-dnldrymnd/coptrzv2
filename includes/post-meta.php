@@ -371,7 +371,7 @@ Container::make('post_meta', __('Sections'))
                             ->set_header_template('<%- column_title %>')
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
-                Field::make('complex', 'styles', __('Styles'))
+                Field::make('complex', 'section_styles', __('Styles'))
                     ->set_duplicate_groups_allowed(false)
                     ->add_fields(
                         'background_color',

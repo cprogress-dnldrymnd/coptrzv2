@@ -62,6 +62,7 @@ function ___sections()
         if (!$disable_section) {
             $section_id = $section['section_id'];
             $section_items = $section['section_items'];
+            $section_styles = $section['section_styles'];
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
 
             $classes[] = 'section';
