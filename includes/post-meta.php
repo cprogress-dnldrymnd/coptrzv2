@@ -1567,7 +1567,6 @@ Container::make('post_meta', __('Sections'))
                                                 array(
                                                     'all'      => 'Select All',
                                                     'manually'      => 'Select Manually',
-                                                    'category'      => 'Select by Category',
                                                 )
                                             ),
 
