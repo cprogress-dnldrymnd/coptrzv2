@@ -280,7 +280,7 @@ function ____columns_modules($items)
     }
     $column_attributes = _attributes(array($classes_val, $styles_val));
 
-    $html = "<div class='row'>";
+    $html = "<div class='row g-4'>";
     foreach ($columns as $column) {
         $items = $column['items'];
 
