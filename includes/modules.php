@@ -314,7 +314,7 @@ function ____post_grid($data)
     $html .= "<div class='post-grid'>";
     $html .= "<div class='row g-4'>";
     foreach ($posts_lists as $post) {
-        $html .= "<div class='$column_attribute'>";
+        $html .= "<div $column_attribute>";
         $html .= "<div $post_attribute";
         foreach ($post_elements as $item) {
             $type = $item['_type'];
