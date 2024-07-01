@@ -110,10 +110,13 @@ function ___sections()
                         }
                         break;
                     case 'background_image':
+                        $background_image = $section_style['background_image'];
                         $classes[] = $section_style['background_attachment'];
                         $classes[] = $section_style['background_size'];
                         $classes[] = $section_style['background_repeat'];
-
+                        if ($background_image) {
+                            $styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
+                        }
                         break;
                 }
             }
