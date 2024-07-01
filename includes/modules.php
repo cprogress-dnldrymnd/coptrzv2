@@ -124,11 +124,11 @@ function ____heading_modules($items)
     }
 
 
-    if ($has_suffix) {
+    if ($has_suffix && $suffix) {
         $heading_data['suffix'] = $suffix;
         $classes[] = 'heading-box';
     }
-    if ($has_prefix) {
+    if ($has_prefix && $prefix) {
         $heading_data['prefix'] = $prefix;
         $classes[] = 'heading-box';
     }
