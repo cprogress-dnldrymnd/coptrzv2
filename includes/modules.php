@@ -290,7 +290,7 @@ function ____post_grid($data)
     $html .= "<div class='row g-4'>";
     foreach ($posts_lists as $post) {
         $html .= "<div class='col'>";
-        $html .= "<div class='column-holder'>";
+        $html .= "<div class='column-holder position-relative'>";
         foreach ($post_elements as $item) {
             $type = $item['_type'];
             switch ($type) {
