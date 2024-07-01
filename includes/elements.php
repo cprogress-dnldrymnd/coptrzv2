@@ -2,7 +2,7 @@
 function __heading($data, $html = '')
 {
     $heading = isset($data['heading']) ? $data['heading'] : false;
-    $class = isset($data['class']) ? $data['class'] : '';
+    $class = isset($data['class']) ? $data['class'] : false;
     $tag = isset($data['tag']) ? $data['tag'] : 'h2';
     $prefix = isset($data['prefix']) ? $data['prefix'] : false;
     $suffix = isset($data['prefix']) ? $data['suffix'] : false;
@@ -82,25 +82,18 @@ function __image($atts)
     }
 }
 
-function __video($atts)
+function __video($data)
 {
-    extract(
-        shortcode_atts(
-            array(
-                'video_id' => '',
-                'class' => '',
-            ),
-            $atts
-        )
-    );
-
-    $video_url = wp_get_attachment_url($video_id);
+    $video_url = wp_get_attachment_url($data['video_id']);
 
     if ($video_url) {
-        $_attributes = _attributes(array(
-            array('class', $class),
-            array('class', 'video-box'),
-        ));
+        $class = isset($data['class']) ? $data['class'] : false;
+
+        $attributes_args = [];
+        if ($class) {
+            $attributes_args[] = $class;
+        }
+        $_attributes = _attributes($attributes_args);
 
         return "<div $_attributes><video autoplay loop muted src='$video_url'></video></div>";
     }
