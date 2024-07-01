@@ -33,7 +33,7 @@
 						</a>
 					</div>
 					<div class="col-auto">
-						<nav class="navbar navbar-expand-lg text-white">
+						<nav class="navbar navbar-expand-lg text-white p-0">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<li class="nav-item">
 									<a class="nav-link text-white active" aria-current="page" href="#">Products</a>
