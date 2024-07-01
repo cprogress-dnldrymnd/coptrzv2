@@ -9993,7 +9993,8 @@ header {
   padding: 0;
   margin: 0; }
   #footer ul a {
-    color: inherit; }
+    color: inherit;
+    text-decoration: none; }
 
 section.hero {
   min-height: 85vh; }
