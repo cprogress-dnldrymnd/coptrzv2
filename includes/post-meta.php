@@ -160,7 +160,7 @@ Container::make('post_meta', __('Sections'))
                         Field::make('html', 'html_4')->set_html('<label>Section Columns Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings'))->set_width(20),
                         Field::make('checkbox', 'is_slider', __('Is Slider'))->set_width(20),
-                        Field::make('select', 'slider_style', __('Tag'))->set_width(60)
+                        Field::make('select', 'slider_style', __('Slider Style'))->set_width(60)
                             ->set_options(
                                 array(
                                     'style-1' => 'Style 1',
