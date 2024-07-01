@@ -50,7 +50,7 @@ function swipers() {
             spaceBetween: 20,
             navigation: {
                 nextEl: $id + ".swiper-button-next",
-                prevEl: $$id + ".swiper-button-prev",
+                prevEl: $id + ".swiper-button-prev",
             },
         });
 
