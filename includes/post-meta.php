@@ -1584,28 +1584,11 @@ Container::make('post_meta', __('Sections'))
                                                 array(
                                                     array(
                                                         'field' => 'source',
-                                                        'value' => 'manually',
+                                                        'value' => 'all',
                                                     )
                                                 )
                                             ),
-                                        Field::make('association', 'category', 'Select Post Categories')
-                                            ->set_types(
-                                                array(
-                                                    array(
-                                                        'type'      => 'term',
-                                                        'taxonomy' => 'category',
-                                                    )
-                                                )
-                                            )
-                                            ->set_conditional_logic(
-                                                array(
-                                                    array(
-                                                        'field' => 'source',
-                                                        'value' => 'category',
-                                                        'comapre' => '='
-                                                    )
-                                                )
-                                            ),
+                                       
                                     )
                                 )
 
