@@ -16,7 +16,7 @@
 			<div class="header-inner mt-20px rounded-10px">
 				<nav class="navbar navbar-expand-lg text-white">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="#">
+						<a class="site-logo" href="#">
 							<svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="256" height="26.026" viewBox="0 0 256 26.026" class="svg-image replaced-svg">
 								<g id="Group_170" data-name="Group 170" transform="translate(-99.825 -87.108)">
 									<g id="Group_172" data-name="Group 172" transform="translate(99.825 87.108)">

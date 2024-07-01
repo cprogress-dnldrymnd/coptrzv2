@@ -9914,6 +9914,9 @@ p:last-child {
   border-color: var(--bs-accent);
   background-color: var(--bs-accent); }
 
+.site-logo svg, .site-logo img {
+  height: 21px; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
