@@ -118,6 +118,24 @@ function ___sections()
                             $styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
                         }
                         break;
+
+                    case 'background_overlay':
+                        $background_overlay_type = $section_style['background_overlay_type'];
+                        if ($background_overlay_type == 'image') {
+                            $background_overlay_image = $section_style['background_overlay_image'];
+                            $classes[] = 'bg-overlay';
+                            if ($background_overlay_image) {
+                                $styles[] = '--background-image: url(' . wp_get_attachment_image_url($background_overlay_image, 'full') . ')';
+                            }
+                            if ($section_style['background_overlay_image_opacity'] || $section_style['background_overlay_image_opacity'] == 0) {
+                                $styles[] = '--background-image-opacity: ' . $section_style['background_overlay_image_opacity'];
+                            }
+                            $classes[] = 'no-overlay';
+                        } else if ($background_overlay_type == 'custom') {
+                            $styles[] = '--background-overlay-custom: ' . $section_style['background_overlay_custom'] . ';';
+                        }
+
+                        break;
                 }
             }
 
