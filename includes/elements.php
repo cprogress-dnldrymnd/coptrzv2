@@ -71,7 +71,7 @@ function _icon($data, $html = '')
         $_attributes = _attributes($attributes_args);
 
         $url = wp_get_original_image_path($id);
-        $html .= "<div>";
+        $html .= "<div $_attributes>";
         $html .= _output_svg_from_url($url);
         $html .= '</div>';
     }

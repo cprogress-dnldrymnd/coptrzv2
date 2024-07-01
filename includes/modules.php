@@ -137,7 +137,6 @@ function ____columns_modules($columns)
 function ____icon_modules($items)
 {
     $icon_data['id'] = $items['icon'];
-
     $icon_color_custom = $items['icon_color_custom'];
     $icon_width = $items['icon_width'];
     $icon_height = $items['icon_height'];
