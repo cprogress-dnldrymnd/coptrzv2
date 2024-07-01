@@ -525,8 +525,8 @@ function ____columns_modules($items, $id, $html = '')
         $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
         $slides_attr = _attributes(array($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr));
 
-        $html .= "<div class='swiper-holder $slider_style' $slides_attr>"; //swiper-holder
-        $html .= "<div class='swiper swiper-sliders' id='$swiper_id'>"; //swiper
+        $html .= "<div class='swiper-holder $slider_style'>"; //swiper-holder
+        $html .= "<div class='swiper swiper-sliders' id='$swiper_id' $slides_attr>"; //swiper
     }
 
     if ($styles) {
