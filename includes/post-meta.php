@@ -1057,9 +1057,9 @@ Container::make('post_meta', __('Sections'))
                     )
                     ->set_duplicate_groups_allowed(false)
                     ->add_fields(
-                        'background',
+                        'background_color',
                         array(
-                            Field::make('select', 'background_color', 'Background')
+                            Field::make('select', 'background', 'Background Color')
                                 ->set_options(
                                     array(
                                         'background-primary'   => 'Primary',
@@ -1070,7 +1070,7 @@ Container::make('post_meta', __('Sections'))
                                         'background-custom'    => 'Custom',
                                     )
                                 ),
-                            Field::make('color', 'background_color_custom', __('Background Color'))->set_width(33)
+                            Field::make('color', 'background_color_custom', __('Background Color'))
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -1079,6 +1079,11 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                 ),
+                        )
+                    )
+                    ->add_fields(
+                        'background_image',
+                        array(
                             Field::make('image', 'background_image', 'Background Image'),
                             Field::make('select', 'background_size', 'Background Size')
                                 ->set_options(
@@ -1087,14 +1092,14 @@ Container::make('post_meta', __('Sections'))
                                         'background-contain'  => 'Contain',
                                     )
                                 ),
-                            Field::make('select', 'background_attachment', 'Background Attachment')->set_width(33)
+                            Field::make('select', 'background_attachment', 'Background Attachment')
                                 ->set_options(
                                     array(
                                         'background-scroll'    => 'Scroll',
                                         'background-fixed'  => 'Fixed',
                                     )
                                 ),
-                            Field::make('select', 'background_repeat', 'Background Repeat')->set_width(33)
+                            Field::make('select', 'background_repeat', 'Background Repeat')
                                 ->set_options(
                                     array(
                                         'background-no-repeat'    => 'No Repeat',
@@ -1103,7 +1108,6 @@ Container::make('post_meta', __('Sections'))
                                 ),
                         )
                     )
-
                     ->add_fields(
                         'background_overlay',
                         array(
