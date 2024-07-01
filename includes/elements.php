@@ -2,19 +2,14 @@
 function __heading($data, $html = '')
 {
     $heading = isset($data['heading']) ? $data['heading'] : false;
-    $class = isset($data['class']) ? $data['class'] : false;
+    $class = isset($data['class']) ? $data['class'] : '';
     $tag = isset($data['tag']) ? $data['tag'] : 'h2';
     $prefix = isset($data['prefix']) ? $data['prefix'] : false;
     $suffix = isset($data['prefix']) ? $data['suffix'] : false;
-    $attributes_args = [];
-    if ($class) {
-        $attributes_args[] = array('class', $class);
-    }
-    $_attributes = _attributes($attributes_args);
 
     if ($heading) {
         if ($prefix || $suffix) {
-            $html .= "<div $_attributes>";
+            $html .= "<div $class>";
             if ($prefix) {
                 $html .= "<span>$prefix</span>";
             }
@@ -25,7 +20,7 @@ function __heading($data, $html = '')
 
             $html .= "</div>";
         } else {
-            $html .= "<$tag $_attributes>$heading</$tag>";
+            $html .= "<$tag $class>$heading</$tag>";
         }
     }
     return $html;
