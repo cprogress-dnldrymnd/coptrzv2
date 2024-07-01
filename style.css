@@ -9909,7 +9909,8 @@ p:last-child {
     object-fit: contain; }
 
 .section:not(.no-overflow) {
-  overflow: hidden; }
+  overflow: hidden;
+  position: relative; }
 .section .container > *:not(:last-child) {
   margin-bottom: 2rem; }
 
