@@ -4,7 +4,7 @@ $hide_footer = get__post_meta('hide_footer');
 if (!$hide_footer) {
 ?>
     <footer id="footer" class="bg-black text-white">
-        <div class="footer-top">
+        <div class="footer-top lg-padding-top">
             <div class="container rounded-10px">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-auto">
