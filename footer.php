@@ -25,7 +25,7 @@ if (!$hide_footer) {
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="footer-bottom xs-padding-bottom">
             <div class="container">
                 <div class="row g-4">
                     <div class="col-lg-6">
