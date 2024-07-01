@@ -44,7 +44,7 @@ function swipers() {
         var $id = '#' + jQuery(this).attr('id');
 
         var swiper_sliders = new Swiper($id, {
-            loop: false,
+            loop: true,
             autoplay: {
                 delay: 3000,
                 disableOnInteraction: false
