@@ -9912,6 +9912,7 @@ p:last-child {
   display: inline-block; }
 .button-box.button-accent a,
 .button-box.button-accent button {
+  color: var(--bs-white);
   background-color: var(--bs-accent); }
 
 /*-----------------------------------------------------------------------------------*/
