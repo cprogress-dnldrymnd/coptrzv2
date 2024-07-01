@@ -85,4 +85,11 @@
     &:not(.no-overflow) {
         overflow: hidden;
     }
+    .container {
+        > * {
+            @include not-last-child {
+                margin-bottom: 2rem;
+            }
+        }
+    }
 }

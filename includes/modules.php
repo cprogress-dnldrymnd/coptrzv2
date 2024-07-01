@@ -192,7 +192,7 @@ function ___sections()
 function ____button_modules($buttons)
 {
     if ($buttons) {
-        $html = "<div class='button-group-box d-flex'>";
+        $html = "<div class='button-group-box d-inline-flex'>";
         foreach ($buttons as $button) {
             $html .= __button(array(
                 'button_type' => $button['button_type'],

@@ -9898,6 +9898,8 @@ p:last-child {
 
 .section:not(.no-overflow) {
   overflow: hidden; }
+.section .container > *:not(:last-child) {
+  margin-bottom: 2rem; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
