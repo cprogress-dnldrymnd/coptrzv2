@@ -59,3 +59,8 @@
         max-width: 1520px;
     }   
 }
+
+.full-width {
+    max-width: 100%;
+    --bs-gutter-x: 0;
+}
