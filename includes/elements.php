@@ -11,7 +11,7 @@ function __heading($data, $html = '')
         $attributes_args[] = array('class', $class);
     }
     if ($prefix || $suffix) {
-        $attributes_args[] = array('class' => 'heading-box');
+        $attributes_args[] = array('class', 'heading-box');
     }
     $_attributes = _attributes($attributes_args);
 
