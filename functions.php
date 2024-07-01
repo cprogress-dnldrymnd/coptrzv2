@@ -63,6 +63,7 @@ function get__theme_option($value)
 function enqueue_scripts()
 {
 	wp_enqueue_style('coptz-style', theme_dir . 'style.css', NULL, coptz_version);
+	wp_enqueue_script('coptz-main', assets_dir . 'js/main.js', NULL, coptz_version);
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn and allow Wordpress to call it automatcally in the header
