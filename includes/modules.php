@@ -94,7 +94,7 @@ function ___sections()
                         $classes[] = $section_style['justify_content'];
                         $classes[] = $section_style['text_align'];
                         if ($section_style['align_items'] || $section_style['justify_content']) {
-                            $classes[] = 'd-flex';
+                            $classes[] = 'd-flex flex-column';
                         }
                         break;
                     case 'text_color':
