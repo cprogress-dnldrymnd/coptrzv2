@@ -137,9 +137,7 @@ function ____heading_modules($items)
 function _attributes_v2($name, $attributes, $separator = ' ')
 {
     $html = "$name='";
-    foreach ($attributes as $attribute) {
-        $html . implode($separator, $attributes);
-    }
+    $html . implode($separator, $attributes);
     $html .= "'";
     return $html;
 }
