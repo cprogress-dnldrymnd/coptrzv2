@@ -9915,7 +9915,7 @@ p:last-child {
   overflow: hidden;
   position: relative; }
 .section .container > *:not(:last-child) {
-  margin-bottom: 2rem; }
+  margin-bottom: 3rem; }
 
 .button-group-box > div:not(:last-child) {
   margin-right: 1rem; }
