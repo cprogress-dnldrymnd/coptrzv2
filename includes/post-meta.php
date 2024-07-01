@@ -1337,25 +1337,60 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                                 ->add_fields(
-                                    'container_width',
+                                    'column_width',
                                     array(
-                                        Field::make('select', 'container_width', 'Container Width')
+                                        Field::make('select', 'column_width', __('Column Width Desktop'))
                                             ->set_options(
                                                 array(
-                                                    ''               => 'Default',
-                                                    'large-container'  => 'Large',
-                                                    'medium-container'  => 'Medium',
-                                                    'small-container'  => 'Small',
-                                                    'custom-container'  => 'Custom',
+                                                    'col-lg'     => 'Default',
+                                                    'col-12'    => '100.00%',
+                                                    'col-lg-11' => '91.67%',
+                                                    'col-lg-10' => '83.33%',
+                                                    'col-lg-9'  => '75.00%',
+                                                    'col-lg-8'  => '67.00%',
+                                                    'col-lg-7'  => '58.33%',
+                                                    'col-lg-6'  => '50.00%',
+                                                    'col-lg-5'  => '41.67%',
+                                                    'col-lg-4'  => '33.33%',
+                                                    'col-lg-3'  => '25.00%',
+                                                    'col-lg-2'  => '16.67%',
+                                                    'col-lg-1'  => '08.33%',
                                                 )
                                             ),
-                                        Field::make('text', 'custom_container_width', 'Custom Container Width')
-                                            ->set_conditional_logic(
+                                        Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
+                                            ->set_options(
                                                 array(
-                                                    array(
-                                                        'field' => 'container_width',
-                                                        'value' => 'custom-container',
-                                                    )
+                                                    ''     => 'Default',
+                                                    'col-md-12'    => '100.00%',
+                                                    'col-md-11' => '91.67%',
+                                                    'col-md-10' => '83.33%',
+                                                    'col-md-9'  => '75.00%',
+                                                    'col-md-8'  => '67.00%',
+                                                    'col-md-7'  => '58.33%',
+                                                    'col-md-6'  => '50.00%',
+                                                    'col-md-5'  => '41.67%',
+                                                    'col-md-4'  => '33.33%',
+                                                    'col-md-3'  => '25.00%',
+                                                    'col-md-2'  => '16.67%',
+                                                    'col-md-1'  => '08.33%',
+                                                )
+                                            ),
+                                        Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
+                                            ->set_options(
+                                                array(
+                                                    ''     => 'Default',
+                                                    'col-12' => '100%',
+                                                    'col-11' => '91.67%',
+                                                    'col-10' => '83.33%',
+                                                    'col-9'  => '75.00%',
+                                                    'col-8'  => '67.00%',
+                                                    'col-7'  => '58.33%',
+                                                    'col-6'  => '50.00%',
+                                                    'col-5'  => '41.67%',
+                                                    'col-4'  => '33.33%',
+                                                    'col-3'  => '25.00%',
+                                                    'col-2'  => '16.67%',
+                                                    'col-1'  => '08.33%',
                                                 )
                                             ),
                                     )
