@@ -46,7 +46,7 @@ function ___hero()
         ));
         $hero .= __description(array(
             'description' => $hero_description,
-            'class' => _attribute('class', array('description-box')),
+            'class' => _attribute('class', array('description-box', 'medium-text')),
         ));
         $hero .= "</div>";
         $hero .= "</section>";

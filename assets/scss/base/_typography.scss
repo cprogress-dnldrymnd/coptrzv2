@@ -1,7 +1,6 @@
 body {
     font-family: var(--primary-font);
     color: var(--primary-color);
-    font-size: 1.125rem;
 }
 
 .large-heading {
@@ -58,4 +57,8 @@ p {
     @include last-child {
         margin-bottom: 0;
     }
+}
+
+.medium-text {
+    font-size: 1.125rem;
 }

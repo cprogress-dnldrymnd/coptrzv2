@@ -9372,8 +9372,7 @@ textarea.form-control-lg {
 /*-----------------------------------------------------------------------------------*/
 body {
   font-family: var(--primary-font);
-  color: var(--primary-color);
-  font-size: 1.125rem; }
+  color: var(--primary-color); }
 
 .large-heading {
   font-size: 2rem; }
@@ -9436,6 +9435,9 @@ h6,
 
 p:last-child {
   margin-bottom: 0; }
+
+.medium-text {
+  font-size: 1.125rem; }
 
 .rounded-10px {
   border-radius: 10px; }
