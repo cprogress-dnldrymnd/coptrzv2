@@ -9915,9 +9915,13 @@ p:last-child {
   border-color: var(--bs-accent);
   background-color: var(--bs-accent); }
 
-.site-logo svg, .site-logo img {
+.site-logo svg,
+.site-logo img {
   height: 21px;
   width: auto; }
+
+.style-1 .swiper-slide {
+  width: 40%; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer

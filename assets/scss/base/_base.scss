@@ -14,7 +14,7 @@
 }
 
 .background-image {
-    margin-bottom: 0 !important;;
+    margin-bottom: 0 !important;
     position: absolute;
     left: 0;
     top: 0;
@@ -120,8 +120,14 @@
 }
 
 .site-logo {
-    svg, img {
+    svg,
+    img {
         height: 21px;
         width: auto;
+    }
+}
+.style-1 {
+    .swiper-slide {
+        width: 40%;
     }
 }
