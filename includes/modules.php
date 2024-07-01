@@ -515,8 +515,7 @@ function ____columns_modules($items, $id, $html = '')
     }
 
 
-    $classes[] = 'column-holder';
-    $classes[] = 'content-margin';
+    $classes[] = 'column-holder content-margin overflow-hidden';
 
     if ($is_slider) {
         $swiper_id = $id . '-swiper';
