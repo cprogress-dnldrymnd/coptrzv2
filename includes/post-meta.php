@@ -46,7 +46,7 @@ Container::make('post_meta', __('Sections'))
                         Field::make('checkbox', 'has_prefix', __('Has Prefix'))->set_width(20),
                         Field::make('checkbox', 'has_suffix', __('Has Suffix'))->set_width(20),
                         Field::make('checkbox', 'has_custom_heading_settings', __('Custom Heading Settings'))->set_width(50),
-                        Field::make('html', 'html_3')->set_html('<label>Section Items</label>')->set_classes('cb-label'),
+                        Field::make('html', 'html_2')->set_html('<label>Section Items</label>')->set_classes('cb-label'),
                         Field::make('text', 'heading', __('Heading'))->set_classes('inline-field'),
                         Field::make('text', 'prefix', __('Prefix'))->set_classes('inline-field')
                             ->set_conditional_logic(
@@ -351,6 +351,7 @@ Container::make('post_meta', __('Sections'))
                             ))
                             ->set_header_template('<%- column_title %>')
                     )),
+                Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'styles', __('Styles'))
                     ->set_duplicate_groups_allowed(false)
                     ->add_fields(
