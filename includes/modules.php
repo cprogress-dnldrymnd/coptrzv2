@@ -288,7 +288,15 @@ function ____post_grid($data)
     $classes[] = 'column-holder';
     $classes[] = 'position-relative';
 
-    $post_attribute = _attributes(array($classes));
+    if ($styles) {
+        $styles_val = _attribute('style', $styles, ';');
+    }
+
+    if ($classes) {
+        $classes_val = _attribute('class', $classes, ' ');
+    }
+
+    $post_attribute = _attributes(array($classes_val, $styles_val));
 
 
     $html = '';
