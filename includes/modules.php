@@ -116,7 +116,7 @@ function ____heading_modules($items)
         }
 
         if ($text_color == 'text-custom') {
-            $styles = 'color: ' . $text_color_custom;
+            $styles[] = 'color: ' . $text_color_custom;
         } else {
             if ($text_color) {
                 $classes[] = $text_color;
@@ -136,7 +136,9 @@ function ____heading_modules($items)
     if ($classes) {
         $heading_data['class'] = _attribute('class', $classes);
     }
-   
+    if ($styles) {
+        $heading_data['styles'] = _attribute('style', $styles, ';');
+    }
     return __heading($heading_data);
 }
 
