@@ -20,7 +20,7 @@ function __heading($data, $html = '')
 
     if ($heading) {
         if ($prefix || $suffix) {
-            $html .= "<div class='heading-box' $_attributes>";
+            $html .= "<div $_attributes>";
             if ($prefix) {
                 $html .= "<span>$prefix</span>";
             }
