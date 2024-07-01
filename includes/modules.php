@@ -70,7 +70,7 @@ function ___sections()
             $container_styles = array();
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
-   
+
             foreach ($section_styles as $section_style) {
                 $type = $section_style['_type'];
                 switch ($type) {
@@ -193,10 +193,10 @@ function ____gallery_modules($data)
             $number_of_slides_attr = _attribute('number_of_slides', array($number_of_slides));
             $number_of_slides_tablet_attr = _attribute('number_of_slides_tablet', array($number_of_slides_tablet));
             $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
-            $attributes = _attributes($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr);
+            $gallery_attr = _attributes(array($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr));
             $image_args['size'] = 'medium';
 
-            $html .= "<div id='$id' class='swiper swiper-logo-slider' $attributes>";
+            $html .= "<div id='$id' class='swiper swiper-logo-slider' $gallery_attr>";
             $html .= '<div class="swiper-wrapper align-items-center">';
         } else {
             $image_args['size'] = 'large';
