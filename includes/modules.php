@@ -151,14 +151,14 @@ function ___sections()
             $html .= "<section $section_attribute>";
             $html .= "<div class='container' $container_styles_val>";
 
-            foreach ($section_items as $items) {
+            foreach ($section_items as $key => $items) {
                 $type = $items['_type'];
                 switch ($type) {
                     case 'heading':
-                        $html .= ____heading_modules($items);
+                          $html .= ____heading_modules($items);
                         break;
                     case 'columns':
-                        $html .= ____columns_modules($items);
+                        $html .= ____columns_modules($items, $id.$key);
                         break;
                     case 'description':
                         $html .= __description(array(
@@ -219,7 +219,7 @@ function ____gallery_modules($data)
 
     return $html;
 }
-function ____columns_modules($items)
+function ____columns_modules($items,$id)
 {
     $columns = $items['columns'];
     $column_styles = $items['column_styles'];
@@ -349,6 +349,7 @@ function ____columns_modules($items)
                     break;
                 case 'gallery':
                     $html .= ____gallery_modules(array(
+                        'id' => $item['id'],
                         'gallery' => $item['gallery'],
                         'gallery_style' => $item['gallery_style'],
                         'number_of_slides' => $item['number_of_slides'],
