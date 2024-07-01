@@ -87,25 +87,7 @@ function ___sections()
                     case 'custom_class':
                         $classes[] = $section_style['custom_class'];
                         break;
-                    case 'alignment':
-                        $classes[] = $section_style['align_items'];
-                        $classes[] = $section_style['justify_content'];
-                        $classes[] = $section_style['text_align'];
-                        break;
-                    case 'alignment':
-                        $classes[] = $section_style['align_items'];
-                        $classes[] = $section_style['justify_content'];
-                        $classes[] = $section_style['text_align'];
-                        break;
-                    case 'text_color':
-                        $text_color_custom = $section_style['text_color_custom'];
-                        $classes[] = $section_style['text_color'];
-                        $classes[] = $section_style['justify_content'];
-                        $classes[] = $section_style['text_align'];
-                        if ($text_color_custom) {
-                            $styles[] = 'color: ' . $text_color_custom;
-                        }
-                        break;
+                 
                 }
             }
 
