@@ -303,7 +303,7 @@ function ____post_grid($data)
                         ));
                         break;
                     case 'permalink':
-                        $html .= $html .= __button(array(
+                        $html .= __button(array(
                             'button_type' => get_post_type(),
                             'button_text' => $item['button_text'],
                             'button_url' => $post->ID,
