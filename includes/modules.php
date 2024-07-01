@@ -121,7 +121,6 @@ function ____columns_modules($columns)
                     $html .= ____heading_modules($item);
                     break;
                 case 'icon':
-                    $html .= 'ico';
                     $html .= ____icon_modules($item);
                     break;
             }
