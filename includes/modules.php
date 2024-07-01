@@ -196,7 +196,7 @@ function ____gallery_modules($data)
             $image_args['size'] = 'medium';
 
 
-            $html .= "<div id='$id' class='swiper swiper-logo-slider' $attributes>";
+            $html .= "<div $id class='swiper swiper-logo-slider' $attributes>";
             $html .= '<div class="swiper-wrapper align-items-center">';
         } else {
             $image_args['size'] = 'large';
@@ -346,7 +346,7 @@ function ____columns_modules($items, $id)
                     break;
                 case 'gallery':
                     $html .= ____gallery_modules(array(
-                        'id' => $id,
+                        'id' => $id ,
                         'gallery' => $item['gallery'],
                         'gallery_style' => $item['gallery_style'],
                         'number_of_slides' => $item['number_of_slides'],
