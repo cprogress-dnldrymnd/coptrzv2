@@ -121,6 +121,7 @@ function ___sections()
 
                     case 'background_overlay':
                         $background_overlay_type = $section_style['background_overlay_type'];
+                        $classes[] = 'position-relative';
                         if ($background_overlay_type == 'image') {
                             $background_overlay_image = $section_style['background_overlay_image'];
                             $classes[] = 'bg-overlay';
