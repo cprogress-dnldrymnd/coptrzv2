@@ -66,11 +66,11 @@ function ___sections()
 
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
-            
-            $id = _attribute('id', array($section_id_val));
-            $classes = _attribute('class', $classes);
 
-            $section_attribute = _attributes(array($classes, $id));
+            $id = _attribute('id', array($section_id_val));
+            $classes_attr = _attribute('class', $classes);
+
+            $section_attribute = _attributes(array($classes_attr, $id));
 
             $sections_var .= "<section $section_attribute>";
             $sections_var .= "<div class='container'>";
