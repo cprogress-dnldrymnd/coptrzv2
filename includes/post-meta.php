@@ -134,7 +134,9 @@ Container::make('post_meta', __('Sections'))
                                 )
                             ),
                     ))
+                    
                     ->add_fields('description',  array(
+                        Field::make('html', 'html_4')->set_html('<label>Column Settings</label>')->set_classes('cb-label'),
                         Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
                     ))
                     ->add_fields('columns', array(
