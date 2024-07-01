@@ -9324,7 +9324,7 @@ textarea.form-control-lg {
   --bs-secondary: #0f0f0f;
   --bs-secondary-rgb: 15, 15, 15;
   --border-color: #dbdbdb;
-  --accent-color: #2da1ff; }
+  --bs-accent: #2da1ff; }
 
 @font-face {
   font-family: "Poppins";
@@ -9901,6 +9901,9 @@ p:last-child {
   overflow: hidden; }
 .section .container > *:not(:last-child) {
   margin-bottom: 2rem; }
+
+.button-group-box > div:not(:last-child) {
+  margin-right: 1rem; }
 
 .button-box a, .button-box button {
   padding: 1.25rem 2.5rem;

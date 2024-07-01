@@ -93,7 +93,13 @@
         }
     }
 }
-
+.button-group-box {
+    > div {
+        @include not-last-child {
+            margin-right: 1rem;
+        }
+    }
+}
 .button-box {
     a, button {
         padding: 1.25rem 2.5rem;
