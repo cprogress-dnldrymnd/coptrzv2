@@ -41,7 +41,7 @@ function ___hero()
         $hero .= __heading(array(
             'heading' => $hero_heading_val,
             'tag' => 'h1',
-            'class' => 'large-heading',
+            'class' => _attributes_v2('class', 'large-heading'),
             ''
         ));
         $hero .= __description(array(
@@ -100,6 +100,8 @@ function ____heading_modules($items)
     $text_color = $items['text_color'];
     $text_color_custom = $items['text_color_custom'];
     $heading_data['heading'] = $heading;
+
+    $class_args = [];
     if ($has_custom_heading_settings) {
         if ($tag) {
             $heading_data['tag'] = $tag;
@@ -109,21 +111,36 @@ function ____heading_modules($items)
         }
 
         if ($text_color == 'text-custom') {
-
+            $heading_data['style'] = 'color: ' . $text_color_custom;
         } else {
             if ($text_color) {
-                $heading_data['class'] = $text_color;
+                $class_args['class'] = $text_color;
             }
         }
     }
+
+    
     if ($has_suffix) {
         $heading_data['suffix'] = $suffix;
+        $class_args['class'] = 'heading-box';
     }
     if ($has_prefix) {
         $heading_data['prefix'] = $prefix;
+        $class_args['class'] = 'heading-box';
     }
 
+    $heading_data['class'] = $class_args;
+
     return __heading($heading_data);
+}
+
+function _attributes_v2($name, $attributes, $separator = ' ')
+{
+    $html = "$name='";
+    foreach ($attributes as $attribute) {
+        $html . implode($separator, $attributes);
+    }
+    $html .= "'";
 }
 
 function _attributes($attributes)

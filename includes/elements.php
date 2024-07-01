@@ -15,7 +15,6 @@ function __heading($data, $html = '')
     }
     $_attributes = _attributes($attributes_args);
 
-
     if ($heading) {
         if ($prefix || $suffix) {
             $html .= "<div $_attributes>";
