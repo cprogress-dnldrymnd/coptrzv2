@@ -101,7 +101,7 @@ function ____heading_modules($items)
     $text_color_custom = $items['text_color_custom'];
     $heading_data['heading'] = $heading;
 
-    $class_args = [];
+    $classes = [];
     if ($has_custom_heading_settings) {
         if ($tag) {
             $heading_data['tag'] = $tag;
@@ -114,7 +114,7 @@ function ____heading_modules($items)
             $heading_data['style'] = 'color: ' . $text_color_custom;
         } else {
             if ($text_color) {
-                $class_args['class'] = $text_color;
+                $classes['class'] = $text_color;
             }
         }
     }
@@ -122,14 +122,14 @@ function ____heading_modules($items)
 
     if ($has_suffix) {
         $heading_data['suffix'] = $suffix;
-        $class_args['class'] = 'heading-box';
+        $classes['class'] = 'heading-box';
     }
     if ($has_prefix) {
         $heading_data['prefix'] = $prefix;
-        $class_args['class'] = 'heading-box';
+        $classes['class'] = 'heading-box';
     }
-    if ($class_args) {
-        $heading_data['class'] = implode(' ', $class_args);
+    if ($classes) {
+        $heading_data['class'] = _attribute('class', $classes);
     }
 
     return __heading($heading_data);
