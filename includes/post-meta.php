@@ -27,7 +27,7 @@ Container::make('post_meta', __('Sections'))
                     'singular_name' => 'Module',
                 )
             )
-            ->set_collapsed(false)
+            ->set_collapsed(true)
             ->add_fields(array(
                 Field::make('text', 'title', __('Section Title'))->set_required(true)->set_width(33),
                 Field::make('text', 'section_id', __('Section ID'))->set_width(33),
