@@ -40,22 +40,22 @@
 									<a class="nav-link text-white active" aria-current="page" href="#">Products</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link Industry" href="#">Industry</a>
+									<a class="nav-link text-white" href="#">Industry</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link Industry" href="#">Capabilities</a>
+									<a class="nav-link text-white" href="#">Capabilities</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link Industry" href="#">Training</a>
+									<a class="nav-link text-white" href="#">Training</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link Industry" href="#">Repairs</a>
+									<a class="nav-link text-white" href="#">Repairs</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link Industry" href="#">Resources</a>
+									<a class="nav-link text-white" href="#">Resources</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link Industry" href="#">Defence</a>
+									<a class="nav-link text-white" href="#">Defence</a>
 								</li>
 							</ul>
 
