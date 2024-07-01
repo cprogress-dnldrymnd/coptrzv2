@@ -165,11 +165,14 @@
             }
         }
     }
+   
     .swiper-button-next,
     .swiper-button-prev {
         position: static !important;
         transform: none !important;
+        margin: 0;
     }
     .swiper-button-prev {
+        margin-right: 1rem;
     }
 }

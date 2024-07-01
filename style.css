@@ -9949,7 +9949,10 @@ p:last-child {
   .style-1 .swiper-button-next,
   .style-1 .swiper-button-prev {
     position: static !important;
-    transform: non; }
+    transform: none !important;
+    margin: 0; }
+  .style-1 .swiper-button-prev {
+    margin-right: 1rem; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer

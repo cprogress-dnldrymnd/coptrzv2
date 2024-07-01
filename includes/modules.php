@@ -597,7 +597,8 @@ function ____columns_modules($items, $id, $html = '')
     if ($is_slider) {
         $html .= '</div>'; //end swiper
         $html .= '<div class="swiper-nav d-flex justify-content-start">'; //end swiper
-        $html .= '<div class="swiper-button-next"></div> <div class="swiper-button-prev"></div>';
+        $html .= '<div class="swiper-button-prev"></div>';
+        $html .= '<div class="swiper-button-next"></div>';
         $html .= '</div>'; //end swipernav
         $html .= '</div>'; //end swiper-holder
     }
