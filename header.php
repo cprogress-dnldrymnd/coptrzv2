@@ -59,6 +59,11 @@
 							</ul>
 						</nav>
 					</div>
+					<div class="col-auto">
+						<div class="button-box button-accent">
+							<a href="#">Enquire Now</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
