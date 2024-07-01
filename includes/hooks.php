@@ -29,11 +29,9 @@ function action_admin_head()
         }
 
         .cb-label.cb-label.cb-label {
-            background-color: var(--wp-admin-theme-color);
+            background-color: #555d66;
             color: #fff;
-            font-size: 16px;
             padding: 5px;
-            font-weight: bold;
             text-transform: uppercase;
         }
 
