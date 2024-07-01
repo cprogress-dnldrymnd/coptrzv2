@@ -1138,6 +1138,20 @@ Container::make('post_meta', __('Sections'))
                         'post_grid',
                         array(
                             Field::make('complex', 'post_box_styles', __('Post Box Styles'))
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'individual_column_settings',
+                                            'value' => false,
+                                        )
+                                    )
+                                )
+                                ->setup_labels(
+                                    array(
+                                        'plural_name'   => 'Styles',
+                                        'singular_name' => 'Style',
+                                    )
+                                )
                                 ->set_duplicate_groups_allowed(false)
                                 ->add_fields(
                                     'background_color',
@@ -1150,7 +1164,6 @@ Container::make('post_meta', __('Sections'))
                                                     'background-accent'    => 'Accent',
                                                     'background-white'     => 'White',
                                                     'background-light-gray'     => 'Light Gray',
-                                                    'background-body-color'     => 'Body',
                                                     'background-custom'    => 'Custom',
                                                 )
                                             ),
@@ -1160,6 +1173,99 @@ Container::make('post_meta', __('Sections'))
                                                     array(
                                                         'field' => 'background_color',
                                                         'value' => 'background-custom',
+                                                    )
+                                                )
+                                            ),
+                                    )
+                                )
+                                ->add_fields(
+                                    'background_image',
+                                    array(
+                                        Field::make('image', 'background_image', 'Background Image'),
+                                        Field::make('select', 'background_size', 'Background Size')
+                                            ->set_options(
+                                                array(
+                                                    'background-cover' => 'Cover',
+                                                    'background-contain'  => 'Contain',
+                                                )
+                                            ),
+                                        Field::make('select', 'background_attachment', 'Background Attachment')
+                                            ->set_options(
+                                                array(
+                                                    'background-scroll'    => 'Scroll',
+                                                    'background-fixed'  => 'Fixed',
+                                                )
+                                            ),
+                                        Field::make('select', 'background_repeat', 'Background Repeat')
+                                            ->set_options(
+                                                array(
+                                                    'background-no-repeat'    => 'No Repeat',
+                                                    'background-repeat'  => 'No Repeat',
+                                                )
+                                            ),
+                                    )
+                                )
+                                ->add_fields(
+                                    'background_overlay',
+                                    array(
+                                        Field::make('select', 'background_overlay_type', 'Background Overlay Type')
+                                            ->set_options(
+                                                array(
+                                                    'default'    => 'Default',
+                                                    'image'  => 'Image',
+                                                    'custom'  => 'Custom',
+                                                )
+                                            ),
+                                        Field::make('image', 'background_overlay_image', 'Image Background Overlay')
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'background_overlay_type',
+                                                        'value' => 'image',
+                                                    )
+                                                )
+                                            ),
+                                        Field::make('text', 'background_overlay_image_opacity', 'Image Background Overlay Opacity')
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'background_overlay_type',
+                                                        'value' => 'image',
+                                                    )
+                                                )
+                                            ),
+                                        Field::make('color', 'background_overlay_custom', 'Custom Background Overlay')
+                                            ->set_alpha_enabled(true)
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'background_overlay_type',
+                                                        'value' => 'custom',
+                                                    )
+                                                )
+                                            ),
+                                    )
+                                )
+                                ->add_fields(
+                                    'text_color',
+                                    array(
+                                        Field::make('select', 'text_color', 'Text Color')
+                                            ->set_options(
+                                                array(
+                                                    'text-primary'   => 'Primary',
+                                                    'text-secondary' => 'Secondary',
+                                                    'text-accent'    => 'Accent',
+                                                    'text-white'     => 'White',
+                                                    'text-light-gray'     => 'Light Gray',
+                                                    'text-custom'    => 'Custom',
+                                                )
+                                            ),
+                                        Field::make('color', 'text_color_custom', __('Text Color'))
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'text_color',
+                                                        'value' => 'text-custom',
                                                     )
                                                 )
                                             ),
@@ -1176,7 +1282,7 @@ Container::make('post_meta', __('Sections'))
                                                     'lg-padding-top'  => 'Large',
                                                     'md-padding-top'  => 'Medium',
                                                     'sm-padding-top'  => 'Small',
-                                                    'xxs-padding-top' => 'Extra Small',
+                                                    'xs-padding-top' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'padding_bottom', 'Padding Bottom')
@@ -1187,7 +1293,7 @@ Container::make('post_meta', __('Sections'))
                                                     'lg-padding-bottom'  => 'Large',
                                                     'md-padding-bottom'  => 'Medium',
                                                     'sm-padding-bottom'  => 'Small',
-                                                    'xxs-padding-bottom' => 'Extra Small',
+                                                    'xs-padding-bottom' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'padding_left', 'Padding left')
@@ -1198,7 +1304,7 @@ Container::make('post_meta', __('Sections'))
                                                     'lg-padding-left'  => 'Large',
                                                     'md-padding-left'  => 'Medium',
                                                     'sm-padding-left'  => 'Small',
-                                                    'xxs-padding-left' => 'Extra Small',
+                                                    'xs-padding-left' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'padding_right', 'Padding right')
@@ -1209,10 +1315,9 @@ Container::make('post_meta', __('Sections'))
                                                     'lg-padding-right'  => 'Large',
                                                     'md-padding-right'  => 'Medium',
                                                     'sm-padding-right'  => 'Small',
-                                                    'xxs-padding-right' => 'Extra Small',
+                                                    'xs-padding-right' => 'Extra Small',
                                                 )
                                             ),
-                                        Field::make('checkbox', 'remove_image_padding', 'Remove Image Padding')
 
                                     )
                                 )
@@ -1227,7 +1332,7 @@ Container::make('post_meta', __('Sections'))
                                                     'lg-margin-top'  => 'Large',
                                                     'md-margin-top'  => 'Medium',
                                                     'sm-margin-top'  => 'Small',
-                                                    'xxs-margin-top' => 'Extra Small',
+                                                    'xs-margin-top' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'margin_bottom', 'margin Bottom')
@@ -1238,7 +1343,7 @@ Container::make('post_meta', __('Sections'))
                                                     'lg-margin-bottom'  => 'Large',
                                                     'md-margin-bottom'  => 'Medium',
                                                     'sm-margin-bottom'  => 'Small',
-                                                    'xxs-margin-bottom' => 'Extra Small',
+                                                    'xs-margin-bottom' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'margin_left', 'margin left')
@@ -1249,7 +1354,7 @@ Container::make('post_meta', __('Sections'))
                                                     'lg-margin-left'  => 'Large',
                                                     'md-margin-left'  => 'Medium',
                                                     'sm-margin-left'  => 'Small',
-                                                    'xxs-margin-left' => 'Extra Small',
+                                                    'xs-margin-left' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'margin_right', 'margin right')
@@ -1260,15 +1365,10 @@ Container::make('post_meta', __('Sections'))
                                                     'lg-margin-right'  => 'Large',
                                                     'md-margin-right'  => 'Medium',
                                                     'sm-margin-right'  => 'Small',
-                                                    'xxs-margin-right' => 'Extra Small',
+                                                    'xs-margin-right' => 'Extra Small',
                                                 )
                                             ),
-                                    )
-                                )
-                                ->add_fields(
-                                    'border_radius',
-                                    array(
-                                        Field::make('text', 'border_radius', 'Border Radius')
+
                                     )
                                 )
                                 ->add_fields(
@@ -1300,9 +1400,84 @@ Container::make('post_meta', __('Sections'))
                                                     'text-start'                => 'Left',
                                                     'text-center'                => 'Center',
                                                     'text-end'                => 'Right',
-                                                    'text-justify'                => 'Justify',
                                                 )
                                             ),
+                                    )
+                                )
+                                ->add_fields(
+                                    'container_width',
+                                    array(
+                                        Field::make('select', 'container_width', 'Container Width')
+                                            ->set_options(
+                                                array(
+                                                    ''               => 'Default',
+                                                    'large-container'  => 'Large',
+                                                    'medium-container'  => 'Medium',
+                                                    'small-container'  => 'Small',
+                                                    'custom-container'  => 'Custom',
+                                                )
+                                            ),
+                                        Field::make('text', 'custom_container_width', 'Custom Container Width')
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'container_width',
+                                                        'value' => 'custom-container',
+                                                    )
+                                                )
+                                            ),
+                                    )
+                                )
+                                ->add_fields(
+                                    'border',
+                                    array(
+                                        Field::make('text', 'border_radius', 'Border Radius'),
+                                        Field::make('select', 'border_style', 'Border Style')
+                                            ->set_options(
+                                                array(
+                                                    'border-default'   => 'Default',
+                                                    'border-custom'   => 'Custom',
+                                                )
+                                            ),
+
+                                        Field::make('select', 'border_color', 'Border Color')
+                                            ->set_options(
+                                                array(
+                                                    'text-primary'   => 'Primary',
+                                                    'text-secondary' => 'Secondary',
+                                                    'text-accent'    => 'Accent',
+                                                    'text-white'     => 'White',
+                                                    'text-light-gray'     => 'Light Gray',
+                                                    'border-custom-color'    => 'Custom',
+                                                )
+                                            )
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'border_style',
+                                                        'value' => 'border-custom',
+                                                    )
+                                                )
+                                            ),
+                                        Field::make('color', 'border_color_custom', __('Border Color'))
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'border_style',
+                                                        'value' => 'border-custom',
+                                                    )
+                                                )
+                                            ),
+                                        Field::make('text', 'border_width', 'Border Width')
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'border_style',
+                                                        'value' => 'border-custom',
+                                                    )
+                                                )
+                                            ),
+
                                     )
                                 )
                                 ->add_fields(
@@ -1311,72 +1486,8 @@ Container::make('post_meta', __('Sections'))
                                         Field::make('text', 'custom_class', 'Custom Class')
                                     )
                                 )
-                                ->add_fields(
-                                    'max_width',
-                                    array(
-                                        Field::make('text', 'max_width', 'Max Width')
-                                    )
-                                )
-                                ->add_fields(
-                                    'column_width',
-                                    array(
-                                        Field::make('select', 'column_width', __('Column Width Desktop'))
-                                            ->set_options(
-                                                array(
-                                                    'col-lg'     => 'Default',
-                                                    'col-12'    => '100.00%',
-                                                    'col-lg-11' => '91.67%',
-                                                    'col-lg-10' => '83.33%',
-                                                    'col-lg-9'  => '75.00%',
-                                                    'col-lg-8'  => '67.00%',
-                                                    'col-lg-7'  => '58.33%',
-                                                    'col-lg-6'  => '50.00%',
-                                                    'col-lg-5'  => '41.67%',
-                                                    'col-lg-4'  => '33.33%',
-                                                    'col-lg-3'  => '25.00%',
-                                                    'col-lg-2'  => '16.67%',
-                                                    'col-lg-1'  => '08.33%',
-                                                )
-                                            ),
-                                        Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
-                                            ->set_options(
-                                                array(
-                                                    ''     => 'Default',
-                                                    'col-md-12'    => '100.00%',
-                                                    'col-md-11' => '91.67%',
-                                                    'col-md-10' => '83.33%',
-                                                    'col-md-9'  => '75.00%',
-                                                    'col-md-8'  => '67.00%',
-                                                    'col-md-7'  => '58.33%',
-                                                    'col-md-6'  => '50.00%',
-                                                    'col-md-5'  => '41.67%',
-                                                    'col-md-4'  => '33.33%',
-                                                    'col-md-3'  => '25.00%',
-                                                    'col-md-2'  => '16.67%',
-                                                    'col-md-1'  => '08.33%',
-                                                )
-                                            ),
-                                        Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
-                                            ->set_options(
-                                                array(
-                                                    ''     => 'Default',
-                                                    'col-12' => '100%',
-                                                    'col-11' => '91.67%',
-                                                    'col-10' => '83.33%',
-                                                    'col-9'  => '75.00%',
-                                                    'col-8'  => '67.00%',
-                                                    'col-7'  => '58.33%',
-                                                    'col-6'  => '50.00%',
-                                                    'col-5'  => '41.67%',
-                                                    'col-4'  => '33.33%',
-                                                    'col-3'  => '25.00%',
-                                                    'col-2'  => '16.67%',
-                                                    'col-1'  => '08.33%',
-                                                )
-                                            ),
-                                    )
-                                )
                                 ->set_layout('tabbed-vertical'),
+
                             Field::make('complex', 'post_elements', 'Post Elements')
                                 ->set_duplicate_groups_allowed(false)
                                 ->add_fields(
