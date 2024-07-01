@@ -10,4 +10,17 @@
             text-decoration: none;
         }
     }
+    .footer-bottom {
+        .footer-right {
+            ul {
+                display: flex;
+                align-items: center;
+                li {
+                    @include not-last-child {
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+    }
 }

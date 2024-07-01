@@ -9997,6 +9997,11 @@ header {
     #footer ul a {
       color: inherit;
       text-decoration: none; }
+  #footer .footer-bottom .footer-right ul {
+    display: flex;
+    align-items: center; }
+    #footer .footer-bottom .footer-right ul li:not(:last-child) {
+      margin-right: 1rem; }
 
 section.hero {
   min-height: 85vh; }
