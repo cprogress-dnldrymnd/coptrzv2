@@ -126,9 +126,9 @@ function ___sections()
                         }
                         break;
                     case 'border':
-                        $classes[] = ' rounded-corner';
                         if ($section_style['border_radius']) {
                             $styles[] = '--border-radius: ' . $section_style['border_radius'];
+                            $classes[] = 'rounded-corner';
                         }
                         break;
                 }
@@ -180,17 +180,95 @@ function ____columns_modules($items)
     $columns = $items['columns'];
     $column_styles = $items['column_styles'];
     $individual_column_settings = $items['individual_column_settings'];
+    if (!$individual_column_settings) {
+        $classes = [];
+        $styles = [];
+        $container_styles = [];
+        foreach ($column_styles as $column_style) {
+            $type = $column_style['_type'];
+            switch ($type) {
+                case 'padding':
+                    $classes[] = $column_style['padding_top'];
+                    $classes[] = $column_style['padding_bottom'];
+                    $classes[] = $column_style['padding_left'];
+                    $classes[] = $column_style['padding_right'];
+                    break;
+                case 'margin':
+                    $classes[] = $column_style['margin_top'];
+                    $classes[] = $column_style['margin_bottom'];
+                    $classes[] = $column_style['margin_left'];
+                    $classes[] = $column_style['margin_right'];
+                    break;
+                case 'custom_class':
+                    $classes[] = $column_style['custom_class'];
+                    break;
+                case 'alignment':
+                    $classes[] = $column_style['align_items'];
+                    $classes[] = $column_style['justify_content'];
+                    $classes[] = $column_style['text_align'];
+                    if ($column_style['align_items'] || $column_style['justify_content']) {
+                        $classes[] = 'd-flex';
+                    }
+                    break;
+                case 'text_color':
+                    $text_color_custom = $column_style['text_color_custom'];
+                    $classes[] = $column_style['text_color'];
+                    if ($text_color_custom) {
+                        $styles[] = 'color: ' . $text_color_custom;
+                    }
+                    break;
+                case 'background_color':
+                    $background_color_custom = $column_style['background_color_custom'];
+                    $classes[] = $column_style['background_color'];
+                    if ($background_color_custom) {
+                        $styles[] = 'background-color: ' . $background_color_custom;
+                    }
+                    break;
+                case 'background_image':
+                    $background_image = $column_style['background_image'];
+                    $classes[] = $column_style['background_attachment'];
+                    $classes[] = $column_style['background_size'];
+                    $classes[] = $column_style['background_repeat'];
+                    if ($background_image) {
+                        $styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
+                    }
+                    break;
+                case 'container_width':
+                    $classes[] = $column_style['container_width'];
+                    if ($column_style['custom_container_width']) {
+                        $container_styles[] = 'max-width: ' . $column_style['custom_container_width'];
+                    }
+                    break;
+                case 'border':
+                    if ($column_style['border_radius']) {
+                        $styles[] = '--border-radius: ' . $column_style['border_radius'];
+                        $classes[] = 'rounded-corner';
+                    }
+                    break;
+            }
+        }
+    }
+
+
+    $classes[] = 'column-holder';
+    $classes[] = 'content-margin';
+
+    if ($styles) {
+        $styles_val = _attribute('style', $styles, ';');
+    }
+
+    if ($classes) {
+        $classes_val = _attribute('class', $classes, ' ');
+    }
+    $column_attributes = _attributes(array($classes_val, $styles_val));
+
     $html = "<div class='row'>";
     foreach ($columns as $column) {
         $items = $column['items'];
 
         $html .= '<div class="col">';
 
-        if(!$individual_column_settings) {
-            
-        }
-
-        $html .= '<div class="column-holder content-margin">';
+        $html .= "<div $column_attributes>";
         foreach ($items as $item) {
             $type = $item['_type'];
             switch ($type) {
