@@ -39,21 +39,19 @@ function swipers() {
         });
 
     });
-    setTimeout(function () {
-        jQuery('.style-1 .swiper-sliders').each(function (index, element) {
-            $id = '#' + jQuery(this).attr('id');
 
-            var swiperSlide = new Swiper($id, {
-                loop: true,
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false
-                },
-                spaceBetween: 20,
+    jQuery('.style-1 .swiper-sliders').each(function (index, element) {
+        $id = '#' + jQuery(this).attr('id');
 
-            });
+        var swiperSlide = new Swiper($id, {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false
+            },
+            spaceBetween: 20,
 
         });
-    }, 1000);
 
+    });
 }
