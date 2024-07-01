@@ -32,6 +32,7 @@ function __heading($data, $html = '')
             $html .= "<$tag $_attributes>$heading</$tag>";
         }
     }
+    return $html;
 }
 
 function __description($data)
