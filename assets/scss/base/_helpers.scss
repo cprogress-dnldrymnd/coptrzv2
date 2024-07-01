@@ -76,3 +76,13 @@ $spacings: (
         margin-right: $spacing;
     }
 }
+.background-contain {
+    background-size: contain;
+}
+.background-cover {
+    background-size: cover;
+}
+
+.background-no-repeat {
+    background-repeat: no-repeat;
+}
