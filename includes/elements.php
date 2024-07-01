@@ -58,8 +58,21 @@ function _icon($data, $html = '')
     $id = isset($data['id']) ? $data['id'] : false;
     if ($id) {
 
+        $class = isset($data['class']) ? $data['class'] : false;
+        $styles = isset($data['styles']) ? $data['styles'] : false;
 
-        $html .= "<div >";
+        $attributes_args = [];
+        if ($class) {
+            $attributes_args[] = $class;
+        }
+        if ($styles) {
+            $attributes_args[] = $styles;
+        }
+        $_attributes = _attributes($attributes_args);
+
+        $url = wp_get_original_image_path($id);
+        $html .= "<div $_attributes>";
+        $html .= _output_svg_from_url($url);
         $html .= '</div>';
     }
 

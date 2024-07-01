@@ -140,7 +140,7 @@ function ____icon_modules($items)
     $icon_color_custom = $items['icon_color_custom'];
     $icon_width = $items['icon_width'];
     $icon_height = $items['icon_height'];
-    $classes[] = 'icon-box';
+    $classes = [];
     $styles = [];
     if ($icon_color_custom) {
         $classes[] = $icon_color_custom;
