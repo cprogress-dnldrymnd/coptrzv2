@@ -29,6 +29,7 @@ add_action('shutdown', 'action_module_content');
 function ___hero()
 {
     $hero_heading = get__post_meta('hero_heading');
+    $hero_heading = get__post_meta('hero_heading');
     $hero_description = _format_text(get__post_meta('hero_description'));
     $hero_hidden = get__post_meta('hero_hidden');
     $hero_background = get__post_meta('hero_background');
@@ -41,6 +42,7 @@ function ___hero()
             'heading' => $hero_heading_val,
             'tag' => 'h1',
             'class' => 'large-heading',
+            ''
         ));
         $hero .= __description(array(
             'description' => $hero_description,
@@ -81,22 +83,23 @@ function ___sections()
                 $text_color = $items['text_color'];
                 $text_color_custom = $items['text_color_custom'];
 
+
+
                 switch ($type) {
                     case 'heading':
-                        $attributes_args = array();
+                        $heading_data['heading'] = $heading;
                         if ($has_custom_heading_settings) {
                             if ($tag) {
-                                $attributes_args[] = array('tag', $tag);
+                                $heading_data['tag'] = $tag;
                             }
                             if ($size) {
-                                $attributes_args[] = array('size', $size);
+                                $heading_data['size'] = $size;
                             }
                             if ($text_color) {
-                                $attributes_args[] = array('text_color', $text_color);
+                                $heading_data['text_color'] = $text_color;
                             }
                         }
-                        $attributes = _attributes($attributes_args);
-                        $sections_var .= do_shortcode("[__heading $attributes heading='$heading']");
+                        $sections_var .= __heading($heading_data);
                         break;
                 }
                 $sections_var .= $type;
