@@ -72,21 +72,22 @@ function ___sections()
 
             foreach ($section_items as $items) {
                 $type = $items['_type'];
-                $has_suffix = $items['has_suffix'];
-                $has_prefix = $items['has_prefix'];
-                $has_custom_heading_settings = $items['has_custom_heading_settings'];
-                $heading = $items['heading'];
-                $prefix = $items['prefix'];
-                $suffix = $items['suffix'];
-                $tag = $items['tag'];
-                $size = $items['size'];
-                $text_color = $items['text_color'];
-                $text_color_custom = $items['text_color_custom'];
+
 
 
 
                 switch ($type) {
                     case 'heading':
+                        $has_suffix = $items['has_suffix'];
+                        $has_prefix = $items['has_prefix'];
+                        $has_custom_heading_settings = $items['has_custom_heading_settings'];
+                        $heading = $items['heading'];
+                        $prefix = $items['prefix'];
+                        $suffix = $items['suffix'];
+                        $tag = $items['tag'];
+                        $size = $items['size'];
+                        $text_color = $items['text_color'];
+                        $text_color_custom = $items['text_color_custom'];
                         $heading_data['heading'] = $heading;
                         if ($has_custom_heading_settings) {
                             if ($tag) {
@@ -98,6 +99,12 @@ function ___sections()
                             if ($text_color) {
                                 $heading_data['text_color'] = $text_color;
                             }
+                        }
+                        if ($has_suffix) {
+                            $heading_data['suffix'] = $has_suffix;
+                        }
+                        if ($has_prefix) {
+                            $heading_data['suffix'] = $prefix;
                         }
                         $sections_var .= __heading($heading_data);
                         break;
