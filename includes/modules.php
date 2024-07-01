@@ -99,7 +99,6 @@ function ___sections()
                         $sections_var .= ____columns_modules($items['columns']);
                         break;
                 }
-                $sections_var .= $type;
             }
 
             $sections_var .= "</div>";
