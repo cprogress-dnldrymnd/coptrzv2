@@ -9376,6 +9376,9 @@ body {
   font-family: var(--primary-font);
   color: var(--primary-color); }
 
+.small-text {
+  font-size: 15px; }
+
 .large-heading {
   font-size: 2rem; }
   @media (min-width: 992px) {
@@ -9994,7 +9997,6 @@ header {
   top: 52px; }
 
 #footer {
-  font-size: 15px;
   font-weight: 300; }
   #footer ul {
     list-style: none;

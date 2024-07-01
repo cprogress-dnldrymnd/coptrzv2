@@ -3,7 +3,7 @@
 $hide_footer = get__post_meta('hide_footer');
 if (!$hide_footer) {
 ?>
-    <footer id="footer" class="bg-black text-white">
+    <footer id="footer" class="bg-black text-white small-text">
         <div class="footer-top md-padding-top">
             <div class="container rounded-10px">
                 <div class="row justify-content-between align-items-center">

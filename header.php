@@ -11,7 +11,7 @@
 
 
 <body <?php body_class(); ?>>
-	<header class="header">
+	<header class="header small-text">
 		<div class="container">
 			<div class="header-inner mt-20px rounded-10px">
 				<nav class="navbar navbar-expand-lg text-white">
