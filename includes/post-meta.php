@@ -2071,6 +2071,8 @@ Container::make('post_meta', __('Sections'))
                                         'medium-container'  => 'Medium',
                                         'small-container'  => 'Small',
                                         'full-width'  => 'Full',
+                                        'extend-right'  => 'Padding Left',
+                                        'extend-left'  => 'Padding Right',
                                         'custom-container'  => 'Custom',
                                     )
                                 ),
