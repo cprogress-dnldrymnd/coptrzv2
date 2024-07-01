@@ -1552,6 +1552,12 @@ Container::make('post_meta', __('Sections'))
                         array(
                             Field::make('complex', 'buttons', __('Buttons'))
                                 ->set_classes('columns')
+                                ->setup_labels(
+                                    array(
+                                        'plural_name'   => 'Buttons',
+                                        'singular_name' => 'Button',
+                                    )
+                                )
                                 ->add_fields(array(
                                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
                                         ->set_options(
