@@ -27,6 +27,24 @@ h1,h2 {
     }
 }
 
+h3 {
+    font-size: 1.5rem;
+    @media (min-width: 992px) {
+        font-size: 1.75rem;
+    }
+    @media (min-width: 1200px) {
+        font-size: 2rem;
+    }
+}
+
+h4 {
+    font-size: 1.25rem;
+ 
+    @media (min-width: 1200px) {
+        font-size: 1.5625rem;
+    }
+}
+
 @include headings {
     font-weight: 500;
 }
