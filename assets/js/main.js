@@ -50,7 +50,6 @@ function swipers() {
 
         var logoSwiper = new Swiper($id, {
             loop: true,
-            speed: 5000,
             autoplay: false,
             breakpoints: {
                 0: {
