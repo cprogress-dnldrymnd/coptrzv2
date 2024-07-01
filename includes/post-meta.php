@@ -1053,7 +1053,7 @@ Container::make('post_meta', __('Sections'))
                                                 'text-accent'    => 'Accent',
                                                 'text-white'     => 'White',
                                                 'text-light-gray'     => 'Light Gray',
-                                                'text-custom'    => 'Custom',
+                                                'border-custom-color'    => 'Custom',
                                             )
                                         )
                                         ->set_conditional_logic(

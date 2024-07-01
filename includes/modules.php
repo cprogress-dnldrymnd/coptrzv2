@@ -253,7 +253,9 @@ function ____columns_modules($items)
                         $border_color = $column_style['border_color'];
                         $border_color_custom = $column_style['border_color_custom'];
                         $border_width = $column_style['border_width'];
-                        if ($border_color) {
+                        if ($border_color == 'border-custom-color') {
+                            $classes[] = $column_style['border_color'];
+                        } else {
                             $styles[] = 'border-color: ' . $border_color_custom;
                         }
                         if ($border_width) {
