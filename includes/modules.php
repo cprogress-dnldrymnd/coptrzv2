@@ -102,7 +102,7 @@ function ___sections()
                             $styles[] = 'color: ' . $text_color_custom;
                         }
                         break;
-                    case 'background_color':
+                    case 'background':
                         $background_color_custom = $section_style['background_color_custom'];
                         $classes[] = $section_style['background_color'];
                         if ($background_color_custom) {

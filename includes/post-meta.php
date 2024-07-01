@@ -1059,7 +1059,7 @@ Container::make('post_meta', __('Sections'))
                     ->add_fields(
                         'background_color',
                         array(
-                            Field::make('select', 'background_color', 'Background Color')
+                            Field::make('select', 'background', 'Background Color')
                                 ->set_options(
                                     array(
                                         'background-primary'   => 'Primary',
@@ -1079,11 +1079,6 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                 ),
-                        )
-                    )
-                    ->add_fields(
-                        'background_image',
-                        array(
                             Field::make('image', 'background_image', 'Background Image'),
                             Field::make('select', 'background_size', 'Background Size')
                                 ->set_options(
@@ -1108,6 +1103,7 @@ Container::make('post_meta', __('Sections'))
                                 ),
                         )
                     )
+
                     ->add_fields(
                         'background_overlay',
                         array(
