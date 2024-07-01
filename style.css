@@ -9920,8 +9920,10 @@ p:last-child {
   height: 21px;
   width: auto; }
 
+.style-1 .swiper-wrapper {
+  overflow: visible; }
 .style-1 .swiper-slide {
-  width: 40%; }
+  width: 40% !important; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
