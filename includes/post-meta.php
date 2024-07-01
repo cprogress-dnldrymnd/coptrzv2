@@ -158,7 +158,8 @@ Container::make('post_meta', __('Sections'))
                     ))
                     ->add_fields('columns', array(
                         Field::make('html', 'html_4')->set_html('<label>Section Columns Options</label>')->set_classes('cb-label'),
-                        Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings')),
+                        Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings'))->set_width(20),
+                        Field::make('checkbox', 'is_slider', __('Is Slider'))->set_width(80),
                         Field::make('html', 'html_42')->set_html('<label>Section Columns Settings</label>')->set_classes('cb-label'),
                         Field::make('complex', 'columns', __(''))
                             ->setup_labels(
