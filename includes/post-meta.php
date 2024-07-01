@@ -1584,7 +1584,7 @@ Container::make('post_meta', __('Sections'))
                                                 array(
                                                     array(
                                                         'field' => 'source',
-                                                        'value' => 'all',
+                                                        'value' => 'manually',
                                                     )
                                                 )
                                             ),
