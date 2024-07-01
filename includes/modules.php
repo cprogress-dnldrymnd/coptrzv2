@@ -298,7 +298,7 @@ function ____post_grid($data)
                     $html .= __heading(array(
                         'tag' => 'h3',
                         'heading' => $post->post_title,
-                        'class' => _attribute('class', 'post-title')
+                        'class' => _attribute('class', array('post-title'))
                     ));
                     break;
                 case 'permalink':
