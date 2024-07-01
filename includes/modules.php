@@ -256,5 +256,5 @@ function _output_svg_from_url($url)
     $content = file_get_contents($url);
 
     // Output the sanitized SVG
-    echo $content;
+    return $content;
 }
