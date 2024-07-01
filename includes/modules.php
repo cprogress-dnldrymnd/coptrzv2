@@ -322,13 +322,15 @@ function ____columns_modules($items, $id)
     }
     $column_attributes = _attributes(array($classes_val, $styles_val));
 
-    $html = "<div class='row g-4'>";
+    if (count($columns) > 1) {
+        $html = "<div class='row g-4'>"; //row
+    }
     foreach ($columns as $key => $column) {
         $items = $column['items'];
-
-        $html .= '<div class="col">';
-
-        $html .= "<div $column_attributes>";
+        if (count($columns) > 1) {
+            $html .= '<div class="col">';
+            $html .= "<div $column_attributes>";
+        }
         foreach ($items as $item) {
             $type = $item['_type'];
             switch ($type) {
@@ -356,10 +358,14 @@ function ____columns_modules($items, $id)
                     break;
             }
         }
-        $html .= '</div>';
-        $html .= '</div>';
+        if (count($columns) > 1) {
+            $html .= '</div>';
+            $html .= '</div>';
+        }
     }
-    $html .= '</div>';
+    if (count($columns) > 1) {
+        $html .= '</div>'; //end row
+    }
 
     return $html;
 }
