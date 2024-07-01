@@ -45,7 +45,8 @@ function ___hero()
         $hero .= __description(array(
             'description' => $hero_description,
         ));
-        $hero .= "</div></section>";
+        $hero .= "</div>";
+        $hero .= "</section>";
         return $hero;
     }
 }
