@@ -9831,6 +9831,12 @@ p:last-child {
 .background-no-repeat {
   background-repeat: no-repeat; }
 
+.background-secondary {
+  background-color: var(--secondary-color); }
+
+.background-primary {
+  background-color: var(--primary-color); }
+
 .background-overlay:before {
   content: "";
   position: absolute;
