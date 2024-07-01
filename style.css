@@ -9881,6 +9881,9 @@ p:last-child {
   max-width: 100%;
   --bs-gutter-x: 0; }
 
+.logo-slider .swiper-wrapper {
+  transition-timing-function: linear !important; }
+
 .section:not(.no-overflow) {
   overflow: hidden; }
 
