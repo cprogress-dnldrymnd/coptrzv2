@@ -422,14 +422,15 @@ function ____gallery_modules($data)
 
     return $html;
 }
-function ____columns_modules($items, $id)
+function ____columns_modules($items, $id, $html = '')
 {
     $columns = $items['columns'];
     $column_styles = $items['column_styles'];
     $individual_column_settings = $items['individual_column_settings'];
+    $is_slider = $items['is_slider'];
+    $slider_style = $items['slider_style'];
     $classes = [];
     $styles = [];
-    $container_styles = [];
     if (!$individual_column_settings) {
         foreach ($column_styles as $column_style) {
             $type = $column_style['_type'];
@@ -514,6 +515,12 @@ function ____columns_modules($items, $id)
     $classes[] = 'column-holder';
     $classes[] = 'content-margin';
 
+    if ($is_slider) {
+        $swiper_id = $id.'-swiper';
+        $html .= "<div class='swiper-holder'>"; //swiper-holder
+        $html .= "<div class='swiper swiper-sliders' id='$swiper_id'>"; //swiper
+    }
+
     if ($styles) {
         $styles_val = _attribute('style', $styles, ';');
     }
@@ -523,10 +530,19 @@ function ____columns_modules($items, $id)
     }
     $column_attributes = _attributes(array($classes_val, $styles_val));
 
-    $html = "<div class='row g-4'>"; //row
+    if ($is_slider) {
+        $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+
+    } else {
+        $html .= "<div class='row g-4'>"; //row
+    }
     foreach ($columns as $key => $column) {
         $items = $column['items'];
-        $html .= '<div class="col">';
+        if ($is_slider) {
+            $html .= '<div class="swiper-slide">'; //swiper-slide
+        } else {
+            $html .= '<div class="col">'; //col
+        }
         $html .= "<div $column_attributes>";
         foreach ($items as $item) {
             $type = $item['_type'];
@@ -567,11 +583,14 @@ function ____columns_modules($items, $id)
                     break;
             }
         }
-        $html .= '</div>';
-        $html .= '</div>';
+        $html .= '</div>'; //end column-holder
+        $html .= '</div>'; //end col //end swiper-slide
     }
-    $html .= '</div>'; //end row
-
+    $html .= '</div>'; //end row // end-swiper-wrapper
+    if ($is_slider) {
+        $html .= '</div>'; //end swiper
+        $html .= '</div>'; //end swiper-holder
+    }
     return $html;
 }
 
