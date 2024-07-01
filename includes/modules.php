@@ -323,7 +323,7 @@ function ____columns_modules($items, $id)
     $column_attributes = _attributes(array($classes_val, $styles_val));
 
     $html = "<div class='row g-4'>";
-    foreach ($columns as $column) {
+    foreach ($columns as $key => $column) {
         $items = $column['items'];
 
         $html .= '<div class="col">';
@@ -346,7 +346,7 @@ function ____columns_modules($items, $id)
                     break;
                 case 'gallery':
                     $html .= ____gallery_modules(array(
-                        'id' => $item['id'],
+                        'id' => $id . $key,
                         'gallery' => $item['gallery'],
                         'gallery_style' => $item['gallery_style'],
                         'number_of_slides' => $item['number_of_slides'],
