@@ -148,6 +148,7 @@
 }
 .style-1 {
     position: relative;
+    padding-bottom: 100px;
     .swiper {
         overflow: visible;
     }
@@ -163,5 +164,11 @@
                 }
             }
         }
+    }
+    .swiper-button-next {
+        
+    }
+    .swiper-button-prev {
+
     }
 }

@@ -9936,7 +9936,8 @@ p:last-child {
   width: auto; }
 
 .style-1 {
-  position: relative; }
+  position: relative;
+  padding-bottom: 100px; }
   .style-1 .swiper {
     overflow: visible; }
   .style-1 .swiper-wrapper {
