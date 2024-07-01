@@ -70,7 +70,7 @@ function ___sections()
             $id = _attribute('id', array($section_id_val));
             $classes = _attribute('class', array('section', $classes));
 
-            $section_attribute = _attributes($classes, $id);
+            $section_attribute = _attributes(array($classes, $id));
 
             $sections_var .= "<section $section_attribute>";
             $sections_var .= "<div class='container'>";
