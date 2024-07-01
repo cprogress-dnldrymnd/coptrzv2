@@ -241,16 +241,8 @@ function ____columns_modules($items)
                     break;
                 case 'border':
                     $border_style = $column_style['border_style'];
-                    $border_color = $column_style['border_color'];
-                    $border_width = $column_style['border_width'];
 
-                    if ($border_color) {
-                        $styles[] = 'border-color: ' . $boder_color;
-                    }
 
-                    if ($border_width) {
-                        $styles[] = 'border-width: ' . $border_width;
-                    }
 
                     if ($column_style['border_radius']) {
                         $styles[] = '--border-radius: ' . $column_style['border_radius'];
@@ -258,6 +250,14 @@ function ____columns_modules($items)
                     }
 
                     if ($border_style == 'border-custom') {
+                        $border_color = $column_style['border_color'];
+                        $border_width = $column_style['border_width'];
+                        if ($border_color) {
+                            $styles[] = 'border-color: ' . $border_color;
+                        }
+                        if ($border_width) {
+                            $styles[] = 'border-width: ' . $border_width;
+                        }
                     } else {
                         $classes[] = $column_style['border_style'];
                     }
