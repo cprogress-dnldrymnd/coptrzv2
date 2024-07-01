@@ -1034,9 +1034,12 @@ Container::make('post_meta', __('Sections'))
                                 )
                             )
                             ->add_fields(
-                                'border_radius',
+                                'border',
                                 array(
-                                    Field::make('text', 'border_radius', 'Border Radius')
+                                    Field::make('text', 'border_radius', 'Border Radius'),
+                                    Field::make('text', 'border_width', 'Border Width'),
+                                    Field::make('color', 'border_width', 'Border Color')
+
                                 )
                             )
                             ->add_fields(

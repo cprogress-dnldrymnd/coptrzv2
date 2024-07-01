@@ -125,7 +125,7 @@ function ___sections()
                             $container_styles[] = 'max-width: ' . $section_style['custom_container_width'];
                         }
                         break;
-                    case 'border_radius':
+                    case 'border':
                         $classes[] = ' rounded-corner';
                         if ($section_style['border_radius']) {
                             $styles[] = '--border-radius: ' . $section_style['border_radius'];
