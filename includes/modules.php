@@ -68,6 +68,19 @@ function ___sections()
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
 
+            foreach ($section_styles as $section_style) {
+                $type = $section_style['_type'];
+                switch ($type) {
+                    case 'padding':
+                        $classes[] = $section_style['padding_top'];
+                        $classes[] = $section_style['padding_bottom'];
+                        $classes[] = $section_style['padding_left'];
+                        $classes[] = $section_style['padding_right'];
+                        break;
+                }
+            }
+
+
             $id = _attribute('id', array($section_id_val));
             $classes_attr = _attribute('class', $classes);
 
