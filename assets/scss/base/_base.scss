@@ -151,5 +151,10 @@
     }
     .swiper-slide {
         width: 40% !important;
+        .column-holder {
+            > * {
+                position: relative;
+            }
+        }
     }
 }
