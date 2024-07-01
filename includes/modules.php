@@ -42,7 +42,9 @@ function ___hero()
             'tag' => 'h1',
             'class' => 'large-heading',
         ));
-        $hero .= do_shortcode("[__description description='$hero_description']");
+        $hero .= __description(array(
+            'description' => $hero_description,
+        ));
         $hero .= "</div></section>";
         return $hero;
     }
