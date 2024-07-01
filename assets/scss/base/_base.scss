@@ -26,3 +26,10 @@
         z-index: 1;
     }
 }
+
+.icon-box {
+    svg {
+        width: var(--width, 50px);
+        width: var(--height, 50px);
+    }
+}
