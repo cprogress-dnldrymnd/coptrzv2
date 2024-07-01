@@ -177,6 +177,9 @@ function ___sections()
                             'number_of_slides_mobile' => $items['number_of_slides_mobile'],
                         ));
                         break;
+                    case 'gallery':
+                        $html .= ____button_modules($items['buttons']);
+                        break;
                 }
             }
 
@@ -185,6 +188,23 @@ function ___sections()
         }
     }
     return $html;
+}
+function ____button_modules($buttons)
+{
+    if ($buttons) {
+        $html = "<div class='button-group-box'>";
+        foreach ($buttons as $button) {
+            $html .= __button(array(
+                'button_type' => $button['button_type'],
+                'button_text' => $button['button_text'],
+                'button_url' => $button['button_url'],
+                'button_url_custom' => $button['button_url_custom'],
+                'button_style' => $button['button_style'],
+                'button_target' => $button['button_target'],
+            ));
+        }
+        $html .= "</div>";
+    }
 }
 function ____gallery_modules($data)
 {

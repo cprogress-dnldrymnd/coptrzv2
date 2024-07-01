@@ -139,20 +139,23 @@ function _bg_image($hero_background)
 
 function __button($data)
 {
-    if($data['button_type'] == 'custom') {
-        $permaloink
+    $button_type = isset($data['button_type']) ? $data['button_type'] : false;
+    $button_text = isset($data['button_text']) ? $data['button_text'] : false;
+    $button_url = isset($data['button_url']) ? $data['button_url'] : false;
+    $button_url_custom = isset($data['button_url_custom']) ? $data['button_url_custom'] : false;
+    $button_style = isset($data['button_style']) ? $data['button_style'] : false;
+    $button_text = isset($data['button_text']) ? $data['button_text'] : false;
+    $button_target = isset($data['button_target']) ? $data['button_target'] : false;
+
+    if ($button_type != 'custom') {
+        $button_url = get_permalink($button_url);
     } else {
-
+        $button_url = $button_url_custom;
     }
-
-    if ($video_url) {
-        $class = isset($data['class']) ? $data['class'] : false;
+    if ($button_text && $button_url) {
         $attributes_args = [];
-        if ($class) {
-            $attributes_args[] = $class;
-        }
+        $attributes_args[] = $button_style;
         $_attributes = _attributes($attributes_args);
-
-        return "<div $_attributes><video autoplay loop muted src='$video_url'></video></div>";
+        return "<div target='$button_target' href='$button_url' $_attributes><a>$button_text</a></div>";
     }
 }
