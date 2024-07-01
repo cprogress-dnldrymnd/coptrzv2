@@ -133,8 +133,9 @@ function ___sections()
                             $classes[] = 'no-overlay';
                         } else if ($background_overlay_type == 'custom') {
                             $styles[] = '--background-overlay-custom: ' . $section_style['background_overlay_custom'] . ';';
+                        } else {
+                            $classes[] = 'background-overlay';
                         }
-
                         break;
                 }
             }
