@@ -9926,7 +9926,9 @@ p:last-child {
   border: 1px solid;
   display: inline-block;
   text-decoration: none;
-  color: currentCOlor; }
+  color: currentCOlor;
+  font-weight: 600;
+  font-size: 15px; }
 .button-box.button-accent a,
 .button-box.button-accent button {
   color: var(--bs-white);
