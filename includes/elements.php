@@ -84,7 +84,7 @@ function __image($data)
     $featured_image = isset($data['featured_image']) ? true : false;
     $image_id = isset($data['image_id']) ? $data['image_id'] : false;
     $size = isset($data['size']) ? $data['size'] : false;
-    $class = isset($data['size']) ? $data['class'] : false;
+    $class = isset($data['class']) ? $data['class'] : false;
 
     if ($featured_image) {
         $image = get_the_post_thumbnail(get_the_ID(), $size);
