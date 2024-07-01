@@ -431,7 +431,7 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('textarea', 'custom_html', __('Custom HTML')),
                                         )
                                     ),
-                                Field::make('complex', 'column_styles', __('Styles'))
+                                Field::make('complex', 'column_styles', __('Column Styles'))
                                     ->set_duplicate_groups_allowed(false)
                                     ->add_fields(
                                         'background_color',
