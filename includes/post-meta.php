@@ -159,13 +159,41 @@ Container::make('post_meta', __('Sections'))
                     ->add_fields('columns', array(
                         Field::make('html', 'html_4')->set_html('<label>Section Columns Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings'))->set_width(20),
-                        Field::make('checkbox', 'is_slider', __('Is Slider'))->set_width(20),
-                        Field::make('select', 'slider_style', __('Slider Style'))->set_width(60)
+                        Field::make('checkbox', 'is_slider', __('Is Slider'))->set_width(80),
+                        Field::make('select', 'slider_style', __('Slider Style'))->set_width(25)
                             ->set_options(
                                 array(
                                     'style-1' => 'Style 1',
                                 )
                             )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => true,
+                                    )
+                                )
+                            ),
+                        Field::make('text', 'number_of_slides', __('Number of Slides Desktop'))->set_default_value(6)->set_required(true)->set_attribute('type', 'number')->set_width(25)
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => true,
+                                    )
+                                )
+                            ),
+                        Field::make('text', 'number_of_slides_tablet', __('Number of Slides Tablet'))->set_attribute('type', 'number')->set_width(25)
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => true,
+                                    )
+                                )
+                            ),
+                        Field::make('text', 'number_of_slides_mobile', __('Number of Slides Mobile'))->set_attribute('type', 'number')->set_width(25)
+
                             ->set_conditional_logic(
                                 array(
                                     array(
