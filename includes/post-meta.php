@@ -1607,6 +1607,13 @@ Container::make('post_meta', __('Sections'))
                                                 'button-bordered'    => 'Bordered',
                                             )
                                         ),
+                                    Field::make('select', 'button_target', __('Button Target'))
+                                        ->set_options(
+                                            array(
+                                                'target="_self"'      => 'Default',
+                                                'target="_blank"'      => 'New Tab',
+                                            )
+                                        ),
                                 ))
                         )
                     ),

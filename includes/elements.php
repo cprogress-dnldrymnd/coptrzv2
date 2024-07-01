@@ -135,3 +135,24 @@ function _bg_image($hero_background)
         ));
     }
 }
+
+
+function __button($data)
+{
+    if($data['button_type'] == 'custom') {
+        $permaloink
+    } else {
+
+    }
+
+    if ($video_url) {
+        $class = isset($data['class']) ? $data['class'] : false;
+        $attributes_args = [];
+        if ($class) {
+            $attributes_args[] = $class;
+        }
+        $_attributes = _attributes($attributes_args);
+
+        return "<div $_attributes><video autoplay loop muted src='$video_url'></video></div>";
+    }
+}
