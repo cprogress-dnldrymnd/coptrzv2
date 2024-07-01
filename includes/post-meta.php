@@ -1571,7 +1571,7 @@ Container::make('post_meta', __('Sections'))
                                                 )
                                             ),
 
-                                        Field::make('association', 'post', 'Select Post')
+                                        Field::make('association', 'post', 'Select Solutions')
                                             ->set_types(
                                                 array(
                                                     array(
