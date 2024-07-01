@@ -41,10 +41,10 @@ function swipers() {
     });
 
     jQuery('.style-1 .swiper-sliders').each(function (index, element) {
-        $id = '#' + jQuery(this).attr('id');
+        var $ids = '#' + jQuery(this).attr('id');
 
-        var swiperSlide = new Swiper($id, {
-            loop: true,
+        var swiperSlide = new Swiper($ids, {
+            loop: false,
             autoplay: {
                 delay: 3000,
                 disableOnInteraction: false
