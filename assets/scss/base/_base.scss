@@ -71,6 +71,10 @@
 .logo-slider {
     .swiper-wrapper {
         transition-timing-function : linear !important;
+        .swiper-slide {
+            display: inline;
+            width: auto;
+        }
         img {
             height: 60px;
             object-fit: contain;
