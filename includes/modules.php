@@ -311,6 +311,16 @@ function ____post_grid($data)
                         'button_target' => $item['button_target'],
                     ));
                     break;
+                case 'featured_image':
+                    $is_background_image = $item['is_background_image'];
+                    $image_args['featured_image'] = true;
+                    $image_args['size'] = $item['size'];
+                    if ($is_background_image) {
+                        $image_args['class'] = _attribute('class', array('background-image', 'background-overlay'));
+                    }
+                    $html .= __image($image_args);
+
+                    break;
             }
         }
         $html .= "</div>";
