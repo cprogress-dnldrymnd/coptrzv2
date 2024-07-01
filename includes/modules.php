@@ -85,7 +85,7 @@ function ___sections()
                         $classes[] = $section_style['margin_right'];
                         break;
                     case 'custom_class':
-                        $classes[] = $custom_class;
+                        $classes[] = $section_style['custom_class'];
                         break;
                     case 'alignment':
                         $classes[] = $section_style['align_items'];
