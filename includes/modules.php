@@ -318,7 +318,7 @@ function ____columns_modules($items)
                     ));
                     break;
                 case 'gallery':
-                    $html .= ____gallery_modules($items['gallery'], $items['gallery_style']);
+                    $html .= ____gallery_modules($item['gallery'], $item['gallery_style']);
                     break;
             }
         }
