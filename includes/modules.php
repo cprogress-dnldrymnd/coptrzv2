@@ -155,10 +155,10 @@ function ___sections()
                 $type = $items['_type'];
                 switch ($type) {
                     case 'heading':
-                          $html .= ____heading_modules($items);
+                        $html .= ____heading_modules($items);
                         break;
                     case 'columns':
-                        $html .= ____columns_modules($items, $id.$key);
+                        $html .= ____columns_modules($items, $id . $key);
                         break;
                     case 'description':
                         $html .= __description(array(
@@ -186,6 +186,7 @@ function ____gallery_modules($data)
         $html  = "<div class='gallery $gallery_style'>";
 
         if ($gallery_style == 'logo-slider') {
+            $image_args['class'] = _attribute('class', array('swiper-slide'));
 
             $number_of_slides_attr = _attribute('number_of_slides', array($number_of_slides));
             $number_of_slides_tablet_attr = _attribute('number_of_slides_tablet', array($number_of_slides_tablet));
@@ -196,15 +197,12 @@ function ____gallery_modules($data)
             $html .= '<div class="swiper-wrapper">';
         } else {
             $html .= '<div class="row g-5">';
+            $image_args['class'] = _attribute('class', array('col-lg-4'));
         }
 
         foreach ($gallery as $image) {
             $image_args['image_id'] = $image;
-            if ($gallery_style == 'logo-slider') {
-                $image_args['class'] = _attribute('class', array('swiper-slide'));
-            } else {
-                $image_args['class'] = _attribute('class', array('col-lg-4'));
-            }
+
 
             $html .= __image($image_args);
         }
@@ -219,7 +217,7 @@ function ____gallery_modules($data)
 
     return $html;
 }
-function ____columns_modules($items,$id)
+function ____columns_modules($items, $id)
 {
     $columns = $items['columns'];
     $column_styles = $items['column_styles'];
