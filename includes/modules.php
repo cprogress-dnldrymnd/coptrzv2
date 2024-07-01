@@ -545,7 +545,7 @@ function ____columns_modules($items, $id)
                     break;
                 case 'image':
                     $is_background_image = $item['is_background_image'];
-                    $image_args['featured_image'] = $item['image'];
+                    $image_args['image_id'] = $item['image'];
                     $image_args['size'] = $item['size'];
                     if ($is_background_image) {
                         $image_args['class'] = _attribute('class', array('background-image', 'background-overlay'));
