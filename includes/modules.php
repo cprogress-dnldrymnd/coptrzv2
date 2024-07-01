@@ -65,11 +65,12 @@ function ___sections()
             $section_items = $section['section_items'];
             $section_styles = $section['section_styles'];
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
-
+            $classes = array();
+            $styles = array();
+            $container_styles = array();
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
-            $styles = [];
-            $container_styles = [];
+   
             foreach ($section_styles as $section_style) {
                 $type = $section_style['_type'];
                 switch ($type) {
@@ -194,7 +195,6 @@ function ____gallery_modules($data)
             $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
             $attributes = _attributes($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr);
             $image_args['size'] = 'medium';
-
 
             $html .= "<div id='$id' class='swiper swiper-logo-slider' $attributes>";
             $html .= '<div class="swiper-wrapper align-items-center">';
@@ -346,7 +346,7 @@ function ____columns_modules($items, $id)
                     break;
                 case 'gallery':
                     $html .= ____gallery_modules(array(
-                        'id' => $id ,
+                        'id' => $id,
                         'gallery' => $item['gallery'],
                         'gallery_style' => $item['gallery_style'],
                         'number_of_slides' => $item['number_of_slides'],
