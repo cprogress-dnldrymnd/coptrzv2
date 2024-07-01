@@ -99,4 +99,7 @@
         padding: 1.25rem 2.5rem;
         border: 1px solid;
     }
+    &.button-accent {
+        background-color: var(--bs-accent);
+    }
 }
