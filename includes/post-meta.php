@@ -431,7 +431,9 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('textarea', 'custom_html', __('Custom HTML')),
                                         )
                                     ),
-                                Field::make('complex', 'column_styles', __('Column Styles'))
+                                Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label'),
+
+                                Field::make('complex', 'column_styles', __(''))
                                     ->set_duplicate_groups_allowed(false)
                                     ->add_fields(
                                         'background_color',
@@ -732,7 +734,9 @@ Container::make('post_meta', __('Sections'))
 
                             ))
                             ->set_header_template('<%- column_title %>'),
-                        Field::make('complex', 'column_styles', __('Styles'))
+                        Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label'),
+
+                        Field::make('complex', 'column_styles', __(''))
                             ->set_duplicate_groups_allowed(false)
                             ->add_fields(
                                 'background_color',
@@ -1025,7 +1029,7 @@ Container::make('post_meta', __('Sections'))
 
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
-                Field::make('complex', 'section_styles', __('Styles'))
+                Field::make('complex', 'section_styles', __(''))
                     ->set_duplicate_groups_allowed(false)
                     ->add_fields(
                         'background_color',
