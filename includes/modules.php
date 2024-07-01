@@ -78,6 +78,15 @@ function ___sections()
                         $classes[] = $section_style['padding_left'];
                         $classes[] = $section_style['padding_right'];
                         break;
+                    case 'margin':
+                        $classes[] = $section_style['margin_top'];
+                        $classes[] = $section_style['margin_bottom'];
+                        $classes[] = $section_style['margin_left'];
+                        $classes[] = $section_style['margin_right'];
+                        break;
+                    case 'custom_class':
+                        $classes[] = explode(" ", $section_style['custom_class']);
+                        break;
                 }
             }
 
