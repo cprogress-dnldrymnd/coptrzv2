@@ -1558,6 +1558,7 @@ Container::make('post_meta', __('Sections'))
                                         'singular_name' => 'Button',
                                     )
                                 )
+                                ->set_header_template('<%- button_text %>')
                                 ->add_fields(array(
                                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
                                         ->set_options(
