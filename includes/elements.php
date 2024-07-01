@@ -1,26 +1,11 @@
 <?php
-function __heading($data)
+function __heading($data, $html = '')
 {
-    $heading = $data['heading'];
-    $class = $data['class'];
-    $tag = $data['tag'];
-    $_attributes = _attributes(array(
-        array('class', $class)
-    ));
-    if ($heading) {
-        return "<$tag $_attributes>$heading</$tag>";
-    }
-}
-
-function __description($data)
-{
-    $description = $data['description'];
-    $class = $data['class'];
-
-    $attributes_args = array(
-        array('class', 'description-box'),
-    );
-    $_attributes = _attributes($attributes_args);
+    $heading = isset($data['heading']) ? $data['heading'] : false;
+    $class = isset($data['class']) ? $data['class'] : false;
+    $tag = isset($data['tag']) ? $data['tag'] : 'h2';
+    $prefix = isset($data['prefix']) ? $data['prefix'] : false;
+    $suffix = isset($data['prefix']) ? $data['suffix'] : false;
 
     if ($class) {
         $attributes_args[] = array(
@@ -28,6 +13,43 @@ function __description($data)
         );
     }
 
+    $_attributes = _attributes($attributes_args);
+
+
+    if ($heading) {
+        if ($prefix || $suffix) {
+            $html .= "<div class='heading-box'>";
+            if ($prefix) {
+                $html .= "<span>$prefix</span>";
+            }
+            $html .= "<$tag $_attributes>$heading</$tag>";
+            if ($suffix) {
+                $html .= "<span>$suffix</span>";
+            }
+
+            $html .= "</div>";
+        } else {
+            $html .= "<$tag $_attributes>$heading</$tag>";
+        }
+    }
+}
+
+function __description($data)
+{
+    $description = isset($data['description']) ? $data['description'] : false;
+    $class = isset($data['class']) ? $data['class'] : false;
+
+    $attributes_args = array(
+        array('class', 'description-box'),
+    );
+
+    if ($class) {
+        $attributes_args[] = array(
+            array('class', $class),
+        );
+    }
+
+    $_attributes = _attributes($attributes_args);
 
     if ($description) {
         return "<div $_attributes>$description</div>";
