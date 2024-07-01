@@ -748,9 +748,25 @@ Container::make('post_meta', __('Sections'))
 
                             ))
                             ->set_header_template('<%- column_title %>'),
-                        Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label'),
+                        Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label')
+                        ->set_conditional_logic(
+                            array(
+                                array(
+                                    'field' => 'individual_column_settings',
+                                    'value' => false,
+                                )
+                            )
+                        ),
                         //All columns styles
                         Field::make('complex', 'column_styles', __(''))
+                        ->set_conditional_logic(
+                            array(
+                                array(
+                                    'field' => 'individual_column_settings',
+                                    'value' => false,
+                                )
+                            )
+                        )
                             ->setup_labels(
                                 array(
                                     'plural_name'   => 'Styles',
