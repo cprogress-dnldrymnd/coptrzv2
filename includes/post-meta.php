@@ -40,6 +40,7 @@ Container::make('post_meta', __('Sections'))
                             'singular_name' => 'Section Item',
                         )
                     )
+                    ->set_collapsed(true)
                     ->add_fields('heading', array(
                         Field::make('html', 'html_1')->set_html('<label>Section Heading Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'has_prefix', __('Heading Has Prefix'))->set_width(20),
