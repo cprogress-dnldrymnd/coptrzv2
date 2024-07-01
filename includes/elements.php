@@ -55,7 +55,15 @@ function __description($data)
 
 function _icon($data, $html = '')
 {
-  
+    $id = isset($data['id']) ? $data['id'] : false;
+    if ($id) {
+
+
+        $url = wp_get_original_image_path($id);
+        $html .= "<div $_attributes>";
+        $html .= _output_svg_from_url($url);
+        $html .= '</div>';
+    }
 
     return $html;
 }
