@@ -285,12 +285,18 @@ function ____post_grid($data)
     // Get the posts
     $posts_lists = get_posts($args);
 
+    $classes[] = 'column-holder';
+    $classes[] = 'position-relative';
+
+    $post_attribute = _attributes(array($classes));
+
+
     $html = '';
     $html .= "<div class='post-grid'>";
     $html .= "<div class='row g-4'>";
     foreach ($posts_lists as $post) {
         $html .= "<div class='col'>";
-        $html .= "<div class='column-holder position-relative'>";
+        $html .= "<div $post_attribute";
         foreach ($post_elements as $item) {
             $type = $item['_type'];
             switch ($type) {
