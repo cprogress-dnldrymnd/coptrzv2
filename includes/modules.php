@@ -9,7 +9,6 @@ function action_module_content()
             $post_content = '<!-- wp:html -->';
 
             $post_content .= ___hero();
-            $post_content .= ___sections();
 
 
             $post_content .= '<!-- /wp:html -->';
