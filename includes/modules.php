@@ -198,10 +198,10 @@ function ____gallery_modules($gallery, $gallery_style)
             $html .= __image($image_args);
         }
         if ($gallery_style == 'logo-slider') {
-            $html  .= "<div>";
-            $html  .= "<div>";
+            $html  .= "</div>";
+            $html  .= "</div>";
         } else {
-            $html  .= "<div>";
+            $html  .= "</div>";
         }
         $html  .= "<div>";
     }
