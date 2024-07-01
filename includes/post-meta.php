@@ -1057,9 +1057,9 @@ Container::make('post_meta', __('Sections'))
                     )
                     ->set_duplicate_groups_allowed(false)
                     ->add_fields(
-                        'background_color',
+                        'background',
                         array(
-                            Field::make('select', 'background', 'Background Color')
+                            Field::make('select', 'background_color', 'Background')
                                 ->set_options(
                                     array(
                                         'background-primary'   => 'Primary',
