@@ -137,6 +137,11 @@
             background-color: var(--bs-accent);
         }
     }
+    &.button-smal {
+        a,button {
+            padding: 0.625rem 1.25rem;
+        }
+    }
 }
 
 .site-logo {

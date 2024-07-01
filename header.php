@@ -60,7 +60,7 @@
 						</nav>
 					</div>
 					<div class="col-auto">
-						<div class="button-box button-accent">
+						<div class="button-box button-accent button-small">
 							<a href="#">Enquire Now</a>
 						</div>
 					</div>
