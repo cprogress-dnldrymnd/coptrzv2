@@ -9886,16 +9886,16 @@ p:last-child {
   --bs-gutter-x: 0; }
 
 .extend-right .container {
-  margin-left: 0; }
+  margin-right: 0; }
   @media (min-width: 1500px) {
     .extend-right .container {
-      max-width: calc(1520px + (50% -(1520px / 2))); } }
+      max-width: calc(1520px + (50% - (1520px / 2))); } }
 
 .extend-left .container {
   margin-left: 0; }
   @media (min-width: 1500px) {
     .extend-left .container {
-      max-width: calc(1520px + (50% -(1520px / 2))); } }
+      max-width: calc(1520px + (50% - (1520px / 2))); } }
 
 .logo-slider .swiper-wrapper {
   transition-timing-function: linear !important; }

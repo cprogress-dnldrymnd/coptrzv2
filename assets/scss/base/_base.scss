@@ -70,17 +70,17 @@
 
 .extend-right {
     .container {
-        margin-right: 0;
+        margin-left: 0;
         @media (min-width: 1500px) {
-            max-width: calc(1520px + (50% -(1520px / 2)));
+            max-width: calc(1520px + (50% - (1520px / 2)));
         }
     }
 }
 .extend-left {
     .container {
-        margin-left: 0;
+        margin-right: 0;
         @media (min-width: 1500px) {
-            max-width: calc(1520px + (50% -(1520px / 2)));
+            max-width: calc(1520px + (50% - (1520px / 2)));
         }
     }
 }
