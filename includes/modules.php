@@ -175,13 +175,24 @@ function ___sections()
     }
     return $html;
 }
-function ____gallery_modules($gallery, $gallery_style)
+function ____gallery_modules($data)
 {
+    $gallery = $data['gallery'];
+    $gallery_style = $data['gallery_style'];
+    $number_of_slides = $data['number_of_slides'];
+    $number_of_slides_tablet = $data['number_of_slides_tablet'];
+    $number_of_slides_mobile = $data['number_of_slides_mobile'];
     if ($gallery) {
         $html  = "<div class='gallery $gallery_style'>";
 
         if ($gallery_style == 'logo-slider') {
-            $html .= '<div class="swiper swiper-logo-slider">';
+
+            $number_of_slides_attr = _attribute('number_of_slides', array($number_of_slides));
+            $number_of_slides_tablet_attr = _attribute('number_of_slides_tablet', array($number_of_slides_tablet));
+            $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
+            $attributes = _attributes($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr);
+
+            $html .= "<div class='swiper swiper-logo-slider' $attributes";
             $html .= '<div class="swiper-wrapper">';
         } else {
             $html .= '<div class="row g-5">';
@@ -337,7 +348,13 @@ function ____columns_modules($items)
                     ));
                     break;
                 case 'gallery':
-                    $html .= ____gallery_modules($item['gallery'], $item['gallery_style']);
+                    $html .= ____gallery_modules(array(
+                        'gallery' => $item['gallery'],
+                        'gallery_style' => $item['gallery_style'],
+                        'number_of_slides' => $item['number_of_slides'],
+                        'number_of_slides_tablet' => $item['number_of_slides_tablet'],
+                        'number_of_slides_mobile' => $item['number_of_slides_mobile'],
+                    ));
                     break;
             }
         }

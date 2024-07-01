@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
 });
 
 function swipers() {
-    jQuery('.mySwiper-logoSwiper-Module').each(function (index, element) {
+    jQuery('.swiper-logo-slider').each(function (index, element) {
         $id = '#' + jQuery(this).attr('id');
         $number_of_slides = jQuery(this).attr('number_of_slides');
         $number_of_slides_tablet = jQuery(this).attr('number_of_slides_tablet');
