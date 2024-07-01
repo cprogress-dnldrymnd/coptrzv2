@@ -14,8 +14,8 @@
 	<header class="header small-text">
 		<div class="container">
 			<div class="header-inner mt-20px rounded-10px">
-				<nav class="navbar navbar-expand-lg text-white">
-					<div class="container-fluid">
+				<div class="row">
+					<div class="col-auto">
 						<a class="site-logo" href="#">
 							<svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="256" height="26.026" viewBox="0 0 256 26.026" class="svg-image replaced-svg">
 								<g id="Group_170" data-name="Group 170" transform="translate(-99.825 -87.108)">
@@ -31,10 +31,9 @@
 								</g>
 							</svg>
 						</a>
-						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					</div>
+					<div class="col-auto">
+						<nav class="navbar navbar-expand-lg text-white">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<li class="nav-item">
 									<a class="nav-link text-white active" aria-current="page" href="#">Products</a>
@@ -58,10 +57,9 @@
 									<a class="nav-link text-white" href="#">Defence</a>
 								</li>
 							</ul>
-
-						</div>
+						</nav>
 					</div>
-				</nav>
+				</div>
 			</div>
 		</div>
 	</header>
