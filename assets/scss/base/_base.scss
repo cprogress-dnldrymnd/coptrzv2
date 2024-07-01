@@ -8,6 +8,9 @@
         bottom: 0;
         background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%;
     }
+    & + div {
+        z-index: 1;
+    }
 }
 
 .background-image {

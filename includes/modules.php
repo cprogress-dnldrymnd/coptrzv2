@@ -69,6 +69,7 @@ function ___sections()
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
             $styles = [];
+            $container_styles = [];
             foreach ($section_styles as $section_style) {
                 $type = $section_style['_type'];
                 switch ($type) {
@@ -118,13 +119,14 @@ function ___sections()
                             $styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
                         }
                         break;
-
+                        /*
                     case 'background_overlay':
                         $background_overlay_type = $section_style['background_overlay_type'];
                         $classes[] = 'position-relative';
                         if ($background_overlay_type == 'image') {
                             $background_overlay_image = $section_style['background_overlay_image'];
-                            $classes[] = 'bg-overlay';
+                            $sections_var = _bg_image($hero_background);
+
                             if ($background_overlay_image) {
                                 $styles[] = '--background-image: url(' . wp_get_attachment_image_url($background_overlay_image, 'full') . ')';
                             }
@@ -137,6 +139,12 @@ function ___sections()
                         } else {
                             $classes[] = 'background-overlay';
                         }
+                        break;*/
+                    case 'container_width':
+                        $classes[] = $section_style['container_width'];
+                        if ($section_style['custom_container_width']) {
+                            $container_styles[] = 'max-width: ' . $section_style['custom_container_width'] . ';';
+                        }
                         break;
                 }
             }
@@ -145,13 +153,18 @@ function ___sections()
             $id = _attribute('id', array($section_id_val));
             $classes_attr = _attribute('class', $classes);
             if ($styles) {
-                $styles = _attribute('style', $styles, ';');
+                $styles_val = _attribute('style', $styles, ';');
             }
 
-            $section_attribute = _attributes(array($classes_attr, $id, $styles));
+            if ($container_styles) {
+                $container_styles_val = _attribute('style', $container_styles, ';');
+            }
+
+
+            $section_attribute = _attributes(array($classes_attr, $id, $styles_val));
 
             $sections_var .= "<section $section_attribute>";
-            $sections_var .= "<div class='container'>";
+            $sections_var .= "<div class='container' $container_styles_val>";
 
             foreach ($section_items as $items) {
                 $type = $items['_type'];

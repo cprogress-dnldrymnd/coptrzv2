@@ -9836,6 +9836,8 @@ p:last-child {
   right: 0;
   bottom: 0;
   background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%; }
+.background-overlay + div {
+  z-index: 1; }
 
 .background-image {
   position: absolute;
