@@ -291,7 +291,25 @@ function ____post_grid($data)
     foreach ($posts_lists as $post) {
         $html .= "<div class='col'>";
         $html .= "<div class='column-holder'>";
-
+        foreach ($post_elements as $items) {
+            foreach ($items as $item) {
+                $type = $item['_type'];
+                switch ($type) {
+                    case 'heading':
+                        $html .= ____heading_modules($item);
+                        break;
+                    case 'icon':
+                        $html .= ____icon_modules($item);
+                        break;
+                    case 'description':
+                        $html .= __description(array(
+                            'description' => $item['description'],
+                            'class' => _attribute('class', array('description-box'))
+                        ));
+                        break;
+                }
+            }
+        }
         $html .= "</div>";
         $html .= "</div>";
     }
