@@ -107,8 +107,13 @@ function ____heading_modules($items)
         if ($size) {
             $heading_data['size'] = $size;
         }
-        if ($text_color) {
-            $heading_data['text_color'] = $text_color;
+
+        if ($text_color == 'text-custom') {
+
+        } else {
+            if ($text_color) {
+                $heading_data['class'] = $text_color;
+            }
         }
     }
     if ($has_suffix) {

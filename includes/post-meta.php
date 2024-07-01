@@ -112,7 +112,6 @@ Container::make('post_meta', __('Sections'))
                                     'text-accent'    => 'Accent',
                                     'text-white'     => 'White',
                                     'text-light-gray'     => 'Light Gray',
-                                    'text-body-color'     => 'Body',
                                     'text-custom'    => 'Custom',
                                 )
                             )
