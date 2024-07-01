@@ -9870,6 +9870,13 @@ p:last-child {
 .border-default {
   border: 1px solid var(--border-color); }
 
+@media (min-width: 1500px) {
+  .container {
+    max-width: 1420px; } }
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1520px; } }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/

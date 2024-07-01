@@ -51,3 +51,11 @@
 .border-default {
     border: 1px solid var(--border-color);
 }
+.container {
+    @media (min-width: 1500px) {
+        max-width: 1420px;
+    }  
+    @media (min-width: 1600px) {
+        max-width: 1520px;
+    }   
+}
