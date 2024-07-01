@@ -66,7 +66,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('select', 'tag', __('Tag'))->set_width(25)
+                        Field::make('select', 'tag', __('Tag'))->set_width(20)
                             ->set_options(
                                 array(
                                     'h1' => 'h1',
@@ -86,7 +86,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('select', 'size', __('Heading Size'))->set_width(25)
+                        Field::make('select', 'size', __('Heading Size'))->set_width(20)
                             ->set_options(
                                 array(
                                     '' => 'Default',
@@ -103,7 +103,25 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('select', 'text_color', 'Text Color')->set_width(25)
+                        Field::make('select', 'text_align', __('Text Align'))->set_width(20)
+                            ->set_options(
+                                array(
+                                    '' => 'Default',
+                                    'text-start' => 'Text Left',
+                                    'text-center' => 'Text Center',
+                                    'text-end' => 'Text Right',
+                                    'text-justify' => 'Text Justify',
+                                )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'has_custom_heading_settings',
+                                        'value' => true,
+                                    )
+                                )
+                            ),
+                        Field::make('select', 'text_color', 'Text Color')->set_width(20)
                             ->set_options(
                                 array(
                                     ''   => 'Default',
@@ -123,7 +141,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('color', 'text_color_custom', __('Text Color'))->set_width(25)
+                        Field::make('color', 'text_color_custom', __('Text Color'))->set_width(20)
                             ->set_conditional_logic(
                                 array(
                                     array(
