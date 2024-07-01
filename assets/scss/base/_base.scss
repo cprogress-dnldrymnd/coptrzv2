@@ -68,6 +68,14 @@
     }
 }
 
+.entend-right {
+    .container {
+        @media (min-width: 1500px) {
+            max-width: calc(1520px + (50% -(1520px / 2)));
+        }
+    }
+}
+
 .logo-slider {
     .swiper-wrapper {
         transition-timing-function: linear !important;
@@ -127,6 +135,7 @@
     }
 }
 .style-1 {
+    margin-left: 10vw;
     .swiper-wrapper {
         overflow: visible;
     }

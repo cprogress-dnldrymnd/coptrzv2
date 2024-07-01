@@ -9885,6 +9885,10 @@ p:last-child {
   max-width: 100%;
   --bs-gutter-x: 0; }
 
+@media (min-width: 1500px) {
+  .entend-right .container {
+    max-width: calc(1520px + (50% -(1520px / 2))); } }
+
 .logo-slider .swiper-wrapper {
   transition-timing-function: linear !important; }
   .logo-slider .swiper-wrapper .swiper-slide {
@@ -9920,10 +9924,12 @@ p:last-child {
   height: 21px;
   width: auto; }
 
-.style-1 .swiper-wrapper {
-  overflow: visible; }
-.style-1 .swiper-slide {
-  width: 40% !important; }
+.style-1 {
+  margin-left: 10vw; }
+  .style-1 .swiper-wrapper {
+    overflow: visible; }
+  .style-1 .swiper-slide {
+    width: 40% !important; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
