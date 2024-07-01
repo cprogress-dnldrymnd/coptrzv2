@@ -5,7 +5,7 @@ if (!$hide_footer) {
 ?>
     <footer id="footer" class="bg-black text-white">
         <div class="footer-top">
-            <div class="container">
+            <div class="container rounded-10px">
                 <div class="row g-4 justify-content-between">
                     <div class="col-auto">
                         <a class="site-logo" href="#">
