@@ -15,6 +15,7 @@ function swipers() {
             freeMode: true,
             centeredSlides: true,
             speed: 5000,
+            spaceBetween: 30,
             autoplay: {
                 delay: 0,
                 disableOnInteraction: false

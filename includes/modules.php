@@ -177,6 +177,7 @@ function ___sections()
 }
 function ____gallery_modules($data)
 {
+    $id = $data['id'];
     $gallery = $data['gallery'];
     $gallery_style = $data['gallery_style'];
     $number_of_slides = $data['number_of_slides'];
@@ -194,8 +195,8 @@ function ____gallery_modules($data)
             $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
             $attributes = _attributes($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr);
 
-            $html .= "<div class='swiper swiper-logo-slider' $attributes>";
-            $html .= '<div class="swiper-wrapper">';
+            $html .= "<div id='$id' class='swiper swiper-logo-slider' $attributes>";
+            $html .= '<div class="swiper-wrapper align-items-center">';
         } else {
             $html .= '<div class="row g-5">';
             $image_args['class'] = _attribute('class', array('col-lg-4'));
