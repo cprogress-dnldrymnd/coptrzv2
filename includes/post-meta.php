@@ -726,7 +726,7 @@ Container::make('post_meta', __('Sections'))
                                     ->set_conditional_logic(
                                         array(
                                             array(
-                                                'field' => 'individual_column_settings',
+                                                'field' => 'parent.individual_column_settings',
                                                 'value' => true,
                                             )
                                         )
