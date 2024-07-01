@@ -437,12 +437,12 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('select', 'background_color', 'Background Color')
                                                 ->set_options(
                                                     array(
-                                                        'background-primary'   => 'Primary',
-                                                        'background-secondary' => 'Secondary',
-                                                        'background-accent'    => 'Accent',
-                                                        'background-white'     => 'White',
-                                                        'background-light-gray'     => 'Light Gray',
-                                                        'background-custom'    => 'Custom',
+                                                        'bg-primary'   => 'Primary',
+                                                        'bg-secondary' => 'Secondary',
+                                                        'bg-accent'    => 'Accent',
+                                                        'bg-white'     => 'White',
+                                                        'bg-light-gray'     => 'Light Gray',
+                                                        'bg-custom'    => 'Custom',
                                                     )
                                                 ),
                                             Field::make('color', 'background_color_custom', __('Background Color'))
@@ -450,7 +450,7 @@ Container::make('post_meta', __('Sections'))
                                                     array(
                                                         array(
                                                             'field' => 'background_color',
-                                                            'value' => 'background-custom',
+                                                            'value' => 'bg-custom',
                                                         )
                                                     )
                                                 ),
@@ -463,22 +463,22 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('select', 'background_size', 'Background Size')
                                                 ->set_options(
                                                     array(
-                                                        'background-cover' => 'Cover',
-                                                        'background-contain'  => 'Contain',
+                                                        'bg-cover' => 'Cover',
+                                                        'bg-contain'  => 'Contain',
                                                     )
                                                 ),
                                             Field::make('select', 'background_attachment', 'Background Attachment')
                                                 ->set_options(
                                                     array(
-                                                        'background-scroll'    => 'Scroll',
-                                                        'background-fixed'  => 'Fixed',
+                                                        'bg-scroll'    => 'Scroll',
+                                                        'bg-fixed'  => 'Fixed',
                                                     )
                                                 ),
                                             Field::make('select', 'background_repeat', 'Background Repeat')
                                                 ->set_options(
                                                     array(
-                                                        'background-no-repeat'    => 'No Repeat',
-                                                        'background-repeat'  => 'No Repeat',
+                                                        'bg-no-repeat'    => 'No Repeat',
+                                                        'bg-repeat'  => 'No Repeat',
                                                     )
                                                 ),
                                         )
@@ -762,12 +762,12 @@ Container::make('post_meta', __('Sections'))
                                     Field::make('select', 'background_color', 'Background Color')
                                         ->set_options(
                                             array(
-                                                'background-primary'   => 'Primary',
-                                                'background-secondary' => 'Secondary',
-                                                'background-accent'    => 'Accent',
-                                                'background-white'     => 'White',
-                                                'background-light-gray'     => 'Light Gray',
-                                                'background-custom'    => 'Custom',
+                                                'bg-primary'   => 'Primary',
+                                                'bg-secondary' => 'Secondary',
+                                                'bg-accent'    => 'Accent',
+                                                'bg-white'     => 'White',
+                                                'bg-light-gray'     => 'Light Gray',
+                                                'bg-custom'    => 'Custom',
                                             )
                                         ),
                                     Field::make('color', 'background_color_custom', __('Background Color'))
@@ -775,7 +775,7 @@ Container::make('post_meta', __('Sections'))
                                             array(
                                                 array(
                                                     'field' => 'background_color',
-                                                    'value' => 'background-custom',
+                                                    'value' => 'bg-custom',
                                                 )
                                             )
                                         ),
@@ -788,22 +788,22 @@ Container::make('post_meta', __('Sections'))
                                     Field::make('select', 'background_size', 'Background Size')
                                         ->set_options(
                                             array(
-                                                'background-cover' => 'Cover',
-                                                'background-contain'  => 'Contain',
+                                                'bg-cover' => 'Cover',
+                                                'bg-contain'  => 'Contain',
                                             )
                                         ),
                                     Field::make('select', 'background_attachment', 'Background Attachment')
                                         ->set_options(
                                             array(
-                                                'background-scroll'    => 'Scroll',
-                                                'background-fixed'  => 'Fixed',
+                                                'bg-scroll'    => 'Scroll',
+                                                'bg-fixed'  => 'Fixed',
                                             )
                                         ),
                                     Field::make('select', 'background_repeat', 'Background Repeat')
                                         ->set_options(
                                             array(
-                                                'background-no-repeat'    => 'No Repeat',
-                                                'background-repeat'  => 'No Repeat',
+                                                'bg-no-repeat'    => 'No Repeat',
+                                                'bg-repeat'  => 'No Repeat',
                                             )
                                         ),
                                 )
@@ -1151,12 +1151,12 @@ Container::make('post_meta', __('Sections'))
                                         Field::make('select', 'background_color', 'Background Color')
                                             ->set_options(
                                                 array(
-                                                    'background-primary'   => 'Primary',
-                                                    'background-secondary' => 'Secondary',
-                                                    'background-accent'    => 'Accent',
-                                                    'background-white'     => 'White',
-                                                    'background-light-gray'     => 'Light Gray',
-                                                    'background-custom'    => 'Custom',
+                                                    'bg-primary'   => 'Primary',
+                                                    'bg-secondary' => 'Secondary',
+                                                    'bg-accent'    => 'Accent',
+                                                    'bg-white'     => 'White',
+                                                    'bg-light-gray'     => 'Light Gray',
+                                                    'bg-custom'    => 'Custom',
                                                 )
                                             ),
                                         Field::make('color', 'background_color_custom', __('Background Color'))
@@ -1164,7 +1164,7 @@ Container::make('post_meta', __('Sections'))
                                                 array(
                                                     array(
                                                         'field' => 'background_color',
-                                                        'value' => 'background-custom',
+                                                        'value' => 'bg-custom',
                                                     )
                                                 )
                                             ),
@@ -1702,12 +1702,12 @@ Container::make('post_meta', __('Sections'))
                             Field::make('select', 'background_color', 'Background Color')
                                 ->set_options(
                                     array(
-                                        'background-primary'   => 'Primary',
-                                        'background-secondary' => 'Secondary',
-                                        'background-accent'    => 'Accent',
-                                        'background-white'     => 'White',
-                                        'background-light-gray'     => 'Light Gray',
-                                        'background-custom'    => 'Custom',
+                                        'bg-primary'   => 'Primary',
+                                        'bg-secondary' => 'Secondary',
+                                        'bg-accent'    => 'Accent',
+                                        'bg-white'     => 'White',
+                                        'bg-light-gray'     => 'Light Gray',
+                                        'bg-custom'    => 'Custom',
                                     )
                                 ),
                             Field::make('color', 'background_color_custom', __('Background Color'))
@@ -1715,7 +1715,7 @@ Container::make('post_meta', __('Sections'))
                                     array(
                                         array(
                                             'field' => 'background_color',
-                                            'value' => 'background-custom',
+                                            'value' => 'bg-custom',
                                         )
                                     )
                                 ),
@@ -1728,22 +1728,22 @@ Container::make('post_meta', __('Sections'))
                             Field::make('select', 'background_size', 'Background Size')
                                 ->set_options(
                                     array(
-                                        'background-cover' => 'Cover',
-                                        'background-contain'  => 'Contain',
+                                        'bg-cover' => 'Cover',
+                                        'bg-contain'  => 'Contain',
                                     )
                                 ),
                             Field::make('select', 'background_attachment', 'Background Attachment')
                                 ->set_options(
                                     array(
-                                        'background-scroll'    => 'Scroll',
-                                        'background-fixed'  => 'Fixed',
+                                        'bg-scroll'    => 'Scroll',
+                                        'bg-fixed'  => 'Fixed',
                                     )
                                 ),
                             Field::make('select', 'background_repeat', 'Background Repeat')
                                 ->set_options(
                                     array(
-                                        'background-no-repeat'    => 'No Repeat',
-                                        'background-repeat'  => 'No Repeat',
+                                        'bg-no-repeat'    => 'No Repeat',
+                                        'bg-repeat'  => 'No Repeat',
                                     )
                                 ),
                         )
