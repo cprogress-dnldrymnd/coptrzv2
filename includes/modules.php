@@ -98,6 +98,7 @@ function ____heading_modules($items)
     $tag = $items['tag'];
     $size = $items['size'];
     $text_color = $items['text_color'];
+    $text_align = $items['text_align'];
     $text_color_custom = $items['text_color_custom'];
     $heading_data['heading'] = $heading;
 
@@ -108,6 +109,9 @@ function ____heading_modules($items)
         }
         if ($size) {
             $classes[] = $size;
+        }
+        if($text_align) {
+            $classes[] = $text_align;
         }
 
         if ($text_color == 'text-custom') {
