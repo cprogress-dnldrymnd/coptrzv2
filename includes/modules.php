@@ -182,6 +182,7 @@ function ____gallery_modules($data)
     $number_of_slides = $data['number_of_slides'];
     $number_of_slides_tablet = $data['number_of_slides_tablet'];
     $number_of_slides_mobile = $data['number_of_slides_mobile'];
+    $image_args = [];
     if ($gallery) {
         $html  = "<div class='gallery $gallery_style'>";
 
@@ -202,7 +203,6 @@ function ____gallery_modules($data)
 
         foreach ($gallery as $image) {
             $image_args['image_id'] = $image;
-
 
             $html .= __image($image_args);
         }
