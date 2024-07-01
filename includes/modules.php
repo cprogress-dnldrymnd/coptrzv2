@@ -289,10 +289,12 @@ function ____post_grid($data)
     $html .= "<div class='post-grid'>";
     $html .= "<div class='row g-4'>";
     foreach ($posts_lists as $post) {
+        $html .= "<div class='col'>";
         $html .= "<div class='column-holder'>";
+
+        $html .= "</div>";
         $html .= "</div>";
     }
-
     $html .= "</div>";
     $html .= "</div>";
 
