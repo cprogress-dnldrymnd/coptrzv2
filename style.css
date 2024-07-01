@@ -9832,6 +9832,9 @@ p:last-child {
 .background-no-repeat {
   background-repeat: no-repeat; }
 
+.bg-accent {
+  background-color: var(--accent-color); }
+
 .background-overlay:before {
   content: "";
   position: absolute;

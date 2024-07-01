@@ -86,3 +86,7 @@ $spacings: (
 .background-no-repeat {
     background-repeat: no-repeat;
 }
+
+.bg-accent {
+    background-color: var(--bs-accent);
+}
