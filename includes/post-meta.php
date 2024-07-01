@@ -1138,14 +1138,6 @@ Container::make('post_meta', __('Sections'))
                         'post_grid',
                         array(
                             Field::make('complex', 'post_box_styles', __('Post Box Styles'))
-                                ->set_conditional_logic(
-                                    array(
-                                        array(
-                                            'field' => 'individual_column_settings',
-                                            'value' => false,
-                                        )
-                                    )
-                                )
                                 ->setup_labels(
                                     array(
                                         'plural_name'   => 'Styles',
