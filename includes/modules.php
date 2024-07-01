@@ -293,10 +293,12 @@ function ____post_grid($data)
                 break;
         }
     }
+    $classes[] = 'column-holder position-relative';
 
     if ($styles) {
         $styles_val = _attribute('style', $styles, ';');
     }
+    
 
     if ($classes) {
         $classes_val = _attribute('class', $classes, ' ');
@@ -306,6 +308,7 @@ function ____post_grid($data)
     if ($column_classes) {
         $column_classes_val = _attribute('class', $column_classes, ' ');
     }
+
 
     $post_attribute = _attributes(array($classes_val, $styles_val));
     $column_attribute = _attributes(array($column_classes_val));
