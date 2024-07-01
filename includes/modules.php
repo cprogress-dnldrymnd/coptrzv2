@@ -185,7 +185,6 @@ function ___sections()
                             'post_box_styles' => $items['post_box_styles'],
                             'post_elements' => $items['post_elements'],
                             'post_type' => $items['post_type'],
-                            'post_box_styles' => $items['post_box_styles'],
                         ));
                         break;
                 }
@@ -199,9 +198,70 @@ function ___sections()
 }
 function ____post_grid($data)
 {
+    $styles = $data['post_box_styles'];
+    $post_elements = $data['post_elements'];
+    $post_type = $data['post_type'];
+
+
+    $styles = array();
+    $container_styles = array();
+    $classes[] = 'section';
+    $classes[] = 'section-' . $key;
+
+    foreach ($styles as $style) {
+        $type = $style['_type'];
+        switch ($type) {
+            case 'padding':
+                $classes[] = $style['padding_top'];
+                $classes[] = $style['padding_bottom'];
+                $classes[] = $style['padding_left'];
+                $classes[] = $style['padding_right'];
+                break;
+            case 'margin':
+                $classes[] = $style['margin_top'];
+                $classes[] = $style['margin_bottom'];
+                $classes[] = $style['margin_left'];
+                $classes[] = $style['margin_right'];
+                break;
+            case 'custom_class':
+                $classes[] = $style['custom_class'];
+                break;
+            case 'alignment':
+                $classes[] = $style['align_items'];
+                $classes[] = $style['justify_content'];
+                $classes[] = $style['text_align'];
+                if ($style['align_items'] || $style['justify_content']) {
+                    $classes[] = 'd-flex';
+                }
+                break;
+            case 'text_color':
+                $text_color_custom = $style['text_color_custom'];
+                $classes[] = $style['text_color'];
+                if ($text_color_custom) {
+                    $styles[] = 'color: ' . $text_color_custom;
+                }
+                break;
+            case 'background_color':
+                $background_color_custom = $style['background_color_custom'];
+                $classes[] = $style['background_color'];
+                if ($background_color_custom) {
+                    $styles[] = 'background-color: ' . $background_color_custom;
+                }
+                break;
+       
+            case 'border':
+                if ($style['border_radius']) {
+                    $styles[] = '--border-radius: ' . $style['border_radius'];
+                    $classes[] = 'rounded-corner';
+                }
+                break;
+        }
+    }
+
+
     $html = '';
     $html .= "<div class='post-grid'>";
-    
+
     $html .= "</div>";
 
     return $html;
