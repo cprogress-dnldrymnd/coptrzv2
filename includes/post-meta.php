@@ -1558,7 +1558,6 @@ Container::make('post_meta', __('Sections'))
                                 ->add_fields(
                                     'solutions',
                                     array(
-                                        Field::make('hidden', 'taxonomy_key', '')->set_default_value('category'),
                                         Field::make('select', 'source', __('Source'))
                                             ->set_options(
                                                 array(

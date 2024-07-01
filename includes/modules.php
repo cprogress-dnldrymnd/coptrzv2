@@ -200,13 +200,13 @@ function ____post_grid($data)
 {
     $styles = $data['post_box_styles'];
     $post_elements = $data['post_elements'];
-    $post_type = $data['post_type'];
+
+    $post_type = $data['post_type'][0]['_type'];
+    $source = $data['post_type'][0]['source'];
 
 
     $styles = array();
-    $container_styles = array();
-    $classes[] = 'section';
-    $classes[] = 'section-' . $key;
+    $classes = array();
 
     foreach ($styles as $style) {
         $type = $style['_type'];
@@ -248,7 +248,6 @@ function ____post_grid($data)
                     $styles[] = 'background-color: ' . $background_color_custom;
                 }
                 break;
-       
             case 'border':
                 if ($style['border_radius']) {
                     $styles[] = '--border-radius: ' . $style['border_radius'];
@@ -257,11 +256,44 @@ function ____post_grid($data)
                 break;
         }
     }
+    // Build the args
+    $args['post_type'] = $post_type;
+    $args['posts_per_page'] = -1;
 
+    if ($source == 'category') {
+        $category_ids = array();
+        $categories = $data['post_type'][0]['category'];
+        $taxonomy_key = $data['post_type'][0]['taxonomy_key'];
+        foreach ($categories as $category) {
+            $category_ids[] = $category['id'];
+        }
+        $args['tax_query'] =  array(
+            array(
+                'taxonomy' => $taxonomy_key,
+                'field' => 'id',
+                'terms' => $category_ids,
+            )
+        );
+    } else if ($source == 'manually') {
+        $posts = $data['post_type'][0]['post'];
+        $posts_ids = array();
+        foreach ($posts as $post) {
+            $posts_ids[] = $post['id'];
+        }
+        $args['post__in'] = $posts_ids;
+    }
+    // Get the posts
+    $posts_lists = get_posts($args);
 
     $html = '';
     $html .= "<div class='post-grid'>";
+    $html .= "<div class='row g-4'>";
+    foreach ($posts_lists as $post) {
+        $html .= "<div class='column-holder'>";
+        $html .= "</div>";
+    }
 
+    $html .= "</div>";
     $html .= "</div>";
 
     return $html;
