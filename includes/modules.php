@@ -169,7 +169,7 @@ function ___sections()
                         break;
                     case 'gallery':
                         $html .= ____gallery_modules(array(
-                            'id' => $section_id_val,
+                            'id' => $section_id_val . $key,
                             'gallery' => $items['gallery'],
                             'gallery_style' => $items['gallery_style'],
                             'number_of_slides' => $items['number_of_slides'],
