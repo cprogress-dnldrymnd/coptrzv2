@@ -1037,8 +1037,51 @@ Container::make('post_meta', __('Sections'))
                                 'border',
                                 array(
                                     Field::make('text', 'border_radius', 'Border Radius'),
-                                    Field::make('text', 'border_width', 'Border Width'),
-                                    Field::make('color', 'border_width', 'Border Color')
+                                    Field::make('select', 'border_style', 'Border Style')
+                                        ->set_options(
+                                            array(
+                                                'border-default'   => 'Default',
+                                                'border-custom'   => 'Custom',
+                                            )
+                                        ),
+
+                                    Field::make('select', 'border_style', 'Border Color')
+                                        ->set_options(
+                                            array(
+                                                'text-primary'   => 'Primary',
+                                                'text-secondary' => 'Secondary',
+                                                'text-accent'    => 'Accent',
+                                                'text-white'     => 'White',
+                                                'text-light-gray'     => 'Light Gray',
+                                                'text-custom'    => 'Custom',
+                                            )
+                                        )
+                                        ->set_conditional_logic(
+                                            array(
+                                                array(
+                                                    'field' => 'border_style',
+                                                    'value' => 'border-custom',
+                                                )
+                                            )
+                                        ),
+                                    Field::make('color', 'border_color', __('Border Color'))
+                                        ->set_conditional_logic(
+                                            array(
+                                                array(
+                                                    'field' => 'text_color',
+                                                    'value' => 'border-custom',
+                                                )
+                                            )
+                                        ),
+                                    Field::make('text', 'border_width', 'Border Width')
+                                        ->set_conditional_logic(
+                                            array(
+                                                array(
+                                                    'field' => 'border_style',
+                                                    'value' => 'border-custom',
+                                                )
+                                            )
+                                        ),
 
                                 )
                             )
