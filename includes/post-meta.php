@@ -1070,7 +1070,7 @@ Container::make('post_meta', __('Sections'))
                                         'background-custom'    => 'Custom',
                                     )
                                 ),
-                            Field::make('color', 'background_color_custom', __('Background Color'))
+                            Field::make('color', 'background_color_custom', __('Background Color'))->set_width(33)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -1087,14 +1087,14 @@ Container::make('post_meta', __('Sections'))
                                         'background-contain'  => 'Contain',
                                     )
                                 ),
-                            Field::make('select', 'background_attachment', 'Background Attachment')
+                            Field::make('select', 'background_attachment', 'Background Attachment')->set_width(33)
                                 ->set_options(
                                     array(
                                         'background-scroll'    => 'Scroll',
                                         'background-fixed'  => 'Fixed',
                                     )
                                 ),
-                            Field::make('select', 'background_repeat', 'Background Repeat')
+                            Field::make('select', 'background_repeat', 'Background Repeat')->set_width(33)
                                 ->set_options(
                                     array(
                                         'background-no-repeat'    => 'No Repeat',
