@@ -91,7 +91,7 @@ function ___sections()
                         $classes[] = $section_style['align_items'];
                         $classes[] = $section_style['justify_content'];
                         $classes[] = $section_style['text_align'];
-                        if($section_style['align_items'] || $section_style['justify_content']) {
+                        if ($section_style['align_items'] || $section_style['justify_content']) {
                             $classes[] = 'd-flex';
                         }
                         break;
@@ -100,6 +100,13 @@ function ___sections()
                         $classes[] = $section_style['text_color'];
                         if ($text_color_custom) {
                             $styles[] = 'color: ' . $text_color_custom;
+                        }
+                        break;
+                    case 'background_color':
+                        $background_color_custom = $section_style['background_color_custom'];
+                        $classes[] = $section_style['background_color'];
+                        if ($background_color_custom) {
+                            $styles[] = 'background-color: ' . $background_color_custom;
                         }
                         break;
                 }
