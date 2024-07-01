@@ -135,7 +135,7 @@ function ___sections()
             }
 
 
-            $id = _attribute('id', array($section_id_val));
+            $id_val = _attribute('id', array($section_id_val));
             $classes_attr = _attribute('class', $classes);
             if ($styles) {
                 $styles_val = _attribute('style', $styles, ';');
@@ -146,7 +146,7 @@ function ___sections()
             }
 
 
-            $section_attribute = _attributes(array($classes_attr, $id, $styles_val));
+            $section_attribute = _attributes(array($classes_attr, $id_val, $styles_val));
 
             $html .= "<section $section_attribute>";
             $html .= "<div class='container' $container_styles_val>";
@@ -158,7 +158,7 @@ function ___sections()
                         $html .= ____heading_modules($items);
                         break;
                     case 'columns':
-                        $html .= ____columns_modules($items, $id . $key);
+                        $html .= ____columns_modules($items, $section_id_val . $key);
                         break;
                     case 'description':
                         $html .= __description(array(
@@ -196,7 +196,7 @@ function ____gallery_modules($data)
             $image_args['size'] = 'medium';
 
 
-            $html .= "<div $id class='swiper swiper-logo-slider' $attributes>";
+            $html .= "<div id='$id' class='swiper swiper-logo-slider' $attributes>";
             $html .= '<div class="swiper-wrapper align-items-center">';
         } else {
             $image_args['size'] = 'large';
