@@ -10006,6 +10006,7 @@ header {
   #footer .widget-title {
     margin-bottom: 1.5rem; }
   #footer .footer-top .container {
+    padding: 20px;
     background-color: #262626; }
   #footer .footer-bottom {
     border-top: 1px solid #3C3C3C;
