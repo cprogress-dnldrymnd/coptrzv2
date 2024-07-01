@@ -95,6 +95,9 @@ function ___sections()
                     case 'heading':
                         $sections_var .= ____heading_modules($items);
                         break;
+                    case 'columns':
+                        $sections_var .= ____columns_modules($items['columns']);
+                        break;
                 }
                 $sections_var .= $type;
             }
@@ -105,7 +108,27 @@ function ___sections()
     }
     return $sections_var;
 }
-
+function ____columns_modules($columns)
+{
+    $html = "<div class='row'>";
+    foreach ($columns as $column) {
+        $items = $column['items'];
+        $html .= '<div class="col">';
+        $html .= '<div class="column-holder">';
+        foreach ($items as $item) {
+            $type = $items['_type'];
+            switch ($type) {
+                case 'heading':
+                    $html .= ____heading_modules($items);
+                    break;
+            }
+            $sections_var .= $type;
+        }
+        $html .= '</div>';
+        $html .= '</div>';
+    }
+    $html .= '</div>';
+}
 function ____heading_modules($items)
 {
     $has_suffix = $items['has_suffix'];
