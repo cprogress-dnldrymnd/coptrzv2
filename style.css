@@ -9938,7 +9938,7 @@ p:last-child {
   overflow: visible; }
 .style-1 .swiper-slide {
   width: 40% !important; }
-  .style-1 .swiper-slide .column-holder > * {
+  .style-1 .swiper-slide .column-holder > *:not(.background-image) {
     position: relative; }
 
 /*-----------------------------------------------------------------------------------*/
