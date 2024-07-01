@@ -57,9 +57,9 @@ function _icon($data, $html = '')
 {
     $id = isset($data['id']) ? $data['id'] : false;
     if ($id) {
-
         $class = isset($data['class']) ? $data['class'] : false;
         $styles = isset($data['styles']) ? $data['styles'] : false;
+
 
         $attributes_args = [];
         if ($class) {
