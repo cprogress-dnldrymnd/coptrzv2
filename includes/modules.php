@@ -129,7 +129,7 @@ function ____heading_modules($items)
         $class_args['class'] = 'heading-box';
     }
 
-    $heading_data['class'] = $class_args;
+    $heading_data['class'] = implode(' ', $class_args);
 
     return __heading($heading_data);
 }
