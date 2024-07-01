@@ -543,6 +543,15 @@ function ____columns_modules($items, $id)
                         'class' => _attribute('class', array('description-box'))
                     ));
                     break;
+                case 'image':
+                    $is_background_image = $item['is_background_image'];
+                    $image_args['featured_image'] = $item['image'];
+                    $image_args['size'] = $item['size'];
+                    if ($is_background_image) {
+                        $image_args['class'] = _attribute('class', array('background-image', 'background-overlay'));
+                    }
+                    $html .= __image($image_args);
+                    break;
                 case 'gallery':
                     $html .= ____gallery_modules(array(
                         'id' => $id,
