@@ -9905,10 +9905,13 @@ p:last-child {
 .button-group-box > div:not(:last-child) {
   margin-right: 1rem; }
 
-.button-box a, .button-box button {
+.button-box a,
+.button-box button {
   padding: 1.25rem 2.5rem;
-  border: 1px solid; }
-.button-box.button-accent {
+  border: 1px solid;
+  display: inline-block; }
+.button-box.button-accent a,
+.button-box.button-accent button {
   background-color: var(--bs-accent); }
 
 /*-----------------------------------------------------------------------------------*/

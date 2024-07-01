@@ -67,10 +67,9 @@
     }
 }
 
-
 .logo-slider {
     .swiper-wrapper {
-        transition-timing-function : linear !important;
+        transition-timing-function: linear !important;
         .swiper-slide {
             display: inline;
             width: auto;
@@ -101,11 +100,16 @@
     }
 }
 .button-box {
-    a, button {
+    a,
+    button {
         padding: 1.25rem 2.5rem;
         border: 1px solid;
+        display: inline-block;
     }
     &.button-accent {
-        background-color: var(--bs-accent);
+        a,
+        button {
+            background-color: var(--bs-accent);
+        }
     }
 }
