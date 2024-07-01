@@ -204,6 +204,7 @@ function ____button_modules($buttons)
             ));
         }
         $html .= "</div>";
+        return $html;
     }
 }
 function ____gallery_modules($data)
