@@ -8,7 +8,7 @@ function __heading($data, $html = '')
     $suffix = isset($data['prefix']) ? $data['suffix'] : false;
     $attributes_args = [];
     if ($class) {
-        $attributes_args[] = array('class', $class);
+        $attributes_args[] = $class;
     }
     $_attributes = _attributes($attributes_args);
 
