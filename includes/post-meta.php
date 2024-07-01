@@ -1059,7 +1059,7 @@ Container::make('post_meta', __('Sections'))
                     ->add_fields(
                         'background_color',
                         array(
-                            Field::make('select', 'background', 'Background Color')
+                            Field::make('select', 'background_color', 'Background Color')
                                 ->set_options(
                                     array(
                                         'background-primary'   => 'Primary',
