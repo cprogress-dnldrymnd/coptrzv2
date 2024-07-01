@@ -50,13 +50,8 @@ function swipers() {
 
         var logoSwiper = new Swiper($id, {
             loop: true,
-            freeMode: true,
-            centeredSlides: true,
             speed: 5000,
-            autoplay: {
-                delay: 0,
-                disableOnInteraction: false
-            },
+            autoplay: false,
             breakpoints: {
                 0: {
                     slidesPerView: $number_of_slides_mobile,
