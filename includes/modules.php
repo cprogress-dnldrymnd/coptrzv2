@@ -459,7 +459,7 @@ function ____columns_modules($items, $id, $html = '')
                     $classes[] = $column_style['justify_content'];
                     $classes[] = $column_style['text_align'];
                     if ($column_style['align_items'] || $column_style['justify_content']) {
-                        $classes[] = 'd-flex';
+                        $classes[] = 'd-flex flex-column';
                     }
                     break;
                 case 'text_color':
