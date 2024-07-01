@@ -42,11 +42,11 @@ Container::make('post_meta', __('Sections'))
                     )
                     ->set_duplicate_groups_allowed(false)
                     ->add_fields('heading', array(
-                        Field::make('html', 'html_1')->set_html('<label>Options</label>')->set_classes('cb-label'),
+                        Field::make('html', 'html_1')->set_html('<label>Heading Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'has_prefix', __('Heading Has Prefix'))->set_width(20),
                         Field::make('checkbox', 'has_suffix', __('Heading Has Suffix'))->set_width(20),
                         Field::make('checkbox', 'has_custom_heading_settings', __('Custom Heading Settings'))->set_width(50),
-                        Field::make('html', 'html_2')->set_html('<label>Section Items</label>')->set_classes('cb-label'),
+                        Field::make('html', 'html_2')->set_html('<label>Heading Settings</label>')->set_classes('cb-label'),
                         Field::make('text', 'heading', __('Heading'))->set_classes('inline-field'),
                         Field::make('text', 'prefix', __('Prefix'))->set_classes('inline-field')
                             ->set_conditional_logic(
