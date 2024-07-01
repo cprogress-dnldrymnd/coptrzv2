@@ -8,9 +8,13 @@ function __heading($data, $html = '')
     $suffix = isset($data['prefix']) ? $data['suffix'] : false;
 
     if ($class) {
-        $attributes_args[] = array(
-            array('class', $class),
-        );
+        if ($prefix || $suffix) {
+            $attributes_args[] = array('class' => 'heading-box');
+        } else {
+            $attributes_args[] = array(
+                array('class', $class),
+            );
+        }
     }
 
     $_attributes = _attributes($attributes_args);
@@ -18,11 +22,11 @@ function __heading($data, $html = '')
 
     if ($heading) {
         if ($prefix || $suffix) {
-            $html .= "<div class='heading-box'>";
+            $html .= "<div class='heading-box' $_attributes>";
             if ($prefix) {
                 $html .= "<span>$prefix</span>";
             }
-            $html .= "<$tag $_attributes>$heading</$tag>";
+            $html .= "<$tag>$heading</$tag>";
             if ($suffix) {
                 $html .= "<span>$suffix</span>";
             }
