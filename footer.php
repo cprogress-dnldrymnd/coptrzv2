@@ -1,16 +1,16 @@
-<div class="footer-cta">
+<div class="footer-cta ">
     <div class="container">
         <div class="inner position-relative overflow-hidden rounded-10px sm-padding">
             <div class="background-image background-overlay">
                 <video src="https://dev.coptrz.com/wp-content/uploads/2023/09/mavic-3-clip-optimized.mp4" autoplay loop muted></video>
             </div>
             <div class="position-relative row">
-                <div class="col-lg-8">
+                <div class="col-lg-8 text-white">
                     <h2>
                         Unlock your business potential with drone technology
                     </h2>
                 </div>
-                <div class="col-lg-5 text-end">
+                <div class="col-lg-4 text-end">
                     <div class="button-accent button-box"><a class="rounded-10px" target="_self" href="#" rel="noopener">Enquire Now</a></div>
                 </div>
             </div>
