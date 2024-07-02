@@ -9960,14 +9960,14 @@ p:last-child {
     .style-1 .swiper-slide .column-holder > *:not(.background-image) {
       position: relative; }
 
-.swiper-nav.v {
+.swiper-nav.swiper-nav.swiper-nav {
   margin-top: 2rem; }
-  .swiper-nav.v .swiper-button-next,
-  .swiper-nav.v .swiper-button-prev {
+  .swiper-nav.swiper-nav.swiper-nav .swiper-button-next,
+  .swiper-nav.swiper-nav.swiper-nav .swiper-button-prev {
     position: static !important;
     transform: none;
     margin: 0; }
-  .swiper-nav.v .swiper-button-prev {
+  .swiper-nav.swiper-nav.swiper-nav .swiper-button-prev {
     margin-right: 1rem; }
 
 .swiper-button-next,
