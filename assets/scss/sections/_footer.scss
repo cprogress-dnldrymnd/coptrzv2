@@ -42,3 +42,16 @@
         padding-top: 200px;
     }
 }
+
+.reviews {
+    .review-box {
+        .review-text {
+            font-size: 80px;
+            font-weight: 600;
+            margin-right: 2rem;
+        }
+        .stars {
+            color: var(--bs-accent);
+        }
+    }
+}

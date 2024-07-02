@@ -1,9 +1,9 @@
-<section class="reviews">
+<section class="reviews b-black">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <div class="column-holder bg-secondary">
-                    <div class="review-box d-flex">
+                <div class="column-holder bg-secondary xs-padding rounded-10px">
+                    <div class="review-box d-flex justify-content-between">
                         <div class="review-text">
                             4.9
                         </div>
@@ -20,7 +20,7 @@
                             <div class="small-text">571 reviews</div>
                         </div>
                     </div>
-                    <div class="logo-box">
+                    <div class="logo-box text-center mt-3">
                         <img src="https://dev.coptrz.com/wp-content/uploads/2024/07/reviewsio-logo.png" alt="">
                     </div>
                 </div>
