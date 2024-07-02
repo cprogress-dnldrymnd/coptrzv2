@@ -9851,6 +9851,8 @@ p:last-child {
   background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%; }
 .background-overlay + div {
   z-index: 1; }
+.background-overlay.background-overlay-darker:before {
+  background-color: rgba(0, 0, 0, 0.85); }
 
 .background-image {
   margin-bottom: 0 !important;
