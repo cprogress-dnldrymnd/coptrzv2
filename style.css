@@ -10057,7 +10057,10 @@ header {
 .reviews .review-box .review-text {
   font-size: 80px;
   font-weight: 600;
-  margin-right: 2rem; }
+  margin-right: 2rem;
+  line-height: 1; }
+.reviews .review-box .small-text {
+  margin-top: 10px; }
 .reviews .review-box .stars {
   color: var(--bs-accent); }
   .reviews .review-box .stars svg {
