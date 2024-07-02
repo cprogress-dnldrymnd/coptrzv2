@@ -9959,14 +9959,15 @@ p:last-child {
     width: 40% !important; }
     .style-1 .swiper-slide .column-holder > *:not(.background-image) {
       position: relative; }
-  .style-1 .swiper-nav {
-    margin-top: 2rem; }
-  .style-1 .swiper-button-next,
-  .style-1 .swiper-button-prev {
+
+.swiper-nav.v {
+  margin-top: 2rem; }
+  .swiper-nav.v .swiper-button-next,
+  .swiper-nav.v .swiper-button-prev {
     position: static !important;
     transform: none;
     margin: 0; }
-  .style-1 .swiper-button-prev {
+  .swiper-nav.v .swiper-button-prev {
     margin-right: 1rem; }
 
 .swiper-button-next,
