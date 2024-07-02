@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="column-holder bg-secondary">
-                    <div class="review-box">
+                    <div class="review-box d-flex">
                         <div class="review-text">
                             4.9
                         </div>
                         <div class="review-stars">
-                            <div class="stars">
+                            <div class="stars d-flex">
                                 <?php
                                 $i = 1;
                                 while ($i < 6) {
