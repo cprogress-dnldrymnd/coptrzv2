@@ -10057,14 +10057,14 @@ header {
 .reviews .review-box .review-text {
   font-size: 80px;
   font-weight: 600;
-  margin-right: 1rem; }
+  margin-right: 2rem; }
 .reviews .review-box .stars {
   color: var(--bs-accent); }
   .reviews .review-box .stars svg {
     width: 39px;
     height: 39px; }
     .reviews .review-box .stars svg:not(:last-child) {
-      margin-right: 5px; }
+      margin-right: 10px; }
 .reviews .logo-box img {
   filter: brightness(0) invert(1); }
 
