@@ -4,7 +4,7 @@
             <div class="background-image background-overlay">
                 <video src="https://dev.coptrz.com/wp-content/uploads/2023/09/mavic-3-clip-optimized.mp4" autoplay loop muted></video>
             </div>
-            <div class="position-relative row">
+            <div class="position-relative row g-4 align-items-end">
                 <div class="col-lg-8 text-white">
                     <h2>
                         Unlock your business potential with drone technology
