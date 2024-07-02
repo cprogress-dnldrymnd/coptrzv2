@@ -6,7 +6,7 @@
             </div>
             <div class="position-relative row g-4 align-items-end">
                 <div class="col-lg-8 text-white">
-                    <h2>
+                    <h2 class="mb-0">
                         Unlock your business potential with drone technology
                     </h2>
                 </div>
