@@ -52,6 +52,10 @@
         }
         .stars {
             color: var(--bs-accent);
+            svg {
+                width: 39px;
+                height: 39px;
+            }
         }
     }
 }

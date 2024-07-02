@@ -10060,6 +10060,9 @@ header {
   margin-right: 2rem; }
 .reviews .review-box .stars {
   color: var(--bs-accent); }
+  .reviews .review-box .stars svg {
+    width: 39px;
+    height: 39px; }
 
 section.hero {
   min-height: 85vh; }
