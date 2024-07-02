@@ -16,6 +16,11 @@
             background-color: rgba(0, 0, 0, 0.85);
         }
     }
+    &.background-overlay-lighter {
+        &:before {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
 }
 
 .background-image {

@@ -9853,6 +9853,8 @@ p:last-child {
   z-index: 1; }
 .background-overlay.background-overlay-darker:before {
   background-color: rgba(0, 0, 0, 0.85); }
+.background-overlay.background-overlay-lighter:before {
+  background-color: rgba(0, 0, 0, 0.2); }
 
 .background-image {
   margin-bottom: 0 !important;
