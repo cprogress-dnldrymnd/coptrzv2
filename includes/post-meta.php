@@ -1726,7 +1726,57 @@ Container::make('post_meta', __('Sections'))
 
                                     )
                                 )
+                                ->add_fields(
+                                    'casestudies',
+                                    array(
+                                        Field::make('hidden', 'taxonomy_key', '')->set_default_value('case_study_category'),
+                                        Field::make('select', 'source', __('Source'))
+                                            ->set_options(
+                                                array(
+                                                    'all'      => 'Select All',
+                                                    'manually'      => 'Select Manually',
+                                                    'category'      => 'Select by Category',
+                                                )
+                                            ),
 
+                                        Field::make('association', 'post', 'Select Solutions')
+                                            ->set_types(
+                                                array(
+                                                    array(
+                                                        'type'      => 'post',
+                                                        'post_type' => 'casestudies',
+                                                    )
+                                                )
+                                            )
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'source',
+                                                        'value' => 'manually',
+                                                    )
+                                                )
+                                            ),
+                                        Field::make('association', 'category', 'Select Product Categories')
+                                            ->set_types(
+                                                array(
+                                                    array(
+                                                        'type'      => 'term',
+                                                        'taxonomy' => 'case_study_category',
+                                                    )
+                                                )
+                                            )
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'source',
+                                                        'value' => 'category',
+                                                        'comapre' => '='
+                                                    )
+                                                )
+                                            ),
+
+                                    )
+                                )
                                 ->set_layout('tabbed-vertical')
 
                         ),
