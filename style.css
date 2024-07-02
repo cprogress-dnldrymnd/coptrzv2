@@ -9960,13 +9960,6 @@ p:last-child {
     .style-1 .swiper-slide .column-holder > *:not(.background-image) {
       position: relative; }
 
-.style-2 .bottom-holder {
-  position: absolute;
-  bottom: 0;
-  z-index: 1;
-  left: 0;
-  right: 0; }
-
 .swiper-nav.swiper-nav.swiper-nav {
   margin-top: 2rem; }
   .swiper-nav.swiper-nav.swiper-nav .swiper-button-next,
@@ -9996,6 +9989,13 @@ p:last-child {
   height: 21px; }
 .socials ul li:not(:last-child) {
   margin-right: 2rem; }
+
+.case-study-slider .bottom-holder {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  left: 0;
+  right: 0; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
