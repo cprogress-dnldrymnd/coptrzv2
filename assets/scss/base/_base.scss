@@ -199,7 +199,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--bs-black);
+    color: currentColor;
     border-radius: 10px;
     @include after {
         font-size: 15px;
@@ -222,9 +222,13 @@
 
 
 .case-study-slider {
+    .swiper-slide {
+        width: 1903px;
+        padding-bottom: 200px;
+    }
     .bottom-holder {
         position: absolute;
-        bottom: 0;
+        bottom: 90px;
         z-index: 1;
         left: 0;
         right: 0;

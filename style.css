@@ -9990,9 +9990,12 @@ p:last-child {
 .socials ul li:not(:last-child) {
   margin-right: 2rem; }
 
+.case-study-slider .swiper-slide {
+  width: 1903px;
+  padding-bottom: 200px; }
 .case-study-slider .bottom-holder {
   position: absolute;
-  bottom: 0;
+  bottom: 90px;
   z-index: 1;
   left: 0;
   right: 0; }
