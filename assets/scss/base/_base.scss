@@ -62,7 +62,7 @@
 }
 
 .full-width {
-    .container {
+    > .container {
         max-width: 100%;
         --bs-gutter-x: 0;
     }
