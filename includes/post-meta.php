@@ -156,6 +156,12 @@ Container::make('post_meta', __('Sections'))
                         Field::make('html', 'html_4')->set_html('<label>Section Description Settings</label>')->set_classes('cb-label'),
                         Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
                     ))
+                    ->add_fields(
+                        'custom_html',
+                        array(
+                            Field::make('textarea', 'custom_html', __('Custom HTML')),
+                        )
+                    ),
                     ->add_fields('columns', array(
                         Field::make('html', 'html_4')->set_html('<label>Section Columns Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings'))->set_width(20),
