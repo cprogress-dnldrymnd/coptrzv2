@@ -1,4 +1,4 @@
-<div class="footer-cta ">
+<div class="footer-cta bg-black">
     <div class="container">
         <div class="inner position-relative overflow-hidden rounded-10px sm-padding">
             <div class="background-image background-overlay">
