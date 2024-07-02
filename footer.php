@@ -20,7 +20,9 @@
                             <div class="small-text">571 reviews</div>
                         </div>
                     </div>
-                    
+                    <div class="logo-box">
+                        <img src="" alt="">
+                    </div>
                 </div>
             </div>
         </div>
