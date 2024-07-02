@@ -59,7 +59,6 @@ function swipers() {
     var swiper_sliders = new Swiper('.swiper-full-width', {
         loop: true,
         autoplay: false,
-        slidesPerView: 'auto',
         slidesPerView: 1,
         navigation: {
             nextEl: ".swiper-button-next",
