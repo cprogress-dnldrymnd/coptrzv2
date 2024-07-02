@@ -1,4 +1,4 @@
-<section class="reviews b-black">
+<section class="reviews bg-black lg-padding-top">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
@@ -20,7 +20,7 @@
                             <div class="small-text">571 reviews</div>
                         </div>
                     </div>
-                    <div class="logo-box text-center mt-3">
+                    <div class="logo-box text-center mt-4">
                         <img src="https://dev.coptrz.com/wp-content/uploads/2024/07/reviewsio-logo.png" alt="">
                     </div>
                 </div>
