@@ -10065,6 +10065,8 @@ header {
     height: 39px; }
     .reviews .review-box .stars svg:not(:last-child) {
       margin-right: 5px; }
+.reviews .logo-box img {
+  filter: brightness(0) invert(1); }
 
 section.hero {
   min-height: 85vh; }
