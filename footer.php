@@ -1,4 +1,4 @@
-<section class="reviews bg-black lg-padding-top">
+<section class="reviews bg-black lg-padding-top pb-20px">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
@@ -28,7 +28,7 @@
         </div>
     </div>
 </section>
-<div class="footer-cta bg-black mt-20px">
+<div class="footer-cta bg-black">
     <div class="container">
         <div class="inner position-relative overflow-hidden rounded-10px sm-padding">
             <div class="background-image background-overlay">
