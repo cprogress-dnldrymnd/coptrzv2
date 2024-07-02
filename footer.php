@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="logo-box">
-                        <img src="" alt="">
+                        <img src="https://dev.coptrz.com/wp-content/uploads/2024/07/reviewsio-logo.png" alt="">
                     </div>
                 </div>
             </div>
