@@ -177,8 +177,8 @@
             }
         }
     }
-   
 }
+
 .swiper-nav.swiper-nav.swiper-nav {
     margin-top: 2rem;
     .swiper-button-next,
@@ -217,5 +217,16 @@
                 margin-right: 2rem;
             }
         }
+    }
+}
+
+
+.case-study-slider {
+    .bottom-holder {
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        left: 0;
+        right: 0;
     }
 }
