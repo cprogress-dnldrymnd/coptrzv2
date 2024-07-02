@@ -48,13 +48,16 @@
         .review-text {
             font-size: 80px;
             font-weight: 600;
-            margin-right: 2rem;
+            margin-right: 1rem;
         }
         .stars {
             color: var(--bs-accent);
             svg {
                 width: 39px;
                 height: 39px;
+                @include not-last-child {
+                    margin-right: 5px;
+                }
             }
         }
     }

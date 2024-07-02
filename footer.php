@@ -1,7 +1,7 @@
 <section class="reviews b-black">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <div class="column-holder bg-secondary xs-padding rounded-10px text-white">
                     <div class="review-box d-flex justify-content-between">
                         <div class="review-text">
