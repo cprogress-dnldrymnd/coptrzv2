@@ -187,6 +187,9 @@ function ___sections()
                             'post_type' => $items['post_type'],
                         ));
                         break;
+                    case 'custom_html':
+                        $html .= $items['custom_html'];
+                        break;
                 }
             }
 
