@@ -10056,7 +10056,8 @@ header {
     transform: translateX(-50%);
     background-color: var(--bs-white);
     padding: 10px;
-    border-radius: 10px; }
+    border-radius: 10px;
+    margin-top: 20px; }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .site-logo svg {
       height: 15px; } }
