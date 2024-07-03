@@ -67,10 +67,7 @@
 				</div>
 			</div>
 		</div>
-		<?php
-		$svgLoader = new SvgLoader('assets/svg');
-		echo $svgLoader->user()
-		?>
+	
 	</header>
 	<?php wp_body_open(); ?>
 	<main class="mt-20px">
