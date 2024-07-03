@@ -10139,8 +10139,8 @@ header {
       --bs-gutter-x: 15px; } }
   @media screen and (max-width: 991px) {
     header .header-right svg {
-      width: 15px;
-      height: 15px; } }
+      width: 16px;
+      height: 16px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .header-right .button-box a {
       padding: 0.625rem 1rem;

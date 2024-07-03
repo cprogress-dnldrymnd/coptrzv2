@@ -134,7 +134,7 @@ header {
             --bs-gutter-x: 15px;
         }
         svg {
-            @include responsive(xs-sm) {
+            @include responsive(mobile) {
                 width: 16px;
                 height: 16px;
             }
