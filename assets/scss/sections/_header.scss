@@ -146,6 +146,10 @@ header {
         @include responsive(md) {
             max-width: calc(100% - 50px);
         }
+        @include responsive(mobile) {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
     }
 
     .menu-burger {

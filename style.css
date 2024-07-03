@@ -10144,6 +10144,10 @@ header {
   @media (min-width: 992px) and (max-width: 1199px) {
     header .container {
       max-width: calc(100% - 50px); } }
+  @media screen and (max-width: 575px) {
+    header .container {
+      padding-left: 20px;
+      padding-right: 20px; } }
   header .menu-burger {
     border: none;
     width: 28px;
