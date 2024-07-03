@@ -9844,6 +9844,9 @@ p:last-child {
 .bg-accent {
   background-color: var(--bs-accent); }
 
+.small-width {
+  max-width: 730px; }
+
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
