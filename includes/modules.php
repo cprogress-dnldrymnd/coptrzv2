@@ -85,6 +85,9 @@ function ___hero()
             'class' => _attribute('class', array('large-heading')),
             ''
         ));
+        if (!is_single()) {
+            $hero .= woocommerce_breadcrumb();
+        }
         if ($hero_description) {
             $hero .= __description(array(
                 'description' => $hero_description,
