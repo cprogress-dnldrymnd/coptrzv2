@@ -52,7 +52,7 @@ function header_menu()
 				return ($var['menu_item_parent'] == $ID);
 			});
 			$html .= '<li class="nav-item">';
-			$html .= '<a class="nav-link text-white ' . ($submenus1 ? 'has-children' : '') . '" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
+			$html .= '<a class="nav-link text-white main-nav' . ($submenus1 ? 'has-children' : '') . '" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
 
 			if ($submenus1) {
 				$html .= '<div class="submenu">';
