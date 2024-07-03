@@ -10029,6 +10029,8 @@ header {
     display: flex;
     align-items: center;
     padding: 0 19px; }
+  header .header-icon {
+    height: 65px; }
 
 .admin-bar header {
   top: 52px; }
