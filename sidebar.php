@@ -1,5 +1,9 @@
 <div class="sidebar">
     <?php
-    woocommerce_get_sidebar();
-    ?>
+
+dynamic_sidebar('sidebar');
+
+
+   ?>
+
 </div>
