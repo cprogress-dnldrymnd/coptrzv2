@@ -29,7 +29,7 @@ function header_menu()
 	foreach ($header_menu as $menu) {
 		$title = $menu->title;
 		$html .= '<li class="nav-item">';
-		$html .= "<a class='nav-link text-white' href=''>'$title</a>";
+		$html .= "<a class='nav-link text-white' href=''>$title</a>";
 		$html .= '</li>';
 	}
 
