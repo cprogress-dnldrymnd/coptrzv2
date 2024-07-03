@@ -10457,11 +10457,14 @@ ul.products.products {
     max-width: 100%;
     padding-right: calc(var(--bs-gutter-x) * 0.5);
     padding-left: calc(var(--bs-gutter-x) * 0.5);
-    margin-top: var(--bs-gutter-y); }
+    margin-top: var(--bs-gutter-y);
+    float: none; }
     ul.products.products li.product .product-inner {
       padding: 20px; }
   ul.products.products.columns-3 li.product {
     flex: 0 0 auto;
     width: 33.333333333%; }
+  ul.products.products:before, ul.products.products:after {
+    display: none; }
 
 /*# sourceMappingURL=style.css.map */

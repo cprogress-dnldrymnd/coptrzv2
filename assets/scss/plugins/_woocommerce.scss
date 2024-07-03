@@ -140,6 +140,8 @@ ul.products.products {
         padding-right: calc(var(--bs-gutter-x) * 0.5);
         padding-left: calc(var(--bs-gutter-x) * 0.5);
         margin-top: var(--bs-gutter-y);
+        float: none;
+        margin: 0;
         .product-inner {
             padding: 20px;
         }
@@ -149,5 +151,8 @@ ul.products.products {
             flex: 0 0 auto;
             width: 33.333333333%;
         }
+    }
+    @include before-after {
+        display: none ;
     }
 }
