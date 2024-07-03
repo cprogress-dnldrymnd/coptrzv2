@@ -10213,7 +10213,8 @@ header {
         padding-bottom: 10px;
         width: 100%;
         line-height: 1;
-        border-bottom: 1px solid var(--border-color); }
+        border-bottom: 1px solid var(--border-color);
+        height: 61px; }
 
 .mobile-menu-active header .header-inner {
   background-color: var(--bs-black); }

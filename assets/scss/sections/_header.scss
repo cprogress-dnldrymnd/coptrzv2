@@ -230,16 +230,15 @@ header {
             }
             ul {
                 li {
-                    @include not-last-child {
-                        a.nav-link {
-                            padding-left: 20px;
-                            padding-right: 20px;
-                            padding-top: 10px;
-                            padding-bottom: 10px;
-                            width: 100%;
-                            line-height: 1;
-                            border-bottom: 1px solid var(--border-color);
-                        }
+                    a.nav-link {
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        width: 100%;
+                        line-height: 1;
+                        border-bottom: 1px solid var(--border-color);
+                        height: 61px;
                     }
                 }
             }
