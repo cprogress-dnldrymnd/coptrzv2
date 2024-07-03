@@ -27,7 +27,7 @@ function header_menu()
 	$header_menu = wp_get_nav_menu_items($menuID, $args); // Get the array
 
 
-	$html = '<nav class="navbar position-static text-white p-0">';
+	$html = '<nav class="navbar position-static p-0">';
 	$html .= '<ul class="navbar-nav flex-row me-auto mb-2 mb-lg-0">';
 	$menus_array = array();
 	foreach ($header_menu as $menu) {
@@ -58,7 +58,7 @@ function header_menu()
 				$html .= '<ul class="list-inline d-flex p-0">';
 				foreach ($submenus1 as $submenu1) {
 					$html .= '<li>';
-					$html .= '<a class="nav-link"  href="' . $submenu1['url'] . '">' . $submenu1['title'] . '</a>';
+					$html .= '<a class="nav-link text-black"  href="' . $submenu1['url'] . '">' . $submenu1['title'] . '</a>';
 					$html .= '</li>';
 				}
 				$html .= '</ul>';
