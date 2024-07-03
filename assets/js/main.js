@@ -16,6 +16,12 @@ function header_menu() {
         jQuery('body').removeClass('mini-cart-active');
         e.preventDefault();
     });
+
+    jQuery('.has-children-tab').click(function (e) { 
+        $target = jQuery(this).target('');
+        e.preventDefault();
+    
+    });
 }
 
 function mini_cart() {
