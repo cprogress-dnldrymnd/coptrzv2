@@ -65,3 +65,12 @@ function action_woocommerce_before_shop_loop_item()
 {
     echo "<div class='product-inner rounded-10px border-default'>";
 };
+
+
+remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
+add_action('woocommerce_after_shop_loop_item', 'product_loop_button');
+
+function product_loop_button()
+{
+    echo '<div class="button-box button-bordered"><a href="' . get_the_permalink() . '">View Product</a></div>';
+}
