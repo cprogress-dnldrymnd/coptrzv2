@@ -10137,10 +10137,6 @@ header {
   @media (min-width: 992px) and (max-width: 1199px) {
     header .header-right {
       --bs-gutter-x: 15px; } }
-  @media screen and (max-width: 575px) {
-    header .header-right svg {
-      width: 16px;
-      height: 16px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .header-right .button-box a {
       padding: 0.625rem 1rem;
@@ -10178,10 +10174,9 @@ header {
 
 .mobile-menu-active header .header-inner {
   background-color: var(--bs-black); }
-@media screen and (max-width: 575px) {
-  .mobile-menu-active .mini-cart-wrapper #mini-cart-button .cart-number {
-    width: 16px;
-    height: 16px; } }
+  @media screen and (max-width: 575px) {
+    .mobile-menu-active header .header-inner {
+      padding: 15px; } }
 
 #footer {
   font-weight: 300; }
