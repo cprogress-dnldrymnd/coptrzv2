@@ -40,6 +40,17 @@ header {
                 padding: 10px;
                 border-radius: 10px;
                 margin-top: 20px;
+                > ul {
+                    border-bottom: 1px solid var(--border-color);
+                }
+            }
+            .submenu2 {
+                position: absolute;
+                left: 0;
+                right: 0;
+                background-color: var(--bs-white);
+                border-radius: 0 0 10px 10px;
+                padding: 10px;
             }
         }
     }
