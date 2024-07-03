@@ -10032,7 +10032,7 @@ header {
   right: 0;
   z-index: 999999; }
   header .header-inner {
-    padding: 0 20px;
+    padding: 10px 20px;
     background-color: rgba(0, 0, 0, 0);
     backdrop-filter: blur(30px) brightness(115%); }
     @media screen and (max-width: 991px) {
