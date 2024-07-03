@@ -63,13 +63,13 @@ $SVG = new SVG;
 					</div>
 					<div class="col-auto">
 						<div class="row g-4 header-right align-items-center">
-							<div class="col-auto account-icon">
-								<a href="">
+							<div class="col-auto">
+								<a href="" class="account-icon text-white">
 									<?= $SVG->user(); ?>
 								</a>
 							</div>
-							<div class="col-auto cart-icon">
-								<a href="">
+							<div class="col-auto">
+								<a href="" class="cart-icon text-white">
 									<?= $SVG->cart(); ?>
 								</a>
 							</div>
