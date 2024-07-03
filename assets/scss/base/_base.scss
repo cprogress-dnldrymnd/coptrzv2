@@ -133,17 +133,14 @@ img {
         }
     }
 }
+
+.button-box a,
+.button-box button,
+.button.button {
+    @include button-style;
+}
+
 .button-box {
-    a,
-    button {
-        padding: 1.15rem 2.5rem;
-        border: 1px solid;
-        display: inline-block;
-        text-decoration: none;
-        color: currentCOlor;
-        font-weight: 600;
-        font-size: 15px;
-    }
     &.button-accent {
         a,
         button {
@@ -227,7 +224,6 @@ img {
         }
     }
 }
-
 
 .case-study-slider {
     .swiper-slide {

@@ -9935,7 +9935,8 @@ img {
   margin-right: 1rem; }
 
 .button-box a,
-.button-box button {
+.button-box button,
+.button.button {
   padding: 1.15rem 2.5rem;
   border: 1px solid;
   display: inline-block;
@@ -9943,6 +9944,7 @@ img {
   color: currentCOlor;
   font-weight: 600;
   font-size: 15px; }
+
 .button-box.button-accent a,
 .button-box.button-accent button {
   color: var(--bs-white);
@@ -10095,6 +10097,11 @@ section.hero {
     width: 386px;
     margin-top: 10px;
     padding: 13px;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
     -webkit-box-shadow: 0px 12px 16px #00000014;
     -moz-box-shadow: 0px 12px 16px #00000014;
     box-shadow: 0px 12px 16px #00000014; }
