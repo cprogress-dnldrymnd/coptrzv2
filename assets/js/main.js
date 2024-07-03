@@ -7,6 +7,10 @@ jQuery(document).ready(function () {
 
 function header_menu() {
     jQuery('.has-children.nav-link').click(function (e) { 
+
+        jQuery('.has-children.nav-link.active').removeClass('active');
+        jQuery('.submenu2').removeClass('active');
+        
         jQuery(this).toggleClass('active');
         jQuery(this).next().toggleClass('active');
         jQuery('body').removeClass('mini-cart-active');
