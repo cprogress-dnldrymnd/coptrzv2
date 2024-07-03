@@ -290,4 +290,18 @@
     color: var(--bs-white);
     border-color: var(--bs-accent);
     background-color: var(--bs-accent);
+    @include on-event() {
+        background-color: var(--bs-secondary);
+        border-color: var(--bs-secondary);
+        color: var(--bs-white);
+    }
+}
+
+
+@mixin button-bordered {
+    @include on-event() {
+        background-color: var(--bs-secondary);
+        border-color: var(--bs-secondary);
+        color: var(--bs-white);
+    }
 }

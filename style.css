@@ -9967,6 +9967,13 @@ section .container > *:not(:last-child) {
   color: var(--bs-white);
   border-color: var(--bs-accent);
   background-color: var(--bs-accent); }
+  .button-box.button-accent a:hover, .button-box.button-accent a:active, .button-box.button-accent a:focus,
+  .button-box.button-accent button:hover,
+  .button-box.button-accent button:active,
+  .button-box.button-accent button:focus {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--bs-white); }
 .button-box.button-small a,
 .button-box.button-small button {
   padding: 0.625rem 1.25rem; }
@@ -10390,6 +10397,10 @@ section.hero {
     color: var(--bs-white);
     border-color: var(--bs-accent);
     background-color: var(--bs-accent); }
+    .mini-cart-holder .woocommerce-mini-cart__buttons .button:last-child:hover, .mini-cart-holder .woocommerce-mini-cart__buttons .button:last-child:active, .mini-cart-holder .woocommerce-mini-cart__buttons .button:last-child:focus {
+      background-color: var(--bs-secondary);
+      border-color: var(--bs-secondary);
+      color: var(--bs-white); }
   .mini-cart-holder .woocommerce-mini-cart__buttons .button:not(:last-child) {
     margin-bottom: 15px; }
 .mini-cart-holder .cart_list {
