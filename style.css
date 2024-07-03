@@ -9925,10 +9925,10 @@ img {
     height: 60px;
     object-fit: contain; }
 
-.section:not(.no-overflow) {
+section:not(.no-overflow) {
   overflow: hidden;
   position: relative; }
-.section .container > *:not(:last-child) {
+section .container > *:not(:last-child) {
   margin-bottom: 3rem; }
 
 .button-group-box > div:not(:last-child) {
