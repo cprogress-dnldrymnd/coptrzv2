@@ -68,7 +68,8 @@
 			</div>
 		</div>
 		<?php
-		echo $SVG->user()
+		$SVG = new SVG;
+		echo $SVG->user();
 		?>
 	</header>
 	<?php wp_body_open(); ?>
