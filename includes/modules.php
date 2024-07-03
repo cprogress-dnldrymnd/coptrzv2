@@ -66,6 +66,7 @@ function ___hero()
         $hero_hidden = false;
         $term = get_queried_object();
         $hero_description = false;
+        $term_description = _format_text($term->description);
         $hero_hidden = false;
         $hero_heading_val = $term->name;
         if (is_woocommerce()) {
@@ -92,6 +93,15 @@ function ___hero()
         }
         $hero .= "</div>";
         $hero .= "</section>";
+
+        if (!is_single() && $term_description) {
+            $hero .= "<section class='term-description'>";
+            $hero .= __description(array(
+                'description' => $term_description,
+                'class' => _attribute('class', array('description-box', 'medium-text')),
+            ));
+            $hero .= "</section>";
+        }
         return $hero;
     }
 }
