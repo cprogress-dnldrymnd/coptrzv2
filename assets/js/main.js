@@ -7,7 +7,7 @@ jQuery(document).ready(function () {
 
 function header_menu() {
     jQuery('.has-children.nav-link').click(function (e) {
-        if (jQuery(this).hasClass('active main-nav')) {
+        if (jQuery(this).hasClass('active') && jQuery(this).hasClass('main-nav')) {
             jQuery(this).removeClass('active');
             jQuery(this).next().removeClass('active');
         } else {
