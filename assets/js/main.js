@@ -11,7 +11,7 @@ function header_menu() {
             jQuery(this).removeClass('active');
             jQuery(this).next().removeClass('active');
         } else {
-            jQuery('.has-children.nav-link.active').removeClass('active');
+            jQuery('.has-children.main-nav.active').removeClass('active');
             jQuery('.submenu.active').removeClass('active');
 
             jQuery(this).toggleClass('active');
@@ -22,11 +22,19 @@ function header_menu() {
         e.preventDefault();
     });
 
-
     jQuery('.has-children.sub-nav').click(function (e) {
-        jQuery(this).toggleClass('active');
-        jQuery(this).next().toggleClass('active');
+        if (jQuery(this).hasClass('active')) {
+            jQuery(this).removeClass('active');
+            jQuery(this).next().removeClass('active');
+        } else {
+            jQuery('.has-children.sub-nav.active').removeClass('active');
+            jQuery('.submenu2.active').removeClass('active');
+
+            jQuery(this).toggleClass('active');
+            jQuery(this).next().toggleClass('active');
+        }
         jQuery('body').removeClass('mini-cart-active');
+
         e.preventDefault();
     });
 
