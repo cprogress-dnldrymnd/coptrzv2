@@ -307,6 +307,7 @@
 }
 @mixin button-white {
     background-color: var(--bs-white);
+    border-color: var(--bs-white);
     color: var(--bs-black);
     @include on-event() {
         background-color: var(--bs-secondary);
