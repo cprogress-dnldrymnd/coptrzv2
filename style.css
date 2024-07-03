@@ -10178,9 +10178,10 @@ header {
 
 .mobile-menu-active header .header-inner {
   background-color: var(--bs-black); }
-.mobile-menu-active .mini-cart-wrapper #mini-cart-button .cart-number {
-  width: 16px;
-  height: 16px; }
+@media screen and (max-width: 575px) {
+  .mobile-menu-active .mini-cart-wrapper #mini-cart-button .cart-number {
+    width: 16px;
+    height: 16px; } }
 
 #footer {
   font-weight: 300; }

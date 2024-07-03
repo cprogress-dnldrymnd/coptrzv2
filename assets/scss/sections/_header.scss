@@ -64,7 +64,7 @@ header {
                 margin-top: 1px;
                 opacity: 0;
                 visibility: hidden;
-              
+
                 @include transition(500ms);
                 .left-menu {
                     max-height: 500px;
@@ -189,7 +189,6 @@ header {
     }
 }
 
-
 #offCanvasMenu {
     width: 100%;
 }
@@ -198,8 +197,10 @@ header {
     header .header-inner {
         background-color: var(--bs-black);
     }
-    .mini-cart-wrapper #mini-cart-button .cart-number {
-        width: 16px;
-        height: 16px;
+    @include responsive(mobile) {
+        .mini-cart-wrapper #mini-cart-button .cart-number {
+            width: 20px;
+            height: 20px;
+        }
     }
 }
