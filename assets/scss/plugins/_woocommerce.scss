@@ -13,7 +13,7 @@
     .woocommerce-mini-cart__buttons {
         .button {
             width: 100%;
-            &:first-child {
+            &:last-child {
                 @include button-accent;
             }
         }

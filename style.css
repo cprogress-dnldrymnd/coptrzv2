@@ -10108,5 +10108,9 @@ section.hero {
     box-shadow: 0px 12px 16px #00000014; }
   .mini-cart-wrapper .woocommerce-mini-cart__buttons .button {
     width: 100%; }
+    .mini-cart-wrapper .woocommerce-mini-cart__buttons .button:first-child {
+      color: var(--bs-white);
+      border-color: var(--bs-accent);
+      background-color: var(--bs-accent); }
 
 /*# sourceMappingURL=style.css.map */
