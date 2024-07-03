@@ -61,11 +61,11 @@ function mini_cart() {
     });
 
     if (window.innerWidth > 991) {
-        if (jQuery('#mini-cart-button .mini-cart-wrapper').length == 0) {
-            jQuery('.mini-cart-wrapper').appendTo('#mini-cart-button');
+        if (jQuery('#mini-cart-button .mini-cart-holder').length == 0) {
+            jQuery('.mini-cart-holder').appendTo('#mini-cart-button');
         }
     } else {
-        jQuery('.mini-cart-wrapper').appendTo('.header');
+        jQuery('.mini-cart-holder').appendTo('.header');
     }
 }
 function swipers() {
