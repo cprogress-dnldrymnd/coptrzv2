@@ -10216,17 +10216,22 @@ header {
           -moz-transform: translateX(100%);
           -ms-transform: translateX(100%);
           -o-transform: translateX(100%);
-          transform: translateX(100%); }
+          transform: translateX(100%);
+          -webkit-transition: 300ms;
+          -moz-transition: 300ms;
+          -ms-transition: 300ms;
+          -o-transition: 300ms;
+          transition: 300ms; }
           #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu ul,
           #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu2 ul {
             flex-direction: column; }
           #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu.active,
           #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu2.active {
-            -webkit-transform: translateX(9);
-            -moz-transform: translateX(9);
-            -ms-transform: translateX(9);
-            -o-transform: translateX(9);
-            transform: translateX(9); }
+            -webkit-transform: translateX(0);
+            -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+            -o-transform: translateX(0);
+            transform: translateX(0); }
       #offCanvasMenu .offcanvas-body #menu-mobile ul li a.nav-link {
         padding-left: 20px;
         padding-right: 20px;
