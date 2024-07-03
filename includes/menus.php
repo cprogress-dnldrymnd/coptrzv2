@@ -47,11 +47,12 @@ function header_menu()
 		$ID = $menu['ID'];
 		$menu_item_parent = $menu['menu_item_parent'];
 		if ($menu_item_parent == 0) {
-			$html .= '<li class="nav-item">';
-			$html .= '<a class="nav-link text-white" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
+
 			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
 				return ($var['menu_item_parent'] == $ID);
 			});
+			$html .= '<li class="nav-item ' . $submenus1 ? 'has-children' : '' . '">';
+			$html .= '<a class="nav-link text-white" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
 
 			if ($submenus1) {
 				$html .= '<div class="submenu">';
