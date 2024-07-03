@@ -62,7 +62,6 @@ header {
     .menu-burger {
         border: none;
         width: 28px;
-        height: 14px;
         background-color: transparent;
         height: 18px;
         padding: 0;
@@ -73,11 +72,12 @@ header {
             background-color: var(--bs-white);
             position: absolute;
             left: 0;
+            width: 28px;
             &:nth-child(1) {
                 top: 0;
             }
             &:nth-child(2) {
-                top: 10px;
+                top: 8.5px;
             }
             &:nth-child(3) {
                 top: 17px;

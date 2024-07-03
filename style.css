@@ -10070,7 +10070,6 @@ header {
   header .menu-burger {
     border: none;
     width: 28px;
-    height: 14px;
     background-color: transparent;
     height: 18px;
     padding: 0;
@@ -10080,7 +10079,8 @@ header {
       display: block;
       background-color: var(--bs-white);
       position: absolute;
-      left: 0; }
+      left: 0;
+      width: 28px; }
       header .menu-burger span:nth-child(1) {
         top: 0; }
       header .menu-burger span:nth-child(2) {
