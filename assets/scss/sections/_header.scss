@@ -52,10 +52,43 @@ header {
                 border-radius: 0 0 10px 10px;
                 padding: 10px;
                 margin-top: 1px;
-           
+
                 .left-menu {
                     max-height: 500px;
                     overflow: auto;
+                    &::-webkit-scrollbar {
+                        width: 7px;
+                        height: 7px;
+                    }
+                    &::-webkit-scrollbar-button {
+                        width: 0px;
+                        height: 0px;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background: #000000;
+                        border: 0px none #ffffff;
+                        border-radius: 50px;
+                    }
+                    &::-webkit-scrollbar-thumb:hover {
+                        background: #000000;
+                    }
+                    &::-webkit-scrollbar-thumb:active {
+                        background: #000000;
+                    }
+                    &::-webkit-scrollbar-track {
+                        background: #efefe0;
+                        border: 0px none #ffffff;
+                        border-radius: 50px;
+                    }
+                    &::-webkit-scrollbar-track:hover {
+                        background: #efefef;
+                    }
+                    &::-webkit-scrollbar-track:active {
+                        background: #efefef;
+                    }
+                    &::-webkit-scrollbar-corner {
+                        background: transparent;
+                    }
                 }
             }
         }

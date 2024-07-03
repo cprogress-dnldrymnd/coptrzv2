@@ -10075,6 +10075,30 @@ header {
     header .navbar.navbar.navbar .nav-item .submenu2 .left-menu {
       max-height: 500px;
       overflow: auto; }
+      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar {
+        width: 7px;
+        height: 7px; }
+      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px; }
+      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-thumb {
+        background: #000000;
+        border: 0px none #ffffff;
+        border-radius: 50px; }
+      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-thumb:hover {
+        background: #000000; }
+      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-thumb:active {
+        background: #000000; }
+      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-track {
+        background: #efefe0;
+        border: 0px none #ffffff;
+        border-radius: 50px; }
+      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-track:hover {
+        background: #efefef; }
+      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-track:active {
+        background: #efefef; }
+      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-corner {
+        background: transparent; }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .site-logo svg {
       height: 15px; } }
