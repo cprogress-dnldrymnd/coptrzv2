@@ -194,7 +194,7 @@ header {
 #offCanvasMenu {
     width: 100%;
     .offcanvas-body {
-        padding-top: 130px 0 0 0;
+        padding: 130px 0 0 0;
         #menu-mobile {
             border-top: 1px solid var(--border-color);
             .main-nav {
@@ -227,5 +227,8 @@ header {
 .mobile-menu-active {
     header .header-inner {
         background-color: var(--bs-black);
+    }
+    .mini-cart-wrapper #mini-cart-button .cart-number {
+        background-color: var(--bs-accent);
     }
 }
