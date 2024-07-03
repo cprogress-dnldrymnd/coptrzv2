@@ -14,7 +14,7 @@ img {
 
 main  {
     @include responsive(mobile) {
-        margin-top: 10px;
+        margin-top: 10px !important;
     }
 }
 .background-overlay {

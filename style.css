@@ -9857,7 +9857,7 @@ img {
 
 @media screen and (max-width: 575px) {
   main {
-    margin-top: 10px; } }
+    margin-top: 10px !important; } }
 
 .background-overlay:before {
   content: "";
