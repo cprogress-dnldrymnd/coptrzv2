@@ -10180,13 +10180,17 @@ header {
 #offCanvasMenu {
   width: 100%; }
   #offCanvasMenu .offcanvas-body {
-    padding-top: 130px; }
-    #offCanvasMenu .offcanvas-body #menu-mobile .main-nav {
-      color: var(--bs-black) !important; }
-    #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav {
-      flex-direction: column !important; }
-      #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu {
-        display: none; }
+    padding-top: 130px 0 0 0; }
+    #offCanvasMenu .offcanvas-body #menu-mobile {
+      border-top: 1px solid var(--border-color); }
+      #offCanvasMenu .offcanvas-body #menu-mobile .main-nav {
+        color: var(--bs-black) !important;
+        padding-left: 20px;
+        padding-right: 20px; }
+      #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav {
+        flex-direction: column !important; }
+        #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu {
+          display: none; }
 
 .mobile-menu-active header .header-inner {
   background-color: var(--bs-black); }

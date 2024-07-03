@@ -194,10 +194,13 @@ header {
 #offCanvasMenu {
     width: 100%;
     .offcanvas-body {
-        padding-top: 130px;
+        padding-top: 130px 0 0 0;
         #menu-mobile {
+            border-top: 1px solid var(--border-color);
             .main-nav {
                 color: var(--bs-black) !important;
+                padding-left: 20px;
+                padding-right: 20px;
             }
             .navbar-nav {
                 flex-direction: column !important;
