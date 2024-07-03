@@ -46,28 +46,30 @@ function header_menu()
 	foreach ($menus_array as $menu) {
 		$ID = $menu['ID'];
 		$menu_item_parent = $menu['menu_item_parent'];
-		$html .= '<li class="nav-item">';
-		$html .= '<a class="nav-link text-white" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
-		$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
-			return ($var['menu_item_parent'] == $ID);
-		});
+		if ($menu_item_parent == 0) {
+			$html .= '<li class="nav-item">';
+			$html .= '<a class="nav-link text-white" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
+			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
+				return ($var['menu_item_parent'] == $ID);
+			});
 
-		if ($submenus1) {
-			$html .= '<div class="submenu">';
-			$html .= '<div class="row">';
-			$html .= '<div class="col-lg-6">';
-			$html .= '<ul class="navbar-nav flex-row me-auto mb-2 mb-lg-0">';
-			foreach ($submenus1 as $submenu1) {
-				$html .= '<a  href="' . $submenu1['url'] . '">' . $submenu1['title'] . '</a>';
+			if ($submenus1) {
+				$html .= '<div class="submenu">';
+				$html .= '<div class="row">';
+				$html .= '<div class="col-lg-6">';
+				$html .= '<ul class="navbar-nav flex-row me-auto mb-2 mb-lg-0">';
+				foreach ($submenus1 as $submenu1) {
+					$html .= '<a  href="' . $submenu1['url'] . '">' . $submenu1['title'] . '</a>';
+				}
+				$html .= '</ul>';
+
+				$html .= '</div>';
+				$html .= '</div>';
+				$html .= '</div>';
 			}
-			$html .= '</ul>';
 
-			$html .= '</div>';
-			$html .= '</div>';
-			$html .= '</div>';
+			$html .= '</li>';
 		}
-
-		$html .= '</li>';
 	}
 
 	$html .= '</ul>';
