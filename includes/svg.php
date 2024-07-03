@@ -11,9 +11,10 @@ class SvgLoader
 {
     private $svgDir;
 
+
     public function __construct($svgDirectory)
     {
-        $this->svgDir = $svgDirectory;
+        $this->svgDir = get_stylesheet_directory().'/assets/svg/';
     }
 
     public function __call($name, $args)

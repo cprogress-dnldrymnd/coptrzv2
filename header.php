@@ -67,7 +67,7 @@
 				</div>
 			</div>
 		</div>
-		<?php echo get_stylesheet_directory() ?>
+		<?php  echo $svgLoader->user() ?>
 	</header>
 	<?php wp_body_open(); ?>
 	<main class="mt-20px">
