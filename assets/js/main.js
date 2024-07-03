@@ -64,6 +64,7 @@ function mini_cart() {
             jQuery('.mini-cart-holder').appendTo('#mini-cart-button');
         }
     } else {
+        jQuery('#mini-cart-button').attr('data-bs-toggle', 'offcanvas').attr('data-bs-target', '#offCanvasMiniCart').attr('aria-controls', 'offCanvasMiniCart');
         jQuery('.mini-cart-holder').appendTo('#offCanvasMiniCart');
     }
 }
