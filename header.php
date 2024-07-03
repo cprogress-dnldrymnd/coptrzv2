@@ -41,7 +41,7 @@ $SVG = new SVG;
 
 						$menuID = $menuLocations['header-menu']; // Get the *primary* menu ID
 
-						$primaryNav = wp_get_nav_menu_items($menuID); // Get the array
+						$header_menu = wp_get_nav_menu_items($menuID); // Get the array
 						?>
 
 						<pre>
@@ -50,9 +50,17 @@ $SVG = new SVG;
 						</pre>
 						<nav class="navbar text-white p-0">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-								<li class="nav-item">
-									<a class="nav-link text-white active" aria-current="page" href="#">Products</a>
-								</li>
+								<?php
+								foreach ($header_menu as $menu) {
+									$title = $menu['title'];
+								?>
+									<li class="nav-item">
+										<a class="nav-link text-white active" aria-current="page" href="#"><?= $title ?></a>
+									</li>
+								<?php
+								}
+								?>
+
 								<li class="nav-item">
 									<a class="nav-link text-white" href="#">Industry</a>
 								</li>
