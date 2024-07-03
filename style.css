@@ -10039,10 +10039,9 @@ header {
       header .header-inner {
         padding: 20px 15px; } }
   header .navbar.navbar.navbar .nav-item .nav-link {
-    height: 65px;
     display: flex;
     align-items: center;
-    padding: 0 1vw; }
+    padding: 10px 1vw; }
     @media (min-width: 1200px) and (max-width: 1399px) {
       header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 14px;
