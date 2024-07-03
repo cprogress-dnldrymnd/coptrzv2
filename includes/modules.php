@@ -65,14 +65,11 @@ function ___hero()
     } else {
         $hero_hidden = false;
         $term = get_queried_object();
-        $hero_description = _format_text($term->description);
+        $hero_description = false;
         $hero_hidden = false;
         $hero_heading_val = $term->name;
-
         if (is_woocommerce()) {
-            $thumbnail_id = get_term_meta($cat->term_id, 'thumbnail_id', true);
-            // get the image URL
-            $image = wp_get_attachment_url($thumbnail_id);
+            $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
             $hero_background = $thumbnail_id;
         }
     }
@@ -87,10 +84,12 @@ function ___hero()
             'class' => _attribute('class', array('large-heading')),
             ''
         ));
-        $hero .= __description(array(
-            'description' => $hero_description,
-            'class' => _attribute('class', array('description-box', 'medium-text')),
-        ));
+        if ($hero_description) {
+            $hero .= __description(array(
+                'description' => $hero_description,
+                'class' => _attribute('class', array('description-box', 'medium-text')),
+            ));
+        }
         $hero .= "</div>";
         $hero .= "</section>";
         return $hero;
