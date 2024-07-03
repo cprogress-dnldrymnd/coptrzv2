@@ -60,7 +60,7 @@ function mini_cart() {
             jQuery('.has-children.nav-link').next().removeClass('active');
             e.preventDefault();
         });
-        if (jQuery('#mini-cart-button .mini-cart-holder').length == 0) {
+        if (jQuery('.mini-cart-wrapper .mini-cart-holder').length == 0) {
             jQuery('.mini-cart-holder').inserAfter('#mini-cart-button');
         }
     } else {
