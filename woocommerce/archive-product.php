@@ -35,7 +35,7 @@ do_action( 'woocommerce_before_main_content' );
  *
  * @hooked woocommerce_product_taxonomy_archive_header - 10
  */
-//do_action( 'woocommerce_shop_loop_header' );
+do_action( 'woocommerce_shop_loop_header' );
 
 if ( woocommerce_product_loop() ) {
 
