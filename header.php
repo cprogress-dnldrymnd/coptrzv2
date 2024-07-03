@@ -62,16 +62,18 @@ $SVG = new SVG;
 						</nav>
 					</div>
 					<div class="col-auto">
-						<div class="header-right">
-							<div class="header-icons">
+						<div class="row g-4 header-right">
+							<div class="col-auto account-icon">
 								<a href="">
 									<?= $SVG->user(); ?>
 								</a>
+							</div>
+							<div class="col-auto cart-icon">
 								<a href="">
 									<?= $SVG->cart(); ?>
 								</a>
 							</div>
-							<div class="button-box button-accent button-small">
+							<div class="col-auto button-box button-accent button-small">
 								<a href="#" class="rounded-10px">Enquire Now</a>
 							</div>
 						</div>
