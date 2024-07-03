@@ -11,6 +11,12 @@
 img {
     max-width: 100%;
 }
+
+main  {
+    @include responsive(mobile) {
+        margin-top: 10px;
+    }
+}
 .background-overlay {
     &:before {
         content: "";
