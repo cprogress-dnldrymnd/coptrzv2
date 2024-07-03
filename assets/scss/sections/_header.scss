@@ -35,6 +35,9 @@ header {
             @include responsive(md) {
                 height: 15px;
             }
+            @include responsive(xs-sm) {
+                height: 15px;
+            }
         }
     }
     .header-right {
