@@ -52,9 +52,15 @@ function header_menu()
 				return ($var['menu_item_parent'] == $ID);
 			});
 			$html .= '<li class="nav-item">';
-			$html .= '<a class="nav-link text-white main-nav ' . ($submenus1 ? 'has-children' : '') . '" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
+			$html .= '<a class="nav-link text-white main-nav ' . ($submenus1 ? 'has-children' : '') . '" href="' . $menu['url'] . '">';
+			$html .= $menu['title'];
+			if ($submenus1) {
+				$html .= '<span class="icon"></span>';
+			}
+			$html .= '</a>';
 
 			if ($submenus1) {
+
 				$html .= '<div class="submenu">';
 				$html .= '<ul class="list-inline d-flex p-0">';
 				foreach ($submenus1 as $submenu1) {
@@ -89,7 +95,7 @@ function header_menu()
 								$html .= '<span class="icon"></span>';
 							}
 							$html .= '</a>';
-							
+
 							$html .= '</li>';
 						}
 						$html .= '</ul>';
