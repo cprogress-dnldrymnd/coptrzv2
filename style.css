@@ -10057,13 +10057,24 @@ header {
   header .navbar.navbar.navbar .nav-item .submenu {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 20px);
     background-color: var(--bs-white);
     padding: 10px;
     border-radius: 10px;
-    margin-top: 20px; }
+    margin-top: 20px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+    transition: 500ms; }
     header .navbar.navbar.navbar .nav-item .submenu > ul {
       border-bottom: 1px solid var(--border-color); }
+    header .navbar.navbar.navbar .nav-item .submenu.active {
+      transform: translate(-50%, 0);
+      visibility: visible;
+      opacity: 1; }
   header .navbar.navbar.navbar .nav-item .submenu2 {
     position: absolute;
     left: 0;
@@ -10071,7 +10082,14 @@ header {
     background-color: var(--bs-white);
     border-radius: 0 0 10px 10px;
     padding: 10px;
-    margin-top: 1px; }
+    margin-top: 1px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+    transition: 500ms; }
     header .navbar.navbar.navbar .nav-item .submenu2 .left-menu {
       max-height: 500px;
       overflow: auto; }
@@ -10099,6 +10117,10 @@ header {
         background: #efefef; }
       header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-corner {
         background: transparent; }
+    header .navbar.navbar.navbar .nav-item .submenu2.active {
+      transform: translate(-50%, 0);
+      visibility: visible;
+      opacity: 1; }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .site-logo svg {
       height: 15px; } }

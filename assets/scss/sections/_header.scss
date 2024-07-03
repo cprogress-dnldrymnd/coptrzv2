@@ -35,13 +35,21 @@ header {
             .submenu {
                 position: absolute;
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translate(-50%, 20px);
                 background-color: var(--bs-white);
                 padding: 10px;
                 border-radius: 10px;
                 margin-top: 20px;
+                opacity: 0;
+                visibility: hidden;
+                @include transition(500ms);
                 > ul {
                     border-bottom: 1px solid var(--border-color);
+                }
+                &.active {
+                    transform: translate(-50%, 0);
+                    visibility: visible;
+                    opacity: 1;
                 }
             }
             .submenu2 {
@@ -52,10 +60,13 @@ header {
                 border-radius: 0 0 10px 10px;
                 padding: 10px;
                 margin-top: 1px;
-
+                opacity: 0;
+                visibility: hidden;
+                @include transition(500ms);
                 .left-menu {
                     max-height: 500px;
                     overflow: auto;
+             
                     &::-webkit-scrollbar {
                         width: 7px;
                         height: 7px;
@@ -89,6 +100,10 @@ header {
                     &::-webkit-scrollbar-corner {
                         background: transparent;
                     }
+                }
+                &.active {
+                    visibility: visible;
+                    opacity: 1;
                 }
             }
         }
