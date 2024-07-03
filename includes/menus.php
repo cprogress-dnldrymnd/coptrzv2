@@ -65,7 +65,7 @@ function header_menu()
 					});
 
 					$html .= '<li>';
-					$html .= '<a class="nav-link text-black ' . ($submenus2 ? 'has-children' : '') . '"  href="' . $submenu1['url'] . '">' . $submenu1['title'] . '</a>';
+					$html .= '<a class="nav-link text-black main-nav' . ($submenus2 ? 'has-children' : '') . '"  href="' . $submenu1['url'] . '">' . $submenu1['title'] . '</a>';
 
 
 
