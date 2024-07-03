@@ -1,3 +1,9 @@
 .mini-cart-wrapper {
-    
+    position: relative;
+    .mini-cart-holder {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 65px;
+    }
 }

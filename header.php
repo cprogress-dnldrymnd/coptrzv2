@@ -61,16 +61,16 @@ $SVG = new SVG;
 							</ul>
 						</nav>
 					</div>
-					<div class="col-auto d-flex">
-						<div class="row g-4 header-right align-items-center">
+					<div class="col-auto d-flex align-items-center">
+						<div class="row g-4 header-right">
 							<div class="col-auto">
-								<a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" class="account-icon text-white">
+								<a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" class="header-icon account-icon text-white">
 									<?= $SVG->user(); ?>
 								</a>
 							</div>
 							<div class="col-auto">
 								<div class="mini-cart-wrapper">
-									<a href="<?= wc_get_cart_url() ?>" class="cart-icon text-white">
+									<a href="<?= wc_get_cart_url() ?>" class="header-icon cart-icon text-white">
 										<?= $SVG->cart(); ?>
 									</a>
 									<div class="mini-cart-holder">
