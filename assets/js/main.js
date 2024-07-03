@@ -56,7 +56,7 @@ function header_menu() {
         $nav = jQuery('#menu-desktop .navbar');
         $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel"> <div class="offcanvas-header"> <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> </div> <div class="offcanvas-body"> <div id="menu-mobile"> </div> </div> </div>');
 
-        $menu_offcanvas.inserAfter('.header');
+        $menu_offcanvas.insertAfter('.header');
         $nav.appendTo('#menu-mobile');
     }
 }
