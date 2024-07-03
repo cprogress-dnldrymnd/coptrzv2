@@ -10112,10 +10112,10 @@ section.hero {
       height: 0;
       border-left: 15px solid transparent;
       border-right: 15px solid transparent;
-      border-bottom: 20px solid var(--bs-white);
+      border-bottom: 15px solid var(--bs-white);
       display: block;
       position: absolute;
-      top: -20px;
+      top: -15px;
       left: 50%;
       transform: translateX(-50%); }
   .mini-cart-wrapper .woocommerce-mini-cart__total {
