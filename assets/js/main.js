@@ -2,6 +2,12 @@ jQuery(document).ready(function () {
     swipers();
 });
 
+function mini_cart() {
+    jQuery('#mini-cart-button').click(function (e) {
+        jQuery('body').toggleClass('mini-cart-active');
+        e.preventDefault();
+    });
+}
 function swipers() {
     jQuery('.swiper-logo-slider').each(function (index, element) {
         $id = '#' + jQuery(this).attr('id');
@@ -65,5 +71,5 @@ function swipers() {
             prevEl: ".swiper-button-prev",
         },
     });
-    
+
 }

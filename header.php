@@ -70,7 +70,7 @@ $SVG = new SVG;
 							</div>
 							<div class="col-auto">
 								<div class="mini-cart-wrapper">
-									<a href="#" class="header-icon cart-icon text-white d-flex align-items-center">
+									<a href="#" id="mini-cart-button" class="header-icon cart-icon text-white d-flex align-items-center">
 										<?= $SVG->cart(); ?>
 									</a>
 									<div class="mini-cart-holder bg-white rounded-10px mt-10px">
