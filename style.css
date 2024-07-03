@@ -10198,6 +10198,11 @@ section.hero {
 
 .mini-cart-active .mini-cart-wrapper .mini-cart-holder {
   opacity: 1;
-  visibility: visible; }
+  visibility: visible;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  transform: translate(-50%, 0); }
 
 /*# sourceMappingURL=style.css.map */

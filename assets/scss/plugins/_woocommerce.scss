@@ -24,7 +24,7 @@
         opacity: 0;
         @include transition(500ms);
         visibility: hidden;
-        @include transform(translate(-50%, 10px));
+        @include transform(translate(-50%, 20px));
         @include box-shadow(0px 12px 16px #00000014);
         @include before {
             content: "";
