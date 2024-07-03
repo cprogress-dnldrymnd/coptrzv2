@@ -1,10 +1,5 @@
 <?php
-// Remove breadcrumbs from shop & categories
-add_filter('woocommerce_before_main_content', 'remove_breadcrumbs');
-function remove_breadcrumbs()
-{
-    remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
-}
+remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
 
 function action_woocommerce_before_main_content()
 {
