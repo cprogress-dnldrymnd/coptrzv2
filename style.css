@@ -10142,8 +10142,7 @@ section.hero {
         width: 103px;
         height: 77px;
         object-fit: cover;
-        border-radius: 10px;
-        margin-right: 21px; }
+        border-radius: 10px; }
       .mini-cart-wrapper .cart_list .woocommerce-mini-cart-item .remove {
         color: #e70000;
         font-size: 25px;
