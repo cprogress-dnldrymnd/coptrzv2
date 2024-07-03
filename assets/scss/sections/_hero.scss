@@ -1,3 +1,7 @@
 section.hero {
     min-height: 85vh;
+    @include responsive(mobile) {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }

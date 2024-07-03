@@ -13,6 +13,7 @@ header {
         }
         @include responsive(mobile) {
             padding: 15px;
+            margin-top: 10px;
         }
     }
     .navbar.navbar.navbar {

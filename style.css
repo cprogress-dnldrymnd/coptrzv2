@@ -10229,6 +10229,10 @@ header {
 
 section.hero {
   min-height: 85vh; }
+  @media screen and (max-width: 575px) {
+    section.hero {
+      margin-left: 10px;
+      margin-right: 10px; } }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
