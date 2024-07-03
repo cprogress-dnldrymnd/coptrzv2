@@ -53,9 +53,8 @@ function header_menu()
 			$html .= "<a class='nav-link text-white' href='$url'>$title</a>";
 		}
 
-		$found_key = array_search($ID, array_column($menus_array, 'menu_item_parent'));
 
-		$html .= var_dump($found_key);
+		$html .= var_dump(array_keys($menus_array, $menu_item_parent));
 
 		if ($menu_item_parent == 0) {
 			$html .= '</li>';
