@@ -9962,27 +9962,41 @@ section .container > *:not(:last-child) {
   font-size: 15px;
   border-radius: 10px; }
 
-.button-box.button-accent a,
-.button-box.button-accent button {
+.button-box.button-box.button-box.button-accent a,
+.button-box.button-box.button-box.button-accent button {
   color: var(--bs-white);
   border-color: var(--bs-accent);
   background-color: var(--bs-accent); }
-  .button-box.button-accent a:hover, .button-box.button-accent a:active, .button-box.button-accent a:focus,
-  .button-box.button-accent button:hover,
-  .button-box.button-accent button:active,
-  .button-box.button-accent button:focus {
+  .button-box.button-box.button-box.button-accent a:hover, .button-box.button-box.button-box.button-accent a:active, .button-box.button-box.button-box.button-accent a:focus,
+  .button-box.button-box.button-box.button-accent button:hover,
+  .button-box.button-box.button-box.button-accent button:active,
+  .button-box.button-box.button-box.button-accent button:focus {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
-.button-box.button-bordered a:hover, .button-box.button-bordered a:active, .button-box.button-bordered a:focus,
-.button-box.button-bordered button:hover,
-.button-box.button-bordered button:active,
-.button-box.button-bordered button:focus {
-  background-color: var(--bs-secondary);
-  border-color: var(--bs-secondary);
-  color: var(--bs-white); }
-.button-box.button-small a,
-.button-box.button-small button {
+.button-box.button-box.button-box.button-bordered a,
+.button-box.button-box.button-box.button-bordered button {
+  background-color: transparent; }
+  .button-box.button-box.button-box.button-bordered a:hover, .button-box.button-box.button-box.button-bordered a:active, .button-box.button-box.button-box.button-bordered a:focus,
+  .button-box.button-box.button-box.button-bordered button:hover,
+  .button-box.button-box.button-box.button-bordered button:active,
+  .button-box.button-box.button-box.button-bordered button:focus {
+    background-color: var(--bs-accent);
+    border-color: var(--bs-accent);
+    color: var(--bs-white); }
+.button-box.button-box.button-box.button-white a,
+.button-box.button-box.button-box.button-white button {
+  background-color: var(--bs-white);
+  color: var(--bs-black); }
+  .button-box.button-box.button-box.button-white a:hover, .button-box.button-box.button-box.button-white a:active, .button-box.button-box.button-box.button-white a:focus,
+  .button-box.button-box.button-box.button-white button:hover,
+  .button-box.button-box.button-box.button-white button:active,
+  .button-box.button-box.button-box.button-white button:focus {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--bs-white); }
+.button-box.button-box.button-box.button-small a,
+.button-box.button-box.button-box.button-small button {
   padding: 0.625rem 1.25rem; }
 
 .site-logo svg,

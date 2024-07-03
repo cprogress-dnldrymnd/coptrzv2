@@ -156,7 +156,7 @@ section {
     @include button-style;
 }
 
-.button-box {
+.button-box.button-box.button-box {
     &.button-accent {
         a,
         button {
@@ -167,6 +167,12 @@ section {
         a,
         button {
             @include button-bordered;
+        }
+    }
+    &.button-white {
+        a,
+        button {
+            @include button-white;
         }
     }
     &.button-small {

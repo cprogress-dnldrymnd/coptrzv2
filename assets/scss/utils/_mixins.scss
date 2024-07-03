@@ -297,8 +297,17 @@
     }
 }
 
-
 @mixin button-bordered {
+    background-color: transparent;
+    @include on-event() {
+        background-color: var(--bs-accent);
+        border-color: var(--bs-accent);
+        color: var(--bs-white);
+    }
+}
+@mixin button-white {
+    background-color: var(--bs-white);
+    color: var(--bs-black);
     @include on-event() {
         background-color: var(--bs-secondary);
         border-color: var(--bs-secondary);
