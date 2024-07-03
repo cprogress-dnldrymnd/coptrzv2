@@ -10,6 +10,8 @@ define('vendor_dir', theme_dir . 'vendor/');
 /*-----------------------------------------------------------------------------------*/
 /* After Theme Setup
 /*-----------------------------------------------------------------------------------*/
+add_theme_support('woocommerce');
+
 function action_after_setup_theme()
 {
 	add_theme_support('post-thumbnails');
