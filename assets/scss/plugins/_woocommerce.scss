@@ -3,10 +3,11 @@
     .mini-cart-holder {
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
         top: 65px;
         width: 386px;
         margin-top: 10px;
         padding: 13px;
+        @include transform(translateX(-50%));
+        @include box-shadow(0px 12px 16px #00000014);
     }
 }

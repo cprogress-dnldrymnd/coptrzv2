@@ -10091,10 +10091,12 @@ section.hero {
   .mini-cart-wrapper .mini-cart-holder {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
     top: 65px;
     width: 386px;
     margin-top: 10px;
-    padding: 13px; }
+    padding: 13px;
+    -webkit-box-shadow: 0px 12px 16px #00000014;
+    -moz-box-shadow: 0px 12px 16px #00000014;
+    box-shadow: 0px 12px 16px #00000014; }
 
 /*# sourceMappingURL=style.css.map */
