@@ -64,7 +64,7 @@ function action_woocommerce_after_shop_loop_item()
 add_action('woocommerce_before_shop_loop_item', 'action_woocommerce_before_shop_loop_item', 10, 0);
 function action_woocommerce_before_shop_loop_item()
 {
-    echo "<div class='product-inner rounded-10px border-default'>";
+    echo "<div class='product-inner rounded-10px border-default h-100'>";
 };
 
 
