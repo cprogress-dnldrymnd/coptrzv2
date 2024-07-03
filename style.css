@@ -10021,9 +10021,11 @@ header {
   right: 0;
   z-index: 999999; }
   header .header-inner {
-    padding: 12px 20px;
+    padding: 0 20px;
     background-color: rgba(0, 0, 0, 0);
     backdrop-filter: blur(30px) brightness(115%); }
+  header .navbar .nav-item a {
+    height: 65px; }
 
 .admin-bar header {
   top: 52px; }

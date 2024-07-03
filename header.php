@@ -16,7 +16,7 @@ $SVG = new SVG;
 	<header class="header small-text">
 		<div class="container">
 			<div class="header-inner mt-20px rounded-10px">
-				<div class="row align-items-center justify-content-between">
+				<div class="row justify-content-between">
 					<div class="col-auto">
 						<a class="site-logo" href="#">
 							<svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="256" height="26.026" viewBox="0 0 256 26.026" class="svg-image replaced-svg">

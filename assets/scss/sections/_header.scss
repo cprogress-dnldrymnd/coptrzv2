@@ -5,9 +5,16 @@ header {
     right: 0;
     z-index: 999999;
     .header-inner {
-        padding: 12px 20px;
+        padding: 0 20px;
         background-color: rgba(0, 0, 0, 0);
         backdrop-filter: blur(30px) brightness(115%);
+    }
+    .navbar {
+        .nav-item {
+            a {
+                height: 65px;
+            }
+        }
     }
 }
 
