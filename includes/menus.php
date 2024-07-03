@@ -76,8 +76,9 @@ function header_menu()
 						$html .= '<ul class="list-inline left-menu d-flex flex-column p-0">';
 
 						foreach ($submenus2 as $submenu2) {
+							$submenu2_id = $submenu2['ID'];
 							$html .= '<li>';
-							$html .= '<a class="nav-link text-black"  href="' . $submenu2['url'] . '">' . $submenu2['title'] . '</a>';
+							$html .= '<a class="nav-link text-black"  target="submenu-' . $submenu2_id . ' href="' . $submenu2['url'] . '">' . $submenu2['title'] . '</a>';
 							$html .= '</li>';
 						}
 						$html .= '</ul>';
@@ -92,7 +93,7 @@ function header_menu()
 								return ($var['menu_item_parent'] == $submenu2_id);
 							});
 							if ($submenus3) {
-								$html .= '<ul class="list-inline left-menu d-flex flex-column p-0" id="submenu-' . $submenu2_id . '">';
+								$html .= '<ul class="list-inline left-menu d-flex flex-column p-0 d-none" id="submenu-' . $submenu2_id . '">';
 								foreach ($submenus3 as $submenu3) {
 									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '">' . $submenu3['title'] . '</a>';
 								}
