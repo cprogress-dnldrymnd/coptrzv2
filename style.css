@@ -10458,7 +10458,8 @@ ul.products.products {
     padding-right: calc(var(--bs-gutter-x) * 0.5);
     padding-left: calc(var(--bs-gutter-x) * 0.5);
     margin-top: var(--bs-gutter-y);
-    float: none; }
+    float: none;
+    margin: 0; }
     ul.products.products li.product .product-inner {
       padding: 20px; }
   ul.products.products.columns-3 li.product {
