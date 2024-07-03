@@ -68,7 +68,7 @@ $SVG = new SVG;
 									<?= $SVG->user(); ?>
 								</a>
 								<a href="">
-								<?= $SVG->svg(); ?>
+									<?= $SVG->cart(); ?>
 								</a>
 							</div>
 							<div class="button-box button-accent button-small">
