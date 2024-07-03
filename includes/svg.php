@@ -9,17 +9,10 @@ class SVG
 }
 class SvgLoader
 {
-    private $svgDir;
-
-
-    public function __construct($svgDirectory)
-    {
-        $this->svgDir = get_stylesheet_directory().'/assets/svg/';
-    }
 
     public function __call($name, $args)
     {
-        $svgPath = $this->svgDir . DIRECTORY_SEPARATOR . $name . '.svg';
+        $svgPath = get_stylesheet_directory() . '/assets/svg/' . DIRECTORY_SEPARATOR . $name . '.svg';
 
         if (file_exists($svgPath)) {
             return file_get_contents($svgPath);
