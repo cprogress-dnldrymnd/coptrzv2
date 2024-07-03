@@ -201,11 +201,23 @@ header {
                 color: var(--bs-black) !important;
                 padding-left: 20px;
                 padding-right: 20px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid var(--border-color);
+                width: 100%;
+                line-height: 1;
             }
             .navbar-nav {
+                width: 100%;
                 flex-direction: column !important;
                 .submenu {
                     display: none;
+                }
+            }
+            ul {
+                li {
+                    @include not-last-child {
+                    }
                 }
             }
         }

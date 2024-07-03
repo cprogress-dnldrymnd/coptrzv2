@@ -10186,8 +10186,13 @@ header {
       #offCanvasMenu .offcanvas-body #menu-mobile .main-nav {
         color: var(--bs-black) !important;
         padding-left: 20px;
-        padding-right: 20px; }
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
+        width: 100%; }
       #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav {
+        width: 100%;
         flex-direction: column !important; }
         #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu {
           display: none; }
