@@ -65,7 +65,7 @@ function mini_cart() {
             jQuery('.mini-cart-holder').appendTo('#mini-cart-button');
         }
     } else {
-        jQuery('.mini-cart-holder').appendTo('.header');
+        jQuery('.mini-cart-holder').appendTo('#offCanvasMiniCart');
     }
 }
 function swipers() {

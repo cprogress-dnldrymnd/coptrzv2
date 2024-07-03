@@ -10329,7 +10329,7 @@ section.hero {
         flex: 0 0 103px;
         margin-right: 15px; }
 
-.mini-cart-active .mini-cart-wrapper .mini-cart-holder {
+.mini-cart-active .mini-cart-holder.mini-cart-holder.mini-cart-holder {
   opacity: 1;
   visibility: visible;
   -webkit-transform: translate(-50%, 0);

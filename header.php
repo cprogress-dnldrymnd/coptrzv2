@@ -108,6 +108,15 @@ $SVG = new SVG;
 
 		</div>
 	</div>
+	<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMiniCart" aria-labelledby="offcanvasLabel">
+		<div class="offcanvas-header">
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+		
+
+		</div>
+	</div>
 
 	<?php wp_body_open(); ?>
 	<main class="mt-20px">

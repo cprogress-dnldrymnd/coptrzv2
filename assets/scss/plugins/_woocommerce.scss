@@ -39,8 +39,6 @@
             left: 50%;
             transform: translateX(-50%);
         }
-        @include responsive(xs-sm) {
-        }
     }
     .woocommerce-mini-cart__total {
         display: flex;
@@ -115,7 +113,6 @@
         }
     }
 }
-
 .mini-cart-active {
     .mini-cart-holder.mini-cart-holder.mini-cart-holder {
         opacity: 1;
