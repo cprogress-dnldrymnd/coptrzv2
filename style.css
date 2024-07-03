@@ -10118,7 +10118,6 @@ header {
       header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-corner {
         background: transparent; }
     header .navbar.navbar.navbar .nav-item .submenu2.active {
-      transform: translate(-50%, 0);
       visibility: visible;
       opacity: 1; }
   @media (min-width: 992px) and (max-width: 1199px) {

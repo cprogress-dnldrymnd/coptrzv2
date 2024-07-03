@@ -1,7 +1,17 @@
 jQuery(document).ready(function () {
     swipers();
     mini_cart();
+    header_menu();
 });
+
+
+function header_menu() {
+    jQuery('.has-children > .nav-link').click(function (e) { 
+        jQuery(this).next().addClass('active');
+
+        e.preventDefault();
+    });
+}
 
 function mini_cart() {
     jQuery('#mini-cart-button').click(function (e) {
