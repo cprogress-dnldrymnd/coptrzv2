@@ -35,24 +35,25 @@ function header_menu()
 		$ID = $menu->ID;
 		$url = $menu->url;
 		$menu_item_parent = $menu->menu_item_parent;
-		if ($menu_item_parent == 0) {
-			$menus_array[] = array(
-				'menu_item_parent' => $menu_item_parent,
-				'title' => $title,
-				'ID' => $ID,
-				'url' => $url,
-			);
-		} else {
-		}
+		$menus_array[] = array(
+			'menu_item_parent' => $menu_item_parent,
+			'title' => $title,
+			'ID' => $ID,
+			'url' => $url,
+		);
 	}
-
+	$html .= '<pre>';
+	$html .= var_dump($menus_array);
+	$html .= '</pre>';
 	foreach ($menus_array as $menu) {
 		$title = $menu['title'];
 		$ID = $menu['ID'];
 		$url = $menu['url'];
 		$menu_item_parent = ['menu_item_parent'];
-		$html .= '<li class="nav-item">';
-		$html .= "<a class='nav-link text-white' href='$url'>$title</a>";
+		if ($menu_item_parent == 0) {
+			$html .= '<li class="nav-item">';
+			$html .= "<a class='nav-link text-white' href='$url'>$title</a>";
+		}
 		$html .= '</li>';
 	}
 
