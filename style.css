@@ -10041,7 +10041,8 @@ header {
   header .navbar.navbar.navbar .nav-item .nav-link {
     display: flex;
     align-items: center;
-    padding: 10px 1vw; }
+    padding: 10px 1vw;
+    border-radius: 10px; }
     @media (min-width: 1200px) and (max-width: 1399px) {
       header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 14px;
