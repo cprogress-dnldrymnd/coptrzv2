@@ -11,7 +11,7 @@ add_action('woocommerce_before_main_content', 'action_woocommerce_before_main_co
 
 function action_woocommerce_before_shop_loop()
 {
-    echo '<section class="product-archive-loop sm-padding-top border-top-default">';
+    echo '<section class="product-archive-loop sm-padding-top lg-padding-bottom border-top-default">';
     echo '<div class="container">';
     echo '<div class="row">';
     echo '<div class="col-lg-3">';
