@@ -10200,6 +10200,8 @@ header {
 
 .mobile-menu-active header .header-inner {
   background-color: var(--bs-black); }
+.mobile-menu-active .mini-cart-wrapper #mini-cart-button .cart-number {
+  background-color: var(--bs-accent); }
 
 #footer {
   font-weight: 300; }
