@@ -35,30 +35,38 @@ $SVG = new SVG;
 						</a>
 					</div>
 					<div class="col-auto">
-						<nav class="navbar navbar-expand-lg text-white p-0 d-none d-lg-block">
-							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-								<li class="nav-item">
-									<a class="nav-link text-white active" aria-current="page" href="#">Products</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Industry</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Capabilities</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Training</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Repairs</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Resources</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Defence</a>
-								</li>
-							</ul>
+						<nav class="navbar navbar-expand-lg text-white p-0">
+							<div class="offCanvasMenui offCanvasMenui-start" tabindex="-1" id="offCanvasMenui" aria-labelledby="offCanvasMenuiLabel">
+								<div class="offCanvasMenui-header">
+									<button type="button" class="btn-close text-reset" data-bs-dismiss="offCanvasMenui" aria-label="Close"></button>
+								</div>
+								<div class="offCanvasMenui-body">
+									<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+										<li class="nav-item">
+											<a class="nav-link text-white active" aria-current="page" href="#">Products</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link text-white" href="#">Industry</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link text-white" href="#">Capabilities</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link text-white" href="#">Training</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link text-white" href="#">Repairs</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link text-white" href="#">Resources</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link text-white" href="#">Defence</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+
 						</nav>
 					</div>
 					<div class="col-auto d-flex align-items-center">
