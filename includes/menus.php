@@ -28,9 +28,13 @@ function header_menu()
 
 	foreach ($header_menu as $menu) {
 		$title = $menu->title;
-		$html .= '<li class="nav-item">';
-		$html .= "<a class='nav-link text-white' href=''>$title</a>";
-		$html .= '</li>';
+		$url = $menu->url;
+		$menu_item_parent = $menu->menu_item_parent;
+		if ($menu_item_parent == 0) {
+			$html .= '<li class="nav-item">';
+			$html .= "<a class='nav-link text-white' href=''>$$url</a>";
+			$html .= '</li>';
+		}
 	}
 
 	$html .= '</ul>';
