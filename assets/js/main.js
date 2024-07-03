@@ -59,6 +59,14 @@ function mini_cart() {
         jQuery('.has-children.nav-link').next().removeClass('active');
         e.preventDefault();
     });
+
+    if (window.innerWidth > 991) {
+        if (jQuery('#mini-cart-button .mini-cart-wrapper').length == 0) {
+            jQuery('.mini-cart-wrapper').appendTo('#mini-cart-button');
+        }
+    } else {
+        jQuery('.mini-cart-wrapper').appendTo('.header');
+    }
 }
 function swipers() {
     jQuery('.swiper-logo-slider').each(function (index, element) {

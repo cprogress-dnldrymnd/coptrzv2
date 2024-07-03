@@ -39,6 +39,9 @@
             left: 50%;
             transform: translateX(-50%);
         }
+        @include responsive(xs-sm) {
+            
+        }
     }
     .woocommerce-mini-cart__total {
         display: flex;
