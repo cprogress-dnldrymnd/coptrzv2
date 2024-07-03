@@ -1,9 +1,7 @@
 <div class="sidebar">
     <?php
+    get_sidebar('shop');
 
-dynamic_sidebar('sidebar');
-
-
-   ?>
+    ?>
 
 </div>
