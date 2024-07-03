@@ -12,15 +12,3 @@ function menu_locations()
 }
 
 add_action('init', 'menu_locations');
-
-function get_menu_list_array()
-{
-	$menu_array = array();
-	$menus = wp_get_nav_menus(); // Get all registered navigation menus
-
-	foreach ($menus as $menu) {
-		$menu_array[$menu->term_id] = $menu->name; // Store ID as key, name as value
-	}
-
-	return $menu_array;
-}
