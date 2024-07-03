@@ -197,6 +197,7 @@ header {
         padding: 140px 0 0 0;
         #menu-mobile {
             border-top: 1px solid var(--border-color);
+            position: relative;
             .main-nav {
                 color: var(--bs-black) !important;
             }
@@ -223,8 +224,19 @@ header {
                 }
                 .submenu,
                 .submenu2 {
+                    display: block;
+                    position: absolute;
+                    background-color: var(--bs-warning);
+                    width: 100%;
+                    z-index: 9;
+                    top: 0;
+                    @include transform(translateX(100%));
+                    @include transition(300ms);
                     ul {
                         flex-direction: column;
+                    }
+                    &.active {
+                        @include transform(translateX(0));
                     }
                 }
             }
