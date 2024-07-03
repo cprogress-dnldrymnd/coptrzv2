@@ -91,6 +91,8 @@ function header_menu()
 							});
 							$html .= '<li>';
 							$html .= '<a class="nav-link text-black  ' . ($submenus3 ? 'has-children-tab' : '') . '"  target="#submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">';
+							$html .= $submenu2['title'];
+
 							if ($submenus3) {
 								$html .= '<span class="icon"></span>';
 							}
