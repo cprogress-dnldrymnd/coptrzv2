@@ -1,5 +1,6 @@
 jQuery(document).ready(function () {
     swipers();
+    mini_cart();
 });
 
 function mini_cart() {
