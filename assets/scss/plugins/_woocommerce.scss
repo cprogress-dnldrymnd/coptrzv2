@@ -1,8 +1,17 @@
 .mini-cart-wrapper {
     position: relative;
     #mini-cart-button {
+        position: relative;
         .cart-number {
-            position: relative;
+            position: absolute;
+            top: -7px;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bs-black);
+            border-radius: 50%;
+            font-size: 13px;
+            text-align: center;
         }
     }
     .mini-cart-holder {

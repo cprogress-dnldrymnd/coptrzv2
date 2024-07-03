@@ -10089,8 +10089,18 @@ section.hero {
 /*-----------------------------------------------------------------------------------*/
 .mini-cart-wrapper {
   position: relative; }
-  .mini-cart-wrapper #mini-cart-button .cart-number {
+  .mini-cart-wrapper #mini-cart-button {
     position: relative; }
+    .mini-cart-wrapper #mini-cart-button .cart-number {
+      position: absolute;
+      top: -7px;
+      width: 20px;
+      height: 20px;
+      right: -10px;
+      background-color: var(--bs-black);
+      border-radius: 50%;
+      font-size: 13px;
+      text-align: center; }
   .mini-cart-wrapper .mini-cart-holder {
     position: absolute;
     left: 50%;
