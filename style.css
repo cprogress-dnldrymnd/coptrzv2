@@ -9951,7 +9951,7 @@ section .container > *:not(:last-child) {
 
 .button-box a,
 .button-box button,
-.button.button {
+.button.button.button.button {
   padding: 1.15rem 2.5rem;
   border: 1px solid;
   display: inline-block;

@@ -152,7 +152,7 @@ section {
 
 .button-box a,
 .button-box button,
-.button.button {
+.button.button.button.button {
     @include button-style;
 }
 
