@@ -22,7 +22,7 @@ function header_menu()
 	$menuID = $menuLocations['header-menu']; // Get the *primary* menu ID
 
 	$args = array(
-		'post_parent' => 0
+		'post_parent' => 270611
 	);
 	$header_menu = wp_get_nav_menu_items($menuID, $args); // Get the array
 
@@ -39,7 +39,7 @@ function header_menu()
 			$html .= '<li class="nav-item">';
 			$html .= "<a class='nav-link text-white' href='$url'>$title</a>";
 		}
-		
+
 		if ($menu_item_parent == $ID) {
 			$html .= '<div class="submenu-level-1">';
 
