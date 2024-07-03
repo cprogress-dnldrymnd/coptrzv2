@@ -26,6 +26,10 @@ header {
                     font-size: 13px;
                     padding: 0 5px;
                 }
+                @include on-event {
+                    background-color: var(--bs-black);
+                    color: var(--bs-white) !important;
+                }
             }
             .submenu {
                 position: absolute;

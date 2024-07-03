@@ -10050,6 +10050,9 @@ header {
       header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 13px;
         padding: 0 5px; } }
+    header .navbar.navbar.navbar .nav-item .nav-link:hover, header .navbar.navbar.navbar .nav-item .nav-link:active, header .navbar.navbar.navbar .nav-item .nav-link:focus {
+      background-color: var(--bs-black);
+      color: var(--bs-white) !important; }
   header .navbar.navbar.navbar .nav-item .submenu {
     position: absolute;
     left: 50%;
