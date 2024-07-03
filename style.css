@@ -10462,6 +10462,21 @@ ul.products.products.products {
     ul.products.products.products li.product.product .product-inner {
       padding: 20px;
       position: relative; }
+      ul.products.products.products li.product.product .product-inner .onsale {
+        left: 10px;
+        top: 10px;
+        right: auto;
+        background-color: var(--red-color);
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 400;
+        line-height: 1;
+        height: auto;
+        min-height: 0;
+        min-width: 0;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 0; }
   ul.products.products.products.columns-3 li.product.product {
     flex: 0 0 auto;
     width: 33.333333333%; }
