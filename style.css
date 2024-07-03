@@ -10123,7 +10123,9 @@ header {
       opacity: 1; }
     header .navbar.navbar.navbar .nav-item .submenu2:before {
       content: '';
-      border-bottom: 1px solid var(--border-color); }
+      border-bottom: 1px solid var(--border-color);
+      display: block;
+      margin-bottom: 10px; }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .site-logo svg {
       height: 15px; } }
