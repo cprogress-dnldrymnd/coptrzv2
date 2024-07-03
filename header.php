@@ -91,9 +91,19 @@ $SVG = new SVG;
 									</div>
 								</div>
 							</div>
+							<div class="col-auto d-flex align-items-center d-lg-none">
+								<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu" aria-controls="offCanvasMenu">
+									<div class="menu-burger">
+										<span></span>
+										<span></span>
+										<span></span>
+									</div>
+								</button>
+							</div>
 							<div class="col-auto button-box button-accent button-small">
 								<a href="#" href="#">Enquire Now</a>
 							</div>
+
 						</div>
 
 					</div>
