@@ -10026,6 +10026,12 @@ section .container > *:not(:last-child) {
   left: 0;
   right: 0; }
 
+.border-top-default {
+  border-top: 1px solid var(--border-color); }
+
+.border-bottom-default {
+  border-bottom: 1px solid var(--border-color); }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
