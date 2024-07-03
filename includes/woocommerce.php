@@ -39,16 +39,29 @@ add_action('woocommerce_after_shop_loop', 'action_woocommerce_after_shop_loop');
 
 
 /**
-* WooCommerce Loop Product Thumbs
-**/
+ * WooCommerce Loop Product Thumbs
+ **/
 
-remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
-add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
 
-if ( ! function_exists( 'woocommerce_template_loop_product_thumbnail' ) ) {
-    function woocommerce_template_loop_product_thumbnail() {
+if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
+    function woocommerce_template_loop_product_thumbnail()
+    {
         echo "<div class='wc-img-wrapper'>";
         echo woocommerce_get_product_thumbnail();
         echo "</div>";
     }
 }
+//Add DIV end element after shop loop item
+add_action('woocommerce_after_shop_loop_item', 'action_woocommerce_after_shop_loop_item', 10, 0);
+function action_woocommerce_after_shop_loop_item()
+{
+    echo "</div>";
+};
+//Add DIV start element before shop loop item
+add_action('woocommerce_before_shop_loop_item', 'action_woocommerce_before_shop_loop_item', 10, 0);
+function action_woocommerce_before_shop_loop_item()
+{
+    echo "<div class='produt-inner'>";
+};
