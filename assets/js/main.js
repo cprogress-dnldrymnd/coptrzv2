@@ -6,23 +6,28 @@ jQuery(document).ready(function () {
 
 
 function header_menu() {
-    jQuery('.has-children.nav-link').click(function (e) { 
+    jQuery('.has-children.nav-link').click(function (e) {
 
         jQuery('.has-children.nav-link.active').removeClass('active');
         jQuery('.submenu2').removeClass('active');
-        
+
         jQuery(this).toggleClass('active');
         jQuery(this).next().toggleClass('active');
         jQuery('body').removeClass('mini-cart-active');
         e.preventDefault();
     });
 
-    jQuery('.has-children-tab').click(function (e) { 
+    jQuery('.has-children-tab').click(function (e) {
         $target = jQuery(this).attr('target');
+        jQuery('.has-children-tab.nav-link.active').removeClass('active');
+
+        jQuery(this).toggleClass('active');
+        jQuery(this).next().toggleClass('active');
+
         jQuery('.tab-links').addClass('d-none');
         jQuery($target).removeClass('d-none');
         e.preventDefault();
-    
+
     });
 }
 
