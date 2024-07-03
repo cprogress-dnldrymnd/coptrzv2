@@ -144,6 +144,10 @@ ul.products.products {
         margin: 0;
         .product-inner {
             padding: 20px;
+            position: relative;
+            .onsale {
+                
+            }
         }
     }
     &.columns-3 {

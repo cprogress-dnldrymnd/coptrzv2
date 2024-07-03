@@ -9323,8 +9323,9 @@ textarea.form-control-lg {
   --bs-primary-rgb: 0, 0, 0;
   --bs-secondary: #0f0f0f;
   --bs-secondary-rgb: 15, 15, 15;
-  --border-color: #dbdbdb;
-  --bs-accent: #2da1ff; }
+  --bs-accent: #2da1ff;
+  --red-color: #D64550;
+  --border-color: #dbdbdb; }
 
 @font-face {
   font-family: "Poppins";
@@ -10461,7 +10462,8 @@ ul.products.products {
     float: none;
     margin: 0; }
     ul.products.products li.product .product-inner {
-      padding: 20px; }
+      padding: 20px;
+      position: relative; }
   ul.products.products.columns-3 li.product {
     flex: 0 0 auto;
     width: 33.333333333%; }
