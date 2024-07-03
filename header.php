@@ -8,7 +8,9 @@
 	<?php wp_head(); ?>
 </head>
 
-
+<?php
+$SVG = new SVG;
+?>
 
 <body <?php body_class(); ?>>
 	<header class="header small-text">
@@ -60,17 +62,24 @@
 						</nav>
 					</div>
 					<div class="col-auto">
-						<div class="button-box button-accent button-small">
-							<a href="#" class="rounded-10px">Enquire Now</a>
+						<div class="header-right">
+							<div class="header-icons">
+								<a href="">
+									<?= $SVG->user(); ?>
+								</a>
+								<a href="">
+								<?= $SVG->svg(); ?>
+								</a>
+							</div>
+							<div class="button-box button-accent button-small">
+								<a href="#" class="rounded-10px">Enquire Now</a>
+							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
-		<?php
-		$SVG = new SVG;
-		echo $SVG->user();
-		?>
 	</header>
 	<?php wp_body_open(); ?>
 	<main class="mt-20px">
