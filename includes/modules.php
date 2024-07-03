@@ -29,7 +29,6 @@ add_action('shutdown', 'action_module_content');
 function ___hero_modules()
 {
     $hero_heading = get__post_meta('hero_heading');
-    $hero_heading = get__post_meta('hero_heading');
     $hero_description = _format_text(get__post_meta('hero_description'));
     $hero_hidden = get__post_meta('hero_hidden');
     $hero_background = get__post_meta('hero_background');
@@ -54,14 +53,25 @@ function ___hero_modules()
     }
 }
 
-function _hero()
+function ___hero()
 {
-    $hero_heading = get__post_meta('hero_heading');
-    $hero_heading = get__post_meta('hero_heading');
-    $hero_description = _format_text(get__post_meta('hero_description'));
-    $hero_hidden = get__post_meta('hero_hidden');
-    $hero_background = get__post_meta('hero_background');
-    $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
+
+
+    if (is_single()) {
+        $hero_heading = get__post_meta('hero_heading');
+        $hero_description = _format_text(get__post_meta('hero_description'));
+        $hero_hidden = get__post_meta('hero_hidden');
+        $hero_background = get__post_meta('hero_background');
+        $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
+    } else {
+        $hero_hidden = false;
+        $term = get_queried_object();
+        $hero_description = _format_text($term->description);
+        $hero_hidden = false;
+        $hero_background = get__post_meta('hero_background');
+        $hero_heading_val = $term->name;
+    }
+
     if (!$hero_hidden) {
         $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
         $hero .= _bg_image($hero_background);

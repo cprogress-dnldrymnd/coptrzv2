@@ -1,6 +1,6 @@
 <?php
 function action_woocommerce_before_main_content() {
-    echo 'mama mo';
+    echo ___hero();
 }
 
 
