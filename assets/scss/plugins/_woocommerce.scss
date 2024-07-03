@@ -34,4 +34,26 @@
             }
         }
     }
+    .cart_list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        .woocommerce-mini-cart-item {
+            display: flex;
+            align-items: center;
+            .attachment-woocommerce_thumbnail {
+                width: 103px;
+                height: 77px;
+                object-fit: cover;
+                border-radius: 10px;
+                margin-right: 21px;
+            }
+            .remove {
+                & + * {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
 }
