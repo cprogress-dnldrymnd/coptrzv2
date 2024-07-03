@@ -1,10 +1,5 @@
 <?php
-add_filter('woocommerce_show_page_title', 'bbloomer_hide_shop_page_title');
-function bbloomer_hide_shop_page_title($title)
-{
-    if (is_shop()) $title = false;
-    return $title;
-}
+add_filter('woocommerce_show_page_title', '__return_false');
 
 function action_woocommerce_before_main_content()
 {
