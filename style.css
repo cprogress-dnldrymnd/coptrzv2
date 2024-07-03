@@ -10137,6 +10137,10 @@ header {
   @media (min-width: 992px) and (max-width: 1199px) {
     header .header-right {
       --bs-gutter-x: 15px; } }
+  @media screen and (max-width: 991px) {
+    header .header-right svg {
+      width: 15px;
+      height: 15px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .header-right .button-box a {
       padding: 0.625rem 1rem;
@@ -10171,6 +10175,9 @@ header {
 
 #offCanvasMenu {
   width: 100%; }
+
+.mobile-menu-active header .header-inner {
+  background-color: var(--bs-black); }
 
 #footer {
   font-weight: 300; }
