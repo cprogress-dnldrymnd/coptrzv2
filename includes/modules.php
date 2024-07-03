@@ -68,8 +68,14 @@ function ___hero()
         $term = get_queried_object();
         $hero_description = _format_text($term->description);
         $hero_hidden = false;
-        $hero_background = get__post_meta('hero_background');
         $hero_heading_val = $term->name;
+
+        if (is_woocommerce()) {
+            $thumbnail_id = get_term_meta($cat->term_id, 'thumbnail_id', true);
+            // get the image URL
+            $image = wp_get_attachment_url($thumbnail_id);
+            $hero_background = $thumbnail_id;
+        }
     }
 
     if (!$hero_hidden) {
