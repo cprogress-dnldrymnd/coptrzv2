@@ -55,7 +55,6 @@ function header_menu()
 
 		$found_key = array_search($ID, array_column($menus_array, 'menu_item_parent'));
 
-		$html .= var_dump($found_key);
 
 		if ($menu_item_parent == 0) {
 			$html .= '</li>';
