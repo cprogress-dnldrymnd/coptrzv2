@@ -61,7 +61,7 @@ $SVG = new SVG;
 							</ul>
 						</nav>
 					</div>
-					<div class="col-auto d-flex align-items-center">
+					<div class="col-auto">
 						<div class="row g-4 header-right">
 							<div class="col-auto">
 								<a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" class="header-icon account-icon text-white d-flex align-items-center">
@@ -78,7 +78,7 @@ $SVG = new SVG;
 									</div>
 								</div>
 							</div>
-							<div class="col-auto button-box button-accent button-small">
+							<div class="col-auto d-flex align-items-center button-box button-accent button-small">
 								<a href="#" class="rounded-10px">Enquire Now</a>
 							</div>
 						</div>
