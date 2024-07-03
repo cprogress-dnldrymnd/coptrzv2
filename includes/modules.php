@@ -56,7 +56,6 @@ function ___hero_modules()
 function ___hero()
 {
 
-woocommerce-products-header
     if (is_single()) {
         $hero_heading = get__post_meta('hero_heading');
         $hero_description = _format_text(get__post_meta('hero_description'));
