@@ -1,0 +1,29 @@
+<?php
+class SVG
+{
+
+    public static function user()
+    {
+        return '<svg xmlns="http://www.w3.org/2000/svg" width="21.327" height="23.805" viewBox="0 0 21.327 23.805"> <g id="user" transform="translate(0.75 0.75)"> <path id="Path_235" data-name="Path 235" d="M25.827,29.935V27.457A4.957,4.957,0,0,0,20.87,22.5H10.957A4.957,4.957,0,0,0,6,27.457v2.478" transform="translate(-6 -7.63)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/> <path id="Path_236" data-name="Path 236" d="M21.913,9.457A4.957,4.957,0,1,1,16.957,4.5,4.957,4.957,0,0,1,21.913,9.457Z" transform="translate(-7.043 -4.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/> </g> </svg>';
+    }
+}
+class SvgLoader
+{
+    private $svgDir;
+
+    public function __construct($svgDirectory)
+    {
+        $this->svgDir = $svgDirectory;
+    }
+
+    public function __call($name, $args)
+    {
+        $svgPath = $this->svgDir . DIRECTORY_SEPARATOR . $name . '.svg';
+
+        if (file_exists($svgPath)) {
+            return file_get_contents($svgPath);
+        } else {
+            throw new Exception("SVG not found: {$name}");
+        }
+    }
+}
