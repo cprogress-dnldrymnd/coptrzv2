@@ -46,10 +46,8 @@ function header_menu()
 	foreach ($menus_array as $menu) {
 		$ID = $menu['ID'];
 		$menu_item_parent = $menu['menu_item_parent'];
-		if ($menu_item_parent == 0) {
-			$html .= '<li class="nav-item">';
-			$html .= '<a class="nav-link text-white" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
-		}
+		$html .= '<li class="nav-item">';
+		$html .= '<a class="nav-link text-white" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
 		$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
 			return ($var['menu_item_parent'] == $ID);
 		});
@@ -69,9 +67,7 @@ function header_menu()
 			$html .= '</div>';
 		}
 
-		if ($menu_item_parent == 0) {
-			$html .= '</li>';
-		}
+		$html .= '</li>';
 	}
 
 	$html .= '</ul>';
