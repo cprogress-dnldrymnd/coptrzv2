@@ -40,7 +40,6 @@
             transform: translateX(-50%);
         }
         @include responsive(xs-sm) {
-            
         }
     }
     .woocommerce-mini-cart__total {
@@ -118,7 +117,7 @@
 }
 
 .mini-cart-active {
-    .mini-cart-wrapper .mini-cart-holder {
+    .mini-cart-holder.mini-cart-holder.mini-cart-holder {
         opacity: 1;
         visibility: visible;
         @include transform(translate(-50%, 0));
