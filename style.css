@@ -10165,7 +10165,8 @@ section.hero {
         -webkit-box-orient: vertical;
         font-size: 16px;
         font-weight: 500;
-        line-height: 1.2; }
+        line-height: 1.2;
+        margin-bottom: 10px; }
       .mini-cart-wrapper .cart_list .woocommerce-mini-cart-item .remove {
         color: #e70000;
         font-size: 25px;
