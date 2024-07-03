@@ -3,6 +3,11 @@
         display: none;
     }
 }
+.html.html.html {
+    @include responsive(xs-sm) {
+        margin: 0 !important;
+    }
+}
 img {
     max-width: 100%;
 }

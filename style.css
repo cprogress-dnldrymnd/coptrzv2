@@ -9848,6 +9848,10 @@ p:last-child {
   #wpadminbar {
     display: none; } }
 
+@media screen and (max-width: 991px) {
+  .html.html {
+    display: none; } }
+
 img {
   max-width: 100%; }
 
