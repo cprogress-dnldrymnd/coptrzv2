@@ -10071,8 +10071,10 @@ header {
     background-color: var(--bs-white);
     border-radius: 0 0 10px 10px;
     padding: 10px;
-    margin-top: 1px;
-    max-height: 500px; }
+    margin-top: 1px; }
+    header .navbar.navbar.navbar .nav-item .submenu2 .left-menu {
+      max-height: 500px;
+      overflow: auto; }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .site-logo svg {
       height: 15px; } }
