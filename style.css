@@ -10091,11 +10091,11 @@ header {
     -ms-transition: 500ms;
     -o-transition: 500ms;
     transition: 500ms; }
-    header .navbar.navbar.navbar .nav-item .submenu2 > li {
-      margin-right: 10px; }
     header .navbar.navbar.navbar .nav-item .submenu2 .left-menu {
       max-height: 500px;
       overflow: auto; }
+      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu > li {
+        margin-right: 10px; }
       header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar {
         width: 7px;
         height: 7px; }
@@ -10124,7 +10124,7 @@ header {
       visibility: visible;
       opacity: 1; }
     header .navbar.navbar.navbar .nav-item .submenu2:before {
-      content: '';
+      content: "";
       border-bottom: 1px solid var(--border-color);
       display: block;
       margin-bottom: 10px; }
