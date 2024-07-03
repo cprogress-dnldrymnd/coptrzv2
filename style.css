@@ -9401,19 +9401,19 @@ body {
 
 h1, .h1,
 h2,
-.h2 {
+.h2, .woocommerce-loop-product__title.woocommerce-loop-product__title.woocommerce-loop-product__title {
   font-size: 2rem;
   margin-bottom: 2rem; }
   @media (min-width: 992px) {
     h1, .h1,
     h2,
-    .h2 {
+    .h2, .woocommerce-loop-product__title.woocommerce-loop-product__title.woocommerce-loop-product__title {
       font-size: 2.5rem;
       margin-bottom: 3rem; } }
   @media (min-width: 1200px) {
     h1, .h1,
     h2,
-    .h2 {
+    .h2, .woocommerce-loop-product__title.woocommerce-loop-product__title.woocommerce-loop-product__title {
       font-size: 3.375rem; } }
 
 h3, .h3 {
@@ -10462,6 +10462,10 @@ ul.products.products.products {
     ul.products.products.products li.product.product .product-inner {
       padding: 20px;
       position: relative; }
+      ul.products.products.products li.product.product .product-inner .woocommerce-loop-product__title {
+        color: var(--bs-black); }
+      ul.products.products.products li.product.product .product-inner .price {
+        color: var(--bs-black); }
       ul.products.products.products li.product.product .product-inner .onsale {
         left: 10px;
         top: 10px;
