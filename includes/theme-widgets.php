@@ -113,16 +113,7 @@ function action_widgets_init()
     );
 
 
-    register_sidebar(
-        array(
-            'name'          => 'Woocommerce Listing Sidebar',
-            'id'            => 'woocommerce_sidebar',
-            'before_widget' => '<div>',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h5 class="widget-title">',
-            'after_title'   => '</h5>',
-        )
-    );
+  
 }
 add_action('widgets_init', 'action_widgets_init');
 
