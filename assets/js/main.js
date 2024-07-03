@@ -6,7 +6,7 @@ jQuery(document).ready(function () {
 
 
 function header_menu() {
-    jQuery('.has-children.nav-link').click(function (e) {
+    jQuery('.has-children.main-nav').click(function (e) {
         if (jQuery(this).hasClass('active')) {
             jQuery(this).removeClass('active');
             jQuery(this).next().removeClass('active');
@@ -23,7 +23,7 @@ function header_menu() {
     });
 
 
-    jQuery('.has-children.main-nav').click(function (e) {
+    jQuery('.has-children.sub-nav').click(function (e) {
         if (jQuery(this).hasClass('active')) {
             jQuery(this).removeClass('active');
             jQuery(this).next().removeClass('active');
