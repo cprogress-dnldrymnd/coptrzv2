@@ -1,5 +1,10 @@
 .mini-cart-wrapper {
     position: relative;
+    #mini-cart-button {
+        .cart-number {
+            position: relative;
+        }
+    }
     .mini-cart-holder {
         position: absolute;
         left: 50%;
@@ -13,7 +18,7 @@
         @include transform(translateX(-50%));
         @include box-shadow(0px 12px 16px #00000014);
         @include before {
-            content: '';
+            content: "";
             width: 0;
             height: 0;
             border-left: 15px solid transparent;
@@ -82,7 +87,7 @@
                 line-height: 1.2;
                 margin-bottom: 10px;
             }
-        
+
             .remove {
                 color: #e70000;
                 font-size: 25px;
@@ -103,6 +108,6 @@
 .mini-cart-active {
     .mini-cart-wrapper .mini-cart-holder {
         opacity: 1;
-        visibility: visible
+        visibility: visible;
     }
 }

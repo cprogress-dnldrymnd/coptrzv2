@@ -10032,8 +10032,6 @@ header {
     display: flex;
     align-items: center;
     padding: 0 19px; }
-  header .header-icon {
-    height: 65px; }
 
 .admin-bar header {
   top: 52px; }
@@ -10091,6 +10089,8 @@ section.hero {
 /*-----------------------------------------------------------------------------------*/
 .mini-cart-wrapper {
   position: relative; }
+  .mini-cart-wrapper #mini-cart-button .cart-number {
+    position: relative; }
   .mini-cart-wrapper .mini-cart-holder {
     position: absolute;
     left: 50%;
@@ -10114,7 +10114,7 @@ section.hero {
     -moz-box-shadow: 0px 12px 16px #00000014;
     box-shadow: 0px 12px 16px #00000014; }
     .mini-cart-wrapper .mini-cart-holder:before {
-      content: '';
+      content: "";
       width: 0;
       height: 0;
       border-left: 15px solid transparent;

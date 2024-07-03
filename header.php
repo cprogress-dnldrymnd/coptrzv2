@@ -34,7 +34,7 @@ $SVG = new SVG;
 							</svg>
 						</a>
 					</div>
-					<div class="col-auto">
+					<div class="col-auto ">
 						<nav class="navbar navbar-expand-lg text-white p-0">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<li class="nav-item">
@@ -61,14 +61,14 @@ $SVG = new SVG;
 							</ul>
 						</nav>
 					</div>
-					<div class="col-auto">
+					<div class="col-auto d-flex align-items-center">
 						<div class="row g-4 header-right">
-							<div class="col-auto">
+							<div class="col-auto d-flex align-items-center">
 								<a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" class="header-icon account-icon text-white d-flex align-items-center">
 									<?= $SVG->user(); ?>
 								</a>
 							</div>
-							<div class="col-auto">
+							<div class="col-auto d-flex align-items-center">
 								<div class="mini-cart-wrapper">
 									<a href="#" id="mini-cart-button" class="header-icon cart-icon text-white d-flex align-items-center">
 										<?= $SVG->cart(); ?>
@@ -81,7 +81,7 @@ $SVG = new SVG;
 									</div>
 								</div>
 							</div>
-							<div class="col-auto d-flex align-items-center button-box button-accent button-small">
+							<div class="col-auto button-box button-accent button-small">
 								<a href="#" href="#">Enquire Now</a>
 							</div>
 						</div>
