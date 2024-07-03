@@ -18,6 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
+dynamic_sidebar('sidebar');
 
 /**
  * Hook: woocommerce_before_main_content.
