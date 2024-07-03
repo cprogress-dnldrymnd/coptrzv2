@@ -10137,7 +10137,7 @@ header {
   @media (min-width: 992px) and (max-width: 1199px) {
     header .header-right {
       --bs-gutter-x: 15px; } }
-  @media screen and (max-width: 991px) {
+  @media screen and (max-width: 575px) {
     header .header-right svg {
       width: 16px;
       height: 16px; } }
@@ -10178,6 +10178,9 @@ header {
 
 .mobile-menu-active header .header-inner {
   background-color: var(--bs-black); }
+.mobile-menu-active .mini-cart-wrapper #mini-cart-button .cart-number {
+  width: 16px;
+  height: 16px; }
 
 #footer {
   font-weight: 300; }

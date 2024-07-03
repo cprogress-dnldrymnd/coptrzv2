@@ -198,4 +198,8 @@ header {
     header .header-inner {
         background-color: var(--bs-black);
     }
+    .mini-cart-wrapper #mini-cart-button .cart-number {
+        width: 16px;
+        height: 16px;
+    }
 }
