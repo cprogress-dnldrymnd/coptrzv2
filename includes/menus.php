@@ -21,7 +21,10 @@ function header_menu()
 
 	$menuID = $menuLocations['header-menu']; // Get the *primary* menu ID
 
-	$header_menu = wp_get_nav_menu_items($menuID); // Get the array
+	$args = array(
+		'post_parent' => 0
+	);
+	$header_menu = wp_get_nav_menu_items($menuID, $args); // Get the array
 
 	if (current_user_can('administrator')) {
 		echo '<pre>';
@@ -35,15 +38,9 @@ function header_menu()
 	foreach ($header_menu as $menu) {
 		$title = $menu->title;
 		$url = $menu->url;
-		$menu_item_parent = $menu->menu_item_parent;
-		if ($menu_item_parent == 0) {
-			$html_submenu = '';
-			$html .= '<li class="nav-item">';
-			$html .= "<a class='nav-link text-white' href='$url'>$title</a>";
-			$html .= '</li>';
-		} else {
-			$html_submenu .= '';
-		}
+		$html .= '<li class="nav-item">';
+		$html .= "<a class='nav-link text-white' href='$url'>$title</a>";
+		$html .= '</li>';
 	}
 
 	$html .= '</ul>';
