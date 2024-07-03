@@ -11,6 +11,9 @@ header {
         @include responsive(xs-sm) {
             padding: 20px 15px;
         }
+        @include responsive(mobile) {
+            padding: 15px;
+        }
     }
     .navbar.navbar.navbar {
         .nav-item {
@@ -194,8 +197,6 @@ header {
 .mobile-menu-active {
     header .header-inner {
         background-color: var(--bs-black);
-        @include responsive(mobile) {
-            padding: 15px;
-        }
+     
     }
 }
