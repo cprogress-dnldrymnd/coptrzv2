@@ -8,7 +8,7 @@ function action_module_content()
         if (_is_module()) {
             $post_content = '<!-- wp:html -->';
 
-            $post_content .= ___hero();
+            $post_content .= ___hero_modules();
             $post_content .= ___sections();
 
 
@@ -26,7 +26,35 @@ function action_module_content()
 }
 add_action('shutdown', 'action_module_content');
 
-function ___hero()
+function ___hero_modules()
+{
+    $hero_heading = get__post_meta('hero_heading');
+    $hero_heading = get__post_meta('hero_heading');
+    $hero_description = _format_text(get__post_meta('hero_description'));
+    $hero_hidden = get__post_meta('hero_hidden');
+    $hero_background = get__post_meta('hero_background');
+    $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
+    if (!$hero_hidden) {
+        $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
+        $hero .= _bg_image($hero_background);
+        $hero .= "<div class='container'>";
+        $hero .= __heading(array(
+            'heading' => $hero_heading_val,
+            'tag' => 'h1',
+            'class' => _attribute('class', array('large-heading')),
+            ''
+        ));
+        $hero .= __description(array(
+            'description' => $hero_description,
+            'class' => _attribute('class', array('description-box', 'medium-text')),
+        ));
+        $hero .= "</div>";
+        $hero .= "</section>";
+        return $hero;
+    }
+}
+
+function _hero()
 {
     $hero_heading = get__post_meta('hero_heading');
     $hero_heading = get__post_meta('hero_heading');
