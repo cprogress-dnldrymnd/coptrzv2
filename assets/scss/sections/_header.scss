@@ -88,6 +88,8 @@ header {
 
 .admin-bar {
     header {
-        top: 52px;
+        @include responsive(md-lg) {
+            top: 52px;
+        }
     }
 }

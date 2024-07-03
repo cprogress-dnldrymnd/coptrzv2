@@ -1,3 +1,8 @@
+#wpadminbar {
+    @include responsive(xs-sm) {
+        display: none;
+    }
+}
 img {
     max-width: 100%;
 }
