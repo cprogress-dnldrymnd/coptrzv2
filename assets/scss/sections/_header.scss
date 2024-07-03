@@ -20,10 +20,34 @@ header {
                     font-size: 14px;
                     padding: 0 5px;
                 }
+                @include responsive(md) {
+                    font-size: 13px;
+                    padding: 0 5px;
+                }
             }
         }
     }
-    .container { 
+    .site-logo {
+        svg {
+            @include responsive(md) {
+                height: 15px;
+            }
+        }
+    }
+    .header-right {
+        @include responsive(md) {
+            --bs-gutter-x: 15px;
+        }
+        .button-box {
+            a {
+                @include responsive(md) {
+                    padding: 0.625rem 1rem;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+    .container {
         @include responsive(md) {
             max-width: calc(100% - 50px);
         }

@@ -10036,6 +10036,20 @@ header {
       header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 14px;
         padding: 0 5px; } }
+    @media (min-width: 992px) and (max-width: 1199px) {
+      header .navbar.navbar.navbar .nav-item .nav-link {
+        font-size: 13px;
+        padding: 0 5px; } }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    header .site-logo svg {
+      height: 15px; } }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    header .header-right {
+      --bs-gutter-x: 15px; } }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    header .header-right .button-box a {
+      padding: 0.625rem 1rem;
+      font-size: 13px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .container {
       max-width: calc(100% - 50px); } }
