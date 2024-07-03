@@ -16,6 +16,10 @@ header {
                 display: flex;
                 align-items: center;
                 padding: 0 1vw;
+                @include responsive(small-lg) {
+                    font-size: 14px;
+                    padding: 0 5px;
+                }
             }
         }
     }
