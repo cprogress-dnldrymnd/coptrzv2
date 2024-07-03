@@ -10022,7 +10022,8 @@ header {
   z-index: 999999; }
   header .header-inner {
     padding: 12px 20px;
-    background-color: rgba(255, 255, 255, 0.3); }
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(30px) brightness(115%); }
 
 .admin-bar header {
   top: 52px; }
