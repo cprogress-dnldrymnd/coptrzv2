@@ -10106,6 +10106,16 @@ section.hero {
     -webkit-box-shadow: 0px 12px 16px #00000014;
     -moz-box-shadow: 0px 12px 16px #00000014;
     box-shadow: 0px 12px 16px #00000014; }
+  .mini-cart-wrapper .woocommerce-mini-cart__total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px; }
+    .mini-cart-wrapper .woocommerce-mini-cart__total strong {
+      font-size: 1rem;
+      font-weight: 400;
+      text-transform: uppercase; }
   .mini-cart-wrapper .woocommerce-mini-cart__buttons .button {
     width: 100%;
     text-align: center; }
