@@ -23,6 +23,11 @@ header {
             }
         }
     }
+    .container { 
+        @include responsive(md) {
+            max-width: calc(100% - 50px);
+        }
+    }
 }
 
 .admin-bar {
