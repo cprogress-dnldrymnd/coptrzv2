@@ -10093,6 +10093,7 @@ section.hero {
     left: 50%;
     transform: translateX(-50%);
     top: 65px;
-    width: 386px; }
+    width: 386px;
+    margin-top: 10px; }
 
 /*# sourceMappingURL=style.css.map */
