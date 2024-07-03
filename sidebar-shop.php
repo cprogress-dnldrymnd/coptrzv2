@@ -1,3 +1,3 @@
 <div class="sidebar">
-    <?php dynamic_sidebar('woocommerce_sidebar'); ?>
+    <?php do_action( 'woocommerce_sidebar' );?>
 </div>
