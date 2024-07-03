@@ -64,13 +64,13 @@ $SVG = new SVG;
 					<div class="col-auto d-flex align-items-center">
 						<div class="row g-4 header-right">
 							<div class="col-auto">
-								<a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" class="header-icon account-icon text-white">
+								<a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" class="header-icon account-icon text-white d-flex align-items-center">
 									<?= $SVG->user(); ?>
 								</a>
 							</div>
 							<div class="col-auto">
 								<div class="mini-cart-wrapper">
-									<a href="<?= wc_get_cart_url() ?>" class="header-icon cart-icon text-white">
+									<a href="<?= wc_get_cart_url() ?>" class="header-icon cart-icon text-white d-flex align-items-center">
 										<?= $SVG->cart(); ?>
 									</a>
 									<div class="mini-cart-holder bg-white">
