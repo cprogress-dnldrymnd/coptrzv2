@@ -40,7 +40,7 @@ $SVG = new SVG;
 								<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 							</div>
 							<div class="offcanvas-body">
-								<nav class="navbar navbar-expand-lg text-white p-0">
+								<nav class="navbar text-white p-0">
 
 									<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 										<li class="nav-item">
