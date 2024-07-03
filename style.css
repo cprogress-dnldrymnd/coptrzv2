@@ -9401,19 +9401,19 @@ body {
 
 h1, .h1,
 h2,
-.h2, .woocommerce-loop-product__title.woocommerce-loop-product__title.woocommerce-loop-product__title {
+.h2 {
   font-size: 2rem;
   margin-bottom: 2rem; }
   @media (min-width: 992px) {
     h1, .h1,
     h2,
-    .h2, .woocommerce-loop-product__title.woocommerce-loop-product__title.woocommerce-loop-product__title {
+    .h2 {
       font-size: 2.5rem;
       margin-bottom: 3rem; } }
   @media (min-width: 1200px) {
     h1, .h1,
     h2,
-    .h2, .woocommerce-loop-product__title.woocommerce-loop-product__title.woocommerce-loop-product__title {
+    .h2 {
       font-size: 3.375rem; } }
 
 h3, .h3 {
