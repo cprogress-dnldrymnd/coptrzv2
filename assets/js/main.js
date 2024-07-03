@@ -22,6 +22,23 @@ function header_menu() {
         e.preventDefault();
     });
 
+
+    jQuery('.has-children.main-nav').click(function (e) {
+        if (jQuery(this).hasClass('active')) {
+            jQuery(this).removeClass('active');
+            jQuery(this).next().removeClass('active');
+        } else {
+            jQuery('.has-children.nav-link.active').removeClass('active');
+            jQuery('.submenu.active').removeClass('active');
+
+            jQuery(this).toggleClass('active');
+            jQuery(this).next().toggleClass('active');
+        }
+        jQuery('body').removeClass('mini-cart-active');
+
+        e.preventDefault();
+    });
+
     jQuery('.has-children-tab').click(function (e) {
         $target = jQuery(this).attr('target');
         jQuery('.has-children-tab.nav-link.active').removeClass('active');
