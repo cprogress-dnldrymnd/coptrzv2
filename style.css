@@ -10456,7 +10456,9 @@ ul.products.products.products {
     padding-right: calc(var(--bs-gutter-x) * 0.5);
     padding-left: calc(var(--bs-gutter-x) * 0.5);
     margin-top: var(--bs-gutter-y);
-    float: none; }
+    float: none;
+    margin-right: 0;
+    margin-bottom: 0; }
     ul.products.products.products li.product.product .product-inner {
       padding: 20px;
       position: relative; }

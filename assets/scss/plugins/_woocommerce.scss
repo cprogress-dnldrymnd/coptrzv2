@@ -138,11 +138,26 @@ ul.products.products.products {
         padding-left: calc(var(--bs-gutter-x) * 0.5);
         margin-top: var(--bs-gutter-y);
         float: none;
+        margin-right: 0;
+        margin-bottom: 0;
         .product-inner {
             padding: 20px;
             position: relative;
             .onsale {
-
+                left: 10px;
+                top: 10px;
+                right: auto;
+                background-color: var(--red-color);
+                font-size: 13px;
+                text-transform: uppercase;
+                font-weight: 400;
+                line-height: 1;
+                height: auto;
+                min-height: 0;
+                min-width: 0;
+                padding: 10px;
+                border-radius: 5px;
+                margin: 0;
             }
         }
     }
