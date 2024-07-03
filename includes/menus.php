@@ -58,7 +58,7 @@ function header_menu()
 				$html .= '<ul class="list-inline d-flex p-0">';
 				foreach ($submenus1 as $submenu1) {
 					$html .= '<li>';
-					$html .= '<a  href="' . $submenu1['url'] . '">' . $submenu1['title'] . '</a>';
+					$html .= '<a class="nav-link"  href="' . $submenu1['url'] . '">' . $submenu1['title'] . '</a>';
 					$html .= '</li>';
 				}
 				$html .= '</ul>';
