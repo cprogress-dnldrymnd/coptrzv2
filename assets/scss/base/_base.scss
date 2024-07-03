@@ -12,7 +12,7 @@ img {
     max-width: 100%;
 }
 
-main  {
+main {
     @include responsive(mobile) {
         margin-top: 10px !important;
     }
@@ -161,6 +161,12 @@ section {
         a,
         button {
             @include button-accent;
+        }
+    }
+    &.button-bordered {
+        a,
+        button {
+            @include button-bordered;
         }
     }
     &.button-small {

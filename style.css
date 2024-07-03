@@ -9974,6 +9974,10 @@ section .container > *:not(:last-child) {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
+.button-box.button-bordered:hover, .button-box.button-bordered:active, .button-box.button-bordered:focus {
+  background-color: var(--bs-secondary);
+  border-color: var(--bs-secondary);
+  color: var(--bs-white); }
 .button-box.button-small a,
 .button-box.button-small button {
   padding: 0.625rem 1.25rem; }
