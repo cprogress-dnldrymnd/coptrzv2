@@ -61,17 +61,21 @@ function header_menu()
 					$submenu1_id = $submenu1['ID'];
 					$html .= '<li>';
 					$html .= '<a class="nav-link text-black"  href="' . $submenu1['url'] . '">' . $submenu1['title'] . '</a>';
+
+
+					$submenus2 = array_filter($menus_array, function ($var) use ($submenu1_id) {
+						return ($var['menu_item_parent'] == $submenu1_id);
+					});
+
+					if ($submenus2) {
+						$html .= '<div class="submenu2">';
+						$html .= '</div>';
+					}
+
 					$html .= '</li>';
 				}
 				$html .= '</ul>';
 
-				$submenus2 = array_filter($menus_array, function ($var) use ($submenu1_id) {
-					return ($var['menu_item_parent'] == $submenu1_id);
-				});
-
-				if ($submenus2) {
-					$html .= '<div class="submenu2">';
-				}
 
 
 				$html .= '</div>';
