@@ -24,18 +24,9 @@ function header_menu() {
 
 
     jQuery('.has-children.sub-nav').click(function (e) {
-        if (jQuery(this).hasClass('active')) {
-            jQuery(this).removeClass('active');
-            jQuery(this).next().removeClass('active');
-        } else {
-            jQuery('.has-children.nav-link.active').removeClass('active');
-            jQuery('.submenu.active').removeClass('active');
-
-            jQuery(this).toggleClass('active');
-            jQuery(this).next().toggleClass('active');
-        }
+        jQuery(this).toggleClass('active');
+        jQuery(this).next().toggleClass('active');
         jQuery('body').removeClass('mini-cart-active');
-
         e.preventDefault();
     });
 
