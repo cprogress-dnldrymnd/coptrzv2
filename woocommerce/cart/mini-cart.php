@@ -69,7 +69,8 @@ do_action('woocommerce_before_mini_cart'); ?>
 						</a>
 					<?php endif; ?>
 					<div class="product-title-quantity">
-						<?php wp_kses_post($product_name);
+						<?
+						echo wp_kses_post($product_name);
 						echo wc_get_formatted_cart_item_data($cart_item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 						echo apply_filters('woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf('%s &times; %s', $cart_item['quantity'], $product_price) . '</span>', $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 						?>
