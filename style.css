@@ -10053,6 +10053,19 @@ header {
   @media (min-width: 992px) and (max-width: 1199px) {
     header .container {
       max-width: calc(100% - 50px); } }
+  @media screen and (min-width: 992px) {
+    header #offCanvasMenu {
+      position: static;
+      transform: none;
+      visibility: visible;
+      background-color: transparent;
+      width: 100%;
+      border: none;
+      height: auto; }
+      header #offCanvasMenu .offcanvas-header {
+        display: none; }
+      header #offCanvasMenu .offcanvas-body {
+        padding: 0; } }
 
 .admin-bar header {
   top: 52px; }
