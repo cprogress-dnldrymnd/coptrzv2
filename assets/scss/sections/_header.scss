@@ -193,11 +193,24 @@ header {
 
 #offCanvasMenu {
     width: 100%;
+    .offcanvas-body {
+        padding-top: 130px;
+        #menu-mobile {
+            .main-nav {
+                color: var(--bs-black);
+            }
+            .navbar-nav {
+                flex-direction: column !important;
+                .submenu {
+                    display: none;
+                }
+            }
+        }
+    }
 }
 
 .mobile-menu-active {
     header .header-inner {
         background-color: var(--bs-black);
-     
     }
 }
