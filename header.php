@@ -34,7 +34,7 @@ $SVG = new SVG;
 							</svg>
 						</a>
 					</div>
-					<div class="col-auto d-none d-lg-block">
+					<div class="col-auto d-none d-lg-flex" id="menu-desktop">
 						<?= header_menu() ?>
 					</div>
 					<div class="col-auto d-flex align-items-center">
@@ -75,45 +75,12 @@ $SVG = new SVG;
 			</div>
 		</div>
 	</header>
-	<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">
-		<div class="offcanvas-header">
-			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-		</div>
-		<div class="offcanvas-body">
-			<nav class="navbar text-white p-0">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link text-white active" aria-current="page" href="#">Products</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="#">Industry</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="#">Capabilities</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="#">Training</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="#">Repairs</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="#">Resources</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="#">Defence</a>
-					</li>
-				</ul>
-			</nav>
-
-		</div>
-	</div>
+	
 	<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMiniCart" aria-labelledby="offcanvasLabel">
 		<div class="offcanvas-header">
 			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		</div>
 		<div class="offcanvas-body">
-		
 
 		</div>
 	</div>
