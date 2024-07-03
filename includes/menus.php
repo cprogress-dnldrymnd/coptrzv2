@@ -65,9 +65,12 @@ function header_menu()
 					});
 
 					$html .= '<li>';
-					$html .= '<a class="nav-link text-black sub-nav ' . ($submenus2 ? 'has-children' : '') . '"  href="' . $submenu1['url'] . '">' . $submenu1['title'] . ($submenus2 ? '<span class="icon"></span>' : '') . '</a>';
-
-
+					$html .= '<a class="nav-link text-black sub-nav ' . ($submenus2 ? 'has-children' : '') . '"  href="' . $submenu1['url'] . '">';
+					$html .= $submenu1['title'];
+					if ($submenus2) {
+						$html .= '<span class="icon"></span>';
+					}
+					$html .= '</a>';
 
 					if ($submenus2) {
 						$html .= '<div class="submenu2">';
@@ -81,7 +84,12 @@ function header_menu()
 								return ($var['menu_item_parent'] == $submenu2_id);
 							});
 							$html .= '<li>';
-							$html .= '<a class="nav-link text-black  ' . ($submenus3 ? 'has-children-tab' : '') . '"  target="#submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">' . $submenu2['title'] .($submenus3 ? '<span class="icon"></span>' : ''). '</a>';
+							$html .= '<a class="nav-link text-black  ' . ($submenus3 ? 'has-children-tab' : '') . '"  target="#submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">';
+							if ($submenus3) {
+								$html .= '<span class="icon"></span>';
+							}
+							$html .= '</a>';
+							
 							$html .= '</li>';
 						}
 						$html .= '</ul>';
