@@ -10092,6 +10092,7 @@ section.hero {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 65px; }
+    top: 65px;
+    width: 386px; }
 
 /*# sourceMappingURL=style.css.map */
