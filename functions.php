@@ -64,7 +64,7 @@ function enqueue_scripts()
 {
 	wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
 	wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js');
-	wp_enqueue_script('bootstrap', vendor_dir . '/twbs/boostrap/dist/js/bootstrap.min.js');
+	wp_enqueue_script('bootstrap', vendor_dir . '/twbs/bootstrap/dist/js/bootstrap.min.js');
 
 	wp_enqueue_style('coptz-style', theme_dir . 'style.css', NULL, coptz_version);
 	wp_enqueue_script('coptz-main', assets_dir . 'js/main.js', NULL, coptz_version);
