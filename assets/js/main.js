@@ -6,9 +6,8 @@ jQuery(document).ready(function () {
 
 
 function header_menu() {
-    jQuery('.has-children > .nav-link').click(function (e) { 
+    jQuery('.has-children.nav-link').click(function (e) { 
         jQuery(this).next().toggleClass('active');
-
         e.preventDefault();
     });
 }

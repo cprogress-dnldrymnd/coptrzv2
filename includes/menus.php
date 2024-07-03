@@ -51,8 +51,8 @@ function header_menu()
 			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
 				return ($var['menu_item_parent'] == $ID);
 			});
-			$html .= '<li class="nav-item ' . ($submenus1 ? 'has-children' : '') . '">';
-			$html .= '<a class="nav-link text-white" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
+			$html .= '<li class="nav-item">';
+			$html .= '<a class="nav-link text-white ' . ($submenus1 ? 'has-children' : '') . '" href="' . $menu['url'] . '">' . $menu['title'] . '</a>';
 
 			if ($submenus1) {
 				$html .= '<div class="submenu">';
@@ -75,7 +75,7 @@ function header_menu()
 
 						foreach ($submenus2 as $submenu2) {
 							$html .= '<li>';
-							$html .= '<a class="nav-link text-black"  href="' . $submenu2['url'] . '">' . $submenu2['title'] . '</a>';
+							$html .= '<a class="nav-link text-black ' . ($submenu2 ? 'has-children' : '') . '"  href="' . $submenu2['url'] . '">' . $submenu2['title'] . '</a>';
 							$html .= '</li>';
 						}
 						$html .= '</ul>';
