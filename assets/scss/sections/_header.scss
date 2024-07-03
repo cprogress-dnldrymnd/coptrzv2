@@ -197,7 +197,7 @@ header {
         padding-top: 130px;
         #menu-mobile {
             .main-nav {
-                color: var(--bs-black);
+                color: var(--bs-black) !important;
             }
             .navbar-nav {
                 flex-direction: column !important;

@@ -10182,7 +10182,7 @@ header {
   #offCanvasMenu .offcanvas-body {
     padding-top: 130px; }
     #offCanvasMenu .offcanvas-body #menu-mobile .main-nav {
-      color: var(--bs-black); }
+      color: var(--bs-black) !important; }
     #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav {
       flex-direction: column !important; }
       #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu {
