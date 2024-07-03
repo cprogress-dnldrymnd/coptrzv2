@@ -39,6 +39,7 @@ function header_menu()
 			$html .= '<li class="nav-item">';
 			$html .= "<a class='nav-link text-white' href='$url'>$title</a>";
 		}
+		
 		if ($menu_item_parent == $ID) {
 			$html .= '<div class="submenu-level-1">';
 
