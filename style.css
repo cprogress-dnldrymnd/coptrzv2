@@ -10511,4 +10511,8 @@ ul.products.products.products {
   ul.products.products.products:before, ul.products.products.products:after {
     display: none; }
 
+.shop-sidebar {
+  position: sticky;
+  top: 52px; }
+
 /*# sourceMappingURL=style.css.map */
