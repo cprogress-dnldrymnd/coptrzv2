@@ -29,7 +29,12 @@ header {
                 }
             }
             .submenu {
-                
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: var(--bs-white);
+                padding: 10px;
+                border-radius: 10px;
             }
         }
     }
