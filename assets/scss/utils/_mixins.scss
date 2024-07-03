@@ -284,3 +284,9 @@
     font-weight: 600;
     font-size: 15px;
 }
+
+@mixin button-accent {
+    color: var(--bs-white);
+    border-color: var(--bs-accent);
+    background-color: var(--bs-accent);
+}

@@ -144,9 +144,7 @@ img {
     &.button-accent {
         a,
         button {
-            color: var(--bs-white);
-            border-color: var(--bs-accent);
-            background-color: var(--bs-accent);
+            @include button-accent;
         }
     }
     &.button-small {
