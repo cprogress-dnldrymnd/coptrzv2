@@ -34,7 +34,7 @@ $SVG = new SVG;
 							</svg>
 						</a>
 					</div>
-					<div class="col-auto">
+					<div class="col-auto d-none d-lg-block">
 						<nav class="navbar text-white p-0">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<li class="nav-item">
