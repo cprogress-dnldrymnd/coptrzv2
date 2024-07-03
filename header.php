@@ -62,7 +62,7 @@ $SVG = new SVG;
 						</nav>
 					</div>
 					<div class="col-auto">
-						<div class="row g-4 header-right">
+						<div class="row g-4 header-right align-items-center">
 							<div class="col-auto account-icon">
 								<a href="">
 									<?= $SVG->user(); ?>
