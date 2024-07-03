@@ -99,7 +99,7 @@ function ___hero()
             $hero .= "<div class='container'>";
             $hero .= __description(array(
                 'description' => $term_description,
-                'class' => _attribute('class', array('description-box', 'medium-text')),
+                'class' => _attribute('class', array('description-box small-text small-width')),
             ));
             $hero .= "</div>";
             $hero .= "</section>";
