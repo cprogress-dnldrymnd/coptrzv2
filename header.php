@@ -79,7 +79,7 @@ $SVG = new SVG;
 								</div>
 							</div>
 							<div class="col-auto d-flex align-items-center button-box button-accent button-small">
-								<a href="#" class="rounded-10px">Enquire Now</a>
+								<a href="#"  href="#" >Enquire Now</a>
 							</div>
 						</div>
 

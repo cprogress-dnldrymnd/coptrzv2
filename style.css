@@ -9943,7 +9943,8 @@ img {
   text-decoration: none;
   color: currentCOlor;
   font-weight: 600;
-  font-size: 15px; }
+  font-size: 15px;
+  border-radius: 10px; }
 
 .button-box.button-accent a,
 .button-box.button-accent button {
@@ -10105,5 +10106,7 @@ section.hero {
     -webkit-box-shadow: 0px 12px 16px #00000014;
     -moz-box-shadow: 0px 12px 16px #00000014;
     box-shadow: 0px 12px 16px #00000014; }
+  .mini-cart-wrapper .woocommerce-mini-cart__buttons .button {
+    width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

@@ -89,7 +89,7 @@
                     </h2>
                 </div>
                 <div class="col-lg-4 text-end">
-                    <div class="button-accent button-box"><a class="rounded-10px" target="_self" href="#" rel="noopener">Enquire Now</a></div>
+                    <div class="button-accent button-box"><a  href="#"  target="_self" href="#" rel="noopener">Enquire Now</a></div>
                 </div>
             </div>
         </div>

@@ -10,4 +10,12 @@
         @include transform(translateX(-50%));
         @include box-shadow(0px 12px 16px #00000014);
     }
+    .woocommerce-mini-cart__buttons {
+        .button {
+            width: 100%;
+            &:first-child {
+                @include button-accent;
+            }
+        }
+    }
 }
