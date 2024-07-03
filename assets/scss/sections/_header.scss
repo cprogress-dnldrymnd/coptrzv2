@@ -228,6 +228,11 @@ header {
                 .submenu {
                     display: none;
                 }
+                .submenu, .submenu2 {
+                    ul {
+                        flex-direction: column;
+                    }
+                }
             }
             ul {
                 li {

@@ -10210,6 +10210,8 @@ header {
             background-position: center; }
         #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu {
           display: none; }
+        #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu ul, #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu2 ul {
+          flex-direction: column; }
 
 .mobile-menu-active header .header-inner {
   background-color: var(--bs-black); }
