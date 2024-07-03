@@ -36,11 +36,11 @@ $SVG = new SVG;
 					</div>
 					<div class="col-auto">
 						<nav class="navbar navbar-expand-lg text-white p-0">
-							<div class="offCanvasMenui offCanvasMenui-start" tabindex="-1" id="offCanvasMenui" aria-labelledby="offCanvasMenuiLabel">
-								<div class="offCanvasMenui-header">
-									<button type="button" class="btn-close text-reset" data-bs-dismiss="offCanvasMenui" aria-label="Close"></button>
+							<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">
+								<div class="offcanvas-header">
+									<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 								</div>
-								<div class="offCanvasMenui-body">
+								<div class="offcanvas-body">
 									<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 										<li class="nav-item">
 											<a class="nav-link text-white active" aria-current="page" href="#">Products</a>
