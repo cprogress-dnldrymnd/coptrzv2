@@ -12,3 +12,5 @@ class SVG
         }
     }
 }
+
+$SVG = new SVG;

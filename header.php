@@ -67,7 +67,9 @@
 				</div>
 			</div>
 		</div>
-	
+		<?php
+		echo $SVG->user()
+		?>
 	</header>
 	<?php wp_body_open(); ?>
 	<main class="mt-20px">
