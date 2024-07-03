@@ -78,7 +78,7 @@ function header_menu()
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
 							$html .= '<li>';
-							$html .= '<a class="nav-link text-black"  target="submenu-' . $submenu2_id . ' href="' . $submenu2['url'] . '">' . $submenu2['title'] . '</a>';
+							$html .= '<a class="nav-link text-black"  target="submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">' . $submenu2['title'] . '</a>';
 							$html .= '</li>';
 						}
 						$html .= '</ul>';
