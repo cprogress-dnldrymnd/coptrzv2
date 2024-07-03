@@ -38,9 +38,14 @@
         list-style: none;
         padding: 0;
         margin: 0;
+        a {
+            text-decoration: none;
+            color: var(--bs-white);
+        }
         .woocommerce-mini-cart-item {
             display: flex;
             align-items: center;
+            position: relative;
             .attachment-woocommerce_thumbnail {
                 width: 103px;
                 height: 77px;
@@ -49,6 +54,8 @@
                 margin-right: 21px;
             }
             .remove {
+                color: #E70000;
+                font-size: 20px;
                 & + * {
                     display: flex;
                     align-items: center;

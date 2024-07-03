@@ -10129,17 +10129,24 @@ section.hero {
     list-style: none;
     padding: 0;
     margin: 0; }
+    .mini-cart-wrapper .cart_list a {
+      text-decoration: none;
+      color: var(--bs-white); }
     .mini-cart-wrapper .cart_list .woocommerce-mini-cart-item {
       display: flex;
-      align-items: center; }
+      align-items: center;
+      position: relative; }
       .mini-cart-wrapper .cart_list .woocommerce-mini-cart-item .attachment-woocommerce_thumbnail {
         width: 103px;
         height: 77px;
         object-fit: cover;
         border-radius: 10px;
         margin-right: 21px; }
-      .mini-cart-wrapper .cart_list .woocommerce-mini-cart-item .remove + * {
-        display: flex;
-        align-items: center; }
+      .mini-cart-wrapper .cart_list .woocommerce-mini-cart-item .remove {
+        color: #E70000;
+        font-size: 20px; }
+        .mini-cart-wrapper .cart_list .woocommerce-mini-cart-item .remove + * {
+          display: flex;
+          align-items: center; }
 
 /*# sourceMappingURL=style.css.map */
