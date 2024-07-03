@@ -72,6 +72,9 @@ $SVG = new SVG;
 								<a href="<?= wc_get_cart_url() ?>" class="cart-icon text-white">
 									<?= $SVG->cart(); ?>
 								</a>
+								<div class="mini-cart-holder">
+									<?php woocommerce_mini_cart() ?>
+								</div>
 							</div>
 							<div class="col-auto button-box button-accent button-small">
 								<a href="#" class="rounded-10px">Enquire Now</a>
