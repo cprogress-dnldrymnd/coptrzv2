@@ -12,11 +12,12 @@ define('vendor_dir', theme_dir . 'vendor/');
 /*-----------------------------------------------------------------------------------*/
 function action_after_setup_theme()
 {
-	require_once('vendor/autoload.php');
-	\Carbon_Fields\Carbon_Fields::boot();
-
 	add_theme_support('post-thumbnails');
 	add_theme_support('woocommerce');
+
+	require_once('vendor/autoload.php');
+	\Carbon_Fields\Carbon_Fields::boot();
+	
 
 	global $popups_id, $styles;
 
