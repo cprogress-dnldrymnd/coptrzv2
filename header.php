@@ -69,11 +69,13 @@ $SVG = new SVG;
 								</a>
 							</div>
 							<div class="col-auto">
-								<a href="<?= wc_get_cart_url() ?>" class="cart-icon text-white">
-									<?= $SVG->cart(); ?>
-								</a>
-								<div class="mini-cart-holder">
-									<?php woocommerce_mini_cart() ?>
+								<div class="mini-cart-wrapper">
+									<a href="<?= wc_get_cart_url() ?>" class="cart-icon text-white">
+										<?= $SVG->cart(); ?>
+									</a>
+									<div class="mini-cart-holder">
+										<?php woocommerce_mini_cart() ?>
+									</div>
 								</div>
 							</div>
 							<div class="col-auto button-box button-accent button-small">
