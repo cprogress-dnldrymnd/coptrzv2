@@ -77,8 +77,11 @@ function header_menu()
 
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
+							$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
+								return ($var['menu_item_parent'] == $submenu2_id);
+							});
 							$html .= '<li>';
-							$html .= '<a class="nav-link text-black"  target="submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">' . $submenu2['title'] . '</a>';
+							$html .= '<a class="nav-link text-black ' . ($submenus3 ? 'has-children-tab' : '') . '"  target="submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">' . $submenu2['title'] . '</a>';
 							$html .= '</li>';
 						}
 						$html .= '</ul>';
