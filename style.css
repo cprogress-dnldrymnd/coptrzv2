@@ -10115,11 +10115,11 @@ section.hero {
     -o-transition: 500ms;
     transition: 500ms;
     visibility: hidden;
-    -webkit-transform: translate(-50%, 10px);
-    -moz-transform: translate(-50%, 10px);
-    -ms-transform: translate(-50%, 10px);
-    -o-transform: translate(-50%, 10px);
-    transform: translate(-50%, 10px);
+    -webkit-transform: translate(-50%, 20px);
+    -moz-transform: translate(-50%, 20px);
+    -ms-transform: translate(-50%, 20px);
+    -o-transform: translate(-50%, 20px);
+    transform: translate(-50%, 20px);
     -webkit-box-shadow: 0px 12px 16px #00000014;
     -moz-box-shadow: 0px 12px 16px #00000014;
     box-shadow: 0px 12px 16px #00000014; }
@@ -10132,7 +10132,7 @@ section.hero {
       border-bottom: 15px solid var(--bs-white);
       display: block;
       position: absolute;
-      top: -15px;
+      top: -14px;
       left: 50%;
       transform: translateX(-50%); }
   .mini-cart-wrapper .woocommerce-mini-cart__total {
