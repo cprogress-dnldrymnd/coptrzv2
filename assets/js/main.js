@@ -57,7 +57,7 @@ function header_menu() {
         $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel"> <div class="offcanvas-header"> <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> </div> <div class="offcanvas-body"> <div id="menu-mobile"> </div> </div> </div>');
 
         $menu_offcanvas.inserAfter('.header');
-        $nav.appendTo('#offCanvasMenu')
+        $nav.appendTo('#menu-mobile');
     }
 }
 
@@ -69,6 +69,9 @@ function mini_cart() {
             jQuery('.has-children.nav-link').next().removeClass('active');
             e.preventDefault();
         });
+        if (jQuery('.mini-cart-wrapper .mini-cart-holder').length == 0) {
+            jQuery('.mini-cart-holder').inserAfter('#mini-cart-button');
+        }
     } else {
         jQuery('#mini-cart-button').attr('data-bs-toggle', 'offcanvas').attr('data-bs-target', '#offCanvasMiniCart').attr('aria-controls', 'offCanvasMiniCart');
         jQuery('.mini-cart-holder').appendTo('#offCanvasMiniCart');
