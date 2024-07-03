@@ -199,13 +199,6 @@ header {
             border-top: 1px solid var(--border-color);
             .main-nav {
                 color: var(--bs-black) !important;
-                padding-left: 20px;
-                padding-right: 20px;
-                padding-top: 20px;
-                padding-bottom: 20px;
-                border-bottom: 1px solid var(--border-color);
-                width: 100%;
-                line-height: 1;
             }
             .navbar-nav {
                 width: 100%;
@@ -228,7 +221,8 @@ header {
                 .submenu {
                     display: none;
                 }
-                .submenu, .submenu2 {
+                .submenu,
+                .submenu2 {
                     ul {
                         flex-direction: column;
                     }
@@ -237,6 +231,15 @@ header {
             ul {
                 li {
                     @include not-last-child {
+                        a.nav-link {
+                            padding-left: 20px;
+                            padding-right: 20px;
+                            padding-top: 20px;
+                            padding-bottom: 20px;
+                            width: 100%;
+                            line-height: 1;
+                            border-bottom: 1px solid var(--border-color);
+                        }
                     }
                 }
             }
