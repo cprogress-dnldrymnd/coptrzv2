@@ -1,6 +1,5 @@
 <?php
-add_filter('woocommerce_show_page_title', '__return_false');
-
+remove_action('woocommerce_shop_loop_header');
 function action_woocommerce_before_main_content()
 {
     echo ___hero();
