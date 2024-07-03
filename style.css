@@ -10091,6 +10091,8 @@ header {
     -ms-transition: 500ms;
     -o-transition: 500ms;
     transition: 500ms; }
+    header .navbar.navbar.navbar .nav-item .submenu2 > li {
+      margin-right: 10px; }
     header .navbar.navbar.navbar .nav-item .submenu2 .left-menu {
       max-height: 500px;
       overflow: auto; }

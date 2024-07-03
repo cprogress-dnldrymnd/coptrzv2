@@ -64,11 +64,14 @@ header {
                 margin-top: 1px;
                 opacity: 0;
                 visibility: hidden;
+              
                 @include transition(500ms);
                 .left-menu {
                     max-height: 500px;
                     overflow: auto;
-
+                    > li {
+                        margin-right: 10px;
+                    }
                     &::-webkit-scrollbar {
                         width: 7px;
                         height: 7px;
@@ -108,7 +111,7 @@ header {
                     opacity: 1;
                 }
                 @include before {
-                    content: '';
+                    content: "";
                     border-bottom: 1px solid var(--border-color);
                     display: block;
                     margin-bottom: 10px;
