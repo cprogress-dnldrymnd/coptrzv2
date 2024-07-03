@@ -61,11 +61,11 @@ function header_menu() {
 
 
         var offCanvasMenu = document.getElementById('offCanvasMenu')
-        offCanvasMenu.addEventListener('shown.bs.offcanvas', function () {
+        offCanvasMenu.addEventListener('show.bs.offcanvas', function () {
             jQuery('body').addClass('mobile-menu-active');
         });
 
-        offCanvasMenu.addEventListener('hidden.bs.offcanvas', function () {
+        offCanvasMenu.addEventListener('hide.bs.offcanvas', function () {
             jQuery('body').removeClass('mobile-menu-active');
         });
     }
