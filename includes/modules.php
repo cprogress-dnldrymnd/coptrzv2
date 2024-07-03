@@ -75,7 +75,7 @@ function ___hero()
     }
 
     if (!$hero_hidden) {
-        $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
+        $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
         $hero .= _bg_image($hero_background);
         $hero .= "<div class='container'>";
         $hero .= __heading(array(
