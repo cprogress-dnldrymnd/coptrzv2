@@ -42,9 +42,7 @@ function header_menu()
 			'url' => $url,
 		);
 	}
-	$html .= '<pre>';
-	$html .= var_dump($menus_array);
-	$html .= '</pre>';
+
 	foreach ($menus_array as $menu) {
 		$title = $menu['title'];
 		$ID = $menu['ID'];
