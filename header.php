@@ -52,7 +52,7 @@ $SVG = new SVG;
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<?php
 								foreach ($header_menu as $menu) {
-									$title = $menu['title'];
+									$title = $menu->title;
 								?>
 									<li class="nav-item">
 										<a class="nav-link text-white active" aria-current="page" href="#"><?= $title ?></a>
