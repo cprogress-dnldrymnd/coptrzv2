@@ -13,8 +13,12 @@
     .woocommerce-mini-cart__buttons {
         .button {
             width: 100%;
-            &:last-child {
+            text-align: center;
+            @include last-child {
                 @include button-accent;
+            }
+            @include not-last-child {
+                margin-bottom: 15px;
             }
         }
     }
