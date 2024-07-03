@@ -7,6 +7,9 @@
         width: 386px;
         margin-top: 5px;
         padding: 13px;
+        opacity: 0;
+        @include transition(500ms);
+        visibility: hidden;
         @include transform(translateX(-50%));
         @include box-shadow(0px 12px 16px #00000014);
         @include before {

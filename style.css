@@ -10098,6 +10098,13 @@ section.hero {
     width: 386px;
     margin-top: 5px;
     padding: 13px;
+    opacity: 0;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+    transition: 500ms;
+    visibility: hidden;
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
