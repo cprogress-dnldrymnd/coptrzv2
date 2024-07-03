@@ -10169,6 +10169,9 @@ header {
   .admin-bar header {
     top: 52px; } }
 
+#offCanvasMenu {
+  width: 100%; }
+
 #footer {
   font-weight: 300; }
   #footer ul {

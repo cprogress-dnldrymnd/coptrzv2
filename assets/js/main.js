@@ -58,7 +58,19 @@ function header_menu() {
 
         $menu_offcanvas.insertAfter('.header');
         $nav.appendTo('#menu-mobile');
+
+
+        var offCanvasMenu = document.getElementById('offCanvasMenu')
+        offCanvasMenu.addEventListener('shown.bs.offcanvas', function () {
+            jQuery('body').addClass('mobile-menu-active');
+        });
+
+        offCanvasMenu.addEventListener('hidden.bs.offcanvas', function () {
+            jQuery('body').removeClass('mobile-menu-active');
+        });
     }
+
+
 }
 
 function mini_cart() {
