@@ -36,7 +36,7 @@ do_action( 'woocommerce_before_main_content' );
  * @hooked woocommerce_product_taxonomy_archive_header - 10
  */
 //do_action( 'woocommerce_shop_loop_header' );
-get_sidebar('shop');
+do_action( 'woocommerce_sidebar' );
 
 if ( woocommerce_product_loop() ) {
 
