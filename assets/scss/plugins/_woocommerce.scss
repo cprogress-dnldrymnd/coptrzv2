@@ -124,7 +124,7 @@
     }
 }
 
-ul.products.products {
+ul.products.products.products {
     display: flex;
     flex-wrap: wrap;
     --bs-gutter-y: 1.5rem;
@@ -134,7 +134,7 @@ ul.products.products {
     margin-top: calc(-1 * var(--bs-gutter-y));
     margin-right: calc(-0.5 * var(--bs-gutter-x));
     margin-left: calc(-0.5 * var(--bs-gutter-x));
-    li.product {
+    li.product.product {
         flex: 0 0 auto;
         max-width: 100%;
         padding-right: calc(var(--bs-gutter-x) * 0.5);
@@ -146,12 +146,12 @@ ul.products.products {
             padding: 20px;
             position: relative;
             .onsale {
-                
+
             }
         }
     }
     &.columns-3 {
-        li.product {
+        li.product.product {
             flex: 0 0 auto;
             width: 33.333333333%;
         }
