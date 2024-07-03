@@ -10062,13 +10062,17 @@ header {
     padding: 10px;
     border-radius: 10px;
     margin-top: 20px; }
+    header .navbar.navbar.navbar .nav-item .submenu > ul {
+      border-bottom: 1px solid var(--border-color); }
   header .navbar.navbar.navbar .nav-item .submenu2 {
     position: absolute;
     left: 0;
     right: 0;
     background-color: var(--bs-white);
     border-radius: 0 0 10px 10px;
-    padding: 10px; }
+    padding: 10px;
+    margin-top: 1px;
+    max-height: 500px; }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .site-logo svg {
       height: 15px; } }

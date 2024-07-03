@@ -71,7 +71,7 @@ function header_menu()
 						$html .= '<div class="submenu2">';
 						$html .= '<div class="row">';
 						$html .= '<div class="col-lg-5">';
-						$html .= '<ul class="list-inline d-flex flex-column p-0">';
+						$html .= '<ul class="list-inline left-menu d-flex flex-column p-0">';
 
 						foreach ($submenus2 as $submenu2) {
 							$html .= '<li>';

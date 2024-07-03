@@ -51,6 +51,12 @@ header {
                 background-color: var(--bs-white);
                 border-radius: 0 0 10px 10px;
                 padding: 10px;
+                margin-top: 1px;
+           
+                .left-menu {
+                    max-height: 500px;
+                    overflow: auto;
+                }
             }
         }
     }
