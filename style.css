@@ -9974,7 +9974,10 @@ section .container > *:not(:last-child) {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
-.button-box.button-bordered:hover, .button-box.button-bordered:active, .button-box.button-bordered:focus {
+.button-box.button-bordered a:hover, .button-box.button-bordered a:active, .button-box.button-bordered a:focus,
+.button-box.button-bordered button:hover,
+.button-box.button-bordered button:active,
+.button-box.button-bordered button:focus {
   background-color: var(--bs-secondary);
   border-color: var(--bs-secondary);
   color: var(--bs-white); }
