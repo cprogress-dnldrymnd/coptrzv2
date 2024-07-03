@@ -9987,6 +9987,7 @@ section .container > *:not(:last-child) {
 .button-box.button-box.button-box.button-white a,
 .button-box.button-box.button-box.button-white button {
   background-color: var(--bs-white);
+  border-color: var(--bs-white);
   color: var(--bs-black); }
   .button-box.button-box.button-box.button-white a:hover, .button-box.button-box.button-box.button-white a:active, .button-box.button-box.button-box.button-white a:focus,
   .button-box.button-box.button-box.button-white button:hover,
