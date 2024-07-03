@@ -10094,6 +10094,7 @@ section.hero {
     transform: translateX(-50%);
     top: 65px;
     width: 386px;
-    margin-top: 10px; }
+    margin-top: 10px;
+    padding: 13px; }
 
 /*# sourceMappingURL=style.css.map */
