@@ -10054,6 +10054,9 @@ header {
     header .navbar.navbar.navbar .nav-item .nav-link:hover, header .navbar.navbar.navbar .nav-item .nav-link:active, header .navbar.navbar.navbar .nav-item .nav-link:focus {
       background-color: var(--bs-black);
       color: var(--bs-white) !important; }
+    header .navbar.navbar.navbar .nav-item .nav-link.active {
+      background-color: var(--bs-black);
+      color: var(--bs-white) !important; }
   header .navbar.navbar.navbar .nav-item .submenu {
     position: absolute;
     left: 50%;
@@ -10069,8 +10072,6 @@ header {
     -ms-transition: 500ms;
     -o-transition: 500ms;
     transition: 500ms; }
-    header .navbar.navbar.navbar .nav-item .submenu > ul {
-      border-bottom: 1px solid var(--border-color); }
     header .navbar.navbar.navbar .nav-item .submenu.active {
       transform: translate(-50%, 0);
       visibility: visible;
@@ -10120,6 +10121,9 @@ header {
     header .navbar.navbar.navbar .nav-item .submenu2.active {
       visibility: visible;
       opacity: 1; }
+    header .navbar.navbar.navbar .nav-item .submenu2:before {
+      content: '';
+      border-bottom: 1px solid var(--border-color); }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .site-logo svg {
       height: 15px; } }
