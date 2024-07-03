@@ -10136,7 +10136,8 @@ section.hero {
       display: flex;
       align-items: center;
       position: relative;
-      padding-right: 30px; }
+      padding-right: 30px;
+      margin-bottom: 15px; }
       .mini-cart-wrapper .cart_list .woocommerce-mini-cart-item .attachment-woocommerce_thumbnail {
         width: 103px;
         height: 77px;
@@ -10155,7 +10156,5 @@ section.hero {
           align-items: center;
           font-size: 20px;
           line-height: 1; }
-      .mini-cart-wrapper .cart_list .woocommerce-mini-cart-item:not(:last-child) {
-        margin-bottom: 20px; }
 
 /*# sourceMappingURL=style.css.map */

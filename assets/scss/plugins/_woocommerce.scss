@@ -47,6 +47,7 @@
             align-items: center;
             position: relative;
             padding-right: 30px;
+            margin-bottom: 15px;
             .attachment-woocommerce_thumbnail {
                 width: 103px;
                 height: 77px;
@@ -68,9 +69,7 @@
                     line-height: 1;
                 }
             }
-            @include not-last-child {
-                margin-bottom: 20px;
-            }
+
         }
     }
 }
