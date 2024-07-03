@@ -10056,6 +10056,26 @@ header {
   @media (min-width: 992px) and (max-width: 1199px) {
     header .container {
       max-width: calc(100% - 50px); } }
+  header .menu-burger {
+    border: none;
+    width: 28px;
+    height: 14px;
+    background-color: transparent;
+    height: 18px;
+    padding: 0;
+    position: relative; }
+    header .menu-burger span {
+      height: 2px;
+      display: block;
+      background-color: var(--bs-white);
+      position: absolute;
+      left: 0; }
+      header .menu-burger span:nth-child(1) {
+        top: 0; }
+      header .menu-burger span:nth-child(2) {
+        top: 10px; }
+      header .menu-burger span:nth-child(3) {
+        top: 10px; }
 
 .admin-bar header {
   top: 52px; }

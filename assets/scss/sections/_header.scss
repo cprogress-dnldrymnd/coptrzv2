@@ -57,7 +57,29 @@ header {
     }
 
     .menu-burger {
-
+        border: none;
+        width: 28px;
+        height: 14px;
+        background-color: transparent;
+        height: 18px;
+        padding: 0;
+        position: relative;
+        span {
+            height: 2px;
+            display: block;
+            background-color: var(--bs-white);
+            position: absolute;
+            left: 0;
+            &:nth-child(1) {
+                top: 0;
+            }
+            &:nth-child(2) {
+                top: 10px;
+            }
+            &:nth-child(3) {
+                top: 17px;
+            }
+        }
     }
 }
 
