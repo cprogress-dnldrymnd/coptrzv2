@@ -35,6 +35,20 @@ $SVG = new SVG;
 						</a>
 					</div>
 					<div class="col-auto d-none d-lg-block">
+						<?php
+						$menuLocations = get_nav_menu_locations(); // Get our nav locations (set in our theme, usually functions.php)
+						// This returns an array of menu locations ([LOCATION_NAME] = MENU_ID);
+
+						$menuID = $menuLocations['header-menu']; // Get the *primary* menu ID
+
+						$primaryNav = wp_get_nav_menu_items($menuID); // Get the array
+						?>
+
+						<pre>
+							<?php
+							var_dump($primaryNav)
+							?>
+						</pre>
 						<nav class="navbar text-white p-0">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<li class="nav-item">
