@@ -100,7 +100,7 @@ $SVG = new SVG;
 									</div>
 								</button>
 							</div>
-							<div class="col-auto button-box button-accent button-small">
+							<div class="col-auto button-box button-accent button-small d-none d-lg-block">
 								<a href="#" href="#">Enquire Now</a>
 							</div>
 
