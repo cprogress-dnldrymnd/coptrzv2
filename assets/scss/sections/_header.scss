@@ -8,6 +8,9 @@ header {
         padding: 0 20px;
         background-color: rgba(0, 0, 0, 0);
         backdrop-filter: blur(30px) brightness(115%);
+        @include responsive(xs-sm) {
+            padding: 20px 15px;
+        }
     }
     .navbar.navbar.navbar {
         .nav-item {
