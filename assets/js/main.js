@@ -54,7 +54,7 @@ function header_menu() {
     if (window.innerWidth > 991) {
     } else {
         $nav = jQuery('#menu-desktop .navbar');
-        $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel"> <div class="offcanvas-header"> <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> </div> <div class="offcanvas-body"> <div id="menu-mobile"> </div> </div> </div>');
+        $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">  <div class="offcanvas-body"> <div id="menu-mobile"> </div> </div> </div>');
 
         $menu_offcanvas.insertAfter('.header');
         $nav.appendTo('#menu-mobile');
@@ -87,7 +87,7 @@ function mini_cart() {
     } else {
         jQuery('#mini-cart-button').attr('data-bs-toggle', 'offcanvas').attr('data-bs-target', '#offCanvasMiniCart').attr('aria-controls', 'offCanvasMiniCart');
         $mini_cart = jQuery('.mini-cart-holder');
-        $mini_cart_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMiniCart" aria-labelledby="offcanvasLabel"> <div class="offcanvas-header"> <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> </div> <div class="offcanvas-body"> <div id="mini-cart-mobile"></div> </div> </div>');
+        $mini_cart_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMiniCart" aria-labelledby="offcanvasLabel">  <div class="offcanvas-body"> <div id="mini-cart-mobile"></div> </div> </div>');
         $mini_cart_offcanvas.insertAfter('.header');
         $mini_cart.appendTo('#mini-cart-mobile');
     }
