@@ -10466,6 +10466,8 @@ ul.products.products.products {
         color: var(--bs-black); }
       ul.products.products.products li.product.product .product-inner .price {
         color: var(--bs-black); }
+        ul.products.products.products li.product.product .product-inner .price .woocommerce-price-suffix {
+          font-size: 13px; }
       ul.products.products.products li.product.product .product-inner .onsale {
         left: 10px;
         top: 10px;
