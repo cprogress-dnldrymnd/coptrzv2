@@ -44,8 +44,7 @@ function header_menu()
 			$html .= '<li class="nav-item">';
 			$html .= "<a class='nav-link text-white' href='$url'>$title</a>";
 			$html .= '</li>';
-		} else {
-		}
+		} 
 	}
 
 	$html .= '</ul>';
