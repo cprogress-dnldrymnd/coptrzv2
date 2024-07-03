@@ -116,7 +116,7 @@ function action_widgets_init()
     register_sidebar(
         array(
             'name'          => 'Woocommerce Listing Sidebar',
-            'id'            => 'woocommerce_listing_sidebar',
+            'id'            => 'woocommerce_sidebar',
             'before_widget' => '<div>',
             'after_widget'  => '</div>',
             'before_title'  => '<h5 class="widget-title">',
