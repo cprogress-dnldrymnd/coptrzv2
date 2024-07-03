@@ -32,7 +32,7 @@ function header_menu()
 		$menu_item_parent = $menu->menu_item_parent;
 		if ($menu_item_parent == 0) {
 			$html .= '<li class="nav-item">';
-			$html .= "<a class='nav-link text-white' href=''>$$url</a>";
+			$html .= "<a class='nav-link text-white' href='$url'>$title</a>";
 			$html .= '</li>';
 		}
 	}
