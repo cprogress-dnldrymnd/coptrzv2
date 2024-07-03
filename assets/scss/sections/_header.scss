@@ -55,25 +55,9 @@ header {
             max-width: calc(100% - 50px);
         }
     }
-    #offCanvasMenu {
-        @include responsive(md-lg) {
-            position: static;
-            transform: none;
-            visibility: visible;
-            background-color: transparent;
-            width: 100%;
-            border: none;
-            height: auto;
-            .offcanvas-header {
-                display: none;
-            }
-            .offcanvas-body {
-                padding: 0;
-            }
-        }
-    }
+
     .menu-burger {
-        
+
     }
 }
 
