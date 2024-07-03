@@ -198,6 +198,7 @@ header {
         #menu-mobile {
             border-top: 1px solid var(--border-color);
             position: relative;
+            height: calc(100% - 140px);
             .main-nav {
                 color: var(--bs-black) !important;
             }
@@ -226,10 +227,11 @@ header {
                 .submenu2 {
                     display: block;
                     position: absolute;
-                    background-color: var(--bs-warning);
+                    background-color: var(--bs-white);
                     width: 100%;
                     z-index: 9;
                     top: 0;
+                    bottom: 0;
                     @include transform(translateX(100%));
                     @include transition(300ms);
                     ul {
@@ -240,7 +242,7 @@ header {
                     }
                 }
             }
-            
+
             ul {
                 li {
                     a.nav-link {
@@ -254,6 +256,9 @@ header {
                         height: 61px;
                     }
                 }
+            }
+            @include responsive(mobile) {
+                height: calc(100% - 11px);
             }
         }
         @include responsive(mobile) {
