@@ -26,11 +26,7 @@ function header_menu()
 	);
 	$header_menu = wp_get_nav_menu_items($menuID, $args); // Get the array
 
-	if (current_user_can('administrator')) {
-		echo '<pre>';
-		var_dump($header_menu);
-		echo '</pre>';
-	}
+	
 
 	$html = '<nav class="navbar text-white p-0">';
 	$html .= '<ul class="navbar-nav flex-row me-auto mb-2 mb-lg-0">';
