@@ -31,6 +31,10 @@ header {
                     background-color: var(--bs-black);
                     color: var(--bs-white) !important;
                 }
+                &.active{
+                    background-color: var(--bs-black);
+                    color: var(--bs-white) !important;
+                }
             }
             .submenu {
                 position: absolute;
