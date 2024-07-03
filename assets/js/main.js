@@ -18,7 +18,9 @@ function header_menu() {
     });
 
     jQuery('.has-children-tab').click(function (e) { 
-        $target = jQuery(this).target('');
+        $target = jQuery(this).attr('target');
+        jQuery('.tab-links').addClass('d-none');
+        jQuery($target).removeClass('d-none');
         e.preventDefault();
     
     });
