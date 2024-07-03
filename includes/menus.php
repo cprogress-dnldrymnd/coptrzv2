@@ -32,14 +32,21 @@ function header_menu()
 
 	foreach ($header_menu as $menu) {
 		$title = $menu->title;
+		$ID = $menu->ID;
 		$url = $menu->url;
 		$menu_item_parent = $menu->menu_item_parent;
 		if ($menu_item_parent == 0) {
-			$html_submenu = '';
 			$html .= '<li class="nav-item">';
 			$html .= "<a class='nav-link text-white' href='$url'>$title</a>";
+		} else if ($menu_item_parent == $ID) {
+			$html .= '<div class="submenu-level-1">';
+
+			$html .= '</div>';
+		}
+
+		if ($menu_item_parent == 0) {
 			$html .= '</li>';
-		} 
+		}
 	}
 
 	$html .= '</ul>';
