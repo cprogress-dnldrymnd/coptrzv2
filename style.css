@@ -10051,6 +10051,13 @@ header {
       header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 13px;
         padding: 0 5px; } }
+  header .navbar.navbar.navbar .nav-item .submenu {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bs-white);
+    padding: 10px;
+    border-radius: 10px; }
   @media (min-width: 992px) and (max-width: 1199px) {
     header .site-logo svg {
       height: 15px; } }
