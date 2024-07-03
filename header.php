@@ -34,8 +34,8 @@ $SVG = new SVG;
 							</svg>
 						</a>
 					</div>
-					<div class="col-auto ">
-						<nav class="navbar navbar-expand-lg text-white p-0">
+					<div class="col-auto">
+						<nav class="navbar navbar-expand-lg text-white p-0 d-none d-lg-block">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<li class="nav-item">
 									<a class="nav-link text-white active" aria-current="page" href="#">Products</a>
