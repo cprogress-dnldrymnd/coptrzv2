@@ -46,7 +46,6 @@ $SVG = new SVG;
 
 						<pre>
 							<?php
-							var_dump($primaryNav)
 							?>
 						</pre>
 						<nav class="navbar text-white p-0">
