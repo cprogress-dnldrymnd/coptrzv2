@@ -35,52 +35,7 @@ $SVG = new SVG;
 						</a>
 					</div>
 					<div class="col-auto d-none d-lg-block">
-						<?php
-						$menuLocations = get_nav_menu_locations(); // Get our nav locations (set in our theme, usually functions.php)
-						// This returns an array of menu locations ([LOCATION_NAME] = MENU_ID);
-
-						$menuID = $menuLocations['header-menu']; // Get the *primary* menu ID
-
-						$header_menu = wp_get_nav_menu_items($menuID); // Get the array
-						?>
-
-						<pre>
-							<?php
-							?>
-						</pre>
-						<nav class="navbar text-white p-0">
-							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-								<?php
-								foreach ($header_menu as $menu) {
-									$title = $menu->title;
-								?>
-									<li class="nav-item">
-										<a class="nav-link text-white active" aria-current="page" href="#"><?= $title ?></a>
-									</li>
-								<?php
-								}
-								?>
-
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Industry</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Capabilities</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Training</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Repairs</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Resources</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-white" href="#">Defence</a>
-								</li>
-							</ul>
-						</nav>
+						<?= header_menu() ?>
 					</div>
 					<div class="col-auto d-flex align-items-center">
 						<div class="row g-4 header-right">
