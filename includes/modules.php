@@ -95,11 +95,13 @@ function ___hero()
         $hero .= "</section>";
 
         if (!is_single() && $term_description) {
-            $hero .= "<section class='term-description'>";
+            $hero .= "<section class='sm-padding-top sm-padding-bottom term-description'>";
+            $hero .= "<div class='container'>";
             $hero .= __description(array(
                 'description' => $term_description,
                 'class' => _attribute('class', array('description-box', 'medium-text')),
             ));
+            $hero .= "</div>";
             $hero .= "</section>";
         }
         return $hero;
