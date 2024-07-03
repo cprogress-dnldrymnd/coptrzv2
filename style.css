@@ -10040,7 +10040,8 @@ header {
         padding: 20px 15px; } }
     @media screen and (max-width: 575px) {
       header .header-inner {
-        padding: 15px; } }
+        padding: 15px;
+        margin-top: 10px; } }
   header .navbar.navbar.navbar .nav-item .nav-link {
     display: flex;
     align-items: center;
