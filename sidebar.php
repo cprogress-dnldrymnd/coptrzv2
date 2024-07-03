@@ -1,3 +1,7 @@
 <div class="sidebar">
-    <?php do_action( 'woocommerce_sidebar' );?>
+    <?php
+    if (is_woocommerce()) {
+        woocommerce_get_sidebar();
+    }
+    ?>
 </div>
