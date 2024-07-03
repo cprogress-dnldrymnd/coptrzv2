@@ -69,6 +69,19 @@ function header_menu()
 
 					if ($submenus2) {
 						$html .= '<div class="submenu2">';
+						$html .= '<div class="row">';
+						$html .= '<div class="col-lg-5">';
+						$html .= '<ul class="list-inline d-flex flex-column p-0">';
+
+						foreach ($submenus2 as $submenu2) {
+							$html .= '<li>';
+							$html .= '<a class="nav-link text-black"  href="' . $submenu2['url'] . '">' . $submenu2['title'] . '</a>';
+							$html .= '</li>';
+						}
+						$html .= '</ul>';
+
+						$html .= '</div>';
+						$html .= '</div>';
 						$html .= '</div>';
 					}
 
