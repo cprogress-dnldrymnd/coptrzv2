@@ -9,6 +9,7 @@ function header_menu() {
     jQuery('.has-children.nav-link').click(function (e) { 
         jQuery(this).toggleClass('active');
         jQuery(this).next().toggleClass('active');
+        jQuery('body').removeClass('mini-cart-active');
         e.preventDefault();
     });
 }
@@ -16,6 +17,8 @@ function header_menu() {
 function mini_cart() {
     jQuery('#mini-cart-button').click(function (e) {
         jQuery('body').toggleClass('mini-cart-active');
+        jQuery('.has-children.nav-link').removeClass('active');
+        jQuery('.has-children.nav-link').next().removeClass('active');
         e.preventDefault();
     });
 }
