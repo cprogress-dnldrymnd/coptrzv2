@@ -10206,7 +10206,7 @@ header {
         #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu ul,
         #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu2 ul {
           flex-direction: column; }
-      #offCanvasMenu .offcanvas-body #menu-mobile ul li:not(:last-child) {
+      #offCanvasMenu .offcanvas-body #menu-mobile ul li:not(:last-child) a.nav-link {
         padding-left: 20px;
         padding-right: 20px;
         padding-top: 20px;
