@@ -2498,12 +2498,7 @@ Container::make('post_meta', __('Sections'))
                         )
                     )
 
-                    ->add_fields(
-                        'custom_class',
-                        array(
-                            Field::make('text', 'custom_class', 'Custom Class')
-                        )
-                    )
+                
 
                     ->set_layout('tabbed-vertical')
 
