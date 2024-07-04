@@ -112,3 +112,16 @@ add_filter( 'woocommerce_single_product_image_thumbnail_html', 'custom_remove_pr
 function custom_remove_product_link( $html ) {
   return strip_tags( $html, '<div><img>' );
 }
+
+/**
+ * @snippet       Move upsells - WooCommerce Single Product
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 3.5.7
+ * @community     https://businessbloomer.com/club/
+ */
+ 
+ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+ 
+ add_action( 'woocommerce_single_product_summary', 'woocommerce_upsell_display', 39 );
+ 
