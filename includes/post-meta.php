@@ -263,7 +263,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                            Field::make('select', 'horizontal_spacing', 'Horizontal Spacing')->set_width(25)
+                        Field::make('select', 'horizontal_spacing', 'Horizontal Spacing')->set_width(25)
                             ->set_options(
                                 array(
                                     ''     => 'Default',
@@ -274,7 +274,7 @@ Container::make('post_meta', __('Sections'))
                                     'gx-1'  => 'Extra Small',
                                 )
                             ),
-                            Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(25)
+                        Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(25)
                             ->set_options(
                                 array(
                                     ''     => 'Default',
@@ -2238,7 +2238,7 @@ Container::make('post_meta', __('Sections'))
                     ->add_fields(
                         'padding',
                         array(
-                            Field::make('select', 'padding_top', 'Padding Top')
+                            Field::make('select', 'padding_top', 'Padding Top')->set_width(25)
                                 ->set_options(
                                     array(
                                         ''                => 'No Padding',
@@ -2249,7 +2249,7 @@ Container::make('post_meta', __('Sections'))
                                         'xs-padding-top' => 'Extra Small',
                                     )
                                 ),
-                            Field::make('select', 'padding_bottom', 'Padding Bottom')
+                            Field::make('select', 'padding_bottom', 'Padding Bottom')->set_width(25)
                                 ->set_options(
                                     array(
                                         ''                   => 'No Padding',
@@ -2260,7 +2260,7 @@ Container::make('post_meta', __('Sections'))
                                         'xs-padding-bottom' => 'Extra Small',
                                     )
                                 ),
-                            Field::make('select', 'padding_left', 'Padding left')
+                            Field::make('select', 'padding_left', 'Padding left')->set_width(25)
                                 ->set_options(
                                     array(
                                         ''                 => 'No Padding',
@@ -2271,7 +2271,7 @@ Container::make('post_meta', __('Sections'))
                                         'xs-padding-left' => 'Extra Small',
                                     )
                                 ),
-                            Field::make('select', 'padding_right', 'Padding right')
+                            Field::make('select', 'padding_right', 'Padding right')->set_width(25)
                                 ->set_options(
                                     array(
                                         ''                  => 'No Padding',
@@ -2288,7 +2288,7 @@ Container::make('post_meta', __('Sections'))
                     ->add_fields(
                         'margin',
                         array(
-                            Field::make('select', 'margin_top', 'Margin Top')
+                            Field::make('select', 'margin_top', 'Margin Top')->set_width(25)
                                 ->set_options(
                                     array(
                                         ''               => 'No margin',
@@ -2299,7 +2299,7 @@ Container::make('post_meta', __('Sections'))
                                         'xs-margin-top' => 'Extra Small',
                                     )
                                 ),
-                            Field::make('select', 'margin_bottom', 'Margin Bottom')
+                            Field::make('select', 'margin_bottom', 'Margin Bottom')->set_width(25)
                                 ->set_options(
                                     array(
                                         ''                  => 'No margin',
@@ -2310,7 +2310,7 @@ Container::make('post_meta', __('Sections'))
                                         'xs-margin-bottom' => 'Extra Small',
                                     )
                                 ),
-                            Field::make('select', 'margin_left', 'Margin Left')
+                            Field::make('select', 'margin_left', 'Margin Left')->set_width(25)
                                 ->set_options(
                                     array(
                                         ''                => 'No margin',
@@ -2319,9 +2319,10 @@ Container::make('post_meta', __('Sections'))
                                         'md-margin-left'  => 'Medium',
                                         'sm-margin-left'  => 'Small',
                                         'xs-margin-left' => 'Extra Small',
+                                        'ms-20px' => '20px',
                                     )
                                 ),
-                            Field::make('select', 'margin_right', 'Margin Right')
+                            Field::make('select', 'margin_right', 'Margin Right')->set_width(25)
                                 ->set_options(
                                     array(
                                         ''                 => 'No margin',
@@ -2330,6 +2331,7 @@ Container::make('post_meta', __('Sections'))
                                         'md-margin-right'  => 'Medium',
                                         'sm-margin-right'  => 'Small',
                                         'xs-margin-right' => 'Extra Small',
+                                        'me-20px' => '20px',
                                     )
                                 ),
 
