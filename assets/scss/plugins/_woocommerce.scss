@@ -320,10 +320,10 @@ ul.products.products.products {
                 flex: 0 0 auto;
                 float: none;
                 @include first-child {
-                    width: 58.33333333%;
+                    width: 57%;
                 }
                 @include last-child {
-                    width: 41.66666667%;
+                    width: 43%;
                 }
             }
         }
