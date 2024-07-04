@@ -229,8 +229,10 @@ ul.products.products.products {
 
 .block-accordion {
     &:not(.active) {
-        div {
+        > div {
             height: 0 !important;
+            overflow: hidden;
+            position: relative;
         }
     }
 }

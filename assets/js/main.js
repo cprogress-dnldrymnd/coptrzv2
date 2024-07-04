@@ -7,9 +7,9 @@ jQuery(document).ready(function () {
 
 function block_accordion() {
     jQuery('.block-accordion').each(function (index, element) {
-        $height = jQuery(this).find('div').outerHeight();
+        $height = jQuery(this).find('>div').outerHeight();
 
-        jQuery(this).find('div').css('height', $height+'px');
+        jQuery(this).find('>div').css('height', $height + 'px');
         // element == this
 
     });
