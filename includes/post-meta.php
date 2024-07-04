@@ -2188,3 +2188,11 @@ Container::make('term_meta', __('Category Properties'))
             Field::make('image', 'image', __('Logo')),
         )
     );
+
+/*-----------------------------------------------------------------------------------*/
+/* Products
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', __('Hero'))
+    ->add_fields(array(
+        Field::make('textarea', 'single_product_content', __(''))
+    ));
