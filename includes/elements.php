@@ -132,21 +132,25 @@ function __video($data)
     }
 }
 
-function _bg_image($hero_background)
+function _background($hero_background, $is_youtube = false)
 {
-    $mime_type =  get_post_mime_type($hero_background);
+    if ($is_youtube == false) {
+        $mime_type =  get_post_mime_type($hero_background);
 
-    if (str_contains($mime_type, 'video')) {
-        return __video(array(
-            'video_id' => $hero_background,
-            'class' => _attribute('class', array('background-image', 'background-overlay'))
-        ));
-    } else {
-        return __image(array(
-            'image_id' => $hero_background,
-            'class' => _attribute('class', array('background-image', 'background-overlay')),
-            'size' => 'full'
-        ));
+        if (str_contains($mime_type, 'video')) {
+            return __video(array(
+                'video_id' => $hero_background,
+                'class' => _attribute('class', array('background-image', 'background-overlay'))
+            ));
+        } else {
+            return __image(array(
+                'image_id' => $hero_background,
+                'class' => _attribute('class', array('background-image', 'background-overlay')),
+                'size' => 'full'
+            ));
+        }
+
+        return "<div class='background-image background-overlay'><iframe src='$hero_background'></iframe></div>";
     }
 }
 

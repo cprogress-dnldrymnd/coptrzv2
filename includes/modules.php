@@ -40,10 +40,15 @@ function ___hero_modules()
     $hero_description = _format_text(get__post_meta('hero_description'));
     $hero_hidden = get__post_meta('hero_hidden');
     $hero_background = get__post_meta('hero_background');
+    $hero_background_youtube = get__post_meta('hero_background_youtube');
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
         $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
-        $hero .= _bg_image($hero_background);
+        if ($hero_background_youtube) {
+            $hero .= _background($hero_background_youtube, true);
+        } else if ($hero_background) {
+            $hero .= _background($hero_background);
+        }
         $hero .= "<div class='container'>";
         $hero .= __heading(array(
             'heading' => $hero_heading_val,
@@ -75,7 +80,7 @@ function ___hero_product_taxonomy()
 
     if (!$hero_hidden) {
         $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
-        $hero .= _bg_image($hero_background);
+        $hero .= _background($hero_background);
         $hero .= "<div class='container'>";
 
         $hero .= __heading(array(
@@ -115,7 +120,7 @@ function ___hero_product()
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
         $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
-        $hero .= _bg_image($hero_background);
+        $hero .= _background($hero_background);
         $hero .= "<div class='container'>";
 
         $hero .= __heading(array(
