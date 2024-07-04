@@ -178,3 +178,4 @@ function __button($data)
         return "<div $_attributes><a class='rounded-10px' $button_target href='$button_url'>$button_text</a></div>";
     }
 }
+
