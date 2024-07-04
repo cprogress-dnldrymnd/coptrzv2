@@ -10689,4 +10689,15 @@ ul.products.products.products {
       height: 100%;
       object-fit: contain; }
 
+.product-main-image.product-main-image .image-box {
+  position: relative;
+  padding: 40%; }
+  .product-main-image.product-main-image .image-box img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; }
+
 /*# sourceMappingURL=style.css.map */
