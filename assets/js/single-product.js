@@ -6,6 +6,13 @@ function product_gallery() {
     var product_main_image = new Swiper('.product-main-image', {
         loop: true,
         autoplay: false,
+        slidesPerView: 1,
+    });
+
+    var product_thumb = new Swiper('.product-thumb', {
+        loop: true,
+        autoplay: false,
+        spaceBetween: 10,
         breakpoints: {
             0: {
                 slidesPerView: 3,
@@ -25,11 +32,5 @@ function product_gallery() {
             },
 
         },
-    });
-
-    var product_thumb = new Swiper('.product-thumb', {
-        loop: true,
-        autoplay: false,
-        spaceBetween: 10,
     });
 } 
