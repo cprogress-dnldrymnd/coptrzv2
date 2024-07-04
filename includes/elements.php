@@ -150,7 +150,7 @@ function _background($hero_background, $is_youtube = false)
             ));
         }
     } else {
-        return "<div class='background-image background-overlay'><iframe src='$hero_background?controls=0&rel=0&playsinline=1&autoplay=1&mute=1&controls=0&loop=1&playlist=0'></iframe></div>";
+        return "<div class='background-image background-overlay'><iframe src='$hero_background?loop=1&controls=0&rel=0&playsinline=1&autoplay=1&mute=1&controls=0&playlist=0'></iframe></div>";
     }
 }
 
