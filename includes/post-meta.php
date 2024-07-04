@@ -396,14 +396,7 @@ Container::make('post_meta', __('Sections'))
                                                     'large-text' => 'Large Text',
                                                 )
                                             )
-                                            ->set_conditional_logic(
-                                                array(
-                                                    array(
-                                                        'field' => 'has_custom_heading_settings',
-                                                        'value' => true,
-                                                    )
-                                                )
-                                            ),
+                                       
                                     ))
 
                                     ->add_fields('image', array(
