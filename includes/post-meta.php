@@ -1206,8 +1206,8 @@ Container::make('post_meta', __('Sections'))
                                         ->set_conditional_logic(
                                             array(
                                                 array(
-                                                    'field' => 'border_style',
-                                                    'value' => 'border-custom',
+                                                    'field' => 'border_color',
+                                                    'value' => 'border-custom-color',
                                                 )
                                             )
                                         ),
