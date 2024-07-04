@@ -673,6 +673,20 @@ function ____columns_modules($items, $id, $html = '')
                     }
 
                     break;
+                case 'column_width':
+                    $column_width = $column_style['column_width'];
+                    $column_width_tablet = $column_style['column_width_tablet'];
+                    $column_width_mobile = $column_style['column_width_mobile'];
+                    if ($column_width) {
+                        $classes[] = $column_width;
+                    }
+                    if ($column_width_tablet) {
+                        $classes[] = $column_width_tablet;
+                    }
+                    if ($column_width_mobile) {
+                        $classes[] = $column_width_mobile;
+                    }
+                    break;
             }
         }
     }
