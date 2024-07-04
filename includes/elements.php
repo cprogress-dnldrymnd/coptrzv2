@@ -47,6 +47,7 @@ function __description($data)
         $attributes_args[] = $class;
     }
 
+    $_attributes = _attributes($attributes_args);
 
     if ($description) {
 
