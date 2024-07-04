@@ -301,3 +301,17 @@ section {
         }
     }
 }
+
+
+.border-primary {
+    border-color: var(--bs-black);
+}
+.border-secondary {
+    border-color: var(--bs-secondary);
+}
+.border-accent {
+    border-color: var(--bs-accent);
+}
+.border-light-gray {
+    border-color: var(--light-gray-color);
+}

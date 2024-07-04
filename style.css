@@ -9325,7 +9325,8 @@ textarea.form-control-lg {
   --bs-secondary-rgb: 15, 15, 15;
   --bs-accent: #2da1ff;
   --red-color: #D64550;
-  --border-color: #dbdbdb; }
+  --border-color: #dbdbdb;
+  --light-gray-color: #f2f2f2; }
 
 @font-face {
   font-family: "Poppins";
@@ -10081,6 +10082,18 @@ section .container > *:not(:last-child) {
     width: 100%;
     height: 100%;
     object-fit: var(--object-fit, "cover"); }
+
+.border-primary {
+  border-color: var(--bs-black); }
+
+.border-secondary {
+  border-color: var(--bs-secondary); }
+
+.border-accent {
+  border-color: var(--bs-accent); }
+
+.border-light-gray {
+  border-color: var(--light-gray-color); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
