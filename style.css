@@ -10555,7 +10555,7 @@ ul.products.products.products {
     color: var(--bs-black);
     font-size: 15px; }
 
-.block-accordion:not(.active) > div {
+.block-accordion:not(.active) .wp-block-group__inner-container > div {
   height: 0 !important;
   overflow: hidden;
   position: relative; }

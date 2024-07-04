@@ -8,9 +8,9 @@ jQuery(document).ready(function () {
 function block_accordion() {
     setTimeout(function () {
         jQuery('.block-accordion').each(function (index, element) {
-            $height = jQuery(this).find('>div').outerHeight();
+            $height = jQuery(this).find('.wp-block-group__inner-container>div').outerHeight();
 
-            jQuery(this).find('>div').css('height', $height + 'px');
+            jQuery(this).find('.wp-block-group__inner-container>div').css('height', $height + 'px');
             // element == this
 
         });
