@@ -2184,6 +2184,7 @@ Container::make('post_meta', __('Sections'))
                             Field::make('select', 'border_style', 'Border Style')
                                 ->set_options(
                                     array(
+                                        ''   => 'None',
                                         'border-default'   => 'Default',
                                         'border-custom'   => 'Custom',
                                     )
@@ -2200,6 +2201,15 @@ Container::make('post_meta', __('Sections'))
                                         'text-light-gray'     => 'Light Gray',
                                         'border-custom-color'    => 'Custom',
                                     )
+                                )
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'border_style',
+                                            'value' => '',
+                                            'compare' => '!='
+                                        )
+                                    )
                                 ),
                             Field::make('color', 'border_color_custom', __('Border Color'))
                                 ->set_conditional_logic(
@@ -2207,7 +2217,7 @@ Container::make('post_meta', __('Sections'))
                                         array(
                                             'field' => 'border_color',
                                             'value' => 'border-custom-color',
-                                        )
+                                        ),
                                     )
                                 ),
                             Field::make('checkbox', 'different_border_width', 'Different Border Width')->set_width(20)
