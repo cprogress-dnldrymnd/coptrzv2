@@ -2194,11 +2194,11 @@ Container::make('post_meta', __('Sections'))
                                 ->set_options(
                                     array(
                                         ''   => 'Default',
-                                        'text-primary'   => 'Primary',
-                                        'text-secondary' => 'Secondary',
-                                        'text-accent'    => 'Accent',
-                                        'text-white'     => 'White',
-                                        'text-light-gray'     => 'Light Gray',
+                                        'border-primary'   => 'Primary',
+                                        'border-secondary' => 'Secondary',
+                                        'border-accent'    => 'Accent',
+                                        'border-white'     => 'White',
+                                        'border-light-gray'     => 'Light Gray',
                                         'border-custom-color'    => 'Custom',
                                     )
                                 )

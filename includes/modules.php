@@ -214,12 +214,6 @@ function ___sections()
                     case 'border':
                         $border_style = $section_style['border_style'];
                         $classes[] = $border_style;
-
-                        if ($section_style['border_radius']) {
-                            $classes[] = 'rounded-corner';
-                            $styles[] = '--border-radius: ' . $section_style['border_radius'];
-                        }
-
                         $border_color = $section_style['border_color'];
                         $border_color_custom = $section_style['border_color_custom'];
                         $border_width_top = $section_style['border_width_top'];
@@ -228,6 +222,12 @@ function ___sections()
                         $border_width_left = $section_style['border_width_left'];
                         $different_border_width = $section_style['different_border_width'];
                         $border_width = $section_style['border_width'];
+
+
+                        if ($section_style['border_radius']) {
+                            $classes[] = 'rounded-corner';
+                            $styles[] = '--border-radius: ' . $section_style['border_radius'];
+                        }
 
 
                         if ($border_color == 'border-custom-color') {
