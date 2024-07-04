@@ -823,7 +823,7 @@ function ____columns_modules($items, $id, $html = '')
         }
         
         $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
-
+        
         if ($same_image_height) {
             $image_fit = $items['image_fit'];
             $image_padding = $items['image_padding'];
@@ -870,28 +870,30 @@ function ____columns_modules($items, $id, $html = '')
                     $html .= ____icon_modules($item);
                     break;
                 case 'description':
+                    $desc_classes = array();
+                    $desc_styles = array();
 
                     $description_width = $item['description_width'];
                     $description_alignment = $item['description_alignment'];
                     $description_size = $item['description_size'];
 
-                    $classes[] = 'description-box';
+                    $desc_classes[] = 'description-box';
 
                     if ($description_width) {
                         $styles[] = "max-width: $description_width;";
                     }
                     if ($description_alignment) {
-                        $classes[] = "$description_alignment";
+                        $desc_classes[] = "$description_alignment";
                     }
                     if ($description_size) {
-                        $classes[] = "$description_size";
+                        $desc_classes[] = "$description_size";
                     }
 
                     $description_args['description'] =  $item['description'];
-                    $description_args['class'] =  _attribute('class', $classes);
+                    $description_args['class'] =  _attribute('class', $desc_classes);
 
-                    if ($styles) {
-                        $description_args['style'] =  _attribute('style', $styles);
+                    if ($desc_styles) {
+                        $description_args['style'] =  _attribute('style', $desc_styles);
                     }
 
 
