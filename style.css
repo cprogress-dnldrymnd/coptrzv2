@@ -9848,6 +9848,9 @@ p:last-child {
 .small-width {
   max-width: 730px; }
 
+.rounder-corner {
+  border-radius: 10px; }
+
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
