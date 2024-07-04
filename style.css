@@ -10534,11 +10534,13 @@ ul.products.products.products {
   display: flex;
   flex-wrap: wrap; }
   .brands-filter a {
-    max-height: 50px;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    display: inline-block; }
+    padding: 10%;
+    display: inline-block;
+    position: relative; }
     .brands-filter a img {
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
       object-fit: contain; }

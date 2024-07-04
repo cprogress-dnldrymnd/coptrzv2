@@ -78,14 +78,20 @@ function brands_filter()
     ));
 
     $html = "<div class='brands-filter'>";
+    $html = "<div class='row'>";
     foreach ($brands as $brand) {
         $link = get_term_link($brand->term_id);
         $logo = carbon_get_term_meta($brand->term_id, 'image');
         $logo_url = wp_get_attachment_image_url($logo, 'medium');
-        $html .= "<a href='$link'>";
-        $html .= "<img src='$logo_url'>";
-        $html .= "</a>";
+        if ($logo_url) {
+            $html = "<div class='col-auto'>";
+            $html .= "<a class='border-default rounded-corner' href='$link'>";
+            $html .= "<img src='$logo_url'>";
+            $html .= "</a>";
+            $html .= "</div>";
+        }
     }
+    $html .= "</div>";
     $html .= "</div>";
 
     return $html;
