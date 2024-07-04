@@ -125,3 +125,17 @@ function custom_remove_product_link( $html ) {
  
  add_action( 'woocommerce_single_product_summary', 'woocommerce_upsell_display', 39 );
  
+
+ /**
+ * @snippet       Translate "You may also like..." - WooCommerce Single Product
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 4.1.1
+ * @community     https://businessbloomer.com/club/
+ */
+  
+add_filter( 'woocommerce_product_upsells_products_heading', 'bbloomer_translate_may_also_like' );
+  
+function bbloomer_translate_may_also_like() {
+   return 'COPTRZ Recommended Accessories:';
+}
