@@ -87,6 +87,8 @@ function brands_filter()
         $html .= "</a>";
     }
     $html .= "</div>";
+
+    return $html;
 }
 
 add_shortcode('brands_filter', 'brands_filter');
