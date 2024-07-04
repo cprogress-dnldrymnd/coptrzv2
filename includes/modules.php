@@ -173,7 +173,7 @@ function ___sections()
                         $classes[] = $section_style['justify_content'];
                         $classes[] = $section_style['text_align'];
                         if ($section_style['align_items'] || $section_style['justify_content']) {
-                            $classes[] = 'd-flex flex-column';
+                            $classes[] = 'd-flex ';
                         }
                         break;
                     case 'text_color':
@@ -378,7 +378,7 @@ function ____post_grid($data)
                 $classes[] = $post_box_style['justify_content'];
                 $classes[] = $post_box_style['text_align'];
                 if ($post_box_style['align_items'] || $post_box_style['justify_content']) {
-                    $classes[] = 'd-flex flex-column';
+                    $classes[] = 'd-flex';
                 }
                 break;
             case 'text_color':
