@@ -205,6 +205,12 @@ function ___sections()
                             $container_styles[] = 'max-width: ' . $section_style['custom_container_width'];
                         }
                         break;
+                    case 'height':
+                        $height = $section_style['height'];
+                        if ($height) {
+                            $styles[] = 'min-height: ' . $height;
+                        }
+                        break;
                     case 'border':
                         $classes[] = 'rounded-corner';
 
