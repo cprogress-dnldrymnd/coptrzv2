@@ -246,7 +246,7 @@ function ___sections()
                                 $styles[] = 'border-bottom-width: ' . $border_width_bottom;
                             }
                             if ($border_width_left) {
-                                $styles[] = 'border-top-width: ' . $border_width_left;
+                                $styles[] = 'border-left-width: ' . $border_width_left;
                             }
                         } else {
                             $styles[] = 'border-width: ' . $border_width;
