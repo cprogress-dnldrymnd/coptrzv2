@@ -670,16 +670,16 @@ function ____columns_modules($items, $id, $html = '')
                     }
                     if ($custom_size) {
                         if ($image_height) {
-                            $styles[] = "height: $image_height";
+                            $styles[] = "height: $image_height;";
                         }
                         if ($image_width) {
-                            $styles[] = "width: $image_width";
+                            $styles[] = "width: $image_width;";
                         }
                     }
                     if ($rounded_corners) {
                         $classes[] = 'rounded-corner';
                         if ($border_radius) {
-                            $styles[] = "border-radius: $border_radius";
+                            $styles[] = "border-radius: $border_radius;";
                         }
                     }
 
