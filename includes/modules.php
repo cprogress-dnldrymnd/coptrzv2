@@ -222,14 +222,26 @@ function ___sections()
                         if ($border_style == 'border-custom') {
                             $border_color = $section_style['border_color'];
                             $border_color_custom = $section_style['border_color_custom'];
-                            $border_width = $section_style['border_width'];
+                            $border_width_top = $section_style['border_width_top'];
+                            $border_width_right = $section_style['border_width_right'];
+                            $border_width_bottom = $section_style['border_width_bottom'];
+                            $border_width_left = $section_style['border_width_left'];
                             if ($border_color == 'border-custom-color') {
                                 $classes[] = $section_style['border_color'];
                             } else {
                                 $styles[] = 'border-color: ' . $border_color_custom;
                             }
-                            if ($border_width) {
-                                $styles[] = 'border-width: ' . $border_width;
+                            if ($border_width_top) {
+                                $styles[] = 'border-top-width: ' . $border_width_top;
+                            }
+                            if ($border_width_right) {
+                                $styles[] = 'border-right-width: ' . $border_width_right;
+                            }
+                            if ($border_width_bottom) {
+                                $styles[] = 'border-bottom-width: ' . $border_width_bottom;
+                            }
+                            if ($border_width_left) {
+                                $styles[] = 'border-top-width: ' . $border_width_left;
                             }
                         } else {
                             $classes[] = 'border-default';
