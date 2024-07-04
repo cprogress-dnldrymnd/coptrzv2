@@ -241,10 +241,36 @@ function ___sections()
                         $html .= ____columns_modules($items, $section_id_val . $key);
                         break;
                     case 'description':
-                        $html .= __description(array(
-                            'description' => $items['description'],
-                            'class' => _attribute('class', array('description-box'))
-                        ));
+
+                        $classes = array();
+                        $styles = array();
+
+                        $description_width = $items['description_width'];
+                        $description_alignment = $items['description_alignment'];
+                        $description_size = $items['description_size'];
+
+                        $classes[] = 'description-box';
+
+                        if ($description_width) {
+                            $styles[] = "max-width: $description_width;";
+                        }
+                        if ($description_alignment) {
+                            $classes[] = "$description_alignment";
+                        }
+                        if ($description_size) {
+                            $classes[] = "$description_size";
+                        }
+
+                        $description_args['description'] =  $items['description'];
+                        $description_args['class'] =  _attribute('class', $classes);
+
+                        if ($styles) {
+                            $description_args['style'] =  _attribute('style', $styles);
+                        }
+
+
+                        $html .= __description($description_args);
+                    
                         break;
                     case 'gallery':
                         $html .= ____gallery_modules(array(
