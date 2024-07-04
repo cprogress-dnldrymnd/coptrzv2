@@ -714,7 +714,7 @@ function ____columns_modules($items, $id, $html = '')
 
         $row_class_val = _attribute('class', $row_class, ' ');
         $row_class_attr = _attributes(array($row_class_val));
-        $html .= "<div class='$row_class_attr'>"; //row
+        $html .= "<div $row_class_attr>"; //row
     }
 
 
