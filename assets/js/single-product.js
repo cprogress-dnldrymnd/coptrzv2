@@ -7,6 +7,7 @@ function product_gallery() {
         loop: true,
         autoplay: false,
         slidesPerView: 'auto',
+        spaceBetween: 10,
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
