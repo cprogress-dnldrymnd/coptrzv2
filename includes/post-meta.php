@@ -1039,7 +1039,7 @@ Container::make('post_meta', __('Sections'))
                                     ->set_layout('tabbed-vertical')
 
                             ))
-                            ->set_header_template('<%- column_title %>'),
+                            ->set_header_template('Column: <%- column_title %>'),
                         Field::make('html', 'html_6')->set_html('<label>Column Styles</label>')->set_classes('cb-label')
                             ->set_conditional_logic(
                                 array(
@@ -2507,7 +2507,7 @@ Container::make('post_meta', __('Sections'))
                     ->set_layout('tabbed-vertical')
 
             ))
-            ->set_header_template('Column: <%- title %>')
+            ->set_header_template('Section: <%- title %>')
 
 
     ));
