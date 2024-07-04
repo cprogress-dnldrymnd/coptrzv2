@@ -249,7 +249,9 @@ function ___sections()
                                 $styles[] = 'border-left-width: ' . $border_width_left;
                             }
                         } else {
-                            $styles[] = 'border-width: ' . $border_width;
+                            if ($border_width) {
+                                $styles[] = 'border-width: ' . $border_width;
+                            }
                         }
                         break;
                 }
