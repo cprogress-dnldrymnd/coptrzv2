@@ -117,7 +117,6 @@ function ___hero_product()
         $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
         $hero .= _bg_image($hero_background);
         $hero .= "<div class='container'>";
-        $hero .= woocommerce_get_breadcrumb();
 
         $hero .= __heading(array(
             'heading' => $hero_heading_val,

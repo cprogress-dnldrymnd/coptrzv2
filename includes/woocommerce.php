@@ -3,7 +3,6 @@ remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0
 
 function action_woocommerce_before_main_content()
 {
-    echo woocommerce_get_breadcrumb();
     if (is_product_taxonomy()) {
         echo ___hero_product_taxonomy();
     } else if (is_product()) {
