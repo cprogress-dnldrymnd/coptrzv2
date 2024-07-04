@@ -2217,7 +2217,7 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                 ),
-                            Field::make('text', 'border_width_top', 'Top Border Width')->set_widt(25)
+                            Field::make('checkbox', 'different_border_width', 'Top Border Width')->set_width(20)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -2226,30 +2226,68 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                 ),
-                            Field::make('text', 'border_width_right', 'Right Border Width')->set_widt(25)
+                            Field::make('text', 'border_width', 'Border Width')
                                 ->set_conditional_logic(
                                     array(
                                         array(
                                             'field' => 'border_style',
                                             'value' => 'border-custom',
+                                        ),
+                                        array(
+                                            'field' => 'different_border_width',
+                                            'value' => false,
                                         )
                                     )
                                 ),
-                            Field::make('text', 'border_width_bottom', 'Bottom Border Width')->set_widt(25)
+                            Field::make('text', 'border_width_top', 'Top Border Width')->set_width(20)
                                 ->set_conditional_logic(
                                     array(
                                         array(
                                             'field' => 'border_style',
                                             'value' => 'border-custom',
+                                        ),
+                                        array(
+                                            'field' => 'different_border_width',
+                                            'value' => true,
                                         )
                                     )
                                 ),
-                            Field::make('text', 'border_width_left', 'Left Border Width')->set_widt(25)
+                            Field::make('text', 'border_width_right', 'Right Border Width')->set_width(20)
                                 ->set_conditional_logic(
                                     array(
                                         array(
                                             'field' => 'border_style',
                                             'value' => 'border-custom',
+                                        ),
+                                        array(
+                                            'field' => 'different_border_width',
+                                            'value' => true,
+                                        )
+                                    )
+                                ),
+                            Field::make('text', 'border_width_bottom', 'Bottom Border Width')->set_width(20)
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'border_style',
+                                            'value' => 'border-custom',
+                                        ),
+                                        array(
+                                            'field' => 'different_border_width',
+                                            'value' => true,
+                                        )
+                                    )
+                                ),
+                            Field::make('text', 'border_width_left', 'Left Border Width')->set_width(20)
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'border_style',
+                                            'value' => 'border-custom',
+                                        ),
+                                        array(
+                                            'field' => 'different_border_width',
+                                            'value' => true,
                                         )
                                     )
                                 ),
