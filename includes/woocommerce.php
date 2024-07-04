@@ -120,3 +120,7 @@ add_shortcode('brands_filter', 'brands_filter');
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 
 
+add_filter( 'woocommerce_single_product_image_thumbnail_html', 'custom_remove_product_link' );
+function custom_remove_product_link( $html ) {
+  return strip_tags( $html, '<div><img>' );
+}
