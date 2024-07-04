@@ -29,7 +29,7 @@ $columns           = apply_filters('woocommerce_product_thumbnails_columns', 4);
 $post_thumbnail_id = $product->get_image_id();
 $attachment_ids = $product->get_gallery_image_ids();
 ?>
-<div class="<?php echo esc_attr(implode(' ', array_map('sanitize_html_class', $wrapper_classes))); ?>" data-columns="<?php echo esc_attr($columns); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
+<div class="product-main">
 	<div class="woocommerce-product-gallery__wrapper">
 		<div class="swiper product-main-image">
 			<div class="swiper-wrapper">
