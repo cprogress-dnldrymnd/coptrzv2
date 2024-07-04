@@ -226,6 +226,7 @@ Container::make('post_meta', __('Sections'))
                                 )
                             ),
                         Field::make('text', 'image_padding', __('Image Padding'))->set_width(25)
+                            ->set_help_text('Default is 40%')
                             ->set_conditional_logic(
                                 array(
                                     array(
