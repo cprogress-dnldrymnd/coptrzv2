@@ -272,3 +272,11 @@ section {
 .border-bottom-default {
     border-bottom: 1px solid var(--border-color);
 }
+
+.image-box  {
+    img {
+        width: var(--width);
+        height: var(--height);
+        border-radius: var(--border-radius);
+    }
+}

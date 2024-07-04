@@ -10062,6 +10062,10 @@ section .container > *:not(:last-child) {
 .border-bottom-default {
   border-bottom: 1px solid var(--border-color); }
 
+.image-box img {
+  width: var(--width);
+  height: var(--height); }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
