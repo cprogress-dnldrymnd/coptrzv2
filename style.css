@@ -10678,13 +10678,15 @@ ul.products.products.products {
 .product-thumb.product-thumb .swiper-slide {
   width: 113px; }
   .product-thumb.product-thumb .swiper-slide .woocommerce-product-gallery__image {
-    width: 113px;
-    height: 98px;
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    padding: 10px; }
+    padding: 10px;
+    padding: 30%;
+    position: relative; }
     .product-thumb.product-thumb .swiper-slide .woocommerce-product-gallery__image img {
+      position: absolute;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: contain; }
