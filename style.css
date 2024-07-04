@@ -10064,7 +10064,8 @@ section .container > *:not(:last-child) {
 
 .image-box img {
   width: var(--width);
-  height: var(--height); }
+  height: var(--height);
+  border-radius: var(--border-radius); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
