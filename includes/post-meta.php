@@ -2217,7 +2217,7 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                 ),
-                            Field::make('checkbox', 'different_border_width', 'Top Border Width')->set_width(20)
+                            Field::make('checkbox', 'different_border_width', 'Different Border Width')->set_width(20)
                                 ->set_conditional_logic(
                                     array(
                                         array(
