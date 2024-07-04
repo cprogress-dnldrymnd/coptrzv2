@@ -10529,6 +10529,8 @@ ul.products.products.products {
 .shop-sidebar {
   position: sticky;
   top: 52px; }
+  .shop-sidebar > div:not(:last-child) {
+    margin-bottom: 2rem; }
 
 .brands-filter {
   display: flex;
@@ -10550,6 +10552,7 @@ ul.products.products.products {
   margin: 0; }
   .wp-block-woocommerce-product-categories .wc-block-product-categories-list a {
     text-decoration: none;
-    color: var(--bs-black); }
+    color: var(--bs-black);
+    font-size: 15px; }
 
 /*# sourceMappingURL=style.css.map */

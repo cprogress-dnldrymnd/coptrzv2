@@ -4,6 +4,9 @@ jQuery(document).ready(function () {
     header_menu();
 });
 
+function block_accordion() {
+    
+}
 
 function header_menu() {
     jQuery('.has-children.main-nav').click(function (e) {

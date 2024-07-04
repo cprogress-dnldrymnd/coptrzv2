@@ -189,6 +189,11 @@ ul.products.products.products {
 .shop-sidebar {
     position: sticky;
     top: 52px;
+    > div {
+        @include not-last-child {
+            margin-bottom: 2rem;
+        }
+    }
 }
 
 .brands-filter {
