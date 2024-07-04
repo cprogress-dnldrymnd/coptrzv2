@@ -10720,7 +10720,7 @@ section.product-main .summary.summary.summary .price {
   section.product-main .summary.summary.summary .price .woocommerce-price-suffix {
     font-size: 28px; }
 
-.products.upsells.upsells.upsells h2, .products.upsells.upsells.upsells .h2 {
+.products.upsells.upsells.upsells > h2, .products.upsells.upsells.upsells > .h2 {
   font-size: 22px;
   font-weight: 400; }
 .products.upsells.upsells.upsells ul.products {

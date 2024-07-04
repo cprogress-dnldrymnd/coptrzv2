@@ -337,7 +337,8 @@ section.product-main {
 
 .products {
     &.upsells.upsells.upsells {
-        h2 {
+        margin-top: 2rem;
+        > h2 {
             font-size: 22px;
             font-weight: 400;
         }
