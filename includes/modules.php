@@ -143,6 +143,7 @@ function ___sections()
             $classes = array();
             $styles_section = array();
             $section_id = $section['section_id'];
+            $section_class = $section['section_class'];
             $section_items = $section['section_items'];
             $section_styles = $section['section_styles'];
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
@@ -151,6 +152,9 @@ function ___sections()
             $classes[] = 'section-' . $key;
             $styles_val = '';
             $container_styles_val = '';
+            if ($section_class) {
+                $classes[] = $section_class;
+            }
             foreach ($section_styles as $section_style) {
                 $type = $section_style['_type'];
                 switch ($type) {
@@ -821,9 +825,9 @@ function ____columns_modules($items, $id, $html = '')
                 }
             }
         }
-        
+
         $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
-        
+
         if ($same_image_height) {
             $image_fit = $items['image_fit'];
             $image_padding = $items['image_padding'];
