@@ -30,9 +30,10 @@ Container::make('post_meta', __('Sections'))
             )
             ->set_collapsed(true)
             ->add_fields(array(
-                Field::make('text', 'title', __('Section Title'))->set_required(true)->set_width(33),
-                Field::make('text', 'section_id', __('Section ID'))->set_width(33),
-                Field::make('checkbox', 'disable_section', __('Disable Section'))->set_width(33),
+                Field::make('text', 'title', __('Section Title'))->set_required(true)->set_width(25),
+                Field::make('text', 'section_id', __('Section ID'))->set_width(25),
+                Field::make('text', 'section_class', __('Section Class'))->set_width(25),
+                Field::make('checkbox', 'disable_section', __('Disable Section'))->set_width(25),
 
                 Field::make('complex', 'section_items', __('Section Items'))
                     ->setup_labels(
