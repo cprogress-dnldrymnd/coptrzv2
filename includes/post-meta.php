@@ -2217,7 +2217,7 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                 ),
-                            Field::make('text', 'border_width_top', 'Top Border Width')
+                            Field::make('text', 'border_width_top', 'Top Border Width')->set_widt(25)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -2226,7 +2226,7 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                 ),
-                            Field::make('text', 'border_width_right', 'Right Border Width')
+                            Field::make('text', 'border_width_right', 'Right Border Width')->set_widt(25)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -2235,7 +2235,7 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                 ),
-                            Field::make('text', 'border_width_bottom', 'Bottom Border Width')
+                            Field::make('text', 'border_width_bottom', 'Bottom Border Width')->set_widt(25)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -2244,7 +2244,7 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                 ),
-                            Field::make('text', 'border_width_left', 'Left Border Width')
+                            Field::make('text', 'border_width_left', 'Left Border Width')->set_widt(25)
                                 ->set_conditional_logic(
                                     array(
                                         array(
