@@ -10533,10 +10533,11 @@ ul.products.products.products {
 .brands-filter {
   display: flex;
   flex-wrap: wrap; }
+  .brands-filter .row {
+    --bs-gutter-x: 10px;
+    --bs-gutter-y: 10px; }
   .brands-filter a {
-    padding: 10%;
-    display: inline-block;
-    position: relative; }
+    display: inline-block; }
     .brands-filter a img {
       max-height: 50px;
       object-fit: contain; }

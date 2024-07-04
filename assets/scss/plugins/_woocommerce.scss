@@ -182,7 +182,7 @@ ul.products.products.products {
         }
     }
     @include before-after {
-        display: none ;
+        display: none;
     }
 }
 
@@ -194,10 +194,14 @@ ul.products.products.products {
 .brands-filter {
     display: flex;
     flex-wrap: wrap;
+    .row {
+        --bs-gutter-x: 10px;
+        --bs-gutter-y: 10px;
+    }
     a {
         display: inline-block;
         img {
-            max-height: 50px;
+            height: 60px;
             object-fit: contain;
         }
     }
