@@ -10538,11 +10538,7 @@ ul.products.products.products {
     display: inline-block;
     position: relative; }
     .brands-filter a img {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
+      max-height: 50px;
       object-fit: contain; }
 
 /*# sourceMappingURL=style.css.map */
