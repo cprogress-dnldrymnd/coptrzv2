@@ -33,7 +33,7 @@ if (post_password_required()) {
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
-	<section class="product-main">
+	<section class="product-main lg-padding-top lg-padding-bottom border-top-default no-overflow">
 		<div class="container">
 			<div class="row ">
 				<div class="col">
