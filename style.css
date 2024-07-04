@@ -9848,7 +9848,7 @@ p:last-child {
 .small-width {
   max-width: 730px; }
 
-.rounder-corner {
+.rounded-corner {
   border-radius: 10px;
   overflow: hidden;
   position: relative; }
