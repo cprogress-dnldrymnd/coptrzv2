@@ -9897,6 +9897,9 @@ img {
   .background-image + div {
     position: relative;
     z-index: 1; }
+  .background-image iframe {
+    width: 100%;
+    height: 100%; }
 
 .content-margin > *:not(:last-child) {
   margin-bottom: 1.5rem; }
