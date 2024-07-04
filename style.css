@@ -9452,6 +9452,9 @@ p:last-child {
 .medium-text {
   font-size: 1.125rem; }
 
+.section .h2 {
+  margin-bottom: 1rem; }
+
 .rounded-10px {
   border-radius: 10px; }
 
