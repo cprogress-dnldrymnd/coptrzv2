@@ -48,7 +48,7 @@ $wrapper_classes   = apply_filters(
 					if ($post_thumbnail_id) {
 						echo __image(array(
 							'image_id' => $post_thumbnail_id,
-							'class' => 'product-image',
+							'class' => _attribute('class', 'product-image'),
 							'size' => 'large'
 						));
 					} else {
