@@ -258,8 +258,8 @@ function ___sections()
 
             $id_val = _attribute('id', array($section_id_val));
             $classes_attr = _attribute('class', $classes);
-            if ($styles) {
-                $styles_val = _attribute('style', $styles, ';');
+            if ($styles_section) {
+                $styles_val = _attribute('style', $styles_section, ';');
             }
 
             if ($container_styles) {
