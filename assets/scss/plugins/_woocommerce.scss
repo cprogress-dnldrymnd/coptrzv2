@@ -285,6 +285,11 @@ ul.products.products.products {
                 object-fit: contain;
             }
         }
+        &.swiper-slide-thumb-active {
+            .woocommerce-product-gallery__image {
+                border-color: var(--bs-black);
+            }
+        }
     }
 }
 
