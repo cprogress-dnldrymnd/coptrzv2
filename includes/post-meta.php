@@ -262,7 +262,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                            Field::make('select', 'horizontal_spacing', 'Horizontal Spacing')->set_width(33)
+                            Field::make('select', 'horizontal_spacing', 'Horizontal Spacing')->set_width(25)
                             ->set_options(
                                 array(
                                     ''     => 'Default',
@@ -273,7 +273,7 @@ Container::make('post_meta', __('Sections'))
                                     'g-1'  => 'Extra Small',
                                 )
                             ),
-                            Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(33)
+                            Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(25)
                             ->set_options(
                                 array(
                                     ''     => 'Default',
@@ -284,7 +284,7 @@ Container::make('post_meta', __('Sections'))
                                     'g-1'  => 'Extra Small',
                                 )
                             ),
-                        Field::make('select', 'align_items', 'Align Items')->set_width(33)
+                        Field::make('select', 'align_items', 'Align Items')->set_width(25)
                             ->set_options(
                                 array(
                                     ''               => 'Default',
@@ -301,7 +301,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('select', 'justify_content', 'Justify Content')->set_width(33)
+                        Field::make('select', 'justify_content', 'Justify Content')->set_width(25)
                             ->set_options(
                                 array(
                                     ''                  => 'Default',
