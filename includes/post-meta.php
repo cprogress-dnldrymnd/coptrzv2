@@ -606,12 +606,12 @@ Container::make('post_meta', __('Sections'))
                                             )
                                         )
                                     ),
-                                    Field::make('complex', 'column_styles', __(''))
+                                Field::make('complex', 'column_styles', __(''))
                                     ->set_conditional_logic(
                                         array(
                                             array(
-                                                'field' => 'individual_column_settings',
-                                                'value' => false,
+                                                'field' => 'parent.individual_column_settings',
+                                                'value' => true,
                                             )
                                         )
                                     )
@@ -787,7 +787,7 @@ Container::make('post_meta', __('Sections'))
                                                         'xs-padding-right' => 'Extra Small',
                                                     )
                                                 ),
-        
+
                                         )
                                     )
                                     ->add_fields(
@@ -837,7 +837,7 @@ Container::make('post_meta', __('Sections'))
                                                         'xs-margin-right' => 'Extra Small',
                                                     )
                                                 ),
-        
+
                                         )
                                     )
                                     ->add_fields(
@@ -879,7 +879,7 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('select', 'column_width', __('Column Width Desktop'))
                                                 ->set_options(
                                                     array(
-                                                        'col-lg' 	=> 'Default',
+                                                        'col-lg'     => 'Default',
                                                         'col-12'    => '100.00%',
                                                         'col-lg-11' => '91.67%',
                                                         'col-lg-10' => '83.33%',
@@ -897,7 +897,7 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
                                                 ->set_options(
                                                     array(
-                                                        '' 	=> 'Default',
+                                                        ''     => 'Default',
                                                         'col-md-12'    => '100.00%',
                                                         'col-md-11' => '91.67%',
                                                         'col-md-10' => '83.33%',
@@ -915,7 +915,7 @@ Container::make('post_meta', __('Sections'))
                                             Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
                                                 ->set_options(
                                                     array(
-                                                        '' 	=> 'Default',
+                                                        ''     => 'Default',
                                                         'col-12' => '100%',
                                                         'col-11' => '91.67%',
                                                         'col-10' => '83.33%',
@@ -943,7 +943,7 @@ Container::make('post_meta', __('Sections'))
                                                         'border-custom'   => 'Custom',
                                                     )
                                                 ),
-        
+
                                             Field::make('select', 'border_color', 'Border Color')
                                                 ->set_options(
                                                     array(
@@ -981,7 +981,7 @@ Container::make('post_meta', __('Sections'))
                                                         )
                                                     )
                                                 ),
-        
+
                                         )
                                     )
                                     ->add_fields(
@@ -991,16 +991,6 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                     ->set_layout('tabbed-vertical')
-        
-                           
-                                    ->set_conditional_logic(
-                                        array(
-                                            array(
-                                                'field' => 'parent.individual_column_settings',
-                                                'value' => true,
-                                            )
-                                        )
-                                    ),
 
                             ))
                             ->set_header_template('<%- column_title %>'),
