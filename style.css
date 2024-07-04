@@ -9903,8 +9903,7 @@ img {
 
 .rounded-corner {
   border-radius: var(--border-radius, 15px);
-  overflow: hidden;
-  position: relative; }
+  overflow: hidden; }
 
 .border-default {
   border: 1px solid var(--border-color); }

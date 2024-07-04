@@ -1154,27 +1154,9 @@ Container::make('post_meta', __('Sections'))
                                 )
                             )
                             ->add_fields(
-                                'container_width',
+                                'column_width',
                                 array(
-                                    Field::make('select', 'container_width', 'Container Width')
-                                        ->set_options(
-                                            array(
-                                                ''               => 'Default',
-                                                'large-container'  => 'Large',
-                                                'medium-container'  => 'Medium',
-                                                'small-container'  => 'Small',
-                                                'custom-container'  => 'Custom',
-                                            )
-                                        ),
-                                    Field::make('text', 'custom_container_width', 'Custom Container Width')
-                                        ->set_conditional_logic(
-                                            array(
-                                                array(
-                                                    'field' => 'container_width',
-                                                    'value' => 'custom-container',
-                                                )
-                                            )
-                                        ),
+                                    Field::make('text', 'column_width', 'Column Width')
                                 )
                             )
                             ->add_fields(
