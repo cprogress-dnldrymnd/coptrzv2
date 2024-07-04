@@ -334,6 +334,9 @@ section.product-main {
             li.product {
                 width: 100%;
                 margin: 0;
+                .product-inner {
+                    display: flex;
+                }
             }
         }
     }

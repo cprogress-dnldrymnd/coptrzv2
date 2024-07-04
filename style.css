@@ -10720,5 +10720,7 @@ section.product-main .row > div:last-child {
   .products.upsells.upsells.upsells ul.products li.product {
     width: 100%;
     margin: 0; }
+    .products.upsells.upsells.upsells ul.products li.product .product-inner {
+      display: flex; }
 
 /*# sourceMappingURL=style.css.map */
