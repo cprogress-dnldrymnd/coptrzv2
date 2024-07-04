@@ -10539,7 +10539,7 @@ ul.products.products.products {
   .brands-filter a {
     display: inline-block; }
     .brands-filter a img {
-      max-height: 50px;
+      height: 60px;
       object-fit: contain; }
 
 /*# sourceMappingURL=style.css.map */

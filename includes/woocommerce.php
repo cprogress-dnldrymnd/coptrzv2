@@ -85,7 +85,7 @@ function brands_filter()
         $logo_url = wp_get_attachment_image_url($logo, 'medium');
         if ($logo_url) {
             $html .= "<div class='col-auto'>";
-            $html .= "<a class='border-default rounded-corner' href='$link'>";
+            $html .= "<a class='border-default rounded-corner overflow-hidden position-relative' href='$link'>";
             $html .= "<img src='$logo_url'>";
             $html .= "</a>";
             $html .= "</div>";
