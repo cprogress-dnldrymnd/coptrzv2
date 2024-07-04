@@ -649,12 +649,39 @@ function ____columns_modules($items, $id, $html = '')
                     ));
                     break;
                 case 'image':
+                    $styles = array();
+                    $classes  = array();
+
                     $is_background_image = $item['is_background_image'];
+                    $custom_size = $item['custom_size'];
+                    $image_height = $item['image_height'];
+                    $image_width = $item['image_width'];
+                    $rounded_corners = $item['rounded_corners'];
+                    $border_radius = $item['border_radius'];
                     $image_args['image_id'] = $item['image'];
                     $image_args['size'] = $item['size'];
+                    $classes[] = 'image-box';
                     if ($is_background_image) {
-                        $image_args['class'] = _attribute('class', array('background-image', 'background-overlay'));
+                        $classes[] = 'background-image background-overlay';
                     }
+                    if ($custom_size) {
+                        if ($image_height) {
+                            $styles[] = "height: $image_height";
+                        }
+                        if ($image_width) {
+                            $styles[] = "width: $image_width";
+                        }
+                    }
+                    if ($rounded_corners) {
+                        $classes[] = 'rounded-corner';
+                        if ($border_radius) {
+                            $styles[] = "border-radius: $border_radius";
+                        }
+                    }
+
+                    $image_args['style'] = _attribute('style', $styles);
+                    $image_args['class'] = _attribute('style', $class);
+
                     $html .= __image($image_args);
                     break;
                 case 'gallery':
