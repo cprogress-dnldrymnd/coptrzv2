@@ -304,7 +304,10 @@ ul.products.products.products {
 
 section.product-main {
     .row {
-        div {
+        > div {
+            > div {
+                width: 100% !important;
+            }
             @include first-child {
                 width: 57%;
             }

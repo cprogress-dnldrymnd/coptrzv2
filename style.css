@@ -10703,9 +10703,9 @@ ul.products.products.products {
     height: 100%;
     object-fit: contain; }
 
-section.product-main .row div:first-child {
+section.product-main .row > div:first-child {
   width: 57%; }
-section.product-main .row div:last-child {
+section.product-main .row > div:last-child {
   width: 43%; }
 
 /*# sourceMappingURL=style.css.map */
