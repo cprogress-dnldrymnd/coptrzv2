@@ -585,6 +585,8 @@ function ____columns_modules($items, $id, $html = '')
     $number_of_slides_tablet = $items['number_of_slides_tablet'];
     $number_of_slides_mobile = $items['number_of_slides_mobile'];
     $same_image_height = $items['same_image_height'];
+    $horizontal_spacing = $items['horizontal_spacing'];
+    $vertical_spacing = $items['vertical_spacing'];
     $image_fit = $items['image_fit'];
     $image_padding = $items['image_padding'];
     $align_items = $items['align_items'];
@@ -710,12 +712,24 @@ function ____columns_modules($items, $id, $html = '')
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
     } else {
-        $row_class[] = 'row g-4';
+        $row_class[] = 'row';
         if ($align_items) {
             $row_class[] = $align_items;
         }
         if ($justify_content) {
             $row_class[] = $justify_content;
+        }
+
+        if ($horizontal_spacing) {
+            $row_class[] = $horizontal_spacing;
+        }
+
+        if ($vertical_spacing) {
+            $row_class[] = $vertical_spacing;
+        }
+
+        if (!$vertical_spacing && !$horizontal_spacing) {
+            $border_width[] = 'g-4';
         }
 
         $row_class_val = _attribute('class', $row_class, ' ');
@@ -839,6 +853,8 @@ function ____columns_modules($items, $id, $html = '')
                 $styles[] = "--image-padding: $image_padding;";
             }
         }
+
+
 
         if (!$column_class) {
             $column_class[] = 'col';

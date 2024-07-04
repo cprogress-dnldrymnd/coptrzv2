@@ -266,22 +266,22 @@ Container::make('post_meta', __('Sections'))
                             ->set_options(
                                 array(
                                     ''     => 'Default',
-                                    'g-5'  => 'Extra Large',
-                                    'g-4'  => 'Large',
-                                    'g-3'  => 'Medium',
-                                    'g-2'  => 'Small',
-                                    'g-1'  => 'Extra Small',
+                                    'gx-5'  => 'Extra Large',
+                                    'gx-4'  => 'Large',
+                                    'gx-3'  => 'Medium',
+                                    'gx-2'  => 'Small',
+                                    'gx-1'  => 'Extra Small',
                                 )
                             ),
                             Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(25)
                             ->set_options(
                                 array(
                                     ''     => 'Default',
-                                    'g-5'  => 'Extra Large',
-                                    'g-4'  => 'Large',
-                                    'g-3'  => 'Medium',
-                                    'g-2'  => 'Small',
-                                    'g-1'  => 'Extra Small',
+                                    'gy-5'  => 'Extra Large',
+                                    'gy-4'  => 'Large',
+                                    'gy-3'  => 'Medium',
+                                    'gy-2'  => 'Small',
+                                    'gy-1'  => 'Extra Small',
                                 )
                             ),
                         Field::make('select', 'align_items', 'Align Items')->set_width(25)
