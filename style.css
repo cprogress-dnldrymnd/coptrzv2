@@ -10682,7 +10682,7 @@ ul.products.products.products {
     overflow: hidden;
     border: 1px solid var(--border-color);
     padding: 10px;
-    padding: 30%;
+    padding: 35%;
     position: relative; }
     .product-thumb.product-thumb .swiper-slide .woocommerce-product-gallery__image img {
       position: absolute;
