@@ -120,3 +120,14 @@ add_shortcode('brands_filter', 'brands_filter');
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 
 
+// Update WooCommerce Flexslider options
+add_filter('woocommerce_single_product_carousel_options', 'ud_update_woo_flexslider_options');
+
+function ud_update_woo_flexslider_options($options)
+{
+
+  $options['directionNav'] = true;
+  $options['sync'] = '.flex-control-thumbs';
+
+  return $options;
+}
