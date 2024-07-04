@@ -1193,20 +1193,13 @@ Container::make('post_meta', __('Sections'))
                                     Field::make('select', 'border_color', 'Border Color')
                                         ->set_options(
                                             array(
+                                                ''   => 'Default',
                                                 'text-primary'   => 'Primary',
                                                 'text-secondary' => 'Secondary',
                                                 'text-accent'    => 'Accent',
                                                 'text-white'     => 'White',
                                                 'text-light-gray'     => 'Light Gray',
                                                 'border-custom-color'    => 'Custom',
-                                            )
-                                        )
-                                        ->set_conditional_logic(
-                                            array(
-                                                array(
-                                                    'field' => 'border_style',
-                                                    'value' => 'border-custom',
-                                                )
                                             )
                                         ),
                                     Field::make('color', 'border_color_custom', __('Border Color'))
