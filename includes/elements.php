@@ -150,7 +150,7 @@ function _background($hero_background, $is_youtube = false)
             ));
         }
     } else {
-        return "<div class='background-image background-overlay'><iframe src='$hero_background'></iframe></div>";
+        return "<div class='background-image background-overlay'><iframe   src='$hero_background' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen=''></iframe></iframe></div>";
     }
 }
 
