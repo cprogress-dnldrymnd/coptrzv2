@@ -140,12 +140,12 @@ function ___sections()
     foreach ($sections as $key => $section) {
         $disable_section = $section['disable_section'];
         if (!$disable_section) {
+            $classes = array();
+            $styles = array();
             $section_id = $section['section_id'];
             $section_items = $section['section_items'];
             $section_styles = $section['section_styles'];
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
-            $classes = array();
-            $styles = array();
             $container_styles = array();
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
@@ -223,7 +223,6 @@ function ___sections()
                         $different_border_width = $section_style['different_border_width'];
                         $border_width = $section_style['border_width'];
 
-
                         if ($section_style['border_radius']) {
                             $classes[] = 'rounded-corner';
                             $styles[] = '--border-radius: ' . $section_style['border_radius'];
@@ -257,7 +256,6 @@ function ___sections()
                 }
             }
 
-
             $id_val = _attribute('id', array($section_id_val));
             $classes_attr = _attribute('class', $classes);
             if ($styles) {
@@ -267,7 +265,6 @@ function ___sections()
             if ($container_styles) {
                 $container_styles_val = _attribute('style', $container_styles, ';');
             }
-
 
             $section_attribute = _attributes(array($classes_attr, $id_val, $styles_val));
 
