@@ -213,7 +213,8 @@ Container::make('post_meta', __('Sections'))
                         Field::make('select', 'image_fit', __('Image Fit'))->set_width(25)
                             ->set_options(
                                 array(
-                                    'style-1' => 'Style 1',
+                                    'cover' => 'Cover',
+                                    'contain' => 'Contain',
                                 )
                             )
                             ->set_conditional_logic(
