@@ -514,9 +514,13 @@ function ____columns_modules($items, $id, $html = '')
     $number_of_slides = $items['number_of_slides'];
     $number_of_slides_tablet = $items['number_of_slides_tablet'];
     $number_of_slides_mobile = $items['number_of_slides_mobile'];
+    $same_image_height = $items['same_image_height'];
     $classes = array();
     $styles = array();
     $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
+    if ($same_image_height) {
+        $classes[] = 'same-image-height';
+    }
     if (!$individual_column_settings) {
         foreach ($column_styles as $column_style) {
             $type = $column_style['_type'];
