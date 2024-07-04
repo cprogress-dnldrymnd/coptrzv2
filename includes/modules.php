@@ -231,9 +231,9 @@ function ___sections()
 
 
                             if ($border_color == 'border-custom-color') {
-                                $classes[] = $section_style['border_color'];
-                            } else {
                                 $styles[] = 'border-color: ' . $border_color_custom;
+                            } else {
+                                $classes[] = $section_style['border_color'];
                             }
                             if ($different_border_width) {
                                 if ($border_width_top) {
