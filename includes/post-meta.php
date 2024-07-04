@@ -386,7 +386,15 @@ Container::make('post_meta', __('Sections'))
                                     ->set_header_template('<%- heading %>')
                                     ->add_fields('description',  array(
                                         Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
-                                        Field::make('text', 'description_width', __('Description Custom Width'))->set_classes('activate-tinymce'),
+                                        Field::make('text', 'description_width', __('Description Custom Width')),
+                                        Field::make('select', 'description_alignment', __('Description Alignment'))
+                                            ->set_options(
+                                                array(
+                                                    '' => 'Default/Left',
+                                                    'ms-auto' => 'Right',
+                                                    'mx-auto' => 'Center',
+                                                )
+                                            ),
                                         Field::make('select', 'size', __('Description Size'))->set_width(20)
                                             ->set_options(
                                                 array(
@@ -396,7 +404,7 @@ Container::make('post_meta', __('Sections'))
                                                     'large-text' => 'Large Text',
                                                 )
                                             )
-                                       
+
                                     ))
 
                                     ->add_fields('image', array(
