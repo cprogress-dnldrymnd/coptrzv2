@@ -2217,7 +2217,7 @@ Container::make('post_meta', __('Sections'))
                                         )
                                     )
                                 ),
-                            Field::make('text', 'border_width', 'Border Width')
+                            Field::make('text', 'border_width', 'Border Width (Top, Right, Bottom, Left)')
                                 ->set_conditional_logic(
                                     array(
                                         array(
