@@ -9933,6 +9933,9 @@ img {
     .extend-left .container {
       max-width: calc(1520px + (50% - (1520px / 2))); } }
 
+.small-container .container {
+  max-width: 730px; }
+
 .logo-slider .swiper-wrapper {
   transition-timing-function: linear !important; }
   .logo-slider .swiper-wrapper .swiper-slide {
