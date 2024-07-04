@@ -226,22 +226,30 @@ function ___sections()
                             $border_width_right = $section_style['border_width_right'];
                             $border_width_bottom = $section_style['border_width_bottom'];
                             $border_width_left = $section_style['border_width_left'];
+                            $different_border_width = $section_style['different_border_width'];
+                            $border_width = $section_style['border_width'];
+
+
                             if ($border_color == 'border-custom-color') {
                                 $classes[] = $section_style['border_color'];
                             } else {
                                 $styles[] = 'border-color: ' . $border_color_custom;
                             }
-                            if ($border_width_top) {
-                                $styles[] = 'border-top-width: ' . $border_width_top;
-                            }
-                            if ($border_width_right) {
-                                $styles[] = 'border-right-width: ' . $border_width_right;
-                            }
-                            if ($border_width_bottom) {
-                                $styles[] = 'border-bottom-width: ' . $border_width_bottom;
-                            }
-                            if ($border_width_left) {
-                                $styles[] = 'border-top-width: ' . $border_width_left;
+                            if ($different_border_width) {
+                                if ($border_width_top) {
+                                    $styles[] = 'border-top-width: ' . $border_width_top;
+                                }
+                                if ($border_width_right) {
+                                    $styles[] = 'border-right-width: ' . $border_width_right;
+                                }
+                                if ($border_width_bottom) {
+                                    $styles[] = 'border-bottom-width: ' . $border_width_bottom;
+                                }
+                                if ($border_width_left) {
+                                    $styles[] = 'border-top-width: ' . $border_width_left;
+                                }
+                            } else {
+                                $styles[] = 'border-width: ' . $border_width;
                             }
                         } else {
                             $classes[] = 'border-default';
