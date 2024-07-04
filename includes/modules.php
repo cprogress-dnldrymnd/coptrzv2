@@ -206,9 +206,10 @@ function ___sections()
                         }
                         break;
                     case 'border':
+                        $classes[] = 'rounded-corner';
+
                         if ($section_style['border_radius']) {
                             $styles[] = '--border-radius: ' . $section_style['border_radius'];
-                            $classes[] = 'rounded-corner';
                         }
                         break;
                 }
@@ -270,7 +271,7 @@ function ___sections()
 
 
                         $html .= __description($description_args);
-                    
+
                         break;
                     case 'gallery':
                         $html .= ____gallery_modules(array(
