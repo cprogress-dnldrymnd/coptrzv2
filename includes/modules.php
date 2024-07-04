@@ -581,6 +581,7 @@ function ____columns_modules($items, $id, $html = '')
     $number_of_slides_tablet = $items['number_of_slides_tablet'];
     $number_of_slides_mobile = $items['number_of_slides_mobile'];
     $same_image_height = $items['same_image_height'];
+    $column_class = array();
     $classes = array();
     $styles = array();
     $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
@@ -678,13 +679,13 @@ function ____columns_modules($items, $id, $html = '')
                     $column_width_tablet = $column_style['column_width_tablet'];
                     $column_width_mobile = $column_style['column_width_mobile'];
                     if ($column_width) {
-                        $classes[] = $column_width;
+                        $column_class[] = $column_width;
                     }
                     if ($column_width_tablet) {
-                        $classes[] = $column_width_tablet;
+                        $column_class[] = $column_width_tablet;
                     }
                     if ($column_width_mobile) {
-                        $classes[] = $column_width_mobile;
+                        $column_class[] = $column_width_mobile;
                     }
                     break;
             }
@@ -711,6 +712,12 @@ function ____columns_modules($items, $id, $html = '')
     if ($classes) {
         $classes_val = _attribute('class', $classes, ' ');
     }
+    if($column_class) {
+        $column_class_val = _attribute('class', $column_class, ' ');
+        $column_class_attr = _attributes(array($column_class_val));
+    }
+
+
     $column_attributes = _attributes(array($classes_val, $styles_val));
 
     if ($is_slider) {
