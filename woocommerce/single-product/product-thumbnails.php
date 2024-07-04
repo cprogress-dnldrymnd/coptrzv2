@@ -28,7 +28,7 @@ $post_thumbnail_id = $product->get_image_id();
 $attachment_ids = $product->get_gallery_image_ids();
 ?>
 <div class="product-thumb-holder mt-20px">
-	<div class="swiper product-thumb">
+	<div thumbsSlider class="swiper product-thumb">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<?= apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($post_thumbnail_id), $post_thumbnail_id); ?>
