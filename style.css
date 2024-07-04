@@ -10570,7 +10570,12 @@ ul.products.products.products {
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
-    transform: rotate(45deg); }
+    transform: rotate(45deg);
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+    transition: 500ms; }
 .block-accordion:not(.active) .wp-block-group__inner-container > div {
   height: 0 !important;
   overflow: hidden;
