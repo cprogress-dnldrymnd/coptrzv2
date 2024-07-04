@@ -304,7 +304,7 @@ ul.products.products.products {
 
 .single-product.single-product.single-product {
     .product-main {
-        .product {
+        .row {
             > div {
                 @include first-child {
                     width: 57%;
