@@ -228,6 +228,18 @@ ul.products.products.products {
 }
 
 .block-accordion {
+    .wp-block-group__inner-container > .wp-block-heading {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        @include after{
+            content: '';
+            width: 15px;
+            height: 15px;
+            border-left: 1px solid;
+            border-top: 1px solid;
+        }
+    }
     &:not(.active) {
         .wp-block-group__inner-container > div {
             height: 0 !important;

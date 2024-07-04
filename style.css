@@ -10555,6 +10555,14 @@ ul.products.products.products {
     color: var(--bs-black);
     font-size: 15px; }
 
+.block-accordion .wp-block-group__inner-container > .wp-block-heading {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between; }
+  .block-accordion .wp-block-group__inner-container > .wp-block-heading:after {
+    content: '';
+    width: 15px;
+    height: 15px; }
 .block-accordion:not(.active) .wp-block-group__inner-container > div {
   height: 0 !important;
   overflow: hidden;
