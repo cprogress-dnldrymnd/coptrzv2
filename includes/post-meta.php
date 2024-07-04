@@ -864,7 +864,7 @@ Container::make('post_meta', __('Sections'))
                                     ->add_fields(
                                         'margin',
                                         array(
-                                            Field::make('select', 'margin_top', 'margin Top')
+                                            Field::make('select', 'margin_top', 'Margin Top')
                                                 ->set_options(
                                                     array(
                                                         ''               => 'No margin',
@@ -875,7 +875,7 @@ Container::make('post_meta', __('Sections'))
                                                         'xs-margin-top' => 'Extra Small',
                                                     )
                                                 ),
-                                            Field::make('select', 'margin_bottom', 'margin Bottom')
+                                            Field::make('select', 'margin_bottom', 'Margin Bottom')
                                                 ->set_options(
                                                     array(
                                                         ''                  => 'No margin',
@@ -886,7 +886,7 @@ Container::make('post_meta', __('Sections'))
                                                         'xs-margin-bottom' => 'Extra Small',
                                                     )
                                                 ),
-                                            Field::make('select', 'margin_left', 'margin left')
+                                            Field::make('select', 'margin_left', 'Margin Left')
                                                 ->set_options(
                                                     array(
                                                         ''                => 'No margin',
@@ -897,7 +897,7 @@ Container::make('post_meta', __('Sections'))
                                                         'xs-margin-left' => 'Extra Small',
                                                     )
                                                 ),
-                                            Field::make('select', 'margin_right', 'margin right')
+                                            Field::make('select', 'margin_right', 'Margin Right')
                                                 ->set_options(
                                                     array(
                                                         ''                 => 'No margin',
@@ -1262,7 +1262,7 @@ Container::make('post_meta', __('Sections'))
                             ->add_fields(
                                 'margin',
                                 array(
-                                    Field::make('select', 'margin_top', 'margin Top')
+                                    Field::make('select', 'margin_top', 'Margin Top')
                                         ->set_options(
                                             array(
                                                 ''               => 'No margin',
@@ -1273,7 +1273,7 @@ Container::make('post_meta', __('Sections'))
                                                 'xs-margin-top' => 'Extra Small',
                                             )
                                         ),
-                                    Field::make('select', 'margin_bottom', 'margin Bottom')
+                                    Field::make('select', 'margin_bottom', 'Margin Bottom')
                                         ->set_options(
                                             array(
                                                 ''                  => 'No margin',
@@ -1284,7 +1284,7 @@ Container::make('post_meta', __('Sections'))
                                                 'xs-margin-bottom' => 'Extra Small',
                                             )
                                         ),
-                                    Field::make('select', 'margin_left', 'margin left')
+                                    Field::make('select', 'margin_left', 'Margin Left')
                                         ->set_options(
                                             array(
                                                 ''                => 'No margin',
@@ -1295,7 +1295,7 @@ Container::make('post_meta', __('Sections'))
                                                 'xs-margin-left' => 'Extra Small',
                                             )
                                         ),
-                                    Field::make('select', 'margin_right', 'margin right')
+                                    Field::make('select', 'margin_right', 'Margin Right')
                                         ->set_options(
                                             array(
                                                 ''                 => 'No margin',
@@ -1619,7 +1619,7 @@ Container::make('post_meta', __('Sections'))
                                 ->add_fields(
                                     'margin',
                                     array(
-                                        Field::make('select', 'margin_top', 'margin Top')
+                                        Field::make('select', 'margin_top', 'Margin Top')
                                             ->set_options(
                                                 array(
                                                     ''               => 'No margin',
@@ -1630,7 +1630,7 @@ Container::make('post_meta', __('Sections'))
                                                     'xs-margin-top' => 'Extra Small',
                                                 )
                                             ),
-                                        Field::make('select', 'margin_bottom', 'margin Bottom')
+                                        Field::make('select', 'margin_bottom', 'Margin Bottom')
                                             ->set_options(
                                                 array(
                                                     ''                  => 'No margin',
@@ -1641,7 +1641,7 @@ Container::make('post_meta', __('Sections'))
                                                     'xs-margin-bottom' => 'Extra Small',
                                                 )
                                             ),
-                                        Field::make('select', 'margin_left', 'margin left')
+                                        Field::make('select', 'margin_left', 'Margin Left')
                                             ->set_options(
                                                 array(
                                                     ''                => 'No margin',
@@ -1652,7 +1652,7 @@ Container::make('post_meta', __('Sections'))
                                                     'xs-margin-left' => 'Extra Small',
                                                 )
                                             ),
-                                        Field::make('select', 'margin_right', 'margin right')
+                                        Field::make('select', 'margin_right', 'Margin Right')
                                             ->set_options(
                                                 array(
                                                     ''                 => 'No margin',
@@ -2288,7 +2288,7 @@ Container::make('post_meta', __('Sections'))
                     ->add_fields(
                         'margin',
                         array(
-                            Field::make('select', 'margin_top', 'margin Top')
+                            Field::make('select', 'margin_top', 'Margin Top')
                                 ->set_options(
                                     array(
                                         ''               => 'No margin',
@@ -2299,7 +2299,7 @@ Container::make('post_meta', __('Sections'))
                                         'xs-margin-top' => 'Extra Small',
                                     )
                                 ),
-                            Field::make('select', 'margin_bottom', 'margin Bottom')
+                            Field::make('select', 'margin_bottom', 'Margin Bottom')
                                 ->set_options(
                                     array(
                                         ''                  => 'No margin',
@@ -2310,7 +2310,7 @@ Container::make('post_meta', __('Sections'))
                                         'xs-margin-bottom' => 'Extra Small',
                                     )
                                 ),
-                            Field::make('select', 'margin_left', 'margin left')
+                            Field::make('select', 'margin_left', 'Margin Left')
                                 ->set_options(
                                     array(
                                         ''                => 'No margin',
@@ -2321,7 +2321,7 @@ Container::make('post_meta', __('Sections'))
                                         'xs-margin-left' => 'Extra Small',
                                     )
                                 ),
-                            Field::make('select', 'margin_right', 'margin right')
+                            Field::make('select', 'margin_right', 'Margin Right')
                                 ->set_options(
                                     array(
                                         ''                 => 'No margin',
