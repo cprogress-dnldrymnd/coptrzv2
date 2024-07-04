@@ -712,7 +712,7 @@ function ____columns_modules($items, $id, $html = '')
     if ($classes) {
         $classes_val = _attribute('class', $classes, ' ');
     }
-    if($column_class) {
+    if ($column_class) {
         $column_class_val = _attribute('class', $column_class, ' ');
         $column_class_attr = _attributes(array($column_class_val));
     }
@@ -731,7 +731,7 @@ function ____columns_modules($items, $id, $html = '')
         if ($is_slider) {
             $html .= '<div class="swiper-slide">'; //swiper-slide
         } else {
-            $html .= '<div class="col">'; //col
+            $html .= "<div class='$column_class_attr'>"; //col
         }
         $html .= "<div $column_attributes>";
         foreach ($items as $item) {
