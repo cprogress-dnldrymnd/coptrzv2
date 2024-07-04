@@ -70,11 +70,23 @@ function action_woocommerce_before_shop_loop_item()
 
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
 
-function brands_filter() {
-    $brand = get_terms( array(
+function brands_filter()
+{
+    $brands = get_terms(array(
         'taxonomy'   => 'pa_brands',
-        'hide_empty' => false,
-    ) );
+        'hide_empty' => true,
+    ));
+
+    $html = "<div class='brands-filter'>";
+    foreach ($brands as $brand) {
+        $link = get_term_link($brand->term_id);
+        $logo = carbon_get_term_meta($brand->term_id, 'image');
+        $logo_url = wp_get_attachment_image_url($logo, 'medium');
+        $html .= "<a href='$link'>";
+        $html .= "<img src='$logo_url'>";
+        $html .= "</a>";
+    }
+    $html .= "</div>";
 }
 
 add_shortcode('brands_filter', 'brands_filter');
