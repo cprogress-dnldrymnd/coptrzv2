@@ -717,6 +717,7 @@ function ____columns_modules($items, $id, $html = '')
     foreach ($columns as $key => $column) {
         $items = $column['items'];
         if ($individual_column_settings) {
+            $column_class = array();
             $column_styles = $column['column_styles'];
             foreach ($column_styles as $column_style) {
                 $type = $column_style['_type'];
