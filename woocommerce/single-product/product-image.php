@@ -69,7 +69,7 @@ $wrapper_classes   = apply_filters(
 								<?php
 								echo __image(array(
 									'image_id' => $attachment_id,
-									'class' => 'product-image',
+									'class' => _attribute('class', array('product-image')),
 									'size' => 'large'
 								));
 								?>
