@@ -157,6 +157,23 @@ Container::make('post_meta', __('Sections'))
                         Field::make('html', 'html_4')->set_html('<label>Section Description Settings</label>')->set_classes('cb-label'),
                         Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
                         Field::make('text', 'description_width', __('Description Custom Width'))->set_classes('activate-tinymce'),
+                        Field::make('select', 'size', __('Description Size'))->set_width(20)
+                            ->set_options(
+                                array(
+                                    '' => 'Default',
+                                    'small-text' => 'Small Text',
+                                    'medium-text' => 'Medium Text',
+                                    'large-text' => 'Large Text',
+                                )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'has_custom_heading_settings',
+                                        'value' => true,
+                                    )
+                                )
+                            ),
                     ))
                     ->add_fields(
                         'custom_html',
