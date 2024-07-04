@@ -10675,4 +10675,16 @@ ul.products.products.products {
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
 
+.product-thumb .swiper-slide {
+  width: 113px; }
+  .product-thumb .swiper-slide .woocommerce-product-gallery__image {
+    width: 113px;
+    height: 98px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-color); }
+    .product-thumb .swiper-slide .woocommerce-product-gallery__image img {
+      width: 100%;
+      height: 100%; }
+
 /*# sourceMappingURL=style.css.map */
