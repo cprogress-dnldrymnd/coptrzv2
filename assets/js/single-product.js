@@ -6,7 +6,6 @@ function product_gallery() {
     var product_main_image = new Swiper('.product-main-image', {
         loop: true,
         autoplay: false,
-        slidesPerView: 1,
         breakpoints: {
             0: {
                 slidesPerView: 3,
