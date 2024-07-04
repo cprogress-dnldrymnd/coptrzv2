@@ -714,12 +714,6 @@ function ____columns_modules($items, $id, $html = '')
         $classes_val = _attribute('class', $classes, ' ');
     }
 
-    if (!$column_class) {
-        $column_class[] = 'col';
-    }
-
-    $column_class_val = _attribute('class', $column_class, ' ');
-    $column_class_attr = _attributes(array($column_class_val));
 
 
     $column_attributes = _attributes(array($classes_val, $styles_val));
@@ -827,6 +821,14 @@ function ____columns_modules($items, $id, $html = '')
                 }
             }
         }
+
+
+        if (!$column_class) {
+            $column_class[] = 'col';
+        }
+
+        $column_class_val = _attribute('class', $column_class, ' ');
+        $column_class_attr = _attributes(array($column_class_val));
 
         if ($is_slider) {
             $html .= '<div class="swiper-slide">'; //swiper-slide
