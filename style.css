@@ -10098,6 +10098,9 @@ section .container > *:not(:last-child) {
 .border-light-gray {
   border-color: var(--light-gray-color); }
 
+.section .container > .row + .row {
+  margin-bottom: 7.5rem; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
