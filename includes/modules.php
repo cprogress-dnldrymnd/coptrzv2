@@ -213,10 +213,10 @@ function ___sections()
                         break;
                     case 'border':
                         $border_style = $section_style['border_style'];
+                        $classes[] = 'rounded-corner';
 
                         if ($section_style['border_radius']) {
                             $styles[] = '--border-radius: ' . $section_style['border_radius'];
-                            $classes[] = 'rounded-corner';
                         }
 
                         if ($border_style == 'border-custom') {
@@ -413,9 +413,9 @@ function ____post_grid($data)
                 }
                 break;
             case 'border':
+                $classes[] = 'rounded-corner';
                 if ($post_box_style['border_radius']) {
                     $styles[] = '--border-radius: ' . $post_box_style['border_radius'];
-                    $classes[] = 'rounded-corner';
                 }
                 break;
             case 'column_width':
@@ -634,10 +634,10 @@ function ____columns_modules($items, $id, $html = '')
 
                 case 'border':
                     $border_style = $column_style['border_style'];
+                    $classes[] = 'rounded-corner';
 
                     if ($column_style['border_radius']) {
                         $styles[] = '--border-radius: ' . $column_style['border_radius'];
-                        $classes[] = 'rounded-corner';
                     }
 
                     if ($border_style == 'border-custom') {
