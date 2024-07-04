@@ -2172,3 +2172,16 @@ if (isset($_GET['post'])) {
             Field::make('html', 'preview')->set_html('<iframe src="' . get_permalink($_GET['post']) . '?prev=true"></iframe>')->set_classes('preview')
         ));
 }
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Product Attributes
+/*-----------------------------------------------------------------------------------*/
+Container::make('term_meta', __('Category Properties'))
+	->where('term_taxonomy', '=', 'pa_brands')
+	->add_fields(
+		array(
+			Field::make('image', 'image', __('Logo')),
+		)
+	);

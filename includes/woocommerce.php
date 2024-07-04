@@ -69,3 +69,12 @@ function action_woocommerce_before_shop_loop_item()
 
 
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
+
+function brands_filter() {
+    $brand = get_terms( array(
+        'taxonomy'   => 'pa_brands',
+        'hide_empty' => false,
+    ) );
+}
+
+add_shortcode('brands_filter', 'brands_filter');
