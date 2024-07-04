@@ -6,13 +6,15 @@ jQuery(document).ready(function () {
 });
 
 function block_accordion() {
-    jQuery('.block-accordion').each(function (index, element) {
-        $height = jQuery(this).find('>div').outerHeight();
+    setTimeout(function () {
+        jQuery('.block-accordion').each(function (index, element) {
+            $height = jQuery(this).find('>div').outerHeight();
 
-        jQuery(this).find('>div').css('height', $height + 'px');
-        // element == this
+            jQuery(this).find('>div').css('height', $height + 'px');
+            // element == this
 
-    });
+        });
+    }, 1000);
 }
 
 function header_menu() {
