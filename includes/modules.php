@@ -141,16 +141,16 @@ function ___sections()
         $disable_section = $section['disable_section'];
         if (!$disable_section) {
             $classes = array();
-            $styles = array();
+            $s_styles = array();
             $section_id = $section['section_id'];
             $section_items = $section['section_items'];
-            $section_styles = $section['section_styles'];
+            $section_s_styles = $section['section_s_styles'];
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
-            $container_styles = array();
+            $container_s_styles = array();
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
 
-            foreach ($section_styles as $section_style) {
+            foreach ($section_s_styles as $section_style) {
                 $type = $section_style['_type'];
                 switch ($type) {
                     case 'padding':
@@ -180,14 +180,14 @@ function ___sections()
                         $text_color_custom = $section_style['text_color_custom'];
                         $classes[] = $section_style['text_color'];
                         if ($text_color_custom) {
-                            $styles[] = 'color: ' . $text_color_custom;
+                            $s_styles[] = 'color: ' . $text_color_custom;
                         }
                         break;
                     case 'background_color':
                         $background_color_custom = $section_style['background_color_custom'];
                         $classes[] = $section_style['background_color'];
                         if ($background_color_custom) {
-                            $styles[] = 'background-color: ' . $background_color_custom;
+                            $s_styles[] = 'background-color: ' . $background_color_custom;
                         }
                         break;
                     case 'background_image':
@@ -196,19 +196,19 @@ function ___sections()
                         $classes[] = $section_style['background_size'];
                         $classes[] = $section_style['background_repeat'];
                         if ($background_image) {
-                            $styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
+                            $s_styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
                         }
                         break;
                     case 'container_width':
                         $classes[] = $section_style['container_width'];
                         if ($section_style['custom_container_width']) {
-                            $container_styles[] = 'max-width: ' . $section_style['custom_container_width'];
+                            $container_s_styles[] = 'max-width: ' . $section_style['custom_container_width'];
                         }
                         break;
                     case 'height':
                         $height = $section_style['height'];
                         if ($height) {
-                            $styles[] = 'min-height: ' . $height;
+                            $s_styles[] = 'min-height: ' . $height;
                         }
                         break;
                     case 'border':
@@ -225,31 +225,31 @@ function ___sections()
 
                         if ($section_style['border_radius']) {
                             $classes[] = 'rounded-corner';
-                            $styles[] = '--border-radius: ' . $section_style['border_radius'];
+                            $s_styles[] = '--border-radius: ' . $section_style['border_radius'];
                         }
 
 
                         if ($border_color == 'border-custom-color') {
-                            $styles[] = 'border-color: ' . $border_color_custom;
+                            $s_styles[] = 'border-color: ' . $border_color_custom;
                         } else {
                             $classes[] = $section_style['border_color'];
                         }
                         if ($different_border_width) {
                             if ($border_width_top) {
-                                $styles[] = 'border-top-width: ' . $border_width_top;
+                                $s_styles[] = 'border-top-width: ' . $border_width_top;
                             }
                             if ($border_width_right) {
-                                $styles[] = 'border-right-width: ' . $border_width_right;
+                                $s_styles[] = 'border-right-width: ' . $border_width_right;
                             }
                             if ($border_width_bottom) {
-                                $styles[] = 'border-bottom-width: ' . $border_width_bottom;
+                                $s_styles[] = 'border-bottom-width: ' . $border_width_bottom;
                             }
                             if ($border_width_left) {
-                                $styles[] = 'border-left-width: ' . $border_width_left;
+                                $s_styles[] = 'border-left-width: ' . $border_width_left;
                             }
                         } else {
                             if ($border_width) {
-                                $styles[] = 'border-width: ' . $border_width;
+                                $s_styles[] = 'border-width: ' . $border_width;
                             }
                         }
                         break;
@@ -258,18 +258,18 @@ function ___sections()
 
             $id_val = _attribute('id', array($section_id_val));
             $classes_attr = _attribute('class', $classes);
-            if ($styles) {
-                $styles_val = _attribute('style', $styles, ';');
+            if ($s_styles) {
+                $s_styles_val = _attribute('style', $s_styles, ';');
             }
 
-            if ($container_styles) {
-                $container_styles_val = _attribute('style', $container_styles, ';');
+            if ($container_s_styles) {
+                $container_s_styles_val = _attribute('style', $container_s_styles, ';');
             }
 
-            $section_attribute = _attributes(array($classes_attr, $id_val, $styles_val));
+            $section_attribute = _attributes(array($classes_attr, $id_val, $s_styles_val));
 
             $html .= "<section $section_attribute>";
-            $html .= "<div class='container' $container_styles_val>";
+            $html .= "<div class='container' $container_s_styles_val>";
 
             foreach ($section_items as $key => $items) {
                 $type = $items['_type'];
@@ -283,7 +283,7 @@ function ___sections()
                     case 'description':
 
                         $classes = array();
-                        $styles = array();
+                        $s_styles = array();
 
                         $description_width = $items['description_width'];
                         $description_alignment = $items['description_alignment'];
@@ -292,7 +292,7 @@ function ___sections()
                         $classes[] = 'description-box';
 
                         if ($description_width) {
-                            $styles[] = "max-width: $description_width;";
+                            $s_styles[] = "max-width: $description_width;";
                         }
                         if ($description_alignment) {
                             $classes[] = "$description_alignment";
@@ -304,8 +304,8 @@ function ___sections()
                         $description_args['description'] =  $items['description'];
                         $description_args['class'] =  _attribute('class', $classes);
 
-                        if ($styles) {
-                            $description_args['style'] =  _attribute('style', $styles);
+                        if ($s_styles) {
+                            $description_args['style'] =  _attribute('style', $s_styles);
                         }
 
 
@@ -327,7 +327,7 @@ function ___sections()
                         break;
                     case 'post_grid':
                         $html .= ____post_grid(array(
-                            'post_box_styles' => $items['post_box_styles'],
+                            'post_box_s_styles' => $items['post_box_s_styles'],
                             'post_elements' => $items['post_elements'],
                             'post_type' => $items['post_type'],
                         ));
