@@ -10692,10 +10692,10 @@ ul.products.products.products {
       height: 100%;
       object-fit: contain; }
 
-.product-main-image.product-main-image .product-image {
+.product-main-image.product-main-image.product-main-image .product-image {
   position: relative;
   padding: 40%; }
-  .product-main-image.product-main-image .product-image img {
+  .product-main-image.product-main-image.product-main-image .product-image img {
     position: absolute;
     left: 0;
     top: 0;
