@@ -28,18 +28,20 @@ global $product;
 $attachment_ids = $product->get_gallery_image_ids();
 
 ?>
-<div class="swiper product-thumb">
-	<div class="swiper-wrapper">
-		<?php
-		if ($attachment_ids && $product->get_image_id()) {
-			foreach ($attachment_ids as $attachment_id) {
-		?>
-				<div class="swiper-slide">
-					<?= apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($attachment_id), $attachment_id); ?>
-				</div>
-		<?php
+<div class="product-thumb-holder">
+	<div class="swiper product-thumb">
+		<div class="swiper-wrapper">
+			<?php
+			if ($attachment_ids && $product->get_image_id()) {
+				foreach ($attachment_ids as $attachment_id) {
+			?>
+					<div class="swiper-slide">
+						<?= apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($attachment_id), $attachment_id); ?>
+					</div>
+			<?php
+				}
 			}
-		}
-		?>
+			?>
+		</div>
 	</div>
 </div>
