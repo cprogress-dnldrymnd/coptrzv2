@@ -10071,6 +10071,9 @@ section .container > *:not(:last-child) {
   position: relative;
   padding: 40%; }
   .same-image-height .image-box img {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     object-fit: var(--object-fit, "cover"); }
