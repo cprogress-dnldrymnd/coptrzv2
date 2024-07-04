@@ -585,6 +585,8 @@ function ____columns_modules($items, $id, $html = '')
     $number_of_slides_tablet = $items['number_of_slides_tablet'];
     $number_of_slides_mobile = $items['number_of_slides_mobile'];
     $same_image_height = $items['same_image_height'];
+    $image_fit = $items['image_fit'];
+    $image_padding = $items['image_padding'];
     $align_items = $items['align_items'];
     $justify_content = $items['justify_content'];
 
@@ -829,9 +831,6 @@ function ____columns_modules($items, $id, $html = '')
         $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
 
         if ($same_image_height) {
-            $image_fit = $items['image_fit'];
-            $image_padding = $items['image_padding'];
-
             $classes[] = 'same-image-height';
             if ($image_fit) {
                 $styles[] = "--object-fit: $image_fit;";
