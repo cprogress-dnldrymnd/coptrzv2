@@ -880,7 +880,7 @@ function ____columns_modules($items, $id, $html = '')
                     $desc_classes[] = 'description-box';
 
                     if ($description_width) {
-                        $styles[] = "max-width: $description_width;";
+                        $desc_styles[] = "max-width: $description_width;";
                     }
                     if ($description_alignment) {
                         $desc_classes[] = "$description_alignment";
