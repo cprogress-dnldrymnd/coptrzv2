@@ -258,3 +258,9 @@ ul.products.products.products {
         }
     }
 }
+
+.woocommerce div.product div.summary {
+    .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+        @include button-accent
+    }
+}
