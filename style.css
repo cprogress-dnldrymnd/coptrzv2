@@ -10715,4 +10715,10 @@ section.product-main .row > div:first-child {
 section.product-main .row > div:last-child {
   width: 43%; }
 
+.products.upsells.upsells.upsells ul.products {
+  flex-direction: column; }
+  .products.upsells.upsells.upsells ul.products li.product {
+    width: 100%;
+    margin: 0; }
+
 /*# sourceMappingURL=style.css.map */

@@ -325,3 +325,16 @@ section.product-main {
         }
     }
 }
+
+
+.products {
+    &.upsells.upsells.upsells {
+        ul.products {
+            flex-direction: column;
+            li.product {
+                width: 100%;
+                margin: 0;
+            }
+        }
+    }
+}
