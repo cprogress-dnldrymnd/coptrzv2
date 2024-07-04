@@ -10560,12 +10560,26 @@ ul.products.products.products {
   display: flex;
   justify-content: space-between; }
   .block-accordion .wp-block-group__inner-container > .wp-block-heading:after {
-    content: '';
-    width: 15px;
-    height: 15px; }
+    content: "";
+    width: 10px;
+    height: 10px;
+    display: block;
+    border-left: 2px solid;
+    border-top: 2px solid;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg); }
 .block-accordion:not(.active) .wp-block-group__inner-container > div {
   height: 0 !important;
   overflow: hidden;
   position: relative; }
+.block-accordion:not(.active) .wp-block-group__inner-container > .wp-block-heading:after {
+  -webkit-transform: rotate(45deg) scale(-1, -1);
+  -moz-transform: rotate(45deg) scale(-1, -1);
+  -ms-transform: rotate(45deg) scale(-1, -1);
+  -o-transform: rotate(45deg) scale(-1, -1);
+  transform: rotate(45deg) scale(-1, -1); }
 
 /*# sourceMappingURL=style.css.map */

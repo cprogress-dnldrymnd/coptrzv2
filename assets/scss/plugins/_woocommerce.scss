@@ -232,19 +232,29 @@ ul.products.products.products {
         cursor: pointer;
         display: flex;
         justify-content: space-between;
-        @include after{
-            content: '';
-            width: 15px;
-            height: 15px;
-            border-left: 1px solid;
-            border-top: 1px solid;
+        @include after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            display: block;
+            border-left: 2px solid;
+            border-top: 2px solid;
+            @include transform(rotate(45deg));
+            @include transition(500ms);
         }
     }
     &:not(.active) {
-        .wp-block-group__inner-container > div {
-            height: 0 !important;
-            overflow: hidden;
-            position: relative;
+        .wp-block-group__inner-container {
+            & > div {
+                height: 0 !important;
+                overflow: hidden;
+                position: relative;
+            }
+            & > .wp-block-heading {
+                @include after {
+                    @include transform(rotate(45deg) scale(-1, -1));
+                }
+            }
         }
     }
 }
