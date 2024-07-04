@@ -156,6 +156,7 @@ Container::make('post_meta', __('Sections'))
                     ->add_fields('description',  array(
                         Field::make('html', 'html_4')->set_html('<label>Section Description Settings</label>')->set_classes('cb-label'),
                         Field::make('textarea', 'description', __('Description'))->set_classes('activate-tinymce'),
+                        Field::make('text', 'description_width', __('Description Custom Width'))->set_classes('activate-tinymce'),
                     ))
                     ->add_fields(
                         'custom_html',
