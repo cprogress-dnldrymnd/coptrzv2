@@ -687,6 +687,7 @@ function ____columns_modules($items, $id, $html = '')
                     if ($column_width_mobile) {
                         $column_class[] = $column_width_mobile;
                     }
+
                     break;
             }
         }
@@ -712,10 +713,13 @@ function ____columns_modules($items, $id, $html = '')
     if ($classes) {
         $classes_val = _attribute('class', $classes, ' ');
     }
-    if ($column_class) {
-        $column_class_val = _attribute('class', $column_class, ' ');
-        $column_class_attr = _attributes(array($column_class_val));
+
+    if (!$column_class) {
+        $column_class[] = 'col';
     }
+
+    $column_class_val = _attribute('class', $column_class, ' ');
+    $column_class_attr = _attributes(array($column_class_val));
 
 
     $column_attributes = _attributes(array($classes_val, $styles_val));
