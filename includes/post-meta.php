@@ -182,6 +182,26 @@ Container::make('post_meta', __('Sections'))
                         )
                     )
                     ->add_fields('columns', array(
+                        Field::make('html', 'html_422')->set_html('<label>Section Row Settings</label>')->set_classes('cb-label'),
+                        Field::make('select', 'align_items', 'Align Items')->set_width(20)
+                            ->set_options(
+                                array(
+                                    ''               => 'Default',
+                                    'align-items-start'  => 'Start',
+                                    'align-items-center'  => 'Center',
+                                    'align-items-end'  => 'End',
+                                )
+                            ),
+                        Field::make('select', 'justify_content', 'Justify Content')->set_width(80)
+                            ->set_options(
+                                array(
+                                    ''                  => 'Default',
+                                    'justify-content-start'  => 'Start',
+                                    'justify-content-center'  => 'Center',
+                                    'justify-content-end'  => 'End',
+                                    'justify-content-between'  => 'Between',
+                                )
+                            ),
                         Field::make('html', 'html_4')->set_html('<label>Section Columns Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings'))->set_width(20),
                         Field::make('checkbox', 'is_slider', __('Is Slider'))->set_width(20),
@@ -253,7 +273,9 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
+
                         Field::make('html', 'html_42')->set_html('<label>Section Columns Settings</label>')->set_classes('cb-label'),
+
                         Field::make('complex', 'columns', __(''))
                             ->setup_labels(
                                 array(
