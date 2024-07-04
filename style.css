@@ -9902,7 +9902,9 @@ img {
   height: var(--height, 50px); }
 
 .rounded-corner {
-  border-radius: var(--border-radius, 15px); }
+  border-radius: var(--border-radius, 15px);
+  overflow: hidden;
+  position: relative; }
 
 .border-default {
   border: 1px solid var(--border-color); }
