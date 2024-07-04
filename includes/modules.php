@@ -732,6 +732,102 @@ function ____columns_modules($items, $id, $html = '')
     }
     foreach ($columns as $key => $column) {
         $items = $column['items'];
+        if ($individual_column_settings) {
+            $column_styles = $column['column_styles'];
+            foreach ($column_styles as $column_style) {
+                $type = $column_style['_type'];
+                switch ($type) {
+                    case 'padding':
+                        $classes[] = $column_style['padding_top'];
+                        $classes[] = $column_style['padding_bottom'];
+                        $classes[] = $column_style['padding_left'];
+                        $classes[] = $column_style['padding_right'];
+                        break;
+                    case 'margin':
+                        $classes[] = $column_style['margin_top'];
+                        $classes[] = $column_style['margin_bottom'];
+                        $classes[] = $column_style['margin_left'];
+                        $classes[] = $column_style['margin_right'];
+                        break;
+                    case 'custom_class':
+                        $classes[] = $column_style['custom_class'];
+                        break;
+                    case 'alignment':
+                        $classes[] = $column_style['align_items'];
+                        $classes[] = $column_style['justify_content'];
+                        $classes[] = $column_style['text_align'];
+                        if ($column_style['align_items'] || $column_style['justify_content']) {
+                            $classes[] = 'd-flex flex-column';
+                        }
+                        break;
+                    case 'text_color':
+                        $text_color_custom = $column_style['text_color_custom'];
+                        $classes[] = $column_style['text_color'];
+                        if ($text_color_custom) {
+                            $styles[] = 'color: ' . $text_color_custom;
+                        }
+                        break;
+                    case 'background_color':
+                        $background_color_custom = $column_style['background_color_custom'];
+                        $classes[] = $column_style['background_color'];
+                        if ($background_color_custom) {
+                            $styles[] = 'background-color: ' . $background_color_custom;
+                        }
+                        break;
+                    case 'background_image':
+                        $background_image = $column_style['background_image'];
+                        $classes[] = $column_style['background_attachment'];
+                        $classes[] = $column_style['background_size'];
+                        $classes[] = $column_style['background_repeat'];
+                        if ($background_image) {
+                            $styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
+                        }
+                        break;
+
+                    case 'border':
+                        $border_style = $column_style['border_style'];
+                        $classes[] = 'rounded-corner';
+
+                        if ($column_style['border_radius']) {
+                            $styles[] = '--border-radius: ' . $column_style['border_radius'];
+                        }
+
+                        if ($border_style == 'border-custom') {
+                            $border_color = $column_style['border_color'];
+                            $border_color_custom = $column_style['border_color_custom'];
+                            $border_width = $column_style['border_width'];
+                            if ($border_color == 'border-custom-color') {
+                                $classes[] = $column_style['border_color'];
+                            } else {
+                                $styles[] = 'border-color: ' . $border_color_custom;
+                            }
+                            if ($border_width) {
+                                $styles[] = 'border-width: ' . $border_width;
+                            }
+                        } else {
+                            $classes[] = 'border-default';
+                        }
+
+                        break;
+                    case 'column_width':
+                        $column_width = $column_style['column_width'];
+                        $column_width_tablet = $column_style['column_width_tablet'];
+                        $column_width_mobile = $column_style['column_width_mobile'];
+                        if ($column_width) {
+                            $column_class[] = $column_width;
+                        }
+                        if ($column_width_tablet) {
+                            $column_class[] = $column_width_tablet;
+                        }
+                        if ($column_width_mobile) {
+                            $column_class[] = $column_width_mobile;
+                        }
+
+                        break;
+                }
+            }
+        }
+
         if ($is_slider) {
             $html .= '<div class="swiper-slide">'; //swiper-slide
         } else {
