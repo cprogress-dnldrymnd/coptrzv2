@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-
+    product_gallery();
 });
 
 function product_gallery() {
