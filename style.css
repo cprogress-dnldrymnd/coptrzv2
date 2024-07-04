@@ -10069,7 +10069,7 @@ section .container > *:not(:last-child) {
 
 .same-image-height .image-box {
   position: relative;
-  padding: 40%; }
+  padding: 30%; }
   .same-image-height .image-box img {
     position: absolute;
     left: 0;
