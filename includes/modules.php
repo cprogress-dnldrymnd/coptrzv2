@@ -781,9 +781,10 @@ function _format_text($text)
     return htmlentities($text);
 }
 
-function _is_module()
+function _is_module($post_id = false)
 {
-    if (get_page_template_slug() == 'templates/page-modules.php') {
+    $id = $post_id ? $post_id : get_the_ID();
+    if (get_page_template_slug($id) == 'templates/page-modules.php') {
         return true;
     } else {
         return false;

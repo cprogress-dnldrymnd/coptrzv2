@@ -2167,10 +2167,12 @@ Container::make('post_meta', __('Sections'))
     ));
 
 if (isset($_GET['post'])) {
-    Container::make('post_meta', __('Preview'))
-        ->add_fields(array(
-            Field::make('html', 'preview')->set_html('<iframe src="' . get_permalink($_GET['post']) . '?prev=true"></iframe>')->set_classes('preview')
-        ));
+    if (_is_module($_GET['post'])) {
+        Container::make('post_meta', __('Preview'))
+            ->add_fields(array(
+                Field::make('html', 'preview')->set_html('<iframe src="' . get_permalink($_GET['post']) . '?prev=true"></iframe>')->set_classes('preview')
+            ));
+    }
 }
 
 
@@ -2179,9 +2181,9 @@ if (isset($_GET['post'])) {
 /* Product Attributes
 /*-----------------------------------------------------------------------------------*/
 Container::make('term_meta', __('Category Properties'))
-	->where('term_taxonomy', '=', 'pa_brands')
-	->add_fields(
-		array(
-			Field::make('image', 'image', __('Logo')),
-		)
-	);
+    ->where('term_taxonomy', '=', 'pa_brands')
+    ->add_fields(
+        array(
+            Field::make('image', 'image', __('Logo')),
+        )
+    );
