@@ -75,7 +75,7 @@ function enqueue_scripts()
 	wp_enqueue_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
 
 	if (is_product()) {
-		wp_enqueue_script('single-product', assets_dir . 'js/main.js', NULL, coptz_version);
+		wp_enqueue_script('single-product', assets_dir . 'js/single-product', NULL, coptz_version);
 	}
 }
 
