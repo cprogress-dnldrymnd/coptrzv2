@@ -2,10 +2,17 @@ jQuery(document).ready(function () {
     swipers();
     mini_cart();
     header_menu();
+    block_accordion();
 });
 
 function block_accordion() {
-    
+    jQuery('.block-accordion').each(function (index, element) {
+        $height = jQuery(this).find('div').outerHeight();
+
+        jQuery(this).find('div').css('height', $height+'px');
+        // element == this
+
+    });
 }
 
 function header_menu() {
