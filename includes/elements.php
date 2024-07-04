@@ -149,7 +149,7 @@ function _background($hero_background, $is_youtube = false)
                 'size' => 'full'
             ));
         }
-
+    } else {
         return "<div class='background-image background-overlay'><iframe src='$hero_background'></iframe></div>";
     }
 }
