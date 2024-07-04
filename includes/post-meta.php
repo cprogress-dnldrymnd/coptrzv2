@@ -237,7 +237,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('select', 'image_fit', __('Image Fit'))->set_width(25)
+                        Field::make('select', 'image_fit', __('Image Fit'))->set_width(50)
                             ->set_options(
                                 array(
                                     '' => 'Cover',
@@ -252,7 +252,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('text', 'image_padding', __('Image Padding'))->set_width(25)
+                        Field::make('text', 'image_padding', __('Image Padding'))->set_width(50)
                             ->set_help_text('Default is 30%')
                             ->set_conditional_logic(
                                 array(
