@@ -208,7 +208,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('select', 'justify_content', 'Justify Content')->set_width(80)
+                        Field::make('select', 'justify_content', 'Justify Content')->set_width(20)
                             ->set_options(
                                 array(
                                     ''                  => 'Default',
@@ -218,6 +218,24 @@ Container::make('post_meta', __('Sections'))
                                     'justify-content-between'  => 'Between',
                                 )
                             )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => false,
+                                    )
+                                )
+                            ),
+                        Field::make('text', 'custom_vertical_gap', 'Custom Vertical Gap')->set_width(20)
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => false,
+                                    )
+                                )
+                            ),
+                        Field::make('text', 'custom_horizontal_gap', 'Custom Horizontal Gap')->set_width(40)
                             ->set_conditional_logic(
                                 array(
                                     array(
