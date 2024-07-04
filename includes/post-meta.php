@@ -262,7 +262,18 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('select', 'column_spacing', 'Column Spacing')->set_width(33)
+                            Field::make('select', 'horizontal_spacing', 'Horizontal Spacing')->set_width(33)
+                            ->set_options(
+                                array(
+                                    ''     => 'Default',
+                                    'g-5'  => 'Extra Large',
+                                    'g-4'  => 'Large',
+                                    'g-3'  => 'Medium',
+                                    'g-2'  => 'Small',
+                                    'g-1'  => 'Extra Small',
+                                )
+                            ),
+                            Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(33)
                             ->set_options(
                                 array(
                                     ''     => 'Default',
