@@ -8,11 +8,6 @@ function action_woocommerce_before_main_content()
     } else if (is_product()) {
         $single_product_content = get__post_meta('single_product_content');
         echo $single_product_content;
-        echo '<section class="product-main lg-padding-top lg-padding-bottom border-top-default no-overflow">';
-        echo '<div class="container">';
-        echo '<h2>';
-        echo 'Buy ' . get_the_title();
-        echo '</h2>';
     }
 }
 
@@ -47,13 +42,6 @@ function action_woocommerce_after_shop_loop()
 
 add_action('woocommerce_after_shop_loop', 'action_woocommerce_after_shop_loop');
 
-
-function action_woocommerce_after_main_content()
-{
-    echo '</div>';
-    echo '</section>';
-}
-add_action('woocommerce_after_main_content', 'action_woocommerce_after_main_content');
 
 /**
  * WooCommerce Loop Product Thumbs

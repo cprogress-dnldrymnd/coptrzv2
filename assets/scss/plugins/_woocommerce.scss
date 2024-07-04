@@ -302,16 +302,14 @@ ul.products.products.products {
     }
 }
 
-.single-product.single-product.single-product {
-    .product-main {
-        .main-row {
-            > div {
-                @include first-child {
-                    width: 57%;
-                }
-                @include last-child {
-                    width: 43%;
-                }
+section.product-main {
+    .row {
+        div {
+            @include first-child {
+                width: 57%;
+            }
+            @include last-child {
+                width: 43%;
             }
         }
     }
