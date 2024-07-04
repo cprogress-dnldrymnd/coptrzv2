@@ -231,7 +231,7 @@ Container::make('post_meta', __('Sections'))
                         Field::make('select', 'image_fit', __('Image Fit'))->set_width(25)
                             ->set_options(
                                 array(
-                                    'cover' => 'Cover',
+                                    '' => 'Cover',
                                     'contain' => 'Contain',
                                 )
                             )
