@@ -684,7 +684,7 @@ function ____columns_modules($items, $id, $html = '')
                     }
 
                     $image_args['style'] = _attribute('style', $styles);
-                    $image_args['class'] = _attribute('style', $classes);
+                    $image_args['class'] = _attribute('class', $classes);
 
                     $html .= __image($image_args);
                     break;

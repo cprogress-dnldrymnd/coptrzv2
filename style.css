@@ -9848,11 +9848,6 @@ p:last-child {
 .small-width {
   max-width: 730px; }
 
-.rounded-corner {
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative; }
-
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
