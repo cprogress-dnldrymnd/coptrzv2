@@ -1437,7 +1437,7 @@ Container::make('post_meta', __('Sections'))
                             ->set_layout('tabbed-vertical')
 
                     ))
-                    ->set_header_template('<%- Row %>')
+                    ->set_header_template('Row')
                     ->add_fields(
                         'gallery',
                         array(
