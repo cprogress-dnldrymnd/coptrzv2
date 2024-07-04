@@ -647,15 +647,34 @@ function ____columns_modules($items, $id, $html = '')
                     $html .= ____icon_modules($item);
                     break;
                 case 'description':
+                    $classes = array();
+                    $styles = array();
+
                     $description_width = $item['description_width'];
                     $description_alignment = $item['description_alignment'];
                     $description_size = $item['description_size'];
 
+                    $classes[] = 'description-box';
 
-                    $html .= __description(array(
-                        'description' => $item['description'],
-                        'class' => _attribute('class', array('description-box'))
-                    ));
+                    if ($description_width) {
+                        $styles[] = "max-width: $description_width;";
+                    }
+                    if ($description_alignment) {
+                        $classes[] = "$description_alignment";
+                    }
+                    if ($description_size) {
+                        $classes[] = "$description_size";
+                    }
+
+                    $description_args['description'] =  $item['description'];
+                    $description_args['class'] =  _attribute('class', $classes);
+
+                    if ($styles) {
+                        $description_args['style'] =  _attribute('style', $styles);
+                    }
+
+
+                    $html .= __description($description_args);
                     break;
                 case 'image':
                     $styles = array();

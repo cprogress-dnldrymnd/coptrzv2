@@ -40,15 +40,25 @@ function __description($data)
 {
     $description = isset($data['description']) ? $data['description'] : false;
     $class = isset($data['class']) ? $data['class'] : false;
+    $style = isset($data['style']) ? $data['style'] : false;
 
     $attributes_args = [];
     if ($class) {
         $attributes_args[] = $class;
     }
 
-    $_attributes = _attributes($attributes_args);
 
     if ($description) {
+
+        $attributes_args = [];
+        if ($class) {
+            $attributes_args[] = $class;
+        }
+        if ($style) {
+            $attributes_args[] = $style;
+        }
+        $_attributes = _attributes($attributes_args);
+
         return "<div $_attributes>$description</div>";
     }
 }
