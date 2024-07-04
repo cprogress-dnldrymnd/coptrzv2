@@ -735,7 +735,7 @@ function ____columns_modules($items, $id, $html = '')
         if ($is_slider) {
             $html .= '<div class="swiper-slide">'; //swiper-slide
         } else {
-            $html .= "<div class='$column_class_attr'>"; //col
+            $html .= "<div $column_class_attr>"; //col
         }
         $html .= "<div $column_attributes>";
         foreach ($items as $item) {
