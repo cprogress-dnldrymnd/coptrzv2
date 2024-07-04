@@ -9899,7 +9899,12 @@ img {
     z-index: 1; }
   .background-image iframe {
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    -webkit-transform: scale(1.4);
+    -moz-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    transform: scale(1.4); }
 
 .content-margin > *:not(:last-child) {
   margin-bottom: 1.5rem; }
