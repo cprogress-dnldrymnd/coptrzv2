@@ -2338,7 +2338,8 @@ Container::make('term_meta', __('Category Properties'))
 /*-----------------------------------------------------------------------------------*/
 /* Products
 /*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', __('Hero'))
+Container::make('post_meta', __('Product Settings'))
+    ->where('post_type', '=', 'product')
     ->add_fields(array(
-        Field::make('textarea', 'single_product_content', __(''))
+        Field::make('hidden', 'single_product_content', __(''))
     ));
