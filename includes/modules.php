@@ -56,55 +56,47 @@ function ___hero_modules()
 function ___hero()
 {
 
-    if (is_single()) {
-        $hero_heading = get__post_meta('hero_heading');
-        $hero_description = _format_text(get__post_meta('hero_description'));
-        $hero_hidden = get__post_meta('hero_hidden');
-        $hero_background = get__post_meta('hero_background');
-        $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
-    } else {
+    if (is_product_taxonomy()) {
         $hero_hidden = false;
         $term = get_queried_object();
         $hero_description = false;
         $term_description = _format_text($term->description);
         $hero_hidden = false;
         $hero_heading_val = $term->name;
-        if (is_woocommerce()) {
-            $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
-            $hero_background = $thumbnail_id;
-        }
-    }
+        $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
+        $hero_background = $thumbnail_id;
 
-    if (!$hero_hidden) {
-        $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
-        $hero .= _bg_image($hero_background);
-        $hero .= "<div class='container'>";
-        $hero .= __heading(array(
-            'heading' => $hero_heading_val,
-            'tag' => 'h1',
-            'class' => _attribute('class', array('large-heading')),
-            ''
-        ));
-        if ($hero_description) {
-            $hero .= __description(array(
-                'description' => $hero_description,
-                'class' => _attribute('class', array('description-box', 'medium-text')),
-            ));
-        }
-        $hero .= "</div>";
-        $hero .= "</section>";
-
-        if (!is_single() && $term_description) {
-            $hero .= "<section class='sm-padding-top sm-padding-bottom term-description'>";
+        if (!$hero_hidden) {
+            $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
+            $hero .= _bg_image($hero_background);
             $hero .= "<div class='container'>";
-            $hero .= __description(array(
-                'description' => $term_description,
-                'class' => _attribute('class', array('description-box small-text small-width')),
+            $hero .= __heading(array(
+                'heading' => $hero_heading_val,
+                'tag' => 'h1',
+                'class' => _attribute('class', array('large-heading')),
+                ''
             ));
+            if ($hero_description) {
+                $hero .= __description(array(
+                    'description' => $hero_description,
+                    'class' => _attribute('class', array('description-box', 'medium-text')),
+                ));
+            }
             $hero .= "</div>";
             $hero .= "</section>";
+
+            if (!is_single() && $term_description) {
+                $hero .= "<section class='sm-padding-top sm-padding-bottom term-description'>";
+                $hero .= "<div class='container'>";
+                $hero .= __description(array(
+                    'description' => $term_description,
+                    'class' => _attribute('class', array('description-box small-text small-width')),
+                ));
+                $hero .= "</div>";
+                $hero .= "</section>";
+            }
+            return $hero;
         }
-        return $hero;
     }
 }
 
