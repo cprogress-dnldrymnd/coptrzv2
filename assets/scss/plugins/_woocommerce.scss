@@ -206,3 +206,18 @@ ul.products.products.products {
         }
     }
 }
+
+.wp-block-woocommerce-product-categories {
+    .wc-block-product-categories-list {
+        display: flex;
+        list-style: none;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        a {
+            text-decoration: none;
+            color: var(--bs-black);
+            font-size: 15px;
+        }
+    }
+}

@@ -10536,8 +10536,20 @@ ul.products.products.products {
   .brands-filter .row {
     --bs-gutter-x: 10px;
     --bs-gutter-y: 10px; }
-  .brands-filter a img {
-    height: 60px;
-    object-fit: contain; }
+  .brands-filter a {
+    height: 60px; }
+    .brands-filter a img {
+      height: 60px;
+      object-fit: contain; }
+
+.wp-block-woocommerce-product-categories .wc-block-product-categories-list {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  padding: 0;
+  margin: 0; }
+  .wp-block-woocommerce-product-categories .wc-block-product-categories-list a {
+    text-decoration: none;
+    color: var(--bs-black); }
 
 /*# sourceMappingURL=style.css.map */
