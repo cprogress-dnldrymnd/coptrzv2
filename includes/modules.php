@@ -212,10 +212,27 @@ function ___sections()
                         }
                         break;
                     case 'border':
-                        $classes[] = 'rounded-corner';
+                        $border_style = $section_style['border_style'];
 
                         if ($section_style['border_radius']) {
                             $styles[] = '--border-radius: ' . $section_style['border_radius'];
+                            $classes[] = 'rounded-corner';
+                        }
+
+                        if ($border_style == 'border-custom') {
+                            $border_color = $section_style['border_color'];
+                            $border_color_custom = $section_style['border_color_custom'];
+                            $border_width = $section_style['border_width'];
+                            if ($border_color == 'border-custom-color') {
+                                $classes[] = $section_style['border_color'];
+                            } else {
+                                $styles[] = 'border-color: ' . $border_color_custom;
+                            }
+                            if ($border_width) {
+                                $styles[] = 'border-width: ' . $border_width;
+                            }
+                        } else {
+                            $classes[] = 'border-default';
                         }
                         break;
                 }
