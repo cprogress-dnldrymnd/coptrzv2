@@ -226,3 +226,11 @@ ul.products.products.products {
         }
     }
 }
+
+.block-accordion {
+    &:not(.active) {
+        div {
+            height: 0 !important;
+        }
+    }
+}
