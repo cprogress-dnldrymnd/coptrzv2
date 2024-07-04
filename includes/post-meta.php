@@ -303,8 +303,8 @@ Container::make('post_meta', __('Sections'))
                         Field::make('complex', 'columns', __(''))
                             ->setup_labels(
                                 array(
-                                    'plural_name'   => 'Columns',
-                                    'singular_name' => 'Column',
+                                    'plural_name'   => 'Row',
+                                    'singular_name' => 'row',
                                 )
                             )
                             ->set_classes('columns')
