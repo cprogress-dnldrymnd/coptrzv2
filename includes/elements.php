@@ -85,6 +85,7 @@ function __image($data)
     $image_id = isset($data['image_id']) ? $data['image_id'] : false;
     $size = isset($data['size']) ? $data['size'] : false;
     $class = isset($data['class']) ? $data['class'] : false;
+    $style = isset($data['style']) ? $data['style'] : false;
 
     if ($featured_image) {
         $image = get_the_post_thumbnail($featured_image, $size);
@@ -95,6 +96,9 @@ function __image($data)
         $attributes_args = [];
         if ($class) {
             $attributes_args[] = $class;
+        }
+        if ($style) {
+            $attributes_args[] = $style;
         }
         $_attributes = _attributes($attributes_args);
 
