@@ -706,17 +706,6 @@ function ____columns_modules($items, $id, $html = '')
         $html .= "<div class='swiper swiper-sliders' id='$swiper_id' $slides_attr>"; //swiper
     }
 
-    if ($styles) {
-        $styles_val = _attribute('style', $styles, ';');
-    }
-
-    if ($classes) {
-        $classes_val = _attribute('class', $classes, ' ');
-    }
-
-
-
-    $column_attributes = _attributes(array($classes_val, $styles_val));
 
     if ($is_slider) {
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
@@ -830,6 +819,17 @@ function ____columns_modules($items, $id, $html = '')
         $column_class_val = _attribute('class', $column_class, ' ');
         $column_class_attr = _attributes(array($column_class_val));
 
+        if ($styles) {
+            $styles_val = _attribute('style', $styles, ';');
+        }
+    
+        if ($classes) {
+            $classes_val = _attribute('class', $classes, ' ');
+    
+    
+    
+        $column_attributes = _attributes(array($classes_val, $styles_val));
+        
         if ($is_slider) {
             $html .= '<div class="swiper-slide">'; //swiper-slide
         } else {
