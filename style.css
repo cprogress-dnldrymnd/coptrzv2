@@ -9904,7 +9904,8 @@ img {
     -moz-transform: scale(1.4);
     -ms-transform: scale(1.4);
     -o-transform: scale(1.4);
-    transform: scale(1.4); }
+    transform: scale(1.4);
+    pointer-events: none; }
 
 .content-margin > *:not(:last-child) {
   margin-bottom: 1.5rem; }

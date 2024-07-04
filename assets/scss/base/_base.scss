@@ -62,7 +62,8 @@ main {
     iframe {
         width: 100%;
         height: 100%;
-        @include transform(scale(1.4))
+        @include transform(scale(1.4));
+        pointer-events: none;
     }
 }
 .content-margin {
