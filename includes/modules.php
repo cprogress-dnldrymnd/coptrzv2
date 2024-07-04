@@ -588,19 +588,7 @@ function ____columns_modules($items, $id, $html = '')
     $column_class = array();
     $classes = array();
     $styles = array();
-    $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
-    if ($same_image_height) {
-        $image_fit = $items['image_fit'];
-        $image_padding = $items['image_padding'];
 
-        $classes[] = 'same-image-height';
-        if ($image_fit) {
-            $styles[] = "--object-fit: $image_fit;";
-        }
-        if ($image_padding) {
-            $styles[] = "--image-padding: $image_padding;";
-        }
-    }
 
     if (!$individual_column_settings) {
         foreach ($column_styles as $column_style) {
@@ -723,17 +711,34 @@ function ____columns_modules($items, $id, $html = '')
         if ($justify_content) {
             $row_class[] = $justify_content;
         }
-    
+
         $row_class_val = _attribute('class', $row_class, ' ');
         $row_class_attr = _attributes(array($row_class_val));
         $html .= "<div class='row g-4'>"; //row
     }
+
+
+
+
     foreach ($columns as $key => $column) {
         $items = $column['items'];
         if ($individual_column_settings) {
             $classes = array();
             $styles = array();
             $column_class = array();
+            $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
+            if ($same_image_height) {
+                $image_fit = $items['image_fit'];
+                $image_padding = $items['image_padding'];
+
+                $classes[] = 'same-image-height';
+                if ($image_fit) {
+                    $styles[] = "--object-fit: $image_fit;";
+                }
+                if ($image_padding) {
+                    $styles[] = "--image-padding: $image_padding;";
+                }
+            }
             $column_styles = $column['column_styles'];
             foreach ($column_styles as $column_style) {
                 $type = $column_style['_type'];
@@ -925,8 +930,6 @@ function ____columns_modules($items, $id, $html = '')
                         }
                     }
 
-                    if ($same_image_height) {
-                    }
 
                     $image_args['style'] = _attribute('style', $styles);
                     $image_args['class'] = _attribute('class', $classes);
