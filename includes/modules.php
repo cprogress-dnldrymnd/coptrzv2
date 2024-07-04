@@ -647,6 +647,11 @@ function ____columns_modules($items, $id, $html = '')
                     $html .= ____icon_modules($item);
                     break;
                 case 'description':
+                    $description_width = $item['description_width'];
+                    $description_alignment = $item['description_alignment'];
+                    $description_size = $item['description_size'];
+
+
                     $html .= __description(array(
                         'description' => $item['description'],
                         'class' => _attribute('class', array('description-box'))

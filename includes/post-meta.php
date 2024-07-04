@@ -395,7 +395,7 @@ Container::make('post_meta', __('Sections'))
                                                     'mx-auto' => 'Center',
                                                 )
                                             ),
-                                        Field::make('select', 'size', __('Description Size'))->set_width(20)
+                                        Field::make('select', 'description_size', __('Description Size'))->set_width(20)
                                             ->set_options(
                                                 array(
                                                     '' => 'Default',
