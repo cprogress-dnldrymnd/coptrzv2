@@ -2193,7 +2193,7 @@ Container::make('post_meta', __('Sections'))
                             Field::make('select', 'border_color', 'Border Color')
                                 ->set_options(
                                     array(
-                                        ''   => 'Default',
+                                        'border-default'   => 'Default',
                                         'border-primary'   => 'Primary',
                                         'border-secondary' => 'Secondary',
                                         'border-accent'    => 'Accent',
