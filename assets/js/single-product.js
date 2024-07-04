@@ -6,12 +6,7 @@ function product_gallery() {
     var product_main_image = new Swiper('.product-main-image', {
         loop: true,
         autoplay: false,
-        slidesPerView: 'auto',
-        spaceBetween: 10,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
+        slidesPerView: 1,
     });
 
     var product_thumb = new Swiper('.product-thumb', {
@@ -19,9 +14,5 @@ function product_gallery() {
         autoplay: false,
         slidesPerView: 'auto',
         spaceBetween: 10,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
     });
 } 
