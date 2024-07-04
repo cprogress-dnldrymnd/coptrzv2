@@ -302,7 +302,7 @@ ul.products.products.products {
     }
 }
 
-.single-product {
+.single-product.single-product.single-product {
     .product-main {
         .product {
             --bs-gutter-x: 1.5rem;
@@ -318,6 +318,7 @@ ul.products.products.products {
                 padding-left: calc(var(--bs-gutter-x) * 0.5);
                 margin-top: var(--bs-gutter-y);
                 flex: 0 0 auto;
+                float: none;
                 @include first-child {
                     width: 58.33333333%;
                 }
