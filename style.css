@@ -10687,6 +10687,7 @@ ul.products.products.products {
     .product-thumb.product-thumb .swiper-slide .woocommerce-product-gallery__image img {
       position: absolute;
       left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
       object-fit: contain; }

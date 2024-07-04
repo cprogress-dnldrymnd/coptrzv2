@@ -40,7 +40,7 @@ $wrapper_classes   = apply_filters(
 ?>
 <div class="images">
 	<div class="woocommerce-product-gallery__wrapper">
-		<div class="swiper product-main-image border-default">
+		<div class="swiper product-main-image border-default rounder-corner">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<?php
