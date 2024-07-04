@@ -210,6 +210,29 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
+                        Field::make('select', 'image_fit', __('Image Fit'))->set_width(25)
+                            ->set_options(
+                                array(
+                                    'style-1' => 'Style 1',
+                                )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'same_image_height',
+                                        'value' => true,
+                                    )
+                                )
+                            ),
+                        Field::make('text', 'image_padding', __('Image Padding'))->set_width(25)
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'same_image_height',
+                                        'value' => true,
+                                    )
+                                )
+                            ),
                         Field::make('html', 'html_42')->set_html('<label>Section Columns Settings</label>')->set_classes('cb-label'),
                         Field::make('complex', 'columns', __(''))
                             ->setup_labels(

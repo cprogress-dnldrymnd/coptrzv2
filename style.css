@@ -10067,6 +10067,14 @@ section .container > *:not(:last-child) {
   height: var(--height);
   border-radius: var(--border-radius); }
 
+.same-image-height .image-box {
+  position: relative;
+  padding: 40%; }
+  .same-image-height .image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
