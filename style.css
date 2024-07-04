@@ -10536,10 +10536,8 @@ ul.products.products.products {
   .brands-filter .row {
     --bs-gutter-x: 10px;
     --bs-gutter-y: 10px; }
-  .brands-filter a {
-    display: inline-block; }
-    .brands-filter a img {
-      height: 60px;
-      object-fit: contain; }
+  .brands-filter a img {
+    height: 60px;
+    object-fit: contain; }
 
 /*# sourceMappingURL=style.css.map */
