@@ -823,6 +823,7 @@ function ____columns_modules($items, $id, $html = '')
         }
         
         $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
+
         if ($same_image_height) {
             $image_fit = $items['image_fit'];
             $image_padding = $items['image_padding'];
@@ -869,8 +870,6 @@ function ____columns_modules($items, $id, $html = '')
                     $html .= ____icon_modules($item);
                     break;
                 case 'description':
-                    $classes = array();
-                    $styles = array();
 
                     $description_width = $item['description_width'];
                     $description_alignment = $item['description_alignment'];
