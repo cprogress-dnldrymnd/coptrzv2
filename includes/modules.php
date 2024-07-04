@@ -149,7 +149,8 @@ function ___sections()
             $container_styles = array();
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
-
+            $styles_val = '';
+            $container_styles_val = '';
             foreach ($section_styles as $section_style) {
                 $type = $section_style['_type'];
                 switch ($type) {
