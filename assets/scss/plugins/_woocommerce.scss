@@ -324,6 +324,12 @@ section.product-main {
             }
         }
     }
+    .price {
+        font-size: 40px;
+        .woocommerce-price-suffix {
+            font-size: 28px;
+        }
+    }
 }
 
 .products {

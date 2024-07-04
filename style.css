@@ -10714,6 +10714,10 @@ section.product-main .row > div:first-child {
   width: 57%; }
 section.product-main .row > div:last-child {
   width: 43%; }
+section.product-main .price {
+  font-size: 40px; }
+  section.product-main .price .woocommerce-price-suffix {
+    font-size: 28px; }
 
 .products.upsells.upsells.upsells ul.products {
   flex-direction: column; }
