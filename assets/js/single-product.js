@@ -3,11 +3,6 @@ jQuery(document).ready(function () {
 });
 
 function product_gallery() {
-    var product_main_image = new Swiper('.product-main-image', {
-        loop: true,
-        autoplay: false,
-        slidesPerView: 1,
-    });
 
     var product_thumb = new Swiper('.product-thumb', {
         loop: true,
@@ -33,4 +28,14 @@ function product_gallery() {
 
         },
     });
+
+    var product_main_image = new Swiper('.product-main-image', {
+        loop: true,
+        autoplay: false,
+        slidesPerView: 1,
+        thumbs: {
+            swiper: product_thumb,
+        },
+    });
+
 } 
