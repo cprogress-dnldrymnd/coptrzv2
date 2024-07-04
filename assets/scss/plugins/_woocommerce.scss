@@ -326,7 +326,6 @@ section.product-main {
     }
 }
 
-
 .products {
     &.upsells.upsells.upsells {
         ul.products {
@@ -334,8 +333,16 @@ section.product-main {
             li.product {
                 width: 100%;
                 margin: 0;
-                .product-inner {
-                    display: flex;
+
+                .wc-img-wrapper {
+                    position: absolute;
+                    right: 25px;
+                    width: 120px;
+                    height: 120px;
+                    margin: 0;
+                }
+                .woocommerce-loop-product__title {
+                    font-size: 17px;
                 }
             }
         }
