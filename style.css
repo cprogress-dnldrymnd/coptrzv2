@@ -10715,7 +10715,8 @@ section.product-main .row > div:first-child {
 section.product-main .row > div:last-child {
   width: 43%; }
 section.product-main .summary.summary.summary .price {
-  font-size: 40px; }
+  font-size: 40px;
+  color: var(--bs-black); }
   section.product-main .summary.summary.summary .price .woocommerce-price-suffix {
     font-size: 28px; }
 
