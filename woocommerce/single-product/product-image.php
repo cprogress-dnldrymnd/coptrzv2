@@ -34,14 +34,35 @@ $attachment_ids = $product->get_gallery_image_ids();
 		<div class="swiper product-main-image">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
-					<?= apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($post_thumbnail_id), $post_thumbnail_id); ?>
+					<?php
+
+					if ($post_thumbnail_id) {
+						echo __image(array(
+							'image_id' => $post_thumbnail_id,
+							'class' => 'product-image',
+							'size' => 'large'
+						));
+					} else {
+						$html  = '<div class="product-image woocommerce-product-gallery__image--placeholder">';
+						$html .= sprintf('<img src="%s" alt="%s" class="wp-post-image" />', esc_url(wc_placeholder_img_src('woocommerce_single')), esc_html__('Awaiting product image', 'woocommerce'));
+						$html .= '</div>';
+						echo $html;
+					}
+
+					?>
 				</div>
 				<?php
 				if ($attachment_ids && $product->get_image_id()) {
 					foreach ($attachment_ids as $attachment_id) {
 				?>
 						<div class="swiper-slide">
-							<?= apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($attachment_id), $attachment_id); ?>
+							<?php
+							echo __image(array(
+								'image_id' => $attachment_id,
+								'class' => 'product-image',
+								'size' => 'large'
+							));
+							?>
 						</div>
 				<?php
 					}
