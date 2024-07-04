@@ -302,7 +302,6 @@ section {
     }
 }
 
-
 .border-primary {
     border-color: var(--bs-black);
 }
@@ -320,7 +319,45 @@ section {
     .container {
         > .row {
             & + .row {
-                margin-top: 7.5rem;
+                &.gy-5 {
+                    margin-top: 4rem;
+                    @include responsive(xs) {
+                        margin-top: 3rem;
+                    }
+                }
+                &.gy-4 {
+                    @include responsive(xs-sm) {
+                        margin-top: 4rem;
+                    }
+                    @include responsive(xs) {
+                        margin-top: 3rem;
+                    }
+                }
+                &.gy-3 {
+                    margin-top: 6rem;
+                    @include responsive(xs-md) {
+                        margin-top: 5rem;
+                    }
+                    @include responsive(xs-sm) {
+                        margin-top: 4rem;
+                    }
+                    @include responsive(xs) {
+                        margin-top: 3rem;
+                    }
+                }
+                &.gy-2,
+                &.gy-1 {
+                    margin-top: 7rem;
+                    @include responsive(xs-md) {
+                        margin-top: 5rem;
+                    }
+                    @include responsive(xs-sm) {
+                        margin-top: 4rem;
+                    }
+                    @include responsive(xs) {
+                        margin-top: 3rem;
+                    }
+                }
             }
         }
     }
