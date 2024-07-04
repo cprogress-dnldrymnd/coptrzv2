@@ -716,6 +716,16 @@ function ____columns_modules($items, $id, $html = '')
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
     } else {
+        $row_class[] = 'row g-4';
+        if ($align_items) {
+            $row_class[] = $align_items;
+        }
+        if ($justify_content) {
+            $row_class[] = $justify_content;
+        }
+    
+        $row_class_val = _attribute('class', $row_class, ' ');
+        $row_class_attr = _attributes(array($row_class_val));
         $html .= "<div class='row g-4'>"; //row
     }
     foreach ($columns as $key => $column) {

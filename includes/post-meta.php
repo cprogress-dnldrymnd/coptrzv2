@@ -182,7 +182,15 @@ Container::make('post_meta', __('Sections'))
                         )
                     )
                     ->add_fields('columns', array(
-                        Field::make('html', 'html_422')->set_html('<label>Section Row Settings</label>')->set_classes('cb-label'),
+                        Field::make('html', 'html_422')->set_html('<label>Section Row Settings</label>')->set_classes('cb-label')
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => false,
+                                    )
+                                )
+                            ),
                         Field::make('select', 'align_items', 'Align Items')->set_width(20)
                             ->set_options(
                                 array(
@@ -190,6 +198,14 @@ Container::make('post_meta', __('Sections'))
                                     'align-items-start'  => 'Start',
                                     'align-items-center'  => 'Center',
                                     'align-items-end'  => 'End',
+                                )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => false,
+                                    )
                                 )
                             ),
                         Field::make('select', 'justify_content', 'Justify Content')->set_width(80)
@@ -200,6 +216,14 @@ Container::make('post_meta', __('Sections'))
                                     'justify-content-center'  => 'Center',
                                     'justify-content-end'  => 'End',
                                     'justify-content-between'  => 'Between',
+                                )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => false,
+                                    )
                                 )
                             ),
                         Field::make('html', 'html_4')->set_html('<label>Section Columns Options</label>')->set_classes('cb-label'),
