@@ -137,8 +137,6 @@ function ___sections()
 {
     $sections = get__post_meta('sections');
     $html = '';
-    $classes = array();
-    $styles = array();
     foreach ($sections as $key => $section) {
         $disable_section = $section['disable_section'];
         if (!$disable_section) {
@@ -146,7 +144,8 @@ function ___sections()
             $section_items = $section['section_items'];
             $section_styles = $section['section_styles'];
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
-       
+            $classes = array();
+            $styles = array();
             $container_styles = array();
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
