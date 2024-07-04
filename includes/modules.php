@@ -581,9 +581,14 @@ function ____columns_modules($items, $id, $html = '')
     $number_of_slides_tablet = $items['number_of_slides_tablet'];
     $number_of_slides_mobile = $items['number_of_slides_mobile'];
     $same_image_height = $items['same_image_height'];
+    $align_items = $items['align_items'];
+    $justify_content = $items['justify_content'];
+
+    $row_class = array();
     $column_class = array();
     $classes = array();
     $styles = array();
+
     $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
     if ($same_image_height) {
         $image_fit = $items['image_fit'];
@@ -705,14 +710,23 @@ function ____columns_modules($items, $id, $html = '')
         $html .= "<div class='swiper-holder $slider_style'>"; //swiper-holder
         $html .= "<div class='swiper swiper-sliders' id='$swiper_id' $slides_attr>"; //swiper
     }
+    $row_class[] = 'row g-4';
+    if ($align_items) {
+        $row_class[] = $align_items;
+    }
+    if ($justify_content) {
+        $row_class[] = $justify_content;
+    }
 
+    $row_class_val = _attribute('class', $row_class, ' ');
+    $row_class_attr = _attributes(array($row_class_val));
 
 
     if ($is_slider) {
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
     } else {
-        $html .= "<div class='row g-4'>"; //row
+        $html .= "<div $row_class_attr"; //row
     }
     foreach ($columns as $key => $column) {
         $items = $column['items'];
