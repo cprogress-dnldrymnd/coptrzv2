@@ -10555,4 +10555,7 @@ ul.products.products.products {
     color: var(--bs-black);
     font-size: 15px; }
 
+.block-accordion:not(.active) div {
+  height: 0 !important; }
+
 /*# sourceMappingURL=style.css.map */
