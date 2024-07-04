@@ -19,7 +19,7 @@ Container::make('post_meta', __('Hero'))
     ));
 Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
-    ->where('post_type', '=', 'product')
+    ->or_where('post_type', '=', 'product')
     ->add_fields(array(
         Field::make('complex', 'sections', __(''))
             ->setup_labels(
