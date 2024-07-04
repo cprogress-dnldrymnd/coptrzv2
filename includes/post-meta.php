@@ -2507,7 +2507,7 @@ Container::make('post_meta', __('Sections'))
                     ->set_layout('tabbed-vertical')
 
             ))
-            ->set_header_template('<%- title %>')
+            ->set_header_template('Column: <%- title %>')
 
 
     ));
