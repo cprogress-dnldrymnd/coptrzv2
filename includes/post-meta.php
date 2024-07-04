@@ -192,7 +192,18 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('select', 'align_items', 'Align Items')->set_width(50)
+                        Field::make('select', 'column_spacing', 'Column Spacing')->set_width(33)
+                            ->set_options(
+                                array(
+                                    ''     => 'Default',
+                                    'g-5'  => 'Extra Large',
+                                    'g-4'  => 'Large',
+                                    'g-3'  => 'Medium',
+                                    'g-2'  => 'Small',
+                                    'g-1'  => 'Extra Small',
+                                )
+                            ),
+                        Field::make('select', 'align_items', 'Align Items')->set_width(33)
                             ->set_options(
                                 array(
                                     ''               => 'Default',
@@ -209,7 +220,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('select', 'justify_content', 'Justify Content')->set_width(50)
+                        Field::make('select', 'justify_content', 'Justify Content')->set_width(33)
                             ->set_options(
                                 array(
                                     ''                  => 'Default',
@@ -227,7 +238,7 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                       
+
                         Field::make('html', 'html_4')->set_html('<label>Section Columns Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings'))->set_width(20),
                         Field::make('checkbox', 'is_slider', __('Is Slider'))->set_width(20),
@@ -2499,7 +2510,7 @@ Container::make('post_meta', __('Sections'))
                         )
                     )
 
-                
+
 
                     ->set_layout('tabbed-vertical')
 
