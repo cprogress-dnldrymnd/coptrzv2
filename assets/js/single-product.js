@@ -7,12 +7,30 @@ function product_gallery() {
         loop: true,
         autoplay: false,
         slidesPerView: 1,
+        breakpoints: {
+            0: {
+                slidesPerView: 3,
+            },
+
+            768: {
+                slidesPerView: 4,
+            },
+
+
+            992: {
+                slidesPerView: 5,
+            },
+
+            1200: {
+                slidesPerView: 6,
+            },
+
+        },
     });
 
     var product_thumb = new Swiper('.product-thumb', {
         loop: true,
         autoplay: false,
-        slidesPerView: 'auto',
         spaceBetween: 10,
     });
 } 

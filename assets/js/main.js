@@ -134,8 +134,6 @@ function swipers() {
                     slidesPerView: $number_of_slides,
                 },
 
-
-
             },
 
         });
