@@ -900,8 +900,8 @@ function ____columns_modules($items, $id, $html = '')
                     $html .= __description($description_args);
                     break;
                 case 'image':
-                    $styles = array();
-                    $classes  = array();
+                    $image_styles = array();
+                    $image_classes  = array();
 
                     $is_background_image = $item['is_background_image'];
                     $custom_size = $item['custom_size'];
@@ -913,28 +913,28 @@ function ____columns_modules($items, $id, $html = '')
                     $image_args['size'] = $item['size'];
 
 
-                    $classes[] = 'image-box';
+                    $image_classes[] = 'image-box';
                     if ($is_background_image) {
-                        $classes[] = 'background-image background-overlay';
+                        $image_classes[] = 'background-image background-overlay';
                     }
                     if ($custom_size) {
                         if ($image_height) {
-                            $styles[] = "--height: $image_height;";
+                            $image_styles[] = "--height: $image_height;";
                         }
                         if ($image_width) {
-                            $styles[] = "--width: $image_width;";
+                            $image_styles[] = "--width: $image_width;";
                         }
                     }
                     if ($rounded_corners) {
-                        $classes[] = 'rounded-corner';
+                        $image_classes[] = 'rounded-corner';
                         if ($border_radius) {
-                            $styles[] = "--border-radius: $border_radius;";
+                            $image_styles[] = "--border-radius: $border_radius;";
                         }
                     }
 
 
-                    $image_args['style'] = _attribute('style', $styles);
-                    $image_args['class'] = _attribute('class', $classes);
+                    $image_args['style'] = _attribute('style', $image_styles);
+                    $image_args['class'] = _attribute('class', $image_classes);
 
                     $html .= __image($image_args);
                     break;
