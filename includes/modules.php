@@ -141,7 +141,7 @@ function ___sections()
         $disable_section = $section['disable_section'];
         if (!$disable_section) {
             $classes = array();
-            $styles = array();
+            $styles_section = array();
             $section_id = $section['section_id'];
             $section_items = $section['section_items'];
             $section_styles = $section['section_styles'];
@@ -180,14 +180,14 @@ function ___sections()
                         $text_color_custom = $section_style['text_color_custom'];
                         $classes[] = $section_style['text_color'];
                         if ($text_color_custom) {
-                            $styles[] = 'color: ' . $text_color_custom;
+                            $styles_section[] = 'color: ' . $text_color_custom;
                         }
                         break;
                     case 'background_color':
                         $background_color_custom = $section_style['background_color_custom'];
                         $classes[] = $section_style['background_color'];
                         if ($background_color_custom) {
-                            $styles[] = 'background-color: ' . $background_color_custom;
+                            $styles_section[] = 'background-color: ' . $background_color_custom;
                         }
                         break;
                     case 'background_image':
@@ -196,7 +196,7 @@ function ___sections()
                         $classes[] = $section_style['background_size'];
                         $classes[] = $section_style['background_repeat'];
                         if ($background_image) {
-                            $styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
+                            $styles_section[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
                         }
                         break;
                     case 'container_width':
@@ -208,7 +208,7 @@ function ___sections()
                     case 'height':
                         $height = $section_style['height'];
                         if ($height) {
-                            $styles[] = 'min-height: ' . $height;
+                            $styles_section[] = 'min-height: ' . $height;
                         }
                         break;
                     case 'border':
@@ -225,31 +225,31 @@ function ___sections()
 
                         if ($section_style['border_radius']) {
                             $classes[] = 'rounded-corner';
-                            $styles[] = '--border-radius: ' . $section_style['border_radius'];
+                            $styles_section[] = '--border-radius: ' . $section_style['border_radius'];
                         }
 
 
                         if ($border_color == 'border-custom-color') {
-                            $styles[] = 'border-color: ' . $border_color_custom;
+                            $styles_section[] = 'border-color: ' . $border_color_custom;
                         } else {
                             $classes[] = $section_style['border_color'];
                         }
                         if ($different_border_width) {
                             if ($border_width_top) {
-                                $styles[] = 'border-top-width: ' . $border_width_top;
+                                $styles_section[] = 'border-top-width: ' . $border_width_top;
                             }
                             if ($border_width_right) {
-                                $styles[] = 'border-right-width: ' . $border_width_right;
+                                $styles_section[] = 'border-right-width: ' . $border_width_right;
                             }
                             if ($border_width_bottom) {
-                                $styles[] = 'border-bottom-width: ' . $border_width_bottom;
+                                $styles_section[] = 'border-bottom-width: ' . $border_width_bottom;
                             }
                             if ($border_width_left) {
-                                $styles[] = 'border-left-width: ' . $border_width_left;
+                                $styles_section[] = 'border-left-width: ' . $border_width_left;
                             }
                         } else {
                             if ($border_width) {
-                                $styles[] = 'border-width: ' . $border_width;
+                                $styles_section[] = 'border-width: ' . $border_width;
                             }
                         }
                         break;
@@ -281,7 +281,6 @@ function ___sections()
                         $html .= ____columns_modules($items, $section_id_val . $key);
                         break;
                     case 'description':
-
                         $classes = array();
                         $styles = array();
 
