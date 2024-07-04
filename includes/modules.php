@@ -519,8 +519,18 @@ function ____columns_modules($items, $id, $html = '')
     $styles = array();
     $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
     if ($same_image_height) {
+        $image_fit = $items['image_fit'];
+        $image_padding = $items['image_padding'];
+
         $classes[] = 'same-image-height';
+        if ($image_fit) {
+            $styles[] = "--object-fit: $image_fit;";
+        }
+        if ($image_padding) {
+            $styles[] = "--image-padding: $image_padding;";
+        }
     }
+
     if (!$individual_column_settings) {
         foreach ($column_styles as $column_style) {
             $type = $column_style['_type'];
@@ -688,6 +698,8 @@ function ____columns_modules($items, $id, $html = '')
                     $border_radius = $item['border_radius'];
                     $image_args['image_id'] = $item['image'];
                     $image_args['size'] = $item['size'];
+
+
                     $classes[] = 'image-box';
                     if ($is_background_image) {
                         $classes[] = 'background-image background-overlay';
@@ -705,6 +717,9 @@ function ____columns_modules($items, $id, $html = '')
                         if ($border_radius) {
                             $styles[] = "--border-radius: $border_radius;";
                         }
+                    }
+
+                    if ($same_image_height) {
                     }
 
                     $image_args['style'] = _attribute('style', $styles);
