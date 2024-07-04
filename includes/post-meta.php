@@ -192,54 +192,6 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
-                        Field::make('select', 'column_spacing', 'Column Spacing')->set_width(33)
-                            ->set_options(
-                                array(
-                                    ''     => 'Default',
-                                    'g-5'  => 'Extra Large',
-                                    'g-4'  => 'Large',
-                                    'g-3'  => 'Medium',
-                                    'g-2'  => 'Small',
-                                    'g-1'  => 'Extra Small',
-                                )
-                            ),
-                        Field::make('select', 'align_items', 'Align Items')->set_width(33)
-                            ->set_options(
-                                array(
-                                    ''               => 'Default',
-                                    'align-items-start'  => 'Start',
-                                    'align-items-center'  => 'Center',
-                                    'align-items-end'  => 'End',
-                                )
-                            )
-                            ->set_conditional_logic(
-                                array(
-                                    array(
-                                        'field' => 'is_slider',
-                                        'value' => false,
-                                    )
-                                )
-                            ),
-                        Field::make('select', 'justify_content', 'Justify Content')->set_width(33)
-                            ->set_options(
-                                array(
-                                    ''                  => 'Default',
-                                    'justify-content-start'  => 'Start',
-                                    'justify-content-center'  => 'Center',
-                                    'justify-content-end'  => 'End',
-                                    'justify-content-between'  => 'Between',
-                                )
-                            )
-                            ->set_conditional_logic(
-                                array(
-                                    array(
-                                        'field' => 'is_slider',
-                                        'value' => false,
-                                    )
-                                )
-                            ),
-
-                        Field::make('html', 'html_4')->set_html('<label>Section Columns Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings'))->set_width(20),
                         Field::make('checkbox', 'is_slider', __('Is Slider'))->set_width(20),
                         Field::make('checkbox', 'same_image_height', __('Same Image Height'))->set_width(60),
@@ -310,6 +262,54 @@ Container::make('post_meta', __('Sections'))
                                     )
                                 )
                             ),
+                        Field::make('select', 'column_spacing', 'Column Spacing')->set_width(33)
+                            ->set_options(
+                                array(
+                                    ''     => 'Default',
+                                    'g-5'  => 'Extra Large',
+                                    'g-4'  => 'Large',
+                                    'g-3'  => 'Medium',
+                                    'g-2'  => 'Small',
+                                    'g-1'  => 'Extra Small',
+                                )
+                            ),
+                        Field::make('select', 'align_items', 'Align Items')->set_width(33)
+                            ->set_options(
+                                array(
+                                    ''               => 'Default',
+                                    'align-items-start'  => 'Start',
+                                    'align-items-center'  => 'Center',
+                                    'align-items-end'  => 'End',
+                                )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => false,
+                                    )
+                                )
+                            ),
+                        Field::make('select', 'justify_content', 'Justify Content')->set_width(33)
+                            ->set_options(
+                                array(
+                                    ''                  => 'Default',
+                                    'justify-content-start'  => 'Start',
+                                    'justify-content-center'  => 'Center',
+                                    'justify-content-end'  => 'End',
+                                    'justify-content-between'  => 'Between',
+                                )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'is_slider',
+                                        'value' => false,
+                                    )
+                                )
+                            ),
+
+
 
                         Field::make('html', 'html_42')->set_html('<label>Section Columns Settings</label>')->set_classes('cb-label'),
 
