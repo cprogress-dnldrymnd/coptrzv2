@@ -1,11 +1,12 @@
 jQuery(document).ready(function () {
-    swipers();
-    mini_cart();
-    header_menu();
-    block_accordion();
+    __swipers();
+    __mini_cart();
+    __header_menu();
+    __block_accordion();
 });
 
-function block_accordion() {
+
+function __block_accordion() {
     setTimeout(function () {
         jQuery('.block-accordion').each(function (index, element) {
             $height = jQuery(this).find('.wp-block-group__inner-container>div').outerHeight();
@@ -17,7 +18,7 @@ function block_accordion() {
     }, 1000);
 }
 
-function header_menu() {
+function __header_menu() {
     jQuery('.has-children.main-nav').click(function (e) {
         if (jQuery(this).hasClass('active')) {
             jQuery(this).removeClass('active');
@@ -85,7 +86,7 @@ function header_menu() {
 
 }
 
-function mini_cart() {
+function __mini_cart() {
     if (window.innerWidth > 991) {
         jQuery('#mini-cart-button').click(function (e) {
             jQuery('body').toggleClass('mini-cart-active');
@@ -104,7 +105,7 @@ function mini_cart() {
         $mini_cart.appendTo('#mini-cart-mobile');
     }
 }
-function swipers() {
+function __swipers() {
     jQuery('.swiper-logo-slider').each(function (index, element) {
         $id = '#' + jQuery(this).attr('id');
         $number_of_slides = jQuery(this).attr('number_of_slides');

@@ -1,16 +1,32 @@
 jQuery(document).ready(function () {
-    product_gallery();
-    product_variation();
-    move_paypal();
+    __product_gallery();
+    __product_variation();
+    __move_paypal();
+    __quantity();
 });
 
-function move_paypal() {
+function __quantity() {
+    $('.quantity-minus').click(function(){
+        var qtyInput = $(this).siblings('.quantity-input');
+        var qty = parseInt(qtyInput.val());
+        if (qty > 1) {
+          qtyInput.val(qty - 1);
+        }
+      });
+  
+      $('.quantity-plus').click(function(){
+        var qtyInput = $(this).siblings('.quantity-input');
+        var qty = parseInt(qtyInput.val());
+        qtyInput.val(qty + 1);
+      });
+}
+function __move_paypal() {
     setTimeout(function () {
         jQuery('.ppcp-messages').insertAfter('.summary > .price');
     }, 1000);
 }
 
-function product_variation() {
+function __product_variation() {
 
     jQuery('input[name="variation-radio"]').change(function (e) {
         $value = jQuery(this).val();
@@ -24,7 +40,7 @@ function product_variation() {
     });
 }
 
-function product_gallery() {
+function __product_gallery() {
 
     var product_thumb = new Swiper('.product-thumb', {
         loop: true,
