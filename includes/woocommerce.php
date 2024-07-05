@@ -9,8 +9,7 @@ function action_woocommerce_before_main_content()
         $single_product_content = get__post_meta('single_product_content');
         echo $single_product_content;
 
-        global $product;
-        $pa_specifications = array_shift( wc_get_product_terms( $product->id, 'pa_specifications', array( 'fields' => 'ids' ) ) );
+        $pa_specifications = get_the_terms( get_the_ID(), 'pa_specifications' );
         echo '<pre>';
         var_dump($pa_specifications);
         echo '</pre>';
