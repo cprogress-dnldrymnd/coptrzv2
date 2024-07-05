@@ -5,7 +5,9 @@ jQuery(document).ready(function () {
 });
 
 function paypal() {
-    jQuery('.ppcp-messages').insertAfter('.summary .price');
+    setTimeout(function () {
+        jQuery('.ppcp-messages').insertAfter('.summary .price');
+    }, 500);
 }
 
 function product_variation() {
