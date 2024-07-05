@@ -9485,6 +9485,9 @@ p:last-child {
 .pt-10px {
   padding-top: 10px; }
 
+.p-10px {
+  padding: 10px; }
+
 .rounded-15px {
   border-radius: 15px; }
 
@@ -9513,6 +9516,9 @@ p:last-child {
 
 .pt-15px {
   padding-top: 15px; }
+
+.p-15px {
+  padding: 15px; }
 
 .rounded-20px {
   border-radius: 20px; }
@@ -9543,6 +9549,9 @@ p:last-child {
 .pt-20px {
   padding-top: 20px; }
 
+.p-20px {
+  padding: 20px; }
+
 .rounded-25px {
   border-radius: 25px; }
 
@@ -9571,6 +9580,9 @@ p:last-child {
 
 .pt-25px {
   padding-top: 25px; }
+
+.p-25px {
+  padding: 25px; }
 
 .rounded-35px {
   border-radius: 35px; }
@@ -9601,6 +9613,9 @@ p:last-child {
 .pt-35px {
   padding-top: 35px; }
 
+.p-35px {
+  padding: 35px; }
+
 .rounded-40px {
   border-radius: 40px; }
 
@@ -9629,6 +9644,9 @@ p:last-child {
 
 .pt-40px {
   padding-top: 40px; }
+
+.p-40px {
+  padding: 40px; }
 
 .rounded-45px {
   border-radius: 45px; }
@@ -9659,6 +9677,9 @@ p:last-child {
 .pt-45px {
   padding-top: 45px; }
 
+.p-45px {
+  padding: 45px; }
+
 .rounded-50px {
   border-radius: 50px; }
 
@@ -9687,6 +9708,9 @@ p:last-child {
 
 .pt-50px {
   padding-top: 50px; }
+
+.p-50px {
+  padding: 50px; }
 
 .xl-padding-top {
   padding-top: 12.5rem; }
