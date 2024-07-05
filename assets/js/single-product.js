@@ -10,12 +10,12 @@ function product_variation() {
         $variations = JSON.parse($data_variations);
 
         jQuery.each($variations, function ($variation_name, $variation_val) {
-            jQuery('#' + $variation_name).attr('selected', $variation_val);
+            jQuery('#' + $variation_name).attr('selected_variation', $variation_val);
         });
 
         setTimeout(function () {
             jQuery('.variations select').each(function (index, element) {
-                $selected = jQuery(this).attr('selected');
+                $selected = jQuery(this).attr('selected_variation');
                 jQuery(this).val($selected);
                 jQuery(this).trigger('change');
             });
