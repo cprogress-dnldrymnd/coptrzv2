@@ -10721,13 +10721,13 @@ ul.products.products.products {
     height: 100%;
     object-fit: contain; }
 
-section.product-main > .conatiner > .row > div > div {
+section.product-main > .container > .row > div > div {
   width: 100% !important;
   float: none !important;
   margin: 0 !important; }
-section.product-main > .conatiner > .row > div:first-child {
+section.product-main > .container > .row > div:first-child {
   width: 57%; }
-section.product-main > .conatiner > .row > div:last-child {
+section.product-main > .container > .row > div:last-child {
   width: 43%; }
 section.product-main .summary.summary.summary .price {
   font-size: 40px;
