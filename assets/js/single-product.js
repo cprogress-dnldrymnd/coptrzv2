@@ -8,32 +8,21 @@ function product_variation() {
     jQuery('input[name="variation-radio"]').change(function (e) {
         $value = jQuery(this).val();
         $data_variations = jQuery(this).attr('data_variations');
-        $variations = JSON.parse($data_variations);
 
+        jQuery('input[name="variation_id"]').val($value);
+        jQuery('.single_add_to_cart_button').removeClass('disabled wc-variation-selection-needed');
+
+
+        $variations = JSON.parse($data_variations);
         jQuery.each($variations, function ($variation_name, $variation_val) {
             jQuery('#' + $variation_name).val($variation_val);
         });
 
-        jQuery('input[name="variation_id"]').val($value);
-        jQuery('.single_add_to_cart_button').removeClass('disabled wc-variation-selection-needed');
+
         e.preventDefault();
     });
 
-
-    const customVariations = document.getElementsByClassName('custom-wc-variations');
-    if (customVariations.length > 0) {
-        Array.from(customVariations).forEach(function (variation) {
-            const radios = variation.querySelectorAll('input[type=radio]');
-            radios.forEach(function (radio) {
-                radio.addEventListener('change', function () {
-                    const variationName = radio.getAttribute('data-variation-name');
-                    const selectBox = document.querySelector('select[name=' + variationName + ']');
-                    selectBox.value = radio.getAttribute('data-value');
-                    jQuery(selectBox).trigger('change');
-                });
-            });
-        });
-    }
+  
 }
 
 function product_gallery() {
