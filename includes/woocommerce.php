@@ -145,9 +145,9 @@ function bbloomer_translate_may_also_like()
 /**
  * Output radio buttons on WooCommerce variations.
  */
-add_filter('woocommerce_dropdown_variation_attribute_options_html', static function () {
-    /** @var array $args */
-    /** @var WC_Product_Variable $product */
+
+function custom_product_variation()
+{
     global $product;
 
     $name = $product->get_name();
@@ -187,4 +187,4 @@ add_filter('woocommerce_dropdown_variation_attribute_options_html', static funct
 
 
     return $html;
-}, 20, 2);
+}
