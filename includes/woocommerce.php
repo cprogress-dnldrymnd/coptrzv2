@@ -391,7 +391,8 @@ function _product_grid_display($id)
     $stock_status =  $product->get_stock_status();
     $sku = $product->get_sku();
     $product_type = $product->get_type();
-    $button_class = $product_type == 'simple' ? 'col-sm-6' : 'col-12';
+    $button_holder_class = $product_type == 'simple' ? 'col-sm-6' : 'col-12';
+    $button_class = $product_type == 'simple' ? 'button-bordered' : 'button-accent';
 
     $html = "<ul class='products custom-product-grid m-0 p-0'>";
     $html .= "<li class='product status-style-2 m-0 p-0 w-100 post-$id $stock_status'>";
@@ -411,7 +412,7 @@ function _product_grid_display($id)
 
 
     if ($product_type == 'simple') {
-        $html .= "<div class='$button_class'>";
+        $html .= "<div class='$button_holder_class'>";
         $html .= "<a href='?add-to-cart=$id' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$id' data-product_sku='$sku' aria-label='Add to basket: “" . $title . "”' rel='nofollow'>Add to basket</a>";
         $html .= "</div>";
     }
@@ -419,7 +420,7 @@ function _product_grid_display($id)
 
 
     $html .= "<div class='col-sm-6'>";
-    $html .= "<div class='button-box button-bordered'><a href='$permalink'>View Product</a></div>";
+    $html .= "<div class='button-box $button_class'><a href='$permalink'>View Product</a></div>";
     $html .= "</div>";
 
     $html .= "</div>";

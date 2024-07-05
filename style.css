@@ -10673,6 +10673,8 @@ ul.products.products.products {
           background-color: var(--bs-secondary);
           border-color: var(--bs-secondary);
           color: var(--bs-white); }
+      ul.products.products.products li.product.product .product-inner .product-buttons .col-12 .button-box a {
+        width: auto; }
   ul.products.products.products.columns-3 li.product.product {
     flex: 0 0 auto;
     width: 33.333333333%; }
