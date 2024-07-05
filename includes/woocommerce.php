@@ -186,7 +186,7 @@ function custom_product_variation()
     $html .= '</div>';
 
 
-    return $html;
+    echo $html;
 }
 
 
