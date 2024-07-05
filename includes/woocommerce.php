@@ -331,6 +331,7 @@ function __product_compare($id)
             'tag' => 'h5',
         ));
         $html .= "</div>";
+        $html .= "</div>";
 
         foreach ($products as $product) {
             $html .= "<div class='col-3'>";
