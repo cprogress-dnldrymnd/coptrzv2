@@ -272,3 +272,16 @@ function bbloomer_display_quantity_plus()
     if (!is_product()) return;
     echo '<button type="button" class="plus" >+</button>';
 }
+
+
+function buy_now_button()
+{
+    $html = '<div class="button-box button-bordered">';
+    $html .= '<button>';
+    $html .= 'Buy Now';
+    $html .= '</button>';
+    $html .= '</div>';
+    echo $html;
+}
+add_action('woocommerce_after_shop_loop_item', 'buy_now_button', 20);
+add_action('woocommerce_after_add_to_cart_button', 'buy_now_button', 20);
