@@ -9323,6 +9323,7 @@ textarea.form-control-lg {
   --bs-primary-rgb: 0, 0, 0;
   --bs-secondary: #0f0f0f;
   --bs-secondary-rgb: 15, 15, 15;
+  --bs-light: #EFEFEF;
   --bs-accent: #2da1ff;
   --red-color: #D64550;
   --border-color: #dbdbdb;
@@ -9851,6 +9852,9 @@ p:last-child {
 
 .small-width {
   max-width: 730px; }
+
+.text-accent {
+  color: var(--bs-accent) !important; }
 
 @media screen and (max-width: 991px) {
   #wpadminbar {
@@ -10738,5 +10742,10 @@ section.product-main .summary.summary.summary .price {
         margin: 0; }
       .products.upsells.upsells.upsells ul.products li.product .woocommerce-loop-product__title {
         font-size: 17px; }
+
+section.products-specifications .inner svg, section.products-specifications .inner img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain; }
 
 /*# sourceMappingURL=style.css.map */
