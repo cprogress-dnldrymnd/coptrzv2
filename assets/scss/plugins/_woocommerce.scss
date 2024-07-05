@@ -407,6 +407,7 @@ section.products-specifications {
         @include transition(300ms);
         h5 {
             font-size: 17px;
+            padding-right: 100px;
         }
         .variation-image {
             img {
@@ -458,6 +459,7 @@ section.products-specifications {
         font-size: 13px;
         font-weight: bold;
         top: 20px;
+        right: 20px;
         padding-left: 22px;
         background-size: 15px;
         background-position: left center;
