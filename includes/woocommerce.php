@@ -285,4 +285,6 @@ add_action('woocommerce_after_add_to_cart_button', 'buy_now_button', 20);
 
 function __product_compare() {
     $html = 'sdsds';
+
+    return $html;
 }
