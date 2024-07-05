@@ -172,3 +172,5 @@ function custom_radio_variation_select( $args ) {
     }
     echo '</div>';
 }
+// Add this filter to your functions.php
+add_filter( 'woocommerce_dropdown_variation_attribute_options_html', 'custom_radio_variation_select', 10, 2 );
