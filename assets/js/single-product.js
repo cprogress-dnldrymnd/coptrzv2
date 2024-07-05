@@ -6,19 +6,19 @@ jQuery(document).ready(function () {
 });
 
 function __quantity() {
-    $('.quantity-minus').click(function(){
+    jQuery('.quantity-minus').click(function () {
         var qtyInput = $(this).siblings('.quantity-input');
         var qty = parseInt(qtyInput.val());
         if (qty > 1) {
-          qtyInput.val(qty - 1);
+            qtyInput.val(qty - 1);
         }
-      });
-  
-      $('.quantity-plus').click(function(){
+    });
+
+    jQuery('.quantity-plus').click(function () {
         var qtyInput = $(this).siblings('.quantity-input');
         var qty = parseInt(qtyInput.val());
         qtyInput.val(qty + 1);
-      });
+    });
 }
 function __move_paypal() {
     setTimeout(function () {
