@@ -348,9 +348,13 @@ function __product_compare($id)
             $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
 
             if (array_key_exists($key, $spec_product)) {
+                $html .= "<div class='active'>";
                 $html .= $SVG->check();
+                $html .= "</div>";
             } else {
+                $html .= "<div class='not-active'>";
                 $html .= $SVG->close();
+                $html .= "</div>";
             }
 
             $html .= "</div>";
