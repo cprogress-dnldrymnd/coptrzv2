@@ -13,16 +13,13 @@ function product_variation() {
             jQuery('#' + $variation_name).attr('selected_variation', $variation_val);
         });
 
-        setTimeout(function () {
-            jQuery('.variations select').each(function (index, element) {
+        jQuery('.variations select').each(function (index, element) {
+            setTimeout(function () {
                 $selected = jQuery(this).attr('selected_variation');
                 jQuery(this).val($selected);
                 jQuery(this).trigger('change');
-            });
-        }, 500);
-
-
-
+            }, 300);
+        });
         e.preventDefault();
     });
 
