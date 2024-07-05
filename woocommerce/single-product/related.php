@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 
 if ($related_products) : ?>
 
-	<section class="related products">
+	<section class="related products lg-padding-top lg-padding-bottom">
 
 		<div class="container">
 			<?php
@@ -30,7 +30,7 @@ if ($related_products) : ?>
 
 			if ($heading) :
 			?>
-				<h2><?php echo esc_html($heading); ?></h2>
+				<h2 class="text-center"><?php echo esc_html($heading); ?></h2>
 			<?php endif; ?>
 
 			<?php woocommerce_product_loop_start(); ?>
