@@ -10977,20 +10977,20 @@ section.product-main .summary.summary.summary .variations tr {
       -webkit-appearance: none;
       margin: 0; }
 
-section.product-compare .products-specifications.products-specifications-v2 .inner {
+.product-compare .products-specifications.products-specifications-v2 .inner {
   padding: 13px; }
-  section.product-compare .products-specifications.products-specifications-v2 .inner svg,
-  section.product-compare .products-specifications.products-specifications-v2 .inner img {
+  .product-compare .products-specifications.products-specifications-v2 .inner svg,
+  .product-compare .products-specifications.products-specifications-v2 .inner img {
     width: 40px;
     height: 40px; }
-section.product-compare .comparison > .row .inner-specs-list .active {
+.product-compare .comparison > .row .inner-specs-list .active {
   color: #61c9a8; }
-section.product-compare .comparison > .row .inner-specs-list .not-active {
+.product-compare .comparison > .row .inner-specs-list .not-active {
   color: #dbdbdb; }
-section.product-compare .comparison > .row .inner-specs-list svg {
+.product-compare .comparison > .row .inner-specs-list svg {
   width: 30px;
   height: 30px; }
-section.product-compare .comparison > .row:not(:last-child) {
+.product-compare .comparison > .row:not(:last-child) {
   margin-bottom: 10px; }
 
 .custom-product-grid {
