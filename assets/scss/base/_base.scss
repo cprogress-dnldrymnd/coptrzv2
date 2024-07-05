@@ -368,3 +368,10 @@ section {
         }
     }
 }
+
+
+.video-box {
+    video, iframe {
+        width: 100%;
+    }
+}
