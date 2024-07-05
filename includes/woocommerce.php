@@ -300,7 +300,7 @@ function __product_compare($id)
     $html = "<section class='product-compare bg-light lg-padding-top lg-padding-bottom'>";
     $html .= "<div class='container'>"; //container
     $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
-    $html .= "<div class='row'>";
+    $html .= "<div class='row g-10px'>";
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
         'heading' => get_the_title($id),
@@ -318,7 +318,7 @@ function __product_compare($id)
     foreach ($specs as $key => $spec) {
         $icon = get__term_meta($key, 'icon');
         $mime_type =  get_post_mime_type($icon);
-        $html .= "<div class='row'>"; //specs-row
+        $html .= "<div class='row g-10px'>"; //specs-row
 
         $html .= "<div class='col-3'>"; //specs-row-col
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
@@ -402,6 +402,13 @@ function _product_grid_display($id)
     $html .= '<span class="status d-block"></span>';
 
     $html .= "</a>";
+
+    $html .= "<div class='product-buttons'>";
+    $html .= "<div class='row g-10px'>";
+    $html .= "</div>";
+    $html .= "</div>";
+
+
     $html .= "</div>";
     $html .= "</li>";
     $html .= "</ul>";

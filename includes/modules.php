@@ -1191,13 +1191,15 @@ function __product_specifications($for_product_summary = false)
     if ($pa_specifications) {
         if ($for_product_summary == false) {
             $class = 'col-auto';
+            $row_class = 'g-5';
             $html = '<section class="products-specifications mt-20px bg-light rounded-corner py-3 mx-20px">';
             $html .= '<div class="container-fluid">';
         } else {
             $class = 'col-6';
+            $row_class = 'g-10px';
             $html = '<div class="products-specifications products-specifications-v2">';
         }
-        $html .= "<div class='row g-5 justify-content-center'>";
+        $html .= "<div class='row $row_class justify-content-center'>";
         foreach ($pa_specifications as $specification) {
             $icon = get__term_meta($specification->term_id, 'icon');
             $mime_type =  get_post_mime_type($icon);
