@@ -9880,6 +9880,9 @@ p:last-child {
 .text-accent {
   color: var(--bs-accent) !important; }
 
+.fw-medium {
+  font-weight: 500 !important; }
+
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
