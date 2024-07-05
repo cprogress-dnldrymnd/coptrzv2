@@ -23,7 +23,7 @@ function product_variation() {
 
             jQuery('.variations select').trigger('change');
 
-        }, 500);
+        }, 2500);
 
         e.preventDefault();
     });
