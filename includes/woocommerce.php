@@ -392,7 +392,7 @@ function _product_grid_display($id)
     
     $html = "<ul class='products custom-product-grid'>";
     $html .= "<li class='product type-product post-61545 status-private first $stock_status'>";
-    $html .= "<div class='product-inner rounded-10px border-default h-100'>";
+    $html .= "<div class='product-inner rounded-10px border-default h-100 bg-white'>";
     $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
 
     $html .= "<div class='wc-img-wrapper'>";
