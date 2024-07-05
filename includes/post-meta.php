@@ -255,7 +255,7 @@ Container::make('post_meta', __('Sections'))
                                         'self-hosted' => 'Self Hosted',
                                     )
                                 ),
-                            Field::make('file', 'Video', __('Video'))->set_classes('inline-field')->set_type(array('video'))
+                            Field::make('file', 'video', __('Video'))->set_classes('inline-field')->set_type(array('video'))
                                 ->set_conditional_logic(
                                     array(
                                         array(
