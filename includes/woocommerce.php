@@ -188,3 +188,6 @@ function custom_product_variation()
 
     return $html;
 }
+
+
+add_action('woocommerce_before_variations_form', 'custom_product_variation');
