@@ -143,8 +143,11 @@ ul.products.products.products {
         position: relative;
         flex: 0 0 auto;
         .product-inner {
-            padding: 20px 20px 81px;
+            padding: 20px ;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             .wc-img-wrapper {
                 padding: 35%;
                 position: relative;
@@ -193,10 +196,6 @@ ul.products.products.products {
                 @include button-accent;
             }
             .product-buttons {
-                position: absolute;
-                bottom: 20px;
-                left: 20px;
-                right: 20px;
                 .col-sm-6 {
                     .button.button.button,
                     .button-box a {
