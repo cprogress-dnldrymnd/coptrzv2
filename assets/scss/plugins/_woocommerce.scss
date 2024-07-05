@@ -141,6 +141,7 @@ ul.products.products.products {
         margin-right: 0;
         margin-bottom: 0;
         position: relative;
+        flex: 0 0 auto;
         .product-inner {
             padding: 20px 20px 81px;
             position: relative;
@@ -213,8 +214,18 @@ ul.products.products.products {
     }
     &.columns-3 {
         li.product.product {
-            flex: 0 0 auto;
             width: 33.333333333%;
+            @include responsive(xs-md) {
+                width: 50%;
+            }
+        }
+    }
+    &.columns-3  {
+        li.product.product {
+            width: 25%;
+            @include responsive(xs-sm) {
+                width: 50%;
+            }
         }
     }
     @include before-after {
