@@ -181,7 +181,7 @@ add_filter('woocommerce_dropdown_variation_attribute_options_html', static funct
         $options    = $attributes[$attribute];
     }
 
-    $radios = '<div class="custom-wc-variations">';
+    $radios = '<div class="custom-wc-variations" xx>';
     $radios .= '<div class="row">';
 
     if (!empty($options)) {
