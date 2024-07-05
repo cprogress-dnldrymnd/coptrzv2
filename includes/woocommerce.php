@@ -286,6 +286,16 @@ add_action('woocommerce_after_add_to_cart_button', 'buy_now_button', 20);
 function __product_compare($id)
 {
     $products = get__post_meta_by_id($id, 'products');
+
+    $specs = array();
+
+    foreach ($products as $product) {
+        $pa_specifications = get_the_terms($id, 'pa_specifications');
+        foreach ($pa_specifications as $specification) {
+            $specs[] = $specification->term_id;
+        }
+    }
+
     $html = "<section class='product-compare bg-light lg-padding-top lg-padding-bottom'>";
     $html .= "<div class='container'>";
     $html .= "<div class='row'>";
@@ -295,6 +305,9 @@ function __product_compare($id)
     ));
     $html .= "</div>";
 
+    $html .= "<div class='col-lg-3'>";
+    $html .= var_dump($specs);
+    $html .= "</div>";
 
 
     $html .= "</div>";
