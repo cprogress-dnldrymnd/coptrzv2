@@ -221,49 +221,6 @@ Container::make('post_meta', __('Sections'))
                                 )
                             ),
                     ))
-                    ->add_fields('image', array(
-                        Field::make('image', 'image', __('Image')),
-                        Field::make('select', 'size', __('Size'))
-                            ->set_options(
-                                array(
-                                    ''          => 'Default',
-                                    'full'      => 'Full',
-                                    'large'      => 'Large',
-                                    'medium' => 'Medium',
-                                    'thumbnail'    => 'Thumbnail',
-                                )
-                            ),
-                        Field::make('checkbox', 'is_background_image', __('Is background image')),
-                        Field::make('checkbox', 'custom_size', __('Custom Size')),
-                        Field::make('text', 'image_width', __('Custom Image Width'))
-                            ->set_conditional_logic(
-                                array(
-                                    array(
-                                        'field' => 'custom_size',
-                                        'value' => true,
-                                    )
-                                )
-                            ),
-                        Field::make('text', 'image_height', __('Custom Image Height'))
-                            ->set_conditional_logic(
-                                array(
-                                    array(
-                                        'field' => 'custom_size',
-                                        'value' => true,
-                                    )
-                                )
-                            ),
-                        Field::make('checkbox', 'rounded_corners', __('Rounder Corners')),
-                        Field::make('text', 'border_radius', __('Border Radius'))->set_help_text('Custom border radius')
-                            ->set_conditional_logic(
-                                array(
-                                    array(
-                                        'field' => 'rounded_corners',
-                                        'value' => true,
-                                    )
-                                )
-                            ),
-                    ))
                     ->add_fields(
                         'video',
                         array(
