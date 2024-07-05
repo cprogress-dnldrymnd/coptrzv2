@@ -286,7 +286,7 @@ add_action('woocommerce_after_add_to_cart_button', 'buy_now_button', 20);
 function __product_compare($id)
 {
     $products = get__post_meta_by_id($id, 'products');
-    $html = "<section>";
+    $html = "<section class='product-compare bg-light lg-padding-top lg-padding-bottom'>";
     $html .= "<div class='container'>";
     $html .= "<div class='row'>";
     $html .= "<div class='col-lg-3'>";
