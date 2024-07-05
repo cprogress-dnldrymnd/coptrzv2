@@ -7,7 +7,7 @@ jQuery(document).ready(function () {
 function move_paypal() {
     setTimeout(function () {
         jQuery('.ppcp-messages').insertAfter('.summary .price');
-    }, 500);
+    }, 1000);
 }
 
 function product_variation() {
