@@ -5,9 +5,13 @@ jQuery(document).ready(function () {
 
 function product_variation() {
 
-    jQuery('input[name="variation-radio"]').change(function (e) { 
+    jQuery('input[name="variation-radio"]').change(function (e) {
         $data_variations = jQuery(this).attr('data_variations');
-        console.log(JSON.parse($data_variations));
+        $variations = JSON.parse($data_variations);
+
+        jQuery.each(variations, function (variation_name, variation_val) {
+            console.log(variation_name, variation_val);
+        });
         e.preventDefault();
     });
 
