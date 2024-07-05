@@ -10624,6 +10624,12 @@ ul.products.products.products {
     ul.products.products.products li.product.product .product-inner {
       padding: 20px;
       position: relative; }
+      ul.products.products.products li.product.product .product-inner .wc-img-wrapper {
+        padding: 35%;
+        position: relative; }
+        ul.products.products.products li.product.product .product-inner .wc-img-wrapper img {
+          position: absolute;
+          left: 0; }
       ul.products.products.products li.product.product .product-inner .woocommerce-loop-product__title {
         color: var(--bs-black); }
       ul.products.products.products li.product.product .product-inner .price {
@@ -10888,22 +10894,18 @@ section.product-main .summary.summary.summary .variations tr {
   background-size: 15px;
   background-position: left center;
   background-repeat: no-repeat; }
-.instock.status-style-2 .status,
-.onbackorder.status-style-2 .status,
-.outofstock.status-style-2 .status {
-  display: inline-block; }
-  .instock.status-style-2 .status:before,
-  .onbackorder.status-style-2 .status:before,
-  .outofstock.status-style-2 .status:before {
-    display: block;
-    font-size: 13px;
-    font-weight: 500;
-    top: 20px;
-    right: 20px;
-    padding-left: 22px;
-    background-size: 15px;
-    background-position: left center;
-    background-repeat: no-repeat; }
+.instock.status-style-2 .status:before,
+.onbackorder.status-style-2 .status:before,
+.outofstock.status-style-2 .status:before {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  top: 20px;
+  right: 20px;
+  padding-left: 22px;
+  background-size: 15px;
+  background-position: left center;
+  background-repeat: no-repeat; }
 
 .instock:not(.status-style-2) .product-inner:before {
   content: "IN STOCK";
