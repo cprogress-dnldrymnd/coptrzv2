@@ -10814,7 +10814,8 @@ section.products-specifications .inner img {
     -o-transition: 300ms;
     transition: 300ms; }
     .product-custom-variation.product-custom-variation .inner h5, .product-custom-variation.product-custom-variation .inner .h5 {
-      font-size: 17px; }
+      font-size: 17px;
+      padding-right: 100px; }
     .product-custom-variation.product-custom-variation .inner .variation-image img {
       width: 128px;
       height: 98px;
