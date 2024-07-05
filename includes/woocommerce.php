@@ -285,6 +285,7 @@ add_action('woocommerce_after_add_to_cart_button', 'buy_now_button', 20);
 
 function __product_compare($id)
 {
+    $SVG = new SVG;
     $products = get__post_meta_by_id($id, 'products');
 
     $specs = array();
@@ -347,9 +348,9 @@ function __product_compare($id)
             $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
 
             if (array_key_exists($key, $spec_product)) {
-                $html .= 'exists';
+                $html .= $SVG->check();
             } else {
-                $html .= 'not exists';
+                $html .= $SVG->close();
             }
 
             $html .= "</div>";
