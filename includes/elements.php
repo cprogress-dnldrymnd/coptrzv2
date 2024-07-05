@@ -120,7 +120,7 @@ function __video($data)
 {
     $video_url = wp_get_attachment_url($data['video_id']);
     $is_youtube = $data['is_youtube'] ? true : false;
-    $autoplay = $data['is_youtube'];
+    $autoplay = $data['is_youtube'] ? $data['is_youtube'] : false;
     if ($is_youtube) {
         $parameters = '';
         $youtube_video_id = $data['youtube_video_id'];
