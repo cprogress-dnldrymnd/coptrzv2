@@ -362,3 +362,13 @@ section.product-main {
         }
     }
 }
+
+section.products-specifications {
+    .inner {
+        svg, img {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+        }
+    }
+}
