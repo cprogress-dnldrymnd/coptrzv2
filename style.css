@@ -10798,11 +10798,13 @@ section.products-specifications .inner img {
 .product-custom-variation .accordion-item {
   border: none;
   padding: 0;
-  border-top: 1px solid var(--bs-light);
+  border-top: 2px solid var(--bs-light);
   padding-top: 10px;
   margin-top: 10px; }
   .product-custom-variation .accordion-item .accordion-button {
     padding: 0;
     width: auto; }
+    .product-custom-variation .accordion-item .accordion-button:after {
+      margin-left: 1rem; }
 
 /*# sourceMappingURL=style.css.map */
