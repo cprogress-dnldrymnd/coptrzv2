@@ -1150,7 +1150,7 @@ function __product_specifications()
             if (str_contains($mime_type, 'svg')) {
                 $html .= __icon(array(
                     'id' => $icon,
-                    'class' => 'me-3'
+                    'class' => 'me-3 text-accent'
                 ));
             } else {
                 $html .= __image(array(
