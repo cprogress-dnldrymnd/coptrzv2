@@ -179,7 +179,7 @@ function custom_product_variation()
         $image_url = $variation_image_url ? $variation_image_url : $image_url;
         $stock_status_variation = $variation->get_stock_status();
         $html .= '<div class="col-12">';
-        $html .= "<input stock='$stock_status_variation' type='radio' id='variation-$child' $variations value='$child'  name='variation-radio>";
+        $html .= "<input stock='$stock_status_variation' type='radio' id='variation-$child' $variations value='$child'  name='variation-radio'>";
         $html .= '</div>';
     }
     $html .= '</div>';
