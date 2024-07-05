@@ -10770,12 +10770,14 @@ section.product-main .summary.summary.summary .price {
 section.product-main .summary.summary.summary .variations tr {
   display: flex;
   flex-direction: column; }
-section.product-main .summary.summary.summary .products-specifications .inner {
-  background-color: var(--bs-light);
-  padding: 20px;
-  border-radius: 10px; }
-  section.product-main .summary.summary.summary .products-specifications .inner h5, section.product-main .summary.summary.summary .products-specifications .inner .h5 {
-    font-size: 14px; }
+section.product-main .summary.summary.summary .products-specifications {
+  margin-top: 2rem; }
+  section.product-main .summary.summary.summary .products-specifications .inner {
+    background-color: var(--bs-light);
+    padding: 20px;
+    border-radius: 10px; }
+    section.product-main .summary.summary.summary .products-specifications .inner h5, section.product-main .summary.summary.summary .products-specifications .inner .h5 {
+      font-size: 14px; }
 
 .products.upsells.upsells.upsells {
   margin-top: 2rem; }
