@@ -249,17 +249,28 @@ function remove_single_product_elements()
 }
 add_action('woocommerce_before_single_product', 'remove_single_product_elements');
 
+/**
+ * @snippet       Plus Minus Quantity Buttons @ WooCommerce Single Product Page
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 8
+ * @community     https://businessbloomer.com/club/
+ */
 
-function add_quantity_plus_minus_buttons() {
-    if ( ! is_product() ) return;
-  
-    global $product;
-  
-    echo '<div class="quantity-button-container">';
-    echo '<button type="button" class="quantity-minus">-</button>';
-    echo '<input type="number" name="quantity" value="1" min="1" class="quantity-input">';
-    echo '<button type="button" class="quantity-plus">+</button>';
-    echo '</div>';
-  }
-  add_action( 'woocommerce_after_add_to_cart_quantity', 'add_quantity_plus_minus_buttons' );
-  
+add_action('woocommerce_before_quantity_input_field', 'bbloomer_display_quantity_minus');
+
+function bbloomer_display_quantity_minus()
+{
+    if (!is_product()) return;
+    echo '<button type="button" class="minus" >-</button>';
+}
+
+add_action('woocommerce_after_quantity_input_field', 'bbloomer_display_quantity_plus');
+
+function bbloomer_display_quantity_plus()
+{
+    if (!is_product()) return;
+    echo '<button type="button" class="plus" >+</button>';
+}
+
+add_action('woocommerce_before_single_product', 'bbloomer_add_cart_quantity_plus_minus');
