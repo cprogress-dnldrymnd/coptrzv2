@@ -20,7 +20,7 @@
 
 <body <?php body_class(); ?>>
 
-    <?= __product_compare() ?>
+    <?= __product_compare(get_the_ID()) ?>
 
     <?php wp_footer(); ?>
 </body>

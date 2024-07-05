@@ -283,7 +283,9 @@ function buy_now_button()
 add_action('woocommerce_after_add_to_cart_button', 'buy_now_button', 20);
 
 
-function __product_compare() {
+function __product_compare($id)
+{
+    $products = get__post_meta_by_id($id, 'products');
     $html = 'sdsds';
 
     return $html;
