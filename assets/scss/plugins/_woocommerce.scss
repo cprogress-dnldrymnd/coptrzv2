@@ -566,4 +566,12 @@ section.product-compare {
             }
         }
     }
+
+    .comparison {
+        > .row {
+            @include not-last-child {
+                margin-bottom: 10px;
+            }
+        }
+    }
 }
