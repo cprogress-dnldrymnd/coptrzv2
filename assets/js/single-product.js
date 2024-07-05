@@ -1,7 +1,12 @@
 jQuery(document).ready(function () {
     product_gallery();
     product_variation();
+    paypal();
 });
+
+function paypal() {
+    jQuery('.ppcp-messages').insertAfter('.summary .price');
+}
 
 function product_variation() {
 
