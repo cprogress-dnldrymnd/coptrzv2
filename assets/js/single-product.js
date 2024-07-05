@@ -11,7 +11,10 @@ function product_variation() {
 
         jQuery.each($variations, function ($variation_name, $variation_val) {
             jQuery('#' + $variation_name).val($variation_val);
-            jQuery('#' + $variation_name).trigger('change');
+
+            setTimeout(function () {
+                jQuery('#' + $variation_name).trigger('change');
+            }, 300);
             console.log($variation_name, $variation_val);
         });
         e.preventDefault();
