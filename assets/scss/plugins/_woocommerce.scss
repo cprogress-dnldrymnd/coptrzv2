@@ -309,7 +309,7 @@ ul.products.products.products {
 }
 
 section.product-main {
-    .row {
+    > .conatiner > .row {
         > div {
             > div {
                 width: 100% !important;
