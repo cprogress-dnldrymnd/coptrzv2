@@ -161,49 +161,42 @@ add_filter('woocommerce_dropdown_variation_attribute_options_html', static funct
     /** @var WC_Product_Variable $product */
     $options          = $args['options'];
     $product          = $args['product'];
-    $attribute        = $args['attribute'];
-    $name             = $args['name'] ?: 'attribute_' . sanitize_title($attribute);
-    $id               = $args['id'] ?: sanitize_title($attribute);
-    $class            = $args['class'];
-    $show_option_none = (bool)$args['show_option_none'];
-    // We'll do our best to hide the placeholder, but we'll need to show something when resetting options.
-    $show_option_none_text = $args['show_option_none'] ?: __('Choose an option', 'woocommerce');
 
-    // Get selected value.
-    if ($attribute && $product instanceof WC_Product && $args['selected'] === false) {
-        $selected_key     = 'attribute_' . sanitize_title($attribute);
-        $args['selected'] = isset($_REQUEST[$selected_key]) ? wc_clean(wp_unslash($_REQUEST[$selected_key]))
-            : $product->get_variation_default_attribute($attribute); // WPCS: input var ok, CSRF ok, sanitization ok.
-    }
+    $name = $product->get_name();
+    $children = $product->get_children();
+    $image_url = get_the_post_thumbnail_url($product->get_id(), 'thumbnail');
 
-    if (empty($options) && !empty($product) && !empty($attribute)) {
-        $attributes = $product->get_variation_attributes();
-        $options    = $attributes[$attribute];
-    }
+    $html = '<div class="product-custom-variation">';
+    $html .= '<div class="row">';
 
-    $radios = '<div class="custom-wc-variations" xx>';
-    $radios .= '<div class="row">';
+    foreach ($children as $child) {
+        $variation = wc_get_product($child);
+        $variation_name = $variation->get_name();
+        $product_attribute = $variation->get_attributes();
+        $variations = 'data-variations="[';
+        $i = 0;
+        $numItems = count($product_attribute);
+        foreach ($product_attribute as $key => $attr) {
 
-    if (!empty($options)) {
-        foreach ($options as $option) {
-            $radios .= '<div class="col-12">'; //col
-            $checked = sanitize_title($args['selected']) === $args['selected'] ? checked(
-                $args['selected'],
-                sanitize_title($option),
-                false
-            ) : checked($args['selected'], $option, false);
-            $radios  .= '<input type="radio" name="custom_' . esc_attr($name) . '" data-value="' . esc_attr($option) . '" id="'
-                . esc_attr($name) . '_' . esc_attr($option) . '" data-variation-name="' . esc_attr($name) . '" ' . $checked . '>';
-            $radios  .= '<label for="' . esc_attr($name) . '_' . esc_attr($option) . '">';
-            $radios  .= esc_html(apply_filters('woocommerce_variation_option_name', $option));
-            $radios  .= '</label>';
-            $radios .= '</div>'; //end-col
-
+            $variations .=  '&#34;' . $key . '|' . $attr . '&#34;';
+            if (++$i != $numItems) {
+                $variations .= ',';
+            }
         }
+        $variations .= ']"';
+
+        $variation_name = str_replace($name . ' - ', '', $variation_name);
+        $description = $variation->get_description();
+        $variation_image_url = get_the_post_thumbnail_url($child, 'thumbnail');
+        $image_url = $variation_image_url ? $variation_image_url : $image_url;
+        $stock_status_variation = $variation->get_stock_status();
+        $html .= '<div class="col-12">';
+        $html .= "<input stock='$stock_status_variation' type='radio' id='variation-$child' $variations value='$child'  name='variation-radio>";
+        $html .= '</div>';
     }
+    $html .= '</div>';
+    $html .= '</div>';
 
-    $radios .= '</div>';
-    $radios .= '</div>';
 
-    return $html . $radios;
+    return $html;
 }, 20, 2);
