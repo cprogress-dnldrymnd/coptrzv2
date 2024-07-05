@@ -181,6 +181,7 @@ ul.products.products.products {
             }
 
             .add_to_cart_button {
+                margin-top: 0;
                 @include button-accent;
             }
         }
