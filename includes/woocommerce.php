@@ -145,34 +145,35 @@ function bbloomer_translate_may_also_like()
 /**
  * Convert WooCommerce Variation Selects to Radio Buttons
  */
-function woocommerce_variation_radio_buttons($html, $args)
-{
+function woocommerce_variation_radio_buttons( $html, $args ) {
 
     // Ensure the function only runs for product variations
-    if (empty($args['options']) || empty($args['attribute']) || empty($args['product'])) {
+    if ( empty( $args['options'] ) || empty( $args['attribute'] ) || empty( $args['product'] ) ) {
         return $html;
     }
 
     $options               = $args['options'];
     $product               = $args['product'];
     $attribute             = $args['attribute'];
-    $name                 = "attribute_" . sanitize_title($attribute); // Set the input name
-    $id                   = sanitize_title($attribute); // Set the input ID
+    $name                 = "attribute_" . sanitize_title( $attribute ); // Set the input name
+    $id                   = sanitize_title( $attribute ); // Set the input ID
 
-    $html .= '<div class="radio-variations" data-attribute_name="' . esc_attr($attribute) . '" data-product_id="' . $product->get_id() . '">';
-    foreach ($options as $option) {
-        $selected = sanitize_title($args['selected']) === $args['selected'] ? checked($args['selected'], sanitize_title($option), false) : checked($args['selected'], $option, false);
+    // Build the radio button HTML
+    $html = '<div class="variation-radios">';
+    foreach ( $options as $option ) {
+        $selected = sanitize_title( $args['selected'] ) === $args['selected'] ? 'checked' : '';
 
-        // Get the variation ID for this attribute value
-        $variation_id = $product->get_matching_variation(array($attribute => $option));
+        // If you have term information (e.g., color names), you can display them:
+        $term = get_term_by( 'slug', $option, $attribute );
 
-        $html .= '<div class="radio-variation">';
-        $html .= '<input type="radio" name="' . esc_attr($name) . '" value="' . esc_attr($option) . '" id="' . esc_attr(sanitize_title($option)) . '" ' . $selected . ' data-variation_id="' . $variation_id . '">';
-        $html .= '<label for="' . esc_attr(sanitize_title($option)) . '">' . esc_html(apply_filters('woocommerce_variation_option_name', $option)) . '</label>';
-        $html .= '</div>';
+        // Get the label based on available information 
+        $label = $term && $term->name ? $term->name : $option; 
+
+        $html .= '<input type="radio" name="' . esc_attr( $name ) . '" value="' . esc_attr( $option ) . '" id="' . esc_attr( $option ) . '" ' . $selected . '>';
+        $html .= '<label for="' . esc_attr( $option ) . '">' . esc_html( $label ) . '</label>';
     }
     $html .= '</div>';
 
     return $html;
 }
-add_filter('woocommerce_dropdown_variation_attribute_options_html', 'woocommerce_variation_radio_buttons', 10, 2);
+add_filter( 'woocommerce_dropdown_variation_attribute_options_html', 'woocommerce_variation_radio_buttons', 10, 2 );
