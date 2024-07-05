@@ -1129,3 +1129,10 @@ function _output_svg_from_url($url)
     // Output the sanitized SVG
     return $content;
 }
+
+
+function __product_specifications()
+{
+    global $product;
+    $koostis = $product->get_attribute('pa_koostis');
+}

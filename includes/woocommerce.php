@@ -8,6 +8,12 @@ function action_woocommerce_before_main_content()
     } else if (is_product()) {
         $single_product_content = get__post_meta('single_product_content');
         echo $single_product_content;
+
+        global $product;
+        $pa_specifications = $product->get_attribute('pa_specifications');
+        echo '<pre>';
+        var_dump($pa_specifications);
+        echo '</pre>';
     }
 }
 
