@@ -569,6 +569,18 @@ section.product-compare {
 
     .comparison {
         > .row {
+            .inner-specs-list {
+                .active {
+                    color: #61c9a8;
+                }
+                .not-active {
+                    color: #DBDBDB;
+                }
+                svg {
+                    width: 25px;
+                    height: 25px;
+                }
+            }
             @include not-last-child {
                 margin-bottom: 10px;
             }

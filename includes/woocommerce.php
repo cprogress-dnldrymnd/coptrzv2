@@ -345,7 +345,7 @@ function __product_compare($id)
 
 
             $html .= "<div class='col-3'>";
-            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+            $html .= "<div class='inner inner-specs-list h-100 d-flex align-items-center justify-content-center'>"; //inner
 
             if (array_key_exists($key, $spec_product)) {
                 $html .= "<div class='active'>";

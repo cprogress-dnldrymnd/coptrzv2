@@ -10950,6 +10950,13 @@ section.product-compare .products-specifications.products-specifications-v2 .inn
   section.product-compare .products-specifications.products-specifications-v2 .inner img {
     width: 40px;
     height: 40px; }
+section.product-compare .comparison > .row .inner-specs-list .active {
+  color: #61c9a8; }
+section.product-compare .comparison > .row .inner-specs-list .not-active {
+  color: #DBDBDB; }
+section.product-compare .comparison > .row .inner-specs-list svg {
+  width: 25px;
+  height: 25px; }
 section.product-compare .comparison > .row:not(:last-child) {
   margin-bottom: 10px; }
 
