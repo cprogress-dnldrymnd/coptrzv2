@@ -304,15 +304,15 @@ function __product_compare($id)
         'heading' => get_the_title($id),
     ));
     $html .= "</div>";
+    $html .= "</div>";
 
-    $html .= "<div class='col-lg-3'>";
-    $html .= "<div class='products-specifications products-specifications-v2'>";
+    $html .= "<div class='comparison products-specifications products-specifications-v2'>";
     $html .= "<div class='row'>";
     foreach ($specs as $key => $spec) {
         $icon = get__term_meta($key, 'icon');
         $mime_type =  get_post_mime_type($icon);
 
-        $html .= "<div class='col-12'>";
+        $html .= "<div class='col-3'>";
         $html .= "<div class='inner h-100 d-flex align-items-center'>";
         if (str_contains($mime_type, 'svg')) {
             $html .= __icon(array(
@@ -331,15 +331,20 @@ function __product_compare($id)
             'tag' => 'h5',
         ));
         $html .= "</div>";
+
+        foreach ($products as $product) {
+            $html .= "<div class='col-3'>";
+            $html .= get_the_title($product['id']);
+            $html .= "</div>";
+        }
+
+
         $html .= "</div>";
     }
     $html .= var_dump($specs);
     $html .= "</div>";
     $html .= "</div>";
-    $html .= "</div>";
 
-
-    $html .= "</div>";
     $html .= "</div>";
     $html .= "</section>";
 
