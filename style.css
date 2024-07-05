@@ -10828,6 +10828,9 @@ section.product-main .summary.summary.summary .variations tr {
   object-fit: contain; }
 .products-specifications.products-specifications-v2 {
   margin-top: 2rem; }
+  .products-specifications.products-specifications-v2 .row {
+    --bs-gutter-y: 10px;
+    --bs-gutter-x: 10px; }
   .products-specifications.products-specifications-v2 .inner {
     background-color: var(--bs-light);
     padding: 20px;

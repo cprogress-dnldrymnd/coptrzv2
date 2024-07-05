@@ -409,7 +409,10 @@ section.product-main {
     }
     &.products-specifications-v2 {
         margin-top: 2rem;
-
+        .row {
+            --bs-gutter-y: 10px;
+            --bs-gutter-x: 10px;
+        }
         .inner {
             background-color: var(--bs-light);
             padding: 20px;
