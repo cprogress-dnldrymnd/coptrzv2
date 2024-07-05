@@ -400,6 +400,11 @@ function ___sections($id = 'sections')
                     case 'custom_html':
                         $html .= $items['custom_html'];
                         break;
+                    case 'product_compare':
+                        $compareproducts = $items['compareproducts'];
+                        $compare_id = $compareproducts[0]['id'];
+                        $html .= "[product_compare id='$compare_id']";
+                        break;
                 }
             }
 

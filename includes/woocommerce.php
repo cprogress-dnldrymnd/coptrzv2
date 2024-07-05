@@ -14,7 +14,8 @@ function action_woocommerce_before_main_content()
 
 add_action('woocommerce_before_main_content', 'action_woocommerce_before_main_content');
 
-function action_woocommerce_after_single_product_summary() {
+function action_woocommerce_after_single_product_summary()
+{
     $single_product_content_after = get__post_meta('single_product_content_after');
     echo $single_product_content_after;
 }
@@ -388,6 +389,20 @@ function __product_compare($id)
     return $html;
 }
 
+function product_compare($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+            ),
+            $atts
+        )
+    );
+    return __product_compare($id);
+}
+
+add_shortcode('product_compare', 'product_compare');
 
 function _product_grid_display($id)
 {
