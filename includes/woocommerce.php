@@ -388,7 +388,7 @@ function _product_grid_display($id)
     $title = $product->get_name();
     $permalink = get_the_permalink($id);
     $html = "<ul class='products custom-product-grid'>";
-    $html = "<li class='product type-product post-61545 status-private first instock'>";
+    $html .= "<li class='product type-product post-61545 status-private first instock'>";
     $html .= "<div class='product-inner rounded-10px border-default h-100'>";
     $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
 
