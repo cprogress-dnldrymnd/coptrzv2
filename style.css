@@ -10645,6 +10645,14 @@ ul.products.products.products {
         padding: 10px;
         border-radius: 5px;
         margin: 0; }
+      ul.products.products.products li.product.product .product-inner .add_to_cart_button {
+        color: var(--bs-white);
+        border-color: var(--bs-accent);
+        background-color: var(--bs-accent); }
+        ul.products.products.products li.product.product .product-inner .add_to_cart_button:hover, ul.products.products.products li.product.product .product-inner .add_to_cart_button:active, ul.products.products.products li.product.product .product-inner .add_to_cart_button:focus {
+          background-color: var(--bs-secondary);
+          border-color: var(--bs-secondary);
+          color: var(--bs-white); }
   ul.products.products.products.columns-3 li.product.product {
     flex: 0 0 auto;
     width: 33.333333333%; }

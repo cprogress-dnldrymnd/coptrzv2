@@ -173,6 +173,16 @@ ul.products.products.products {
                 border-radius: 5px;
                 margin: 0;
             }
+
+            a {
+                padding: 1.25rem 5px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .add_to_cart_button {
+                @include button-accent;
+            }
         }
     }
     &.columns-3 {
@@ -540,3 +550,5 @@ section.product-main {
         }
     }
 }
+
+
