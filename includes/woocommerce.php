@@ -178,7 +178,6 @@ function custom_product_variation()
             }
 
             $product_attribute_array[$key] = $attr;
-            
         }
 
         $json = json_encode($product_attribute_array);
@@ -241,10 +240,11 @@ function custom_product_variation()
 add_action('woocommerce_before_variations_form', 'custom_product_variation');
 
 /**
-* Remove hooked actions from single product template to remove unwanted elements
-*
-*/
-public function remove_single_product_elements(){
+ * Remove hooked actions from single product template to remove unwanted elements
+ *
+ */
+function remove_single_product_elements()
+{
     remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 }
-add_action('woocommerce_before_single_product', 'remove_single_product_elements' );
+add_action('woocommerce_before_single_product', 'remove_single_product_elements');
