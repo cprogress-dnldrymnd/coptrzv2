@@ -10,6 +10,8 @@ function product_variation() {
         $variations = JSON.parse($data_variations);
 
         jQuery.each($variations, function (variation_name, variation_val) {
+            jQuery('#' + variation_name).val($variation_val);
+            jQuery('#' + variation_name).trigger('change');
             console.log(variation_name, variation_val);
         });
         e.preventDefault();
