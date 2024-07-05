@@ -32,9 +32,12 @@ function action_woocommerce_before_main_content()
                 }
                 $html .= '</div>';
                 $html .= '</div>';
+
             }
             $html .= '</div>';
             $html .= '</div>';
+            echo $html;
+
         }
     }
 }
