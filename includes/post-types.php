@@ -49,7 +49,7 @@ class newPostType
                 'has_archive'         => $this->has_archive,
                 'hierarchical'        => $this->hierarchical,
                 'rewrite'             => $this->rewrite,
-                'menu__icon'           => $this->icon,
+                'menu_icon'           => $this->icon,
                 'capability_type'     => 'page',
                 'exclude_from_search' => $this->exclude_from_search,
                 'publicly_queryable'  => $this->publicly_queryable,
