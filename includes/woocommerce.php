@@ -158,21 +158,19 @@ function woocommerce_variation_radio_buttons( $html, $args ) {
     $name                 = "attribute_" . sanitize_title( $attribute ); // Set the input name
     $id                   = sanitize_title( $attribute ); // Set the input ID
 
-    // Build the radio button HTML
-    $html = '<div class="variation-radios">';
+    echo '<div class="radio-variations" data-attribute_name="'. esc_attr( $attribute ) .'" data-product_id="'. $product->get_id() .'">';
     foreach ( $options as $option ) {
-        $selected = sanitize_title( $args['selected'] ) === $args['selected'] ? 'checked' : '';
+        $selected = sanitize_title($args['selected']) === $args['selected'] ? checked( $args['selected'], sanitize_title($option), false ) : checked( $args['selected'], $option, false );
 
-        // If you have term information (e.g., color names), you can display them:
-        $term = get_term_by( 'slug', $option, $attribute );
+        // Get the variation ID for this attribute value
+        $variation_id = $product->get_matching_variation(array($attribute => $option));
 
-        // Get the label based on available information 
-        $label = $term && $term->name ? $term->name : $option; 
-
-        $html .= '<input type="radio" name="' . esc_attr( $name ) . '" value="' . esc_attr( $option ) . '" id="' . esc_attr( $option ) . '" ' . $selected . '>';
-        $html .= '<label for="' . esc_attr( $option ) . '">' . esc_html( $label ) . '</label>';
+        echo '<div class="radio-variation">';
+        echo '<input type="radio" name="' . esc_attr( $name ) . '" value="' . esc_attr( $option ) . '" id="' . esc_attr( sanitize_title( $option ) ) . '" ' . $selected . ' data-variation_id="' . $variation_id . '">';
+        echo '<label for="' . esc_attr( sanitize_title( $option ) ) . '">' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</label>';
+        echo '</div>';
     }
-    $html .= '</div>';
+    echo '</div>';
 
     return $html;
 }
