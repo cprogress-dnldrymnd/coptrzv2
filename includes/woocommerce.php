@@ -147,20 +147,8 @@ function bbloomer_translate_may_also_like()
  */
 add_filter('woocommerce_dropdown_variation_attribute_options_html', static function ($html, $args) {
     /** @var array $args */
-    $args = wp_parse_args(apply_filters('woocommerce_dropdown_variation_attribute_options_args', $args), [
-        'options'          => false,
-        'attribute'        => false,
-        'product'          => false,
-        'selected'         => false,
-        'name'             => '',
-        'id'               => '',
-        'class'            => '',
-        'show_option_none' => __('Choose an option', 'woocommerce'),
-    ]);
-
     /** @var WC_Product_Variable $product */
-    $options          = $args['options'];
-    $product          = $args['product'];
+    global $product;
 
     $name = $product->get_name();
     $children = $product->get_children();
