@@ -10944,4 +10944,11 @@ section.product-main .summary.summary.summary .variations tr {
       -webkit-appearance: none;
       margin: 0; }
 
+section.product-compare .products-specifications.products-specifications-v2 .inner {
+  padding: 13px; }
+  section.product-compare .products-specifications.products-specifications-v2 .inner svg,
+  section.product-compare .products-specifications.products-specifications-v2 .inner img {
+    width: 40px;
+    height: 40px; }
+
 /*# sourceMappingURL=style.css.map */

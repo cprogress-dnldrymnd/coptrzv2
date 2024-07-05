@@ -554,3 +554,16 @@ section.product-main {
         }
     }
 }
+
+section.product-compare {
+    .products-specifications.products-specifications-v2 {
+        .inner {
+            padding: 13px;
+            svg,
+            img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+}
