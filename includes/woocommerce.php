@@ -424,7 +424,6 @@ function _product_grid_display($id)
     $html .= '<span class="status d-block mb-2 mt-2"></span>';
 
     $html .= "</a>";
-    $html .= "<span class='status d-block'>";
 
     $html .= "<div class='product-buttons'>";
     $html .= "<div class='row g-10px'>";
