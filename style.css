@@ -10808,7 +10808,8 @@ section.product-main .summary.summary.summary .products-specifications {
   object-fit: contain; }
 
 .product-custom-variation.product-custom-variation {
-  margin-top: 2rem; }
+  margin-top: 2rem;
+  margin-bottom: 2rem; }
   .product-custom-variation.product-custom-variation .select-variant {
     font-size: 22px; }
   .product-custom-variation.product-custom-variation input {
