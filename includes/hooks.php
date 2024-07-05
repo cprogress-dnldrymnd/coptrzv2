@@ -4,7 +4,7 @@ function add_svg_support($mimes) {
     return $mimes;
   }
   add_filter('upload_mimes', 'add_svg_support');
-  
+
 function action_wp_head()
 {
 ?>
@@ -71,6 +71,9 @@ function action_admin_head()
         .preview iframe {
             width: 100%;
             min-height: 100vh;
+        }
+        .cf-complex__inserter-menu{
+            z-index: 999;
         }
 
         <?php
