@@ -10855,8 +10855,6 @@ section.product-main .summary.summary.summary .products-specifications {
       background-color: transparent; }
       .product-custom-variation.product-custom-variation .accordion-item .accordion-button:after {
         margin-left: 1rem; }
-  .product-custom-variation.product-custom-variation + .variations {
-    display: none !important; }
 
 .instock .product-inner:before,
 .onbackorder .product-inner:before,
