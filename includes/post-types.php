@@ -597,5 +597,5 @@ $Product_compare->supports = array('title', 'revisions','excerpt');
 $Product_compare->exclude_from_search = true;
 $Product_compare->publicly_queryable = true;
 $Product_compare->show_in_admin_bar = false;
-$Product_compare->has_archive = false;
+$Product_compare->has_archive = true;
 $Product_compare->show_in_rest = false;
