@@ -395,4 +395,15 @@ section.products-specifications {
             }
         }
     }
+    .accordion-item {
+        border: none;
+        padding: 0;
+        border-top: 1px solid var(--bs-light);
+        padding-top: 10px;
+        margin-top: 10px;
+        .accordion-button {
+            padding: 0;
+            width: auto;
+        }
+    }
 }
