@@ -272,5 +272,3 @@ function bbloomer_display_quantity_plus()
     if (!is_product()) return;
     echo '<button type="button" class="plus" >+</button>';
 }
-
-add_action('woocommerce_before_single_product', 'bbloomer_add_cart_quantity_plus_minus');
