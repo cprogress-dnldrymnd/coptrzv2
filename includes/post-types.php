@@ -586,3 +586,16 @@ $Model3D_Category->args = array(
     'show_in_rest' => true,
 
 );
+
+
+
+$Product_compare = new newPostType();
+$Product_compare->name = 'Compare Products';
+$Product_compare->singular_name = 'Compare Product';
+$Product_compare->icon = 'dashicons-testimonial';
+$Product_compare->supports = array('title', 'revisions', 'editor', 'excerpt');
+$Product_compare->exclude_from_search = true;
+$Product_compare->publicly_queryable = true;
+$Product_compare->show_in_admin_bar = false;
+$Product_compare->has_archive = false;
+$Product_compare->show_in_rest = true;
