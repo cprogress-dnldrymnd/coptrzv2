@@ -143,37 +143,78 @@ function bbloomer_translate_may_also_like()
 }
 
 /**
- * Convert WooCommerce Variation Selects to Radio Buttons
+ * Output radio buttons on WooCommerce variations.
  */
-function woocommerce_variation_radio_buttons( $html, $args ) {
+add_filter('woocommerce_dropdown_variation_attribute_options_html', static function ($html, $args) {
+    /** @var array $args */
+    $args = wp_parse_args(apply_filters('woocommerce_dropdown_variation_attribute_options_args', $args), [
+        'options'          => false,
+        'attribute'        => false,
+        'product'          => false,
+        'selected'         => false,
+        'name'             => '',
+        'id'               => '',
+        'class'            => '',
+        'show_option_none' => __('Choose an option', 'woocommerce'),
+    ]);
 
-    // Ensure the function only runs for product variations
-    if ( empty( $args['options'] ) || empty( $args['attribute'] ) || empty( $args['product'] ) ) {
-        return $html;
+    /** @var WC_Product_Variable $product */
+    $options          = $args['options'];
+    $product          = $args['product'];
+    $attribute        = $args['attribute'];
+    $name             = $args['name'] ?: 'attribute_' . sanitize_title($attribute);
+    $id               = $args['id'] ?: sanitize_title($attribute);
+    $class            = $args['class'];
+    $show_option_none = (bool)$args['show_option_none'];
+    // We'll do our best to hide the placeholder, but we'll need to show something when resetting options.
+    $show_option_none_text = $args['show_option_none'] ?: __('Choose an option', 'woocommerce');
+
+    // Get selected value.
+    if ($attribute && $product instanceof WC_Product && $args['selected'] === false) {
+        $selected_key     = 'attribute_' . sanitize_title($attribute);
+        $args['selected'] = isset($_REQUEST[$selected_key]) ? wc_clean(wp_unslash($_REQUEST[$selected_key]))
+            : $product->get_variation_default_attribute($attribute); // WPCS: input var ok, CSRF ok, sanitization ok.
     }
 
-    $options               = $args['options'];
-    $product               = $args['product'];
-    $attribute             = $args['attribute'];
-    $name                 = "attribute_" . sanitize_title( $attribute ); // Set the input name
-    $id                   = sanitize_title( $attribute ); // Set the input ID
-
-    // Build the radio button HTML
-    $html = '<div class="variation-radios">';
-    foreach ( $options as $option ) {
-        $selected = sanitize_title( $args['selected'] ) === $args['selected'] ? 'checked' : '';
-
-        // If you have term information (e.g., color names), you can display them:
-        $term = get_term_by( 'slug', $option, $attribute );
-
-        // Get the label based on available information 
-        $label = $term && $term->name ? $term->name : $option; 
-
-        $html .= '<input type="radio" name="' . esc_attr( $name ) . '" value="' . esc_attr( $option ) . '" id="' . esc_attr( $option ) . '" ' . $selected . '>';
-        $html .= '<label for="' . esc_attr( $option ) . '">' . esc_html( $label ) . '</label>';
+    if (empty($options) && !empty($product) && !empty($attribute)) {
+        $attributes = $product->get_variation_attributes();
+        $options    = $attributes[$attribute];
     }
-    $html .= '</div>';
 
-    return $html;
-}
-add_filter( 'woocommerce_dropdown_variation_attribute_options_html', 'woocommerce_variation_radio_buttons', 10, 2 );
+    $radios = '<div class="custom-wc-variations">';
+
+    if (!empty($options)) {
+        if ($product && taxonomy_exists($attribute)) {
+            $terms = wc_get_product_terms($product->get_id(), $attribute, ['fields' => 'all']);
+
+            foreach ($terms as $term) {
+                if (in_array($term->slug, $options, true)) {
+
+                    $radios .= '<input type="radio" name="custom_' . esc_attr($name) . '" data-value="' . esc_attr($term->slug) . '" id="'
+                        . esc_attr($name) . '_' . esc_attr($term->slug) . '" data-variation-name="' . esc_attr($name) . '" '
+                        . checked(sanitize_title($args['selected']), $term->slug, false) . '>';
+                    $radios .= '<label for="' . esc_attr($name) . '_' . esc_attr($term->slug) . '">';
+                    $radios .= esc_html(apply_filters('woocommerce_variation_option_name', $term->name));
+                    $radios .= '</label>';
+                }
+            }
+        } else {
+            foreach ($options as $option) {
+                $checked = sanitize_title($args['selected']) === $args['selected'] ? checked(
+                    $args['selected'],
+                    sanitize_title($option),
+                    false
+                ) : checked($args['selected'], $option, false);
+                $radios  .= '<input type="radio" name="custom_' . esc_attr($name) . '" data-value="' . esc_attr($option) . '" id="'
+                    . esc_attr($name) . '_' . esc_attr($option) . '" data-variation-name="' . esc_attr($name) . '" ' . $checked . '>';
+                $radios  .= '<label for="' . esc_attr($name) . '_' . esc_attr($option) . '">';
+                $radios  .= esc_html(apply_filters('woocommerce_variation_option_name', $option));
+                $radios  .= '</label>';
+            }
+        }
+    }
+
+    $radios .= '</div>';
+
+    return $html . $radios;
+}, 20, 2);
