@@ -15,12 +15,16 @@ function product_variation() {
 
         jQuery('.variations select').each(function (index, element) {
             var $this = jQuery(this);
-            setTimeout(function () {
-                $selected = $this.attr('selected_variation');
-                $this.val($selected);
-                $this.trigger('change');
-            }, 300);
+            $selected = $this.attr('selected_variation');
+            $this.val($selected);
         });
+
+        setTimeout(function () {
+
+            jQuery('.variations select').trigger('change');
+
+        }, 500);
+
         e.preventDefault();
     });
 
