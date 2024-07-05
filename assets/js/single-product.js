@@ -7,7 +7,7 @@ function product_variation() {
 
     jQuery('input[name="variation-radio"]').change(function (e) { 
         $data_variations = jQuery(this).attr('data-variations');
-        console.log(JSON.parse($data_variations));
+        console.log($data_variations);
         e.preventDefault();
     });
 
