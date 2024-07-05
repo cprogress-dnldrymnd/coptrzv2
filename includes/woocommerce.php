@@ -141,3 +141,34 @@ function bbloomer_translate_may_also_like()
 {
     return 'COPTRZ Recommended Accessories:';
 }
+
+
+// Add this code to your theme's functions.php file
+function custom_radio_variation_select( $args ) {
+    global $product;
+
+    $options  = $args['options'];
+    $product  = $args['product'];
+    $attribute = $args['attribute'];
+    $name     = $args['name'] ?: 'attribute_'. sanitize_title( $attribute );
+    $id       = $args['id'] ?: sanitize_title( $attribute );
+
+    if ( empty( $options ) && ! empty( $product ) && ! empty( $attribute ) ) {
+        $attributes = $product->get_variation_attributes();
+        $options    = $attributes[ $attribute ];
+    }
+
+    echo '<div class="radio-variations" data-attribute_name="'. esc_attr( $attribute ) .'" data-product_id="'. $product->get_id() .'">';
+    foreach ( $options as $option ) {
+        $selected = sanitize_title($args['selected']) === $args['selected'] ? checked( $args['selected'], sanitize_title($option), false ) : checked( $args['selected'], $option, false );
+
+        // Get the variation ID for this attribute value
+        $variation_id = $product->get_matching_variation(array($attribute => $option));
+
+        echo '<div class="radio-variation">';
+        echo '<input type="radio" name="' . esc_attr( $name ) . '" value="' . esc_attr( $option ) . '" id="' . esc_attr( sanitize_title( $option ) ) . '" ' . $selected . ' data-variation_id="' . $variation_id . '">';
+        echo '<label for="' . esc_attr( sanitize_title( $option ) ) . '">' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</label>';
+        echo '</div>';
+    }
+    echo '</div>';
+}

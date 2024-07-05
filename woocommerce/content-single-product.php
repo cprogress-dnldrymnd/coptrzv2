@@ -51,6 +51,10 @@ if (post_password_required()) {
 				<div class="col">
 					<div class="summary entry-summary">
 						<?php
+						$args=array(
+							'product' => $product
+						);
+						custom_radio_variation_select($args);
 						/**
 						 * Hook: woocommerce_single_product_summary.
 						 *

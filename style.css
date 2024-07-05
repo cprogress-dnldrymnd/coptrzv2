@@ -10149,7 +10149,7 @@ section .container > *:not(:last-child) {
   width: 100% !important; }
 .video-box.youtube {
   position: relative;
-  padding: 40%; }
+  padding: 28%; }
   .video-box.youtube iframe {
     position: absolute;
     left: 0;
