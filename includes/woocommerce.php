@@ -283,5 +283,4 @@ function buy_now_button()
     $html .= '</div>';
     echo $html;
 }
-add_action('woocommerce_after_shop_loop_item', 'buy_now_button', 20);
 add_action('woocommerce_after_add_to_cart_button', 'buy_now_button', 20);
