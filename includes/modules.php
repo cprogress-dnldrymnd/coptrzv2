@@ -26,8 +26,8 @@ function action_module_content()
         if (get_post_type() == 'product') {
 
             $post_content = ___hero_product();
-            $post_content .= ___sections();
             $post_content .= __product_specifications();
+            $post_content .= ___sections();
 
             update_post_meta(get_the_ID(), '_single_product_content', $post_content);
         }
