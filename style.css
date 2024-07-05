@@ -10404,6 +10404,9 @@ ul.products.products.products {
         width: 50%; } }
   ul.products.products.products.columns-3 li.product.product {
     width: 25%; }
+    @media screen and (max-width: 991px) {
+      ul.products.products.products.columns-3 li.product.product {
+        width: 50%; } }
   ul.products.products.products:before, ul.products.products.products:after {
     display: none; }
 
