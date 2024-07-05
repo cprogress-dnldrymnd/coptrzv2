@@ -10900,10 +10900,26 @@ section.product-main .summary.summary.summary .products-specifications {
     font-size: 15px;
     border-radius: 10px;
     line-height: 1.25;
-    background-color: transparent; }
+    background-color: transparent;
+    padding: 10px;
+    width: 60.75px;
+    height: 60.75px;
+    font-size: 26px; }
     .quantity button:hover, .quantity button:active, .quantity button:focus {
       background-color: var(--bs-accent);
       border-color: var(--bs-accent);
       color: var(--bs-white); }
+  .quantity input {
+    height: 60.75px;
+    height: 60.75px;
+    border: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 1px dotted;
+    text-align: center;
+    -moz-appearance: textfield; }
+    .quantity input:-webkit-outer-spin-button, .quantity input:-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0; }
 
 /*# sourceMappingURL=style.css.map */
