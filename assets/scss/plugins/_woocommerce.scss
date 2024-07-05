@@ -382,8 +382,19 @@ section.products-specifications {
 }
 
 .product-custom-variation {
+    input {
+        display: none;
+        &:checked {
+            & + label {
+                .inner {
+                    border-color: var(--bs-accent);
+                }
+            }
+        }
+    }
     .inner {
-        border: 1px solid var(--bs-light);
+        border: 2px solid var(--bs-light);
+        @include transition(500ms);
         h5 {
             font-size: 17px;
         }
@@ -401,7 +412,7 @@ section.products-specifications {
     .accordion-item {
         border: none;
         padding: 0;
-        border-top: 2px solid var(--bs-light);
+        border-top: 1px solid var(--bs-light);
         padding-top: 10px;
         margin-top: 10px;
         .accordion-button {

@@ -10787,8 +10787,17 @@ section.products-specifications .inner img {
   height: 56px;
   object-fit: contain; }
 
+.product-custom-variation input {
+  display: none; }
+  .product-custom-variation input:checked + label .inner {
+    border-color: var(--bs-accent); }
 .product-custom-variation .inner {
-  border: 1px solid var(--bs-light); }
+  border: 2px solid var(--bs-light);
+  -webkit-transition: 500ms;
+  -moz-transition: 500ms;
+  -ms-transition: 500ms;
+  -o-transition: 500ms;
+  transition: 500ms; }
   .product-custom-variation .inner h5, .product-custom-variation .inner .h5 {
     font-size: 17px; }
   .product-custom-variation .inner .variation-image img {
@@ -10800,7 +10809,7 @@ section.products-specifications .inner img {
 .product-custom-variation .accordion-item {
   border: none;
   padding: 0;
-  border-top: 2px solid var(--bs-light);
+  border-top: 1px solid var(--bs-light);
   padding-top: 10px;
   margin-top: 10px; }
   .product-custom-variation .accordion-item .accordion-button {
