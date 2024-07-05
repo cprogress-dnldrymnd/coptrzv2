@@ -10001,14 +10001,15 @@ section .container > *:not(:last-child) {
 .button-box a,
 .button-box button,
 .button.button.button.button.button {
-  padding: 1.15rem 2.5rem;
+  padding: 1.25rem 2.5rem;
   border: 1px solid;
   display: inline-block;
   text-decoration: none;
   color: currentCOlor;
   font-weight: 600;
   font-size: 15px;
-  border-radius: 10px; }
+  border-radius: 10px;
+  line-height: 1; }
 
 .button-box.button-box.button-box.button-accent a,
 .button-box.button-box.button-box.button-accent button {
@@ -10885,5 +10886,9 @@ section.product-main .summary.summary.summary .products-specifications {
 
 .ppcp-messages.ppcp-messages {
   margin-bottom: 3rem; }
+
+.quantity {
+  display: flex;
+  align-items: center; }
 
 /*# sourceMappingURL=style.css.map */
