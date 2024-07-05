@@ -188,8 +188,8 @@ function custom_product_variation()
         $price = $variation->get_price_html();
         $html .= '<div class="col-12">';
         $html .= "<input stock='$stock_status_variation' type='radio' id='variation-$child' $variations value='$child'  name='variation-radio'>";
-        $html .= "<label for='variation-$child' class='variation-label w-100'>";
-        $html .= "<div class='inner d-flex align-items-center w-100 p-20px rounded-corner $stock_status_variation'>";
+        $html .= "<label for='variation-$child' class='variation-label w-100 $stock_status_variation'>";
+        $html .= "<div class='inner product-inner d-flex align-items-center w-100 p-20px rounded-corner'>";
         $html .= "<div class='col-auto'>";
         $html .= __image(array(
             'image_id' => $thumbnail,

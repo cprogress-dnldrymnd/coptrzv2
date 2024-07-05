@@ -1207,7 +1207,7 @@ function __product_specifications($for_product_summary = false)
 
 
             $html .= "<div class='$class'>";
-            $html .= '<div class="inner product-inner h-100 d-flex align-items-center">';
+            $html .= '<div class="inner h-100 d-flex align-items-center">';
             if (str_contains($mime_type, 'svg')) {
                 $html .= __icon(array(
                     'id' => $icon,
