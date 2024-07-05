@@ -1146,10 +1146,11 @@ function __product_specifications()
 
 
             $html .= '<div class="col-auto">';
-            $html .= '<div class="inner">';
+            $html .= '<div class="inner d-flex align-items-center">';
             if (str_contains($mime_type, 'svg')) {
                 $html .= __icon(array(
                     'id' => $icon,
+                    'class' => 'me-3'
                 ));
             } else {
                 $html .= __image(array(
