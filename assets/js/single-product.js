@@ -1,10 +1,10 @@
 jQuery(document).ready(function () {
     product_gallery();
     product_variation();
-    //paypal();
+    move_paypal();
 });
 
-function paypal() {
+function move_paypal() {
     setTimeout(function () {
         jQuery('.ppcp-messages').insertAfter('.summary .price');
     }, 500);
