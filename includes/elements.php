@@ -136,6 +136,8 @@ function __video($data)
             $parameters = '';
             if ($autoplay) {
                 $parameters = 'autoplay loop muted';
+            } else {
+                $parameters = 'controls';
             }
             if ($class) {
                 $attributes_args[] = $class;
