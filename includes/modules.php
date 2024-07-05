@@ -1138,7 +1138,7 @@ function __product_specifications()
     if ($pa_specifications) {
         $html = '<section class="products-specifications mt-20px">';
         $html .= '<div class="container">';
-        $html .= '<div class="row g-4">';
+        $html .= '<div class="row g-4 justify-content-center">';
         foreach ($pa_specifications as $specification) {
             $icon = get__term_meta($specification->term_id, 'icon');
             $mime_type =  get_post_mime_type($icon);
