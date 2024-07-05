@@ -10887,11 +10887,11 @@ section.product-main .summary.summary.summary .products-specifications {
 .ppcp-messages.ppcp-messages {
   margin-bottom: 3rem; }
 
-.quantity {
+.quantity.quantity.quantity {
   display: flex;
   align-items: center;
   margin-right: 15px; }
-  .quantity button {
+  .quantity.quantity.quantity button {
     padding: 1.25rem 2.5rem;
     border: 1px solid;
     display: inline-block;
@@ -10906,11 +10906,11 @@ section.product-main .summary.summary.summary .products-specifications {
     width: 60.75px;
     height: 60.75px;
     font-size: 26px; }
-    .quantity button:hover, .quantity button:active, .quantity button:focus {
+    .quantity.quantity.quantity button:hover, .quantity.quantity.quantity button:active, .quantity.quantity.quantity button:focus {
       background-color: var(--bs-accent);
       border-color: var(--bs-accent);
       color: var(--bs-white); }
-  .quantity input {
+  .quantity.quantity.quantity input {
     height: 60.75px;
     height: 60.75px;
     border: none;
@@ -10920,7 +10920,7 @@ section.product-main .summary.summary.summary .products-specifications {
     text-align: center;
     -moz-appearance: textfield;
     outline: none; }
-    .quantity input::-webkit-outer-spin-button, .quantity input::-webkit-inner-spin-button {
+    .quantity.quantity.quantity input::-webkit-outer-spin-button, .quantity.quantity.quantity input::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0; }
 
