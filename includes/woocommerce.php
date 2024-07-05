@@ -155,8 +155,8 @@ function custom_product_variation()
     $main_thumbnail = get_post_thumbnail_id($product->get_id());
 
     $html = '<div class="product-custom-variation">';
-    $html .= '<div class="row">';
     $html .= '<div class="accordion" id="accordionVariation">';
+    $html .= '<div class="row">';
 
     foreach ($children as $child) {
         $variation = wc_get_product($child);
@@ -196,6 +196,20 @@ function custom_product_variation()
             'heading' => $variation_name,
             'tag' => 'h5'
         ));
+
+        $html .= '<div class="accordion-item">'; //accordion-item
+        $html .= "<div class='accordion-header' id='heading-variation-$child'> <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse-variation-$child' aria-expanded='false' aria-controls='collapse-variation-$child'> Package Contents </button> </div>";
+
+        $html .= "<div id='collapse-variation-$child' class='accordion-collapse collapse' aria-labelledby='heading-variation-$child' data-bs-parent='#accordionVariation'>";
+        $html .= '<div class="accordion-body">';
+        $html .= __description(array(
+            'description' => $description
+        ));
+        $html .= '</div>';
+        $html .= '</div>';
+
+
+        $html .= '</div>'; //end-accordion-item
 
         $html .= '</div>';
         $html .= '</div>';
