@@ -1,7 +1,7 @@
 jQuery(document).ready(function () {
     product_gallery();
     product_variation();
-    move_paypal();
+   // move_paypal();
 });
 
 function move_paypal() {
