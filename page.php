@@ -7,10 +7,12 @@
 <?php get_header(); ?>
 
 
-<div class="modules">
-    <?php
-    the_content();
-    ?>
-</div>
+<section class="default-page">
+    <div class="container">
+        <?php
+        the_content();
+        ?>
+    </div>
+</section>
 
 <?php get_footer(); ?>
