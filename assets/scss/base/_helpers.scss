@@ -94,3 +94,7 @@ $spacings: (
 .small-width {
     max-width: 730px;
 }
+
+.text-accent {
+    color: var(--bs-accent) !important;
+}
