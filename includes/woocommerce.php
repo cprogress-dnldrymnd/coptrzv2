@@ -397,7 +397,7 @@ function _product_grid_display($id)
     $html .= "<div class='wc-img-wrapper'>";
     $html .= "<img width='300' height='225' src='$post_thumnail' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='$title' decoding='async'>";
     $html .= "</div>";
-    $html .= "<h2 class='woocommerce-loop-product__title'>$title</h2>";
+    $html .= "<h2 class='woocommerce-loop-product__title mb-0'>$title</h2>";
     $html .= $product->get_price_html();
     $html .= '<span class="status"></span>';
 
