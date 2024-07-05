@@ -307,10 +307,10 @@ function __product_compare($id)
     $html .= "</div>";
 
     $html .= "<div class='comparison products-specifications products-specifications-v2'>";
-    $html .= "<div class='row'>";
     foreach ($specs as $key => $spec) {
         $icon = get__term_meta($key, 'icon');
         $mime_type =  get_post_mime_type($icon);
+        $html .= "<div class='row'>";
 
         $html .= "<div class='col-3'>";
         $html .= "<div class='inner h-100 d-flex align-items-center'>";
@@ -338,11 +338,11 @@ function __product_compare($id)
             $html .= "</div>";
         }
 
+        $html .= "</div>";
 
         $html .= "</div>";
     }
     $html .= var_dump($specs);
-    $html .= "</div>";
     $html .= "</div>";
 
     $html .= "</div>";
