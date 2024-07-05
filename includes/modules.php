@@ -1202,8 +1202,6 @@ function __product_specifications($for_product_summary = false)
             $icon = get__term_meta($specification->term_id, 'icon');
             $mime_type =  get_post_mime_type($icon);
 
-
-
             $html .= "<div class='$class'>";
             $html .= '<div class="inner h-100 d-flex align-items-center">';
             if (str_contains($mime_type, 'svg')) {

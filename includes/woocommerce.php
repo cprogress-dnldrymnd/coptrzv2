@@ -292,7 +292,7 @@ function __product_compare($id)
     foreach ($products as $product) {
         $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
         foreach ($pa_specifications as $specification) {
-            $specs[] = $specification->term_id;
+            $specs[$specification->term_id] = $specification->name;
         }
     }
 
@@ -306,7 +306,36 @@ function __product_compare($id)
     $html .= "</div>";
 
     $html .= "<div class='col-lg-3'>";
+    $html .= "<div class='products-specifications'>";
+    $html .= "<div class='row'>";
+    foreach ($specs as $key => $spec) {
+        $icon = get__term_meta($key, 'icon');
+        $mime_type =  get_post_mime_type($icon);
+
+        $html .= "<div class='col-12'>";
+        $html .= "<div class='inner h-100 d-flex align-items-center'>";
+        if (str_contains($mime_type, 'svg')) {
+            $html .= __icon(array(
+                'id' => $icon,
+                'class' => _attribute('class', array('me-3 text-accent'))
+            ));
+        } else {
+            $html .= __image(array(
+                'image_id' => $icon,
+                'class' => _attribute('class', array('me-3 text-accent'))
+            ));
+        }
+        $html .= __heading(array(
+            'heading' => $spec,
+            'class' => _attribute('class', array('mb-0')),
+            'tag' => 'h5',
+        ));
+        $html .= "</div>";
+        $html .= "</div>";
+    }
     $html .= var_dump($specs);
+    $html .= "</div>";
+    $html .= "</div>";
     $html .= "</div>";
 
 
