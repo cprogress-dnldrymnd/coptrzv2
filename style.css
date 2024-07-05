@@ -10955,8 +10955,8 @@ section.product-compare .comparison > .row .inner-specs-list .active {
 section.product-compare .comparison > .row .inner-specs-list .not-active {
   color: #DBDBDB; }
 section.product-compare .comparison > .row .inner-specs-list svg {
-  width: 25px;
-  height: 25px; }
+  width: 30px;
+  height: 30px; }
 section.product-compare .comparison > .row:not(:last-child) {
   margin-bottom: 10px; }
 
