@@ -10,7 +10,6 @@ function product_variation() {
         $data_variations = jQuery(this).attr('data_variations');
 
         jQuery('input[name="variation_id"]').val($value);
-        jQuery('.single_add_to_cart_button').removeClass('disabled wc-variation-selection-needed');
 
 
         $variations = JSON.parse($data_variations);
@@ -18,11 +17,14 @@ function product_variation() {
             jQuery('#' + $variation_name).val($variation_val);
         });
 
+        setTimeout(function () {
+            jQuery('.single_add_to_cart_button').removeClass('disabled wc-variation-selection-needed');
+        }, 500);
 
         e.preventDefault();
     });
 
-  
+
 }
 
 function product_gallery() {
