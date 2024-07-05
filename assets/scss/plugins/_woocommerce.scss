@@ -395,6 +395,9 @@ section.products-specifications {
             }
         }
     }
+    .row {
+        --bs-gutter-y: 10px;
+    }
     .accordion-item {
         border: none;
         padding: 0;

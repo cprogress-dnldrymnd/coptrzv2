@@ -10795,6 +10795,8 @@ section.products-specifications .inner img {
     width: 128px;
     height: 98px;
     object-fit: contain; }
+.product-custom-variation .row {
+  --bs-gutter-y: 10px; }
 .product-custom-variation .accordion-item {
   border: none;
   padding: 0;
