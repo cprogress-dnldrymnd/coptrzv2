@@ -391,7 +391,7 @@ function _product_grid_display($id)
     $stock_status =  $product->get_stock_status();
     
     $html = "<ul class='products custom-product-grid m-0 p-0'>";
-    $html .= "<li class='product status-style-2 m-0 p-0 post-$id $stock_status'>";
+    $html .= "<li class='product status-style-2 m-0 p-0 w-100 post-$id $stock_status'>";
     $html .= "<div class='product-inner rounded-10px border-default h-100 bg-white'>";
     $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
     $html .= "<div class='wc-img-wrapper'>";

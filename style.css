@@ -10629,7 +10629,11 @@ ul.products.products.products {
         position: relative; }
         ul.products.products.products li.product.product .product-inner .wc-img-wrapper img {
           position: absolute;
-          left: 0; }
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover; }
       ul.products.products.products li.product.product .product-inner .woocommerce-loop-product__title {
         color: var(--bs-black); }
       ul.products.products.products li.product.product .product-inner .price {
