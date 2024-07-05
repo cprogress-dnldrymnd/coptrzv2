@@ -10390,8 +10390,8 @@ ul.products.products.products {
         bottom: 20px;
         left: 20px;
         right: 20px; }
-        ul.products.products.products li.product.product .product-inner .product-buttons .col-6 .button.button.button,
-        ul.products.products.products li.product.product .product-inner .product-buttons .col-6 .button-box a {
+        ul.products.products.products li.product.product .product-inner .product-buttons .col-sm-6 .button.button.button,
+        ul.products.products.products li.product.product .product-inner .product-buttons .col-sm-6 .button-box a {
           padding: 1.25rem 5px;
           text-align: center;
           width: 100%; }
