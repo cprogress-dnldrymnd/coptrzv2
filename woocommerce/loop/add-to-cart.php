@@ -23,6 +23,7 @@ if (!defined('ABSPATH')) {
 global $product;
 ?>
 <span class='status d-block'>
+</span>
 <div class="product-buttons">
 	<div class="row g-10px">
 		<div class="col-sm-6">
