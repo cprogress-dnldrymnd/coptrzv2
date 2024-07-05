@@ -2679,7 +2679,8 @@ Container::make('term_meta', __('Category Properties'))
 Container::make('post_meta', __('Product Settings'))
     ->where('post_type', '=', 'product')
     ->add_fields(array(
-        Field::make('hidden', 'single_product_content', __(''))
+        Field::make('hidden', 'single_product_content', __('')),
+        Field::make('hidden', 'single_product_content_after', __(''))
     ));
 
 

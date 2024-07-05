@@ -25,11 +25,12 @@ function action_module_content()
 
         if (get_post_type() == 'product') {
 
-            $post_content = ___hero_product();
-            $post_content .= __product_specifications();
-            $post_content .= ___sections();
+            $single_product_content = ___hero_product();
+            $single_product_content .= __product_specifications();
+            $single_product_content .= ___sections('sections_after_main');
 
-            update_post_meta(get_the_ID(), '_single_product_content', $post_content);
+            update_post_meta(get_the_ID(), '_single_product_content', $single_product_content);
+            update_post_meta(get_the_ID(), '_single_product_content_after', $post_content);
         }
     }
 }
@@ -140,9 +141,9 @@ function ___hero_product()
         return $hero;
     }
 }
-function ___sections()
+function ___sections($id = 'sections')
 {
-    $sections = get__post_meta('sections');
+    $sections = get__post_meta($id);
     $html = '';
     foreach ($sections as $key => $section) {
         $disable_section = $section['disable_section'];
