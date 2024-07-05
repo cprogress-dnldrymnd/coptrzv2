@@ -367,19 +367,12 @@ function ___sections()
                         $video_type = $items['video_type'];
                         $video = $items['video'];
                         $youtube_video_id = $items['youtube_video_id'];
-                        if ($youtube_video_id && $video_type == 'youtube') {
-                            $html .= __video(array(
-                                'youtube_video_id' => $youtube_video_id,
-                                'autoplay' => $autoplay,
-                                'class' => _attribute('class', array('video-box'))
-                            ));
-                        } else if ($video) {
-                            $html .=  $html .= __video(array(
-                                'video_id' => $video,
-                                'autoplay' => $autoplay,
-                                'class' => _attribute('class', array('video-box'))
-                            ));
-                        }
+                        $html .= __video(array(
+                            'youtube_video_id' => $youtube_video_id,
+                            'autoplay' => $autoplay,
+                            'video_type' => $video_type,
+                            'class' => _attribute('class', array('video-box'))
+                        ));
                         break;
                     case 'gallery':
                         $html .= ____gallery_modules(array(
