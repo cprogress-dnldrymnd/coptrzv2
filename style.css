@@ -10989,6 +10989,7 @@ section.product-compare .comparison > .row:not(:last-child) {
   list-style: none;
   padding: 0; }
   .custom-product-grid a {
+    color: var(--bs-black);
     text-decoration: none; }
 
 /*# sourceMappingURL=style.css.map */
