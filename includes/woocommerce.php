@@ -290,7 +290,7 @@ function __product_compare($id)
     $specs = array();
 
     foreach ($products as $product) {
-        $pa_specifications = get_the_terms($id, 'pa_specifications');
+        $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
         foreach ($pa_specifications as $specification) {
             $specs[] = $specification->term_id;
         }
