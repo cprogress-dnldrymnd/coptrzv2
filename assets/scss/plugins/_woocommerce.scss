@@ -309,6 +309,10 @@ ul.products.products.products {
 }
 
 section.product-main {
+    .images {
+        position: sticky;
+        top: 52px;
+    }
     > .container > .row {
         > div {
             > div {
