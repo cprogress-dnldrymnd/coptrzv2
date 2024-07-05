@@ -1154,7 +1154,8 @@ function __product_specifications()
                 ));
             } else {
                 $html .= __image(array(
-                    'id' => $icon,
+                    'image_id' => $icon,
+                    'class' => _attribute('class', 'me-3 text-accent')
                 ));
             }
             $html .= __heading(array(
