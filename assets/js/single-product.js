@@ -4,20 +4,10 @@ jQuery(document).ready(function () {
 });
 
 function product_variation() {
-    const customVariations = document.getElementsByClassName('custom-wc-variations');
-    if (customVariations.length > 0) {
-        Array.from(customVariations).forEach(function (variation) {
-            const radios = variation.querySelectorAll('input[type=radio]');
-            radios.forEach(function (radio) {
-                radio.addEventListener('change', function () {
-                    const variationName = radio.getAttribute('data-variation-name');
-                    const selectBox = document.querySelector('select[name=' + variationName + ']');
-                    selectBox.value = radio.getAttribute('data-value');
-                    jQuery(selectBox).trigger('change');
-                });
-            });
-        });
-    }
+    jQuery('input[name="variation-radio"]').change(function (e) { 
+        console.log('xxxxx');
+        e.preventDefault();
+    });
 }
 
 function product_gallery() {
