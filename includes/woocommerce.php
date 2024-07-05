@@ -10,7 +10,7 @@ function action_woocommerce_before_main_content()
         echo $single_product_content;
 
         global $product;
-        $pa_specifications = $product->get_attribute('pa_specifications');
+        $pa_specifications = array_shift( wc_get_product_terms( $product->id, 'pa_specifications', array( 'fields' => 'ids' ) ) );
         echo '<pre>';
         var_dump($pa_specifications);
         echo '</pre>';
