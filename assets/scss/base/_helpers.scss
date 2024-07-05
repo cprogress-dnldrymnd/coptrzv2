@@ -105,3 +105,7 @@ $spacings: (
 .fw-medium {
     font-weight: 500 !important;
 }
+.g-10px {
+    --bs-gutter-x: 10px;;
+    --bs-gutter-y: 10px;
+}

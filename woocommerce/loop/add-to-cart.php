@@ -23,7 +23,7 @@ if (!defined('ABSPATH')) {
 global $product;
 ?>
 <div class="product-buttons">
-	<div class="row g-3">
+	<div class="row g-10px">
 		<div class="col-sm-6">
 			<?php
 			echo apply_filters(
