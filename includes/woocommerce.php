@@ -293,13 +293,13 @@ function __product_compare($id)
     $html .= __heading(array(
         'heading' => get_the_title($id),
     ));
-    $html = "</div>";
+    $html .= "</div>";
 
 
 
-    $html = "</div>";
-    $html = "</div>";
-    $html = "</section>";
+    $html .= "</div>";
+    $html .= "</div>";
+    $html .= "</section>";
 
 
     return $html;
