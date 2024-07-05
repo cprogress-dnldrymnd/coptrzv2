@@ -10763,4 +10763,7 @@ section.products-specifications .inner img {
   height: 56px;
   object-fit: contain; }
 
+.product-custom-variation .inner {
+  border: 1px solid var(--bs-light); }
+
 /*# sourceMappingURL=style.css.map */

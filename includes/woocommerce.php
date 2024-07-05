@@ -182,10 +182,11 @@ function custom_product_variation()
         $html .= '<div class="col-12">';
         $html .= "<input stock='$stock_status_variation' type='radio' id='variation-$child' $variations value='$child'  name='variation-radio'>";
         $html .= "<label for='variation-$child' class='variation-label status-$stock_status_variation'>";
-        $html .= '<div class="inner d-flex">';
+        $html .= '<div class="inner d-flex w-100 p-20px rounded-corner">';
         $html .= "<div class='col-auto'>";
         $html .= __image(array(
             'image_id' => $thumbnail,
+            'class' => _attribute('class', array('variation-image')),
             'size' => 'thumbnail'
         ));
         $html .= '</div>';
