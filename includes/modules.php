@@ -362,6 +362,17 @@ function ___sections()
 
                         $html .= __image($image_args);
                         break;
+                    case 'video':
+                        $autoplay = $items['autoplay'] ? true : false;
+                        $video_type = $items['video_type'];
+                        $video = $items['video'];
+                        $youtube_video_id = $items['youtube_video_id'];
+                        if ($youtube_video_id && $video_type == 'youtube') {
+                            $html .= _background($youtube_video_id, true);
+                        } else if ($video) {
+                            $html .= _background($video);
+                        }
+                        break;
                     case 'gallery':
                         $html .= ____gallery_modules(array(
                             'id' => $section_id_val . $key,

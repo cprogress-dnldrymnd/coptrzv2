@@ -119,24 +119,34 @@ function __image($data)
 function __video($data)
 {
     $video_url = wp_get_attachment_url($data['video_id']);
-
-    if ($video_url) {
-        $class = isset($data['class']) ? $data['class'] : false;
-        $attributes_args = [];
-        if ($class) {
-            $attributes_args[] = $class;
+    $is_youtube = $data['is_youtube'] ? true : false;
+    $autoplay = $data['is_youtube'];
+    if ($is_youtube) {
+        $parameters = '';
+        $youtube_video_id = $data['youtube_video_id'];
+        if ($autoplay) {
+            $parameters = "?loop=1&controls=0&rel=0&playsinline=1&autoplay=1&mute=1&controls=0&playlist=$youtube_video_id";
         }
-        $_attributes = _attributes($attributes_args);
+        $source = "https://www.youtube.com/embed/$youtube_video_id$parameters";
+        return "<div class='background-image background-overlay'><iframe src='$source'></iframe></div>";
+    } else {
+        if ($video_url) {
+            $class = isset($data['class']) ? $data['class'] : false;
+            $attributes_args = [];
+            if ($class) {
+                $attributes_args[] = $class;
+            }
+            $_attributes = _attributes($attributes_args);
 
-        return "<div $_attributes><video autoplay loop muted src='$video_url'></video></div>";
+            return "<div $_attributes><video autoplay loop muted src='$video_url'></video></div>";
+        }
     }
 }
 
-function _background($hero_background, $is_youtube = false)
+function _background($hero_background, $is_youtube = false, $autoplay = true)
 {
     if ($is_youtube == false) {
         $mime_type =  get_post_mime_type($hero_background);
-
         if (str_contains($mime_type, 'video')) {
             return __video(array(
                 'video_id' => $hero_background,
@@ -178,4 +188,3 @@ function __button($data)
         return "<div $_attributes><a class='rounded-10px' $button_target href='$button_url'>$button_text</a></div>";
     }
 }
-
