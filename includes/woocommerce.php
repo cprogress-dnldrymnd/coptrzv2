@@ -299,6 +299,7 @@ function __product_compare($id)
 
     $html = "<section class='product-compare bg-light lg-padding-top lg-padding-bottom'>";
     $html .= "<div class='container'>"; //container
+    $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
     $html .= "<div class='row'>";
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
@@ -314,7 +315,6 @@ function __product_compare($id)
 
     $html .= "</div>";
 
-    $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
     foreach ($specs as $key => $spec) {
         $icon = get__term_meta($key, 'icon');
         $mime_type =  get_post_mime_type($icon);
