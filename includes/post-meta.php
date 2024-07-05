@@ -2559,7 +2559,7 @@ Container::make('term_meta', __('Category Properties'))
 
 
 Container::make('term_meta', __('Category Properties'))
-    ->where('term_taxonomy', '=', 'pa_brands')
+    ->where('term_taxonomy', '=', 'pa_specifications')
     ->add_fields(
         array(
             Field::make('image', 'icon', __('Icon')),
