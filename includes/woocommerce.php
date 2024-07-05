@@ -399,7 +399,7 @@ function _product_grid_display($id)
     $html .= "</div>";
     $html .= "<h2 class='woocommerce-loop-product__title mb-0'>$title</h2>";
     $html .= $product->get_price_html();
-    $html .= '<span class="status"></span>';
+    $html .= '<span class="status d-block"></span>';
 
     $html .= "</a>";
     $html .= "</div>";

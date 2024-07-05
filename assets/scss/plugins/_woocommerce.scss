@@ -488,7 +488,6 @@ section.product-main {
     }
     &.status-style-2 {
         .status {
-            display: inline-block;
             @include before {
                 display: block;
                 @include status;
