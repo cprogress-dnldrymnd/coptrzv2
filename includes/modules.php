@@ -891,7 +891,7 @@ function ____columns_modules($items, $id, $html = '')
                     $html .= ____heading_modules($item);
                     break;
                 case 'icon':
-                    $html .= ____icon_modules($item);
+                    $html .= _____icon_modules($item);
                     break;
                 case 'description':
                     $desc_classes = array();
@@ -992,7 +992,7 @@ function ____columns_modules($items, $id, $html = '')
     return $html;
 }
 
-function ____icon_modules($items)
+function _____icon_modules($items)
 {
     $icon_data['id'] = $items['icon'];
     $icon_color = $items['icon_color'];
@@ -1027,7 +1027,7 @@ function ____icon_modules($items)
         $icon_data['styles'] = _attribute('style', $styles, ';');
     }
 
-    return _icon($icon_data);
+    return __icon($icon_data);
 }
 function ____heading_modules($items)
 {

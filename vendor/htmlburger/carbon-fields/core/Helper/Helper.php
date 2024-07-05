@@ -611,7 +611,7 @@ class Helper {
 				$attachment_metadata['thumb_url'] = wp_get_attachment_thumb_url( $id );
 			}
 		} else {
-			$attachment_metadata['thumb_url'] = wp_mime_type_icon( $id );
+			$attachment_metadata['thumb_url'] = wp_mime_type__icon( $id );
 		}
 
 		/**

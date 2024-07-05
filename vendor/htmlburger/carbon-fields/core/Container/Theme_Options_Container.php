@@ -322,7 +322,7 @@ class Theme_Options_Container extends Container {
 	 * @param  string    $icon
 	 * @return Container $this
 	 */
-	public function set_icon( $icon ) {
+	public function set__icon( $icon ) {
 		$this->settings['icon'] = $icon;
 		return $this;
 	}

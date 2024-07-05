@@ -184,7 +184,7 @@ class Block_Container extends Container {
 	 * @param  string $icon
 	 * @return Block_Container
 	 */
-	public function set_icon( $icon ) {
+	public function set__icon( $icon ) {
 		$this->settings[ 'icon' ] = $icon;
 
 		return $this;

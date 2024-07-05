@@ -63,7 +63,7 @@ function __description($data)
     }
 }
 
-function _icon($data, $html = '')
+function __icon($data, $html = '')
 {
     $id = isset($data['id']) ? $data['id'] : false;
     if ($id) {
