@@ -482,14 +482,7 @@ section.product-main {
         .product-inner {
             @include before {
                 position: absolute;
-                font-size: 13px;
-                font-weight: 500;
-                top: 20px;
-                right: 20px;
-                padding-left: 22px;
-                background-size: 15px;
-                background-position: left center;
-                background-repeat: no-repeat;
+                @include status;
             }
         }
     }
@@ -498,14 +491,7 @@ section.product-main {
             display: inline-block;
             @include before {
                 display: inline-block;
-                font-size: 13px;
-                font-weight: 500;
-                top: 20px;
-                right: 20px;
-                padding-left: 22px;
-                background-size: 15px;
-                background-position: left center;
-                background-repeat: no-repeat;
+                @include status;
             }
         }
     }
