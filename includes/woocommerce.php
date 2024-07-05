@@ -142,7 +142,8 @@ function bbloomer_translate_may_also_like()
     return 'COPTRZ Recommended Accessories:';
 }
 
-function product_specifications() {
+function product_specifications()
+{
     echo __product_specifications(true);
 }
 add_action('woocommerce_before_variations_form', 'product_specifications');
@@ -170,10 +171,13 @@ function custom_product_variation()
         $i = 0;
         $numItems = count($product_attribute);
         $variation_name = '';
-
+        $lastElement = end($product_attribute);
         foreach ($product_attribute as $key => $attr) {
             $variations .=  '&#34;' . $key . '|' . $attr . '&#34;';
-            $variation_name .= $attr. ' ';
+            $variation_name .= $attr . ' ';
+            if ($attr != $lastElement) {
+                $variation_name .= ' | ';
+            }
             if (++$i != $numItems) {
                 $variations .= ',';
             }
