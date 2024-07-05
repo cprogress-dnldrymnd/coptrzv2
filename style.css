@@ -10960,6 +10960,9 @@ section.product-compare .comparison > .row .inner-specs-list svg {
 section.product-compare .comparison > .row:not(:last-child) {
   margin-bottom: 10px; }
 
+.custom-product-grid ul {
+  list-style: none;
+  padding: 0; }
 .custom-product-grid a {
   text-decoration: none; }
 
