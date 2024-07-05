@@ -322,6 +322,45 @@ function ___sections()
                         $html .= __description($description_args);
 
                         break;
+                    case 'image':
+                        $image_styles = array();
+                        $image_classes  = array();
+
+                        $is_background_image = $items['is_background_image'];
+                        $custom_size = $items['custom_size'];
+                        $image_height = $items['image_height'];
+                        $image_width = $items['image_width'];
+                        $rounded_corners = $items['rounded_corners'];
+                        $border_radius = $items['border_radius'];
+                        $image_args['image_id'] = $items['image'];
+                        $image_args['size'] = $items['size'];
+
+
+                        $image_classes[] = 'image-box';
+                        if ($is_background_image) {
+                            $image_classes[] = 'background-image background-overlay';
+                        }
+                        if ($custom_size) {
+                            if ($image_height) {
+                                $image_styles[] = "--height: $image_height;";
+                            }
+                            if ($image_width) {
+                                $image_styles[] = "--width: $image_width;";
+                            }
+                        }
+                        if ($rounded_corners) {
+                            $image_classes[] = 'rounded-corner';
+                            if ($border_radius) {
+                                $image_styles[] = "--border-radius: $border_radius;";
+                            }
+                        }
+
+
+                        $image_args['style'] = _attribute('style', $image_styles);
+                        $image_args['class'] = _attribute('class', $image_classes);
+
+                        $html .= __image($image_args);
+                        break;
                     case 'gallery':
                         $html .= ____gallery_modules(array(
                             'id' => $section_id_val . $key,
