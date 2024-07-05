@@ -10956,11 +10956,11 @@ header {
       text-decoration: none; }
   #footer .widget-title {
     margin-bottom: 1.5rem; }
-  #footer .footer-top .container {
+  #footer .footer-top .container .inner {
     padding: 20px;
     background-color: #262626; }
   #footer .footer-bottom {
-    border-top: 1px solid #3C3C3C;
+    border-top: 1px solid #3c3c3c;
     padding-top: 13px;
     padding-bottom: 13px; }
     #footer .footer-bottom .footer-right ul {
