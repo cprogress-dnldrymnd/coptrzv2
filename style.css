@@ -10790,42 +10790,46 @@ section.products-specifications .inner img {
   height: 56px;
   object-fit: contain; }
 
-.product-custom-variation input {
-  display: none; }
-  .product-custom-variation input:checked + label .inner {
-    border-color: var(--bs-accent); }
-.product-custom-variation .inner {
-  border: 2px solid var(--bs-light);
-  cursor: pointer;
-  -webkit-transition: 300ms;
-  -moz-transition: 300ms;
-  -ms-transition: 300ms;
-  -o-transition: 300ms;
-  transition: 300ms; }
-  .product-custom-variation .inner h5, .product-custom-variation .inner .h5 {
-    font-size: 17px; }
-  .product-custom-variation .inner .variation-image img {
-    width: 128px;
-    height: 98px;
-    object-fit: contain; }
-  .product-custom-variation .inner:hover, .product-custom-variation .inner:active, .product-custom-variation .inner:focus {
-    border-color: var(--bs-accent); }
-.product-custom-variation .row {
-  --bs-gutter-y: 10px; }
-.product-custom-variation .accordion-item {
-  border: none;
-  padding: 0;
-  border-top: 1px solid var(--bs-light);
-  padding-top: 10px;
-  margin-top: 10px; }
-  .product-custom-variation .accordion-item .accordion-button {
-    outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+.product-custom-variation {
+  margin-top: 2rem; }
+  .product-custom-variation .select-variant {
+    font-size: 22px; }
+  .product-custom-variation input {
+    display: none; }
+    .product-custom-variation input:checked + label .inner {
+      border-color: var(--bs-accent); }
+  .product-custom-variation .inner {
+    border: 2px solid var(--bs-light);
+    cursor: pointer;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms; }
+    .product-custom-variation .inner h5, .product-custom-variation .inner .h5 {
+      font-size: 17px; }
+    .product-custom-variation .inner .variation-image img {
+      width: 128px;
+      height: 98px;
+      object-fit: contain; }
+    .product-custom-variation .inner:hover, .product-custom-variation .inner:active, .product-custom-variation .inner:focus {
+      border-color: var(--bs-accent); }
+  .product-custom-variation .row {
+    --bs-gutter-y: 10px; }
+  .product-custom-variation .accordion-item {
+    border: none;
     padding: 0;
-    width: auto; }
-    .product-custom-variation .accordion-item .accordion-button:after {
-      margin-left: 1rem; }
+    border-top: 1px solid var(--bs-light);
+    padding-top: 10px;
+    margin-top: 10px; }
+    .product-custom-variation .accordion-item .accordion-button {
+      outline: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      padding: 0;
+      width: auto; }
+      .product-custom-variation .accordion-item .accordion-button:after {
+        margin-left: 1rem; }
 
 /*# sourceMappingURL=style.css.map */

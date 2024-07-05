@@ -155,6 +155,7 @@ function custom_product_variation()
     $main_thumbnail = get_post_thumbnail_id($product->get_id());
 
     $html = '<div class="product-custom-variation">';
+    $html .= '<div class="select-variant fw-bold">Select a variant:</div>';
     $html .= '<div class="accordion" id="accordionVariation">';
     $html .= '<div class="row">';
 
