@@ -390,6 +390,7 @@ function _product_grid_display($id)
     $post_thumnail = get_the_post_thumbnail_url($id, 'medium');
     $stock_status =  $product->get_stock_status();
     $sku = $product->get_sku();
+    $product_type = $product->get_type();
 
     $html = "<ul class='products custom-product-grid m-0 p-0'>";
     $html .= "<li class='product status-style-2 m-0 p-0 w-100 post-$id $stock_status'>";
@@ -408,7 +409,17 @@ function _product_grid_display($id)
     $html .= "<div class='row g-10px'>";
 
     $html .= "<div class='col-sm-6'>";
-    $html .= "<a href='?add-to-cart=$id' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$id' data-product_sku='$sku' aria-label='Add to basket: “" . $title . "”' rel='nofollow'>Add to basket</a>";
+    if ($product_type == 'simple') {
+        $html .= "<a href='?add-to-cart=$id' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$id' data-product_sku='$sku' aria-label='Add to basket: “" . $title . "”' rel='nofollow'>Add to basket</a>";
+    } else if ($product_type == 'variable') {
+        $html .= "<div class='button-box button-accent'><a href='$permalink'>Select Options</a></div>";
+    }
+
+
+    $html .= "</div>";
+
+    $html .= "<div class='col-sm-6'>";
+    $html .= "<div class='button-box button-bordered'><a href='$permalink'>View Product</a></div>";
     $html .= "</div>";
 
     $html .= "</div>";
