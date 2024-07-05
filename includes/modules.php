@@ -370,12 +370,14 @@ function ___sections()
                         if ($youtube_video_id && $video_type == 'youtube') {
                             $html .= __video(array(
                                 'youtube_video_id' => $youtube_video_id,
-                                'autoplay' => $autoplay
+                                'autoplay' => $autoplay,
+                                'class' => _attribute('class', array('video-box'))
                             ));
                         } else if ($video) {
                             $html .=  $html .= __video(array(
                                 'video_id' => $video,
-                                'autoplay' => $autoplay
+                                'autoplay' => $autoplay,
+                                'class' => _attribute('class', array('video-box'))
                             ));
                         }
                         break;
