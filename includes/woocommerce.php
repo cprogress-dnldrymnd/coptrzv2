@@ -353,7 +353,7 @@ function __product_compare($id)
                 $html .= "</div>";
             } else {
                 $html .= "<div class='not-active'>";
-                $html .= $SVG->close();
+                $html .= $SVG->xmark();
                 $html .= "</div>";
             }
 
