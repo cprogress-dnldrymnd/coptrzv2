@@ -9984,6 +9984,9 @@ img {
 .small-container .container {
   max-width: 730px; }
 
+.medium-container .container {
+  max-width: 730px; }
+
 .logo-slider .swiper-wrapper {
   transition-timing-function: linear !important; }
   .logo-slider .swiper-wrapper .swiper-slide {
