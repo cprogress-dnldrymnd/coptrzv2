@@ -49,7 +49,7 @@ function __description($data)
 
 
     if ($description) {
-
+        $description_val = wpautop($description);
         $attributes_args = [];
         if ($class) {
             $attributes_args[] = $class;
@@ -59,7 +59,7 @@ function __description($data)
         }
         $_attributes = _attributes($attributes_args);
 
-        return "<div $_attributes>$description</div>";
+        return "<div $_attributes>$description_val</div>";
     }
 }
 
