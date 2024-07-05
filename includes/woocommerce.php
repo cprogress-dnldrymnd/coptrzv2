@@ -179,6 +179,7 @@ function custom_product_variation()
         $variation_thumbnail = get_post_thumbnail_id($child);
         $thumbnail = $variation_thumbnail ? $variation_thumbnail : $main_thumbnail;
         $stock_status_variation = $variation->get_stock_status();
+        $price = $variation->get_price_html();
         $html .= '<div class="col-12">';
         $html .= "<input stock='$stock_status_variation' type='radio' id='variation-$child' $variations value='$child'  name='variation-radio'>";
         $html .= "<label for='variation-$child' class='variation-label status-$stock_status_variation'>";
@@ -197,7 +198,7 @@ function custom_product_variation()
             'heading' => $variation_name,
             'tag' => 'h5'
         ));
-
+        $html .= $price;
         $html .= '<div class="accordion-item">'; //accordion-item
         $html .= "<div class='accordion-header' id='heading-variation-$child'> <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse-variation-$child' aria-expanded='false' aria-controls='collapse-variation-$child'> Package Contents </button> </div>";
 

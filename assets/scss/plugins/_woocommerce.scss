@@ -381,12 +381,18 @@ section.products-specifications {
     }
 }
 
-
 .product-custom-variation {
     .inner {
         border: 1px solid var(--bs-light);
-        .image-box {
-            
+        h5 {
+            font-size: 17px;
+        }
+        .variation-image {
+            img {
+                width: 128px;
+                height: 98px;
+                object-fit: contain;
+            }
         }
     }
 }
