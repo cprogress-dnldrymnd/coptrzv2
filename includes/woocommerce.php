@@ -457,19 +457,18 @@ function _product_grid_display($id)
 /**
  * Remove product page tabs
  */
-add_filter( 'woocommerce_product_tabs', 'my_remove_all_product_tabs', 98 );
+add_filter('woocommerce_product_tabs', 'my_remove_all_product_tabs', 98);
 
-function my_remove_all_product_tabs( $tabs ) {
-  unset( $tabs['description'] );      	// Remove the description tab
-  unset( $tabs['reviews'] ); 			// Remove the reviews tab
-  unset( $tabs['additional_information'] );  	// Remove the additional information tab
-  return $tabs;
+function my_remove_all_product_tabs($tabs)
+{
+    unset($tabs['description']);          // Remove the description tab
+    unset($tabs['reviews']);             // Remove the reviews tab
+    unset($tabs['additional_information']);      // Remove the additional information tab
+    return $tabs;
 }
 
-add_filter('post_class', function($classes, $class, $product_id) {
-    if(is_product_category()) {
-        //only add these classes if we're on a product category page.
-        $classes = array_merge(['status-style-2'], $classes);
-    }
+add_filter('post_class', function ($classes, $class, $product_id) {
+    //only add these classes if we're on a product category page.
+    $classes = array_merge(['status-style-2'], $classes);
     return $classes;
-},10,3);
+}, 10, 3);
