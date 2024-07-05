@@ -8,39 +8,6 @@ function action_woocommerce_before_main_content()
     } else if (is_product()) {
         $single_product_content = get__post_meta('single_product_content');
         echo $single_product_content;
-
-        $pa_specifications = get_the_terms(get_the_ID(), 'pa_specifications');
-        if ($pa_specifications) {
-            $html = '<div class="products-specifications">';
-            $html .= '<div class="row g-4">';
-            foreach ($pa_specifications as $specification) {
-                $icon = get__term_meta($specification->term_id, 'icon');
-                $mime_type =  get_post_mime_type($icon);
-
-
-
-                $html .= '<div class="col-auto">';
-                $html .= '<div class="inner">';
-                if (str_contains($mime_type, 'svg')) {
-                    $html .= __icon(array(
-                        'id' => $icon,
-                    ));
-                } else {
-                    $html .= __image(array(
-                        'id' => $icon,
-                    ));
-                }
-                $html .= __heading(array(
-                    'heading' => $specification->name,
-                    'tag' => 'h4',
-                ));
-                $html .= '</div>';
-                $html .= '</div>';
-            }
-            $html .= '</div>';
-            $html .= '</div>';
-            echo $html;
-        }
     }
 }
 

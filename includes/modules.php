@@ -27,6 +27,7 @@ function action_module_content()
 
             $post_content = ___hero_product();
             $post_content .= ___sections();
+            $post_content .= __product_specifications();
 
             update_post_meta(get_the_ID(), '_single_product_content', $post_content);
         }
@@ -1133,6 +1134,36 @@ function _output_svg_from_url($url)
 
 function __product_specifications()
 {
-    global $product;
-    $koostis = $product->get_attribute('pa_koostis');
+    $pa_specifications = get_the_terms(get_the_ID(), 'pa_specifications');
+    if ($pa_specifications) {
+        $html = '<div class="products-specifications">';
+        $html .= '<div class="row g-4">';
+        foreach ($pa_specifications as $specification) {
+            $icon = get__term_meta($specification->term_id, 'icon');
+            $mime_type =  get_post_mime_type($icon);
+
+
+
+            $html .= '<div class="col-auto">';
+            $html .= '<div class="inner">';
+            if (str_contains($mime_type, 'svg')) {
+                $html .= __icon(array(
+                    'id' => $icon,
+                ));
+            } else {
+                $html .= __image(array(
+                    'id' => $icon,
+                ));
+            }
+            $html .= __heading(array(
+                'heading' => $specification->name,
+                'tag' => 'h4',
+            ));
+            $html .= '</div>';
+            $html .= '</div>';
+        }
+        $html .= '</div>';
+        $html .= '</div>';
+        return $html;
+    }
 }
