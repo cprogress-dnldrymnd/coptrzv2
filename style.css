@@ -10796,6 +10796,7 @@ section.products-specifications .inner img {
     border-color: var(--bs-accent); }
 .product-custom-variation .inner {
   border: 2px solid var(--bs-light);
+  cursor: pointer;
   -webkit-transition: 300ms;
   -moz-transition: 300ms;
   -ms-transition: 300ms;
@@ -10818,6 +10819,10 @@ section.products-specifications .inner img {
   padding-top: 10px;
   margin-top: 10px; }
   .product-custom-variation .accordion-item .accordion-button {
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
     padding: 0;
     width: auto; }
     .product-custom-variation .accordion-item .accordion-button:after {
