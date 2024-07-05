@@ -30,14 +30,16 @@ function action_woocommerce_before_main_content()
                         'id' => $icon,
                     ));
                 }
+                $html .= __heading(array(
+                    'heading' => $specification->name,
+                    'tag' => 'h4',
+                ));
                 $html .= '</div>';
                 $html .= '</div>';
-
             }
             $html .= '</div>';
             $html .= '</div>';
             echo $html;
-
         }
     }
 }
