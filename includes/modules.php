@@ -27,10 +27,11 @@ function action_module_content()
 
             $single_product_content = ___hero_product();
             $single_product_content .= __product_specifications();
-            $single_product_content .= ___sections('sections_after_main');
+            $single_product_content .= ___sections();
+            $single_product_content_after = ___sections('sections_after_main');
 
             update_post_meta(get_the_ID(), '_single_product_content', $single_product_content);
-            update_post_meta(get_the_ID(), '_single_product_content_after', $post_content);
+            update_post_meta(get_the_ID(), '_single_product_content_after', $single_product_content_after);
         }
     }
 }
