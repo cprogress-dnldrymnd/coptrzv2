@@ -152,7 +152,7 @@ function custom_product_variation()
 
     $name = $product->get_name();
     $children = $product->get_children();
-    $image_url = get_the_post_thumbnail_url($product->get_id(), 'thumbnail');
+    $main_thumbnail = get_post_thumbnail_id($product->get_id());
 
     $html = '<div class="product-custom-variation">';
     $html .= '<div class="row">';
@@ -175,11 +175,19 @@ function custom_product_variation()
 
         $variation_name = str_replace($name . ' - ', '', $variation_name);
         $description = $variation->get_description();
-        $variation_image_url = get_the_post_thumbnail_url($child, 'thumbnail');
-        $image_url = $variation_image_url ? $variation_image_url : $image_url;
+        $variation_thumbnail = get_post_thumbnail_id($child);
+        $thumbnail = $variation_thumbnail ? $variation_thumbnail : $main_thumbnail;
         $stock_status_variation = $variation->get_stock_status();
         $html .= '<div class="col-12">';
+        $html .= '<div class="inner d-flex">';
         $html .= "<input stock='$stock_status_variation' type='radio' id='variation-$child' $variations value='$child'  name='variation-radio'>";
+        $html .= "<div class='col-auto'>";
+        $html .= __image(array(
+            'image_id' => $thumbnail,
+            'size' => 'thumbnail'
+        ));
+        $html .= '</div>';
+        $html .= '</div>';
         $html .= '</div>';
     }
     $html .= '</div>';
