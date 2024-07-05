@@ -165,20 +165,22 @@ function custom_product_variation()
 
     foreach ($children as $child) {
         $variation = wc_get_product($child);
-        $variation_name = $variation->get_name();
         $product_attribute = $variation->get_attributes();
         $variations = 'data-variations="[';
         $i = 0;
         $numItems = count($product_attribute);
+        $variation_name = '';
+
         foreach ($product_attribute as $key => $attr) {
             $variations .=  '&#34;' . $key . '|' . $attr . '&#34;';
+            $variation_name .= $attr. ' ';
             if (++$i != $numItems) {
                 $variations .= ',';
             }
         }
         $variations .= ']"';
 
-        $variation_name = str_replace($name . ' - ', '', $variation_name);
+        $variation_name = str_replace($variation_name);
         $description = $variation->get_description();
         $variation_thumbnail = get_post_thumbnail_id($child);
         $thumbnail = $variation_thumbnail ? $variation_thumbnail : $main_thumbnail;
