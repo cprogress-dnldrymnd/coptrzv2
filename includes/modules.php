@@ -1136,7 +1136,7 @@ function __product_specifications()
 {
     $pa_specifications = get_the_terms(get_the_ID(), 'pa_specifications');
     if ($pa_specifications) {
-        $html = '<section class="products-specifications mt-20px bg-light rounded-corner">';
+        $html = '<section class="products-specifications mt-20px bg-light rounded-corner py-3 mx-20px">';
         $html .= '<div class="container">';
         $html .= '<div class="row g-4 justify-content-center">';
         foreach ($pa_specifications as $specification) {
