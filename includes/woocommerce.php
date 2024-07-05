@@ -297,7 +297,7 @@ function __product_compare($id)
     }
 
     $html = "<section class='product-compare bg-light lg-padding-top lg-padding-bottom'>";
-    $html .= "<div class='container'>";//container
+    $html .= "<div class='container'>"; //container
     $html .= "<div class='row'>";
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
@@ -306,14 +306,14 @@ function __product_compare($id)
     $html .= "</div>";
     $html .= "</div>";
 
-    $html .= "<div class='comparison products-specifications products-specifications-v2'>";//products-specifications
+    $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
     foreach ($specs as $key => $spec) {
         $icon = get__term_meta($key, 'icon');
         $mime_type =  get_post_mime_type($icon);
-        $html .= "<div class='row'>";//specs-row
+        $html .= "<div class='row'>"; //specs-row
 
-        $html .= "<div class='col-3'>";//specs-row-col
-        $html .= "<div class='inner h-100 d-flex align-items-center'>";//inner
+        $html .= "<div class='col-3'>"; //specs-row-col
+        $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
         if (str_contains($mime_type, 'svg')) {
             $html .= __icon(array(
                 'id' => $icon,
@@ -330,22 +330,39 @@ function __product_compare($id)
             'class' => _attribute('class', array('mb-0')),
             'tag' => 'h5',
         ));
-        $html .= "</div>";//end-inner
-        $html .= "</div>";//end-specs-row-col
+        $html .= "</div>"; //end-inner
+        $html .= "</div>"; //end-specs-row-col
 
         foreach ($products as $product) {
+            $specs = array();
+
+            foreach ($products as $product) {
+                $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
+                foreach ($pa_specifications as $specification) {
+                    $specs[$specification->term_id] = $specification->name;
+                }
+            }
+
+            if (array_key_exists($key, $specs)) {
+                $html .= 'exists';
+            } else {
+                $html .= 'not exists';
+            }
+
             $html .= "<div class='col-3'>";
-            $html .= get_the_title($product['id']);
+            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+
+            $html .= "</div>";
             $html .= "</div>";
         }
 
-        
 
-        $html .= "</div>";//end-specs-row
+
+        $html .= "</div>"; //end-specs-row
     }
-    $html .= "</div>";//end products-specifications
+    $html .= "</div>"; //end products-specifications
 
-    $html .= "</div>";//end-container
+    $html .= "</div>"; //end-container
     $html .= "</section>";
 
 
