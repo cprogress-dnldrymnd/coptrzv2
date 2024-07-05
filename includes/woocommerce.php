@@ -276,7 +276,7 @@ function bbloomer_display_quantity_plus()
 
 function buy_now_button()
 {
-    $html = '<div class="button-box button-bordered">';
+    $html = '<div class="button-box button-bordered buy-now-button">';
     $html .= '<button>';
     $html .= 'Buy Now';
     $html .= '</button>';

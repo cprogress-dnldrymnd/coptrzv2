@@ -259,12 +259,6 @@ ul.products.products.products {
     }
 }
 
-.woocommerce div.product div.summary {
-    .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
-        @include button-accent;
-    }
-}
-
 .product-thumb.product-thumb {
     .swiper-slide {
         width: 113px;
@@ -329,6 +323,10 @@ section.product-main {
         }
     }
     .summary.summary.summary {
+        .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+            @include button-accent;
+            margin-right: 15px;
+        }
         .price {
             font-size: 40px;
             color: var(--bs-black);

@@ -10712,15 +10712,6 @@ ul.products.products.products {
   -o-transform: rotate(45deg) scale(-1, -1);
   transform: rotate(45deg) scale(-1, -1); }
 
-.woocommerce div.product div.summary .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
-  color: var(--bs-white);
-  border-color: var(--bs-accent);
-  background-color: var(--bs-accent); }
-  .woocommerce div.product div.summary .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:hover, .woocommerce div.product div.summary .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:active, .woocommerce div.product div.summary .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:focus {
-    background-color: var(--bs-secondary);
-    border-color: var(--bs-secondary);
-    color: var(--bs-white); }
-
 .product-thumb.product-thumb .swiper-slide {
   width: 113px; }
   .product-thumb.product-thumb .swiper-slide .woocommerce-product-gallery__image {
@@ -10763,6 +10754,15 @@ section.product-main > .container > .row > div:first-child {
   width: 57%; }
 section.product-main > .container > .row > div:last-child {
   width: 43%; }
+section.product-main .summary.summary.summary .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+  color: var(--bs-white);
+  border-color: var(--bs-accent);
+  background-color: var(--bs-accent);
+  margin-right: 15px; }
+  section.product-main .summary.summary.summary .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:hover, section.product-main .summary.summary.summary .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:active, section.product-main .summary.summary.summary .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:focus {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--bs-white); }
 section.product-main .summary.summary.summary .price {
   font-size: 40px;
   color: var(--bs-black); }
