@@ -10720,21 +10720,23 @@ section.product-main .summary.summary.summary .price {
   section.product-main .summary.summary.summary .price .woocommerce-price-suffix {
     font-size: 28px; }
 
-.products.upsells.upsells.upsells > h2, .products.upsells.upsells.upsells > .h2 {
-  font-size: 22px;
-  font-weight: 400; }
-.products.upsells.upsells.upsells ul.products {
-  flex-direction: column; }
-  .products.upsells.upsells.upsells ul.products li.product {
-    width: 100%;
-    margin: 0; }
-    .products.upsells.upsells.upsells ul.products li.product .wc-img-wrapper {
-      position: absolute;
-      right: 25px;
-      width: 120px;
-      height: 120px;
+.products.upsells.upsells.upsells {
+  margin-top: 2rem; }
+  .products.upsells.upsells.upsells > h2, .products.upsells.upsells.upsells > .h2 {
+    font-size: 22px;
+    font-weight: 400; }
+  .products.upsells.upsells.upsells ul.products {
+    flex-direction: column; }
+    .products.upsells.upsells.upsells ul.products li.product {
+      width: 100%;
       margin: 0; }
-    .products.upsells.upsells.upsells ul.products li.product .woocommerce-loop-product__title {
-      font-size: 17px; }
+      .products.upsells.upsells.upsells ul.products li.product .wc-img-wrapper {
+        position: absolute;
+        right: 25px;
+        width: 120px;
+        height: 120px;
+        margin: 0; }
+      .products.upsells.upsells.upsells ul.products li.product .woocommerce-loop-product__title {
+        font-size: 17px; }
 
 /*# sourceMappingURL=style.css.map */
