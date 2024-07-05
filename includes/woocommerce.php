@@ -437,7 +437,7 @@ function _product_grid_display($id)
 
 
 
-    $html .= "<div class='col-sm-6'>";
+    $html .= "<div class='$button_class'>";
     $html .= "<div class='button-box button-bordered'><a href='$permalink'>View Product</a></div>";
     $html .= "</div>";
 
