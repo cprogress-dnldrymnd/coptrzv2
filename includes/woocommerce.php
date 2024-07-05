@@ -193,7 +193,7 @@ function custom_product_variation()
         $html .= "<div class='col'>";
         $html .= "<div class='info-box'>";
         $html .= __heading(array(
-            'variation_name' => $variation_name,
+            'heading' => $variation_name,
             'tag' => 'h5'
         ));
 
