@@ -156,6 +156,7 @@ function custom_product_variation()
 
     $html = '<div class="product-custom-variation">';
     $html .= '<div class="row">';
+    $html .= '<div class="accordion" id="accordionVariation">';
 
     foreach ($children as $child) {
         $variation = wc_get_product($child);
@@ -179,17 +180,31 @@ function custom_product_variation()
         $thumbnail = $variation_thumbnail ? $variation_thumbnail : $main_thumbnail;
         $stock_status_variation = $variation->get_stock_status();
         $html .= '<div class="col-12">';
-        $html .= '<div class="inner d-flex">';
         $html .= "<input stock='$stock_status_variation' type='radio' id='variation-$child' $variations value='$child'  name='variation-radio'>";
+        $html .= "<label for='variation-$child' class='variation-label status-$stock_status_variation'>";
+        $html .= '<div class="inner d-flex">';
         $html .= "<div class='col-auto'>";
         $html .= __image(array(
             'image_id' => $thumbnail,
             'size' => 'thumbnail'
         ));
         $html .= '</div>';
+
+        $html .= "<div class='col'>";
+        $html .= "<div class='info-box'>";
+        $html .= __heading(array(
+            'variation_name' => $variation_name,
+            'tag' => 'h5'
+        ));
+
         $html .= '</div>';
+        $html .= '</div>';
+
+        $html .= '</div>';
+        $html .= '</label>';
         $html .= '</div>';
     }
+    $html .= '</div>';
     $html .= '</div>';
     $html .= '</div>';
 
