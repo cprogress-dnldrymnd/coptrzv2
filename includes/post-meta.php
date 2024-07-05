@@ -2673,3 +2673,23 @@ Container::make('post_meta', __('Product Settings'))
     ->add_fields(array(
         Field::make('hidden', 'single_product_content', __(''))
     ));
+
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Products
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', __('Product Settings'))
+    ->where('post_type', '=', 'compareproducts')
+    ->add_fields(array(
+        Field::make('association', 'products', 'Select products to compare')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'product',
+                    )
+                )
+            )
+    ));
