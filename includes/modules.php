@@ -372,7 +372,7 @@ function ___sections()
                             'autoplay' => $autoplay,
                             'video_id' => $video,
                             'video_type' => $video_type,
-                            'class' => _attribute('class', array('video-box'))
+                            'class' => _attribute('class', array('video-box', $video_type))
                         ));
                         break;
                     case 'gallery':
