@@ -10146,7 +10146,15 @@ section .container > *:not(:last-child) {
       margin-top: 3rem; } }
 
 .video-box video, .video-box iframe {
-  width: 100%; }
+  width: 100% !important; }
+.video-box.youtube {
+  position: relative;
+  padding: 40%; }
+  .video-box.youtube iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100% !important; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer

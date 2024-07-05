@@ -372,6 +372,16 @@ section {
 
 .video-box {
     video, iframe {
-        width: 100%;
+        width: 100% !important;
+    }
+    &.youtube {
+        position: relative;
+        padding: 28%;
+        iframe {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100% !important;
+        }
     }
 }
