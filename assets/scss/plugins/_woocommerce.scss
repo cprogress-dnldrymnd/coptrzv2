@@ -461,7 +461,9 @@ section.product-main {
             }
         }
     }
-   
+    & + .variations {
+        display: none !important;
+    }
 }
 
 .instock,
