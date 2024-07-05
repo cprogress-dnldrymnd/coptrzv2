@@ -185,36 +185,20 @@ add_filter('woocommerce_dropdown_variation_attribute_options_html', static funct
     $radios .= '<div class="row">';
 
     if (!empty($options)) {
-        if ($product && taxonomy_exists($attribute)) {
-            $terms = wc_get_product_terms($product->get_id(), $attribute, ['fields' => 'all']);
-            foreach ($terms as $term) {
-                if (in_array($term->slug, $options, true)) {
-                    $radios .= '<div class="col-12">'; //col
-                    $radios .= '<input type="radio" name="custom_' . esc_attr($name) . '" data-value="' . esc_attr($term->slug) . '" id="'
-                        . esc_attr($name) . '_' . esc_attr($term->slug) . '" data-variation-name="' . esc_attr($name) . '" '
-                        . checked(sanitize_title($args['selected']), $term->slug, false) . '>';
-                    $radios .= '<label for="' . esc_attr($name) . '_' . esc_attr($term->slug) . '">';
-                    $radios .= esc_html(apply_filters('woocommerce_variation_option_name', $term->name));
-                    $radios .= '</label>';
-                    $radios .= '</div>'; //end-col
-                }
-            }
-        } else {
-            foreach ($options as $option) {
-                $radios .= '<div class="col-12">'; //col
-                $checked = sanitize_title($args['selected']) === $args['selected'] ? checked(
-                    $args['selected'],
-                    sanitize_title($option),
-                    false
-                ) : checked($args['selected'], $option, false);
-                $radios  .= '<input type="radio" name="custom_' . esc_attr($name) . '" data-value="' . esc_attr($option) . '" id="'
-                    . esc_attr($name) . '_' . esc_attr($option) . '" data-variation-name="' . esc_attr($name) . '" ' . $checked . '>';
-                $radios  .= '<label for="' . esc_attr($name) . '_' . esc_attr($option) . '">';
-                $radios  .= esc_html(apply_filters('woocommerce_variation_option_name', $option));
-                $radios  .= '</label>';
-                $radios .= '</div>'; //end-col
+        foreach ($options as $option) {
+            $radios .= '<div class="col-12">'; //col
+            $checked = sanitize_title($args['selected']) === $args['selected'] ? checked(
+                $args['selected'],
+                sanitize_title($option),
+                false
+            ) : checked($args['selected'], $option, false);
+            $radios  .= '<input type="radio" name="custom_' . esc_attr($name) . '" data-value="' . esc_attr($option) . '" id="'
+                . esc_attr($name) . '_' . esc_attr($option) . '" data-variation-name="' . esc_attr($name) . '" ' . $checked . '>';
+            $radios  .= '<label for="' . esc_attr($name) . '_' . esc_attr($option) . '">';
+            $radios  .= esc_html(apply_filters('woocommerce_variation_option_name', $option));
+            $radios  .= '</label>';
+            $radios .= '</div>'; //end-col
 
-            }
         }
     }
 
