@@ -174,7 +174,7 @@ ul.products.products.products {
                 margin: 0;
             }
 
-            a {
+            .add_to_cart_button, .button-box a {
                 padding: 1.25rem 5px;
                 text-align: center;
                 width: 100%;
@@ -383,7 +383,7 @@ section.product-main {
             li.product {
                 width: 100%;
                 margin: 0;
-
+                padding-right: 160px;
                 .wc-img-wrapper {
                     position: absolute;
                     right: 25px;
