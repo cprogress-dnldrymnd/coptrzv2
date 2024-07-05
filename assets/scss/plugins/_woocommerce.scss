@@ -517,4 +517,8 @@ section.product-main {
 .quantity {
     display: flex;
     align-items: center;
+    button {
+        @include button-style;
+        @include button-bordered;
+    }
 }

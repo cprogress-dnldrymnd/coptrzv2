@@ -10009,7 +10009,7 @@ section .container > *:not(:last-child) {
   font-weight: 600;
   font-size: 15px;
   border-radius: 10px;
-  line-height: 1; }
+  line-height: 1.25; }
 
 .button-box.button-box.button-box.button-accent a,
 .button-box.button-box.button-box.button-accent button {
@@ -10890,5 +10890,20 @@ section.product-main .summary.summary.summary .products-specifications {
 .quantity {
   display: flex;
   align-items: center; }
+  .quantity button {
+    padding: 1.25rem 2.5rem;
+    border: 1px solid;
+    display: inline-block;
+    text-decoration: none;
+    color: currentCOlor;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 10px;
+    line-height: 1.25;
+    background-color: transparent; }
+    .quantity button:hover, .quantity button:active, .quantity button:focus {
+      background-color: var(--bs-accent);
+      border-color: var(--bs-accent);
+      color: var(--bs-white); }
 
 /*# sourceMappingURL=style.css.map */
