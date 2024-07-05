@@ -22,10 +22,9 @@ if (!defined('ABSPATH')) {
 
 global $product;
 ?>
-
+<span class='status d-block mb-2 mt-2'>
+</span>
 <div class="product-buttons">
-	<span class='status d-block mb-2 mt-2'>
-	</span>
 	<div class="row g-10px">
 		<div class="col-sm-6">
 			<?php
