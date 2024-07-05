@@ -1191,13 +1191,15 @@ function __product_specifications($for_product_summary = false)
     if ($pa_specifications) {
         if ($for_product_summary == false) {
             $class = 'col-auto';
+            $class_row= 'g-5';
             $html = '<section class="products-specifications mt-20px bg-light rounded-corner py-3 mx-20px">';
             $html .= '<div class="container-fluid">';
         } else {
             $class = 'col-6';
+            $class_row= 'g-3';
             $html = '<div class="products-specifications">';
         }
-        $html .= '<div class="row g-5 justify-content-center">';
+        $html .= "<div class='row $class_row justify-content-center'>";
         foreach ($pa_specifications as $specification) {
             $icon = get__term_meta($specification->term_id, 'icon');
             $mime_type =  get_post_mime_type($icon);
@@ -1205,7 +1207,7 @@ function __product_specifications($for_product_summary = false)
 
 
             $html .= "<div class='$class'>";
-            $html .= '<div class="inner d-flex align-items-center">';
+            $html .= '<div class="inner h-100 d-flex align-items-center">';
             if (str_contains($mime_type, 'svg')) {
                 $html .= __icon(array(
                     'id' => $icon,

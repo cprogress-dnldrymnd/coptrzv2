@@ -343,6 +343,16 @@ section.product-main {
                 flex-direction: column;
             }
         }
+        .products-specifications {
+            .inner {
+                background-color: var(--bs-light);
+                padding: 20px;
+                border-radius: 10px;
+                h5 {
+                    font-size: 14px;
+                }
+            }
+        }
     }
 }
 
