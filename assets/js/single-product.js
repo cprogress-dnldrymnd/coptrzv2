@@ -13,6 +13,8 @@ function product_variation() {
                     const variationName = radio.getAttribute('data-variation-name');
                     const selectBox = document.querySelector('select[name=' + variationName + ']');
                     selectBox.value = radio.getAttribute('data-value');
+                    jQuery('.single_add_to_cart_button').removeAttr('disabled ');
+                    jQuery('input[name="variation_id"]').val(selectBox.value);
                     $(selectBox).trigger('change');
                 });
             });
