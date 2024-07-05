@@ -10376,11 +10376,6 @@ ul.products.products.products {
         padding: 10px;
         border-radius: 5px;
         margin: 0; }
-      ul.products.products.products li.product.product .product-inner .button.button.button,
-      ul.products.products.products li.product.product .product-inner .button-box a {
-        padding: 1.25rem 5px;
-        text-align: center;
-        width: 100%; }
       ul.products.products.products li.product.product .product-inner .button.button.button {
         margin-top: 0;
         color: var(--bs-white);
@@ -10395,6 +10390,11 @@ ul.products.products.products {
         bottom: 20px;
         left: 20px;
         right: 20px; }
+        ul.products.products.products li.product.product .product-inner .product-buttons .col-6 .button.button.button,
+        ul.products.products.products li.product.product .product-inner .product-buttons .col-6 .button-box a {
+          padding: 1.25rem 5px;
+          text-align: center;
+          width: 100%; }
         ul.products.products.products li.product.product .product-inner .product-buttons .col-12 .button-box a {
           width: auto; }
   ul.products.products.products.columns-3 li.product.product {

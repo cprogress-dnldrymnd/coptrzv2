@@ -188,13 +188,6 @@ ul.products.products.products {
                 margin: 0;
             }
 
-            .button.button.button,
-            .button-box a {
-                padding: 1.25rem 5px;
-                text-align: center;
-                width: 100%;
-            }
-
             .button.button.button {
                 margin-top: 0;
                 @include button-accent;
@@ -204,6 +197,14 @@ ul.products.products.products {
                 bottom: 20px;
                 left: 20px;
                 right: 20px;
+                .col-6 {
+                    .button.button.button,
+                    .button-box a {
+                        padding: 1.25rem 5px;
+                        text-align: center;
+                        width: 100%;
+                    }
+                }
                 .col-12 {
                     .button-box a {
                         width: auto;
@@ -220,7 +221,7 @@ ul.products.products.products {
             }
         }
     }
-    &.columns-4  {
+    &.columns-4 {
         li.product.product {
             width: 25%;
             @include responsive(xs-sm) {
