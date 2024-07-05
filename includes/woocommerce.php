@@ -394,7 +394,7 @@ function _product_grid_display($id)
     $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
 
     $html .= "<div class='wc-img-wrapper'>";
-    $html .= "<img width='300' height='225' src='$post_thumnail' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='' decoding='async'>";
+    $html .= "<img width='300' height='225' src='$post_thumnail' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='$title' decoding='async'>";
     $html .= "</div>";
     $html .= "<h2 class='woocommerce-loop-product__title'>$title</h2>";
 
