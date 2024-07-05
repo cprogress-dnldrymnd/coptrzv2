@@ -2207,7 +2207,18 @@ function __section_fields($name = 'sections')
                                         ),
                                 ))
                         )
-                    ),
+                    )
+                    ->add_fields('product_compare',  array(
+                        Field::make('association', 'compareproducts', 'Select Product Compare')
+                            ->set_types(
+                                array(
+                                    array(
+                                        'type'      => 'post',
+                                        'post_type' => 'compareproducts',
+                                    )
+                                )
+                            )
+                    )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
                     ->setup_labels(
