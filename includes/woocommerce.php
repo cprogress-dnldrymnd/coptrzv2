@@ -14,6 +14,13 @@ function action_woocommerce_before_main_content()
 
 add_action('woocommerce_before_main_content', 'action_woocommerce_before_main_content');
 
+function action_woocommerce_after_single_product_summary() {
+    $single_product_content_after = get__post_meta('single_product_content_after');
+    echo $single_product_content_after;
+}
+
+add_action('woocommerce_after_single_product_summary', 'action_woocommerce_after_single_product_summary');
+
 function action_woocommerce_before_shop_loop()
 {
     echo '<section class="product-archive-loop sm-padding-top lg-padding-bottom border-top-default no-overflow">';
