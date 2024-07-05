@@ -368,9 +368,15 @@ function ___sections()
                         $video = $items['video'];
                         $youtube_video_id = $items['youtube_video_id'];
                         if ($youtube_video_id && $video_type == 'youtube') {
-                            $html .= _background($youtube_video_id, true);
+                            $html .= __video(array(
+                                'youtube_video_id' => $youtube_video_id,
+                                'autoplay' => $autoplay
+                            ));
                         } else if ($video) {
-                            $html .= _background($video);
+                            $html .=  $html .= __video(array(
+                                'video_id' => $video,
+                                'autoplay' => $autoplay
+                            ));
                         }
                         break;
                     case 'gallery':

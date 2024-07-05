@@ -133,12 +133,16 @@ function __video($data)
         if ($video_url) {
             $class = isset($data['class']) ? $data['class'] : false;
             $attributes_args = [];
+            $parameters = '';
+            if ($autoplay) {
+                $parameters = 'autoplay loop muted';
+            }
             if ($class) {
                 $attributes_args[] = $class;
             }
             $_attributes = _attributes($attributes_args);
 
-            return "<div $_attributes><video autoplay loop muted src='$video_url'></video></div>";
+            return "<div $_attributes><video  $parameters src='$video_url'></video></div>";
         }
     }
 }
