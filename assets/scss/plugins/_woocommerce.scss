@@ -381,7 +381,7 @@ section.products-specifications {
     }
 }
 
-.product-custom-variation {
+.product-custom-variation.product-custom-variation {
     margin-top: 2rem;
     .select-variant {
         font-size: 22px;
@@ -423,11 +423,16 @@ section.products-specifications {
         border-top: 1px solid var(--bs-light);
         padding-top: 10px;
         margin-top: 10px;
+        .accordion-body {
+            padding: 0;
+            margin-top: 20px;
+        }
         .accordion-button {
             outline: none;
             @include box-shadow(none);
             padding: 0;
             width: auto;
+            background-color: transparent;
             @include after {
                 margin-left: 1rem;
             }
