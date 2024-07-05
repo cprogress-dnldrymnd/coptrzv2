@@ -490,7 +490,7 @@ section.product-main {
         .status {
             display: inline-block;
             @include before {
-                display: inline-block;
+                display: block;
                 @include status;
             }
         }
@@ -610,6 +610,7 @@ section.product-compare {
     list-style: none;
     padding: 0;
     a {
+        color: var(--bs-black);
         text-decoration: none;
     }
 }

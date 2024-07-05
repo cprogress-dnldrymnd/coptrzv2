@@ -10895,7 +10895,7 @@ section.product-main .summary.summary.summary .variations tr {
   .instock.status-style-2 .status:before,
   .onbackorder.status-style-2 .status:before,
   .outofstock.status-style-2 .status:before {
-    display: inline-block;
+    display: block;
     font-size: 13px;
     font-weight: 500;
     top: 20px;
