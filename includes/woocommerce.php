@@ -334,23 +334,25 @@ function __product_compare($id)
         $html .= "</div>"; //end-specs-row-col
 
         foreach ($products as $product) {
-            $specs = array();
+            $spec_product = array();
 
             foreach ($products as $product) {
                 $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
                 foreach ($pa_specifications as $specification) {
-                    $specs[$specification->term_id] = $specification->name;
+                    $spec_product[$specification->term_id] = $specification->name;
                 }
             }
 
-            if (array_key_exists($key, $specs)) {
+
+
+            $html .= "<div class='col-3'>";
+            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+
+            if (array_key_exists($key, $spec_product)) {
                 $html .= 'exists';
             } else {
                 $html .= 'not exists';
             }
-
-            $html .= "<div class='col-3'>";
-            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
 
             $html .= "</div>";
             $html .= "</div>";
