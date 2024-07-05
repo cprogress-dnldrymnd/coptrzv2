@@ -140,10 +140,11 @@ ul.products.products.products {
         float: none;
         margin-right: 0;
         margin-bottom: 0;
+
         .product-inner {
             padding: 20px;
             position: relative;
-            .wc-img-wrapper{
+            .wc-img-wrapper {
                 padding: 35%;
                 position: relative;
                 img {
@@ -196,6 +197,13 @@ ul.products.products.products {
             .add_to_cart_button {
                 margin-top: 0;
                 @include button-accent;
+            }
+            .product-buttons {
+                .col-12 {
+                    .button-box a {
+                        width: auto;
+                    }
+                }
             }
         }
     }
