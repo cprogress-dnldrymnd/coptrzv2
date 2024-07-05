@@ -10950,5 +10950,7 @@ section.product-compare .products-specifications.products-specifications-v2 .inn
   section.product-compare .products-specifications.products-specifications-v2 .inner img {
     width: 40px;
     height: 40px; }
+section.product-compare .comparison > .row:not(:last-child) {
+  margin-bottom: 10px; }
 
 /*# sourceMappingURL=style.css.map */
