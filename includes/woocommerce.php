@@ -142,35 +142,38 @@ function bbloomer_translate_may_also_like()
     return 'COPTRZ Recommended Accessories:';
 }
 
+/**
+ * Convert WooCommerce Variation Selects to Radio Buttons
+ */
+function woocommerce_variation_radio_buttons( $html, $args ) {
 
-// Add this code to your theme's functions.php file
-function custom_radio_variation_select( $args ) {
-    global $product;
-
-    $options  = $args['options'];
-    $product  = $args['product'];
-    $attribute = $args['attribute'];
-    $name     = $args['name'] ?: 'attribute_'. sanitize_title( $attribute );
-    $id       = $args['id'] ?: sanitize_title( $attribute );
-
-    if ( empty( $options ) && ! empty( $product ) && ! empty( $attribute ) ) {
-        $attributes = $product->get_variation_attributes();
-        $options    = $attributes[ $attribute ];
+    // Ensure the function only runs for product variations
+    if ( empty( $args['options'] ) || empty( $args['attribute'] ) || empty( $args['product'] ) ) {
+        return $html;
     }
 
-    echo '<div class="radio-variations" data-attribute_name="'. esc_attr( $attribute ) .'" data-product_id="'. $product->get_id() .'">';
+    $options               = $args['options'];
+    $product               = $args['product'];
+    $attribute             = $args['attribute'];
+    $name                 = "attribute_" . sanitize_title( $attribute ); // Set the input name
+    $id                   = sanitize_title( $attribute ); // Set the input ID
+
+    // Build the radio button HTML
+    $html = '<div class="variation-radios">';
     foreach ( $options as $option ) {
-        $selected = sanitize_title($args['selected']) === $args['selected'] ? checked( $args['selected'], sanitize_title($option), false ) : checked( $args['selected'], $option, false );
+        $selected = sanitize_title( $args['selected'] ) === $args['selected'] ? 'checked' : '';
 
-        // Get the variation ID for this attribute value
-        $variation_id = $product->get_matching_variation(array($attribute => $option));
+        // If you have term information (e.g., color names), you can display them:
+        $term = get_term_by( 'slug', $option, $attribute );
 
-        echo '<div class="radio-variation">';
-        echo '<input type="radio" name="' . esc_attr( $name ) . '" value="' . esc_attr( $option ) . '" id="' . esc_attr( sanitize_title( $option ) ) . '" ' . $selected . ' data-variation_id="' . $variation_id . '">';
-        echo '<label for="' . esc_attr( sanitize_title( $option ) ) . '">' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</label>';
-        echo '</div>';
+        // Get the label based on available information 
+        $label = $term && $term->name ? $term->name : $option; 
+
+        $html .= '<input type="radio" name="' . esc_attr( $name ) . '" value="' . esc_attr( $option ) . '" id="' . esc_attr( $option ) . '" ' . $selected . '>';
+        $html .= '<label for="' . esc_attr( $option ) . '">' . esc_html( $label ) . '</label>';
     }
-    echo '</div>';
+    $html .= '</div>';
+
+    return $html;
 }
-// Add this filter to your functions.php
-add_filter( 'woocommerce_dropdown_variation_attribute_options_html', 'custom_radio_variation_select', 10, 2 );
+add_filter( 'woocommerce_dropdown_variation_attribute_options_html', 'woocommerce_variation_radio_buttons', 10, 2 );
