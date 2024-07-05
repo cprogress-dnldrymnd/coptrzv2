@@ -7,7 +7,7 @@ function action_woocommerce_before_main_content()
         echo ___hero_product_taxonomy();
     } else if (is_product()) {
         $single_product_content = get__post_meta('single_product_content');
-        echo $single_product_content;
+        echo do_shortcode($single_product_content);
     }
 }
 
@@ -17,7 +17,7 @@ add_action('woocommerce_before_main_content', 'action_woocommerce_before_main_co
 function action_woocommerce_after_single_product_summary()
 {
     $single_product_content_after = get__post_meta('single_product_content_after');
-    echo $single_product_content_after;
+    echo do_shortcode($single_product_content_after);
 }
 
 add_action('woocommerce_after_single_product_summary', 'action_woocommerce_after_single_product_summary');
