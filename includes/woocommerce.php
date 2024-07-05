@@ -248,3 +248,18 @@ function remove_single_product_elements()
     remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 }
 add_action('woocommerce_before_single_product', 'remove_single_product_elements');
+
+
+function add_quantity_plus_minus_buttons() {
+    if ( ! is_product() ) return;
+  
+    global $product;
+  
+    echo '<div class="quantity-button-container">';
+    echo '<button type="button" class="quantity-minus">-</button>';
+    echo '<input type="number" name="quantity" value="1" min="1" class="quantity-input">';
+    echo '<button type="button" class="quantity-plus">+</button>';
+    echo '</div>';
+  }
+  add_action( 'woocommerce_after_add_to_cart_quantity', 'add_quantity_plus_minus_buttons' );
+  
