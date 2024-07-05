@@ -123,6 +123,9 @@ function __video($data)
     $autoplay = $data['autoplay'] ? $data['autoplay'] : false;
     $class = isset($data['class']) ? $data['class'] : false;
     $attributes_args = [];
+    if ($class) {
+        $attributes_args[] = $class;
+    }
     $_attributes = _attributes($attributes_args);
 
     if ($video_type == 'youtube') {
@@ -142,9 +145,7 @@ function __video($data)
             } else {
                 $parameters = 'controls';
             }
-            if ($class) {
-                $attributes_args[] = $class;
-            }
+           
 
             return "<div $_attributes><video  $parameters src='$video_url'></video></div>";
         }
