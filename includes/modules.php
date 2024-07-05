@@ -1147,7 +1147,6 @@ function __product_specifications()
 
             $html .= '<div class="col-auto">';
             $html .= '<div class="inner d-flex align-items-center">';
-            $html .= $mime_type;
             if (str_contains($mime_type, 'svg')) {
                 $html .= __icon(array(
                     'id' => $icon,
