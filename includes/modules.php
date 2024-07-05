@@ -1136,7 +1136,8 @@ function __product_specifications()
 {
     $pa_specifications = get_the_terms(get_the_ID(), 'pa_specifications');
     if ($pa_specifications) {
-        $html = '<div class="products-specifications">';
+        $html = '<section class="products-specifications mt-20px">';
+        $html .= '<div class="container">';
         $html .= '<div class="row g-4">';
         foreach ($pa_specifications as $specification) {
             $icon = get__term_meta($specification->term_id, 'icon');
@@ -1164,6 +1165,7 @@ function __product_specifications()
         }
         $html .= '</div>';
         $html .= '</div>';
+        $html .= '</section>';
         return $html;
     }
 }
