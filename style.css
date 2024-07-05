@@ -10789,17 +10789,6 @@ section.product-main .summary.summary.summary .price {
 section.product-main .summary.summary.summary .variations tr {
   display: flex;
   flex-direction: column; }
-section.product-main .summary.summary.summary .products-specifications {
-  margin-top: 2rem; }
-  section.product-main .summary.summary.summary .products-specifications .row {
-    --bs-gutter-x: 10px;
-    --bs-gutter-y: 10px; }
-  section.product-main .summary.summary.summary .products-specifications .inner {
-    background-color: var(--bs-light);
-    padding: 20px;
-    border-radius: 10px; }
-    section.product-main .summary.summary.summary .products-specifications .inner h5, section.product-main .summary.summary.summary .products-specifications .inner .h5 {
-      font-size: 14px; }
 
 .products.upsells.upsells.upsells {
   margin-top: 2rem; }
@@ -10827,6 +10816,17 @@ section.product-main .summary.summary.summary .products-specifications {
   width: 56px;
   height: 56px;
   object-fit: contain; }
+.products-specifications.products-specifications-v2 {
+  margin-top: 2rem; }
+  .products-specifications.products-specifications-v2 .row {
+    --bs-gutter-x: 10px;
+    --bs-gutter-y: 10px; }
+  .products-specifications.products-specifications-v2 .inner {
+    background-color: var(--bs-light);
+    padding: 20px;
+    border-radius: 10px; }
+    .products-specifications.products-specifications-v2 .inner h5, .products-specifications.products-specifications-v2 .inner .h5 {
+      font-size: 14px; }
 
 .product-custom-variation.product-custom-variation {
   margin-top: 2rem;

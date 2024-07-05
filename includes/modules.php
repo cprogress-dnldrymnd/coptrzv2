@@ -1195,7 +1195,7 @@ function __product_specifications($for_product_summary = false)
             $html .= '<div class="container-fluid">';
         } else {
             $class = 'col-6';
-            $html = '<div class="products-specifications">';
+            $html = '<div class="products-specifications products-specifications-v2">';
         }
         $html .= "<div class='row g-5 justify-content-center'>";
         foreach ($pa_specifications as $specification) {

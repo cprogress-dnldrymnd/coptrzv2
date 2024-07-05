@@ -353,22 +353,6 @@ section.product-main {
                 flex-direction: column;
             }
         }
-        .products-specifications {
-            margin-top: 2rem;
-            .row {
-                --bs-gutter-x: 10px;
-                --bs-gutter-y: 10px;
-            }
-            .inner {
-                background-color: var(--bs-light);
-                padding: 20px;
-                border-radius: 10px;
-
-                h5 {
-                    font-size: 14px;
-                }
-            }
-        }
     }
 }
 
@@ -409,6 +393,22 @@ section.product-main {
             width: 56px;
             height: 56px;
             object-fit: contain;
+        }
+    }
+    &.products-specifications-v2 {
+        margin-top: 2rem;
+        .row {
+            --bs-gutter-x: 10px;
+            --bs-gutter-y: 10px;
+        }
+        .inner {
+            background-color: var(--bs-light);
+            padding: 20px;
+            border-radius: 10px;
+
+            h5 {
+                font-size: 14px;
+            }
         }
     }
 }

@@ -306,7 +306,7 @@ function __product_compare($id)
     $html .= "</div>";
 
     $html .= "<div class='col-lg-3'>";
-    $html .= "<div class='products-specifications'>";
+    $html .= "<div class='products-specifications products-specifications-v2'>";
     $html .= "<div class='row'>";
     foreach ($specs as $key => $spec) {
         $icon = get__term_meta($key, 'icon');
