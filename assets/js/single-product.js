@@ -7,15 +7,7 @@ function product_variation() {
 
     jQuery('input[name="variation-radio"]').change(function (e) {
         $value = jQuery(this).val();
-        $data_variations = jQuery(this).attr('data_variations');
-
         jQuery('input[name="variation_id"]').val($value);
-
-
-        $variations = JSON.parse($data_variations);
-        jQuery.each($variations, function ($variation_name, $variation_val) {
-            jQuery('#' + $variation_name).val($variation_val);
-        });
 
         setTimeout(function () {
             jQuery('.single_add_to_cart_button').removeClass('disabled wc-variation-selection-needed');
@@ -23,8 +15,6 @@ function product_variation() {
 
         e.preventDefault();
     });
-
-
 }
 
 function product_gallery() {
