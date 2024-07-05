@@ -370,6 +370,7 @@ function ___sections()
                         $html .= __video(array(
                             'youtube_video_id' => $youtube_video_id,
                             'autoplay' => $autoplay,
+                            'video_id' => $video,
                             'video_type' => $video_type,
                             'class' => _attribute('class', array('video-box'))
                         ));
