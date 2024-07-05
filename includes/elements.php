@@ -128,7 +128,7 @@ function __video($data)
             $parameters = "?loop=1&controls=0&rel=0&playsinline=1&autoplay=1&mute=1&controls=0&playlist=$youtube_video_id";
         }
         $source = "https://www.youtube.com/embed/$youtube_video_id$parameters";
-        return "<div class='background-image background-overlay'><iframe src='$source'></iframe></div>";
+        return "<div $_attributes><iframe src='$source'></iframe></div>";
     } else {
         if ($video_url) {
             $class = isset($data['class']) ? $data['class'] : false;
