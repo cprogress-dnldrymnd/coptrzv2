@@ -394,7 +394,8 @@ section.products-specifications {
     }
     .inner {
         border: 2px solid var(--bs-light);
-        @include transition(500ms);
+        cursor: pointer;
+        @include transition(300ms);
         h5 {
             font-size: 17px;
         }
@@ -404,6 +405,9 @@ section.products-specifications {
                 height: 98px;
                 object-fit: contain;
             }
+        }
+        @include on-event {
+            border-color: var(--bs-accent);
         }
     }
     .row {

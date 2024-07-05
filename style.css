@@ -10796,17 +10796,19 @@ section.products-specifications .inner img {
     border-color: var(--bs-accent); }
 .product-custom-variation .inner {
   border: 2px solid var(--bs-light);
-  -webkit-transition: 500ms;
-  -moz-transition: 500ms;
-  -ms-transition: 500ms;
-  -o-transition: 500ms;
-  transition: 500ms; }
+  -webkit-transition: 300ms;
+  -moz-transition: 300ms;
+  -ms-transition: 300ms;
+  -o-transition: 300ms;
+  transition: 300ms; }
   .product-custom-variation .inner h5, .product-custom-variation .inner .h5 {
     font-size: 17px; }
   .product-custom-variation .inner .variation-image img {
     width: 128px;
     height: 98px;
     object-fit: contain; }
+  .product-custom-variation .inner:hover, .product-custom-variation .inner:active, .product-custom-variation .inner:focus {
+    border-color: var(--bs-accent); }
 .product-custom-variation .row {
   --bs-gutter-y: 10px; }
 .product-custom-variation .accordion-item {
