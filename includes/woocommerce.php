@@ -180,7 +180,6 @@ function custom_product_variation()
         }
         $variations .= ']"';
 
-        $variation_name = str_replace($variation_name);
         $description = $variation->get_description();
         $variation_thumbnail = get_post_thumbnail_id($child);
         $thumbnail = $variation_thumbnail ? $variation_thumbnail : $main_thumbnail;
