@@ -387,13 +387,14 @@ function _product_grid_display($id)
     $product = wc_get_product($id);
     $title = $product->get_name();
     $permalink = get_the_permalink($id);
+    $post_thumnail = get_post_thumbnail_id($id);
     $html = "<ul class='products custom-product-grid'>";
     $html .= "<li class='product type-product post-61545 status-private first instock'>";
     $html .= "<div class='product-inner rounded-10px border-default h-100'>";
     $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
 
     $html .= "<div class='wc-img-wrapper'>";
-    $html .= "<img width='300' height='225' src='' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='' decoding='async'>";
+    $html .= "<img width='300' height='225' src='$post_thumnail' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='' decoding='async'>";
     $html .= "</div>";
     $html .= "<h2 class='woocommerce-loop-product__title'>$title</h2>";
 
