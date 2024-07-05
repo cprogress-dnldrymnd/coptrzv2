@@ -297,7 +297,7 @@ function __product_compare($id)
     }
 
     $html = "<section class='product-compare bg-light lg-padding-top lg-padding-bottom'>";
-    $html .= "<div class='container'>";
+    $html .= "<div class='container'>";//container
     $html .= "<div class='row'>";
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
@@ -306,14 +306,14 @@ function __product_compare($id)
     $html .= "</div>";
     $html .= "</div>";
 
-    $html .= "<div class='comparison products-specifications products-specifications-v2'>";
+    $html .= "<div class='comparison products-specifications products-specifications-v2'>";//products-specifications
     foreach ($specs as $key => $spec) {
         $icon = get__term_meta($key, 'icon');
         $mime_type =  get_post_mime_type($icon);
-        $html .= "<div class='row'>";
+        $html .= "<div class='row'>";//specs-row
 
-        $html .= "<div class='col-3'>";
-        $html .= "<div class='inner h-100 d-flex align-items-center'>";
+        $html .= "<div class='col-3'>";//specs-row-col
+        $html .= "<div class='inner h-100 d-flex align-items-center'>";//inner
         if (str_contains($mime_type, 'svg')) {
             $html .= __icon(array(
                 'id' => $icon,
@@ -330,8 +330,8 @@ function __product_compare($id)
             'class' => _attribute('class', array('mb-0')),
             'tag' => 'h5',
         ));
-        $html .= "</div>";
-        $html .= "</div>";
+        $html .= "</div>";//end-inner
+        $html .= "</div>";//end-specs-row-col
 
         foreach ($products as $product) {
             $html .= "<div class='col-3'>";
@@ -339,14 +339,13 @@ function __product_compare($id)
             $html .= "</div>";
         }
 
-        $html .= "</div>";
+        
 
-        $html .= "</div>";
+        $html .= "</div>";//end-specs-row
     }
-    $html .= var_dump($specs);
-    $html .= "</div>";
+    $html .= "</div>";//end products-specifications
 
-    $html .= "</div>";
+    $html .= "</div>";//end-container
     $html .= "</section>";
 
 
