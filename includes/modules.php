@@ -1150,17 +1150,17 @@ function __product_specifications()
             if (str_contains($mime_type, 'svg')) {
                 $html .= __icon(array(
                     'id' => $icon,
-                    'class' => _attribute('class', 'me-3 text-accent')
+                    'class' => _attribute('class', array('me-3 text-accent'))
                 ));
             } else {
                 $html .= __image(array(
                     'image_id' => $icon,
-                    'class' => _attribute('class', 'me-3 text-accent')
+                    'class' => _attribute('class', array('me-3 text-accent'))
                 ));
             }
             $html .= __heading(array(
                 'heading' => $specification->name,
-                'class' => _attribute('class', 'mb-0'),
+                'class' => _attribute('class', array('mb-0')),
                 'tag' => 'h5',
             ));
             $html .= '</div>';
