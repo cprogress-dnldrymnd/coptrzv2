@@ -305,6 +305,13 @@ function __product_compare($id)
         'heading' => get_the_title($id),
     ));
     $html .= "</div>";
+
+    foreach ($products as $product) {
+        $html .= "<div class='col-lg-3'>";
+        $html .= _product_grid_display($product['id']);
+        $html .= "</div>";
+    }
+
     $html .= "</div>";
 
     $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
@@ -345,7 +352,7 @@ function __product_compare($id)
 
 
             $html .= "<div class='col-3'>";
-            $html .= "<div class='inner inner-specs-list h-100 d-flex align-items-center justify-content-center'>"; //inner
+            $html .= "<div class='inner   h-100 d-flex align-items-center justify-content-center'>"; //inner
 
             if (array_key_exists($key, $spec_product)) {
                 $html .= "<div class='active'>";
@@ -370,6 +377,31 @@ function __product_compare($id)
     $html .= "</div>"; //end-container
     $html .= "</section>";
 
+
+    return $html;
+}
+
+
+function _product_grid_display($id)
+{
+    $product = wc_get_product($id);
+    $title = $product->get_name();
+    $permalink = get_the_permalink($id);
+    $html = "<ul class='products custom-product-grid'>";
+    $html = "<li class='product type-product post-61545 status-private first instock'>";
+    $html .= "<div class='product-inner rounded-10px border-default h-100'>";
+    $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
+
+    $html .= "<div class='wc-img-wrapper'>";
+    $html .= "<img width='300' height='225' src='' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='' decoding='async'>";
+    $html .= "</div>";
+    $html .= "<h2 class='woocommerce-loop-product__title'>$title</h2>";
+
+
+    $html .= "</a>";
+    $html .= "</div>";
+    $html .= "</li>";
+    $html .= "</ul>";
 
     return $html;
 }
