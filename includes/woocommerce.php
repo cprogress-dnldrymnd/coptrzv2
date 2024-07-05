@@ -167,22 +167,22 @@ function custom_product_variation()
     foreach ($children as $child) {
         $variation = wc_get_product($child);
         $product_attribute = $variation->get_attributes();
-        $variations = 'data-variations="[';
-        $i = 0;
-        $numItems = count($product_attribute);
         $variation_name = '';
         $lastElement = end($product_attribute);
+
+        $product_attribute_array = array();
         foreach ($product_attribute as $key => $attr) {
-            $variations .=  '&#34;' . $key . '|' . $attr . '&#34;';
             $variation_name .= $attr . ' ';
             if ($attr != $lastElement) {
                 $variation_name .= ' | ';
             }
-            if (++$i != $numItems) {
-                $variations .= ',';
-            }
+
+            $product_attribute_array[$key] = $attr;
+            
         }
-        $variations .= ']"';
+
+        $json = json_encode($product_attribute_array);
+
 
         $description = $variation->get_description();
         $variation_thumbnail = get_post_thumbnail_id($child);
@@ -190,7 +190,7 @@ function custom_product_variation()
         $stock_status_variation = $variation->get_stock_status();
         $price = $variation->get_price_html();
         $html .= '<div class="col-12">';
-        $html .= "<input stock='$stock_status_variation' type='radio' id='variation-$child' $variations value='$child'  name='variation-radio'>";
+        $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
         $html .= "<label for='variation-$child' class='variation-label w-100 $stock_status_variation'>";
         $html .= "<div class='inner product-inner d-flex align-items-center w-100 p-20px rounded-corner'>";
         $html .= "<div class='col-auto'>";
