@@ -187,14 +187,14 @@ ul.products.products.products {
                 margin: 0;
             }
 
-            .add_to_cart_button,
+            .button.button.button,
             .button-box a {
                 padding: 1.25rem 5px;
                 text-align: center;
                 width: 100%;
             }
 
-            .add_to_cart_button {
+            .button.button.button {
                 margin-top: 0;
                 @include button-accent;
             }

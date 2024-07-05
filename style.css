@@ -10374,17 +10374,17 @@ ul.products.products.products {
         padding: 10px;
         border-radius: 5px;
         margin: 0; }
-      ul.products.products.products li.product.product .product-inner .add_to_cart_button,
+      ul.products.products.products li.product.product .product-inner .button.button.button,
       ul.products.products.products li.product.product .product-inner .button-box a {
         padding: 1.25rem 5px;
         text-align: center;
         width: 100%; }
-      ul.products.products.products li.product.product .product-inner .add_to_cart_button {
+      ul.products.products.products li.product.product .product-inner .button.button.button {
         margin-top: 0;
         color: var(--bs-white);
         border-color: var(--bs-accent);
         background-color: var(--bs-accent); }
-        ul.products.products.products li.product.product .product-inner .add_to_cart_button:hover, ul.products.products.products li.product.product .product-inner .add_to_cart_button:active, ul.products.products.products li.product.product .product-inner .add_to_cart_button:focus {
+        ul.products.products.products li.product.product .product-inner .button.button.button:hover, ul.products.products.products li.product.product .product-inner .button.button.button:active, ul.products.products.products li.product.product .product-inner .button.button.button:focus {
           background-color: var(--bs-secondary);
           border-color: var(--bs-secondary);
           color: var(--bs-white); }
