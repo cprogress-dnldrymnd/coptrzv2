@@ -501,7 +501,7 @@ section.product-main {
 .instock,
 .onbackorder,
 .outofstock {
-    &:not(.status-style-2) {
+    &.status-style-2 {
         .product-inner {
             @include before {
                 position: absolute;
@@ -509,7 +509,7 @@ section.product-main {
             }
         }
     }
-    &.status-style-2 {
+    &:not(.status-style-2) {
         .status {
             @include before {
                 display: block;
@@ -519,12 +519,12 @@ section.product-main {
     }
 }
 .instock {
-    &:not(.status-style-2) {
+    &.status-style-2 {
         .product-inner {
             @include instock;
         }
     }
-    &.status-style-2 {
+    &:not(.status-style-2) {
         .status {
             @include instock;
         }
@@ -532,24 +532,24 @@ section.product-main {
 }
 
 .onbackorder {
-    &:not(.status-style-2) {
+    &.status-style-2 {
         .product-inner {
             @include backorder;
         }
     }
-    &.status-style-2 {
+    &:not(.status-style-2) {
         .status {
             @include backorder;
         }
     }
 }
 .outofstock {
-    &:not(.status-style-2) {
+    &.status-style-2 {
         .product-inner {
             @include outofstock;
         }
     }
-    &.status-style-2 {
+    &:not(.status-style-2) {
         .status {
             @include outofstock;
         }

@@ -194,7 +194,7 @@ function custom_product_variation()
         $price = $variation->get_price_html();
         $html .= '<div class="col-12">';
         $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
-        $html .= "<label for='variation-$child' class='variation-label w-100 $stock_status_variation'>";
+        $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100 $stock_status_variation'>";
         $html .= "<div class='inner product-inner d-flex align-items-center w-100 p-20px rounded-corner'>";
         $html .= "<div class='col-auto'>";
         $html .= __image(array(
@@ -413,7 +413,7 @@ function _product_grid_display($id)
     $button_class = $product_type == 'simple' ? 'col-sm-6' : 'col-12';
 
     $html = "<ul class='products custom-product-grid m-0 p-0'>";
-    $html .= "<li class='product status-style-2 m-0 p-0 w-100 post-$id $stock_status'>";
+    $html .= "<li class='product m-0 p-0 w-100 post-$id $stock_status'>";
     $html .= "<div class='product-inner rounded-10px border-default h-100 bg-white'>";
     $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
     $html .= "<div class='wc-img-wrapper'>";
@@ -424,6 +424,7 @@ function _product_grid_display($id)
     $html .= '<span class="status d-block mb-2 mt-2"></span>';
 
     $html .= "</a>";
+    $html .= "<span class='status d-block'>";
 
     $html .= "<div class='product-buttons'>";
     $html .= "<div class='row g-10px'>";
