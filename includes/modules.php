@@ -1160,6 +1160,7 @@ function __product_specifications()
             }
             $html .= __heading(array(
                 'heading' => $specification->name,
+                'class' => _attribute('class', 'mb-0'),
                 'tag' => 'h5',
             ));
             $html .= '</div>';
