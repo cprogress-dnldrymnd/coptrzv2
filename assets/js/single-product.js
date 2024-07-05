@@ -1,6 +1,6 @@
 jQuery(document).ready(function () {
     product_gallery();
-    //product_variation();
+    product_variation();
     //paypal();
 });
 
