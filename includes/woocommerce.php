@@ -286,7 +286,21 @@ add_action('woocommerce_after_add_to_cart_button', 'buy_now_button', 20);
 function __product_compare($id)
 {
     $products = get__post_meta_by_id($id, 'products');
-    $html = 'sdsds';
+    $html = "<section>";
+    $html .= "<div class='container'>";
+    $html .= "<div class='row'>";
+    $html .= "<div class='col-lg-3'>";
+    $html .= __heading(array(
+        'heading' => get_the_title($id),
+    ));
+    $html = "</div>";
+
+
+
+    $html = "</div>";
+    $html = "</div>";
+    $html = "</section>";
+
 
     return $html;
 }
