@@ -121,6 +121,10 @@ function __video($data)
     $video_url = wp_get_attachment_url($data['video_id']);
     $video_type = $data['video_type'];
     $autoplay = $data['autoplay'] ? $data['autoplay'] : false;
+    $class = isset($data['class']) ? $data['class'] : false;
+    $attributes_args = [];
+    $_attributes = _attributes($attributes_args);
+
     if ($video_type == 'youtube') {
         $parameters = '';
         $youtube_video_id = $data['youtube_video_id'];
@@ -131,8 +135,7 @@ function __video($data)
         return "<div $_attributes><iframe src='$source'></iframe></div>";
     } else {
         if ($video_url) {
-            $class = isset($data['class']) ? $data['class'] : false;
-            $attributes_args = [];
+
             $parameters = '';
             if ($autoplay) {
                 $parameters = 'autoplay loop muted';
@@ -142,7 +145,6 @@ function __video($data)
             if ($class) {
                 $attributes_args[] = $class;
             }
-            $_attributes = _attributes($attributes_args);
 
             return "<div $_attributes><video  $parameters src='$video_url'></video></div>";
         }
