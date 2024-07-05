@@ -10,16 +10,19 @@ function product_variation() {
         $variations = JSON.parse($data_variations);
 
         jQuery.each($variations, function ($variation_name, $variation_val) {
-            jQuery('#' + $variation_name).val($variation_val);
-            jQuery('#' + $variation_name).val($variation_val);
-            jQuery('#' + $variation_name).val($variation_val);
+            jQuery('#' + $variation_name).attr('selected', $variation_val);
         });
 
         setTimeout(function () {
             jQuery('.variations select').each(function (index, element) {
+                $selected = jQuery(this).attr('selected');
+                jQuery(this).val($selected);
                 jQuery(this).trigger('change');
             });
         }, 500);
+
+
+
         e.preventDefault();
     });
 
