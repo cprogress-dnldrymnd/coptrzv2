@@ -190,7 +190,6 @@ function custom_product_variation()
         $stock_status_variation = $variation->get_stock_status();
         $price = $variation->get_price_html();
         $html .= '<div class="col-12">';
-        $html .= var_dump($product_attribute);
         $html .= "<input stock='$stock_status_variation' type='radio' id='variation-$child' $variations value='$child'  name='variation-radio'>";
         $html .= "<label for='variation-$child' class='variation-label w-100 $stock_status_variation'>";
         $html .= "<div class='inner product-inner d-flex align-items-center w-100 p-20px rounded-corner'>";
