@@ -1185,12 +1185,18 @@ function _output_svg_from_url($url)
 }
 
 
-function __product_specifications()
+function __product_specifications($for_product_summary = false)
 {
     $pa_specifications = get_the_terms(get_the_ID(), 'pa_specifications');
     if ($pa_specifications) {
-        $html = '<section class="products-specifications mt-20px bg-light rounded-corner py-3 mx-20px">';
-        $html .= '<div class="container-fluid">';
+        if ($for_product_summary == false) {
+            $class = 'col-auto';
+            $html = '<section class="products-specifications mt-20px bg-light rounded-corner py-3 mx-20px">';
+            $html .= '<div class="container-fluid">';
+        } else {
+            $class = 'col-6';
+            $html = '<div class="products-specifications">';
+        }
         $html .= '<div class="row g-5 justify-content-center">';
         foreach ($pa_specifications as $specification) {
             $icon = get__term_meta($specification->term_id, 'icon');
@@ -1198,7 +1204,7 @@ function __product_specifications()
 
 
 
-            $html .= '<div class="col-auto">';
+            $html .= "<div class='$class'>";
             $html .= '<div class="inner d-flex align-items-center">';
             if (str_contains($mime_type, 'svg')) {
                 $html .= __icon(array(
@@ -1220,8 +1226,12 @@ function __product_specifications()
             $html .= '</div>';
         }
         $html .= '</div>';
-        $html .= '</div>';
-        $html .= '</section>';
+        if ($for_product_summary == false) {
+            $html .= '</div>';
+            $html .= '</section>';
+        } else {
+            $html .= '</div>';
+        }
         return $html;
     }
 }
