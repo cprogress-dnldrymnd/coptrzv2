@@ -387,7 +387,7 @@ function _product_grid_display($id)
     $product = wc_get_product($id);
     $title = $product->get_name();
     $permalink = get_the_permalink($id);
-    $post_thumnail = get_post_thumbnail_id($id);
+    $post_thumnail = get_the_post_thumbnail_url($id, 'large');
     $stock_status =  $product->get_stock_status();
     
     $html = "<ul class='products custom-product-grid'>";
