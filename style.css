@@ -10145,6 +10145,9 @@ section .container > *:not(:last-child) {
     .section .container > .row + .row.gy-2, .section .container > .row + .row.gy-1 {
       margin-top: 3rem; } }
 
+.video-box video, .video-box iframe {
+  width: 100%; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
