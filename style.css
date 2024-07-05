@@ -10649,7 +10649,8 @@ ul.products.products.products {
         padding: 10px;
         border-radius: 5px;
         margin: 0; }
-      ul.products.products.products li.product.product .product-inner .add_to_cart_button, ul.products.products.products li.product.product .product-inner .button-box a {
+      ul.products.products.products li.product.product .product-inner .add_to_cart_button,
+      ul.products.products.products li.product.product .product-inner .button-box a {
         padding: 1.25rem 5px;
         text-align: center;
         width: 100%; }
@@ -10809,8 +10810,9 @@ section.product-main .summary.summary.summary .products-specifications {
     flex-direction: column; }
     .products.upsells.upsells.upsells ul.products li.product {
       width: 100%;
-      margin: 0;
-      padding-right: 160px; }
+      margin: 0; }
+      .products.upsells.upsells.upsells ul.products li.product .product-inner {
+        padding-right: 160px; }
       .products.upsells.upsells.upsells ul.products li.product .wc-img-wrapper {
         position: absolute;
         right: 25px;
