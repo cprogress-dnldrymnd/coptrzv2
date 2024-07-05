@@ -9,10 +9,27 @@ function action_woocommerce_before_main_content()
         $single_product_content = get__post_meta('single_product_content');
         echo $single_product_content;
 
-        $pa_specifications = get_the_terms( get_the_ID(), 'pa_specifications' );
-        echo '<pre>';
-        var_dump($pa_specifications);
-        echo '</pre>';
+        $pa_specifications = get_the_terms(get_the_ID(), 'pa_specifications');
+        if ($pa_specifications) {
+            $html = '<div class="products-specifications">';
+            $html .= '<div calss="row g-4">';
+            foreach ($pa_specifications as $specification) {
+                $icon = get__term_meta($specification->term_id, 'icon');
+                $mime_type =  get_post_mime_type($icon);
+
+                echo $mime_type;
+                if (str_contains($mime_type, 'svg')) {
+
+                }
+
+
+                $html .= '<div calss="col-auto">';
+                $html .= '';
+                $html .= '</div>';
+            }
+            $html .= '</div>';
+            $html .= '</div>';
+        }
     }
 }
 
@@ -110,12 +127,13 @@ function brands_filter()
 add_shortcode('brands_filter', 'brands_filter');
 
 //remove product title only
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
 
 
-add_filter( 'woocommerce_single_product_image_thumbnail_html', 'custom_remove_product_link' );
-function custom_remove_product_link( $html ) {
-  return strip_tags( $html, '<div><img>' );
+add_filter('woocommerce_single_product_image_thumbnail_html', 'custom_remove_product_link');
+function custom_remove_product_link($html)
+{
+    return strip_tags($html, '<div><img>');
 }
 
 /**
@@ -125,22 +143,23 @@ function custom_remove_product_link( $html ) {
  * @compatible    WooCommerce 3.5.7
  * @community     https://businessbloomer.com/club/
  */
- 
- remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
- 
- add_action( 'woocommerce_single_product_summary', 'woocommerce_upsell_display', 39 );
- 
 
- /**
+remove_action('woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15);
+
+add_action('woocommerce_single_product_summary', 'woocommerce_upsell_display', 39);
+
+
+/**
  * @snippet       Translate "You may also like..." - WooCommerce Single Product
  * @how-to        Get CustomizeWoo.com FREE
  * @author        Rodolfo Melogli
  * @compatible    WooCommerce 4.1.1
  * @community     https://businessbloomer.com/club/
  */
-  
-add_filter( 'woocommerce_product_upsells_products_heading', 'bbloomer_translate_may_also_like' );
-  
-function bbloomer_translate_may_also_like() {
-   return 'COPTRZ Recommended Accessories:';
+
+add_filter('woocommerce_product_upsells_products_heading', 'bbloomer_translate_may_also_like');
+
+function bbloomer_translate_may_also_like()
+{
+    return 'COPTRZ Recommended Accessories:';
 }
