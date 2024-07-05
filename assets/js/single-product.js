@@ -13,7 +13,11 @@ function product_variation() {
             jQuery('#' + $variation_name).val($variation_val);
         });
 
-      
+        setTimeout(function () {
+            jQuery('.variations select').each(function (index, element) {
+                jQuery(this).trigger('change');
+            });
+        }, 500);
         e.preventDefault();
     });
 
