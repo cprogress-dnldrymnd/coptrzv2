@@ -140,9 +140,9 @@ ul.products.products.products {
         float: none;
         margin-right: 0;
         margin-bottom: 0;
-
+        position: relative;
         .product-inner {
-            padding: 20px;
+            padding: 20px 20px 81px;
             position: relative;
             .wc-img-wrapper {
                 padding: 35%;
@@ -199,6 +199,10 @@ ul.products.products.products {
                 @include button-accent;
             }
             .product-buttons {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
                 .col-12 {
                     .button-box a {
                         width: auto;
