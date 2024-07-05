@@ -14,10 +14,11 @@ function product_variation() {
         });
 
         jQuery('.variations select').each(function (index, element) {
+            var $this = jQuery(this);
             setTimeout(function () {
-                $selected = jQuery(this).attr('selected_variation');
-                jQuery(this).val($selected);
-                jQuery(this).trigger('change');
+                $selected = $this.attr('selected_variation');
+                $this.val($selected);
+                $this.trigger('change');
             }, 300);
         });
         e.preventDefault();
