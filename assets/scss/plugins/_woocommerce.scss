@@ -332,6 +332,13 @@ section.product-main {
                 font-size: 28px;
             }
         }
+
+        .variations {
+            tr {
+                display: flex;
+                flex-direction: column;
+            }
+        }
     }
 }
 
@@ -365,7 +372,8 @@ section.product-main {
 
 section.products-specifications {
     .inner {
-        svg, img {
+        svg,
+        img {
             width: 56px;
             height: 56px;
             object-fit: contain;
