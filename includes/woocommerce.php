@@ -304,7 +304,7 @@ function __product_compare($id)
         }
     }
 
-    $html = "<div class='product-compare bg-light lg-padding-top lg-padding-bottom'>";
+    $html = "<div class='product-compare lg-padding-top lg-padding-bottom'>";
     $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
     $html .= "<div class='row g-10px'>";
     $html .= "<div class='col-lg-3'>";
