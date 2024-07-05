@@ -465,3 +465,11 @@ function my_remove_all_product_tabs( $tabs ) {
   unset( $tabs['additional_information'] );  	// Remove the additional information tab
   return $tabs;
 }
+
+add_filter('post_class', function($classes, $class, $product_id) {
+    if(is_product_category()) {
+        //only add these classes if we're on a product category page.
+        $classes = array_merge(['status-style-2'], $classes);
+    }
+    return $classes;
+},10,3);
