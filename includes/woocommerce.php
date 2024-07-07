@@ -467,3 +467,29 @@ function my_remove_all_product_tabs($tabs)
     return $tabs;
 }
 
+
+// Hook for adding html to the product edit page under linked products
+add_action('woocommerce_product_options_related', 'add_linked_custom_product_field');
+function add_linked_custom_product_field()
+{
+    global $product; // UGH globals.
+?>
+    <div class="options_group ">
+        <p class="form-field">
+            <label for="compatible_payloads"><?php esc_html_e('Compatible Payloads', 'woocommerce'); ?></label>
+            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="compatible_payloads" name="compatible_payloads[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products" data-exclude="<?php echo intval($product->ID); ?>">
+                <?php
+                $product_ids = !empty(get_post_meta($product->get_id(), 'compatible_payloads', true)) ? get_post_meta($product->get_id(), 'compatible_payloads', true) : array();
+                foreach ($product_ids as $product_id) {
+                    $product = wc_get_product($product_id);
+                    if (is_object($product)) {
+                        echo '<option value="' . esc_attr($product_id) . '"' . selected(true, true, false) . '>' . wp_kses_post($product->get_formatted_name()) . '</option>';
+                    }
+                }
+                ?>
+            </select>
+            <?php echo wc_help_tip(__('Select compatible payloads for this product.', 'woocommerce')); ?>
+        </p>
+    </div>
+<?php
+}
