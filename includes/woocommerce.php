@@ -477,8 +477,8 @@ function add_linked_custom_product_field()
 ?>
     <div class="options_group ">
         <p class="form-field">
-            <label for="compatible_payloads"><?php esc_html_e('Custom Linked Field Products', 'woocommerce'); ?></label>
-            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="compatible_payloads" name="compatible_payloads[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products" >
+            <label for="compatible_payloads"><?php esc_html_e('Compatible Payloads', 'woocommerce'); ?></label>
+            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="compatible_payloads" name="compatible_payloads[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products">
                 <?php
                 $product_ids = !empty(get_post_meta($product_object->get_id(), 'compatible_payloads', true)) ? get_post_meta($product_object->get_id(), 'compatible_payloads', true) : array();
                 foreach ($product_ids as $product_id) {
@@ -488,7 +488,25 @@ function add_linked_custom_product_field()
                     }
                 }
                 ?>
-            </select> <?php echo wc_help_tip(__('This lets you choose which products are part of this group.', 'woocommerce')); // WPCS: XSS ok. 
+            </select> <?php echo wc_help_tip(__('Select compatible payloads for this product.', 'woocommerce')); // WPCS: XSS ok. 
+                        ?>
+        </p>
+    </div>
+
+    <div class="options_group ">
+        <p class="form-field">
+            <label for="accessoies"><?php esc_html_e('Accessories', 'woocommerce'); ?></label>
+            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="accessoies" name="accessoies[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products">
+                <?php
+                $product_ids = !empty(get_post_meta($product_object->get_id(), 'accessoies', true)) ? get_post_meta($product_object->get_id(), 'accessoies', true) : array();
+                foreach ($product_ids as $product_id) {
+                    $product = wc_get_product($product_id);
+                    if (is_object($product)) {
+                        echo '<option value="' . esc_attr($product_id) . '"' . selected(true, true, false) . '>' . wp_kses_post($product->get_formatted_name()) . '</option>';
+                    }
+                }
+                ?>
+            </select> <?php echo wc_help_tip(__('Select accessories for this product.', 'woocommerce')); // WPCS: XSS ok. 
                         ?>
         </p>
     </div>
@@ -496,9 +514,12 @@ function add_linked_custom_product_field()
 }
 
 // Filter for saving custom product data
-add_action('save_post_product', 'save_custom_product_options', 10,3 );
+add_action('save_post_product', 'save_custom_product_options', 10, 3);
 function save_custom_product_options($post_ID, $product, $update)
 {
     $compatible_payloads = isset($_POST['compatible_payloads']) ? $_POST['compatible_payloads'] : array();
     update_post_meta($post_ID, 'compatible_payloads', $compatible_payloads);
+
+    $accessoies = isset($_POST['accessoies']) ? $_POST['accessoies'] : array();
+    update_post_meta($post_ID, 'accessoies', $accessoies);
 }
