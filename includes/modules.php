@@ -1249,7 +1249,7 @@ function __post_box($id)
 
     $image_args['featured_image'] = $id;
     $image_args['size'] = 'large';
-    $image_args['class'] = _attribute('class', array('image-box same-image-height'));
+    $image_args['class'] = _attribute('class', array('image-box', 'same-image-height'));
 
     $html = "<div class='post-box-inner content-margin'>";
     $html .= __image($image_args);
