@@ -470,35 +470,38 @@ function my_remove_all_product_tabs($tabs)
 
 
 // Hook for adding html to the product edit page under linked products
-add_action( 'woocommerce_product_options_related', 'add_linked_custom_product_field' );
-function add_linked_custom_product_field() {
-  global $product_object; // UGH globals.
-  ?>
+add_action('woocommerce_product_options_related', 'add_linked_custom_product_field');
+function add_linked_custom_product_field()
+{
+    global $product_object; // UGH globals.
+?>
     <div class="options_group show_if_variable">
-      <p class="form-field">
-        <label for="customLinkedProdField"><?php esc_html_e( 'Custom Linked Field Products', 'woocommerce' ); ?></label>
-        <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="customLinkedProdField" name="customLinkedProdField[]" data-sortable="true" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce' ); ?>" data-action="woocommerce_json_search_products" data-exclude="<?php echo intval( $post->ID ); ?>">
-          <?php
-          $product_ids = !empty( get_post_meta($product_object->get_id(),'customLinkedProdField', true) ) ? get_post_meta($product_object->get_id(),'customLinkedProdField', true) : array();
-          foreach ( $product_ids as $product_id ) {
-            $product = wc_get_product( $product_id );
-            if ( is_object( $product ) ) {
-              echo '<option value="' . esc_attr( $product_id ) . '"' . selected( true, true, false ) . '>' . wp_kses_post( $product->get_formatted_name() ) . '</option>';
-            }
-          }
-          ?>
-        </select> <?php echo wc_help_tip( __( 'This lets you choose which products are part of this group.', 'woocommerce' ) ); // WPCS: XSS ok. ?>
-      </p>
+        <p class="form-field">
+            <label for="customLinkedProdField"><?php esc_html_e('Custom Linked Field Products', 'woocommerce'); ?></label>
+            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="customLinkedProdField" name="customLinkedProdField[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products" data-exclude="<?php echo intval($post->ID); ?>">
+                <?php
+                $product_ids = !empty(get_post_meta($product_object->get_id(), 'customLinkedProdField', true)) ? get_post_meta($product_object->get_id(), 'customLinkedProdField', true) : array();
+                foreach ($product_ids as $product_id) {
+                    $product = wc_get_product($product_id);
+                    if (is_object($product)) {
+                        echo '<option value="' . esc_attr($product_id) . '"' . selected(true, true, false) . '>' . wp_kses_post($product->get_formatted_name()) . '</option>';
+                    }
+                }
+                ?>
+            </select> <?php echo wc_help_tip(__('This lets you choose which products are part of this group.', 'woocommerce')); // WPCS: XSS ok. 
+                        ?>
+        </p>
     </div>
-  <?php
+<?php
 }
 
 // Filter for saving custom product data
-add_filter( 'save_post_product', 'save_custom_product_options' );
-public function save_custom_product_options( $post_ID, $product, $update ) { 
-  
-  // DO YOUR OWN SANITIZATION HERE!!!! IMPORTANTTT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  
-  $customLinkedProdField = isset( $_POST['customLinkedProdField'] ) ? $_POST['customLinkedProdField'] : array();
-  update_post_meta( $post_ID, 'customLinkedProdField', $customLinkedProdField );
+add_filter('save_post_product', 'save_custom_product_options');
+function save_custom_product_options($post_ID, $product, $update)
+{
+
+    // DO YOUR OWN SANITIZATION HERE!!!! IMPORTANTTT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    $customLinkedProdField = isset($_POST['customLinkedProdField']) ? $_POST['customLinkedProdField'] : array();
+    update_post_meta($post_ID, 'customLinkedProdField', $customLinkedProdField);
 }
