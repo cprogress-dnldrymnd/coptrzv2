@@ -104,22 +104,20 @@ main {
     }
 }
 
-.extend-right {
-    .container {
-        margin-right: 0;
-        padding-right: 0;
-        @media (min-width: 1500px) {
-            max-width: calc(1520px + (50% - (1520px / 2)));
-        }
+.extend-right,
+.extend-right.container {
+    margin-right: 0;
+    padding-right: 0;
+    @media (min-width: 1500px) {
+        max-width: calc(1520px + (50% - (1520px / 2)));
     }
 }
-.extend-left {
-    .container {
-        margin-left: 0;
-        padding-left: 0;
-        @media (min-width: 1500px) {
-            max-width: calc(1520px + (50% - (1520px / 2)));
-        }
+.extend-left .container,
+.extend-left.container {
+    margin-left: 0;
+    padding-left: 0;
+    @media (min-width: 1500px) {
+        max-width: calc(1520px + (50% - (1520px / 2)));
     }
 }
 
@@ -374,9 +372,9 @@ section {
     }
 }
 
-
 .video-box {
-    video, iframe {
+    video,
+    iframe {
         width: 100% !important;
     }
     &.youtube {
@@ -400,7 +398,9 @@ small {
         .swiper-wrapper {
             .swiper-slide {
                 width: 25% !important;
-                .products, .product, .product-inner {
+                .products,
+                .product,
+                .product-inner {
                     height: 100%;
                 }
                 @include not-last-child {
