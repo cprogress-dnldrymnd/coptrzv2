@@ -8,9 +8,9 @@ jQuery(document).ready(function () {
 
 function __swiper_sliders() {
     jQuery('.swiper-linked-products').each(function (index, element) {
-        $id = '#' + jQuery(this).attr('id');
+        $id = jQuery(this).attr('id');
 
-        var swiper_linked_products = new Swiper($id, {
+        var swiper_linked_products = new Swiper('#' + $id, {
             loop: true,
             spaceBetween: 20,
             autoplay: false,
@@ -34,8 +34,8 @@ function __swiper_sliders() {
                 },
             },
             navigation: {
-                nextEl: "#swiper-next-" + jQuery(this).attr('id'),
-                prevEl: "#swiper-prev-" + jQuery(this).attr('id')
+                nextEl: "#swiper-next-" + $id,
+                prevEl: "#swiper-prev-" + $id
             },
         });
 
