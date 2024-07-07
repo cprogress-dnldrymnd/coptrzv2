@@ -495,10 +495,10 @@ function add_linked_custom_product_field()
 
     <div class="options_group ">
         <p class="form-field">
-            <label for="accessoies"><?php esc_html_e('Accessories', 'woocommerce'); ?></label>
-            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="accessoies" name="accessoies[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products">
+            <label for="accessories"><?php esc_html_e('Accessories', 'woocommerce'); ?></label>
+            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="accessories" name="accessories[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products">
                 <?php
-                $product_ids = !empty(get_post_meta($product_object->get_id(), 'accessoies', true)) ? get_post_meta($product_object->get_id(), 'accessoies', true) : array();
+                $product_ids = !empty(get_post_meta($product_object->get_id(), 'accessories', true)) ? get_post_meta($product_object->get_id(), 'accessories', true) : array();
                 foreach ($product_ids as $product_id) {
                     $product = wc_get_product($product_id);
                     if (is_object($product)) {
@@ -520,6 +520,11 @@ function save_custom_product_options($post_ID, $product, $update)
     $compatible_payloads = isset($_POST['compatible_payloads']) ? $_POST['compatible_payloads'] : array();
     update_post_meta($post_ID, 'compatible_payloads', $compatible_payloads);
 
-    $accessoies = isset($_POST['accessoies']) ? $_POST['accessoies'] : array();
-    update_post_meta($post_ID, 'accessoies', $accessoies);
+    $accessories = isset($_POST['accessories']) ? $_POST['accessories'] : array();
+    update_post_meta($post_ID, 'accessories', $accessories);
+}
+
+
+function __linked_products($id, $field) {
+    
 }
