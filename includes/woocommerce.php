@@ -468,19 +468,18 @@ function my_remove_all_product_tabs($tabs)
 }
 
 
-
 // Hook for adding html to the product edit page under linked products
 add_action('woocommerce_product_options_related', 'add_linked_custom_product_field');
 function add_linked_custom_product_field()
 {
-    global $product_object; // UGH globals.
+    global $product; // UGH globals.
 ?>
-    <div class="options_group show_if_variable">
+    <div class="options_group ">
         <p class="form-field">
-            <label for="customLinkedProdField"><?php esc_html_e('Custom Linked Field Products', 'woocommerce'); ?></label>
-            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="customLinkedProdField" name="customLinkedProdField[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products" data-exclude="<?php echo intval($post->ID); ?>">
+            <label for="compatible_payloads"><?php esc_html_e('Custom Linked Field Products', 'woocommerce'); ?></label>
+            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="compatible_payloads" name="compatible_payloads[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products" data-exclude="<?php echo intval($product->ID); ?>">
                 <?php
-                $product_ids = !empty(get_post_meta($product_object->get_id(), 'customLinkedProdField', true)) ? get_post_meta($product_object->get_id(), 'customLinkedProdField', true) : array();
+                $product_ids = !empty(get_post_meta($product->get_id(), 'compatible_payloads', true)) ? get_post_meta($product->get_id(), 'compatible_payloads', true) : array();
                 foreach ($product_ids as $product_id) {
                     $product = wc_get_product($product_id);
                     if (is_object($product)) {
@@ -499,9 +498,6 @@ function add_linked_custom_product_field()
 add_filter('save_post_product', 'save_custom_product_options');
 function save_custom_product_options($post_ID, $product, $update)
 {
-
-    // DO YOUR OWN SANITIZATION HERE!!!! IMPORTANTTT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    $customLinkedProdField = isset($_POST['customLinkedProdField']) ? $_POST['customLinkedProdField'] : array();
-    update_post_meta($post_ID, 'customLinkedProdField', $customLinkedProdField);
+    $compatible_payloads = isset($_POST['compatible_payloads']) ? $_POST['compatible_payloads'] : array();
+    update_post_meta($post_ID, 'compatible_payloads', $compatible_payloads);
 }
