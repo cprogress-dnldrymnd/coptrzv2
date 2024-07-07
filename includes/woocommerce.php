@@ -521,5 +521,5 @@ function save_custom_product_options($post_ID, $product, $update)
     update_post_meta($post_ID, 'compatible_payloads', $compatible_payloads);
 
     $accessoies = isset($_POST['accessoies']) ? $_POST['accessoies'] : array();
-    update_post_meta($post_ID, 'accessoies', $accessoies);
+    update_post_meta($post_ID, 'accessoies', $compatible_payloads);
 }
