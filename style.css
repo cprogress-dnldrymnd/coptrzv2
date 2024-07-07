@@ -9967,12 +9967,12 @@ img {
   max-width: 100%;
   --bs-gutter-x: 0; }
 
-.extend-right,
+.extend-right .container,
 .extend-right.container {
   margin-right: 0;
   padding-right: 0; }
   @media (min-width: 1500px) {
-    .extend-right,
+    .extend-right .container,
     .extend-right.container {
       max-width: calc(1520px + (50% - (1520px / 2))); } }
 
