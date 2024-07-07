@@ -21,11 +21,11 @@ function action_woocommerce_after_single_product_summary()
 
     echo do_shortcode($single_product_content_after);
     if ($compatible_payloads) {
-        echo __linked_products($compatible_payloads, 'All Payloads', '#');
+        echo __linked_products($compatible_payloads, 'All Payloads', '#', 'swiper-payloads');
     }
 
     if ($compatible_payloads) {
-        echo __linked_products($accessories, 'All Accessories', '#');
+        echo __linked_products($accessories, 'All Accessories', '#', 'swiper-accessories');
     }
 }
 
@@ -535,12 +535,12 @@ function save_custom_product_options($post_ID, $product, $update)
 }
 
 
-function __linked_products($field, $button_text, $button_link)
+function __linked_products($field, $button_text, $button_link, $id)
 {
     $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<div class='container'>";
     $html .= "<div class='swiper-holder style-1'>"; //swiper-holder
-    $html .= "<div class='swiper'>"; //swiper
+    $html .= "<div class='swiper swiper-linked-products' id='$id'>"; //swiper
     $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
     foreach ($field as $product_id) {
@@ -550,7 +550,7 @@ function __linked_products($field, $button_text, $button_link)
 
     }
     $html .= '</div>'; //end-swiper-wrapper
-    $html .= "<div class=' row g-4 justify-content-between'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='$button_link'>$button_text</a> </div> </div> </div>";
+    $html .= "<div class='row mt-4 g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='$button_link'>$button_text</a> </div> </div> </div>";
     $html .= '</div>'; //end-swiper
     $html .= '</div>'; //end-swiper-holder
     $html .= '</div>';

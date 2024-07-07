@@ -5,6 +5,45 @@ jQuery(document).ready(function () {
     __quantity();
 });
 
+function __swiper_sliders() {
+    jQuery('.swiper-linked-products').each(function (index, element) {
+        $id = '#' + jQuery(this).attr('id');
+
+        var swiper_linked_products = new Swiper($id, {
+            loop: true,
+            freeMode: true,
+            centeredSlides: true,
+            speed: 5000,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 2,
+                },
+
+                768: {
+                    slidesPerView: 3,
+                },
+
+
+                992: {
+                    slidesPerView: 4,
+                },
+
+
+                1200: {
+                    slidesPerView: 4.5
+                },
+
+            },
+
+        });
+
+    });
+
+}
 function __quantity() {
     jQuery('form.cart').on('click', 'button.plus, button.minus', function () {
         var qty = jQuery(this).closest('form.cart').find('.qty');
