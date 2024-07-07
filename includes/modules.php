@@ -1247,7 +1247,7 @@ function __product_specifications($for_product_summary = false)
 function __post_box($id)
 {
 
-    $image_args['featured_image'] = get_post_thumbnail_id($id);
+    $image_args['featured_image'] = $id;
     $image_args['size'] = 'large';
 
     $html = "<div class='post-box-inner content-margin'>";
