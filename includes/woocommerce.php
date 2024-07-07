@@ -530,7 +530,7 @@ function __linked_products($field)
     $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<div class='container'>";
     $html .= "<div class='swiper-holder style-1'>"; //swiper-holder
-    $html .= "<div class='swiper-holder style-1'>"; //swiper
+    $html .= "<div class='swiper'>"; //swiper
     $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
     foreach ($field as $product_id) {
