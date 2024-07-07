@@ -32,9 +32,11 @@ function __swiper_sliders() {
                 1200: {
                     slidesPerView: 4.5
                 },
-
             },
-
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
         });
 
     });
