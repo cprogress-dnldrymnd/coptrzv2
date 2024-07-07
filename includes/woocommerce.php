@@ -468,18 +468,19 @@ function my_remove_all_product_tabs($tabs)
 }
 
 
+
 // Hook for adding html to the product edit page under linked products
 add_action('woocommerce_product_options_related', 'add_linked_custom_product_field');
 function add_linked_custom_product_field()
 {
-    global $product; // UGH globals.
+    global $product_object; // UGH globals.
 ?>
     <div class="options_group ">
         <p class="form-field">
-            <label for="compatible_payloads"><?php esc_html_e('Compatible Payloads', 'woocommerce'); ?></label>
-            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="compatible_payloads" name="compatible_payloads[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products" data-exclude="<?php echo intval($product->ID); ?>">
+            <label for="compatible_payloads"><?php esc_html_e('Custom Linked Field Products', 'woocommerce'); ?></label>
+            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="compatible_payloads" name="compatible_payloads[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products" data-exclude="<?php echo intval($post->ID); ?>">
                 <?php
-                $product_ids = !empty(get_post_meta($product->get_id(), 'compatible_payloads', true)) ? get_post_meta($product->get_id(), 'compatible_payloads', true) : array();
+                $product_ids = !empty(get_post_meta($product_object->get_id(), 'compatible_payloads', true)) ? get_post_meta($product_object->get_id(), 'compatible_payloads', true) : array();
                 foreach ($product_ids as $product_id) {
                     $product = wc_get_product($product_id);
                     if (is_object($product)) {
@@ -487,9 +488,17 @@ function add_linked_custom_product_field()
                     }
                 }
                 ?>
-            </select>
-            <?php echo wc_help_tip(__('Select compatible payloads for this product.', 'woocommerce')); ?>
+            </select> <?php echo wc_help_tip(__('This lets you choose which products are part of this group.', 'woocommerce')); // WPCS: XSS ok. 
+                        ?>
         </p>
     </div>
 <?php
+}
+
+// Filter for saving custom product data
+add_filter('save_post_product', 'save_custom_product_options');
+function save_custom_product_options($post_ID, $product, $update)
+{
+    $compatible_payloads = isset($_POST['compatible_payloads']) ? $_POST['compatible_payloads'] : array();
+    update_post_meta($post_ID, 'compatible_payloads', $compatible_payloads);
 }
