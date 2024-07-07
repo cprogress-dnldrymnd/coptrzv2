@@ -37,9 +37,9 @@ function action_module_content()
             }
 
           
-            $accessoies = get_post_meta(get_the_ID(), 'accessoies');
+            $accessories = get_post_meta(get_the_ID(), 'accessories');
             if ($compatible_payloads) {
-                $accessoies .= __linked_products(get_the_ID(), $compatible_payloads, true);
+                $accessories .= __linked_products(get_the_ID(), $accessories, true);
             }
 
 
