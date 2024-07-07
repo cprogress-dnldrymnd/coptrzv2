@@ -89,3 +89,7 @@ $SVG = new SVG;
 
 	<?php wp_body_open(); ?>
 	<main class="mt-20px">
+
+		<pre>
+	<?php var_dump(get_post_meta(get_the_ID(), 'compatible_payloads', true)) ?>
+	</pre>
