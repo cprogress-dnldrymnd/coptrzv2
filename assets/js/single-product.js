@@ -34,8 +34,8 @@ function __swiper_sliders() {
                 },
             },
             navigation: {
-                nextEl: $id + " .swiper-button-next",
-                prevEl: $id + " .swiper-button-prev",
+                nextEl: "swiper-next-" + $id,
+                prevEl: "swiper-prev-" + $id
             },
         });
 

@@ -567,7 +567,7 @@ function __linked_products($field, $button_text, $button_link, $id, $title)
     $html .= '</div>'; //end-swiper-holder
     $html .= '</div>';
 
-    $html .= "<div class='container mt-4'><div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='$button_link'>$button_text</a> </div> </div> </div></div>";
+    $html .= "<div class='container mt-4'><div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev' id='swiper-prev-$id'></div> <div class='swiper-button-next' id='swiper-next-$id'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='$button_link'>$button_text</a> </div> </div> </div></div>";
     $html .= '</section>';
 
     return $html;
