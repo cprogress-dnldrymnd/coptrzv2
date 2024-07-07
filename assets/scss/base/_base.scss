@@ -396,6 +396,7 @@ small {
 .swiper-linked-products {
     .swiper-wrapper {
         .swiper-slide {
+            height: auto !important;
             .products,
             .product,
             .product-inner {
