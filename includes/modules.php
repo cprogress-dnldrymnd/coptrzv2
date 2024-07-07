@@ -1265,4 +1265,6 @@ function __post_box($id)
         'button_style' => 'button-bordered',
     ));
     $html .= "</div>";
+
+    return $html;
 }
