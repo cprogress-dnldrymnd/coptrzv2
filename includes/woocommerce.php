@@ -539,7 +539,7 @@ function __linked_products($field, $button_text, $button_link, $id, $title)
 {
     $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<div class='container'>";
-    $html .= "<h2 calss='text-center'>$title</h2>";
+    $html .= "<h2 class='text-center'>$title</h2>";
     $html .= "<div class='swiper-holder style-1'>"; //swiper-holder
     $html .= "<div class='swiper swiper-linked-products' id='$id'>"; //swiper
     $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
