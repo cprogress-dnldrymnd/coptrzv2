@@ -18,7 +18,6 @@ function action_woocommerce_after_single_product_summary()
     $single_product_content_after = get__post_meta('single_product_content_after');
     $compatible_payloads = get_post_meta(get_the_ID(), 'compatible_payloads', true);
     $accessories = get_post_meta(get_the_ID(), 'accessories', true);
-    $related_guides = get__post_meta('related_guides');
 
     echo do_shortcode($single_product_content_after);
     if ($compatible_payloads) {
@@ -27,10 +26,6 @@ function action_woocommerce_after_single_product_summary()
 
     if ($compatible_payloads) {
         echo __linked_products($accessories, 'All Accessories', '#', 'swiper-accessories', 'Accessories');
-    }
-
-    if ($related_guides) {
-        echo __related_guides($related_guides);
     }
 }
 

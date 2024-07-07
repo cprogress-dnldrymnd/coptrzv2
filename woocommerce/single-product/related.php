@@ -54,4 +54,10 @@ if ($related_products) : ?>
 <?php
 endif;
 
+$related_guides = get__post_meta('related_guides');
+
+if ($related_guides) {
+	echo __related_guides($related_guides);
+}
+
 wp_reset_postdata();
