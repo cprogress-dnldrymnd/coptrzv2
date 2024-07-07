@@ -476,7 +476,7 @@ function add_linked_custom_product_field()
 ?>
     <div class="options_group ">
         <p class="form-field">
-            <label for="compatible_payloads"><?php esc_html_e('Custom Linked Field Products', 'woocommerce'); ?></label>
+            <label for="compatible_payloads"><?php esc_html_e('Compatible Payloads', 'woocommerce'); ?></label>
             <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="compatible_payloads" name="compatible_payloads[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products" data-exclude="<?php echo intval($product->ID); ?>">
                 <?php
                 $product_ids = !empty(get_post_meta($product->get_id(), 'compatible_payloads', true)) ? get_post_meta($product->get_id(), 'compatible_payloads', true) : array();
@@ -487,7 +487,7 @@ function add_linked_custom_product_field()
                     }
                 }
                 ?>
-            </select> <?php echo wc_help_tip(__('This lets you choose which products are part of this group.', 'woocommerce')); // WPCS: XSS ok. 
+            </select> <?php echo wc_help_tip(__('Select compatible payloads for this product.', 'woocommerce')); // WPCS: XSS ok. 
                         ?>
         </p>
     </div>
