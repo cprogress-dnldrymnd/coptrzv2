@@ -34,8 +34,8 @@ function __swiper_sliders() {
                 },
             },
             navigation: {
-                nextEl: "#swiper-next-" + $id,
-                prevEl: "#swiper-prev-" + $id
+                nextEl: "#swiper-next-" + jQuery(this).attr('id'),
+                prevEl: "#swiper-prev-" + jQuery(this).attr('id')
             },
         });
 
