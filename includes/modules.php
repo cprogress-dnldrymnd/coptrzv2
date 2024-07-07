@@ -1263,7 +1263,7 @@ function __post_box($id)
     $html .= __button(array(
         'button_type' => get_post_type($id),
         'button_text' => 'Read Guide',
-        'button_url' => get_the_permalink($id),
+        'button_url' => $id,
         'button_url_custom' => false,
         'button_style' => 'button-bordered',
     ));
