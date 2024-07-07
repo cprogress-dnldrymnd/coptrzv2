@@ -38,6 +38,10 @@ $sizes: 10px, 15px, 20px, 25px, 35px, 40px, 45px, 50px;
     .p-#{$size} {
         padding: $size;
     }
+    .px-#{$size} {
+        padding-left: $size;
+        padding-right: $size;
+    }
 }
 
 $spacings: (
