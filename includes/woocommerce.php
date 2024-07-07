@@ -540,7 +540,7 @@ function __linked_products($field)
 
     }
     $html .= '</div>'; //end-swiper-wrapper
-    $html .= '<div class="swiper-nav row justify-content-between"> <div class="col-auto"> <div class="swiper-button-prev"></div> <div class="swiper-button-next"></div> </div> <div class="col-auto"> <div class="button-box button-accent"> <a href="">All Payloads</a> </div> </div> </div>';
+    $html .= '<div class=" row g-4 justify-content-between"> <div class="col-auto"> <div class="swiper-nav d-inline-flex"> <div class="swiper-button-prev"></div> <div class="swiper-button-next"></div> </div> </div> <div class="col-auto"> <div class="button-box button-accent"> <a href="">All Payloads</a> </div> </div> </div>';
     $html .= '</div>'; //end-swiper
     $html .= '</div>'; //end-swiper-holder
     $html .= '</div>';
