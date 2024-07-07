@@ -1250,7 +1250,7 @@ function __post_box($id)
     $image_args['featured_image'] = get_post_thumbnail_id($id);
     $image_args['size'] = 'large';
 
-    $html = "<div class='post-box-inner'>";
+    $html = "<div class='post-box-inner content-margin'>";
     $html .= __image($image_args);
     $html .= __heading(array(
         'heading' => get_the_title($id),
