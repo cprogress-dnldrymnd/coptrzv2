@@ -525,7 +525,7 @@ function save_custom_product_options($post_ID, $product, $update)
 }
 
 
-function __linked_products($id, $field)
+function __linked_products($field)
 {
     $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<div class='container'>";
@@ -533,9 +533,9 @@ function __linked_products($id, $field)
     $html .= "<div class='swiper-holder style-1'>"; //swiper
     $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
-    foreach ($field as $product) {
+    foreach ($field as $product_id) {
         $html .= "<div class='swiper-slide'>"; //swiper-wrapper
-        $html .= _product_grid_display($product);
+        $html .= _product_grid_display($product_id);
         $html .= '</div>'; //end-swiper-wrapper
 
     }
