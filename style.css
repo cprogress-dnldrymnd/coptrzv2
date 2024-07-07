@@ -10203,14 +10203,8 @@ small, .small {
 .swiper-linked-products .swiper-wrapper .swiper-slide .product,
 .swiper-linked-products .swiper-wrapper .swiper-slide .product-inner {
   height: 100%; }
-.swiper-linked-products .swiper-wrapper .swiper-slide:not(:last-child) {
-  margin-right: 20px; }
 .swiper-linked-products:not(.swiper-initialized) .swiper-wrapper .swiper-slide {
   width: 25% !important; }
-  .swiper-linked-products:not(.swiper-initialized) .swiper-wrapper .swiper-slide .products,
-  .swiper-linked-products:not(.swiper-initialized) .swiper-wrapper .swiper-slide .product,
-  .swiper-linked-products:not(.swiper-initialized) .swiper-wrapper .swiper-slide .product-inner {
-    height: 100%; }
   .swiper-linked-products:not(.swiper-initialized) .swiper-wrapper .swiper-slide:not(:last-child) {
     margin-right: 20px; }
 
