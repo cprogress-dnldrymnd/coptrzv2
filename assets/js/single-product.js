@@ -30,7 +30,7 @@ function __swiper_sliders() {
 
 
                 1200: {
-                    slidesPerView: 5
+                    slidesPerView: 4.5
                 },
             },
             navigation: {
