@@ -8,7 +8,8 @@ jQuery(document).ready(function () {
 
 function __fixed_heading_position() {
     jQuery('.section.extend-right, .section.extend-left').each(function (index, element) {
-        jQuery(this).find('> .container > h2').addClass('px-20px').preprendTo(jQuery(this));
+        $this = jQuery(this);
+        jQuery(this).find('> .container > h2').addClass('px-20px').preprendTo($this);
     });
 }
 
