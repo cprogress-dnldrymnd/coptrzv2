@@ -3,6 +3,7 @@ jQuery(document).ready(function () {
     __product_variation();
     __move_paypal();
     __quantity();
+    __swiper_sliders();
 });
 
 function __swiper_sliders() {
