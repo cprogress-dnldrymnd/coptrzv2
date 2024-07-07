@@ -31,6 +31,18 @@ function action_woocommerce_after_single_product_summary()
 
 add_action('woocommerce_after_single_product_summary', 'action_woocommerce_after_single_product_summary');
 
+function action_woocommerce_after_single_product()
+{
+    $related_guides = get__post_meta('related_guides');
+
+    if ($related_guides) {
+        echo __related_guides($related_guides);
+    }
+}
+
+add_action('woocommerce_after_single_product', 'action_woocommerce_after_single_product');
+
+
 function action_woocommerce_before_shop_loop()
 {
     echo '<section class="product-archive-loop sm-padding-top lg-padding-bottom border-top-default no-overflow">';
