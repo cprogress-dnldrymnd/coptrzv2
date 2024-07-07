@@ -525,6 +525,26 @@ function save_custom_product_options($post_ID, $product, $update)
 }
 
 
-function __linked_products($id, $field) {
-    
+function __linked_products($id, $field)
+{
+    $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
+    $html .= "<div class='container'>";
+    $html .= "<div class='swiper-holder style-1'>"; //swiper-holder
+    $html .= "<div class='swiper-holder style-1'>"; //swiper
+    $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+
+    foreach ($field as $product) {
+        $html .= "<div class='swiper-slide'>"; //swiper-wrapper
+        $html .= _product_grid_display($product);
+        $html .= '</div>'; //end-swiper-wrapper
+
+    }
+    $html .= '</div>'; //end-swiper-wrapper
+    $html .= '<div class="swiper-nav row justify-content-between"> <div class="col-auto"> <div class="swiper-button-prev"></div> <div class="swiper-button-next"></div> </div> <div class="col-auto"> <div class="button-box button-accent"> <a href="">All Payloads</a> </div> </div> </div>';
+    $html .= '</div>'; //end-swiper
+    $html .= '</div>'; //end-swiper-holder
+    $html .= '</div>';
+    $html .= '</section>';
+
+    return $html;
 }
