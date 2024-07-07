@@ -9489,7 +9489,8 @@ p:last-child {
   padding: 10px; }
 
 .px-10px {
-  padding: 10px; }
+  padding-left: 10px;
+  padding-right: 10px; }
 
 .rounded-15px {
   border-radius: 15px; }
@@ -9524,7 +9525,8 @@ p:last-child {
   padding: 15px; }
 
 .px-15px {
-  padding: 15px; }
+  padding-left: 15px;
+  padding-right: 15px; }
 
 .rounded-20px {
   border-radius: 20px; }
@@ -9559,7 +9561,8 @@ p:last-child {
   padding: 20px; }
 
 .px-20px {
-  padding: 20px; }
+  padding-left: 20px;
+  padding-right: 20px; }
 
 .rounded-25px {
   border-radius: 25px; }
@@ -9594,7 +9597,8 @@ p:last-child {
   padding: 25px; }
 
 .px-25px {
-  padding: 25px; }
+  padding-left: 25px;
+  padding-right: 25px; }
 
 .rounded-35px {
   border-radius: 35px; }
@@ -9629,7 +9633,8 @@ p:last-child {
   padding: 35px; }
 
 .px-35px {
-  padding: 35px; }
+  padding-left: 35px;
+  padding-right: 35px; }
 
 .rounded-40px {
   border-radius: 40px; }
@@ -9664,7 +9669,8 @@ p:last-child {
   padding: 40px; }
 
 .px-40px {
-  padding: 40px; }
+  padding-left: 40px;
+  padding-right: 40px; }
 
 .rounded-45px {
   border-radius: 45px; }
@@ -9699,7 +9705,8 @@ p:last-child {
   padding: 45px; }
 
 .px-45px {
-  padding: 45px; }
+  padding-left: 45px;
+  padding-right: 45px; }
 
 .rounded-50px {
   border-radius: 50px; }
@@ -9734,7 +9741,8 @@ p:last-child {
   padding: 50px; }
 
 .px-50px {
-  padding: 50px; }
+  padding-left: 50px;
+  padding-right: 50px; }
 
 .xl-padding-top {
   padding-top: 12.5rem; }

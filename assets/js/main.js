@@ -16,10 +16,7 @@ function __block_accordion() {
     setTimeout(function () {
         jQuery('.block-accordion').each(function (index, element) {
             $height = jQuery(this).find('.wp-block-group__inner-container>div').outerHeight();
-
             jQuery(this).find('.wp-block-group__inner-container>div').css('height', $height + 'px');
-            // element == this
-
         });
     }, 1000);
 }
