@@ -12,13 +12,8 @@ function __swiper_sliders() {
 
         var swiper_linked_products = new Swiper($id, {
             loop: true,
-            freeMode: true,
-            centeredSlides: true,
-            speed: 5000,
-            autoplay: {
-                delay: 0,
-                disableOnInteraction: false
-            },
+            spaceBetween: 20,
+            autoplay: false,
             breakpoints: {
                 0: {
                     slidesPerView: 2,
