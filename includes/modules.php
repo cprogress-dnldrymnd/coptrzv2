@@ -481,7 +481,7 @@ function ____post_grid($data)
                 $classes[] = $post_box_style['justify_content'];
                 $classes[] = $post_box_style['text_align'];
                 if ($post_box_style['align_items'] || $post_box_style['justify_content']) {
-                    $classes[] = 'd-flex';
+                    $classes[] = 'd-flex flex-column';
                 }
                 break;
             case 'text_color':
