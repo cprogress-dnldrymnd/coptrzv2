@@ -1242,3 +1242,9 @@ function __product_specifications($for_product_summary = false)
         return $html;
     }
 }
+
+
+function __post_box($id)
+{
+    
+}

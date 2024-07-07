@@ -18,6 +18,7 @@ function action_woocommerce_after_single_product_summary()
     $single_product_content_after = get__post_meta('single_product_content_after');
     $compatible_payloads = get_post_meta(get_the_ID(), 'compatible_payloads', true);
     $accessories = get_post_meta(get_the_ID(), 'accessories', true);
+    $related_guides = get__post_meta('related_guides');
 
     echo do_shortcode($single_product_content_after);
     if ($compatible_payloads) {
@@ -26,6 +27,10 @@ function action_woocommerce_after_single_product_summary()
 
     if ($compatible_payloads) {
         echo __linked_products($accessories, 'All Accessories', '#', 'swiper-accessories', 'Accessories');
+    }
+
+    if ($related_guides) {
+        echo __related_guides($related_guides);
     }
 }
 
@@ -556,6 +561,20 @@ function __linked_products($field, $button_text, $button_link, $id, $title)
     $html .= '</div>';
 
     $html .= "<div class='container mt-4'><div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='$button_link'>$button_text</a> </div> </div> </div></div>";
+    $html .= '</section>';
+
+    return $html;
+}
+
+
+function __related_guides($related_guides)
+{
+    $html = "<section class='related-guides border-top-default md-padding-top md-padding-bottom'>";
+    $html .= "<div class='container'>";
+    $html .= "<h2 class='text-center px-20px'>Related Guides</h2>";
+    foreach ($related_guides as $related_guide) {
+    }
+    $html .= '</div>';
     $html .= '</section>';
 
     return $html;
