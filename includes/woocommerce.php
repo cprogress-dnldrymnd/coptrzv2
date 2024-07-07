@@ -580,7 +580,7 @@ function __related_guides($related_guides)
     $html .= "<div class='container'>";
     $html .= "<h2 class='text-center px-20px'>Related Guides</h2>";
 
-    $html .= "<div class='row g-4 same-image-height'>";
+    $html .= "<div class='row g-4 same-image-height' style=' --image-padding: 40%; '>";
     foreach ($related_guides as $related_guide) {
         $html .= "<div class='col-md-4 col-sm-12'>";
         $html .= __post_box($related_guide['id']);
