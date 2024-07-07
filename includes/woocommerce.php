@@ -583,7 +583,7 @@ function __related_guides($related_guides)
     $html .= "<div class='row g-4'>";
     foreach ($related_guides as $related_guide) {
         $html .= "<div class='col-md-4 col-sm-12'>";
-        $html .= -__post_box($related_guide['id']);
+        $html .= __post_box($related_guide['id']);
         $html .= '</div>';
     }
     $html .= '</div>';
