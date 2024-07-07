@@ -537,9 +537,9 @@ function save_custom_product_options($post_ID, $product, $update)
 
 function __linked_products($field, $button_text, $button_link, $id, $title)
 {
-    $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
+    $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom extend-right'>";
     $html .= "<h2 class='text-center px-20px'>$title</h2>";
-    $html .= "<div class='container extend-right'>";
+    $html .= "<div class='container'>";
     $html .= "<div class='swiper-holder'>"; //swiper-holder
     $html .= "<div class='swiper swiper-linked-products' id='$id'>"; //swiper
     $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
