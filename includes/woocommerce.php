@@ -21,11 +21,11 @@ function action_woocommerce_after_single_product_summary()
 
     echo do_shortcode($single_product_content_after);
     if ($compatible_payloads) {
-        echo __linked_products($compatible_payloads, 'All Payloads', '#', 'swiper-payloads');
+        echo __linked_products($compatible_payloads, 'All Payloads', '#', 'swiper-payloads', 'Compatible Payloads');
     }
 
     if ($compatible_payloads) {
-        echo __linked_products($accessories, 'All Accessories', '#', 'swiper-accessories');
+        echo __linked_products($accessories, 'All Accessories', '#', 'swiper-accessories', 'Accessories');
     }
 }
 
@@ -535,10 +535,11 @@ function save_custom_product_options($post_ID, $product, $update)
 }
 
 
-function __linked_products($field, $button_text, $button_link, $id)
+function __linked_products($field, $button_text, $button_link, $id, $title)
 {
     $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<div class='container'>";
+    $html .= "<h2 calss='text-center'>$title</h2>";
     $html .= "<div class='swiper-holder style-1'>"; //swiper-holder
     $html .= "<div class='swiper swiper-linked-products' id='$id'>"; //swiper
     $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
