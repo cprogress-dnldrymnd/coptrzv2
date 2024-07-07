@@ -394,3 +394,16 @@ section {
 small {
     font-size: 11px;
 }
+
+.swiper-linked-products {
+    &:not(.swiper-initialized) {
+        .swiper-wrapper {
+            .swiper-slide {
+                width: 25% !important;
+                @include not-last-child {
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+}

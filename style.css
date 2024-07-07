@@ -10194,6 +10194,9 @@ section .container > *:not(:last-child) {
 small, .small {
   font-size: 11px; }
 
+.swiper-linked-products:not(.swiper-initialized) .swiper-wrapper .swiper-slide:not(:last-child) {
+  margin-right: 20px; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/
