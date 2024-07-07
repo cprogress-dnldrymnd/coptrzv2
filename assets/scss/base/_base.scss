@@ -400,6 +400,9 @@ small {
         .swiper-wrapper {
             .swiper-slide {
                 width: 25% !important;
+                .products, .product, .product-inner {
+                    height: 100%;
+                }
                 @include not-last-child {
                     margin-right: 20px;
                 }
