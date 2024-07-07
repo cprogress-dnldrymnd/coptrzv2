@@ -537,9 +537,9 @@ function save_custom_product_options($post_ID, $product, $update)
 
 function __linked_products($field, $button_text, $button_link, $id, $title)
 {
-    $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom extend-right'>";
+    $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<h2 class='text-center px-20px'>$title</h2>";
-    $html .= "<div class='container'>";
+    $html .= "<div class='container extend-right'>";
     $html .= "<div class='swiper-holder'>"; //swiper-holder
     $html .= "<div class='swiper swiper-linked-products' id='$id'>"; //swiper
     $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
@@ -551,10 +551,11 @@ function __linked_products($field, $button_text, $button_link, $id, $title)
 
     }
     $html .= '</div>'; //end-swiper-wrapper
-    $html .= "<div class='row mt-4 g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='$button_link'>$button_text</a> </div> </div> </div>";
     $html .= '</div>'; //end-swiper
     $html .= '</div>'; //end-swiper-holder
     $html .= '</div>';
+
+    $html .= "<div class='container'><div class='row mt-4 g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='$button_link'>$button_text</a> </div> </div> </div></div>";
     $html .= '</section>';
 
     return $html;
