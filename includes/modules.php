@@ -1252,7 +1252,8 @@ function __post_box($id)
     $html = "<div class='post-box-inner'>";
     $html .= __image($image_args);
     $html .= __heading(array(
-        'heading' => get_the_title($id)
+        'heading' => get_the_title($id),
+        'tag' => 'h3'
     ));
     $html .= __description(array(
         'description' => get_the_excerpt($id)
