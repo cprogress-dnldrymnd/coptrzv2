@@ -1246,5 +1246,23 @@ function __product_specifications($for_product_summary = false)
 
 function __post_box($id)
 {
-    
+    $image_args['image_id'] = $id;
+    $image_args['size'] = 'large';
+
+    $html = "<div class='post-box-inner'>";
+    $html .= __image($image_args);
+    $html .= __heading(array(
+        'heading' => get_the_title($id)
+    ));
+    $html .= __description(array(
+        'description' => get_the_excerpt($id)
+    ));
+    $html .= __button(array(
+        'button_type' => get_post_type($id),
+        'button_text' => 'Read More',
+        'button_url' => get_the_permalink($id),
+        'button_url_custom' => false,
+        'button_style' => 'button-bordered',
+    ));
+    $html .= "</div>";
 }

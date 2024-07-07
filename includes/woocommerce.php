@@ -579,8 +579,15 @@ function __related_guides($related_guides)
     $html = "<section class='related-guides border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<div class='container'>";
     $html .= "<h2 class='text-center px-20px'>Related Guides</h2>";
+
+    $html .= "<div class='row g-4'>";
     foreach ($related_guides as $related_guide) {
+        $html .= "<div class='col-md-4 col-sm-12'>";
+        $html . -__post_box($related_guide['id']);
+        $html .= '</div>';
     }
+    $html .= '</div>';
+
     $html .= '</div>';
     $html .= '</section>';
 
