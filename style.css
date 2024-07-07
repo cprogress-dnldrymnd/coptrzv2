@@ -10067,10 +10067,6 @@ section .container > *:not(:last-child) {
 
 .style-1 {
   position: relative; }
-  .style-1 .swiper {
-    overflow: visible; }
-  .style-1 .swiper-wrapper {
-    overflow: visible; }
   .style-1 .swiper-slide {
     width: 40% !important; }
     .style-1 .swiper-slide .column-holder > *:not(.background-image) {
