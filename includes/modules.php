@@ -30,19 +30,6 @@ function action_module_content()
             $single_product_content .= ___sections();
             $single_product_content_after = ___sections('sections_after_main');
 
-            $compatible_payloads = get_post_meta(get_the_ID(), 'compatible_payloads', true);
-
-            if ($compatible_payloads) {
-                $single_product_content_after .= __linked_products(get_the_ID(), $compatible_payloads);
-            }
-
-          
-            $accessories = get_post_meta(get_the_ID(), 'accessories');
-            if ($compatible_payloads) {
-                $accessories .= __linked_products(get_the_ID(), $accessories, true);
-            }
-
-
             update_post_meta(get_the_ID(), '_single_product_content', $single_product_content);
             update_post_meta(get_the_ID(), '_single_product_content_after', $single_product_content_after);
         }

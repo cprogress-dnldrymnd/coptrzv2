@@ -16,7 +16,17 @@ add_action('woocommerce_before_main_content', 'action_woocommerce_before_main_co
 function action_woocommerce_after_single_product_summary()
 {
     $single_product_content_after = get__post_meta('single_product_content_after');
+    $compatible_payloads = get_post_meta(get_the_ID(), 'compatible_payloads', true);
+    $accessories = get_post_meta(get_the_ID(), 'accessories', true);
+
     echo do_shortcode($single_product_content_after);
+    if ($compatible_payloads) {
+        echo __linked_products($compatible_payloads, 'All Payloads', '#');
+    }
+
+    if ($compatible_payloads) {
+        echo __linked_products($accessories, 'All Accessories', '#');
+    }
 }
 
 add_action('woocommerce_after_single_product_summary', 'action_woocommerce_after_single_product_summary');
@@ -525,7 +535,7 @@ function save_custom_product_options($post_ID, $product, $update)
 }
 
 
-function __linked_products($field)
+function __linked_products($field, $button_text, $button_link)
 {
     $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<div class='container'>";
@@ -540,7 +550,7 @@ function __linked_products($field)
 
     }
     $html .= '</div>'; //end-swiper-wrapper
-    $html .= '<div class=" row g-4 justify-content-between"> <div class="col-auto"> <div class="swiper-nav d-inline-flex"> <div class="swiper-button-prev"></div> <div class="swiper-button-next"></div> </div> </div> <div class="col-auto"> <div class="button-box button-accent"> <a href="">All Payloads</a> </div> </div> </div>';
+    $html .= "<div class=' row g-4 justify-content-between'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='$button_link'>$button_text</a> </div> </div> </div>";
     $html .= '</div>'; //end-swiper
     $html .= '</div>'; //end-swiper-holder
     $html .= '</div>';
