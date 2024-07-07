@@ -496,7 +496,7 @@ function add_linked_custom_product_field()
 }
 
 // Filter for saving custom product data
-add_action('save_post_product', 'save_custom_product_options');
+add_action('save_post_product', 'save_custom_product_options', 10,3 );
 function save_custom_product_options($post_ID, $product, $update)
 {
     $compatible_payloads = isset($_POST['compatible_payloads']) ? $_POST['compatible_payloads'] : array();
