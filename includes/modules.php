@@ -1257,7 +1257,8 @@ function __post_box($id)
         'tag' => 'h3'
     ));
     $html .= __description(array(
-        'description' => get_the_excerpt($id)
+        'description' => get_the_excerpt($id),
+        'class' => _attribute('class', array('description-box')),
     ));
     $html .= __button(array(
         'button_type' => get_post_type($id),
