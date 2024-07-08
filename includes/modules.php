@@ -1343,7 +1343,7 @@ function __product_specifications($for_product_summary = false)
         }
         $html .= "<div class='row $row_class justify-content-center'>";
         foreach ($pa_specifications as $specification) {
-            $icon = get___term_meta($specification->term_id, 'icon');
+            $icon = get__term_meta($specification->term_id, 'icon');
             $mime_type =  get_post_mime_type($icon);
 
             $html .= "<div class='$class'>";
