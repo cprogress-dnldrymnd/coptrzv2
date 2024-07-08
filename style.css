@@ -11083,6 +11083,8 @@ section.hero {
     min-height: 25vw; }
     section.hero.small-hero .description-box {
       font-size: 15px; }
+    section.hero.small-hero .container > *:not(:last-child) {
+      margin-bottom: 1rem; }
   section.hero .description-box {
     max-width: 730px;
     display: inline-block; }

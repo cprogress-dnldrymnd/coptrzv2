@@ -9,7 +9,15 @@ section.hero {
         .description-box {
             font-size: 15px;
         }
+        .container {
+            > * {
+                @include not-last-child {
+                    margin-bottom: 1rem;
+                }
+            }
+        }
     }
+    
 
     .description-box {
         max-width: 730px;
