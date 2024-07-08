@@ -7,6 +7,11 @@ section.hero {
     &.small-hero {
         min-height: 25vw;
     }
+
+    .description-box {
+        max-width: 730px;
+        display: inline-block;
+    }
 }
 
 
