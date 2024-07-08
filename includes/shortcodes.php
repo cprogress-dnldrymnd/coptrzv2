@@ -84,6 +84,14 @@ class Shortcodes
             $title = get_the_title($id);
 
             if (get_post_type($id) == 'product') {
+                $product_cat = get_the_terms($id, 'product-cat');
+                if ($product_cat) {
+                    foreach ($product_cat as $cat) {
+                        $cat_name = $cat->name;
+                        $cat_link = get_term_link($cat->term_id);
+                        $html .= "<li><a class='item text-white' href='$cat_link'>$cat_name</a></li>";
+                    }
+                }
             }
 
             $html .= "<li><span class='item text-white'  >$title</span></li>";
