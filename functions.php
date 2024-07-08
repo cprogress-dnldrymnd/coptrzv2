@@ -51,6 +51,13 @@ function get__term_meta($term_id, $value)
 	}
 }
 
+function get___term_meta($term_id, $value)
+{
+	if (function_exists('carbon_get_term_meta')) {
+		return carbon_get_term_meta($term_id,  $value,);
+	}
+}
+
 function get__post_meta_by_id($id, $value)
 {
 	if (function_exists('carbon_get_post_meta')) {
