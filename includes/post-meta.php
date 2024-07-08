@@ -19,8 +19,8 @@ Container::make('post_meta', __('Hero'))
         Field::make('select', 'hero_background_type', __('Background Type'))->set_classes('inline-field')
             ->set_options(
                 array(
-                    'youtube' => 'Youtube',
                     'self-hosted' => 'Self Hosted',
+                    'youtube' => 'Youtube',
                 )
             ),
         Field::make('file', 'hero_background', __('Hero Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
