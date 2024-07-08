@@ -45,15 +45,25 @@ function ___hero_modules()
     $hero_background = get__post_meta('hero_background');
     $hero_background_youtube = get__post_meta('hero_background_youtube');
     $hero_background_type = get__post_meta('hero_background_type');
+    $hero_alignment = get__post_meta('hero_alignment');
+    $hero_height = get__post_meta('hero_height');
+    $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
+    $text_align = $hero_alignment ? $hero_alignment : 'text-center';
+
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
-        $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
+        $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
             $hero .= _background($hero_background_youtube, true);
         } else if ($hero_background) {
             $hero .= _background($hero_background);
         }
         $hero .= "<div class='container'>";
+
+        if (!$breadcrumbs_hidden) {
+            $hero .= __breadcrumbs(get_the_ID(), get_post_type());
+        }
+
         $hero .= __heading(array(
             'heading' => $hero_heading_val,
             'tag' => 'h1',
@@ -1277,7 +1287,7 @@ function __post_box($id)
     return $html;
 }
 
-function __breadcrumbs()
+function __breadcrumbs($id, $post_type)
 {
     $home = get_site_url();
 
