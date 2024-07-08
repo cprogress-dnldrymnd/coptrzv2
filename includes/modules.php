@@ -8,7 +8,7 @@ function action_module_content()
         if (_is_module() || get_post_type() == 'layouts') {
             $post_content = '<!-- wp:html -->';
 
-            if(get_post_type() != 'layouts') {
+            if (get_post_type() != 'layouts') {
                 $post_content .= ___hero_modules();
             }
             $post_content .= ___sections();
@@ -434,6 +434,22 @@ function ___sections($id = 'sections')
                     case 'shortcode':
                         $shortcode = $items['shortcode'];
                         $html .= $shortcode;
+                        break;
+                    case 'product_slider':
+                        $heading = $items['heading'];
+                        $button_text = $items['button_text'];
+                        $button_url = $items['button_url'];
+                        $source = $items['source'];
+
+                        $product_ids = [];
+                        if($source == 'default-query') {
+                            
+
+                        }
+
+
+                        
+                        $html .= __linked_products();
                         break;
                 }
             }

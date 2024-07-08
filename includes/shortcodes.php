@@ -104,6 +104,7 @@ class Shortcodes
 
         return $html;
     }
+    
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
