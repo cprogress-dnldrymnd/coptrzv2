@@ -50,6 +50,7 @@ function ___hero_modules()
     $hero_height = get__post_meta('hero_height');
     $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
+    $heading_class = $hero_description ? 'mb-0' : '';
 
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
@@ -65,10 +66,12 @@ function ___hero_modules()
             $hero .= "[breadcrumbs id='$id']";
         }
 
+
+
         $hero .= __heading(array(
             'heading' => $hero_heading_val,
             'tag' => 'h1',
-            'class' => _attribute('class', array('large-heading')),
+            'class' => _attribute('class', array('large-heading', $heading_class)),
             ''
         ));
         $hero .= __description(array(
