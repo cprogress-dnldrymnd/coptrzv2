@@ -26,9 +26,10 @@ main {
         right: 0;
         bottom: 0;
         background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%;
+        z-index: 1;
     }
     & + div {
-        z-index: 1;
+        z-index: 2;
     }
     &.background-overlay-darker {
         &:before {
@@ -49,7 +50,6 @@ main {
     top: 0;
     right: 0;
     bottom: 0;
-    z-index: 1;
     img,
     video {
         width: 100%;

@@ -10397,9 +10397,10 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
-  background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%; }
-.background-overlay + div {
+  background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%;
   z-index: 1; }
+.background-overlay + div {
+  z-index: 2; }
 .background-overlay.background-overlay-darker:before {
   background-color: rgba(0, 0, 0, 0.85); }
 .background-overlay.background-overlay-lighter:before {
@@ -10411,8 +10412,7 @@ img {
   left: 0;
   top: 0;
   right: 0;
-  bottom: 0;
-  z-index: 1; }
+  bottom: 0; }
   .background-image img,
   .background-image video {
     width: 100%;
