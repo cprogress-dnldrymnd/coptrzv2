@@ -11,7 +11,6 @@ use Carbon_Fields\Field;
 Container::make('post_meta', __('Hero'))
     ->where('post_type', '=', 'page')
     ->or_where('post_type', '=', 'product')
-
     ->add_fields(array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_width(20),
         Field::make('checkbox', 'breadcrumbs_hidden', __('Hide Breadcrumbs'))->set_width(80),
@@ -58,6 +57,70 @@ Container::make('post_meta', __('Hero'))
                     )
                 )
             ),
+        Field::make('complex', 'buttons', __('Buttons'))->set_classes('inline-field')
+            ->set_classes('columns')
+            ->setup_labels(
+                array(
+                    'plural_name'   => 'Buttons',
+                    'singular_name' => 'Button',
+                )
+            )
+            ->set_header_template('<%- button_text %>')
+            ->add_fields(array(
+                Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+                    ->set_options(
+                        array(
+                            ''          => 'Select Button Type',
+                            'page'      => 'Page',
+                            'product'      => 'Product',
+                            'guides'      => 'Guides',
+                            'casestudies'      => 'Case Studies',
+                            'post'      => 'Post',
+                            'solutions' => 'Solution',
+                            'popups'    => 'Popup',
+                            'custom'     => 'Custom',
+                        )
+                    ),
+                Field::make('text', 'button_text', __('Button Text')),
+                Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+                    ->set_conditional_logic(
+                        array(
+                            array(
+                                'field'   => 'button_type',
+                                'value'   => 'custom',
+                                'compare' => '!='
+                            )
+                        )
+                    ),
+                Field::make('html', 'html')
+                    ->set_html('<div class="page-selector">  </div>'),
+                Field::make('text', 'button_url_custom', __('Button URL'))
+                    ->set_conditional_logic(
+                        array(
+                            array(
+                                'field' => 'button_type',
+                                'value' => 'custom',
+                            )
+                        )
+                    ),
+                Field::make('select', 'button_style', __('Button Style'))
+                    ->set_options(
+                        array(
+                            'button-accent'      => 'Accent',
+                            'button-primary'      => 'Primary',
+                            'button-secondary' => 'Secondary',
+                            'button-white' => 'White',
+                            'button-bordered'    => 'Bordered',
+                        )
+                    ),
+                Field::make('select', 'button_target', __('Button Target'))
+                    ->set_options(
+                        array(
+                            'target="_self"'      => 'Default',
+                            'target="_blank"'      => 'New Tab',
+                        )
+                    ),
+            ))
 
     ));
 
