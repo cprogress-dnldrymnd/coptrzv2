@@ -80,7 +80,7 @@ function ___hero_modules()
         ));
         $hero .= __description(array(
             'description' => $hero_description,
-            'class' => _attribute('class', array('description-box', 'medium-text')),
+            'class' => _attribute('class', array('description-box medium-text small-width mx-auto')),
         ));
         $hero .= "</div>";
         $hero .= "</section>";

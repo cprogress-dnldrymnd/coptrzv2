@@ -9906,7 +9906,7 @@ p:last-child {
 .bg-accent {
   background-color: var(--bs-accent); }
 
-.small-width {
+.small-width.small-width.small-width {
   max-width: 730px; }
 
 .text-accent {
