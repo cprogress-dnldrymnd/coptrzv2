@@ -10260,7 +10260,8 @@ small, .small {
       margin-right: 8px; }
 
 .single-layouts header {
-  display: none; }
+  position: static !important;
+  background-color: #000; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
