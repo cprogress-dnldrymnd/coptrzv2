@@ -5,7 +5,7 @@ function action_module_content()
     if (did_action('post_updated')) {
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-        if (_is_module()) {
+        if (_is_module() || get_post_type() == 'layouts') {
             $post_content = '<!-- wp:html -->';
 
             $post_content .= ___hero_modules();
@@ -103,7 +103,7 @@ function ___hero_product_taxonomy()
         $hero_class = 'text-center';
     }
 
-    if(!$term_description) {
+    if (!$term_description) {
         $heading_class[] = 'mb-0';
     }
 
