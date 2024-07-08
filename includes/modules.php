@@ -540,9 +540,10 @@ function ___sections($id = 'sections')
                             $products = get_posts($args);
                             $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
                         }
-
-
-
+                        break;
+                    case 'tabs':
+                        $tabs = $items['tabs'];
+                        $html .= ___tab_modules($tabs, $section_id_val);
                         break;
                 }
             }
@@ -552,6 +553,37 @@ function ___sections($id = 'sections')
         }
     }
     return $html;
+}
+
+function ___tab_modules($tabs, $id)
+{
+    if ($tabs) {
+        $html = "<div class='tabs-holder'>";
+        $html .= "<ul class='nav nav-tabs' id='tab-$id' role='tablist'>";
+        foreach ($tabs as $key => $tab) {
+            $class = $key == 0 ? 'active' : '';
+            $selected = $key == 0 ? 'true' : 'false';
+            $heading = $tab['heading'];
+            $html .= "<li class='nav-item' role='presentation'>";
+            $html .= "<button class='nav-link $class' id='tab-<?= $key ?>' data-bs-toggle='tab' data-bs-target='#home' type='button' role='tab' aria-controls='tab-<?= $key ?>-content' aria-selected='$selected'>$heading</button>";
+            $html .= "</li>";
+        }
+        $html .= "</ul>";
+
+        $html .= "<div class='tab-content' id='myTabContent'>";
+        foreach ($tabs as $key => $tab) {
+            $class = $key == 0 ? 'show active' : '';
+            $description = $tab['description'];
+            $description_args['description'] =  $tab['description'];
+            $description_args['class'] =  _attribute('class', array('description-box'));
+            $html .= "<div class='tab-pane fade $class' id='tab-<?= $key ?>-content' role='tabpanel' aria-labelledby='tab-<?= $key ?>'>";
+            $html .= __description($description_args);
+            $html .= "</div>";
+        }
+        $html .= "</div>";
+
+        $html .= "</div>";
+    }
 }
 function ____post_grid($data)
 {
