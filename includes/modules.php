@@ -405,6 +405,10 @@ function ___sections($id = 'sections')
                         $compare_id = $compareproducts[0]['id'];
                         $html .= "[product_compare id='$compare_id']";
                         break;
+                    case 'shortcode':
+                        $shortcode = $items['shortcode'];
+                        $html .= do_shortcode("$shortcode");
+                        break;
                 }
             }
 
