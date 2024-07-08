@@ -23,7 +23,22 @@ Container::make('post_meta', __('Hero'))
                     'youtube' => 'Youtube',
                 )
             ),
-        Field::make('file', 'hero_background', __('Hero Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
+        Field::make('select', 'hero_height', __('Height'))->set_classes('inline-field')
+            ->set_options(
+                array(
+                    'large-hero' => 'Large',
+                    'small-hero' => 'Small',
+                )
+            ),
+        Field::make('select', 'hero_alignment', __('Height'))->set_classes('inline-field')
+            ->set_options(
+                array(
+                    'text-center' => 'Default/Center',
+                    'text-start' => 'Left',
+                    'text-end' => 'Right',
+                )
+            ),
+        Field::make('file', 'hero_background', __('Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
             ->set_conditional_logic(
                 array(
                     array(
@@ -32,7 +47,7 @@ Container::make('post_meta', __('Hero'))
                     )
                 )
             ),
-        Field::make('text', 'hero_background_youtube', __('Hero Background Youtube ID'))->set_classes('inline-field')
+        Field::make('text', 'hero_background_youtube', __('Background Youtube ID'))->set_classes('inline-field')
             ->set_conditional_logic(
                 array(
                     array(
