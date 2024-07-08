@@ -590,3 +590,16 @@ $Product_compare->publicly_queryable = true;
 $Product_compare->show_in_admin_bar = false;
 $Product_compare->has_archive = true;
 $Product_compare->show_in_rest = false;
+
+
+
+$Product_category_page = new newPostType();
+$Product_category_page->name = 'Product Category Pages';
+$Product_category_page->singular_name = 'Product Category Page';
+$Product_category_page->icon = 'dashicons-testimonial';
+$Product_category_page->supports = array('title', 'revisions','excerpt', 'editor');
+$Product_category_page->exclude_from_search = true;
+$Product_category_page->publicly_queryable = true;
+$Product_category_page->show_in_admin_bar = false;
+$Product_category_page->has_archive = true;
+$Product_category_page->show_in_rest = true;
