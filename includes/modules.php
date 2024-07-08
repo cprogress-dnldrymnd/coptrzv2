@@ -441,13 +441,11 @@ function ___sections($id = 'sections')
                         $button_text = $items['button_text'];
                         $button_url = $items['button_url'];
                         $sources = $items['source'];
-                        $term_idss = '';
                         if ($sources) {
                             $term_ids = [];
 
                             foreach ($sources as $source) {
                                 $term_ids[] = $source['id'];
-                                $term_idss .= $source['id'];
                             }
 
                             $args = array(

@@ -607,3 +607,10 @@ function __related_guides($related_guides)
 
     return $html;
 }
+
+
+
+function __get_product_category_page($id)
+{
+    $posts = get_posts($args)
+}
