@@ -605,7 +605,5 @@ function __related_guides($related_guides)
     $html .= '</div>';
     $html .= '</section>';
 
-    $html .= "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'> <h2 class='text-center px-20px'>Compatible Payloads</h2> <div class='container extend-right'> <div class='swiper-holder'> <div class='swiper swiper-linked-products' id='swiper-xsdsds'> <div class='swiper-wrapper'> <div class='swiper-slide'>[product_grid_display id='72197']</div> <div class='swiper-slide'>[product_grid_display id='61610']</div> <div class='swiper-slide'>[product_grid_display id='61784']</div> <div class='swiper-slide'>[product_grid_display id='61706']</div> <div class='swiper-slide'>[product_grid_display id='61450']</div> </div> </div> </div> </div> <div class='container mt-4'> <div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev' id='swiper-prev-swiper-xsdsds'></div> <div class='swiper-button-next' id='swiper-next-swiper-xsdsds'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='#'>All Payloads</a> </div> </div> </div> </div> </section>";
-
     return $html;
 }
