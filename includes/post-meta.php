@@ -2444,11 +2444,13 @@ function __section_fields($name = 'sections')
                             ))
                     ))
                     ->add_fields('tabs',  array(
-                        Field::make('complex', 'tabs', 'Heading')
+                        Field::make('complex', 'tabs', 'Tabs')
                             ->add_fields('tabs',  array(
                                 Field::make('text', 'heading', 'Heading'),
                                 Field::make('textarea', 'description', 'Description')
                             ))
+                            ->set_header_template('Tab: <%- heading %>')
+
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
