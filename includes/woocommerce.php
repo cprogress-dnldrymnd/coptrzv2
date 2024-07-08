@@ -36,7 +36,7 @@ function action_woocommerce_after_single_product()
     $related_guides = get__post_meta('related_guides');
 
     if ($related_guides) {
-        echo __related_guides($related_guides);
+        echo do_shortcode(__related_guides($related_guides));
     }
 }
 
