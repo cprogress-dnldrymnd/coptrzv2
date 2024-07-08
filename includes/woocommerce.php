@@ -45,29 +45,34 @@ add_action('woocommerce_after_single_product', 'action_woocommerce_after_single_
 
 function action_woocommerce_before_shop_loop()
 {
-    echo __get_product_category_page(get_queried_object()->term_id);
-    echo '<section class="product-archive-loop sm-padding-top lg-padding-bottom border-top-default no-overflow">';
-    echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-lg-3">';
-    /**
-     * Hook: woocommerce_sidebar.
-     *
-     * @hooked woocommerce_get_sidebar - 10
-     */
-    do_action('woocommerce_sidebar');
-    echo '</div>';
-    echo '<div class="col-lg-9">';
+    $product_category_page = __get_product_category_page(get_queried_object()->term_id);
+    if (!$product_category_page) {
+        echo '<section class="product-archive-loop sm-padding-top lg-padding-bottom border-top-default no-overflow">';
+        echo '<div class="container">';
+        echo '<div class="row">';
+        echo '<div class="col-lg-3">';
+        /**
+         * Hook: woocommerce_sidebar.
+         *
+         * @hooked woocommerce_get_sidebar - 10
+         */
+        do_action('woocommerce_sidebar');
+        echo '</div>';
+        echo '<div class="col-lg-9">';
+    }
 }
 
 add_action('woocommerce_before_shop_loop', 'action_woocommerce_before_shop_loop');
 
 function action_woocommerce_after_shop_loop()
 {
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-    echo '</section>';
+    $product_category_page = __get_product_category_page(get_queried_object()->term_id);
+    if (!$product_category_page) {
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</section>';
+    }
 }
 
 add_action('woocommerce_after_shop_loop', 'action_woocommerce_after_shop_loop');
