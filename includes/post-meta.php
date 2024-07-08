@@ -30,7 +30,7 @@ Container::make('post_meta', __('Hero'))
                     'small-hero' => 'Small',
                 )
             ),
-        Field::make('select', 'hero_alignment', __('Height'))->set_classes('inline-field')
+        Field::make('select', 'hero_alignment', __('Aligment'))->set_classes('inline-field')
             ->set_options(
                 array(
                     'text-center' => 'Default/Center',
