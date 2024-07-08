@@ -497,8 +497,8 @@ $Slides->has_archive = false;
 
 
 $Coptrz_Templates = new newPostType();
-$Coptrz_Templates->name = 'Templates';
-$Coptrz_Templates->singular_name = 'Template';
+$Coptrz_Templates->name = 'Theme Builder';
+$Coptrz_Templates->singular_name = 'Theme Builder';
 $Coptrz_Templates->icon = 'dashicons-testimonial';
 $Coptrz_Templates->supports = array('title', 'revisions', 'thumbnail', 'editor');
 $Coptrz_Templates->exclude_from_search = true;
