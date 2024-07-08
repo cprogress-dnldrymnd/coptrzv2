@@ -2771,7 +2771,6 @@ Container::make('post_meta', __('Conditional Display'))
     ->add_fields(array(
         Field::make('select', 'display_location', __('Display Location'))
             ->add_options(array(
-                'shortcode' => __('Custom(via shortcode)'),
                 'after_header' => __('After Header'),
                 'before_footer' => __('Before Footer'),
             )),
