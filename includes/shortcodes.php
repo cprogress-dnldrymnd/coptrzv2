@@ -74,7 +74,7 @@ class Shortcodes
 
         $home = get_site_url();
         $title = get_the_title($id);
-        $html = "<div class='breadcrumbs medium-text fw-light'>";
+        $html = "<div class='breadcrumbs mb-3 medium-text fw-light'>";
         $html .= "<ul class='list-inline p-0 t'>";
 
         $html .= "<li><a class='item text-white' href='$home'>Home</a></li>";
