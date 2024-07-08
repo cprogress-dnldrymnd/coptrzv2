@@ -60,6 +60,33 @@ class Shortcodes
 
         return $html;
     }
+
+    function breadcrumbs($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'id' => get_the_ID(),
+                ),
+                $atts
+            )
+        );
+
+        $home = get_site_url();
+        $title = get_the_title($id);
+        $html = "<div class='breadcrumbs medium-text fw-light'>";
+        $html .= "<ul class='list-inline p-0 t'>";
+
+        $html .= "<li><a class='item text-white' href='$home'>Home</a></li>";
+        $html .= "<li><span class='item text-white'  >$title</span></li>";
+
+
+        $html .= "</ul>";
+        $html .= "</div>";
+
+        return $html;
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
+add_shortcode('breadcrumbs', array($Shortcodes, 'breadcrumbs'));

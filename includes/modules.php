@@ -39,6 +39,7 @@ add_action('shutdown', 'action_module_content');
 
 function ___hero_modules()
 {
+    $id = get_the_ID();
     $hero_heading = get__post_meta('hero_heading');
     $hero_description = _format_text(get__post_meta('hero_description'));
     $hero_hidden = get__post_meta('hero_hidden');
@@ -61,7 +62,7 @@ function ___hero_modules()
         $hero .= "<div class='container'>";
 
         if (!$breadcrumbs_hidden) {
-            $hero .= __breadcrumbs(get_the_ID(), get_post_type());
+            $hero .= "[breadcrumbs id='$id']";
         }
 
         $hero .= __heading(array(
@@ -1282,23 +1283,6 @@ function __post_box($id)
         'button_url_custom' => false,
         'button_style' => 'button-bordered',
     ));
-    $html .= "</div>";
-
-    return $html;
-}
-
-function __breadcrumbs($id, $post_type)
-{
-    $home = get_site_url();
-    $title = get_the_title($id);
-    $html = "<div class='breadcrumbs medium-text fw-light'>";
-    $html .= "<ul class='list-inline p-0 t'>";
-
-    $html .= "<li><a class='item text-white' href='$home'>Home</a></li>";
-    $html .= "<li><span class='item text-white'  >$title</span></li>";
-
-
-    $html .= "</ul>";
     $html .= "</div>";
 
     return $html;
