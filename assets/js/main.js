@@ -1,9 +1,9 @@
 jQuery(document).ready(function () {
-    __swipers();
     __mini_cart();
     __header_menu();
     __block_accordion();
     __fixed_heading_position();
+    __swipers();
 });
 
 function __fixed_heading_position() {
