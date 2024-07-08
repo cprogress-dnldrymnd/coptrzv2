@@ -51,6 +51,7 @@ function ___hero_modules()
     $hero_alignment = get__post_meta('hero_alignment');
     $hero_height = get__post_meta('hero_height');
     $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
+    $buttons = get__post_meta('buttons');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
     $heading_class[] = 'large-heading';
     if (!$hero_description) {
@@ -84,6 +85,14 @@ function ___hero_modules()
             'description' => $hero_description,
             'class' => _attribute('class', array('description-box medium-text small-width mx-auto mb-4')),
         ));
+
+
+        if ($buttons) {
+            $hero .= "<div>";
+            $hero .= ____button_modules($buttons);
+            $hero .= "</div>";
+        }
+
         $hero .= "</div>";
         $hero .= "</section>";
         return $hero;
@@ -141,7 +150,7 @@ function ___hero_product_taxonomy()
         if ($parent) {
             $hero .= __description(array(
                 'description' => $term_description_val,
-                'class' => _attribute('class', array('description-box small-text mb-3')),
+                'class' => _attribute('class', array('description-box small-text mb-4')),
             ));
         }
 
