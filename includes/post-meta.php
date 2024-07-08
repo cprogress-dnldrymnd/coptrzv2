@@ -2767,19 +2767,19 @@ Container::make('post_meta', __('Product Settings'))
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Conditional Display'))
     ->where('post_type', '=', 'layouts')
+    ->set_context('side')
     ->add_fields(array(
         Field::make('select', 'display_location', __('Display Location'))
             ->add_options(array(
                 'after_header' => __('After Header'),
                 'before_footer' => __('Before Footer'),
-                'page_content' => __('Page Content'),
             )),
         Field::make('select', 'display_location_condition', __('Display Location Condition'))
             ->add_options(array(
                 '' => __('Sitewide'),
                 'post_type' => __('Post Type'),
                 'post_type_archive' => __('Post Type Archive'),
-                'product_category' => __('Product Category'),
+                'taxonomy_term' => __('Taxonomy Term'),
             ))
             ->set_conditional_logic(array(
                 array(
@@ -2813,23 +2813,4 @@ Container::make('post_meta', __('Conditional Display'))
                     'compare' => '=',
                 )
             )),
-
-        Field::make('association', 'category', 'Select Product Categories')
-            ->set_types(
-                array(
-                    array(
-                        'type'      => 'term',
-                        'taxonomy' => 'product_cat',
-                    )
-                )
-            )
-            ->set_conditional_logic(
-                array(
-                    array(
-                        'field' => 'display_location_condition',
-                        'value' => 'product_category',
-                        'comapre' => '='
-                    )
-                )
-            ),
     ));
