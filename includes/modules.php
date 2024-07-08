@@ -137,7 +137,7 @@ function ___hero_product_taxonomy()
         if ($parent) {
             $hero .= __description(array(
                 'description' => $term_description_val,
-                'class' => _attribute('class', array('description-box small-text small-width')),
+                'class' => _attribute('class', array('description-box small-text')),
             ));
         }
 
