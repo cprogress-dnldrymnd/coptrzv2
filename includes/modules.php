@@ -1290,11 +1290,13 @@ function __post_box($id)
 function __breadcrumbs($id, $post_type)
 {
     $home = get_site_url();
+    $title = get_the_title($id);
+    $html = "<div class='breadcrumbs medium-text fw-light'>";
+    $html .= "<ul class='list-inline p-0 t'>";
 
-    $html = "<div class='breadcrumbs'>";
-    $html .= "<ul>";
+    $html .= "<li><a class='item text-white' href='$home'>Home</a></li>";
+    $html .= "<li><span class='item text-white'  >$title</span></li>";
 
-    $html .= "<li><a href='$home'>Home</a></li>";
 
     $html .= "</ul>";
     $html .= "</div>";
