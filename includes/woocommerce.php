@@ -4,7 +4,7 @@ remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0
 function action_woocommerce_before_main_content()
 {
     if (is_product_taxonomy()) {
-        echo ___hero_product_taxonomy();
+        echo do_shortcode(___hero_product_taxonomy());
     } else if (is_product()) {
         $single_product_content = get__post_meta('single_product_content');
         echo do_shortcode($single_product_content);
