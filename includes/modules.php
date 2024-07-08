@@ -35,7 +35,6 @@ function action_module_content()
             update_post_meta(get_the_ID(), '_single_product_content', $single_product_content);
             update_post_meta(get_the_ID(), '_single_product_content_after', $single_product_content_after);
         }
-        echo '<script> console.log("test") </script>';
     }
 }
 add_action('shutdown', 'action_module_content');
