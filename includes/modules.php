@@ -8,7 +8,9 @@ function action_module_content()
         if (_is_module() || get_post_type() == 'layouts') {
             $post_content = '<!-- wp:html -->';
 
-            $post_content .= ___hero_modules();
+            if(get_post_type() != 'layouts') {
+                $post_content .= ___hero_modules();
+            }
             $post_content .= ___sections();
 
 
