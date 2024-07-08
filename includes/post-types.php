@@ -496,16 +496,16 @@ $Slides->show_in_admin_bar = false;
 $Slides->has_archive = false;
 
 
-$Templates = new newPostType();
-$Templates->name = 'Templates';
-$Templates->singular_name = 'Template';
-$Templates->icon = 'dashicons-testimonial';
-$Templates->supports = array('title', 'revisions', 'thumbnail', 'editor');
-$Templates->exclude_from_search = true;
-$Templates->publicly_queryable = true;
-$Templates->show_in_admin_bar = true;
-$Templates->has_archive = false;
-$Templates->show_in_rest = true;
+$Coptrz_Templates = new newPostType();
+$Coptrz_Templates->name = 'Templates';
+$Coptrz_Templates->singular_name = 'Template';
+$Coptrz_Templates->icon = 'dashicons-testimonial';
+$Coptrz_Templates->supports = array('title', 'revisions', 'thumbnail', 'editor');
+$Coptrz_Templates->exclude_from_search = true;
+$Coptrz_Templates->publicly_queryable = true;
+$Coptrz_Templates->show_in_admin_bar = true;
+$Coptrz_Templates->has_archive = false;
+$Coptrz_Templates->show_in_rest = true;
 
 
 
