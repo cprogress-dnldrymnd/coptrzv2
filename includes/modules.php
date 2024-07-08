@@ -91,7 +91,6 @@ function ___hero_product_taxonomy()
 
     $hero_hidden = false;
     $term = get_queried_object();
-    $hero_description = false;
     $term_description = _format_text($term->description);
     $hero_hidden = false;
     $hero_heading_val = $term->name;
@@ -102,38 +101,29 @@ function ___hero_product_taxonomy()
         $heading_class[] = 'mb-0';
     }
 
-    if (!$hero_hidden) {
-        $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative small-hero'>";
-        $hero .= _background($hero_background);
-        $hero .= "<div class='container'>";
-        $hero .= "[breadcrumbs id='$term->term_id' type='term']";
-        $hero .= __heading(array(
-            'heading' => $hero_heading_val,
-            'tag' => 'h1',
-            'class' => _attribute('class', $heading_class),
-            ''
-        ));
-        if ($hero_description) {
-            $hero .= __description(array(
-                'description' => $hero_description,
-                'class' => _attribute('class', array('description-box', 'medium-text')),
-            ));
-        }
-        $hero .= "</div>";
-        $hero .= "</section>";
+    $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative small-hero'>";
+    $hero .= _background($hero_background);
+    $hero .= "<div class='container'>";
+    $hero .= "[breadcrumbs id='$term->term_id' type='term']";
+    $hero .= __heading(array(
+        'heading' => $hero_heading_val,
+        'tag' => 'h1',
+        'class' => _attribute('class', $heading_class),
+        ''
+    ));
+    $hero .= "</div>";
+    $hero .= "</section>";
 
-        if (!is_single() && $term_description) {
-            $hero .= "<section class='sm-padding-top sm-padding-bottom term-description'>";
-            $hero .= "<div class='container'>";
-            $hero .= __description(array(
-                'description' => $term_description,
-                'class' => _attribute('class', array('description-box small-text small-width')),
-            ));
-            $hero .= "</div>";
-            $hero .= "</section>";
-        }
-        return $hero;
-    }
+
+    $hero .= "<section class='sm-padding-top sm-padding-bottom term-description'>";
+    $hero .= "<div class='container'>";
+    $hero .= __description(array(
+        'description' => $term_description,
+        'class' => _attribute('class', array('description-box small-text small-width')),
+    ));
+    $hero .= "</div>";
+    $hero .= "</section>";
+    return $hero;
 }
 function ___hero_product()
 {
