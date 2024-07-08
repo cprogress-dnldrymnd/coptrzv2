@@ -79,7 +79,7 @@ class Shortcodes
 
         $html .= "<li><a class='item text-white' href='$home'>Home</a></li>";
 
-        if (is_single()) {
+        if (is_single() || is_page()) {
             $html .= "<li><span class='item text-white'  >$title</span></li>";
         }
 
