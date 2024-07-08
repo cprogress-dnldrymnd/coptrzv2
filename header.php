@@ -21,6 +21,9 @@
 <?php
 $SVG = new SVG;
 ?>
+<pre>
+	<?php var_dump(get__term_meta(get_queried_object()->term_id),'buttons') ?>
+</pre>
 
 <body <?php body_class(); ?>>
 	<header class="header small-text">
