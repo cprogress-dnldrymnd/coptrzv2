@@ -8,7 +8,7 @@ function action_module_content()
         if (_is_module() || get_post_type() == 'layouts' || get_post_type() == 'productcategorypages') {
             $post_content = '<!-- wp:html -->';
 
-            if (_is_module() || get_post_type() == 'productcategorypages') {
+            if (_is_module()) {
                 $post_content .= ___hero_modules();
             }
             $post_content .= ___sections();
@@ -23,6 +23,7 @@ function action_module_content()
 
             // Update the post into the database
             wp_update_post($my_post);
+
         }
 
         if (get_post_type() == 'product') {
@@ -55,12 +56,6 @@ function ___hero_modules()
     $heading_class[] = 'large-heading';
     if (!$hero_description) {
         $heading_class[] = 'mb-0';
-    }
-
-    if (get_post_type() == 'productcategorypages') {
-        if (!$hero_description) {
-            $hero_description = '[term_description]';
-        }
     }
 
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();

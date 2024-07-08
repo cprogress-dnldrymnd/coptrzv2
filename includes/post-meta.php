@@ -8,10 +8,9 @@ use Carbon_Fields\Field;
 /* Hero
 /*-----------------------------------------------------------------------------------*/
 
-Container::make('post_meta', __('Hero'))
-    ->where('post_type', '=', 'page')
-    ->or_where('post_type', '=', 'product')
-    ->add_fields(array(
+function __hero_fields()
+{
+    return array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_width(20),
         Field::make('checkbox', 'breadcrumbs_hidden', __('Hide Breadcrumbs'))->set_width(80),
         Field::make('text', 'hero_heading', __('Heading'))->set_help_text('')->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to page title'),
@@ -122,17 +121,27 @@ Container::make('post_meta', __('Hero'))
                     ),
             ))
 
-    ));
-
-
+    );
+}
 
 Container::make('post_meta', __('Hero'))
-    ->where('post_type', '=', 'productcategorypages')
+    ->where('post_type', '=', 'page')
+    ->or_where('post_type', '=', 'product')
+    ->add_fields(__hero_fields());
+
+Container::make('term_meta', __('Category Properties'))
+    ->where('term_taxonomy', '=', 'category')
+    ->add_fields(__hero_fields());
+
+Container::make('post_meta', __('Hero'))
+    ->where('post_type', '=', 'page')
+    ->or_where('post_type', '=', 'product')
+    ->or_where('post_type', '=', 'productcategorypages')
     ->add_fields(array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_width(20),
         Field::make('checkbox', 'breadcrumbs_hidden', __('Hide Breadcrumbs'))->set_width(80),
-        Field::make('text', 'hero_heading', __('Heading'))->set_help_text('')->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to title'),
-        Field::make('textarea', 'hero_description', __('Description'))->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to term description'),
+        Field::make('text', 'hero_heading', __('Heading'))->set_help_text('')->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to page title'),
+        Field::make('textarea', 'hero_description', __('Description'))->set_classes('inline-field'),
         Field::make('select', 'hero_background_type', __('Background Type'))->set_classes('inline-field')
             ->set_options(
                 array(
