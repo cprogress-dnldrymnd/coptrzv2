@@ -8,7 +8,7 @@ function action_module_content()
         if (_is_module() || get_post_type() == 'layouts' || get_post_type() == 'productcategorypages') {
             $post_content = '<!-- wp:html -->';
 
-            if (_is_module()) {
+            if (_is_module() || get_post_type() == 'productcategorypages') {
                 $post_content .= ___hero_modules();
             }
             $post_content .= ___sections();
