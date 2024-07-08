@@ -118,8 +118,7 @@ function __hero_fields()
                         )
                     ),
             ))
-            ->set_header_template('Button: <%- button_text %>')
-
+            ->set_header_template('Button: <%- button_text %>'),
     );
 }
 
@@ -190,7 +189,6 @@ Container::make('post_meta', __('Hero'))
                     'singular_name' => 'Button',
                 )
             )
-            ->set_header_template('<%- button_text %>')
             ->add_fields(array(
                 Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
                     ->set_options(
@@ -246,6 +244,7 @@ Container::make('post_meta', __('Hero'))
                         )
                     ),
             ))
+            ->set_header_template('Button: <%- button_text %>'),
 
     ));
 
@@ -882,7 +881,7 @@ function __section_fields($name = 'sections')
                                                         'singular_name' => 'Button',
                                                     )
                                                 )
-                                                ->set_header_template('<%- button_text %>')
+
                                                 ->add_fields(array(
                                                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
                                                         ->set_options(
@@ -938,6 +937,7 @@ function __section_fields($name = 'sections')
                                                             )
                                                         ),
                                                 ))
+                                                ->set_header_template('Button: <%- button_text %>'),
                                         )
                                     )
                                     ->add_fields('icon', array(
@@ -2358,7 +2358,6 @@ function __section_fields($name = 'sections')
                                         'singular_name' => 'Button',
                                     )
                                 )
-                                ->set_header_template('<%- button_text %>')
                                 ->add_fields(array(
                                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
                                         ->set_options(
@@ -2414,6 +2413,7 @@ function __section_fields($name = 'sections')
                                             )
                                         ),
                                 ))
+                                ->set_header_template('Button: <%- button_text %>'),
                         )
                     )
                     ->add_fields('product_compare',  array(
