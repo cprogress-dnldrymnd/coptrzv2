@@ -407,7 +407,7 @@ function ___sections($id = 'sections')
                         break;
                     case 'shortcode':
                         $shortcode = $items['shortcode'];
-                        $html .= do_shortcode("$shortcode");
+                        $html .= $shortcode;
                         break;
                 }
             }
