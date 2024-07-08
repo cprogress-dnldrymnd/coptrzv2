@@ -605,5 +605,7 @@ function __related_guides($related_guides)
     $html .= '</div>';
     $html .= '</section>';
 
+    $html .= "<section class='section section-3 md-padding-top md-padding-bottom  border-custom full-width' id='section-3' style='border-color: #DBDBDB;border-top-width: 1px'> <div class='container'> <div class='related-products-slider'> <h2 class='text-center px-20px'>Series Product Range</h2> <div class='container extend-right'> <div class='swiper-holder'> <div class='swiper swiper-linked-products' id='swiper-section-3'> <div class='swiper-wrapper'> <div class='swiper-slide'>[product_grid_display id='72197']</div> <div class='swiper-slide'>[product_grid_display id='61610']</div> <div class='swiper-slide'>[product_grid_display id='61784']</div> <div class='swiper-slide'>[product_grid_display id='61706']</div> <div class='swiper-slide'>[product_grid_display id='61450']</div> </div> </div> </div> </div> <div class='container mt-4'> <div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev' id='swiper-prev-swiper-section-3'></div> <div class='swiper-button-next' id='swiper-next-swiper-section-3'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='/shop'>Shop Full Range</a> </div> </div> </div> </div> </div> </div> </section>";
+
     return $html;
 }
