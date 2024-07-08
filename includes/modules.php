@@ -440,12 +440,13 @@ function ___sections($id = 'sections')
                         $button_text = $items['button_text'];
                         $button_url = $items['button_url'];
                         $sources = $items['source'];
-
+                        $term_idss = '';
                         if ($sources) {
                             $term_ids = [];
 
                             foreach ($sources as $source) {
                                 $term_ids[] = $source['id'];
+                                $term_idss .= $source['id'];
                             }
 
                             $args = array(
@@ -460,7 +461,6 @@ function ___sections($id = 'sections')
                                 )
                             );
                             $products = get_posts($args);
-                            $html .= var_dump($term_ids);
                             $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
                         }
 
