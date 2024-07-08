@@ -54,7 +54,7 @@ function get__term_meta($term_id, $value)
 function get___term_meta($term_id, $value)
 {
 	if (function_exists('carbon_get_term_meta')) {
-		return carbon_get_term_meta($term_id,  $value,);
+		return carbon_get_term_meta($term_id,  $value);
 	}
 }
 
