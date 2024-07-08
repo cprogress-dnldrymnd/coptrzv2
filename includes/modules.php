@@ -98,9 +98,12 @@ function ___hero_product_taxonomy()
     $heading_class[] = 'large-heading mb-0';
     if (!$parent) {
         $heading_class[] = 'mb-0';
+        $hero_class = '';
+    } else {
+        $hero_class = 'medium-hero';
     }
 
-    $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative small-hero'>";
+    $hero = "<section class='hero pb-50px rounded-10px  medium-hero bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative small-hero'>";
     $hero .= _background($hero_background);
     $hero .= "<div class='container'>";
     $hero .= "[breadcrumbs id='$term->term_id' type='term']";
