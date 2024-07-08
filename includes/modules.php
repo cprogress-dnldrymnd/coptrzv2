@@ -565,7 +565,7 @@ function ___tab_modules($tabs, $id)
             $selected = $key == 0 ? 'true' : 'false';
             $heading = $tab['heading'];
             $html .= "<li class='nav-item' role='presentation'>";
-            $html .= "<button class='nav-link $class' id='tab-<?= $key ?>' data-bs-toggle='tab' data-bs-target='#tab-<?= $key ?>-content' type='button' role='tab' aria-controls='tab-<?= $key ?>-content' aria-selected='$selected'>$heading</button>";
+            $html .= "<button class='nav-link $class' id='tab-$key' data-bs-toggle='tab' data-bs-target='#tab-$key-content' type='button' role='tab' aria-controls='tab-$key-content' aria-selected='$selected'>$heading</button>";
             $html .= "</li>";
         }
         $html .= "</ul>";
@@ -576,7 +576,7 @@ function ___tab_modules($tabs, $id)
             $description = $tab['description'];
             $description_args['description'] =  $tab['description'];
             $description_args['class'] =  _attribute('class', array('description-box'));
-            $html .= "<div class='tab-pane fade $class' id='tab-<?= $key ?>-content' role='tabpanel' aria-labelledby='tab-<?= $key ?>'>";
+            $html .= "<div class='tab-pane fade $class' id='tab-$key-content' role='tabpanel' aria-labelledby='tab-$key'>";
             $html .= __description($description_args);
             $html .= "</div>";
         }
