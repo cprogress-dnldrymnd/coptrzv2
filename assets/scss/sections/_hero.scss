@@ -6,6 +6,9 @@ section.hero {
     }
     &.small-hero {
         min-height: 25vw;
+        .description-box {
+            font-size: 15px;
+        }
     }
 
     .description-box {
