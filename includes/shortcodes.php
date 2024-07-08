@@ -11,6 +11,7 @@ class Shortcodes
                     'taxonomy' => '',
                     'search_filter' => false,
                     'items_per_page' => 16,
+                    'hide_empty' => true,
                 ),
                 $atts
             )
@@ -19,7 +20,7 @@ class Shortcodes
 
         $terms = get_terms(array(
             'taxonomy'   => $taxonomy,
-            'hide_empty' => false,
+            'hide_empty' => $hide_empty,
         ));
 
         $html = "<div class='taxonomy-terms'>";
