@@ -66,6 +66,7 @@ class Shortcodes
         extract(
             shortcode_atts(
                 array(
+                    'type' => 'page',
                     'id' => get_the_ID(),
                 ),
                 $atts
@@ -79,7 +80,7 @@ class Shortcodes
 
         $html .= "<li><a class='item text-white' href='$home'>Home</a></li>";
 
-        if (is_single() || is_page()) {
+        if ($type == 'page') {
             $html .= "<li><span class='item text-white'  >$title</span></li>";
         }
 
