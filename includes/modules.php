@@ -93,7 +93,7 @@ function ___hero_product_taxonomy()
     $hero_background = $thumbnail_id;
 
     if (!$hero_hidden) {
-        $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
+        $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative small-hero'>";
         $hero .= _background($hero_background);
         $hero .= "<div class='container'>";
 

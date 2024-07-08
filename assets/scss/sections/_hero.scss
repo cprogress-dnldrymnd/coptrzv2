@@ -4,10 +4,9 @@ section.hero {
         margin-left: 10px;
         margin-right: 10px;
     }
-}
-
-.archive {
-    section.hero {
+    &.small-hero {
         min-height: 25vw;
     }
 }
+
+
