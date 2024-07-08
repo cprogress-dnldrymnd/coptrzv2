@@ -7,6 +7,7 @@ use Carbon_Fields\Field;
 /*-----------------------------------------------------------------------------------*/
 /* Hero
 /*-----------------------------------------------------------------------------------*/
+
 Container::make('post_meta', __('Hero'))
     ->where('post_type', '=', 'page')
     ->or_where('post_type', '=', 'product')
@@ -2240,6 +2241,17 @@ function __section_fields($name = 'sections')
                     ))
                     ->add_fields('shortcode',  array(
                         Field::make('text', 'shortcode', 'Shortcode')
+                    ))
+                    ->add_fields('product_slider',  array(
+                        Field::make('text', 'heading', 'Heading'),
+                        Field::make('text', 'button_text', 'Button Text'),
+                        Field::make('text', 'button_URL', 'Button URL'),
+                        Field::make('select', 'source', 'Source')
+                            ->set_options(
+                                array(
+                                    'default-query'   => 'Default Query',
+                                )
+                            ),
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
