@@ -60,7 +60,7 @@ function action_woocommerce_before_shop_loop()
         echo '</div>';
         echo '<div class="col-lg-9">';
     } else {
-        echo get_the_content(NULL, false, $product_category_page);
+        echo do_shortcode(get_the_content(NULL, false, $product_category_page));
     }
 }
 
