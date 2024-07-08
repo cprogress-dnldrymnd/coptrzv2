@@ -110,6 +110,13 @@ function ___hero_product_taxonomy()
         'class' => _attribute('class', $heading_class),
         ''
     ));
+    if ($parent) {
+        $hero .= __description(array(
+            'description' => $term_description,
+            'class' => _attribute('class', array('description-box small-text small-width')),
+        ));
+    }
+
     $hero .= "</div>";
     $hero .= "</section>";
 
