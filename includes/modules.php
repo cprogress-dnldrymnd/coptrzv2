@@ -23,6 +23,10 @@ function action_module_content()
 
             // Update the post into the database
             wp_update_post($my_post);
+
+            if (get_post_type() == 'productcategorypages') {
+                
+            }
         }
 
         if (get_post_type() == 'product') {
