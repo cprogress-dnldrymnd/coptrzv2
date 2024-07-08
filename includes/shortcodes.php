@@ -32,7 +32,7 @@ class Shortcodes
         }
         $html .= "</div>";
 
-        $html .= "<div class='row g-4'>";
+        $html .= "<div class='row g-3'>";
         foreach ($terms as $term) {
             $logo = get___term_meta($term->term_id, 'image');
             $image_args['image_id'] = $logo;
@@ -42,8 +42,13 @@ class Shortcodes
             }
 
             $html .= "<div class='col-lg-3'>";
-            $html .= "<div class='inner h-100 border-default rounded-corner xs-padding'>";
+            $html .= "<div class='inner text-center h-100 border-default rounded-corner xs-padding'>";
             $html .= __image($image_args);
+            $html .= __heading(array(
+                'heading' => $term->name,
+                'class' => _attribute('class', array('mb-0')),
+                'h3' => 'h3',
+            ));
             $html .= "</div>";
             $html .= "</div>";
         }
