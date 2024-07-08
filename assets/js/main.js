@@ -170,40 +170,41 @@ function __swipers() {
             prevEl: ".swiper-button-prev",
         },
     });
-
-
-    jQuery('.swiper-linked-products').each(function (index, element) {
-        $id = jQuery(this).attr('id');
-
-        var swiper_linked_products = new Swiper('#' + $id, {
-            loop: true,
-            spaceBetween: 20,
-            autoplay: false,
-            breakpoints: {
-                0: {
-                    slidesPerView: 2,
+    setTimeout(function () {
+        jQuery('.swiper-linked-products').each(function (index, element) {
+            $id = jQuery(this).attr('id');
+            var swiper_linked_products = new Swiper('#' + $id, {
+                loop: true,
+                spaceBetween: 20,
+                autoplay: false,
+                breakpoints: {
+                    0: {
+                        slidesPerView: 2,
+                    },
+    
+                    768: {
+                        slidesPerView: 3,
+                    },
+    
+    
+                    992: {
+                        slidesPerView: 4,
+                    },
+    
+    
+                    1200: {
+                        slidesPerView: 4.5
+                    },
                 },
-
-                768: {
-                    slidesPerView: 3,
+                navigation: {
+                    nextEl: "#swiper-next-" + $id,
+                    prevEl: "#swiper-prev-" + $id
                 },
-
-
-                992: {
-                    slidesPerView: 4,
-                },
-
-
-                1200: {
-                    slidesPerView: 4
-                },
-            },
-            navigation: {
-                nextEl: "#swiper-next-" + $id,
-                prevEl: "#swiper-prev-" + $id
-            },
+            });
+    
         });
+    }, 1000);
 
-    });
+  
 
 }
