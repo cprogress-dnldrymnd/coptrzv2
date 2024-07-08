@@ -565,12 +565,12 @@ function ___tab_modules($tabs, $id)
             $selected = $key == 0 ? 'true' : 'false';
             $heading = $tab['heading'];
             $html .= "<li class='nav-item' role='presentation'>";
-            $html .= "<button class='nav-link $class' id='tab-<?= $key ?>' data-bs-toggle='tab' data-bs-target='#home' type='button' role='tab' aria-controls='tab-<?= $key ?>-content' aria-selected='$selected'>$heading</button>";
+            $html .= "<button class='nav-link $class' id='tab-<?= $key ?>' data-bs-toggle='tab' data-bs-target='#tab-<?= $key ?>-content' type='button' role='tab' aria-controls='tab-<?= $key ?>-content' aria-selected='$selected'>$heading</button>";
             $html .= "</li>";
         }
         $html .= "</ul>";
 
-        $html .= "<div class='tab-content' id='myTabContent'>";
+        $html .= "<div class='tab-content' id='tab-$id-content'>";
         foreach ($tabs as $key => $tab) {
             $class = $key == 0 ? 'show active' : '';
             $description = $tab['description'];
