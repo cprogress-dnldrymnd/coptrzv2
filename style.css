@@ -10248,7 +10248,7 @@ small, .small {
   display: flex;
   align-items: center; }
   .breadcrumbs ul li {
-    display: flex;
+    display: inline-flex;
     align-items: center; }
     .breadcrumbs ul li:not(:last-child):after {
       content: "";
