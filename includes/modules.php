@@ -908,7 +908,7 @@ function ____columns_modules($items, $id, $html = '')
             }
         }
 
-        $classes[] = 'column-holder content-margin overflow-hidden position-relative h1-100';
+        $classes[] = 'column-holder content-margin overflow-hidden position-relative h-100';
 
         if ($same_image_height) {
             $classes[] = 'same-image-height';
