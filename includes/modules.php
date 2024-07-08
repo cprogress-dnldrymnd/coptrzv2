@@ -50,9 +50,8 @@ function ___hero_modules()
     $hero_height = get__post_meta('hero_height');
     $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
-
     $heading_class[] = 'large-heading';
-    if ($hero_description) {
+    if (!$hero_description) {
         $heading_class[] = 'mb-0';
     }
 
