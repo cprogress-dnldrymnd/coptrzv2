@@ -110,7 +110,7 @@ function ___hero_product_taxonomy()
     if (!$term_description_val) {
         $heading_class[] = 'mb-0';
     }
-    $hero_heading_val = $hero_heading ? $hero_heading : $term->name();
+    $hero_heading_val = $hero_heading ? $hero_heading : $term->name;
 
     if (!$hero_hidden) {
         $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
