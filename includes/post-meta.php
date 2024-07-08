@@ -11,7 +11,7 @@ use Carbon_Fields\Field;
 Container::make('post_meta', __('Hero'))
     ->where('post_type', '=', 'page')
     ->or_where('post_type', '=', 'product')
-    ->or_where('post_type', '=', 'productcategorypages')
+
     ->add_fields(array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_width(20),
         Field::make('checkbox', 'breadcrumbs_hidden', __('Hide Breadcrumbs'))->set_width(80),
@@ -2683,7 +2683,6 @@ Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->or_where('post_type', '=', 'product')
     ->or_where('post_type', '=', 'layouts')
-    ->or_where('post_type', '=', 'productcategorypages')
     ->add_fields(__section_fields());
 
 
@@ -2759,4 +2758,16 @@ Container::make('post_meta', __('Product Settings'))
                     )
                 )
             )
+    ));
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Layouts
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', __('Conditional Display'))
+    ->where('post_type', '=', 'layouts')
+    ->set_context('side')
+    ->add_fields(array(
+
     ));
