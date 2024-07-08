@@ -2447,7 +2447,7 @@ function __section_fields($name = 'sections')
                         Field::make('complex', 'tabs', 'Heading')
                             ->add_fields('tabs',  array(
                                 Field::make('text', 'heading', 'Heading'),
-                                Field::make('textarea', 'Description', 'Description')
+                                Field::make('textarea', 'description', 'Description')
                             ))
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
