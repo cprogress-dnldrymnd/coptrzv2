@@ -112,6 +112,8 @@ function ___hero_product_taxonomy()
     $heading_class[] = 'large-heading';
     if (!$term_description_val || !$parent) {
         $heading_class[] = 'mb-0';
+    } else {
+        $heading_class[] = 'mb-3';
     }
     $hero_heading_val = $hero_heading ? $hero_heading : $term->name;
 
@@ -139,7 +141,7 @@ function ___hero_product_taxonomy()
         if ($parent) {
             $hero .= __description(array(
                 'description' => $term_description_val,
-                'class' => _attribute('class', array('description-box small-text')),
+                'class' => _attribute('class', array('description-box small-text mb-3')),
             ));
         }
 
