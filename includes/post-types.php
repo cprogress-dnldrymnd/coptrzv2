@@ -590,5 +590,3 @@ $Product_compare->publicly_queryable = true;
 $Product_compare->show_in_admin_bar = false;
 $Product_compare->has_archive = true;
 $Product_compare->show_in_rest = false;
-
-
