@@ -63,7 +63,6 @@ function __hero_fields()
                     'singular_name' => 'Button',
                 )
             )
-            ->set_header_template('<%- button_text %>')
             ->add_fields(array(
                 Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
                     ->set_options(
@@ -119,6 +118,7 @@ function __hero_fields()
                         )
                     ),
             ))
+            ->set_header_template('Button: <%- button_text %>')
 
     );
 }
