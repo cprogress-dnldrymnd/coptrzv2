@@ -2767,7 +2767,6 @@ Container::make('post_meta', __('Product Settings'))
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Conditional Display'))
     ->where('post_type', '=', 'layouts')
-    ->set_context('side')
     ->add_fields(array(
         Field::make('select', 'display_location', __('Display Location'))
             ->add_options(array(
