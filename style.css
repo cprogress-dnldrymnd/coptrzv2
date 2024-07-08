@@ -9919,6 +9919,12 @@ p:last-child {
   --bs-gutter-x: 10px;
   --bs-gutter-y: 10px; }
 
+.gy-6 {
+  --bs-gutter-y: 4rem; }
+
+.gx-6 {
+  --bs-gutter-x: 4rem; }
+
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
