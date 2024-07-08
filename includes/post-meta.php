@@ -443,11 +443,11 @@ function __section_fields($name = 'sections')
                                     )
                                     ->set_collapsed(true)
                                     ->add_fields('heading', array(
-                                        Field::make('html', 'html_1')->set_html('<label>Section Heading Options</label>')->set_classes('cb-label'),
+                                        Field::make('html', 'html_1')->set_html('<label>Heading Options</label>')->set_classes('cb-label'),
                                         Field::make('checkbox', 'has_prefix', __('Heading Has Prefix'))->set_width(33),
                                         Field::make('checkbox', 'has_suffix', __('Heading Has Suffix'))->set_width(33),
                                         Field::make('checkbox', 'has_custom_heading_settings', __('Custom Heading Settings'))->set_width(33),
-                                        Field::make('html', 'html_2')->set_html('<label>Section Heading Settings</label>')->set_classes('cb-label'),
+                                        Field::make('html', 'html_2')->set_html('<label>Heading Settings</label>')->set_classes('cb-label'),
                                         Field::make('text', 'heading', __('Heading'))->set_classes('inline-field'),
                                         Field::make('text', 'prefix', __('Prefix'))->set_classes('inline-field')
                                             ->set_conditional_logic(
@@ -467,7 +467,7 @@ function __section_fields($name = 'sections')
                                                     )
                                                 )
                                             ),
-                                        Field::make('select', 'tag', __('Tag'))->set_width(100)
+                                        Field::make('select', 'tag', __('Tag'))->set_width(20)
                                             ->set_options(
                                                 array(
                                                     'h1' => 'h1',
@@ -487,7 +487,7 @@ function __section_fields($name = 'sections')
                                                     )
                                                 )
                                             ),
-                                        Field::make('select', 'size', __('Heading Size'))->set_width(100)
+                                        Field::make('select', 'size', __('Heading Size'))->set_width(20)
                                             ->set_options(
                                                 array(
                                                     '' => 'Default',
@@ -504,7 +504,7 @@ function __section_fields($name = 'sections')
                                                     )
                                                 )
                                             ),
-                                        Field::make('select', 'text_align', __('Text Align'))->set_width(100)
+                                        Field::make('select', 'text_align', __('Text Align'))->set_width(20)
                                             ->set_options(
                                                 array(
                                                     '' => 'Default',
@@ -522,7 +522,7 @@ function __section_fields($name = 'sections')
                                                     )
                                                 )
                                             ),
-                                        Field::make('select', 'text_color', 'Text Color')->set_width(100)
+                                        Field::make('select', 'text_color', 'Text Color')->set_width(20)
                                             ->set_options(
                                                 array(
                                                     ''   => 'Default',
@@ -542,7 +542,7 @@ function __section_fields($name = 'sections')
                                                     )
                                                 )
                                             ),
-                                        Field::make('color', 'text_color_custom', __('Text Color'))->set_width(100)
+                                        Field::make('color', 'text_color_custom', __('Text Color'))->set_width(20)
                                             ->set_conditional_logic(
                                                 array(
                                                     array(
