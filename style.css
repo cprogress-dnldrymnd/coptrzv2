@@ -9744,156 +9744,606 @@ p:last-child {
   padding-left: 50px;
   padding-right: 50px; }
 
-.xl-padding-top {
-  padding-top: 12.5rem; }
+@media screen and (min-width: 1200px) {
+  .xl-padding-top {
+    padding-top: 12.5rem; }
 
-.xl-padding-bottom {
-  padding-bottom: 12.5rem; }
+  .xl-padding-bottom {
+    padding-bottom: 12.5rem; }
 
-.xl-padding-left {
-  padding-left: 12.5rem; }
+  .xl-padding-left {
+    padding-left: 12.5rem; }
 
-.xl-padding-right {
-  padding-right: 12.5rem; }
+  .xl-padding-right {
+    padding-right: 12.5rem; }
 
-.xl-padding {
-  padding: 12.5rem; }
+  .xl-padding {
+    padding: 12.5rem; }
 
-.xl-margin {
-  margin: 12.5rem; }
+  .xl-margin {
+    margin: 12.5rem; }
 
-.xl-margin-top {
-  margin-top: 12.5rem; }
+  .xl-margin-top {
+    margin-top: 12.5rem; }
 
-.xl-margin-bottom {
-  margin-bottom: 12.5rem; }
+  .xl-margin-bottom {
+    margin-bottom: 12.5rem; }
 
-.xl-margin-left {
-  margin-left: 12.5rem; }
+  .xl-margin-left {
+    margin-left: 12.5rem; }
 
-.xl-margin-right {
-  margin-right: 12.5rem; }
+  .xl-margin-right {
+    margin-right: 12.5rem; }
 
-.lg-padding-top {
-  padding-top: 9.375rem; }
+  .lg-padding-top {
+    padding-top: 9.375rem; }
 
-.lg-padding-bottom {
-  padding-bottom: 9.375rem; }
+  .lg-padding-bottom {
+    padding-bottom: 9.375rem; }
 
-.lg-padding-left {
-  padding-left: 9.375rem; }
+  .lg-padding-left {
+    padding-left: 9.375rem; }
 
-.lg-padding-right {
-  padding-right: 9.375rem; }
+  .lg-padding-right {
+    padding-right: 9.375rem; }
 
-.lg-padding {
-  padding: 9.375rem; }
+  .lg-padding {
+    padding: 9.375rem; }
 
-.lg-margin {
-  margin: 9.375rem; }
+  .lg-margin {
+    margin: 9.375rem; }
 
-.lg-margin-top {
-  margin-top: 9.375rem; }
+  .lg-margin-top {
+    margin-top: 9.375rem; }
 
-.lg-margin-bottom {
-  margin-bottom: 9.375rem; }
+  .lg-margin-bottom {
+    margin-bottom: 9.375rem; }
 
-.lg-margin-left {
-  margin-left: 9.375rem; }
+  .lg-margin-left {
+    margin-left: 9.375rem; }
 
-.lg-margin-right {
-  margin-right: 9.375rem; }
+  .lg-margin-right {
+    margin-right: 9.375rem; }
 
-.md-padding-top {
-  padding-top: 6.25rem; }
+  .md-padding-top {
+    padding-top: 6.25rem; }
 
-.md-padding-bottom {
-  padding-bottom: 6.25rem; }
+  .md-padding-bottom {
+    padding-bottom: 6.25rem; }
 
-.md-padding-left {
-  padding-left: 6.25rem; }
+  .md-padding-left {
+    padding-left: 6.25rem; }
 
-.md-padding-right {
-  padding-right: 6.25rem; }
+  .md-padding-right {
+    padding-right: 6.25rem; }
 
-.md-padding {
-  padding: 6.25rem; }
+  .md-padding {
+    padding: 6.25rem; }
 
-.md-margin {
-  margin: 6.25rem; }
+  .md-margin {
+    margin: 6.25rem; }
 
-.md-margin-top {
-  margin-top: 6.25rem; }
+  .md-margin-top {
+    margin-top: 6.25rem; }
 
-.md-margin-bottom {
-  margin-bottom: 6.25rem; }
+  .md-margin-bottom {
+    margin-bottom: 6.25rem; }
 
-.md-margin-left {
-  margin-left: 6.25rem; }
+  .md-margin-left {
+    margin-left: 6.25rem; }
 
-.md-margin-right {
-  margin-right: 6.25rem; }
+  .md-margin-right {
+    margin-right: 6.25rem; }
 
-.sm-padding-top {
-  padding-top: 3.125rem; }
+  .sm-padding-top {
+    padding-top: 3.125rem; }
 
-.sm-padding-bottom {
-  padding-bottom: 3.125rem; }
+  .sm-padding-bottom {
+    padding-bottom: 3.125rem; }
 
-.sm-padding-left {
-  padding-left: 3.125rem; }
+  .sm-padding-left {
+    padding-left: 3.125rem; }
 
-.sm-padding-right {
-  padding-right: 3.125rem; }
+  .sm-padding-right {
+    padding-right: 3.125rem; }
 
-.sm-padding {
-  padding: 3.125rem; }
+  .sm-padding {
+    padding: 3.125rem; }
 
-.sm-margin {
-  margin: 3.125rem; }
+  .sm-margin {
+    margin: 3.125rem; }
 
-.sm-margin-top {
-  margin-top: 3.125rem; }
+  .sm-margin-top {
+    margin-top: 3.125rem; }
 
-.sm-margin-bottom {
-  margin-bottom: 3.125rem; }
+  .sm-margin-bottom {
+    margin-bottom: 3.125rem; }
 
-.sm-margin-left {
-  margin-left: 3.125rem; }
+  .sm-margin-left {
+    margin-left: 3.125rem; }
 
-.sm-margin-right {
-  margin-right: 3.125rem; }
+  .sm-margin-right {
+    margin-right: 3.125rem; }
 
-.xs-padding-top {
-  padding-top: 2rem; }
+  .xs-padding-top {
+    padding-top: 2rem; }
 
-.xs-padding-bottom {
-  padding-bottom: 2rem; }
+  .xs-padding-bottom {
+    padding-bottom: 2rem; }
 
-.xs-padding-left {
-  padding-left: 2rem; }
+  .xs-padding-left {
+    padding-left: 2rem; }
 
-.xs-padding-right {
-  padding-right: 2rem; }
+  .xs-padding-right {
+    padding-right: 2rem; }
 
-.xs-padding {
-  padding: 2rem; }
+  .xs-padding {
+    padding: 2rem; }
 
-.xs-margin {
-  margin: 2rem; }
+  .xs-margin {
+    margin: 2rem; }
 
-.xs-margin-top {
-  margin-top: 2rem; }
+  .xs-margin-top {
+    margin-top: 2rem; }
 
-.xs-margin-bottom {
-  margin-bottom: 2rem; }
+  .xs-margin-bottom {
+    margin-bottom: 2rem; }
 
-.xs-margin-left {
-  margin-left: 2rem; }
+  .xs-margin-left {
+    margin-left: 2rem; }
 
-.xs-margin-right {
-  margin-right: 2rem; }
+  .xs-margin-right {
+    margin-right: 2rem; } }
+@media (min-width: 992px) and (max-width: 1199px) {
+  .xl-padding-top {
+    padding-top: 10rem; }
 
+  .xl-padding-bottom {
+    padding-bottom: 10rem; }
+
+  .xl-padding-left {
+    padding-left: 10rem; }
+
+  .xl-padding-right {
+    padding-right: 10rem; }
+
+  .xl-padding {
+    padding: 10rem; }
+
+  .xl-margin {
+    margin: 10rem; }
+
+  .xl-margin-top {
+    margin-top: 10rem; }
+
+  .xl-margin-bottom {
+    margin-bottom: 10rem; }
+
+  .xl-margin-left {
+    margin-left: 10rem; }
+
+  .xl-margin-right {
+    margin-right: 10rem; }
+
+  .lg-padding-top {
+    padding-top: 8rem; }
+
+  .lg-padding-bottom {
+    padding-bottom: 8rem; }
+
+  .lg-padding-left {
+    padding-left: 8rem; }
+
+  .lg-padding-right {
+    padding-right: 8rem; }
+
+  .lg-padding {
+    padding: 8rem; }
+
+  .lg-margin {
+    margin: 8rem; }
+
+  .lg-margin-top {
+    margin-top: 8rem; }
+
+  .lg-margin-bottom {
+    margin-bottom: 8rem; }
+
+  .lg-margin-left {
+    margin-left: 8rem; }
+
+  .lg-margin-right {
+    margin-right: 8rem; }
+
+  .md-padding-top {
+    padding-top: 5rem; }
+
+  .md-padding-bottom {
+    padding-bottom: 5rem; }
+
+  .md-padding-left {
+    padding-left: 5rem; }
+
+  .md-padding-right {
+    padding-right: 5rem; }
+
+  .md-padding {
+    padding: 5rem; }
+
+  .md-margin {
+    margin: 5rem; }
+
+  .md-margin-top {
+    margin-top: 5rem; }
+
+  .md-margin-bottom {
+    margin-bottom: 5rem; }
+
+  .md-margin-left {
+    margin-left: 5rem; }
+
+  .md-margin-right {
+    margin-right: 5rem; }
+
+  .sm-padding-top {
+    padding-top: 2.5rem; }
+
+  .sm-padding-bottom {
+    padding-bottom: 2.5rem; }
+
+  .sm-padding-left {
+    padding-left: 2.5rem; }
+
+  .sm-padding-right {
+    padding-right: 2.5rem; }
+
+  .sm-padding {
+    padding: 2.5rem; }
+
+  .sm-margin {
+    margin: 2.5rem; }
+
+  .sm-margin-top {
+    margin-top: 2.5rem; }
+
+  .sm-margin-bottom {
+    margin-bottom: 2.5rem; }
+
+  .sm-margin-left {
+    margin-left: 2.5rem; }
+
+  .sm-margin-right {
+    margin-right: 2.5rem; }
+
+  .xs-padding-top {
+    padding-top: 1rem; }
+
+  .xs-padding-bottom {
+    padding-bottom: 1rem; }
+
+  .xs-padding-left {
+    padding-left: 1rem; }
+
+  .xs-padding-right {
+    padding-right: 1rem; }
+
+  .xs-padding {
+    padding: 1rem; }
+
+  .xs-margin {
+    margin: 1rem; }
+
+  .xs-margin-top {
+    margin-top: 1rem; }
+
+  .xs-margin-bottom {
+    margin-bottom: 1rem; }
+
+  .xs-margin-left {
+    margin-left: 1rem; }
+
+  .xs-margin-right {
+    margin-right: 1rem; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .xl-padding-top {
+    padding-top: 8rem; }
+
+  .xl-padding-bottom {
+    padding-bottom: 8rem; }
+
+  .xl-padding-left {
+    padding-left: 8rem; }
+
+  .xl-padding-right {
+    padding-right: 8rem; }
+
+  .xl-padding {
+    padding: 8rem; }
+
+  .xl-margin {
+    margin: 8rem; }
+
+  .xl-margin-top {
+    margin-top: 8rem; }
+
+  .xl-margin-bottom {
+    margin-bottom: 8rem; }
+
+  .xl-margin-left {
+    margin-left: 8rem; }
+
+  .xl-margin-right {
+    margin-right: 8rem; }
+
+  .lg-padding-top {
+    padding-top: 7rem; }
+
+  .lg-padding-bottom {
+    padding-bottom: 7rem; }
+
+  .lg-padding-left {
+    padding-left: 7rem; }
+
+  .lg-padding-right {
+    padding-right: 7rem; }
+
+  .lg-padding {
+    padding: 7rem; }
+
+  .lg-margin {
+    margin: 7rem; }
+
+  .lg-margin-top {
+    margin-top: 7rem; }
+
+  .lg-margin-bottom {
+    margin-bottom: 7rem; }
+
+  .lg-margin-left {
+    margin-left: 7rem; }
+
+  .lg-margin-right {
+    margin-right: 7rem; }
+
+  .md-padding-top {
+    padding-top: 4rem; }
+
+  .md-padding-bottom {
+    padding-bottom: 4rem; }
+
+  .md-padding-left {
+    padding-left: 4rem; }
+
+  .md-padding-right {
+    padding-right: 4rem; }
+
+  .md-padding {
+    padding: 4rem; }
+
+  .md-margin {
+    margin: 4rem; }
+
+  .md-margin-top {
+    margin-top: 4rem; }
+
+  .md-margin-bottom {
+    margin-bottom: 4rem; }
+
+  .md-margin-left {
+    margin-left: 4rem; }
+
+  .md-margin-right {
+    margin-right: 4rem; }
+
+  .sm-padding-top {
+    padding-top: 2rem; }
+
+  .sm-padding-bottom {
+    padding-bottom: 2rem; }
+
+  .sm-padding-left {
+    padding-left: 2rem; }
+
+  .sm-padding-right {
+    padding-right: 2rem; }
+
+  .sm-padding {
+    padding: 2rem; }
+
+  .sm-margin {
+    margin: 2rem; }
+
+  .sm-margin-top {
+    margin-top: 2rem; }
+
+  .sm-margin-bottom {
+    margin-bottom: 2rem; }
+
+  .sm-margin-left {
+    margin-left: 2rem; }
+
+  .sm-margin-right {
+    margin-right: 2rem; }
+
+  .xs-padding-top {
+    padding-top: 1rem; }
+
+  .xs-padding-bottom {
+    padding-bottom: 1rem; }
+
+  .xs-padding-left {
+    padding-left: 1rem; }
+
+  .xs-padding-right {
+    padding-right: 1rem; }
+
+  .xs-padding {
+    padding: 1rem; }
+
+  .xs-margin {
+    margin: 1rem; }
+
+  .xs-margin-top {
+    margin-top: 1rem; }
+
+  .xs-margin-bottom {
+    margin-bottom: 1rem; }
+
+  .xs-margin-left {
+    margin-left: 1rem; }
+
+  .xs-margin-right {
+    margin-right: 1rem; } }
+@media screen and (max-width: 767px) {
+  .xl-padding-top {
+    padding-top: 10rem; }
+
+  .xl-padding-bottom {
+    padding-bottom: 10rem; }
+
+  .xl-padding-left {
+    padding-left: 10rem; }
+
+  .xl-padding-right {
+    padding-right: 10rem; }
+
+  .xl-padding {
+    padding: 10rem; }
+
+  .xl-margin {
+    margin: 10rem; }
+
+  .xl-margin-top {
+    margin-top: 10rem; }
+
+  .xl-margin-bottom {
+    margin-bottom: 10rem; }
+
+  .xl-margin-left {
+    margin-left: 10rem; }
+
+  .xl-margin-right {
+    margin-right: 10rem; }
+
+  .lg-padding-top {
+    padding-top: 7rem; }
+
+  .lg-padding-bottom {
+    padding-bottom: 7rem; }
+
+  .lg-padding-left {
+    padding-left: 7rem; }
+
+  .lg-padding-right {
+    padding-right: 7rem; }
+
+  .lg-padding {
+    padding: 7rem; }
+
+  .lg-margin {
+    margin: 7rem; }
+
+  .lg-margin-top {
+    margin-top: 7rem; }
+
+  .lg-margin-bottom {
+    margin-bottom: 7rem; }
+
+  .lg-margin-left {
+    margin-left: 7rem; }
+
+  .lg-margin-right {
+    margin-right: 7rem; }
+
+  .md-padding-top {
+    padding-top: 4rem; }
+
+  .md-padding-bottom {
+    padding-bottom: 4rem; }
+
+  .md-padding-left {
+    padding-left: 4rem; }
+
+  .md-padding-right {
+    padding-right: 4rem; }
+
+  .md-padding {
+    padding: 4rem; }
+
+  .md-margin {
+    margin: 4rem; }
+
+  .md-margin-top {
+    margin-top: 4rem; }
+
+  .md-margin-bottom {
+    margin-bottom: 4rem; }
+
+  .md-margin-left {
+    margin-left: 4rem; }
+
+  .md-margin-right {
+    margin-right: 4rem; }
+
+  .sm-padding-top {
+    padding-top: 2rem; }
+
+  .sm-padding-bottom {
+    padding-bottom: 2rem; }
+
+  .sm-padding-left {
+    padding-left: 2rem; }
+
+  .sm-padding-right {
+    padding-right: 2rem; }
+
+  .sm-padding {
+    padding: 2rem; }
+
+  .sm-margin {
+    margin: 2rem; }
+
+  .sm-margin-top {
+    margin-top: 2rem; }
+
+  .sm-margin-bottom {
+    margin-bottom: 2rem; }
+
+  .sm-margin-left {
+    margin-left: 2rem; }
+
+  .sm-margin-right {
+    margin-right: 2rem; }
+
+  .xs-padding-top {
+    padding-top: 1rem; }
+
+  .xs-padding-bottom {
+    padding-bottom: 1rem; }
+
+  .xs-padding-left {
+    padding-left: 1rem; }
+
+  .xs-padding-right {
+    padding-right: 1rem; }
+
+  .xs-padding {
+    padding: 1rem; }
+
+  .xs-margin {
+    margin: 1rem; }
+
+  .xs-margin-top {
+    margin-top: 1rem; }
+
+  .xs-margin-bottom {
+    margin-bottom: 1rem; }
+
+  .xs-margin-left {
+    margin-left: 1rem; }
+
+  .xs-margin-right {
+    margin-right: 1rem; } }
 .background-contain {
   background-size: contain; }
 

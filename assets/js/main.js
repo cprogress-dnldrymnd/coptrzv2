@@ -6,6 +6,11 @@ jQuery(document).ready(function () {
     __swipers();
 });
 
+
+function tabs_holder() {
+    
+}
+
 function __fixed_heading_position() {
     jQuery('.section.extend-right, .section.extend-left').each(function (index, element) {
         $this = jQuery(this);

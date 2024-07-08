@@ -52,36 +52,163 @@ $spacings: (
     "xs": 2rem
 );
 
-@each $size, $spacing in $spacings {
-    .#{$size}-padding-top {
-        padding-top: $spacing;
+$spacings_laptop: (
+    "xl": 10rem,
+    "lg": 8rem,
+    "md": 5rem,
+    "sm": 2.5rem,
+    "xs": 1rem
+);
+
+$spacings_tablet: (
+    "xl": 8rem,
+    "lg": 7rem,
+    "md": 4rem,
+    "sm": 2rem,
+    "xs": 1rem
+);
+
+$spacings_mobile: (
+    "xl": 10rem,
+    "lg": 7rem,
+    "md": 4rem,
+    "sm": 2rem,
+    "xs": 1rem
+);
+@include responsive(lg) {
+    @each $size, $spacing in $spacings {
+        .#{$size}-padding-top {
+            padding-top: $spacing;
+        }
+        .#{$size}-padding-bottom {
+            padding-bottom: $spacing;
+        }
+        .#{$size}-padding-left {
+            padding-left: $spacing;
+        }
+        .#{$size}-padding-right {
+            padding-right: $spacing;
+        }
+        .#{$size}-padding {
+            padding: $spacing;
+        }
+        .#{$size}-margin {
+            margin: $spacing;
+        }
+        .#{$size}-margin-top {
+            margin-top: $spacing;
+        }
+        .#{$size}-margin-bottom {
+            margin-bottom: $spacing;
+        }
+        .#{$size}-margin-left {
+            margin-left: $spacing;
+        }
+        .#{$size}-margin-right {
+            margin-right: $spacing;
+        }
     }
-    .#{$size}-padding-bottom {
-        padding-bottom: $spacing;
+}
+@include responsive(md) {
+    @each $size, $spacing in $spacings_laptop {
+        .#{$size}-padding-top {
+            padding-top: $spacing;
+        }
+        .#{$size}-padding-bottom {
+            padding-bottom: $spacing;
+        }
+        .#{$size}-padding-left {
+            padding-left: $spacing;
+        }
+        .#{$size}-padding-right {
+            padding-right: $spacing;
+        }
+        .#{$size}-padding {
+            padding: $spacing;
+        }
+        .#{$size}-margin {
+            margin: $spacing;
+        }
+        .#{$size}-margin-top {
+            margin-top: $spacing;
+        }
+        .#{$size}-margin-bottom {
+            margin-bottom: $spacing;
+        }
+        .#{$size}-margin-left {
+            margin-left: $spacing;
+        }
+        .#{$size}-margin-right {
+            margin-right: $spacing;
+        }
     }
-    .#{$size}-padding-left {
-        padding-left: $spacing;
+}
+@include responsive(sm) {
+    @each $size, $spacing in $spacings_tablet {
+        .#{$size}-padding-top {
+            padding-top: $spacing;
+        }
+        .#{$size}-padding-bottom {
+            padding-bottom: $spacing;
+        }
+        .#{$size}-padding-left {
+            padding-left: $spacing;
+        }
+        .#{$size}-padding-right {
+            padding-right: $spacing;
+        }
+        .#{$size}-padding {
+            padding: $spacing;
+        }
+        .#{$size}-margin {
+            margin: $spacing;
+        }
+        .#{$size}-margin-top {
+            margin-top: $spacing;
+        }
+        .#{$size}-margin-bottom {
+            margin-bottom: $spacing;
+        }
+        .#{$size}-margin-left {
+            margin-left: $spacing;
+        }
+        .#{$size}-margin-right {
+            margin-right: $spacing;
+        }
     }
-    .#{$size}-padding-right {
-        padding-right: $spacing;
-    }
-    .#{$size}-padding {
-        padding: $spacing;
-    }
-    .#{$size}-margin {
-        margin: $spacing;
-    }
-    .#{$size}-margin-top {
-        margin-top: $spacing;
-    }
-    .#{$size}-margin-bottom {
-        margin-bottom: $spacing;
-    }
-    .#{$size}-margin-left {
-        margin-left: $spacing;
-    }
-    .#{$size}-margin-right {
-        margin-right: $spacing;
+}
+@include responsive(xs) {
+    @each $size, $spacing in $spacings_mobile {
+        .#{$size}-padding-top {
+            padding-top: $spacing;
+        }
+        .#{$size}-padding-bottom {
+            padding-bottom: $spacing;
+        }
+        .#{$size}-padding-left {
+            padding-left: $spacing;
+        }
+        .#{$size}-padding-right {
+            padding-right: $spacing;
+        }
+        .#{$size}-padding {
+            padding: $spacing;
+        }
+        .#{$size}-margin {
+            margin: $spacing;
+        }
+        .#{$size}-margin-top {
+            margin-top: $spacing;
+        }
+        .#{$size}-margin-bottom {
+            margin-bottom: $spacing;
+        }
+        .#{$size}-margin-left {
+            margin-left: $spacing;
+        }
+        .#{$size}-margin-right {
+            margin-right: $spacing;
+        }
     }
 }
 .background-contain {
@@ -110,15 +237,13 @@ $spacings: (
     font-weight: 500 !important;
 }
 .g-10px {
-    --bs-gutter-x: 10px;;
+    --bs-gutter-x: 10px;
     --bs-gutter-y: 10px;
 }
-
 
 .gy-6 {
     --bs-gutter-y: 4rem;
 }
-
 
 .gx-6 {
     --bs-gutter-x: 4rem;
