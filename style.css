@@ -11080,7 +11080,7 @@ section.hero {
       margin-left: 10px;
       margin-right: 10px; } }
   section.hero.small-hero {
-    min-height: 25vw; }
+    min-height: 53vh; }
     section.hero.small-hero .description-box {
       font-size: 15px; }
     section.hero.small-hero .container > *:not(:last-child) {

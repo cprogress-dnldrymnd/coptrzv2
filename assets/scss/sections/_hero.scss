@@ -5,7 +5,7 @@ section.hero {
         margin-right: 10px;
     }
     &.small-hero {
-        min-height: 25vw;
+        min-height: 53vh;
         .description-box {
             font-size: 15px;
         }
@@ -17,11 +17,6 @@ section.hero {
             }
         }
     }
-
-    &.medium-hero {
-        
-    }
-    
 
     .description-box {
         max-width: 730px;
