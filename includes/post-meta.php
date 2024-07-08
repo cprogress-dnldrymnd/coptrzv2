@@ -26,7 +26,8 @@ Container::make('post_meta', __('Hero'))
         Field::make('select', 'hero_height', __('Height'))->set_classes('inline-field')
             ->set_options(
                 array(
-                    'large-hero' => 'Large',
+                    '' => 'Default',
+                    'medium-hero' => 'Medium',
                     'small-hero' => 'Small',
                 )
             ),
