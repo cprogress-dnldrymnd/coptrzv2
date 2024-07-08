@@ -74,14 +74,18 @@ class Shortcodes
         );
 
         $home = get_site_url();
-        $title = get_the_title($id);
+
         $html = "<div class='breadcrumbs mb-3 medium-text fw-light'>";
         $html .= "<ul class='list-inline p-0 t'>";
 
         $html .= "<li><a class='item text-white' href='$home'>Home</a></li>";
 
         if ($type == 'page') {
+            $title = get_the_title($id);
             $html .= "<li><span class='item text-white'  >$title</span></li>";
+        } else if ($type == 'term') {
+            $term = get_term($id);
+            $html .= "<li><span class='item text-white'  >$term->name</span></li>";
         }
 
 

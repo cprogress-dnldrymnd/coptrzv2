@@ -103,7 +103,7 @@ function ___hero_product_taxonomy()
         $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative small-hero'>";
         $hero .= _background($hero_background);
         $hero .= "<div class='container'>";
-
+        $hero .= "[breadcrumbs id='$term->term_id' type='term']";
         $hero .= __heading(array(
             'heading' => $hero_heading_val,
             'tag' => 'h1',
