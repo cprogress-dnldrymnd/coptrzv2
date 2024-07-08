@@ -101,6 +101,7 @@ function ___hero_product_taxonomy()
     $hero_background_type = get__term_meta($id, 'hero_background_type');
     $hero_alignment = get__term_meta($id, 'hero_alignment');
     $hero_height = get__term_meta($id, 'hero_height');
+    $buttons = get__term_meta($id, 'buttons');
     $breadcrumbs_hidden = get__term_meta($id, 'breadcrumbs_hidden');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
     $term_description_val = $hero_description ? $hero_description : _format_text($term->description);
@@ -138,6 +139,10 @@ function ___hero_product_taxonomy()
                 'description' => $term_description_val,
                 'class' => _attribute('class', array('description-box small-text small-width')),
             ));
+        }
+
+        if ($buttons) {
+            $hero .= ____button_modules($buttons);
         }
 
         $hero .= "</div>";
