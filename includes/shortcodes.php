@@ -89,7 +89,7 @@ class Shortcodes
             $html .= "<li><span class='item text-white'  >$title</span></li>";
         } else if ($type == 'term') {
             $term = get_term($id);
-            $parent = (isset($term->parent)) ? get_term_by('id', $term->parent, 'types') : false;
+            $parent = (isset($term->parent)) ? get_term_by('id', $term->parent, $term->taxonomy) : false;
             if ($parent) {
                 $parent_link = get_term_link($parent->term_id);
                 $parent_name = $parent->name;
