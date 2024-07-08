@@ -98,6 +98,7 @@ function ___hero_product_taxonomy()
     $heading_class[] = 'large-heading';
     if (!$parent) {
         $hero_class = 'small-hero';
+        $heading_class[] = 'mb-0';
     } else {
         $hero_class = 'text-center';
     }
