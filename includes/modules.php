@@ -55,6 +55,8 @@ function ___hero_modules()
     $heading_class[] = 'large-heading';
     if (!$hero_description) {
         $heading_class[] = 'mb-0';
+    } else {
+        $heading_class[] = 'mb-3';
     }
 
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
@@ -80,7 +82,7 @@ function ___hero_modules()
         ));
         $hero .= __description(array(
             'description' => $hero_description,
-            'class' => _attribute('class', array('description-box medium-text small-width mx-auto')),
+            'class' => _attribute('class', array('description-box medium-text small-width mx-auto mb-3')),
         ));
         $hero .= "</div>";
         $hero .= "</section>";
