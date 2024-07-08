@@ -97,10 +97,13 @@ function ___hero_product_taxonomy()
     $hero_background = $thumbnail_id;
     $heading_class[] = 'large-heading mb-0';
     if (!$parent) {
-        $heading_class[] = 'mb-0';
         $hero_class = 'small-hero';
     } else {
         $hero_class = 'text-center';
+    }
+
+    if(!$term_description) {
+        $heading_class[] = 'mb-0';
     }
 
     $hero = "<section class='hero pb-50px rounded-10px $hero_class medium-hero bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative '>";
