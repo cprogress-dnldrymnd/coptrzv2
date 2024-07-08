@@ -2819,7 +2819,7 @@ Container::make('post_meta', __('Conditional Display'))
                 array(
                     array(
                         'type'      => 'term',
-                        'taxonomy' => 'case_study_category',
+                        'taxonomy' => 'product_cat',
                     )
                 )
             )
