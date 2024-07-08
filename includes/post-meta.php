@@ -2815,3 +2815,20 @@ Container::make('post_meta', __('Conditional Display'))
                 )
             )),
     ));
+
+/*-----------------------------------------------------------------------------------*/
+/* Product category pages
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', __('Select product category to display content'))
+    ->or_where('post_type', '=', 'productcategorypages')
+    ->add_fields(array(
+        Field::make('association', 'post', 'Select Category')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'term',
+                        'taxonomy' => 'product_cat',
+                    )
+                )
+            )
+    ));
