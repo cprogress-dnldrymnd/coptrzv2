@@ -107,7 +107,7 @@ function ___hero_product_taxonomy()
     
 
     $heading_class[] = 'large-heading';
-    if (!$hero_description) {
+    if (!$term_description_val) {
         $heading_class[] = 'mb-0';
     }
     $hero_heading_val = $hero_heading ? $hero_heading : $term->name();
