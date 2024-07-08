@@ -21,6 +21,7 @@ class Shortcodes
         $terms = get_terms(array(
             'taxonomy'   => $taxonomy,
             'hide_empty' => $hide_empty,
+            'number' => $items_per_page
         ));
 
         $html = "<div class='taxonomy-terms'>";
