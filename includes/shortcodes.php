@@ -37,7 +37,7 @@ class Shortcodes
             $logo = get___term_meta($term->term_id, 'image');
             $image_args['image_id'] = $logo;
             $image_args['size'] = 'medium';
-            $image_args['class'] = _attribute('class', array('image-box'));
+            $image_args['class'] = _attribute('class', array('image-box mb-3'));
 
             $html .= "<div class='col-lg-3'>";
             $html .= "<div class='inner text-center h-100 border-default rounded-corner xs-padding'>";
