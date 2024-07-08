@@ -92,9 +92,14 @@ function ___hero_product_taxonomy()
     $term = get_queried_object();
     $term_description = _format_text($term->description);
     $hero_heading_val = $term->name;
+    $parent = $term->parent;
     $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
     $hero_background = $thumbnail_id;
     $heading_class[] = 'large-heading mb-0';
+    if (!$parent) {
+        $heading_class[] = 'mb-0';
+    }
+
     $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative small-hero'>";
     $hero .= _background($hero_background);
     $hero .= "<div class='container'>";
@@ -108,15 +113,16 @@ function ___hero_product_taxonomy()
     $hero .= "</div>";
     $hero .= "</section>";
 
-
-    $hero .= "<section class='sm-padding-top sm-padding-bottom term-description'>";
-    $hero .= "<div class='container'>";
-    $hero .= __description(array(
-        'description' => $term_description,
-        'class' => _attribute('class', array('description-box small-text small-width')),
-    ));
-    $hero .= "</div>";
-    $hero .= "</section>";
+    if (!$parent) {
+        $hero .= "<section class='sm-padding-top sm-padding-bottom term-description'>";
+        $hero .= "<div class='container'>";
+        $hero .= __description(array(
+            'description' => $term_description,
+            'class' => _attribute('class', array('description-box small-text small-width')),
+        ));
+        $hero .= "</div>";
+        $hero .= "</section>";
+    }
     return $hero;
 }
 function ___hero_product()
