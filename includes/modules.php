@@ -98,7 +98,7 @@ function ___hero_product_taxonomy()
     $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
     $hero_background = $thumbnail_id;
     $heading_class[] = 'large-heading';
-    if (!$term_description) {
+    if (!$term->description) {
         $heading_class[] = 'mb-0';
     }
 
