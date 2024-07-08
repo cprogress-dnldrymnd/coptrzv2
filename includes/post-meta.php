@@ -8,10 +8,9 @@ use Carbon_Fields\Field;
 /* Hero
 /*-----------------------------------------------------------------------------------*/
 
-Container::make('post_meta', __('Hero'))
-    ->where('post_type', '=', 'page')
-    ->or_where('post_type', '=', 'product')
-    ->add_fields(array(
+function __hero_fields()
+{
+    return array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_width(20),
         Field::make('checkbox', 'breadcrumbs_hidden', __('Hide Breadcrumbs'))->set_width(80),
         Field::make('text', 'hero_heading', __('Heading'))->set_help_text('')->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to page title'),
@@ -122,7 +121,10 @@ Container::make('post_meta', __('Hero'))
                     ),
             ))
 
-    ));
+    );
+}
+
+
 
 function __section_fields($name = 'sections')
 {
@@ -2742,6 +2744,13 @@ function __section_fields($name = 'sections')
             ->set_header_template('Section: <%- title %>')
     );
 }
+
+Container::make('post_meta', __('Hero'))
+    ->where('post_type', '=', 'page')
+    ->or_where('post_type', '=', 'product')
+    ->add_fields(__hero_fields());
+
+    
 Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->or_where('post_type', '=', 'product')
