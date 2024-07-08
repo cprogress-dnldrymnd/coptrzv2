@@ -1,10 +1,7 @@
 <?php get_header(); ?>
 
-
-<section class="default-page">
-    <?php
-    the_content();
-    ?>
-</section>
+<?php
+the_content();
+?>
 
 <?php get_footer(); ?>
