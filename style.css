@@ -10244,6 +10244,19 @@ small, .small {
   .swiper-linked-products:not(.swiper-initialized) .swiper-wrapper .swiper-slide:not(:last-child) {
     margin-right: 20px; }
 
+.breadcrumbs ul {
+  display: flex;
+  align-items: center; }
+  .breadcrumbs ul li {
+    display: flex;
+    align-items: center; }
+    .breadcrumbs ul li:not(:last-child) {
+      content: '';
+      height: 1px;
+      width: 24px;
+      display: inline-block;
+      background-color: var(--bs-wite); }
+
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/
