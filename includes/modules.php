@@ -25,7 +25,11 @@ function action_module_content()
             wp_update_post($my_post);
 
             if (get_post_type() == 'productcategorypages') {
-                
+                $product_cat = get__post_meta(get_the_ID(), 'product_cat');
+                if ($product_cat) {
+                    $product_cat_id = $product_cat[0]['id'];
+                    update_term_meta($product_cat_id, 'category_page', get_the_ID());
+                }
             }
         }
 
