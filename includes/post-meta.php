@@ -2830,5 +2830,5 @@ Container::make('post_meta', __('Select product category to display content'))
                         'taxonomy' => 'product_cat',
                     )
                 )
-            )
+            )->set_max(1)
     ));
