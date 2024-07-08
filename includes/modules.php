@@ -94,11 +94,7 @@ function ___hero_product_taxonomy()
     $hero_heading_val = $term->name;
     $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
     $hero_background = $thumbnail_id;
-    $heading_class[] = 'large-heading';
-    if (!$term_description) {
-        $heading_class[] = 'mb-0';
-    }
-
+    $heading_class[] = 'large-heading mb-0';
     $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative small-hero'>";
     $hero .= _background($hero_background);
     $hero .= "<div class='container'>";
