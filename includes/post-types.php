@@ -496,16 +496,16 @@ $Slides->show_in_admin_bar = false;
 $Slides->has_archive = false;
 
 
-$Coptrz_Templates = new newPostType();
-$Coptrz_Templates->name = 'Template';
-$Coptrz_Templates->singular_name = 'Template';
-$Coptrz_Templates->icon = 'dashicons-testimonial';
-$Coptrz_Templates->supports = array('title', 'revisions', 'thumbnail', 'editor');
-$Coptrz_Templates->exclude_from_search = true;
-$Coptrz_Templates->publicly_queryable = true;
-$Coptrz_Templates->show_in_admin_bar = true;
-$Coptrz_Templates->has_archive = false;
-$Coptrz_Templates->show_in_rest = true;
+$Layouts = new newPostType();
+$Layouts->name = 'Layouts';
+$Layouts->singular_name = 'Layout';
+$Layouts->icon = 'dashicons-testimonial';
+$Layouts->supports = array('title', 'revisions', 'thumbnail', 'editor');
+$Layouts->exclude_from_search = true;
+$Layouts->publicly_queryable = true;
+$Layouts->show_in_admin_bar = true;
+$Layouts->has_archive = false;
+$Layouts->show_in_rest = true;
 
 
 
