@@ -1276,3 +1276,18 @@ function __post_box($id)
 
     return $html;
 }
+
+function __breadcrumbs()
+{
+    $home = get_site_url();
+
+    $html = "<div class='breadcrumbs'>";
+    $html .= "<ul>";
+
+    $html .= "<li><a href='$home'>Home</a></li>";
+
+    $html .= "</ul>";
+    $html .= "</div>";
+
+    return $html;
+}
