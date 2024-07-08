@@ -11,6 +11,7 @@ use Carbon_Fields\Field;
 Container::make('post_meta', __('Hero'))
     ->where('post_type', '=', 'page')
     ->or_where('post_type', '=', 'product')
+    ->or_where('post_type', '=', 'productcategorypages')
     ->add_fields(array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_width(20),
         Field::make('checkbox', 'breadcrumbs_hidden', __('Hide Breadcrumbs'))->set_width(80),
