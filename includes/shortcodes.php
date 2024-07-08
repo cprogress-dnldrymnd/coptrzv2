@@ -82,9 +82,19 @@ class Shortcodes
 
         if ($type == 'page') {
             $title = get_the_title($id);
+
+            if (get_post_type($id) == 'product') {
+            }
+
             $html .= "<li><span class='item text-white'  >$title</span></li>";
         } else if ($type == 'term') {
             $term = get_term($id);
+            $parent = (isset($term->parent)) ? get_term_by('id', $term->parent, 'types') : false;
+            if ($parent) {
+                $parent_link = get_term_link($parent->term_id);
+                $parent_name = $parent->name;
+                $html .= "<li><a class='item text-white' href='$parent_link'>$parent_name</a></li>";
+            }
             $html .= "<li><span class='item text-white'  >$term->name</span></li>";
         }
 
