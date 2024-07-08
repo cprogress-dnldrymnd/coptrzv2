@@ -547,7 +547,7 @@ function save_custom_product_options($post_ID, $product, $update)
 }
 
 
-function __linked_products($field, $button_text, $button_link, $id, $title)
+function __linked_products($field, $button_text, $button_link, $id, $title, $shorcode = false)
 {
     $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<h2 class='text-center px-20px'>$title</h2>";
@@ -558,7 +558,11 @@ function __linked_products($field, $button_text, $button_link, $id, $title)
 
     foreach ($field as $product_id) {
         $html .= "<div class='swiper-slide'>"; //swiper-wrapper
-        $html .= "[product_grid_display id='$product_id']";
+        if ($shorcode == false) {
+            $html .= _product_grid_display($product_id);
+        } else {
+            $html .= "[product_grid_display id='$product_id']";
+        }
         $html .= '</div>'; //end-swiper-wrapper
 
     }
