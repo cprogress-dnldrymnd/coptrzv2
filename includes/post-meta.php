@@ -56,8 +56,8 @@ function __hero_fields()
                     )
                 )
             ),
-        Field::make('complex', 'hero_buttons', __('Buttons'))->set_classes('inline-field')
-            ->set_classes('columns')
+        Field::make('complex', 'hero_buttons', __('Buttons'))
+            ->set_classes('columns inline-field')
             ->setup_labels(
                 array(
                     'plural_name'   => 'Buttons',
