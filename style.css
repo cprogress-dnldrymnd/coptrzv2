@@ -10259,9 +10259,30 @@ small, .small {
       margin-left: 8px;
       margin-right: 8px; }
 
-.single-layouts header, .single-productcategorypages header {
+.single-layouts header,
+.single-productcategorypages header {
   position: static !important;
   background-color: #000; }
+
+.tabs-holder.tabs-holder.tabs-holder .nav-tabs {
+  justify-content: center; }
+  .tabs-holder.tabs-holder.tabs-holder .nav-tabs .nav-link {
+    padding: 20px 30px;
+    border-radius: 0;
+    font-size: 25px;
+    color: var(--bs-black);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid;
+    font-weight: 500;
+    margin-bottom: 3rem; }
+    .tabs-holder.tabs-holder.tabs-holder .nav-tabs .nav-link:not(.active) {
+      opacity: 0.35; }
+.tabs-holder.tabs-holder.tabs-holder .description-box {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
