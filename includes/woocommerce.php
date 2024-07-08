@@ -45,6 +45,7 @@ add_action('woocommerce_after_single_product', 'action_woocommerce_after_single_
 
 function action_woocommerce_before_shop_loop()
 {
+    echo __get_product_category_page(get_queried_object()->term_id);
     echo '<section class="product-archive-loop sm-padding-top lg-padding-bottom border-top-default no-overflow">';
     echo '<div class="container">';
     echo '<div class="row">';
@@ -612,5 +613,21 @@ function __related_guides($related_guides)
 
 function __get_product_category_page($id)
 {
-    $posts = get_posts($args)
+    $args = array(
+        'numberposts' => -1,
+        'post_type' => 'productcategorypages',
+        'fields' => 'ids',
+        'meta_query' => array(
+            array(
+                'key' => '_product_cat',
+                'value' => $id,
+                'compare' => 'LIKE',
+            ),
+        ),
+    );
+    $product_page = get_posts($args);
+
+    if ($product_page) {
+        return $product_page[0];
+    }
 }
