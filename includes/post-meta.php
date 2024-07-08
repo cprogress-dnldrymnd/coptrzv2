@@ -129,8 +129,8 @@ Container::make('post_meta', __('Hero'))
     ->or_where('post_type', '=', 'product')
     ->add_fields(__hero_fields());
 
-Container::make('term_meta', __('Category Properties'))
-    ->where('term_taxonomy', '=', 'category')
+Container::make('term_meta', __('Hero'))
+    ->where('term_taxonomy', '=', 'product_cat')
     ->add_fields(__hero_fields());
 
 Container::make('post_meta', __('Hero'))
