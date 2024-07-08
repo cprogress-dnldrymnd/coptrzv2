@@ -1,9 +1,10 @@
 <?php
-function add_svg_support($mimes) {
+function add_svg_support($mimes)
+{
     $mimes['svg'] = 'image/svg+xml';
     return $mimes;
-  }
-  add_filter('upload_mimes', 'add_svg_support');
+}
+add_filter('upload_mimes', 'add_svg_support');
 
 function action_wp_head()
 {
@@ -62,22 +63,26 @@ function action_admin_head()
         .inline-field.inline-field .cf-field__help {
             margin-left: 10%;
         }
+
         .postbox-header {
             background-color: lightblue;
         }
+
         .edit-post-meta-boxes-area .postbox {
             margin-bottom: 10px;
         }
+
         .preview iframe {
             width: 100%;
             min-height: 100vh;
         }
-        .cf-complex__inserter-menu{
+
+        .cf-complex__inserter-menu {
             z-index: 999;
         }
 
         <?php
-        if (_is_module()) {
+        if (_is_module() || get_post_type() == 'productcategorypages' || get_post_type() == 'layouts') {
             echo '.wp-block-post-content { display: none !important }';
             echo '.edit-post-header__toolbar, .editor-preview-dropdown__toggle, button[aria-controls="tabs-0-edit-post/block-view"] { display: none !important; }';
         }
