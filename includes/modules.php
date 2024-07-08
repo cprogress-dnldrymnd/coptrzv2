@@ -89,10 +89,8 @@ function ___hero_modules()
 function ___hero_product_taxonomy()
 {
 
-    $hero_hidden = false;
     $term = get_queried_object();
     $term_description = _format_text($term->description);
-    $hero_hidden = false;
     $hero_heading_val = $term->name;
     $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
     $hero_background = $thumbnail_id;
