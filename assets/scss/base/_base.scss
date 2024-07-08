@@ -418,13 +418,15 @@ small {
             display: flex;
             align-items: center;
             @include not-last-child {
-                content: '';
-                height: 1px;
-                width: 24px;
-                display: inline-block;
-                background-color: var(--bs-wite);
-                margin-left: 8px;
-                margin-right: 8px;
+                @include after {
+                    content: "";
+                    height: 1px;
+                    width: 24px;
+                    display: inline-block;
+                    background-color: var(--bs-wite);
+                    margin-left: 8px;
+                    margin-right: 8px;
+                }
             }
         }
     }
