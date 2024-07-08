@@ -2219,6 +2219,9 @@ function __section_fields($name = 'sections')
                                 )
                             )
                             ->set_max(1)
+                    ))
+                    ->add_fields('shortcode',  array(
+                        Field::make('text', 'shortcode', 'Shortcode')
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
