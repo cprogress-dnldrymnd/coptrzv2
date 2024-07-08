@@ -5,6 +5,11 @@ function action_woocommerce_before_main_content()
 {
     if (is_product_taxonomy()) {
         echo do_shortcode(___hero_product_taxonomy());
+
+        $product_category_page = __get_product_category_page(get_queried_object()->term_id);
+        if ($product_category_page) {
+            echo do_shortcode(get_the_content(NULL, false, $product_category_page));
+        }
     } else if (is_product()) {
         $single_product_content = get__post_meta('single_product_content');
         echo do_shortcode($single_product_content);
@@ -45,23 +50,20 @@ add_action('woocommerce_after_single_product', 'action_woocommerce_after_single_
 
 function action_woocommerce_before_shop_loop()
 {
-    $product_category_page = __get_product_category_page(get_queried_object()->term_id);
-    if (!$product_category_page) {
-        echo '<section class="product-archive-loop sm-padding-top lg-padding-bottom border-top-default no-overflow">';
-        echo '<div class="container">';
-        echo '<div class="row">';
-        echo '<div class="col-lg-3">';
-        /**
-         * Hook: woocommerce_sidebar.
-         *
-         * @hooked woocommerce_get_sidebar - 10
-         */
-        do_action('woocommerce_sidebar');
-        echo '</div>';
-        echo '<div class="col-lg-9">';
-    } else {
-        echo do_shortcode(get_the_content(NULL, false, $product_category_page));
-    }
+
+
+    echo '<section class="product-archive-loop sm-padding-top lg-padding-bottom border-top-default no-overflow">';
+    echo '<div class="container">';
+    echo '<div class="row">';
+    echo '<div class="col-lg-3">';
+    /**
+     * Hook: woocommerce_sidebar.
+     *
+     * @hooked woocommerce_get_sidebar - 10
+     */
+    do_action('woocommerce_sidebar');
+    echo '</div>';
+    echo '<div class="col-lg-9">';
 }
 
 add_action('woocommerce_before_shop_loop', 'action_woocommerce_before_shop_loop');
