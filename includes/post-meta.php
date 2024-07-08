@@ -376,6 +376,7 @@ function __section_fields($name = 'sections')
                             ->set_options(
                                 array(
                                     ''     => 'Default',
+                                    'Huge'  => 'Huge',
                                     'gy-5'  => 'Extra Large',
                                     'gy-4'  => 'Large',
                                     'gy-3'  => 'Medium',
