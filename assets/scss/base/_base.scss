@@ -415,7 +415,7 @@ small {
         display: flex;
         align-items: center;
         li {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             @include not-last-child {
                 @include after {
