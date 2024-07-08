@@ -2245,7 +2245,7 @@ function __section_fields($name = 'sections')
                     ->add_fields('product_slider',  array(
                         Field::make('text', 'heading', 'Heading'),
                         Field::make('text', 'button_text', 'Button Text'),
-                        Field::make('text', 'button_URL', 'Button URL'),
+                        Field::make('text', 'button_url', 'Button URL'),
                         Field::make('select', 'source', 'Source')
                             ->set_options(
                                 array(
