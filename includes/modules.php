@@ -93,16 +93,16 @@ function ___hero_product_taxonomy()
     $term = get_queried_object();
     $id = $term->term_id;
     $parent = $term->parent;
-    $hero_heading = get__term_meta($id, 'hero_heading');
-    $hero_description = _format_text(get__term_meta($id, 'hero_description'));
-    $hero_hidden = get__term_meta($id, 'hero_hidden');
-    $hero_background = get__term_meta($id, 'hero_background');
-    $hero_background_youtube = get__term_meta($id, 'hero_background_youtube');
-    $hero_background_type = get__term_meta($id, 'hero_background_type');
-    $hero_alignment = get__term_meta($id, 'hero_alignment');
-    $hero_height = get__term_meta($id, 'hero_height');
-    $buttons = get__term_meta($id, 'buttons');
-    $breadcrumbs_hidden = get__term_meta($id, 'breadcrumbs_hidden');
+    $hero_heading = get___term_meta($id, 'hero_heading');
+    $hero_description = _format_text(get___term_meta($id, 'hero_description'));
+    $hero_hidden = get___term_meta($id, 'hero_hidden');
+    $hero_background = get___term_meta($id, 'hero_background');
+    $hero_background_youtube = get___term_meta($id, 'hero_background_youtube');
+    $hero_background_type = get___term_meta($id, 'hero_background_type');
+    $hero_alignment = get___term_meta($id, 'hero_alignment');
+    $hero_height = get___term_meta($id, 'hero_height');
+    $buttons = get___term_meta($id, 'buttons');
+    $breadcrumbs_hidden = get___term_meta($id, 'breadcrumbs_hidden');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
     $term_description_val = $hero_description ? $hero_description : _format_text($term->description);
 
@@ -1343,7 +1343,7 @@ function __product_specifications($for_product_summary = false)
         }
         $html .= "<div class='row $row_class justify-content-center'>";
         foreach ($pa_specifications as $specification) {
-            $icon = get__term_meta($specification->term_id, 'icon');
+            $icon = get___term_meta($specification->term_id, 'icon');
             $mime_type =  get_post_mime_type($icon);
 
             $html .= "<div class='$class'>";
