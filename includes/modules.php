@@ -58,7 +58,9 @@ function ___hero_modules()
     }
 
     if (get_post_type() == 'productcategorypages') {
-        
+        if (!$hero_description) {
+            $hero_description = '[term_description]';
+        }
     }
 
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
