@@ -761,7 +761,7 @@ function ____button_modules($buttons)
                 'button_text' => $button['button_text'],
                 'button_url' => $button['button_url'],
                 'button_url_custom' => $button['button_url_custom'],
-                'button_style' => $button['button_style'] . 'col-auto',
+                'button_style' => $button['button_style'] . ' col-auto',
                 'button_target' => $button['button_target'],
             ));
         }
