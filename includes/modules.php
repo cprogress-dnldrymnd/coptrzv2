@@ -104,6 +104,7 @@ function sdsds()
     $breadcrumbs_hidden = get__term_meta($id, 'breadcrumbs_hidden');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
     $term_description_val = $hero_description ? $hero_description : _format_text($term->description);
+    
 
     $heading_class[] = 'large-heading';
     if (!$hero_description) {
