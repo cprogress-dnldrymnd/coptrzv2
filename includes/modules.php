@@ -87,7 +87,7 @@ function ___hero_modules()
         return $hero;
     }
 }
-function sdsds()
+function ___hero_product_taxonomy()
 {
 
     $term = get_queried_object();
@@ -150,7 +150,7 @@ function sdsds()
         return $hero;
     }
 }
-function ___hero_product_taxonomy()
+function ___hero_product_taxonomy_old()
 {
 
     $term = get_queried_object();
