@@ -131,7 +131,7 @@ Container::make('post_meta', __('Hero'))
     ->add_fields(array(
         Field::make('checkbox', 'hero_hidden', __('Hide Hero'))->set_width(20),
         Field::make('checkbox', 'breadcrumbs_hidden', __('Hide Breadcrumbs'))->set_width(80),
-        Field::make('text', 'hero_heading', __('Heading'))->set_help_text('')->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to term title'),
+        Field::make('text', 'hero_heading', __('Heading'))->set_help_text('')->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to title'),
         Field::make('textarea', 'hero_description', __('Description'))->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to term description'),
         Field::make('select', 'hero_background_type', __('Background Type'))->set_classes('inline-field')
             ->set_options(

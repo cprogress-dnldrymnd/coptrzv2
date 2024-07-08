@@ -23,7 +23,6 @@ function action_module_content()
 
             // Update the post into the database
             wp_update_post($my_post);
-
         }
 
         if (get_post_type() == 'product') {
@@ -56,6 +55,10 @@ function ___hero_modules()
     $heading_class[] = 'large-heading';
     if (!$hero_description) {
         $heading_class[] = 'mb-0';
+    }
+
+    if (get_post_type() == 'productcategorypages') {
+        
     }
 
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
