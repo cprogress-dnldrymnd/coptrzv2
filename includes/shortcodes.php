@@ -84,7 +84,7 @@ class Shortcodes
             $title = get_the_title($id);
 
             if (get_post_type($id) == 'product') {
-                $product_cat = get_the_terms($id, 'product-cat');
+                $product_cat = get_the_terms($id, 'product_cat');
                 if ($product_cat) {
                     foreach ($product_cat as $cat) {
                         $cat_name = $cat->name;
