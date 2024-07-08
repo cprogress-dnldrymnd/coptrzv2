@@ -59,6 +59,8 @@ function action_woocommerce_before_shop_loop()
         do_action('woocommerce_sidebar');
         echo '</div>';
         echo '<div class="col-lg-9">';
+    } else {
+        echo get_the_content(NULL, false, $product_category_page);
     }
 }
 
