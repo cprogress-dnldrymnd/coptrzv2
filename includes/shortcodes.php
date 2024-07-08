@@ -16,8 +16,7 @@ class Shortcodes
             )
         );
 
-        $html = '';
-        $html .= "<div class='taxonomy-terms'>";
+        $html = "<div class='taxonomy-terms'>";
         $html .= "<div class='row g-4 justify-content-between'>";
 
         if ($heading) {
