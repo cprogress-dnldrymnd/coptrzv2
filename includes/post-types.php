@@ -602,4 +602,4 @@ $Product_category_page->exclude_from_search = true;
 $Product_category_page->publicly_queryable = true;
 $Product_category_page->show_in_admin_bar = false;
 $Product_category_page->has_archive = true;
-$Product_category_page->show_in_rest = false;
+$Product_category_page->show_in_rest = true;
