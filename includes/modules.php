@@ -450,6 +450,7 @@ function ___sections($id = 'sections')
                             }
 
                             $args = array(
+                                'numberposts' => -1,
                                 'post_type' => 'product',
                                 'fields' => 'ids',
                                 'tax_query' => array(
@@ -461,7 +462,7 @@ function ___sections($id = 'sections')
                                 )
                             );
                             $products = get_posts($args);
-                            $html .= $term_idss;
+                            $html .= $products;
                             $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
                         }
 
