@@ -2773,12 +2773,14 @@ Container::make('post_meta', __('Conditional Display'))
             ->add_options(array(
                 'after_header' => __('After Header'),
                 'before_footer' => __('Before Footer'),
+                'page_content' => __('Page Content'),
             )),
         Field::make('select', 'display_location_condition', __('Display Location Condition'))
             ->add_options(array(
                 '' => __('Sitewide'),
                 'post_type' => __('Post Type'),
                 'post_type_archive' => __('Post Type Archive'),
+                'product_category' => __('Product Category'),
             ))
             ->set_conditional_logic(array(
                 array(
@@ -2791,8 +2793,7 @@ Container::make('post_meta', __('Conditional Display'))
             ->add_options(array(
                 'page' => __('Page'),
                 'post' => __('Posts'),
-                'fundings' => __('Fundings'),
-                'team' => __('Community'),
+                'product' => __('Product'),
             ))
             ->set_conditional_logic(array(
                 array(
@@ -2801,11 +2802,10 @@ Container::make('post_meta', __('Conditional Display'))
                     'compare' => '=',
                 )
             )),
-        Field::make('multiselect', 'display_location_post_type_achive', __('Select Post Type'))
+        Field::make('multiselect', 'display_location_post_type_achive', __('Select Post Type Archive'))
             ->add_options(array(
                 'post' => __('Posts'),
-                'fundings' => __('Fundings'),
-                'team' => __('Community'),
+                'product' => __('product'),
             ))
             ->set_conditional_logic(array(
                 array(
@@ -2814,4 +2814,23 @@ Container::make('post_meta', __('Conditional Display'))
                     'compare' => '=',
                 )
             )),
+
+        Field::make('association', 'category', 'Select Product Categories')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'term',
+                        'taxonomy' => 'case_study_category',
+                    )
+                )
+            )
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'display_location_condition',
+                        'value' => 'product_category',
+                        'comapre' => '='
+                    )
+                )
+            ),
     ));
