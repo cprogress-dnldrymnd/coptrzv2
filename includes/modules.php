@@ -143,6 +143,9 @@ function ___hero_product_taxonomy()
 
         if ($buttons) {
             $hero .= ____button_modules($buttons);
+            $hero .= 'xxx';
+        } else {
+            $hero .= 'x2xx';
         }
 
         $hero .= "</div>";
