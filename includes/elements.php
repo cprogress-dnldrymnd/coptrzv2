@@ -145,7 +145,7 @@ function __video($data)
             } else {
                 $parameters = 'controls';
             }
-           
+
 
             return "<div $_attributes><video  $parameters src='$video_url'></video></div>";
         }
@@ -193,6 +193,7 @@ function __button($data)
     if ($button_text && $button_url) {
         $attributes_args = [];
         $attributes_args[] = _attribute('class', array($button_style, 'button-box'));
+
         $_attributes = _attributes($attributes_args);
         return "<div $_attributes><a class='rounded-10px' $button_target href='$button_url'>$button_text</a></div>";
     }

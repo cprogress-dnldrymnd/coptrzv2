@@ -754,14 +754,14 @@ function ____post_grid($data)
 function ____button_modules($buttons)
 {
     if ($buttons) {
-        $html = "<div class='button-group-box d-inline-flex flex-wrap'>";
+        $html = "<div class='row g-10px button-group-box d-inline-flex'>";
         foreach ($buttons as $button) {
             $html .= __button(array(
                 'button_type' => $button['button_type'],
                 'button_text' => $button['button_text'],
                 'button_url' => $button['button_url'],
                 'button_url_custom' => $button['button_url_custom'],
-                'button_style' => $button['button_style'],
+                'button_style' => $button['button_style'] . 'col-auto',
                 'button_target' => $button['button_target'],
             ));
         }
