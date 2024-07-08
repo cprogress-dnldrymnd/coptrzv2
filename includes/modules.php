@@ -583,6 +583,7 @@ function ___tab_modules($tabs, $id)
         $html .= "</div>";
 
         $html .= "</div>";
+        return $html;
     }
 }
 function ____post_grid($data)
