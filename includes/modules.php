@@ -27,7 +27,7 @@ function action_module_content()
 
         if (get_post_type() == 'product') {
 
-            $single_product_content = ___hero_product();
+            $single_product_content = ___hero_modules();
             $single_product_content .= __product_specifications();
             $single_product_content .= ___sections();
             $single_product_content_after = ___sections('sections_after_main');
@@ -230,33 +230,7 @@ function ___hero_product_taxonomy_old()
     }
     return $hero;
 }
-function ___hero_product()
-{
-    $hero_heading = get__post_meta('hero_heading');
-    $hero_description = _format_text(get__post_meta('hero_description'));
-    $hero_hidden = get__post_meta('hero_hidden');
-    $hero_background = get__post_meta('hero_background');
-    $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
-    if (!$hero_hidden) {
-        $hero = "<section class='hero pb-50px text-center rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative'>";
-        $hero .= _background($hero_background);
-        $hero .= "<div class='container'>";
 
-        $hero .= __heading(array(
-            'heading' => $hero_heading_val,
-            'tag' => 'h1',
-            'class' => _attribute('class', array('large-heading')),
-            ''
-        ));
-        $hero .= __description(array(
-            'description' => $hero_description,
-            'class' => _attribute('class', array('description-box', 'medium-text')),
-        ));
-        $hero .= "</div>";
-        $hero .= "</section>";
-        return $hero;
-    }
-}
 function ___sections($id = 'sections')
 {
     $sections = get__post_meta($id);
