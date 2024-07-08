@@ -100,7 +100,7 @@ function ___hero_product_taxonomy()
         $heading_class[] = 'mb-0';
         $hero_class = 'small-hero';
     } else {
-        $hero_class = '';
+        $hero_class = 'text-center';
     }
 
     $hero = "<section class='hero pb-50px rounded-10px $parent medium-hero bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative '>";
