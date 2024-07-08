@@ -104,8 +104,24 @@ class Shortcodes
 
         return $html;
     }
-    
+
+    function product_grid_display($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'id' => '',
+                ),
+                $atts
+            )
+        );
+
+        if ($id) {
+            return _product_grid_display($id);
+        }
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
 add_shortcode('breadcrumbs', array($Shortcodes, 'breadcrumbs'));
+add_shortcode('product_grid_display', array($Shortcodes, 'product_grid_display'));
