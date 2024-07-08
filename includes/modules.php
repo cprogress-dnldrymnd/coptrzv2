@@ -460,6 +460,7 @@ function ___sections($id = 'sections')
                                 )
                             );
                             $products = get_posts($args);
+                            $html .= var_dump($term_ids);
                             $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
                         }
 
