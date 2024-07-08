@@ -32,7 +32,7 @@ class Shortcodes
         }
         $html .= "</div>";
 
-        $html .= "<div class='row g-3 same-image-height'>";
+        $html .= "<div class='row g-3 same-image-height' style='--object-fit-contain'>";
         foreach ($terms as $term) {
             $logo = get___term_meta($term->term_id, 'image');
             $image_args['image_id'] = $logo;
