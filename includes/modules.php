@@ -95,7 +95,7 @@ function ___hero_product_taxonomy()
     $parent = $term->parent;
     $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
     $hero_background = $thumbnail_id;
-    $heading_class[] = 'large-heading mb-0';
+    $heading_class[] = 'large-heading';
     if (!$parent) {
         $hero_class = 'small-hero';
     } else {
