@@ -37,9 +37,7 @@ class Shortcodes
             $logo = get___term_meta($term->term_id, 'image');
             $image_args['image_id'] = $logo;
             $image_args['size'] = 'medium';
-            if ($is_background_image) {
-                $image_args['class'] = _attribute('class', array('image-box'));
-            }
+            $image_args['class'] = _attribute('class', array('image-box'));
 
             $html .= "<div class='col-lg-3'>";
             $html .= "<div class='inner text-center h-100 border-default rounded-corner xs-padding'>";
@@ -47,7 +45,7 @@ class Shortcodes
             $html .= __heading(array(
                 'heading' => $term->name,
                 'class' => _attribute('class', array('mb-0')),
-                'h3' => 'h3',
+                'tag' => 'h3',
             ));
             $html .= "</div>";
             $html .= "</div>";
