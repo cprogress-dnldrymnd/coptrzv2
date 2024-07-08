@@ -439,10 +439,15 @@ function ___sections($id = 'sections')
                         $heading = $items['heading'];
                         $button_text = $items['button_text'];
                         $button_url = $items['button_url'];
-                        $source = $items['source'];
+                        $sources = $items['source'];
 
-                        if ($source == 'default-query') {
-                            $term = get_queried_object();
+                        if ($sources) {
+                            $term_ids = [];
+
+                            foreach ($sources as $source) {
+                                $term_ids[] = $source['id'];
+                            }
+
                             $args = array(
                                 'post_type' => 'product',
                                 'fields' => 'ids',
@@ -450,12 +455,12 @@ function ___sections($id = 'sections')
                                     array(
                                         'taxonomy' => 'product_cat',
                                         'field'    => 'term_id',
-                                        'terms'    => $term->term_id
+                                        'terms'    => $term_ids
                                     )
                                 )
                             );
                             $products = get_posts($args);
-                            $html .= __linked_products($products, $button_text, $button_url, 'swiper-'.$term->term_id, $heading, true, false);
+                            $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $term->term_id, $heading, true, false);
                         }
 
 
