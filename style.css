@@ -10495,9 +10495,6 @@ section:not(.no-overflow) {
 section .container > *:not(:last-child) {
   margin-bottom: 3rem; }
 
-.button-group-box > div:not(:last-child) {
-  margin-right: 1rem; }
-
 .button-box a,
 .button-box button,
 .button.button.button.button.button {

@@ -754,7 +754,7 @@ function ____post_grid($data)
 function ____button_modules($buttons)
 {
     if ($buttons) {
-        $html = "<div class='row g-10px button-group-box d-inline-flex'>";
+        $html = "<div class='row g-3 button-group-box d-inline-flex'>";
         foreach ($buttons as $button) {
             $html .= __button(array(
                 'button_type' => $button['button_type'],
