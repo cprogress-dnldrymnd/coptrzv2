@@ -2751,6 +2751,10 @@ Container::make('post_meta', __('Hero'))
     ->add_fields(__hero_fields());
 
 
+Container::make('term_meta', __('Category Properties'))
+    ->where('term_taxonomy', '=', 'product_cat')
+    ->add_fields(__hero_fields());
+
 Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->or_where('post_type', '=', 'product')
