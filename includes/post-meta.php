@@ -2769,5 +2769,50 @@ Container::make('post_meta', __('Conditional Display'))
     ->where('post_type', '=', 'layouts')
     ->set_context('side')
     ->add_fields(array(
-
+        Field::make('select', 'display_location', __('Display Location'))
+            ->add_options(array(
+                'shortcode' => __('Custom(via shortcode)'),
+                'after_header' => __('After Header'),
+                'before_footer' => __('Before Footer'),
+            )),
+        Field::make('select', 'display_location_condition', __('Display Location Condition'))
+            ->add_options(array(
+                '' => __('Sitewide'),
+                'post_type' => __('Post Type'),
+                'post_type_archive' => __('Post Type Archive'),
+            ))
+            ->set_conditional_logic(array(
+                array(
+                    'field' => 'display_location',
+                    'value' => 'shortcode',
+                    'compare' => '!=',
+                )
+            )),
+        Field::make('multiselect', 'display_location_post_type', __('Select Post Type'))
+            ->add_options(array(
+                'page' => __('Page'),
+                'post' => __('Posts'),
+                'fundings' => __('Fundings'),
+                'team' => __('Community'),
+            ))
+            ->set_conditional_logic(array(
+                array(
+                    'field' => 'display_location_condition',
+                    'value' => 'post_type',
+                    'compare' => '=',
+                )
+            )),
+        Field::make('multiselect', 'display_location_post_type_achive', __('Select Post Type'))
+            ->add_options(array(
+                'post' => __('Posts'),
+                'fundings' => __('Fundings'),
+                'team' => __('Community'),
+            ))
+            ->set_conditional_logic(array(
+                array(
+                    'field' => 'display_location_condition',
+                    'value' => 'post_type_archive',
+                    'compare' => '=',
+                )
+            )),
     ));
