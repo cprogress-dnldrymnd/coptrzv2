@@ -441,15 +441,25 @@ function ___sections($id = 'sections')
                         $button_url = $items['button_url'];
                         $source = $items['source'];
 
-                        $product_ids = [];
-                        if($source == 'default-query') {
-                            
-
+                        if ($source == 'default-query') {
+                            $term = get_queried_object();
+                            $args = array(
+                                'post_type' => 'product',
+                                'fields' => 'ids',
+                                'tax_query' => array(
+                                    array(
+                                        'taxonomy' => 'product_cat',
+                                        'field'    => 'term_id',
+                                        'terms'    => $term->term_id
+                                    )
+                                )
+                            );
+                            $products = get_posts($args);
+                            $html .= __linked_products($products, $button_text, $button_url, 'swiper-'.$term->term_id, $heading, true);
                         }
 
 
-                        
-                        $html .= __linked_products();
+
                         break;
                 }
             }
