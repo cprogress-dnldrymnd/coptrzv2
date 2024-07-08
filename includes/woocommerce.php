@@ -558,7 +558,7 @@ function __linked_products($field, $button_text, $button_link, $id, $title)
 
     foreach ($field as $product_id) {
         $html .= "<div class='swiper-slide'>"; //swiper-wrapper
-        $html .= _product_grid_display($product_id);
+        $html .= "[product_grid_display id='$product_id]";
         $html .= '</div>'; //end-swiper-wrapper
 
     }
