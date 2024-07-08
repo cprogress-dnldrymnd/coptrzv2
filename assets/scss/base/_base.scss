@@ -158,13 +158,6 @@ section {
         }
     }
 }
-.button-group-box {
-    > div {
-        @include not-last-child {
-            margin-right: 1rem;
-        }
-    }
-}
 
 .button-box a,
 .button-box button,
