@@ -56,7 +56,7 @@ function __hero_fields()
                     )
                 )
             ),
-        Field::make('complex', 'buttons', __('Buttons'))->set_classes('inline-field')
+        Field::make('complex', 'hero_buttons', __('Buttons'))->set_classes('inline-field')
             ->set_classes('columns')
             ->setup_labels(
                 array(
@@ -2750,7 +2750,7 @@ Container::make('post_meta', __('Hero'))
     ->or_where('post_type', '=', 'product')
     ->add_fields(__hero_fields());
 
-    
+
 Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->or_where('post_type', '=', 'product')
