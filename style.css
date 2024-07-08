@@ -10250,8 +10250,8 @@ small, .small {
   .breadcrumbs ul li {
     display: flex;
     align-items: center; }
-    .breadcrumbs ul li:not(:last-child) {
-      content: '';
+    .breadcrumbs ul li:not(:last-child):after {
+      content: "";
       height: 1px;
       width: 24px;
       display: inline-block;
