@@ -455,7 +455,7 @@ function ___sections($id = 'sections')
                                 )
                             );
                             $products = get_posts($args);
-                            $html .= __linked_products($products, $button_text, $button_url, 'swiper-'.$term->term_id, $heading, true);
+                            $html .= __linked_products($products, $button_text, $button_url, 'swiper-'.$term->term_id, $heading, true, false);
                         }
 
 

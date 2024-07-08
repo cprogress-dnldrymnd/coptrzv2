@@ -547,9 +547,15 @@ function save_custom_product_options($post_ID, $product, $update)
 }
 
 
-function __linked_products($field, $button_text, $button_link, $id, $title, $shorcode = false)
+function __linked_products($field, $button_text, $button_link, $id, $title, $shorcode = false, $include_section = true)
 {
-    $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
+
+    if ($include_section) {
+        $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
+    } else {
+        $html = "<div class='related-products-slider'>";
+    }
+
     $html .= "<h2 class='text-center px-20px'>$title</h2>";
     $html .= "<div class='container extend-right'>";
     $html .= "<div class='swiper-holder'>"; //swiper-holder
@@ -572,7 +578,11 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
     $html .= '</div>';
 
     $html .= "<div class='container mt-4'><div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev' id='swiper-prev-$id'></div> <div class='swiper-button-next' id='swiper-next-$id'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='$button_link'>$button_text</a> </div> </div> </div></div>";
-    $html .= '</section>';
+    if ($include_section) {
+        $html .= '</section>';
+    } else {
+        $html .= '</div>';
+    }
 
     return $html;
 }
