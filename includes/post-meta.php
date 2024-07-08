@@ -2246,12 +2246,13 @@ function __section_fields($name = 'sections')
                         Field::make('text', 'heading', 'Heading'),
                         Field::make('text', 'button_text', 'Button Text'),
                         Field::make('text', 'button_url', 'Button URL'),
-                        Field::make('select', 'source', 'Source')
-                            ->set_options(
+                        Field::make('association', 'source', __('Source'))
+                            ->set_types(array(
                                 array(
-                                    'default-query'   => 'Default Query',
+                                    'type'      => 'term',
+                                    'taxonomy' => 'product_cat',
                                 )
-                            ),
+                            ))
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
