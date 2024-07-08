@@ -23,7 +23,6 @@ function action_module_content()
 
             // Update the post into the database
             wp_update_post($my_post);
-
         }
 
         if (get_post_type() == 'product') {
@@ -88,7 +87,68 @@ function ___hero_modules()
         return $hero;
     }
 }
+function sdsds()
+{
 
+    $term = get_queried_object();
+    $id = $term->term_id;
+    $parent = $term->parent;
+    $hero_heading = get__term_meta($id, 'hero_heading');
+    $hero_description = _format_text(get__term_meta($id, 'hero_description'));
+    $hero_hidden = get__term_meta($id, 'hero_hidden');
+    $hero_background = get__term_meta($id, 'hero_background');
+    $hero_background_youtube = get__term_meta($id, 'hero_background_youtube');
+    $hero_background_type = get__term_meta($id, 'hero_background_type');
+    $hero_alignment = get__term_meta($id, 'hero_alignment');
+    $hero_height = get__term_meta($id, 'hero_height');
+    $breadcrumbs_hidden = get__term_meta($id, 'breadcrumbs_hidden');
+    $text_align = $hero_alignment ? $hero_alignment : 'text-center';
+    $term_description_val = $hero_description ? $hero_description : _format_text($term->description);
+
+    $heading_class[] = 'large-heading';
+    if (!$hero_description) {
+        $heading_class[] = 'mb-0';
+    }
+    $hero_heading_val = $hero_heading ? $hero_heading : $term->name();
+
+    if (!$hero_hidden) {
+        $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
+        if ($hero_background_youtube && $hero_background_type == 'youtube') {
+            $hero .= _background($hero_background_youtube, true);
+        } else if ($hero_background) {
+            $hero .= _background($hero_background);
+        }
+        $hero .= "<div class='container'>";
+
+        if (!$breadcrumbs_hidden) {
+            $hero .= "[breadcrumbs id='$term->term_id' type='term']";
+        }
+
+
+        $hero .= __heading(array(
+            'heading' => $hero_heading_val,
+            'tag' => 'h1',
+            'class' => _attribute('class', $heading_class),
+            ''
+        ));
+
+        $hero .= "</div>";
+        $hero .= "</section>";
+
+        if (!$parent && !$term_description_val) {
+            $hero .= "<section class='sm-padding-top sm-padding-bottom term-description'>";
+            $hero .= "<div class='container'>";
+            $hero .= __description(array(
+                'description' => $term_description_val,
+                'class' => _attribute('class', array('description-box small-text small-width')),
+            ));
+            $hero .= "</div>";
+            $hero .= "</section>";
+        }
+
+        return $hero;
+    }
+}
 function ___hero_product_taxonomy()
 {
 
