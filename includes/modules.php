@@ -103,7 +103,7 @@ function ___hero_product_taxonomy()
         $hero_class = 'text-center';
     }
 
-    $hero = "<section class='hero pb-50px rounded-10px $parent medium-hero bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative '>";
+    $hero = "<section class='hero pb-50px rounded-10px $hero_class medium-hero bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative '>";
     $hero .= _background($hero_background);
     $hero .= "<div class='container'>";
     $hero .= "[breadcrumbs id='$term->term_id' type='term']";
