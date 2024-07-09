@@ -1,5 +1,17 @@
 section.landing-page {
     .text-holder {
-        
+        ul {
+            list-style: none;
+            padding: 0;
+            li {
+                display: flex;
+                align-items: center;
+                @include before {
+                    content: '';
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+        }
     }
 }
