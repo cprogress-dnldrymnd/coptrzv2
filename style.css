@@ -11380,6 +11380,14 @@ section.product-main .summary.summary.summary .variations tr {
   .wpforms-field-container.wpforms-field-container.wpforms-field-container > div.wpforms-field-layout > div {
     margin-bottom: 1rem; }
 
+.wpforms-container input.wpforms-field-medium,
+.wpforms-container select.wpforms-field-medium,
+.wpforms-container .wpforms-field-row.wpforms-field-medium,
+.wp-core-ui div.wpforms-container input.wpforms-field-medium,
+.wp-core-ui div.wpforms-container select.wpforms-field-medium,
+.wp-core-ui div.wpforms-container .wpforms-field-row.wpforms-field-medium {
+  max-width: 100%; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
 /*-----------------------------------------------------------------------------------*/
