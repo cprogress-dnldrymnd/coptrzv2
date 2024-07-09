@@ -10582,6 +10582,18 @@ section .container > *:not(:last-child) {
 .button-box.button-box.button-box.button-small button {
   padding: 0.625rem 1.25rem; }
 
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="submit"],
+input[type="email"],
+select,
+textarea {
+  padding: 17px 20px;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  line-height: 1; }
+
 .site-logo svg,
 .site-logo img {
   height: 21px;
