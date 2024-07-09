@@ -191,7 +191,12 @@ section {
         }
     }
 }
-
+@include inputs {
+    padding: 17px 20px;
+    border: 1px solid #DBDBDB;
+    border-radius: 10px;
+    line-height: 1;
+}
 .site-logo {
     svg,
     img {
