@@ -25,7 +25,6 @@
 			<div class="header-inner mt-20px rounded-10px">
 				<div class="row justify-content-between">
 					<?php get_template_part('template-parts/header/header-left') ?>
-					<?php get_template_part('template-parts/header/header-menu') ?>
 					<?php get_template_part('template-parts/header/header-right-landing') ?>
 				</div>
 			</div>
