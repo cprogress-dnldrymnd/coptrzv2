@@ -11370,13 +11370,13 @@ section.product-main .summary.summary.summary .variations tr {
     align-items: center;
     display: flex; }
 
-.wpforms-container.wpforms-container .wpforms-field {
+.wpforms-field-container.wpforms-field-container.wpforms-field-container .wpforms-field {
   padding: 0; }
-.wpforms-container.wpforms-container > div {
+.wpforms-field-container.wpforms-field-container.wpforms-field-container > div {
   margin-bottom: 1rem; }
-  .wpforms-container.wpforms-container > div:not(.wpforms-field-layout) {
+  .wpforms-field-container.wpforms-field-container.wpforms-field-container > div:not(.wpforms-field-layout) {
     margin-bottom: 1rem; }
-  .wpforms-container.wpforms-container > div.wpforms-field-layout > div {
+  .wpforms-field-container.wpforms-field-container.wpforms-field-container > div.wpforms-field-layout > div {
     margin-bottom: 1rem; }
 
 /*-----------------------------------------------------------------------------------*/
