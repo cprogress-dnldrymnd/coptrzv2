@@ -262,3 +262,12 @@ $spacings_mobile: (
 .header-padding {
     padding-top: 80.75px;
 }
+
+section {
+    &.mx-20px {
+        @include responsive(mobile) {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+}

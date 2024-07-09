@@ -10414,6 +10414,11 @@ p:last-child {
 .header-padding {
   padding-top: 80.75px; }
 
+@media screen and (max-width: 575px) {
+  section.mx-20px {
+    margin-left: 10px;
+    margin-right: 10px; } }
+
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
