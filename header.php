@@ -40,7 +40,5 @@ $SVG = new SVG;
 			</div>
 		</div>
 	</header>
-
-
 	<?php wp_body_open(); ?>
 	<main class="mt-20px">
