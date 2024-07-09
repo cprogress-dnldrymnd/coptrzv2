@@ -11396,14 +11396,15 @@ section.product-main .summary.summary.summary .variations tr {
   .wpforms-form .wpforms-field-container .wpforms-field:not(.wpforms-field-layout) {
     margin-bottom: 1.5rem; }
   .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
-    font-weight: 600;
     position: absolute;
     left: 10px;
-    background-color: var(--white-color);
+    background-color: var(--bs-white);
+    color: rgba(28, 28, 30, 0.75);
     padding: 5px;
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1;
     top: 15px;
+    font-weight: 300;
     -webkit-transition: 300ms;
     -moz-transition: 300ms;
     -ms-transition: 300ms;
