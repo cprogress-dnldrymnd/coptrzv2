@@ -1,6 +1,7 @@
 .wpforms-submit.wpforms-submit.wpforms-submit {
     @include button-style;
     @include button-accent;
+    width: 100%;
 }
 
 .wpforms-field-checkbox.wpforms-field-checkbox {
