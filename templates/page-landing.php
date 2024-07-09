@@ -11,6 +11,17 @@ $background_type = get__post_meta('background_type');
 $background = get__post_meta('background');
 $background_youtube = get__post_meta('background_youtube');
 $form = get__post_meta('form');
+$form_heading = get__post_meta('form_heading');
+$form_description = get__post_meta('form_description');
+$form_image = get__post_meta('form_image');
+
+$image_args['image_id'] = $form_image;
+$image_args['size'] = 'medium';
+$image_args['class'] = _attribute('class', array('image-box'));
+
+$description_args['description'] =  $form_description;
+$description_args['class'] =  _attribute('class', array('description-box'));
+
 ?>
 
 <section class="landing-page xl-padding-top md-padding-bottom rounded-corner mx-20px">
@@ -30,7 +41,22 @@ $form = get__post_meta('form');
             <div class="col-lg-6">
                 <div class="form-holder bg-white rounded-corner">
                     <div class="form-header">
-                        
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <?php
+                                echo __image($image_args);
+                                ?>
+                            </div>
+                            <div class="col-lg-9">
+                                <?php
+                                echo _heading(array(
+                                    'tag' => 'h3',
+                                    'heading' => $form_description,
+                                ));
+                                echo __description($description_args);
+                                ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-box p-20px">
                         <?= do_shortcode($form) ?>
