@@ -24,7 +24,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
 
 ?>
 
-<section class="landing-page xl-padding-top md-padding-bottom rounded-corner mx-20px">
+<section class="landing-page xl-padding-top sm-padding-bottom rounded-corner mx-20px">
     <?php
     if ($background_youtube && $background_type == 'youtube') {
         echo _background($background_youtube, true);
@@ -48,7 +48,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
                                 ?>
                             </div>
                             <div class="col-lg-9">
-                                <div class="column-holder p-20px">
+                                <div class="column-holder text-holder p-20px">
                                     <?php
                                     echo __heading(array(
                                         'tag' => 'h3',
