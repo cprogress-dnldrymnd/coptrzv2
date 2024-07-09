@@ -2,3 +2,14 @@
     @include button-style;
     @include button-accent;
 }
+
+.wpforms-field-checkbox.wpforms-field-checkbox {
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            align-items: center;
+            display: flex;
+        }
+    }
+}

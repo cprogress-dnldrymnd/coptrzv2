@@ -10594,6 +10594,10 @@ textarea {
   border-radius: 10px;
   line-height: 1; }
 
+input[type="checkbox"] {
+  width: 26px;
+  height: 26px; }
+
 .site-logo svg,
 .site-logo img {
   height: 21px;
@@ -11356,6 +11360,10 @@ section.product-main .summary.summary.summary .variations tr {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
+
+.wpforms-field-checkbox.wpforms-field-checkbox ul {
+  list-style: none;
+  padding: 0; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer

@@ -60,7 +60,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
                             </div>
                         </div>
                     </div>
-                    <div class="form-box p-20px">
+                    <div class="form-box p-20px small-text fw-light">
                         <?= do_shortcode($form) ?>
                     </div>
                 </div>

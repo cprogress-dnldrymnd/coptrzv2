@@ -197,6 +197,10 @@ section {
     border-radius: 10px;
     line-height: 1;
 }
+input[type="checkbox"] {
+    width: 26px;
+    height: 26px;
+}
 .site-logo {
     svg,
     img {
