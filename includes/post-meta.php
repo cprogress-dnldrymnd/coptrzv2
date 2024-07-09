@@ -2946,5 +2946,5 @@ Container::make('post_meta', __('Landing Page Settings'))
                     )
                 )
             ),
-        Field::make('text', 'form', 'Form'),
+        Field::make('text', 'form', 'Form')->set_classes('inline-field'),
     ));
