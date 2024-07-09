@@ -49,7 +49,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
                             </div>
                             <div class="col-lg-9">
                                 <?php
-                                echo _heading(array(
+                                echo __heading(array(
                                     'tag' => 'h3',
                                     'heading' => $form_description,
                                 ));
