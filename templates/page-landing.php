@@ -24,7 +24,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
 
 ?>
 
-<section class="landing-page heading-padding rounded-corner mx-20px">
+<section class="landing-page header-padding rounded-corner mx-20px">
     <?php
     if ($background_youtube && $background_type == 'youtube') {
         echo _background($background_youtube, true);
