@@ -104,7 +104,7 @@ function __mini_cart() {
             e.preventDefault();
         });
         if (jQuery('.mini-cart-wrapper .mini-cart-holder').length == 0) {
-            jQuery('.mini-cart-holder').inserAfter('#mini-cart-button');
+            jQuery('.mini-cart-holder').insertAfter('#mini-cart-button');
         }
     } else {
         jQuery('#mini-cart-button').attr('data-bs-toggle', 'offcanvas').attr('data-bs-target', '#offCanvasMiniCart').attr('aria-controls', 'offCanvasMiniCart');
