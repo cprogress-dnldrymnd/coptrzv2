@@ -11679,4 +11679,15 @@ section.hero {
     max-width: 1112px;
     display: inline-block; }
 
+section.landing-page .text-holder ul {
+  list-style: none;
+  padding: 0; }
+  section.landing-page .text-holder ul li {
+    display: flex;
+    align-items: center; }
+    section.landing-page .text-holder ul li:before {
+      content: '';
+      width: 16px;
+      height: 16px; }
+
 /*# sourceMappingURL=style.css.map */
