@@ -305,7 +305,7 @@ $Landing_Page = new newPostType();
 $Landing_Page->name = 'Landing Pages';
 $Landing_Page->singular_name = 'Landing Page';
 $Landing_Page->icon = 'dashicons-media-text';
-$Landing_Page->supports = array('title', 'revisions', 'thumbnail', 'editor', 'excerpt');
+$Landing_Page->supports = array('title', 'revisions', 'editor');
 $Landing_Page->show_in_rest = true;
 
 
@@ -592,7 +592,7 @@ $Product_compare = new newPostType();
 $Product_compare->name = 'Compare Products';
 $Product_compare->singular_name = 'Compare Product';
 $Product_compare->icon = 'dashicons-testimonial';
-$Product_compare->supports = array('title', 'revisions','excerpt');
+$Product_compare->supports = array('title', 'revisions', 'excerpt');
 $Product_compare->exclude_from_search = true;
 $Product_compare->publicly_queryable = true;
 $Product_compare->show_in_admin_bar = false;
@@ -605,7 +605,7 @@ $Product_category_page = new newPostType();
 $Product_category_page->name = 'Product Category Pages';
 $Product_category_page->singular_name = 'Product Category Page';
 $Product_category_page->icon = 'dashicons-testimonial';
-$Product_category_page->supports = array('title', 'revisions','excerpt', 'editor');
+$Product_category_page->supports = array('title', 'revisions', 'excerpt', 'editor');
 $Product_category_page->exclude_from_search = true;
 $Product_category_page->publicly_queryable = true;
 $Product_category_page->show_in_admin_bar = false;

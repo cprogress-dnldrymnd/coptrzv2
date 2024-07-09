@@ -2913,3 +2913,13 @@ Container::make('post_meta', __('Select product category to display content'))
                 )
             )->set_max(1)
     ));
+
+
+
+/* Landing page settings
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', __('Select product category to display content'))
+    ->or_where('post_type', '=', 'landingpages')
+    ->add_fields(array(
+        Field::make('image', 'background_image', 'Background Image')
+    ));
