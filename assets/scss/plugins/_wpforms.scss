@@ -1,4 +1,4 @@
- .wpforms-submit.wpforms-submit.wpforms-submit {
+.wpforms-submit.wpforms-submit.wpforms-submit {
     @include button-style;
     @include button-accent;
 }
@@ -10,6 +10,22 @@
         li {
             align-items: center;
             display: flex;
+        }
+    }
+}
+.wpforms-container.wpforms-container {
+    .wpforms-field {
+        padding: 0;
+    }
+    > div {
+        margin-bottom: 1rem;
+        &:not(.wpforms-field-layout) {
+            margin-bottom: 1rem;
+        }
+        &.wpforms-field-layout {
+            > div {
+                margin-bottom: 1rem;
+            }
         }
     }
 }
