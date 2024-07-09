@@ -51,7 +51,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
                                 <?php
                                 echo __heading(array(
                                     'tag' => 'h3',
-                                    'heading' => $form_description,
+                                    'heading' => $form_heading,
                                 ));
                                 echo __description($description_args);
                                 ?>
