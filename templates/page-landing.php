@@ -33,7 +33,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
     }
     ?>
     <div class="container">
-        <div class="row g-5 align-items-center">
+        <div class="row gx-6 gy-7 align-items-center">
             <div class="col-lg-6 text-white">
                 <h2><?php the_title() ?></h2>
                 <?php the_content() ?>
