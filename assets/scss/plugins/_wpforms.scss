@@ -14,22 +14,6 @@
         }
     }
 }
-.wpforms-field-container.wpforms-field-container.wpforms-field-container {
-    .wpforms-field {
-        padding: 0;
-    }
-    > div {
-        margin-bottom: 1rem;
-        &:not(.wpforms-field-layout) {
-            margin-bottom: 1rem;
-        }
-        &.wpforms-field-layout {
-            > div {
-                margin-bottom: 1rem;
-            }
-        }
-    }
-}
 
 .wpforms-container input.wpforms-field-medium,
 .wpforms-container select.wpforms-field-medium,
@@ -38,4 +22,62 @@
 .wp-core-ui div.wpforms-container select.wpforms-field-medium,
 .wp-core-ui div.wpforms-container .wpforms-field-row.wpforms-field-medium {
     max-width: 100% !important;
+}
+
+.wpforms-form {
+    .wpforms-field-container.wpforms-field-container.wpforms-field-container {
+        .wpforms-field {
+            padding: 0;
+        }
+        > div {
+            margin-bottom: 1rem;
+            &:not(.wpforms-field-layout) {
+                margin-bottom: 1rem;
+            }
+            &.wpforms-field-layout {
+                > div {
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+    .wpforms-field-container {
+        .wpforms-field {
+            padding-top: 0;
+            padding-bottom: 0;
+            &:not(.wpforms-field-layout) {
+                margin-bottom: 1.5rem;
+            }
+            .wpforms-field-label {
+                font-weight: 600;
+                position: absolute;
+                left: 10px;
+                background-color: var(--white-color);
+                padding: 5px;
+                font-size: 13px;
+                line-height: 1;
+                top: 15px;
+                @include transition(300ms);
+                &.wpforms-label-hide {
+                    display: none !important;
+                }
+            }
+
+            &.filled {
+                .wpforms-field-label {
+                    top: -13px;
+                }
+            }
+            em.wpforms-error {
+                margin-top: -8px;
+                font-size: 13px;
+                background-color: var(--white-color);
+                line-height: 1;
+                margin-left: 13px;
+            }
+        }
+    }
+    .wpforms-submit-container {
+        margin-top: 2rem;
+    }
 }
