@@ -305,7 +305,7 @@ $Landing_Page = new newPostType();
 $Landing_Page->name = 'Landing Pages';
 $Landing_Page->singular_name = 'Landing Page';
 $Landing_Page->icon = 'dashicons-media-text';
-$Landing_Page->supports = array('title', 'revisions', 'editor');
+$Landing_Page->supports = array('title', 'revisions', 'editor', 'thumbnail');
 $Landing_Page->show_in_rest = true;
 
 
