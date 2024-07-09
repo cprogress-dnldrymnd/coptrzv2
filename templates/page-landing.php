@@ -6,6 +6,8 @@
 ?>
 <?php get_header('landing'); ?>
 
+<?php 
+
 <section class="landing-page xl-padding-top md-padding-bottom rounded-corner mx-20px">
     <div class="container">
         <div class="row">

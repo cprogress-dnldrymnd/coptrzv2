@@ -2921,6 +2921,6 @@ Container::make('post_meta', __('Select product category to display content'))
 Container::make('post_meta', __('Landing Page Settings'))
     ->where('post_template', '=', 'templates/page-landing.php')
     ->add_fields(array(
-        Field::make('image', 'background_image', 'Background Image'),
+        Field::make('file', 'background', 'Background'),
         Field::make('text', 'form', 'Form'),
     ));
