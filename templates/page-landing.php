@@ -35,8 +35,10 @@ $description_args['class'] =  _attribute('class', array('description-box'));
     <div class="container">
         <div class="row g-6 align-items-center">
             <div class="col-lg-6 text-white">
-                <h2><?php the_title() ?></h2>
-                <?php the_content() ?>
+                <div class="text-holder">
+                    <h2><?php the_title() ?></h2>
+                    <?php the_content() ?>
+                </div>
             </div>
             <div class="col-lg-6">
                 <div class="form-holder bg-white rounded-corner">
@@ -48,7 +50,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
                                 ?>
                             </div>
                             <div class="col-lg-9">
-                                <div class="column-holder text-holder p-20px">
+                                <div class="column-holder p-20px">
                                     <?php
                                     echo __heading(array(
                                         'tag' => 'h3',
