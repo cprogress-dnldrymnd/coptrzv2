@@ -6,7 +6,10 @@
 ?>
 <?php get_header('landing'); ?>
 
-<?php 
+<?php
+$background = get__post_meta('background');
+$form = get__post_meta('form');
+?>
 
 <section class="landing-page xl-padding-top md-padding-bottom rounded-corner mx-20px">
     <div class="container">
@@ -16,7 +19,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="form-box">
-                    
+                    <?= do_shortcode($form) ?>
                 </div>
             </div>
         </div>
