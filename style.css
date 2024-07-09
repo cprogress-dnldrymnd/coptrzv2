@@ -11407,12 +11407,6 @@ section.product-main .summary.summary.summary .variations tr {
       display: none !important; }
   .wpforms-form .wpforms-field-container .wpforms-field.filled .wpforms-field-label {
     top: -13px; }
-  .wpforms-form .wpforms-field-container .wpforms-field em.wpforms-error {
-    margin-top: -18px;
-    font-size: 13px;
-    background-color: var(--bs-white);
-    line-height: 1;
-    margin-left: 20px; }
 .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }
 
