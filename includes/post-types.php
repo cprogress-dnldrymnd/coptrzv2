@@ -301,14 +301,6 @@ $Case_Studies->supports = array('title', 'revisions', 'thumbnail', 'editor', 'ex
 $Case_Studies->show_in_rest = true;
 
 
-$Landing_Page = new newPostType();
-$Landing_Page->name = 'Landing Pages';
-$Landing_Page->singular_name = 'Landing Page';
-$Landing_Page->icon = 'dashicons-media-text';
-$Landing_Page->supports = array('title', 'revisions', 'editor', 'thumbnail');
-$Landing_Page->show_in_rest = true;
-
-
 $Guides = new newPostType();
 $Guides->name = 'Guides';
 $Guides->singular_name = 'Guide';
