@@ -10411,6 +10411,9 @@ p:last-child {
   --bs-gutter-x: 4rem;
   --bs-gutter-y: 4rem; }
 
+.header-padding {
+  padding-top: 80.75px; }
+
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
@@ -11682,6 +11685,7 @@ section.hero {
 section.landing-page .text-holder > *:not(:last-child) {
   margin-bottom: 1rem; }
 section.landing-page .text-holder ul {
+  font-weight: 500;
   list-style: none;
   padding: 0; }
   section.landing-page .text-holder ul li {

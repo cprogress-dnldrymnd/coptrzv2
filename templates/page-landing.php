@@ -24,7 +24,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
 
 ?>
 
-<section class="landing-page xl-padding-top sm-padding-bottom rounded-corner mx-20px">
+<section class="landing-page heading-padding rounded-corner mx-20px">
     <?php
     if ($background_youtube && $background_type == 'youtube') {
         echo _background($background_youtube, true);
@@ -32,39 +32,41 @@ $description_args['class'] =  _attribute('class', array('description-box'));
         echo  _background($background);
     }
     ?>
-    <div class="container">
-        <div class="row g-6 align-items-center">
-            <div class="col-lg-6 text-white">
-                <div class="text-holder">
-                    <h2><?php the_title() ?></h2>
-                    <?php the_content() ?>
+    <div class="inner sm-padding-bottom sm-padding-top">
+        <div class="container">
+            <div class="row g-6 align-items-center">
+                <div class="col-lg-6 text-white">
+                    <div class="text-holder">
+                        <h2><?php the_title() ?></h2>
+                        <?php the_content() ?>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="form-holder bg-white rounded-corner">
-                    <div class="form-header bg-accent text-white">
-                        <div class="row g-0 align-items-center">
-                            <div class="col-lg-3">
-                                <?php
-                                echo __image($image_args);
-                                ?>
-                            </div>
-                            <div class="col-lg-9">
-                                <div class="column-holder p-20px">
+                <div class="col-lg-6">
+                    <div class="form-holder bg-white rounded-corner">
+                        <div class="form-header bg-accent text-white">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-lg-3">
                                     <?php
-                                    echo __heading(array(
-                                        'tag' => 'h3',
-                                        'heading' => $form_heading,
-                                    ));
-                                    echo __description($description_args);
+                                    echo __image($image_args);
                                     ?>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="column-holder p-20px">
+                                        <?php
+                                        echo __heading(array(
+                                            'tag' => 'h3',
+                                            'heading' => $form_heading,
+                                        ));
+                                        echo __description($description_args);
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-box p-20px small-text fw-light">
-                        <div class="inner mt-20px">
-                            <?= do_shortcode($form) ?>
+                        <div class="form-box p-20px small-text fw-light">
+                            <div class="inner mt-20px">
+                                <?= do_shortcode($form) ?>
+                            </div>
                         </div>
                     </div>
                 </div>
