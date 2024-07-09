@@ -11383,14 +11383,15 @@ section.product-main .summary.summary.summary .variations tr {
   max-width: 100% !important;
   outline: none !important; }
 
-.wpforms-form .wpforms-field-container.wpforms-field-container.wpforms-field-container .wpforms-field {
+.wpforms-field-container.wpforms-field-container.wpforms-field-container .wpforms-field {
   padding: 0; }
-.wpforms-form .wpforms-field-container.wpforms-field-container.wpforms-field-container > div {
+.wpforms-field-container.wpforms-field-container.wpforms-field-container > div {
   margin-bottom: 1rem; }
-  .wpforms-form .wpforms-field-container.wpforms-field-container.wpforms-field-container > div:not(.wpforms-field-layout) {
+  .wpforms-field-container.wpforms-field-container.wpforms-field-container > div:not(.wpforms-field-layout) {
     margin-bottom: 1rem; }
-  .wpforms-form .wpforms-field-container.wpforms-field-container.wpforms-field-container > div.wpforms-field-layout > div {
+  .wpforms-field-container.wpforms-field-container.wpforms-field-container > div.wpforms-field-layout > div {
     margin-bottom: 1rem; }
+
 .wpforms-form .wpforms-field-container .wpforms-field {
   padding-top: 0;
   padding-bottom: 0; }

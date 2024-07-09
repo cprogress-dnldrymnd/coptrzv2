@@ -24,24 +24,24 @@
     max-width: 100% !important;
     outline: none !important;
 }
-
-.wpforms-form {
-    .wpforms-field-container.wpforms-field-container.wpforms-field-container {
-        .wpforms-field {
-            padding: 0;
-        }
-        > div {
+.wpforms-field-container.wpforms-field-container.wpforms-field-container {
+    .wpforms-field {
+        padding: 0;
+    }
+    > div {
+        margin-bottom: 1rem;
+        &:not(.wpforms-field-layout) {
             margin-bottom: 1rem;
-            &:not(.wpforms-field-layout) {
+        }
+        &.wpforms-field-layout {
+            > div {
                 margin-bottom: 1rem;
-            }
-            &.wpforms-field-layout {
-                > div {
-                    margin-bottom: 1rem;
-                }
             }
         }
     }
+}
+.wpforms-form {
+   
     .wpforms-field-container {
         .wpforms-field {
             padding-top: 0;
