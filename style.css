@@ -11327,6 +11327,24 @@ section.product-main .summary.summary.summary .variations tr {
     color: var(--bs-black);
     text-decoration: none; }
 
+.wpforms-submit.wpforms-submit.wpforms-submit {
+  padding: 1.25rem 2.5rem;
+  border: 1px solid;
+  display: inline-block;
+  text-decoration: none;
+  color: currentCOlor;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 10px;
+  line-height: 1.25;
+  color: var(--bs-white);
+  border-color: var(--bs-accent);
+  background-color: var(--bs-accent); }
+  .wpforms-submit.wpforms-submit.wpforms-submit:hover, .wpforms-submit.wpforms-submit.wpforms-submit:active, .wpforms-submit.wpforms-submit.wpforms-submit:focus {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--bs-white); }
+
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
 /*-----------------------------------------------------------------------------------*/
