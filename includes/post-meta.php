@@ -2918,7 +2918,7 @@ Container::make('post_meta', __('Select product category to display content'))
 
 /* Landing page settings
 /*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', __('Select product category to display content'))
+Container::make('post_meta', __('Landing Page Settings'))
     ->or_where('post_type', '=', 'landingpages')
     ->add_fields(array(
         Field::make('image', 'background_image', 'Background Image'),
