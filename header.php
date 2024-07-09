@@ -31,7 +31,7 @@ $SVG = new SVG;
 						<?php get_template_part('template-parts/header/header-left') ?>
 					</div>
 					<div class="col-auto d-none d-lg-flex" id="menu-desktop">
-						<?= header_menu() ?>
+						<?php get_template_part('template-parts/header/header-menu') ?>
 					</div>
 					<div class="col-auto d-flex align-items-center">
 						<?php get_template_part('template-parts/header/header-right') ?>
