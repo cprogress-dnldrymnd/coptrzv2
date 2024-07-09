@@ -2921,6 +2921,30 @@ Container::make('post_meta', __('Select product category to display content'))
 Container::make('post_meta', __('Landing Page Settings'))
     ->where('post_template', '=', 'templates/page-landing.php')
     ->add_fields(array(
-        Field::make('file', 'background', 'Background'),
+        Field::make('select', 'background_type', __('Background Type'))->set_classes('inline-field')
+            ->set_options(
+                array(
+                    'self-hosted' => 'Self Hosted',
+                    'youtube' => 'Youtube',
+                )
+            ),
+        Field::make('file', 'background', __('Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'background_type',
+                        'value' => 'self-hosted',
+                    )
+                )
+            ),
+        Field::make('text', 'background_youtube', __('Background Youtube ID'))->set_classes('inline-field')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'background_type',
+                        'value' => 'youtube',
+                    )
+                )
+            ),
         Field::make('text', 'form', 'Form'),
     ));
