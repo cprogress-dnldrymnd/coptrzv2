@@ -9492,6 +9492,10 @@ p:last-child {
   padding-left: 10px;
   padding-right: 10px; }
 
+.py-10px {
+  padding-top: 10px;
+  padding-top: 10px; }
+
 .rounded-15px {
   border-radius: 15px; }
 
@@ -9527,6 +9531,10 @@ p:last-child {
 .px-15px {
   padding-left: 15px;
   padding-right: 15px; }
+
+.py-15px {
+  padding-top: 15px;
+  padding-top: 15px; }
 
 .rounded-20px {
   border-radius: 20px; }
@@ -9564,6 +9572,10 @@ p:last-child {
   padding-left: 20px;
   padding-right: 20px; }
 
+.py-20px {
+  padding-top: 20px;
+  padding-top: 20px; }
+
 .rounded-25px {
   border-radius: 25px; }
 
@@ -9599,6 +9611,10 @@ p:last-child {
 .px-25px {
   padding-left: 25px;
   padding-right: 25px; }
+
+.py-25px {
+  padding-top: 25px;
+  padding-top: 25px; }
 
 .rounded-35px {
   border-radius: 35px; }
@@ -9636,6 +9652,10 @@ p:last-child {
   padding-left: 35px;
   padding-right: 35px; }
 
+.py-35px {
+  padding-top: 35px;
+  padding-top: 35px; }
+
 .rounded-40px {
   border-radius: 40px; }
 
@@ -9671,6 +9691,10 @@ p:last-child {
 .px-40px {
   padding-left: 40px;
   padding-right: 40px; }
+
+.py-40px {
+  padding-top: 40px;
+  padding-top: 40px; }
 
 .rounded-45px {
   border-radius: 45px; }
@@ -9708,6 +9732,10 @@ p:last-child {
   padding-left: 45px;
   padding-right: 45px; }
 
+.py-45px {
+  padding-top: 45px;
+  padding-top: 45px; }
+
 .rounded-50px {
   border-radius: 50px; }
 
@@ -9743,6 +9771,10 @@ p:last-child {
 .px-50px {
   padding-left: 50px;
   padding-right: 50px; }
+
+.py-50px {
+  padding-top: 50px;
+  padding-top: 50px; }
 
 @media screen and (min-width: 1200px) {
   .xl-padding-top {
@@ -10732,6 +10764,9 @@ small, .small {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto; }
+
+.form-holder .form-header h3 span, .form-holder .form-header .h3 span {
+  color: var(--bs-black); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins

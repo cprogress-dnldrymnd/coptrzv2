@@ -460,3 +460,14 @@ small {
         margin-right: auto;
     }
 }
+
+
+.form-holder {
+    .form-header {
+        h3 {
+            span {
+                color: var(--bs-black);
+            }
+        }
+    }
+}

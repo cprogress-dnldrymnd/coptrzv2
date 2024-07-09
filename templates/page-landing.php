@@ -40,14 +40,14 @@ $description_args['class'] =  _attribute('class', array('description-box'));
             </div>
             <div class="col-lg-6">
                 <div class="form-holder bg-white rounded-corner">
-                    <div class="form-header">
+                    <div class="form-header bg-accent text-white">
                         <div class="row g-3 align-items-center">
                             <div class="col-lg-3">
                                 <?php
                                 echo __image($image_args);
                                 ?>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 py-20px">
                                 <?php
                                 echo __heading(array(
                                     'tag' => 'h3',
