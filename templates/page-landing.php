@@ -29,6 +29,9 @@ $form = get__post_meta('form');
             </div>
             <div class="col-lg-6">
                 <div class="form-holder bg-white rounded-corner">
+                    <div class="form-header">
+                        
+                    </div>
                     <div class="form-box p-20px">
                         <?= do_shortcode($form) ?>
                     </div>
