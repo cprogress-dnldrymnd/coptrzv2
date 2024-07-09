@@ -463,7 +463,13 @@ small {
 
 
 .form-holder {
+    overflow: visible;
     .form-header {
+        border-radius: 10px 10px 0 0;
+        .image-box {
+            margin-top: -20px;
+            margin-bottom: -20px;
+        }
         h3 {
             span {
                 color: var(--bs-black);
