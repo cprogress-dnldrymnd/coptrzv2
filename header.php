@@ -18,24 +18,15 @@
 	<?php wp_head(); ?>
 </head>
 
-<?php
-$SVG = new SVG;
-?>
 
 <body <?php body_class(); ?>>
 	<header class="header small-text">
 		<div class="container">
 			<div class="header-inner mt-20px rounded-10px">
 				<div class="row justify-content-between">
-					<div class="col-auto d-flex align-items-center">
-						<?php get_template_part('template-parts/header/header-left') ?>
-					</div>
-					<div class="col-auto d-none d-lg-flex" id="menu-desktop">
-						<?php get_template_part('template-parts/header/header-menu') ?>
-					</div>
-					<div class="col-auto d-flex align-items-center">
-						<?php get_template_part('template-parts/header/header-right') ?>
-					</div>
+					<?php get_template_part('template-parts/header/header-left') ?>
+					<?php get_template_part('template-parts/header/header-menu') ?>
+					<?php get_template_part('template-parts/header/header-right') ?>
 				</div>
 			</div>
 		</div>

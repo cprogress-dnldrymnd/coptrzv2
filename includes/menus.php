@@ -12,3 +12,134 @@ function menu_locations()
 }
 
 add_action('init', 'menu_locations');
+
+
+function header_menu()
+{
+	$menuLocations = get_nav_menu_locations(); // Get our nav locations (set in our theme, usually functions.php)
+	// This returns an array of menu locations ([LOCATION_NAME] = MENU_ID);
+
+	$menuID = $menuLocations['header-menu']; // Get the *primary* menu ID
+
+	$args = array(
+		'post_parent' => 0
+	);
+	$header_menu = wp_get_nav_menu_items($menuID, $args); // Get the array
+
+
+	$html = '<nav class="navbar position-static p-0">';
+	$html .= '<ul class="navbar-nav flex-row me-auto mb-2 mb-lg-0">';
+	$menus_array = array();
+	foreach ($header_menu as $menu) {
+		$title = $menu->title;
+		$ID = $menu->ID;
+		$url = $menu->url;
+		$menu_item_parent = $menu->menu_item_parent;
+		$menus_array[] = array(
+			'menu_item_parent' => $menu_item_parent,
+			'title' => $title,
+			'ID' => $ID,
+			'url' => $url,
+		);
+	}
+
+	foreach ($menus_array as $menu) {
+		$ID = $menu['ID'];
+		$menu_item_parent = $menu['menu_item_parent'];
+		if ($menu_item_parent == 0) {
+
+			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
+				return ($var['menu_item_parent'] == $ID);
+			});
+			$html .= '<li class="nav-item">';
+			$html .= '<a class="nav-link text-white main-nav ' . ($submenus1 ? 'has-children' : '') . '" href="' . $menu['url'] . '">';
+			$html .= $menu['title'];
+			if ($submenus1) {
+				$html .= '<span class="icon"></span>';
+			}
+			$html .= '</a>';
+
+			if ($submenus1) {
+
+				$html .= '<div class="submenu">';
+				$html .= '<ul class="list-inline d-flex p-0">';
+				foreach ($submenus1 as $submenu1) {
+					$submenu1_id = $submenu1['ID'];
+
+					$submenus2 = array_filter($menus_array, function ($var) use ($submenu1_id) {
+						return ($var['menu_item_parent'] == $submenu1_id);
+					});
+
+					$html .= '<li>';
+					$html .= '<a class="nav-link text-black sub-nav ' . ($submenus2 ? 'has-children' : '') . '"  href="' . $submenu1['url'] . '">';
+					$html .= $submenu1['title'];
+					if ($submenus2) {
+						$html .= '<span class="icon"></span>';
+					}
+					$html .= '</a>';
+
+					if ($submenus2) {
+						$html .= '<div class="submenu2">';
+						$html .= '<div class="row">';
+						$html .= '<div class="col-lg-5">';
+						$html .= '<ul class="list-inline left-menu d-flex flex-column p-0">';
+
+						foreach ($submenus2 as $submenu2) {
+							$submenu2_id = $submenu2['ID'];
+							$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
+								return ($var['menu_item_parent'] == $submenu2_id);
+							});
+							$html .= '<li>';
+							$html .= '<a class="nav-link text-black  ' . ($submenus3 ? 'has-children-tab' : '') . '"  target="#submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">';
+							$html .= $submenu2['title'];
+
+							if ($submenus3) {
+								$html .= '<span class="icon"></span>';
+							}
+							$html .= '</a>';
+
+							$html .= '</li>';
+						}
+						$html .= '</ul>';
+
+						$html .= '</div>';
+
+						$html .= '<div class="col-lg-7">';
+
+						foreach ($submenus2 as $submenu2) {
+							$submenu2_id = $submenu2['ID'];
+							$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
+								return ($var['menu_item_parent'] == $submenu2_id);
+							});
+							if ($submenus3) {
+								$html .= '<ul class="list-inline left-menu d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu2_id . '">';
+								foreach ($submenus3 as $submenu3) {
+									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '">' . $submenu3['title'] . '</a>';
+								}
+								$html .= '</ul>';
+							}
+						}
+						$html .= '</div>';
+
+
+						$html .= '</div>';
+						$html .= '</div>';
+					}
+
+					$html .= '</li>';
+				}
+				$html .= '</ul>';
+
+
+
+				$html .= '</div>';
+			}
+
+			$html .= '</li>';
+		}
+	}
+
+	$html .= '</ul>';
+	$html .= '</nav>';
+	return $html;
+}
