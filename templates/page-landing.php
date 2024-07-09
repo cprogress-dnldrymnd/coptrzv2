@@ -4,15 +4,7 @@
 /* Template Post Type: page, guides
 /*-----------------------------------------------------------------------------------*/
 ?>
-<?php get_header(); ?>
-<?php
-$modules = get__post_meta('modules');
-?>
+<?php get_header('landing'); ?>
 
-<div class="modules">
-    <?php
-    the_content();
-    ?>
-</div>
 
-<?php get_footer(); ?>
+<?php get_footer('landing'); ?>
