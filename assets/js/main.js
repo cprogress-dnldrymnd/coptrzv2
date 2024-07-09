@@ -4,11 +4,28 @@ jQuery(document).ready(function () {
     __block_accordion();
     __fixed_heading_position();
     __swipers();
+    __input_fields();
 });
 
 
-function tabs_holder() {
-    
+function __input_fields() {
+	jQuery('.remove-first-option-value select option:first-child').attr('value', '');
+
+	jQuery(".wpforms-field input, .wpforms-field select, .wpforms-field textarea").on("blur input focus", function () {
+		if (this.value) {
+			jQuery(this).parent().addClass("filled");
+		} else {
+			jQuery(this).parent().removeClass("filled");
+		}
+	});
+
+	jQuery(".wpforms-field input, .wpforms-field select,  .wpforms-field textarea").on("focus", function () {
+		if (this) {
+			jQuery(this).parent().addClass("filled");
+		} else {
+			jQuery(this).parent().removeClass("filled");
+		}
+	});
 }
 
 function __fixed_heading_position() {
