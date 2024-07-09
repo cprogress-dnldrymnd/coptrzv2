@@ -10592,7 +10592,9 @@ textarea {
   padding: 17px 20px;
   border: 1px solid #DBDBDB;
   border-radius: 10px;
-  line-height: 1; }
+  line-height: 1;
+  width: 100%;
+  max-width: 100%; }
 
 input[type="checkbox"] {
   width: 26px;
