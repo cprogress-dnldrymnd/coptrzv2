@@ -22,14 +22,16 @@ $form = get__post_meta('form');
     }
     ?>
     <div class="container">
-        <div class="row">
+        <div class="row g-4 align-items-center">
             <div class="col-lg-6 text-white">
-                <?php the_title() ?>
+                <h2><?php the_title() ?></h2>
                 <?php the_content() ?>
             </div>
             <div class="col-lg-6">
-                <div class="form-box">
-                    <?= do_shortcode($form) ?>
+                <div class="form-holder bg-white rounded-corner">
+                    <div class="form-box p-10px">
+                        <?= do_shortcode($form) ?>
+                    </div>
                 </div>
             </div>
         </div>
