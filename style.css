@@ -10407,6 +10407,10 @@ p:last-child {
 .gx-6 {
   --bs-gutter-x: 4rem; }
 
+.g-6 {
+  --bs-gutter-y: 4rem;
+  --bs-gutter-y: 4rem; }
+
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
