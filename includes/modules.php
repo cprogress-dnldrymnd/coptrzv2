@@ -1389,7 +1389,7 @@ function __post_box_blog($data)
     $style = isset($data['style']) ? $data['style'] : 'style-1';
     $id = isset($data['id']) ? $data['id'] : false;
     $elements = isset($data['elements']) ? $data['elements'] : false;
-    $metas = isset($data['metas']) ? $data['metas'] : false;
+    $additional_content = isset($data['additional_content']) ? $data['additional_content'] : false;
 
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
@@ -1447,17 +1447,8 @@ function __post_box_blog($data)
         ));
     }
 
-    if ($metas) {
-        $SVG = new SVG;
-        $html .= '<ul class="meta-box list-inline text-small fw-medium">';
-        foreach ($metas as $meta_key => $meta) {
-            $meta_value = get__post_meta_by_id($id, $meta_key);
-            $html .= "<li class='d-flex align-items-center'>";
-            $html .= $SVG->{$meta}();
-            $html .= $meta_value;
-            $html .= "</li>";
-        }
-        $html .= '</ul>';
+    if ($additional_content) {
+        $html .= $additional_content;
     }
     if (in_array('button', $elements)) {
         $html .= __button(array(

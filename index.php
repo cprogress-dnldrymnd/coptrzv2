@@ -21,19 +21,18 @@ if (is_home()) {
         'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
     );
 } else if (is_post_type_archive('events')) {
+    $SVG = new SVG;
     $key = 'events_';
     $title = 'All Events';
     $has_featured = false;
     $archive_title = 'Events';
+
+
     $data = array(
         'col' => true,
         'featured' => false,
         'style' => 'style-2',
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
-        'metas' => array(
-            'crb_event_start_date' => 'calendar',
-            'crb_event_start_time' => 'clock',
-        )
     );
 } else if (is_post_type_archive('capabilities')) {
     $key = 'capabilities_';
@@ -59,6 +58,27 @@ if ($has_featured) {
                 while (have_posts()) {
                     the_post();
                     $data['id'] = get_the_ID();
+                    if ($key == 'events') {
+                        $crb_event_start_date = get__post_meta_by_id($id, 'crb_event_start_time');
+                        $crb_event_start_time = get__post_meta_by_id($id, 'crb_event_start_time');
+                        $additional_content = '<ul class="meta-box list-inline text-small fw-medium">';
+
+                        if ($crb_event_start_date) {
+                            $additional_content .= "<li class='d-flex align-items-center'>";
+                            $additional_content .= $SVG->calendar();
+                            $additional_content .= $crb_event_start_date;
+                            $additional_content .= "</li>";
+                        }
+
+                        if ($crb_event_start_time) {
+                            $additional_content .= "<li class='d-flex align-items-center'>";
+                            $additional_content .= $SVG->clock();
+                            $additional_content .= $crb_event_start_time;
+                            $additional_content .= "</li>";
+                        }
+                        $additional_content .= '</ul>';
+                        $data['additional_content'] = $additional_content;
+                    }
                     echo __post_box_blog($data);
                 }
                 ?>
