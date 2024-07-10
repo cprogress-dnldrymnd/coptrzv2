@@ -2955,7 +2955,7 @@ function __section_fields($name = 'sections')
                     ->add_fields(
                         'background_color',
                         array(
-                            Field::make('select', 'background_color', 'Background Color')
+                            Field::make('select', 'background_color', 'Section Background Color')
                                 ->set_options(
                                     array(
                                         ''   => 'None',
@@ -2968,7 +2968,7 @@ function __section_fields($name = 'sections')
                                         'bg-custom'    => 'Custom',
                                     )
                                 ),
-                            Field::make('color', 'background_color_custom', __('Background Color'))
+                            Field::make('color', 'background_color_custom', __('Section Background Color'))
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -2977,16 +2977,8 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                 ),
-                            Field::make('color', 'background_color_custom', __('Background Color'))
-                                ->set_conditional_logic(
-                                    array(
-                                        array(
-                                            'field' => 'background_color',
-                                            'value' => 'bg-custom',
-                                        )
-                                    )
-                                ),
-                            Field::make('select', 'background_color_container', 'Background Color Container')
+                        
+                            Field::make('select', 'background_color_container', 'Container Background Color')
                                 ->set_options(
                                     array(
                                         ''   => 'None',
