@@ -1618,14 +1618,14 @@ function ___posts_header($key, $title, $taxonomy)
         $html .= "<div class='col-auto'>";
 
         $html .= "<div class='row event-filter'>";
-        $html .= "<input value='' type='radio' id='term-all'>";
+        $html .= "<input name='events_category' value='' type='radio' id='term-all'>";
         $html .= "<label for='term-all'>All<label>";
 
         foreach ($events_category as $category) {
             $term_name = $category->name;
             $term_id = $category->term_id;
             $html .= "<div class='col-auto'>";
-            $html .= "<input value='$term_id' type='radio' id='term-$term_id'>";
+            $html .= "<input name='events_category' value='$term_id' type='radio' id='term-$term_id'>";
             $html .= "<label for='term-$term_id'>$term_name</label>";
             $html .= "</div>";
         }
