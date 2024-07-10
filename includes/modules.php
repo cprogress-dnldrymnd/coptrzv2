@@ -1461,6 +1461,7 @@ function __post_box_blog($data)
     $col = isset($data['col']) ? $data['col'] : false;
     $featured = isset($data['featured']) ? $data['featured'] : false;
     $style = isset($data['style']) ? $data['style'] : 'style-1';
+    $taxonomy = isset($data['taxonomy']) ? $data['taxonomy'] : false;
     $button_text = isset($data['button_text']) ? $data['button_text'] : false;
     $id = isset($data['id']) ? $data['id'] : false;
     $elements = isset($data['elements']) ? $data['elements'] : array();
@@ -1508,8 +1509,8 @@ function __post_box_blog($data)
         }
 
         $html .= "<div class='content-box content-margin $content_box_class'>";
-        if (in_array('category', $elements)) {
-            $html .= __post_category($id, 'category', 'text-black');
+        if (in_array('category', $elements) && $taxonomy) {
+            $html .= __post_category($id, $taxonomy, 'text-black');
         }
     }
 
