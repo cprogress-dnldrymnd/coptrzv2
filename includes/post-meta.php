@@ -747,7 +747,7 @@ function __section_fields($name = 'sections')
                         )
                     )
             ))
-            ->add_fields('sections', array(
+            ->add_fields(array(
                 Field::make('html', 'sec_1')->set_html('<label>Section Settings</label>')->set_classes('cb-label'),
                 Field::make('text', 'title', __('Section Title'))->set_required(true)->set_width(25),
                 Field::make('text', 'section_id', __('Section ID'))->set_width(25),
