@@ -3550,7 +3550,7 @@ Container::make('post_meta', 'Event Settings')
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', 'Case Study Settings')
     ->set_priority('high')
-    ->or_where('post_type', '=', 'events')
+    ->or_where('post_type', '=', 'casestudies')
     ->add_fields(
         array(
             Field::make('complex', 'feature', __('Feature'))
