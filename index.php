@@ -50,7 +50,7 @@ if ($has_featured) {
                 <?php
                 while (have_posts()) {
                     the_post();
-                    echo __post_box_blog(get_the_ID(), true, false, $post_style);
+                    echo __post_box_blog($data);
                 }
                 ?>
             </div>
