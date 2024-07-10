@@ -138,14 +138,7 @@ class newTaxonomy
 }
 
 
-$Solutions_CPT = new newPostType();
-$Solutions_CPT->name = 'Solutions';
-$Solutions_CPT->singular_name = 'Solution';
-$Solutions_CPT->icon = 'dashicons-portfolio';
-$Solutions_CPT->supports = array('title', 'revisions', 'editor', 'thumbnail', 'page-attributes');
-$Solutions_CPT->has_archive = true;
-$Solutions_CPT->hierarchical = true;
-$Solutions_CPT->show_in_rest = true;
+
 
 $Testimonials = new newPostType();
 $Testimonials->name = 'Testimonials';
@@ -303,6 +296,18 @@ $Guides->show_in_rest = true;
 $Guides->rewrite = array(
     'with_front' => false,
     'slug' => 'guides'
+);
+
+
+$Solutions = new newPostType();
+$Solutions->name = 'Solutions';
+$Solutions->singular_name = 'Solution';
+$Solutions->icon = 'dashicons-portfolio';
+$Solutions->supports = array('title', 'revisions', 'editor', 'thumbnail', 'page-attributes');
+$Solutions->show_in_rest = true;
+$Solutions->rewrite = array(
+    'with_front' => false,
+    'slug' => 'capabilities'
 );
 
 
