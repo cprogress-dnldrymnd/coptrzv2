@@ -14,7 +14,7 @@ if (is_home()) {
     $title = 'All Posts';
     $has_featured = true;
 } else if(is_post_type_archive('events')) {
-    $key = 'events';
+    $key = 'events_';
     $title = 'All Events';
     $has_featured = false;
 

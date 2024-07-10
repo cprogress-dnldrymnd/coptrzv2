@@ -1490,7 +1490,6 @@ function ___hero_archive($key)
 {
 
     $hero_heading = get__theme_option($key . 'archive_title');
-    echo $hero_heading;
     $hero_description = _format_text(get__theme_option($key . 'archive_description'));
     $hero_background = get__theme_option($key . 'archive_background');
     $hero_height = 'small-hero';
