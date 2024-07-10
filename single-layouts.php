@@ -20,7 +20,7 @@
 
 <body <?php body_class(); ?>>
     <?php
-    the_content();
+    echo  ___sections('sections', get_the_ID());
     ?>
     <?php wp_footer(); ?>
 </body>
