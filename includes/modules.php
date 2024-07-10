@@ -1421,7 +1421,9 @@ function __post_box_blog($data)
         ));
 
         $html .= "<div class='content-box content-margin $content_box_class'>";
-        $html .= __post_category($id, 'category', 'text-black');
+        if (in_array('category', $elements)) {
+            $html .= __post_category($id, 'category', 'text-black');
+        }
     }
 
     if ($featured) {
@@ -1430,13 +1432,13 @@ function __post_box_blog($data)
     if (in_array('date', $elements)) {
         $html .= "<div class='date-box small-text mb-2'>$date</div>";
     }
-    if (in_array('heading', $elements)) {
+    if (in_array('title', $elements)) {
         $html .= __heading(array(
             'heading' => get_the_title($id),
             'tag' => 'h3',
         ));
     }
-    if (in_array('description', $elements)) {
+    if (in_array('excerpt', $elements)) {
         if ($style == 'style-1') {
             $html .= __description(array(
                 'description' => get_the_excerpt($id),

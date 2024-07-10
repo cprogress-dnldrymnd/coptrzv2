@@ -25,7 +25,12 @@ if (is_home()) {
     $title = 'All Events';
     $has_featured = false;
     $archive_title = 'Events';
-    $post_style = 'style-2';
+    $data = array(
+        'col' => true,
+        'featured' => false,
+        'style' => 'style-2',
+        'elements' => array('image', 'category', 'title', 'excerpt', 'button')
+    );
 } else if (is_post_type_archive('capabilities')) {
     $key = 'capabilities_';
     $title = 'All Events';
