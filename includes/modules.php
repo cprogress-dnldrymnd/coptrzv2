@@ -1386,7 +1386,7 @@ function __post_box_blog($data)
     $id = isset($data['id']) ? $data['id'] : false;
     $col = isset($data['col']) ? $data['col'] : false;
     $featured = isset($data['featured']) ? $data['featured'] : false;
-    $style = isset($data['style']) ? $data['id'] : 'style-1';
+    $style = isset($data['style']) ? $data['style'] : 'style-1';
     $id = isset($data['id']) ? $data['id'] : false;
     $elements = isset($data['elements']) ? $data['elements'] : false;
 
