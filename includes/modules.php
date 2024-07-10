@@ -1430,14 +1430,25 @@ function __post_box($id)
     return $html;
 }
 
-function __post_box_blog($id)
+function __post_box_blog($id, $featured = true)
 {
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
     $html = "<div class='post-box post-box-blog column-holder position-relative xs-padding rounded-10px overflow-hidden text-white h-100 d-flex flex-column justify-content-between'>";
-    $html .= __background($image);
-    $html .= __post_category($id, 'category');
-    $html .= "<div class='content-box content-margin'>";
+
+    if ($featured) {
+        $html .= __background($image);
+        $html .= __post_category($id, 'category');
+    } else {
+        $html .= __image(array(
+            'image_id' => $image
+        ));
+        $html .= __post_category($id, 'category');
+    }
+
+    if ($featured) {
+        $html .= "<div class='content-box content-margin'>";
+    }
     $html .= "<div class='date-box small-text'>$date</div>";
     $html .= __heading(array(
         'heading' => get_the_title($id),
@@ -1453,9 +1464,9 @@ function __post_box_blog($id)
         'button_url' => $id,
         'button_style' =>  'button-bordered position-relative',
     ));
-
-
-    $html .= "</div>";
+    if ($featured) {
+        $html .= "</div>";
+    }
 
     $html .= "</div>";
 

@@ -17,7 +17,7 @@ echo do_shortcode(___hero_archive($key));
 echo ___featured($key);
 ?>
 
-<section class="archive-posts">
+<section class="archive-posts md-padding-top md-padding-bottom">
     <?php
     echo ___posts_header($title, 'category');
     ?>
