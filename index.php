@@ -92,8 +92,9 @@ $args = array(
     )
 );
 $layouts = get_posts($args);
-
-var_dump($layouts);
+echo '<pre>';
+var_dump(get_queried_object ());
+echo '</pre>';
 ?>
 
 <?php get_footer(); ?>
