@@ -10445,6 +10445,10 @@ img {
   z-index: 1; }
 .background-overlay + div {
   z-index: 2; }
+  .background-overlay + div + div {
+    z-index: 2; }
+    .background-overlay + div + div + div {
+      z-index: 2; }
 .background-overlay.background-overlay-darker:before {
   background-color: rgba(0, 0, 0, 0.85); }
 .background-overlay.background-overlay-lighter:before {
@@ -10598,7 +10602,7 @@ input[type="email"],
 select,
 textarea {
   padding: 17px 20px;
-  border: 1px solid #DBDBDB;
+  border: 1px solid #dbdbdb;
   border-radius: 10px;
   line-height: 1;
   width: 100%;

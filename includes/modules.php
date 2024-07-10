@@ -1449,6 +1449,11 @@ function __post_box_blog($id)
         'button_url' => $id,
         'button_style' =>  'button-bordered position-relative',
     ));
+
+    $html .= __description(array(
+        'description' => get_the_excerpt($id),
+        'class' => _attribute('class', array('description-box small-text mb-4')),
+    ));
     $html .= "</div>";
 
     $html .= "</div>";

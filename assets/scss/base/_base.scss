@@ -30,6 +30,12 @@ main {
     }
     & + div {
         z-index: 2;
+        & + div {
+            z-index: 2;
+            & + div {
+                z-index: 2;
+            }
+        }
     }
     &.background-overlay-darker {
         &:before {
@@ -193,7 +199,7 @@ section {
 }
 @include inputs {
     padding: 17px 20px;
-    border: 1px solid #DBDBDB;
+    border: 1px solid #dbdbdb;
     border-radius: 10px;
     line-height: 1;
     width: 100%;
@@ -471,7 +477,6 @@ small {
         margin-right: auto;
     }
 }
-
 
 .form-holder {
     overflow: visible;
