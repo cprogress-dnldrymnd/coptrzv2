@@ -149,6 +149,7 @@ $args = array(
     )
 );
 echo do_shortcode(__layouts($args));
+echo do_shortcode('[case_study_slider_grid]');
 ?>
 
 <?php get_footer(); ?>
