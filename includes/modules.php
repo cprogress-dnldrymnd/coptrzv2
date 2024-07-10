@@ -1641,8 +1641,9 @@ function _events_additional_content($id)
     $SVG = new SVG;
     $crb_event_start_date = get__post_meta_by_id($id, 'crb_event_start_date');
     $crb_event_start_time = get__post_meta_by_id($id, 'crb_event_start_time');
-    $additional_content = '<ul class="meta-box list-inline text-small fw-medium">';
+    $location = get_the_terms($id, 'events_location');
 
+    $additional_content = '<ul class="meta-box list-inline text-small fw-medium">';
     if ($crb_event_start_date) {
         $additional_content .= "<li class='d-flex align-items-center'>";
         $additional_content .= $SVG->calendar();
@@ -1654,6 +1655,13 @@ function _events_additional_content($id)
         $additional_content .= "<li class='d-flex align-items-center'>";
         $additional_content .= $SVG->clock();
         $additional_content .= $crb_event_start_time;
+        $additional_content .= "</li>";
+    }
+
+    if ($location) {
+        $additional_content .= "<li class='d-flex align-items-center'>";
+        $additional_content .= $SVG->clock();
+        $additional_content .= $location[0]->name;
         $additional_content .= "</li>";
     }
     $additional_content .= '</ul>';
