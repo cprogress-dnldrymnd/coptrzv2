@@ -1590,7 +1590,7 @@ function ___featured($key)
 }
 
 
-function ___posts_header($title, $taxonomy)
+function ___posts_header($key, $title, $taxonomy)
 {
     $terms = get_terms(array(
         'taxonomy'   => $taxonomy,
@@ -1612,18 +1612,30 @@ function ___posts_header($title, $taxonomy)
     $html .= "<div class='row g-3 align-items-center'>";
     $html .= "<div class='col-auto'>";
     $html .= "<select name='category'>";
-    $html .= "<option name='category' value=''>Category: All</option>";
+    $html .= "<option  value=''>Category: All</option>";
     foreach ($terms as $term) {
         $term_name = $term->name;
         $term_id = $term->term_id;
-        $html .= "<option name='category' value='$term_id'>Category: $term_name</option>";
+        $html .= "<option value='$term_id'>Category: $term_name</option>";
     }
     $html .= "</select>";
     $html .= "</div>";
 
-    $html .= "<div class='col-auto'>";
-    $html .= "<input  type='text' placeholder='Start typing to filter...' name='s'>";
-    $html .= "</div>";
+    if ($key == 'post_') {
+        $html .= "<div class='col-auto'>";
+        $html .= "<input  type='text' placeholder='Start typing to filter...' name='s'>";
+        $html .= "</div>";
+    }
+
+
+    if ($key == 'events_') {
+        $html .= "<div class='col-auto'>";
+        $html .= "<select name='sort'>";
+        $html .= "<option value='ASC'>Sort By: Latest</option>";
+        $html .= "<option value='DESC'>Sort By: Oldest</option>";
+        $html .= "</select>";
+        $html .= "</div>";
+    }
 
     $html .= "</div>";
     $html .= "</div>";

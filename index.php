@@ -51,7 +51,7 @@ if ($has_featured) {
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default">
     <?php
-    echo ___posts_header($title, $category);
+    echo ___posts_header($key, $title, $category);
     ?>
     <div class="post-grid-holder">
         <div class="container">
