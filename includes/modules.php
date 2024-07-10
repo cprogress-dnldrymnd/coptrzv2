@@ -1408,7 +1408,7 @@ function __post_box_blog($data)
     if ($col == true) {
         $html = "<div class='col-lg-4 col-sm-6'>";
     }
-    $html .= "<div class='post-box post-box-blog column-holder position-relative overflow-hidden $class h-100'>";
+    $html .= "<div class='post-box post-box-blog column-holder position-relative overflow-hidden $class $style h-100'>";
     if ($featured) {
         $html .= __background($image);
         $html .= __post_category($id, 'category', 'text-white');
