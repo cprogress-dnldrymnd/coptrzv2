@@ -1448,11 +1448,11 @@ function __post_box_blog($data)
     }
 
     if ($metas) {
-        $html .= get__post_meta_by_id($id, 'crb_event_start_date');
         $html .= '<ul class="meta-box list-inline">';
-        foreach ($metas as $key => $meta) {
-            $meta_value = get__post_meta_by_id($id, $key);
-            $html .= "<li>$key</li>";
+        foreach ($metas as $meta_key => $meta) {
+            $meta_value = get__post_meta_by_id($id, $meta_key);
+            $html .= "<li>$meta_value</li>";
+            $html .= "<li>$meta_key</li>";
         }
         $html .= '</ul>';
     }
