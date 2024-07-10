@@ -1437,11 +1437,15 @@ function __post_box_blog($id)
     $html = "<div class='column-holder position-relative xs-padding rounded-10px overflow-hidden text-white h-100 d-flex flex-column justify-content-between'>";
     $html .= __background($image);
     $html .= __post_category($id, 'category');
-    $html .= "<div class='content-box'>";
+    $html .= "<div class='content-box content-margin'>";
     $html .= "<div class='date-box smaller-text'>$date</div>";
     $html .= __heading(array(
         'heading' => get_the_title($id),
         'tag' => 'h3',
+    ));
+    $html .= __description(array(
+        'description' => get_the_excerpt($id),
+        'class' => _attribute('class', array('description-box small-text mb-4')),
     ));
     $html .= __button(array(
         'button_type' => get_post_type($id),
@@ -1450,10 +1454,7 @@ function __post_box_blog($id)
         'button_style' =>  'button-bordered position-relative',
     ));
 
-    $html .= __description(array(
-        'description' => get_the_excerpt($id),
-        'class' => _attribute('class', array('description-box small-text mb-4')),
-    ));
+ 
     $html .= "</div>";
 
     $html .= "</div>";
