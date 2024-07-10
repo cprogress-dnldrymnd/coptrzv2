@@ -1437,6 +1437,8 @@ function __post_box_blog($id)
     $html .= __background($image);
     $html .= __post_category($id, 'category');
     $html .= "</div>";
+
+    return $html;
 }
 
 function ___hero_archive($key)
