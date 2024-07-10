@@ -1435,7 +1435,7 @@ function __post_box_blog($id, $col = false, $featured = false)
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
     if ($featured) {
-        $class = 'featured-box text-white';
+        $class = 'featured-box text-white d-flex flex-column justify-content-between';
     } else {
         $class = '';
     }
@@ -1443,7 +1443,7 @@ function __post_box_blog($id, $col = false, $featured = false)
     if ($col == true) {
         $html = "<div class='col-lg-4 col-sm-6'>";
     }
-    $html .= "<div class='post-box post-box-blog column-holder position-relative xs-padding rounded-10px overflow-hidden $featured h-100 d-flex flex-column justify-content-between'>";
+    $html .= "<div class='post-box post-box-blog column-holder position-relative xs-padding rounded-10px overflow-hidden $featured h-100'>";
     if ($featured) {
         $html .= __background($image);
         $html .= __post_category($id, 'category');
