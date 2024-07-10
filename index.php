@@ -82,6 +82,19 @@ if (is_home()) {
         'style' => 'style-1',
         'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
     );
+} else if (is_post_type_archive('guides')) {
+    $key = 'guides_';
+    $title = 'All Guides';
+    $has_featured = false;
+    $has_filter = true;
+    $archive_title = 'Guides';
+    $category = 'Guide_category';
+    $data = array(
+        'col' => true,
+        'featured' => false,
+        'style' => 'style-1',
+        'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+    );
 }
 echo do_shortcode(___hero_archive($key, $archive_title));
 if ($has_featured) {
