@@ -10,6 +10,7 @@ get_header(); ?>
 
 <?php
 if (is_home()) {
+    $post_key = 'post';
     $key = 'post_';
     $title = 'All Posts';
     $has_featured = true;
@@ -24,6 +25,7 @@ if (is_home()) {
     );
 } else if (is_post_type_archive('events')) {
     $SVG = new SVG;
+    $post_key = 'events';
     $key = 'events_';
     $title = false;
     $has_featured = false;
@@ -40,6 +42,7 @@ if (is_home()) {
     );
 } else if (is_post_type_archive('capabilities')) {
     $key = 'capabilities_';
+    $post_key = 'capabilities';
     $title = false;
     $has_featured = false;
     $has_filter = false;
