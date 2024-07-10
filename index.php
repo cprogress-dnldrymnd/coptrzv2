@@ -10,24 +10,6 @@ get_header(); ?>
 <?php
 $post_type = get_queried_object()->name;
 
-
-$args = array(
-    'meta_query' => array(
-        'relation' => 'AND',
-        array(
-            'key'   => '_display_location_archive',
-            'value' => $post_type,
-        ),
-        array(
-            'key'   => '_display_location_archive_position',
-            'value' => 'above_loop',
-        )
-    )
-);
-echo __layouts($args);
-?>
-
-<?php
 $class = '';
 
 if (is_home()) {
@@ -105,6 +87,22 @@ echo do_shortcode(___hero_archive($key, $archive_title));
 if ($has_featured) {
     echo ___featured($key);
 }
+
+
+$args = array(
+    'meta_query' => array(
+        'relation' => 'AND',
+        array(
+            'key'   => '_display_location_archive',
+            'value' => $post_type,
+        ),
+        array(
+            'key'   => '_display_location_archive_position',
+            'value' => 'above_loop',
+        )
+    )
+);
+echo __layouts($args);
 ?>
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default">
