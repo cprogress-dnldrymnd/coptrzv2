@@ -1409,6 +1409,9 @@ function __post_box_blog($data)
     if ($style == 'style-1') {
         $content_box_class = 'px-20px pb-20px';
     }
+    if($bg_image ) {
+        $class .= 'rounded-corner overflow-hidden';
+    }
     $html = '';
     if ($col == true) {
         $html = "<div class='col-lg-4 col-sm-6'>";
@@ -1420,6 +1423,7 @@ function __post_box_blog($data)
     } else {
         if ($bg_image) {
             $html .= __background($image);
+            $content_box_class = "text-center xs-padding text-white";
         } else {
             $html .= __image(array(
                 'image_id' => $image,
