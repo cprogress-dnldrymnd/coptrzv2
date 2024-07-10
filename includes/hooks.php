@@ -60,6 +60,15 @@ function action_admin_head()
             flex: 0 0 90%;
         }
 
+        .inline-field-wide-label.inline-field-wide-label .cf-field__head {
+            flex: 0 0 15%;
+        }
+
+        .inline-field-wide-label.inline-field-wide-label .cf-field__body {
+            flex: 0 0 85%;
+        }
+
+
         .inline-field.inline-field .cf-field__help {
             margin-left: 10%;
         }
