@@ -10818,6 +10818,17 @@ small, .small {
     .form-holder .form-header h3 span, .form-holder .form-header .h3 span {
       color: var(--bs-black); }
 
+.post-category a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  line-height: 1;
+  display: inline-block; }
+  .post-category a:not(:last-child) {
+    border-right: 1px solid;
+    margin-right: 1rem;
+    padding-right: 1rem; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/

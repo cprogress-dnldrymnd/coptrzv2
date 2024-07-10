@@ -1438,7 +1438,7 @@ function __post_box_blog($id)
     $html .= __background($image);
     $html .= __post_category($id, 'category');
     $html .= "<div class='content-box content-margin'>";
-    $html .= "<div class='date-box smaller-text'>$date</div>";
+    $html .= "<div class='date-box small-text'>$date</div>";
     $html .= __heading(array(
         'heading' => get_the_title($id),
         'tag' => 'h3',

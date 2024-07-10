@@ -503,3 +503,18 @@ small {
         }
     }
 }
+
+.post-category {
+    a {
+        color: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        line-height: 1;
+        display: inline-block;
+        @include not-last-child {
+            border-right: 1px solid;
+            margin-right: 1rem;
+            padding-right: 1rem;
+        }
+    }
+}
