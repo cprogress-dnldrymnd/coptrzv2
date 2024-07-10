@@ -491,43 +491,58 @@ function ___sections($id = 'sections')
                             $post_excerpt = wpautop($casestudies->post_excerpt);
                             $features = get__post_meta_by_id($id, 'feature');
                             $logo = get__post_meta_by_id($id, 'logo');
-                            $html .= "<div class='swiper-slide'>";
+                            $html .= "<div class='swiper-slide'>"; //swiper-slide
                             $html .= __image(array(
-                                'image_id' => $id,
+                                'image_id' => get_post_thumbnail_id($id),
                                 'placeholder' => true,
-                                'size' => 'large',
+                                'size' => 'full',
                                 'class' => _attribute('class', array('background-image background-overlay background-overlay-darker mx-20px rounded-10px overflow-hidden'))
                             ));
-                            $html .= "</div>";
-                        }
 
-                        $html .= "<div class='inner md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
+                            $html .= "<div class='inner md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
 
-                        $html .= "<div class='container'>"; //container
-                        $html .= "<div class='row'>"; //row
+                            $html .= "<div class='container'>"; //container
+                            $html .= "<div class='row'>"; //row
 
-                        $html .= "<div class='col-lg-8'> <div class='description-box big-text'> $post_excerpt </div> </div>";
-
-                        if ($features) {
-                            $html .= "<div class='col-lg-4'>";
-                            $html .= "<div class='meta-data text-end'>";
-                            $html .= "<ul class='list-inline p-0'>";
-                            $html .= "";
-
-                            foreach ($features as $feature) {
-                                $feature_text = $feature['feature_text'];
-                                $html .= "<li class='mb-3'>$feature_text</li>";
+                            $html .= "<div class='col-lg-8'>";
+                            $html .= __description(array(
+                                'description' => $post_excerpt,
+                                'class' => _attribute('class', array('description-box'))
+                            ));
+                            if ($logo) {
+                                $html .= __image(array(
+                                    'image_id' => $logo,
+                                    'placeholder' => true,
+                                    'size' => 'large',
+                                    'class' => _attribute('class', array('logo-box'))
+                                ));
                             }
-                            $html .= "";
+                            $html .= "</div>";
 
-                            $html .= "</ul>";
-                            $html .= "</div>";
-                            $html .= "</div>";
+                            if ($features) {
+                                $html .= "<div class='col-lg-4'>";
+                                $html .= "<div class='meta-data text-end'>";
+                                $html .= "<ul class='list-inline p-0'>";
+                                $html .= "";
+
+                                foreach ($features as $feature) {
+                                    $feature_text = $feature['feature_text'];
+                                    $html .= "<li class='mb-3'>$feature_text</li>";
+                                }
+                                $html .= "";
+
+                                $html .= "</ul>";
+                                $html .= "</div>";
+                                $html .= "</div>";
+                            }
+
+                            $html .= "</div>"; //end-row
+                            $html .= "</div>"; //end-container
+                            $html .= "</div>"; //end-inner
+
+                            $html .= "</div>"; //end-swiper-slide
                         }
 
-                        $html .= "</div>"; //end-row
-                        $html .= "</div>"; //end-container
-                        $html .= "</div>"; //end-inner
 
 
                         $html .= "</div>"; //end-swiper-wrapper
@@ -564,7 +579,7 @@ function ___tab_modules($tabs, $id)
         $html .= "<div class='tab-content' id='tab-$id-content'>";
         foreach ($tabs as $key => $tab) {
             $class = $key == 0 ? 'show active' : '';
-            $description = $tab['description'];
+
             $description_args['description'] =  $tab['description'];
             $description_args['class'] =  _attribute('class', array('description-box'));
             $html .= "<div class='tab-pane fade $class' id='tab-$key-content' role='tabpanel' aria-labelledby='tab-$key'>";
