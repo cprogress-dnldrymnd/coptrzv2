@@ -1380,8 +1380,16 @@ function __post_box($id)
     return $html;
 }
 
-function __post_box_blog($id, $col = false, $featured = false, $style = 'style-1')
+function __post_box_blog($data)
 {
+
+    $id = isset($data['id']) ? $data['id'] : false;
+    $col = isset($data['col']) ? $data['col'] : false;
+    $featured = isset($data['featured']) ? $data['featured'] : false;
+    $style = isset($data['style']) ? $data['id'] : 'style-1';
+    $id = isset($data['id']) ? $data['id'] : false;
+    $elements = isset($data['elements']) ? $data['id'] : false;
+
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
     if ($featured) {

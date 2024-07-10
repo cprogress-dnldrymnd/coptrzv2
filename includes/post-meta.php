@@ -119,7 +119,16 @@ Container::make('theme_options', __('Archives Settings'))
                         ),
                 ))
                 ->set_header_template('Button: <%- button_text %>'),
-        )
+        ),
+        Field::make('association', 'post_featured', 'Featured Posts')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'post',
+                    )
+                )
+            )
     )
     ->add_tab(
         'Events',

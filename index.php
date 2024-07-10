@@ -14,7 +14,13 @@ if (is_home()) {
     $title = 'All Posts';
     $has_featured = true;
     $archive_title = 'Blog';
-    $post_style = 'style-1';
+    $data = array(
+        'id' => get_the_ID(),
+        'col' => true,
+        'featured' => false,
+        'style' => 'style-1',
+        'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+    );
 } else if (is_post_type_archive('events')) {
     $key = 'events_';
     $title = 'All Events';
