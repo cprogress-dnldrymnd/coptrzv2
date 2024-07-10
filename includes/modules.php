@@ -1436,9 +1436,7 @@ function __post_box_blog($id, $col = false, $featured = false)
     $date = get_the_date('', $id);
     if ($featured) {
         $class = 'featured-box text-white d-flex flex-column justify-content-between xs-padding rounded-10px';
-    } else {
-        $class = 'content-margin';
-    }
+    } 
     $html = '';
     if ($col == true) {
         $html = "<div class='col-lg-4 col-sm-6'>";
