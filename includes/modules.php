@@ -478,6 +478,64 @@ function ___sections($id = 'sections')
                         $tabs = $items['tabs'];
                         $html .= ___tab_modules($tabs, $section_id_val);
                         break;
+                    case 'case_study_slider':
+                        $casestudies_featured = $items['casestudies_featured'];
+                        $html .= "<div class='case-study-slider text-white'>"; //case-study-slider
+                        $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
+                        $html .= "<div class='swiper swiper-full-width'>"; //swiper
+
+                        $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+
+                        foreach ($casestudies_featured as $casestudies) {
+                            $id = $casestudies->ID;
+                            $post_excerpt = wpautop($casestudies->post_excerpt);
+                            $features = get__post_meta_by_id($id, 'feature');
+                            $logo = get__post_meta_by_id($id, 'logo');
+                            $html .= "<div class='swiper-slide'>";
+                            $html .= __image(array(
+                                'image_id' => $id,
+                                'placeholder' => true,
+                                'size' => 'large',
+                                'class' => _attribute('class', array('background-image background-overlay background-overlay-darker mx-20px rounded-10px overflow-hidden'))
+                            ));
+                            $html .= "</div>";
+                        }
+
+                        $html .= "<div class='inner md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
+
+                        $html .= "<div class='container'>"; //container
+                        $html .= "<div class='row'>"; //row
+
+                        $html .= "<div class='col-lg-8'> <div class='description-box big-text'> $post_excerpt </div> </div>";
+
+                        if ($features) {
+                            $html .= "<div class='col-lg-4'>";
+                            $html .= "<div class='meta-data text-end'>";
+                            $html .= "<ul class='list-inline p-0'>";
+                            $html .= "";
+
+                            foreach ($features as $feature) {
+                                $feature_text = $feature['feature_text'];
+                                $html .= "<li class='mb-3'>$feature_text</li>";
+                            }
+                            $html .= "";
+
+                            $html .= "</ul>";
+                            $html .= "</div>";
+                            $html .= "</div>";
+                        }
+
+                        $html .= "</div>"; //end-row
+                        $html .= "</div>"; //end-container
+                        $html .= "</div>"; //end-inner
+
+
+                        $html .= "</div>"; //end-swiper-wrapper
+
+                        $html .= "</div>"; //end-swiper
+                        $html .= "</div>"; //end-swiper-holder
+                        $html .= "</div>"; //end case-study-slider
+                        break;
                 }
             }
 
@@ -1409,7 +1467,7 @@ function __post_box_blog($data)
     if ($style == 'style-1') {
         $content_box_class = 'px-20px pb-20px';
     }
-    if($bg_image ) {
+    if ($bg_image) {
         $class .= ' rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
     }
     $html = '';
