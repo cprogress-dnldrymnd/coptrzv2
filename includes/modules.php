@@ -1442,7 +1442,7 @@ function ___hero_archive()
     $hero_description = _format_text(get__theme_option($key . 'archive_descripition'));
     $hero_background = get__theme_option($key . 'archive_background');
     $hero_height = 'small-hero';
-    $text_align = 'text-center';
+    $text_align = 'text-start';
 
 
     $heading_class[] = 'large-heading';
