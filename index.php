@@ -102,7 +102,7 @@ $args = array(
         )
     )
 );
-echo __layouts($args);
+echo do_shortcode(__layouts($args));
 ?>
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default">
@@ -148,7 +148,7 @@ $args = array(
         )
     )
 );
-echo __layouts($args);
+echo do_shortcode(__layouts($args));
 ?>
 
 <?php get_footer(); ?>
