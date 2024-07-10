@@ -80,6 +80,7 @@ if (is_home()) {
         'col' => true,
         'featured' => false,
         'style' => 'style-1',
+        'taxonomy' => $category,
         'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
     );
 } else if (is_post_type_archive('guides')) {
@@ -93,6 +94,7 @@ if (is_home()) {
         'col' => true,
         'featured' => false,
         'style' => 'style-1',
+        'taxonomy' => $category,
         'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
     );
 }
