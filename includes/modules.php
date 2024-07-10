@@ -1750,7 +1750,6 @@ function __layouts($args, $return = '')
         foreach ($layouts as $layout_below) {
             $return .=  do_shortcode(get_the_content(NULL, false, $layout_below->ID));
         }
-        return $return;
+        return $return . var_dump($layouts);
     }
-    
 }
