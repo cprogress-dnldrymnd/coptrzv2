@@ -523,13 +523,11 @@ function ___sections($id = 'sections')
                                 $html .= "<div class='col-lg-4'>";
                                 $html .= "<div class='meta-data text-end'>";
                                 $html .= "<ul class='list-inline p-0'>";
-                                $html .= "";
 
                                 foreach ($features as $feature) {
                                     $feature_text = $feature['feature_text'];
                                     $html .= "<li class='mb-3'>$feature_text</li>";
                                 }
-                                $html .= "";
 
                                 $html .= "</ul>";
                                 $html .= "</div>";
