@@ -179,7 +179,7 @@ function ___hero_product_taxonomy()
 }
 
 
-function ___sections($id = 'sections', $post_id = NULL)
+function ___sections($id = 'sections', $post_id = '')
 {
     $post_id = $post_id ? $post_id : get_the_ID();
     $sections = get__post_meta_by_id($post_id, $id);
