@@ -119,7 +119,6 @@ if ($has_featured) {
 <?php
 $post_type = get_queried_object()->name;
 $args = array(
-    'post_type'  => 'layouts',
     'meta_query' => array(
         'relation' => 'AND',
         array(
@@ -132,13 +131,7 @@ $args = array(
         )
     )
 );
-$layouts_below = get_posts($args);
-
-if ($layouts_below) {
-    foreach ($layouts_below as $layout_below) {
-        echo do_shortcode(get_the_content(NULL, false, $layout_below->ID));
-    }
-}
+echo __layouts($args);
 ?>
 
 <?php get_footer(); ?>
