@@ -135,64 +135,106 @@ class Shortcodes
         }
     }
 
-    function case_study_slider_grid($atts)
+    function case_study_slider_grid()
     {
-        extract(
-            shortcode_atts(
-                array(
-                    'id' => '',
-                ),
-                $atts
-            )
-        );
-        $post_excerpt = wpautop(get_the_excerpt($id));
-        $features = get__post_meta_by_id($id, 'feature');
-        $logo = get__post_meta_by_id($id, 'logo');
-        $html .= __image(array(
-            'image_id' => get_post_thumbnail_id($id),
-            'placeholder' => true,
-            'size' => 'full',
-            'class' => _attribute('class', array('background-image background-overlay background-overlay-darker bg-black mx-20px rounded-10px overflow-hidden'))
-        ));
 
-        $html .= "<div class='inner md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
 
-        $html .= "<div class='container'>"; //container
-        $html .= "<div class='row'>"; //row
 
-        $html .= "<div class='col-lg-8'>";
-        $html .= __description(array(
-            'description' => $post_excerpt,
-            'class' => _attribute('class', array('description-box big-text mb-5'))
-        ));
-        if ($logo) {
+
+        $casestudies_featured = get__theme_option('casestudies_featured');
+        $html = "<div class='case-study-slider text-white'>"; //case-study-slider
+        $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
+        $html .= "<div class='swiper swiper-full-width'>"; //swiper
+
+        $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+
+        foreach ($casestudies_featured as $casestudies) {
+            $id = $casestudies['id'];
+            $post_excerpt = wpautop(get_the_excerpt($id));
+            $features = get__post_meta_by_id($id, 'feature');
+            $logo = get__post_meta_by_id($id, 'logo');
+            $html .= "<div class='swiper-slide'>"; //swiper-slide
             $html .= __image(array(
-                'image_id' => $logo,
+                'image_id' => get_post_thumbnail_id($id),
                 'placeholder' => true,
-                'size' => 'large',
-                'class' => _attribute('class', array('logo-box'))
+                'size' => 'full',
+                'class' => _attribute('class', array('background-image background-overlay background-overlay-darker bg-black mx-20px rounded-10px overflow-hidden'))
             ));
-        }
-        $html .= "</div>";
 
-        if ($features) {
-            $html .= "<div class='col-lg-4'>";
-            $html .= "<div class='meta-data text-end'>";
-            $html .= "<ul class='list-inline p-0'>";
+            $html .= "<div class='inner md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
 
-            foreach ($features as $feature) {
-                $feature_text = $feature['feature_text'];
-                $html .= "<li class='mb-3'>$feature_text</li>";
+            $html .= "<div class='container'>"; //container
+            $html .= "<div class='row'>"; //row
+
+            $html .= "<div class='col-lg-8'>";
+            $html .= __description(array(
+                'description' => $post_excerpt,
+                'class' => _attribute('class', array('description-box big-text mb-5'))
+            ));
+            if ($logo) {
+                $html .= __image(array(
+                    'image_id' => $logo,
+                    'placeholder' => true,
+                    'size' => 'large',
+                    'class' => _attribute('class', array('logo-box'))
+                ));
+            }
+            $html .= "</div>";
+
+            if ($features) {
+                $html .= "<div class='col-lg-4'>";
+                $html .= "<div class='meta-data text-end'>";
+                $html .= "<ul class='list-inline p-0'>";
+
+                foreach ($features as $feature) {
+                    $feature_text = $feature['feature_text'];
+                    $html .= "<li class='mb-3'>$feature_text</li>";
+                }
+
+                $html .= "</ul>";
+                $html .= "</div>";
+                $html .= "</div>";
             }
 
-            $html .= "</ul>";
-            $html .= "</div>";
-            $html .= "</div>";
+            $html .= "</div>"; //end-row
+            $html .= "</div>"; //end-container
+            $html .= "</div>"; //end-inner
+            $html .= "</div>"; //end-swiper-slide
         }
 
-        $html .= "</div>"; //end-row
-        $html .= "</div>"; //end-container
-        $html .= "</div>"; //end-inner
+
+
+        $html .= "</div>"; //end-swiper-wrapper
+        $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-between align-items-center'>";
+        $html .= "<div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div>";
+
+        $html .= "<div class='col-auto'>";
+        $html .= "<div class='row button-group-box d-inline-flex'>";
+        $html .= __button(array(
+            'button_type' => get_post_type($id),
+            'button_text' => 'Read Case Study',
+            'button_url' => $id,
+            'button_style' => 'button-accent' . ' col-auto',
+        ));
+
+        $html .= __button(array(
+            'button_type' => 'custom',
+            'button_text' => 'All Case Studies',
+            'button_url_custom' => get_post_type_archive_link('casestudies'),
+            'button_style' => 'button-bordered' . ' col-auto',
+        ));
+        $html .= "</div>";
+        $html .= "</div>";
+
+
+
+        $html .= "</div></div></div>";
+
+
+
+        $html .= "</div>"; //end-swiper
+        $html .= "</div>"; //end-swiper-holder
+        $html .= "</div>"; //end case-study-slider
 
         return $html;
     }

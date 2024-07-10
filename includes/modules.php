@@ -479,53 +479,7 @@ function ___sections($id = 'sections')
                         $html .= ___tab_modules($tabs, $section_id_val);
                         break;
                     case 'case_study_slider':
-                        $casestudies_featured = get__theme_option('casestudies_featured');
-                        $html .= "<div class='case-study-slider text-white'>"; //case-study-slider
-                        $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
-                        $html .= "<div class='swiper swiper-full-width'>"; //swiper
-
-                        $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
-
-                        foreach ($casestudies_featured as $casestudies) {
-                            $id = $casestudies['id'];
-                            $html .= "<div class='swiper-slide'>"; //swiper-slide
-                            $html .= "[case_study_slider_grid id='$id']"; //swiper-slide
-                            $html .= "</div>"; //end-swiper-slide
-                        }
-
-
-
-                        $html .= "</div>"; //end-swiper-wrapper
-                        $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-between align-items-center'>";
-                        $html .= "<div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div>";
-
-                        $html .= "<div class='col-auto'>";
-                        $html .= "<div class='row button-group-box d-inline-flex'>";
-                        $html .= __button(array(
-                            'button_type' => get_post_type($id),
-                            'button_text' => 'Read Case Study',
-                            'button_url' => $id,
-                            'button_style' => 'button-accent' . ' col-auto',
-                        ));
-
-                        $html .= __button(array(
-                            'button_type' => 'custom',
-                            'button_text' => 'All Case Studies',
-                            'button_url_custom' => get_post_type_archive_link('casestudies'),
-                            'button_style' => 'button-bordered' . ' col-auto',
-                        ));
-                        $html .= "</div>";
-                        $html .= "</div>";
-
-
-
-                        $html .= "</div></div></div>";
-
-
-
-                        $html .= "</div>"; //end-swiper
-                        $html .= "</div>"; //end-swiper-holder
-                        $html .= "</div>"; //end case-study-slider
+                        $html .= "[case_study_slider_grid]";
                         break;
                 }
             }
