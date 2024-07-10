@@ -1598,7 +1598,8 @@ function ___posts_header($key, $title, $taxonomy, $class='')
     ));
 
     $html = "<div class='post-archive-header'>";
-    $html .= "<div class='container $class'>";
+    $html .= "<div class='container'>";
+    $html .= "<div class='inner $class'>";
     $html .= "<div class='row g-3 justify-content-between'>";
     if ($title) {
         $html .= "<div class='col-auto'>";
@@ -1674,6 +1675,7 @@ function ___posts_header($key, $title, $taxonomy, $class='')
     $html .= "</div>";
     $html .= "</div>";
 
+    $html .= "</div>";
     $html .= "</div>";
     $html .= "</div>";
     $html .= "</div>";
