@@ -307,7 +307,7 @@ $Solutions->supports = array('title', 'revisions', 'editor', 'thumbnail', 'page-
 $Solutions->show_in_rest = true;
 $Solutions->rewrite = array(
     'with_front' => false,
-    'slug' => 'solutions'
+    'slug' => 'industry-solutions'
 );
 
 
