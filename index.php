@@ -67,6 +67,19 @@ if (is_home()) {
         'button_text' => 'Learn More',
         'elements' => array('image', 'title', 'button'),
     );
+} else if (is_post_type_archive('casestudies')) {
+    $key = 'casestudies_';
+    $title = 'All Case Studies';
+    $has_featured = true;
+    $has_filter = true;
+    $archive_title = 'Blog';
+    $category = 'category';
+    $data = array(
+        'col' => true,
+        'featured' => false,
+        'style' => 'style-1',
+        'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+    );
 }
 echo do_shortcode(___hero_archive($key, $archive_title));
 if ($has_featured) {
