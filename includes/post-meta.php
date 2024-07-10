@@ -3557,7 +3557,7 @@ Container::make('post_meta', 'Case Study Settings')
                 ->add_fields(array(
                     Field::make('text', 'feature_text', __('Feature Text'))
                 )),
-            Field::make('imge', 'logo', __('Logo'))
+            Field::make('image', 'logo', __('Logo'))
 
         )
     );
