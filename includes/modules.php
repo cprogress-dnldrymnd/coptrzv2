@@ -1389,7 +1389,7 @@ function __post_box_blog($data)
     $style = isset($data['style']) ? $data['style'] : 'style-1';
     $button_text = isset($data['button_text']) ? $data['button_text'] : false;
     $id = isset($data['id']) ? $data['id'] : false;
-    $elements = isset($data['elements']) ? $data['elements'] : false;
+    $elements = isset($data['elements']) ? $data['elements'] : array();
     $bg_image = isset($data['bg_image']) ? $data['bg_image'] : false;
 
 
