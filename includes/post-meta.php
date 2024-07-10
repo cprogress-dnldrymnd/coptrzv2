@@ -35,7 +35,121 @@ Container::make('theme_options', __('Archives Settings'))
             Field::make('file', 'events_archive_background', __('Archive Background'))->set_classes('inline-field inline-field-wide-label'),
 
         )
+    )
+    ->add_tab(
+        'Capabilities',
+        array(
+            Field::make('text', 'capabilities_archive_title', __('Archive Title'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('textarea', 'capabilities_archive_description', __('Archive Description'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('select', 'capabilities_archive_background_type', __('Background Type'))->set_classes('inline-field')
+                ->set_options(
+                    array(
+                        'self-hosted' => 'Self Hosted',
+                        'youtube' => 'Youtube',
+                    )
+                ),
+            Field::make('select', 'capabilities_archive_hero_height', __('Height'))->set_classes('inline-field inline-field-wide-label')
+                ->set_options(
+                    array(
+                        '' => 'Default',
+                        'medium-hero' => 'Medium',
+                        'small-hero' => 'Small',
+                    )
+                ),
+            Field::make('select', 'capabilities_alignment', __('Aligment'))->set_classes('inline-field inline-field-wide-label')
+                ->set_options(
+                    array(
+                        'text-center' => 'Default/Center',
+                        'text-start' => 'Left',
+                        'text-end' => 'Right',
+                    )
+                ),
+            Field::make('file', 'capabilities_archive_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
+                ->set_conditional_logic(
+                    array(
+                        array(
+                            'field' => 'capabilities_archive_background_type',
+                            'value' => 'self-hosted',
+                        )
+                    )
+                ),
+            Field::make('text', 'capabilities_archive_background_youtube', __('Background Youtube ID'))->set_classes('inline-field inline-field-wide-label')
+                ->set_conditional_logic(
+                    array(
+                        array(
+                            'field' => 'capabilities_archive_background_type',
+                            'value' => 'youtube',
+                        )
+                    )
+                ),
+            Field::make('complex', 'capabilities_archive_buttons', __('Buttons'))->set_classes('inline-field inline-field-wide-label')
+                ->setup_labels(
+                    array(
+                        'plural_name'   => 'Buttons',
+                        'singular_name' => 'Button',
+                    )
+                )
+                ->add_fields(array(
+                    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+                        ->set_options(
+                            array(
+                                ''          => 'Select Button Type',
+                                'page'      => 'Page',
+                                'product'      => 'Product',
+                                'guides'      => 'Guides',
+                                'casestudies'      => 'Case Studies',
+                                'post'      => 'Post',
+                                'solutions' => 'Solution',
+                                'popups'    => 'Popup',
+                                'custom'     => 'Custom',
+                            )
+                        ),
+                    Field::make('text', 'button_text', __('Button Text')),
+                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+                        ->set_conditional_logic(
+                            array(
+                                array(
+                                    'field'   => 'button_type',
+                                    'value'   => 'custom',
+                                    'compare' => '!='
+                                )
+                            )
+                        ),
+                    Field::make('html', 'html')
+                        ->set_html('<div class="page-selector">  </div>'),
+                    Field::make('text', 'button_url_custom', __('Button URL'))
+                        ->set_conditional_logic(
+                            array(
+                                array(
+                                    'field' => 'button_type',
+                                    'value' => 'custom',
+                                )
+                            )
+                        ),
+                    Field::make('select', 'button_style', __('Button Style'))
+                        ->set_options(
+                            array(
+                                'button-accent'      => 'Accent',
+                                'button-primary'      => 'Primary',
+                                'button-secondary' => 'Secondary',
+                                'button-white' => 'White',
+                                'button-bordered'    => 'Bordered',
+                            )
+                        ),
+                    Field::make('select', 'button_target', __('Button Target'))
+                        ->set_options(
+                            array(
+                                'target="_self"'      => 'Default',
+                                'target="_blank"'      => 'New Tab',
+                            )
+                        ),
+                ))
+                ->set_header_template('Button: <%- button_text %>'),
+
+        )
     );
+
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Hero
