@@ -507,7 +507,7 @@ function ___sections($id = 'sections')
                             $html .= "<div class='col-lg-8'>";
                             $html .= __description(array(
                                 'description' => $post_excerpt,
-                                'class' => _attribute('class', array('description-box big-text'))
+                                'class' => _attribute('class', array('description-box big-text mb-5'))
                             ));
                             if ($logo) {
                                 $html .= __image(array(
