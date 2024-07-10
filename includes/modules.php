@@ -1453,7 +1453,7 @@ function __post_box_blog($data)
         foreach ($metas as $meta_key => $meta) {
             $meta_value = get__post_meta_by_id($id, $meta_key);
             $html .= "<li>";
-            $html .= $SVG->$meta;
+            $html .= $SVG->{$meta};
             $html .= $meta_value;
             $html .= "</li>";
         }
