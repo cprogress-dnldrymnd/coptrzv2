@@ -1560,6 +1560,7 @@ function ___featured($key)
         foreach ($featured as $post) {
             $data = array(
                 'id' => $post['id'],
+                'featured' => true,
                 'col' => true,
                 'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
             );
