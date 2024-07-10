@@ -531,3 +531,9 @@ small {
         -webkit-box-orient: vertical;
     }
 }
+
+.is-placeholder {
+    img {
+        object-fit: contain;
+    }
+}

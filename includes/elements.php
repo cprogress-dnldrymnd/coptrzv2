@@ -117,7 +117,7 @@ function __image($data)
         if ($placeholder) {
             $image = wp_get_attachment_image(67781, $size);
 
-            $class = _attribute('class', array('is-placeholder image-box'));
+            $class = _attribute('class', array('is-placeholder image-box rounded-corner overflow-hidden bg-black'));
             $attributes_args[] = $class;
 
             $_attributes = _attributes($attributes_args);
