@@ -40,7 +40,7 @@ if (is_home()) {
     );
 } else if (is_post_type_archive('capabilities')) {
     $key = 'capabilities_';
-    $title = 'Rare Commercial Capabilities';
+    $title = 'Rare Commercial <br> Capabilities';
     $has_featured = false;
     $has_filter = false;
     $archive_title = 'Capabilities';
