@@ -1621,7 +1621,7 @@ function ___posts_header($key, $title, $taxonomy)
         $html .= "<p class='fw-medium text-medium'>Select event type:</p>";
         $html .= "<div class='row event-filter'>";
         $html .= "<div class='col-auto'>";
-        $html .= "<input name='events_category' value='' type='radio' id='term-all'>";
+        $html .= "<input name='events_category' value='' type='radio' id='term-all' checked>";
         $html .= "<label class='rounded-corner' for='term-all'>All</label>";
         $html .= "</div>";
 
