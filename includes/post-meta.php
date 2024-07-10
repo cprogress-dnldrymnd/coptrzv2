@@ -3556,7 +3556,9 @@ Container::make('post_meta', 'Case Study Settings')
             Field::make('complex', 'feature', __('Feature'))
                 ->add_fields(array(
                     Field::make('text', 'feature_text', __('Feature Text'))
-                )),
+                ))
+                ->set_layout('tabbed-vertical')
+                ->set_header_template('Feature Text: <%- feature_text %>'),
             Field::make('image', 'logo', __('Logo'))
 
         )
