@@ -544,7 +544,7 @@ function ___sections($id = 'sections')
 
 
                         $html .= "</div>"; //end-swiper-wrapper
-                        $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div> <div class='col-auto'> <div class='button-group-box d-inline-flex flex-wrap'> <div class='button-accent button-box'><a class='rounded-10px' target='_self' href='#' rel='noopener'>Enquire Now</a></div> <div class='button-bordered button-box'><a class='rounded-10px' target='_self' href='#' rel='noopener'>All Sectors</a></div> </div> </div> </div> </div> </div>";
+                        $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div> <div class='col-auto'> <div class='row button-group-box d-inline-flex'> <div class='button-accent button-box col-auto'><a class='rounded-10px' target='_self' href='#' rel='noopener'>Enquire Now</a></div> <div class='button-bordered button-box col-auto'><a class='rounded-10px' target='_self' href='#' rel='noopener'>All Sectors</a></div> </div> </div> </div> </div> </div>";
                         $html .= "</div>"; //end-swiper
                         $html .= "</div>"; //end-swiper-holder
                         $html .= "</div>"; //end case-study-slider
