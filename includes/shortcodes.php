@@ -68,6 +68,7 @@ class Shortcodes
                 array(
                     'type' => 'page',
                     'id' => get_the_ID(),
+                    'archive_title' => '',
                 ),
                 $atts
             )
@@ -106,8 +107,8 @@ class Shortcodes
             }
             $html .= "<li><span class='item text-white'  >$term->name</span></li>";
         } else if ($type == 'archive') {
-            if (is_home()) {
-                $html .= "<li><span class='item text-white'  >Blog</span></li>";
+            if ($archive_title) {
+                $html .= "<li><span class='item text-white'  >$archive_title</span></li>";
             }
         }
 

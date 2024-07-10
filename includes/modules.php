@@ -1486,7 +1486,7 @@ function __post_box_blog($id, $col = false, $featured = false)
     return $html;
 }
 
-function ___hero_archive($key)
+function ___hero_archive($key, $title)
 {
 
     $hero_heading = get__theme_option($key . 'archive_title');
@@ -1504,7 +1504,7 @@ function ___hero_archive($key)
 
     $hero .= "<div class='container'>";
 
-    $hero .= "[breadcrumbs type='archive']";
+    $hero .= "[breadcrumbs type='archive' archive_title='$title']";
 
     $hero .= __heading(array(
         'heading' => $hero_heading,

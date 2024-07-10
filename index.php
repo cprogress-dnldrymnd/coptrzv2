@@ -13,14 +13,15 @@ if (is_home()) {
     $key = 'post_';
     $title = 'All Posts';
     $has_featured = true;
-} else if(is_post_type_archive('events')) {
+    $archive_title = 'Blog';
+} else if (is_post_type_archive('events')) {
     $key = 'events_';
     $title = 'All Events';
     $has_featured = false;
-
+    $archive_title = 'Events';
 }
-echo do_shortcode(___hero_archive($key));
-if($has_featured) {
+echo do_shortcode(___hero_archive($key, $archive_title));
+if ($has_featured) {
     echo ___featured($key);
 }
 ?>
