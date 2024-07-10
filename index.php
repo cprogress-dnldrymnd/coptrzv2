@@ -78,6 +78,7 @@ if ($has_featured) {
 
 <?php
 $post_type = get_post_type();
+echo $post_type;
 $args = array(
     'post_type'  => 'layouts',
     'meta_query' => array(
