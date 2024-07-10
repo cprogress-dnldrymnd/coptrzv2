@@ -1558,7 +1558,12 @@ function ___featured($key)
         $html .= "<div class='row g-4'>";
 
         foreach ($featured as $post) {
-            $html .= __post_box_blog($post['id'], true, true);
+            $data = array(
+                'id' => $post['id'],
+                'col' => true,
+                'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+            );
+            $html .= __post_box_blog($data);
         }
 
         $html .= "</div>";
