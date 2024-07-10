@@ -278,7 +278,16 @@ input[type="checkbox"] {
             padding-bottom: 200px;
         }
         .inner {
-
+            @include responsive(mobile) {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+            @include responsive(mobile) {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
         }
     }
     .logo-box {
