@@ -54,6 +54,7 @@ if (is_home()) {
     );
 } else if (is_post_type_archive('solutions')) {
     $key = 'solutions_';
+    $title = false;
     $has_featured = false;
     $has_filter = false;
     $archive_title = 'Industry Solutions';
