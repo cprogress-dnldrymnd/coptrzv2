@@ -1380,14 +1380,21 @@ function __post_box($id)
     return $html;
 }
 
-function __post_box_blog($id, $col = false, $featured = false, $class = '')
+function __post_box_blog($id, $col = false, $featured = false, $style = 'style-1')
 {
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
     if ($featured) {
-        $class .= ' featured-box text-white d-flex flex-column justify-content-between xs-padding rounded-10px';
+        $class = ' featured-box text-white d-flex flex-column justify-content-between xs-padding rounded-10px ';
     } else {
-        $class .= ' content-margin';
+
+        $class = ' content-margin ';
+    }
+
+    $class .= $style;
+
+    if ($style == 'style-1') {
+        $content_box_class = 'px-20px pb-20px';
     }
     $html = '';
     if ($col == true) {
@@ -1404,7 +1411,8 @@ function __post_box_blog($id, $col = false, $featured = false, $class = '')
             'size' => 'large',
             'class' => _attribute('class', array('image-box rounded-corner overflow-hidden'))
         ));
-        $html .= "<div class='content-box px-20px pb-20px content-margin'>";
+
+        $html .= "<div class='content-box content-margin $content_box_class'>";
         $html .= __post_category($id, 'category', 'text-black');
     }
 
@@ -1416,10 +1424,13 @@ function __post_box_blog($id, $col = false, $featured = false, $class = '')
         'heading' => get_the_title($id),
         'tag' => 'h3',
     ));
-    $html .= __description(array(
-        'description' => get_the_excerpt($id),
-        'class' => _attribute('class', array('description-box small-text mb-4')),
-    ));
+
+    if ($style == 'style-1') {
+        $html .= __description(array(
+            'description' => get_the_excerpt($id),
+            'class' => _attribute('class', array('description-box small-text mb-4')),
+        ));
+    }
     $html .= __button(array(
         'button_type' => get_post_type($id),
         'button_text' => 'Read More',

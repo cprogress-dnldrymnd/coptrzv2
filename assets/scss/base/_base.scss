@@ -520,17 +520,23 @@ small {
 }
 
 .post-box-blog {
-    &.featured-box {
-        .content-box {
-            margin-top: 45%;
-        }
-    }
     .description-box {
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         line-clamp: 3;
         -webkit-box-orient: vertical;
+    }
+    &.featured-box {
+        .content-box {
+            margin-top: 45%;
+        }
+    }
+    &.style-2 {
+        padding: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        
     }
 }
 

@@ -10829,14 +10829,18 @@ small, .small {
     margin-right: 10px;
     padding-right: 10px; }
 
-.post-box-blog.featured-box .content-box {
-  margin-top: 45%; }
 .post-box-blog .description-box {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical; }
+.post-box-blog.featured-box .content-box {
+  margin-top: 45%; }
+.post-box-blog.style-2 {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px; }
 
 .is-placeholder svg {
   position: absolute;
