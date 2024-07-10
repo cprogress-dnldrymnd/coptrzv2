@@ -1476,7 +1476,16 @@ function ___hero_archive($key)
 
 function ___featured($key)
 {
-    $html = "<section class='featured-posts md-padding-top sm-padding-top'>";
+    $featured = get__theme_option($key . 'featured');
+    if ($featured) {
+        $html = "<section class='featured-posts md-padding-top sm-padding-top'>";
+        $html .= "<div class='container'>";
+        $html .= __heading(array(
+            'heading' => 'Featured Articles'
+        ));
+        $html .= "</div>";
+        $html .= "</section>";
 
-    $html .= "</section>";
+        return $html;
+    }
 }
