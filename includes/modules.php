@@ -1389,6 +1389,7 @@ function __post_box_blog($data)
     $style = isset($data['style']) ? $data['style'] : 'style-1';
     $id = isset($data['id']) ? $data['id'] : false;
     $elements = isset($data['elements']) ? $data['elements'] : false;
+    $metas = isset($data['metas']) ? $data['metas'] : false;
 
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
@@ -1438,11 +1439,21 @@ function __post_box_blog($data)
             'tag' => 'h3',
         ));
     }
+
     if (in_array('excerpt', $elements)) {
         $html .= __description(array(
             'description' => get_the_excerpt($id),
             'class' => _attribute('class', array('description-box small-text mb-4')),
         ));
+    }
+
+    if ($metas) {
+        $html .= '<ul class="meta-box list-inline">';
+        foreach ($metas as $key => $meta) {
+            $meta = get__post_meta_by_id($id, $key);
+            $html .= "<li>$meta</li>";
+        }
+        $html .= '</ul>';
     }
     if (in_array('button', $elements)) {
         $html .= __button(array(

@@ -29,7 +29,11 @@ if (is_home()) {
         'col' => true,
         'featured' => false,
         'style' => 'style-2',
-        'elements' => array('image', 'category', 'title', 'excerpt', 'button')
+        'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
+        'metas' => array(array(
+            'crb_event_start_date' => 'calendar',
+            'crb_event_start_time' => 'clock',
+        ))
     );
 } else if (is_post_type_archive('capabilities')) {
     $key = 'capabilities_';
