@@ -1554,6 +1554,11 @@ function ___featured($key)
 
 function ___posts_header($title, $taxonomy)
 {
+    $terms = get_terms(array(
+        'taxonomy'   => $taxonomy,
+        'hide_empty' => false,
+    ));
+
     $html = "<div class='post-archive-header'>";
     $html .= "<div class='container'>";
     $html .= "<div class='row g-3 justify-content-between'>";
@@ -1569,6 +1574,12 @@ function ___posts_header($title, $taxonomy)
     $html .= "<div class='row g-3 align-items-center'>";
     $html .= "<div class='col-auto'>";
     $html .= "<select name='category'>";
+    $html .= "<option name='category' value=''>Category: All</option>";
+    foreach ($terms as $term) {
+        $term_name = $term->name;
+        $term_id = $term->term_id;
+        $html .= "<option name='category' value='$term_id'>Category: $term_name</option>";
+    }
     $html .= "</select>";
     $html .= "</div>";
 
