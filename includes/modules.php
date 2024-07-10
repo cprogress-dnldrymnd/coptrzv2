@@ -1452,7 +1452,6 @@ function __post_box_blog($data)
         foreach ($metas as $meta_key => $meta) {
             $meta_value = get__post_meta_by_id($id, $meta_key);
             $html .= "<li>$meta_value</li>";
-            $html .= "<li>$meta_key</li>";
         }
         $html .= '</ul>';
     }
