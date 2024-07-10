@@ -573,8 +573,8 @@ small {
             padding: 20px 41px;
             cursor: pointer;
             @include on-event {
-                color: var(--bs-secondary);
-                background-color: var(--bs-black);
+                color: var(--bs-white);
+                background-color: var(--bs-secondary);
             }
         }
         input {

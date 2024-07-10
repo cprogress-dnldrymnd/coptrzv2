@@ -10869,8 +10869,8 @@ small, .small {
     padding: 20px 41px;
     cursor: pointer; }
     .event-filter .filter-box label:hover, .event-filter .filter-box label:active, .event-filter .filter-box label:focus {
-      color: var(--bs-secondary);
-      background-color: var(--bs-black); }
+      color: var(--bs-white);
+      background-color: var(--bs-secondary); }
   .event-filter .filter-box input {
     display: none; }
     .event-filter .filter-box input:checked + label {
