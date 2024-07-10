@@ -1434,24 +1434,23 @@ function __post_box($id)
 function ___hero_archive()
 {
 
+    if (is_home()) {
+        $key = 'post_';
+    }
 
-    $hero_heading = _archive_title();
-    $hero_description = _format_text('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.');
-    $hero_background = get___term_meta($id, 'hero_background');
-    $hero_background_youtube = get___term_meta($id, 'hero_background_youtube');
-    $hero_background_type = get___term_meta($id, 'hero_background_type');
-    $text_align = $hero_alignment ? $hero_alignment : 'text-center';
+    $hero_heading = get__theme_option($key . 'archive_title');
+    $hero_description = _format_text(get__theme_option($key . 'archive_descripition'));
+    $hero_background = get__theme_option($key . 'archive_background');
+    $hero_height = 'small-hero';
+    $text_align = 'text-center';
 
 
     $heading_class[] = 'large-heading';
     $heading_class[] = 'mb-3';
 
     $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
-    if ($hero_background_youtube && $hero_background_type == 'youtube') {
-        $hero .= _background($hero_background_youtube, true);
-    } else if ($hero_background) {
-        $hero .= _background($hero_background);
-    }
+    $hero .= _background($hero_background);
+
     $hero .= "<div class='container'>";
 
     $hero .= "[breadcrumbs type='archive']";
@@ -1464,7 +1463,7 @@ function ___hero_archive()
     ));
 
     $hero .= __description(array(
-        'description' => $term_description_val,
+        'description' => $hero_description,
         'class' => _attribute('class', array('description-box small-text mb-4')),
     ));
 
@@ -1474,11 +1473,4 @@ function ___hero_archive()
     $hero .= "</section>";
 
     return $hero;
-}
-
-function archive_title()
-{
-    if (is_home()) {
-        return 'Latest from Coptrz';
-    }
 }
