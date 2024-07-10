@@ -9391,9 +9391,9 @@ body {
   @media screen and (max-width: 991px) {
     .big-text {
       font-size: 2rem; } }
-  @media screen and (max-width: 991px) {
+  @media screen and (max-width: 767px) {
     .big-text {
-      font-size: 2rem; } }
+      font-size: 1.5rem; } }
 
 .smaller-text {
   font-size: 13px; }

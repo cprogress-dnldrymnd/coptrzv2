@@ -205,7 +205,7 @@ class Shortcodes
 
 
         $html .= "</div>"; //end-swiper-wrapper
-        $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-between align-items-center'>";
+        $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-between align-items-end'>";
         $html .= "<div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div>";
 
         $html .= "<div class='col-auto'>";
