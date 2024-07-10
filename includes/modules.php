@@ -1634,3 +1634,29 @@ function ___posts_header($title, $taxonomy)
 
     return $html;
 }
+
+
+function _events_additional_content($id)
+{
+    $SVG = new SVG;
+    $crb_event_start_date = get__post_meta_by_id($id, 'crb_event_start_date');
+    $crb_event_start_time = get__post_meta_by_id($id, 'crb_event_start_time');
+    $additional_content = '<ul class="meta-box list-inline text-small fw-medium">';
+
+    if ($crb_event_start_date) {
+        $additional_content .= "<li class='d-flex align-items-center'>";
+        $additional_content .= $SVG->calendar();
+        $additional_content .= $crb_event_start_date;
+        $additional_content .= "</li>";
+    }
+
+    if ($crb_event_start_time) {
+        $additional_content .= "<li class='d-flex align-items-center'>";
+        $additional_content .= $SVG->clock();
+        $additional_content .= $crb_event_start_time;
+        $additional_content .= "</li>";
+    }
+    $additional_content .= '</ul>';
+
+    return $additional_content;
+}

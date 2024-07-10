@@ -59,25 +59,7 @@ if ($has_featured) {
                     the_post();
                     $data['id'] = get_the_ID();
                     if ($key == 'events_') {
-                        $crb_event_start_date = get__post_meta_by_id(get_the_ID(), 'crb_event_start_date');
-                        $crb_event_start_time = get__post_meta_by_id(get_the_ID(), 'crb_event_start_time');
-                        $additional_content = '<ul class="meta-box list-inline text-small fw-medium">';
-
-                        if ($crb_event_start_date) {
-                            $additional_content .= "<li class='d-flex align-items-center'>";
-                            $additional_content .= $SVG->calendar();
-                            $additional_content .= $crb_event_start_date;
-                            $additional_content .= "</li>";
-                        }
-
-                        if ($crb_event_start_time) {
-                            $additional_content .= "<li class='d-flex align-items-center'>";
-                            $additional_content .= $SVG->clock();
-                            $additional_content .= $crb_event_start_time;
-                            $additional_content .= "</li>";
-                        }
-                        $additional_content .= '</ul>';
-                        $data['additional_content'] = $additional_content;
+                        $$data['additional_content'] = _events_additional_content(get_the_ID());
                     }
                     echo __post_box_blog($data);
                 }
