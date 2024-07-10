@@ -5,7 +5,7 @@ function action_module_content()
     if (did_action('post_updated')) {
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-        if (_is_module() || get_post_type() == 'layouts' || get_post_type() == 'productcategorypages') {
+        if (_is_module() || get_post_type() == 'productcategorypages') {
             $post_content = '<!-- wp:html -->';
 
             if (_is_module()) {
@@ -179,7 +179,7 @@ function ___hero_product_taxonomy()
 }
 
 
-function ___sections($id = 'sections', $post_id)
+function ___sections($id = 'sections', $post_id = NULL)
 {
     $post_id = $post_id ? $post_id : get_the_ID();
     $sections = get__post_meta_by_id($post_id, $id);
