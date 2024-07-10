@@ -14,16 +14,19 @@ if (is_home()) {
     $title = 'All Posts';
     $has_featured = true;
     $archive_title = 'Blog';
+    $post_style = 'style-1';
 } else if (is_post_type_archive('events')) {
     $key = 'events_';
     $title = 'All Events';
     $has_featured = false;
     $archive_title = 'Events';
+    $post_style = 'style-2';
 } else if (is_post_type_archive('capabilities')) {
     $key = 'capabilities_';
     $title = 'All Events';
     $has_featured = false;
     $archive_title = 'Capabilities';
+    $post_style = 'style-1';
 }
 echo do_shortcode(___hero_archive($key, $archive_title));
 if ($has_featured) {
@@ -41,7 +44,7 @@ if ($has_featured) {
                 <?php
                 while (have_posts()) {
                     the_post();
-                    echo __post_box_blog(get_the_ID(), true);
+                    echo __post_box_blog(get_the_ID(), true, false, $post_style);
                 }
                 ?>
             </div>

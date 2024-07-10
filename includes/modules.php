@@ -1380,14 +1380,14 @@ function __post_box($id)
     return $html;
 }
 
-function __post_box_blog($id, $col = false, $featured = false)
+function __post_box_blog($id, $col = false, $featured = false, $class = '')
 {
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
     if ($featured) {
-        $class = 'featured-box text-white d-flex flex-column justify-content-between xs-padding rounded-10px';
+        $class .= 'featured-box text-white d-flex flex-column justify-content-between xs-padding rounded-10px';
     } else {
-        $class = 'content-margin';
+        $class .= 'content-margin';
     }
     $html = '';
     if ($col == true) {
