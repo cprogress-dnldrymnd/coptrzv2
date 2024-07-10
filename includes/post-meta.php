@@ -90,7 +90,7 @@ Container::make('theme_options', __('Archives Settings'))
                     )
                 )
                 ->add_fields(array(
-                    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+                    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
                         ->set_options(
                             array(
                                 ''          => 'Select Button Type',
@@ -105,7 +105,7 @@ Container::make('theme_options', __('Archives Settings'))
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text')),
-                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url inline-field inline-field-wide-label')
                         ->set_conditional_logic(
                             array(
                                 array(
@@ -117,7 +117,7 @@ Container::make('theme_options', __('Archives Settings'))
                         ),
                     Field::make('html', 'html')
                         ->set_html('<div class="page-selector">  </div>'),
-                    Field::make('text', 'button_url_custom', __('Button URL'))
+                    Field::make('text', 'button_url_custom', __('Button URL'))->set_classes('inline-field inline-field-wide-label')
                         ->set_conditional_logic(
                             array(
                                 array(
@@ -126,7 +126,7 @@ Container::make('theme_options', __('Archives Settings'))
                                 )
                             )
                         ),
-                    Field::make('select', 'button_style', __('Button Style'))
+                    Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
                                 'button-accent'      => 'Accent',
@@ -136,7 +136,7 @@ Container::make('theme_options', __('Archives Settings'))
                                 'button-bordered'    => 'Bordered',
                             )
                         ),
-                    Field::make('select', 'button_target', __('Button Target'))
+                    Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
                                 'target="_self"'      => 'Default',
