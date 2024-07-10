@@ -479,7 +479,7 @@ function ___sections($id = 'sections')
                         $html .= ___tab_modules($tabs, $section_id_val);
                         break;
                     case 'case_study_slider':
-                        $casestudies_featured = $items['casestudies_featured'];
+                        $casestudies_featured = get__theme_option('casestudies_featured');
                         $html .= "<div class='case-study-slider text-white'>"; //case-study-slider
                         $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
                         $html .= "<div class='swiper swiper-full-width'>"; //swiper
