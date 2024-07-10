@@ -1432,7 +1432,7 @@ function __post_box($id)
 
 function __post_box_blog($id)
 {
-    $image = get_post_thumbnail_id();
+    $image = get_post_thumbnail_id($id);
     $html = "<div class='column-holder position-relative xs-padding rounded-10px overflow-hidden text-white h-100 d-flex flex-column justify-content-between'>";
     $html .= __background($image);
     $html .= __post_category($id, 'category');
