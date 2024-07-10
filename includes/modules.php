@@ -1566,7 +1566,7 @@ function ___posts_header($title, $taxonomy)
     $html .= "</div>";
 
     $html .= "<div class='col-auto'>";
-    $html .= "<input placeholder='Start typing to filter...' name='s'>";
+    $html .= "<input  type='text' placeholder='Start typing to filter...' name='s'>";
     $html .= "</div>";
 
     $html .= "</div>";
