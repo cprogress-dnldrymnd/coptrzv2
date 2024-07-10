@@ -195,7 +195,7 @@ function ___sections($id = 'sections', $post_id = '')
             $section_styles = $section['section_styles'];
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
             $container_styles = array();
-            $container_classes[] = 'container'; 
+            $container_classes[] = 'container';
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
             $styles_val = '';
@@ -318,7 +318,7 @@ function ___sections($id = 'sections', $post_id = '')
             $id_val = _attribute('id', array($section_id_val));
             $classes_attr = _attribute('class', $classes);
             if ($container_classes) {
-                $container_classes_attr = attribute('class', $container_classes);
+                $container_classes_attr = _attribute('class', $container_classes);
             }
             if ($styles_section) {
                 $styles_val = _attribute('style', $styles_section, ';');
