@@ -5,7 +5,11 @@
  * This template will also be called in any case where the Wordpress engine 
  * doesn't know which template to use (e.g. 404 error)
  */
-get_header(); // This fxn gets the header.php file and renders it 
+get_header(); ?>
+
+
+<?php
+echo ___hero_archive();
 ?>
 
 

@@ -1429,3 +1429,61 @@ function __post_box($id)
 
     return $html;
 }
+
+
+function ___hero_archive()
+{
+
+
+    $hero_heading = _archive_title();
+    $hero_description = _format_text('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.');
+    $hero_background = get___term_meta($id, 'hero_background');
+    $hero_background_youtube = get___term_meta($id, 'hero_background_youtube');
+    $hero_background_type = get___term_meta($id, 'hero_background_type');
+    $hero_alignment = get___term_meta($id, 'hero_alignment');
+    $hero_height = get___term_meta($id, 'hero_height');
+    $buttons = get___term_meta($id, 'buttons');
+    $breadcrumbs_hidden = get___term_meta($id, 'breadcrumbs_hidden');
+    $text_align = $hero_alignment ? $hero_alignment : 'text-center';
+    $term_description_val = $hero_description ? $hero_description : _format_text($term->description);
+
+
+    $heading_class[] = 'large-heading';
+    $heading_class[] = 'mb-3';
+
+    $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
+    if ($hero_background_youtube && $hero_background_type == 'youtube') {
+        $hero .= _background($hero_background_youtube, true);
+    } else if ($hero_background) {
+        $hero .= _background($hero_background);
+    }
+    $hero .= "<div class='container'>";
+
+    $hero .= "[breadcrumbs type='archive']";
+
+    $hero .= __heading(array(
+        'heading' => $hero_heading,
+        'tag' => 'h1',
+        'class' => _attribute('class', $heading_class),
+        ''
+    ));
+
+    $hero .= __description(array(
+        'description' => $term_description_val,
+        'class' => _attribute('class', array('description-box small-text mb-4')),
+    ));
+
+
+
+    $hero .= "</div>";
+    $hero .= "</section>";
+
+    return $hero;
+}
+
+function archive_title()
+{
+    if (is_home()) {
+        return 'Latest from Coptrz';
+    }
+}
