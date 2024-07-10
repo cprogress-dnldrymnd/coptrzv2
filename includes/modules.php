@@ -487,7 +487,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $html .= ___tab_modules($tabs, $section_id_val);
                         break;
                     case 'case_study_slider':
-                        $html .= "[case_study_slider_grid]";
+                        $html .= do_shortcode("[case_study_slider_grid]");
                         break;
                 }
             }
