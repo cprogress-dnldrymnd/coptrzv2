@@ -16,6 +16,15 @@ Container::make('theme_options', __('Archives Settings'))
             Field::make('text', 'post_archive_title', __('Post Archive Title'))->set_classes('inline-field inline-field-wide-label'),
             Field::make('textarea', 'post_archive_description', __('Post Archive Description'))->set_classes('inline-field inline-field-wide-label'),
             Field::make('file', 'post_archive_background', __('Post Archive Background'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('association', 'post_featured', 'Post Featured')
+                ->set_types(
+                    array(
+                        array(
+                            'type'      => 'post',
+                            'post_type' => 'post',
+                        )
+                    )
+                )
         )
     );
 
