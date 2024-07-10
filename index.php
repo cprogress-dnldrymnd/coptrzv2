@@ -68,7 +68,7 @@ if ($has_featured) {
         <div class="container">
             <?php
             if (!$has_filter && $title) {
-                echo "<h2 text-center>$title</h2>";
+                echo "<h2 class='text-center'>$title</h2>";
             } 
             ?>
             <div class="row g-4 same-image-height">
