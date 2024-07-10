@@ -105,6 +105,10 @@ class Shortcodes
                 $html .= "<li><a class='item text-white' href='$parent_link'>$parent_name</a></li>";
             }
             $html .= "<li><span class='item text-white'  >$term->name</span></li>";
+        } else if ($type == 'archive') {
+            if (is_home()) {
+                $html .= "<li><span class='item text-white'  >Blog</span></li>";
+            }
         }
 
 
