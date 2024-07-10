@@ -10866,7 +10866,8 @@ small, .small {
 .event-filter .filter-box {
   padding: 7px; }
   .event-filter .filter-box label {
-    padding: 20px 41px; }
+    padding: 20px 41px;
+    cursor: pointer; }
   .event-filter .filter-box input {
     display: none; }
     .event-filter .filter-box input:checked + label {

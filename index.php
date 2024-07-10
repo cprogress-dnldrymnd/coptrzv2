@@ -28,7 +28,7 @@ if (is_home()) {
     $has_featured = false;
     $archive_title = 'Events';
     $category = 'events_category';
-
+    $class = 'border-bottom-default sm-padding-bottom sm-margin-bottom';
 
     $data = array(
         'col' => true,
@@ -51,7 +51,7 @@ if ($has_featured) {
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default">
     <?php
-    echo ___posts_header($key, $title, $category);
+    echo ___posts_header($key, $title, $category, $class);
     ?>
     <div class="post-grid-holder">
         <div class="container">

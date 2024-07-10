@@ -1590,7 +1590,7 @@ function ___featured($key)
 }
 
 
-function ___posts_header($key, $title, $taxonomy)
+function ___posts_header($key, $title, $taxonomy, $class='')
 {
     $terms = get_terms(array(
         'taxonomy'   => $taxonomy,
@@ -1598,7 +1598,7 @@ function ___posts_header($key, $title, $taxonomy)
     ));
 
     $html = "<div class='post-archive-header'>";
-    $html .= "<div class='container'>";
+    $html .= "<div class='container $class'>";
     $html .= "<div class='row g-3 justify-content-between'>";
     if ($title) {
         $html .= "<div class='col-auto'>";
