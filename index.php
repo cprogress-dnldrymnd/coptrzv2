@@ -79,7 +79,7 @@ if ($has_featured) {
 <?php
 $post_type = get_post_type();
 $args = array(
-    'post_type'  => 'product',
+    'post_type'  => 'layouts',
     'meta_query' => array(
         array(
             'key'   => '_display_location_archive',
@@ -87,9 +87,9 @@ $args = array(
         )
     )
 );
-$postslist = get_posts($args);
+$layouts = get_posts($args);
 
-var_dump($postslist);
+var_dump($layouts);
 ?>
 
 <?php get_footer(); ?>
