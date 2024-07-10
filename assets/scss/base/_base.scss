@@ -520,8 +520,10 @@ small {
 }
 
 .post-box-blog {
-    .content-box {
-        margin-top: 45%;
+    &.featured-box {
+        .content-box {
+            margin-top: 45%;
+        }
     }
     .description-box {
         overflow: hidden;
