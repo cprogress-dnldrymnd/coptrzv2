@@ -10856,7 +10856,7 @@ small, .small {
   --image-padding: 36%; }
 
 .meta-box li svg {
-  width: 21px;
+  width: 25;
   height: 21px;
   flex: 0 0 21px;
   margin-right: 10px; }
