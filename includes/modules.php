@@ -1454,6 +1454,7 @@ function __post_box_blog($id, $col = false, $featured = false)
             'size' => 'large',
             'class' => _attribute('class', array('image-box rounded-corner overflow-hidden'))
         ));
+        $html .= "<div class='content-box content-margin'>";
         $html .= __post_category($id, 'category', 'text-black');
     }
 
@@ -1475,9 +1476,7 @@ function __post_box_blog($id, $col = false, $featured = false)
         'button_url' => $id,
         'button_style' =>  'button-bordered position-relative',
     ));
-    if ($featured) {
-        $html .= "</div>";
-    }
+    $html .= "</div>";
     $html .= "</div>";
     if ($col == true) {
         $html .= "</div>";
