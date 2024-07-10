@@ -71,6 +71,7 @@ echo do_shortcode(___hero_archive($key, $archive_title));
 if ($has_featured) {
     echo ___featured($key);
 }
+echo $key;
 ?>
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default">
