@@ -9,23 +9,23 @@ jQuery(document).ready(function () {
 
 
 function __input_fields() {
-	jQuery('.remove-first-option-value select option:first-child').attr('value', '');
+    jQuery('.remove-first-option-value select option:first-child').attr('value', '');
 
-	jQuery(".wpforms-field input, .wpforms-field select, .wpforms-field textarea").on("blur input focus", function () {
-		if (this.value) {
-			jQuery(this).parent().addClass("filled");
-		} else {
-			jQuery(this).parent().removeClass("filled");
-		}
-	});
+    jQuery(".wpforms-field input, .wpforms-field select, .wpforms-field textarea").on("blur input focus", function () {
+        if (this.value) {
+            jQuery(this).parent().addClass("filled");
+        } else {
+            jQuery(this).parent().removeClass("filled");
+        }
+    });
 
-	jQuery(".wpforms-field input, .wpforms-field select,  .wpforms-field textarea").on("focus", function () {
-		if (this) {
-			jQuery(this).parent().addClass("filled");
-		} else {
-			jQuery(this).parent().removeClass("filled");
-		}
-	});
+    jQuery(".wpforms-field input, .wpforms-field select,  .wpforms-field textarea").on("focus", function () {
+        if (this) {
+            jQuery(this).parent().addClass("filled");
+        } else {
+            jQuery(this).parent().removeClass("filled");
+        }
+    });
 }
 
 function __fixed_heading_position() {
@@ -45,71 +45,71 @@ function __block_accordion() {
 }
 
 function __header_menu() {
-    jQuery('.has-children.main-nav').click(function (e) {
-        if (jQuery(this).hasClass('active')) {
-            jQuery(this).removeClass('active');
-            jQuery(this).next().removeClass('active');
-        } else {
-            jQuery('.has-children.main-nav.active').removeClass('active');
-            jQuery('.submenu.active').removeClass('active');
+    if (jQuery('header').length > 0) {
+        jQuery('.has-children.main-nav').click(function (e) {
+            if (jQuery(this).hasClass('active')) {
+                jQuery(this).removeClass('active');
+                jQuery(this).next().removeClass('active');
+            } else {
+                jQuery('.has-children.main-nav.active').removeClass('active');
+                jQuery('.submenu.active').removeClass('active');
+
+                jQuery(this).toggleClass('active');
+                jQuery(this).next().toggleClass('active');
+            }
+            jQuery('body').removeClass('mini-cart-active');
+
+            e.preventDefault();
+        });
+
+        jQuery('.has-children.sub-nav').click(function (e) {
+            if (jQuery(this).hasClass('active')) {
+                jQuery(this).removeClass('active');
+                jQuery(this).next().removeClass('active');
+            } else {
+                jQuery('.has-children.sub-nav.active').removeClass('active');
+                jQuery('.submenu2.active').removeClass('active');
+
+                jQuery(this).toggleClass('active');
+                jQuery(this).next().toggleClass('active');
+            }
+            jQuery('body').removeClass('mini-cart-active');
+
+            e.preventDefault();
+        });
+
+        jQuery('.has-children-tab').click(function (e) {
+            $target = jQuery(this).attr('target');
+            jQuery('.has-children-tab.nav-link.active').removeClass('active');
 
             jQuery(this).toggleClass('active');
             jQuery(this).next().toggleClass('active');
-        }
-        jQuery('body').removeClass('mini-cart-active');
 
-        e.preventDefault();
-    });
+            jQuery('.tab-links').addClass('d-none');
+            jQuery($target).removeClass('d-none');
+            e.preventDefault();
 
-    jQuery('.has-children.sub-nav').click(function (e) {
-        if (jQuery(this).hasClass('active')) {
-            jQuery(this).removeClass('active');
-            jQuery(this).next().removeClass('active');
+        });
+
+        if (window.innerWidth > 991) {
         } else {
-            jQuery('.has-children.sub-nav.active').removeClass('active');
-            jQuery('.submenu2.active').removeClass('active');
+            $nav = jQuery('#menu-desktop .navbar');
+            $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">  <div class="offcanvas-body"> <div id="menu-mobile"> </div> </div> </div>');
 
-            jQuery(this).toggleClass('active');
-            jQuery(this).next().toggleClass('active');
+            $menu_offcanvas.insertAfter('.header');
+            $nav.appendTo('#menu-mobile');
+
+
+            var offCanvasMenu = document.getElementById('offCanvasMenu')
+            offCanvasMenu.addEventListener('show.bs.offcanvas', function () {
+                jQuery('body').addClass('mobile-menu-active');
+            });
+
+            offCanvasMenu.addEventListener('hide.bs.offcanvas', function () {
+                jQuery('body').removeClass('mobile-menu-active');
+            });
         }
-        jQuery('body').removeClass('mini-cart-active');
-
-        e.preventDefault();
-    });
-
-    jQuery('.has-children-tab').click(function (e) {
-        $target = jQuery(this).attr('target');
-        jQuery('.has-children-tab.nav-link.active').removeClass('active');
-
-        jQuery(this).toggleClass('active');
-        jQuery(this).next().toggleClass('active');
-
-        jQuery('.tab-links').addClass('d-none');
-        jQuery($target).removeClass('d-none');
-        e.preventDefault();
-
-    });
-
-    if (window.innerWidth > 991) {
-    } else {
-        $nav = jQuery('#menu-desktop .navbar');
-        $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">  <div class="offcanvas-body"> <div id="menu-mobile"> </div> </div> </div>');
-
-        $menu_offcanvas.insertAfter('.header');
-        $nav.appendTo('#menu-mobile');
-
-
-        var offCanvasMenu = document.getElementById('offCanvasMenu')
-        offCanvasMenu.addEventListener('show.bs.offcanvas', function () {
-            jQuery('body').addClass('mobile-menu-active');
-        });
-
-        offCanvasMenu.addEventListener('hide.bs.offcanvas', function () {
-            jQuery('body').removeClass('mobile-menu-active');
-        });
     }
-
-
 }
 
 function __mini_cart() {
