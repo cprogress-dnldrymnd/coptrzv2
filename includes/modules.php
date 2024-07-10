@@ -1748,7 +1748,7 @@ function __layouts($args, $return = '')
 
     if ($layouts) {
         foreach ($layouts as $layout) {
-            $return .=  "[layout id='$layout->ID']";
+            $return .=  do_shortcode("[layout id='$layout->ID']");
         }
         return $return;
     }
