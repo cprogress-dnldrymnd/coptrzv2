@@ -12,6 +12,10 @@ get_header(); ?>
 if (is_home()) {
     $key = 'post_';
     $title = 'All Posts';
+} else if(is_post_type_archive('events')) {
+    $key = 'events';
+    $title = 'All Events';
+
 }
 echo do_shortcode(___hero_archive($key));
 echo ___featured($key);
