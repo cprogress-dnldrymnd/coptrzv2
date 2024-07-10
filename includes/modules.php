@@ -327,12 +327,10 @@ function ___sections($id = 'sections')
                 switch ($type) {
                     case 'layouts':
                         $layouts = $items['layouts'];
-
                         foreach ($layouts as $layout) {
                             $layout_id = $layout['id'];
                             $html .= "[layouts id='$layout_id']";
                         }
-
                         break;
                     case 'heading':
                         $html .= ____heading_modules($items);
