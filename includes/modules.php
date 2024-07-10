@@ -496,7 +496,33 @@ function ___sections($id = 'sections')
 
 
                         $html .= "</div>"; //end-swiper-wrapper
-                        $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div> <div class='col-auto'> <div class='row button-group-box d-inline-flex'> <div class='button-accent button-box col-auto'><a class='rounded-10px' target='_self' href='#' rel='noopener'>Enquire Now</a></div> <div class='button-bordered button-box col-auto'><a class='rounded-10px' target='_self' href='#' rel='noopener'>All Sectors</a></div> </div> </div> </div> </div> </div>";
+                        $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-between align-items-center'>";
+                        $html .= "<div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div>";
+
+                        $html .= "<div class='col-auto'>";
+                        $html .= "<div class='row button-group-box d-inline-flex'>";
+                        $html .= __button(array(
+                            'button_type' => get_post_type($id),
+                            'button_text' => 'Read Case Study',
+                            'button_url' => $id,
+                            'button_style' => 'button-accent' . ' col-auto',
+                        ));
+
+                        $html .= __button(array(
+                            'button_type' => 'custom',
+                            'button_text' => 'All Case Studies',
+                            'button_url_custom' => get_post_type_archive_link('casestudies'),
+                            'button_style' => 'button-bordered' . ' col-auto',
+                        ));
+                        $html .= "</div>";
+                        $html .= "</div>";
+
+
+
+                        $html .= "</div></div></div>";
+
+
+
                         $html .= "</div>"; //end-swiper
                         $html .= "</div>"; //end-swiper-holder
                         $html .= "</div>"; //end case-study-slider
