@@ -536,7 +536,6 @@ small {
         padding: 1rem;
         border: 1px solid var(--border-color);
         border-radius: 10px;
-        
     }
 }
 
@@ -551,4 +550,18 @@ small {
 
 .post-grid-holder {
     --image-padding: 36%;
+}
+
+.meta-box {
+    li {
+        svg {
+            width: 21px;
+            height: 21px;
+            flex: 0 0 21px;
+            margin-right: 10px;
+        }
+        @include not-last-child {
+            margin-bottom: 10px;
+        }
+    }
 }
