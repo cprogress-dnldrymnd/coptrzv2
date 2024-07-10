@@ -1448,6 +1448,7 @@ function __post_box_blog($data)
     }
 
     if ($metas) {
+        $html .= get__post_meta_by_id($id, 'crb_event_start_date');
         $html .= '<ul class="meta-box list-inline">';
         foreach ($metas as $key => $meta) {
             $meta_value = get__post_meta_by_id($id, $key);
