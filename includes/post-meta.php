@@ -13,8 +13,9 @@ Container::make('theme_options', __('Archives Settings'))
     ->add_tab(
         'Post',
         array(
-            Field::make('text', 'post_archive_title', __('Post Archive Title')),
-            Field::make('textarea', 'post_archive_description', __('Post Archive Description')),
+            Field::make('text', 'post_archive_title', __('Post Archive Title'))->set_classes('inline-field'),
+            Field::make('textarea', 'post_archive_description', __('Post Archive Description'))->set_classes('inline-field'),
+            Field::make('file', 'background', __('Post Archive Background'))->set_classes('inline-field'),
         )
     );
 
