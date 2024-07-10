@@ -1660,7 +1660,7 @@ function _events_additional_content($id)
 
     if ($location) {
         $additional_content .= "<li class='d-flex align-items-center'>";
-        $additional_content .= $SVG->clock();
+        $additional_content .= $SVG->location();
         $additional_content .= $location[0]->name;
         $additional_content .= "</li>";
     }
