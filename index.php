@@ -23,7 +23,7 @@ echo ___featured($key);
     ?>
     <div class="post-grid-holder">
         <div class="container">
-            <div class="row g-4">
+            <div class="row g-4 same-image-height">
                 <?php
                 while (have_posts()) {
                     the_post();

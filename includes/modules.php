@@ -1449,7 +1449,8 @@ function __post_box_blog($id, $col = false, $featured = false)
         $html .= __post_category($id, 'category');
     } else {
         $html .= __image(array(
-            'image_id' => $image
+            'image_id' => $image,
+            'class' => _attribute('class', array('image-box'))
         ));
         $html .= __post_category($id, 'category');
     }
