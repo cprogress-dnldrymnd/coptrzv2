@@ -3322,6 +3322,7 @@ Container::make('post_meta', __('Conditional Display'))
     ->add_fields(array(
         Field::make('select', 'display_location', __('Display Location'))
             ->add_options(array(
+                'section' => __('Section'),
                 'archive' => __('Archive'),
                 'product_cat' => __('Product Category'),
                 'after_header' => __('After Header'),
