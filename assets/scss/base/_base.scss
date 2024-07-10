@@ -273,7 +273,7 @@ input[type="checkbox"] {
 
 .case-study-slider {
     .swiper-slide {
-        width: 1903px;
+        height: auto !important;
         @include responsive(md-lg) {
             padding-bottom: 200px;
         }

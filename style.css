@@ -10664,7 +10664,7 @@ input[type="checkbox"] {
   margin-right: 2rem; }
 
 .case-study-slider .swiper-slide {
-  width: 1903px; }
+  height: auto !important; }
   @media screen and (min-width: 992px) {
     .case-study-slider .swiper-slide {
       padding-bottom: 200px; } }
