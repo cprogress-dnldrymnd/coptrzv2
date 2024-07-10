@@ -587,7 +587,7 @@ Container::make('theme_options', __('Archives Settings'))
                     array(
                         array(
                             'type'      => 'post',
-                            'post_type' => 'post',
+                            'post_type' => 'casestudies',
                         )
                     )
                 )
