@@ -47,6 +47,7 @@ if (is_home()) {
     $data = array(
         'col' => true,
         'featured' => false,
+        'bg_image' => true,
         'style' => 'style-3',
         'button_text' => 'Learn More',
         'elements' => array('image', 'title', 'button'),
@@ -62,14 +63,14 @@ if ($has_featured) {
     <?php
     if ($has_filter) {
         echo ___posts_header($key, $title, $category, $class);
-    } 
+    }
     ?>
     <div class="post-grid-holder">
         <div class="container">
             <?php
             if (!$has_filter && $title) {
                 echo "<h2 class='text-center'>$title</h2>";
-            } 
+            }
             ?>
             <div class="row g-4 same-image-height">
                 <?php

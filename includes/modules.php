@@ -1390,8 +1390,11 @@ function __post_box_blog($data)
     $button_text = isset($data['button_text']) ? $data['button_text'] : false;
     $id = isset($data['id']) ? $data['id'] : false;
     $elements = isset($data['elements']) ? $data['elements'] : false;
+    $bg_image = isset($data['bg_image']) ? $data['bg_image'] : false;
+
+
     $additional_content = isset($data['additional_content']) ? $data['additional_content'] : false;
-    
+
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
     if ($featured) {
@@ -1415,16 +1418,20 @@ function __post_box_blog($data)
         $html .= __background($image);
         $html .= __post_category($id, 'category', 'text-white');
     } else {
-        $html .= __image(array(
-            'image_id' => $image,
-            'placeholder' => true,
-            'size' => 'large',
-            'class' => _attribute('class', array('image-box rounded-corner overflow-hidden'))
-        ));
+        if ($bg_image) {
+            $html .= __background($image);
+        } else {
+            $html .= __image(array(
+                'image_id' => $image,
+                'placeholder' => true,
+                'size' => 'large',
+                'class' => _attribute('class', array('image-box rounded-corner overflow-hidden'))
+            ));
 
-        $html .= "<div class='content-box content-margin $content_box_class'>";
-        if (in_array('category', $elements)) {
-            $html .= __post_category($id, 'category', 'text-black');
+            $html .= "<div class='content-box content-margin $content_box_class'>";
+            if (in_array('category', $elements)) {
+                $html .= __post_category($id, 'category', 'text-black');
+            }
         }
     }
 
@@ -1591,7 +1598,7 @@ function ___featured($key)
 }
 
 
-function ___posts_header($key, $title, $taxonomy, $class='')
+function ___posts_header($key, $title, $taxonomy, $class = '')
 {
     $terms = get_terms(array(
         'taxonomy'   => $taxonomy,
