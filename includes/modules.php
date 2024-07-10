@@ -1454,7 +1454,7 @@ function __post_box_blog($id)
         'button_style' =>  'button-bordered position-relative',
     ));
 
- 
+
     $html .= "</div>";
 
     $html .= "</div>";
@@ -1528,4 +1528,22 @@ function ___featured($key)
 
         return $html;
     }
+}
+
+
+function ___posts_header($title, $taxonomy)
+{
+    $html = "<div class='post-archive-header'>";
+    $html .= "<div class='container'>";
+    $html .= "<div class='row'>";
+
+    $html .= "<div class='col-auto'>";
+    $html .= __heading(array(
+        'heading' => $title,
+    ));
+    $html .= "</div>";
+
+    $html .= "</div>";
+    $html .= "</div>";
+    $html .= "</div>";
 }

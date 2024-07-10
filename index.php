@@ -11,10 +11,19 @@ get_header(); ?>
 <?php
 if (is_home()) {
     $key = 'post_';
+    $title = 'All Posts';
 }
 echo do_shortcode(___hero_archive($key));
 echo ___featured($key);
 ?>
 
+<section class="archive-posts">
+    <?php
+    echo ___posts_header($title, 'category');
+    ?>
+    <div class="container">
+
+    </div>
+</section>
 
 <?php get_footer(); ?>
