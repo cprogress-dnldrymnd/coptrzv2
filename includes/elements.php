@@ -174,7 +174,7 @@ function __background($background, $is_youtube = false, $autoplay = true)
     }
 }
 
-function __post_category($id, $category, $class)
+function __post_category($id, $category, $class='')
 {
     $terms = get_the_terms($id, $category);
     if ($terms) {
