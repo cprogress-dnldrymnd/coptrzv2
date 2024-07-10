@@ -1532,7 +1532,7 @@ function ___featured($key)
         $html .= "<div class='row g-4'>";
 
         foreach ($featured as $post) {
-            $html .= __post_box_blog($post['id'], true);
+            $html .= __post_box_blog($post['id'], true, true);
         }
 
         $html .= "</div>";
