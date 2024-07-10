@@ -80,7 +80,6 @@ if ($has_featured) {
 </section>
 
 <?php
-echo $post_type;
 $args = array(
     'post_type'  => 'layouts',
     'meta_query' => array(
