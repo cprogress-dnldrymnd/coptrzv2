@@ -24,7 +24,7 @@ if (is_home()) {
 } else if (is_post_type_archive('events')) {
     $SVG = new SVG;
     $key = 'events_';
-    $title = 'All Events';
+    $title = false;
     $has_featured = false;
     $archive_title = 'Events';
     $category = 'events_category';
