@@ -1450,8 +1450,8 @@ function __post_box_blog($data)
     if ($metas) {
         $html .= '<ul class="meta-box list-inline">';
         foreach ($metas as $key => $meta) {
-            $meta = get__post_meta_by_id($id, $key);
-            $html .= "<li>$meta</li>";
+            $meta_value = get__post_meta_by_id($id, $key);
+            $html .= "<li>$meta_value</li>";
         }
         $html .= '</ul>';
     }
