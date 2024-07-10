@@ -1437,7 +1437,7 @@ function __post_box_blog($id, $col = false, $featured = false)
     if ($featured) {
         $class = 'featured-box text-white d-flex flex-column justify-content-between';
     } else {
-        $class = '';
+        $class = 'content-margin';
     }
     $html = '';
     if ($col == true) {
