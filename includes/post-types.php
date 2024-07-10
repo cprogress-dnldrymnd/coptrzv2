@@ -314,6 +314,19 @@ $Guides->rewrite = array(
 
 
 
+$Capabilities = new newPostType();
+$Capabilities->name = 'Capabilities';
+$Capabilities->singular_name = 'Capability';
+$Capabilities->icon = 'dashicons-media-document';
+$Capabilities->supports = array('title', 'revisions', 'editor', 'thumbnail', 'excerpt', 'author');
+$Capabilities->show_in_rest = true;
+$Capabilities->rewrite = array(
+    'with_front' => false,
+    'slug' => 'capabilities'
+);
+
+
+
 $Events_Category = new newTaxonomy();
 $Events_Category->taxonomy = 'events_category';
 $Events_Category->post_type = 'events';
