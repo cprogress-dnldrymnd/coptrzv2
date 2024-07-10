@@ -64,7 +64,7 @@ main {
     }
     & + div {
         position: relative;
-        z-index: 1;
+        z-index: 2;
     }
     iframe {
         width: 100%;
@@ -538,11 +538,9 @@ small {
         border-radius: 10px;
     }
     &.style-3 {
-       
         .content-box {
             padding-top: 45%;
         }
-      
     }
 }
 

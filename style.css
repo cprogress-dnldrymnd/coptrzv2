@@ -10468,7 +10468,7 @@ img {
     object-fit: cover; }
   .background-image + div {
     position: relative;
-    z-index: 1; }
+    z-index: 2; }
   .background-image iframe {
     width: 100%;
     height: 100%;
