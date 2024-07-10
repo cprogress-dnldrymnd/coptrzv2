@@ -52,6 +52,20 @@ if (is_home()) {
         'button_text' => 'Learn More',
         'elements' => array('image', 'title', 'button'),
     );
+} else if (is_post_type_archive('solutions')) {
+    $key = 'capabilities_';
+    $title = 'Rare Commercial <br> Capabilities';
+    $has_featured = false;
+    $has_filter = false;
+    $archive_title = 'Capabilities';
+    $data = array(
+        'col' => true,
+        'featured' => false,
+        'bg_image' => true,
+        'style' => 'style-3',
+        'button_text' => 'Learn More',
+        'elements' => array('image', 'title', 'button'),
+    );
 }
 echo do_shortcode(___hero_archive($key, $archive_title));
 if ($has_featured) {
