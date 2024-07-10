@@ -10863,9 +10863,9 @@ small, .small {
 .meta-box li:not(:last-child) {
   margin-bottom: 10px; }
 
-.event-filter {
+.event-filter .filter-box {
   padding: 7px; }
-  .event-filter label {
+  .event-filter .filter-box label {
     padding: 20px 41px; }
 
 /*-----------------------------------------------------------------------------------*/
