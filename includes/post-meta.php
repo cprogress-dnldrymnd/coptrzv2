@@ -2958,6 +2958,7 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'background_color', 'Background Color')
                                 ->set_options(
                                     array(
+                                        ''   => 'None',
                                         'bg-primary'   => 'Primary',
                                         'bg-secondary' => 'Secondary',
                                         'bg-accent'    => 'Accent',
