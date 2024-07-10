@@ -177,59 +177,7 @@ function ___hero_product_taxonomy()
         return $hero;
     }
 }
-function ___hero_product_taxonomy_old()
-{
 
-    $term = get_queried_object();
-    $term_description = _format_text($term->description);
-    $hero_heading_val = $term->name;
-    $parent = $term->parent;
-    $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
-    $hero_background = $thumbnail_id;
-    $heading_class[] = 'large-heading';
-    if (!$parent) {
-        $hero_class = 'small-hero';
-        $heading_class[] = 'mb-0';
-    } else {
-        $hero_class = 'text-center';
-    }
-
-    if (!$term_description) {
-        $heading_class[] = 'mb-0';
-    }
-
-    $hero = "<section class='hero pb-50px rounded-10px $hero_class medium-hero bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative '>";
-    $hero .= __background($hero_background);
-    $hero .= "<div class='container'>";
-    $hero .= "[breadcrumbs id='$term->term_id' type='term']";
-    $hero .= __heading(array(
-        'heading' => $hero_heading_val,
-        'tag' => 'h1',
-        'class' => _attribute('class', $heading_class),
-        ''
-    ));
-    if ($parent) {
-        $hero .= __description(array(
-            'description' => $term_description,
-            'class' => _attribute('class', array('description-box small-text small-width')),
-        ));
-    }
-
-    $hero .= "</div>";
-    $hero .= "</section>";
-
-    if (!$parent) {
-        $hero .= "<section class='sm-padding-top sm-padding-bottom term-description'>";
-        $hero .= "<div class='container'>";
-        $hero .= __description(array(
-            'description' => $term_description,
-            'class' => _attribute('class', array('description-box small-text small-width')),
-        ));
-        $hero .= "</div>";
-        $hero .= "</section>";
-    }
-    return $hero;
-}
 
 function ___sections($id = 'sections')
 {
@@ -1485,8 +1433,61 @@ function __post_box_blog($id, $col = false, $featured = false)
     }
     return $html;
 }
-
 function ___hero_archive($key, $title)
+{
+
+    $hero_heading = get__theme_option($key . 'archive_title');
+    $hero_description = _format_text(get__theme_option($key . 'archive_description'));
+    $hero_background = get__theme_option($key . 'archive_hero_background');
+    $hero_background_youtube = get__theme_option($key . 'archive_background_youtube');
+    $hero_background_type = get__theme_option($key . 'archive_hero_background_type');
+    $hero_alignment = get__theme_option($key . 'archive_hero_alignment');
+    $hero_height = get__theme_option($key . 'archive_hero_height');
+    $buttons = get__theme_option($key . 'archive_hero_buttons');
+    $text_align = $hero_alignment ? $hero_alignment : 'text-center';
+
+
+    $heading_class[] = 'large-heading';
+
+    if (!$hero_hidden) {
+        $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
+        if ($hero_background_youtube && $hero_background_type == 'youtube') {
+            $hero .= __background($hero_background_youtube, true);
+        } else if ($hero_background) {
+            $hero .= __background($hero_background);
+        }
+        $hero .= "<div class='container'>";
+
+
+        $hero .= "[breadcrumbs type='archive' archive_title='$title']";
+
+        $hero .= __heading(array(
+            'heading' => $hero_heading,
+            'tag' => 'h1',
+            'class' => _attribute('class', $heading_class),
+            ''
+        ));
+    
+        $hero .= __description(array(
+            'description' => $hero_description,
+            'class' => _attribute('class', array('description-box small-text')),
+        ));
+
+        if ($buttons) {
+            $hero .= "<div>";
+            $hero .= ____button_modules($buttons);
+            $hero .= "</div>";
+        }
+
+        $hero .= "</div>";
+        $hero .= "</section>";
+
+
+        return $hero;
+    }
+}
+
+function ___hero_archive_old($key, $title)
 {
 
     $hero_heading = get__theme_option($key . 'archive_title');
