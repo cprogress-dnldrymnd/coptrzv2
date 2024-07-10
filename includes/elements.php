@@ -96,6 +96,7 @@ function __image($data)
     $size = isset($data['size']) ? $data['size'] : false;
     $class = isset($data['class']) ? $data['class'] : false;
     $style = isset($data['style']) ? $data['style'] : false;
+    $placeholder = isset($data['placeholder']) ? $data['placeholder'] : false;
 
     if ($featured_image) {
         $image = get_the_post_thumbnail($featured_image, $size);
@@ -103,7 +104,6 @@ function __image($data)
         $image = wp_get_attachment_image($image_id, $size);
     }
     if ($image) {
-        $attributes_args = [];
         if ($class) {
             $attributes_args[] = $class;
         }
@@ -113,6 +113,17 @@ function __image($data)
         $_attributes = _attributes($attributes_args);
 
         return "<div $_attributes>$image</div>";
+    } else {
+        if ($placeholder) {
+            $image = wp_get_attachment_image(67781, $size);
+
+            $class = _attribute('class', array('is-placeholder'));
+            $attributes_args[] = $class;
+
+            $_attributes = _attributes($attributes_args);
+
+            return "<div $_attributes>$image</div>";
+        }
     }
 }
 
@@ -174,7 +185,7 @@ function __background($background, $is_youtube = false, $autoplay = true)
     }
 }
 
-function __post_category($id, $category, $class='')
+function __post_category($id, $category, $class = '')
 {
     $terms = get_the_terms($id, $category);
     if ($terms) {
