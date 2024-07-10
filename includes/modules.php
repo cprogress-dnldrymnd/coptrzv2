@@ -1748,7 +1748,7 @@ function __layouts($args, $return = '')
 
     if ($layouts) {
         foreach ($layouts as $layout_below) {
-            $return .=  get_the_content(NULL, false, $layout_below->ID);
+            //$return .=  get_the_content(NULL, false, $layout_below->ID);
         }
         return $return . var_dump($layouts);
     }
