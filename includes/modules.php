@@ -1460,7 +1460,7 @@ function __post_box_blog($id, $col = false, $featured = false)
     if ($featured) {
         $html .= "<div class='content-box content-margin'>";
     }
-    $html .= "<div class='date-box small-text'>$date</div>";
+    $html .= "<div class='date-box small-text mb-2'>$date</div>";
     $html .= __heading(array(
         'heading' => get_the_title($id),
         'tag' => 'h3',
