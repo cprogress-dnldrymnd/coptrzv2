@@ -1750,6 +1750,6 @@ function __layouts($args, $return = '')
         foreach ($layouts as $layout) {
             $return .=  "[layout id='$layout->ID']";
         }
-        return $return . var_dump($layouts);
+        return $return;
     }
 }
