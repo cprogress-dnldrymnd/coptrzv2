@@ -14,6 +14,7 @@ if (is_home()) {
     $title = 'All Posts';
     $has_featured = true;
     $archive_title = 'Blog';
+    $category = 'category';
     $data = array(
         'col' => true,
         'featured' => false,
@@ -26,6 +27,7 @@ if (is_home()) {
     $title = 'All Events';
     $has_featured = false;
     $archive_title = 'Events';
+    $category = 'events_category';
 
 
     $data = array(
@@ -49,7 +51,7 @@ if ($has_featured) {
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default">
     <?php
-    echo ___posts_header($title, 'category');
+    echo ___posts_header($title, $category);
     ?>
     <div class="post-grid-holder">
         <div class="container">
