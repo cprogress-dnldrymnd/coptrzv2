@@ -15,7 +15,6 @@ if (is_home()) {
     $has_featured = true;
     $archive_title = 'Blog';
     $data = array(
-        'id' => get_the_ID(),
         'col' => true,
         'featured' => false,
         'style' => 'style-1',
@@ -50,6 +49,7 @@ if ($has_featured) {
                 <?php
                 while (have_posts()) {
                     the_post();
+                    $data['id'] => get_the_ID();
                     echo __post_box_blog($data);
                 }
                 ?>
