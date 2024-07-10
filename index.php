@@ -76,4 +76,20 @@ if ($has_featured) {
     </div>
 </section>
 
+<?php
+$post_type = get_post_type();
+$args = array(
+    'post_type'  => 'product',
+    'meta_query' => array(
+        array(
+            'key'   => '_display_location_archive',
+            'value' => $post_type,
+        )
+    )
+);
+$postslist = get_posts($args);
+
+var_dump($postslist);
+?>
+
 <?php get_footer(); ?>

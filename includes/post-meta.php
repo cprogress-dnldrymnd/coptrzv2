@@ -3215,7 +3215,7 @@ Container::make('post_meta', __('Conditional Display'))
         Field::make('select', 'display_location_archive', __('Select Archive'))
             ->add_options(array(
                 'post' => __('Post'),
-                'events' => __('Product Category'),
+                'events' => __('Events'),
                 'capabilities' => __('Capabilities'),
             ))
             ->set_conditional_logic(
