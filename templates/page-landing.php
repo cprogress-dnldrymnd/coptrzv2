@@ -27,9 +27,9 @@ $description_args['class'] =  _attribute('class', array('description-box'));
 <section class="landing-page bg-primary header-padding rounded-corner mx-20px d-flex align-items-center justify-content-center">
     <?php
     if ($background_youtube && $background_type == 'youtube') {
-        echo _background($background_youtube, true);
+        echo __background($background_youtube, true);
     } else if ($background) {
-        echo  _background($background);
+        echo  __background($background);
     }
     ?>
     <div class="inner sm-padding-bottom sm-padding-top">

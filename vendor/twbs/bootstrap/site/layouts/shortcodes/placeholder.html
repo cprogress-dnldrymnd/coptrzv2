@@ -13,12 +13,12 @@
 
 {{- $grays := $.Site.Data.grays -}}
 {{- $default_color := (index $grays 2).hex -}}
-{{- $default_background := (index $grays 5).hex -}}
+{{- $default__background := (index $grays 5).hex -}}
 
 {{- $title := .Get "title" | default "Placeholder" -}}
 {{- $class := .Get "class" -}}
 {{- $color := .Get "color" | default $default_color -}}
-{{- $background := .Get "background" | default $default_background -}}
+{{- $background := .Get "background" | default $default__background -}}
 {{- $width := .Get "width" | default "100%" -}}
 {{- $height := .Get "height" | default "180" -}}
 {{- $text := .Get "text" | default (printf "%sx%s" $width $height) -}}
