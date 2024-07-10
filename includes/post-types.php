@@ -196,12 +196,12 @@ $Events->name = 'Events';
 $Events->singular_name = 'Event';
 $Events->icon = 'dashicons-camera-alt';
 $Events->supports = array('title', 'revisions', 'editor', 'thumbnail');
-$Events->rewrite = array('slug' => 'events');
 $Events->show_in_rest = true;
 $Events->rewrite = array(
     'with_front' => false,
     'slug' => 'events'
 );
+
 
 
 
