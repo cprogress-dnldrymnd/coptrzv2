@@ -10,7 +10,6 @@ get_header(); ?>
 
 <?php
 if (is_home()) {
-    $post_key = 'post';
     $key = 'post_';
     $title = 'All Posts';
     $has_featured = true;
@@ -25,7 +24,6 @@ if (is_home()) {
     );
 } else if (is_post_type_archive('events')) {
     $SVG = new SVG;
-    $post_key = 'events';
     $key = 'events_';
     $title = false;
     $has_featured = false;
@@ -42,16 +40,14 @@ if (is_home()) {
     );
 } else if (is_post_type_archive('capabilities')) {
     $key = 'capabilities_';
-    $post_key = 'capabilities';
-    $title = false;
+    $title = 'Rare Commercial Capabilities';
     $has_featured = false;
     $has_filter = false;
     $archive_title = 'Capabilities';
-    $post_style = 'style-3';
     $data = array(
         'col' => true,
         'featured' => false,
-        'style' => 'style-2',
+        'style' => 'style-3',
         'button_text' => 'Learn More',
         'elements' => array('image', 'title', 'button'),
     );
@@ -64,7 +60,6 @@ if ($has_featured) {
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default">
     <?php
-    if ($has_filter) {
         echo ___posts_header($key, $title, $category, $class);
     }
     ?>
