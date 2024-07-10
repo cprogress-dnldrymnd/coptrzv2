@@ -1515,7 +1515,7 @@ function ___hero_archive($key, $title)
 
     $hero .= __description(array(
         'description' => $hero_description,
-        'class' => _attribute('class', array('description-box small-text mb-4')),
+        'class' => _attribute('class', array('description-box small-text')),
     ));
 
 
