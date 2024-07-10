@@ -10860,6 +10860,8 @@ small, .small {
   height: 21px;
   flex: 0 0 21px;
   margin-right: 10px; }
+.meta-box li:not(:last-child) {
+  margin-bottom: 10px; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
