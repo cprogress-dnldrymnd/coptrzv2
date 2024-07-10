@@ -1638,7 +1638,6 @@ function ___posts_header($key, $title, $taxonomy)
         $html .= "</div>";
         $html .= "</div>";
         $html .= "</div>";
-
         $html .= "</div>";
     }
 
