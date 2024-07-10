@@ -3531,7 +3531,7 @@ Container::make('post_meta', __('Landing Page Settings'))
 /*-----------------------------------------------------------------------------------*/
 /* Events
 /*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', 'Event Details')
+Container::make('post_meta', 'Event Settings')
     ->set_priority('high')
     ->or_where('post_type', '=', 'events')
     ->add_fields(
@@ -3540,6 +3540,23 @@ Container::make('post_meta', 'Event Details')
                 ->set_storage_format('d/m/Y'),
             Field::make('time', 'crb_event_start_time', 'Event Start Time')
                 ->set_storage_format('g:i a'),
+
+        )
+    );
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Events
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', 'Case Study Settings')
+    ->set_priority('high')
+    ->or_where('post_type', '=', 'events')
+    ->add_fields(
+        array(
+            Field::make('complex', 'feature', __('Feature'))
+                ->add_fields(array(
+                    Field::make('text', 'feature_text', __('Feature Text'))
+                ))
 
         )
     );
