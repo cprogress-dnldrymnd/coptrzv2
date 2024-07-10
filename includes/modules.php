@@ -64,9 +64,9 @@ function ___hero_modules()
     if (!$hero_hidden) {
         $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
-            $hero .= _background($hero_background_youtube, true);
+            $hero .=__background($hero_background_youtube, true);
         } else if ($hero_background) {
-            $hero .= _background($hero_background);
+            $hero .=__background($hero_background);
         }
         $hero .= "<div class='container'>";
 
@@ -129,9 +129,9 @@ function ___hero_product_taxonomy()
     if (!$hero_hidden) {
         $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
-            $hero .= _background($hero_background_youtube, true);
+            $hero .=__background($hero_background_youtube, true);
         } else if ($hero_background) {
-            $hero .= _background($hero_background);
+            $hero .=__background($hero_background);
         }
         $hero .= "<div class='container'>";
 
@@ -199,7 +199,7 @@ function ___hero_product_taxonomy_old()
     }
 
     $hero = "<section class='hero pb-50px rounded-10px $hero_class medium-hero bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative '>";
-    $hero .= _background($hero_background);
+    $hero .=__background($hero_background);
     $hero .= "<div class='container'>";
     $hero .= "[breadcrumbs id='$term->term_id' type='term']";
     $hero .= __heading(array(
@@ -1434,7 +1434,7 @@ function __post_box_blog($id)
 {
     $image = get_post_thumbnail_id();
     $html = "<div class='column-holder position-relative xs-padding rounded-10px overflow-hidden text-white h-100 d-flex flex-column justify-content-between'>";
-    $html .= _background($image);
+    $html .=__background($image);
     $html .= __post_category($id, 'category');
     $html .= "</div>";
 }
@@ -1455,7 +1455,7 @@ function ___hero_archive($key)
     $heading_class[] = 'mb-3';
 
     $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
-    $hero .= __background($hero_background);
+    $hero .=__background($hero_background);
 
     $hero .= "<div class='container'>";
 
