@@ -325,6 +325,15 @@ function ___sections($id = 'sections')
             foreach ($section_items as $key => $items) {
                 $type = $items['_type'];
                 switch ($type) {
+                    case 'layouts':
+                        $layouts = $items['layouts'];
+
+                        foreach ($layouts as $layout) {
+                            $layout_id = $layout['id'];
+                            $html .= "[layouts id='$layout_id']";
+                        }
+
+                        break;
                     case 'heading':
                         $html .= ____heading_modules($items);
                         break;
