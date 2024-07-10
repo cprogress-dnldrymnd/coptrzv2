@@ -53,11 +53,10 @@ if (is_home()) {
         'elements' => array('image', 'title', 'button'),
     );
 } else if (is_post_type_archive('solutions')) {
-    $key = 'capabilities_';
-    $title = 'Rare Commercial <br> Capabilities';
+    $key = 'solutions_';
     $has_featured = false;
     $has_filter = false;
-    $archive_title = 'Capabilities';
+    $archive_title = 'Industry Solutions';
     $data = array(
         'col' => true,
         'featured' => false,
