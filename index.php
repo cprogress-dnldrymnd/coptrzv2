@@ -30,10 +30,10 @@ if (is_home()) {
         'featured' => false,
         'style' => 'style-2',
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
-        'metas' => array(array(
+        'metas' => array(
             'crb_event_start_date' => 'calendar',
             'crb_event_start_time' => 'clock',
-        ))
+        )
     );
 } else if (is_post_type_archive('capabilities')) {
     $key = 'capabilities_';
