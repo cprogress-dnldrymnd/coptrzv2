@@ -21,8 +21,17 @@ echo ___featured($key);
     <?php
     echo ___posts_header($title, 'category');
     ?>
-    <div class="container">
-
+    <div class="post-grid-holder">
+        <div class="container">
+            <div class="row g-4">
+                <?php
+                while (have_posts()) {
+                    the_post();
+                    __post_box_blog(get_the_ID());
+                }
+                ?>
+            </div>
+        </div>
     </div>
 </section>
 

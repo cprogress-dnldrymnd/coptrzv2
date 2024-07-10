@@ -1430,11 +1430,15 @@ function __post_box($id)
     return $html;
 }
 
-function __post_box_blog($id, $featured = true)
+function __post_box_blog($id, $col = false, $featured = false)
 {
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
-    $html = "<div class='post-box post-box-blog column-holder position-relative xs-padding rounded-10px overflow-hidden text-white h-100 d-flex flex-column justify-content-between'>";
+    $html = '';
+    if ($col == true) {
+        $html = "<div class='col-lg-4 col-sm-6'>";
+    }
+    $html .= "<div class='post-box post-box-blog column-holder position-relative xs-padding rounded-10px overflow-hidden text-white h-100 d-flex flex-column justify-content-between'>";
 
     if ($featured) {
         $html .= __background($image);
@@ -1467,9 +1471,10 @@ function __post_box_blog($id, $featured = true)
     if ($featured) {
         $html .= "</div>";
     }
-
     $html .= "</div>";
-
+    if ($col == true) {
+        $html .= "</div>";
+    }
     return $html;
 }
 
@@ -1527,9 +1532,7 @@ function ___featured($key)
         $html .= "<div class='row g-4'>";
 
         foreach ($featured as $post) {
-            $html .= "<div class='col-lg-4 col-sm-6'>";
-            $html .= __post_box_blog($post['id']);
-            $html .= "</div>";
+            $html .= __post_box_blog($post['id'], true);
         }
 
         $html .= "</div>";
