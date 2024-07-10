@@ -2984,3 +2984,20 @@ Container::make('post_meta', __('Landing Page Settings'))
         Field::make('text', 'form_description', 'Form Description')->set_classes('inline-field'),
         Field::make('image', 'form_image', 'Form Image')->set_classes('inline-field'),
     ));
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Events
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', 'Event Details')
+    ->set_priority('high')
+    ->or_where('post_type', '=', 'events')
+    ->add_fields(
+        array(
+            Field::make('date', 'crb_event_start_date', __('Event Start Date'))
+                ->set_storage_format('d/m/Y'),
+            Field::make('time', 'crb_event_start_time', 'Event Start Time')
+                ->set_storage_format('g:i a'),
+
+        )
+    );
