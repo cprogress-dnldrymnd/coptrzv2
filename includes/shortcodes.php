@@ -164,7 +164,7 @@ class Shortcodes
             $html .= "<div class='inner md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
 
             $html .= "<div class='container'>"; //container
-            $html .= "<div class='row'>"; //row
+            $html .= "<div class='row g-5'>"; //row
 
             $html .= "<div class='col-lg-8'>";
             $html .= __description(array(
