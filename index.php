@@ -7,9 +7,29 @@
  */
 get_header(); ?>
 
+<?php
+$post_type = get_queried_object()->name;
+
+
+$args = array(
+    'meta_query' => array(
+        'relation' => 'AND',
+        array(
+            'key'   => '_display_location_archive',
+            'value' => $post_type,
+        ),
+        array(
+            'key'   => '_display_location_archive_position',
+            'value' => 'above_loop',
+        )
+    )
+);
+echo __layouts($args);
+?>
 
 <?php
 $class = '';
+
 if (is_home()) {
     $key = 'post_';
     $title = 'All Posts';
@@ -117,7 +137,6 @@ if ($has_featured) {
 </section>
 
 <?php
-$post_type = get_queried_object()->name;
 $args = array(
     'meta_query' => array(
         'relation' => 'AND',
