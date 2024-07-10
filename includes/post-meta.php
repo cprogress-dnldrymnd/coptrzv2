@@ -753,7 +753,7 @@ function __section_fields($name = 'sections')
                     )
                     ->set_collapsed(true)
                     ->add_fields('layouts', array(
-                        Field::make('association', 'post', 'Select Layouts')
+                        Field::make('association', 'layouts', 'Select Layouts')
                             ->set_types(
                                 array(
                                     array(

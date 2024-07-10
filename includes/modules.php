@@ -326,7 +326,7 @@ function ___sections($id = 'sections')
                 $type = $items['_type'];
                 switch ($type) {
                     case 'layouts':
-                        $layouts = $items['post'];
+                        $layouts = $items['layouts'];
                         foreach ($layouts as $layout) {
                             $layout_id = $layout['id'];
                             $html .= "[layouts id='$layout_id']";
