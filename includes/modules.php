@@ -1554,7 +1554,7 @@ function ___posts_header($title, $taxonomy)
 {
     $html = "<div class='post-archive-header'>";
     $html .= "<div class='container'>";
-    $html .= "<div class='row'>";
+    $html .= "<div class='row g-3 justify-content-between'>";
 
     $html .= "<div class='col-auto'>";
     $html .= __heading(array(
@@ -1564,7 +1564,7 @@ function ___posts_header($title, $taxonomy)
 
     $html .= "<div class='col-auto'>";
 
-    $html .= "<div class='row g-3 align-items-center justify-content-between'>";
+    $html .= "<div class='row g-3 align-items-center'>";
     $html .= "<div class='col-auto'>";
     $html .= "<select name='category'>";
     $html .= "</select>";
