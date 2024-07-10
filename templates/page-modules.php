@@ -5,13 +5,9 @@
 /*-----------------------------------------------------------------------------------*/
 ?>
 <?php get_header(); ?>
-<?php
-$modules = get__post_meta('modules');
-?>
-
 <div class="modules">
     <?php
-    the_content();
+    echo do_shortcode(___sections('sections', get_the_ID()));
     ?>
 </div>
 
