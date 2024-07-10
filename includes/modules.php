@@ -488,56 +488,8 @@ function ___sections($id = 'sections')
 
                         foreach ($casestudies_featured as $casestudies) {
                             $id = $casestudies['id'];
-                            $post_excerpt = wpautop(get_the_excerpt($id));
-                            $features = get__post_meta_by_id($id, 'feature');
-                            $logo = get__post_meta_by_id($id, 'logo');
                             $html .= "<div class='swiper-slide'>"; //swiper-slide
-                            $html .= __image(array(
-                                'image_id' => get_post_thumbnail_id($id),
-                                'placeholder' => true,
-                                'size' => 'full',
-                                'class' => _attribute('class', array('background-image background-overlay background-overlay-darker bg-black mx-20px rounded-10px overflow-hidden'))
-                            ));
-
-                            $html .= "<div class='inner md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
-
-                            $html .= "<div class='container'>"; //container
-                            $html .= "<div class='row'>"; //row
-
-                            $html .= "<div class='col-lg-8'>";
-                            $html .= __description(array(
-                                'description' => $post_excerpt,
-                                'class' => _attribute('class', array('description-box big-text mb-5'))
-                            ));
-                            if ($logo) {
-                                $html .= __image(array(
-                                    'image_id' => $logo,
-                                    'placeholder' => true,
-                                    'size' => 'large',
-                                    'class' => _attribute('class', array('logo-box'))
-                                ));
-                            }
-                            $html .= "</div>";
-
-                            if ($features) {
-                                $html .= "<div class='col-lg-4'>";
-                                $html .= "<div class='meta-data text-end'>";
-                                $html .= "<ul class='list-inline p-0'>";
-
-                                foreach ($features as $feature) {
-                                    $feature_text = $feature['feature_text'];
-                                    $html .= "<li class='mb-3'>$feature_text</li>";
-                                }
-
-                                $html .= "</ul>";
-                                $html .= "</div>";
-                                $html .= "</div>";
-                            }
-
-                            $html .= "</div>"; //end-row
-                            $html .= "</div>"; //end-container
-                            $html .= "</div>"; //end-inner
-
+                            $html .= "[case_study_slider_grid id='$id']"; //swiper-slide
                             $html .= "</div>"; //end-swiper-slide
                         }
 
