@@ -66,7 +66,7 @@ function get__post_meta_by_id($id, $value)
 }
 function get__theme_option($value)
 {
-	return get_option('_' . $value);
+	return carbon_get_theme_option($value);
 }
 
 /*-----------------------------------------------------------------------------------*/
