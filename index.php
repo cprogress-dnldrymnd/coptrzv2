@@ -80,7 +80,6 @@ if ($has_featured) {
 </section>
 
 <?php
-$post_type = get_queried_object()->name;
 echo $post_type;
 $args = array(
     'post_type'  => 'layouts',
@@ -92,9 +91,12 @@ $args = array(
     )
 );
 $layouts = get_posts($args);
-echo '<pre>';
-var_dump($layouts);
-echo '</pre>';
+
+if ($layouts) {
+    foreach ($layouts as $layout) {
+        echo do_shortcode(get_the_content(NULL, false, $layout->ID));
+    }
+}
 ?>
 
 <?php get_footer(); ?>
