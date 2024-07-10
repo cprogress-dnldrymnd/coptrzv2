@@ -1741,14 +1741,16 @@ function _events_additional_content($id)
 }
 
 
-function __layouts($args)
+function __layouts($args, $return = '')
 {
     $args['post_type'] = 'layouts';
     $layouts_below = get_posts($args);
 
     if ($layouts_below) {
         foreach ($layouts_below as $layout_below) {
-            return do_shortcode(get_the_content(NULL, false, $layout_below->ID));
+            $return .=  do_shortcode(get_the_content(NULL, false, $layout_below->ID));
         }
+        return $return;
     }
+    
 }
