@@ -121,6 +121,7 @@ $post_type = get_queried_object()->name;
 $args = array(
     'post_type'  => 'layouts',
     'meta_query' => array(
+        'relation' => 'AND',
         array(
             'key'   => '_display_location_archive',
             'value' => $post_type,
