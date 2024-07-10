@@ -13,8 +13,8 @@ Container::make('theme_options', __('Archives Settings'))
     ->add_tab(
         'Posts',
         array(
-            Field::make('text', 'post_archive_title', __('Archive Title'))->set_classes('inline-field inline-field-wide-label'),
-            Field::make('textarea', 'post_archive_description', __('Archive Description'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('text', 'post_archive_title', __('Archvie Hero Title'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('textarea', 'post_archive_description', __('Archvie Hero Description'))->set_classes('inline-field inline-field-wide-label'),
             Field::make('select', 'post_archive_hero_background_type', __('Background Type'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
@@ -134,8 +134,8 @@ Container::make('theme_options', __('Archives Settings'))
     ->add_tab(
         'Events',
         array(
-            Field::make('text', 'events_archive_title', __('Archive Title'))->set_classes('inline-field inline-field-wide-label'),
-            Field::make('textarea', 'events_archive_description', __('Archive Description'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('text', 'events_archive_title', __('Archvie Hero Title'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('textarea', 'events_archive_description', __('Archvie Hero Description'))->set_classes('inline-field inline-field-wide-label'),
             Field::make('select', 'events_archive_hero_background_type', __('Background Type'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
@@ -245,8 +245,8 @@ Container::make('theme_options', __('Archives Settings'))
     ->add_tab(
         'Capabilities',
         array(
-            Field::make('text', 'capabilities_archive_title', __('Archive Title'))->set_classes('inline-field inline-field-wide-label'),
-            Field::make('textarea', 'capabilities_archive_description', __('Archive Description'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('text', 'capabilities_archive_title', __('Archvie Hero Title'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('textarea', 'capabilities_archive_description', __('Archvie Hero Description'))->set_classes('inline-field inline-field-wide-label'),
             Field::make('select', 'capabilities_archive_hero_background_type', __('Background Type'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
