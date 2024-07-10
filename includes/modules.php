@@ -1617,6 +1617,8 @@ function ___posts_header($key, $title, $taxonomy)
 
         $html .= "<div class='col-auto'>";
 
+        $html .= "<div class='event-filter'>";
+        $html .= "<p class='fw-medium text-medium'>Select event type:</p>";
         $html .= "<div class='row event-filter'>";
         $html .= "<input name='events_category' value='' type='radio' id='term-all'>";
         $html .= "<label for='term-all'>All</label>";
@@ -1629,6 +1631,7 @@ function ___posts_header($key, $title, $taxonomy)
             $html .= "<label for='term-$term_id'>$term_name</label>";
             $html .= "</div>";
         }
+        $html .= "</div>";
         $html .= "</div>";
 
         $html .= "</div>";
