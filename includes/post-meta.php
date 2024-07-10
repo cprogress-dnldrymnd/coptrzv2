@@ -3212,7 +3212,7 @@ Container::make('post_meta', __('Conditional Display'))
                 'before_footer' => __('Before Footer'),
             )),
 
-        Field::make('select', 'display_location', __('Select Archive'))
+        Field::make('select', 'display_location_archive', __('Select Archive'))
             ->add_options(array(
                 'post' => __('Post'),
                 'events' => __('Product Category'),
