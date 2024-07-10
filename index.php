@@ -80,7 +80,7 @@ if ($has_featured) {
 </section>
 
 <?php
-$post_type = get_post_type();
+$post_type = get_queried_object()->name;
 echo $post_type;
 $args = array(
     'post_type'  => 'layouts',
@@ -93,7 +93,7 @@ $args = array(
 );
 $layouts = get_posts($args);
 echo '<pre>';
-var_dump(get_queried_object ());
+var_dump($layouts);
 echo '</pre>';
 ?>
 
