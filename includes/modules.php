@@ -45,9 +45,9 @@ function ___hero_modules()
     $hero_heading = get__post_meta('hero_heading');
     $hero_description = _format_text(get__post_meta('hero_description'));
     $hero_hidden = get__post_meta('hero_hidden');
-    $hero__background = get__post_meta('hero__background');
-    $hero__background_youtube = get__post_meta('hero__background_youtube');
-    $hero__background_type = get__post_meta('hero__background_type');
+    $hero_background = get__post_meta('hero_background');
+    $hero_background_youtube = get__post_meta('hero_background_youtube');
+    $hero_background_type = get__post_meta('hero_background_type');
     $hero_alignment = get__post_meta('hero_alignment');
     $hero_height = get__post_meta('hero_height');
     $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
@@ -63,10 +63,10 @@ function ___hero_modules()
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
         $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
-        if ($hero__background_youtube && $hero__background_type == 'youtube') {
-            $hero .= __background($hero__background_youtube, true);
-        } else if ($hero__background) {
-            $hero .= __background($hero__background);
+        if ($hero_background_youtube && $hero_background_type == 'youtube') {
+            $hero .= _background($hero_background_youtube, true);
+        } else if ($hero_background) {
+            $hero .= _background($hero_background);
         }
         $hero .= "<div class='container'>";
 
@@ -107,9 +107,9 @@ function ___hero_product_taxonomy()
     $hero_heading = get___term_meta($id, 'hero_heading');
     $hero_description = _format_text(get___term_meta($id, 'hero_description'));
     $hero_hidden = get___term_meta($id, 'hero_hidden');
-    $hero__background = get___term_meta($id, 'hero__background');
-    $hero__background_youtube = get___term_meta($id, 'hero__background_youtube');
-    $hero__background_type = get___term_meta($id, 'hero__background_type');
+    $hero_background = get___term_meta($id, 'hero_background');
+    $hero_background_youtube = get___term_meta($id, 'hero_background_youtube');
+    $hero_background_type = get___term_meta($id, 'hero_background_type');
     $hero_alignment = get___term_meta($id, 'hero_alignment');
     $hero_height = get___term_meta($id, 'hero_height');
     $buttons = get___term_meta($id, 'buttons');
@@ -128,10 +128,10 @@ function ___hero_product_taxonomy()
 
     if (!$hero_hidden) {
         $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
-        if ($hero__background_youtube && $hero__background_type == 'youtube') {
-            $hero .= __background($hero__background_youtube, true);
-        } else if ($hero__background) {
-            $hero .= __background($hero__background);
+        if ($hero_background_youtube && $hero_background_type == 'youtube') {
+            $hero .= _background($hero_background_youtube, true);
+        } else if ($hero_background) {
+            $hero .= _background($hero_background);
         }
         $hero .= "<div class='container'>";
 
@@ -185,7 +185,7 @@ function ___hero_product_taxonomy_old()
     $hero_heading_val = $term->name;
     $parent = $term->parent;
     $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
-    $hero__background = $thumbnail_id;
+    $hero_background = $thumbnail_id;
     $heading_class[] = 'large-heading';
     if (!$parent) {
         $hero_class = 'small-hero';
@@ -199,7 +199,7 @@ function ___hero_product_taxonomy_old()
     }
 
     $hero = "<section class='hero pb-50px rounded-10px $hero_class medium-hero bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative '>";
-    $hero .= __background($hero__background);
+    $hero .= _background($hero_background);
     $hero .= "<div class='container'>";
     $hero .= "[breadcrumbs id='$term->term_id' type='term']";
     $hero .= __heading(array(
@@ -418,7 +418,7 @@ function ___sections($id = 'sections')
                         $image_styles = array();
                         $image_classes  = array();
 
-                        $is__background_image = $items['is__background_image'];
+                        $is_background_image = $items['is_background_image'];
                         $custom_size = $items['custom_size'];
                         $image_height = $items['image_height'];
                         $image_width = $items['image_width'];
@@ -429,7 +429,7 @@ function ___sections($id = 'sections')
 
 
                         $image_classes[] = 'image-box';
-                        if ($is__background_image) {
+                        if ($is_background_image) {
                             $image_classes[] = 'background-image background-overlay';
                         }
                         if ($custom_size) {
@@ -715,10 +715,10 @@ function ____post_grid($data)
                     ));
                     break;
                 case 'featured_image':
-                    $is__background_image = $item['is__background_image'];
+                    $is_background_image = $item['is_background_image'];
                     $image_args['featured_image'] = $post->ID;
                     $image_args['size'] = $item['size'];
-                    if ($is__background_image) {
+                    if ($is_background_image) {
                         $image_args['class'] = _attribute('class', array('background-image', 'background-overlay'));
                     }
                     $html .= __image($image_args);
@@ -1145,7 +1145,7 @@ function ____columns_modules($items, $id, $html = '')
                     $image_styles = array();
                     $image_classes  = array();
 
-                    $is__background_image = $item['is__background_image'];
+                    $is_background_image = $item['is_background_image'];
                     $custom_size = $item['custom_size'];
                     $image_height = $item['image_height'];
                     $image_width = $item['image_width'];
@@ -1156,7 +1156,7 @@ function ____columns_modules($items, $id, $html = '')
 
 
                     $image_classes[] = 'image-box';
-                    if ($is__background_image) {
+                    if ($is_background_image) {
                         $image_classes[] = 'background-image background-overlay';
                     }
                     if ($custom_size) {
@@ -1434,8 +1434,8 @@ function __post_box_blog($id)
 {
     $image = get_post_thumbnail_id();
     $html = "<div class='column-holder position-relative xs-padding rounded-10px overflow-hidden text-white h-100 d-flex flex-column justify-content-between'>";
-    $html .= __background($image);
-    $html .= _post_category($id, 'category');
+    $html .= _background($image);
+    $html .= __post_category($id, 'category');
     $html .= "</div>";
 }
 
@@ -1446,7 +1446,7 @@ function ___hero_archive($key)
 
     $hero_heading = get__theme_option($key . 'archive_title');
     $hero_description = _format_text(get__theme_option($key . 'archive_description'));
-    $hero__background = get__theme_option($key . 'archive__background');
+    $hero_background = get__theme_option($key . 'archive_background');
     $hero_height = 'small-hero';
     $text_align = 'text-start';
 
@@ -1455,7 +1455,7 @@ function ___hero_archive($key)
     $heading_class[] = 'mb-3';
 
     $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
-    $hero .= __background($hero__background);
+    $hero .= _background($hero_background);
 
     $hero .= "<div class='container'>";
 

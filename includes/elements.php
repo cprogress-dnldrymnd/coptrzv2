@@ -174,6 +174,24 @@ function __background($background, $is_youtube = false, $autoplay = true)
     }
 }
 
+function __post_category($id, $category)
+{
+    $terms = get_the_terms($id, $category);
+    if ($terms) {
+        $html = "<div class='position-relative smaller-text post-category'>";
+
+        foreach ($terms as $term) {
+            $term_link = get_term_link($term->term_id);
+            $term_name = $term->name;
+            $html .= "<a href='$term_name'>";
+            $html .= $term->name;
+            $html .= "</a>";
+        }
+
+        $html .= "</div>";
+        return $html;
+    }
+}
 
 function __button($data)
 {
@@ -198,4 +216,3 @@ function __button($data)
         return "<div $_attributes><a class='rounded-10px' $button_target href='$button_url'>$button_text</a></div>";
     }
 }
-
