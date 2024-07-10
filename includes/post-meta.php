@@ -8,6 +8,7 @@ use Carbon_Fields\Field;
 /*-----------------------------------------------------------------------------------*/
 /* Archives Settings
 /*-----------------------------------------------------------------------------------*/
+
 Container::make('theme_options', __('Archives Settings'))
     ->add_tab(
         'Posts',
@@ -587,6 +588,129 @@ Container::make('theme_options', __('Archives Settings'))
                         array(
                             'type'      => 'post',
                             'post_type' => 'casestudies',
+                        )
+                    )
+                )
+
+        )
+    )
+    ->add_tab(
+        'Guides',
+        array(
+            Field::make('html', 'guides_hero')->set_html('<label>Hero Settings</label>')->set_classes('cb-label'),
+            Field::make('text', 'guides_archive_title', __('Archvie Hero Title'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('textarea', 'guides_archive_description', __('Archvie Hero Description'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('select', 'guides_archive_hero_background_type', __('Background Type'))->set_classes('inline-field inline-field-wide-label')
+                ->set_options(
+                    array(
+                        'self-hosted' => 'Self Hosted',
+                        'youtube' => 'Youtube',
+                    )
+                ),
+            Field::make('select', 'guides_archive_hero_height', __('Height'))->set_classes('inline-field inline-field-wide-label')
+                ->set_options(
+                    array(
+                        '' => 'Default',
+                        'medium-hero' => 'Medium',
+                        'small-hero' => 'Small',
+                    )
+                ),
+            Field::make('select', 'guides_archive_hero_alignment', __('Aligment'))->set_classes('inline-field inline-field-wide-label')
+                ->set_options(
+                    array(
+                        'text-center' => 'Default/Center',
+                        'text-start' => 'Left',
+                        'text-end' => 'Right',
+                    )
+                ),
+            Field::make('file', 'guides_archive_hero_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
+                ->set_conditional_logic(
+                    array(
+                        array(
+                            'field' => 'guides_archive_hero_background_type',
+                            'value' => 'self-hosted',
+                        )
+                    )
+                ),
+            Field::make('text', 'guides_archive_background_youtube', __('Background Youtube ID'))->set_classes('inline-field inline-field-wide-label')
+                ->set_conditional_logic(
+                    array(
+                        array(
+                            'field' => 'guides_archive_hero_background_type',
+                            'value' => 'youtube',
+                        )
+                    )
+                ),
+            Field::make('complex', 'guides_archive_hero_buttons', __('Buttons'))->set_classes('inline-field inline-field-wide-label')
+                ->setup_labels(
+                    array(
+                        'plural_name'   => 'Buttons',
+                        'singular_name' => 'Button',
+                    )
+                )
+                ->add_fields(array(
+                    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
+                        ->set_options(
+                            array(
+                                ''          => 'Select Button Type',
+                                'page'      => 'Page',
+                                'product'      => 'Product',
+                                'guides'      => 'Guides',
+                                'guides'      => 'Case Studies',
+                                'post'      => 'Post',
+                                'solutions' => 'Solution',
+                                'popups'    => 'Popup',
+                                'custom'     => 'Custom',
+                            )
+                        ),
+                    Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
+                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url inline-field inline-field-wide-label')
+                        ->set_conditional_logic(
+                            array(
+                                array(
+                                    'field'   => 'button_type',
+                                    'value'   => 'custom',
+                                    'compare' => '!='
+                                )
+                            )
+                        ),
+                    Field::make('html', 'html')
+                        ->set_html('<div class="page-selector">  </div>'),
+                    Field::make('text', 'button_url_custom', __('Button URL'))->set_classes('inline-field inline-field-wide-label')
+                        ->set_conditional_logic(
+                            array(
+                                array(
+                                    'field' => 'button_type',
+                                    'value' => 'custom',
+                                )
+                            )
+                        ),
+                    Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
+                        ->set_options(
+                            array(
+                                'button-accent'      => 'Accent',
+                                'button-primary'      => 'Primary',
+                                'button-secondary' => 'Secondary',
+                                'button-white' => 'White',
+                                'button-bordered'    => 'Bordered',
+                            )
+                        ),
+                    Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
+                        ->set_options(
+                            array(
+                                'target="_self"'      => 'Default',
+                                'target="_blank"'      => 'New Tab',
+                            )
+                        ),
+                ))
+                ->set_header_template('Button: <%- button_text %>'),
+            Field::make('html', 'guides_featured_html')->set_html('<label>Featured Posts</label>')->set_classes('cb-label'),
+            Field::make('association', 'guides_featured', '')
+                ->set_types(
+                    array(
+                        array(
+                            'type'      => 'post',
+                            'post_type' => 'guides',
                         )
                     )
                 )
