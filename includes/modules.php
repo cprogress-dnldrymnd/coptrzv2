@@ -318,6 +318,48 @@ function ___sections($id = 'sections', $post_id = '')
                                 $styles_section[] = 'border-width: ' . $border_width;
                             }
                         }
+
+                        $container_border_style = $section_style['container_border_style'];
+                        $classes[] = $container_border_style;
+                        $container_border_color = $section_style['container_border_color'];
+                        $container_border_color_custom = $section_style['container_border_color_custom'];
+                        $container_border_width_top = $section_style['container_border_width_top'];
+                        $container_border_width_right = $section_style['container_border_width_right'];
+                        $container_border_width_bottom = $section_style['container_border_width_bottom'];
+                        $container_border_width_left = $section_style['container_border_width_left'];
+                        $different_container_border_width = $section_style['different_container_border_width'];
+                        $container_border_width = $section_style['container_border_width'];
+
+                        if ($section_style['container_border_radius']) {
+                            $container_classes[] = 'rounded-corner';
+                            $container_styles[] = '--border-radius: ' . $section_style['container_border_radius'];
+                        }
+
+
+                        if ($container_border_color == 'border-custom-color') {
+                            $container_styles[] = 'border-color: ' . $container_border_color_custom;
+                        } else {
+                            $container_classes[] = $section_style['container_border_color'];
+                        }
+                        if ($different_container_border_width) {
+                            if ($container_border_width_top) {
+                                $container_styles[] = 'border-top-width: ' . $container_border_width_top;
+                            }
+                            if ($container_border_width_right) {
+                                $container_styles[] = 'border-right-width: ' . $container_border_width_right;
+                            }
+                            if ($container_border_width_bottom) {
+                                $container_styles[] = 'border-bottom-width: ' . $container_border_width_bottom;
+                            }
+                            if ($container_border_width_left) {
+                                $container_styles[] = 'border-left-width: ' . $container_border_width_left;
+                            }
+                        } else {
+                            if ($container_border_width) {
+                                $container_styles[] = 'border-width: ' . $container_border_width;
+                            }
+                        }
+
                         break;
                 }
             }
