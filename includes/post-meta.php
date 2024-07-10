@@ -3418,8 +3418,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
 
-                            Field::make('html', 'html_1')->set_html('<label>Section Border</label>')->set_classes('cb-label'),
-                            Field::make('html', 'html_1')->set_html('<label>Section Border</label>')->set_classes('cb-label'),
+                            Field::make('html', 'html_2')->set_html('<label>Container Border</label>')->set_classes('cb-label'),
                             Field::make('text', 'container_border_radius', 'Border Radius'),
                             Field::make('select', 'container_border_style', 'Border Style')
                                 ->set_options(
