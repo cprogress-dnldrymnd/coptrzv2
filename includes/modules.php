@@ -195,6 +195,7 @@ function ___sections($id = 'sections', $post_id = '')
             $section_styles = $section['section_styles'];
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
             $container_styles = array();
+            $container_classes[] = 'container'; 
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
             $styles_val = '';
@@ -237,6 +238,12 @@ function ___sections($id = 'sections', $post_id = '')
                         break;
                     case 'background_color':
                         $background_color_custom = $section_style['background_color_custom'];
+                        $background_color_container = $section_style['background_color_container'];
+
+                        if ($background_color_container) {
+                            $container_classes[] = $background_color_container;
+                        }
+
                         $classes[] = $section_style['background_color'];
                         if ($background_color_custom) {
                             $styles_section[] = 'background-color: ' . $background_color_custom;
@@ -310,18 +317,24 @@ function ___sections($id = 'sections', $post_id = '')
 
             $id_val = _attribute('id', array($section_id_val));
             $classes_attr = _attribute('class', $classes);
+            if ($container_classes) {
+                $container_classes_attr = attribute('class', $container_classes);
+            }
             if ($styles_section) {
                 $styles_val = _attribute('style', $styles_section, ';');
             }
+
+
 
             if ($container_styles) {
                 $container_styles_val = _attribute('style', $container_styles, ';');
             }
 
             $section_attribute = _attributes(array($classes_attr, $id_val, $styles_val));
+            $container_attribute = _attributes(array($container_styles_val, $container_classes_attr));
 
             $html .= "<section $section_attribute>";
-            $html .= "<div class='container' $container_styles_val>";
+            $html .= "<div $container_attribute>";
 
             foreach ($section_items as $key => $items) {
                 $type = $items['_type'];
