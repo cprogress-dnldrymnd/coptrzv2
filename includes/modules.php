@@ -1440,12 +1440,7 @@ function ___hero_archive()
     $hero_background = get___term_meta($id, 'hero_background');
     $hero_background_youtube = get___term_meta($id, 'hero_background_youtube');
     $hero_background_type = get___term_meta($id, 'hero_background_type');
-    $hero_alignment = get___term_meta($id, 'hero_alignment');
-    $hero_height = get___term_meta($id, 'hero_height');
-    $buttons = get___term_meta($id, 'buttons');
-    $breadcrumbs_hidden = get___term_meta($id, 'breadcrumbs_hidden');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
-    $term_description_val = $hero_description ? $hero_description : _format_text($term->description);
 
 
     $heading_class[] = 'large-heading';

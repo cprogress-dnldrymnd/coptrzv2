@@ -4,6 +4,20 @@ use Carbon_Fields\Block;
 use Carbon_Fields\Container;
 use Carbon_Fields\Complex_Container;
 use Carbon_Fields\Field;
+
+/*-----------------------------------------------------------------------------------*/
+/* Archives Settings
+/*-----------------------------------------------------------------------------------*/
+
+Container::make('theme_options', __('Archives Settings'))
+    ->add_tab(
+        'Post',
+        array(
+            Field::make('text', 'post_archive_title', __('Post Archive Title')),
+            Field::make('textarea', 'post_archive_description', __('Post Archive Description')),
+        )
+    );
+
 /*-----------------------------------------------------------------------------------*/
 /* Hero
 /*-----------------------------------------------------------------------------------*/
