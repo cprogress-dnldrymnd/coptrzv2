@@ -9,6 +9,7 @@ get_header(); ?>
 
 
 <?php
+$class = '';
 if (is_home()) {
     $key = 'post_';
     $title = 'All Posts';
