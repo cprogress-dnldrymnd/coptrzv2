@@ -572,6 +572,10 @@ small {
         label {
             padding: 20px 41px;
             cursor: pointer;
+            @include on-event {
+                color: var(--bs-secondary);
+                background-color: var(--bs-black);
+            }
         }
         input {
             display: none;
