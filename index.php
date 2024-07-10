@@ -105,6 +105,7 @@ echo $key;
 </section>
 
 <?php
+$post_type = get_queried_object()->name;
 $args = array(
     'post_type'  => 'layouts',
     'meta_query' => array(
