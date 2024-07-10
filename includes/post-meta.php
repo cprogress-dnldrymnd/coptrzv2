@@ -104,7 +104,7 @@ Container::make('theme_options', __('Archives Settings'))
                                 'custom'     => 'Custom',
                             )
                         ),
-                    Field::make('text', 'button_text', __('Button Text')),
+                    Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
                     Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url inline-field inline-field-wide-label')
                         ->set_conditional_logic(
                             array(
