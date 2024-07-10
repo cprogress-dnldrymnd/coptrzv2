@@ -571,6 +571,16 @@ small {
         padding: 7px;
         label {
             padding: 20px 41px;
+            cursor: pointer;
+        }
+        input {
+            display: none;
+            &:checked {
+                & + label {
+                    color: var(--bs-white);
+                    background-color: var(--bs-black);
+                }
+            }
         }
     }
 }

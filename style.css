@@ -10867,6 +10867,11 @@ small, .small {
   padding: 7px; }
   .event-filter .filter-box label {
     padding: 20px 41px; }
+  .event-filter .filter-box input {
+    display: none; }
+    .event-filter .filter-box input:checked + label {
+      color: var(--bs-white);
+      background-color: var(--bs-black); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins

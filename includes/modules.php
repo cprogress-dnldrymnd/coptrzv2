@@ -1617,11 +1617,11 @@ function ___posts_header($key, $title, $taxonomy)
 
         $html .= "<div class='col-auto'>";
 
-        $html .= "<div class='event-filter='>";
+        $html .= "<div class='event-filter'>";
         $html .= "<p class='fw-medium medium-text'>Select event type:</p>";
         $html .= "<div class='filter-box bg-light rounded-corner'>";
 
-        $html .= "<div class='row event-filter'>";
+        $html .= "<div class='row'>";
         $html .= "<div class='col-auto'>";
         $html .= "<input name='events_category' value='' type='radio' id='term-all' checked>";
         $html .= "<label class='rounded-corner' for='term-all'>All</label>";
