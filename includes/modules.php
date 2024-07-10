@@ -1490,6 +1490,16 @@ function ___featured($key)
             'heading' => 'Featured Articles',
             'class' => _attribute('class', array('text-center'))
         ));
+        $html .= "<div class='row g-4'>";
+
+        foreach ($featured as $post) {
+            $html .= "<div class='col-lg-4 col-sm-6'>";
+            $html .= __post_box_blog($post['id']);
+            $html .= "</div>";
+        }
+
+        $html .= "</div>";
+
         $html .= "</div>";
         $html .= "</section>";
 
