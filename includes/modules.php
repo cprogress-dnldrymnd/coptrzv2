@@ -1743,13 +1743,5 @@ function _events_additional_content($id)
 
 function __layouts($args, $return = '')
 {
-    $args['post_type'] = 'layouts';
-    $layouts = get_posts($args);
-
-    if ($layouts) {
-        foreach ($layouts as $layout_below) {
-            //$return .=  get_the_content(NULL, false, $layout_below->ID);
-        }
-        return $return . var_dump($layouts);
-    }
+   
 }
