@@ -195,6 +195,7 @@ function ___sections($id = 'sections', $post_id = '')
             $section_styles = $section['section_styles'];
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
             $container_styles = array();
+            $container_classes = array();
             $container_classes[] = 'container';
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
