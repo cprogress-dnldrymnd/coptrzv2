@@ -330,7 +330,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $layouts = $items['layouts'];
                         foreach ($layouts as $layout) {
                             $layout_id = $layout['id'];
-                            $html .= "[layouts id='$layout_id']";
+                            $html .= do_shortcode("[layouts id='$layout_id']");
                         }
                         break;
                     case 'heading':
