@@ -60,6 +60,7 @@ if ($has_featured) {
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default">
     <?php
+    if ($has_filter) {
         echo ___posts_header($key, $title, $category, $class);
     }
     ?>
