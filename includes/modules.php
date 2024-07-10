@@ -1507,7 +1507,7 @@ function ___featured($key)
 {
     $featured = get__theme_option($key . 'featured');
     if ($featured) {
-        $html = "<section class='featured-posts md-padding-top sm-padding-top'>";
+        $html = "<section class='featured-posts md-padding-top sm-padding-nottom'>";
         $html .= "<div class='container'>";
         $html .= __heading(array(
             'heading' => 'Featured Articles',
