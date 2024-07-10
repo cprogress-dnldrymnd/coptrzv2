@@ -103,22 +103,25 @@ function __image($data)
     } else {
         $image = wp_get_attachment_image($image_id, $size);
     }
-
-    if ($class) {
-        $attributes_args[] = $class;
-    }
-    if ($style) {
-        $attributes_args[] = $style;
-    }
     if ($image) {
+        if ($class) {
+            $attributes_args[] = $class;
+        }
+        if ($style) {
+            $attributes_args[] = $style;
+        }
         $_attributes = _attributes($attributes_args);
+
         return "<div $_attributes>$image</div>";
     } else {
         if ($placeholder) {
             $image = wp_get_attachment_image(67781, $size);
-            $class = _attribute('class', array('is-placeholder'));
+
+            $class = _attribute('class', array('is-placeholder image-box'));
             $attributes_args[] = $class;
+
             $_attributes = _attributes($attributes_args);
+
             return "<div $_attributes>$image</div>";
         }
     }
