@@ -496,7 +496,7 @@ function ___sections($id = 'sections')
                                 'image_id' => get_post_thumbnail_id($id),
                                 'placeholder' => true,
                                 'size' => 'full',
-                                'class' => _attribute('class', array('background-image background-overlay background-overlay-darker mx-20px rounded-10px overflow-hidden'))
+                                'class' => _attribute('class', array('background-image background-overlay background-overlay-darker bg-black mx-20px rounded-10px overflow-hidden'))
                             ));
 
                             $html .= "<div class='inner md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
