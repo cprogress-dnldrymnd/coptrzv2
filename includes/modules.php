@@ -1388,7 +1388,7 @@ function __post_box_blog($data)
     $featured = isset($data['featured']) ? $data['featured'] : false;
     $style = isset($data['style']) ? $data['id'] : 'style-1';
     $id = isset($data['id']) ? $data['id'] : false;
-    $elements = isset($data['elements']) ? $data['id'] : false;
+    $elements = isset($data['elements']) ? $data['elements'] : false;
 
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
@@ -1427,24 +1427,31 @@ function __post_box_blog($data)
     if ($featured) {
         $html .= "<div class='content-box content-margin'>";
     }
-    $html .= "<div class='date-box small-text mb-2'>$date</div>";
-    $html .= __heading(array(
-        'heading' => get_the_title($id),
-        'tag' => 'h3',
-    ));
-
-    if ($style == 'style-1') {
-        $html .= __description(array(
-            'description' => get_the_excerpt($id),
-            'class' => _attribute('class', array('description-box small-text mb-4')),
+    if (in_array('date', $elements)) {
+        $html .= "<div class='date-box small-text mb-2'>$date</div>";
+    }
+    if (in_array('heading', $elements)) {
+        $html .= __heading(array(
+            'heading' => get_the_title($id),
+            'tag' => 'h3',
         ));
     }
-    $html .= __button(array(
-        'button_type' => get_post_type($id),
-        'button_text' => 'Read More',
-        'button_url' => $id,
-        'button_style' =>  'button-bordered position-relative',
-    ));
+    if (in_array('description', $elements)) {
+        if ($style == 'style-1') {
+            $html .= __description(array(
+                'description' => get_the_excerpt($id),
+                'class' => _attribute('class', array('description-box small-text mb-4')),
+            ));
+        }
+    }
+    if (in_array('button', $elements)) {
+        $html .= __button(array(
+            'button_type' => get_post_type($id),
+            'button_text' => 'Read More',
+            'button_url' => $id,
+            'button_style' =>  'button-bordered position-relative',
+        ));
+    }
     $html .= "</div>";
     $html .= "</div>";
     if ($col == true) {
