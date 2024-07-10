@@ -285,6 +285,10 @@ $Case_Studies->singular_name = 'Case Study';
 $Case_Studies->icon = 'dashicons-media-text';
 $Case_Studies->supports = array('title', 'revisions', 'thumbnail', 'editor', 'excerpt');
 $Case_Studies->show_in_rest = true;
+$Case_Studies->rewrite = array(
+    'with_front' => false,
+    'slug' => 'case-studies'
+);
 
 
 $Guides = new newPostType();
