@@ -27,7 +27,7 @@ echo ___featured($key);
                 <?php
                 while (have_posts()) {
                     the_post();
-                    __post_box_blog(get_the_ID(), true);
+                    echo __post_box_blog(get_the_ID(), true);
                 }
                 ?>
             </div>
