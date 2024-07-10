@@ -1617,7 +1617,7 @@ function ___posts_header($key, $title, $taxonomy)
 
         $html .= "<div class='col-auto'>";
 
-        $html .= "<div class='event-filter bs-light rounded-corner'>";
+        $html .= "<div class='event-filter bg-light rounded-corner'>";
         $html .= "<p class='fw-medium medium-text'>Select event type:</p>";
         $html .= "<div class='row event-filter'>";
         $html .= "<div class='col-auto'>";
