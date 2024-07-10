@@ -1452,7 +1452,7 @@ function __post_box_blog($id, $col = false, $featured = false)
             'image_id' => $image,
             'class' => _attribute('class', array('image-box rounded-corner overflow-hidden'))
         ));
-        $html .= __post_category($id, 'category');
+        $html .= __post_category($id, 'category', 'text-black');
     }
 
     if ($featured) {
