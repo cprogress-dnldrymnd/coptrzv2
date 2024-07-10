@@ -1387,10 +1387,11 @@ function __post_box_blog($data)
     $col = isset($data['col']) ? $data['col'] : false;
     $featured = isset($data['featured']) ? $data['featured'] : false;
     $style = isset($data['style']) ? $data['style'] : 'style-1';
+    $button_text = isset($data['button_text']) ? $data['button_text'] : false;
     $id = isset($data['id']) ? $data['id'] : false;
     $elements = isset($data['elements']) ? $data['elements'] : false;
     $additional_content = isset($data['additional_content']) ? $data['additional_content'] : false;
-
+    
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('', $id);
     if ($featured) {
@@ -1453,7 +1454,7 @@ function __post_box_blog($data)
     if (in_array('button', $elements)) {
         $html .= __button(array(
             'button_type' => get_post_type($id),
-            'button_text' => 'Read More',
+            'button_text' => $button_text ? $button_text : 'Read More',
             'button_url' => $id,
             'button_style' =>  'button-bordered position-relative',
         ));

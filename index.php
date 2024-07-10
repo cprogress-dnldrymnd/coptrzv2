@@ -52,7 +52,8 @@ if (is_home()) {
         'col' => true,
         'featured' => false,
         'style' => 'style-2',
-        'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
+        'button_text' => 'Learn More',
+        'elements' => array('image', 'title', 'button'),
     );
 }
 echo do_shortcode(___hero_archive($key, $archive_title));
