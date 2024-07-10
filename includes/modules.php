@@ -487,7 +487,7 @@ function ___sections($id = 'sections')
                         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
                         foreach ($casestudies_featured as $casestudies) {
-                            $id = $casestudies->ID;
+                            $id = $casestudies['id'];
                             $post_excerpt = wpautop($casestudies->post_excerpt);
                             $features = get__post_meta_by_id($id, 'feature');
                             $logo = get__post_meta_by_id($id, 'logo');
