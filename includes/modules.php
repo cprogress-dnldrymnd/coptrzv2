@@ -212,6 +212,12 @@ function ___sections($id = 'sections', $post_id = '')
                         $classes[] = $section_style['padding_bottom'];
                         $classes[] = $section_style['padding_left'];
                         $classes[] = $section_style['padding_right'];
+
+                        $container_classes[] = $section_style['container_padding_top'];
+                        $container_classes[] = $section_style['container_padding_bottom'];
+                        $container_classes[] = $section_style['container_padding_left'];
+                        $container_classes[] = $section_style['container_padding_right'];
+
                         break;
                     case 'margin':
                         $classes[] = $section_style['margin_top'];
