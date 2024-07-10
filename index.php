@@ -62,11 +62,7 @@ if ($has_featured) {
     <?php
     if ($has_filter) {
         echo ___posts_header($key, $title, $category, $class);
-    } else {
-        if ($title) {
-            echo "<h2 text-center>$title</h2>";
-        }
-    }
+    } 
     ?>
     <div class="post-grid-holder">
         <div class="container">
