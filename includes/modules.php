@@ -1455,7 +1455,7 @@ function ___hero_archive($key)
     $heading_class[] = 'mb-3';
 
     $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
-    $hero .= _background($hero_background);
+    $hero .= __background($hero_background);
 
     $hero .= "<div class='container'>";
 
