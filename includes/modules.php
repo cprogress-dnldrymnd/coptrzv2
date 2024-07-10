@@ -1618,6 +1618,9 @@ function ___posts_header($key, $title, $taxonomy)
         $html .= "<div class='col-auto'>";
 
         $html .= "<div class='row event-filter'>";
+        $html .= "<input value='' type='radio' id='term-all'>";
+        $html .= "<label for='term-all'>All<label>";
+
         foreach ($events_category as $category) {
             $term_name = $category->name;
             $term_id = $category->term_id;
