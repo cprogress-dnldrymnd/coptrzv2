@@ -183,8 +183,8 @@ function __post_category($id, $category)
         foreach ($terms as $term) {
             $term_link = get_term_link($term->term_id);
             $term_name = $term->name;
-            $html .= "<a href='$term_name'>";
-            $html .= $term->name;
+            $html .= "<a href='$term_link'>";
+            $html .= $term_name;
             $html .= "</a>";
         }
 
