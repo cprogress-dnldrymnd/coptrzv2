@@ -320,7 +320,7 @@ $Capabilities->supports = array('title', 'revisions', 'editor', 'thumbnail', 'ex
 $Capabilities->show_in_rest = true;
 $Capabilities->rewrite = array(
     'with_front' => false,
-    'slug' => 'capabilities'
+    'slug' => 'solutions'
 );
 
 
