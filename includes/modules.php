@@ -1431,12 +1431,10 @@ function __post_box($id)
 }
 
 
-function ___hero_archive()
+function ___hero_archive($key)
 {
 
-    if (is_home()) {
-        $key = 'post_';
-    }
+
 
     $hero_heading = get__theme_option($key . 'archive_title');
     $hero_description = _format_text(get__theme_option($key . 'archive_description'));
@@ -1473,4 +1471,12 @@ function ___hero_archive()
     $hero .= "</section>";
 
     return $hero;
+}
+
+
+function ___featured($key)
+{
+    $html = "<section class='featured-posts md-padding-top sm-padding-top'>";
+
+    $html .= "</section>";
 }

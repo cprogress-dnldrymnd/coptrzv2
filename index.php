@@ -9,7 +9,11 @@ get_header(); ?>
 
 
 <?php
-echo do_shortcode(___hero_archive());
+if (is_home()) {
+    $key = 'post_';
+}
+echo do_shortcode(___hero_archive($key));
+echo ___featured($key);
 ?>
 
 
