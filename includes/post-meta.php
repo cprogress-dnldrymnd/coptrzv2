@@ -120,7 +120,7 @@ Container::make('theme_options', __('Archives Settings'))
                         ),
                 ))
                 ->set_header_template('Button: <%- button_text %>'),
-            Field::make('html', 'post_featured')->set_html('<label>Featured Posts</label>')->set_classes('cb-label'),
+            Field::make('html', 'post_featured_html')->set_html('<label>Featured Posts</label>')->set_classes('cb-label'),
             Field::make('association', 'post_featured', '')
                 ->set_types(
                     array(
@@ -581,7 +581,7 @@ Container::make('theme_options', __('Archives Settings'))
                         ),
                 ))
                 ->set_header_template('Button: <%- button_text %>'),
-            Field::make('html', 'casestudies_featured')->set_html('<label>Featured Posts</label>')->set_classes('cb-label'),
+            Field::make('html', 'casestudies_featured_html')->set_html('<label>Featured Posts</label>')->set_classes('cb-label'),
             Field::make('association', 'casestudies_featured', '')
                 ->set_types(
                     array(
