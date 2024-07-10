@@ -12,13 +12,17 @@ get_header(); ?>
 if (is_home()) {
     $key = 'post_';
     $title = 'All Posts';
+    $has_featured = true;
 } else if(is_post_type_archive('events')) {
     $key = 'events';
     $title = 'All Events';
+    $has_featured = false;
 
 }
 echo do_shortcode(___hero_archive($key));
-echo ___featured($key);
+if($has_featured) {
+    echo ___featured($key);
+}
 ?>
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default">
