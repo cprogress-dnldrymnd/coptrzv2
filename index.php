@@ -105,7 +105,7 @@ $args = array(
 echo do_shortcode(__layouts($args));
 ?>
 
-<section class="archive-posts md-padding-top md-padding-bottom border-top-default">
+<section class="archive-posts md-padding-top md-padding-bottom border-top-default" id="posts">
     <?php
     if ($has_filter) {
         echo ___posts_header($key, $title, $category, $class);
