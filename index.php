@@ -124,14 +124,18 @@ $args = array(
         array(
             'key'   => '_display_location_archive',
             'value' => $post_type,
+        ),
+        array(
+            'key'   => '_display_location_archive_position',
+            'value' => 'below_loop',
         )
     )
 );
-$layouts = get_posts($args);
+$layouts_below = get_posts($args);
 
-if ($layouts) {
-    foreach ($layouts as $layout) {
-        echo do_shortcode(get_the_content(NULL, false, $layout->ID));
+if ($layouts_below) {
+    foreach ($layouts_below as $layout_below) {
+        echo do_shortcode(get_the_content(NULL, false, $layout_below->ID));
     }
 }
 ?>
