@@ -246,7 +246,7 @@ class Shortcodes
                 $atts
             )
         );
-        return do_shortcode(___sections('sections', $id));
+        return ___sections('sections', $id);
     }
 }
 $Shortcodes = new Shortcodes;
