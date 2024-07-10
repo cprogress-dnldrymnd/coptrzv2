@@ -3206,48 +3206,26 @@ Container::make('post_meta', __('Conditional Display'))
     ->add_fields(array(
         Field::make('select', 'display_location', __('Display Location'))
             ->add_options(array(
+                'archive' => __('Archive'),
+                'product_cat' => __('Product Category'),
                 'after_header' => __('After Header'),
                 'before_footer' => __('Before Footer'),
             )),
-        Field::make('select', 'display_location_condition', __('Display Location Condition'))
+
+        Field::make('select', 'display_location', __('Select Archive'))
             ->add_options(array(
-                '' => __('Sitewide'),
-                'post_type' => __('Post Type'),
-                'post_type_archive' => __('Post Type Archive'),
-                'taxonomy_term' => __('Taxonomy Term'),
+                'post' => __('Post'),
+                'events' => __('Product Category'),
+                'capabilities' => __('Capabilities'),
             ))
-            ->set_conditional_logic(array(
+            ->set_conditional_logic(
                 array(
-                    'field' => 'display_location',
-                    'value' => 'shortcode',
-                    'compare' => '!=',
+                    array(
+                        'field' => 'display_location',
+                        'value' => 'archive',
+                    )
                 )
-            )),
-        Field::make('multiselect', 'display_location_post_type', __('Select Post Type'))
-            ->add_options(array(
-                'page' => __('Page'),
-                'post' => __('Posts'),
-                'product' => __('Product'),
-            ))
-            ->set_conditional_logic(array(
-                array(
-                    'field' => 'display_location_condition',
-                    'value' => 'post_type',
-                    'compare' => '=',
-                )
-            )),
-        Field::make('multiselect', 'display_location_post_type_achive', __('Select Post Type Archive'))
-            ->add_options(array(
-                'post' => __('Posts'),
-                'product' => __('product'),
-            ))
-            ->set_conditional_logic(array(
-                array(
-                    'field' => 'display_location_condition',
-                    'value' => 'post_type_archive',
-                    'compare' => '=',
-                )
-            )),
+            ),
     ));
 
 /*-----------------------------------------------------------------------------------*/
