@@ -736,17 +736,7 @@ function __section_fields($name = 'sections')
                 )
             )
             ->set_collapsed(true)
-            ->add_fields('layout', array(
-                Field::make('association', 'post', 'Select Layouts')
-                    ->set_types(
-                        array(
-                            array(
-                                'type'      => 'post',
-                                'post_type' => 'layouts',
-                            )
-                        )
-                    )
-            ))
+           
             ->add_fields(array(
                 Field::make('html', 'sec_1')->set_html('<label>Section Settings</label>')->set_classes('cb-label'),
                 Field::make('text', 'title', __('Section Title'))->set_required(true)->set_width(25),
@@ -762,7 +752,17 @@ function __section_fields($name = 'sections')
                         )
                     )
                     ->set_collapsed(true)
-
+                    ->add_fields('layout', array(
+                        Field::make('association', 'post', 'Select Layouts')
+                            ->set_types(
+                                array(
+                                    array(
+                                        'type'      => 'post',
+                                        'post_type' => 'layouts',
+                                    )
+                                )
+                            )
+                    ))
                     ->add_fields('heading', array(
                         Field::make('html', 'html_1')->set_html('<label>Section Heading Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'has_prefix', __('Heading Has Prefix'))->set_width(20),
