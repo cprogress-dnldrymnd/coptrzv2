@@ -41,7 +41,7 @@ Container::make('theme_options', __('Archives Settings'))
         array(
             Field::make('text', 'capabilities_archive_title', __('Archive Title'))->set_classes('inline-field inline-field-wide-label'),
             Field::make('textarea', 'capabilities_archive_description', __('Archive Description'))->set_classes('inline-field inline-field-wide-label'),
-            Field::make('select', 'capabilities_archive_background_type', __('Background Type'))->set_classes('inline-field')
+            Field::make('select', 'capabilities_archive_hero_background_type', __('Background Type'))->set_classes('inline-field')
                 ->set_options(
                     array(
                         'self-hosted' => 'Self Hosted',
@@ -56,7 +56,7 @@ Container::make('theme_options', __('Archives Settings'))
                         'small-hero' => 'Small',
                     )
                 ),
-            Field::make('select', 'capabilities_alignment', __('Aligment'))->set_classes('inline-field inline-field-wide-label')
+            Field::make('select', 'capabilities_archive_hero_alignment', __('Aligment'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
                         'text-center' => 'Default/Center',
@@ -64,11 +64,11 @@ Container::make('theme_options', __('Archives Settings'))
                         'text-end' => 'Right',
                     )
                 ),
-            Field::make('file', 'capabilities_archive_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
+            Field::make('file', 'capabilities_archive_hero_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
                 ->set_conditional_logic(
                     array(
                         array(
-                            'field' => 'capabilities_archive_background_type',
+                            'field' => 'capabilities_archive_hero_background_type',
                             'value' => 'self-hosted',
                         )
                     )
@@ -77,12 +77,12 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_conditional_logic(
                     array(
                         array(
-                            'field' => 'capabilities_archive_background_type',
+                            'field' => 'capabilities_archive_hero_background_type',
                             'value' => 'youtube',
                         )
                     )
                 ),
-            Field::make('complex', 'capabilities_archive_buttons', __('Buttons'))->set_classes('inline-field inline-field-wide-label')
+            Field::make('complex', 'capabilities_archive_hero_buttons', __('Buttons'))->set_classes('inline-field inline-field-wide-label')
                 ->setup_labels(
                     array(
                         'plural_name'   => 'Buttons',
