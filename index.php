@@ -48,6 +48,12 @@ if (is_home()) {
     $has_filter = false;
     $archive_title = 'Capabilities';
     $post_style = 'style-1';
+    $data = array(
+        'col' => true,
+        'featured' => false,
+        'style' => 'style-2',
+        'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
+    );
 }
 echo do_shortcode(___hero_archive($key, $archive_title));
 if ($has_featured) {
