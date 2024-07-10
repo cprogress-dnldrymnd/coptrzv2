@@ -15,7 +15,7 @@ Container::make('theme_options', __('Archives Settings'))
         array(
             Field::make('text', 'post_archive_title', __('Post Archive Title'))->set_classes('inline-field inline-field-wide-label'),
             Field::make('textarea', 'post_archive_description', __('Post Archive Description'))->set_classes('inline-field inline-field-wide-label'),
-            Field::make('file', 'post_archive_background', __('Post Archive Background'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('file', 'post_archive__background', __('Post Archive Background'))->set_classes('inline-field inline-field-wide-label'),
             Field::make('association', 'post_featured', 'Post Featured')
                 ->set_types(
                     array(
@@ -39,7 +39,7 @@ function __hero_fields()
         Field::make('checkbox', 'breadcrumbs_hidden', __('Hide Breadcrumbs'))->set_width(80),
         Field::make('text', 'hero_heading', __('Heading'))->set_help_text('')->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to page title'),
         Field::make('textarea', 'hero_description', __('Description'))->set_classes('inline-field'),
-        Field::make('select', 'hero_background_type', __('Background Type'))->set_classes('inline-field')
+        Field::make('select', 'hero__background_type', __('Background Type'))->set_classes('inline-field')
             ->set_options(
                 array(
                     'self-hosted' => 'Self Hosted',
@@ -62,20 +62,20 @@ function __hero_fields()
                     'text-end' => 'Right',
                 )
             ),
-        Field::make('file', 'hero_background', __('Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
+        Field::make('file', 'hero__background', __('Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
             ->set_conditional_logic(
                 array(
                     array(
-                        'field' => 'hero_background_type',
+                        'field' => 'hero__background_type',
                         'value' => 'self-hosted',
                     )
                 )
             ),
-        Field::make('text', 'hero_background_youtube', __('Background Youtube ID'))->set_classes('inline-field')
+        Field::make('text', 'hero__background_youtube', __('Background Youtube ID'))->set_classes('inline-field')
             ->set_conditional_logic(
                 array(
                     array(
-                        'field' => 'hero_background_type',
+                        'field' => 'hero__background_type',
                         'value' => 'youtube',
                     )
                 )
@@ -327,7 +327,7 @@ function __section_fields($name = 'sections')
                                     'thumbnail'    => 'Thumbnail',
                                 )
                             ),
-                        Field::make('checkbox', 'is_background_image', __('Is background image')),
+                        Field::make('checkbox', 'is__background_image', __('Is background image')),
                         Field::make('checkbox', 'custom_size', __('Custom Size')),
                         Field::make('text', 'image_width', __('Custom Image Width'))
                             ->set_conditional_logic(
@@ -704,7 +704,7 @@ function __section_fields($name = 'sections')
                                                     'thumbnail'    => 'Thumbnail',
                                                 )
                                             ),
-                                        Field::make('checkbox', 'is_background_image', __('Is background image')),
+                                        Field::make('checkbox', 'is__background_image', __('Is background image')),
                                         Field::make('checkbox', 'custom_size', __('Custom Size')),
                                         Field::make('text', 'image_width', __('Custom Image Width'))
                                             ->set_conditional_logic(
@@ -2084,7 +2084,7 @@ function __section_fields($name = 'sections')
                                                     'thumbnail'    => 'Thumbnail',
                                                 )
                                             ),
-                                        Field::make('checkbox', 'is_background_image', __('Is Background Image')),
+                                        Field::make('checkbox', 'is__background_image', __('Is Background Image')),
                                         Field::make('checkbox', 'rounded_corners', __('Rounder Corners')),
                                         Field::make('text', 'border_radius', __('Border Radius'))->set_help_text('Custom border radius')
                                             ->set_conditional_logic(

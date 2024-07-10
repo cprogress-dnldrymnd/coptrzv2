@@ -152,24 +152,24 @@ function __video($data)
     }
 }
 
-function _background($hero_background, $is_youtube = false, $autoplay = true)
+function __background($background, $is_youtube = false, $autoplay = true)
 {
     if ($is_youtube == false) {
-        $mime_type =  get_post_mime_type($hero_background);
+        $mime_type =  get_post_mime_type($background);
         if (str_contains($mime_type, 'video')) {
             return __video(array(
-                'video_id' => $hero_background,
+                'video_id' => $background,
                 'class' => _attribute('class', array('background-image', 'background-overlay'))
             ));
         } else {
             return __image(array(
-                'image_id' => $hero_background,
+                'image_id' => $background,
                 'class' => _attribute('class', array('background-image', 'background-overlay')),
                 'size' => 'full'
             ));
         }
     } else {
-        $source = "https://www.youtube.com/embed/$hero_background?loop=1&controls=0&rel=0&playsinline=1&autoplay=1&mute=1&controls=0&playlist=$hero_background";
+        $source = "https://www.youtube.com/embed/$background?loop=1&controls=0&rel=0&playsinline=1&autoplay=1&mute=1&controls=0&playlist=$background";
         return "<div class='background-image background-overlay'><iframe src='$source'></iframe></div>";
     }
 }
@@ -198,3 +198,4 @@ function __button($data)
         return "<div $_attributes><a class='rounded-10px' $button_target href='$button_url'>$button_text</a></div>";
     }
 }
+
