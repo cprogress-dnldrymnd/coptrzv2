@@ -138,9 +138,6 @@ class Shortcodes
     function case_study_slider_grid()
     {
 
-
-
-
         $casestudies_featured = get__theme_option('casestudies_featured');
         $html = "<div class='case-study-slider text-white'>"; //case-study-slider
         $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
@@ -238,9 +235,23 @@ class Shortcodes
 
         return $html;
     }
+
+    function layouts($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'id' => '',
+                ),
+                $atts
+            )
+        );
+        return ___sections('sections', $id);
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
 add_shortcode('breadcrumbs', array($Shortcodes, 'breadcrumbs'));
 add_shortcode('product_grid_display', array($Shortcodes, 'product_grid_display'));
 add_shortcode('case_study_slider_grid', array($Shortcodes, 'case_study_slider_grid'));
+add_shortcode('layouts', array($Shortcodes, 'layouts'));
