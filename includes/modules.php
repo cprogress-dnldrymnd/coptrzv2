@@ -1410,7 +1410,7 @@ function __post_box_blog($data)
         $content_box_class = 'px-20px pb-20px';
     }
     if($bg_image ) {
-        $class .= ' rounded-corner overflow-hidden';
+        $class .= ' rounded-corner overflow-hidden h1-100 bg-black';
     }
     $html = '';
     if ($col == true) {
