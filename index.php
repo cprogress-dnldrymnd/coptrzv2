@@ -13,6 +13,7 @@ if (is_home()) {
     $key = 'post_';
     $title = 'All Posts';
     $has_featured = true;
+    $has_filter = true;
     $archive_title = 'Blog';
     $category = 'category';
     $data = array(
@@ -26,6 +27,7 @@ if (is_home()) {
     $key = 'events_';
     $title = false;
     $has_featured = false;
+    $has_filter = true;
     $archive_title = 'Events';
     $category = 'events_category';
     $class = 'border-bottom-default sm-padding-bottom sm-margin-bottom';
@@ -40,6 +42,7 @@ if (is_home()) {
     $key = 'capabilities_';
     $title = false;
     $has_featured = false;
+    $has_filter = false;
     $archive_title = 'Capabilities';
     $post_style = 'style-1';
 }
@@ -51,7 +54,9 @@ if ($has_featured) {
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default">
     <?php
-    echo ___posts_header($key, $title, $category, $class);
+    if ($has_filter) {
+        echo ___posts_header($key, $title, $category, $class);
+    }
     ?>
     <div class="post-grid-holder">
         <div class="container">

@@ -900,7 +900,7 @@ function ____columns_modules($items, $id, $html = '')
         }
 
         if (!$vertical_spacing && !$horizontal_spacing) {
-            $border_width[] = 'g-4';
+            $row_class[] = 'g-4';
         }
 
         $row_class_val = _attribute('class', $row_class, ' ');
