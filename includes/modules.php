@@ -1455,6 +1455,8 @@ function __post_box_blog($data)
         }
         $html .= '</ul>';
     }
+    $html .= var_dump($metas);
+
     if (in_array('button', $elements)) {
         $html .= __button(array(
             'button_type' => get_post_type($id),
