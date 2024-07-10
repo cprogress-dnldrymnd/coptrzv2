@@ -11,7 +11,7 @@ use Carbon_Fields\Field;
 
 Container::make('theme_options', __('Archives Settings'))
     ->add_tab(
-        'Post',
+        'Posts',
         array(
             Field::make('text', 'post_archive_title', __('Post Archive Title'))->set_classes('inline-field inline-field-wide-label'),
             Field::make('textarea', 'post_archive_description', __('Post Archive Description'))->set_classes('inline-field inline-field-wide-label'),
@@ -25,6 +25,15 @@ Container::make('theme_options', __('Archives Settings'))
                         )
                     )
                 )
+        )
+    )
+    ->add_tab(
+        'Events',
+        array(
+            Field::make('text', 'events_archive_title', __('Post Archive Title'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('textarea', 'events_archive_description', __('Post Archive Description'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('file', 'events_archive_background', __('Post Archive Background'))->set_classes('inline-field inline-field-wide-label'),
+
         )
     );
 
