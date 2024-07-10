@@ -5,7 +5,7 @@ function action_module_content()
     if (did_action('post_updated')) {
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-        if (_is_module() || get_post_type() == 'productcategorypages') {
+        if (_is_module() || get_post_type() == 'productcategorypages' || get_post_type() == 'layouts') {
             $post_content = '<!-- wp:html -->';
 
             if (_is_module()) {
@@ -1748,7 +1748,7 @@ function __layouts($args, $return = '')
 
     if ($layouts) {
         foreach ($layouts as $layout) {
-            $return .=  "[layouts id='$layout->ID']";
+            $return .=  get_the_content(NULL, false, $layout->ID);
         }
         return $return;
     }
