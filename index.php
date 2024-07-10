@@ -59,8 +59,8 @@ if ($has_featured) {
                     the_post();
                     $data['id'] = get_the_ID();
                     if ($key == 'events') {
-                        $crb_event_start_date = get__post_meta_by_id($id, 'crb_event_start_time');
-                        $crb_event_start_time = get__post_meta_by_id($id, 'crb_event_start_time');
+                        $crb_event_start_date = get__post_meta_by_id(get_the_ID(), 'crb_event_start_time');
+                        $crb_event_start_time = get__post_meta_by_id(get_the_ID(), 'crb_event_start_time');
                         $additional_content = '<ul class="meta-box list-inline text-small fw-medium">';
 
                         if ($crb_event_start_date) {
