@@ -1392,7 +1392,7 @@ function __post_box_blog($id, $col = false, $featured = false, $style = 'style-1
     }
 
     $class .= $style;
-
+    $content_box_class = '';
     if ($style == 'style-1') {
         $content_box_class = 'px-20px pb-20px';
     }
