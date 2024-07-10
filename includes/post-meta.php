@@ -41,7 +41,7 @@ Container::make('theme_options', __('Archives Settings'))
         array(
             Field::make('text', 'capabilities_archive_title', __('Archive Title'))->set_classes('inline-field inline-field-wide-label'),
             Field::make('textarea', 'capabilities_archive_description', __('Archive Description'))->set_classes('inline-field inline-field-wide-label'),
-            Field::make('select', 'capabilities_archive_hero_background_type', __('Background Type'))->set_classes('inline-field')
+            Field::make('select', 'capabilities_archive_hero_background_type', __('Background Type'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
                         'self-hosted' => 'Self Hosted',
