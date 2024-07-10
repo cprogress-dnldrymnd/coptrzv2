@@ -2977,7 +2977,7 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                 ),
-                        
+
                             Field::make('select', 'background_color_container', 'Container Background Color')
                                 ->set_options(
                                     array(
@@ -3088,6 +3088,7 @@ function __section_fields($name = 'sections')
                     ->add_fields(
                         'padding',
                         array(
+                            Field::make('html', 'html_1')->set_html('<label>Section Padding</label>')->set_classes('cb-label'),
                             Field::make('select', 'padding_top', 'Padding Top')->set_width(25)
                                 ->set_options(
                                     array(
@@ -3122,6 +3123,51 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('select', 'padding_right', 'Padding right')->set_width(25)
+                                ->set_options(
+                                    array(
+                                        ''                  => 'No Padding',
+                                        'xl-padding-right'  => 'Extra Large',
+                                        'lg-padding-right'  => 'Large',
+                                        'md-padding-right'  => 'Medium',
+                                        'sm-padding-right'  => 'Small',
+                                        'xs-padding-right' => 'Extra Small',
+                                    )
+                                ),
+                            Field::make('html', 'html_2')->set_html('<label>Containe Padding</label>')->set_classes('cb-label'),
+                            Field::make('select', 'container_padding_top', 'Padding Top')->set_width(25)
+                                ->set_options(
+                                    array(
+                                        ''                => 'No Padding',
+                                        'xl-padding-top'  => 'Extra Large',
+                                        'lg-padding-top'  => 'Large',
+                                        'md-padding-top'  => 'Medium',
+                                        'sm-padding-top'  => 'Small',
+                                        'xs-padding-top' => 'Extra Small',
+                                    )
+                                ),
+                            Field::make('select', 'container_padding_bottom', 'Padding Bottom')->set_width(25)
+                                ->set_options(
+                                    array(
+                                        ''                   => 'No Padding',
+                                        'xl-padding-bottom'  => 'Extra Large',
+                                        'lg-padding-bottom'  => 'Large',
+                                        'md-padding-bottom'  => 'Medium',
+                                        'sm-padding-bottom'  => 'Small',
+                                        'xs-padding-bottom' => 'Extra Small',
+                                    )
+                                ),
+                            Field::make('select', 'container_padding_left', 'Padding left')->set_width(25)
+                                ->set_options(
+                                    array(
+                                        ''                 => 'No Padding',
+                                        'xl-padding-left'  => 'Extra Large',
+                                        'lg-padding-left'  => 'Large',
+                                        'md-padding-left'  => 'Medium',
+                                        'sm-padding-left'  => 'Small',
+                                        'xs-padding-left' => 'Extra Small',
+                                    )
+                                ),
+                            Field::make('select', 'container_padding_right', 'Padding right')->set_width(25)
                                 ->set_options(
                                     array(
                                         ''                  => 'No Padding',
