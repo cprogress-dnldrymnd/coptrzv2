@@ -3470,6 +3470,7 @@ Container::make('post_meta', __('Conditional Display'))
 
         Field::make('select', 'display_location_archive', __('Select Archive'))
             ->add_options(array(
+                '' => __('Select Archive'),
                 'post' => __('Post'),
                 'events' => __('Events'),
                 'capabilities' => __('Capabilities'),
@@ -3487,6 +3488,7 @@ Container::make('post_meta', __('Conditional Display'))
 
         Field::make('select', 'display_location_archive_position', __('Position'))
             ->add_options(array(
+                '' => __('Select Position'),
                 'above_loop' => __('Above Loop'),
                 'below_loop' => __('Below Loop'),
             ))
