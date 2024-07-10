@@ -1489,6 +1489,7 @@ function __post_box_blog($id, $col = false, $featured = false)
 function ___hero_archive($key)
 {
 
+    echo $key;
     $hero_heading = get__theme_option($key . 'archive_title');
     $hero_description = _format_text(get__theme_option($key . 'archive_description'));
     $hero_background = get__theme_option($key . 'archive_background');
