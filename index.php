@@ -49,7 +49,7 @@ if ($has_featured) {
                 <?php
                 while (have_posts()) {
                     the_post();
-                    $data['id'] => get_the_ID();
+                    $data['id'] = get_the_ID();
                     echo __post_box_blog($data);
                 }
                 ?>
