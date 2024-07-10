@@ -38,7 +38,7 @@ if (is_home()) {
     );
 } else if (is_post_type_archive('capabilities')) {
     $key = 'capabilities_';
-    $title = 'All Events';
+    $title = false;
     $has_featured = false;
     $archive_title = 'Capabilities';
     $post_style = 'style-1';

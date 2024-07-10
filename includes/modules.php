@@ -1600,12 +1600,36 @@ function ___posts_header($key, $title, $taxonomy)
     $html = "<div class='post-archive-header'>";
     $html .= "<div class='container'>";
     $html .= "<div class='row g-3 justify-content-between'>";
+    if ($title) {
+        $html .= "<div class='col-auto'>";
+        $html .= __heading(array(
+            'heading' => $title,
+        ));
+        $html .= "</div>";
+    }
 
-    $html .= "<div class='col-auto'>";
-    $html .= __heading(array(
-        'heading' => $title,
-    ));
-    $html .= "</div>";
+
+    if ($key == 'events_') {
+        $events_category = get_terms(array(
+            'taxonomy'   => 'events_category',
+            'hide_empty' => false,
+        ));
+
+        $html .= "<div class='col-auto'>";
+
+        $html .= "<div class='row event-filter'>";
+        foreach ($events_category as $category) {
+            $term_name = $category->name;
+            $term_id = $category->term_id;
+            $html .= "<div class='col-auto'>";
+            $html .= "<input value='$term_id' type='radio' id='term-$term_id'>";
+            $html .= "<label for='term-$term_id'>$term_name</label>";
+            $html .= "</div>";
+        }
+        $html .= "</div>";
+
+        $html .= "</div>";
+    }
 
     $html .= "<div class='col-auto'>";
 
