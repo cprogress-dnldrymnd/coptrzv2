@@ -274,14 +274,25 @@ input[type="checkbox"] {
 .case-study-slider {
     .swiper-slide {
         width: 1903px;
-        padding-bottom: 200px;
+        @include responsive(md-lg) {
+            padding-bottom: 200px;
+        }
+    }
+    .logo-box {
+        img {
+            max-height: 74px;
+            object-fit: contain;
+            width: auto;
+        }
     }
     .bottom-holder {
-        position: absolute;
-        bottom: 90px;
-        z-index: 1;
-        left: 0;
-        right: 0;
+        @include responsive(md-lg) {
+            position: absolute;
+            bottom: 90px;
+            z-index: 1;
+            left: 0;
+            right: 0;
+        }
     }
 }
 

@@ -10664,14 +10664,21 @@ input[type="checkbox"] {
   margin-right: 2rem; }
 
 .case-study-slider .swiper-slide {
-  width: 1903px;
-  padding-bottom: 200px; }
-.case-study-slider .bottom-holder {
-  position: absolute;
-  bottom: 90px;
-  z-index: 1;
-  left: 0;
-  right: 0; }
+  width: 1903px; }
+  @media screen and (min-width: 992px) {
+    .case-study-slider .swiper-slide {
+      padding-bottom: 200px; } }
+.case-study-slider .logo-box img {
+  max-height: 74px;
+  object-fit: contain;
+  width: auto; }
+@media screen and (min-width: 992px) {
+  .case-study-slider .bottom-holder {
+    position: absolute;
+    bottom: 90px;
+    z-index: 1;
+    left: 0;
+    right: 0; } }
 
 .border-top-default {
   border-top: 1px solid var(--border-color); }
