@@ -1448,10 +1448,14 @@ function __post_box_blog($data)
     }
 
     if ($metas) {
+        $SVG = new SVG;
         $html .= '<ul class="meta-box list-inline">';
         foreach ($metas as $meta_key => $meta) {
             $meta_value = get__post_meta_by_id($id, $meta_key);
-            $html .= "<li>$meta_value</li>";
+            $html .= "<li>";
+            $html .= $SVG->$meta;
+            $html .= $meta_value;
+            $html .= "</li>";
         }
         $html .= '</ul>';
     }
