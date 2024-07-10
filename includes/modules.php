@@ -1481,7 +1481,8 @@ function ___featured($key)
         $html = "<section class='featured-posts md-padding-top sm-padding-top'>";
         $html .= "<div class='container'>";
         $html .= __heading(array(
-            'heading' => 'Featured Articles'
+            'heading' => 'Featured Articles',
+            'class' => _attribute('class', array('text-center'))
         ));
         $html .= "</div>";
         $html .= "</section>";
