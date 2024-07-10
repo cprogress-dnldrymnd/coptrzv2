@@ -522,12 +522,12 @@ small {
 .post-box-blog {
     .content-box {
         margin-top: 45%;
-        .description-box {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
+    }
+    .description-box {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
     }
 }

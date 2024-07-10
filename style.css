@@ -10831,12 +10831,12 @@ small, .small {
 
 .post-box-blog .content-box {
   margin-top: 45%; }
-  .post-box-blog .content-box .description-box {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical; }
+.post-box-blog .description-box {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
