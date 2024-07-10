@@ -1427,11 +1427,11 @@ function __post_box_blog($data)
                 'size' => 'large',
                 'class' => _attribute('class', array('image-box rounded-corner overflow-hidden'))
             ));
+        }
 
-            $html .= "<div class='content-box content-margin $content_box_class'>";
-            if (in_array('category', $elements)) {
-                $html .= __post_category($id, 'category', 'text-black');
-            }
+        $html .= "<div class='content-box content-margin $content_box_class'>";
+        if (in_array('category', $elements)) {
+            $html .= __post_category($id, 'category', 'text-black');
         }
     }
 
