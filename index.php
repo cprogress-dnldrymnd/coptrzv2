@@ -70,7 +70,7 @@ if (is_home()) {
 } else if (is_post_type_archive('casestudies')) {
     $key = 'casestudies_';
     $title = 'All Case Studies';
-    $has_featured = true;
+    $has_featured = false;
     $has_filter = true;
     $archive_title = 'Blog';
     $category = 'category';
