@@ -187,7 +187,7 @@ function __post_category($id, $category, $class = '')
 {
     $terms = get_the_terms($id, $category);
     if ($terms) {
-        $html = "<div class='position-relative smaller-text post-category $class'>";
+        $html = "<div class='position-relative small-text post-category $class'>";
 
         foreach ($terms as $term) {
             $term_link = get_term_link($term->term_id);
