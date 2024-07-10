@@ -2976,6 +2976,27 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                 ),
+                            Field::make('color', 'background_color_custom', __('Background Color'))
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'background_color',
+                                            'value' => 'bg-custom',
+                                        )
+                                    )
+                                ),
+                            Field::make('select', 'background_color_container', 'Background Color Container')
+                                ->set_options(
+                                    array(
+                                        ''   => 'None',
+                                        'bg-primary'   => 'Primary',
+                                        'bg-secondary' => 'Secondary',
+                                        'bg-accent'    => 'Accent',
+                                        'bg-white'     => 'White',
+                                        'bg-light'     => 'Light',
+                                        'bg-light-gray'     => 'Light Gray',
+                                    )
+                                ),
                         )
                     )
                     ->add_fields(
