@@ -1437,7 +1437,6 @@ function __post_box_blog($id)
     $html = "<div class='column-holder position-relative xs-padding rounded-10px overflow-hidden text-white h-100 d-flex flex-column justify-content-between'>";
     $html .= __background($image);
     $html .= __post_category($id, 'category');
-    $html .= __post_category($id, 'category');
     $html .= "<div class='content-box'>";
     $html .= "<div class='date-box smaller-text'>$date</div>";
     $html .= __heading(array(
