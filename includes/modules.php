@@ -1449,42 +1449,40 @@ function ___hero_archive($key, $title)
 
     $heading_class[] = 'large-heading';
 
-    if (!$hero_hidden) {
-        $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
-        if ($hero_background_youtube && $hero_background_type == 'youtube') {
-            $hero .= __background($hero_background_youtube, true);
-        } else if ($hero_background) {
-            $hero .= __background($hero_background);
-        }
-        $hero .= "<div class='container'>";
-
-
-        $hero .= "[breadcrumbs type='archive' archive_title='$title']";
-
-        $hero .= __heading(array(
-            'heading' => $hero_heading,
-            'tag' => 'h1',
-            'class' => _attribute('class', $heading_class),
-            ''
-        ));
-    
-        $hero .= __description(array(
-            'description' => $hero_description,
-            'class' => _attribute('class', array('description-box small-text')),
-        ));
-
-        if ($buttons) {
-            $hero .= "<div>";
-            $hero .= ____button_modules($buttons);
-            $hero .= "</div>";
-        }
-
-        $hero .= "</div>";
-        $hero .= "</section>";
-
-
-        return $hero;
+    $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
+    if ($hero_background_youtube && $hero_background_type == 'youtube') {
+        $hero .= __background($hero_background_youtube, true);
+    } else if ($hero_background) {
+        $hero .= __background($hero_background);
     }
+    $hero .= "<div class='container'>";
+
+
+    $hero .= "[breadcrumbs type='archive' archive_title='$title']";
+
+    $hero .= __heading(array(
+        'heading' => $hero_heading,
+        'tag' => 'h1',
+        'class' => _attribute('class', $heading_class),
+        ''
+    ));
+
+    $hero .= __description(array(
+        'description' => $hero_description,
+        'class' => _attribute('class', array('description-box small-text')),
+    ));
+
+    if ($buttons) {
+        $hero .= "<div>";
+        $hero .= ____button_modules($buttons);
+        $hero .= "</div>";
+    }
+
+    $hero .= "</div>";
+    $hero .= "</section>";
+
+
+    return $hero;
 }
 
 function ___hero_archive_old($key, $title)
