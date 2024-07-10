@@ -10443,11 +10443,11 @@ img {
   bottom: 0;
   background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%;
   z-index: 1; }
-.background-overlay + div {
+.background-overlay + * {
   z-index: 2; }
-  .background-overlay + div + div {
+  .background-overlay + * + * {
     z-index: 2; }
-    .background-overlay + div + div + div {
+    .background-overlay + * + * + * {
       z-index: 2; }
 .background-overlay.background-overlay-darker:before {
   background-color: rgba(0, 0, 0, 0.85); }
