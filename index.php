@@ -19,6 +19,11 @@ if (is_home()) {
     $title = 'All Events';
     $has_featured = false;
     $archive_title = 'Events';
+} else if (is_post_type_archive('capabilities')) {
+    $key = 'capabilities_';
+    $title = 'All Events';
+    $has_featured = false;
+    $archive_title = 'Capabilities';
 }
 echo do_shortcode(___hero_archive($key, $archive_title));
 if ($has_featured) {
