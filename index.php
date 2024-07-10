@@ -47,7 +47,7 @@ if (is_home()) {
     $has_featured = false;
     $has_filter = false;
     $archive_title = 'Capabilities';
-    $post_style = 'style-1';
+    $post_style = 'style-3';
     $data = array(
         'col' => true,
         'featured' => false,
