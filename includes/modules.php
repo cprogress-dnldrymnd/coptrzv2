@@ -1617,12 +1617,12 @@ function ___posts_header($key, $title, $taxonomy)
 
         $html .= "<div class='col-auto'>";
 
-        $html .= "<div class='event-filter'>";
+        $html .= "<div class='event-filter bs-light rounded-corner'>";
         $html .= "<p class='fw-medium text-medium'>Select event type:</p>";
         $html .= "<div class='row event-filter'>";
         $html .= "<div class='col-auto'>";
         $html .= "<input name='events_category' value='' type='radio' id='term-all'>";
-        $html .= "<label for='term-all'>All</label>";
+        $html .= "<label class='rounded-corner' for='term-all'>All</label>";
         $html .= "</div>";
 
         foreach ($events_category as $category) {
@@ -1630,7 +1630,7 @@ function ___posts_header($key, $title, $taxonomy)
             $term_id = $category->term_id;
             $html .= "<div class='col-auto'>";
             $html .= "<input name='events_category' value='$term_id' type='radio' id='term-$term_id'>";
-            $html .= "<label for='term-$term_id'>$term_name</label>";
+            $html .= "<label class='rounded-corner' for='term-$term_id'>$term_name</label>";
             $html .= "</div>";
         }
         $html .= "</div>";
