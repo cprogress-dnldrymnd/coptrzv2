@@ -277,6 +277,9 @@ input[type="checkbox"] {
         @include responsive(md-lg) {
             padding-bottom: 200px;
         }
+        .inner {
+
+        }
     }
     .logo-box {
         img {
@@ -292,6 +295,9 @@ input[type="checkbox"] {
             z-index: 1;
             left: 0;
             right: 0;
+        }
+        @include responsive(xs-sm) {
+            color: var(--bs-black);
         }
     }
 }
