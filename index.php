@@ -9,7 +9,7 @@ get_header(); ?>
 
 
 <?php
-echo ___hero_archive();
+echo do_shortcode(___hero_archive());
 ?>
 
 
