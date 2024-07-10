@@ -1748,7 +1748,7 @@ function __layouts($args, $return = '')
 
     if ($layouts) {
         foreach ($layouts as $layout) {
-            $return .=  "[layouts id='$layout->ID']";
+            $return .=  '[layouts id=' . $layout->ID . ']';
         }
         return $return;
     }
