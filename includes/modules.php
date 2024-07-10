@@ -1326,7 +1326,9 @@ function _attributes($attributes)
 
 function _format_text($text)
 {
-    return htmlentities($text);
+    if ($text) {
+        return htmlentities($text);
+    }
 }
 
 function _is_module($post_id = false)
