@@ -649,7 +649,7 @@ function custom_product_variation_training()
     $children = $product->get_children();
 
     $html = '<div class="product-custom-variation product-training-variation">';
-    $html .= '<div class="row g-4 align-items-center">';
+    $html .= '<div class="row g-4">';
 
     foreach ($children as $child) {
         $variation = wc_get_product($child);

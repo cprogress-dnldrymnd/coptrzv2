@@ -11340,6 +11340,9 @@ section.product-main .summary.summary.summary .variations tr {
         margin-left: 1rem; }
   .product-custom-variation.product-custom-variation + .variations {
     display: none !important; }
+  .product-custom-variation.product-custom-variation.product-training-variation .row {
+    --bs-gutter-x: 24px;
+    --bs-gutter-y: 24px; }
   .product-custom-variation.product-custom-variation.product-training-variation .date {
     border-radius: 5px; }
 

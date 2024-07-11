@@ -518,6 +518,10 @@ section.product-main {
     }
 
     &.product-training-variation {
+        .row {
+            --bs-gutter-x: 24px;
+            --bs-gutter-y: 24px;
+        }
         .date {
             border-radius: 5px;
         }
