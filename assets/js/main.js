@@ -204,12 +204,29 @@ function __swipers() {
 
     jQuery('.swiper-sliders').each(function (index, element) {
         var $id = '#' + jQuery(this).attr('id');
-
+        $number_of_slides = jQuery(this).attr('number_of_slides');
+        $number_of_slides_tablet = jQuery(this).attr('number_of_slides_tablet');
+        $number_of_slides_mobile = jQuery(this).attr('number_of_slides_mobile');
         var swiper_sliders = new Swiper($id, {
             loop: true,
             autoplay: false,
             slidesPerView: 'auto',
             spaceBetween: 20,
+            breakpoints: {
+                0: {
+                    slidesPerView: $number_of_slides_mobile,
+                },
+
+                768: {
+                    slidesPerView: $number_of_slides_tablet,
+                },
+
+
+                992: {
+                    slidesPerView: $number_of_slides,
+                },
+
+            },
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
@@ -234,45 +251,45 @@ function __swipers() {
 }
 
 function post_navigation() {
-	if (jQuery('body').hasClass('single-post')) {
-		$post_navigation = '';
-		$key = 1;
+    if (jQuery('body').hasClass('single-post')) {
+        $post_navigation = '';
+        $key = 1;
 
-		jQuery('#post-content h2').addClass('h2 post-nav');
+        jQuery('#post-content h2').addClass('h2 post-nav');
 
-		if (jQuery('#post-content h2').length > 0) {
-			jQuery('#post-content h3').addClass('h3 post-nav');
-		} else {
-			jQuery('#post-content h3').addClass('h2 post-nav');
-		}
+        if (jQuery('#post-content h2').length > 0) {
+            jQuery('#post-content h3').addClass('h3 post-nav');
+        } else {
+            jQuery('#post-content h3').addClass('h2 post-nav');
+        }
 
-		jQuery('#post-content h2, #post-content h3').each(function (index, element) {
-			$id = 'content' + $key;
-			$text = jQuery(this).text();
-			if ($text != '') {
-				jQuery(this).attr('id', $id);
-				if (jQuery(this).hasClass('h3')) {
-					$class = 'h3-nav';
-				} else {
-					$class = 'h2-nav';
-				}
-				$heading_val = '<li class="' + $class + '"> <a href="#' + $id + '">' + $text + '</a> </li>';
-				$post_navigation = $post_navigation + $heading_val;
-				$key++;
+        jQuery('#post-content h2, #post-content h3').each(function (index, element) {
+            $id = 'content' + $key;
+            $text = jQuery(this).text();
+            if ($text != '') {
+                jQuery(this).attr('id', $id);
+                if (jQuery(this).hasClass('h3')) {
+                    $class = 'h3-nav';
+                } else {
+                    $class = 'h2-nav';
+                }
+                $heading_val = '<li class="' + $class + '"> <a href="#' + $id + '">' + $text + '</a> </li>';
+                $post_navigation = $post_navigation + $heading_val;
+                $key++;
 
-			}
-		});
+            }
+        });
 
-		$post_navigation_html = jQuery($post_navigation);
-		$post_navigation_html.appendTo('#post-navigation');
+        $post_navigation_html = jQuery($post_navigation);
+        $post_navigation_html.appendTo('#post-navigation');
 
-		jQuery(document).on("click", '#post-navigation a', function (event) {
-			$href = jQuery(this).attr('href');
-			jQuery('.post-nav').removeClass('active');
-			jQuery($href).addClass('active');
-			jQuery('html, body').animate({
-				scrollTop: jQuery($href).offset().top - 200
-			}, 1000);
-		});
-	}
+        jQuery(document).on("click", '#post-navigation a', function (event) {
+            $href = jQuery(this).attr('href');
+            jQuery('.post-nav').removeClass('active');
+            jQuery($href).addClass('active');
+            jQuery('html, body').animate({
+                scrollTop: jQuery($href).offset().top - 200
+            }, 1000);
+        });
+    }
 }
