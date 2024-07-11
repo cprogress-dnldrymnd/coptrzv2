@@ -747,7 +747,6 @@ small {
 
         .accordion-button {
             background-color: transparent;
-            font-size: 2rem;
             color: inherit;
             border: none !important;
             box-shadow: none;
@@ -755,9 +754,8 @@ small {
             padding: 0;
             border: none;
             border-radius: 0;
-            font-weight: bold;
-            font-size: 1.25rem;
-
+            font-weight: 500;
+            color: ;
             @include after {
                content: none;
             }
@@ -770,9 +768,6 @@ small {
         .accordion-body {
         }
 
-        @include not-last-child {
-            margin-bottom: 2rem;
-        }
     }
 }
 

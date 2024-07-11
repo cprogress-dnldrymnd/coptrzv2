@@ -1310,7 +1310,7 @@ function __accordion_module($data)
         $button_class = $key == 0 && $open_first_item ? '' : 'collapsed';
         $content_class = $key == 0 && $open_first_item ? 'show' : '';
         $aria_expanded = $key == 0 && $open_first_item ? 'true' : 'false';
-        $html .= "<div class='accordion-item'>";//accordion-item
+        $html .= "<div class='accordion-item mb-0'>";//accordion-item
         $html .= "<h3 class='accordion-header' id='flush-heading-$key'>";
         $html .= "<button class='accordion-button justify-content-between px-0 py-3 $button_class' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse-$key' aria-expanded='$aria_expanded' aria-controls='flush-collapse-$key'>";
         $html .= "<span> ";
@@ -1320,7 +1320,7 @@ function __accordion_module($data)
         $html .= "</button>";
         $html .= "</h3>";
 
-        $html .= "<div id='flush-collapse-$key' class='accordion-collapse pt-3 collapse $content_class' aria-labelledby='flush-heading-$key' data-bs-parent='#accordion-$module_id'>";
+        $html .= "<div id='flush-collapse-$key' class='accordion-collapse pb-3 collapse $content_class' aria-labelledby='flush-heading-$key' data-bs-parent='#accordion-$module_id'>";
         $html .= __description(array(
             'description' => $description,
             'class' => _attribute('class', array('description-box')),
