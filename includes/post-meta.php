@@ -2954,6 +2954,34 @@ function __section_fields($name = 'sections')
                                             ),
                                     )
                                 )
+                                ->add_fields('icon', array(
+                                    Field::make('file', 'icon', __('Icon'))
+                                        ->set_type(array('image/svg+xml')),
+                                    Field::make('select', 'icon_color', 'Text Color')
+                                        ->set_options(
+                                            array(
+                                                ''   => 'Default',
+                                                'text-primary'   => 'Primary',
+                                                'text-secondary' => 'Secondary',
+                                                'text-accent'    => 'Accent',
+                                                'text-white'     => 'White',
+                                                'text-light-gray'     => 'Light Gray',
+                                                'text-custom'    => 'Custom',
+                                            )
+                                        ),
+                                    Field::make('color', 'icon_color_custom', __('Text Color'))
+                                        ->set_conditional_logic(
+                                            array(
+                                                array(
+                                                    'field' => 'icon_color',
+                                                    'value' => 'text-custom',
+                                                )
+                                            )
+                                        ),
+                                    Field::make('text', 'icon_width', __('Custom Icon Width')),
+                                    Field::make('text', 'icon_height', __('Custom Icon Height'))
+
+                                ))
                                 ->add_fields(
                                     'custom_field_1',
                                     array(
