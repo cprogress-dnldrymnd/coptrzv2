@@ -10914,7 +10914,7 @@ small, .small {
       background-color: var(--bs-black); }
 
 .social-share-buttons {
-  margin-left: 1rem; }
+  margin-left: 10px; }
   .social-share-buttons a {
     border-radius: 5px;
     background-color: transparent;
