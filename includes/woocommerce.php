@@ -738,7 +738,7 @@ function custom_product_variation_training()
 
     }
     $html .= '</div>'; //end-swiper-wrapper
-    $html .= '<div class="row g-4 justify-content-center">';
+    $html .= '<div class="row g-4 justify-content-between">';
     $html .= '<div class="swiper-nav d-flex justify-content-start col-auto">'; // swipernav
     $html .= '<div class="swiper-button-prev"></div>';
     $html .= '<div class="swiper-button-next"></div>';
