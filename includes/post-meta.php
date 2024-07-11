@@ -4873,7 +4873,7 @@ Container::make('post_meta', __('Conditional Display'))
 /*-----------------------------------------------------------------------------------*/
 /* Product category pages
 /*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', __('Select product category to display content'))
+Container::make('post_meta', __('Select taxonomy term to display content'))
     ->or_where('post_type', '=', 'producttaxonomypages')
     ->add_fields(array(
         Field::make('association', 'product_tax', 'Select Category')
