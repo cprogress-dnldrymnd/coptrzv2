@@ -1230,6 +1230,13 @@ function ____columns_modules($items, $id, $html = '')
                     $faqs = $item['faqs'];
                     $faqs_category = $item['faqs_category'];
                     $open_first_item = $item['open_first_item'];
+                    $html .= __accordion_module(array(
+                        'accordion' => $accordion,
+                        'accordion_source' => $accordion_source,
+                        'faqs' => $faqs,
+                        'faqs_category' => $faqs_category,
+                        'open_first_item' => $open_first_item,
+                    ));
                     break;
             }
         }
@@ -1246,6 +1253,52 @@ function ____columns_modules($items, $id, $html = '')
         $html .= '</div>'; //end swiper-holder
     }
     return $html;
+}
+
+function __accordion_module($data)
+{
+
+    $faqs = isset($data['faqs']) ? $data['faqs'] : false;
+    $accordion_source = isset($data['accordion_source']) ? $data['accordion_source'] : false;
+    $faqs_category = isset($data['faqs_category']) ? $data['faqs_category'] : false;
+    $faqs = isset($data['accordion_source']) ? $data['accordion_source'] : false;
+    $accordion = isset($data['accordion']) ? $data['accordion'] : false;
+    if ($accordion_source == 'faqs') {
+        $accordion = array();
+        foreach ($faqs as $faq) {
+            $accordion[$faq['id']] = array(
+                'heading' => get_the_title($faq['id']),
+                'description' => get_the_content(null, false, $faq['id']),
+            );
+        }
+    } else if ($accordion_source == 'faqs_category') {
+        $faqs_cat_id = array();
+        foreach ($faqs_category as $faqs_cat) {
+            $faqs_cat_id[] = $faqs_cat['id'];
+        }
+        $args = array(
+            'post_type' => 'faq',
+            'post_status' => 'publish',
+            'numberposts' => -1,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'faqs_category',
+                    'field'    => 'term_id',
+                    'terms'    => $faqs_cat_id
+                )
+            )
+        );
+        $faqs_lists = get_posts($args);
+        $accordion = array();
+        foreach ($faqs_lists as $faq) {
+            $accordion[$faq->ID] = array(
+                'heading' => $faq->post_title,
+                'description' => $faq->post_content
+            );
+        }
+    } else {
+        $accordion = $accordion;
+    }
 }
 
 function _____icon_modules($items)
