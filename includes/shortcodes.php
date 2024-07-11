@@ -339,7 +339,7 @@ class Shortcodes
 
         if ($query->have_posts()) {
             $html = "<div class='related-posts-sidebar'>";
-            $html .= "<div class='row g-3'>";
+            $html .= "<div class='row g-3 same-image-height' style='--image-padding: 35%'>";
             while ($query->have_posts()) {
                 $query->the_post();
                 $html .= "<div class='col-12'>";
