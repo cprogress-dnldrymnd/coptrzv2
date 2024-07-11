@@ -75,7 +75,6 @@
     echo do_shortcode(___sections('sections_after_main', get_the_ID()));
 
     $sections_after_main = get__post_meta('sections');
-    var_dump($sections_after_main);
     ?>
  
 
