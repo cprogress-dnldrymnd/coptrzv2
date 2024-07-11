@@ -681,7 +681,7 @@ function custom_product_variation_training()
 
 
         if ($product_attribute_array['date'] || $product_attribute_array['pa_location']) {
-            $html .= "<div class='row g-3 justify-content-between align-items-center'>";
+            $html .= "<div class='row g-3 justify-content-between mb-0'>";
 
             if ($product_attribute_array['date'] != 'N/A') {
                 $html .= "<div class='col-auto'>";
