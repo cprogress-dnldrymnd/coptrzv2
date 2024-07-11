@@ -36,19 +36,11 @@ echo ___hero_modules('text-start', 'small-hero');
                 <div class="column-holder the-content content-margin fw-light" id="post-content">
                     <?php the_content() ?>
                     <?php
-                    echo get_avatar(get_the_author_meta('ID'));
+                    $avatar = get_avatar(get_the_author_meta('ID'));
                     ?>
                     <div class="author">
-                        <div class="row">
-                            <div class="col-auto">
-                                <div class="image-box">
-
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <?= get_author_name() ?>
-                            </div>
-                        </div>
+                        <div class="text-accent fw-semibold medium-text">Written by:</div>
+                        <div class="fw-light medium-text"><?= get_author_name() ?></div>
                     </div>
                 </div>
             </div>
