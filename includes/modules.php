@@ -968,7 +968,7 @@ function ____columns_modules($items, $id, $html = '')
         }
 
         if ($horizontal_spacing) {
-            $container_classes[] = $horizontal_spacing;
+            $row_class[] = $horizontal_spacing;
         }
 
         if ($vertical_spacing) {
