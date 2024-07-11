@@ -733,7 +733,7 @@ function ____post_grid_module($data)
                 break;
         }
     }
-    $classes[] = 'column-holder position-relative overflow-hidden h-100';
+    $classes[] = 'column-holder position-relative overflow-hidden content-margin h-100';
 
     if ($styles) {
         $styles_val = _attribute('style', $styles, ';');
@@ -767,7 +767,7 @@ function ____post_grid_module($data)
         $html .= "<div class='swiper swiper-sliders' id='$swiper_id' $slides_attr>"; //swiper
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
     } else {
-        $html .= "<div class='row g-4'>"; //row
+        $html .= "<div class='row g-4 same-image-height'>"; //row
     }
 
     foreach ($posts_lists as $post) {
