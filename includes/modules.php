@@ -39,7 +39,7 @@ function action_module_content()
 }
 add_action('shutdown', 'action_module_content');
 
-function ___hero_modules()
+function ___hero_modules($hero_alignment_args, $hero_height_args)
 {
     $id = get_the_ID();
     $hero_heading = get__post_meta('hero_heading');
@@ -48,8 +48,8 @@ function ___hero_modules()
     $hero_background = get__post_meta('hero_background');
     $hero_background_youtube = get__post_meta('hero_background_youtube');
     $hero_background_type = get__post_meta('hero_background_type');
-    $hero_alignment = get__post_meta('hero_alignment');
-    $hero_height = get__post_meta('hero_height');
+    $hero_alignment = get__post_meta('hero_alignment') ? get__post_meta('hero_alignment') : $hero_alignment_args;
+    $hero_height = get__post_meta('hero_height') ? get__post_meta('hero_height') : $hero_height_args;
     $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
     $buttons = get__post_meta('buttons');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
@@ -867,7 +867,7 @@ function ____columns_modules($items, $id, $html = '')
                     $classes[] = $column_style['justify_content'];
                     $classes[] = $column_style['text_align'];
                     $classes[] = $column_style['flex_direction'];
-                    
+
                     if ($column_style['align_items'] || $column_style['justify_content'] || $column_style['flex_direction']) {
                         $classes[] = 'd-flex';
                     }
