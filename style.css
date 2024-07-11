@@ -10925,7 +10925,8 @@ small, .small {
       margin-right: 10px; }
     .social-share-buttons a svg {
       width: 35px;
-      height: 35px; }
+      height: 35px;
+      color: var(--bs-black); }
       .social-share-buttons a svg.facebook {
         color: #0080ff; }
       .social-share-buttons a svg.linkedin {
