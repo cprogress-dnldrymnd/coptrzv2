@@ -10435,6 +10435,12 @@ p:last-child {
     margin-left: 10px;
     margin-right: 10px; } }
 
+.bg-cover {
+  background-size: cover !important; }
+
+.bg-contain {
+  background-size: contain !important; }
+
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
