@@ -248,6 +248,77 @@ class Shortcodes
         );
         return ___sections('sections', $id);
     }
+    function blog_meta()
+    {
+        ob_start();
+        $reading_time = get__post_meta('reading_time');
+?>
+        <div class="blog-meta">
+            <div class="row">
+                <div class="col-auto">
+                    <p><strong>Last updated on</strong></p>
+                    <p><?= get_the_date() ?></p>
+                </div>
+                <?php if ($reading_time) { ?>
+                    <div class="col-auto">
+                        <p><strong>Read time</strong></p>
+                        <p><?= $reading_time ?></p>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    <?php
+        return ob_get_clean();
+    }
+
+    function social_share()
+    {
+        global $post;
+        $url = get_permalink($post->ID);
+        $title = str_replace(' ', '%20', get_the_title($post->ID));
+
+        $social_buttons = '';
+        $social_buttons .= '<div class="social-share-buttons">';
+
+        $social_buttons .= '<a href="#" onclick="window.open(\'https://www.facebook.com/sharer.php?u=' . $url . '&t=' . $title . '\', \'_blank\', \'width=600,height=400\'); return false;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16"> <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/> </svg></a>';
+
+        $social_buttons .= '<a href="#" onclick="window.open(\'https://x.com/share?url=' . $url . '&text=' . $title . '\', \'_blank\', \'width=600,height=400\'); return false;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+<path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+</svg></a>';
+        $social_buttons .= '<a href="#" onclick="window.open(\'https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl=' . $url . '\', \'_blank\', \'width=600,height=400\'); return false;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+</svg></a>';
+        $social_buttons .= '</div>';
+        return $social_buttons;
+    }
+
+
+    function post_link()
+    {
+        ob_start();
+    ?>
+        <button onclick="copy_link()" class="post-link-copy">
+            <input class="d-none" id="copy-link" value="<?= get_permalink(get_the_ID()) ?>">
+            <span>Copy Link</span>
+        </button>
+        <script>
+            function copy_link() {
+                // Get the text field
+                var copyText = document.getElementById("copy-link");
+
+                // Select the text field
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                // Copy the text inside the text field
+                navigator.clipboard.writeText(copyText.value);
+
+                jQuery('.post-link-copy span').text('Link Copied');
+            }
+        </script>
+<?php
+        return ob_get_clean();
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -255,3 +326,6 @@ add_shortcode('breadcrumbs', array($Shortcodes, 'breadcrumbs'));
 add_shortcode('product_grid_display', array($Shortcodes, 'product_grid_display'));
 add_shortcode('case_study_slider_grid', array($Shortcodes, 'case_study_slider_grid'));
 add_shortcode('layouts', array($Shortcodes, 'layouts'));
+add_shortcode('blog_meta', array($Shortcodes, 'blog_meta'));
+add_shortcode('social_share', array($Shortcodes, 'social_share'));
+add_shortcode('post_link', array($Shortcodes, 'post_link'));
