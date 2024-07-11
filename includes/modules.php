@@ -781,6 +781,17 @@ function ____post_grid_module($data)
                     $html .= __image($image_args);
 
                     break;
+                case 'custom_field_1':
+                    $custom_field_key =  $item['custom_field_key'];
+                    $custom_field_type =  $item['custom_field_type'];
+                    $custom_field_class =  $item['custom_field_class'];
+                    $val = get_post_meta(get_the_ID(), $custom_field_key);
+
+                    if ($custom_field_type != 'img') {
+                        $html .= "<$custom_field_type>$val</$custom_field_type>";
+                    }
+
+                    break;
             }
         }
         $html .= "</div>";

@@ -2959,8 +2959,13 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                             ->set_options(
                                                 array(
-                                                    'text'      => 'text',
-                                                    'image'      => 'Image',
+                                                    'p'      => 'p',
+                                                    'h2'      => 'h2',
+                                                    'h3'      => 'h3',
+                                                    'h4'      => 'h4',
+                                                    'h5'      => 'h5',
+                                                    'h6'      => 'h6',
+                                                    'img'      => 'img',
                                                 )
                                             ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
