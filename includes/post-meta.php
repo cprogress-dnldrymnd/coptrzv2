@@ -4906,4 +4906,19 @@ Container::make('post_meta', 'Capabilities Settings')
                     )
                 )
         )
+    )
+    ->add_tab(
+        'Related Case Studies',
+        array(
+            Field::make('text', 'related_casestudies_heading', 'Related Case Studies Heading'),
+            Field::make('association', 'related_casestudies', 'Related Case Studies')
+                ->set_types(
+                    array(
+                        array(
+                            'type'      => 'post',
+                            'post_type' => 'product',
+                        )
+                    )
+                )
+        )
     );
