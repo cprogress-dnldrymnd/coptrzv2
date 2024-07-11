@@ -741,6 +741,7 @@ small {
 }
 
 .accordion {
+    --bs-accordion-color: inherit;
     .accordion-item {
         border: none;
         background-color: transparent;
@@ -755,7 +756,7 @@ small {
             border: none;
             border-radius: 0;
             font-weight: 500;
-            font-size: 32px;
+            font-size: 25px;
             @include after {
                content: none;
             }

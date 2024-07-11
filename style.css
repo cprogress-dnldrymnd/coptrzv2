@@ -11016,7 +11016,7 @@ small, .small {
     border: none;
     border-radius: 0;
     font-weight: 500;
-    font-size: 32px; }
+    font-size: 25px; }
     .accordion .accordion-item .accordion-button:after {
       content: none; }
     @media screen and (max-width: 767px) {
