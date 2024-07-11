@@ -677,11 +677,12 @@ function custom_product_variation_training()
         $variation_thumbnail = get_post_thumbnail_id($child);
         $thumbnail = $variation_thumbnail ? $variation_thumbnail : $main_thumbnail;
         $stock_status_variation = $variation->get_stock_status();
+        $sku = $variation->get_sku();
         $price = $variation->get_price_html();
         $html .= '<div class="col-12">';
         $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
-        $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100'>";
-        $html .= "<div class='inner product-inner d-flex align-items-center w-100 p-20px rounded-corner'>";
+        $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100'>";//label
+        $html .= "<div class='inner product-inner d-flex align-items-center w-100 p-20px rounded-corner'>";//inner
         $html .= __image(array(
             'image_id' => $thumbnail,
             'class' => _attribute('class', array('variation-image')),
@@ -697,9 +698,10 @@ function custom_product_variation_training()
        
 
         $html .= '</div>';
+        $html .= "<a href='?add-to-cart=$child' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='61659' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
 
-        $html .= '</div>';
-        $html .= '</label>';
+        $html .= '</div>';//inner
+        $html .= '</label>';//label
         $html .= '</div>';
     }
     $html .= '</div>';
