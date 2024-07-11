@@ -73,6 +73,29 @@
 <div class="modules">
     <?php
     echo do_shortcode(___sections('sections_after_main', get_the_ID()));
+
+    $sections = get__post_meta('sections');
     ?>
+
+
+    <?php
+    $new_sections = array();
+    foreach ($sections as $section) {
+        $new_sections['_type'] = 'section';
+        $new_sections['sec_1'] = $section['sec_1'];
+        $new_sections['title'] = $section['title'];
+        $new_sections['section_id'] = $section['section_id'];
+        $new_sections['section_class'] = $section['section_class'];
+        $new_sections['disable_section'] = $section['disable_section'];
+        $new_sections['section_items'] = $section['section_items'];
+        $new_sections['html_3'] = $section['html_3'];
+        $new_sections['section_styles'] = $section['section_styles'];
+    }
+
+    carbon_set_post_meta(get_the_ID(), 'sections', $new_sections);
+    ?>
+    <pre>
+        <?php var_dump($sections); ?>
+    </pre>
 </div>
 <?php get_footer(); ?>
