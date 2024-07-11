@@ -1,4 +1,5 @@
 <?php
+/*
 function action_module_content()
 {
     // Check if a post was updated (add your specific conditions here)
@@ -38,7 +39,7 @@ function action_module_content()
     }
 }
 add_action('shutdown', 'action_module_content');
-
+*/
 function ___hero_modules($hero_alignment_args = false, $hero_height_args = false)
 {
     $id = get_the_ID();
