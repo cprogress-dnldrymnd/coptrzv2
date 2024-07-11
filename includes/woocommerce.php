@@ -687,7 +687,7 @@ function custom_product_variation_training()
 
         $html .= "<div class='info-box'>";
         $html .= __heading(array(
-            'heading' => $variation_name,
+            'heading' => $product_attribute_array['course-type'],
             'tag' => 'h3'
         ));
         $html .= $price;
