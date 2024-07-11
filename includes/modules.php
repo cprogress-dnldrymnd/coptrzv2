@@ -71,7 +71,7 @@ function ___hero_modules()
         $hero .= "<div class='container'>";
 
         if (!$breadcrumbs_hidden) {
-            $hero .= "[breadcrumbs id='$id']";
+            $hero .= do_shortcode("[breadcrumbs id='$id']");
         }
 
 
