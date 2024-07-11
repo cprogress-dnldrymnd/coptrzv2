@@ -8,12 +8,11 @@ function action_woocommerce_before_main_content()
 
         $product_category_page = __get_product_category_page(get_queried_object()->term_id);
         if ($product_category_page) {
-            echo do_shortcode(___sections('sections', $product_category_page));
+            echo do_shortcode(get_the_content(NULL, false, $product_category_page));
         }
     } else if (is_product()) {
-echo ___hero_modules();
-
-        echo do_shortcode(___sections('sections', get_the_ID()));
+        $single_product_content = get__post_meta('single_product_content');
+        echo do_shortcode($single_product_content);
     }
 }
 
@@ -25,8 +24,7 @@ function action_woocommerce_after_single_product_summary()
     $compatible_payloads = get_post_meta(get_the_ID(), 'compatible_payloads', true);
     $accessories = get_post_meta(get_the_ID(), 'accessories', true);
 
-    echo do_shortcode(___sections('sections_after_main', get_the_ID()));
-
+    echo do_shortcode($single_product_content_after);
     if ($compatible_payloads) {
         echo __linked_products($compatible_payloads, 'All Payloads', '#', 'swiper-payloads', 'Compatible Payloads');
     }
@@ -654,8 +652,8 @@ function custom_product_variation_training()
 
     $html = '<div class="product-custom-variation product-training-variation">';
 
-    $html .= "<div class='swiper swiper-training'>"; //swiper
-    $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+    $html .= "<div class='swiper swiper-training'>";//swiper
+    $html .= "<div class='swiper-wrapper'>";//swiper-wrapper
 
 
     foreach ($children_chunk as $children) {
@@ -739,12 +737,12 @@ function custom_product_variation_training()
         $html .= '</div>'; //swiper-slide
 
     }
-    $html .= '</div>'; //end-swiper-wrapper
+    $html .= '</div>';//end-swiper-wrapper
     $html .= '<div class="swiper-nav d-flex justify-content-start mt-5">'; // swipernav
     $html .= '<div class="swiper-button-prev"></div>';
     $html .= '<div class="swiper-button-next"></div>';
     $html .= '</div>'; //end swipernav
-    $html .= '</div>'; //end-swiper
+    $html .= '</div>';//end-swiper
     $html .= '</div>';
 
     echo $html;
