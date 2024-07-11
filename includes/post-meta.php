@@ -4652,6 +4652,7 @@ Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
     ->or_where('post_type', '=', 'product')
     ->or_where('post_type', '=', 'layouts')
+    ->or_where('post_type', '=', 'capabilities')
     ->or_where('post_type', '=', 'productcategorypages')
     ->add_fields(__section_fields());
 
