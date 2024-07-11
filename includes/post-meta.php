@@ -2778,6 +2778,7 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'border_style', 'Border Style')
                                             ->set_options(
                                                 array(
+                                                    ''   => 'None',
                                                     'border-default'   => 'Default',
                                                     'border-custom'   => 'Custom',
                                                 )
