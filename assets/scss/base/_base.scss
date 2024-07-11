@@ -775,16 +775,16 @@ small {
 }
 
 .plus-minus {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     display: flex;
     align-items: center;
     position: relative;
 
     @include before {
         content: "";
-        width: 3px;
-        height: 20px;
+        width: 2px;
+        height: 14px;
         background: var(--bs-black);
         position: absolute;
         left: 8.5px;
@@ -793,8 +793,8 @@ small {
 
     @include after {
         content: "";
-        width: 20px;
-        height: 3px;
+        width: 14px;
+        height: 2px;
         background: var(--bs-black);
     }
 }
