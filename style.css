@@ -11660,12 +11660,12 @@ section.product-main .summary.summary.summary .variations tr {
 .wpforms-container.wpforms-container {
   margin-bottom: 0; }
 
-.form-box .wpforms-form .wpforms-field-container .wpforms-field {
+.form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field {
   padding-top: 0;
   padding-bottom: 0; }
-  .form-box .wpforms-form .wpforms-field-container .wpforms-field:not(.wpforms-field-layout) {
+  .form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field:not(.wpforms-field-layout) {
     margin-bottom: 1rem; }
-  .form-box .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
+  .form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
     position: absolute;
     left: 10px;
     background-color: var(--bs-white);
@@ -11680,11 +11680,11 @@ section.product-main .summary.summary.summary .variations tr {
     -ms-transition: 300ms;
     -o-transition: 300ms;
     transition: 300ms; }
-    .form-box .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label.wpforms-label-hide {
+    .form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label.wpforms-label-hide {
       display: none !important; }
-  .form-box .wpforms-form .wpforms-field-container .wpforms-field.filled .wpforms-field-label {
+  .form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field.filled .wpforms-field-label {
     top: -13px; }
-.form-box .wpforms-form .wpforms-submit-container {
+.form-box:not(.style-2) .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }
 
 /*-----------------------------------------------------------------------------------*/

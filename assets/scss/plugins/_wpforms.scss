@@ -30,41 +30,40 @@
 
 .form-box {
     &:not(.style-2) {
-    }
-
-    .wpforms-form {
-        .wpforms-field-container {
-            .wpforms-field {
-                padding-top: 0;
-                padding-bottom: 0;
-                &:not(.wpforms-field-layout) {
-                    margin-bottom: 1rem;
-                }
-                .wpforms-field-label {
-                    position: absolute;
-                    left: 10px;
-                    background-color: var(--bs-white);
-                    color: rgba(28, 28, 30, 0.75);
-                    padding: 5px;
-                    font-size: 15px;
-                    line-height: 1;
-                    top: 15px;
-                    font-weight: 300;
-                    @include transition(300ms);
-                    &.wpforms-label-hide {
-                        display: none !important;
+        .wpforms-form {
+            .wpforms-field-container {
+                .wpforms-field {
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    &:not(.wpforms-field-layout) {
+                        margin-bottom: 1rem;
                     }
-                }
-
-                &.filled {
                     .wpforms-field-label {
-                        top: -13px;
+                        position: absolute;
+                        left: 10px;
+                        background-color: var(--bs-white);
+                        color: rgba(28, 28, 30, 0.75);
+                        padding: 5px;
+                        font-size: 15px;
+                        line-height: 1;
+                        top: 15px;
+                        font-weight: 300;
+                        @include transition(300ms);
+                        &.wpforms-label-hide {
+                            display: none !important;
+                        }
+                    }
+
+                    &.filled {
+                        .wpforms-field-label {
+                            top: -13px;
+                        }
                     }
                 }
             }
-        }
-        .wpforms-submit-container {
-            margin-top: 2rem;
+            .wpforms-submit-container {
+                margin-top: 2rem;
+            }
         }
     }
 }
