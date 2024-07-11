@@ -739,6 +739,7 @@ function ____post_grid_module($data)
 
         $html .= "<div class='swiper-holder'>"; //swiper-holder
         $html .= "<div class='swiper swiper-sliders' id='$swiper_id' $slides_attr>"; //swiper
+        $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
     } else {
         $html .= "<div class='row g-4'>"; //row
     }
@@ -789,6 +790,7 @@ function ____post_grid_module($data)
     }
     $html .= "</div>";
     if ($is_slider) {
+        $html .= '</div>'; //end swiper-wrapper
         $html .= '</div>'; //end swiper
         $html .= '<div class="swiper-nav d-flex justify-content-start">'; // swipernav
         $html .= '<div class="swiper-button-prev"></div>';
