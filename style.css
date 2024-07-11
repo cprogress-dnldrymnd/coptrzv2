@@ -10942,6 +10942,22 @@ small, .small {
   padding: 8.5px 20px;
   line-height: 1; }
 
+#post-navigation li {
+  width: 100%; }
+  #post-navigation li a {
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 500; }
+  #post-navigation li.h3-nav {
+    padding-left: 20px;
+    margin-bottom: 15px; }
+    #post-navigation li.h3-nav a {
+      font-size: 1rem; }
+  #post-navigation li:not(:last-child).h2-nav {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 20px;
+    margin-bottom: 20px; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/

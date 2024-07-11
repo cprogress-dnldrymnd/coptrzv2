@@ -662,3 +662,34 @@ small {
     padding: 8.5px 20px;
     line-height: 1;
 }
+
+
+
+#post-navigation {
+    li {
+        width: 100%;
+
+        a {
+            color: var(--primary-color);
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        &.h3-nav {
+            padding-left: 20px;
+            margin-bottom: 15px;
+
+            a {
+                font-size: 1rem;
+            }
+        }
+
+        @include not-last-child {
+            &.h2-nav {
+                border-bottom: 2px solid var(--primary-color);
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
