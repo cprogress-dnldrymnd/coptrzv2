@@ -1467,7 +1467,7 @@ function __accordion_module($data, $class = '')
         $html .= "<h3 class='accordion-header' id='flush-heading-$key'>";
         $html .= "<button class='accordion-button justify-content-between px-0 py-3 $button_class' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse-$key' aria-expanded='$aria_expanded' aria-controls='flush-collapse-$key'>";
         $html .= "<span> ";
-        $html .= $key;
+        $html .= $heading;
         $html .= "</span> ";
         $html .= "<span class='plus-minus'></span>";
         $html .= "</button>";
