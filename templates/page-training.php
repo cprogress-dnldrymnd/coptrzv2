@@ -73,7 +73,6 @@
 <div class="modules">
     <?php
     echo do_shortcode(___sections('sections_after_main', get_the_ID()));
-    $sections = get__post_meta('sections');
     ?>
 </div>
 <?php get_footer(); ?>
