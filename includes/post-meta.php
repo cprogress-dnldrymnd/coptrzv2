@@ -3316,6 +3316,7 @@ function __section_fields($name = 'sections')
                                         'md-margin-top'  => 'Medium',
                                         'sm-margin-top'  => 'Small',
                                         'xs-margin-top' => 'Extra Small',
+                                        'mt-20px' => '20px',
                                     )
                                 ),
                             Field::make('select', 'margin_bottom', 'Margin Bottom')->set_width(25)
@@ -3327,6 +3328,7 @@ function __section_fields($name = 'sections')
                                         'md-margin-bottom'  => 'Medium',
                                         'sm-margin-bottom'  => 'Small',
                                         'xs-margin-bottom' => 'Extra Small',
+                                        'mb-20px' => '20px',
                                     )
                                 ),
                             Field::make('select', 'margin_left', 'Margin Left')->set_width(25)
