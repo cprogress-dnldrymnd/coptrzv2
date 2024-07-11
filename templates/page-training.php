@@ -14,7 +14,7 @@
 
 <section class="training-product lg-padding-top lg-padding-top border-top-default">
     <div class="container">
-        <h2>Book a GVC Training Course</h2>
+        <h2 class="text-center">Book a GVC <br> Training Course</h2>
         <div class="post-archive-header">
             <div class="container">
                 <div class="inner border-bottom-default sm-padding-bottom sm-margin-bottom">
