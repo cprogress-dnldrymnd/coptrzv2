@@ -10964,6 +10964,8 @@ small, .small {
   position: sticky;
   top: 32px; }
 
+#post-content a {
+  color: var(--bs-accent); }
 #post-content h1, #post-content .h1,
 #post-content h2,
 #post-content .h2,
