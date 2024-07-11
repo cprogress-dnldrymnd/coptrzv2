@@ -1661,7 +1661,7 @@ function __section_fields($name = 'sections')
                                                 ->set_options(
                                                     array(
                                                         ''   => 'Default',
-                                                        'Style 2' => 'Style 2',
+                                                        'style-2' => 'Style 2',
                                                     )
                                                 ),
                                             Field::make('association', 'form', 'Select Form')
