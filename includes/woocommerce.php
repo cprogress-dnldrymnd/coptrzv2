@@ -12,7 +12,7 @@ function action_woocommerce_before_main_content()
         }
     } else if (is_product()) {
         echo ___hero_modules();
-        echo _product_specifications();
+        echo __product_specifications();
         echo do_shortcode(___sections('sections', get_the_ID()));
     }
 }
