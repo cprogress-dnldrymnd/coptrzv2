@@ -813,6 +813,8 @@ function ____post_grid_module($data)
                     $image_args['size'] = $item['size'];
                     if ($is_background_image) {
                         $image_args['class'] = _attribute('class', array('background-image', 'background-overlay'));
+                    } else {
+                        $image_args['class'] = _attribute('class', array('image-box'));
                     }
                     $html .= __image($image_args);
 
