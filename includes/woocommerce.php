@@ -649,7 +649,7 @@ function custom_product_variation_training()
     $children = $product->get_children();
     $main_thumbnail = get_post_thumbnail_id($product->get_id());
 
-    $html = '<div class="product-custom-variation">';
+    $html = '<div class="product-training-variation">';
     $html .= '<div class="select-variant fw-medium mb-20px">Select a variant:</div>';
     $html .= '<div class="accordion" id="accordionVariation">';
     $html .= '<div class="row g-4">';
@@ -679,25 +679,33 @@ function custom_product_variation_training()
         $html .= '<pre>';
         $html .= var_dump($product_attribute_array);
         $html .= '</pre>';
-        
-        $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
-        $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100'>";//label
-        $html .= "<div class='inner product-inner w-100 p-20px rounded-corner content-margin'>";//inner
-   
 
-        $html .= "<div class='info-box'>";
+        $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
+        $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100'>"; //label
+        $html .= "<div class='inner product-inner w-100 p-20px rounded-corner content-margin'>"; //inner
+
+
+        $html .= "<div class='row g-3'>";
+
+        if ($product_attribute_array['date'] != 'N/A') {
+            $html .= "<div class='col-auto'>";
+            $html .= "<span class='date'>";
+            $html .= $product_attribute_array['date'];
+            $html .= '</span>';
+            $html .= '</div>';
+        }
+        $html .= '</div>';
         $html .= __heading(array(
             'heading' => $product_attribute_array['course-type'],
             'tag' => 'h3'
         ));
         $html .= $price;
-       
 
-        $html .= '</div>';
+
         $html .= "<a href='?add-to-cart=$child' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='61659' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
 
-        $html .= '</div>';//inner
-        $html .= '</label>';//label
+        $html .= '</div>'; //inner
+        $html .= '</label>'; //label
         $html .= '</div>';
     }
     $html .= '</div>';
