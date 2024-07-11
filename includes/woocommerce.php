@@ -647,9 +647,8 @@ function __related_posts($posts, $heading = 'Related Guides', $data)
     $html .= "<div class='row g-4 same-image-height' style=' --image-padding: 40%; '>";
     foreach ($posts as $post) {
         $html .= "<div class='col-md-4 col-sm-12'>";
-        $data['id'] = $post;
+        $data['id'] = $post['id'];
         $html .= __post_box($data);
-        $html .= var_dump($data);
         $html .= '</div>';
     }
     $html .= '</div>';
