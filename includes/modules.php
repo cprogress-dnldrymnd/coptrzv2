@@ -795,7 +795,12 @@ function ____post_grid_module($data)
                     $custom_field_key =  $item['custom_field_key'];
                     $custom_field_type =  $item['custom_field_type'];
                     $custom_field_class =  $item['custom_field_class'];
-                    $html .= _custom_field($custom_field_key, $custom_field_type, $custom_field_class);
+                    $html .= _custom_field(array(
+                        'id' => $post->ID,
+                        'custom_field_key' => $custom_field_key,
+                        'custom_field_type' => $custom_field_type,
+                        'custom_field_class' => $custom_field_class
+                    ));
                     break;
             }
         }
@@ -820,10 +825,15 @@ function ____post_grid_module($data)
 
     return $html;
 }
-function _custom_field($custom_field_key, $custom_field_type, $custom_field_class, $html = '')
+function _custom_field($data, $html = '')
 {
 
-    $val = get_post_meta($post->ID, $custom_field_key, true);
+    $id =  $data['id'];
+    $custom_field_key =  $data['custom_field_key'];
+    $custom_field_type =  $data['custom_field_type'];
+    $custom_field_class =  $data['custom_field_class'];
+
+    $val = get_post_meta($id, $custom_field_key, true);
     if ($custom_field_type != 'img') {
         $html .= "<$custom_field_type class='$custom_field_class'>$val</$custom_field_type>";
     }
