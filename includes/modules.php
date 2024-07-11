@@ -6,7 +6,7 @@ function action_module_content()
     if (did_action('post_updated')) {
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-        if (get_post_type() == 'producttaxonomypages') {
+        if (get_post_type() == 'productcategorypages') {
             $post_content = '<!-- wp:html -->';
 
             if (_is_module()) {
@@ -202,6 +202,7 @@ function ___sections($id = 'sections', $post_id = '')
             $classes[] = 'section-' . $key;
             $styles_val = '';
             $container_styles_val = '';
+            $background_image_overlay_args = false;
             if ($section_class) {
                 $classes[] = $section_class;
             }
@@ -265,6 +266,24 @@ function ___sections($id = 'sections', $post_id = '')
                         if ($background_image) {
                             $styles_section[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
                         }
+                        break;
+
+                    case 'background_overlay':
+                        $background_overlay_type = $section_style['background_overlay_type'];
+                        if ($background_overlay_type == 'image') {
+                            $image_args['class'] = _attribute('class', 'background-image background-overlay');
+                            $image_args['image_id'] = $section_style['background_overlay_image'];
+                            $background_image_class = array();
+                            $background_image_overlay_args[] =  $image_args;
+                            if ($section_style['background_overlay_image_opacity'] || $section_style['background_overlay_image_opacity'] == 0) {
+                                $styles_section[] =  '--background-image-opacity: ' . $section_style['background_overlay_image_opacity'];
+                            }
+                            $background_image_class[] = 'no-overlay';
+                        } else if ($background_overlay_type == 'custom') {
+                            $styles_section[]  .= '--background-overlay-custom: ' . $section_style['background_overlay_custom'];
+                            $background_image_class[]  = 'custom-overlay';
+                        }
+                        $classes .= ' ' . $section_style['background_size'] . ' ' . $section_style['background_attachment'] . ' ' . $section_style['background_repeat'];
                         break;
                     case 'container_width':
                         $classes[] = $section_style['container_width'];
@@ -390,6 +409,11 @@ function ___sections($id = 'sections', $post_id = '')
             $container_attribute = _attributes(array($container_styles_val, $container_classes_attr));
 
             $html .= "<section $section_attribute>";
+
+            if ($background_image_overlay_args) {
+                $html .= __image($background_image_overlay_args);
+            }
+
             $html .= "<div $container_attribute>";
 
             foreach ($section_items as $key => $items) {
