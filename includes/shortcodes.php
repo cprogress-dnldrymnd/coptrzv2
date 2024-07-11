@@ -342,14 +342,16 @@ class Shortcodes
             $html = "<div class='row g-3'>";
             while ($query->have_posts()) {
                 $query->the_post();
+                $html = "<div class='col-12'>";
                 $data = array(
                     'id' => get_the_ID(),
                     'featured' => false,
-                    'col' => true,
+                    'col' => false,
                     'style' => 'style-1',
                     'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
                 );
                 $html .= __post_box_blog($data);
+                $html .= "</div>";
             }
             wp_reset_postdata();
             $html .= "</div>";
