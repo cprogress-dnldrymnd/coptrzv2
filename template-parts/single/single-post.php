@@ -20,7 +20,7 @@
     </div>
 </section>
 
-<section class="post-content-v2 md-padding no-overflow border-top-default">
+<section class="post-content-v2 sm-padding-top sm-padding-bottom no-overflow border-top-default">
     <div class="container-fluid">
         <div class="row g-5">
             <div class="col col-post-nav">
