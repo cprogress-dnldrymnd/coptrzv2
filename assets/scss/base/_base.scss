@@ -758,20 +758,21 @@ small {
             font-weight: 500;
             font-size: 25px;
             @include after {
-               content: none;
+                content: none;
             }
 
             @include responsive(xs) {
                 font-size: 1.5rem;
             }
         }
+    }
 
-        .accordion-body {
+    &.with-border {
+        .accordion-item {
+            border-bottom: 2px solid;
         }
-
     }
 }
-
 
 .plus-minus {
     width: 20px;

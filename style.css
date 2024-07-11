@@ -11024,6 +11024,8 @@ small, .small {
       @media screen and (max-width: 767px) {
         .accordion .accordion-item .accordion-button {
           font-size: 1.5rem; } }
+  .accordion.with-border .accordion-item {
+    border-bottom: 2px solid; }
 
 .plus-minus {
   width: 20px;
