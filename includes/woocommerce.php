@@ -682,7 +682,7 @@ function custom_product_variation_training()
         $html .= "<div class='info-box d-flex flex-column justify-content-between'>";
 
         if ($product_attribute_array['date'] || $product_attribute_array['pa_location']) {
-            $html .= "<div class='row g-3 justify-content-between mb-2'>";
+            $html .= "<div class='row g-3 justify-content-between mb-3'>";
 
             if ($product_attribute_array['date']) {
                 $html .= "<div class='col-auto'>";
