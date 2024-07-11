@@ -1392,6 +1392,9 @@ function ____columns_modules($items, $id, $html = '')
                     $divider_classes[] = $item['margin_left'];
                     $divider_classes[] = $item['margin_right'];
 
+                    $divider_classes[] = $item['border_color'];
+
+
                     $classes_val = _attribute('class', $divider_classes);
 
                     $html .= "<hr $classes_val>";

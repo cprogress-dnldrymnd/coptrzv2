@@ -10446,6 +10446,9 @@ p:last-child {
 img {
   max-width: 100%; }
 
+hr {
+  color: var(--border-color); }
+
 @media screen and (max-width: 575px) {
   main {
     margin-top: 10px !important; } }
