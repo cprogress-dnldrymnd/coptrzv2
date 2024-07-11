@@ -844,6 +844,7 @@ Container::make('post_meta', __('Hero'))
     ->or_where('post_type', '=', 'product')
     ->or_where('post_type', '=', 'post')
     ->or_where('post_type', '=', 'capabilities')
+    ->or_where('post_type', '=', 'solutions')
     ->add_fields(__hero_fields());
 
 Container::make('term_meta', __('Hero'))
