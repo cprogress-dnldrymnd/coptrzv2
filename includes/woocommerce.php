@@ -679,6 +679,7 @@ function custom_product_variation_training()
         $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100 h-100'>"; //label
         $html .= "<div class='inner product-inner w-100 p-20px rounded-corner content-margin h-100'>"; //inner
 
+        $html .= "<div class='info-box d-flex flex-column justify-content-between'>";
 
         if ($product_attribute_array['date'] || $product_attribute_array['pa_location']) {
             $html .= "<div class='row g-3 justify-content-between mb-2'>";
@@ -708,6 +709,7 @@ function custom_product_variation_training()
             'tag' => 'h3'
         ));
         $html .= $price;
+        $html .= '</div>';
 
         $html .= "<div class='button-box button-bordered mt-3'>";
         $html .= "<a href='?add-to-cart=$child' data-quantity='1' class='button ajax_add_to_cart' data-product_id='$child' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
