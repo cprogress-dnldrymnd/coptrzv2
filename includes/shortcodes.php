@@ -349,6 +349,7 @@ class Shortcodes
                     'featured' => false,
                     'col' => false,
                     'style' => 'style-1',
+                    'taxonomy' => 'category',
                     'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
                 );
                 $html .= __post_box_blog($data);
