@@ -645,9 +645,8 @@ function __get_product_category_page($id)
 function custom_product_variation_training()
 {
     global $product;
-
+    $SVG = new SVG;
     $children = $product->get_children();
-    $main_thumbnail = get_post_thumbnail_id($product->get_id());
 
     $html = '<div class="product-custom-variation product-training-variation">';
     $html .= '<div class="select-variant fw-medium mb-20px">Select a variant:</div>';
@@ -694,6 +693,15 @@ function custom_product_variation_training()
             $html .= '</span>';
             $html .= '</div>';
         }
+        
+        if ($product_attribute_array['location'] != 'N/A') {
+            $html .= "<div class='col-auto'>";
+            $html .= "<span class='location smaller-text text-white '>";
+            $html .= $SVG->location();
+            $html .= $product_attribute_array['location'];
+            $html .= '</span>';
+            $html .= '</div>';
+        }
         $html .= '</div>';
         $html .= __heading(array(
             'heading' => $product_attribute_array['course-type'],
@@ -703,7 +711,7 @@ function custom_product_variation_training()
 
         $html .= "<div class='button-box button-accent'>";
         $html .= "<a href='?add-to-cart=$child' data-quantity='1' class='button ajax_add_to_cart' data-product_id='$child' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
-        $html .= '</div>'; 
+        $html .= '</div>';
 
         $html .= '</div>'; //inner
         $html .= '</label>'; //label
