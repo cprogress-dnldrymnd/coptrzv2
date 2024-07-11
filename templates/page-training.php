@@ -12,7 +12,7 @@
     ?>
 </div>
 
-<section class="training-product lg-padding-top lg-padding-top border-top-default">
+<section class="training-product lg-padding-top lg-padding-bottom border-top-default">
     <div class="container">
         <h2 class="text-center">Book a GVC <br> Training Course</h2>
         <div class="post-archive-header">
