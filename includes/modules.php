@@ -269,22 +269,7 @@ function ___sections($id = 'sections', $post_id = '')
                         break;
 
                     case 'background_overlay':
-                        $background_overlay_type = $section_style['background_overlay_type'];
-                        if ($background_overlay_type == 'image') {
-                            $background_image_overlay_args['class'] = _attribute('class', 'background-image background-overlay');
-                            $background_image_overlay_args['image_id'] = $section_style['background_overlay_image'];
-                            $background_image_class = array();
-                            if ($section_style['background_overlay_image_opacity'] || $section_style['background_overlay_image_opacity'] == 0) {
-                                $styles_section[] = '--background-image-opacity: ' . $section_style['background_overlay_image_opacity'];
-                            }
-                            $background_image_class[] = 'no-overlay';
-                        } else if ($background_overlay_type == 'custom') {
-                            $styles_section[]  = '--background-overlay-custom: ' . $section_style['background_overlay_custom'];
-                            $background_image_class[] = 'custom-overlay';
-                        }
-                        $classes[] = $section_style['background_attachment'];
-                        $classes[] = $section_style['background_size'];
-                        $classes[] = $section_style['background_repeat'];
+                      
                         break;
                     case 'container_width':
                         $classes[] = $section_style['container_width'];
