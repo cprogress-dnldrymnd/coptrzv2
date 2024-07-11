@@ -11,8 +11,7 @@ function action_woocommerce_before_main_content()
             echo do_shortcode(___sections('sections', $product_category_page));
         }
     } else if (is_product()) {
-        $single_product_content = get__post_meta('single_product_content');
-        echo do_shortcode($single_product_content);
+        echo do_shortcode(___sections('sections', get_the_ID()));
     }
 }
 
@@ -24,7 +23,8 @@ function action_woocommerce_after_single_product_summary()
     $compatible_payloads = get_post_meta(get_the_ID(), 'compatible_payloads', true);
     $accessories = get_post_meta(get_the_ID(), 'accessories', true);
 
-    echo do_shortcode($single_product_content_after);
+    echo do_shortcode(___sections('sections_after_main', get_the_ID()));
+
     if ($compatible_payloads) {
         echo __linked_products($compatible_payloads, 'All Payloads', '#', 'swiper-payloads', 'Compatible Payloads');
     }
