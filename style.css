@@ -11009,6 +11009,7 @@ small, .small {
     border: none;
     background-color: transparent; }
     .accordion .accordion-item .accordion-button {
+      position: static;
       background-color: transparent;
       color: inherit;
       border: none !important;
@@ -11024,9 +11025,16 @@ small, .small {
       @media screen and (max-width: 767px) {
         .accordion .accordion-item .accordion-button {
           font-size: 1.5rem; } }
-  .accordion.with-border .accordion-item {
-    border-bottom: 2px solid; }
-  .accordion.lower-opacity .accordion-item .accordion-button.collapsed, .accordion.lower-opacity .accordion-item .accordion-collapse:not(.show) {
+  .accordion.with-border .accordion-item .accordion-button:before {
+    content: '';
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: currentColor;
+    right: 0; }
+  .accordion.lower-opacity .accordion-item .accordion-button.collapsed,
+  .accordion.lower-opacity .accordion-item .accordion-collapse:not(.show) {
     opacity: 0.35; }
 
 .plus-minus {

@@ -747,6 +747,7 @@ small {
         background-color: transparent;
 
         .accordion-button {
+            position: static;
             background-color: transparent;
             color: inherit;
             border: none !important;
@@ -769,12 +770,23 @@ small {
 
     &.with-border {
         .accordion-item {
-            border-bottom: 2px solid;
+            .accordion-button {
+                @include before {
+                    content: "";
+                    height: 2px;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    background-color: currentColor;
+                    right: 0;
+                }
+            }
         }
     }
     &.lower-opacity {
         .accordion-item {
-            .accordion-button.collapsed,.accordion-collapse:not(.show) {
+            .accordion-button.collapsed,
+            .accordion-collapse:not(.show) {
                 opacity: 0.35;
             }
         }
