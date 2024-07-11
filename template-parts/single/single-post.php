@@ -1,4 +1,4 @@
-<section class="post-details sm-padding-top sm-padding-bottom">
+<section class="post-details sm-padding-top sm-padding-bottom overflow-hidden">
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-7">
@@ -18,7 +18,7 @@
     </div>
 </section>
 
-<section class="post-content-v2 sm-padding-top sm-padding-bottom no-overflow border-top-default">
+<section class="post-content-v2 sm-padding-top sm-padding-bottom no-overflow border-top-default overflow-hidden">
     <div class="container-fluid">
         <div class="row g-5">
             <div class="col col-post-nav">
