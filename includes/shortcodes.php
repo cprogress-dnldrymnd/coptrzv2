@@ -319,6 +319,45 @@ class Shortcodes
 <?php
         return ob_get_clean();
     }
+
+    function related_posts()
+    {
+        $categories = get_the_category(get_the_ID());
+        $args = array(
+            'posts_per_page' => 10,
+
+            'post_type'      => array('post'),
+
+            'post_status'    => 'publish',
+
+            'category__and ' => $categories,
+
+            'orderby' => 'rand'
+
+        );
+        $query = new WP_Query($args);
+
+        if ($query->have_posts()) {
+            $html = "<div class='related-posts-sidebar'>";
+            $html = "<div class='row g-3'>";
+            while ($query->have_posts()) {
+                $query->the_post();
+                $data = array(
+                    'id' => get_the_ID(),
+                    'featured' => false,
+                    'col' => true,
+                    'style' => 'style-1',
+                    'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+                );
+                $html .= __post_box_blog($data);
+            }
+            wp_reset_postdata();
+            $html .= "</div>";
+            $html .= "</div>";
+
+            return $html;
+        }
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -329,3 +368,4 @@ add_shortcode('layouts', array($Shortcodes, 'layouts'));
 add_shortcode('blog_meta', array($Shortcodes, 'blog_meta'));
 add_shortcode('social_share', array($Shortcodes, 'social_share'));
 add_shortcode('post_link', array($Shortcodes, 'post_link'));
+add_shortcode('related_posts', array($Shortcodes, 'related_posts'));
