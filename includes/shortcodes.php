@@ -324,7 +324,7 @@ class Shortcodes
     {
         $categories = get_the_category(get_the_ID());
         $args = array(
-            'posts_per_page' => 10,
+            'posts_per_page' => 3,
 
             'post_type'      => array('post'),
 
@@ -339,7 +339,7 @@ class Shortcodes
 
         if ($query->have_posts()) {
             $html = "<div class='related-posts-sidebar'>";
-            $html = "<div class='row g-3'>";
+            $html .= "<div class='row g-3'>";
             while ($query->have_posts()) {
                 $query->the_post();
                 $html = "<div class='col-12'>";
