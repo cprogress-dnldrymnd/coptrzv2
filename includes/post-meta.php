@@ -4662,6 +4662,14 @@ Container::make('post_meta', __('Sections after main product'))
     ->or_where('post_type', '=', 'product')
     ->add_fields(__section_fields('sections_after_main'));
 
+if (isset($_GET['post'])) {
+    if (_is_module($_GET['post'])) {
+        Container::make('post_meta', __('Preview'))
+            ->add_fields(array(
+                Field::make('html', 'preview')->set_html('<iframe src="' . get_permalink($_GET['post']) . '?prev=true"></iframe>')->set_classes('preview')
+            ));
+    }
+}
 
 
 
