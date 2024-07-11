@@ -754,10 +754,20 @@ function ____post_grid_module($data)
             $type = $item['_type'];
             switch ($type) {
                 case 'post_title':
+                    $post_title = '';
                     $tag =  $item['tag'];
+                    $text_before = $item['text_before'];
+                    $text_after = $item['text_after'];
+                    if ($text_before) {
+                        $post_title .= $text_before;
+                    }
+                    $post_title .= $post->post_title;
+                    if ($text_after) {
+                        $post_title .= $text_after;
+                    }
                     $html .= __heading(array(
                         'tag' => $tag,
-                        'heading' => $post->post_title,
+                        'heading' => $post_title,
                         'class' => _attribute('class', array('post-title position-relative'))
                     ));
                     break;
