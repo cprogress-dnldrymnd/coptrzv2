@@ -641,7 +641,7 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 
 
 
-function __get_product_taxonomy_page($id, $taxonomy)
+function __get_product_taxonomy_page($id)
 {
     $args = array(
         'numberposts' => -1,
