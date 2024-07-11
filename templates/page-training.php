@@ -12,4 +12,43 @@
     ?>
 </div>
 
+<section class="training-product lg-padding-top lg-padding-top border-top-default">
+    <div class="container">
+        <h2>Book a GVC Training Course</h2>
+        <div class="post-archive-header">
+            <div class="container">
+                <div class="inner border-bottom-default sm-padding-bottom sm-margin-bottom">
+                    <div class="row g-3 justify-content-between align-items-end">
+                        <div class="col-auto">
+                            <div class="event-filter">
+                                <p class="fw-medium medium-text">Select delivery method:</p>
+                                <div class="filter-box bg-light rounded-corner">
+                                    <div class="row">
+                                        <div class="col-auto"><input name="events_category" value="" type="radio" id="term-all" checked=""><label class="rounded-corner" for="term-all">All</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto"><select name="category">
+                                        <option value="">Category: All</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <select name="sort">
+                                        <option value="ASC">Sort By: Latest</option>
+                                        <option value="DESC">Sort By: Oldest</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <?php get_footer(); ?>
