@@ -1,3 +1,6 @@
+<?php
+echo ___hero_modules('text-start', 'small-hero');
+?>
 <section class="post-details sm-padding-top sm-padding-bottom px-4">
     <div class="container-fluid">
         <div class="row align-items-center g-0 justify-content-center">
@@ -32,7 +35,6 @@
             <div class="col-lg-7 col-post-content px-5">
                 <div class="column-holder the-content content-margin fw-light" id="post-content">
                     <?php the_content() ?>
-                    <?= do_shortcode('[social_share]') ?>
                 </div>
             </div>
             <div class="col col-sidebar">
