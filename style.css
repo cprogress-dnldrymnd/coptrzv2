@@ -11003,25 +11003,27 @@ small, .small {
   #post-content h3, #post-content .h3 {
     font-size: 1.5rem; } }
 
-.accordion .accordion-item {
-  border: none;
-  background-color: transparent; }
-  .accordion .accordion-item .accordion-button {
-    background-color: transparent;
-    color: inherit;
-    border: none !important;
-    box-shadow: none;
-    justify-content: space-between;
-    padding: 0;
+.accordion {
+  --bs-accordion-color: inherit; }
+  .accordion .accordion-item {
     border: none;
-    border-radius: 0;
-    font-weight: 500;
-    font-size: 25px; }
-    .accordion .accordion-item .accordion-button:after {
-      content: none; }
-    @media screen and (max-width: 767px) {
-      .accordion .accordion-item .accordion-button {
-        font-size: 1.5rem; } }
+    background-color: transparent; }
+    .accordion .accordion-item .accordion-button {
+      background-color: transparent;
+      color: inherit;
+      border: none !important;
+      box-shadow: none;
+      justify-content: space-between;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      font-weight: 500;
+      font-size: 25px; }
+      .accordion .accordion-item .accordion-button:after {
+        content: none; }
+      @media screen and (max-width: 767px) {
+        .accordion .accordion-item .accordion-button {
+          font-size: 1.5rem; } }
 
 .plus-minus {
   width: 20px;

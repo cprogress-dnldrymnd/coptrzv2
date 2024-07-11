@@ -1327,7 +1327,7 @@ function __accordion_module($data)
         $html .= "<div id='flush-collapse-$key' class='accordion-collapse pb-3 collapse $content_class' aria-labelledby='flush-heading-$key' data-bs-parent='#accordion-$module_id'>";
         $html .= __description(array(
             'description' => $description,
-            'class' => _attribute('class', array('description-box')),
+            'class' => _attribute('class', array('description-box small-text')),
         ));
         $html .= "</div>";
         $html .= "</div>"; //end-accordion-item
