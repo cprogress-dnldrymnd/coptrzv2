@@ -559,7 +559,7 @@ function save_custom_product_options($post_ID, $product, $update)
 }
 
 
-function __linked_products($field, $button_text, $button_link, $id, $title, $shorcode = false, $include_section = true)
+function __linked_products($field, $button_text, $button_link, $id, $title, $shorcode = false, $include_section = true, $is_slider = true)
 {
 
     if ($include_section) {
