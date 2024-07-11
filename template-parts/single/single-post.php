@@ -1,5 +1,5 @@
-<section class="post-details">
-    <div class="container content-margin">
+<section class="post-details sm-padding-top sm-padding-bottom">
+    <div class="container-fluid">
         <div class="row g-4 justify-content-between">
             <div class="col-auto">
                 <?= do_shortcode('[blog_meta]') ?>
