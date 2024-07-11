@@ -76,7 +76,12 @@
     ?>
     <pre>
         <?php
-        var_dump(get__post_meta('sections_after_main'));
+        $sections_after_main = get__post_meta('sections');
+        var_dump($sections_after_main);
+
+        foreach($sections_after_main as $section) {
+
+        }
         ?>
     </pre>
 </div>
