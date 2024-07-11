@@ -257,7 +257,7 @@ class Shortcodes
             <div class="row">
                 <div class="col-auto">
                     <p class="mb-0 fw-semibold"><strong>Last updated on</strong></p>
-                    <p class="fw-light"><?= get_the_date() ?></p>
+                    <p class="fw-light"><?= get_the_date('jS F') ?></p>
                 </div>
             </div>
         </div>
