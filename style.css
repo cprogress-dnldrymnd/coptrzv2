@@ -11340,6 +11340,8 @@ section.product-main .summary.summary.summary .variations tr {
         margin-left: 1rem; }
   .product-custom-variation.product-custom-variation + .variations {
     display: none !important; }
+  .product-custom-variation.product-custom-variation.product-training-variation .date {
+    border-radius: 5px; }
 
 .instock.status-style-2 .product-inner:before,
 .onbackorder.status-style-2 .product-inner:before,

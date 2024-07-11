@@ -689,7 +689,7 @@ function custom_product_variation_training()
 
         if ($product_attribute_array['date'] != 'N/A') {
             $html .= "<div class='col-auto'>";
-            $html .= "<span class='date smaller-text text-white'>";
+            $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
             $html .= $product_attribute_array['date'];
             $html .= '</span>';
             $html .= '</div>';
