@@ -2837,13 +2837,16 @@ function __section_fields($name = 'sections')
                                 ->add_fields(
                                     'post_title',
                                     array(
-                                        Field::make('select', 'size', __('Heading Size'))
+                                        Field::make('select', 'tag', __('Post Title Tag'))
                                             ->set_options(
                                                 array(
                                                     '' => 'Default',
-                                                    'big-heading' => 'Big Heading',
-                                                    'medium-heading' => 'Medium Heading',
-                                                    'small-heading' => 'Small Heading',
+                                                    'h2' => 'h2',
+                                                    'h3' => 'h3',
+                                                    'h4' => 'h4',
+                                                    'h5' => 'h5',
+                                                    'h6' => 'h6',
+                                                    'p' => 'p',
                                                 )
                                             ),
                                         Field::make('select', 'text_color', 'Text Color')
