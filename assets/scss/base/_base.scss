@@ -759,7 +759,7 @@ small {
             font-size: 1.25rem;
 
             @include after {
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+               content: none;
             }
 
             @include responsive(xs) {
@@ -768,11 +768,37 @@ small {
         }
 
         .accordion-body {
-            padding: 1rem 0 2rem calc(1.25rem + 37px);
+           paddingg-
         }
 
         @include not-last-child {
-            margin-bottom: 2.25rem;
+            margin-bottom: 2rem;
         }
+    }
+}
+
+
+.plus-minus {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    @include before {
+        content: "";
+        width: 3px;
+        height: 20px;
+        background: var(--primary-color);
+        position: absolute;
+        left: 8.5px;
+        @include transition(300ms);
+    }
+
+    @include after {
+        content: "";
+        width: 20px;
+        height: 3px;
+        background: var(--primary-color);
     }
 }
