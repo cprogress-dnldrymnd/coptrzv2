@@ -1,13 +1,12 @@
 <?php
-echo ___hero_modules();
-echo do_shortcode(___sections('sections', get_the_ID()));
-
 $related_products_heading = get__post_meta('related_products_heading');
 $related_products = get__post_meta('related_products');
 $related_casestudies_heading = get__post_meta('related_casestudies_heading');
 $related_casestudies = get__post_meta('related_casestudies');
 
 
+echo ___hero_modules();
+echo do_shortcode(___sections('sections', get_the_ID()));
 $related_products_array = array();
 foreach ($related_products as $related_product) {
     $related_products_array[] = $related_product['id'];
@@ -25,3 +24,5 @@ if ($related_casestudies) {
     );
     echo do_shortcode(__related_posts($related_casestudies, $data, $related_casestudies_heading));
 }
+
+echo do_shortcode(___sections('sections_after_main', get_the_ID()));
