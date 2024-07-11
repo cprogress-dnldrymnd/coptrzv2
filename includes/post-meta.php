@@ -1657,7 +1657,14 @@ function __section_fields($name = 'sections')
                                     ->add_fields(
                                         'wp_form',
                                         array(
-                                            Field::make('association', 'form', 'Form')
+                                            Field::make('select', 'style', 'Style')
+                                                ->set_options(
+                                                    array(
+                                                        ''   => 'Default',
+                                                        'Style 2' => 'Style 2',
+                                                    )
+                                                ),
+                                            Field::make('association', 'form', 'Select Form')
                                                 ->set_types(
                                                     array(
                                                         array(
@@ -1666,6 +1673,7 @@ function __section_fields($name = 'sections')
                                                         )
                                                     )
                                                 )
+                                                ->set_max(1)
                                         )
                                     )
                                     ->add_fields(
