@@ -640,3 +640,86 @@ function __get_product_category_page($id)
         return $product_page[0];
     }
 }
+
+
+
+add_action('woocommerce_product_after_variable_attributes', 'rudr_fields', 10, 3);
+
+function rudr_fields($loop, $variation_data, $variation)
+{
+
+    $template = get_page_template_slug();
+    if ($template == 'templates/page-training.php') {
+        woocommerce_wp_select(
+            array(
+                'id'            => '_delivery_method[' . $loop . ']',
+                'label'         => 'Delivery Method',
+                'wrapper_class' => 'form-row',
+                'value'         => get_post_meta($variation->ID, '_delivery_method', true),
+                'options'       => array(
+                    ''    => 'Select Delivery Method',
+                    'online'    => 'Online',
+                    'classroom' => 'Classroom',
+                )
+            )
+        );
+        woocommerce_wp_select(
+            array(
+                'id'            => '_location[' . $loop . ']',
+                'label'         => 'Delivery Method',
+                'wrapper_class' => 'form-row',
+                'value'         => get_post_meta($variation->ID, '_location', true),
+                'options'       => array(
+                    ''    => 'Select Location',
+                    'Kent'    => 'Kent',
+                    'Leeds' => 'Leeds',
+                    'Cardiff' => 'Cardiff',
+                    'Hook' => 'Hook',
+                    'Edinburgh' => 'Edinburgh',
+                )
+            )
+        );
+        woocommerce_wp_text_input(
+            array(
+                'id'            => '_start_date[' . $loop . ']',
+                'label'         => 'Start Date',
+                'wrapper_class' => 'form-row',
+                'placeholder'   => 'Type here...',
+                'desc_tip'      => 'true',
+                'description'   => 'Training Start Date',
+                'type'          => 'date',
+                'value'         => get_post_meta($variation->ID, '_start_date', true)
+            )
+        );
+        woocommerce_wp_text_input(
+            array(
+                'id'            => '_end_date[' . $loop . ']',
+                'label'         => 'End Date',
+                'wrapper_class' => 'form-row',
+                'placeholder'   => 'Type here...',
+                'desc_tip'      => 'true',
+                'description'   => 'Training End Date',
+                'type'          => 'date',
+                'value'         => get_post_meta($variation->ID, '_end_date', true)
+            )
+        );
+    }
+}
+
+add_action('woocommerce_save_product_variation', 'rudr_save_fields', 10, 2);
+
+function rudr_save_fields($variation_id, $loop)
+{
+
+    // Text Field
+    $_delivery_method = !empty($_POST['_delivery_method'][$loop]) ? $_POST['_delivery_method'][$loop] : '';
+    update_post_meta($variation_id, '_delivery_method', sanitize_text_field($_delivery_method));
+
+    // Textarea Field
+    $_start_date = !empty($_POST['_start_date'][$loop]) ? $_POST['_start_date'][$loop] : '';
+    update_post_meta($variation_id, '_start_date', sanitize_textarea_field($_start_date));
+
+    // Select Field
+    $_end_date = !empty($_POST['_end_date'][$loop]) ? $_POST['_end_date'][$loop] : '';
+    update_post_meta($variation_id, '_end_date', sanitize_text_field($_end_date));
+}
