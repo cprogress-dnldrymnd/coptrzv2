@@ -446,8 +446,8 @@ function _product_grid_display($id)
     $product_type = $product->get_type();
     $button_class = ($product_type == 'simple') ? 'col-sm-6' : 'col-12';
 
-    $html = "<ul class='products custom-product-grid m-0 p-0'>";
-    $html .= "<li class='product m-0 p-0 w-100 post-$id $stock_status'>";
+    $html = "<ul class='products custom-product-grid h-100 m-0 p-0'>";
+    $html .= "<li class='product m-0 p-0 w-100 h-100 post-$id $stock_status'>";
     $html .= "<div class='product-inner rounded-10px border-default h-100 bg-white'>";
     $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
     $html .= "<div class='wc-img-wrapper'>";
