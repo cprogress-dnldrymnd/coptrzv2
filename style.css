@@ -10913,6 +10913,35 @@ small, .small {
       color: var(--bs-white);
       background-color: var(--bs-black); }
 
+.social-share-buttons {
+  margin-left: 1rem; }
+  .social-share-buttons a {
+    border-radius: 5px;
+    border: 1px solid #a0a1a8;
+    background-color: transparent;
+    color: var(--bs-primary);
+    text-transform: initial;
+    font-size: 1rem;
+    padding: 8.5px 20px;
+    height: 42px;
+    display: inline-block;
+    color: var(--bs-accent); }
+    .social-share-buttons a:not(:last-child) {
+      margin-right: 1rem; }
+    .social-share-buttons a svg {
+      width: 25px;
+      height: 25px; }
+
+.post-link-copy.post-link-copy.post-link-copy {
+  border-radius: 5px;
+  border: 1px solid #a0a1a8;
+  background-color: transparent;
+  color: var(--bs-primary);
+  text-transform: initial;
+  font-size: 1rem;
+  padding: 8.5px 20px;
+  line-height: 1; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/
