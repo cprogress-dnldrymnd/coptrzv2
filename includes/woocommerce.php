@@ -647,11 +647,17 @@ function custom_product_variation_training()
     global $product;
     $SVG = new SVG;
     $children = $product->get_children();
+  
+    $children_chunk = array_chunk($children, 4);
 
     $html = '<div class="product-custom-variation product-training-variation">';
-    $html .= '<div class="row g-4">';
 
-    foreach ($children as $child) {
+    $html .= "<div class='swiper swiper-training'>";
+    $html .= "<div class='swiper-wrapper'>";
+
+    
+    $html .= '<div class="row g-4">';//row
+    foreach ($children_chunk as $child) {
         $variation = wc_get_product($child);
         $product_attribute = $variation->get_attributes();
         $variation_name = '';
@@ -725,9 +731,10 @@ function custom_product_variation_training()
         $html .= '</label>'; //label
         $html .= '</div>';
     }
+    $html .= '</div>';//end-row
     $html .= '</div>';
     $html .= '</div>';
-
+    $html .= '</div>';
 
     echo $html;
 }
