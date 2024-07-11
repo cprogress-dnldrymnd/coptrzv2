@@ -2868,6 +2868,8 @@ function __section_fields($name = 'sections')
                                 ->add_fields(
                                     'post_title',
                                     array(
+                                        Field::make('text', 'text_before', __('Text Before')),
+                                        Field::make('text', 'text_after', __('Text After')),
                                         Field::make('select', 'tag', __('Post Title Tag'))
                                             ->set_options(
                                                 array(
