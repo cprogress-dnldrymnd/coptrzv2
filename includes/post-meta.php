@@ -4916,7 +4916,7 @@ Container::make('post_meta', 'Capabilities Settings')
                     array(
                         array(
                             'type'      => 'post',
-                            'post_type' => 'product',
+                            'post_type' => 'casestudies',
                         )
                     )
                 )
