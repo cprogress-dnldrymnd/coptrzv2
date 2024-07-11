@@ -3258,11 +3258,11 @@ function __section_fields($name = 'sections')
                                         'xs-padding-right' => 'Extra Small',
                                     )
                                 ),
-                            Field::make('html', 'html_2')->set_html('<label>Containe Padding</label>')->set_classes('cb-label'),
+                            Field::make('html', 'html_2')->set_html('<label>Container Padding</label>')->set_classes('cb-label'),
                             Field::make('select', 'container_padding_top', 'Padding Top')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                => 'No Padding',
+                                        ''                => 'Default',
                                         'xl-padding-top'  => 'Extra Large',
                                         'lg-padding-top'  => 'Large',
                                         'md-padding-top'  => 'Medium',
@@ -3273,7 +3273,7 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'container_padding_bottom', 'Padding Bottom')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                   => 'No Padding',
+                                        ''                   => 'Default',
                                         'xl-padding-bottom'  => 'Extra Large',
                                         'lg-padding-bottom'  => 'Large',
                                         'md-padding-bottom'  => 'Medium',
@@ -3284,12 +3284,13 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'container_padding_left', 'Padding left')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                 => 'No Padding',
+                                        ''                 => 'Default',
                                         'xl-padding-left'  => 'Extra Large',
                                         'lg-padding-left'  => 'Large',
                                         'md-padding-left'  => 'Medium',
                                         'sm-padding-left'  => 'Small',
                                         'xs-padding-left' => 'Extra Small',
+                                        'ps-0' => 'None',
                                     )
                                 ),
                             Field::make('select', 'container_padding_right', 'Padding right')->set_width(25)
@@ -3301,6 +3302,7 @@ function __section_fields($name = 'sections')
                                         'md-padding-right'  => 'Medium',
                                         'sm-padding-right'  => 'Small',
                                         'xs-padding-right' => 'Extra Small',
+                                        'pe-0' => 'None',
                                     )
                                 ),
 
