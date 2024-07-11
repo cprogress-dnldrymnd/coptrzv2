@@ -54,7 +54,7 @@ function ___hero_modules()
     $buttons = get__post_meta('buttons');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
     $heading_class[] = 'large-heading';
-    if (!$hero_description) {
+    if (!$hero_description && !$buttons) {
         $heading_class[] = 'mb-0';
     } else {
         $heading_class[] = 'mb-3';
