@@ -10976,6 +10976,18 @@ small, .small {
 #post-content h6,
 #post-content .h6 {
   font-weight: 500 !important; }
+  #post-content h1 b, #post-content .h1 b,
+  #post-content h2 b,
+  #post-content .h2 b,
+  #post-content h3 b,
+  #post-content .h3 b,
+  #post-content h4 b,
+  #post-content .h4 b,
+  #post-content h5 b,
+  #post-content .h5 b,
+  #post-content h6 b,
+  #post-content .h6 b {
+    font-weight: 500 !important; }
 @media screen and (min-width: 992px) {
   #post-content h2, #post-content .h2 {
     font-size: 2rem; } }
