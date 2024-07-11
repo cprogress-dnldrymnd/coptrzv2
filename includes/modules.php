@@ -1223,6 +1223,14 @@ function ____columns_modules($items, $id, $html = '')
                 case 'buttons':
                     $html .= ____button_modules($item['buttons']);
                     break;
+
+                case 'accordion':
+                    $accordion = $item['accordion'];
+                    $accordion_source = $item['accordion_source'];
+                    $faqs = $item['faqs'];
+                    $faqs_category = $item['faqs_category'];
+                    $open_first_item = $item['open_first_item'];
+                    break;
             }
         }
         $html .= '</div>'; //end column-holder
