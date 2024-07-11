@@ -1383,6 +1383,20 @@ function ____columns_modules($items, $id, $html = '')
                     $html .= do_shortcode("[wpforms id='$id' title='false']");
                     $html .= "</div>";
                     break;
+                case 'divider':
+                    $divider_classes = array();
+                    $divider_styles  = array();
+
+                    $divider_classes[] = $item['margin_top'];
+                    $divider_classes[] = $item['margin_bottom'];
+                    $divider_classes[] = $item['margin_left'];
+                    $divider_classes[] = $item['margin_right'];
+
+                    $classes_val = _attribute('class', $divider_classes);
+
+                    $html .= '<hr $classes_val>';
+                    break;
+
                 case 'post_grid':
                     $html .= ____post_grid_module(array(
                         'id' => $id,
