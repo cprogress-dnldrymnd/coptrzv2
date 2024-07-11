@@ -43,7 +43,13 @@ function action_woocommerce_after_single_product()
     $related_guides = get__post_meta('related_guides');
 
     if ($related_guides) {
-        echo do_shortcode(__related_posts($related_guides));
+        $data = array(
+            'col' => true,
+            'featured' => false,
+            'style' => 'style-2',
+            'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
+        );
+        echo do_shortcode(__related_posts($related_guides, 'Related Guides', $data));
     }
 }
 
@@ -643,7 +649,7 @@ function __related_posts($posts, $heading = 'Related Guides', $data)
         $html .= "<div class='col-md-4 col-sm-12'>";
 
         $data['id'] = $post;
-        
+
         $html .= __post_box($data);
         $html .= '</div>';
     }
