@@ -909,21 +909,22 @@ function ____columns_modules($items, $id, $html = '')
                     if ($column_style['border_radius']) {
                         $styles[] = '--border-radius: ' . $column_style['border_radius'];
                     }
-
-                    if ($border_style == 'border-custom') {
-                        $border_color = $column_style['border_color'];
-                        $border_color_custom = $column_style['border_color_custom'];
-                        $border_width = $column_style['border_width'];
-                        if ($border_color == 'border-custom-color') {
-                            $classes[] = $column_style['border_color'];
+                    if ($border_style) {
+                        if ($border_style == 'border-custom') {
+                            $border_color = $column_style['border_color'];
+                            $border_color_custom = $column_style['border_color_custom'];
+                            $border_width = $column_style['border_width'];
+                            if ($border_color == 'border-custom-color') {
+                                $classes[] = $column_style['border_color'];
+                            } else {
+                                $styles[] = 'border-color: ' . $border_color_custom;
+                            }
+                            if ($border_width) {
+                                $styles[] = 'border-width: ' . $border_width;
+                            }
                         } else {
-                            $styles[] = 'border-color: ' . $border_color_custom;
+                            $classes[] = 'border-default';
                         }
-                        if ($border_width) {
-                            $styles[] = 'border-width: ' . $border_width;
-                        }
-                    } else {
-                        $classes[] = 'border-default';
                     }
 
                     break;
@@ -1054,25 +1055,27 @@ function ____columns_modules($items, $id, $html = '')
                     case 'border':
                         $border_style = $column_style['border_style'];
                         $classes[] = 'rounded-corner';
+                        if ($border_style) {
 
-                        if ($column_style['border_radius']) {
-                            $styles[] = '--border-radius: ' . $column_style['border_radius'];
-                        }
+                            if ($column_style['border_radius']) {
+                                $styles[] = '--border-radius: ' . $column_style['border_radius'];
+                            }
 
-                        if ($border_style == 'border-custom') {
-                            $border_color = $column_style['border_color'];
-                            $border_color_custom = $column_style['border_color_custom'];
-                            $border_width = $column_style['border_width'];
-                            if ($border_color == 'border-custom-color') {
-                                $classes[] = $column_style['border_color'];
+                            if ($border_style == 'border-custom') {
+                                $border_color = $column_style['border_color'];
+                                $border_color_custom = $column_style['border_color_custom'];
+                                $border_width = $column_style['border_width'];
+                                if ($border_color == 'border-custom-color') {
+                                    $classes[] = $column_style['border_color'];
+                                } else {
+                                    $styles[] = 'border-color: ' . $border_color_custom;
+                                }
+                                if ($border_width) {
+                                    $styles[] = 'border-width: ' . $border_width;
+                                }
                             } else {
-                                $styles[] = 'border-color: ' . $border_color_custom;
+                                $classes[] = 'border-default';
                             }
-                            if ($border_width) {
-                                $styles[] = 'border-width: ' . $border_width;
-                            }
-                        } else {
-                            $classes[] = 'border-default';
                         }
 
                         break;
