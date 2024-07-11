@@ -11693,6 +11693,16 @@ section.product-main .summary.summary.summary .variations tr {
   top: -13px; }
 .form-box:not(.style-2) .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }
+.form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="text"],
+.form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="number"],
+.form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="tel"],
+.form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="submit"],
+.form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="email"],
+.form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field select,
+.form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field textarea {
+  background-color: transparent;
+  color: var(--bs-white);
+  padding: 5px 15px; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
