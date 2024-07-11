@@ -1189,6 +1189,7 @@ function __section_fields($name = 'sections')
                                     'gx-3'  => 'Medium',
                                     'gx-2'  => 'Small',
                                     'gx-1'  => 'Extra Small',
+                                    'gx-0'  => 'None',
                                 )
                             ),
                         Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(25)
@@ -1201,6 +1202,7 @@ function __section_fields($name = 'sections')
                                     'gy-3'  => 'Medium',
                                     'gy-2'  => 'Small',
                                     'gy-1'  => 'Extra Small',
+                                    'gy-0'  => 'None',
                                 )
                             ),
                         Field::make('select', 'align_items', 'Align Items')->set_width(25)

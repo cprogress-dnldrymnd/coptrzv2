@@ -9462,6 +9462,9 @@ p:last-child {
 .medium-text {
   font-size: 1.125rem; }
 
+.large-text {
+  font-size: 1.25rem; }
+
 .section .h2 {
   margin-bottom: 1rem; }
 
