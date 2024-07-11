@@ -771,6 +771,7 @@ small {
     &.with-border {
         .accordion-item {
             .accordion-button {
+                padding-bottom: calc(1rem + 2px);
                 @include before {
                     content: "";
                     height: 2px;

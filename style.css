@@ -11026,7 +11026,7 @@ small, .small {
         .accordion .accordion-item .accordion-button {
           font-size: 1.5rem; } }
   .accordion.with-border .accordion-item .accordion-button:before {
-    content: '';
+    content: "";
     height: 2px;
     position: absolute;
     left: 0;
