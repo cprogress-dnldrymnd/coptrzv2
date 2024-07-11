@@ -971,7 +971,7 @@ function ____columns_modules($items, $id, $html = '')
     $image_padding = $items['image_padding'];
     $align_items = $items['align_items'];
     $justify_content = $items['justify_content'];
-
+    $styles_val = '';
     $row_class = array();
     $column_class = array();
     $classes = array();
