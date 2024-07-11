@@ -76,7 +76,7 @@
     ?>
     <pre>
         <?php
-        var_dump(get__post_meta_('sections_after_main'));
+        var_dump(get__post_meta('sections_after_main'));
         ?>
     </pre>
 </div>
