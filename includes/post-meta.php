@@ -3009,8 +3009,13 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                             ->set_options(
                                                 array(
-                                                    'text'      => 'text',
-                                                    'image'      => 'Image',
+                                                    'p'      => 'p',
+                                                    'h2'      => 'h2',
+                                                    'h3'      => 'h3',
+                                                    'h4'      => 'h4',
+                                                    'h5'      => 'h5',
+                                                    'h6'      => 'h6',
+                                                    'img'      => 'img',
                                                 )
                                             ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -3021,7 +3026,18 @@ function __section_fields($name = 'sections')
                                     'custom_field_3',
                                     array(
                                         Field::make('text', 'custom_field_key', __('Custom Field Key')),
-                                        Field::make('text', 'custom_field_type', __('Custom Field Type')),
+                                        Field::make('select', 'custom_field_type', __('Custom Field Type'))
+                                            ->set_options(
+                                                array(
+                                                    'p'      => 'p',
+                                                    'h2'      => 'h2',
+                                                    'h3'      => 'h3',
+                                                    'h4'      => 'h4',
+                                                    'h5'      => 'h5',
+                                                    'h6'      => 'h6',
+                                                    'img'      => 'img',
+                                                )
+                                            ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
                                     )
                                 )
@@ -3030,7 +3046,18 @@ function __section_fields($name = 'sections')
                                     'custom_field_4',
                                     array(
                                         Field::make('text', 'custom_field_key', __('Custom Field Key')),
-                                        Field::make('text', 'custom_field_type', __('Custom Field Type')),
+                                        Field::make('select', 'custom_field_type', __('Custom Field Type'))
+                                            ->set_options(
+                                                array(
+                                                    'p'      => 'p',
+                                                    'h2'      => 'h2',
+                                                    'h3'      => 'h3',
+                                                    'h4'      => 'h4',
+                                                    'h5'      => 'h5',
+                                                    'h6'      => 'h6',
+                                                    'img'      => 'img',
+                                                )
+                                            ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
                                     )
                                 )
@@ -3039,7 +3066,18 @@ function __section_fields($name = 'sections')
                                     'custom_field_5',
                                     array(
                                         Field::make('text', 'custom_field_key', __('Custom Field Key')),
-                                        Field::make('text', 'custom_field_type', __('Custom Field Type')),
+                                        Field::make('select', 'custom_field_type', __('Custom Field Type'))
+                                            ->set_options(
+                                                array(
+                                                    'p'      => 'p',
+                                                    'h2'      => 'h2',
+                                                    'h3'      => 'h3',
+                                                    'h4'      => 'h4',
+                                                    'h5'      => 'h5',
+                                                    'h6'      => 'h6',
+                                                    'img'      => 'img',
+                                                )
+                                            ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
                                     )
                                 )
