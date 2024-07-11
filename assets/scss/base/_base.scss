@@ -636,7 +636,7 @@ small {
         background-color: transparent;
         text-transform: initial;
         padding: 0;
- 
+
         display: inline-block;
         @include not-last-child {
             margin-right: 10px;
@@ -736,6 +736,43 @@ small {
     h3 {
         @include responsive(md-lg) {
             font-size: 1.5rem;
+        }
+    }
+}
+
+.accordion {
+    .accordion-item {
+        border: none;
+        background-color: transparent;
+
+        .accordion-button {
+            background-color: transparent;
+            font-size: 2rem;
+            color: inherit;
+            border: none !important;
+            box-shadow: none;
+            justify-content: space-between;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            font-weight: bold;
+            font-size: 1.25rem;
+
+            @include after {
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+            }
+
+            @include responsive(xs) {
+                font-size: 1.5rem;
+            }
+        }
+
+        .accordion-body {
+            padding: 1rem 0 2rem calc(1.25rem + 37px);
+        }
+
+        @include not-last-child {
+            margin-bottom: 2.25rem;
         }
     }
 }
