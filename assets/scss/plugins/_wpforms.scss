@@ -84,6 +84,9 @@
         .wpforms-form {
             .wpforms-field-container {
                 .wpforms-field {
+                    .wpforms-field-label {
+                        margin-bottom: 5px;
+                    }
                     @include inputs {
                         background-color: transparent;
                         color: var(--bs-white);

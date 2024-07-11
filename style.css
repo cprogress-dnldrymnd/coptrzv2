@@ -11693,6 +11693,8 @@ section.product-main .summary.summary.summary .variations tr {
   top: -13px; }
 .form-box:not(.style-2) .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }
+.form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
+  margin-bottom: 10px; }
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="text"],
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="number"],
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="tel"],
