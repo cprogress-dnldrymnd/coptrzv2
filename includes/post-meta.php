@@ -848,6 +848,7 @@ Container::make('post_meta', __('Hero'))
 
 Container::make('term_meta', __('Hero'))
     ->where('term_taxonomy', '=', 'product_cat')
+    ->where('term_taxonomy', '=', 'pa_brands')
     ->add_fields(__hero_fields());
 
 
