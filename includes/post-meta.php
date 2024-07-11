@@ -2925,7 +2925,13 @@ function __section_fields($name = 'sections')
                                     'custom_field_1',
                                     array(
                                         Field::make('text', 'custom_field_key', __('Custom Field Key')),
-                                        Field::make('text', 'custom_field_type', __('Custom Field Type')),
+                                        Field::make('select', 'custom_field_type', __('Custom Field Type'))
+                                            ->set_options(
+                                                array(
+                                                    'text'      => 'text',
+                                                    'image'      => 'Image',
+                                                )
+                                            ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
                                     )
                                 )
@@ -2934,7 +2940,13 @@ function __section_fields($name = 'sections')
                                     'custom_field_2',
                                     array(
                                         Field::make('text', 'custom_field_key', __('Custom Field Key')),
-                                        Field::make('text', 'custom_field_type', __('Custom Field Type')),
+                                        Field::make('select', 'custom_field_type', __('Custom Field Type'))
+                                            ->set_options(
+                                                array(
+                                                    'text'      => 'text',
+                                                    'image'      => 'Image',
+                                                )
+                                            ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
                                     )
                                 )
@@ -3998,15 +4010,15 @@ Container::make('post_meta', 'Case Study Settings')
     );
 
 
-    
+
 /*-----------------------------------------------------------------------------------*/
 /* Testimonial
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', 'Testimonial Content')
-->where('post_type', '=', 'testimonials')
-->add_fields(
-    array(
-        Field::make('text', 'testimonial_title', 'Testimonial Title'),
-        Field::make('textarea', 'testimonial_content', 'Testimonial Content'),
-    )
-);
+    ->where('post_type', '=', 'testimonials')
+    ->add_fields(
+        array(
+            Field::make('text', 'testimonial_title', 'Testimonial Title'),
+            Field::make('textarea', 'testimonial_content', 'Testimonial Content'),
+        )
+    );
