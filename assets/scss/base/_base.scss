@@ -176,10 +176,11 @@ section {
 
 .button-box a,
 .button-box button,
-.button.button.button.button.button, .wp-element-button.wp-element-button.wp-element-button {
+.button.button.button.button.button,
+.wp-element-button.wp-element-button.wp-element-button {
     @include button-style;
 }
-.wp-element-button.wp-element-buttonwp-element-button {
+.wp-element-button.wp-element-button.wp-element-button {
     @include button-accent;
 }
 .button-box.button-box.button-box {
@@ -722,7 +723,9 @@ small {
 
 #post-content {
     a {
-        color: var(--bs-accent);
+        &:not(.wp-element-button) {
+            color: var(--bs-accent);
+        }
     }
     @include headings {
         b {
@@ -820,7 +823,6 @@ small {
         background: var(--bs-black);
     }
 }
-
 
 hr {
     color: var(--border-color);
