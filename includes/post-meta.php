@@ -4891,7 +4891,7 @@ Container::make('post_meta', 'Testimonial Content')
 /*-----------------------------------------------------------------------------------*/
 /* Capibilities
 /*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', 'Testimonial Content')
+Container::make('post_meta', 'Capabilities Settings')
     ->where('post_type', '=', 'capabilities')
     ->add_tab(
         'Related Products',
