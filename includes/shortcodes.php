@@ -251,7 +251,6 @@ class Shortcodes
     function blog_meta()
     {
         ob_start();
-        $reading_time = get__post_meta('reading_time');
 ?>
         <div class="blog-meta small-text">
             <div class="row">
