@@ -698,3 +698,13 @@ small {
         font-size: 20px;
     }
 }
+
+.post-navigation-holder {
+    position: sticky;
+    top: 32px;
+}
+
+#post-content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}

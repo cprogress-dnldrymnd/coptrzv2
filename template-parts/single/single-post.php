@@ -20,9 +20,9 @@
 
 <section class="post-content-v2 sm-padding-top sm-padding-bottom no-overflow border-top-default overflow-hidden">
     <div class="container-fluid">
-        <div class="row g-5">
+        <div class="row g-0">
             <div class="col col-post-nav">
-                <div class="column-holder">
+                <div class="column-holder post-navigation-holder">
                     <h3>Contents</h3>
                     <ul id="post-navigation" class="d-flex flex-wrap list-inline">
 
