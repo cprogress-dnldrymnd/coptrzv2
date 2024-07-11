@@ -3996,3 +3996,17 @@ Container::make('post_meta', 'Case Study Settings')
 
         )
     );
+
+
+    
+/*-----------------------------------------------------------------------------------*/
+/* Testimonial
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', 'Testimonial Content')
+->where('post_type', '=', 'testimonials')
+->add_fields(
+    array(
+        Field::make('text', 'testimonial_title', 'Testimonial Title'),
+        Field::make('textarea', 'testimonial_content', 'Testimonial Content'),
+    )
+);
