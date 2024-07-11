@@ -791,6 +791,9 @@ function ____post_grid_module($data)
                     $html .= __image($image_args);
 
                     break;
+                case 'icon':
+                    $html .= _____icon_modules($item);
+                    break;
                 case 'custom_field_1':
                     $custom_field_key =  $item['custom_field_key'];
                     $custom_field_type =  $item['custom_field_type'];
