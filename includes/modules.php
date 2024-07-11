@@ -788,7 +788,7 @@ function ____post_grid_module($data)
                     $val = get_post_meta(get_the_ID(), $custom_field_key);
 
                     if ($custom_field_type != 'img') {
-                        $html .= "<$custom_field_type>$val</$custom_field_type>";
+                        $html .= "<$custom_field_type class='$custom_field_class'>$val</$custom_field_type>";
                     }
 
                     break;
