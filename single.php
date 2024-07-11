@@ -1,3 +1,7 @@
 <?php get_header(); ?>
-<?php get_template_part('template-parts/single/single', get_post_type()) ?>
+<?php 
+if (false === get_template_part('template-parts/single/single', get_post_type())) {
+    the_content();
+} 
+?>
 <?php get_footer(); ?>
