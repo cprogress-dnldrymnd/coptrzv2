@@ -10563,7 +10563,7 @@ section .container > *:not(:last-child) {
 
 .button-box a,
 .button-box button,
-.button.button.button.button.button {
+.button.button.button.button.button, .wp-element-button.wp-element-button.wp-element-button {
   padding: 1.25rem 2.5rem;
   border: 1px solid;
   display: inline-block;
