@@ -649,6 +649,7 @@ function __related_posts($posts, $heading = 'Related Guides', $data)
         $html .= "<div class='col-md-4 col-sm-12'>";
         $data['id'] = $post;
         $html .= __post_box($data);
+        $html .= var_dump($data);
         $html .= '</div>';
     }
     $html .= '</div>';
