@@ -1394,7 +1394,7 @@ function ____columns_modules($items, $id, $html = '')
 
                     $classes_val = _attribute('class', $divider_classes);
 
-                    $html .= '<hr $classes_val>';
+                    $html .= "<hr $classes_val>";
                     break;
 
                 case 'post_grid':
