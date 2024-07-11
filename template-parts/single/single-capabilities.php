@@ -19,6 +19,7 @@ if ($related_casestudies) {
     $data = array(
         'col' => false,
         'featured' => false,
+        'taxonomy' => 'case_study_category',
         'style' => 'style-1',
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
     );
