@@ -1303,14 +1303,14 @@ function __accordion_module($data)
     } else {
         $accordion = $accordion;
     }
-    $html = "<div class='accordion accordion-v2 accordion-flush' id='accordion-$module_id'>";
+    $html = "<div class='accordion accordion-flush' id='accordion-$module_id'>";//accordion
     foreach ($accordion as $key => $accordion_item) {
         $heading = $accordion_item['heading'];
         $description = $accordion_item['description'];
         $button_class = $key == 0 && $open_first_item ? '' : 'collapsed';
         $content_class = $key == 0 && $open_first_item ? 'show' : '';
         $aria_expanded = $key == 0 && $open_first_item ? 'true' : 'false';
-        $html .= "<div class='accordion-item'>";
+        $html .= "<div class='accordion-item'>";//accordion-item
         $html .= "<h3 class='accordion-header' id='flush-heading-$key'>";
         $html .= "<button class='accordion-button justify-content-between p-0 $button_class' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse-$key' aria-expanded='$aria_expanded' aria-controls='flush-collapse-$key'>";
         $html .= "<span> ";
@@ -1326,8 +1326,9 @@ function __accordion_module($data)
             'class' => _attribute('class', array('description-box')),
         ));
         $html .= "</div>";
+        $html .= "</div>";//end-accordion-item
     }
-    $html .= "</div>";
+    $html .= "</div>";//end-accordion
 
     return $html;
 }
