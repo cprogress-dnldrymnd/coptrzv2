@@ -4742,7 +4742,7 @@ Container::make('post_meta', __('Sections'))
     ->or_where('post_type', '=', 'product')
     ->or_where('post_type', '=', 'layouts')
     ->or_where('post_type', '=', 'capabilities')
-    ->or_where('post_type', '=', 'productcategorypages')
+    ->or_where('post_type', '=', 'producttaxonomypages')
     ->add_fields(__section_fields());
 
 
@@ -4874,7 +4874,7 @@ Container::make('post_meta', __('Conditional Display'))
 /* Product category pages
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Select product category to display content'))
-    ->or_where('post_type', '=', 'productcategorypages')
+    ->or_where('post_type', '=', 'producttaxonomypages')
     ->add_fields(array(
         Field::make('association', 'product_cat', 'Select Category')
             ->set_types(

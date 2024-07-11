@@ -10825,7 +10825,7 @@ small, .small {
       margin-right: 8px; }
 
 .single-layouts header,
-.single-productcategorypages header {
+.single-producttaxonomypages header {
   position: static !important;
   background-color: #000; }
 

@@ -646,7 +646,7 @@ function __get_product_category_page($id)
 {
     $args = array(
         'numberposts' => -1,
-        'post_type' => 'productcategorypages',
+        'post_type' => 'producttaxonomypages',
         'fields' => 'ids',
         'meta_query' => array(
             array(
