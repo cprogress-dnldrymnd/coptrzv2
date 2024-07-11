@@ -1236,6 +1236,7 @@ function ____columns_modules($items, $id, $html = '')
                         'faqs' => $faqs,
                         'faqs_category' => $faqs_category,
                         'open_first_item' => $open_first_item,
+                        'module_id' => $id
                     ));
                     break;
             }
@@ -1258,6 +1259,8 @@ function ____columns_modules($items, $id, $html = '')
 function __accordion_module($data)
 {
     ob_start();
+
+    $module_id = isset($data['module_id']) ? $data['module_id'] : 'accordion';
     $faqs = isset($data['faqs']) ? $data['faqs'] : false;
     $accordion_source = isset($data['accordion_source']) ? $data['accordion_source'] : false;
     $faqs_category = isset($data['faqs_category']) ? $data['faqs_category'] : false;
