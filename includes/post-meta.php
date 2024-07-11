@@ -4885,7 +4885,7 @@ Container::make('post_meta', __('Select product category to display content'))
                     ),
                     array(
                         'type'      => 'term',
-                        'taxonomy' => 'product_cat',
+                        'taxonomy' => 'pa_brands',
                     )
                 )
             )->set_max(1)
