@@ -966,15 +966,15 @@ function ____columns_modules($items, $id, $html = '')
         }
 
         if ($horizontal_spacing) {
-            $row_class[] = $horizontal_spacing;
+            $container_classes[] = $horizontal_spacing;
         }
 
         if ($vertical_spacing) {
-            $row_class[] = $vertical_spacing;
+            $container_classes[] = $vertical_spacing;
         }
 
         if (!$vertical_spacing && !$horizontal_spacing) {
-            $row_class[] = 'g-4';
+            $container_classes[] = 'g-4';
         }
 
         $row_class_val = _attribute('class', $row_class, ' ');
