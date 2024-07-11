@@ -651,7 +651,7 @@ function custom_product_variation_training()
     $html = '<div class="product-custom-variation product-training-variation">';
     $html .= '<div class="select-variant fw-medium mb-20px">Select a variant:</div>';
     $html .= '<div class="accordion" id="accordionVariation">';
-    $html .= '<div class="row g-4">';
+    $html .= '<div class="row g-4 align-items-center">';
 
     foreach ($children as $child) {
         $variation = wc_get_product($child);
@@ -675,9 +675,7 @@ function custom_product_variation_training()
         $sku = $variation->get_sku();
         $price = $variation->get_price_html();
         $html .= '<div class="col-lg-6">';
-        $html .= '<pre>';
-        $html .= var_dump($product_attribute_array);
-        $html .= '</pre>';
+
 
         $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
         $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100 h-100'>"; //label
