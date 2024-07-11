@@ -87,7 +87,7 @@ function action_admin_head()
         }
 
         .cf-complex__inserter-menu {
-            z-index: 999;
+            z-index: 999 !important;
         }
 
         <?php

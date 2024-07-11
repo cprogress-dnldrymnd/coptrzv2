@@ -1584,6 +1584,80 @@ function __section_fields($name = 'sections')
 
                                     ))
                                     ->add_fields(
+                                        'accordion',
+                                        array(
+                                            Field::make('checkbox', 'open_first_item', __('Open First Item')),
+                                            Field::make('select', 'accordion_source', __('Accordion Source'))
+                                                ->set_options(
+                                                    array(
+                                                        ''      => 'Custom',
+                                                        'faqs'      => 'FAQs Select Manually',
+                                                        'faqs_category'      => 'FAQs by Category',
+                                                    )
+                                                ),
+                                            Field::make('complex', 'accordion', __('Accordion'))
+                                                ->setup_labels(
+                                                    array(
+                                                        'plural_name'   => 'Accordions',
+                                                        'singular_name' => 'Accordion',
+                                                    )
+                                                )
+                                                ->add_fields(
+                                                    array(
+                                                        Field::make('text', 'heading', __('Heading')),
+                                                        Field::make('textarea', 'description', __('Description')),
+                                                    )
+                                                )
+                                                ->set_layout('tabbed-vertical')
+                                                ->set_header_template('<%- heading  %>')
+                                                ->set_conditional_logic(
+                                                    array(
+                                                        array(
+                                                            'field' => 'accordion_source',
+                                                            'value' => '',
+                                                            'comapre' => '='
+                                                        )
+                                                    )
+                                                ),
+                                            Field::make('association', 'faqs', 'Select FAQs')
+                                                ->set_types(
+                                                    array(
+                                                        array(
+                                                            'type'      => 'post',
+                                                            'post_type' => 'faq',
+                                                        )
+                                                    )
+                                                )
+                                                ->set_conditional_logic(
+                                                    array(
+                                                        array(
+                                                            'field' => 'accordion_source',
+                                                            'value' => 'faqs',
+                                                            'comapre' => '='
+                                                        )
+                                                    )
+                                                ),
+                                            Field::make('association', 'faqs_category', 'Select FAQs Category')
+                                                ->set_types(
+                                                    array(
+                                                        array(
+                                                            'type'      => 'term',
+                                                            'taxonomy' => 'faqs_category',
+                                                        )
+                                                    )
+                                                )
+                                                ->set_conditional_logic(
+                                                    array(
+                                                        array(
+                                                            'field' => 'accordion_source',
+                                                            'value' => 'faqs_category',
+                                                            'comapre' => '='
+                                                        )
+                                                    )
+                                                ),
+                                        )
+                                    )
+                                    ->add_fields(
                                         'custom_html',
                                         array(
                                             Field::make('textarea', 'custom_html', __('Custom HTML')),
