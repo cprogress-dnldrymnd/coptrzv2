@@ -47,6 +47,7 @@ function action_woocommerce_after_single_product()
             'col' => false,
             'featured' => false,
             'style' => 'style-1',
+            'taxonomy' => 'Guide_category',
             'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
         );
         echo do_shortcode(__related_posts($related_guides,  $data, 'Related Guides'));
