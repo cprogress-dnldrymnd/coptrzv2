@@ -821,7 +821,7 @@ function ____post_grid_module($data)
                     break;
                 case 'post_excerpt':
                     $html .= __description(array(
-                        'description' => get_the_excerpt($id),
+                        'description' => get_the_excerpt($post->ID),
                         'class' => _attribute('class', array('description-box')),
                     ));
                     break;
