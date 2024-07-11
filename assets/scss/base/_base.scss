@@ -703,6 +703,12 @@ small {
 }
 
 #post-content {
+    @include headings {
+        b {
+            font-weight: 500 !important;
+        }
+        font-weight: 500 !important;
+    }
     h2 {
         @include responsive(md-lg) {
             font-size: 2rem;
