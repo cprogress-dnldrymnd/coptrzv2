@@ -841,6 +841,7 @@ function _custom_field($data, $html = '')
         $html .= "<$custom_field_type class='$custom_field_class'>$val</$custom_field_type>";
     } else if ($custom_field_type == 'img') {
         $image_args['image_id'] = $val;
+        $image_args['class'] = _attribute('class', $custom_field_class);
         $html .= __image($image_args);
     }
     return $html;
