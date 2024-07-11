@@ -1257,7 +1257,7 @@ function ____columns_modules($items, $id, $html = '')
 
 function __accordion_module($data)
 {
-
+    ob_start();
     $faqs = isset($data['faqs']) ? $data['faqs'] : false;
     $accordion_source = isset($data['accordion_source']) ? $data['accordion_source'] : false;
     $faqs_category = isset($data['faqs_category']) ? $data['faqs_category'] : false;
@@ -1299,6 +1299,27 @@ function __accordion_module($data)
     } else {
         $accordion = $accordion;
     }
+?>
+
+    <div class="accordion accordion-v2 accordion-flush" id="accordion-<?= $module_id ?>">
+        <?php foreach ($accordion as $key => $accordion_item) { ?>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading<?= $key ?>">
+                    <button class="accordion-button justify-content-between p-0 <?= ($key == 0 && $open_first_item) ? '' : 'collapsed' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?= $key ?>" aria-expanded="<?= ($key == 0 && $open_first_item) ? 'true' : 'false' ?>" aria-controls="flush-collapse<?= $key ?>">
+                        <span>
+                            <?= do_shortcode('[_heading heading="' . $accordion_item['heading'] . '" tag="h4"]') ?>
+                        </span>
+                        <span class="plus-minus"></span>
+                    </button>
+                </h2>
+                <div id="flush-collapse<?= $key ?>" class="accordion-collapse collapse <?= ($key == 0 && $open_first_item) ? 'show' : '' ?>" aria-labelledby="flush-heading<?= $key ?>" data-bs-parent="#accordion-<?= $module_id ?>">
+                    <?= do_shortcode('[_description description="' . _format_text($accordion_item['description']) . '" ]') ?>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+<?php
+    return ob_get_clean;
 }
 
 function _____icon_modules($items)
