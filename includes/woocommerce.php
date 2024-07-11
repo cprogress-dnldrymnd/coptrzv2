@@ -680,25 +680,27 @@ function custom_product_variation_training()
         $html .= "<div class='inner product-inner w-100 p-20px rounded-corner content-margin h-100'>"; //inner
 
 
-        $html .= "<div class='row g-3 justify-content-between align-items-center'>";
+        if ($product_attribute_array['date'] || $product_attribute_array['pa_location']) {
+            $html .= "<div class='row g-3 justify-content-between align-items-center'>";
 
-        if ($product_attribute_array['date'] != 'N/A') {
-            $html .= "<div class='col-auto'>";
-            $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
-            $html .= $product_attribute_array['date'];
-            $html .= '</span>';
+            if ($product_attribute_array['date'] != 'N/A') {
+                $html .= "<div class='col-auto'>";
+                $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
+                $html .= $product_attribute_array['date'];
+                $html .= '</span>';
+                $html .= '</div>';
+            }
+
+            if ($product_attribute_array['pa_location'] != 'N/A') {
+                $html .= "<div class='col-auto'>";
+                $html .= "<span class='location smaller-text text-white '>";
+                $html .= $SVG->location();
+                $html .= $product_attribute_array['pa_location'];
+                $html .= '</span>';
+                $html .= '</div>';
+            }
             $html .= '</div>';
         }
-        
-        if ($product_attribute_array['location'] != 'N/A') {
-            $html .= "<div class='col-auto'>";
-            $html .= "<span class='location smaller-text text-white '>";
-            $html .= $SVG->location();
-            $html .= $product_attribute_array['location'];
-            $html .= '</span>';
-            $html .= '</div>';
-        }
-        $html .= '</div>';
         $html .= __heading(array(
             'heading' => $product_attribute_array['course-type'],
             'tag' => 'h3'
