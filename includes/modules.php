@@ -39,7 +39,7 @@ function action_module_content()
 }
 add_action('shutdown', 'action_module_content');
 
-function ___hero_modules($hero_alignment_args, $hero_height_args)
+function ___hero_modules($hero_alignment_args=false, $hero_height_args=false)
 {
     $id = get_the_ID();
     $hero_heading = get__post_meta('hero_heading');
