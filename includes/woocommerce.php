@@ -684,7 +684,7 @@ function custom_product_variation_training()
         $html .= "<div class='inner product-inner w-100 p-20px rounded-corner content-margin'>"; //inner
 
 
-        $html .= "<div class='row g-3'>";
+        $html .= "<div class='row g-3 justify-content-between align-items-center'>";
 
         if ($product_attribute_array['date'] != 'N/A') {
             $html .= "<div class='col-auto'>";
