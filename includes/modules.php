@@ -819,6 +819,13 @@ function ____post_grid_module($data)
                     $html .= __image($image_args);
 
                     break;
+                case 'post_excerpt':
+                    $html .= __description(array(
+                        'description' => get_the_excerpt($id),
+                        'class' => _attribute('class', array('description-box')),
+                    ));
+                    break;
+
                 case 'icon':
                     $html .= _____icon_modules($item);
                     break;
