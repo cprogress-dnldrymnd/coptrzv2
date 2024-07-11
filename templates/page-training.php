@@ -77,9 +77,7 @@
     $sections_after_main = get__post_meta('sections');
     var_dump($sections_after_main);
     ?>
-    <pre>
-        <?php var_dump($sections_after_main); ?>
-    </pre>
+ 
 
     <?php
     $new_sections = array();
