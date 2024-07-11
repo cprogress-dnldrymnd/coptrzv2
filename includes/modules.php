@@ -1473,7 +1473,7 @@ function __post_box_blog($data)
     $additional_content = isset($data['additional_content']) ? $data['additional_content'] : false;
 
     $image = get_post_thumbnail_id($id);
-    $date = get_the_date('', $id);
+    $date = get_the_date('jS F', $id);
     if ($featured) {
         $class = ' featured-box text-white d-flex flex-column justify-content-between xs-padding rounded-10px ';
     } else {
