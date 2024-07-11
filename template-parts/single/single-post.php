@@ -35,6 +35,18 @@ echo ___hero_modules('text-start', 'small-hero');
             <div class="col-lg-7 col-post-content px-5">
                 <div class="column-holder the-content content-margin fw-light" id="post-content">
                     <?php the_content() ?>
+                    <div class="author">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="image-box">
+
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <?= get_author_name() ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col col-sidebar">
