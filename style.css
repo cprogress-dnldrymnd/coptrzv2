@@ -11025,14 +11025,16 @@ small, .small {
       @media screen and (max-width: 767px) {
         .accordion .accordion-item .accordion-button {
           font-size: 1.5rem; } }
-  .accordion.with-border .accordion-item .accordion-button:before {
-    content: "";
-    height: 2px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: currentColor;
-    right: 0; }
+  .accordion.with-border .accordion-item .accordion-button {
+    padding-bottom: calc(1rem + 2px); }
+    .accordion.with-border .accordion-item .accordion-button:before {
+      content: "";
+      height: 2px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: currentColor;
+      right: 0; }
   .accordion.lower-opacity .accordion-item .accordion-button.collapsed,
   .accordion.lower-opacity .accordion-item .accordion-collapse:not(.show) {
     opacity: 0.35; }
