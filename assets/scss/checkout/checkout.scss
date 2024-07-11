@@ -2,17 +2,19 @@
 /*-----------------------------------------------------------------------------------*/
 /* Vendors
 /*-----------------------------------------------------------------------------------*/
-@import "../../coptrz_vendors/bootstrap/bootstrap";
+
+@import "../../../vendor/twbs/bootstrap/scss/bootstrap";
+
 /*-----------------------------------------------------------------------------------*/
 /* Utils
 /*-----------------------------------------------------------------------------------*/
-@import "../../stylesheets/utils/mixins", "../../stylesheets/utils/variables";
+@import "../../scss/utils/mixins", "../../scss/utils/variables";
 /*-----------------------------------------------------------------------------------*/
 /* Base
 /*-----------------------------------------------------------------------------------*/
-@import "../../stylesheets/base/helpers", "../../stylesheets/base/typography";
+@import "../../scss/base/helpers", "../../scss/base/typography";
 body {
-    color: var(--primary-color);
+    color: var(--bs-primary);
 }
 .checkout-section.checkout-section {
     font-family: "Poppins";
@@ -100,7 +102,7 @@ body {
                                 color: #c4c4c4;
                                 width: 36px;
                                 @include on-event {
-                                    background-color: var(--black-color);
+                                    background-color: var(--bs-primary);
                                 }
                             }
                         }
@@ -138,11 +140,11 @@ body {
     .button {
         padding: 20px 30px;
         border-radius: 50px;
-        background-color: var(--black-color);
-        color: var(--white-color);
+        background-color: var(--bs-primary);
+        color: var(--bs-white);
         @include on-event {
             background-color: #16110e;
-            color: var(--white-color);
+            color: var(--bs-white);
         }
     }
 
@@ -194,7 +196,7 @@ body {
 
             .back-to {
                 font-weight: bold;
-                color: var(--accent-color);
+                color: var(--bs-accent);
                 cursor: pointer;
             }
         }
@@ -202,7 +204,7 @@ body {
 
     #ship-to-different-address {
         font-size: 1rem;
-        color: var(--primary-color);
+        color: var(--bs-primary);
         input {
             margin: -2px 8px 0 0;
         }
@@ -426,8 +428,8 @@ body {
         font-size: 1rem;
         width: 30px;
         height: 30px;
-        background-color: var(--primary-color);
-        color: var(--white-color);
+        background-color: var(--bs-primary);
+        color: var(--bs-white);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -445,7 +447,7 @@ body {
     }
 }
 .woocommerce-remove-coupon {
-    color: var(--accent-color);
+    color: var(--bs-accent);
 }
 
 .checkout-section.checkout-section.checkout-section {
@@ -466,7 +468,7 @@ body {
                     font-weight: 600;
                     position: absolute;
                     left: 10px;
-                    background-color: var(--white-color);
+                    background-color: var(--bs-white);
                     padding: 5px;
                     font-size: 13px;
                     line-height: 1;
