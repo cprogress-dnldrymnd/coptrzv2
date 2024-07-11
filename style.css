@@ -11667,7 +11667,8 @@ section.product-main .summary.summary.summary .variations tr {
     margin-bottom: 1rem; }
   .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
     font-size: 15px;
-    line-height: 1; }
+    line-height: 1;
+    font-weight: 300; }
 
 .form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
   position: absolute;
