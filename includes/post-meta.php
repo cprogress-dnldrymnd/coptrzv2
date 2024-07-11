@@ -4764,7 +4764,6 @@ Container::make('post_meta', __('Conditional Display'))
                     )
                 )
             ),
-
         Field::make('select', 'display_location_archive_position', __('Position'))
             ->add_options(array(
                 '' => __('Select Position'),
@@ -4776,6 +4775,23 @@ Container::make('post_meta', __('Conditional Display'))
                     array(
                         'field' => 'display_location',
                         'value' => 'archive',
+                    )
+                )
+            ),
+        Field::make('association', 'display_location_product_cat', 'Select Category')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'term',
+                        'taxonomy' => 'product_cat',
+                    )
+                )
+            )->set_max(1)
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'display_location',
+                        'value' => 'product_cat',
                     )
                 )
             ),
