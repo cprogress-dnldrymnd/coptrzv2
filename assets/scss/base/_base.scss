@@ -635,13 +635,11 @@ small {
         border-radius: 5px;
         border: 1px solid #a0a1a8;
         background-color: transparent;
-        color: var(--bs-primary);
         text-transform: initial;
-        font-size: 1rem;
-        padding: 8.5px 20px;
-        height: 42px;
+        padding: 0;
+        height: 35px;
+        width: 35px;
         display: inline-block;
-        color: var(--bs-accent);
         @include not-last-child {
             margin-right: 1rem;
         }
@@ -653,12 +651,12 @@ small {
 }
 
 .post-link-copy.post-link-copy.post-link-copy {
-    border-radius: 5px;
-    border: 1px solid var(--bs-black);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.37);
     background-color: transparent;
     color: var(--bs-primary);
     text-transform: initial;
-    font-size: 1rem;
+    font-size: 15px;
     padding: 8.5px 20px;
     line-height: 1;
 }

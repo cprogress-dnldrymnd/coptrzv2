@@ -1,6 +1,6 @@
 <section class="post-details sm-padding-top sm-padding-bottom px-4">
     <div class="container-fluid">
-        <div class="row g-0 justify-content-center">
+        <div class="row align-items-center g-0 justify-content-center">
             <div class="col-lg-7 px-5">
                 <div class="row g-4 justify-content-between">
                     <div class="col-auto">
@@ -18,7 +18,7 @@
     </div>
 </section>
 
-<section class="post-content-v2 sm-padding-top sm-padding-bottom no-overflow border-top-defaul px-4">
+<section class="post-content-v2 sm-padding-top sm-padding-bottom no-overflow border-top-default px-4">
     <div class="container-fluid">
         <div class="row g-0">
             <div class="col col-post-nav">
