@@ -823,3 +823,11 @@ small {
 hr {
     color: var(--border-color);
 }
+
+.single-capabilities {
+    .hero {
+        .description-box {
+            max-width: 1140px;
+        }
+    }
+}
