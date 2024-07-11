@@ -8,7 +8,7 @@ function action_woocommerce_before_main_content()
 
         $product_category_page = __get_product_category_page(get_queried_object()->term_id);
         if ($product_category_page) {
-            echo do_shortcode(get_the_content(NULL, false, $product_category_page));
+            echo do_shortcode(___sections('sections', get_the_ID()));
         }
     } else if (is_product()) {
         $single_product_content = get__post_meta('single_product_content');
@@ -652,8 +652,8 @@ function custom_product_variation_training()
 
     $html = '<div class="product-custom-variation product-training-variation">';
 
-    $html .= "<div class='swiper swiper-training'>";//swiper
-    $html .= "<div class='swiper-wrapper'>";//swiper-wrapper
+    $html .= "<div class='swiper swiper-training'>"; //swiper
+    $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
 
     foreach ($children_chunk as $children) {
@@ -737,12 +737,12 @@ function custom_product_variation_training()
         $html .= '</div>'; //swiper-slide
 
     }
-    $html .= '</div>';//end-swiper-wrapper
+    $html .= '</div>'; //end-swiper-wrapper
     $html .= '<div class="swiper-nav d-flex justify-content-start mt-5">'; // swipernav
     $html .= '<div class="swiper-button-prev"></div>';
     $html .= '<div class="swiper-button-next"></div>';
     $html .= '</div>'; //end swipernav
-    $html .= '</div>';//end-swiper
+    $html .= '</div>'; //end-swiper
     $html .= '</div>';
 
     echo $html;
