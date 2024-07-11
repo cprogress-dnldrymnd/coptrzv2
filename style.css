@@ -10957,11 +10957,13 @@ small, .small {
   #post-navigation li:not(:last-child).h2-nav {
     margin-bottom: 1rem; }
 
-#blog-single-sidebar > .widget-inner > p > :first-child {
+#blog-single-sidebar > .widget-inner > p:first-child {
   display: none; }
 
 .related-posts-sidebar .post-box h3, .related-posts-sidebar .post-box .h3 {
   font-size: 20px; }
+.related-posts-sidebar .post-box .small-text {
+  font-size: 10px; }
 
 .post-navigation-holder {
   position: sticky;
