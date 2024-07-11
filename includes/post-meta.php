@@ -1588,6 +1588,7 @@ function __section_fields($name = 'sections')
                                         array(
                                             Field::make('checkbox', 'open_first_item', __('Open First Item')),
                                             Field::make('checkbox', 'with_border', __('With Border')),
+                                            Field::make('checkbox', 'lower_opacity', __('Lower opacity for not active')),
                                             Field::make('select', 'accordion_source', __('Accordion Source'))
                                                 ->set_options(
                                                     array(

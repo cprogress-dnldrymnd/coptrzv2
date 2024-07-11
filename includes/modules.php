@@ -1231,6 +1231,7 @@ function ____columns_modules($items, $id, $html = '')
                     $faqs_category = $item['faqs_category'];
                     $open_first_item = $item['open_first_item'];
                     $with_border = $item['with_border'];
+                    $lower_opacity = $item['lower_opacity'];
                     $html .= __accordion_module(array(
                         'accordion' => $accordion,
                         'accordion_source' => $accordion_source,
@@ -1258,7 +1259,7 @@ function ____columns_modules($items, $id, $html = '')
     return $html;
 }
 
-function __accordion_module($data)
+function __accordion_module($data, $class = '')
 {
 
     $module_id = isset($data['module_id']) ? $data['module_id'] : 'accordion';
@@ -1268,9 +1269,12 @@ function __accordion_module($data)
     $faqs = isset($data['accordion_source']) ? $data['accordion_source'] : false;
     $accordion = isset($data['accordion']) ? $data['accordion'] : false;
     $open_first_item = isset($data['open_first_item']) ? $data['open_first_item'] : false;
+    $lower_opacity = isset($data['lower_opacity']) ? $data['lower_opacity'] : false;
     $with_border = isset($data['with_border']) ? $data['with_border'] : false;
     $class = $with_border ? 'with-border' : '';
-
+    if ($lower_opacity) {
+        $class .= ' lower-opacity';
+    }
     if ($accordion_source == 'faqs') {
         $accordion = array();
         foreach ($faqs as $faq) {
