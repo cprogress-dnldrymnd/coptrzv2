@@ -281,6 +281,8 @@ function ___sections($id = 'sections', $post_id = '')
                         } else if ($background_overlay_type == 'custom') {
                             $styles_section[]  = '--background-overlay-custom: ' . $section_style['background_overlay_custom'];
                             $background_image_class[] = 'custom-overlay';
+                        } else {
+                            $styles_section[] = 'background-overlay';
                         }
                       
                         break;

@@ -10459,6 +10459,8 @@ hr {
   main {
     margin-top: 10px !important; } }
 
+.background-overlay .container {
+  position: relative; }
 .background-overlay:before {
   content: "";
   position: absolute;
