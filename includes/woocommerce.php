@@ -680,14 +680,16 @@ function custom_product_variation_training()
         $html .= "<div class='inner product-inner w-100 p-20px rounded-corner content-margin h-100'>"; //inner
 
 
-        if (($product_attribute_array['date'] && $product_attribute_array['date'] != 'N/A') || $product_attribute_array['pa_location']) {
+        if ($product_attribute_array['date'] || $product_attribute_array['pa_location']) {
             $html .= "<div class='row g-3 justify-content-between mb-2'>";
 
-            if ($product_attribute_array['date'] != 'N/A') {
+            if ($product_attribute_array['date']) {
                 $html .= "<div class='col-auto'>";
-                $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
-                $html .= $product_attribute_array['date'];
-                $html .= '</span>';
+                if ($product_attribute_array['date'] != 'N/A') {
+                    $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
+                    $html .= $product_attribute_array['date'];
+                    $html .= '</span>';
+                }
                 $html .= '</div>';
             }
 
