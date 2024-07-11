@@ -8,7 +8,7 @@ function action_woocommerce_before_main_content()
 
         $product_category_page = __get_product_category_page(get_queried_object()->term_id);
         if ($product_category_page) {
-            echo do_shortcode(___sections('sections', get_the_ID()));
+            echo do_shortcode(___sections('sections', $product_category_page));
         }
     } else if (is_product()) {
         $single_product_content = get__post_meta('single_product_content');
