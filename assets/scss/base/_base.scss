@@ -630,21 +630,20 @@ small {
 }
 
 .social-share-buttons {
-    margin-left: 1rem;
+    margin-left: 10px;
     a {
         border-radius: 5px;
         background-color: transparent;
         text-transform: initial;
         padding: 0;
-        height: 35px;
-        width: 35px;
+ 
         display: inline-block;
         @include not-last-child {
-            margin-right: 1rem;
+            margin-right: 10px;
         }
         svg {
-            width: 25px;
-            height: 25px;
+            width: 35px;
+            height: 35px;
         }
     }
 }

@@ -10920,14 +10920,12 @@ small, .small {
     background-color: transparent;
     text-transform: initial;
     padding: 0;
-    height: 35px;
-    width: 35px;
     display: inline-block; }
     .social-share-buttons a:not(:last-child) {
-      margin-right: 1rem; }
+      margin-right: 10px; }
     .social-share-buttons a svg {
-      width: 25px;
-      height: 25px; }
+      width: 35px;
+      height: 35px; }
 
 .post-link-copy.post-link-copy.post-link-copy {
   border-radius: 10px;
