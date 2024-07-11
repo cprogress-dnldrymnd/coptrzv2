@@ -26,3 +26,5 @@ if ($related_casestudies) {
 }
 
 echo do_shortcode(___sections('sections_after_main', get_the_ID()));
+
+echo get_post_type(271058);
