@@ -4113,6 +4113,10 @@ function __section_fields($name = 'sections')
                                 array(
                                     'type'      => 'term',
                                     'taxonomy' => 'product_cat',
+                                ),
+                                array(
+                                    'type'      => 'term',
+                                    'taxonomy' => 'pa_brands',
                                 )
                             ))
                     ))
