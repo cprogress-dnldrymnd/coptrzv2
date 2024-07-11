@@ -3313,6 +3313,7 @@ function __section_fields($name = 'sections')
                                         'md-padding-top'  => 'Medium',
                                         'sm-padding-top'  => 'Small',
                                         'xs-padding-top' => 'Extra Small',
+                                        'pt-20px' => '20px',
                                     )
                                 ),
                             Field::make('select', 'padding_bottom', 'Padding Bottom')->set_width(25)
@@ -3324,6 +3325,7 @@ function __section_fields($name = 'sections')
                                         'md-padding-bottom'  => 'Medium',
                                         'sm-padding-bottom'  => 'Small',
                                         'xs-padding-bottom' => 'Extra Small',
+                                        'pb-20px' => '20px',
                                     )
                                 ),
                             Field::make('select', 'padding_left', 'Padding left')->set_width(25)
