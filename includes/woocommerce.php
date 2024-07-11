@@ -709,7 +709,7 @@ function custom_product_variation_training()
         ));
         $html .= $price;
 
-        $html .= "<div class='button-box button-box button-bordered'>";
+        $html .= "<div class='button-box button-bordered mt-3'>";
         $html .= "<a href='?add-to-cart=$child' data-quantity='1' class='button ajax_add_to_cart' data-product_id='$child' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
         $html .= '</div>';
 
