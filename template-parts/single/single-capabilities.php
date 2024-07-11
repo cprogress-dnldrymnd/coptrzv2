@@ -17,7 +17,7 @@ echo __linked_products($related_products_array, false, false, false, $related_pr
 
 if ($related_casestudies) {
     $data = array(
-        'col' => true,
+        'col' => false,
         'featured' => false,
         'style' => 'style-1',
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
