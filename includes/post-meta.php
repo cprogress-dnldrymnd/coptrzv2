@@ -749,11 +749,13 @@ function __hero_fields()
         Field::make('select', 'hero_alignment', __('Aligment'))->set_classes('inline-field')
             ->set_options(
                 array(
-                    'text-center' => 'Default/Center',
+                    '' => 'Default',
+                    'text-center' => 'Center',
                     'text-start' => 'Left',
                     'text-end' => 'Right',
                 )
-            ),
+            )
+            ->set_default_value('text-center'),
         Field::make('file', 'hero_background', __('Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
             ->set_conditional_logic(
                 array(
