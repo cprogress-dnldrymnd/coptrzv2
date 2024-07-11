@@ -92,7 +92,7 @@
         $new_sections['section_styles'] = $section['section_styles'];
     }
 
-    update_post_meta('carbon_set_post_meta', 'sections', $sections);
+    carbon_set_post_meta(get_the_ID(), 'sections', $sections);
     ?>
     <pre>
         <?php var_dump($sections); ?>
