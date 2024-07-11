@@ -680,7 +680,7 @@ function custom_product_variation_training()
         $html .= "<div class='inner product-inner w-100 p-20px rounded-corner content-margin h-100'>"; //inner
 
 
-        if ($product_attribute_array['date'] || $product_attribute_array['pa_location']) {
+        if (($product_attribute_array['date'] && $product_attribute_array['date'] != 'N/A') || $product_attribute_array['pa_location']) {
             $html .= "<div class='row g-3 justify-content-between mb-2'>";
 
             if ($product_attribute_array['date'] != 'N/A') {
