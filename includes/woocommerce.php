@@ -680,38 +680,22 @@ function custom_product_variation_training()
         $price = $variation->get_price_html();
         $html .= '<div class="col-12">';
         $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
-        $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100 $stock_status_variation'>";
+        $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100'>";
         $html .= "<div class='inner product-inner d-flex align-items-center w-100 p-20px rounded-corner'>";
-        $html .= "<div class='col-auto'>";
         $html .= __image(array(
             'image_id' => $thumbnail,
             'class' => _attribute('class', array('variation-image')),
             'size' => 'thumbnail'
         ));
-        $html .= '</div>';
 
-        $html .= "<div class='col'>";
         $html .= "<div class='info-box'>";
         $html .= __heading(array(
             'heading' => $variation_name,
             'tag' => 'h5'
         ));
         $html .= $price;
-        $html .= '<div class="accordion-item">'; //accordion-item
-        $html .= "<div class='accordion-header' id='heading-variation-$child'> <button class='small-text fw-medium accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse-variation-$child' aria-expanded='false' aria-controls='collapse-variation-$child'> Package Contents </button> </div>";
+       
 
-        $html .= "<div id='collapse-variation-$child' class='accordion-collapse collapse' aria-labelledby='heading-variation-$child' data-bs-parent='#accordionVariation'>";
-        $html .= '<div class="accordion-body">';
-        $html .= __description(array(
-            'description' => $description
-        ));
-        $html .= '</div>';
-        $html .= '</div>';
-
-
-        $html .= '</div>'; //end-accordion-item
-
-        $html .= '</div>';
         $html .= '</div>';
 
         $html .= '</div>';
