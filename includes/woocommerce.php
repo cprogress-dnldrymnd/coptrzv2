@@ -701,8 +701,9 @@ function custom_product_variation_training()
         ));
         $html .= $price;
 
-
-        $html .= "<a href='?add-to-cart=$child' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='61659' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
+        $html .= "<div class='button-box button-accent'>";
+        $html .= "<a href='?add-to-cart=$child' data-quantity='1' class='button ajax_add_to_cart' data-product_id='$child' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
+        $html .= '</div>'; 
 
         $html .= '</div>'; //inner
         $html .= '</label>'; //label
