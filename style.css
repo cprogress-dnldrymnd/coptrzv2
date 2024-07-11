@@ -10575,11 +10575,11 @@ section .container > *:not(:last-child) {
   border-radius: 10px;
   line-height: 1.25; }
 
-.wp-element-button.wp-element-buttonwp-element-button {
+.wp-element-button.wp-element-button.wp-element-button {
   color: var(--bs-white);
   border-color: var(--bs-accent);
   background-color: var(--bs-accent); }
-  .wp-element-button.wp-element-buttonwp-element-button:hover, .wp-element-button.wp-element-buttonwp-element-button:active, .wp-element-button.wp-element-buttonwp-element-button:focus {
+  .wp-element-button.wp-element-button.wp-element-button:hover, .wp-element-button.wp-element-button.wp-element-button:active, .wp-element-button.wp-element-button.wp-element-button:focus {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
