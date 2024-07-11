@@ -525,6 +525,14 @@ section.product-main {
         .date {
             border-radius: 5px;
         }
+        .location {
+            text-transform: uppercase;
+            svg {
+                width: 15px;
+                height: 15px;
+                margin-right: 5px;
+            }
+        }
     }
 }
 

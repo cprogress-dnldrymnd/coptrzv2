@@ -681,7 +681,7 @@ function custom_product_variation_training()
 
 
         if ($product_attribute_array['date'] || $product_attribute_array['pa_location']) {
-            $html .= "<div class='row g-3 justify-content-between mb-0'>";
+            $html .= "<div class='row g-3 justify-content-between mb-2'>";
 
             if ($product_attribute_array['date'] != 'N/A') {
                 $html .= "<div class='col-auto'>";
@@ -693,7 +693,7 @@ function custom_product_variation_training()
 
             if ($product_attribute_array['pa_location'] != 'N/A') {
                 $html .= "<div class='col-auto'>";
-                $html .= "<span class='location smaller-text text-white '>";
+                $html .= "<span class='location smaller-text '>";
                 $html .= $SVG->location();
                 $html .= $product_attribute_array['pa_location'];
                 $html .= '</span>';
