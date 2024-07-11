@@ -19,7 +19,7 @@
         <div class="row g-5">
             <div class="col col-post-nav">
                 <div class="column-holder">
-                    <h4>Contents</h4>
+                    <h3>Contents</h3>
                     <ul id="post-navigation" class="d-flex flex-wrap list-inline">
 
                     </ul>
