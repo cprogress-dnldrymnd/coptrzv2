@@ -2292,6 +2292,7 @@ function __section_fields($name = 'sections')
                                                 'col-lg-3'  => '25.00%',
                                                 'col-lg-2'  => '16.67%',
                                                 'col-lg-1'  => '08.33%',
+                                                'col-lg-auto'  => 'auto',
                                             )
                                         ),
                                     Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
@@ -2310,6 +2311,7 @@ function __section_fields($name = 'sections')
                                                 'col-md-3'  => '25.00%',
                                                 'col-md-2'  => '16.67%',
                                                 'col-md-1'  => '08.33%',
+                                                'col-md-auto'  => 'auto',
                                             )
                                         ),
                                     Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
@@ -2328,6 +2330,7 @@ function __section_fields($name = 'sections')
                                                 'col-3'  => '25.00%',
                                                 'col-2'  => '16.67%',
                                                 'col-1'  => '08.33%',
+                                                'col-auto'  => 'auto',
                                             )
                                         ),
                                 )
