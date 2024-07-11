@@ -1608,7 +1608,6 @@ function __section_fields($name = 'sections')
                                                         Field::make('textarea', 'description', __('Description')),
                                                     )
                                                 )
-                                                ->set_layout('tabbed-vertical')
                                                 ->set_header_template('<%- heading  %>')
                                                 ->set_conditional_logic(
                                                     array(
