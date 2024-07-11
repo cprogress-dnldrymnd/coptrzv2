@@ -691,8 +691,12 @@ small {
     }
 }
 #blog-single-sidebar {
-    > p > :first-child {
-        display: none;
+    > {
+        .widget-inner {
+            > p:first-child {
+                display: none;
+            }
+        }
     }
 }
 .related-posts-sidebar {
