@@ -87,6 +87,11 @@
                     .wpforms-field-label {
                         margin-bottom: 5px;
                     }
+                    select {
+                        option {
+                            color: var(--bs-black);
+                        }
+                    }
                     @include inputs {
                         background-color: transparent;
                         color: var(--bs-white);
