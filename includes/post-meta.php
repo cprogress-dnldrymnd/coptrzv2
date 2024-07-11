@@ -2521,7 +2521,38 @@ function __section_fields($name = 'sections')
                     ->add_fields(
                         'post_grid',
                         array(
-                            Field::make('complex', 'post_box_styles', __('Post Box Styles'))
+                            Field::make('html', 'post_box_styles_html')->set_html('<label>Post Box Settings</label>')->set_classes('cb-label'),
+                            Field::make('checkbox', 'is_slider', __('Is SLider')),
+                            Field::make('text', 'number_of_slides', __('Number of Slides Desktop'))->set_default_value(6)->set_required(true)->set_attribute('type', 'number')->set_width(25)
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'is_slider',
+                                            'value' => true,
+                                        )
+                                    )
+                                ),
+                            Field::make('text', 'number_of_slides_tablet', __('Number of Slides Tablet'))->set_attribute('type', 'number')->set_width(25)
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'is_slider',
+                                            'value' => true,
+                                        )
+                                    )
+                                ),
+                            Field::make('text', 'number_of_slides_mobile', __('Number of Slides Mobile'))->set_attribute('type', 'number')->set_width(25)
+
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'is_slider',
+                                            'value' => true,
+                                        )
+                                    )
+                                ),
+                            Field::make('html', 'post_box_styles_html')->set_html('<label>Post Box Styles</label>')->set_classes('cb-label'),
+                            Field::make('complex', 'post_box_styles', __(''))
                                 ->setup_labels(
                                     array(
                                         'plural_name'   => 'Styles',
@@ -2831,7 +2862,7 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                                 ->set_layout('tabbed-vertical'),
-
+                            Field::make('html', 'post_elements_html')->set_html('<label>Post Elements</label>')->set_classes('cb-label'),
                             Field::make('complex', 'post_elements', 'Post Elements')
                                 ->set_duplicate_groups_allowed(false)
                                 ->add_fields(
@@ -2979,6 +3010,7 @@ function __section_fields($name = 'sections')
                                 )
                                 ->set_header_template('Custom Field: <%- custom_field_key  %>')
                                 ->set_layout('tabbed-vertical'),
+                            Field::make('html', 'post_type_html')->set_html('<label>Post Type</label>')->set_classes('cb-label'),
                             Field::make('complex', 'post_type', 'Post Type')
                                 ->set_duplicate_groups_allowed(false)
                                 ->set_max(1)
