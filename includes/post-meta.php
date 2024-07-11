@@ -4886,3 +4886,25 @@ Container::make('post_meta', 'Testimonial Content')
             Field::make('textarea', 'testimonial_content', 'Testimonial Content'),
         )
     );
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Capibilities
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', 'Testimonial Content')
+    ->where('post_type', '=', 'capabilities')
+    ->add_tab(
+        'Related Products',
+        array(
+            Field::make('text', 'related_products_heading', 'Related Products Heading'),
+            Field::make('association', 'post_featured', 'Related Products')
+                ->set_types(
+                    array(
+                        array(
+                            'type'      => 'post',
+                            'post_type' => 'product',
+                        )
+                    )
+                )
+        )
+    );
