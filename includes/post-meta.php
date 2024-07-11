@@ -860,7 +860,7 @@ function __section_fields($name = 'sections')
             )
             ->set_collapsed(true)
 
-            ->add_fields(array(
+            ->add_fields('sections',array(
                 Field::make('html', 'sec_1')->set_html('<label>Section Settings</label>')->set_classes('cb-label'),
                 Field::make('text', 'title', __('Section Title'))->set_required(true)->set_width(25),
                 Field::make('text', 'section_id', __('Section ID'))->set_width(25),
