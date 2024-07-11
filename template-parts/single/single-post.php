@@ -38,10 +38,7 @@ echo ___hero_modules('text-start', 'small-hero');
                     <?php
                     $avatar = get_avatar(get_the_author_meta('ID'));
                     ?>
-                    <div class="author">
-                        <div class="text-accent fw-semibold medium-text">Written by:</div>
-                        <div class="fw-light medium-text"><?= get_author_name() ?></div>
-                    </div>
+
                 </div>
             </div>
             <div class="col col-sidebar">
@@ -52,3 +49,12 @@ echo ___hero_modules('text-start', 'small-hero');
         </div>
     </div>
 </section>
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="author">
+            <div class="text-accent fw-semibold medium-text">Written by:</div>
+            <div class="fw-light medium-text"><?= get_author_name() ?></div>
+        </div>
+    </div>
+</div>
