@@ -8,4 +8,4 @@ $related_products_array = array();
 foreach($related_products as $related_product) {
     $related_products_array[] = $related_product['id'];
 } 
-echo __linked_products($related_products_array, false, false, 'swiper-accessories', $related_products_heading, false, true, false);
+echo __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, false);
