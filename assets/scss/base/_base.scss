@@ -772,6 +772,13 @@ small {
             border-bottom: 2px solid;
         }
     }
+    &.lower-opacity {
+        .accordion-item {
+            .accordion-button.collapsed,.accordion-collapse:not(.show) {
+                opacity: 0.35;
+            }
+        }
+    }
 }
 
 .plus-minus {
