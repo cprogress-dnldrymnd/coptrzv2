@@ -2432,6 +2432,7 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'border_color', 'Border Color')
                                                 ->set_options(
                                                     array(
+                                                        ''   => 'Default',
                                                         'text-primary'   => 'Primary',
                                                         'text-secondary' => 'Secondary',
                                                         'text-accent'    => 'Accent',
@@ -2439,33 +2440,17 @@ function __section_fields($name = 'sections')
                                                         'text-light-gray'     => 'Light Gray',
                                                         'border-custom-color'    => 'Custom',
                                                     )
-                                                )
-                                                ->set_conditional_logic(
-                                                    array(
-                                                        array(
-                                                            'field' => 'border_style',
-                                                            'value' => 'border-custom',
-                                                        )
-                                                    )
                                                 ),
                                             Field::make('color', 'border_color_custom', __('Border Color'))
                                                 ->set_conditional_logic(
                                                     array(
                                                         array(
-                                                            'field' => 'border_style',
-                                                            'value' => 'border-custom',
+                                                            'field' => 'border_color',
+                                                            'value' => 'border-custom-color',
                                                         )
                                                     )
                                                 ),
-                                            Field::make('text', 'border_width', 'Border Width')
-                                                ->set_conditional_logic(
-                                                    array(
-                                                        array(
-                                                            'field' => 'border_style',
-                                                            'value' => 'border-custom',
-                                                        )
-                                                    )
-                                                ),
+                                            Field::make('text', 'border_width', 'Border Width'),
                                         )
                                     )
                                     ->add_fields(
