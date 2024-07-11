@@ -694,7 +694,7 @@ function custom_product_variation_training()
                 $html .= '</div>';
             }
 
-            if ($product_attribute_array['pa_location'] != 'N/A') {
+            if ($product_attribute_array['pa_location']) {
                 $html .= "<div class='col-auto'>";
                 $html .= "<span class='location smaller-text '>";
                 $html .= $SVG->location();

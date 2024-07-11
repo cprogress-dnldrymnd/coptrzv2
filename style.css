@@ -10962,7 +10962,7 @@ small, .small {
 
 .related-posts-sidebar .post-box h3, .related-posts-sidebar .post-box .h3 {
   font-size: 20px; }
-.related-posts-sidebar .post-box .small-text {
+.related-posts-sidebar .post-box .small-text:not(.description-box) {
   font-size: 10px; }
 
 .post-navigation-holder {
