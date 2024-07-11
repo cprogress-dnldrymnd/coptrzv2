@@ -140,7 +140,7 @@ echo do_shortcode(__layouts($args));
                     if ($key == 'events_') {
                         $data['additional_content'] = _events_additional_content(get_the_ID());
                     }
-                    echo __post_box_blog($data);
+                    echo __post_box($data);
                 }
                 ?>
             </div>

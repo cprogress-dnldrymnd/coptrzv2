@@ -644,7 +644,7 @@ function __related_posts($posts, $heading = 'Related Guides', $data)
 
         $data['id'] = $post;
         
-        $html .= __post_box_blog($data);
+        $html .= __post_box($data);
         $html .= '</div>';
     }
     $html .= '</div>';
