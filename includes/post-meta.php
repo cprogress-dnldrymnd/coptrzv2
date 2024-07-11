@@ -3014,9 +3014,9 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                                 ->add_fields(
-                                    'casestudies',
+                                    'testimonials',
                                     array(
-                                        Field::make('hidden', 'taxonomy_key', '')->set_default_value('case_study_category'),
+                                        Field::make('hidden', 'taxonomy_key', '')->set_default_value('testimonial_category'),
                                         Field::make('select', 'source', __('Source'))
                                             ->set_options(
                                                 array(
@@ -3026,12 +3026,12 @@ function __section_fields($name = 'sections')
                                                 )
                                             ),
 
-                                        Field::make('association', 'post', 'Select Solutions')
+                                        Field::make('association', 'post', 'Select Testimonials')
                                             ->set_types(
                                                 array(
                                                     array(
                                                         'type'      => 'post',
-                                                        'post_type' => 'casestudies',
+                                                        'post_type' => 'testimonials',
                                                     )
                                                 )
                                             )
@@ -3043,12 +3043,12 @@ function __section_fields($name = 'sections')
                                                     )
                                                 )
                                             ),
-                                        Field::make('association', 'category', 'Select Product Categories')
+                                        Field::make('association', 'category', 'Select Categories')
                                             ->set_types(
                                                 array(
                                                     array(
                                                         'type'      => 'term',
-                                                        'taxonomy' => 'case_study_category',
+                                                        'taxonomy' => 'testimonial_category',
                                                     )
                                                 )
                                             )
