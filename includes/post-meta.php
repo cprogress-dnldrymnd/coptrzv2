@@ -2521,7 +2521,7 @@ function __section_fields($name = 'sections')
                     ->add_fields(
                         'post_grid',
                         array(
-                            Field::make('html', 'post_box_styles_html')->set_html('<label>Post Box Settings</label>')->set_classes('cb-label'),
+                            Field::make('html', 'post_box_settings_html')->set_html('<label>Post Box Settings</label>')->set_classes('cb-label'),
                             Field::make('checkbox', 'is_slider', __('Is SLider')),
                             Field::make('text', 'number_of_slides', __('Number of Slides Desktop'))->set_default_value(6)->set_required(true)->set_attribute('type', 'number')->set_width(25)
                                 ->set_conditional_logic(

@@ -505,7 +505,12 @@ function ___sections($id = 'sections', $post_id = '')
                         $html .= ____button_modules($items['buttons']);
                         break;
                     case 'post_grid':
-                        $html .= ____post_grid(array(
+                        $html .= ____post_grid_module(array(
+                            'id' => $id,
+                            'is_slider' => $items['is_slider'],
+                            'number_of_slides' => $items['number_of_slides'],
+                            'number_of_slides_tablet' => $items['number_of_slides_tablet'],
+                            'number_of_slides_mobile' => $items['number_of_slides_mobile'],
                             'post_box_styles' => $items['post_box_styles'],
                             'post_elements' => $items['post_elements'],
                             'post_type' => $items['post_type'],
@@ -599,8 +604,14 @@ function ___tab_modules($tabs, $id)
         return $html;
     }
 }
-function ____post_grid($data)
+function ____post_grid_module($data)
 {
+    $is_slider = $data['is_slider'];
+    $number_of_slides = $data['number_of_slides'];
+    $number_of_slides_tablet = $data['number_of_slides_tablet'];
+    $number_of_slides_mobile = $data['number_of_slides_mobile'];
+    $id = $data['id'];
+
     $post_box_styles = $data['post_box_styles'];
     $post_elements = $data['post_elements'];
 
@@ -718,7 +729,20 @@ function ____post_grid($data)
 
     $html = '';
     $html .= "<div class='post-grid'>";
-    $html .= "<div class='row g-4'>";
+
+    if ($is_slider) {
+        $swiper_id = $id . '-swiper';
+        $number_of_slides_attr = _attribute('number_of_slides', array($number_of_slides));
+        $number_of_slides_tablet_attr = _attribute('number_of_slides_tablet', array($number_of_slides_tablet));
+        $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
+        $slides_attr = _attributes(array($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr));
+
+        $html .= "<div class='swiper-holder'>"; //swiper-holder
+        $html .= "<div class='swiper swiper-sliders' id='$swiper_id' $slides_attr>"; //swiper
+    } else {
+        $html .= "<div class='row g-4'>"; //row
+    }
+
     foreach ($posts_lists as $post) {
         $html .= "<div $column_attribute>";
         $html .= "<div $post_attribute>";
@@ -758,7 +782,16 @@ function ____post_grid($data)
         $html .= "</div>";
     }
     $html .= "</div>";
-    $html .= "</div>";
+    if ($is_slider) {
+        $html .= '</div>'; //end swiper
+        $html .= '<div class="swiper-nav d-flex justify-content-start">'; // swipernav
+        $html .= '<div class="swiper-button-prev"></div>';
+        $html .= '<div class="swiper-button-next"></div>';
+        $html .= '</div>'; //end swipernav
+        $html .= '</div>'; //end swiper-holder
+    } else {
+        $html .= "</div>"; //end-row
+    }
 
     return $html;
 }
