@@ -652,8 +652,8 @@ function custom_product_variation_training()
 
     $html = '<div class="product-custom-variation product-training-variation">';
 
-    $html .= "<div class='swiper swiper-training'>"; //swiper
-    $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+    $html .= "<div class='swiper swiper-training'>";//swiper
+    $html .= "<div class='swiper-wrapper'>";//swiper-wrapper
 
 
     foreach ($children_chunk as $children) {
@@ -737,25 +737,12 @@ function custom_product_variation_training()
         $html .= '</div>'; //swiper-slide
 
     }
-    $html .= '</div>'; //end-swiper-wrapper
-    $html .= '<div class="row g-4 justify-content-between align-items-center mt-4">';
-    $html .= '<div class="swiper-nav d-flex justify-content-start col-auto">'; // swipernav
+    $html .= '</div>';//end-swiper-wrapper
+    $html .= '<div class="swiper-nav d-flex justify-content-start mt-5">'; // swipernav
     $html .= '<div class="swiper-button-prev"></div>';
     $html .= '<div class="swiper-button-next"></div>';
     $html .= '</div>'; //end swipernav
-    $html .= '<div class="col-auto">';
-    $html .= __button(array(
-        'button_type' => 'custom',
-        'button_text' => 'See all dates',
-        'button_url_custom' => '#',
-        'button_style' => 'button-accent',
-    ));
-    $html .= '</div>';
-    $html .= '</div>';
-
-
-
-    $html .= '</div>'; //end-swiper
+    $html .= '</div>';//end-swiper
     $html .= '</div>';
 
     echo $html;
