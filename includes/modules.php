@@ -763,7 +763,7 @@ function ____post_grid_module($data)
                     break;
                 case 'permalink':
                     $html .= __button(array(
-                        'button_type' => get_post_type(),
+                        'button_type' => get_post_type($post->ID),
                         'button_text' => $item['button_text'],
                         'button_url' => $post->ID,
                         'button_url_custom' => $item['button_url_custom'],
@@ -785,7 +785,7 @@ function ____post_grid_module($data)
                     $custom_field_key =  $item['custom_field_key'];
                     $custom_field_type =  $item['custom_field_type'];
                     $custom_field_class =  $item['custom_field_class'];
-                    $val = get_post_meta(get_the_ID(), '_testimonial_content', true);
+                    $val = get_post_meta($post->ID, $custom_field_key, true);
                     if ($custom_field_type != 'img') {
                         $html .= "<$custom_field_type class='$custom_field_class'>$val</$custom_field_type>";
                     }
