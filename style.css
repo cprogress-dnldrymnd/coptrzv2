@@ -10957,6 +10957,9 @@ small, .small {
   #post-navigation li:not(:last-child).h2-nav {
     margin-bottom: 1rem; }
 
+.related-posts-sidebar h3, .related-posts-sidebar .h3 {
+  font-size: 20px; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/
