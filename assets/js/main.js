@@ -210,7 +210,6 @@ function __swipers() {
         var swiper_sliders = new Swiper($id, {
             loop: true,
             autoplay: false,
-            slidesPerView: 'auto',
             spaceBetween: 20,
             breakpoints: {
                 0: {
@@ -225,7 +224,6 @@ function __swipers() {
                 992: {
                     slidesPerView: $number_of_slides,
                 },
-
             },
             navigation: {
                 nextEl: ".swiper-button-next",
