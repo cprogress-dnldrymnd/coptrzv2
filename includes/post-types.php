@@ -662,3 +662,15 @@ $Product_category_page->publicly_queryable = true;
 $Product_category_page->show_in_admin_bar = false;
 $Product_category_page->has_archive = true;
 $Product_category_page->show_in_rest = true;
+
+
+$Product_taxonomy_page = new newPostType();
+$Product_taxonomy_page->name = 'Product Taxonomy Pages';
+$Product_taxonomy_page->singular_name = 'Product Taxonomy Pages';
+$Product_taxonomy_page->icon = 'dashicons-testimonial';
+$Product_taxonomy_page->supports = array('title', 'revisions', 'excerpt', 'editor');
+$Product_taxonomy_page->exclude_from_search = true;
+$Product_taxonomy_page->publicly_queryable = true;
+$Product_taxonomy_page->show_in_admin_bar = false;
+$Product_taxonomy_page->has_archive = true;
+$Product_taxonomy_page->show_in_rest = true;
