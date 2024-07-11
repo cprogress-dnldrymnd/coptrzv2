@@ -11,6 +11,8 @@ function action_woocommerce_before_main_content()
             echo do_shortcode(___sections('sections', $product_category_page));
         }
     } else if (is_product()) {
+echo ___hero_modules();
+
         echo do_shortcode(___sections('sections', get_the_ID()));
     }
 }
