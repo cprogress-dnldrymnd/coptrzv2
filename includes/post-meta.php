@@ -1600,12 +1600,6 @@ function __section_fields($name = 'sections')
                                                 ),
                                             Field::make('complex', 'accordion', __('Accordion'))
                                                 ->set_layout('tabbed-vertical')
-                                                ->setup_labels(
-                                                    array(
-                                                        'plural_name'   => 'Accordions',
-                                                        'singular_name' => 'Accordion',
-                                                    )
-                                                )
                                                 ->add_fields(
                                                     array(
                                                         Field::make('text', 'heading', __('Heading')),
