@@ -283,7 +283,9 @@ function ___sections($id = 'sections', $post_id = '')
                             $styles_section[]  .= '--background-overlay-custom: ' . $section_style['background_overlay_custom'];
                             $background_image_class[]  = 'custom-overlay';
                         }
-                        $classes .= ' ' . $section_style['background_size'] . ' ' . $section_style['background_attachment'] . ' ' . $section_style['background_repeat'];
+                        $classes[] = $section_style['background_attachment'];
+                        $classes[] = $section_style['background_size'];
+                        $classes[] = $section_style['background_repeat'];
                         break;
                     case 'container_width':
                         $classes[] = $section_style['container_width'];
