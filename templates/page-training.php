@@ -74,5 +74,10 @@
     <?php
     echo do_shortcode(___sections('sections_after_main', get_the_ID()));
     ?>
+    <pre>
+        <?php
+        var_dump(get__post_meta_('sections_after_main'));
+        ?>
+    </pre>
 </div>
 <?php get_footer(); ?>
