@@ -737,8 +737,12 @@ function custom_product_variation_training()
         $html .= '</div>'; //swiper-slide
 
     }
-    $html .= '</div>';
-    $html .= '</div>';
+    $html .= '</div>';//end-swiper-wrapper
+    $html .= '<div class="swiper-nav d-flex justify-content-start">'; // swipernav
+    $html .= '<div class="swiper-button-prev"></div>';
+    $html .= '<div class="swiper-button-next"></div>';
+    $html .= '</div>'; //end swipernav
+    $html .= '</div>';//end-swiper
     $html .= '</div>';
 
     echo $html;
