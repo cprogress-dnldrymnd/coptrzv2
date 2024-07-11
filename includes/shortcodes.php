@@ -256,15 +256,9 @@ class Shortcodes
         <div class="blog-meta">
             <div class="row">
                 <div class="col-auto">
-                    <p><strong>Last updated on</strong></p>
+                    <p class="mb-0"><strong>Last updated on</strong></p>
                     <p><?= get_the_date() ?></p>
                 </div>
-                <?php if ($reading_time) { ?>
-                    <div class="col-auto">
-                        <p><strong>Read time</strong></p>
-                        <p><?= $reading_time ?></p>
-                    </div>
-                <?php } ?>
             </div>
         </div>
     <?php
