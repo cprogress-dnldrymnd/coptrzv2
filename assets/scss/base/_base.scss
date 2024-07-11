@@ -785,7 +785,7 @@ small {
         content: "";
         width: 3px;
         height: 20px;
-        background: var(--primary-color);
+        background: var(--bs-black);
         position: absolute;
         left: 8.5px;
         @include transition(300ms);
@@ -795,6 +795,6 @@ small {
         content: "";
         width: 20px;
         height: 3px;
-        background: var(--primary-color);
+        background: var(--bs-black);
     }
 }
