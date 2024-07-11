@@ -43,7 +43,7 @@ function action_woocommerce_after_single_product()
     $related_guides = get__post_meta('related_guides');
 
     if ($related_guides) {
-        echo do_shortcode(__related_guides($related_guides));
+        echo do_shortcode(____post_grid_module($related_guides));
     }
 }
 
@@ -632,16 +632,16 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 }
 
 
-function __related_guides($related_guides)
+function ____post_grid_module($posts)
 {
     $html = "<section class='related-guides border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<div class='container'>";
     $html .= "<h2 class='text-center px-20px'>Related Guides</h2>";
 
     $html .= "<div class='row g-4 same-image-height' style=' --image-padding: 40%; '>";
-    foreach ($related_guides as $related_guide) {
+    foreach ($posts as $post) {
         $html .= "<div class='col-md-4 col-sm-12'>";
-        $html .= __post_box($related_guide['id']);
+        $html .= __post_box($post['id']);
         $html .= '</div>';
     }
     $html .= '</div>';
