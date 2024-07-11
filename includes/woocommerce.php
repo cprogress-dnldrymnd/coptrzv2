@@ -708,7 +708,10 @@ function custom_product_variation_training()
             'heading' => $product_attribute_array['course-type'],
             'tag' => 'h3'
         ));
+        $html .= '<div>';
         $html .= $price;
+        $html .= '</div>';
+
         $html .= '</div>';
 
         $html .= "<div class='button-box button-bordered mt-3'>";
