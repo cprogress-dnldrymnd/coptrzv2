@@ -274,9 +274,9 @@ function ___sections($id = 'sections', $post_id = '')
                             $image_args['class'] = _attribute('class', 'background-image background-overlay');
                             $image_args['image_id'] = $section_style['background_overlay_image'];
                             $background_image_class = array();
-                            $background_image_overlay_args[] =  $image_args;
+                            $background_image_overlay_args =  $image_args;
                             if ($section_style['background_overlay_image_opacity'] || $section_style['background_overlay_image_opacity'] == 0) {
-                                $styles_section[] =  '--background-image-opacity: ' . $section_style['background_overlay_image_opacity'];
+                                $styles_section[] = '--background-image-opacity: ' . $section_style['background_overlay_image_opacity'];
                             }
                             $background_image_class[] = 'no-overlay';
                         } else if ($background_overlay_type == 'custom') {
