@@ -2568,51 +2568,6 @@ function __section_fields($name = 'sections')
                                                         )
                                                     )
                                                 ),
-                                            Field::make('select', 'background_size', 'Background Size')
-                                                ->set_options(
-                                                    array(
-                                                        'bg-cover' => 'Cover',
-                                                        'bg-contain'  => 'Contain',
-                                                    )
-                                                )
-                                                ->set_conditional_logic(
-                                                    array(
-                                                        array(
-                                                            'field' => 'background_overlay_type',
-                                                            'value' => 'image',
-                                                        )
-                                                    )
-                                                ),
-                                            Field::make('select', 'background_attachment', 'Background Attachment')
-                                                ->set_options(
-                                                    array(
-                                                        'bg-scroll'    => 'Scroll',
-                                                        'bg-fixed'  => 'Fixed',
-                                                    )
-                                                )
-                                                ->set_conditional_logic(
-                                                    array(
-                                                        array(
-                                                            'field' => 'background_overlay_type',
-                                                            'value' => 'image',
-                                                        )
-                                                    )
-                                                ),
-                                            Field::make('select', 'background_repeat', 'Background Repeat')
-                                                ->set_options(
-                                                    array(
-                                                        'bg-no-repeat'    => 'No Repeat',
-                                                        'bg-repeat'  => 'No Repeat',
-                                                    )
-                                                )
-                                                ->set_conditional_logic(
-                                                    array(
-                                                        array(
-                                                            'field' => 'background_overlay_type',
-                                                            'value' => 'image',
-                                                        )
-                                                    )
-                                                ),
                                             Field::make('color', 'background_overlay_custom', 'Custom Background Overlay')
                                                 ->set_alpha_enabled(true)
                                                 ->set_conditional_logic(
@@ -4274,51 +4229,6 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('text', 'background_overlay_image_opacity', 'Image Background Overlay Opacity')
-                                ->set_conditional_logic(
-                                    array(
-                                        array(
-                                            'field' => 'background_overlay_type',
-                                            'value' => 'image',
-                                        )
-                                    )
-                                ),
-                            Field::make('select', 'background_size', 'Background Size')
-                                ->set_options(
-                                    array(
-                                        'bg-cover' => 'Cover',
-                                        'bg-contain'  => 'Contain',
-                                    )
-                                )
-                                ->set_conditional_logic(
-                                    array(
-                                        array(
-                                            'field' => 'background_overlay_type',
-                                            'value' => 'image',
-                                        )
-                                    )
-                                ),
-                            Field::make('select', 'background_attachment', 'Background Attachment')
-                                ->set_options(
-                                    array(
-                                        'bg-scroll'    => 'Scroll',
-                                        'bg-fixed'  => 'Fixed',
-                                    )
-                                )
-                                ->set_conditional_logic(
-                                    array(
-                                        array(
-                                            'field' => 'background_overlay_type',
-                                            'value' => 'image',
-                                        )
-                                    )
-                                ),
-                            Field::make('select', 'background_repeat', 'Background Repeat')
-                                ->set_options(
-                                    array(
-                                        'bg-no-repeat'    => 'No Repeat',
-                                        'bg-repeat'  => 'No Repeat',
-                                    )
-                                )
                                 ->set_conditional_logic(
                                     array(
                                         array(
