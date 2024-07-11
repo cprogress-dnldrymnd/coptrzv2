@@ -754,8 +754,9 @@ function ____post_grid_module($data)
             $type = $item['_type'];
             switch ($type) {
                 case 'post_title':
+                    $tag =  $item['tag'];
                     $html .= __heading(array(
-                        'tag' => 'h3',
+                        'tag' => $tag,
                         'heading' => $post->post_title,
                         'class' => _attribute('class', array('post-title position-relative'))
                     ));
