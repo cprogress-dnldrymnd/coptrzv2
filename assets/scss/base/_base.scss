@@ -691,7 +691,7 @@ small {
     }
 }
 #blog-single-sidebar {
-    & + p {
+    > p > :first-child {
         display: none;
     }
 }

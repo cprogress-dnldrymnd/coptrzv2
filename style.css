@@ -10957,7 +10957,7 @@ small, .small {
   #post-navigation li:not(:last-child).h2-nav {
     margin-bottom: 1rem; }
 
-#blog-single-sidebar + p {
+#blog-single-sidebar > p > :first-child {
   display: none; }
 
 .related-posts-sidebar .post-box h3, .related-posts-sidebar .post-box .h3 {
