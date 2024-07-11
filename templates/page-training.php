@@ -91,6 +91,8 @@
         $new_sections['html_3'] = $section['html_3'];
         $new_sections['section_styles'] = $section['section_styles'];
     }
+
+    update_post_meta(get_the_ID(), '_sections', $new_sections);
     ?>
     <pre>
         <?php var_dump($new_sections); ?>

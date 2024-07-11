@@ -3693,6 +3693,7 @@ Container::make('post_meta', __('Sections'))
     ->or_where('post_type', '=', 'layouts')
     ->or_where('post_type', '=', 'productcategorypages')
     ->add_fields(__section_fields());
+    
 
 
 Container::make('post_meta', __('Sections after main product'))
