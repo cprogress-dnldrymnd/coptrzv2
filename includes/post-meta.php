@@ -1655,7 +1655,7 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                     ->add_fields(
-                                        'post_grid',
+                                        'form',
                                         array(
                                             Field::make('association', 'form', 'Form')
                                                 ->set_types(
