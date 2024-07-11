@@ -280,7 +280,7 @@ function ___sections($id = 'sections', $post_id = '')
                             }
                             $background_image_class[] = 'no-overlay';
                         } else if ($background_overlay_type == 'custom') {
-                            $styles_section[]  .= '--background-overlay-custom: ' . $section_style['background_overlay_custom'];
+                            $styles_section[]  = '--background-overlay-custom: ' . $section_style['background_overlay_custom'];
                             $background_image_class[]  = 'custom-overlay';
                         }
                         $classes[] = $section_style['background_attachment'];
