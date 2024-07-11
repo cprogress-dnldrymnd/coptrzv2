@@ -5022,3 +5022,40 @@ Container::make('post_meta', 'Capabilities Settings')
                 )
         )
     );
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Industry
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', 'Industry Settings')
+    ->where('post_type', '=', 'solutions')
+    ->add_tab(
+        'Related Products',
+        array(
+            Field::make('text', 'related_products_heading', 'Related Products Heading'),
+            Field::make('association', 'related_products', 'Related Products')
+                ->set_types(
+                    array(
+                        array(
+                            'type'      => 'post',
+                            'post_type' => 'product',
+                        )
+                    )
+                )
+        )
+    )
+    ->add_tab(
+        'Related Case Studies',
+        array(
+            Field::make('text', 'related_casestudies_heading', 'Related Case Studies Heading'),
+            Field::make('association', 'related_casestudies', 'Related Case Studies')
+                ->set_types(
+                    array(
+                        array(
+                            'type'      => 'post',
+                            'post_type' => 'casestudies',
+                        )
+                    )
+                )
+        )
+    );
