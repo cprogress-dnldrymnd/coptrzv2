@@ -569,27 +569,57 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
     }
 
     $html .= "<h2 class='text-center px-20px'>$title</h2>";
-    $html .= "<div class='container extend-right'>";
-    $html .= "<div class='swiper-holder'>"; //swiper-holder
-    $html .= "<div class='swiper swiper-linked-products' id='$id'>"; //swiper
-    $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+
+    if ($is_slider) {
+        $html .= "<div class='container extend-right'>"; //end-container
+        $html .= "<div class='swiper-holder'>"; //swiper-holder
+        $html .= "<div class='swiper swiper-linked-products' id='$id'>"; //swiper
+        $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+    } else {
+        $html .= "<div class='container'>"; //container
+        $html .= "<div class='row g-4'>"; //row
+    }
 
     foreach ($field as $product_id) {
-        $html .= "<div class='swiper-slide'>"; //swiper-wrapper
+
+        if ($is_slider) {
+            $html .= "<div class='swiper-slide'>"; //swiper-slide
+        } else {
+            $html .= "<div class='col-lg-3 col-md-6'>"; //col
+        }
         if ($shorcode == false) {
             $html .= _product_grid_display($product_id);
         } else {
             $html .= "[product_grid_display id='$product_id']";
         }
-        $html .= '</div>'; //end-swiper-wrapper
+        $html .= '</div>'; //end-swiper-slide // col
 
     }
-    $html .= '</div>'; //end-swiper-wrapper
-    $html .= '</div>'; //end-swiper
-    $html .= '</div>'; //end-swiper-holder
-    $html .= '</div>';
+    if ($is_slider) {
+        $html .= '</div>'; //end-swiper-wrapper
+        $html .= '</div>'; //end-swiper
+        $html .= '</div>'; //end-swiper-holder
+        $html .= '</div>'; //end-container
+    } else {
+        $html .= '</div>'; //end-row
+        $html .= '</div>'; //end-container
+    }
 
-    $html .= "<div class='container mt-4'><div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev' id='swiper-prev-$id'></div> <div class='swiper-button-next' id='swiper-next-$id'></div> </div> </div> <div class='col-auto'> <div class='button-box button-accent'> <a href='$button_link'>$button_text</a> </div> </div> </div></div>";
+    $html .= "<div class='container mt-4'><div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev' id='swiper-prev-$id'></div> <div class='swiper-button-next' id='swiper-next-$id'></div> </div> </div>";
+
+    if ($button_text) {
+        $html .= "<div class='col-auto'>";
+        $html .= "<div class='button-box button-accent'> <a href='$button_link'>$button_text</a>";
+        $html .= "</div>";
+        $html .= "</div> "; //end-col
+    }
+
+    $html .= "</div> "; //end-row
+
+    $html .= "</div> "; //en-container
+
+
+
     if ($include_section) {
         $html .= '</section>';
     } else {
