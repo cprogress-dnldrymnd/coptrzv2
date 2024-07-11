@@ -3,7 +3,22 @@ jQuery(document).ready(function () {
     __product_variation();
     __move_paypal();
     __quantity();
+    __training();
 });
+
+function __training() {
+
+    var swiper_training = new Swiper('.swiper-training', {
+        loop: false,
+        autoplay: false,
+        slidesPerView: 1,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
+}
 
 
 function __quantity() {
