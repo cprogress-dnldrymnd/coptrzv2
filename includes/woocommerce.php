@@ -5,8 +5,7 @@ function action_woocommerce_before_main_content()
 {
     if (is_product_taxonomy()) {
         echo do_shortcode(___hero_product_taxonomy());
-
-        $product_category_page = __get_product_category_page(get_queried_object()->term_id);
+        $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
         if ($product_category_page) {
             echo do_shortcode(___sections('sections', $product_category_page));
         }
@@ -79,7 +78,7 @@ add_action('woocommerce_before_shop_loop', 'action_woocommerce_before_shop_loop'
 
 function action_woocommerce_after_shop_loop()
 {
-    $product_category_page = __get_product_category_page(get_queried_object()->term_id);
+    $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
     if (!$product_category_page) {
         echo '</div>';
         echo '</div>';
@@ -642,7 +641,7 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 
 
 
-function __get_product_category_page($id)
+function __get_product_taxonomy_page($id)
 {
     $args = array(
         'numberposts' => -1,

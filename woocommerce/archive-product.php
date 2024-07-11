@@ -37,7 +37,7 @@ do_action('woocommerce_before_main_content');
  * @hooked woocommerce_product_taxonomy_archive_header - 10
  */
 //do_action( 'woocommerce_shop_loop_header' );
-$has_custom_page = __get_product_category_page(get_queried_object()->term_id);
+$has_custom_page = __get_product_taxonomy_page(get_queried_object()->term_id);
 if (!$has_custom_page) {
 	if (woocommerce_product_loop()) {
 

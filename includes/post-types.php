@@ -661,3 +661,4 @@ $Product_taxonomy_page->publicly_queryable = true;
 $Product_taxonomy_page->show_in_admin_bar = false;
 $Product_taxonomy_page->has_archive = true;
 $Product_taxonomy_page->show_in_rest = true;
+
