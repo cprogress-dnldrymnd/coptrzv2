@@ -74,9 +74,18 @@ main {
     }
 }
 .content-margin {
-    > * {
-        @include not-last-child {
-            margin-bottom: 1.5rem;
+    &:not(.flex-row) {
+        > * {
+            @include not-last-child {
+                margin-bottom: 1.5rem;
+            }
+        }
+    }
+    &.flex-row {
+        > * {
+            @include not-last-child {
+                margin-right: 1.5rem;
+            }
         }
     }
 }

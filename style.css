@@ -10491,8 +10491,10 @@ img {
     transform: scale(1.4);
     pointer-events: none; }
 
-.content-margin > *:not(:last-child) {
+.content-margin:not(.flex-row) > *:not(:last-child) {
   margin-bottom: 1.5rem; }
+.content-margin.flex-row > *:not(:last-child) {
+  margin-right: 1.5rem; }
 
 .icon-box svg {
   width: var(--width, 50px);
