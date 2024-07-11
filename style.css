@@ -10964,9 +10964,12 @@ small, .small {
   position: sticky;
   top: 32px; }
 
-#post-content {
-  padding-left: 2rem;
-  padding-right: 2rem; }
+@media screen and (min-width: 992px) {
+  #post-content h2, #post-content .h2 {
+    font-size: 2rem; } }
+@media screen and (min-width: 992px) {
+  #post-content h3, #post-content .h3 {
+    font-size: 1.5; } }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins

@@ -663,8 +663,6 @@ small {
     line-height: 1;
 }
 
-
-
 #post-navigation {
     li {
         width: 100%;
@@ -705,6 +703,14 @@ small {
 }
 
 #post-content {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    h2 {
+        @include responsive(md-lg) {
+            font-size: 2rem;
+        }
+    }
+    h3 {
+        @include responsive(md-lg) {
+            font-size: 1.5rem;
+        }
+    }
 }

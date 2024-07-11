@@ -1,7 +1,7 @@
 <section class="post-details sm-padding-top sm-padding-bottom overflow-hidden">
     <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-lg-7">
+        <div class="row g-0 justify-content-center">
+            <div class="col-lg-7 px-5">
                 <div class="row g-4 justify-content-between">
                     <div class="col-auto">
                         <?= do_shortcode('[blog_meta]') ?>
@@ -18,7 +18,7 @@
     </div>
 </section>
 
-<section class="post-content-v2 sm-padding-top sm-padding-bottom no-overflow border-top-default overflow-hidden">
+<section class="post-content-v2 sm-padding-top sm-padding-bottom no-overflow border-top-default">
     <div class="container-fluid">
         <div class="row g-0">
             <div class="col col-post-nav">
@@ -29,7 +29,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-7 col-post-content">
+            <div class="col-lg-7 col-post-content px-5">
                 <div class="column-holder the-content content-margin" id="post-content">
                     <?php the_content() ?>
                     <?= do_shortcode('[social_share]') ?>
