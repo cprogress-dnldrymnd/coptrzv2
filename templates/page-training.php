@@ -95,7 +95,7 @@
     update_post_meta(get_the_ID(), '_sections', $new_sections);
     ?>
     <pre>
-        <?php var_dump($new_sections); ?>
+        <?php var_dump($sections_after_main); ?>
     </pre>
 </div>
 <?php get_footer(); ?>
