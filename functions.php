@@ -82,7 +82,26 @@ function enqueue_scripts()
 	wp_enqueue_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
 
 	if (is_product()) {
+
 		wp_enqueue_script('single-product', assets_dir . 'js/single-product.js', NULL, coptz_version);
+	}
+
+	if (is_checkout()) {
+		wp_enqueue_style('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/css/intlTelInput.css', NULL, coptz_version);
+		wp_enqueue_style('checkout-style', assets_dir . 'scss/checkout/checkout.css', NULL, coptz_version);
+		wp_enqueue_script('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/js/intlTelInput.min.js', NULL, coptz_version);
+		wp_register_script('checkout-js', assets_dir . 'javascripts/checkout.js', ['jquery'], coptz_version);
+
+		$countries_obj = new WC_Countries();
+
+		// Get the array of allowed countries (key = country code, value = country name)
+		$allowed_countries = $countries_obj->get_allowed_countries();
+		$countries = [];
+		foreach ($allowed_countries as $key => $country) {
+			$countries[] = $key;
+		}
+		wp_localize_script('checkout-js', 'countries', $countries);
+		wp_enqueue_script('checkout-js');
 	}
 }
 
