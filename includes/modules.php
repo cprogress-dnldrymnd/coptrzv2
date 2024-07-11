@@ -785,7 +785,7 @@ function ____post_grid_module($data)
                     $custom_field_key =  $item['custom_field_key'];
                     $custom_field_type =  $item['custom_field_type'];
                     $custom_field_class =  $item['custom_field_class'];
-                    $val = get_post_meta(get_the_ID(), $custom_field_key);
+                    $val = get_post_meta(get_the_ID(), $custom_field_key), true;
 
                     if ($custom_field_type != 'img') {
                         $html .= "<$custom_field_type class='$custom_field_class'>$val</$custom_field_type>";
