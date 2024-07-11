@@ -4897,7 +4897,7 @@ Container::make('post_meta', 'Capabilities Settings')
         'Related Products',
         array(
             Field::make('text', 'related_products_heading', 'Related Products Heading'),
-            Field::make('association', 'post_featured', 'Related Products')
+            Field::make('association', 'related_products', 'Related Products')
                 ->set_types(
                     array(
                         array(
