@@ -27,17 +27,27 @@
 .wpforms-container.wpforms-container {
     margin-bottom: 0;
 }
-
+.wpforms-form {
+    .wpforms-field-container {
+        .wpforms-field {
+            padding-top: 0;
+            padding-bottom: 0;
+            &:not(.wpforms-field-layout) {
+                margin-bottom: 1rem;
+            }
+            .wpforms-field-label {
+                font-size: 15px;
+                line-height: 1;
+                font-weight: 300;
+            }
+        }
+    }
+}
 .form-box {
     &:not(.style-2) {
         .wpforms-form {
             .wpforms-field-container {
                 .wpforms-field {
-                    padding-top: 0;
-                    padding-bottom: 0;
-                    &:not(.wpforms-field-layout) {
-                        margin-bottom: 1rem;
-                    }
                     .wpforms-field-label {
                         position: absolute;
                         left: 10px;
@@ -65,5 +75,7 @@
                 margin-top: 2rem;
             }
         }
+    }
+    &.style-2 {
     }
 }

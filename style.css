@@ -11660,30 +11660,34 @@ section.product-main .summary.summary.summary .variations tr {
 .wpforms-container.wpforms-container {
   margin-bottom: 0; }
 
-.form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field {
+.wpforms-form .wpforms-field-container .wpforms-field {
   padding-top: 0;
   padding-bottom: 0; }
-  .form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field:not(.wpforms-field-layout) {
+  .wpforms-form .wpforms-field-container .wpforms-field:not(.wpforms-field-layout) {
     margin-bottom: 1rem; }
-  .form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
-    position: absolute;
-    left: 10px;
-    background-color: var(--bs-white);
-    color: rgba(28, 28, 30, 0.75);
-    padding: 5px;
+  .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
     font-size: 15px;
-    line-height: 1;
-    top: 15px;
-    font-weight: 300;
-    -webkit-transition: 300ms;
-    -moz-transition: 300ms;
-    -ms-transition: 300ms;
-    -o-transition: 300ms;
-    transition: 300ms; }
-    .form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label.wpforms-label-hide {
-      display: none !important; }
-  .form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field.filled .wpforms-field-label {
-    top: -13px; }
+    line-height: 1; }
+
+.form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
+  position: absolute;
+  left: 10px;
+  background-color: var(--bs-white);
+  color: rgba(28, 28, 30, 0.75);
+  padding: 5px;
+  font-size: 15px;
+  line-height: 1;
+  top: 15px;
+  font-weight: 300;
+  -webkit-transition: 300ms;
+  -moz-transition: 300ms;
+  -ms-transition: 300ms;
+  -o-transition: 300ms;
+  transition: 300ms; }
+  .form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label.wpforms-label-hide {
+    display: none !important; }
+.form-box:not(.style-2) .wpforms-form .wpforms-field-container .wpforms-field.filled .wpforms-field-label {
+  top: -13px; }
 .form-box:not(.style-2) .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }
 
