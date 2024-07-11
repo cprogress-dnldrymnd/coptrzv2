@@ -3458,7 +3458,7 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'border_color', 'Border Color')
                                 ->set_options(
                                     array(
-                                        ''   => 'Default',
+                                        'border-default'   => 'Default',
                                         'border-primary'   => 'Primary',
                                         'border-secondary' => 'Secondary',
                                         'border-accent'    => 'Accent',
