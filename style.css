@@ -10919,12 +10919,11 @@ small, .small {
     border-radius: 5px;
     border: 1px solid #a0a1a8;
     background-color: transparent;
-    color: var(--bs-primary);
     text-transform: initial;
     padding: 0;
-    height: 42px;
-    display: inline-block;
-    color: var(--bs-accent); }
+    height: 35px;
+    width: 35px;
+    display: inline-block; }
     .social-share-buttons a:not(:last-child) {
       margin-right: 1rem; }
     .social-share-buttons a svg {
