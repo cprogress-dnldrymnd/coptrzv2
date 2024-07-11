@@ -342,7 +342,7 @@ class Shortcodes
             $html .= "<div class='row g-3'>";
             while ($query->have_posts()) {
                 $query->the_post();
-                $html = "<div class='col-12'>";
+                $html .= "<div class='col-12'>";
                 $data = array(
                     'id' => get_the_ID(),
                     'featured' => false,
