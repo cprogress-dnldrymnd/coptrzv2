@@ -53,6 +53,21 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="training-list">
+            <div class="row">
+                <div class="col-lg-6">
+                    <?= custom_product_variation_training() ?>
+                </div>
+                <div class="col-lg-6">
+                    <div class="image-box">
+                        <img src="https://dev.coptrz.com/wp-content/uploads/2024/07/map.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
