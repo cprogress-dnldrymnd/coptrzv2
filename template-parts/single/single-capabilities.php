@@ -19,7 +19,7 @@ if ($related_casestudies) {
     $data = array(
         'col' => true,
         'featured' => false,
-        'style' => 'style-2',
+        'style' => 'style-1',
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
     );
     echo do_shortcode(__related_posts($related_casestudies, $related_casestudies_heading, $data));
