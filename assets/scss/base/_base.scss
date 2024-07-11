@@ -562,15 +562,17 @@ small {
         }
     }
 }
-
+.post-grid,
 .post-box-blog {
-    .description-box {
+    & .description-box {
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         line-clamp: 3;
         -webkit-box-orient: vertical;
     }
+}
+.post-box-blog {
     &.featured-box {
         .content-box {
             margin-top: 45%;
