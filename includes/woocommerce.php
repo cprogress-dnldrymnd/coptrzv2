@@ -678,7 +678,7 @@ function custom_product_variation_training()
         $html .= '<div class="col-12">';
         $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
         $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100'>";//label
-        $html .= "<div class='inner product-inner w-100 p-20px rounded-corner'>";//inner
+        $html .= "<div class='inner product-inner w-100 p-20px rounded-corner content-margin'>";//inner
    
 
         $html .= "<div class='info-box'>";
