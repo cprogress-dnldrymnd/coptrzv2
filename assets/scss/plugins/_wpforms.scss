@@ -81,5 +81,16 @@
         }
     }
     &.style-2 {
+        .wpforms-form {
+            .wpforms-field-container {
+                .wpforms-field {
+                    @include inputs {
+                        background-color: transparent;
+                        color: var(--bs-white);
+                        padding: 5px 15px;
+                    }
+                }
+            }
+        }
     }
 }
