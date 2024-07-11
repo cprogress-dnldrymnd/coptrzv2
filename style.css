@@ -10460,7 +10460,8 @@ hr {
     margin-top: 10px !important; } }
 
 .background-overlay .container {
-  position: relative; }
+  position: relative;
+  z-index: 1; }
 .background-overlay:before {
   content: "";
   position: absolute;

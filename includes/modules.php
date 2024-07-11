@@ -282,9 +282,9 @@ function ___sections($id = 'sections', $post_id = '')
                             $styles_section[]  = '--background-overlay-custom: ' . $section_style['background_overlay_custom'];
                             $background_image_class[] = 'custom-overlay';
                         } else {
-                            $styles_section[] = 'background-overlay';
+                            $classes[] = 'background-overlay';
                         }
-                      
+
                         break;
                     case 'container_width':
                         $classes[] = $section_style['container_width'];
