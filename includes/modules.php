@@ -744,6 +744,9 @@ function ____post_grid_module($data)
     }
 
     foreach ($posts_lists as $post) {
+        if ($is_slider) {
+            $html .= "<div class='swiper-slide'>";
+        }
         $html .= "<div $column_attribute>";
         $html .= "<div $post_attribute>";
         foreach ($post_elements as $item) {
@@ -780,6 +783,9 @@ function ____post_grid_module($data)
         }
         $html .= "</div>";
         $html .= "</div>";
+        if ($is_slider) {
+            $html .= "</div>";
+        }
     }
     $html .= "</div>";
     if ($is_slider) {
