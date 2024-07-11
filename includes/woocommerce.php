@@ -49,7 +49,7 @@ function action_woocommerce_after_single_product()
             'style' => 'style-1',
             'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
         );
-        echo do_shortcode(__related_posts($related_guides, 'Related Guides', $data));
+        echo do_shortcode(__related_posts($related_guides,  $data, 'Related Guides'));
     }
 }
 
@@ -638,26 +638,6 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 }
 
 
-function __related_posts($posts, $heading = 'Related Guides', $data)
-{
-    $html = "<section class='related-guides border-top-default md-padding-top md-padding-bottom'>";
-    $html .= "<div class='container'>";
-    $html .= "<h2 class='text-center px-20px'>$heading</h2>";
-
-    $html .= "<div class='row g-4 same-image-height' style=' --image-padding: 40%; '>";
-    foreach ($posts as $post) {
-        $html .= "<div class='col-md-4 col-sm-12'>";
-        $data['id'] = $post['id'];
-        $html .= __post_box($data);
-        $html .= '</div>';
-    }
-    $html .= '</div>';
-
-    $html .= '</div>';
-    $html .= '</section>';
-
-    return $html;
-}
 
 
 

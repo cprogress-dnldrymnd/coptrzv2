@@ -22,5 +22,5 @@ if ($related_casestudies) {
         'style' => 'style-1',
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
     );
-    echo do_shortcode(__related_posts($related_casestudies, $related_casestudies_heading, $data));
+    echo do_shortcode(__related_posts($related_casestudies, $data, $related_casestudies_heading));
 }
