@@ -44,7 +44,7 @@ function action_woocommerce_after_single_product()
 
     if ($related_guides) {
         $data = array(
-            'col' => true,
+            'col' => false,
             'featured' => false,
             'style' => 'style-1',
             'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
@@ -647,9 +647,7 @@ function __related_posts($posts, $heading = 'Related Guides', $data)
     $html .= "<div class='row g-4 same-image-height' style=' --image-padding: 40%; '>";
     foreach ($posts as $post) {
         $html .= "<div class='col-md-4 col-sm-12'>";
-
         $data['id'] = $post;
-
         $html .= __post_box($data);
         $html .= '</div>';
     }
