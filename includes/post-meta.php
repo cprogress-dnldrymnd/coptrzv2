@@ -754,8 +754,7 @@ function __hero_fields()
                     'text-start' => 'Left',
                     'text-end' => 'Right',
                 )
-            )
-            ->set_default_value('text-center'),
+            ),
         Field::make('file', 'hero_background', __('Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
             ->set_conditional_logic(
                 array(
@@ -3696,7 +3695,7 @@ Container::make('post_meta', __('Sections'))
     ->or_where('post_type', '=', 'layouts')
     ->or_where('post_type', '=', 'productcategorypages')
     ->add_fields(__section_fields());
-    
+
 
 
 Container::make('post_meta', __('Sections after main product'))
