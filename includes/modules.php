@@ -1374,6 +1374,18 @@ function ____columns_modules($items, $id, $html = '')
                         'lower_opacity' => $lower_opacity
                     ));
                     break;
+                case 'post_grid':
+                    $html .= ____post_grid_module(array(
+                        'id' => $id,
+                        'is_slider' => $item['is_slider'],
+                        'number_of_slides' => $item['number_of_slides'],
+                        'number_of_slides_tablet' => $item['number_of_slides_tablet'],
+                        'number_of_slides_mobile' => $item['number_of_slides_mobile'],
+                        'post_box_styles' => $item['post_box_styles'],
+                        'post_elements' => $item['post_elements'],
+                        'post_type' => $item['post_type'],
+                    ));
+                    break;
             }
         }
         $html .= '</div>'; //end column-holder
