@@ -253,11 +253,11 @@ class Shortcodes
         ob_start();
         $reading_time = get__post_meta('reading_time');
 ?>
-        <div class="blog-meta">
+        <div class="blog-meta small-text">
             <div class="row">
                 <div class="col-auto">
-                    <p class="mb-0"><strong>Last updated on</strong></p>
-                    <p><?= get_the_date() ?></p>
+                    <p class="mb-0 fw-semibold"><strong>Last updated on</strong></p>
+                    <p class="fw-light"><?= get_the_date() ?></p>
                 </div>
             </div>
         </div>
