@@ -10946,9 +10946,9 @@ small, .small {
   width: 100%; }
   #post-navigation li a {
     font-size: 20px;
-    font-weight: 500;
     text-decoration: none;
-    font-weight: 500; }
+    font-weight: 500;
+    color: var(--bs-black); }
   #post-navigation li.h3-nav {
     padding-left: 20px;
     margin-bottom: 15px; }
