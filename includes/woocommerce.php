@@ -634,6 +634,13 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 
 function __related_posts($posts, $heading = 'Related Guides')
 {
+    $data = array(
+        'col' => true,
+        'featured' => false,
+        'style' => 'style-1',
+        'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+    );
+
     $html = "<section class='related-guides border-top-default md-padding-top md-padding-bottom'>";
     $html .= "<div class='container'>";
     $html .= "<h2 class='text-center px-20px'>$heading</h2>";
@@ -641,7 +648,16 @@ function __related_posts($posts, $heading = 'Related Guides')
     $html .= "<div class='row g-4 same-image-height' style=' --image-padding: 40%; '>";
     foreach ($posts as $post) {
         $html .= "<div class='col-md-4 col-sm-12'>";
-        $html .= __post_box($post['id']);
+
+        $data = array(
+            'id' => $post,
+            'col' => true,
+            'featured' => false,
+            'style' => 'style-1',
+            'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+        );
+
+        $html .= __post_box_blog($data);
         $html .= '</div>';
     }
     $html .= '</div>';

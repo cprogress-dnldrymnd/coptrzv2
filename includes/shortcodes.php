@@ -342,7 +342,7 @@ class Shortcodes
                     'taxonomy' => 'category',
                     'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
                 );
-                $html .= __post_box_blog($data);
+                $html .= __post_box($data);
                 $html .= "</div>";
             }
             wp_reset_postdata();

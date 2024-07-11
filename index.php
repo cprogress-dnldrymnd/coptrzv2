@@ -34,7 +34,6 @@ if (is_home()) {
     $archive_title = 'Events';
     $category = 'events_category';
     $class = 'border-bottom-default sm-padding-bottom sm-margin-bottom';
-
     $data = array(
         'col' => true,
         'featured' => false,

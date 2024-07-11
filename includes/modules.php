@@ -1680,7 +1680,7 @@ function __product_specifications($for_product_summary = false)
     }
 }
 
-
+/*
 function __post_box($id)
 {
 
@@ -1708,9 +1708,9 @@ function __post_box($id)
     $html .= "</div>";
 
     return $html;
-}
+}*/
 
-function __post_box_blog($data)
+function __post_box($data)
 {
 
     $id = isset($data['id']) ? $data['id'] : false;
@@ -1920,7 +1920,7 @@ function ___featured($key)
                 'col' => true,
                 'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
             );
-            $html .= __post_box_blog($data);
+            $html .= __post_box($data);
         }
 
         $html .= "</div>";
