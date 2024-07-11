@@ -516,6 +516,12 @@ section.product-main {
     & + .variations {
         display: none !important;
     }
+
+    &.product-training-variation {
+        .date {
+            
+        }
+    }
 }
 
 .instock,

@@ -649,7 +649,7 @@ function custom_product_variation_training()
     $children = $product->get_children();
     $main_thumbnail = get_post_thumbnail_id($product->get_id());
 
-    $html = '<div class="product-training-variation">';
+    $html = '<div class="product-custom-variation product-training-variation">';
     $html .= '<div class="select-variant fw-medium mb-20px">Select a variant:</div>';
     $html .= '<div class="accordion" id="accordionVariation">';
     $html .= '<div class="row g-4">';
@@ -689,7 +689,7 @@ function custom_product_variation_training()
 
         if ($product_attribute_array['date'] != 'N/A') {
             $html .= "<div class='col-auto'>";
-            $html .= "<span class='date'>";
+            $html .= "<span class='date smaller-text text-white'>";
             $html .= $product_attribute_array['date'];
             $html .= '</span>';
             $html .= '</div>';
