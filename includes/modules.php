@@ -1381,7 +1381,7 @@ function ____columns_modules($items, $id, $html = '')
                     $style = $item['style'];
                     $html .= "<div class='form-box $style'>";
                     $html .= do_shortcode("[wpforms id='$id' title='false']");
-                    $html = "</div>";
+                    $html .= "</div>";
                     break;
                 case 'post_grid':
                     $html .= ____post_grid_module(array(
