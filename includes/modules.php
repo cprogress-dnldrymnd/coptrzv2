@@ -805,6 +805,50 @@ function ____post_grid_module($data)
                         'custom_field_class' => $custom_field_class
                     ));
                     break;
+                case 'custom_field_2':
+                    $custom_field_key =  $item['custom_field_key'];
+                    $custom_field_type =  $item['custom_field_type'];
+                    $custom_field_class =  $item['custom_field_class'];
+                    $html .= _custom_field(array(
+                        'id' => $post->ID,
+                        'custom_field_key' => $custom_field_key,
+                        'custom_field_type' => $custom_field_type,
+                        'custom_field_class' => $custom_field_class
+                    ));
+                    break;
+                case 'custom_field_3':
+                    $custom_field_key =  $item['custom_field_key'];
+                    $custom_field_type =  $item['custom_field_type'];
+                    $custom_field_class =  $item['custom_field_class'];
+                    $html .= _custom_field(array(
+                        'id' => $post->ID,
+                        'custom_field_key' => $custom_field_key,
+                        'custom_field_type' => $custom_field_type,
+                        'custom_field_class' => $custom_field_class
+                    ));
+                    break;
+                case 'custom_field_4':
+                    $custom_field_key =  $item['custom_field_key'];
+                    $custom_field_type =  $item['custom_field_type'];
+                    $custom_field_class =  $item['custom_field_class'];
+                    $html .= _custom_field(array(
+                        'id' => $post->ID,
+                        'custom_field_key' => $custom_field_key,
+                        'custom_field_type' => $custom_field_type,
+                        'custom_field_class' => $custom_field_class
+                    ));
+                    break;
+                case 'custom_field_5':
+                    $custom_field_key =  $item['custom_field_key'];
+                    $custom_field_type =  $item['custom_field_type'];
+                    $custom_field_class =  $item['custom_field_class'];
+                    $html .= _custom_field(array(
+                        'id' => $post->ID,
+                        'custom_field_key' => $custom_field_key,
+                        'custom_field_type' => $custom_field_type,
+                        'custom_field_class' => $custom_field_class
+                    ));
+                    break;
             }
         }
         $html .= "</div>";
