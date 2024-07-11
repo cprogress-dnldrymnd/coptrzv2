@@ -1,6 +1,7 @@
 <section class="post-details sm-padding-top sm-padding-bottom">
     <div class="container-fluid">
         <div class="row justify-content-center">
+            <div class="col"></div>
             <div class="col-lg-7">
                 <div class="row g-4 justify-content-between">
                     <div class="col-auto">
@@ -15,7 +16,7 @@
                 </div>
             </div>
         </div>
-
+        <div class="col"></div>
     </div>
 </section>
 
