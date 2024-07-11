@@ -1239,7 +1239,8 @@ function ____columns_modules($items, $id, $html = '')
                         'faqs_category' => $faqs_category,
                         'open_first_item' => $open_first_item,
                         'module_id' => $id,
-                        'with_border' => $with_border
+                        'with_border' => $with_border,
+                        'lower_opacity' => $lower_opacity
                     ));
                     break;
             }
