@@ -10926,6 +10926,10 @@ small, .small {
     .social-share-buttons a svg {
       width: 35px;
       height: 35px; }
+      .social-share-buttons a svg.facebook {
+        color: #0080ff; }
+      .social-share-buttons a svg.linkedin {
+        color: #0080ff; }
 
 .post-link-copy.post-link-copy.post-link-copy {
   border-radius: 10px;

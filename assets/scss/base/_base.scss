@@ -644,6 +644,12 @@ small {
         svg {
             width: 35px;
             height: 35px;
+            &.facebook {
+                color: #0080ff;
+            }
+            &.linkedin {
+                color: #0a66c2;
+            }
         }
     }
 }
