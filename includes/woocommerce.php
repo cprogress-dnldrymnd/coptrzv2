@@ -743,8 +743,6 @@ function custom_product_variation_training()
     $html .= '<div class="swiper-button-prev"></div>';
     $html .= '<div class="swiper-button-next"></div>';
     $html .= '</div>'; //end swipernav
-    $html .= '</div>';
-
     $html .= '<div class="col-auto">';
     $html .= __button(array(
         'button_type' => 'custom',
@@ -753,6 +751,9 @@ function custom_product_variation_training()
         'button_style' => 'button-accent',
     ));
     $html .= '</div>';
+    $html .= '</div>';
+
+
 
     $html .= '</div>'; //end-swiper
     $html .= '</div>';
