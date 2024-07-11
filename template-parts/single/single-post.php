@@ -1,21 +1,26 @@
 <section class="post-details sm-padding-top sm-padding-bottom">
     <div class="container-fluid">
-        <div class="row g-4 justify-content-between">
-            <div class="col-auto">
-                <?= do_shortcode('[blog_meta]') ?>
-            </div>
-            <div class="col-auto ">
-                <div class="d-flex justify-content-end">
-                    <?= do_shortcode('[post_link]') ?>
-                    <?= do_shortcode('[social_share]') ?>
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="row g-4 justify-content-between">
+                    <div class="col-auto">
+                        <?= do_shortcode('[blog_meta]') ?>
+                    </div>
+                    <div class="col-auto ">
+                        <div class="d-flex justify-content-end">
+                            <?= do_shortcode('[post_link]') ?>
+                            <?= do_shortcode('[social_share]') ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 
-<section class="post-content-v2 md-padding no-overflow">
-    <div class="container">
+<section class="post-content-v2 md-padding no-overflow border-top-default">
+    <div class="container-fluid">
         <div class="row g-5">
             <div class="col col-post-nav">
                 <div class="column-holder">
