@@ -881,7 +881,7 @@ function _custom_field($data, $html = '')
     $custom_field_class =  $data['custom_field_class'];
     $val = get_post_meta($id, $custom_field_key, true);
 
-    if ($custom_field_type == 'text') {
+    if ($custom_field_type != 'img') {
         $html .= "<$custom_field_type class='$custom_field_class'>$val</$custom_field_type>";
     } else if ($custom_field_type == 'img') {
         $image_args['image_id'] = $val;
