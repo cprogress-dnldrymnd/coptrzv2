@@ -51,7 +51,7 @@ echo ___hero_modules('text-start', 'small-hero');
 </section>
 <div class="sm-padding-top sm-padding-bottom border-top-default px-">
     <div class="row g-0 justify-content-center4">
-        <div class="col-lg-7">
+        <div class="col-lg-7 px-5">
             <div class="author">
                 <div class="text-accent fw-semibold medium-text">Written by:</div>
                 <div class="fw-light medium-text"><?= get_author_name() ?></div>
