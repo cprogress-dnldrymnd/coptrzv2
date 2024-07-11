@@ -95,7 +95,7 @@
     carbon_set_post_meta(get_the_ID(), 'sections', $new_sections);
     ?>
     <pre>
-        <?php var_dump($sections); ?>
+        <?php var_dump($new_sections); ?>
     </pre>
 </div>
 <?php get_footer(); ?>
