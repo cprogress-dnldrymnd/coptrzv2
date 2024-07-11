@@ -5030,10 +5030,10 @@ Container::make('post_meta', 'Capabilities Settings')
 Container::make('post_meta', 'Industry Settings')
     ->where('post_type', '=', 'solutions')
     ->add_tab(
-        'Related Products',
+        'Related Guides',
         array(
-            Field::make('text', 'related_products_heading', 'Related Products Heading'),
-            Field::make('association', 'related_products', 'Related Products')
+            Field::make('text', 'related_guides_heading', 'Related Guides Heading'),
+            Field::make('association', 'related_guides', 'Related Guides')
                 ->set_types(
                     array(
                         array(
