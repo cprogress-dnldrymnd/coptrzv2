@@ -70,5 +70,10 @@
 
     </div>
 </section>
-
+<div class="modules">
+    <?php
+    echo ___hero_modules();
+    echo do_shortcode(___sections('sections_after_main', get_the_ID()));
+    ?>
+</div>
 <?php get_footer(); ?>
