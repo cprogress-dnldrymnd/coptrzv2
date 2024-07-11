@@ -2383,6 +2383,92 @@ function __section_fields($name = 'sections')
                                         ),
                                     )
                                     ->add_fields(
+                                        'divider',
+                                        array(
+                                            Field::make('select', 'margin_top', 'Margin Top')
+                                                ->set_options(
+                                                    array(
+                                                        ''               => 'No margin',
+                                                        'xl-margin-top'  => 'Extra Large',
+                                                        'lg-margin-top'  => 'Large',
+                                                        'md-margin-top'  => 'Medium',
+                                                        'sm-margin-top'  => 'Small',
+                                                        'xs-margin-top' => 'Extra Small',
+                                                    )
+                                                ),
+                                            Field::make('select', 'margin_bottom', 'Margin Bottom')
+                                                ->set_options(
+                                                    array(
+                                                        ''                  => 'No margin',
+                                                        'xl-margin-bottom'  => 'Extra Large',
+                                                        'lg-margin-bottom'  => 'Large',
+                                                        'md-margin-bottom'  => 'Medium',
+                                                        'sm-margin-bottom'  => 'Small',
+                                                        'xs-margin-bottom' => 'Extra Small',
+                                                    )
+                                                ),
+                                            Field::make('select', 'margin_left', 'Margin Left')
+                                                ->set_options(
+                                                    array(
+                                                        ''                => 'No margin',
+                                                        'xl-margin-left'  => 'Extra Large',
+                                                        'lg-margin-left'  => 'Large',
+                                                        'md-margin-left'  => 'Medium',
+                                                        'sm-margin-left'  => 'Small',
+                                                        'xs-margin-left' => 'Extra Small',
+                                                    )
+                                                ),
+                                            Field::make('select', 'margin_right', 'Margin Right')
+                                                ->set_options(
+                                                    array(
+                                                        ''                 => 'No margin',
+                                                        'xl-margin-right'  => 'Extra Large',
+                                                        'lg-margin-right'  => 'Large',
+                                                        'md-margin-right'  => 'Medium',
+                                                        'sm-margin-right'  => 'Small',
+                                                        'xs-margin-right' => 'Extra Small',
+                                                    )
+                                                ),
+                                            Field::make('select', 'border_color', 'Border Color')
+                                                ->set_options(
+                                                    array(
+                                                        'text-primary'   => 'Primary',
+                                                        'text-secondary' => 'Secondary',
+                                                        'text-accent'    => 'Accent',
+                                                        'text-white'     => 'White',
+                                                        'text-light-gray'     => 'Light Gray',
+                                                        'border-custom-color'    => 'Custom',
+                                                    )
+                                                )
+                                                ->set_conditional_logic(
+                                                    array(
+                                                        array(
+                                                            'field' => 'border_style',
+                                                            'value' => 'border-custom',
+                                                        )
+                                                    )
+                                                ),
+                                            Field::make('color', 'border_color_custom', __('Border Color'))
+                                                ->set_conditional_logic(
+                                                    array(
+                                                        array(
+                                                            'field' => 'border_style',
+                                                            'value' => 'border-custom',
+                                                        )
+                                                    )
+                                                ),
+                                            Field::make('text', 'border_width', 'Border Width')
+                                                ->set_conditional_logic(
+                                                    array(
+                                                        array(
+                                                            'field' => 'border_style',
+                                                            'value' => 'border-custom',
+                                                        )
+                                                    )
+                                                ),
+                                        )
+                                    )
+                                    ->add_fields(
                                         'custom_html',
                                         array(
                                             Field::make('textarea', 'custom_html', __('Custom HTML')),
