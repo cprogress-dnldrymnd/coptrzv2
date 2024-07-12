@@ -374,6 +374,8 @@ class Shortcodes
 
                 if ($background == 'featured-image') {
                     $data['featured'] = true;
+                } else {
+                    $data['featured'] = false;
                 }
                 if (get_post_type() == 'post') {
                     $data['elements'] = array('image', 'date', 'title', 'button');
