@@ -658,7 +658,6 @@ function ___sections($id = 'sections', $post_id = '')
                                     break;
                             }
                         }
-                        $html .= do_shortcode("[case_study_slider_grid]");
                         break;
                 }
             }
