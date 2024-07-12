@@ -13,36 +13,7 @@ Container::make('theme_options', __('Theme Settings'))
         'Latest From Coptrz',
         array(
             Field::make('complex', 'latest_from_coptrz')
-                ->add_fields(array(
-                    Field::make('select', 'background', __('Background'))
-                        ->set_options(
-                            array(
-                                'featured-image' => 'Featured Image',
-                                'bg-primary'      => 'Background Primary',
-                                'bg-secondary'      => 'Background Secondary',
-                                'bg-accent'      => 'Background Accent',
-                                'bg-white' => 'Background White',
-                            )
-                        ),
-                    Field::make('is_new', 'is_new', __('Is New')->set_help_text('Add new label tag')),
-                    Field::make('association', 'post', 'Select Post')
-                        ->set_types(
-                            array(
-                                array(
-                                    'type'      => 'post',
-                                    'post_type' => 'post',
-                                ),
-                                array(
-                                    'type'      => 'post',
-                                    'post_type' => 'product',
-                                ),
-                                array(
-                                    'type'      => 'post',
-                                    'post_type' => 'guides',
-                                )
-                            )
-                        )
-                ))
+                ->add_fields(array())
         )
     );
 /*-----------------------------------------------------------------------------------*/
