@@ -1946,6 +1946,7 @@ function __post_box($data, $class = [], $content_box_class = [])
         $html .= __description(array(
             'description' => get_the_content(NULL, false, $id),
             'class' => _attribute('class', array('description-box small-text mb-4')),
+            'autop' => false
         ));
     }
 

@@ -41,6 +41,9 @@ function __description($data)
     $description = isset($data['description']) ? $data['description'] : false;
     $class = isset($data['class']) ? $data['class'] : false;
     $style = isset($data['style']) ? $data['style'] : false;
+    $autop = isset($data['autop']) ? $data['autop'] : true;
+
+
 
     $attributes_args = [];
     if ($class) {
@@ -49,7 +52,11 @@ function __description($data)
 
 
     if ($description) {
-        $description_val = wpautop($description, false);
+        if ($autop) {
+            $description_val = wpautop($description);
+        } else {
+            $description_val = $description;
+        }
         $attributes_args = [];
         if ($class) {
             $attributes_args[] = $class;

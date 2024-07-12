@@ -11115,9 +11115,6 @@ hr {
     background-color: var(--bs-secondary) !important;
     border-color: var(--bs-secondary) !important; }
 
-.row-global-post .description-box p:first-child {
-  display: none; }
-
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/

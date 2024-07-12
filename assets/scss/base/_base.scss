@@ -871,13 +871,3 @@ hr {
         }
     }
 }
-
-.row-global-post {
-    .description-box {
-        p {
-            @include first-child {
-                display: none;
-            }
-        }
-    }
-}
