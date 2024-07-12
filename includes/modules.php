@@ -161,7 +161,7 @@ function ___hero_product_taxonomy()
     $id = $term->term_id;
     $parent = $term->parent;
     $hero_heading = get___term_meta($id, 'hero_heading');
-    $hero_description = _format_text(get___term_meta($id, 'hero_description'));
+    $hero_description = get___term_meta($id, 'hero_description');
     $hero_hidden = get___term_meta($id, 'hero_hidden');
     $hero_background = get___term_meta($id, 'hero_background');
     $hero_background_youtube = get___term_meta($id, 'hero_background_youtube');
@@ -171,7 +171,7 @@ function ___hero_product_taxonomy()
     $buttons = get___term_meta($id, 'buttons');
     $breadcrumbs_hidden = get___term_meta($id, 'breadcrumbs_hidden');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
-    $term_description_val = $hero_description ? $hero_description : _format_text($term->description);
+    $term_description_val = $hero_description ? $hero_description : $term->description;
 
 
     $heading_class[] = 'large-heading';
@@ -1716,12 +1716,6 @@ function _attributes($attributes)
 }
 
 
-function _format_text($text)
-{
-    if ($text) {
-        return htmlentities($text);
-    }
-}
 
 function _is_module($post_id = false)
 {
@@ -1926,7 +1920,7 @@ function ___hero_archive($key, $title)
 {
 
     $hero_heading = get__theme_option($key . 'archive_title');
-    $hero_description = _format_text(get__theme_option($key . 'archive_description'));
+    $hero_description = get__theme_option($key . 'archive_description');
     $hero_background = get__theme_option($key . 'archive_hero_background');
     $hero_background_youtube = get__theme_option($key . 'archive_background_youtube');
     $hero_background_type = get__theme_option($key . 'archive_hero_background_type');
@@ -1978,7 +1972,7 @@ function ___hero_archive_old($key, $title)
 {
 
     $hero_heading = get__theme_option($key . 'archive_title');
-    $hero_description = _format_text(get__theme_option($key . 'archive_description'));
+    $hero_description = get__theme_option($key . 'archive_description');
     $hero_background = get__theme_option($key . 'archive_background');
     $hero_height = 'small-hero';
     $text_align = 'text-start';
