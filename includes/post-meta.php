@@ -5048,7 +5048,7 @@ Container::make('post_meta', 'Event Settings')
     ->add_fields(
         array(
             Field::make('date', 'crb_event_start_date', __('Event Start Date'))
-                ->set_storage_format('d/m/Y'),
+                ->set_storage_format('jS F Y'),
             Field::make('time', 'crb_event_start_time', 'Event Start Time')
                 ->set_storage_format('g:i a'),
 
