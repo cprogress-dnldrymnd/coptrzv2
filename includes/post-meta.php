@@ -16,6 +16,7 @@ Container::make('theme_options', __('Theme Settings'))
                 ->set_layout('tabbed-vertical')
                 ->add_fields(array(
                     Field::make('text', 'label', __('Label'))->set_classes('inline-field'),
+                    Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
                     Field::make('select', 'background', __('Background'))->set_classes('inline-field')
                         ->set_options(
                             array(
