@@ -360,9 +360,11 @@ class Shortcodes
             $html .= "<div class='row'>";
 
             foreach ($latest_from_coptrz as $post) {
+                $id = $post['post'][0]['id'];
+                $background = $post['background'];
+                $button_text = $post['button_text'];
+                $is_new = $post['is_new'];
 
-                $id = $post['id'];
-                $background = get__post_meta_by_id($id, 'background');
                 $data['id'] = $id;
                 $data['col'] = true;
                 $data['elements'] = array('image', 'date', 'title', 'excerpt', 'button');
@@ -376,7 +378,9 @@ class Shortcodes
                 } else {
                     $data['elements'] = array('image',  'title', 'button');
                 }
-
+                if ($button_text) {
+                    $data['button_text'] = $button_text;
+                }
                 $html .= __post_box($data);
             }
 

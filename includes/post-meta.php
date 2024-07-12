@@ -45,6 +45,7 @@ Container::make('theme_options', __('Theme Settings'))
                                 )
                             )
                         )
+                        ->set_max(1)
                 ))
                 ->set_header_template('<%- label %>'),
 
