@@ -1803,35 +1803,7 @@ function __product_specifications($for_product_summary = false)
     }
 }
 
-/*
-function __post_box($id)
-{
 
-    $image_args['featured_image'] = $id;
-    $image_args['size'] = 'large';
-    $image_args['class'] = _attribute('class', array('image-box'));
-
-    $html = "<div class='post-box-inner content-margin'>";
-    $html .= __image($image_args);
-    $html .= __heading(array(
-        'heading' => get_the_title($id),
-        'tag' => 'h3'
-    ));
-    $html .= __description(array(
-        'description' => get_the_excerpt($id),
-        'class' => _attribute('class', array('description-box')),
-    ));
-    $html .= __button(array(
-        'button_type' => get_post_type($id),
-        'button_text' => 'Read Guide',
-        'button_url' => $id,
-        'button_url_custom' => false,
-        'button_style' => 'button-bordered',
-    ));
-    $html .= "</div>";
-
-    return $html;
-}*/
 
 function __post_box($data)
 {
