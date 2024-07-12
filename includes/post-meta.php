@@ -876,14 +876,14 @@ Container::make('post_meta', __('Hero'))
     ->or_where('post_type', '=', 'solutions')
     ->add_tab('Hero Settings', __hero_fields())
     ->add_tab('Hero Buttons', __hero_button_fields())
-    ->add_tab('Hero Form', __hero_button_fields());
+    ->add_tab('Hero Form', __hero_form_fields());
 
 Container::make('term_meta', __('Hero'))
     ->where('term_taxonomy', '=', 'product_cat')
     ->or_where('term_taxonomy', '=', 'pa_brands')
     ->add_tab('Hero Settings', __hero_fields())
     ->add_tab('Hero Buttons', __hero_button_fields())
-    ->add_tab('Hero Form', __hero_button_fields());
+    ->add_tab('Hero Form', __hero_form_fields());
 
 
 function __section_fields($name = 'sections')
