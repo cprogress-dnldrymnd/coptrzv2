@@ -15,6 +15,7 @@ Container::make('theme_options', __('Theme Settings'))
             Field::make('complex', 'latest_from_coptrz')
                 ->set_layout('tabbed-vertical')
                 ->add_fields(array(
+                    Field::make('text', 'label', __('Label')),
                     Field::make('select', 'background', __('Background'))
                         ->set_options(
                             array(
@@ -44,6 +45,8 @@ Container::make('theme_options', __('Theme Settings'))
                             )
                         )
                 ))
+                ->set_header_template('<%- label %>'),
+
         )
     );
 /*-----------------------------------------------------------------------------------*/
