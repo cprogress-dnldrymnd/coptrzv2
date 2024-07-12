@@ -367,6 +367,7 @@ class Shortcodes
                 $data['id'] = $id;
                 $data['col'] = true;
                 $data['elements'] = array('image', 'date', 'title', 'excerpt', 'button');
+                $data['class'] = $background;
 
                 if ($background == 'featured-image') {
                     $data['featured'] = true;
