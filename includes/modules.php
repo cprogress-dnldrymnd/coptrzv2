@@ -85,7 +85,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero_class[] = 'text-white';
     }
 
-    $hero_class[] = 'hero pb-50px rounded-10px bg-primary overflow-hidden d-flex align-items-end mx-20px position-relative';
+    $hero_class[] = 'hero pb-50px pt-50px rounded-10px bg-primary overflow-hidden d-flex align-items-end mx-20px position-relative';
 
     $hero_class_attribute = _attribute('class', $hero_class);
     $col_content_class_attribute = _attribute('class', $col_content_class);

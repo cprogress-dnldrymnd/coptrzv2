@@ -12011,6 +12011,8 @@ header {
 
 section.hero {
   min-height: 85vh; }
+  section.hero .container {
+    padding-top: calc(82px + 20px); }
   @media screen and (max-width: 575px) {
     section.hero {
       margin-left: 10px;
