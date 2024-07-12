@@ -4964,7 +4964,16 @@ Container::make('post_meta', __('Landing Page Settings'))
                     )
                 )
             ),
-        Field::make('text', 'form', 'Form Shortcode')->set_classes('inline-field'),
+        Field::make('association', 'form', 'Select Form')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'wpforms',
+                    )
+                )
+            )
+            ->set_max(1),
         Field::make('text', 'form_heading', 'Form Heading')->set_classes('inline-field'),
         Field::make('text', 'form_description', 'Form Description')->set_classes('inline-field'),
         Field::make('image', 'form_image', 'Form Image')->set_classes('inline-field'),

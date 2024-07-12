@@ -2154,3 +2154,8 @@ function __related_posts($posts, $data, $heading = 'Related Guides',)
 
     return $html;
 }
+
+
+function __form() {
+    
+}
