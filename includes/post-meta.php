@@ -985,24 +985,15 @@ function __section_fields($name = 'sections')
                             ))
                     ))
                     ->add_fields('global_post_box_selection',  array(
-                        Field::make('association', 'faqs', 'Select FAQs')
+                        Field::make('association', 'post', 'Select Items')
                             ->set_types(
                                 array(
                                     array(
                                         'type'      => 'post',
-                                        'post_type' => 'faq',
+                                        'post_type' => 'globalpostboxes',
                                     )
                                 )
                             )
-                            ->set_conditional_logic(
-                                array(
-                                    array(
-                                        'field' => 'accordion_source',
-                                        'value' => 'faqs',
-                                        'comapre' => '='
-                                    )
-                                )
-                            ),
                     ))
                     ->add_fields('heading', array(
                         Field::make('html', 'html_1')->set_html('<label>Section Heading Options</label>')->set_classes('cb-label'),
