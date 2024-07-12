@@ -352,6 +352,43 @@ class Shortcodes
             return $html;
         }
     }
+    function latest_from_coptrz()
+    {
+        $latest_from_coptrz = get__theme_option('latest_from_coptrz');
+        if ($latest_from_coptrz) {
+            $html = "<div class='latest-from-coptrz'>";
+            $html = "<div class='container'>";
+            $html = "<div class='row'>";
+
+            foreach ($latest_from_coptrz as $post) {
+
+                $id = $post['id'];
+                $background = get__post_meta_by_id($id, 'background');
+                $data['id'] = $id;
+                $data['col'] = true;
+                $data['elements'] = array('image', 'date', 'title', 'excerpt', 'button');
+
+                if ($background == 'featured-image') {
+                    $data['featured'] = true;
+                }
+                if (get_post_type() == 'post') {
+                    $data['elements'] = array('image', 'date', 'title', 'button');
+                } else {
+                    $data['elements'] = array('image',  'title', 'button');
+                }
+
+                $html .= __post_box($data);
+            }
+
+
+
+            $html .= "</div>";
+            $html .= "</div>";
+            $html .= "</div>";
+
+            return $html;
+        }
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -363,3 +400,4 @@ add_shortcode('blog_meta', array($Shortcodes, 'blog_meta'));
 add_shortcode('social_share', array($Shortcodes, 'social_share'));
 add_shortcode('post_link', array($Shortcodes, 'post_link'));
 add_shortcode('related_posts', array($Shortcodes, 'related_posts'));
+add_shortcode('latest_from_coptrz', array($Shortcodes, 'latest_from_coptrz'));

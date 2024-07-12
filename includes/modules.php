@@ -644,6 +644,21 @@ function ___sections($id = 'sections', $post_id = '')
                     case 'case_study_slider':
                         $html .= do_shortcode("[case_study_slider_grid]");
                         break;
+                    case 'global_widgets':
+                        $global_widgets = $items['global_widgets'];
+                        foreach ($global_widgets as $global_widget) {
+                            $type = $global_widget['_type'];
+                            switch ($type) {
+                                case 'global_widgets':
+                                    $html .= do_shortcode("[latest_from_coptrz]");
+                                    break;
+                                case 'case_study_slider':
+                                    $html .= do_shortcode("[case_study_slider_grid]");
+                                    break;
+                            }
+                        }
+                        $html .= do_shortcode("[case_study_slider_grid]");
+                        break;
                 }
             }
 
@@ -2252,43 +2267,4 @@ function __form($args)
     $html .= "</div>"; //end-form-holder
 
     return $html;
-}
-
-
-function __latest_from_coptrz()
-{
-    $latest_from_coptrz = get__theme_option('latest_from_coptrz');
-    if ($latest_from_coptrz) {
-        $html = "<div class='latest-from-coptrz'>";
-        $html = "<div class='container'>";
-        $html = "<div class='row'>";
-
-        foreach ($latest_from_coptrz as $post) {
-
-            $id = $post['id'];
-            $background = get__post_meta_by_id($id, 'background');
-            $data['id'] = $id;
-            $data['col'] = true;
-            $data['elements'] = array('image', 'date', 'title', 'excerpt', 'button');
-
-            if ($background == 'featured-image') {
-                $data['featured'] = true;
-            }
-            if (get_post_type() == 'post') {
-                $data['elements'] = array('image', 'date', 'title', 'button');
-            } else {
-                $data['elements'] = array('image',  'title', 'button');
-            }
-
-            $html .= __post_box($data);
-        }
-
-
-
-        $html .= "</div>";
-        $html .= "</div>";
-        $html .= "</div>";
-
-        return $html;
-    }
 }
