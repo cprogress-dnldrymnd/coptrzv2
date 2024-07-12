@@ -137,7 +137,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
         $hero .= __description(array(
             'description' => $hero_description,
-            'class' => _attribute('class', array('description-box medium-text small-width mx-auto mb-4')),
+            'class' => _attribute('class', array('description-box fw-light medium-text small-width mx-auto mb-4')),
         ));
 
 
