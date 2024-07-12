@@ -2157,5 +2157,5 @@ function __related_posts($posts, $data, $heading = 'Related Guides',)
 
 
 function __form() {
-    
+    $html .= "<div class='form-holder bg-white rounded-corner'>";
 }
