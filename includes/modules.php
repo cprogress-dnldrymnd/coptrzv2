@@ -41,7 +41,7 @@ function action_module_content()
 add_action('shutdown', 'action_module_content');
 */
 
-function _date_format($date_input, $format = 'jS <sup>F</sup>')
+function _date_format($date_input, $format = '<sup>jS</sup> F')
 {
     $date = strtotime($date_input);
     $newDate = date($format, $date);
