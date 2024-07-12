@@ -1885,7 +1885,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     }
 
     if($is_new) {
-        $html .= "<div class='bubble'></div>";
+        $html .= "<div class='bubble'>NEW</div>";
     }
 
     if (in_array('date', $elements)) {
