@@ -343,6 +343,8 @@ function ___sections($id = 'sections', $post_id = '')
                         $background_type = $section_style['background_type'];
                         $background = $section_style['background'];
                         $background_youtube = $section_style['background_youtube'];
+                        $is_container_background = $section_style['is_container_background'];
+
                         break;
 
                     case 'background_overlay':
@@ -491,15 +493,22 @@ function ___sections($id = 'sections', $post_id = '')
             if ($background_image_overlay_args) {
                 $html .= __image($background_image_overlay_args);
             }
-
-            if ($background_type && $background_type == 'youtube') {
-                $html .= __background($background_youtube, true);
-            } else if ($background) {
-                $html .= __background($background);
+            if (!$is_container_background) {
+                if ($background_type && $background_type == 'youtube') {
+                    $html .= __background($background_youtube, true);
+                } else if ($background) {
+                    $html .= __background($background);
+                }
             }
 
             $html .= "<div $container_attribute>";
-
+            if ($is_container_background) {
+                if ($background_type && $background_type == 'youtube') {
+                    $html .= __background($background_youtube, true);
+                } else if ($background) {
+                    $html .= __background($background);
+                }
+            }
             foreach ($section_items as $key => $items) {
                 $type = $items['_type'];
                 switch ($type) {
