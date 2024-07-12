@@ -848,14 +848,15 @@ function __hero_button_fields()
 function __hero_form_fields()
 {
     return array(
-        Field::make('select', 'hero_style', 'Style')
+        Field::make('image', 'hero_form_image', 'Image')->set_classes('inline-field'),
+        Field::make('select', 'hero_form_style', 'Style')->set_classes('inline-field')
             ->set_options(
                 array(
                     ''   => 'Default',
                     'style-2' => 'Style 2',
                 )
             ),
-        Field::make('association', 'hero_form', 'Select Form')
+        Field::make('association', 'hero_form', 'Select Form')->set_classes('inline-field')
             ->set_types(
                 array(
                     array(
