@@ -1,3 +1,23 @@
+<?php
+$args = array(
+    'numberposts' => -1,
+    'post_type' => 'layouts',
+    'fields' => 'ids',
+    'meta_query' => array(
+        array(
+            'key' => '_display_location',
+            'value' => 'before_footer',
+        ),
+    ),
+);
+$layouts = get_posts($args);
+
+foreach ($layouts as $layout) {
+    $layout_id = $layout['id'];
+    $html .= do_shortcode("[layouts id='$layout_id']");
+}
+?>
+
 <section class="reviews bg-black lg-padding-top pb-20px">
     <div class="container">
         <div class="row">

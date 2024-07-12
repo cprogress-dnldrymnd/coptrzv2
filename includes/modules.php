@@ -494,7 +494,6 @@ function ___sections($id = 'sections', $post_id = '')
                 switch ($type) {
                     case 'layouts':
                         $layouts = $items['layouts'];
-                        $is_layout = true;
                         foreach ($layouts as $layout) {
                             $layout_id = $layout['id'];
                             $html .= do_shortcode("[layouts id='$layout_id']");
