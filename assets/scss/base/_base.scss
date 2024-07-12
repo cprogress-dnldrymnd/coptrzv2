@@ -843,11 +843,23 @@ hr {
         }
     }
 }
-
+.bubble {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: var(--bs-accent);
+    padding: 5px 10px;
+    border-radius: 5px;
+    line-height: 1;
+    font-size: 13px;
+}
 
 .latest-from-coptrz {
     .bg-accent {
         color: var(--bs-white);
+        .bubble {
+            background-color: var(--bs-secondary);
+        }
         .button-box {
             a {
                 @include on-event {

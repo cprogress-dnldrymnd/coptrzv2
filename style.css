@@ -11096,8 +11096,20 @@ hr {
 .single-capabilities .hero .description-box {
   max-width: 1140px; }
 
+.bubble {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: var(--bs-accent);
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 1;
+  font-size: 13px; }
+
 .latest-from-coptrz .bg-accent {
   color: var(--bs-white); }
+  .latest-from-coptrz .bg-accent .bubble {
+    background-color: var(--bs-secondary); }
   .latest-from-coptrz .bg-accent .button-box a:hover, .latest-from-coptrz .bg-accent .button-box a:active, .latest-from-coptrz .bg-accent .button-box a:focus {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary); }
