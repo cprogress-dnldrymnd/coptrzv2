@@ -678,7 +678,7 @@ function ___sections($id = 'sections', $post_id = '')
 
                     case 'global_post_box_selection':
                         $posts = $items['post'];
-                        $html .= "<div class='row g-4'>";
+                        $html .= "<div class='row g-4 same-image-height'>";
                         foreach ($posts as $post) {
                             $data = array(
                                 'id' => $post['id'],
@@ -1939,6 +1939,12 @@ function __post_box($data, $class = [], $content_box_class = [])
     if (in_array('excerpt', $elements)) {
         $html .= __description(array(
             'description' => get_the_excerpt($id),
+            'class' => _attribute('class', array('description-box small-text mb-4')),
+        ));
+    }
+    if (in_array('content', $elements)) {
+        $html .= __description(array(
+            'description' => get_the_content($id),
             'class' => _attribute('class', array('description-box small-text mb-4')),
         ));
     }
