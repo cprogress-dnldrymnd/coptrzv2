@@ -11,7 +11,9 @@ $args = array(
     ),
 );
 $layouts = get_posts($args);
-
+echo '<pre>';
+var_dump($layouts);
+echo '</pre>';
 foreach ($layouts as $layout) {
     $layout_id = $layout->ID;
     echo do_shortcode("[layouts id='$layout_id']");
