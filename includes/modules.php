@@ -141,8 +141,6 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         ));
 
 
-
-
         if ($buttons) {
             $hero .= "<div>";
             $hero .= ____button_modules($buttons);

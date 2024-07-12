@@ -984,6 +984,26 @@ function __section_fields($name = 'sections')
                                 Field::make('html', 'html')->set_html('<h3>This will display latest from coptrz section </h3>'),
                             ))
                     ))
+                    ->add_fields('global_post_box_selection',  array(
+                        Field::make('association', 'faqs', 'Select FAQs')
+                            ->set_types(
+                                array(
+                                    array(
+                                        'type'      => 'post',
+                                        'post_type' => 'faq',
+                                    )
+                                )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'accordion_source',
+                                        'value' => 'faqs',
+                                        'comapre' => '='
+                                    )
+                                )
+                            ),
+                    ))
                     ->add_fields('heading', array(
                         Field::make('html', 'html_1')->set_html('<label>Section Heading Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'has_prefix', __('Heading Has Prefix'))->set_width(20),
