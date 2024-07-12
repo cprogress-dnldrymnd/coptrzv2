@@ -12028,7 +12028,7 @@ section.hero {
         background-repeat: no-repeat;
         background-size: contain;
         flex: 0 0 16px;
-        margin-right: 20px; }
+        margin-right: 10px; }
       section.hero .description-box ul li:not(:last-child) {
         margin-bottom: 14px; }
   @media screen and (max-width: 575px) {
