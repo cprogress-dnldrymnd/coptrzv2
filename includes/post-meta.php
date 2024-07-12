@@ -4317,6 +4317,7 @@ function __section_fields($name = 'sections')
                     ->add_fields(
                         'background_video',
                         array(
+                            Field::make('checkbox', 'is_container_background', __('Is Container Background'))->set_classes('inline-field'),
                             Field::make('select', 'background_type', __('Background Type'))->set_classes('inline-field')
                                 ->set_options(
                                     array(
