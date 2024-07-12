@@ -1824,6 +1824,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     if ($background_class) {
         $class[] = $background_class;
         $class[] = 'rounded-corner';
+        $class[] = 'rounded-corner';
     }
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('jS F', $id);
@@ -1831,7 +1832,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     $class[] = 'post-box post-box-blog column-holder position-relative overflow-hidden h-100';
     $content_box_class[] = 'content-box content-margin ';
     if ($featured) {
-        $class[] = ' featured-box text-white d-flex flex-column justify-content-between xs-padding rounded-10px';
+        $class[] = ' featured-box text-white d-flex flex-column justify-content-between p-20px rounded-10px';
     } else {
 
         $class[] = ' content-margin';
