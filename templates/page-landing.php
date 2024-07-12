@@ -10,7 +10,7 @@
 $background_type = get__post_meta('background_type');
 $background = get__post_meta('background');
 $background_youtube = get__post_meta('background_youtube');
-$form = get__post_meta('form');
+$form = get__post_meta('wp_form');
 $form_heading = get__post_meta('form_heading');
 $form_description = get__post_meta('form_description');
 $form_image = get__post_meta('form_image');
