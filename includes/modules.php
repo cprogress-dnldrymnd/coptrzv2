@@ -648,6 +648,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $global_widgets = $items['global_widgets'];
                         foreach ($global_widgets as $global_widget) {
                             $type = $global_widget['_type'];
+                            $html .= $type;
                             switch ($type) {
                                 case 'latest_from_coptrz':
                                     $html .= do_shortcode("[latest_from_coptrz]");
@@ -1884,7 +1885,7 @@ function __post_box($data, $class = [], $content_box_class = [])
         $html .= "<div class='content-box content-margin'>";
     }
 
-    if($is_new) {
+    if ($is_new) {
         $html .= "<div class='bubble'>NEW</div>";
     }
 
