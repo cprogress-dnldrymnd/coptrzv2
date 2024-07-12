@@ -2170,15 +2170,8 @@ function _events_additional_content($id)
 
         $additional_content .= "<li class='d-flex align-items-center'>";
         $additional_content .= $SVG->calendar();
+        $additional_content .= _date_format($crb_event_start_date);
 
-        $date = strtotime($crb_event_start_date);
-        $day = date('jS', $date);
-        $month = date('F', $date);
-        $newDate = "<sup>$day</sup>";
-        $newDate .= " $month";
-        $additional_content .= $newDate;
-
-        $additional_content .= $crb_event_start_date;
 
         $additional_content .= "</li>";
     }
