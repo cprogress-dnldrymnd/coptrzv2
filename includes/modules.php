@@ -675,6 +675,23 @@ function ___sections($id = 'sections', $post_id = '')
                             }
                         }
                         break;
+
+                    case 'global_post_box_selection':
+                        $posts = $items['post'];
+                        $html .= "<div class='row g-4'>";
+                        foreach ($posts as $post) {
+                            $data = array(
+                                'id' => $post['id'],
+                                'featured' => true,
+                                'col' => true,
+                                'elements' => array('image', 'title', 'content')
+                            );
+                            $html .= __post_box($data);
+                        }
+
+                        $html .= "</div>";
+
+                        break;
                 }
             }
 
