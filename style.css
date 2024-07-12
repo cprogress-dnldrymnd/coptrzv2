@@ -11112,8 +11112,8 @@ hr {
   .latest-from-coptrz .bg-accent .bubble {
     background-color: var(--bs-secondary); }
   .latest-from-coptrz .bg-accent .button-box a:hover, .latest-from-coptrz .bg-accent .button-box a:active, .latest-from-coptrz .bg-accent .button-box a:focus {
-    background-color: var(--bs-secondary);
-    border-color: var(--bs-secondary); }
+    background-color: var(--bs-secondary) !important;
+    border-color: var(--bs-secondary) !important; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
