@@ -73,6 +73,13 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_form = get__post_meta('hero_form');
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
 
+    if (get_post_type($id) == 'events') {
+        $crb_event_start_date = get__post_meta_by_id($id, 'crb_event_start_date');
+        $crb_event_start_time = get__post_meta_by_id($id, 'crb_event_start_time');
+        $date_time = _date_format($crb_event_start_date) . ' | ' . $crb_event_start_time;
+        $hero_description .= $hero_description . $date_time;
+    }
+
     $heading_class[] = 'large-heading';
     if (!$hero_description && !$buttons) {
         $heading_class[] = 'mb-0';
@@ -132,6 +139,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             'description' => $hero_description,
             'class' => _attribute('class', array('description-box medium-text small-width mx-auto mb-4')),
         ));
+
 
 
 
