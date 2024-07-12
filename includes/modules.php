@@ -1809,7 +1809,7 @@ function __post_box($data)
 {
 
     $id = isset($data['id']) ? $data['id'] : false;
-    $col = isset($data['col']) ? $data['col'] : false;
+    $col = isset($data['col']) ? $data['col'] : 'false';
     $featured = isset($data['featured']) ? $data['featured'] : false;
     $style = isset($data['style']) ? $data['style'] : 'style-1';
     $taxonomy = isset($data['taxonomy']) ? $data['taxonomy'] : false;
@@ -1839,8 +1839,10 @@ function __post_box($data)
         $class .= ' rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
     }
     $html = '';
-    if ($col == true) {
+    if ($col == true && $col == false) {
         $html = "<div class='col-lg-4 col-sm-6'>";
+    } else {
+        $html = "<div class='$col'>";
     }
     $html .= "<div class='post-box post-box-blog column-holder position-relative overflow-hidden $class $style h-100'>";
     if ($featured) {
