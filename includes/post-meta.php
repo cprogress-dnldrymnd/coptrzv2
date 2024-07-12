@@ -15,8 +15,8 @@ Container::make('theme_options', __('Theme Settings'))
             Field::make('complex', 'latest_from_coptrz')
                 ->set_layout('tabbed-vertical')
                 ->add_fields(array(
-                    Field::make('text', 'label', __('Label')),
-                    Field::make('select', 'background', __('Background'))
+                    Field::make('text', 'label', __('Label'))->set_classes('inline-field'),
+                    Field::make('select', 'background', __('Background'))->set_classes('inline-field')
                         ->set_options(
                             array(
                                 'featured-image' => 'Featured Image',
@@ -26,8 +26,8 @@ Container::make('theme_options', __('Theme Settings'))
                                 'bg-white' => 'Background White',
                             )
                         ),
-                    Field::make('checkbox', 'is_new', __('Is New')),
-                    Field::make('association', 'post', 'Select Post')
+                    Field::make('checkbox', 'is_new', __('Is New'))->set_classes('inline-field'),
+                    Field::make('association', 'post', 'Select Post')->set_classes('inline-field')
                         ->set_types(
                             array(
                                 array(
