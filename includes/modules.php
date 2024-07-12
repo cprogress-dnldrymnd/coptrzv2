@@ -45,7 +45,7 @@ function _date_format($date_input, $format = 'jS F')
 {
     $date = strtotime($date_input);;
 
-    return date($format, getDate($time_input));
+    return date($format, getDate($date));
 }
 
 function ___hero_modules($hero_alignment_args = false, $hero_height_args = false)
