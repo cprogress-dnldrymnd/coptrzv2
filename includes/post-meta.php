@@ -4315,6 +4315,36 @@ function __section_fields($name = 'sections')
                         )
                     )
                     ->add_fields(
+                        'background_video',
+                        array(
+                            Field::make('select', 'background_type', __('Background Type'))->set_classes('inline-field')
+                                ->set_options(
+                                    array(
+                                        'self-hosted' => 'Self Hosted',
+                                        'youtube' => 'Youtube',
+                                    )
+                                ),
+                            Field::make('file', 'background', __('Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'background_type',
+                                            'value' => 'self-hosted',
+                                        )
+                                    )
+                                ),
+                            Field::make('text', 'background_youtube', __('Background Youtube ID'))->set_classes('inline-field')
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'background_type',
+                                            'value' => 'youtube',
+                                        )
+                                    )
+                                ),
+                        )
+                    )
+                    ->add_fields(
                         'background_overlay',
                         array(
                             Field::make('select', 'background_overlay_type', 'Background Overlay Type')
