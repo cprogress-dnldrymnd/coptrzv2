@@ -4,7 +4,47 @@ use Carbon_Fields\Block;
 use Carbon_Fields\Container;
 use Carbon_Fields\Complex_Container;
 use Carbon_Fields\Field;
+/*-----------------------------------------------------------------------------------*/
+/* Theme Settings
+/*-----------------------------------------------------------------------------------*/
 
+Container::make('theme_options', __('Theme Settings'))
+    ->add_tab(
+        'Latest From Coptrz',
+        array(
+            Field::make('complex', 'latest_from_coptrz')
+                ->add_fields(array(
+                    Field::make('select', 'background', __('Background'))
+                        ->set_options(
+                            array(
+                                'featured-image' => 'Featured Image',
+                                'bg-primary'      => 'Background Primary',
+                                'bg-secondary'      => 'Background Secondary',
+                                'bg-accent'      => 'Background Accent',
+                                'bg-white' => 'Background White',
+                            )
+                        ),
+                    Field::make('is_new', 'is_new', __('Is New')->set_help_text('Add new label tag')),
+                    Field::make('association', 'post', 'Select Post')
+                    ->set_types(
+                        array(
+                            array(
+                                'type'      => 'post',
+                                'post_type' => 'post',
+                            ),
+                            array(
+                                'type'      => 'post',
+                                'post_type' => 'product',
+                            ),
+                            array(
+                                'type'      => 'post',
+                                'post_type' => 'guides',
+                            )
+                        )
+
+                ))
+        )
+    );
 /*-----------------------------------------------------------------------------------*/
 /* Archives Settings
 /*-----------------------------------------------------------------------------------*/
@@ -4170,7 +4210,7 @@ function __section_fields($name = 'sections')
                     ->add_fields('case_study_slider',  array(
                         Field::make('html', 'html')->set_html('<h3>This will display featured case study slider </h3>'),
                     ))
-                    
+
                     ->add_fields('tabs',  array(
                         Field::make('complex', 'tabs', 'Tabs')
                             ->add_fields('tabs',  array(
