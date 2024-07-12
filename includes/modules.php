@@ -40,6 +40,13 @@ function action_module_content()
 }
 add_action('shutdown', 'action_module_content');
 */
+
+function _date_format($date_input, $format = 'jS F')
+{
+    $date = strtotime($date_input);
+    return date($format, $date);
+}
+
 function ___hero_modules($hero_alignment_args = false, $hero_height_args = false)
 {
     $id = get_the_ID();
@@ -2155,9 +2162,12 @@ function _events_additional_content($id)
 
     $additional_content = '<ul class="meta-box list-inline text-small fw-medium">';
     if ($crb_event_start_date) {
+
+
         $additional_content .= "<li class='d-flex align-items-center'>";
         $additional_content .= $SVG->calendar();
-        $additional_content .= $crb_event_start_date;
+        $additional_content .= _date_format($crb_event_start_date);
+
         $additional_content .= "</li>";
     }
 
