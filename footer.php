@@ -14,7 +14,10 @@ $layouts = get_posts($args);
 echo '<pre>';
 var_dump($layouts);
 echo '</pre>';
-echo do_shortcode("[layouts id='271317']");
+foreach ($layouts as $layout) {
+    $layout_id = $layout->ID;
+    echo $layout_id;
+}
 ?>
 
 <section class="reviews bg-black lg-padding-top pb-20px">
