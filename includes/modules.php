@@ -1806,7 +1806,6 @@ function __product_specifications($for_product_summary = false)
 
 function __post_box($data, $class = [], $content_box_class = [])
 {
-    $id = isset($data['id']) ? $data['id'] : false;
     $col = isset($data['col']) ? $data['col'] : 'false';
     $featured = isset($data['featured']) ? $data['featured'] : false;
     $style = isset($data['style']) ? $data['style'] : 'style-1';
@@ -1895,6 +1894,12 @@ function __post_box($data, $class = [], $content_box_class = [])
             'heading' => get_the_title($id),
             'tag' => 'h3',
         ));
+    }
+    if (get_post_type($id) == 'product') {
+        $product = wc_get_product($id);
+        $html .= "<div class='price-box'>";
+        $html .= $product->get_price_html();
+        $html .= '</div>';
     }
 
     if (in_array('excerpt', $elements)) {
