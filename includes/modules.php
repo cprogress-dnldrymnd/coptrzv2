@@ -122,7 +122,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
                 'form_style' => $hero_form_style,
             );
             $hero .= "<div class='col-lg-5'>"; //col
-            $hero = __form($form_args);
+            $hero .= __form($form_args);
             $hero .= "</div>"; //end-col
 
         }
