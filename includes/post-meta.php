@@ -849,6 +849,8 @@ function __hero_form_fields()
 {
     return array(
         Field::make('image', 'hero_form_image', 'Image')->set_classes('inline-field'),
+        Field::make('text', 'hero_form_heading', 'Form Heading')->set_classes('inline-field'),
+        Field::make('text', 'hero_form_description', 'Form Description')->set_classes('inline-field'),
         Field::make('select', 'hero_form_style', 'Style')->set_classes('inline-field')
             ->set_options(
                 array(
