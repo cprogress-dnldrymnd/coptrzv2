@@ -80,6 +80,11 @@ main {
     }
 }
 .content-margin {
+    h2 {
+        @include last-child {
+            margin-bottom: 0;
+        }
+    }
     &:not(.flex-row) {
         > * {
             @include not-last-child {
