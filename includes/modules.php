@@ -1839,7 +1839,7 @@ function __post_box($data)
         $class .= ' rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
     }
     $html = '';
-    if ($col == true && is_bool($col)) {
+    if ($col == true && $col != false && is_bool($col)) {
         $html = "<div class='col-lg-4 col-sm-6'>";
     } else {
         $html = "<div class='$col'>";
