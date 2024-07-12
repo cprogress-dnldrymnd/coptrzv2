@@ -60,9 +60,8 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_form_description = get__post_meta('hero_form_description');
     $hero_form_style = get__post_meta('hero_form_style');
     $hero_form = get__post_meta('hero_form');
-
-
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
+
     $heading_class[] = 'large-heading';
     if (!$hero_description && !$buttons) {
         $heading_class[] = 'mb-0';
@@ -70,9 +69,30 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $heading_class[] = 'mb-3';
     }
 
+    if($hero_height) {
+        $hero_class[] = $hero_height;
+    }
+
+    
+    if($text_align) {
+        $hero_class[] = $text_align;
+    }
+
+
+    if ($hero_form_enable) {
+        $hero_class[] = '';
+    } else {
+        $hero_class[] = 'text-white';
+    }
+
+    $hero_class[] = 'hero pb-50px rounded-10px bg-primary overflow-hidden d-flex align-items-end mx-20px position-relative';
+
+    $hero_class_attribute = _attribute('class', $hero_class);
+
+
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
-        $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
+        $hero = "<section $hero_class_attribute>";
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
             $hero .= __background($hero_background_youtube, true);
         } else if ($hero_background) {
