@@ -682,7 +682,7 @@ function ___sections($id = 'sections', $post_id = '')
                         foreach ($posts as $post) {
                             $data = array(
                                 'id' => $post['id'],
-                                'featured' => true,
+                                'featured' => false,
                                 'col' => true,
                                 'elements' => array('image', 'title', 'content')
                             );
