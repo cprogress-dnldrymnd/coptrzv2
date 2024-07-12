@@ -102,7 +102,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero .= "<div class='container'>";
 
         if ($hero_form_enable) {
-            $hero .= "<div class='row align-items-center justfiy-content-center'>"; //row
+            $hero .= "<div class='row align-items-center'>"; //row
             $hero .= "<div $col_content_class>"; //col
         }
         if (!$breadcrumbs_hidden) {
