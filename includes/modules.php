@@ -80,7 +80,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
 
     if ($hero_form_enable) {
-        $hero_class[] = '';
+        $col_content_class[] = 'text-white col-lg-7';
     } else {
         $hero_class[] = 'text-white';
     }
@@ -88,6 +88,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_class[] = 'hero pb-50px rounded-10px bg-primary overflow-hidden d-flex align-items-end mx-20px position-relative';
 
     $hero_class_attribute = _attribute('class', $hero_class);
+    $col_content_class_attribute = _attribute('class', $col_content_class);
 
 
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
@@ -102,7 +103,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
         if ($hero_form_enable) {
             $hero .= "<div class='row'>"; //row
-            $hero .= "<div class='col-lg-7'>"; //col
+            $hero .= "<div $col_content_class>"; //col
         }
         if (!$breadcrumbs_hidden) {
             $hero .= do_shortcode("[breadcrumbs id='$id']");
