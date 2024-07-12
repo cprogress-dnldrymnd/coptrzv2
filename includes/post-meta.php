@@ -26,22 +26,22 @@ Container::make('theme_options', __('Theme Settings'))
                         ),
                     Field::make('is_new', 'is_new', __('Is New')->set_help_text('Add new label tag')),
                     Field::make('association', 'post', 'Select Post')
-                    ->set_types(
-                        array(
+                        ->set_types(
                             array(
-                                'type'      => 'post',
-                                'post_type' => 'post',
-                            ),
-                            array(
-                                'type'      => 'post',
-                                'post_type' => 'product',
-                            ),
-                            array(
-                                'type'      => 'post',
-                                'post_type' => 'guides',
+                                array(
+                                    'type'      => 'post',
+                                    'post_type' => 'post',
+                                ),
+                                array(
+                                    'type'      => 'post',
+                                    'post_type' => 'product',
+                                ),
+                                array(
+                                    'type'      => 'post',
+                                    'post_type' => 'guides',
+                                )
                             )
                         )
-
                 ))
         )
     );
