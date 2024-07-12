@@ -339,6 +339,11 @@ function ___sections($id = 'sections', $post_id = '')
                             $styles_section[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
                         }
                         break;
+                    case 'background_video':
+                        $background_type = $section_style['background_type'];
+                        $background = $section_style['background'];
+                        $background_youtube = $section_style['background_youtube'];
+                        break;
 
                     case 'background_overlay':
                         $background_overlay_type = $section_style['background_overlay_type'];
@@ -485,6 +490,12 @@ function ___sections($id = 'sections', $post_id = '')
 
             if ($background_image_overlay_args) {
                 $html .= __image($background_image_overlay_args);
+            }
+
+            if ($background_type && $background_type == 'youtube') {
+                $html .= __background($background_youtube, true);
+            } else if ($background) {
+                $html .= __background($background);
             }
 
             $html .= "<div $container_attribute>";
