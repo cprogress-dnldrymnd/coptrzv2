@@ -773,6 +773,13 @@ function __hero_fields()
                     )
                 )
             ),
+
+    );
+}
+
+function __hero_button_fields()
+{
+    return array(
         Field::make('complex', 'buttons', __('Buttons'))->set_classes('inline-field')
             ->setup_labels(
                 array(
@@ -838,7 +845,28 @@ function __hero_fields()
             ->set_header_template('Button: <%- button_text %>'),
     );
 }
-
+function __hero_form_fields()
+{
+    return array(
+        Field::make('select', 'hero_style', 'Style')
+            ->set_options(
+                array(
+                    ''   => 'Default',
+                    'style-2' => 'Style 2',
+                )
+            ),
+        Field::make('association', 'hero_form', 'Select Form')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'wpforms',
+                    )
+                )
+            )
+            ->set_max(1)
+    );
+}
 Container::make('post_meta', __('Hero'))
     ->where('post_type', '=', 'page')
     ->or_where('post_type', '=', 'product')
@@ -851,7 +879,9 @@ Container::make('post_meta', __('Hero'))
 Container::make('term_meta', __('Hero'))
     ->where('term_taxonomy', '=', 'product_cat')
     ->or_where('term_taxonomy', '=', 'pa_brands')
-    ->add_fields(__hero_fields());
+    ->add_tab('Hero Settings', __hero_fields())
+    ->add_tab('Hero Buttons', __hero_button_fields())
+    ->add_tab('Hero Form', __hero_button_fields());
 
 
 function __section_fields($name = 'sections')
