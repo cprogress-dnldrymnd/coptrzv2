@@ -649,7 +649,7 @@ function ___sections($id = 'sections', $post_id = '')
                         foreach ($global_widgets as $global_widget) {
                             $type = $global_widget['_type'];
                             switch ($type) {
-                                case 'global_widgets':
+                                case 'latest_from_coptrz':
                                     $html .= do_shortcode("[latest_from_coptrz]");
                                     break;
                                 case 'case_study_slider':
