@@ -1805,9 +1805,8 @@ function __product_specifications($for_product_summary = false)
 
 
 
-function __post_box($data)
+function __post_box($data, $class = [], $content_box_class = [])
 {
-
     $id = isset($data['id']) ? $data['id'] : false;
     $col = isset($data['col']) ? $data['col'] : 'false';
     $featured = isset($data['featured']) ? $data['featured'] : false;
@@ -1817,26 +1816,36 @@ function __post_box($data)
     $id = isset($data['id']) ? $data['id'] : false;
     $elements = isset($data['elements']) ? $data['elements'] : array();
     $bg_image = isset($data['bg_image']) ? $data['bg_image'] : false;
+    $background_class = isset($data['background_class']) ? $data['background_class'] : false;
 
 
     $additional_content = isset($data['additional_content']) ? $data['additional_content'] : false;
 
+    if ($background_class) {
+        $class[] = $background_class;
+    }
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('jS F', $id);
+
+    $class[] = 'post-box post-box-blog column-holder position-relative overflow-hidden h-100';
+    $content_box_class[] = 'content-box content-margin ';
     if ($featured) {
-        $class = ' featured-box text-white d-flex flex-column justify-content-between xs-padding rounded-10px ';
+        $class[] = ' featured-box text-white d-flex flex-column justify-content-between xs-padding rounded-10px';
     } else {
 
-        $class = ' content-margin ';
+        $class[] = ' content-margin';
     }
 
-    $class .= $style;
-    $content_box_class = '';
-    if ($style == 'style-1') {
-        $content_box_class = 'px-20px pb-20px';
+    if ($style) {
+        $class[] = $style;
     }
+
+    if ($style == 'style-1') {
+        $content_box_class[] = 'px-20px pb-20px';
+    }
+
     if ($bg_image) {
-        $class .= ' rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
+        $class[] = ' rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
     }
     $html = '';
     if ($col == true && $col != false && is_bool($col)) {
@@ -1844,14 +1853,16 @@ function __post_box($data)
     } else {
         $html = "<div class='$col'>";
     }
-    $html .= "<div class='post-box post-box-blog column-holder position-relative overflow-hidden $class $style h-100'>";
+    $class_attribute = _attribute('class', $class);
+    $content_box_class_attribute = _attribute('class', $content_box_class);
+    $html .= "<div $class_attribute>";
     if ($featured) {
         $html .= __background($image);
         $html .= __post_category($id, 'category', 'text-white');
     } else {
         if ($bg_image) {
             $html .= __background($image);
-            $content_box_class = "text-center xs-padding text-white";
+            $content_box_class[] = "text-center xs-padding text-white";
         } else {
             $html .= __image(array(
                 'image_id' => $image,
@@ -1861,7 +1872,7 @@ function __post_box($data)
             ));
         }
 
-        $html .= "<div class='content-box content-margin $content_box_class'>";
+        $html .= "<div $content_box_class_attribute>";
         if (in_array('category', $elements) && $taxonomy) {
             $html .= __post_category($id, $taxonomy, 'text-black');
         }

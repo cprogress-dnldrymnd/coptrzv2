@@ -369,13 +369,13 @@ class Shortcodes
                 $data['id'] = $id;
                 $data['col'] = 'col-lg-3 col-md-6';
                 $data['elements'] = array('image', 'date', 'title', 'excerpt', 'button');
-                $data['class'] = $background;
                 $data['is_new'] = $is_new;
 
                 if ($background == 'featured-image') {
                     $data['featured'] = true;
                 } else {
                     $data['featured'] = false;
+                    $data['background_class'] = $background;
                 }
                 if (get_post_type() == 'post') {
                     $data['elements'] = array('image', 'date', 'title', 'button');
@@ -385,10 +385,9 @@ class Shortcodes
                 if ($button_text) {
                     $data['button_text'] = $button_text;
                 }
-             
+
                 $html .= __post_box($data);
             }
-$html.= $data['featured'];
             $html .= "</div>";
             $html .= "</div>";
 
