@@ -2156,11 +2156,24 @@ function __related_posts($posts, $data, $heading = 'Related Guides',)
 }
 
 
-function __form()
+function __form($args)
 {
-    $html = "<div class='form-holder bg-white rounded-corner'>";
-    $html .= " <div class='form-header bg-accent text-white'>";
-    $html .= "<div class='row g-0 align-items-center'>";
+    $form = $args['form'];
+    $form_description = $args['form_description'];
+    $form_heading = $args['form_heading'];
+    $form_image = $args['form_image'];
+
+    $form_id = $form[0]['id'];
+    $image_args['image_id'] = $form_image;
+    $image_args['size'] = 'medium';
+    $image_args['class'] = _attribute('class', array('image-box'));
+
+    $description_args['description'] =  $form_description;
+    $description_args['class'] =  _attribute('class', array('description-box'));
+
+    $html = "<div class='form-holder bg-white rounded-corner'>"; //form-holder
+    $html .= " <div class='form-header bg-accent text-white'>"; //form-header
+    $html .= "<div class='row g-0 align-items-center'>"; //row
 
     $html .= "<div class='col-lg-3'>";
     $html .= __image($image_args);
@@ -2177,7 +2190,16 @@ function __form()
     $html .= "</div>";
     $html .= "</div>";
 
+    $html .= "</div>"; //end-row
+    $html .= "</div>"; //end-form-header
+
+    $html .= "<div class='form-box p-20px small-text fw-light'>";
+    $html .= "<div class='inner mt-20px'>";
+    $html .= do_shortcode("[wpforms id='$form_id' title='false']");
     $html .= "</div>";
     $html .= "</div>";
-    $html .= "</div>";
+
+    $html .= "</div>"; //end-form-holder
+
+    return $html;
 }

@@ -14,14 +14,13 @@ $form = get__post_meta('wp_form');
 $form_heading = get__post_meta('form_heading');
 $form_description = get__post_meta('form_description');
 $form_image = get__post_meta('form_image');
-$form_id = $form[0]['id'];
-$image_args['image_id'] = $form_image;
-$image_args['size'] = 'medium';
-$image_args['class'] = _attribute('class', array('image-box'));
 
-$description_args['description'] =  $form_description;
-$description_args['class'] =  _attribute('class', array('description-box'));
-
+$form_args = array(
+    'form' => $form,
+    'form_heading' => $form_heading,
+    'form_description' => $form_description,
+    'form_image' => $form_image,
+);
 ?>
 
 <section class="landing-page bg-primary header-padding rounded-corner mx-20px d-flex align-items-center justify-content-center">
@@ -42,7 +41,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    
+                    <?= __form($form_args) ?>
                 </div>
             </div>
         </div>
