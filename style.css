@@ -11104,7 +11104,8 @@ hr {
   padding: 5px 10px;
   border-radius: 5px;
   line-height: 1;
-  font-size: 13px; }
+  font-size: 13px;
+  color: var(--bs-white); }
 
 .latest-from-coptrz .bg-accent {
   color: var(--bs-white); }

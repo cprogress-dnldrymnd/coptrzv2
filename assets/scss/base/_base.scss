@@ -852,6 +852,7 @@ hr {
     border-radius: 5px;
     line-height: 1;
     font-size: 13px;
+    color: var(--bs-white);
 }
 
 .latest-from-coptrz {
@@ -863,8 +864,8 @@ hr {
         .button-box {
             a {
                 @include on-event {
-                    background-color: var(--bs-secondary);
-                    border-color: var(--bs-secondary);
+                    background-color: var(--bs-secondary) !important;
+                    border-color: var(--bs-secondary) !important;
                 }
             }
         }
