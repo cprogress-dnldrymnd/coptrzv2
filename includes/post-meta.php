@@ -874,7 +874,9 @@ Container::make('post_meta', __('Hero'))
     ->or_where('post_type', '=', 'capabilities')
     ->or_where('post_type', '=', 'casestudies')
     ->or_where('post_type', '=', 'solutions')
-    ->add_fields(__hero_fields());
+    ->add_tab('Hero Settings', __hero_fields())
+    ->add_tab('Hero Buttons', __hero_button_fields())
+    ->add_tab('Hero Form', __hero_button_fields());
 
 Container::make('term_meta', __('Hero'))
     ->where('term_taxonomy', '=', 'product_cat')
