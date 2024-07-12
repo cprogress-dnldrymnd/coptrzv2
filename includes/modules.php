@@ -1816,6 +1816,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     $id = isset($data['id']) ? $data['id'] : false;
     $elements = isset($data['elements']) ? $data['elements'] : array();
     $bg_image = isset($data['bg_image']) ? $data['bg_image'] : false;
+    $is_new = isset($data['is_new']) ? $data['is_new'] : false;
     $background_class = isset($data['background_class']) ? $data['background_class'] : false;
 
 
@@ -1882,6 +1883,11 @@ function __post_box($data, $class = [], $content_box_class = [])
     if ($featured) {
         $html .= "<div class='content-box content-margin'>";
     }
+
+    if($is_new) {
+        $html .= "<div class=''bubble'></div>";
+    }
+
     if (in_array('date', $elements)) {
         $html .= "<div class='date-box small-text mb-2'>$date</div>";
     }
