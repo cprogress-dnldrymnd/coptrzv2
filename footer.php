@@ -14,7 +14,7 @@ $layouts = get_posts($args);
 
 foreach ($layouts as $layout) {
     $layout_id = $layout['id'];
-    $html .= do_shortcode("[layouts id='$layout_id']");
+    echo do_shortcode("[layouts id='$layout_id']");
 }
 ?>
 
