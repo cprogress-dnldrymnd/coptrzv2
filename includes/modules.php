@@ -44,8 +44,8 @@ add_action('shutdown', 'action_module_content');
 function _date_format($date_input, $format = 'jS F')
 {
     $date = strtotime($date_input);;
-
-    return date($format, getDate($date));
+    $get_date = getDate($date); 
+    return date($format, $get_date);
 }
 
 function ___hero_modules($hero_alignment_args = false, $hero_height_args = false)
