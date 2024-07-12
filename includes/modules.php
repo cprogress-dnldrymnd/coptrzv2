@@ -2166,13 +2166,9 @@ function _events_additional_content($id)
 
     $additional_content = '<ul class="meta-box list-inline text-small fw-medium">';
     if ($crb_event_start_date) {
-
-
         $additional_content .= "<li class='d-flex align-items-center'>";
         $additional_content .= $SVG->calendar();
         $additional_content .= _date_format($crb_event_start_date);
-
-
         $additional_content .= "</li>";
     }
 
