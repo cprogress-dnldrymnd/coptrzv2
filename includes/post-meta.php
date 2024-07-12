@@ -24,7 +24,7 @@ Container::make('theme_options', __('Theme Settings'))
                                 'bg-white' => 'Background White',
                             )
                         ),
-                    Field::make('checkbox', 'is_new', __('Is New'),
+                    Field::make('checkbox', 'is_new', __('Is New')),
                     Field::make('association', 'post', 'Select Post')
                         ->set_types(
                             array(
