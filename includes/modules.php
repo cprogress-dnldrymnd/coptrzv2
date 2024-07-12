@@ -116,7 +116,10 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             'class' => _attribute('class', $heading_class),
             ''
         ));
-        $hero .= $hero_description;
+        $hero .= __description(array(
+            'description' => $hero_description,
+            'class' => _attribute('class', array('description-box medium-text small-width mx-auto mb-4')),
+        ));
 
 
 
