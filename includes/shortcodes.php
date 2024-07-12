@@ -388,7 +388,7 @@ class Shortcodes
              
                 $html .= __post_box($data);
             }
-
+$html.= $data['featured'];
             $html .= "</div>";
             $html .= "</div>";
 
