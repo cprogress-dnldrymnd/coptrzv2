@@ -1823,6 +1823,7 @@ function __post_box($data, $class = [], $content_box_class = [])
 
     if ($background_class) {
         $class[] = $background_class;
+        $class[] = 'rounded-corner';
     }
     $image = get_post_thumbnail_id($id);
     $date = get_the_date('jS F', $id);
