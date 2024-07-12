@@ -716,11 +716,8 @@ function custom_product_variation_training()
                 if ($product_attribute_array['date']) {
                     $html .= "<div class='col-auto'>";
                     if ($product_attribute_array['date'] != 'N/A') {
-                        $date = strtotime($product_attribute_array['date']);
-                        $newDate = date("jS F", $date);
-
                         $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
-                        $html .= $newDate;
+                        $html .= _date_format($product_attribute_array['date']);
                         $html .= '</span>';
                     }
                     $html .= '</div>';

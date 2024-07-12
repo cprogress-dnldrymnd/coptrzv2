@@ -41,11 +41,11 @@ function action_module_content()
 add_action('shutdown', 'action_module_content');
 */
 
-function _date_format($date_input, $format = 'jS F')
+function _date_format($date_input, $format = 'jS <sup>F</sup>')
 {
     $date = strtotime($date_input);
-
-    return date($format, $date);
+    $newDate = date($format, $date);
+    return $newDate;
 }
 
 function ___hero_modules($hero_alignment_args = false, $hero_height_args = false)
