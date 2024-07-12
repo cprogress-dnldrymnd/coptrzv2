@@ -13,6 +13,7 @@ Container::make('theme_options', __('Theme Settings'))
         'Latest From Coptrz',
         array(
             Field::make('complex', 'latest_from_coptrz')
+                ->set_layout('tabbed-vertical')
                 ->add_fields(array(
                     Field::make('select', 'background', __('Background'))
                         ->set_options(
