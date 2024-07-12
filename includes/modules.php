@@ -69,16 +69,16 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $heading_class[] = 'mb-3';
     }
 
-    if($hero_height) {
+    if ($hero_height) {
         $hero_class[] = $hero_height;
     }
 
-    
-    if($text_align) {
+
+    if ($text_align) {
         $hero_class[] = $text_align;
     }
 
-
+    $col_content_class = [];
     if ($hero_form_enable) {
         $col_content_class[] = 'text-white col-lg-7';
     } else {
