@@ -14,7 +14,7 @@ $form = get__post_meta('form');
 $form_heading = get__post_meta('form_heading');
 $form_description = get__post_meta('form_description');
 $form_image = get__post_meta('form_image');
-
+$form_id = $item['form'][0]['id'];
 $image_args['image_id'] = $form_image;
 $image_args['size'] = 'medium';
 $image_args['class'] = _attribute('class', array('image-box'));
@@ -65,7 +65,7 @@ $description_args['class'] =  _attribute('class', array('description-box'));
                         </div>
                         <div class="form-box p-20px small-text fw-light">
                             <div class="inner mt-20px">
-                                <?= do_shortcode($form) ?>
+                                <?= do_shortcode("[wpforms id='$form_id' title='false']"); ?>
                             </div>
                         </div>
                     </div>
