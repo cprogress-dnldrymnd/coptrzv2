@@ -110,10 +110,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
         if ($hero_form_enable) {
             $hero .= "</div>"; //end-col
-            $hero .= "</div>"; //end-row
-        }
 
-        if ($hero_form_enable) {
             $form_args = array(
                 'form' => $hero_form,
                 'form_heading' => $hero_form_heading,
@@ -125,7 +122,10 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             $hero .= __form($form_args);
             $hero .= "</div>"; //end-col
 
+            $hero .= "</div>"; //end-row
         }
+
+
 
         $hero .= "</div>";
         $hero .= "</section>";
@@ -2196,7 +2196,7 @@ function __form($args)
     $form_heading = $args['form_heading'];
     $form_image = $args['form_image'];
     $form_style = $args['form_style'];
-    
+
     $form_id = $form[0]['id'];
     $image_args['image_id'] = $form_image;
     $image_args['size'] = 'medium';
