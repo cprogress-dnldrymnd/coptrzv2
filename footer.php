@@ -1,4 +1,3 @@
-<?= do_shortcode('[latest_from_coptrz]') ?>
 <section class="reviews bg-black lg-padding-top pb-20px">
     <div class="container">
         <div class="row">
