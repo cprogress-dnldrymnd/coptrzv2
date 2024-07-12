@@ -666,7 +666,7 @@ $Global_Post_Boxes->name = 'Global Post Boxes';
 $Global_Post_Boxes->singular_name = 'Global Post Box';
 $Global_Post_Boxes->icon = 'dashicons-portfolio';
 $Global_Post_Boxes->supports = array('title', 'revisions', 'editor', 'thumbnail', 'page-attributes');
-$Global_Post_Boxes->show_in_rest = false;
+$Global_Post_Boxes->show_in_rest = true;
 
 
 $Global_Post_Boxes = new newTaxonomy();
