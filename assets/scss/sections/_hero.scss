@@ -1,7 +1,7 @@
 section.hero {
     min-height: 85vh;
     .container {
-        padding-top: calc(82px + 20px);
+        padding-top: calc(82px);
     }
     @include responsive(mobile) {
         margin-left: 10px;
