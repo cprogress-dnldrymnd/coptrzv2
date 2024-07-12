@@ -2212,12 +2212,12 @@ function __related_posts($posts, $data, $heading = 'Related Guides',)
 
 function __form($args)
 {
-    $form = $args['form'];
-    $form_description = $args['form_description'];
-    $form_heading = $args['form_heading'];
-    $form_image = $args['form_image'];
-    $form_style = $args['form_style'];
-
+    $form = isset($args['form']) ? $args['form'] : false;
+    $form_description = isset($args['form_description']) ? $args['form_description'] : false;
+    $form_image = isset($args['form_image']) ? $args['form_image'] : false;
+    $form_style = isset($args['form_style']) ? $args['form_style'] : false;
+    $form_heading = isset($args['form_heading']) ? $args['form_heading'] : false;
+    
     $form_id = $form[0]['id'];
     $image_args['image_id'] = $form_image;
     $image_args['size'] = 'medium';
