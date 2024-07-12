@@ -366,7 +366,7 @@ class Shortcodes
                 $is_new = $post['is_new'];
 
                 $data['id'] = $id;
-                $data['col'] = true;
+                $data['col'] = 'col-lg-3 col-md-6';
                 $data['elements'] = array('image', 'date', 'title', 'excerpt', 'button');
                 $data['class'] = $background;
 
