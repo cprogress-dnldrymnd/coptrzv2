@@ -269,7 +269,7 @@ function ___sections($id = 'sections', $post_id = '')
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
             $container_styles = array();
             $container_classes = array();
-            $container_classes[] = 'container';
+            $container_classes[] = 'container position-relative';
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
             $styles_val = '';
