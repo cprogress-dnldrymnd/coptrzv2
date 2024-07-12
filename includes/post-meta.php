@@ -24,8 +24,24 @@ Container::make('theme_options', __('Theme Settings'))
                                 'bg-white' => 'Background White',
                             )
                         ),
-                    Field::make('checkbox', 'is_new', __('Is New')->set_help_text('Add new label tag')),
-
+                    Field::make('checkbox', 'is_new', __('Is New'),
+                    Field::make('association', 'post', 'Select Post')
+                        ->set_types(
+                            array(
+                                array(
+                                    'type'      => 'post',
+                                    'post_type' => 'post',
+                                ),
+                                array(
+                                    'type'      => 'post',
+                                    'post_type' => 'product',
+                                ),
+                                array(
+                                    'type'      => 'post',
+                                    'post_type' => 'guides',
+                                )
+                            )
+                        )
                 ))
         )
     );
