@@ -103,7 +103,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
         if ($hero_form_enable) {
             $hero .= "<div class='row align-items-center'>"; //row
-            $hero .= "<div $col_content_class>"; //col
+            $hero .= "<div $col_content_class_attribute>"; //col
         }
         if (!$breadcrumbs_hidden) {
             $hero .= do_shortcode("[breadcrumbs id='$id']");
