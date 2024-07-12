@@ -44,7 +44,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 {
     $id = get_the_ID();
     $hero_heading = get__post_meta('hero_heading');
-    $hero_description = _format_text(get__post_meta('hero_description'));
+    $hero_description = get__post_meta('hero_description');
     $hero_hidden = get__post_meta('hero_hidden');
     $hero_background = get__post_meta('hero_background');
     $hero_background_youtube = get__post_meta('hero_background_youtube');
@@ -116,13 +116,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             'class' => _attribute('class', $heading_class),
             ''
         ));
-
-        $hero .= __heading(array(
-            'heading' => $hero_description,
-            'tag' => 'p',
-            'class' => _attribute('class', $heading_class),
-            ''
-        ));
+        
         $hero .= __description(array(
             'description' => $hero_description,
             'class' => _attribute('class', array('description-box medium-text small-width mx-auto mb-4')),
