@@ -4843,6 +4843,7 @@ Container::make('post_meta', __('Sections'))
     ->or_where('post_type', '=', 'casestudies')
     ->or_where('post_type', '=', 'producttaxonomypages')
     ->or_where('post_type', '=', 'solutions')
+    ->or_where('post_type', '=', 'events')
     ->add_fields(__section_fields());
 
 
