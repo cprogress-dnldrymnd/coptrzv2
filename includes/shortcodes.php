@@ -360,6 +360,7 @@ class Shortcodes
             $html .= "<div class='row'>";
 
             foreach ($latest_from_coptrz as $post) {
+                $data = [];
                 $id = $post['post'][0]['id'];
                 $background = $post['background'];
                 $button_text = $post['button_text'];
@@ -369,6 +370,7 @@ class Shortcodes
                 $data['col'] = 'col-lg-3 col-md-6';
                 $data['elements'] = array('image', 'date', 'title', 'excerpt', 'button');
                 $data['class'] = $background;
+                $data['is_new'] = $is_new;
 
                 if ($background == 'featured-image') {
                     $data['featured'] = true;
