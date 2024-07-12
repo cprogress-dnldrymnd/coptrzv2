@@ -4964,7 +4964,7 @@ Container::make('post_meta', __('Landing Page Settings'))
                     )
                 )
             ),
-        Field::make('association', 'form', 'Select Form')
+        Field::make('association', 'wp_form', 'Select Form')
             ->set_types(
                 array(
                     array(
