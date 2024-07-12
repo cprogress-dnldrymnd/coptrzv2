@@ -648,7 +648,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $global_widgets = $items['global_widgets'];
                         foreach ($global_widgets as $global_widget) {
                             $type = $global_widget['_type'];
-                            $html .= $type;
+                            $html .= $type.'sdsdsdsdsds';
                             switch ($type) {
                                 case 'latest_from_coptrz':
                                     $html .= do_shortcode("[latest_from_coptrz]");
