@@ -12013,14 +12013,14 @@ section.hero {
   min-height: 85vh; }
   section.hero .container {
     padding-top: calc(82px); }
-  section.hero ul {
-    font-weight: 500;
+  section.hero .description-box.medium-text ul {
+    font-weight: 300;
     list-style: none;
     padding: 0; }
-    section.hero ul li {
+    section.hero .description-box.medium-text ul li {
       display: flex;
       align-items: center; }
-      section.hero ul li:before {
+      section.hero .description-box.medium-text ul li:before {
         content: "";
         width: 16px;
         height: 16px;
@@ -12029,7 +12029,7 @@ section.hero {
         background-size: contain;
         flex: 0 0 16px;
         margin-right: 20px; }
-      section.hero ul li:not(:last-child) {
+      section.hero .description-box.medium-text ul li:not(:last-child) {
         margin-bottom: 14px; }
   @media screen and (max-width: 575px) {
     section.hero {
