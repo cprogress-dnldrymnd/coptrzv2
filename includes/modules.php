@@ -53,6 +53,15 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_height = get__post_meta('hero_height') ? get__post_meta('hero_height') : $hero_height_args;
     $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
     $buttons = get__post_meta('buttons');
+
+    $hero_form_enable = get__post_meta('hero_form_enable');
+    $hero_form_image = get__post_meta('hero_form_image');
+    $hero_form_heading = get__post_meta('hero_form_heading');
+    $hero_form_description = get__post_meta('hero_form_description');
+    $hero_form_style = get__post_meta('hero_form_style');
+    $hero_form = get__post_meta('hero_form');
+
+
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
     $heading_class[] = 'large-heading';
     if (!$hero_description && !$buttons) {
@@ -71,6 +80,10 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         }
         $hero .= "<div class='container'>";
 
+        if ($hero_form_enable) {
+            $hero .= "<div class='row'>"; //row
+            $hero .= "<div class='col-lg-7'>"; //col
+        }
         if (!$breadcrumbs_hidden) {
             $hero .= do_shortcode("[breadcrumbs id='$id']");
         }
@@ -88,10 +101,30 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         ));
 
 
+
         if ($buttons) {
             $hero .= "<div>";
             $hero .= ____button_modules($buttons);
             $hero .= "</div>";
+        }
+
+        if ($hero_form_enable) {
+            $hero .= "</div>"; //end-col
+            $hero .= "</div>"; //end-row
+        }
+
+        if ($hero_form_enable) {
+            $form_args = array(
+                'form' => $hero_form,
+                'form_heading' => $hero_form_heading,
+                'form_description' => $hero_form_description,
+                'form_image' => $hero_form_image,
+                'form_style' => $hero_form_style,
+            );
+            $hero .= "<div class='col-lg-5'>"; //col
+            $hero = __form($form_args);
+            $hero .= "</div>"; //end-col
+
         }
 
         $hero .= "</div>";
@@ -2162,7 +2195,8 @@ function __form($args)
     $form_description = $args['form_description'];
     $form_heading = $args['form_heading'];
     $form_image = $args['form_image'];
-
+    $form_style = $args['form_style'];
+    
     $form_id = $form[0]['id'];
     $image_args['image_id'] = $form_image;
     $image_args['size'] = 'medium';
@@ -2171,7 +2205,7 @@ function __form($args)
     $description_args['description'] =  $form_description;
     $description_args['class'] =  _attribute('class', array('description-box'));
 
-    $html = "<div class='form-holder bg-white rounded-corner'>"; //form-holder
+    $html = "<div class='form-holder bg-white rounded-corner $form_style'>"; //form-holder
     $html .= " <div class='form-header bg-accent text-white'>"; //form-header
     $html .= "<div class='row g-0 align-items-center'>"; //row
 
