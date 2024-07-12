@@ -41,10 +41,13 @@ function action_module_content()
 add_action('shutdown', 'action_module_content');
 */
 
-function _date_format($date_input, $format = '<x>jS</x> F')
+function _date_format($date_input, $format = 'jS F')
 {
     $date = strtotime($date_input);
-    $newDate = date($format, $date);
+    $day = date('jS', $date);
+    $month = date('F', $date);
+    $newDate = "<sup>$day</sup>";
+    $newDate .= " $month";
     return $newDate;
 }
 
