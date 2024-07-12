@@ -844,6 +844,7 @@ Container::make('post_meta', __('Hero'))
     ->or_where('post_type', '=', 'product')
     ->or_where('post_type', '=', 'post')
     ->or_where('post_type', '=', 'capabilities')
+    ->or_where('post_type', '=', 'capabilities')
     ->or_where('post_type', '=', 'solutions')
     ->add_fields(__hero_fields());
 
@@ -4747,6 +4748,7 @@ Container::make('post_meta', __('Sections'))
     ->or_where('post_type', '=', 'product')
     ->or_where('post_type', '=', 'layouts')
     ->or_where('post_type', '=', 'capabilities')
+    ->or_where('post_type', '=', 'casestudies')
     ->or_where('post_type', '=', 'producttaxonomypages')
     ->or_where('post_type', '=', 'solutions')
     ->add_fields(__section_fields());
