@@ -11096,6 +11096,11 @@ hr {
 .single-capabilities .hero .description-box {
   max-width: 1140px; }
 
+.latest-from-coptrz .bg-accent {
+  color: var(--bs-white); }
+  .latest-from-coptrz .bg-accent .button-box a:hover, .latest-from-coptrz .bg-accent .button-box a:active, .latest-from-coptrz .bg-accent .button-box a:focus {
+    background-color: var(--bs-secondary); }
+
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/

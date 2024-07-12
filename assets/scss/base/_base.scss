@@ -843,3 +843,18 @@ hr {
         }
     }
 }
+
+
+.latest-from-coptrz {
+    .bg-accent {
+        color: var(--bs-white);
+        .button-box {
+            a {
+                @include on-event {
+                    background-color: var(--bs-secondary);
+                    border-color: var(--bs-secondary);
+                }
+            }
+        }
+    }
+}
