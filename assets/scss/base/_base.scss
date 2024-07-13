@@ -1,4 +1,5 @@
 #wpadminbar {
+    font-family: var(--primary-font);
     @include responsive(xs-sm) {
         display: none;
     }
