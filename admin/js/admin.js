@@ -26,10 +26,12 @@ function codemirror() {
         } else {
             console.error('TinyMCE is not loaded.');
         }
+
+
+        jQuery(document).on("click", '.wysiwyg-editor-trigger', function (event) {
+            jQuery('#wysiwyg-editor').addClass('active');
+            console.log('xsdsdsdsdsds');
+        });
     }, 1000);
 
-    jQuery(document).on("click", '.wysiwyg-editor-Trigger', function (event) {
-        jQuery('#wysiwyg-editor').addClass('active');
-        console.log('xsdsdsdsdsds');
-    });
 }
