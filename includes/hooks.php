@@ -88,9 +88,12 @@ function action_admin_head()
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu {
             z-index: 999 !important;
-            display: flex;
-            flex-wrap: wrap;
             width: 600px;
+            flex-wrap: wrap;
+        }
+
+        .cf-complex__inserter-menu.cf-complex__inserter-menu:not[hidden] {
+            display: flex;
         }
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item {
@@ -101,6 +104,7 @@ function action_admin_head()
             background-color: #007cba;
             color: #fff;
         }
+
         .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item:hover {
             background-color: #191e23;
             color: #fff;
