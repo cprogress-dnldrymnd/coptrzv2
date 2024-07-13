@@ -46,10 +46,6 @@ $sizes: 10px, 15px, 20px, 25px, 35px, 40px, 45px, 50px;
         padding-top: $size;
         padding-bottom: $size;
     }
-    .g-#{$size} {
-        --bs-gutter-x: $size;
-        --bs-gutter-y: $size;
-    }
 }
 
 $spacings: (
@@ -260,6 +256,11 @@ $spacings_mobile: (
 .g-6 {
     --bs-gutter-x: 4rem;
     --bs-gutter-y: 4rem;
+}
+
+.g-20px {
+    --bs-gutter-x: 20px;
+    --bs-gutter-y: 20px;
 }
 
 .header-padding {
