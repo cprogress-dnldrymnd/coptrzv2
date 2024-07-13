@@ -4714,7 +4714,7 @@ function __section_fields($name = 'sections')
                         'border',
                         array(
                             Field::make('html', 'html_1')->set_html('<label>Section Border</label>')->set_classes('cb-label'),
-                            Field::make('select', 'border_radius', 'Border Radius')->set_classes('inline-field-wide')
+                            Field::make('select', 'border_radius', 'Border Radius')->set_classes('inline-field-wide-label')
                                 ->set_options(
                                     array(
                                         ''   => 'None',
@@ -4722,7 +4722,7 @@ function __section_fields($name = 'sections')
                                         'custom'   => 'Custom',
                                     )
                                 ),
-                            Field::make('text', 'border_radius_custom', 'Custom Border Radius')->set_classes('inline-field-wide')
+                            Field::make('text', 'border_radius_custom', 'Custom Border Radius')->set_classes('inline-field-wide-label')
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4732,7 +4732,7 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                 ),
-                            Field::make('select', 'border_style', 'Border Style')->set_classes('inline-field-wide')
+                            Field::make('select', 'border_style', 'Border Style')->set_classes('inline-field-wide-label')
                                 ->set_options(
                                     array(
                                         ''   => 'None',
@@ -4741,7 +4741,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
 
-                            Field::make('select', 'border_color', 'Border Color')->set_classes('inline-field-wide')
+                            Field::make('select', 'border_color', 'Border Color')->set_classes('inline-field-wide-label')
                                 ->set_options(
                                     array(
                                         'border-default'   => 'Default',
@@ -4761,7 +4761,7 @@ function __section_fields($name = 'sections')
                                         ),
                                     )
                                 ),
-                            Field::make('color', 'border_color_custom', __('Border Color'))->set_classes('inline-field-wide')
+                            Field::make('color', 'border_color_custom', __('Border Color'))->set_classes('inline-field-wide-label')
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4771,7 +4771,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
 
-                            Field::make('select', 'border_width', 'Border Width')->set_classes('inline-field-wide')
+                            Field::make('select', 'border_width', 'Border Width')->set_classes('inline-field-wide-label')
                                 ->set_options(array(
                                     'default' => 'Default[1px]',
                                     'custom' => 'Custom'
@@ -4784,7 +4784,7 @@ function __section_fields($name = 'sections')
                                         ),
                                     )
                                 ),
-                            Field::make('text', 'border_width_top', 'Top Border Width')->set_classes('inline-field-wide')->set_default_value(0)
+                            Field::make('text', 'border_width_top', 'Top Border Width')->set_classes('inline-field-wide-label')->set_default_value(0)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4793,7 +4793,7 @@ function __section_fields($name = 'sections')
                                         ),
                                     )
                                 ),
-                            Field::make('text', 'border_width_right', 'Right Border Width')->set_classes('inline-field-wide')->set_default_value(0)
+                            Field::make('text', 'border_width_right', 'Right Border Width')->set_classes('inline-field-wide-label')->set_default_value(0)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4802,7 +4802,7 @@ function __section_fields($name = 'sections')
                                         ),
                                     )
                                 ),
-                            Field::make('text', 'border_width_bottom', 'Bottom Border Width')->set_classes('inline-field-wide')->set_default_value(0)
+                            Field::make('text', 'border_width_bottom', 'Bottom Border Width')->set_classes('inline-field-wide-label')->set_default_value(0)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4811,7 +4811,7 @@ function __section_fields($name = 'sections')
                                         ),
                                     )
                                 ),
-                            Field::make('text', 'border_width_left', 'Left Border Width')->set_classes('inline-field-wide')->set_default_value(0)
+                            Field::make('text', 'border_width_left', 'Left Border Width')->set_classes('inline-field-wide-label')->set_default_value(0)
                                 ->set_conditional_logic(
                                     array(
                                         array(
