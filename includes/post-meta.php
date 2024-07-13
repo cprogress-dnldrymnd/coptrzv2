@@ -4775,10 +4775,6 @@ function __section_fields($name = 'sections')
                                             'field' => 'border_style',
                                             'value' => 'border-custom',
                                         ),
-                                        array(
-                                            'field' => 'different_border_width',
-                                            'value' => true,
-                                        )
                                     )
                                 ),
                             Field::make('text', 'border_width_right', 'Right Border Width')->set_width(20)
