@@ -52,9 +52,9 @@ Container::make('theme_options', __('Theme Settings'))
         )
     )
     ->add_tab(
-        'Reviews From Coptrz',
+        'Reviews',
         array(
-            Field::make('complex', 'latest_from_coptrz')
+            Field::make('complex', 'reviews')
                 ->set_layout('tabbed-vertical')
                 ->add_fields(array(
                     Field::make('text', 'review_label', __('Review Label'))->set_classes('inline-field'),
