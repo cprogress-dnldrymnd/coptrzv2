@@ -30,7 +30,7 @@ if (!$hide_footer) {
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto">
                             <a class="site-logo" href="#">
-                                <?= $SVG->facebook() ?>
+                                
                             </a>
                         </div>
                         <div class="col-auto">

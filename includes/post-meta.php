@@ -8,65 +8,89 @@ use Carbon_Fields\Field;
 /* Theme Settings
 /*-----------------------------------------------------------------------------------*/
 
-Container::make('theme_options', __('Theme Settings'))
-    ->add_tab(
-        'Latest From Coptrz',
-        array(
-            Field::make('complex', 'latest_from_coptrz')
-                ->add_fields(array(
-                    Field::make('text', 'label', __('Label'))->set_classes('inline-field'),
-                    Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
-                    Field::make('select', 'background', __('Background'))->set_classes('inline-field')
-                        ->set_options(
+function __latest_from_coptrz_fields()
+{
+    return  array(
+        Field::make('complex', 'latest_from_coptrz')
+            ->add_fields(array(
+                Field::make('text', 'label', __('Label'))->set_classes('inline-field'),
+                Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
+                Field::make('select', 'background', __('Background'))->set_classes('inline-field')
+                    ->set_options(
+                        array(
+                            'featured-image' => 'Featured Image',
+                            'bg-primary'      => 'Background Primary',
+                            'bg-secondary'      => 'Background Secondary',
+                            'bg-accent'      => 'Background Accent',
+                            'bg-white' => 'Background White',
+                        )
+                    ),
+                Field::make('checkbox', 'is_new', __('Is New'))->set_classes('inline-field'),
+                Field::make('association', 'post', 'Select Post')->set_classes('inline-field')
+                    ->set_types(
+                        array(
                             array(
-                                'featured-image' => 'Featured Image',
-                                'bg-primary'      => 'Background Primary',
-                                'bg-secondary'      => 'Background Secondary',
-                                'bg-accent'      => 'Background Accent',
-                                'bg-white' => 'Background White',
-                            )
-                        ),
-                    Field::make('checkbox', 'is_new', __('Is New'))->set_classes('inline-field'),
-                    Field::make('association', 'post', 'Select Post')->set_classes('inline-field')
-                        ->set_types(
+                                'type'      => 'post',
+                                'post_type' => 'post',
+                            ),
                             array(
-                                array(
-                                    'type'      => 'post',
-                                    'post_type' => 'post',
-                                ),
-                                array(
-                                    'type'      => 'post',
-                                    'post_type' => 'product',
-                                ),
-                                array(
-                                    'type'      => 'post',
-                                    'post_type' => 'guides',
-                                )
+                                'type'      => 'post',
+                                'post_type' => 'product',
+                            ),
+                            array(
+                                'type'      => 'post',
+                                'post_type' => 'guides',
                             )
                         )
-                        ->set_max(1)
-                ))
-                ->set_header_template('<%- label %>')
-                ->set_collapsed(true)
+                    )
+                    ->set_max(1)
+            ))
+            ->set_header_template('<%- label %>')
+            ->set_collapsed(true)
 
-        )
-    )
-    ->add_tab(
-        'Reviews',
-        array(
-            Field::make('complex', 'reviews')
-                ->add_fields(array(
-                    Field::make('text', 'review_label', __('Review Label'))->set_classes('inline-field'),
-                    Field::make('text', 'review_score', __('Review Score'))->set_classes('inline-field'),
-                    Field::make('text', 'review_text', __('Review Text'))->set_classes('inline-field'),
-                    Field::make('image', 'review_logo', __('Review Logo'))->set_classes('inline-field'),
-
-                ))
-                ->set_header_template('<%- review_label %>')
-                ->set_collapsed(true)
-
-        )
     );
+}
+
+function __reviews_field()
+{
+    return array(
+        Field::make('complex', 'reviews')
+            ->add_fields(array(
+                Field::make('text', 'review_label', __('Review Label'))->set_classes('inline-field'),
+                Field::make('text', 'review_score', __('Review Score'))->set_classes('inline-field'),
+                Field::make('text', 'review_text', __('Review Text'))->set_classes('inline-field'),
+                Field::make('image', 'review_logo', __('Review Logo'))->set_classes('inline-field'),
+
+            ))
+            ->set_header_template('<%- review_label %>')
+            ->set_collapsed(true)
+
+    );
+}
+
+function __featured_case_studies()
+{
+    return array(
+        Field::make('association', 'casestudies_featured', '')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'casestudies',
+                    )
+                )
+            )
+    );
+}
+
+
+Container::make('theme_options', __('Global Widgets'))
+    ->add_tab('Latest From Coptrz', __latest_from_coptrz_fields())
+    ->add_tab('Reviews', __reviews_field())
+    ->add_tab('Featured Case Studies', __featured_case_studies());
+
+
+
 /*-----------------------------------------------------------------------------------*/
 /* Archives Settings
 /*-----------------------------------------------------------------------------------*/
