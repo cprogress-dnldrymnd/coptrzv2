@@ -117,7 +117,7 @@ function action_admin_head()
         #wysiwyg-editor {
             position: fixed;
             z-index: 9999;
-            background: rgba(0, 0, 0, .5);
+            background: rgba(0, 0, 0, .8);
             left: 0;
             top: 0;
             right: 0;
@@ -136,7 +136,6 @@ function action_admin_head()
             margin-left: auto;
             margin-right: auto;
             background-color: #fff;
-            padding: 2rem;
             width: 100%;
         }
 
