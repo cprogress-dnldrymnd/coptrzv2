@@ -46,7 +46,8 @@ Container::make('theme_options', __('Theme Settings'))
                         )
                         ->set_max(1)
                 ))
-                ->set_header_template('<%- label %>'),
+                ->set_header_template('<%- label %>')
+                ->set_collapse(true)
 
         )
     )
@@ -62,6 +63,7 @@ Container::make('theme_options', __('Theme Settings'))
                   
                 ))
                 ->set_header_template('<%- review_label %>'),
+                ->set_collapse(true)
 
         )
     );
