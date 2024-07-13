@@ -451,7 +451,7 @@ class Shortcodes
                 $icon = $social['_type'];
                 $html .= "<li>";
                 $html .= "<a href='$url' target='_blank'>";
-                $html .= $SVG->$icon;
+                $html .= $SVG->$icon();
                 $html .= "</a>";
                 $html .= "</li>";
             }
