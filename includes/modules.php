@@ -724,7 +724,8 @@ function ___sections($id = 'sections', $post_id = '')
                         $args = array(
                             'post_type' => get_post_type(),
                             'post_status' => 'publish',
-                            'numberposts' => -1,
+                            'numberposts' => 3,
+                            'orderby'        => 'rand',
                             'fields' => 'ids',
                             'tax_query' => array(
                                 array(
