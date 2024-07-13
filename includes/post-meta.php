@@ -33,6 +33,8 @@ function codemirror_enqueue_scripts($hook)
 function my_custom_popup()
 {
     $html =  "<div class='wysiwyg-editor' id='wysiwyg-editor'>";
+    $html =  "<div class='close-wysiwyg-editor></div>";
+    $html =  "<div class='close-wysiwyg-button>Close</div>";
     $html .= "<div class='inner'>";
     $html .=  "<textarea id='wysiwyg-editor-field'></textarea>";
     $html .=  "</div>";
