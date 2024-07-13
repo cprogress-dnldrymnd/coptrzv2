@@ -729,6 +729,8 @@ function ___sections($id = 'sections', $post_id = '')
 
                     case 'global_post_box_selection':
                         $posts = $items['post'];
+                        $source = $items['source'];
+                        $category = $items['category'];
                         $html .= "<div class='row g-4 same-image-height row-global-post'>";
                         foreach ($posts as $post) {
                             $data = array(
