@@ -101,6 +101,10 @@ function action_admin_head()
             background-color: #007cba;
             color: #fff;
         }
+        .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item:hover {
+            background-color: #191e23;
+            color: #fff;
+        }
 
         <?php
         if (_is_module() || get_post_type() == 'producttaxonomypages' || get_post_type() == 'layouts') {
