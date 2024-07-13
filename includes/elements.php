@@ -194,7 +194,17 @@ function __post_category($id, $category, $class = '')
 {
     $terms = get_the_terms($id, $category);
     if ($terms) {
-      
+        $html = "<div class='position-relative small-text post-category mb-2 $class'>";
+
+        foreach ($terms as $term) {
+            $term_link = get_term_link($term->term_id);
+            $term_name = $term->name;
+            $html .= "<a href='$term_link'>";
+            $html .= $term_name;
+            $html .= "</a>";
+        }
+
+        $html .= "</div>";
         return $html;
     }
 }
