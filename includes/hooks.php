@@ -154,6 +154,9 @@ function action_admin_head()
             bottom: 0;
 
         }
+        .submit-wysiwyg-trigger {
+            margin-right: 1rem;
+        }
 
      
 
