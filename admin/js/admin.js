@@ -30,5 +30,6 @@ function codemirror() {
 
     jQuery(document).on("click", '#Wysiwyg-Editor-Trigger', function (event) {
         jQuery('#wysiwyg-editor').addClass('active');
+        console.log('xsdsdsdsdsds');
     });
 }
