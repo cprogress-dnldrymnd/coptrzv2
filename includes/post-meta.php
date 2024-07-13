@@ -12,6 +12,7 @@ function my_custom_popup()
     $html .=  "<textarea id='wysiwyg-editor-field'></textarea>";
     $html .=  "</div>";
     $html .=  "</div>";
+    echo $html;
 }
 add_action('admin_footer', 'my_custom_popup');
 
