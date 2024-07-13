@@ -154,11 +154,17 @@ function action_admin_head()
             bottom: 0;
 
         }
+
         .submit-wysiwyg-trigger {
-            margin-right: 1rem;
+            margin-right: 1rem !important;
+            padding: 15px 30px;
+            line-height: 1;
+            font-size: 16px;
         }
 
-     
+        #wysiwyg-editor .inner .buttons .button {}
+
+
 
         <?php
         if (_is_module() || get_post_type() == 'producttaxonomypages' || get_post_type() == 'layouts') {

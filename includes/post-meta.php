@@ -38,7 +38,7 @@ function my_custom_popup()
     $html .=  "<textarea id='wysiwyg-editor-field'></textarea>";
     $html .= "<div class='buttons'>";
     $html .=  "<a class='submit-wysiwyg-trigger button button-primary button-large'>Submit</a>";
-    $html .=  "<a class='close-wysiwyg-button close-wysiwyg-trigger button button-primary button-large'>Close</a>";
+    $html .=  "<a class='close-wysiwyg-button close-wysiwyg-trigger button button-secondary button-large'>Close</a>";
     $html .=  "</div>";
 
     $html .=  "</div>";
