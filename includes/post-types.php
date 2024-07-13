@@ -537,6 +537,7 @@ $Guide_Category->args = array(
         'items_list'                 => __('Items list', 'text_domain'),
         'items_list_navigation'      => __('Items list navigation', 'text_domain'),
     ),
+    'show_in_rest' => true,
     'hierarchical' => true,
     'query_var'    => true,
     'rewrite'      => array(
