@@ -29,13 +29,19 @@ function codemirror() {
 
         jQuery(document).on("click", '.wysiwyg-editor-trigger', function (event) {
             jQuery('#wysiwyg-editor').addClass('active');
-            console.log('xsdsdsdsdsds');
         });
 
         jQuery(document).on("click", '.close-wysiwyg-trigger', function (event) {
             jQuery('#wysiwyg-editor').removeClass('active');
-            console.log('xsdsdsdsdsds');
         });
+
+        jQuery(document).on("click", '.submit-wysiwyg-trigger', function (event) {
+            jQuery('#wysiwyg-editor').removeClass('active');
+            var textareaId = jQuery('#wysiwyg-editor-field');
+            jQuery(this).parent().parent().parent().prev().find('textarea')(tinymce.get(textareaId).getContent());
+        });
+
+
 
     }, 1000);
 
