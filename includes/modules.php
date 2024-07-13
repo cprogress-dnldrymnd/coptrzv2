@@ -2069,11 +2069,8 @@ function __post_box($data, $class = [], $content_box_class = [])
     $background_class = isset($data['background_class']) ? $data['background_class'] : false;
     $tag = isset($data['tag']) ? $data['tag'] : 'h3';
     $description_class = isset($data['description_class']) ? $data['description_class'] : 'mb-4';
-
     $description_class_args[] = 'description-box small-text';
-
     $description_class_args[] = $description_class;
-
     $additional_content = isset($data['additional_content']) ? $data['additional_content'] : false;
 
     if ($background_class) {
@@ -2101,7 +2098,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     }
 
     if ($bg_image) {
-        $class[] = ' rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
+        $class[] = 'rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
     }
     $html = '';
     if ($col == true && $col != false && is_bool($col)) {
@@ -2185,7 +2182,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     }
     $html .= "</div>";
     $html .= "</div>";
-    if ($col == true) {
+    if ($col == true && $col != false && is_bool($col)) {
         $html .= "</div>";
     }
     return $html;
