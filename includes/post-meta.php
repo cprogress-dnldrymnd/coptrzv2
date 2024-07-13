@@ -50,6 +50,22 @@ Container::make('theme_options', __('Theme Settings'))
                 ->set_header_template('<%- label %>'),
 
         )
+    )
+    ->add_tab(
+        'Reviews From Coptrz',
+        array(
+            Field::make('complex', 'latest_from_coptrz')
+                ->set_layout('tabbed-vertical')
+                ->add_fields(array(
+                    Field::make('text', 'review_label', __('Review Label'))->set_classes('inline-field'),
+                    Field::make('text', 'review_score', __('Review Score'))->set_classes('inline-field'),
+                    Field::make('text', 'review_text', __('Review Text'))->set_classes('inline-field'),
+                    Field::make('image', 'review_logo', __('Review Logo'))->set_classes('inline-field'),
+                  
+                ))
+                ->set_header_template('<%- label %>'),
+
+        )
     );
 /*-----------------------------------------------------------------------------------*/
 /* Archives Settings
@@ -983,6 +999,9 @@ function __section_fields($name = 'sections')
                             ))
                             ->add_fields('latest_from_coptrz', array(
                                 Field::make('html', 'html')->set_html('<h3>This will display latest from coptrz section </h3>'),
+                            ))
+                            ->add_fields('reviews_column', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display reviews from different platform </h3>'),
                             ))
                     ))
                     ->add_fields('global_post_box_selection',  array(
