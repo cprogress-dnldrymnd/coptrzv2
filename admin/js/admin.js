@@ -16,7 +16,7 @@ function codemirror() {
                 menubar: false,
                 statusbar: false,
                 branding: false,
-                height: 500
+                height: 300
             });
 
 
