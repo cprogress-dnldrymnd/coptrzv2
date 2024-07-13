@@ -6,8 +6,8 @@ use Carbon_Fields\Complex_Container;
 use Carbon_Fields\Field;
 function my_custom_popup()
 {
-    $html =  "<div class='wysiwyg-editor' id='wysiwyg-editor'>";
-    $html .=  "<div class='close-wysiwyg-editor close-wysiwyg-trigger'></div>";
+    $html =  "<div class='admin-popup' id='wysiwyg-editor'>";
+    $html .=  "<div class='close-admin-popup close-wysiwyg-trigger'></div>";
     $html .= "<div class='inner'>";
     $html .=  "<textarea id='wysiwyg-editor-field'></textarea>";
     $html .= "<div class='buttons'>";
