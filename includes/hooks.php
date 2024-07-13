@@ -127,6 +127,11 @@ function action_admin_head()
             justify-content: center;
         }
 
+
+        #wysiwyg-editor:not(.active) {
+            display: none;
+        }
+
         #wysiwyg-editor .inner {
             max-width: 700px;
             margin-left: auto;
@@ -135,7 +140,7 @@ function action_admin_head()
             padding: 2rem;
         }
 
-        
+
         <?php
         if (_is_module() || get_post_type() == 'producttaxonomypages' || get_post_type() == 'layouts') {
             echo '.wp-block-post-content { display: none !important }';
