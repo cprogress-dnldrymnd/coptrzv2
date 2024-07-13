@@ -401,6 +401,7 @@ $Events_Category->args = array(
         'items_list_navigation'      => __('Items list navigation', 'text_domain'),
     ),
     'rewrite'      => array('slug' => 'events-category'),
+    'show_in_rest' => true,
     'hierarchical' => true,
     'query_var'    => true,
     'has_archive'  => true,
@@ -434,6 +435,7 @@ $Webinars_Category->args = array(
         'items_list'                 => __('Items list', 'text_domain'),
         'items_list_navigation'      => __('Items list navigation', 'text_domain'),
     ),
+    'show_in_rest' => true,
     'hierarchical' => true,
     'query_var'    => true,
     'rewrite'      => array(
@@ -468,6 +470,7 @@ $Team_Category->args = array(
         'items_list'                 => __('Items list', 'text_domain'),
         'items_list_navigation'      => __('Items list navigation', 'text_domain'),
     ),
+    'show_in_rest' => true,
     'hierarchical' => true,
     'query_var'    => false,
     'has_archive'  => false,
@@ -502,6 +505,7 @@ $Case_Study_Category->args = array(
         'items_list'                 => __('Items list', 'text_domain'),
         'items_list_navigation'      => __('Items list navigation', 'text_domain'),
     ),
+    'show_in_rest' => true,
     'hierarchical' => true,
     'query_var'    => true,
     'rewrite'      => array(
