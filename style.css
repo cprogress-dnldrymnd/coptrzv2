@@ -10695,6 +10695,8 @@ input[type="checkbox"] {
   .swiper-button-prev:after {
     font-size: 15px; }
 
+.socials ul li a:hover, .socials ul li a:active, .socials ul li a:focus {
+  color: var(--bs-accent); }
 .socials ul li svg {
   width: 21px;
   height: 21px; }
