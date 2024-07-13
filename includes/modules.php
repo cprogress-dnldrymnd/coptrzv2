@@ -441,7 +441,7 @@ function ___sections($id = 'sections', $post_id = '')
                             }
                         }
 
-                        $border_radius = $section_style['border_radius'];
+                        $border_radius = $section_style['container_border_radius'];
                         if ($border_radius) {
                             if ($border_radius == 'custom') {
                                 $border_radius_custom = $section_style['border_radius_custom'];
