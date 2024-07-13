@@ -744,7 +744,7 @@ function ___sections($id = 'sections', $post_id = '')
                                     'id' => $post,
                                     'featured' => false,
                                     'col' => true,
-                                    'elements' => array('image', 'title', 'excerpt')
+                                    'elements' => array('image', 'title', 'excerpt', 'button')
                                 );
                                 $html .= __post_box($data);
                             }
