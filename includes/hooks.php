@@ -111,6 +111,7 @@ function action_admin_head()
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item:hover {
             background-color: #fff;
+            color: #191e23;
         }
 
         <?php
