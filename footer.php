@@ -3,6 +3,8 @@ $args = array(
     'numberposts' => -1,
     'post_type' => 'layouts',
     'fields' => 'ids',
+    'orderby' => 'menu_order',
+    'order' => 'DESC',
     'meta_query' => array(
         array(
             'key' => '_display_location',
