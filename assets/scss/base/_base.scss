@@ -183,6 +183,13 @@ section {
             }
         }
     }
+    .container-inner {
+        > * {
+            @include not-last-child {
+                margin-bottom: 3rem;
+            }
+        }
+    }
 }
 
 .button-box a,

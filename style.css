@@ -10579,6 +10579,8 @@ section:not(.no-overflow) {
   position: relative; }
 section .container > *:not(:last-child) {
   margin-bottom: 3rem; }
+section .container-inner > *:not(:last-child) {
+  margin-bottom: 3rem; }
 
 .button-box a,
 .button-box button,
