@@ -1,8 +1,6 @@
 jQuery(document).ready(function ($) {
     codemirror();
 });
-
-
 function codemirror() {
     setTimeout(function () {
         if (typeof tinymce !== 'undefined') {
@@ -29,4 +27,8 @@ function codemirror() {
             console.error('TinyMCE is not loaded.');
         }
     }, 1000);
+
+    jQuery(document).on("click", '#Wysiwyg-Editor-Trigger', function (event) {
+        jQuery('#wysiwyg-editor').addClass('active');
+    });
 }
