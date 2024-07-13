@@ -445,7 +445,7 @@ class Shortcodes
         $socials = get__theme_option('socials');
         if ($socials) {
             $html = "<div class='socials'>";
-            $html .= "<div class='d-inline-flex align-items-center m-0 p-0'>";
+            $html .= "<ul class='d-inline-flex align-items-center m-0 p-0'>";
             foreach ($socials as $social) {
                 $url = $social['url'];
                 $icon = $social['_type'];
@@ -456,7 +456,7 @@ class Shortcodes
                 $html .= "</li>";
             }
 
-            $html .= "</div>";
+            $html .= "</ul>";
             $html .= "</div>";
             return $html;
         }
