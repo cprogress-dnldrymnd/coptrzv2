@@ -422,12 +422,12 @@ class Shortcodes
                 $html .= "<div class='small-text'>$review_text</div>";
                 $html .= "</div>";
 
+
+                $html .= "</div>";
                 $html .= __image(array(
                     'image_id' => $review_logo,
                     'class' => _attribute('class', array('logo-box text-center mt-4'))
                 ));
-
-                $html .= "</div>";
 
                 $html .= "</div>";
                 $html .= "</div>";
