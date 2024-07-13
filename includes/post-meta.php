@@ -1226,7 +1226,6 @@ function __section_fields($name = 'sections')
                         Field::make('html', 'activate_wysiwyg')->set_width(20)
                             ->set_html('<button class="button button-primary button-large" id="Wysiwyg-Editor-Trigger">Wysiwyg Editor</button>'),
                         Field::make('text', 'description_width', __('Description Custom Width')),
-                        Field::make('text', 'description_width', __('Description Custom Width')),
                         Field::make('select', 'description_alignment', __('Description Alignment'))
                             ->set_options(
                                 array(
