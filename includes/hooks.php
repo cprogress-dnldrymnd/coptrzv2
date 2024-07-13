@@ -129,7 +129,6 @@ function action_admin_head()
 
 
         #wysiwyg-editor:not(.active) {
-            display: none;
         }
 
         #wysiwyg-editor .inner {
