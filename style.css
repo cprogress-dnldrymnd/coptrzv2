@@ -10527,7 +10527,7 @@ hr {
   border-radius: var(--border-radius, 10px);
   overflow: hidden; }
 
-.border-default {
+.border-default:not(.border-with-custom) {
   border: 1px solid var(--border-color); }
 
 @media (min-width: 1500px) {
@@ -11126,7 +11126,8 @@ hr {
     background-color: var(--bs-secondary) !important;
     border-color: var(--bs-secondary) !important; }
 
-.trustpilot-logo svg, .trustpilot-stars svg {
+.trustpilot-logo svg,
+.trustpilot-stars svg {
   height: 45px;
   width: auto; }
 

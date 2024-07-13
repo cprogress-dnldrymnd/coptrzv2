@@ -113,7 +113,12 @@ main {
 }
 
 .border-default {
-    border: 1px solid var(--border-color);
+    &:not(.border-with-custom) {
+        border: 1px solid var(--border-color);
+    }
+    &.border-with-custom {
+        color: var(--border-color);
+    }
 }
 .container {
     @media (min-width: 1500px) {
@@ -889,7 +894,8 @@ hr {
     }
 }
 
-.trustpilot-logo, .trustpilot-stars {
+.trustpilot-logo,
+.trustpilot-stars {
     svg {
         height: 45px;
         width: auto;
