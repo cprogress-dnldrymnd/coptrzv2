@@ -445,9 +445,9 @@ function ___sections($id = 'sections', $post_id = '')
                         if ($container_border_radius) {
                             if ($container_border_radius == 'custom') {
                                 $container_border_radius_custom = $section_style['container_border_radius_custom'];
-                                $styles_section[] = "border-radius: $container_border_radius_custom";
+                                $container_styles[] = "border-radius: $container_border_radius_custom";
                             } else {
-                                $classes[] = $container_border_radius;
+                                $container_classes[] = $container_border_radius;
                             }
                         }
                         $container_border_style = $section_style['container_border_style'];
