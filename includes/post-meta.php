@@ -13,7 +13,6 @@ Container::make('theme_options', __('Theme Settings'))
         'Latest From Coptrz',
         array(
             Field::make('complex', 'latest_from_coptrz')
-                ->set_layout('tabbed-vertical')
                 ->add_fields(array(
                     Field::make('text', 'label', __('Label'))->set_classes('inline-field'),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
@@ -55,7 +54,6 @@ Container::make('theme_options', __('Theme Settings'))
         'Reviews',
         array(
             Field::make('complex', 'reviews')
-                ->set_layout('tabbed-vertical')
                 ->add_fields(array(
                     Field::make('text', 'review_label', __('Review Label'))->set_classes('inline-field'),
                     Field::make('text', 'review_score', __('Review Score'))->set_classes('inline-field'),
