@@ -408,7 +408,7 @@ function ___sections($id = 'sections', $post_id = '')
                             if ($border_style == 'border-custom') {
                                 $border_color = $section_style['border_color'];
                                 $border_width = $section_style['border_width'];
-                                if ($border_color == 'border_color_custom') {
+                                if ($border_color == 'border-custom-color') {
                                     $border_color_custom = $section_style['border_color_custom'];
                                     $styles_section[] = "border-color: $border_color_custom";
                                 } else {
