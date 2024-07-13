@@ -337,9 +337,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $background_color_custom = $section_style['background_color_custom'];
                         $background_color_container = $section_style['background_color_container'];
 
-                        if ($background_color_container) {
-                            $container_classes[] = $background_color_container;
-                        }
+                       
 
                         $classes[] = $section_style['background_color'];
                         if ($background_color_custom) {
