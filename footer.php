@@ -29,9 +29,7 @@ if (!$hide_footer) {
                 <div class="inner rounded-10px">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto">
-                            <a class="site-logo" href="#">
-
-                            </a>
+                            <?= do_shortcode('[site_logo]') ?>
                         </div>
                         <div class="col-auto">
                             <div class="socials">

@@ -461,6 +461,21 @@ class Shortcodes
             return $html;
         }
     }
+
+    function site_logo()
+    {
+        $logo = get__theme_option('logo');
+        $site_url = get_site_url();
+
+        $html = "<div class='site-logo'>";
+        $html .= "<a href='$site_url'>";
+        $html .= __icon(array(
+            'id' => $logo
+        ));
+        $html .= "</a>";
+        $html .= "</div>";
+        return $html;
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -475,3 +490,4 @@ add_shortcode('related_posts', array($Shortcodes, 'related_posts'));
 add_shortcode('latest_from_coptrz', array($Shortcodes, 'latest_from_coptrz'));
 add_shortcode('reviews', array($Shortcodes, 'reviews'));
 add_shortcode('socials', array($Shortcodes, 'socials'));
+add_shortcode('site_logo', array($Shortcodes, 'site_logo'));
