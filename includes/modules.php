@@ -283,16 +283,31 @@ function ___sections($id = 'sections', $post_id = '')
                 $type = $section_style['_type'];
                 switch ($type) {
                     case 'padding':
-                        $classes[] = $section_style['padding_top'];
-                        $classes[] = $section_style['padding_bottom'];
-                        $classes[] = $section_style['padding_left'];
-                        $classes[] = $section_style['padding_right'];
+                        if ($section_style['padding_top']) {
+                            $classes[] = $section_style['padding_top'];
+                        }
+                        if ($section_style['padding_bottom']) {
+                            $classes[] = $section_style['padding_bottom'];
+                        }
+                        if ($section_style['padding_left']) {
+                            $classes[] = $section_style['padding_left'];
+                        }
+                        if ($section_style['padding_right']) {
+                            $classes[] = $section_style['padding_right'];
+                        }
 
-                        $container_classes[] = $section_style['container_padding_top'];
-                        $container_classes[] = $section_style['container_padding_bottom'];
-                        $container_classes[] = $section_style['container_padding_left'];
-                        $container_classes[] = $section_style['container_padding_right'];
-
+                        if ($section_style['container_padding_top']) {
+                            $container_classes[] = $section_style['container_padding_top'];
+                        }
+                        if ($section_style['container_padding_bottom']) {
+                            $container_classes[] = $section_style['container_padding_bottom'];
+                        }
+                        if ($section_style['container_padding_left']) {
+                            $container_classes[] = $section_style['container_padding_left'];
+                        }
+                        if ($section_style['container_padding_right']) {
+                            $container_classes[] = $section_style['container_padding_right'];
+                        }
                         break;
                     case 'margin':
                         $classes[] = $section_style['margin_top'];
@@ -421,10 +436,10 @@ function ___sections($id = 'sections', $post_id = '')
 
 
                         if ($border_style) {
-
-
                             $container_border_style = $section_style['container_border_style'];
-                            $container_classes[] = $container_border_style;
+                            if ($container_border_style) {
+                                $container_classes[] = $container_border_style;
+                            }
                             $container_border_color = $section_style['container_border_color'];
                             $container_border_color_custom = $section_style['container_border_color_custom'];
                             $container_border_width_top = $section_style['container_border_width_top'];
