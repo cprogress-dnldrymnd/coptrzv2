@@ -920,32 +920,32 @@ function ____post_grid_module($data)
                 }
                 break;
             case 'border':
-                $border_radius = $column_style['border_radius'];
+                $border_radius = $post_box_style['border_radius'];
                 if ($border_radius) {
                     if ($border_radius == 'custom') {
-                        $border_radius_custom = $column_style['border_radius_custom'];
+                        $border_radius_custom = $post_box_style['border_radius_custom'];
                         $styles[] = "border-radius: $border_radius_custom";
                     } else {
                         $classes[] = $border_radius;
                     }
                 }
-                $border_style = $column_style['border_style'];
+                $border_style = $post_box_style['border_style'];
                 if ($border_style) {
                     if ($border_style == 'border-custom') {
-                        $border_color = $column_style['border_color'];
-                        $border_width = $column_style['border_width'];
+                        $border_color = $post_box_style['border_color'];
+                        $border_width = $post_box_style['border_width'];
                         if ($border_color == 'border-custom-color') {
-                            $border_color_custom = $column_style['border_color_custom'];
+                            $border_color_custom = $post_box_style['border_color_custom'];
                             $styles[] = "border-color: $border_color_custom";
                         } else {
                             $classes[] = $border_color;
                         }
 
                         if ($border_width == 'custom') {
-                            $border_width_top =  $column_style['border_width_top'];
-                            $border_width_right =  $column_style['border_width_right'];
-                            $border_width_bottom =  $column_style['border_width_bottom'];
-                            $border_width_left =  $column_style['border_width_left'];
+                            $border_width_top =  $post_box_style['border_width_top'];
+                            $border_width_right =  $post_box_style['border_width_right'];
+                            $border_width_bottom =  $post_box_style['border_width_bottom'];
+                            $border_width_left =  $post_box_style['border_width_left'];
                             $classes[] = 'border-width-custom';
 
                             if ($border_width_top) {
