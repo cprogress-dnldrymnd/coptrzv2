@@ -47,5 +47,9 @@ $form_args = array(
         </div>
     </div>
 </section>
-
+<section class="trustpilot bg-light rounded-corner xs-padding mt-20px mx-20px">
+    <div class="container">
+dsds
+    </div>
+</section>
 <?php get_footer('landing'); ?>
