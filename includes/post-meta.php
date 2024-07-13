@@ -30,7 +30,7 @@ function codemirror_enqueue_scripts($hook)
 
 
 function my_custom_popup()
-{f
+{
     $html =  "<div class='wysiwyg-editor' id='wysiwyg-editor'>";
     $html .= "<div class='inner'>";
     $html .=  "<textarea id='wysiwyg-editor-field'></textarea>";
@@ -1260,7 +1260,7 @@ function __section_fields($name = 'sections')
                         Field::make('html', 'html_4')->set_html('<label>Section Description Settings</label>')->set_classes('cb-label'),
                         Field::make('textarea', 'description', __('Description'))->set_width(80)->set_classes('editor-field'),
                         Field::make('html', 'activate_wysiwyg')->set_width(20)
-                            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger">Wysiwyg Editor</a>'),
+                            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
                         Field::make('text', 'description_width', __('Description Custom Width')),
                         Field::make('select', 'description_alignment', __('Description Alignment'))
                             ->set_options(
