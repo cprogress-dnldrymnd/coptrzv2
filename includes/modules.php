@@ -269,6 +269,7 @@ function ___sections($id = 'sections', $post_id = '')
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
             $container_styles = array();
             $container_classes = array();
+            $is_container_background = false;
             $container_classes[] = 'position-relative';
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
@@ -344,7 +345,6 @@ function ___sections($id = 'sections', $post_id = '')
                         $background = $section_style['background'];
                         $background_youtube = $section_style['background_youtube'];
                         $is_container_background = $section_style['is_container_background'];
-
                         break;
 
                     case 'background_overlay':
