@@ -766,7 +766,7 @@ function ___sections($id = 'sections', $post_id = '')
                                 'featured' => false,
                                 'col' => true,
                                 'tag' => 'h4',
-                                'description_class' => 'excerpt-no-limit mb-0',
+                                'description_class' => 'excerpt-no-limit mb-0__related_posts',
                                 'elements' => array('image', 'title', 'content')
                             );
                             $html .= __post_box($data);
