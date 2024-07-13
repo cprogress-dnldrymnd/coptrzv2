@@ -10452,11 +10452,12 @@ p:last-child {
 .bg-contain {
   background-size: contain !important; }
 
-#wpadminbar {
+@media screen and (max-width: 991px) {
+  #wpadminbar {
+    display: none; } }
+
+#wpadminbar *:not(.ab-icon) {
   font-family: var(--primary-font); }
-  @media screen and (max-width: 991px) {
-    #wpadminbar {
-      display: none; } }
 
 @media screen and (max-width: 991px) {
   .html.html.html {

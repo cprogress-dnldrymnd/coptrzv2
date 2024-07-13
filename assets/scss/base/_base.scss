@@ -1,8 +1,10 @@
 #wpadminbar {
-    font-family: var(--primary-font);
     @include responsive(xs-sm) {
         display: none;
     }
+}
+#wpadminbar *:not(.ab-icon) {
+    font-family: var(--primary-font) !important;
 }
 .html.html.html {
     @include responsive(xs-sm) {
