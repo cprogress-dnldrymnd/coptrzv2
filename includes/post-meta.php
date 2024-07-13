@@ -4822,7 +4822,113 @@ function __section_fields($name = 'sections')
                                 ),
 
                             Field::make('html', 'html_2')->set_html('<label>Container Border</label>')->set_classes('cb-label'),
+                            Field::make('html', 'html_1')->set_html('<label>Section Border</label>')->set_classes('cb-label'),
+                            Field::make('select', 'container_border_radius', 'Border Radius')->set_classes('inline-field-wide-label')
+                                ->set_options(
+                                    array(
+                                        ''   => 'None',
+                                        'rounded-corner'   => 'Default[10px]',
+                                        'custom'   => 'Custom',
+                                    )
+                                ),
+                            Field::make('text', 'container_border_radius_custom', 'Custom Border Radius')->set_classes('inline-field-wide-label')
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'container_border_radius',
+                                            'value' => 'custom',
+                                            'compare' => '='
+                                        )
+                                    )
+                                ),
+                            Field::make('select', 'container_border_style', 'Border Style')->set_classes('inline-field-wide-label')
+                                ->set_options(
+                                    array(
+                                        ''   => 'None',
+                                        'border-default'   => 'Default',
+                                        'border-custom'   => 'Custom',
+                                    )
+                                ),
 
+                            Field::make('select', 'container_border_color', 'Border Color')->set_classes('inline-field-wide-label')
+                                ->set_options(
+                                    array(
+                                        'border-default'   => 'Default',
+                                        'border-primary'   => 'Primary',
+                                        'border-secondary' => 'Secondary',
+                                        'border-accent'    => 'Accent',
+                                        'border-white'     => 'White',
+                                        'border-light-gray'     => 'Light Gray',
+                                        'border-custom-color'    => 'Custom',
+                                    )
+                                )
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'container_border_style',
+                                            'value' => 'border-custom',
+                                        ),
+                                    )
+                                ),
+                            Field::make('color', 'container_border_color_custom', __('Border Color'))->set_classes('inline-field-wide-label')
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'container_border_color',
+                                            'value' => 'border-custom-color',
+                                        ),
+                                    )
+                                ),
+
+                            Field::make('select', 'container_border_width', 'Border Width')->set_classes('inline-field-wide-label')
+                                ->set_options(array(
+                                    'default' => 'Default[1px]',
+                                    'custom' => 'Custom'
+                                ))
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'container_border_style',
+                                            'value' => 'border-custom',
+                                        ),
+                                    )
+                                ),
+                            Field::make('text', 'container_border_width_top', 'Top Border Width')->set_classes('inline-field-wide-label')->set_default_value(0)
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'container_border_width',
+                                            'value' => 'custom',
+                                        ),
+                                    )
+                                ),
+                            Field::make('text', 'container_border_width_right', 'Right Border Width')->set_classes('inline-field-wide-label')->set_default_value(0)
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'container_border_width',
+                                            'value' => 'custom',
+                                        ),
+                                    )
+                                ),
+                            Field::make('text', 'container_border_width_bottom', 'Bottom Border Width')->set_classes('inline-field-wide-label')->set_default_value(0)
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'container_border_width',
+                                            'value' => 'custom',
+                                        ),
+                                    )
+                                ),
+                            Field::make('text', 'container_border_width_left', 'Left Border Width')->set_classes('inline-field-wide-label')->set_default_value(0)
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'container_border_width',
+                                            'value' => 'custom',
+                                        ),
+                                    )
+                                ),
 
                         )
                     )
