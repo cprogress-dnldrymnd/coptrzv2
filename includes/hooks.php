@@ -90,10 +90,11 @@ function action_admin_head()
             z-index: 999 !important;
             width: 600px;
             flex-wrap: wrap;
+            display: flex;
         }
 
-        .cf-complex__inserter-menu.cf-complex__inserter-menu:not[hidden] {
-            display: flex;
+        .cf-complex__inserter-menu.cf-complex__inserter-menu[hidden] {
+            display: none !important;
         }
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item {
