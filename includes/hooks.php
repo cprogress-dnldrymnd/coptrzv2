@@ -141,7 +141,7 @@ function action_admin_head()
             position: relative;
         }
 
-        #wysiwyg-editor .inner .button {
+        #wysiwyg-editor .inner .buttons {
             margin: 1rem;
 
         }
