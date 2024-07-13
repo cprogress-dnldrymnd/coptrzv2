@@ -1064,7 +1064,6 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'source', __('Source'))
                             ->set_options(
                                 array(
-                                    'all'      => 'Select All',
                                     'manually'      => 'Select Manually',
                                     'category'      => 'Select by Category',
                                 )
