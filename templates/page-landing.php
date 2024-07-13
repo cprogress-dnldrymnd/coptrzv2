@@ -66,7 +66,7 @@ $form_args = array(
                 </div>
             </div>
             <div class="col-auto">
-                <p>Based on <span class="fw-medium"></span> reviews</p>
+                <p>Based on <span class="fw-medium">217</span> reviews</p>
             </div>
         </div>
     </div>
