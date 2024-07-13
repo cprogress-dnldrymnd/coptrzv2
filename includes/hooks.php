@@ -101,7 +101,7 @@ function action_admin_head()
         }
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item {
-            flex: 0 0  calc(33.33333333% - 40px);
+            flex: 0 0 calc(33.33333333% - 40px);
             padding: 15px;
             margin: 5px;
             border-radius: 5px;
@@ -114,6 +114,28 @@ function action_admin_head()
             color: #191e23;
         }
 
+        #wysiwyg-editor {
+            position: fixed;
+            z-index: 9999;
+            background: rgba(0, 0, 0, .5);
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #wysiwyg-editor .inner {
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #fff;
+            padding: 2rem;
+        }
+
+        
         <?php
         if (_is_module() || get_post_type() == 'producttaxonomypages' || get_post_type() == 'layouts') {
             echo '.wp-block-post-content { display: none !important }';
