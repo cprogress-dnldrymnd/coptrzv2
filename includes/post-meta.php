@@ -985,9 +985,6 @@ function __section_fields($name = 'sections')
                                 Field::make('html', 'html')->set_html('<h3>This will display latest from coptrz section </h3>'),
                             ))
                     ))
-                    ->add_fields('relate_post',  array(
-                        Field::make('html', 'html')->set_html('<h3>This will display related post base on current post type </h3>'),
-                    ))
                     ->add_fields('global_post_box_selection',  array(
                         Field::make('association', 'post', 'Select Items')
                             ->set_types(
@@ -998,6 +995,9 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                             )
+                    ))
+                    ->add_fields('related_post',  array(
+                        Field::make('html', 'html')->set_html('<h3>This will display related post base on current post type </h3>'),
                     ))
                     ->add_fields('heading', array(
                         Field::make('html', 'html_1')->set_html('<label>Section Heading Options</label>')->set_classes('cb-label'),
