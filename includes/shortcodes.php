@@ -458,7 +458,7 @@ class Shortcodes
 
             $html .= "</div>";
             $html .= "</div>";
-            return $socials;
+            return $html;
         }
     }
 }
