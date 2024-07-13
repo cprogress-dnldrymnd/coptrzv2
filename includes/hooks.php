@@ -138,6 +138,7 @@ function action_admin_head()
             margin-right: auto;
             background-color: #fff;
             padding: 2rem;
+            width: 100%;
         }
 
 
