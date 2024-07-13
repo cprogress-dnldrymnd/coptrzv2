@@ -746,7 +746,7 @@ function ___sections($id = 'sections', $post_id = '')
                                     'id' => $post,
                                     'featured' => false,
                                     'col' => true,
-                                    'button_text' => $post_type_obj->labels->singular_name,
+                                    'button_text' => 'Read '. $post_type_obj->labels->singular_name,
                                     'elements' => array('image', 'title', 'excerpt', 'button')
                                 );
                                 $html .= __post_box($data);
