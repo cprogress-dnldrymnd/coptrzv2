@@ -60,9 +60,9 @@ Container::make('theme_options', __('Theme Settings'))
                     Field::make('text', 'review_score', __('Review Score'))->set_classes('inline-field'),
                     Field::make('text', 'review_text', __('Review Text'))->set_classes('inline-field'),
                     Field::make('image', 'review_logo', __('Review Logo'))->set_classes('inline-field'),
-                  
+
                 ))
-                ->set_header_template('<%- review_label %>'),
+                ->set_header_template('<%- review_label %>')
                 ->set_collapse(true)
 
         )
