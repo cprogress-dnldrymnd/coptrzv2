@@ -10530,7 +10530,7 @@ hr {
 .border-default:not(.border-width-custom) {
   border: 1px solid var(--border-color); }
 .border-default.border-width-custom {
-  color: var(--border-color); }
+  border-color: var(--border-color); }
 
 @media (min-width: 1500px) {
   .container {
