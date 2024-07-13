@@ -731,8 +731,33 @@ function ___sections($id = 'sections', $post_id = '')
                         $posts = $items['post'];
                         $source = $items['source'];
                         $category = $items['category'];
+                        $category_arr = [];
+
+                        foreach ($category as $cat) {
+                            $category_arr[] = $cat['id'];
+                        }
+                        if ($source == 'category') {
+                            $args = array(
+                                'post_type' => 'globalpostboxes',
+                                'post_status' => 'publish',
+                                'fields' => 'ids',
+                                'exclude' => get_the_ID(),
+                                'tax_query' => array(
+                                    array(
+                                        'taxonomy' => 'global_post_boxes_category',
+                                        'field'    => 'term_id',
+                                        'terms'    => $category_arr
+                                    )
+                                )
+                            );
+                            $posts = get_posts($args);
+                        } else {
+                            $posts_list = $posts;
+                        }
+
                         $html .= "<div class='row g-4 same-image-height row-global-post'>";
-                        foreach ($posts as $post) {
+
+                        foreach ($posts_list as $post) {
                             $data = array(
                                 'id' => $post['id'],
                                 'featured' => false,
