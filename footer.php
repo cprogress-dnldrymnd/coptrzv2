@@ -4,7 +4,7 @@ $args = array(
     'post_type' => 'layouts',
     'fields' => 'ids',
     'orderby' => 'menu_order',
-    'order' => 'DESC',
+    'order' => 'ASC',
     'meta_query' => array(
         array(
             'key' => '_display_location',
