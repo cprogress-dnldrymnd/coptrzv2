@@ -142,7 +142,7 @@ function action_admin_head()
         }
 
         #wysiwyg-editor .inner .button {
-            margin: 2rem;
+            margin: 1rem;
 
         }
 
@@ -155,13 +155,7 @@ function action_admin_head()
 
         }
 
-        .close-wysiwyg-button {
-            position: absolute;
-            top: 30px;
-            right: 20px;
-            z-index: 1;
-
-        }
+     
 
         <?php
         if (_is_module() || get_post_type() == 'producttaxonomypages' || get_post_type() == 'layouts') {
