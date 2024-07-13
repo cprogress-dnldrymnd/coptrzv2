@@ -21,6 +21,32 @@ function action_wp_head()
 
 add_action('wp_head', 'action_wp_head');
 
+/*-----------------------------------------------------------------------------------*/
+/* Admin Settings
+/*-----------------------------------------------------------------------------------*/
+
+function action_admin_enqueue_scripts($hook)
+{
+	wp_enqueue_style('admin', get_template_directory_uri() . '/admin/css/admin.css');
+    wp_enqueue_script('admin', get_template_directory_uri() . '/admin/js/admin.js');
+}
+add_action('admin_enqueue_scripts', 'action_admin_enqueue_scripts');
+/*-----------------------------------------------------------------------------------*/
+/* Code Miror
+/*-----------------------------------------------------------------------------------*/
+add_action('admin_enqueue_scripts', 'codemirror_enqueue_scripts');
+
+function codemirror_enqueue_scripts($hook)
+{
+    $cm_settings = array(
+        'ce_css'  => wp_enqueue_code_editor(array('type' => 'text/css', 'codemirror' => array('autoRefresh' => true))),
+        'ce_html' => wp_enqueue_code_editor(array('type' => 'text/html', 'codemirror' => array('autoRefresh' => true)))
+    );
+    wp_localize_script('jquery', 'cm_settings', $cm_settings);
+
+    wp_enqueue_style('wp-codemirror');
+}
+
 
 function action_admin_head()
 {
@@ -40,3 +66,4 @@ function action_admin_head()
 <?php
 }
 add_action('admin_head', 'action_admin_head');
+
