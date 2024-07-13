@@ -61,7 +61,7 @@ Container::make('theme_options', __('Theme Settings'))
                     Field::make('image', 'review_logo', __('Review Logo'))->set_classes('inline-field'),
                   
                 ))
-                ->set_header_template('<%- label %>'),
+                ->set_header_template('<%- review_label %>'),
 
         )
     );
