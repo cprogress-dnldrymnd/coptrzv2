@@ -393,92 +393,13 @@ function ___sections($id = 'sections', $post_id = '')
                         }
                         break;
                     case 'border':
-                        $border_style = $section_style['border_style'];
-                        if ($border_style) {
-                            $classes[] = $border_style;
-                            $border_color = $section_style['border_color'];
-                            $border_color_custom = $section_style['border_color_custom'];
-                            $border_width_top = $section_style['border_width_top'];
-                            $border_width_right = $section_style['border_width_right'];
-                            $border_width_bottom = $section_style['border_width_bottom'];
-                            $border_width_left = $section_style['border_width_left'];
-                            $different_border_width = $section_style['different_border_width'];
-                            $border_width = $section_style['border_width'];
-                            if ($border_color == 'border-custom-color') {
-                                $styles_section[] = 'border-color: ' . $border_color_custom;
-                            } else {
-                                $classes[] = $section_style['border_color'];
-                            }
-                            if ($different_border_width) {
-                                if ($border_width_top) {
-                                    $styles_section[] = 'border-top-width: ' . $border_width_top;
-                                }
-                                if ($border_width_right) {
-                                    $styles_section[] = 'border-right-width: ' . $border_width_right;
-                                }
-                                if ($border_width_bottom) {
-                                    $styles_section[] = 'border-bottom-width: ' . $border_width_bottom;
-                                }
-                                if ($border_width_left) {
-                                    $styles_section[] = 'border-left-width: ' . $border_width_left;
-                                }
-                            } else {
-                                if ($border_width) {
-                                    $styles_section[] = 'border-width: ' . $border_width;
-                                }
-                            }
+                        $border_radius = $section_style['border_radius'];
+                        if ($border_radius && $border_radius != 'custom') {
+                            $classes[] = $border_radius;
+                        } else {
+                            $border_radius_custom = $section_style['border_radius_custom'];
+                            $container_styles[] = "--border-radius: $border_radius_custom";
                         }
-
-                        if ($section_style['border_radius']) {
-                            $classes[] = 'rounded-corner';
-                            $styles_section[] = '--border-radius: ' . $section_style['border_radius'];
-                        }
-
-
-                        if ($border_style) {
-                            $container_border_style = $section_style['container_border_style'];
-                            if ($container_border_style) {
-                                $container_classes[] = $container_border_style;
-                            }
-                            $container_border_color = $section_style['container_border_color'];
-                            $container_border_color_custom = $section_style['container_border_color_custom'];
-                            $container_border_width_top = $section_style['container_border_width_top'];
-                            $container_border_width_right = $section_style['container_border_width_right'];
-                            $container_border_width_bottom = $section_style['container_border_width_bottom'];
-                            $container_border_width_left = $section_style['container_border_width_left'];
-                            $different_container_border_width = $section_style['different_container_border_width'];
-                            $container_border_width = $section_style['container_border_width'];
-
-                            if ($container_border_color == 'border-custom-color') {
-                                $container_styles[] = 'border-color: ' . $container_border_color_custom;
-                            } else {
-                                $container_classes[] = $section_style['container_border_color'];
-                            }
-                            if ($different_container_border_width) {
-                                if ($container_border_width_top) {
-                                    $container_styles[] = 'border-top-width: ' . $container_border_width_top;
-                                }
-                                if ($container_border_width_right) {
-                                    $container_styles[] = 'border-right-width: ' . $container_border_width_right;
-                                }
-                                if ($container_border_width_bottom) {
-                                    $container_styles[] = 'border-bottom-width: ' . $container_border_width_bottom;
-                                }
-                                if ($container_border_width_left) {
-                                    $container_styles[] = 'border-left-width: ' . $container_border_width_left;
-                                }
-                            } else {
-                                if ($container_border_width) {
-                                    $container_styles[] = 'border-width: ' . $container_border_width;
-                                }
-                            }
-                        }
-
-                        if ($section_style['container_border_radius']) {
-                            $container_classes[] = 'rounded-corner';
-                            $container_styles[] = '--border-radius: ' . $section_style['container_border_radius'];
-                        }
-
 
 
                         break;
@@ -503,7 +424,7 @@ function ___sections($id = 'sections', $post_id = '')
             $section_attribute = _attributes(array($classes_attr, $id_val, $styles_val));
             $container_attribute = _attributes(array($container_styles_val, $container_classes_attr));
 
-            
+
             $html .= "<section $section_attribute>";
 
             if ($background_image_overlay_args) {
