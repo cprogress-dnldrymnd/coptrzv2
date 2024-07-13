@@ -395,10 +395,11 @@ function ___sections($id = 'sections', $post_id = '')
                     case 'border':
                         $border_radius = $section_style['border_radius'];
                         if ($border_radius) {
-                            $classes[] = $border_radius;
-                            if($border_radius == 'custom') {
+                            if ($border_radius == 'custom') {
                                 $border_radius_custom = $section_style['border_radius_custom'];
                                 $container_styles[] = "--border-radius: $border_radius_custom";
+                            } else {
+                                $classes[] = $border_radius;
                             }
                         }
 
