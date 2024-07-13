@@ -270,6 +270,8 @@ function ___sections($id = 'sections', $post_id = '')
             $container_styles = array();
             $container_classes = array();
             $is_container_background = false;
+            $background_type = false;
+            $background  = false;
             $container_classes[] = 'position-relative container-inner';
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
