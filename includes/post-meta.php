@@ -90,10 +90,30 @@ function __general_settings_fields()
 }
 function __social_fields()
 {
+    return array(
+        Field::make('complex', 'socials')
+            ->add_fields('facebook', array(
+                Field::make('text', 'url', __('Facebook URL'))->set_classes('inline-field'),
+            ))
+            ->add_fields('instagram', array(
+                Field::make('text', 'url', __('Instagram URL'))->set_classes('inline-field'),
+            ))
+            ->add_fields('x', array(
+                Field::make('text', 'url', __('X URL'))->set_classes('inline-field'),
+            ))
+            ->add_fields('linkedin', array(
+                Field::make('text', 'url', __('Linkedin URL'))->set_classes('inline-field'),
+            ))
+            ->add_fields('youtube', array(
+                Field::make('text', 'url', __('Youtube URL'))->set_classes('inline-field'),
+            ))
+            ->set_duplicate_groups_allowed(false)
+            ->set_collapsed(true)
+
+    );
 }
 Container::make('theme_options', __('Theme Settings'))
     ->add_tab('General Settings', __general_settings_fields())
-    ->add_tab('Socials', __social_fields())
     ->add_tab('Socials', __social_fields());
 
 Container::make('theme_options', __('Global Widgets'))
