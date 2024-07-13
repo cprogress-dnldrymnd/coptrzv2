@@ -4,6 +4,7 @@ use Carbon_Fields\Block;
 use Carbon_Fields\Container;
 use Carbon_Fields\Complex_Container;
 use Carbon_Fields\Field;
+
 function my_custom_popup()
 {
     $html =  "<div class='admin-popup' id='wysiwyg-editor'>";
@@ -1848,7 +1849,9 @@ function __section_fields($name = 'sections')
                                                 ->add_fields(
                                                     array(
                                                         Field::make('text', 'heading', __('Heading')),
-                                                        Field::make('textarea', 'description', __('Description')),
+                                                        Field::make('textarea', 'description', __('Description'))->set_width(80),
+                                                        Field::make('html', 'activate_wysiwyg')->set_width(20)
+                                                            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
                                                     )
                                                 )
                                                 ->set_header_template('<%- heading  %>')
@@ -4670,8 +4673,11 @@ function __section_fields($name = 'sections')
                         Field::make('complex', 'tabs', 'Tabs')
                             ->add_fields('tabs',  array(
                                 Field::make('text', 'heading', 'Heading'),
-                                Field::make('textarea', 'description', 'Description')
+                                Field::make('textarea', 'description', 'Description')->set_width(80),
+                                Field::make('html', 'activate_wysiwyg')->set_width(20)
+                                    ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
                             ))
+                            ->set_layout('tabbed-vertical')
                             ->set_header_template('Tab: <%- heading %>')
 
                     )),
