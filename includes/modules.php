@@ -2102,13 +2102,13 @@ function __post_box($data, $class = [], $content_box_class = [])
     }
     $html = '';
     if ($col == true && $col != false && is_bool($col)) {
-        $html = "<div class='col-lg-4 col-sm-6'>";
+        $html = "<div class='col-lg-4 col-sm-6'>";//col
     } else {
-        $html = "<div class='$col'>";
+        $html = "<div class='$col'>";//col
     }
     $class_attribute = _attribute('class', $class);
     $content_box_class_attribute = _attribute('class', $content_box_class);
-    $html .= "<div $class_attribute>";
+    $html .= "<div $class_attribute>";//inner
     if ($featured) {
         $html .= __background($image);
         $html .= __post_category($id, 'category', 'text-white');
@@ -2181,10 +2181,8 @@ function __post_box($data, $class = [], $content_box_class = [])
         ));
     }
     $html .= "</div>";
-    $html .= "</div>";
-    if ($col == true && $col != false && is_bool($col)) {
-        $html .= "</div>";
-    }
+    $html .= "</div>";//inner
+    $html .= "</div>";//col
     return $html;
 }
 function ___hero_archive($key, $title)
