@@ -2523,7 +2523,7 @@ function __section_fields($name = 'sections')
                                                 ->add_fields(
                                                     'casestudies',
                                                     array(
-                                                        Field::make('hidden', 'taxonomy_key', '')->set_default_value('case_study_category'),
+                                                        Field::make('hidden', 'taxonomy_key', '')->set_default_value('casestudies_category'),
                                                         Field::make('select', 'source', __('Source'))
                                                             ->set_options(
                                                                 array(
@@ -2555,7 +2555,7 @@ function __section_fields($name = 'sections')
                                                                 array(
                                                                     array(
                                                                         'type'      => 'term',
-                                                                        'taxonomy' => 'case_study_category',
+                                                                        'taxonomy' => 'casestudies_category',
                                                                     )
                                                                 )
                                                             )
@@ -4367,7 +4367,7 @@ function __section_fields($name = 'sections')
                                 ->add_fields(
                                     'casestudies',
                                     array(
-                                        Field::make('hidden', 'taxonomy_key', '')->set_default_value('case_study_category'),
+                                        Field::make('hidden', 'taxonomy_key', '')->set_default_value('casestudies_category'),
                                         Field::make('select', 'source', __('Source'))
                                             ->set_options(
                                                 array(
@@ -4399,7 +4399,7 @@ function __section_fields($name = 'sections')
                                                 array(
                                                     array(
                                                         'type'      => 'term',
-                                                        'taxonomy' => 'case_study_category',
+                                                        'taxonomy' => 'casestudies_category',
                                                     )
                                                 )
                                             )
