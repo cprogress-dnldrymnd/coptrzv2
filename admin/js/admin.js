@@ -28,6 +28,7 @@ function codemirror() {
         jQuery(document).on("click", '.wysiwyg-editor-trigger', function (event) {
             jQuery('#wysiwyg-editor').addClass('active');
             $target = jQuery(this).parent().parent().parent().prev().find('textarea');
+            tinymce.get(textareaId).setContent($target.val());
         });
 
         jQuery(document).on("click", '.close-wysiwyg-trigger', function (event) {
@@ -37,10 +38,7 @@ function codemirror() {
 
         jQuery(document).on("click", '.submit-wysiwyg-trigger', function (event) {
             jQuery('#wysiwyg-editor').removeClass('active');
-            console.log($target.val());
-
             $target.val(tinymce.get(textareaId).getContent());
-            console.log(tinymce.get(textareaId).getContent());
         });
 
 
