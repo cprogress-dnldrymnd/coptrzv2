@@ -15,7 +15,8 @@ function codemirror() {
                 toolbar_location: 'top',
                 menubar: false,
                 statusbar: false,
-                branding: false
+                branding: false,
+                height: 500
             });
 
 
