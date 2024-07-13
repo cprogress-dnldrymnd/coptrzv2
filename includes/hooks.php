@@ -93,6 +93,7 @@ function action_admin_head()
             display: flex;
             padding: 30px;
             border-radius: 5px;
+            background-color: #191e23;
         }
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu[hidden] {
@@ -109,8 +110,7 @@ function action_admin_head()
         }
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item:hover {
-            background-color: #191e23;
-            color: #fff;
+            background-color: #fff;
         }
 
         <?php
