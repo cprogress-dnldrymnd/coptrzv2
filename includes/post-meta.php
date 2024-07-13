@@ -4769,6 +4769,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('text', 'border_width_top', 'Top Border Width')->set_width(20)
+                                ->set_default_value(0)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4778,6 +4779,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('text', 'border_width_right', 'Right Border Width')->set_width(20)
+                                ->set_default_value(0)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4787,6 +4789,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('text', 'border_width_bottom', 'Bottom Border Width')->set_width(20)
+                                ->set_default_value(0)
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4796,6 +4799,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('text', 'border_width_left', 'Left Border Width')->set_width(20)
+                                ->set_default_value(0)
                                 ->set_conditional_logic(
                                     array(
                                         array(
