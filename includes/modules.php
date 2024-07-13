@@ -337,7 +337,9 @@ function ___sections($id = 'sections', $post_id = '')
                         $background_color_custom = $section_style['background_color_custom'];
                         $background_color_container = $section_style['background_color_container'];
 
-                       
+                        if ($background_color_container) {
+                            $container_classes[] = $background_color_container;
+                        }
 
                         $classes[] = $section_style['background_color'];
                         if ($background_color_custom) {
@@ -501,8 +503,8 @@ function ___sections($id = 'sections', $post_id = '')
             $section_attribute = _attributes(array($classes_attr, $id_val, $styles_val));
             $container_attribute = _attributes(array($container_styles_val, $container_classes_attr));
 
-            $test = json_encode($container_classes);
-            $html .= "<section $section_attribute test='$test'>";
+            
+            $html .= "<section $section_attribute>";
 
             if ($background_image_overlay_args) {
                 $html .= __image($background_image_overlay_args);
