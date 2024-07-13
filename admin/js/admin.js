@@ -28,7 +28,7 @@ function codemirror() {
         }
     }, 1000);
 
-    jQuery(document).on("click", '#Wysiwyg-Editor-Trigger', function (event) {
+    jQuery(document).on("click", '.wysiwyg-editor-trigger', function (event) {
         jQuery('#wysiwyg-editor').addClass('active');
         console.log('xsdsdsdsdsds');
     });
