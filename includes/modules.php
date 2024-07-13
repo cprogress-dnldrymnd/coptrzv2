@@ -924,7 +924,7 @@ function ____post_grid_module($data)
                 if ($border_radius) {
                     if ($border_radius == 'custom') {
                         $border_radius_custom = $post_box_style['border_radius_custom'];
-                        $styles[] = "border-radius: $border_radius_custom";
+                        $styles_section[] = "border-radius: $border_radius_custom";
                     } else {
                         $classes[] = $border_radius;
                     }
@@ -936,7 +936,7 @@ function ____post_grid_module($data)
                         $border_width = $post_box_style['border_width'];
                         if ($border_color == 'border-custom-color') {
                             $border_color_custom = $post_box_style['border_color_custom'];
-                            $styles[] = "border-color: $border_color_custom";
+                            $styles_section[] = "border-color: $border_color_custom";
                         } else {
                             $classes[] = $border_color;
                         }
@@ -949,16 +949,16 @@ function ____post_grid_module($data)
                             $classes[] = 'border-width-custom';
 
                             if ($border_width_top) {
-                                $styles[] = "border-top-width: $border_width_top";
+                                $styles_section[] = "border-top-width: $border_width_top";
                             }
                             if ($border_width_right) {
-                                $styles[] = "border-right-width: $border_width_right";
+                                $styles_section[] = "border-right-width: $border_width_right";
                             }
                             if ($border_width_bottom) {
-                                $styles[] = "border-bottom-width: $border_width_bottom";
+                                $styles_section[] = "border-bottom-width: $border_width_bottom";
                             }
                             if ($border_width_left) {
-                                $styles[] = "border-left-width: $border_width_left";
+                                $styles_section[] = "border-left-width: $border_width_left";
                             }
                         } else {
                             $classes[] = 'border-default';
