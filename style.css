@@ -9514,8 +9514,8 @@ p:last-child {
   padding-bottom: 10px; }
 
 .g-10px {
-  padding-top: 10px;
-  padding-bottom: 10px; }
+  --bs-gutter-x: $size;
+  --bs-gutter-y: $size; }
 
 .rounded-15px {
   border-radius: 15px; }
@@ -9558,8 +9558,8 @@ p:last-child {
   padding-bottom: 15px; }
 
 .g-15px {
-  padding-top: 15px;
-  padding-bottom: 15px; }
+  --bs-gutter-x: $size;
+  --bs-gutter-y: $size; }
 
 .rounded-20px {
   border-radius: 20px; }
@@ -9602,8 +9602,8 @@ p:last-child {
   padding-bottom: 20px; }
 
 .g-20px {
-  padding-top: 20px;
-  padding-bottom: 20px; }
+  --bs-gutter-x: $size;
+  --bs-gutter-y: $size; }
 
 .rounded-25px {
   border-radius: 25px; }
@@ -9646,8 +9646,8 @@ p:last-child {
   padding-bottom: 25px; }
 
 .g-25px {
-  padding-top: 25px;
-  padding-bottom: 25px; }
+  --bs-gutter-x: $size;
+  --bs-gutter-y: $size; }
 
 .rounded-35px {
   border-radius: 35px; }
@@ -9690,8 +9690,8 @@ p:last-child {
   padding-bottom: 35px; }
 
 .g-35px {
-  padding-top: 35px;
-  padding-bottom: 35px; }
+  --bs-gutter-x: $size;
+  --bs-gutter-y: $size; }
 
 .rounded-40px {
   border-radius: 40px; }
@@ -9734,8 +9734,8 @@ p:last-child {
   padding-bottom: 40px; }
 
 .g-40px {
-  padding-top: 40px;
-  padding-bottom: 40px; }
+  --bs-gutter-x: $size;
+  --bs-gutter-y: $size; }
 
 .rounded-45px {
   border-radius: 45px; }
@@ -9778,8 +9778,8 @@ p:last-child {
   padding-bottom: 45px; }
 
 .g-45px {
-  padding-top: 45px;
-  padding-bottom: 45px; }
+  --bs-gutter-x: $size;
+  --bs-gutter-y: $size; }
 
 .rounded-50px {
   border-radius: 50px; }
@@ -9822,8 +9822,8 @@ p:last-child {
   padding-bottom: 50px; }
 
 .g-50px {
-  padding-top: 50px;
-  padding-bottom: 50px; }
+  --bs-gutter-x: $size;
+  --bs-gutter-y: $size; }
 
 @media screen and (min-width: 1200px) {
   .xl-padding-top {

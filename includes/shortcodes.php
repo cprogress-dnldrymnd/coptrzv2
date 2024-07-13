@@ -396,17 +396,38 @@ class Shortcodes
     }
     function reviews()
     {
+        $SVG = new SVG;
         $reviews = get__theme_option('reviews');
         if ($reviews) {
-            $html = "<div class='reviews-holder text-white'>";
+            $html = "<div class='reviews text-white'>";
             $html .= "<div class='row g-20px'>";
             foreach ($reviews as $review) {
+                $review_score = $review['review_score'];
+                $review_text = $review['review_text'];
+                $review_logo = $review['review_logo'];
                 $html .= "<div class='col-lg-4'>";
                 $html .= "<div class='column-holder bg-secondary xs-padding rounded-10px'>";
 
                 $html .= "<div class='review-box d-flex justify-content-between'>";
+                $html .= "<div class='review-text'> $review_score </div>";
+
+                $html .= "<div class='review-stars'>";
+                $html .= "<div class='stars d-flex'>";
+                $i = 1;
+                while ($i < 6) {
+                    $html .= $SVG->star();
+                    $i++;
+                }
+                $html .= "</div>";
+                $html .= "<div class='small-text'>$review_text</div>";
                 $html .= "</div>";
 
+                $html .= __image(array(
+                    'image_id' => $review_logo,
+                    'class' => _attribute('class', 'logo-box text-center mt-4')
+                ));
+
+                $html .= "</div>";
 
                 $html .= "</div>";
                 $html .= "</div>";
