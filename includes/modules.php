@@ -732,7 +732,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $source = $items['source'];
                         $category = $items['category'];
                         $category_arr = [];
-
+                        $posts_list = [];
                         foreach ($category as $cat) {
                             $category_arr[] = $cat['id'];
                         }
@@ -751,6 +751,9 @@ function ___sections($id = 'sections', $post_id = '')
                                 )
                             );
                             $posts = get_posts($args);
+                            foreach ($posts as $post) {
+                                $posts_list['id'] = $post;
+                            }
                         } else {
                             $posts_list = $posts;
                         }
