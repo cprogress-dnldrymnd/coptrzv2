@@ -727,6 +727,7 @@ function ___sections($id = 'sections', $post_id = '')
                             'numberposts' => 3,
                             'orderby'        => 'rand',
                             'fields' => 'ids',
+                            'exclude' => get_the_ID(),
                             'tax_query' => array(
                                 array(
                                     'taxonomy' => $taxonomy_key,
