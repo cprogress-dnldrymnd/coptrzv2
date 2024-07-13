@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-body, #wpadminbar {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+body,
+#wpadminbar *:not(.ab-icon) {
     font-family: "Poppins", sans-serif !important;
 }
 .columns {
@@ -34,7 +35,7 @@ body, #wpadminbar {
         flex: 0 0 170px;
     }
     .cf-field__body {
-        flex: 0 0  calc(100% - 170px);
+        flex: 0 0 calc(100% - 170px);
     }
     .cf-field__help {
         margin-left: 170px;
