@@ -4788,7 +4788,7 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'border_style',
+                                            'field' => 'border_width',
                                             'value' => 'custom',
                                         ),
                                     )
