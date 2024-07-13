@@ -411,7 +411,9 @@ function ___sections($id = 'sections', $post_id = '')
                                 if ($border_color == 'border_color_custom') {
                                     $border_color_custom = $section_style['border_color_custom'];
                                     $styles_section[] = "border-color: $border_color_custom";
-                                } 
+                                } else {
+                                    $classes[] = $border_color;
+                                }
 
                                 if ($border_width == 'custom') {
                                     $border_width_top =  $section_style['border_width_top'];
@@ -432,7 +434,7 @@ function ___sections($id = 'sections', $post_id = '')
                                         $styles_section[] = "border-left-width: $border_width_left";
                                     }
                                 } else {
-                                    $classes[] = $border_color;
+                                    $classes[] = 'border-default';
                                 }
                             } else {
                                 $classes[] = $border_style;
