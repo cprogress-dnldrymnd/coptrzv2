@@ -414,6 +414,28 @@ function ___sections($id = 'sections', $post_id = '')
                                 } else {
                                     $classes[] = $border_color;
                                 }
+
+                                if ($border_width == 'custom') {
+                                    $border_width_top =  $section_style['border_width_top'];
+                                    $border_width_right =  $section_style['border_width_right'];
+                                    $border_width_bottom =  $section_style['border_width_bottom'];
+                                    $border_width_left =  $section_style['border_width_left'];
+
+                                    if ($border_width_top) {
+                                        $styles_section[] = "border-top-width: $border_width_top";
+                                    }
+                                    if ($border_width_right) {
+                                        $styles_section[] = "border-right-width: $border_width_right";
+                                    }
+                                    if ($border_width_bottom) {
+                                        $styles_section[] = "border-bottom-width: $border_width_bottom";
+                                    }
+                                    if ($border_width_left) {
+                                        $styles_section[] = "border-left-width: $border_width_left";
+                                    }
+                                } else {
+                                    $classes[] = 'border-default';
+                                }
                             } else {
                                 $classes[] = $border_style;
                             }
