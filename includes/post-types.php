@@ -479,7 +479,7 @@ $Team_Category->args = array(
 
 
 $Case_Study_Category = new newTaxonomy();
-$Case_Study_Category->taxonomy = 'case_study_category';
+$Case_Study_Category->taxonomy = 'casestudies_category';
 $Case_Study_Category->post_type = 'casestudies';
 $Case_Study_Category->args = array(
     'label'        => 'Case Study Categories',
