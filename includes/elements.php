@@ -135,8 +135,8 @@ function __image($data)
 function __video($data)
 {
     $video_url = wp_get_attachment_url($data['video_id']);
-    $video_type = $data['video_type'];
-    $autoplay = $data['autoplay'] ? $data['autoplay'] : true;
+    $video_type = isset($data['video_type']) ?  $data['video_type'] : false;
+    $autoplay = isset($data['autoplay']) ? $data['autoplay'] : true;
     $class = isset($data['class']) ? $data['class'] : false;
     $attributes_args = [];
     if ($class) {
