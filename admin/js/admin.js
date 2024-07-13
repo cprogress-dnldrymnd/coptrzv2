@@ -37,7 +37,7 @@ function codemirror() {
 
         jQuery(document).on("click", '.submit-wysiwyg-trigger', function (event) {
             jQuery('#wysiwyg-editor').removeClass('active');
-            var textareaId = jQuery('#wysiwyg-editor-field');
+            var textareaId = jQuery('wysiwyg-editor-field');
             jQuery(this).parent().parent().parent().prev().find('textarea')(tinymce.get(textareaId).getContent());
         });
 
