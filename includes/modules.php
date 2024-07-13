@@ -712,9 +712,9 @@ function ___sections($id = 'sections', $post_id = '')
 
                         break;
                     case 'related_post':
-                        $taxonomy_key = get_post_type() . '_category';
+                        $taxonomy = get_post_type() . '_category';
 
-                        $terms = get_the_terms(get_the_ID(), $taxonomy_key);
+                        $terms = get_the_terms(get_the_ID(), $taxonomy);
 
                         $terms_arr = [];
                         foreach ($terms as $term) {
@@ -729,7 +729,7 @@ function ___sections($id = 'sections', $post_id = '')
                             'exclude' => get_the_ID(),
                             'tax_query' => array(
                                 array(
-                                    'taxonomy' => $taxonomy_key,
+                                    'taxonomy' => $taxonomy,
                                     'field'    => 'term_id',
                                     'terms'    => $terms_arr
                                 )
