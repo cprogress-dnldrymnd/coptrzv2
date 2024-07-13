@@ -10527,9 +10527,9 @@ hr {
   border-radius: var(--border-radius, 10px);
   overflow: hidden; }
 
-.border-default:not(.border-with-custom) {
+.border-default:not(.border-width-custom) {
   border: 1px solid var(--border-color); }
-.border-default.border-with-custom {
+.border-default.border-width-custom {
   color: var(--border-color); }
 
 @media (min-width: 1500px) {

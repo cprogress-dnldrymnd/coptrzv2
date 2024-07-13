@@ -420,7 +420,7 @@ function ___sections($id = 'sections', $post_id = '')
                                     $border_width_right =  $section_style['border_width_right'];
                                     $border_width_bottom =  $section_style['border_width_bottom'];
                                     $border_width_left =  $section_style['border_width_left'];
-                                    $classes[] = 'border-with-custom';
+                                    $classes[] = 'border-width-custom';
 
                                     if ($border_width_top) {
                                         $styles_section[] = "border-top-width: $border_width_top";

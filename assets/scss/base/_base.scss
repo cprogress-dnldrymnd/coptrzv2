@@ -113,10 +113,10 @@ main {
 }
 
 .border-default {
-    &:not(.border-with-custom) {
+    &:not(.border-width-custom) {
         border: 1px solid var(--border-color);
     }
-    &.border-with-custom {
+    &.border-width-custom {
         color: var(--border-color);
     }
 }
