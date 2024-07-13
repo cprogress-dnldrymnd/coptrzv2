@@ -30,7 +30,7 @@
         flex: 0 0 170px;
     }
     .cf-field__body {
-        flex: 0 0 0 0 calc(100% - 170px);
+        flex: 0 0  calc(100% - 170px);
     }
     .cf-field__help {
         margin-left: 170px;
