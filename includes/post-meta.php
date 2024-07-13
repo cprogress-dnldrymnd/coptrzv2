@@ -4578,7 +4578,7 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'container_padding_right', 'Padding right')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                  => 'No Padding',
+                                        ''                  => 'Default',
                                         'xl-padding-right'  => 'Extra Large',
                                         'lg-padding-right'  => 'Large',
                                         'md-padding-right'  => 'Medium',
