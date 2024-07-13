@@ -269,7 +269,7 @@ function ___sections($id = 'sections', $post_id = '')
             $section_id_val  = $section_id ? $section_id : 'section-' . $key;
             $container_styles = array();
             $container_classes = array();
-            $container_classes[] = 'container position-relative';
+            $container_classes[] = 'position-relative';
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
             $styles_val = '';
@@ -501,7 +501,10 @@ function ___sections($id = 'sections', $post_id = '')
                 }
             }
 
-            $html .= "<div $container_attribute>";
+            $html .= "<div class='container'>";
+            if (count($container_classes) > 1) {
+                $html .= "<div $container_attribute>";
+            }
             if ($is_container_background) {
                 if ($background_type && $background_type == 'youtube') {
                     $html .= __background($background_youtube, true);
@@ -758,7 +761,9 @@ function ___sections($id = 'sections', $post_id = '')
                         break;
                 }
             }
-
+            if (count($container_classes) > 1) {
+                $html .= "</div>";
+            }
             $html .= "</div>";
             $html .= "</section>";
         }
