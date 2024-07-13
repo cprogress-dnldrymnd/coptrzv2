@@ -4728,7 +4728,7 @@ function __section_fields($name = 'sections')
                                         array(
                                             'field' => 'border_radius',
                                             'value' => 'custom',
-                                            'compare' => '!='
+                                            'compare' => '='
                                         )
                                     )
                                 ),
@@ -4757,9 +4757,8 @@ function __section_fields($name = 'sections')
                                     array(
                                         array(
                                             'field' => 'border_style',
-                                            'value' => '',
-                                            'compare' => '!='
-                                        )
+                                            'value' => 'border-custom',
+                                        ),
                                     )
                                 ),
                             Field::make('color', 'border_color_custom', __('Border Color'))->set_classes('inline-field')
@@ -4790,7 +4789,7 @@ function __section_fields($name = 'sections')
                                     array(
                                         array(
                                             'field' => 'border_style',
-                                            'value' => 'border-custom',
+                                            'value' => 'custom',
                                         ),
                                     )
                                 ),
