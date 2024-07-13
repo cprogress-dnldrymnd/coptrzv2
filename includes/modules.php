@@ -720,7 +720,6 @@ function ___sections($id = 'sections', $post_id = '')
                         foreach ($terms as $term) {
                             $terms_arr = $term->term_id;
                         }
-
                         $args = array(
                             'post_type' => get_post_type(),
                             'post_status' => 'publish',
@@ -746,8 +745,9 @@ function ___sections($id = 'sections', $post_id = '')
                                     'id' => $post,
                                     'featured' => false,
                                     'col' => true,
-                                    'button_text' => 'Read '. $post_type_obj->labels->singular_name,
-                                    'elements' => array('image', 'title', 'excerpt', 'button')
+                                    'taxonomy' => $taxonomy,
+                                    'button_text' => 'Read ' . $post_type_obj->labels->singular_name,
+                                    'elements' => array('category', 'image', 'title', 'excerpt', 'button')
                                 );
                                 $html .= __post_box($data);
                             }
