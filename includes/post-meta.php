@@ -1061,6 +1061,14 @@ function __section_fields($name = 'sections')
                             ))
                     ))
                     ->add_fields('global_post_box_selection',  array(
+                        Field::make('select', 'source', __('Source'))
+                            ->set_options(
+                                array(
+                                    'all'      => 'Select All',
+                                    'manually'      => 'Select Manually',
+                                    'category'      => 'Select by Category',
+                                )
+                            ),
                         Field::make('association', 'post', 'Select Items')
                             ->set_types(
                                 array(
@@ -1070,6 +1078,34 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                             )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'source',
+                                        'value' => 'manually',
+                                    )
+                                )
+                            ),
+                        Field::make('association', 'category', 'Select Categories')
+                            ->set_types(
+                                array(
+                                    array(
+                                        'type'      => 'term',
+                                        'taxonomy' => 'global_post_boxes_category',
+                                    )
+                                )
+                            )
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'source',
+                                        'value' => 'category',
+                                        'comapre' => '='
+                                    )
+                                )
+                            ),
+
+
                     ))
                     ->add_fields('related_post',  array(
                         Field::make('html', 'html')->set_html('<h3>This will display related post base on current post type </h3>'),
