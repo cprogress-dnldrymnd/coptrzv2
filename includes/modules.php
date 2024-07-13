@@ -432,7 +432,7 @@ function ___sections($id = 'sections', $post_id = '')
                                         $styles_section[] = "border-left-width: $border_width_left";
                                     }
                                 } else {
-                                    $classes[] = 'border-default';
+                                    $classes[] = $border_color;
                                 }
                             } else {
                                 $classes[] = $border_style;
