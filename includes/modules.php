@@ -711,6 +711,37 @@ function ___sections($id = 'sections', $post_id = '')
                         $html .= "</div>";
 
                         break;
+                    case 'related_post':
+                        
+                        
+                        $args = array(
+                            'post_type' => 'faq',
+                            'post_status' => 'publish',
+                            'numberposts' => -1,
+                            'fields' => 'ids',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => '',
+                                    'field'    => 'term_id',
+                                    'terms'    => $faqs_cat_id
+                                )
+                            )
+                        );
+                        $posts = get_posts($args);
+                        $html .= "<div class='row g-4 same-image-height row-global-post'>";
+                        foreach ($posts as $post) {
+                            $data = array(
+                                'id' => $post['id'],
+                                'featured' => false,
+                                'col' => true,
+                                'elements' => array('image', 'title', 'content')
+                            );
+                            $html .= __post_box($data);
+                        }
+
+                        $html .= "</div>";
+
+                        break;
                 }
             }
 
