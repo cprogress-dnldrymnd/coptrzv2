@@ -752,7 +752,7 @@ function ___sections($id = 'sections', $post_id = '')
                             );
                             $posts = get_posts($args);
                             foreach ($posts as $post) {
-                                $posts_list['id'] = $post;
+                                $posts_list[]['id'] = $post;
                             }
                         } else {
                             $posts_list = $posts;
