@@ -394,6 +394,29 @@ class Shortcodes
             return $html;
         }
     }
+    function reviews()
+    {
+        $reviews = get__theme_option('reviews');
+        if ($reviews) {
+            $html = "<div class='reviews-holder text-white'>";
+            $html .= "<div class='row g-20px'>";
+            foreach ($reviews as $review) {
+                $html .= "<div class='col-lg-4'>";
+                $html .= "<div class='column-holder bg-secondary xs-padding rounded-10px'>";
+
+                $html .= "<div class='review-box d-flex justify-content-between'>";
+                $html .= "</div>";
+
+
+                $html .= "</div>";
+                $html .= "</div>";
+            }
+
+            $html .= "</div>";
+            $html .= "</div>";
+            return $html;
+        }
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -406,3 +429,4 @@ add_shortcode('social_share', array($Shortcodes, 'social_share'));
 add_shortcode('post_link', array($Shortcodes, 'post_link'));
 add_shortcode('related_posts', array($Shortcodes, 'related_posts'));
 add_shortcode('latest_from_coptrz', array($Shortcodes, 'latest_from_coptrz'));
+add_shortcode('reviews', array($Shortcodes, 'reviews'));

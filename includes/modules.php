@@ -694,6 +694,9 @@ function ___sections($id = 'sections', $post_id = '')
                                 case 'case_study_slider':
                                     $html .= do_shortcode("[case_study_slider_grid]");
                                     break;
+                                case 'reviews':
+                                    $html .= do_shortcode("[reviews]");
+                                    break;
                             }
                         }
                         break;

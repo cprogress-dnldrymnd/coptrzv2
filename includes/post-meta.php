@@ -1000,7 +1000,7 @@ function __section_fields($name = 'sections')
                             ->add_fields('latest_from_coptrz', array(
                                 Field::make('html', 'html')->set_html('<h3>This will display latest from coptrz section </h3>'),
                             ))
-                            ->add_fields('reviews_column', array(
+                            ->add_fields('reviews', array(
                                 Field::make('html', 'html')->set_html('<h3>This will display reviews from different platform </h3>'),
                             ))
                     ))
