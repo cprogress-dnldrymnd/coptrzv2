@@ -17,10 +17,9 @@ function codemirror() {
                 statusbar: false,
                 branding: false
             });
-            
+
             jQuery(document).on("click", '.submit-wysiwyg-trigger', function (event) {
                 jQuery('#wysiwyg-editor').removeClass('active');
-                var textareaId = jQuery('wysiwyg-editor-field');
                 jQuery(this).parent().parent().parent().prev().find('textarea').val(tinymce.get(textareaId).getContent());
             });
 
