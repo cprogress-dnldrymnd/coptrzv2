@@ -4,6 +4,17 @@ use Carbon_Fields\Block;
 use Carbon_Fields\Container;
 use Carbon_Fields\Complex_Container;
 use Carbon_Fields\Field;
+
+function my_custom_popup()
+{
+    $html =  "<div class='wysiwyg-editor' id='wysiwyg-editor'>";
+    $html .= "<div class='inner'>";
+    $html .=  "<textarea id='wysiwyg-editor-field'></textarea>";
+    $html .=  "</div>";
+    $html .=  "</div>";
+}
+add_action('admin_footer', 'my_custom_popup');
+
 /*-----------------------------------------------------------------------------------*/
 /* Theme Settings
 /*-----------------------------------------------------------------------------------*/
