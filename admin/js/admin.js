@@ -17,12 +17,13 @@ function codemirror() {
                 statusbar: false,
                 branding: false
             });
-            /*
-            // Save content on form submission (adjust if your form has a different ID)
-            jQuery('form').submit(function (e) {
-                var textareaId = jQuery('#wysiwyg-editor-field');
-                jQuery(this).val(tinymce.get(textareaId).getContent());
-            });*/
+            
+            jQuery(document).on("click", '.submit-wysiwyg-trigger', function (event) {
+                jQuery('#wysiwyg-editor').removeClass('active');
+                var textareaId = jQuery('wysiwyg-editor-field');
+                jQuery(this).parent().parent().parent().prev().find('textarea').val(tinymce.get(textareaId).getContent());
+            });
+
         } else {
             console.error('TinyMCE is not loaded.');
         }
@@ -35,11 +36,6 @@ function codemirror() {
             jQuery('#wysiwyg-editor').removeClass('active');
         });
 
-        jQuery(document).on("click", '.submit-wysiwyg-trigger', function (event) {
-            jQuery('#wysiwyg-editor').removeClass('active');
-            var textareaId = jQuery('wysiwyg-editor-field');
-            jQuery(this).parent().parent().parent().prev().find('textarea').val(tinymce.get(textareaId).getContent());
-        });
 
 
 
