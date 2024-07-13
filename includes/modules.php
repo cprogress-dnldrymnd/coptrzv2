@@ -843,10 +843,7 @@ function ____post_grid_module($data)
     $post_type = $data['post_type'][0]['_type'];
     $source = $data['post_type'][0]['source'];
     $styles_val = '';
-    $styles_val = '';
-    $styles_val = '';
-    $styles_val = '';
-    $styles_val = '';
+    $column_classes_val  = '';
 
 
     // Build the args
