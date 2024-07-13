@@ -586,12 +586,14 @@ small {
 }
 .post-grid,
 .post-box-blog {
-    & .description-box {
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        line-clamp: 3;
-        -webkit-box-orient: vertical;
+    &.description-box {
+        &:not(.excerpt-no-limit) {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
     }
 }
 .post-box-blog {
