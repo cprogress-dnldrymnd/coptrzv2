@@ -586,7 +586,7 @@ small {
 }
 .post-grid,
 .post-box {
-    &.description-box {
+    .description-box {
         &:not(.excerpt-no-limit) {
             overflow: hidden;
             display: -webkit-box;

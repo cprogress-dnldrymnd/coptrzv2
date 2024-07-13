@@ -10902,8 +10902,8 @@ small, .small {
     margin-right: 10px;
     padding-right: 10px; }
 
-.post-grid.description-box:not(.excerpt-no-limit),
-.post-box.description-box:not(.excerpt-no-limit) {
+.post-grid .description-box:not(.excerpt-no-limit),
+.post-box .description-box:not(.excerpt-no-limit) {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
