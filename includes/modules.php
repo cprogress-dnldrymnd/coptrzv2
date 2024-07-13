@@ -846,7 +846,6 @@ function ____post_grid_module($data)
     $column_classes_val  = '';
 
 
-    // Build the args
     $args['post_type'] = $post_type;
     $args['posts_per_page'] = -1;
 
