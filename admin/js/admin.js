@@ -18,23 +18,29 @@ function codemirror() {
                 branding: false
             });
 
-            jQuery(document).on("click", '.submit-wysiwyg-trigger', function (event) {
-                jQuery('#wysiwyg-editor').removeClass('active');
-                console.log(jQuery(this).parent().parent().parent().prev().find('textarea').val());
-                jQuery(this).parent().parent().parent().prev().find('textarea').val(tinymce.get(textareaId).getContent());
-                console.log(tinymce.get(textareaId).getContent());
-            });
+
 
         } else {
             console.error('TinyMCE is not loaded.');
         }
+        var $target;
 
         jQuery(document).on("click", '.wysiwyg-editor-trigger', function (event) {
             jQuery('#wysiwyg-editor').addClass('active');
+            $target = jQuery(this).parent().parent().parent().prev().find('textarea');
         });
 
         jQuery(document).on("click", '.close-wysiwyg-trigger', function (event) {
             jQuery('#wysiwyg-editor').removeClass('active');
+        });
+
+
+        jQuery(document).on("click", '.submit-wysiwyg-trigger', function (event) {
+            jQuery('#wysiwyg-editor').removeClass('active');
+            console.log($target.val());
+
+            $target.val(tinymce.get(textareaId).getContent());
+            console.log(tinymce.get(textareaId).getContent());
         });
 
 
