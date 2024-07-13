@@ -4979,14 +4979,6 @@ function __section_fields($name = 'sections')
                                         'border-light-gray'     => 'Light Gray',
                                         'border-custom-color'    => 'Custom',
                                     )
-                                )
-                                ->set_conditional_logic(
-                                    array(
-                                        array(
-                                            'field' => 'container_border_style',
-                                            'value' => 'border-custom',
-                                        ),
-                                    )
                                 ),
                             Field::make('color', 'container_border_color_custom', __('Border Color'))->set_classes('inline-field inline-field-wide-label')
                                 ->set_conditional_logic(
@@ -5002,15 +4994,7 @@ function __section_fields($name = 'sections')
                                 ->set_options(array(
                                     'default' => 'Default[1px]',
                                     'custom' => 'Custom'
-                                ))
-                                ->set_conditional_logic(
-                                    array(
-                                        array(
-                                            'field' => 'container_border_style',
-                                            'value' => 'border-custom',
-                                        ),
-                                    )
-                                ),
+                                )),
                             Field::make('text', 'container_border_width_top', 'Top Border Width')->set_classes('inline-field inline-field-wide-label')->set_default_value(0)
                                 ->set_conditional_logic(
                                     array(
