@@ -402,7 +402,6 @@ function ___sections($id = 'sections', $post_id = '')
                                 $classes[] = $border_radius;
                             }
                         }
-
                         $border_style = $section_style['border_style'];
                         if ($border_style) {
                             if ($border_style == 'border-custom') {
@@ -439,6 +438,54 @@ function ___sections($id = 'sections', $post_id = '')
                                 }
                             } else {
                                 $classes[] = $border_style;
+                            }
+                        }
+
+                        $border_radius = $section_style['border_radius'];
+                        if ($border_radius) {
+                            if ($border_radius == 'custom') {
+                                $border_radius_custom = $section_style['border_radius_custom'];
+                                $container_styles[] = "border-radius: $border_radius_custom";
+                            } else {
+                                $container_classes[] = $border_radius;
+                            }
+                        }
+                        $border_style = $section_style['container_border_style'];
+                        if ($border_style) {
+                            if ($border_style == 'border-custom') {
+                                $border_color = $section_style['container_border_color'];
+                                $border_width = $section_style['container_border_width'];
+                                if ($border_color == 'border-custom-color') {
+                                    $border_color_custom = $section_style['container_border_color_custom'];
+                                    $container_styles[] = "border-color: $border_color_custom";
+                                } else {
+                                    $container_classes[] = $border_color;
+                                }
+
+                                if ($border_width == 'custom') {
+                                    $border_width_top =  $section_style['container_border_width_top'];
+                                    $border_width_right =  $section_style['container_border_width_right'];
+                                    $border_width_bottom =  $section_style['container_border_width_bottom'];
+                                    $border_width_left =  $section_style['container_border_width_left'];
+                                    $container_classes[] = 'border-width-custom';
+
+                                    if ($border_width_top) {
+                                        $container_styles[] = "border-top-width: $border_width_top";
+                                    }
+                                    if ($border_width_right) {
+                                        $container_styles[] = "border-right-width: $border_width_right";
+                                    }
+                                    if ($border_width_bottom) {
+                                        $container_styles[] = "border-bottom-width: $border_width_bottom";
+                                    }
+                                    if ($border_width_left) {
+                                        $container_styles[] = "border-left-width: $border_width_left";
+                                    }
+                                } else {
+                                    $container_classes[] = 'border-default';
+                                }
+                            } else {
+                                $container_classes[] = $border_style;
                             }
                         }
 
