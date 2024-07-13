@@ -765,6 +765,7 @@ function ___sections($id = 'sections', $post_id = '')
                                 'id' => $post['id'],
                                 'featured' => false,
                                 'col' => true,
+                                'tag' => 'h4',
                                 'elements' => array('image', 'title', 'content')
                             );
                             $html .= __post_box($data);
@@ -2065,7 +2066,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     $bg_image = isset($data['bg_image']) ? $data['bg_image'] : false;
     $is_new = isset($data['is_new']) ? $data['is_new'] : false;
     $background_class = isset($data['background_class']) ? $data['background_class'] : false;
-
+    $tag = isset($data['tag']) ? $data['tag'] : 'h3';
 
     $additional_content = isset($data['additional_content']) ? $data['additional_content'] : false;
 
@@ -2141,7 +2142,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     if (in_array('title', $elements)) {
         $html .= __heading(array(
             'heading' => get_the_title($id),
-            'tag' => 'h3',
+            'tag' => $tag,
         ));
     }
     if (get_post_type($id) == 'product') {
