@@ -515,7 +515,7 @@ $Case_Study_Category->args = array(
 
 
 $Guide_Category = new newTaxonomy();
-$Guide_Category->taxonomy = 'Guide_category';
+$Guide_Category->taxonomy = 'guides_category';
 $Guide_Category->post_type = 'guides';
 $Guide_Category->args = array(
     'label'        => 'Guide Categories',

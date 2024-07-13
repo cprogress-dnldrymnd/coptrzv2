@@ -712,8 +712,8 @@ function ___sections($id = 'sections', $post_id = '')
 
                         break;
                     case 'related_post':
-                        
-                        
+                        $taxonomy_key = get_post_type() . '_category';
+
                         $args = array(
                             'post_type' => 'faq',
                             'post_status' => 'publish',
@@ -1833,7 +1833,6 @@ function _output_svg_from_url($url)
     // Output the sanitized SVG
     return $content;
 }
-
 
 function __product_specifications($for_product_summary = false)
 {
