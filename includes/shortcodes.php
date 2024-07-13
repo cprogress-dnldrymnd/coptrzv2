@@ -424,7 +424,7 @@ class Shortcodes
 
                 $html .= __image(array(
                     'image_id' => $review_logo,
-                    'class' => _attribute('class', 'logo-box text-center mt-4')
+                    'class' => _attribute('class', array('logo-box text-center mt-4'))
                 ));
 
                 $html .= "</div>";
