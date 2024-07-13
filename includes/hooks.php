@@ -159,7 +159,7 @@ function action_admin_head()
             margin-right: 1rem !important;
             padding: 15px 30px;
             line-height: 1;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         #wysiwyg-editor .inner .buttons .button {}
