@@ -403,6 +403,22 @@ function ___sections($id = 'sections', $post_id = '')
                             }
                         }
 
+                        $border_style = $section_style['border_style'];
+                        if ($border_style) {
+                            if ($border_style == 'border-custom') {
+                                $border_color = $section_style['border_color'];
+                                $border_width = $section_style['border_width'];
+                                if ($border_color == 'border_color_custom') {
+                                    $border_color_custom = $section_style['border_color_custom'];
+                                    $styles_section[] = "border-color: $border_color_custom";
+                                } else {
+                                    $classes[] = $border_color;
+                                }
+                            } else {
+                                $classes[] = $border_style;
+                            }
+                        }
+
 
                         break;
                 }

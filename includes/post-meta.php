@@ -4773,7 +4773,7 @@ function __section_fields($name = 'sections')
 
                             Field::make('select', 'border_width', 'Border Width')->set_classes('inline-field')
                                 ->set_options(array(
-                                    '1px' => 'Default[1px]',
+                                    'default' => 'Default[1px]',
                                     'custom' => 'Custom'
                                 ))
                                 ->set_conditional_logic(
