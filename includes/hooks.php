@@ -86,8 +86,20 @@ function action_admin_head()
             min-height: 100vh;
         }
 
-        .cf-complex__inserter-menu {
+        .cf-complex__inserter-menu.cf-complex__inserter-menu {
             z-index: 999 !important;
+            display: flex;
+            flex-wrap: wrap;
+            width: 600px;
+        }
+
+        .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item {
+            flex: 0 0 calc(50% - 42px);
+            padding: 15px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: #007cba;
+            color: #fff;
         }
 
         <?php
