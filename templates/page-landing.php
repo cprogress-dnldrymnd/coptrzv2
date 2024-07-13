@@ -7,6 +7,7 @@
 <?php get_header('landing'); ?>
 
 <?php
+$SVG = new SVG;
 $background_type = get__post_meta('background_type');
 $background = get__post_meta('background');
 $background_youtube = get__post_meta('background_youtube');
@@ -49,7 +50,21 @@ $form_args = array(
 </section>
 <section class="trustpilot bg-light rounded-corner xs-padding mt-20px mx-20px">
     <div class="container">
-dsds
+        <div class="row g-3 justify-content-center trustpilot fw-light">
+            <div class="col-auto">
+                <?= $SVG->trustpilot_logo() ?>
+            </div>
+            <div class="col-auto">
+                <?= $SVG->trustpilot_star() ?>
+                <?= $SVG->trustpilot_star() ?>
+                <?= $SVG->trustpilot_star() ?>
+                <?= $SVG->trustpilot_star() ?>
+                <?= $SVG->trustpilot_star() ?>
+            </div>
+            <div class="col-auto">
+                <p>Based on <span class="fw-medium"></span> reviews</p>
+            </div>
+        </div>
     </div>
 </section>
 <?php get_footer('landing'); ?>
