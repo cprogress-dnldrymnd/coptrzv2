@@ -50,7 +50,7 @@ $form_args = array(
 </section>
 <section class="trustpilot bg-light rounded-corner xs-padding mt-20px mx-20px">
     <div class="container">
-        <div class="row g-3 justify-content-center trustpilot fw-light">
+        <div class="row g-3 justify-content-center align-items-center trustpilot fw-light">
             <div class="col-auto">
                 <div class="trustpilot-logo">
                     <?= $SVG->trustpilot_logo() ?>

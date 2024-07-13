@@ -11119,7 +11119,8 @@ hr {
     border-color: var(--bs-secondary) !important; }
 
 .trustpilot-logo svg, .trustpilot-stars svg {
-  height: 45px; }
+  height: 45px;
+  width: auto; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
