@@ -52,14 +52,18 @@ $form_args = array(
     <div class="container">
         <div class="row g-3 justify-content-center trustpilot fw-light">
             <div class="col-auto">
-                <?= $SVG->trustpilot_logo() ?>
+                <div class="trustpilot-logo">
+                    <?= $SVG->trustpilot_logo() ?>
+                </div>
             </div>
             <div class="col-auto">
-                <?= $SVG->trustpilot_star() ?>
-                <?= $SVG->trustpilot_star() ?>
-                <?= $SVG->trustpilot_star() ?>
-                <?= $SVG->trustpilot_star() ?>
-                <?= $SVG->trustpilot_star() ?>
+                <div class="trustpilot-stars d-flex align-items-center">
+                    <?= $SVG->trustpilot_star() ?>
+                    <?= $SVG->trustpilot_star() ?>
+                    <?= $SVG->trustpilot_star() ?>
+                    <?= $SVG->trustpilot_star() ?>
+                    <?= $SVG->trustpilot_star() ?>
+                </div>
             </div>
             <div class="col-auto">
                 <p>Based on <span class="fw-medium"></span> reviews</p>
