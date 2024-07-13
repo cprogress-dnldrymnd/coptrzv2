@@ -4351,6 +4351,38 @@ function __section_fields($name = 'sections')
 
                                     )
                                 )
+                                ->add_fields(
+                                    'capabilities',
+                                    array(
+                                        Field::make('select', 'source', __('Source'))
+                                            ->set_options(
+                                                array(
+                                                    'all'      => 'Select All',
+                                                    'manually'      => 'Select Manually',
+                                                )
+                                            ),
+
+                                        Field::make('association', 'post', 'Select capabilities')
+                                            ->set_types(
+                                                array(
+                                                    array(
+                                                        'type'      => 'post',
+                                                        'post_type' => 'capabilities',
+                                                    )
+                                                )
+                                            )
+                                            ->set_conditional_logic(
+                                                array(
+                                                    array(
+                                                        'field' => 'source',
+                                                        'value' => 'manually',
+                                                    )
+                                                )
+                                            ),
+
+
+                                    )
+                                )
                                 ->set_layout('tabbed-vertical')
 
                         ),
