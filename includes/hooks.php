@@ -88,9 +88,11 @@ function action_admin_head()
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu {
             z-index: 999 !important;
-            width: 600px;
+            width: 800px;
             flex-wrap: wrap;
             display: flex;
+            padding: 30px;
+            border-radius: 5px;
         }
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu[hidden] {
@@ -98,7 +100,7 @@ function action_admin_head()
         }
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item {
-            flex: 0 0 calc(50% - 42px);
+            flex: 0 0 0 0 calc(33.33333333% - 40px);
             padding: 15px;
             margin: 5px;
             border-radius: 5px;
