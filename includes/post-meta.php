@@ -1412,6 +1412,7 @@ function __section_fields($name = 'sections')
                                     'gx-3'  => 'Medium',
                                     'gx-2'  => 'Small',
                                     'gx-1'  => 'Extra Small',
+                                    'gx-20px'  => '20px',
                                     'gx-0'  => 'None',
                                 )
                             ),
@@ -1425,6 +1426,7 @@ function __section_fields($name = 'sections')
                                     'gy-3'  => 'Medium',
                                     'gy-2'  => 'Small',
                                     'gy-1'  => 'Extra Small',
+                                    'gy-20px'  => '20px',
                                     'gy-0'  => 'None',
                                 )
                             ),
