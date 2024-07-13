@@ -10529,6 +10529,8 @@ hr {
 
 .border-default:not(.border-with-custom) {
   border: 1px solid var(--border-color); }
+.border-default.border-with-custom {
+  color: var(--border-color); }
 
 @media (min-width: 1500px) {
   .container {
