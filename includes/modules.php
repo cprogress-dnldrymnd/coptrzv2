@@ -737,6 +737,8 @@ function ___sections($id = 'sections', $post_id = '')
                             )
                         );
                         $posts = get_posts($args);
+                        $post_type_obj = get_post_type_object(get_post_type());
+
                         if ($posts) {
                             $html .= "<div class='row g-4 same-image-height row-global-post'>";
                             foreach ($posts as $post) {
@@ -744,6 +746,7 @@ function ___sections($id = 'sections', $post_id = '')
                                     'id' => $post,
                                     'featured' => false,
                                     'col' => true,
+                                    'button_text' => $post_type_obj->labels->singular_name,
                                     'elements' => array('image', 'title', 'excerpt', 'button')
                                 );
                                 $html .= __post_box($data);
