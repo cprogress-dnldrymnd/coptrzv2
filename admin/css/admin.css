@@ -20,7 +20,7 @@
 .inline-field.inline-field .cf-field__head {
   flex: 0 0 170px; }
 .inline-field.inline-field .cf-field__body {
-  flex: 0 0 0 0 calc(100% - 170px); }
+  flex: 0 0 calc(100% - 170px); }
 .inline-field.inline-field .cf-field__help {
   margin-left: 170px; }
 .inline-field.inline-field.inline-field-wide-label .cf-field__head {
