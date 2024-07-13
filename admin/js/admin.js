@@ -21,6 +21,7 @@ function codemirror() {
             jQuery(document).on("click", '.submit-wysiwyg-trigger', function (event) {
                 jQuery('#wysiwyg-editor').removeClass('active');
                 jQuery(this).parent().parent().parent().prev().find('textarea').val(tinymce.get(textareaId).getContent());
+                console.log(tinymce.get(textareaId).getContent());
             });
 
         } else {
