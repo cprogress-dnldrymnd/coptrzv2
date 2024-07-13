@@ -2463,7 +2463,7 @@ function __related_posts($posts, $data, $heading = 'Related Guides',)
     $html .= "<div class='container'>";
     $html .= "<h2 class='text-center px-20px'>$heading</h2>";
 
-    $html .= "<div class='row g-4 same-image-height' style=' --image-padding: 40%; '>";
+    $html .= "<div class='row g-4 same-image-height' style='--image-padding: 40%;'>";
     foreach ($posts as $post) {
         $html .= "<div class='col-md-4 col-sm-12'>";
         $data['id'] = $post['id'];
