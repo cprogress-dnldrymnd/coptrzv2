@@ -503,7 +503,8 @@ function ___sections($id = 'sections', $post_id = '')
             $section_attribute = _attributes(array($classes_attr, $id_val, $styles_val));
             $container_attribute = _attributes(array($container_styles_val, $container_classes_attr));
 
-            $html .= "<section $section_attribute>";
+            $test = json_encode($container_classes);
+            $html .= "<section $section_attribute test='$test'>";
 
             if ($background_image_overlay_args) {
                 $html .= __image($background_image_overlay_args);
