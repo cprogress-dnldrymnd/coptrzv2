@@ -714,32 +714,41 @@ function ___sections($id = 'sections', $post_id = '')
                     case 'related_post':
                         $taxonomy_key = get_post_type() . '_category';
 
+                        $terms = get_the_terms(get_the_ID(), $taxonomy_key);
+
+                        $terms_arr = [];
+                        foreach ($terms as $term) {
+                            $terms_arr = $term->term_id;
+                        }
+
                         $args = array(
-                            'post_type' => 'faq',
+                            'post_type' => get_post_type(),
                             'post_status' => 'publish',
                             'numberposts' => -1,
                             'fields' => 'ids',
                             'tax_query' => array(
                                 array(
-                                    'taxonomy' => '',
+                                    'taxonomy' => $taxonomy_key,
                                     'field'    => 'term_id',
-                                    'terms'    => $faqs_cat_id
+                                    'terms'    => $terms_arr
                                 )
                             )
                         );
                         $posts = get_posts($args);
-                        $html .= "<div class='row g-4 same-image-height row-global-post'>";
-                        foreach ($posts as $post) {
-                            $data = array(
-                                'id' => $post['id'],
-                                'featured' => false,
-                                'col' => true,
-                                'elements' => array('image', 'title', 'content')
-                            );
-                            $html .= __post_box($data);
-                        }
+                        if ($posts) {
+                            $html .= "<div class='row g-4 same-image-height row-global-post'>";
+                            foreach ($posts as $post) {
+                                $data = array(
+                                    'id' => $post,
+                                    'featured' => false,
+                                    'col' => true,
+                                    'elements' => array('image', 'title', 'content')
+                                );
+                                $html .= __post_box($data);
+                            }
 
-                        $html .= "</div>";
+                            $html .= "</div>";
+                        }
 
                         break;
                 }
