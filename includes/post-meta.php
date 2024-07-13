@@ -4714,7 +4714,7 @@ function __section_fields($name = 'sections')
                         'border',
                         array(
                             Field::make('html', 'html_1')->set_html('<label>Section Border</label>')->set_classes('cb-label'),
-                            Field::make('select', 'border_radius', 'Border Radius')
+                            Field::make('select', 'border_radius', 'Border Radius')->set_classes('inline-field')->set_classes('inline-field')
                                 ->set_options(
                                     array(
                                         ''   => 'None',
@@ -4722,7 +4722,7 @@ function __section_fields($name = 'sections')
                                         'custom'   => 'Custom',
                                     )
                                 ),
-                            Field::make('text', 'border_radius_custom', 'Custom Border Radius')
+                            Field::make('text', 'border_radius_custom', 'Custom Border Radius')->set_classes('inline-field')
                                 ->set_conditional_logic(
                                     array(
                                         array(
