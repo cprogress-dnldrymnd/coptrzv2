@@ -100,7 +100,7 @@ function action_admin_head()
         }
 
         .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item {
-            flex: 0 0  calc(25% - 40px);
+            flex: 0 0  calc(33.33333333% - 40px);
             padding: 15px;
             margin: 5px;
             border-radius: 5px;
