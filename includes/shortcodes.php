@@ -438,6 +438,29 @@ class Shortcodes
             return $html;
         }
     }
+
+    function socials()
+    {
+        $SVG = new SVG;
+        $socials = get__theme_option('socials');
+        if ($socials) {
+            $html = "<div class='socials'>";
+            $html .= "<div class='d-inline-flex align-items-center m-0 p-0'>";
+            foreach ($socials as $social) {
+                $url = $social['url'];
+                $icon = $social['_type'];
+                $html .= "<li>";
+                $html .= "<a href='$url' target='_blank'>";
+                $html .= $SVG->$icon;
+                $html .= "</a>";
+                $html .= "</li>";
+            }
+
+            $html .= "</div>";
+            $html .= "</div>";
+            return $socials;
+        }
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -451,3 +474,4 @@ add_shortcode('post_link', array($Shortcodes, 'post_link'));
 add_shortcode('related_posts', array($Shortcodes, 'related_posts'));
 add_shortcode('latest_from_coptrz', array($Shortcodes, 'latest_from_coptrz'));
 add_shortcode('reviews', array($Shortcodes, 'reviews'));
+add_shortcode('socials', array($Shortcodes, 'socials'));
