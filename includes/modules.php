@@ -838,12 +838,15 @@ function ____post_grid_module($data)
     $number_of_slides_tablet = $data['number_of_slides_tablet'];
     $number_of_slides_mobile = $data['number_of_slides_mobile'];
     $id = $data['id'];
-
     $post_box_styles = $data['post_box_styles'];
     $post_elements = $data['post_elements'];
-
     $post_type = $data['post_type'][0]['_type'];
     $source = $data['post_type'][0]['source'];
+    $styles_val = '';
+    $styles_val = '';
+    $styles_val = '';
+    $styles_val = '';
+    $styles_val = '';
 
 
     // Build the args
@@ -1046,9 +1049,7 @@ function ____post_grid_module($data)
                         'button_type' => get_post_type($post->ID),
                         'button_text' => $item['button_text'],
                         'button_url' => $post->ID,
-                        'button_url_custom' => $item['button_url_custom'],
                         'button_style' => $item['button_style'] . ' position-relative',
-                        'button_target' => $item['button_target'],
                     ));
                     break;
                 case 'featured_image':
