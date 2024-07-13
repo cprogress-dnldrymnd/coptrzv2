@@ -980,7 +980,7 @@ function ____post_grid_module($data)
             switch ($type) {
                 case 'post_title':
                     $post_title = '';
-                    $tag =  $item['tag'];
+                    $tag =  $item['tag'] ? $item['tag'] : 'h3';
                     $text_before = $item['text_before'];
                     $text_after = $item['text_after'];
                     if ($text_before) {
