@@ -766,6 +766,7 @@ function ___sections($id = 'sections', $post_id = '')
                                 'featured' => false,
                                 'col' => true,
                                 'tag' => 'h4',
+                                'description_class' => 'excerpt-no-limit',
                                 'elements' => array('image', 'title', 'content')
                             );
                             $html .= __post_box($data);
@@ -2067,7 +2068,8 @@ function __post_box($data, $class = [], $content_box_class = [])
     $is_new = isset($data['is_new']) ? $data['is_new'] : false;
     $background_class = isset($data['background_class']) ? $data['background_class'] : false;
     $tag = isset($data['tag']) ? $data['tag'] : 'h3';
-
+    $description_class = isset($data['description_class']) ? $data['description_class'] : 'description-box small-text mb-4';
+    
     $additional_content = isset($data['additional_content']) ? $data['additional_content'] : false;
 
     if ($background_class) {
@@ -2155,7 +2157,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     if (in_array('excerpt', $elements)) {
         $html .= __description(array(
             'description' => get_the_excerpt($id),
-            'class' => _attribute('class', array('description-box small-text mb-4')),
+            'class' => _attribute('class', array($description_class)),
         ));
     }
     if (in_array('content', $elements)) {
