@@ -12182,7 +12182,7 @@ header {
     padding-bottom: 13px; }
     @media screen and (max-width: 991px) {
       #footer .footer-bottom .inner {
-        padding-top: 25px;
+        padding-top: 2rem;
         border-top: 1px solid #3c3c3c; } }
     #footer .footer-bottom .footer-right ul {
       display: inline-flex;
