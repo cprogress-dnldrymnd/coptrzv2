@@ -277,7 +277,6 @@ function ___sections($id = 'sections', $post_id = '')
             $is_container_background = false;
             $background_type = false;
             $background  = false;
-            $product_slider_args = [];
             $container_classes[] = 'position-relative container-inner';
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
