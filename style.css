@@ -10727,12 +10727,19 @@ input[type="checkbox"] {
   @media screen and (min-width: 992px) {
     .case-study-slider .swiper-slide {
       padding-bottom: 200px; } }
+  @media screen and (max-width: 991px) {
+    .case-study-slider .swiper-slide .inner {
+      padding-bottom: calc(93px + 60px + 50px); } }
+  @media screen and (max-width: 767px) {
+    .case-study-slider .swiper-slide .inner {
+      padding-bottom: calc(202px + 60px + 50px); } }
   @media screen and (max-width: 575px) {
     .case-study-slider .swiper-slide .inner {
       padding-top: 20px;
-      padding-bottom: 20px;
       margin-left: 10px;
-      margin-right: 10px; } }
+      margin-right: 10px;
+      padding-left: 1rem;
+      padding-right: 1rem; } }
 .case-study-slider .logo-box img {
   max-height: 74px;
   object-fit: contain;
@@ -10740,16 +10747,15 @@ input[type="checkbox"] {
 @media screen and (max-width: 991px) {
   .case-study-slider .logo-box {
     margin-bottom: 2rem; } }
-@media screen and (min-width: 992px) {
-  .case-study-slider .bottom-holder {
-    position: absolute;
-    bottom: 90px;
-    z-index: 1;
-    left: 0;
-    right: 0; } }
-@media screen and (max-width: 991px) {
-  .case-study-slider .bottom-holder {
-    color: var(--bs-black); } }
+.case-study-slider .bottom-holder {
+  position: absolute;
+  bottom: 90px;
+  z-index: 1;
+  left: 0;
+  right: 0; }
+  @media screen and (max-width: 991px) {
+    .case-study-slider .bottom-holder {
+      bottom: 60px; } }
 @media screen and (max-width: 991px) {
   .case-study-slider .col-left {
     display: flex;

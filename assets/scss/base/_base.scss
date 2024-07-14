@@ -365,9 +365,14 @@ input[type="checkbox"] {
             padding-bottom: 200px;
         }
         .inner {
+            @include responsive(xs-sm) {
+                padding-bottom: calc(93px + 60px + 50px);
+            }
+            @include responsive(xs) {
+                padding-bottom: calc(202px + 60px + 50px);
+            }
             @include responsive(mobile) {
                 padding-top: 20px;
-                padding-bottom: 20px;
                 margin-left: 10px;
                 margin-right: 10px;
                 padding-left: 1rem;
@@ -383,19 +388,16 @@ input[type="checkbox"] {
         }
         @include responsive(xs-sm) {
             margin-bottom: 2rem;
-
         }
     }
     .bottom-holder {
-        @include responsive(md-lg) {
-            position: absolute;
-            bottom: 90px;
-            z-index: 1;
-            left: 0;
-            right: 0;
-        }
+        position: absolute;
+        bottom: 90px;
+        z-index: 1;
+        left: 0;
+        right: 0;
         @include responsive(xs-sm) {
-            color: var(--bs-black);
+            bottom: 60px;
         }
     }
     .col-left {
