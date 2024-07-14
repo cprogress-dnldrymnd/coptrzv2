@@ -129,6 +129,10 @@
         .accordion-collapse {
             display: block;
         }
+        .accordion-button {
+            cursor: inherit;
+            pointer-events: none;
+        }
         .accordion-body {
             padding: 0;
         }

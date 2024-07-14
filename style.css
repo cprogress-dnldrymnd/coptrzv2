@@ -12252,7 +12252,11 @@ header {
   #accordionFooter .plus-minus {
     display: none; }
   #accordionFooter .accordion-collapse {
-    display: block; } }
+    display: block; }
+  #accordionFooter .accordion-button {
+    cursor: pointer; }
+  #accordionFooter .accordion-body {
+    padding: 0; } }
 
 section.hero {
   min-height: 85vh; }
