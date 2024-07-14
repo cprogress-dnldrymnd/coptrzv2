@@ -399,7 +399,6 @@ class Shortcodes
 
                 $html .= __post_box($data_latest);
             }
-            $html .= var_dump($data_latest);
             $html .= "</div>";
             $html .= "</div>";
 
