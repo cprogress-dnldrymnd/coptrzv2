@@ -276,8 +276,9 @@ add_action('admin_bar_menu', 'action_layout_menu', 999999);
 function action_pre_get_posts($query)
 {
     if (!is_admin() && $query->is_main_query()) {
+        $query->set('post_status', 'publish');
+
         if (is_post_type_archive('solutions') || is_post_type_archive('guides')) {
-            // Append our meta query
             $meta_query[] = [
                 'key' => '_hide_on_list',
                 'value' => 'yes',
@@ -285,6 +286,9 @@ function action_pre_get_posts($query)
             ];
 
             $query->set('meta_query', $meta_query);
+        }
+        if (is_post_type_archive('solutions') || is_post_type_archive('capabilities')) {
+            $query->set('posts_per_page', -1);
         }
     }
     return;
