@@ -855,7 +855,11 @@ small {
             @include after {
                 content: none;
             }
-
+            &[aria-expanded="true"] {
+                .plus-minus:after {
+                    display: none;
+                }
+            }
             @include responsive(xs) {
                 font-size: 1.5rem;
             }
