@@ -10552,12 +10552,26 @@ hr {
   .background-image iframe {
     width: 100%;
     height: 100%;
-    -webkit-transform: scale(1.4);
-    -moz-transform: scale(1.4);
-    -ms-transform: scale(1.4);
-    -o-transform: scale(1.4);
-    transform: scale(1.4);
+    -webkit-transform: scale(1.6);
+    -moz-transform: scale(1.6);
+    -ms-transform: scale(1.6);
+    -o-transform: scale(1.6);
+    transform: scale(1.6);
     pointer-events: none; }
+    @media screen and (max-width: 991px) {
+      .background-image iframe {
+        -webkit-transform: scale(1.7);
+        -moz-transform: scale(1.7);
+        -ms-transform: scale(1.7);
+        -o-transform: scale(1.7);
+        transform: scale(1.7); } }
+    @media screen and (max-width: 767px) {
+      .background-image iframe {
+        -webkit-transform: scale(2.5);
+        -moz-transform: scale(2.5);
+        -ms-transform: scale(2.5);
+        -o-transform: scale(2.5);
+        transform: scale(2.5); } }
   @media screen and (max-width: 575px) {
     .background-image.mx-20px {
       margin-left: 10px;
