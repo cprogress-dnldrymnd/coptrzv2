@@ -12224,6 +12224,10 @@ header {
       max-height: 32px;
       width: auto; } }
 
+@media screen and (max-width: 1199px) {
+  #accordionFooter .accordion-collapse {
+    display: block; } }
+
 section.hero {
   min-height: 85vh; }
   section.hero .container {
