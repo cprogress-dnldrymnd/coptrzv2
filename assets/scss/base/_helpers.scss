@@ -269,7 +269,24 @@ $spacings_mobile: (
 .gy-20px {
     --bs-gutter-xy: 20px;
 }
-
+.g-4,
+.g-5 {
+    @include responsive(xs) {
+        --bs-gutter-x: 10px;
+        --bs-gutter-y: 10px;
+    }
+}
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+    @include responsive(xs) {
+        --bs-gutter-x: 10px;
+    }
+}
 .header-padding {
     padding-top: 80.75px;
 }
