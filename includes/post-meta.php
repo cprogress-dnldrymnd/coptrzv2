@@ -5807,6 +5807,21 @@ Container::make('post_meta', 'Industry Settings')
 
 
 
+/*-----------------------------------------------------------------------------------*/
+/* Gudies
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', 'Industry Settings')
+    ->where('post_type', '=', 'guides')
+    ->add_tab(
+        'General Settings',
+        array(
+            Field::make('checkbox', 'hide_on_list', 'Hide on List'),
+        )
+    );
+
+/*-----------------------------------------------------------------------------------*/
+/* Popups
+/*-----------------------------------------------------------------------------------*/
 
 Container::make('post_meta', 'Popup Settings')
     ->set_priority('high')
