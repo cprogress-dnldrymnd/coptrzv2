@@ -147,7 +147,11 @@ echo do_shortcode(__layouts($args));
             </div>
         </div>
     </div>
-    <?php if (get_the_post_navigation()) { ?>
+    <?php if (get_the_post_navigation(array(
+        'mid_size'  => 2,
+        'next_text' => $SVG->chevron_right(),
+        'prev_text' => $SVG->chevron_left(),
+    ))) { ?>
         <div class="pagination">
             <div class="container">
                 <div class="inner border-top-default sm-padding-top sm-margin-top">
