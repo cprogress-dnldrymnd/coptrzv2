@@ -66,10 +66,10 @@ if (!$hide_footer) {
         <div class="footer-bottom">
             <div class="container">
                 <div class="row g-4 align-items-center">
-                    <div class="col-lg-6">
+                    <div class="col-12 col-sm-auto">
                         <?php dynamic_sidebar('footer_bottom_left') ?>
                     </div>
-                    <div class="col-lg-6 footer-right text-end">
+                    <div class="col-12 col-sm-auto">
                         <?php dynamic_sidebar('footer_bottom_right') ?>
                     </div>
                 </div>

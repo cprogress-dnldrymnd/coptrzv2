@@ -12194,7 +12194,9 @@ header {
           height: 5px;
           display: inline-block;
           border-radius: 20px;
-          background-color: #606060; }
+          background-color: #606060;
+          margin-left: 1rem;
+          margin-right: 1rem; }
 
 .footer-cta .inner {
   padding-top: 200px; }
