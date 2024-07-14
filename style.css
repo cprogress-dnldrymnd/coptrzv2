@@ -10751,6 +10751,10 @@ input[type="checkbox"] {
 @media screen and (max-width: 991px) {
   .case-study-slider .bottom-holder {
     color: var(--bs-black); } }
+@media screen and (max-width: 991px) {
+  .case-study-slider .col-left {
+    display: flex;
+    flex-direction: column-reverse; } }
 
 .border-top-default {
   border-top: 1px solid var(--border-color); }
