@@ -11350,16 +11350,23 @@ hr {
 .navigation.pagination .nav-links {
   display: flex; }
   .navigation.pagination .nav-links .page-numbers {
-    padding: 20px 25px;
+    padding: 15px;
     color: var(--bs-black);
     border-radius: 10px;
-    border: 1px solid; }
+    border: 1px solid;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
     .navigation.pagination .nav-links .page-numbers:not(:last-child) {
       margin-right: 10px; }
-  .navigation.pagination .nav-links a:hover, .navigation.pagination .nav-links a:active, .navigation.pagination .nav-links a:focus {
-    background-color: var(--bs-accent);
-    color: var(--bs-white);
-    border-color: var(--bs-accent); }
+  .navigation.pagination .nav-links a {
+    text-decoration: none; }
+    .navigation.pagination .nav-links a:hover, .navigation.pagination .nav-links a:active, .navigation.pagination .nav-links a:focus {
+      background-color: var(--bs-accent);
+      color: var(--bs-white);
+      border-color: var(--bs-accent); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
