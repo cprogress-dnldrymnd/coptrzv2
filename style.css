@@ -10593,12 +10593,18 @@ hr {
   margin-left: 0;
   padding-left: 0; }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .extend-left .container,
   .extend-left.container,
   .extend-right .container,
   .extend-right.container {
     max-width: calc(540px + (50% - (540px / 2))); } }
+@media (min-width: 768px) {
+  .extend-left .container,
+  .extend-left.container,
+  .extend-right .container,
+  .extend-right.container {
+    max-width: calc(720px + (50% - (720px / 2))); } }
 @media (min-width: 992px) {
   .extend-left .container,
   .extend-left.container,

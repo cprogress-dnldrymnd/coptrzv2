@@ -160,8 +160,12 @@ main {
 .extend-left.container,
 .extend-right .container,
 .extend-right.container {
-    @media (min-width: 768px) {
+   
+    @media (min-width: 576px) {
         max-width: calc(540px + (50% - (540px / 2)));
+    }
+    @media (min-width: 768px) {
+        max-width: calc(720px + (50% - (720px / 2)));
     }
     @media (min-width: 992px) {
         max-width: calc(960px + (50% - (960px / 2)));
