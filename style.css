@@ -12178,9 +12178,12 @@ header {
     padding: 20px;
     background-color: #262626; }
   #footer .footer-bottom {
-    border-top: 1px solid #3c3c3c;
     padding-top: 13px;
     padding-bottom: 13px; }
+    @media screen and (max-width: 991px) {
+      #footer .footer-bottom .inner {
+        padding-top: 25px;
+        border-top: 1px solid #3c3c3c; } }
     #footer .footer-bottom .footer-right ul {
       display: inline-flex;
       align-items: center;
@@ -12190,7 +12193,7 @@ header {
         display: flex;
         align-items: center; }
         #footer .footer-bottom .footer-right ul li:not(:last-child):after {
-          content: '';
+          content: "";
           width: 5px;
           height: 5px;
           display: inline-block;
@@ -12198,6 +12201,9 @@ header {
           background-color: #606060;
           margin-left: 1rem;
           margin-right: 1rem; }
+    @media screen and (max-width: 991px) {
+      #footer .footer-bottom {
+        border-top: 1px solid #3c3c3c; } }
 
 .footer-cta .inner {
   padding-top: 200px; }

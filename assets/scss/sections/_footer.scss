@@ -21,9 +21,14 @@
         }
     }
     .footer-bottom {
-        border-top: 1px solid #3c3c3c;
         padding-top: 13px;
         padding-bottom: 13px;
+        .inner {
+            @include responsive(xs-sm) {
+                padding-top: 2rem;
+                border-top: 1px solid #3c3c3c;
+            }
+        }
         .footer-right {
             ul {
                 display: inline-flex;
@@ -34,9 +39,8 @@
                     display: flex;
                     align-items: center;
                     @include not-last-child {
-                        
                         @include after {
-                            content: '';
+                            content: "";
                             width: 5px;
                             height: 5px;
                             display: inline-block;
@@ -48,6 +52,9 @@
                     }
                 }
             }
+        }
+        @include responsive(xs-sm) {
+            border-top: 1px solid #3c3c3c;
         }
     }
 }
