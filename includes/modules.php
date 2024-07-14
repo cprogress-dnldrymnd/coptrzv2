@@ -719,7 +719,6 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($product_cat as $cat) {
                                 $term_ids[] = $cat['id'];
                             }
-                            $product_slider_args['tax_query']['relation'] = 'AND';
 
                             $product_slider_args['tax_query'][] = array(
                                 'taxonomy' => 'product_cat',
