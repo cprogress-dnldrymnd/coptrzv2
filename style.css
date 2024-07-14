@@ -10457,7 +10457,7 @@ p:last-child {
     display: none; } }
 
 #wpadminbar *:not(.ab-icon) {
-  font-family: var(--primary-font); }
+  font-family: var(--primary-font) !important; }
 
 @media screen and (max-width: 991px) {
   .html.html.html {
