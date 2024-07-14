@@ -2102,13 +2102,13 @@ function __post_box($data, $class = [], $content_box_class = [])
     }
     $html = '';
     if ($col == true && $col != false && is_bool($col)) {
-        $html = "<div class='col-lg-4 col-sm-6'>";//col
+        $html = "<div class='col-lg-4 col-sm-6'>"; //col
     } else {
-        $html = "<div class='$col'>";//col
+        $html = "<div class='$col'>"; //col
     }
     $class_attribute = _attribute('class', $class);
     $content_box_class_attribute = _attribute('class', $content_box_class);
-    $html .= "<div $class_attribute>";//inner
+    $html .= "<div $class_attribute>"; //inner
     if ($featured) {
         $html .= __background($image);
         $html .= __post_category($id, 'category', 'text-white');
@@ -2181,8 +2181,8 @@ function __post_box($data, $class = [], $content_box_class = [])
         ));
     }
     $html .= "</div>";
-    $html .= "</div>";//inner
-    $html .= "</div>";//col
+    $html .= "</div>"; //inner
+    $html .= "</div>"; //col
     return $html;
 }
 function ___hero_archive($key, $title)
@@ -2521,4 +2521,41 @@ function __form($args)
     $html .= "</div>"; //end-form-holder
 
     return $html;
+}
+
+
+function __popup($id)
+{
+    $id = $id;
+    $popup_layout = get__post_meta_by_id($id, 'popup_layout');
+    $popup_max_width = get__post_meta_by_id($id, 'popup_max_width');
+    $background_color = get__post_meta_by_id($id, 'background_color');
+    $background_color_val =  $background_color ? $background_color : 'background-white';
+    $col_class = get_the_post_thumbnail_url($id) ? 'col-lg-6 ' : 'col-12';
+
+    $html = "<div class='modal fade modal-v2 popup-form $popup_max_width' id='modal-$id' tabindex='-1' aria-labelledby='modalSearchLabel' aria-hidden='true'>"; //modal
+    $html .= "<div class='modal-dialog modal-dialog-centered'>"; //modal-dialog
+    $html .= "<div class='modal-content  $background_color_val'>";
+    $html .= "<div class='modal-body p-0 '>"; //modal-body
+
+    if ($popup_layout == 'contact_form') {
+        $html .= "<div class='row g-0'>"; //row
+        $html .= "<div class='$col_class'>"; //col
+        $html .= "<div class='form-holder px-4 py-5 h-100 d-flex align-items-center'>"; //form-holder
+        $html .= "<div class='form-inner w-100'>"; //form-inner 
+        $html .= do_shortcode(get_the_content(NULL, false, $id));
+        $html .= "</div>"; //form-inner
+        $html .= "</div>"; //form-holder
+        $html .= "</div>"; //col
+        $html .= "</div>"; //row
+
+    } else {
+        $html .= "<div class='popup-content-default p-5'>"; //popup-content-default
+        $html .= do_shortcode(get_the_content(NULL, false, $id));
+        $html .= "</div>"; //popup-content-default
+    }
+    $html .= "</div>"; //modal-body
+    $html .= "</div>"; //modal-content
+    $html .= "</div>"; //modal-dialog
+    $html .= "</div>"; //modal
 }

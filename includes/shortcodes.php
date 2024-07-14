@@ -487,6 +487,7 @@ class Shortcodes
                 $atts
             )
         );
+        return __popup($id);
     }
 }
 $Shortcodes = new Shortcodes;

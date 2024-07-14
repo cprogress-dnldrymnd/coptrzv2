@@ -25,5 +25,5 @@
             Launch Popup
         </button>
     </div>
-    <?= do_shortcode('[popup id=' . get_the_ID() . ']') ?>
+    <?php echo __popup($id); ?>
 </body>
