@@ -159,8 +159,8 @@ echo do_shortcode(__layouts($args));
                             'prev_text' => $SVG->chevron_left(),
                         )); ?>
                     </div>
-                    <div class="col-lg-4">
-                        <select name="posts_per_page" id="posts_per_page">
+                    <div class="col-lg-4 text-center text-md-end">
+                        <select name="posts_per_page" id="posts_per_page" class="w-auto">
                             <option value="12">Show: 8</option>
                             <option value="12">Show: 12</option>
                             <option value="16">Show: 16</option>
