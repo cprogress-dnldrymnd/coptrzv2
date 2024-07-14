@@ -11177,7 +11177,7 @@ small, .small {
       .accordion .accordion-item .accordion-button:after {
         content: none; }
       .accordion .accordion-item .accordion-button[aria-expanded="true"] .plus-minus:after {
-        opacity: 0; }
+        display: none; }
       @media screen and (max-width: 767px) {
         .accordion .accordion-item .accordion-button {
           font-size: 1.5rem; } }
