@@ -4891,7 +4891,7 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'background_overlay_type',
+                                            'field' => 'background_gradient_type',
                                             'value' => 'custom',
                                         )
                                     )
@@ -4907,7 +4907,7 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'background_overlay_type',
+                                            'field' => 'background_gradient_type',
                                             'value' => 'custom',
                                         )
                                     )
@@ -4922,7 +4922,7 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'background_overlay_type',
+                                            'field' => 'background_gradient_type',
                                             'value' => 'custom',
                                         )
                                     )
@@ -4937,7 +4937,7 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'background_overlay_type',
+                                            'field' => 'background_gradient_type',
                                             'value' => 'custom',
                                         )
                                     )
@@ -4952,7 +4952,7 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'background_overlay_type',
+                                            'field' => 'background_gradient_type',
                                             'value' => 'custom',
                                         )
                                     )
