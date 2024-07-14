@@ -26,4 +26,5 @@
         </button>
     </div>
     <?php echo __popup($id); ?>
+    <?php wp_footer(); ?>
 </body>
