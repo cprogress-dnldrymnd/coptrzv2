@@ -911,7 +911,7 @@ function __hero_button_fields()
                 )
             )
             ->add_fields(array(
-                Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+                Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field')
                     ->set_options(
                         array(
                             ''          => 'Select Button Type',
@@ -925,7 +925,7 @@ function __hero_button_fields()
                             'custom'     => 'Custom',
                         )
                     ),
-                Field::make('text', 'button_text', __('Button Text')),
+                Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
                 Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
                     ->set_conditional_logic(
                         array(
@@ -938,7 +938,7 @@ function __hero_button_fields()
                     ),
                 Field::make('html', 'html')
                     ->set_html('<div class="page-selector">  </div>'),
-                Field::make('text', 'button_url_custom', __('Button URL'))
+                Field::make('text', 'button_url_custom', __('Button URL'))->set_classes('inline-field')
                     ->set_conditional_logic(
                         array(
                             array(
@@ -947,7 +947,7 @@ function __hero_button_fields()
                             )
                         )
                     ),
-                Field::make('select', 'button_style', __('Button Style'))
+                Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field')
                     ->set_options(
                         array(
                             'button-accent'      => 'Accent',
@@ -957,7 +957,7 @@ function __hero_button_fields()
                             'button-bordered'    => 'Bordered',
                         )
                     ),
-                Field::make('select', 'button_target', __('Button Target'))
+                Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field')
                     ->set_options(
                         array(
                             'target="_self"'      => 'Default',
@@ -1730,7 +1730,7 @@ function __section_fields($name = 'sections')
                                                 )
 
                                                 ->add_fields(array(
-                                                    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+                                                    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field')
                                                         ->set_options(
                                                             array(
                                                                 ''          => 'Select Button Type',
@@ -1744,7 +1744,7 @@ function __section_fields($name = 'sections')
                                                                 'custom'     => 'Custom',
                                                             )
                                                         ),
-                                                    Field::make('text', 'button_text', __('Button Text')),
+                                                    Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
                                                     Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
                                                         ->set_conditional_logic(
                                                             array(
@@ -1757,7 +1757,7 @@ function __section_fields($name = 'sections')
                                                         ),
                                                     Field::make('html', 'html')
                                                         ->set_html('<div class="page-selector">  </div>'),
-                                                    Field::make('text', 'button_url_custom', __('Button URL'))
+                                                    Field::make('text', 'button_url_custom', __('Button URL'))->set_classes('inline-field')
                                                         ->set_conditional_logic(
                                                             array(
                                                                 array(
@@ -1766,7 +1766,7 @@ function __section_fields($name = 'sections')
                                                                 )
                                                             )
                                                         ),
-                                                    Field::make('select', 'button_style', __('Button Style'))
+                                                    Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field')
                                                         ->set_options(
                                                             array(
                                                                 'button-accent'      => 'Accent',
@@ -1776,7 +1776,7 @@ function __section_fields($name = 'sections')
                                                                 'button-bordered'    => 'Bordered',
                                                             )
                                                         ),
-                                                    Field::make('select', 'button_target', __('Button Target'))
+                                                    Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field')
                                                         ->set_options(
                                                             array(
                                                                 'target="_self"'      => 'Default',
@@ -4562,7 +4562,7 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                                 ->add_fields(array(
-                                    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector')
+                                    Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field')
                                         ->set_options(
                                             array(
                                                 ''          => 'Select Button Type',
@@ -4576,7 +4576,7 @@ function __section_fields($name = 'sections')
                                                 'custom'     => 'Custom',
                                             )
                                         ),
-                                    Field::make('text', 'button_text', __('Button Text')),
+                                    Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
                                     Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
                                         ->set_conditional_logic(
                                             array(
@@ -4589,7 +4589,7 @@ function __section_fields($name = 'sections')
                                         ),
                                     Field::make('html', 'html')
                                         ->set_html('<div class="page-selector">  </div>'),
-                                    Field::make('text', 'button_url_custom', __('Button URL'))
+                                    Field::make('text', 'button_url_custom', __('Button URL'))->set_classes('inline-field')
                                         ->set_conditional_logic(
                                             array(
                                                 array(
@@ -4598,7 +4598,7 @@ function __section_fields($name = 'sections')
                                                 )
                                             )
                                         ),
-                                    Field::make('select', 'button_style', __('Button Style'))
+                                    Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field')
                                         ->set_options(
                                             array(
                                                 'button-accent'      => 'Accent',
@@ -4608,7 +4608,7 @@ function __section_fields($name = 'sections')
                                                 'button-bordered'    => 'Bordered',
                                             )
                                         ),
-                                    Field::make('select', 'button_target', __('Button Target'))
+                                    Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field')
                                         ->set_options(
                                             array(
                                                 'target="_self"'      => 'Default',
