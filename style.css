@@ -10674,6 +10674,13 @@ section .container-inner > *:not(:last-child) {
   font-size: 15px;
   border-radius: 10px;
   line-height: 1.25; }
+  @media screen and (max-width: 575px) {
+    .button-box a,
+    .button-box button,
+    .button.button.button.button.button,
+    .wp-element-button.wp-element-button.wp-element-button {
+      font-size: 14px;
+      padding: 1.25rem 2rem; } }
 
 .wp-element-button.wp-element-button.wp-element-button {
   color: var(--bs-white);
@@ -11807,6 +11814,10 @@ section.product-main .summary.summary.summary .variations tr {
     width: 60.75px;
     height: 60.75px;
     font-size: 26px; }
+    @media screen and (max-width: 575px) {
+      .quantity.quantity.quantity button {
+        font-size: 14px;
+        padding: 1.25rem 2rem; } }
     .quantity.quantity.quantity button:hover, .quantity.quantity.quantity button:active, .quantity.quantity.quantity button:focus {
       background-color: var(--bs-accent);
       border-color: var(--bs-accent);
@@ -11862,6 +11873,10 @@ section.product-main .summary.summary.summary .variations tr {
   border-color: var(--bs-accent);
   background-color: var(--bs-accent);
   width: 100%; }
+  @media screen and (max-width: 575px) {
+    .wpforms-submit.wpforms-submit.wpforms-submit {
+      font-size: 14px;
+      padding: 1.25rem 2rem; } }
   .wpforms-submit.wpforms-submit.wpforms-submit:hover, .wpforms-submit.wpforms-submit.wpforms-submit:active, .wpforms-submit.wpforms-submit.wpforms-submit:focus {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
