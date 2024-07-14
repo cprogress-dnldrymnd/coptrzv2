@@ -4694,7 +4694,7 @@ function __section_fields($name = 'sections')
                         Field::make('text', 'heading', 'Heading')->set_classes('inline-field inline-field-wide-label'),
                         Field::make('text', 'button_text', 'Button Text')->set_classes('inline-field inline-field-wide-label'),
                         Field::make('text', 'button_url', 'Button URL')->set_classes('inline-field inline-field-wide-label'),
-                        Field::make('select', 'source_type', __('Source'))
+                        Field::make('select', 'source_type', __('Source'))->set_classes('inline-field inline-field-wide-label')
                             ->set_options(
                                 array(
                                     'category'      => 'Select by Category',
