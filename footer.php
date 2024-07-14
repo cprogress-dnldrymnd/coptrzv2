@@ -82,6 +82,25 @@ if (!$hide_footer) {
 <?php } ?>
 </main>
 
+<?php
+$product_slider_args['tax_query']['relation'] = 'AND';
+
+$product_slider_args['tax_query'][] = array(
+    'taxonomy' => 'product_cat',
+    'field'    => 'term_id',
+    'terms'    => $term_ids
+);
+$product_slider_args['tax_query'][] = array(
+    'taxonomy' => 'pa_brands',
+    'field'    => 'term_id',
+    'terms'    => $brand_ids
+);
+
+?>
+<pre>
+    <?php var_dump($product_slider_args) ?>
+</pre>
+
 <?php wp_footer(); ?>
 </body>
 
