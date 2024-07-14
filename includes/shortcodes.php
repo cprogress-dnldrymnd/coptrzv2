@@ -499,6 +499,8 @@ class Shortcodes
         $html = "<div class='event-countdown'>";
         
         $html .= "</div>";
+
+        return $html;
     }
 }
 $Shortcodes = new Shortcodes;
@@ -515,4 +517,4 @@ add_shortcode('latest_from_coptrz', array($Shortcodes, 'latest_from_coptrz'));
 add_shortcode('reviews', array($Shortcodes, 'reviews'));
 add_shortcode('socials', array($Shortcodes, 'socials'));
 add_shortcode('site_logo', array($Shortcodes, 'site_logo'));
-add_shortcode('site_logo', array($Shortcodes, 'site_logo'));
+add_shortcode('event_countdown', array($Shortcodes, 'event_countdown'));
