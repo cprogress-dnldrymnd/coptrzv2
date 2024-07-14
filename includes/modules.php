@@ -716,11 +716,7 @@ function ___sections($id = 'sections', $post_id = '')
                                 $term_ids[] = $cat['id'];
                             }
 
-                            $args['tax_query'][] = array(
-                                'taxonomy' => 'product_cat',
-                                'field'    => 'term_id',
-                                'terms'    => $term_ids
-                            );
+                        
                         } else if ($source_type == 'main_query') {
                             $include = [];
                             while (have_posts()) {
