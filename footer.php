@@ -83,7 +83,7 @@ if (!$hide_footer) {
 </main>
 <?php
 if (current_user_can('administrator')) {
-    $layouts_global_val = "<div vclass='ab-sub-wrapper'>";
+    $layouts_global_val = "<div class='ab-sub-wrapper'>";
     $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
     foreach ($layouts_global as $layout) {
         $title = get_the_title($layout);
@@ -98,10 +98,7 @@ if (current_user_can('administrator')) {
 ?>
     <script>
         jQuery(document).ready(function() {
-            console.log('<?= $layouts_global_val ?>');
-            console.log('xxxx');
-
-            jQuery('<?= $layouts_global_val ?>').appendTo('#wp-admin-bar-layouts-menu');
+            jQuery("<?= $layouts_global_val ?>").appendTo('#wp-admin-bar-layouts-menu');
         });
     </script>
 <?php
