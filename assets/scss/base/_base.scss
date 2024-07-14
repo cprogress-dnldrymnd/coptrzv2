@@ -383,6 +383,10 @@ input[type="checkbox"] {
             object-fit: contain;
             width: auto;
         }
+        @include responsive(xs-sm) {
+            margin-bottom: 2rem;
+
+        }
     }
     .bottom-holder {
         @include responsive(md-lg) {
@@ -399,7 +403,7 @@ input[type="checkbox"] {
     .col-left {
         @include responsive(xs-sm) {
             display: flex;
-            flex-direction: column-reverse
+            flex-direction: column-reverse;
         }
     }
 }
