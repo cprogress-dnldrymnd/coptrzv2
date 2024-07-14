@@ -389,6 +389,7 @@ class Shortcodes
                 }
                 if (get_post_type() == 'post') {
                     $data['elements'] = array('image', 'date', 'title', 'button');
+                    $data['taxonomy'] = 'category';
                 } else {
                     $data['elements'] = array('image',  'title', 'button');
                 }
