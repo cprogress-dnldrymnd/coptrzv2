@@ -725,7 +725,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $include = [];
                             while (have_posts()) {
                                 the_post();
-                                $includes[] = get_the_ID();
+                                $include[] = get_the_ID();
                             }
 
                             $args['include'] = $include;
