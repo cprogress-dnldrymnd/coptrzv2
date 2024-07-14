@@ -1020,7 +1020,7 @@ function ____post_grid_module($data)
     }
 
 
-    if($is_slider) {
+    if ($is_slider) {
         $column_classes[] = 'swiper-inner h-100';
     }
     if ($column_classes) {
@@ -1184,6 +1184,7 @@ function ____post_grid_module($data)
         $html .= '<div class="swiper-button-prev"></div>';
         $html .= '<div class="swiper-button-next"></div>';
         $html .= '</div>'; //end swipernav
+        $html .= '<div class="swiper-pagination"></div>';
         $html .= '</div>'; //end swiper-holder
     } else {
         $html .= "</div>"; //end-row
@@ -1296,7 +1297,7 @@ function ____columns_modules($items, $id, $html = '')
     $classes = array();
     $styles = array();
 
-    if($mobile_styling) {
+    if ($mobile_styling) {
         $classes[] = $mobile_styling;
     }
 
