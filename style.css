@@ -11241,7 +11241,7 @@ hr {
       left: 1rem; } }
 
 .swiper-sliders .swiper-slide {
-  height: auto; }
+  height: auto !important; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
