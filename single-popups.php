@@ -25,6 +25,6 @@
             Launch Popup
         </button>
     </div>
-    <?php echo __popup($id); ?>
+    <?php echo __popup(get_the_ID()); ?>
     <?php wp_footer(); ?>
 </body>
