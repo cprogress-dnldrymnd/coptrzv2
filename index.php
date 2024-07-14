@@ -100,7 +100,7 @@ if ($has_featured) {
     echo ___featured($key);
 }
 
-
+$args['post_type'] = 'layouts';
 $args = array(
     'meta_query' => array(
         'relation' => 'AND',
@@ -114,7 +114,14 @@ $args = array(
         )
     )
 );
-echo do_shortcode(__layouts($args));
+global $layouts_global;
+$layouts_above = get_posts($args);
+if ($layouts_above) {
+    foreach ($layouts_above as $layout) {
+        $layouts_global = $layout->ID;
+        echo '[layouts id=' . $layout->ID . ']';
+    }
+}
 ?>
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default" id="posts">
@@ -160,7 +167,13 @@ $args = array(
         )
     )
 );
-echo do_shortcode(__layouts($args));
+$layouts_below = get_posts($args);
+if ($layouts_below) {
+    foreach ($layouts_below as $layout) {
+        $layouts_global = $layout->ID;
+        echo '[layouts id=' . $layout->ID . ']';
+    }
+}
 ?>
 
 <?php get_footer(); ?>
