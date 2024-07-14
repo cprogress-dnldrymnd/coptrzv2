@@ -17,6 +17,13 @@
             .inner {
                 padding: 20px;
                 background-color: #262626;
+                .site-logo {
+                    svg {
+                        @include responsive(mobile) {
+                            height: 13px;
+                        }
+                    }
+                }
             }
         }
     }
