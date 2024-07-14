@@ -69,15 +69,12 @@ $spacings_tablet: (
     "lg": 6.5rem,
     "md": 4rem,
     "sm": 2rem,
-    "xs": 1rem
 );
 
 $spacings_mobile: (
     "xl": 10rem,
     "lg": 5rem,
-    "md": 4rem,
-    "sm": 2rem,
-    "xs": 1rem
+    "md": 3rem,
 );
 @include responsive(lg) {
     @each $size, $spacing in $spacings {

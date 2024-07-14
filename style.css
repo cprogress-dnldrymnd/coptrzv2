@@ -9981,34 +9981,34 @@ p:last-child {
     margin-right: 10rem; }
 
   .lg-padding-top {
-    padding-top: 7.5rem; }
+    padding-top: 8rem; }
 
   .lg-padding-bottom {
-    padding-bottom: 7.5rem; }
+    padding-bottom: 8rem; }
 
   .lg-padding-left {
-    padding-left: 7.5rem; }
+    padding-left: 8rem; }
 
   .lg-padding-right {
-    padding-right: 7.5rem; }
+    padding-right: 8rem; }
 
   .lg-padding {
-    padding: 7.5rem; }
+    padding: 8rem; }
 
   .lg-margin {
-    margin: 7.5rem; }
+    margin: 8rem; }
 
   .lg-margin-top {
-    margin-top: 7.5rem; }
+    margin-top: 8rem; }
 
   .lg-margin-bottom {
-    margin-bottom: 7.5rem; }
+    margin-bottom: 8rem; }
 
   .lg-margin-left {
-    margin-left: 7.5rem; }
+    margin-left: 8rem; }
 
   .lg-margin-right {
-    margin-right: 7.5rem; }
+    margin-right: 8rem; }
 
   .md-padding-top {
     padding-top: 5rem; }
@@ -10218,37 +10218,7 @@ p:last-child {
     margin-left: 2rem; }
 
   .sm-margin-right {
-    margin-right: 2rem; }
-
-  .xs-padding-top {
-    padding-top: 1rem; }
-
-  .xs-padding-bottom {
-    padding-bottom: 1rem; }
-
-  .xs-padding-left {
-    padding-left: 1rem; }
-
-  .xs-padding-right {
-    padding-right: 1rem; }
-
-  .xs-padding {
-    padding: 1rem; }
-
-  .xs-margin {
-    margin: 1rem; }
-
-  .xs-margin-top {
-    margin-top: 1rem; }
-
-  .xs-margin-bottom {
-    margin-bottom: 1rem; }
-
-  .xs-margin-left {
-    margin-left: 1rem; }
-
-  .xs-margin-right {
-    margin-right: 1rem; } }
+    margin-right: 2rem; } }
 @media screen and (max-width: 767px) {
   .xl-padding-top {
     padding-top: 10rem; }
@@ -10311,94 +10281,34 @@ p:last-child {
     margin-right: 5rem; }
 
   .md-padding-top {
-    padding-top: 4rem; }
+    padding-top: 3rem; }
 
   .md-padding-bottom {
-    padding-bottom: 4rem; }
+    padding-bottom: 3rem; }
 
   .md-padding-left {
-    padding-left: 4rem; }
+    padding-left: 3rem; }
 
   .md-padding-right {
-    padding-right: 4rem; }
+    padding-right: 3rem; }
 
   .md-padding {
-    padding: 4rem; }
+    padding: 3rem; }
 
   .md-margin {
-    margin: 4rem; }
+    margin: 3rem; }
 
   .md-margin-top {
-    margin-top: 4rem; }
+    margin-top: 3rem; }
 
   .md-margin-bottom {
-    margin-bottom: 4rem; }
+    margin-bottom: 3rem; }
 
   .md-margin-left {
-    margin-left: 4rem; }
+    margin-left: 3rem; }
 
   .md-margin-right {
-    margin-right: 4rem; }
-
-  .sm-padding-top {
-    padding-top: 2rem; }
-
-  .sm-padding-bottom {
-    padding-bottom: 2rem; }
-
-  .sm-padding-left {
-    padding-left: 2rem; }
-
-  .sm-padding-right {
-    padding-right: 2rem; }
-
-  .sm-padding {
-    padding: 2rem; }
-
-  .sm-margin {
-    margin: 2rem; }
-
-  .sm-margin-top {
-    margin-top: 2rem; }
-
-  .sm-margin-bottom {
-    margin-bottom: 2rem; }
-
-  .sm-margin-left {
-    margin-left: 2rem; }
-
-  .sm-margin-right {
-    margin-right: 2rem; }
-
-  .xs-padding-top {
-    padding-top: 1rem; }
-
-  .xs-padding-bottom {
-    padding-bottom: 1rem; }
-
-  .xs-padding-left {
-    padding-left: 1rem; }
-
-  .xs-padding-right {
-    padding-right: 1rem; }
-
-  .xs-padding {
-    padding: 1rem; }
-
-  .xs-margin {
-    margin: 1rem; }
-
-  .xs-margin-top {
-    margin-top: 1rem; }
-
-  .xs-margin-bottom {
-    margin-bottom: 1rem; }
-
-  .xs-margin-left {
-    margin-left: 1rem; }
-
-  .xs-margin-right {
-    margin-right: 1rem; } }
+    margin-right: 3rem; } }
 .background-contain {
   background-size: contain; }
 
