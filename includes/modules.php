@@ -726,17 +726,7 @@ function ___sections($id = 'sections', $post_id = '')
                                 'terms'    => $term_ids
                             );
 
-                            if ($brands) {
-                                $brand_ids = [];
-                                foreach ($brands as $brand) {
-                                    $brand_ids[] = $brand['brand'];
-                                }
-                                $product_slider_args['tax_query'][] = array(
-                                    'taxonomy' => 'pa_brands',
-                                    'field'    => 'term_id',
-                                    'terms'    => $brand_ids
-                                );
-                            }
+                         
                         } else if ($source_type == 'manually') {
                             $include = [];
                             foreach ($products as $product) {
