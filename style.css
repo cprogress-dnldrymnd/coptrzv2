@@ -10590,7 +10590,7 @@ hr {
   @media (min-width: 1500px) {
     .extend-right .container,
     .extend-right.container {
-      max-width: calc(1520px + (50% - (1520px / 2))); } }
+      max-width: calc(1420px + (50% - (1420px / 2))); } }
   @media (min-width: 1400px) {
     .extend-right .container,
     .extend-right.container {
