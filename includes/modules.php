@@ -707,24 +707,26 @@ function ___sections($id = 'sections', $post_id = '')
                         $product_cat = $items['source'];
                         $source_type = $items['source_type'];
                         $products = $items['products'];
+                        $args['numberposts'] = -1;
+                        $args['post_type'] = 'product';
+                        $args['fields'] = 'fields';
                         if ($source_type == 'category') {
                             $term_ids = [];
                             foreach ($product_cat as $cat) {
                                 $term_ids[] = $cat['id'];
                             }
 
-                            $args = array(
-                                'numberposts' => -1,
-                                'post_type' => 'product',
-                                'fields' => 'ids',
-                                'tax_query' => array(
-                                    array(
-                                        'taxonomy' => 'product_cat',
-                                        'field'    => 'term_id',
-                                        'terms'    => $term_ids
-                                    )
-                                )
+                            $args['tax_query'][] = array(
+                                'taxonomy' => 'product_cat',
+                                'field'    => 'term_id',
+                                'terms'    => $term_ids
                             );
+                        } else if ($source_type == 'main_query') {
+                            $includes = [];
+                            while (have_posts()) {
+                                the_post();
+                                $includes[] = get_the_ID();
+                            }
                         }
                         $products = get_posts($args);
                         $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
