@@ -103,18 +103,20 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero_class[] = 'text-white';
     }
 
+    if ($hero_background_youtube && $hero_background_type == 'youtube') {
+        $hero_class[] = 'background-youtube';
+    }
+
     $hero_class[] = 'hero pb-50px pt-50px rounded-10px bg-primary overflow-hidden d-flex align-items-end mx-20px position-relative';
 
     $hero_class_attribute = _attribute('class', $hero_class);
     $col_content_class_attribute = _attribute('class', $col_content_class);
-
 
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
         $hero = "<section $hero_class_attribute>";
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
             $hero .= __background($hero_background_youtube, true);
-            $hero_class[] = 'background-youtube';
         } else if ($hero_background) {
             $hero .= __background($hero_background);
         }
