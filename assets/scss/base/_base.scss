@@ -350,6 +350,9 @@ input[type="checkbox"] {
             }
             @include not-last-child {
                 margin-right: 2rem;
+                @include responsive(xs) {
+                    margin-right: 1rem;
+                }
             }
         }
     }

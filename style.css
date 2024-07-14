@@ -10795,6 +10795,9 @@ input[type="checkbox"] {
   height: 21px; }
 .socials ul li:not(:last-child) {
   margin-right: 2rem; }
+  @media screen and (max-width: 767px) {
+    .socials ul li:not(:last-child) {
+      margin-right: 1rem; } }
 
 .case-study-slider .swiper-slide {
   height: auto !important; }

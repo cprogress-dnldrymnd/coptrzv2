@@ -27,7 +27,7 @@ if (!$hide_footer) {
         <div class="footer-top">
             <div class="container">
                 <div class="inner rounded-10px">
-                    <div class="row justify-content-between align-items-center">
+                    <div class="row g-3 justify-content-between align-items-center">
                         <div class="col-auto">
                             <?= do_shortcode('[site_logo]') ?>
                         </div>
