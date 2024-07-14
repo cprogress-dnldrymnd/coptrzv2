@@ -679,12 +679,10 @@ function ___sections($id = 'sections', $post_id = '')
                         $button_text = $items['button_text'];
                         $button_url = $items['button_url'];
                         $sources = $items['source'];
-                        $html .= var_dump($sources);
                         if ($sources) {
-                            $tax_query = [];
-
+                            $term_ids = [];
                             foreach ($sources as $source) {
-                                $tax_query[] = $source['id'];
+                                $term_ids[] = $source['id'];
                             }
 
                             $args = array(
