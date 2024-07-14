@@ -230,25 +230,13 @@ function my_plugin_add_admin_bar_items($admin_bar)
                 'title' => 'Layouts',
                 'href'  => false,
                 'meta'  => array(
-                    'class' => 'layouts-menu',
+                    'class' => 'menupop layouts-menu',
                     'title' => 'Layouts',
                 ),
             )
         );
 
-        // Add a submenu to the above item. add_menu is just a wrapper for add_node.
-        $admin_bar->add_node(
-            array(
-                'parent' => 'layouts-menu',
-                'id'     => 'my-plugin-submenu-1',
-                'title'  => 'Submenu 1',
-                'href'   => 'https://domain.com/wp-admin/admin.php?page=my-plugin&tab=settings',
-                'meta'   => array(
-                    'class' => 'my-plugin-submenu-1-class',
-                    'title' => 'Submenu 1',
-                ),
-            )
-        );
+     
     }
 }
 add_action('admin_bar_menu', 'my_plugin_add_admin_bar_items', 999999);
