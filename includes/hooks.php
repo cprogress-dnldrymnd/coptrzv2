@@ -170,7 +170,15 @@ function action_page_selector()
 <?php
 }
 
-add_action('admin_footer', 'action_page_selector');
+add_action('admin_footer', 'test');
+
+function test() {
+    ?>
+    <script>
+        console.log(';sdsdsds');
+    </script>
+    <?php
+}
 function get__posts($post_type)
 {
     $pages_array = array(); // Initialize an empty array
