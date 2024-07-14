@@ -4728,7 +4728,7 @@ function __section_fields($name = 'sections')
                                 array(
                                     array(
                                         'field' => 'source_type',
-                                        'value' => 'category',
+                                        'value' => 'manually',
                                     )
                                 )
                             ),
