@@ -1325,6 +1325,10 @@ function ____columns_modules($items, $id, $html = '')
                     $classes[] = $column_style['justify_content'];
                     $classes[] = $column_style['text_align'];
                     $classes[] = $column_style['flex_direction'];
+                    $classes[] = $column_style['text_align_mobile'];
+
+
+                    
 
                     if ($column_style['align_items'] || $column_style['justify_content'] || $column_style['flex_direction']) {
                         $classes[] = 'd-flex';
