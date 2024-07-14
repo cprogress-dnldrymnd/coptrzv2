@@ -102,7 +102,7 @@ add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop
 if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
     function woocommerce_template_loop_product_thumbnail()
     {
-        echo "<div class='wc-img-wrapper'>";
+        echo "<div class='wc-img-wrapper rounded-corner'>";
         echo woocommerce_get_product_thumbnail();
         echo "</div>";
     }
