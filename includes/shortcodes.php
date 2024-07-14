@@ -522,7 +522,7 @@ class Shortcodes
         $html .= "<div class='col-auto'>";
         $html .= "<div class='col-minutes'>";
         $html .= "<div class='countdown-box countdown-seconds rounded-corner'></div>";
-        $html .= "<span>Minutes</span>";
+        $html .= "<span>Seconds</span>";
         $html .= "</div>";
         $html .= "</div>";
 
