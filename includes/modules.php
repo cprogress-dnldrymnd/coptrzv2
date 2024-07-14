@@ -722,11 +722,13 @@ function ___sections($id = 'sections', $post_id = '')
                                 'terms'    => $term_ids
                             );
                         } else if ($source_type == 'main_query') {
-                            $includes = [];
+                            $include = [];
                             while (have_posts()) {
                                 the_post();
                                 $includes[] = get_the_ID();
                             }
+
+                            $args['include'] = $include;
                         }
                         $products = get_posts($args);
                         $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
