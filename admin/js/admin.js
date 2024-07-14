@@ -50,5 +50,50 @@ function codemirror() {
 }
 
 function button_selector() {
-    console.log(selector.casestudies);
+    jQuery(document).on("change", '.trigger-selector select', function (event) {
+        $value = jQuery(this).val();
+        $selector = jQuery(this).parent().parent().parent().find('.page-selector');
+        active_link_type($selector, $value)
+    });
+
+
+    jQuery(document).on("change", '.select-page-selector', function (event) {
+        $value = jQuery(this).val();
+        $input = jQuery(this).parent().parent().parent().parent().parent().find('.field-url input');
+        $input.val($value);
+    });
+
+
+    function active_link_type($selector, $value, $input = '') {
+        if ($value == 'page') {
+            $selector.html(selector.page);
+        } else if ($value == 'post') {
+            $selector.html(selector.post);
+        } else if ($value == 'product') {
+            $selector.html(selector.product);
+        } else if ($value == 'guides') {
+            $selector.html(selector.guides);
+        } else if ($value == 'casestudies') {
+            $selector.html(selector.casestudies);
+        } else if ($value == 'solutions') {
+            $selector.html(selector.solutions);
+        } else if ($value == 'popups') {
+            $selector.html(selector.popups);
+        } else {
+            $selector.html('');
+        }
+
+        $selector.find('.select-page-selector').val($input);
+
+
+    }
+
+    setTimeout(function () {
+        jQuery('.trigger-selector select').each(function (index, element) {
+            $value = jQuery(this).val();
+            $selector = jQuery(this).parent().parent().parent().find('.page-selector');
+            $input = jQuery(this).parent().parent().parent().find('.field-url input').val();
+            active_link_type($selector, $value, $input)
+        });
+    }, 2000);
 }

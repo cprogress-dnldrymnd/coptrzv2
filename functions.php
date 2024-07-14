@@ -100,6 +100,7 @@ function enqueue_scripts()
 		foreach ($allowed_countries as $key => $country) {
 			$countries[] = $key;
 		}
+		
 		wp_localize_script('checkout-js', 'countries', $countries);
 		wp_enqueue_script('checkout-js');
 	}
