@@ -1074,7 +1074,7 @@ function ____post_grid_module($data)
                     break;
                 case 'permalink':
                     $hide_button_on_mobile = $item['hide_button_on_mobile'];
-                    $button_class = $hide_button_on_mobile ? ' d-none d-sm-block' : '';
+                    $button_class = $hide_button_on_mobile ? ' d-none d-md-block' : '';
                     $html .= __button(array(
                         'button_type' => get_post_type($post->ID),
                         'button_text' => $post_title,
