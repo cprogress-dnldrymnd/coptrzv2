@@ -4898,12 +4898,7 @@ function __section_fields($name = 'sections')
                                 ),
 
                             Field::make('color', 'background_gradient_color_1', 'Background Gradient Color[1]')->set_width(50)
-                                ->set_options(
-                                    array(
-                                        'linear-gradient'    => 'Linear Gradient',
-                                        'radial-gradient'  => 'Radial Gradient',
-                                    )
-                                )
+                            
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4913,12 +4908,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('text', 'background_gradient_stop_1', 'Background Gradient Stop[1]')->set_width(50)
-                                ->set_options(
-                                    array(
-                                        'linear-gradient'    => 'Linear Gradient',
-                                        'radial-gradient'  => 'Radial Gradient',
-                                    )
-                                )
+                           
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4928,12 +4918,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('color', 'background_gradient_color_2', 'Background Gradient Color[2]')->set_width(50)
-                                ->set_options(
-                                    array(
-                                        'linear-gradient'    => 'Linear Gradient',
-                                        'radial-gradient'  => 'Radial Gradient',
-                                    )
-                                )
+                             
                                 ->set_conditional_logic(
                                     array(
                                         array(
@@ -4943,12 +4928,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('text', 'background_gradient_stop_2', 'Background Gradient Stop[2]')->set_width(50)
-                                ->set_options(
-                                    array(
-                                        'linear-gradient'    => 'Linear Gradient',
-                                        'radial-gradient'  => 'Radial Gradient',
-                                    )
-                                )
+                           
                                 ->set_conditional_logic(
                                     array(
                                         array(
