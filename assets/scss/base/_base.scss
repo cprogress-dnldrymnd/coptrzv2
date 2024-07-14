@@ -1023,7 +1023,12 @@ hr {
     }
     .col-6 {
         @include responsive(mobile) {
-            font-size: 18px;
+            .column-holder {
+                padding-top: 2.5rem;
+                h3 {
+                    font-size: 18px;
+                }
+            }
         }
     }
 }

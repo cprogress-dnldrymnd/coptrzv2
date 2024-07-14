@@ -9438,9 +9438,6 @@ h3, .h3 {
   @media (min-width: 1200px) {
     h3, .h3 {
       font-size: 2rem; } }
-  @media screen and (max-width: 575px) {
-    h3, .h3 {
-      font-size: 18px; } }
 
 h4, .h4 {
   font-size: 1.25rem; }
@@ -11278,6 +11275,11 @@ hr {
     height: 100%;
     opacity: 0;
     font-size: 0; }
+@media screen and (max-width: 575px) {
+  .post-grid .col-6 {
+    font-size: 18px; }
+    .post-grid .col-6 .column-holder {
+      padding-top: 2.5rem; } }
 
 @media screen and (max-width: 767px) {
   .image_left.image_left {
