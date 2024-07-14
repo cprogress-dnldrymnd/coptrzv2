@@ -20,7 +20,6 @@ foreach ($layouts as $layout) {
     $layouts_global[] = $layout;
 }
 
-var_dump($layouts_global);
 $hide_footer = get__post_meta('hide_footer');
 if (!$hide_footer) {
 ?>
