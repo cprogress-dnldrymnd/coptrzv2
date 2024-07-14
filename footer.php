@@ -61,7 +61,7 @@ if (!$hide_footer) {
                         <div class="col-lg col-md-6">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="footerCol2">
-                                    <button class="accordion-button collapsed d-block d-lg-n2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="accordion-button collapsed d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         Solutions
                                     </button>
                                 </h2>
@@ -75,7 +75,7 @@ if (!$hide_footer) {
                         <div class="col-lg col-md-6">
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="footerCol3">
-                                    <button class="accordion-button collapsed d-block d-lg-n3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="accordion-button collapsed d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         Resources
                                     </button>
                                 </h3>
@@ -89,7 +89,7 @@ if (!$hide_footer) {
                         <div class="col-lg col-md-6">
                             <div class="accordion-item">
                                 <h4 class="accordion-header" id="footerCol4">
-                                    <button class="accordion-button collapsed d-block d-lg-n4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="accordion-button collapsed d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         Learn
                                     </button>
                                 </h4>
