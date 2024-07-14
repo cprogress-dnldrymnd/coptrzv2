@@ -1045,7 +1045,7 @@ function ____post_grid_module($data)
         $html .= "<div class='swiper swiper-sliders' id='$swiper_id' $slides_attr>"; //swiper
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
     } else {
-        $html .= "<div class='row g-4 same-image-height'>"; //row
+        $html .= "<div class='row g-4 g-xs-10px same-image-height'>"; //row
     }
     $post_title = '';
     foreach ($posts_lists as $post) {
