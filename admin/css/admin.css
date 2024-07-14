@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 body,
-#wpadminbar *:not(.ab-icon), .carbon-box *:not(.dashicons-before) {
+#wpadminbar *:not(.ab-icon), .carbon-box *:not(.dashicons-before):not(.dashicons) {
   font-family: "Poppins", sans-serif !important; }
 
 .columns > .cf-field__body > .cf-complex__groups {
