@@ -4873,7 +4873,7 @@ function __section_fields($name = 'sections')
                     ->add_fields(
                         'background_gradient',
                         array(
-                            Field::make('select', 'background_gradient_type', 'Background Gradient Type')
+                            Field::make('select', 'background_gradient', 'Background Gradient Type')
                                 ->set_options(
                                     array(
                                         'background-gradient-default'    => 'Default',
@@ -4881,7 +4881,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
 
-                            Field::make('select', 'background_gradient_direction', 'Background Gradient Direction')
+                            Field::make('select', 'background_gradient_type', 'Background Gradient Type')
                                 ->set_options(
                                     array(
                                         'linear-gradient'    => 'Linear Gradient',
@@ -4891,8 +4891,18 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'background_gradient_type',
+                                            'field' => 'background_gradient',
                                             'value' => 'custom',
+                                        )
+                                    )
+                                ),
+                            Field::make('text', 'background_gradient_stop_1', 'Background Gradient Direction')->set_width(50)
+                                ->set_default_value('180')
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'background_gradient_type',
+                                            'value' => 'linear-gradient',
                                         )
                                     )
                                 ),
@@ -4902,7 +4912,7 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'background_gradient_type',
+                                            'field' => 'background_gradient',
                                             'value' => 'custom',
                                         )
                                     )
@@ -4912,7 +4922,7 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'background_gradient_type',
+                                            'field' => 'background_gradient',
                                             'value' => 'custom',
                                         )
                                     )
@@ -4922,7 +4932,7 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'background_gradient_type',
+                                            'field' => 'background_gradient',
                                             'value' => 'custom',
                                         )
                                     )
@@ -4932,7 +4942,7 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'background_gradient_type',
+                                            'field' => 'background_gradient',
                                             'value' => 'custom',
                                         )
                                     )

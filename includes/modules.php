@@ -383,9 +383,9 @@ function ___sections($id = 'sections', $post_id = '')
 
                         break;
                     case 'background_gradient':
-                        $background_gradient_type = $section_style['background_gradient_type'];
-                        if ($background_gradient_type != 'custom') {
-                            $classes[] = $background_gradient_type;
+                        $background_gradient = $section_style['background_gradient'];
+                        if ($background_gradient != 'custom') {
+                            $classes[] = $background_gradient;
                         }
                         break;
 
