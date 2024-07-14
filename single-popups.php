@@ -1,4 +1,8 @@
 <?php get_header() ?>
+<br>
+<br>
+<br>
+<br>
 <?php while (have_posts()) : the_post(); ?>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-<?= get_the_ID() ?>">
