@@ -506,21 +506,21 @@ class Shortcodes
         $html .= "<div class='event-countdown-holder row align-items-center justify-content-center'>";
         $html .= "<div class='col-auto'>";
         $html .= "<div class='col-days'>";
-        $html .= "<div class='countdown-days'></div>";
+        $html .= "<div class='countdown-box countdown-days'></div>";
         $html .= "<span>Days</span>";
         $html .= "</div>";
         $html .= "</div>";
 
         $html .= "<div class='col-auto'>";
         $html .= "<div class='col-hours'>";
-        $html .= "<div class='countdown-hours rounded-corner'></div>";
+        $html .= "<div class='countdown-box countdown-hours rounded-corner'></div>";
         $html .= "<span>Hours</span>";
         $html .= "</div>";
         $html .= "</div>";
 
         $html .= "<div class='col-auto'>";
         $html .= "<div class='col-minutes'>";
-        $html .= "<div class='countdown-minutes rounded-corner'></div>";
+        $html .= "<div class='countdown-box countdown-minutes rounded-corner'></div>";
         $html .= "<span>Minutes</span>";
         $html .= "</div>";
         $html .= "</div>";
