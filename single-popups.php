@@ -1,9 +1,24 @@
-<?php get_header() ?>
-<br>
-<br>
-<br>
-<br>
-<?php while (have_posts()) : the_post(); ?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?> class="html">
+
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="author" content="">
+    <meta name="format-detection" content="telephone=no">
+    <title>
+        <?php bloginfo('name'); // show the blog name, from settings 
+        ?> |
+        <?php is_front_page() ? bloginfo('description') : wp_title(''); // if we're on the home page, show the description, from the site's settings - otherwise, show the title of the post or page 
+        ?>
+    </title>
+    <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
+
+    <?php wp_head(); ?>
+</head>
+
+<body <?php body_class(); ?>>
     <!-- Button trigger modal -->
     <div class="button-box button-accent">
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-<?= get_the_ID() ?>">
@@ -11,5 +26,4 @@
         </button>
     </div>
     <?= do_shortcode('[popup id=' . get_the_ID() . ']') ?>
-<?php endwhile; ?>
-<?php get_footer() ?>
+</body>
