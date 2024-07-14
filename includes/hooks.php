@@ -210,8 +210,8 @@ function my_plugin_add_admin_bar_items($admin_bar)
             'title' => 'Layouts',
             'href'  => false,
             'meta'  => array(
-                'class' => 'my-plugin-class',
-                'title' => 'My Plugin Menu',
+                'class' => 'layouts-menu',
+                'title' => 'Layouts',
             ),
         )
     );
