@@ -1,4 +1,5 @@
 date = jQuery('.event-countdown').attr('date');
+console.log(date);
 var countDownDate = new Date(date).getTime();
 
 // Update the count down every 1 second
