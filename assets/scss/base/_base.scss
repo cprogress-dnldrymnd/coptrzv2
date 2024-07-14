@@ -912,3 +912,64 @@ hr {
         color: var(--bs-white);
     }
 }
+
+
+.modal {
+    z-index: 999999;
+    &.popup-form {
+        .modal-dialog {
+            max-width: 800px;
+        }
+        &.popup-small {
+            .modal-dialog {
+                max-width: 600px;
+            }
+        }
+        &.popup-medium {
+            .modal-dialog {
+                max-width: 1000px;
+            }
+        }
+        &.popup-large {
+            .modal-dialog {
+                max-width: 1200px;
+            }
+        }
+
+        .modal-content {
+            border-radius: 0;
+            border: none;
+            &.background-primary {
+                a {
+                    color: var(--bs-white) !important;
+                }
+            }
+        }
+        .popup-content-default {
+            > *:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+        .form-holder {
+            .form-inner {
+                .wpforms-field-container {
+                    margin-top: 2rem;
+                }
+                input {
+                    max-width: 100%;
+                }
+            }
+        }
+
+        .bg-image {
+            img {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
