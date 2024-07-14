@@ -239,7 +239,7 @@ function my_plugin_add_admin_bar_items($admin_bar)
         // Add a submenu to the above item. add_menu is just a wrapper for add_node.
         $admin_bar->add_node(
             array(
-                'parent' => 'my-plugin-menu',
+                'parent' => 'layouts-menu',
                 'id'     => 'my-plugin-submenu-1',
                 'title'  => 'Submenu 1',
                 'href'   => 'https://domain.com/wp-admin/admin.php?page=my-plugin&tab=settings',
