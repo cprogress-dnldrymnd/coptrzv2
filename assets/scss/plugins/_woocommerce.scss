@@ -393,10 +393,11 @@ section.product-main {
 
 .products {
     &.upsells.upsells.upsells {
-        margin-top: 2rem;
+    
         > h2 {
             font-size: 22px;
-            font-weight: 400;
+            font-weight: 500;
+            margin-bottom: 20px;
         }
         ul.products {
             flex-direction: column;
