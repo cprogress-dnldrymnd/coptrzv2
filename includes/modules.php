@@ -704,11 +704,13 @@ function ___sections($id = 'sections', $post_id = '')
                         $heading = $items['heading'];
                         $button_text = $items['button_text'];
                         $button_url = $items['button_url'];
-                        $sources = $items['source'];
-                        if ($sources) {
+                        $product_cat = $items['source'];
+                        $source_type = $items['source_type'];
+                        $products = $items['products'];
+                        if ($source_type == 'category') {
                             $term_ids = [];
-                            foreach ($sources as $source) {
-                                $term_ids[] = $source['id'];
+                            foreach ($product_cat as $cat) {
+                                $term_ids[] = $cat['id'];
                             }
 
                             $args = array(
@@ -723,9 +725,9 @@ function ___sections($id = 'sections', $post_id = '')
                                     )
                                 )
                             );
-                            $products = get_posts($args);
-                            $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
                         }
+                        $products = get_posts($args);
+                        $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
                         break;
                     case 'tabs':
                         $tabs = $items['tabs'];
