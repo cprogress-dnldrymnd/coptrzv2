@@ -709,7 +709,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $products = $items['products'];
                         $args['numberposts'] = -1;
                         $args['post_type'] = 'product';
-                        $args['fields'] = 'fields';
+                        $args['fields'] = 'ids';
                         if ($source_type == 'category') {
                             $term_ids = [];
                             foreach ($product_cat as $cat) {
@@ -731,7 +731,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $args['include'] = $include;
                         }
                         $products = get_posts($args);
-                       // $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
+                        $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
                         break;
                     case 'tabs':
                         $tabs = $items['tabs'];
