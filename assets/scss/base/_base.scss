@@ -1021,6 +1021,11 @@ hr {
             font-size: 0;
         }
     }
+    .col-6 {
+        @include responsive(mobile) {
+            font-size: 18px;
+        }
+    }
 }
 
 .image_left.image_left {
