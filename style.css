@@ -12099,7 +12099,8 @@ header {
   filter: brightness(0) invert(1); }
   @media screen and (max-width: 767px) {
     .reviews .logo-box img {
-      max-height: 32px; } }
+      max-height: 32px;
+      width: auto; } }
 
 section.hero {
   min-height: 85vh; }

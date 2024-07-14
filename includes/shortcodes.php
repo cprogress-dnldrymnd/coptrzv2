@@ -408,7 +408,7 @@ class Shortcodes
                 $html .= "<div class='col-lg-4'>";
                 $html .= "<div class='column-holder bg-secondary xs-padding rounded-10px'>";
 
-                $html .= "<div class='review-box d-flex justify-content-between'>";
+                $html .= "<div class='review-box d-flex justify-content-lg-between'>";
                 $html .= "<div class='review-text'> $review_score </div>";
 
                 $html .= "<div class='review-stars'>";
