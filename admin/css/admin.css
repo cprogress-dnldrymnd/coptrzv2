@@ -110,4 +110,11 @@ body,
 .field-url {
   display: none !important; }
 
+.select-page-selector {
+  display: flex; }
+  .select-page-selector label {
+    flex: 0 0 170px; }
+  .select-page-selector select {
+    flex: 0 0 calc(100% - 170px); }
+
 /*# sourceMappingURL=admin.css.map */

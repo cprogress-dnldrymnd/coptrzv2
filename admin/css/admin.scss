@@ -143,5 +143,11 @@ body,
     display: none !important;
 }
 .select-page-selector {
-    
+    display: flex;
+    label {
+        flex: 0 0 170px;
+    }
+    select {
+        flex: 0 0 calc(100% - 170px);
+    }
 }
