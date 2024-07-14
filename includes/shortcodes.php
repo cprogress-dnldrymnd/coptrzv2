@@ -28,8 +28,13 @@ class Shortcodes
 
         $html .= "<div class='row g-4 justify-content-between'>";
         if ($heading) {
-            $html .= "<div class='col'>";
+            $html .= "<div class='col-auto'>";
             $html .= "<h2>$heading</h2>";
+            $html .= "</div>";
+        }
+        if ($search_filter) {
+            $html .= "<div class='col-auto'>";
+            $html .= "<input type='text' placeholder='Start typing to filter...' name='s'>";
             $html .= "</div>";
         }
         $html .= "</div>";
