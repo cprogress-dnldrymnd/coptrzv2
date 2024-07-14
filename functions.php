@@ -82,8 +82,11 @@ function enqueue_scripts()
 	wp_enqueue_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
 
 	if (is_product()) {
-
 		wp_enqueue_script('single-product', assets_dir . 'js/single-product.js', NULL, coptz_version);
+	}
+
+	if (get_post_type() == 'events') {
+		wp_enqueue_script('single-event', assets_dir . 'js/single-event.js', NULL, coptz_version);
 	}
 
 	if (is_checkout()) {
