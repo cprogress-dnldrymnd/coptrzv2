@@ -1729,14 +1729,14 @@ function __section_fields($name = 'sections')
                                         'buttons',
                                         array(
                                             Field::make('select', 'buttons_alignment', 'Buttons Alignment')
-                                            ->set_options(
-                                                array(
-                                                    ''                => 'Default',
-                                                    'text-start'                => 'Left',
-                                                    'text-center'                => 'Center',
-                                                    'text-end'                => 'Right',
-                                                )
-                                            ),
+                                                ->set_options(
+                                                    array(
+                                                        ''                => 'Default',
+                                                        'text-start'                => 'Left',
+                                                        'text-center'                => 'Center',
+                                                        'text-end'                => 'Right',
+                                                    )
+                                                ),
                                             Field::make('complex', 'buttons', __('Buttons'))
                                                 ->set_classes('columns')
                                                 ->setup_labels(
@@ -4772,6 +4772,18 @@ function __section_fields($name = 'sections')
                     ))
 
                     ->add_fields('tabs',  array(
+                        Field::make('complex', 'tabs', 'Tabs')
+                            ->add_fields('tabs',  array(
+                                Field::make('text', 'heading', 'Heading'),
+                                Field::make('textarea', 'description', 'Description')->set_width(80),
+                                Field::make('html', 'activate_wysiwyg')->set_width(20)
+                                    ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                            ))
+                            ->set_layout('tabbed-vertical')
+                            ->set_header_template('Tab: <%- heading %>')
+
+                    ))
+                    ->add_fields('event_countdown',  array(
                         Field::make('complex', 'tabs', 'Tabs')
                             ->add_fields('tabs',  array(
                                 Field::make('text', 'heading', 'Heading'),

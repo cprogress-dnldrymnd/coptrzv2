@@ -160,7 +160,7 @@ echo do_shortcode(__layouts($args));
                         )); ?>
                     </div>
                     <div class="col-lg-4 text-center text-md-end">
-                        <select name="posts_per_page" id="posts_per_page" class="w-auto">
+                        <select name="posts_per_page" id="posts_per_page"  class="w-auto select-trigger-change">
                             <option value="12">Show: 8</option>
                             <option selected value="12">Show: 12</option>
                             <option value="16">Show: 16</option>

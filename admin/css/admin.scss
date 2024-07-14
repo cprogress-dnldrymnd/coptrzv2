@@ -76,7 +76,7 @@ body,
     display: flex;
     padding: 30px;
     border-radius: 5px;
-    background-color: #191e23;
+    background-color: #fff !important;
     .cf-complex__inserter-item {
         flex: 0 0 calc(33.33333333% - 40px);
         padding: 15px;
@@ -85,8 +85,8 @@ body,
         background-color: #007cba;
         color: #fff;
         &:hover {
-            background-color: #fff;
-            color: #191e23;
+            background-color: #191e23;
+            color: #fff;
         }
     }
 }
