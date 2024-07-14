@@ -10583,7 +10583,7 @@ hr {
   max-width: 100%;
   --bs-gutter-x: 0; }
 
-@media screen and (max-width: 1199px) {
+@media (min-width: 1500px) {
   .extend-right .container,
   .extend-right.container {
     margin-right: 0;
@@ -10592,7 +10592,7 @@ hr {
 @media screen and (max-width: 991px) {
   .extend-right .container,
   .extend-right.container {
-    padding-left: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
     margin: 0 !important; } }
 
 @media screen and (max-width: 1199px) {
@@ -10605,7 +10605,7 @@ hr {
   .extend-left .container,
   .extend-left.container {
     margin: 0 !important;
-    padding-right: calc(var(--bs-gutter-x) * .5); } }
+    padding-right: calc(var(--bs-gutter-x) * 0.5); } }
 
 .small-container .container {
   max-width: 730px; }

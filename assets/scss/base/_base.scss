@@ -147,14 +147,13 @@ main {
 
 .extend-right .container,
 .extend-right.container {
-
-    @include responsive(xs-md) {
+    @media (min-width: 1500px) {
         margin-right: 0;
         padding-right: 0;
         max-width: calc(1520px + (50% - (1520px / 2)));
     }
     @include responsive(xs-sm) {
-        padding-left: calc(var(--bs-gutter-x) * .5);
+        padding-left: calc(var(--bs-gutter-x) * 0.5);
         margin: 0 !important;
     }
 }
@@ -167,7 +166,7 @@ main {
     }
     @include responsive(xs-sm) {
         margin: 0 !important;
-        padding-right: calc(var(--bs-gutter-x) * .5);
+        padding-right: calc(var(--bs-gutter-x) * 0.5);
     }
 }
 
