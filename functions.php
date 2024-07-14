@@ -26,6 +26,7 @@ function action_after_setup_theme()
 	global $popups_id, $layouts_global;
 
 	$popups_id[] = 268179;
+	$layouts_global = [];
 }
 add_action('after_setup_theme', 'action_after_setup_theme');
 
@@ -100,7 +101,7 @@ function enqueue_scripts()
 		foreach ($allowed_countries as $key => $country) {
 			$countries[] = $key;
 		}
-		
+
 		wp_localize_script('checkout-js', 'countries', $countries);
 		wp_enqueue_script('checkout-js');
 	}
