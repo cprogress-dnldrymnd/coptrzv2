@@ -93,12 +93,8 @@ function action_admin_enqueue_scripts($hook)
 
     wp_enqueue_style('admin', get_template_directory_uri() . '/admin/css/admin.css');
     wp_register_script('admin', get_template_directory_uri() . '/admin/js/admin.js');
-
-
-
-
-    wp_localize_script('checkout-js', 'countries', $selector);
-    wp_enqueue_script('checkout-js');
+    wp_localize_script('admin', 'selector', $selector);
+    wp_enqueue_script('admin');
 }
 add_action('admin_enqueue_scripts', 'action_admin_enqueue_scripts');
 /*-----------------------------------------------------------------------------------*/
