@@ -1038,7 +1038,7 @@ function ____post_grid_module($data)
         $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
         $slides_attr = _attributes(array($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr));
 
-        $html .= "<div class='swiper-holder'>"; //swiper-holder
+        $html .= "<div class='swiper-holder post-grid'>"; //swiper-holder
         $html .= "<div class='swiper swiper-sliders' id='$swiper_id' $slides_attr>"; //swiper
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
     } else {
