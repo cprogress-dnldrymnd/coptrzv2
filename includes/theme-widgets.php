@@ -46,7 +46,7 @@ function action_widgets_init()
 
         $before_widget = "<div class='accordion-item'>";
 
-        $after_widget = "</div></div>";
+        $after_widget = "</div></div></div>";
 
         register_sidebar(
             array(
