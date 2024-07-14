@@ -81,6 +81,12 @@ main {
         @include transform(scale(1.4));
         pointer-events: none;
     }
+    &.mx-20px {
+        @include responsive(mobile) {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
 }
 .content-margin {
     h2 {

@@ -10463,7 +10463,7 @@ p:last-child {
   .container-lg,
   .container-xl,
   .container-xxl {
-    --bs-gutter-x: 10px; } }
+    --bs-gutter-x: 20px; } }
 
 .header-padding {
   padding-top: 80.75px; }
@@ -10547,6 +10547,10 @@ hr {
     -o-transform: scale(1.4);
     transform: scale(1.4);
     pointer-events: none; }
+  @media screen and (max-width: 575px) {
+    .background-image.mx-20px {
+      margin-left: 10px;
+      margin-right: 10px; } }
 
 .content-margin h2:last-child, .content-margin .h2:last-child {
   margin-bottom: 0; }
