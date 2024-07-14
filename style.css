@@ -11178,7 +11178,7 @@ small, .small {
     content: "";
     width: 2px;
     height: 14px;
-    background: var(--bs-black);
+    background: currentColor;
     position: absolute;
     left: 6px;
     -webkit-transition: 300ms;
@@ -11190,7 +11190,7 @@ small, .small {
     content: "";
     width: 14px;
     height: 2px;
-    background: var(--bs-black); }
+    background: currentColor; }
 
 hr {
   color: var(--border-color); }

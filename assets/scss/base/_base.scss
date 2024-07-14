@@ -886,7 +886,7 @@ small {
         content: "";
         width: 2px;
         height: 14px;
-        background: var(--bs-black);
+        background: currentColor;
         position: absolute;
         left: 6px;
         @include transition(300ms);
@@ -896,7 +896,7 @@ small {
         content: "";
         width: 14px;
         height: 2px;
-        background: var(--bs-black);
+        background: currentColor;
     }
 }
 
