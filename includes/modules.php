@@ -2247,9 +2247,10 @@ function __post_box($data, $class = [], $content_box_class = [])
     if ($style == 'style-1' && $background_class == false) {
         $content_box_class[] = 'px-20px pb-20px';
     }
+   
 
     if ($bg_image) {
-        $class[] = 'rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
+        $class[] = 'xs-padding text-white text-center rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
     }
     $html = '';
     if ($col == true && $col != false && is_bool($col)) {
