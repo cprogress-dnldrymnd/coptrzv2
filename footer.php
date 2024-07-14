@@ -45,16 +45,24 @@ if (!$hide_footer) {
                 <div class="accordion accordionFooter">
                     <div class="row g-4">
                         <div class="col-lg col-md-6">
-                            <?php dynamic_sidebar('footer_column_1') ?>
+                            <div class="accordion-item">
+                                <?php dynamic_sidebar('footer_column_1') ?>
+                            </div>
                         </div>
                         <div class="col-lg col-md-6">
-                            <?php dynamic_sidebar('footer_column_2') ?>
+                            <div class="accordion-item">
+                                <?php dynamic_sidebar('footer_column_2') ?>
+                            </div>
                         </div>
                         <div class="col-lg col-md-6">
-                            <?php dynamic_sidebar('footer_column_3') ?>
+                            <div class="accordion-item">
+                                <?php dynamic_sidebar('footer_column_3') ?>
+                            </div>
                         </div>
                         <div class="col-lg col-md-6">
-                            <?php dynamic_sidebar('footer_column_4') ?>
+                            <div class="accordion-item">
+                                <?php dynamic_sidebar('footer_column_4') ?>
+                            </div>
                         </div>
                         <div class="col-lg col-md-6 text-center">
                             <?php dynamic_sidebar('footer_column_5') ?>
