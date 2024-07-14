@@ -11358,7 +11358,8 @@ hr {
       margin-right: 10px; }
   .navigation.pagination .nav-links a:hover, .navigation.pagination .nav-links a:active, .navigation.pagination .nav-links a:focus {
     background-color: var(--bs-accent);
-    color: var(--bs-white); }
+    color: var(--bs-white);
+    border-color: var(--bs-accent); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins

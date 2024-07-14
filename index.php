@@ -149,9 +149,9 @@ echo do_shortcode(__layouts($args));
     </div>
     <div class="pagination">
         <div class="container">
-            <?php the_posts_pagination(array(
-                'mid_size'  => 5,
-            )); ?>
+            <div class="inner border-top-default sm-padding-top sm-margin-top">
+                
+            </div>
         </div>
     </div>
 </section>
