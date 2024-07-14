@@ -200,7 +200,7 @@ function action__wp_footer()
         $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
         if ($product_tax_page) {
             foreach ($product_tax_page as $tax_page) {
-                $title = get_the_title($tax_page) . '[Term Page]';
+                $title = get_the_title($tax_page) . ' [Term Page]';
                 $link = get_edit_post_link($tax_page);
                 $layouts_global_val .= "<li>";
                 $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
@@ -209,7 +209,7 @@ function action__wp_footer()
         }
         if ($layouts) {
             foreach ($layouts as $layout) {
-                $title = get_the_title($layout) . '[Layout]';
+                $title = get_the_title($layout) . ' [Layout]';
                 $link = get_edit_post_link($layout);
 
                 $layouts_global_val .= "<li>";
@@ -219,7 +219,7 @@ function action__wp_footer()
         }
         if ($popups) {
             foreach ($popups as $popup) {
-                $title = get_the_title($popup) . '[Popup]';
+                $title = get_the_title($popup) . ' [Popup]';
                 $link = get_edit_post_link($popup);
 
                 $layouts_global_val .= "<li>";
