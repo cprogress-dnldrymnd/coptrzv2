@@ -3064,8 +3064,8 @@ function __section_fields($name = 'sections')
                                                     array(
                                                         ''                => 'Default',
                                                         'text-lg-start'                => 'Left',
-                                                        'text-lg-start'                => 'Center',
-                                                        'text-lg-start'                => 'Right',
+                                                        'text-lg-center'                => 'Center',
+                                                        'text-lg-end'                => 'Right',
                                                     )
                                                 ),
                                             Field::make('select', 'text_align_tablet', 'Text Align[Tablet]')
@@ -3073,8 +3073,8 @@ function __section_fields($name = 'sections')
                                                     array(
                                                         ''                => 'Default',
                                                         'text-md-start'                => 'Left',
-                                                        'text-md-start'                => 'Center',
-                                                        'text-lg-start'                => 'Right',
+                                                        'text-md-center'                => 'Center',
+                                                        'text-lg-end'                => 'Right',
                                                     )
                                                 ),
                                             Field::make('select', 'text_align_mobile', 'Text Align[Mobile]')
@@ -3544,13 +3544,13 @@ function __section_fields($name = 'sections')
                                                 'flex-row-reverse'  => 'Row Reverse',
                                             )
                                         ),
-                                    Field::make('select', 'text_align', 'Text Align[Desktop]')
+                                        Field::make('select', 'text_align', 'Text Align[Desktop]')
                                         ->set_options(
                                             array(
                                                 ''                => 'Default',
                                                 'text-lg-start'                => 'Left',
-                                                'text-lg-start'                => 'Center',
-                                                'text-lg-start'                => 'Right',
+                                                'text-lg-center'                => 'Center',
+                                                'text-lg-end'                => 'Right',
                                             )
                                         ),
                                     Field::make('select', 'text_align_tablet', 'Text Align[Tablet]')
@@ -3558,8 +3558,8 @@ function __section_fields($name = 'sections')
                                             array(
                                                 ''                => 'Default',
                                                 'text-md-start'                => 'Left',
-                                                'text-md-start'                => 'Center',
-                                                'text-lg-start'                => 'Right',
+                                                'text-md-center'                => 'Center',
+                                                'text-lg-end'                => 'Right',
                                             )
                                         ),
                                     Field::make('select', 'text_align_mobile', 'Text Align[Mobile]')
