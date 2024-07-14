@@ -12224,7 +12224,7 @@ header {
       max-height: 32px;
       width: auto; } }
 
-@media screen and (min-width: 992px) {
+@media (min-width: 768px) {
   #accordionFooter .accordion-collapse {
     display: block; } }
 
