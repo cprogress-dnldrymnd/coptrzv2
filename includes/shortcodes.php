@@ -476,6 +476,18 @@ class Shortcodes
         $html .= "</div>";
         return $html;
     }
+
+    function popup($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'id' => '',
+                ),
+                $atts
+            )
+        );
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));

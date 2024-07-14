@@ -5617,3 +5617,42 @@ Container::make('post_meta', 'Industry Settings')
                 )
         )
     );
+
+
+Container::make('post_meta', 'Popup Settings')
+    ->set_priority('high')
+    ->set_context('side')
+    ->or_where('post_type', '=', 'popups')
+    ->add_fields(
+        array(
+            Field::make('select', 'popup_layout', 'Popup Layout')
+                ->set_options(
+                    array(
+                        ''                => 'Default',
+                        'contact_form'     => 'Contact Form',
+                    )
+                ),
+            Field::make('select', 'popup_max_width', 'Popup Max Width')
+                ->set_options(
+                    array(
+                        'popup-default'    => 'Default',
+                        'popup-small'     => 'Small',
+                        'popup-medium'     => 'Medium',
+                        'popup-large'     => 'Large',
+                    )
+                ),
+            Field::make('select', 'background_color', 'Background Color')
+                ->set_options(
+                    array(
+                        ''   => 'None',
+                        'background-primary'   => 'Primary',
+                        'background-secondary' => 'Secondary',
+                        'background-accent'    => 'Accent',
+                        'background-white'     => 'White',
+                        'background-light-gray'     => 'Light Gray',
+                        'background-body-color'     => 'Body',
+                    )
+                ),
+
+        )
+    );
