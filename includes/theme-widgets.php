@@ -55,7 +55,7 @@ function action_widgets_init()
                 'after_title'   => $after_title,
             )
         );
-        $i++;
+        $index++;
     }
 
     register_sidebar(
