@@ -11276,10 +11276,10 @@ hr {
     opacity: 0;
     font-size: 0; }
 @media screen and (max-width: 575px) {
-  .post-grid .col-6 {
-    font-size: 18px; }
-    .post-grid .col-6 .column-holder {
-      padding-top: 2.5rem; } }
+  .post-grid .col-6 .column-holder {
+    padding-top: 2.5rem; }
+    .post-grid .col-6 .column-holder h3, .post-grid .col-6 .column-holder .h3 {
+      font-size: 18px; } }
 
 @media screen and (max-width: 767px) {
   .image_left.image_left {
