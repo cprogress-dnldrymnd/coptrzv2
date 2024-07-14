@@ -2552,6 +2552,7 @@ function __popup($id)
             $html .= " <div class='$image_class bg-image'>";
             $html .= __image(array(
                 'image_id' => get_post_thumbnail_id($id),
+                'size' => 'large',
                 'class' => _attribute('class', array('position-relative h-100'))
             ));
             $html .= "</div>";
