@@ -1538,7 +1538,11 @@ function ____columns_modules($items, $id, $html = '')
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
     } else {
-        $row_class[] = 'row g-xs-10px';
+        $row_class[] = 'row';
+
+        if (count($columns) > 2) {
+            $row_class[]  = 'g-xs-10px';
+        }
         if ($align_items) {
             $row_class[] = $align_items;
         }
