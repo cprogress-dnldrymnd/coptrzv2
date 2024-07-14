@@ -2532,6 +2532,7 @@ function __popup($id)
     $background_color = get__post_meta_by_id($id, 'background_color');
     $background_color_val =  $background_color ? $background_color : 'background-white';
     $col_class = get_the_post_thumbnail_url($id) ? 'col-lg-6 ' : 'col-12';
+    $image_class = get_the_post_thumbnail_url($id) ? 'col-lg-6 ' : 'col-12';
 
     $html = "<div class='modal fade modal-v2 popup-form $popup_max_width' id='modal-$id' tabindex='-1' aria-labelledby='modalSearchLabel' aria-hidden='true'>"; //modal
     $html .= "<div class='modal-dialog modal-dialog-centered'>"; //modal-dialog
@@ -2547,6 +2548,15 @@ function __popup($id)
         $html .= "</div>"; //form-inner
         $html .= "</div>"; //form-holder
         $html .= "</div>"; //col
+        if (get_the_post_thumbnail_url($id)) {
+            $html .= " <div class='$image_class bg-image'>";
+            $html .= __image(array(
+                'image_id' => $id,
+                'class' => _attribute('class', array('position-relative h-100'))
+            ));
+            $html .= "</div>";
+        }
+
         $html .= "</div>"; //row
 
     } else {
@@ -2558,6 +2568,6 @@ function __popup($id)
     $html .= "</div>"; //modal-content
     $html .= "</div>"; //modal-dialog
     $html .= "</div>"; //modal
-    
+
     return $html;
 }

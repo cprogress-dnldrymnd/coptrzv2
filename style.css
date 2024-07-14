@@ -11159,7 +11159,7 @@ hr {
     border-radius: 0;
     border: none; }
     .modal.popup-form .modal-content.background-primary a {
-      color: var(--white-color) !important; }
+      color: var(--bs-white) !important; }
   .modal.popup-form .popup-content-default > *:last-child {
     margin-bottom: 0 !important; }
   .modal.popup-form .form-holder .form-inner .wpforms-field-container {
