@@ -2484,6 +2484,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
         $html .= "<div class='col-auto'>";
         $html .= __heading(array(
             'heading' => $title,
+            'class' => _attribute('class', array('mb-0')),
         ));
         $html .= "</div>";
     }

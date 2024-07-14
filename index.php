@@ -17,6 +17,7 @@ if (is_home()) {
     $has_filter = true;
     $archive_title = 'Blog';
     $category = 'category';
+    $class = "mb-50px";
     $data = array(
         'col' => true,
         'featured' => false,
