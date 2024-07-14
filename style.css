@@ -9401,7 +9401,7 @@ body {
   font-size: 13px; }
 
 .large-heading {
-  font-size: 2rem; }
+  font-size: 2.25rem; }
   @media (min-width: 992px) {
     .large-heading {
       font-size: 2.5rem; } }
@@ -9469,6 +9469,9 @@ p:last-child {
 
 .medium-text {
   font-size: 1.125rem; }
+  @media screen and (max-width: 767px) {
+    .medium-text {
+      font-size: 0.9375rem; } }
 
 .large-text {
   font-size: 1.25rem; }

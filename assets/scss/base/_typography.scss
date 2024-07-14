@@ -83,6 +83,9 @@ p {
 
 .medium-text {
     font-size: 1.125rem;
+    @include responsive(xs) {
+        font-size: 0.9375rem;
+    }
 }
 
 .large-text {
