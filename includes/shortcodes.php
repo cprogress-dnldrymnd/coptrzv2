@@ -495,9 +495,11 @@ class Shortcodes
         return __popup($id);
     }
 
-    function event_countdown() {
+    function event_countdown()
+    {
         $html = "<div class='event-countdown'>";
-        
+        $html .= "<div class='event-countdown-holder'>";
+        $html .= "</div>";
         $html .= "</div>";
 
         return $html;
