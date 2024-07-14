@@ -11162,10 +11162,6 @@ hr {
       color: var(--bs-white) !important; }
   .modal.popup-form .popup-content-default > *:last-child {
     margin-bottom: 0 !important; }
-  .modal.popup-form .form-holder .form-inner .wpforms-field-container {
-    margin-top: 2rem; }
-  .modal.popup-form .form-holder .form-inner input {
-    max-width: 100%; }
   .modal.popup-form .bg-image img {
     position: absolute;
     left: 0;
