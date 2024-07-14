@@ -187,9 +187,8 @@ function action_popups()
     foreach ($posts as $post) {
         echo __popup($post);
     }
-    
-    if(current_user_can('administrator')) {
 
+    if (current_user_can('administrator')) {
     }
 }
 
@@ -204,18 +203,18 @@ add_action('wp_footer', 'action_popups');
  */
 function my_plugin_add_admin_bar_items($admin_bar)
 {
-    $admin_bar->add_menu(
-        array(
-            'id'    => 'layouts-menu',
-            'title' => 'Layouts',
-            'href'  => false,
-            'meta'  => array(
-                'class' => 'layouts-menu',
+    if (!is_admin()) {
+        $admin_bar->add_menu(
+            array(
+                'id'    => 'layouts-menu',
                 'title' => 'Layouts',
-            ),
-        )
-    );
-
-    
+                'href'  => false,
+                'meta'  => array(
+                    'class' => 'layouts-menu',
+                    'title' => 'Layouts',
+                ),
+            )
+        );
+    }
 }
 add_action('admin_bar_menu', 'my_plugin_add_admin_bar_items', 999999);
