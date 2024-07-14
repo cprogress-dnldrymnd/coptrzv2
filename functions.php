@@ -145,5 +145,5 @@ function layouts()
 		</script>
 <?php
 	}
-	return ob_clean();
+	echo ob_get_clean();
 }
