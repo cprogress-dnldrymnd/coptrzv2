@@ -103,68 +103,6 @@ function action_page_selector()
         jQuery(document).ready(function($) {
             console.log('sdsdsdsds');
 
-            jQuery(document).on("change", '.trigger-selector select', function(event) {
-                $value = jQuery(this).val();
-                $selector = jQuery(this).parent().parent().parent().find('.page-selector');
-                active_link_type($selector, $value)
-                console.log('sdsdsdsds');
-            });
-
-
-            jQuery(document).on("change", '.trigger-selector-single select', function(event) {
-                $value = jQuery(this).val();
-                $selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
-                active_link_type($selector, $value)
-            });
-
-            jQuery(document).on("change", '.select-page-selector', function(event) {
-                $value = jQuery(this).val();
-                $input = jQuery(this).parent().parent().parent().parent().parent().find('.field-url input');
-                $input.val($value);
-            });
-
-
-            function active_link_type($selector, $value, $input = '') {
-                if ($value == 'page') {
-                    $selector.html('<?= $select_page ?>');
-                } else if ($value == 'post') {
-                    $selector.html('<?= $select_post ?>');
-                } else if ($value == 'product') {
-                    $selector.html('<?= $select_product ?>');
-                } else if ($value == 'guides') {
-                    $selector.html('<?= $select_guide ?>');
-                } else if ($value == 'casestudies') {
-                    $selector.html('<?= $select_casestudies ?>');
-                } else if ($value == 'solutions') {
-                    $selector.html('<?= $select_solution ?>');
-                } else if ($value == 'popups') {
-                    $selector.html('<?= $select_popup ?>');
-                } else {
-                    $selector.html('');
-                }
-
-                $selector.find('.select-page-selector').val($input);
-
-
-            }
-
-            setTimeout(function() {
-                jQuery('.trigger-selector select').each(function(index, element) {
-                    $value = jQuery(this).val();
-                    $selector = jQuery(this).parent().parent().parent().find('.page-selector');
-                    $input = jQuery(this).parent().parent().parent().find('.field-url input').val();
-                    active_link_type($selector, $value, $input)
-                });
-
-
-                jQuery('.trigger-selector-single select').each(function(index, element) {
-                    $value = jQuery(this).val();
-                    $selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
-                    $input = jQuery(this).parent().parent().next().next().find('input').val();
-                    active_link_type($selector, $value, $input)
-                });
-
-            }, 2000);
         });
     </script>
 <?php
