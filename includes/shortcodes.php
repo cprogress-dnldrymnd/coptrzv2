@@ -501,10 +501,8 @@ class Shortcodes
         $crb_event_start_time = get__post_meta_by_id(get_the_ID(), 'crb_event_start_time');
         $date_val = $crb_event_start_date . ' ' . $crb_event_start_time;
         $date = strtotime($date_val);
-        $day = date('M j, Y H:i:s', $date);
-        _date_format($crb_event_start_date);
-
-        $html = "<div class='event-countdown' date='$'>";
+        $date_format = date('M j, Y H:i:s', $date);
+        $html = "<div class='event-countdown' date='$date_format'>";
         $html .= "<div class='event-countdown-holder'>";
         $html .= "<div class='countdown-days'></div>";
         $html .= "<div class='countdown-hours'></div>";
