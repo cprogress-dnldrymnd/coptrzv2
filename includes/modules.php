@@ -1085,7 +1085,7 @@ function ____post_grid_module($data)
                         'button_type' => get_post_type($post->ID),
                         'button_text' => $item['button_text'],
                         'button_url' => $post->ID,
-                        'button_style' => $item['button_style'] .  " position-relative$button_class,
+                        'button_style' => $item['button_style'] .  " position-relative$button_class",
                     ));
                     break;
                 case 'featured_image':
