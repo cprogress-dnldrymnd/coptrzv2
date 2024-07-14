@@ -2558,4 +2558,6 @@ function __popup($id)
     $html .= "</div>"; //modal-content
     $html .= "</div>"; //modal-dialog
     $html .= "</div>"; //modal
+    
+    return $html;
 }
