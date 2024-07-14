@@ -2594,8 +2594,10 @@ function __layouts($args, $return = '')
     $args['fields'] = 'ids';
     $args['post_type'] = 'layouts';
     $layouts = get_posts($args);
+    global $layouts_global;
     if ($layouts) {
         foreach ($layouts as $layout) {
+            $layouts_global = $layout;
             $return .=  '[layouts id=' . $layout . ']';
         }
         return $return;
