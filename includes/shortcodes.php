@@ -206,19 +206,19 @@ class Shortcodes
         $html .= "<div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div>";
 
         $html .= "<div class='col-auto'>";
-        $html .= "<div class='row button-group-box d-inline-flex'>";
+        $html .= "<div class='row g-4 button-group-box justify-content-center align-items-center d-inline-flex'>";
         $html .= __button(array(
             'button_type' => get_post_type($id),
             'button_text' => 'Read Case Study',
             'button_url' => $id,
-            'button_style' => 'button-accent' . ' col-auto',
+            'button_style' => 'button-accent col-12 col-sm-auto',
         ));
 
         $html .= __button(array(
             'button_type' => 'custom',
             'button_text' => 'All Case Studies',
             'button_url_custom' => get_post_type_archive_link('casestudies'),
-            'button_style' => 'button-bordered' . ' col-auto',
+            'button_style' => 'button-bordered col-12 col-sm-auto',
         ));
         $html .= "</div>";
         $html .= "</div>";

@@ -366,10 +366,10 @@ input[type="checkbox"] {
         }
         .inner {
             @include responsive(xs-sm) {
-                padding-bottom: calc(93px + 60px + 50px);
+                padding-bottom: calc(93px + 60px + 30px);
             }
             @include responsive(xs) {
-                padding-bottom: calc(202px + 60px + 50px);
+                padding-bottom: calc(202px + 60px + 30px);
             }
             @include responsive(mobile) {
                 padding-top: 20px;
