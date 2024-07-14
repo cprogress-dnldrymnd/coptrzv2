@@ -206,8 +206,8 @@ function action_popups()
         $layouts_global_val .= "</div>";
     ?>
         <script>
+            console.log('<?= $layouts_global_val ?>');
             jQuery(document).ready(function() {
-
                 jQuery('<?= $layouts_global_val ?>').appendTo('#wp-admin-bar-layouts-menu');
             });
         </script>
