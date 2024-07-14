@@ -42,7 +42,7 @@ if (!$hide_footer) {
         </div>
         <div class="footer-columns sm-padding-top sm-padding-bottom">
             <div class="container">
-                <div class="accordion accordionFooter">
+                <div class="accordion accordionFooter" id="accordionFooter">
                     <div class="row g-4">
                         <div class="col-lg col-md-6">
                             <div class="accordion-item">
