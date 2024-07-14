@@ -81,29 +81,7 @@ if (!$hide_footer) {
 
 <?php } ?>
 </main>
-<?php
-if (current_user_can('administrator')) {
-    $layouts_global_val = "<div class='ab-sub-wrapper'>";
-    $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
-    foreach ($layouts_global as $layout) {
-        $title = get_the_title($layout);
-        $link = get_edit_post_link($layout);
 
-        $layouts_global_val .= "<li>";
-        $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
-        $layouts_global_val .= "</li>";
-    }
-    $layouts_global_val .= "</ul>";
-    $layouts_global_val .= "</div>";
-?>
-    <script>
-        jQuery(document).ready(function() {
-            jQuery("<?= $layouts_global_val ?>").appendTo('#wp-admin-bar-layouts-menu');
-        });
-    </script>
-<?php
-}
-?>
 <?php wp_footer(); ?>
 </body>
 
