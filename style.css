@@ -10640,6 +10640,12 @@ hr {
   .extend-right .container,
   .extend-right.container {
     max-width: calc(1420px + (50% - (1420px / 2))); } }
+@media (min-width: 1600px) {
+  .extend-left .container,
+  .extend-left.container,
+  .extend-right .container,
+  .extend-right.container {
+    max-width: calc(1520px + (50% - (1520px / 2))); } }
 
 .small-container .container {
   max-width: 730px; }

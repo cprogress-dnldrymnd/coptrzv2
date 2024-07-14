@@ -178,6 +178,9 @@ main {
     @media (min-width: 1500px) {
         max-width: calc(1420px + (50% - (1420px / 2)));
     }
+    @media (min-width: 1600px) {
+        max-width: calc(1520px + (50% - (1520px / 2)));
+    }
 }
 
 .small-container {
