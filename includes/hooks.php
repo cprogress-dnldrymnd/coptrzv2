@@ -200,6 +200,7 @@ add_action('wp_footer', 'action_popups');
  */
 function my_plugin_add_admin_bar_items($admin_bar)
 {
+    global $layouts_global;
     // Run admin bar code here. Will run on both frontend and backend.
     $admin_bar->add_menu(
         array(
@@ -212,18 +213,18 @@ function my_plugin_add_admin_bar_items($admin_bar)
             ),
         )
     );
-
-    $admin_bar->add_node(
-        array(
-            'parent' => 'layouts-menu',
-            'id'     => 'layouts-menu-1',
-            'title'  => 'Submenu 1',
-            'href'   => 'https://domain.com/wp-admin/admin.php?page=my-plugin&tab=settings',
-            'meta'   => array(
-                'class' => 'my-plugin-submenu-1-class',
-                'title' => 'Submenu 1',
-            ),
-        )
-    );
+    foreach ($layouts_global as $key => $layout) {
+        $admin_bar->add_node(
+            array(
+                'parent' => "layouts-menu",
+                'id'     => "layouts-menu-$key",
+                'title'  => get_the_title($layout),
+                'href'   => get_the_permalink($layout),
+                'meta'   => array(
+                    'title' => get_the_title($layout),
+                ),
+            )
+        );
+    }
 }
 add_action('admin_bar_menu', 'my_plugin_add_admin_bar_items', 50);
