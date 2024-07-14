@@ -4718,6 +4718,21 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                             ),
+                        Field::make('association', 'brand', __('Brand'))->set_classes('inline-field inline-field-wide-label')
+                            ->set_types(array(
+                                array(
+                                    'type'      => 'term',
+                                    'taxonomy' => 'product_cat',
+                                ),
+                            ))
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'source_type',
+                                        'value' => 'category',
+                                    )
+                                )
+                            ),
                         Field::make('association', 'products', __('Select Products'))->set_classes('inline-field inline-field-wide-label')
                             ->set_types(array(
                                 array(
