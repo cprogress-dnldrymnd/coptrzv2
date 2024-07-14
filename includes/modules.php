@@ -718,6 +718,11 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($product_cat as $cat) {
                                 $term_ids[] = $cat['id'];
                             }
+                            $product_slider_args['tax_query'][] = array(
+                                'taxonomy' => 'product_cat',
+                                'field'    => 'term_id',
+                                'terms'    => $term_ids
+                            );
                         } else if ($source_type == 'manually') {
                             $include = [];
                             foreach ($products as $product) {
