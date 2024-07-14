@@ -47,7 +47,7 @@ if (!$hide_footer) {
                         <div class="col-lg col-md-6">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="footerColOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="accordion-button collapsed d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         About Us
                                     </button>
                                 </h2>

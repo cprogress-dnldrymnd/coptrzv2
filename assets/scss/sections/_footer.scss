@@ -95,7 +95,7 @@
 
 #accordionFooter {
     .accordion-collapse {
-        @include responsive(xs-md) {
+        @include responsive(md-lg) {
             display: block;
         }
     }
