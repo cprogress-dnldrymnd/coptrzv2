@@ -2391,6 +2391,7 @@ function __section_fields($name = 'sections')
                                                 ->add_fields(
                                                     'permalink',
                                                     array(
+                                                        Field::make('checkbox', 'hide_button_on_mobile', 'Hide Button on Mobile'),
                                                         Field::make('text', 'button_text', 'Button Text'),
                                                         Field::make('select', 'button_style', __('Button Style'))->set_width(20)
                                                             ->set_options(
@@ -4235,6 +4236,7 @@ function __section_fields($name = 'sections')
                                 ->add_fields(
                                     'permalink',
                                     array(
+                                        Field::make('checkbox', 'hide_button_on_mobile', 'Hide Button on Mobile'),
                                         Field::make('text', 'button_text', 'Button Text'),
                                         Field::make('select', 'button_style', __('Button Style'))->set_width(20)
                                             ->set_options(
