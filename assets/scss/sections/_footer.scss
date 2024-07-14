@@ -118,8 +118,11 @@
     .col-5 {
         margin-top: 2rem;
     }
-    .accordion-collapse {
-        @include responsive(sm-lg) {
+    @include responsive(sm-lg) {
+        .plus-minus {
+            display: none;
+        }
+        .accordion-collapse {
             display: block;
         }
     }
