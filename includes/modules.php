@@ -1044,7 +1044,7 @@ function ____post_grid_module($data)
     } else {
         $html .= "<div class='row g-4 same-image-height'>"; //row
     }
-
+    $post_title = '';
     foreach ($posts_lists as $post) {
         if ($is_slider) {
             $html .= "<div class='swiper-slide'>";
