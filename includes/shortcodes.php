@@ -503,10 +503,28 @@ class Shortcodes
         $date = strtotime($date_val);
         $date_format = date('M j, Y H:i:s', $date);
         $html = "<div class='event-countdown' date='$date_format'>";
-        $html .= "<div class='event-countdown-holder'>";
+        $html .= "<div class='event-countdown-holder row align-items-center justify-content-center'>";
+        $html .= "<div class='col-auto'>";
+        $html .= "<div class='col-days'>";
         $html .= "<div class='countdown-days'></div>";
-        $html .= "<div class='countdown-hours'></div>";
-        $html .= "<div class='countdown-minutes'></div>";
+        $html .= "<span>Days</span>";
+        $html .= "</div>";
+        $html .= "</div>";
+
+        $html .= "<div class='col-auto'>";
+        $html .= "<div class='col-hours'>";
+        $html .= "<div class='countdown-hours rounded-corner'></div>";
+        $html .= "<span>Hours</span>";
+        $html .= "</div>";
+        $html .= "</div>";
+
+        $html .= "<div class='col-auto'>";
+        $html .= "<div class='col-minutes'>";
+        $html .= "<div class='countdown-minutes rounded-corner'></div>";
+        $html .= "<span>Minutes</span>";
+        $html .= "</div>";
+        $html .= "</div>";
+
         $html .= "</div>";
         $html .= "</div>";
 
