@@ -1107,6 +1107,22 @@ hr {
 
 .navigation.pagination {
     .nav-links {
-        
+        display: flex;
+        .page-numbers {
+            padding: 20px 25px;
+            color: var(--bs-black);
+            border-radius: 10px;
+            border: 1px solid;
+            @include not-last-child {
+                margin-right: 10px;
+            }
+        }
+        a {
+            @include on-event {
+                background-color: var(--bs-accent);
+                color: var(--bs-white);
+                border-color: var(--bs-accent);
+            }
+        }
     }
 }
