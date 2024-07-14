@@ -52,7 +52,7 @@ if (!$hide_footer) {
                                     </button>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="footerColOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
+                                    <div class="accordion-body p-0">
                                         <?php dynamic_sidebar('footer_column_1') ?>
                                     </div>
                                 </div>
