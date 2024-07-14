@@ -29,6 +29,8 @@
                 display: inline-flex;
                 align-items: center;
                 li {
+                    display: flex;
+                    align-items: center;
                     @include not-last-child {
                         margin-right: 1rem;
                         @include before {
