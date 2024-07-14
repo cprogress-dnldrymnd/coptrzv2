@@ -15,11 +15,12 @@ jQuery(document).ready(function () {
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         // Display the result in the element with id="demo"
         jQuery('.countdown-days').html(days);
         jQuery('.countdown-hours').html(hours);
         jQuery('.countdown-minutes').html(minutes);
+        jQuery('.countdown-seconds').html(seconds);
 
         // If the count down is finished, write some text
         if (distance < 0) {
