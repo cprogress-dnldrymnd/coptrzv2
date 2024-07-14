@@ -10567,11 +10567,11 @@ hr {
         transform: scale(1.7); } }
     @media screen and (max-width: 767px) {
       .background-image iframe {
-        -webkit-transform: scale(2.5);
-        -moz-transform: scale(2.5);
-        -ms-transform: scale(2.5);
-        -o-transform: scale(2.5);
-        transform: scale(2.5); } }
+        -webkit-transform: scale(3);
+        -moz-transform: scale(3);
+        -ms-transform: scale(3);
+        -o-transform: scale(3);
+        transform: scale(3); } }
   @media screen and (max-width: 575px) {
     .background-image.mx-20px {
       margin-left: 10px;
