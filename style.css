@@ -11217,7 +11217,8 @@ hr {
     .image_left.image_left .icon-box,
     .image_left.image_left .image-box {
       margin-bottom: 0;
-      margin-right: 1rem; }
+      margin-right: 1rem;
+      position: absolute; }
     .image_left.image_left .icon-box {
       display: flex;
       align-items: center;
