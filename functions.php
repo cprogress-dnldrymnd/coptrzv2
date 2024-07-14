@@ -30,11 +30,6 @@ function action_after_setup_theme()
 }
 add_action('after_setup_theme', 'action_after_setup_theme');
 
-function action_admin_init() {
-	global $popups_id, $layouts_global;
-}
-add_action('admin_init', 'action_admin_init');
-
 /*-----------------------------------------------------------------------------------*/
 /* Register Carbofields
 /*-----------------------------------------------------------------------------------*/

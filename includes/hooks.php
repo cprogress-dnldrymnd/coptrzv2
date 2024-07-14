@@ -215,9 +215,7 @@ function my_plugin_add_admin_bar_items($admin_bar)
             ),
         )
     );
-    global $popups_id, $layouts_global;
 
-var_dump($layouts_global);
-
+    
 }
 add_action('admin_bar_menu', 'my_plugin_add_admin_bar_items', 999999);
