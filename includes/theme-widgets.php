@@ -33,7 +33,29 @@ function action_widgets_init()
         )
     );
 
-    
+    $index = 1;
+    while ($index < 5) {
+        $before_title = "<h4 class='accordion-header widget-title' id='footerCol$index>";
+        $before_title .= "<button class='accordion-button collapsed d-block d-lg-none' type='button' data-bs-toggle='collapse' data-bs-target='#collapse$index' aria-expanded='false' aria-controls='collapse$index'>";
+        $after_title = "</button>";
+        $after_title .= "</h4>";
+
+        $before_widget = "<div id='collapse$index' class='accordion-collapse collapse' aria-labelledby='footerCol$index' data-bs-parent='#accordionFooter'>";
+        $before_widget .= " <div class='accordion-body p-0'>";
+
+        $after_widget = "</div></div>";
+
+        register_sidebar(
+            array(
+                'name'          => "Footer Column $index",
+                'id'            => "footer_column_$index",
+                'before_widget' => $before_widget,
+                'after_widget'  => $after_widget,
+                'before_title'  => $before_title,
+                'after_title'   => $after_title,
+            )
+        );
+    }
 
     register_sidebar(
         array(
