@@ -1,5 +1,6 @@
 jQuery(document).ready(function ($) {
     codemirror();
+    button_selector();
 });
 function codemirror() {
     setTimeout(function () {
@@ -44,7 +45,10 @@ function codemirror() {
 
 
 
-
     }, 1000);
 
+}
+
+function button_selector() {
+    console.log(selector.casestudies);
 }
