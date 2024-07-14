@@ -17,6 +17,9 @@ body {
     @include responsive(xs) {
         font-size: 1.5rem;
     }
+    @include responsive(mobile) {
+        font-size: 1.25rem;
+    }
 }
 .smaller-text {
     font-size: 13px;

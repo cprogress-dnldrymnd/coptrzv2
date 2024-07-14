@@ -397,7 +397,10 @@ input[type="checkbox"] {
         }
     }
     .col-left {
-        
+        @include responsive(xs-sm) {
+            display: flex;
+            flex-direction: column-reverse
+        }
     }
 }
 
