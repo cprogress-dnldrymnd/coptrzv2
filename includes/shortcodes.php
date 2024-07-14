@@ -396,6 +396,7 @@ class Shortcodes
                 if ($button_text) {
                     $data_latest['button_text'] = $button_text;
                 }
+                $html .= var_dump($data_latest);
 
                 $html .= __post_box($data_latest);
             }
