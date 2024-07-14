@@ -101,6 +101,7 @@ function action_page_selector()
 ?>
     <script>
         jQuery(document).ready(function($) {
+            console.log('sdsdsdsds');
 
             jQuery(document).on("change", '.trigger-selector select', function(event) {
                 $value = jQuery(this).val();
