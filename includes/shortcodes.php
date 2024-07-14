@@ -102,7 +102,9 @@ class Shortcodes
             } else {
                 $post_type = get_post_type();
                 $link = get_post_type_archive_link($post_type);
-                $html .= "<li><a class='item text-white' href='$link'>$post_type</a></li>";
+                $post_type_obj = get_post_type_object($post_type);
+                $name = $post_type_obj->labels->singular_name;
+                $html .= "<li><a class='item text-white' href='$link'>$name</a></li>";
             }
             $html .= "<li><span class='item text-white'  >$title</span></li>";
         } else if ($type == 'term') {
