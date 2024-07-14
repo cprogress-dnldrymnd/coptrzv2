@@ -147,6 +147,9 @@ echo do_shortcode(__layouts($args));
             </div>
         </div>
     </div>
+    <?php
+    echo wp_count_posts();
+    ?>
     <?php if (get_the_post_navigation()) { ?>
         <div class="pagination">
             <div class="container">
