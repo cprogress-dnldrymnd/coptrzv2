@@ -11204,6 +11204,21 @@ hr {
     opacity: 0;
     font-size: 0; }
 
+@media screen and (max-width: 767px) {
+  .image_left.image_left .icon-box,
+  .image_left.image_left .image-box {
+    margin-bottom: 0;
+    margin-right: 1rem; }
+  .image_left.image_left.xs-padding-top .icon-box,
+  .image_left.image_left.xs-padding-top .image-box {
+    top: 1rem; }
+  .image_left.image_left.xs-padding-bottom .icon-box,
+  .image_left.image_left.xs-padding-bottom .image-box {
+    bottom: 1rem; }
+  .image_left.image_left.xs-padding-left .icon-box,
+  .image_left.image_left.xs-padding-left .image-box {
+    left: 1rem; } }
+
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/

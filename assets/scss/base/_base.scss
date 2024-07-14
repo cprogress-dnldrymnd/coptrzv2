@@ -913,7 +913,6 @@ hr {
     }
 }
 
-
 .modal {
     z-index: 999999;
     &.popup-form {
@@ -976,6 +975,34 @@ hr {
             height: 100%;
             opacity: 0;
             font-size: 0;
+        }
+    }
+}
+
+.image_left.image_left {
+    @include responsive(xs) {
+        .icon-box,
+        .image-box {
+            margin-bottom: 0;
+            margin-right: 1rem;
+        }
+        &.xs-padding-top {
+            .icon-box,
+            .image-box {
+                top: 1rem;
+            }
+        }
+        &.xs-padding-bottom {
+            .icon-box,
+            .image-box {
+                bottom: 1rem;
+            }
+        }
+        &.xs-padding-left {
+            .icon-box,
+            .image-box {
+                left: 1rem;
+            }
         }
     }
 }
