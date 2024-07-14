@@ -74,7 +74,7 @@ if (is_home()) {
     $has_featured = false;
     $has_filter = true;
     $archive_title = 'Blog';
-    $category = 'case_study_category';
+    $category = 'casestudies_category';
     $data = array(
         'col' => true,
         'featured' => false,
