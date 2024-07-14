@@ -31,6 +31,14 @@
                 li {
                     @include not-last-child {
                         margin-right: 1rem;
+                        @include before {
+                            content: '';
+                            width: 5px;
+                            height: 5px;
+                            display: inline-block;
+                            border-radius: 20px;
+                            background-color: #606060;
+                        }
                     }
                 }
             }
