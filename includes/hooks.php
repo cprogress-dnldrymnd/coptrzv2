@@ -271,3 +271,22 @@ function action_layout_menu($admin_bar)
     }
 }
 add_action('admin_bar_menu', 'action_layout_menu', 999999);
+
+
+function action_pre_get_posts($query)
+{
+    if (!is_admin() && $query->is_main_query()) {
+        if (is_post_type_archive('solutions') || is_post_type_archive('guides')) {
+            // Append our meta query
+            $meta_query[] = [
+                'key' => '_hide_on_list',
+                'value' => 'yes',
+                'compare' => 'NOT IN',
+            ];
+
+            $query->set('meta_query', $meta_query);
+        }
+    }
+    return;
+}
+add_action('pre_get_posts', 'action_pre_get_posts', 1);
