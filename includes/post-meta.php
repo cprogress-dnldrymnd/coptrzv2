@@ -5769,6 +5769,12 @@ Container::make('post_meta', 'Capabilities Settings')
 Container::make('post_meta', 'Industry Settings')
     ->where('post_type', '=', 'solutions')
     ->add_tab(
+        'General Settings',
+        array(
+            Field::make('checkbox', 'hide_on_list', 'Hide on List'),
+        )
+    )
+    ->add_tab(
         'Related Guides',
         array(
             Field::make('text', 'related_guides_heading', 'Related Guides Heading'),
@@ -5798,6 +5804,8 @@ Container::make('post_meta', 'Industry Settings')
                 )
         )
     );
+
+
 
 
 Container::make('post_meta', 'Popup Settings')
