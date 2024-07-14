@@ -1472,14 +1472,12 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                             ),
-                        Field::make('select', 'move_icon_image_left', 'Move Icon/Image on left on mobile')->set_width(20)
+                        Field::make('select', 'mobile_styling', 'Mobile Styling')->set_width(20)
                             ->set_options(
                                 array(
                                     ''                  => 'Default',
-                                    'justify-content-start'  => 'Start',
-                                    'justify-content-center'  => 'Center',
-                                    'justify-content-end'  => 'End',
-                                    'justify-content-between'  => 'Between',
+                                    'image_left'  => 'Image/Icon on Left',
+                                    'image_right'  => 'Image/Icon on Right',
                                 )
                             ),
 
