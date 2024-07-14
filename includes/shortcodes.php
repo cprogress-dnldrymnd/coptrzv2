@@ -166,7 +166,7 @@ class Shortcodes
             $html .= "<div class='col-lg-8 col-left text-center text-lg-start'>";
             $html .= __description(array(
                 'description' => $post_excerpt,
-                'class' => _attribute('class', array('description-box big-text mb-5'))
+                'class' => _attribute('class', array('description-box big-text mb-lg-5'))
             ));
             if ($logo) {
                 $html .= __image(array(
