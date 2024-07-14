@@ -44,9 +44,11 @@ add_action('shutdown', 'action_module_content');
 function _date_format($date_input)
 {
     $date = strtotime($date_input);
-    $day = date('S', $date);
+    $day = date('j', $date);
+    $sup = date('S', $date);
     $month = date('F', $date);
-    $newDate = "<sup>$day</sup>";
+    $newDate = " $day";
+    $newDate .= "<sup>$sup</sup>";
     $newDate .= " $month";
     return $newDate;
 }
