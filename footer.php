@@ -42,7 +42,7 @@ if (!$hide_footer) {
         </div>
         <div class="footer-columns sm-padding-top sm-padding-bottom">
             <div class="container">
-                <div class="accordion accordionFooter">
+                <div class="accordion accordionFooter" id="accordionFooter">
                     <div class="row g-4">
                         <div class="col-lg col-md-6">
                             <div class="accordion-item">
@@ -51,15 +51,17 @@ if (!$hide_footer) {
                                         About Us
                                     </button>
                                 </h2>
-                                <?php dynamic_sidebar('footer_column_1') ?>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <?php dynamic_sidebar('footer_column_1') ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg col-md-6">
                             <div class="accordion-item">
-                                
                                 <?php dynamic_sidebar('footer_column_2') ?>
                             </div>
-
                         </div>
                         <div class="col-lg col-md-6">
                             <div class="accordion-item">
