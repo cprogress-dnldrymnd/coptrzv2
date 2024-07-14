@@ -584,10 +584,6 @@ $Popup->publicly_queryable = true;
 $Popup->show_in_admin_bar = true;
 $Popup->has_archive = false;
 $Popup->show_in_rest = true;
-$Popup->rewrite = array(
-    'with_front' => false,
-    'slug' => 'popups'
-);
 
 
 
