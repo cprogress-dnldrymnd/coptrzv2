@@ -172,8 +172,8 @@ $args_below['fields'] = 'ids';
 $layouts_below = get_posts($args_below);
 if ($layouts_below) {
     foreach ($layouts_below as $layout) {
-        $layouts_global = $layout->ID;
-        echo '[layouts id=' . $layout->ID . ']';
+        $layouts_global = $layout;
+        echo '[layouts id=' . $layout . ']';
     }
 }
 ?>
