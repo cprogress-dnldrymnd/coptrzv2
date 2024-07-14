@@ -369,12 +369,12 @@ class Shortcodes
             $html = "<div class='latest-from-coptrz'>";
             $html .= "<div class='row g-4 g-xs-10px'>";
 
-            foreach ($latest_from_coptrz as $post) {
+            foreach ($latest_from_coptrz as $latest) {
                 $data_latest = [];
-                $id = $post['post'][0]['id'];
-                $background = $post['background'];
-                $button_text = $post['button_text'];
-                $is_new = $post['is_new'];
+                $id = $latest['post'][0]['id'];
+                $background = $latest['background'];
+                $button_text = $latest['button_text'];
+                $is_new = $latest['is_new'];
 
                 $data_latest['id'] = $id;
                 $data_latest['col'] = 'col-lg-3 col-md-6';
