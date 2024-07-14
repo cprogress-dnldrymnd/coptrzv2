@@ -396,7 +396,7 @@ function ___sections($id = 'sections', $post_id = '')
                                 $background = "radial-gradient(circle, $background_gradient_color_1 $background_gradient_stop_1, $background_gradient_color_2 $background_gradient_stop_2)";
                             } else {
                                 $background_gradient_direction = $section_style['background_gradient_direction'];
-                                $background = "background: linear-gradient($background_gradient_direction, $background_gradient_color_1 $background_gradient_stop_1 $background_gradient_color_2 $background_gradient_stop_2)";
+                                $background = "linear-gradient($background_gradient_direction, $background_gradient_color_1 $background_gradient_stop_1 $background_gradient_color_2 $background_gradient_stop_2)";
                             }
                             $styles_section[] = 'background: ' . $background;
                         }
