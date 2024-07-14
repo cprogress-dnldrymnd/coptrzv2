@@ -100,8 +100,7 @@ if ($has_featured) {
     echo ___featured($key);
 }
 
-$args['post_type'] = 'layouts';
-$args = array(
+$args_above = array(
     'meta_query' => array(
         'relation' => 'AND',
         array(
@@ -114,16 +113,17 @@ $args = array(
         )
     )
 );
+$args_above['post_type'] = 'layouts';
+$args_above['fields'] = 'ids';
 global $layouts_global;
-$layouts_above = get_posts($args);
+$layouts_above = get_posts($args_above);
 if ($layouts_above) {
     foreach ($layouts_above as $layout) {
-        $layouts_global = $layout->ID;
-        echo '[layouts id=' . $layout->ID . ']';
+        $layouts_global = $layout;
+        echo '[layouts id=' . $layout . ']';
     }
 }
 ?>
-
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default" id="posts">
     <?php
     if ($has_filter) {
@@ -154,7 +154,7 @@ if ($layouts_above) {
 </section>
 
 <?php
-$args = array(
+$args_below = array(
     'meta_query' => array(
         'relation' => 'AND',
         array(
@@ -167,6 +167,8 @@ $args = array(
         )
     )
 );
+$args_above['post_type'] = 'layouts';
+$args_above['fields'] = 'ids';
 $layouts_below = get_posts($args);
 if ($layouts_below) {
     foreach ($layouts_below as $layout) {
