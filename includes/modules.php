@@ -2597,7 +2597,7 @@ function __layouts($args, $return = '')
     global $layouts_global;
     if ($layouts) {
         foreach ($layouts as $layout) {
-            $layouts_global = $layout;
+            $layouts_global[] = $layout;
             $return .=  '[layouts id=' . $layout . ']';
         }
         return $return;
