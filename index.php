@@ -10,6 +10,7 @@ get_header(); ?>
 <?php
 $post_type = get_queried_object()->name;
 $class = '';
+$SVG = new SVG;
 if (is_home()) {
     $key = 'post_';
     $title = 'All Posts';
@@ -26,7 +27,6 @@ if (is_home()) {
         'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
     );
 } else if (is_post_type_archive('events')) {
-    $SVG = new SVG;
     $key = 'events_';
     $title = false;
     $has_featured = false;
@@ -147,12 +147,14 @@ echo do_shortcode(__layouts($args));
             </div>
         </div>
     </div>
+
     <div class="pagination">
         <div class="container">
             <div class="inner border-top-default sm-padding-top sm-margin-top">
                 <?php the_posts_pagination(array(
                     'mid_size'  => 3,
-                    'next_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/> </svg>'
+                    'next_text' => $SVG->chevron_right(),
+                    'prev_text' => $SVG->chevron_left(),
                 )); ?>
             </div>
         </div>
