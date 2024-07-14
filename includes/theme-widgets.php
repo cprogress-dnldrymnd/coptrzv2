@@ -34,7 +34,7 @@ function action_widgets_init()
     );
 
     $index = 1;
-    while ($index < 6) {
+    while ($index < 5) {
         $before_title = "<h4 class='accordion-header widget-title' id='footerCol$index>";
         $before_title = "<button class='accordion-button collapsed d-block d-lg-none' type='button' data-bs-toggle='collapse' data-bs-target='#collapse$index' aria-expanded='false' aria-controls='collapse$index'>";
         $after_title = "</button>";
@@ -57,7 +57,16 @@ function action_widgets_init()
         );
     }
 
-
+    register_sidebar(
+        array(
+            'name'          => 'Footer Column 5',
+            'id'            => 'footer_column_5',
+            'before_widget' => '<div>',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h5 class="widget-title">',
+            'after_title'   => '</h5>',
+        )
+    );
     register_sidebar(
         array(
             'name'          => 'Footer Bottom Left',
