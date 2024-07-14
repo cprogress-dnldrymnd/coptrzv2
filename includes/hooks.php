@@ -195,7 +195,7 @@ function action_popups()
         foreach ($layouts_global as $layout) {
             $title = get_the_title($layout);
             $link = get_edit_post_link($layout);
-    
+
             $layouts_global_val .= "<li>";
             $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
             $layouts_global_val .= "</li>";
@@ -208,7 +208,7 @@ function action_popups()
                 jQuery("<?= $layouts_global_val ?>").appendTo('#wp-admin-bar-layouts-menu');
             });
         </script>
-    <?php
+<?php
     }
 }
 
@@ -232,6 +232,20 @@ function my_plugin_add_admin_bar_items($admin_bar)
                 'meta'  => array(
                     'class' => 'layouts-menu',
                     'title' => 'Layouts',
+                ),
+            )
+        );
+
+        // Add a submenu to the above item. add_menu is just a wrapper for add_node.
+        $admin_bar->add_node(
+            array(
+                'parent' => 'my-plugin-menu',
+                'id'     => 'my-plugin-submenu-1',
+                'title'  => 'Submenu 1',
+                'href'   => 'https://domain.com/wp-admin/admin.php?page=my-plugin&tab=settings',
+                'meta'   => array(
+                    'class' => 'my-plugin-submenu-1-class',
+                    'title' => 'Submenu 1',
                 ),
             )
         );
