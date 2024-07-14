@@ -701,6 +701,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $html .= $shortcode;
                         break;
                     case 'product_slider':
+                        $args = [];
                         $heading = $items['heading'];
                         $button_text = $items['button_text'];
                         $button_url = $items['button_url'];
