@@ -17,6 +17,7 @@ $args = array(
 $layouts = get_posts($args);
 foreach ($layouts as $layout) {
     echo do_shortcode("[layouts id='$layout']");
+    $layouts_global[] = $layout;
 }
 
 var_dump($layouts_global);
