@@ -2591,11 +2591,13 @@ function _events_additional_content($id)
 
 function __layouts($args, $return = '')
 {
+    global $layouts_global;
     $args['post_type'] = 'layouts';
     $layouts = get_posts($args);
 
     if ($layouts) {
         foreach ($layouts as $layout) {
+            $layouts_global = $layout->ID;
             $return .=  '[layouts id=' . $layout->ID . ']';
         }
         return $return;

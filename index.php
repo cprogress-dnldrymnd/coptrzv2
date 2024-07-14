@@ -9,9 +9,7 @@ get_header(); ?>
 
 <?php
 $post_type = get_queried_object()->name;
-
 $class = '';
-
 if (is_home()) {
     $key = 'post_';
     $title = 'All Posts';
