@@ -190,12 +190,26 @@ function action_popups()
 
 
     if (current_user_can('administrator')) {
-      
+        global $layouts_global;
+        $layouts_global_val = "<div vclass='ab-sub-wrapper'>";
+        $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
+        foreach ($layouts_global as $layout) {
+            $title = get_the_title($layout);
+            $link = get_edit_post_link($layout);
+
+            $layouts_global_val .= "<li>";
+            $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
+            $layouts_global_val .= "</li>";
+        }
+        $layouts_global_val .= "</ul>";
+
+        $layouts_global_val .= "</div>";
     ?>
         <script>
             jQuery(document).ready(function() {
-            console.log('xxxx');
-                
+                console.log('<?= $layouts_global_val ?>');
+
+                jQuery('<?= $layouts_global_val ?>').appendTo('#wp-admin-bar-layouts-menu');
             });
         </script>
 <?php
