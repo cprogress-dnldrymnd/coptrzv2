@@ -114,6 +114,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero = "<section $hero_class_attribute>";
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
             $hero .= __background($hero_background_youtube, true);
+            $hero_class[] = 'background-youtube';
         } else if ($hero_background) {
             $hero .= __background($hero_background);
         }
