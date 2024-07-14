@@ -4694,6 +4694,7 @@ function __section_fields($name = 'sections')
                         Field::make('text', 'heading', 'Heading')->set_classes('inline-field inline-field-wide-label'),
                         Field::make('text', 'button_text', 'Button Text')->set_classes('inline-field inline-field-wide-label'),
                         Field::make('text', 'button_url', 'Button URL')->set_classes('inline-field inline-field-wide-label'),
+                        Field::make('text', 'numberposts', 'Number of Posts')->set_classes('inline-field inline-field-wide-label')->set_help_text('Leave empty to display all'),
                         Field::make('select', 'source_type', __('Source'))->set_classes('inline-field inline-field-wide-label')
                             ->set_options(
                                 array(
