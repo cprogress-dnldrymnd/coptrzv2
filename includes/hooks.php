@@ -172,7 +172,7 @@ function action_admin_head()
 add_action('admin_head', 'action_admin_head');
 
 
-function action_popups()
+function action__wp_footer()
 {
 
     global $popups_id;
@@ -190,10 +190,16 @@ function action_popups()
 
     if (current_user_can('administrator')) {
         global $layouts_global, $product_taxonomy_page, $popups_id;
+
+        $layouts = array_unique($layouts_global);
+        $popups = array_unique($popups_id);
+        $product_tax_page = array_unique($product_taxonomy_page);
+
+
         $layouts_global_val = "<div class='ab-sub-wrapper'>";
         $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
-        if ($product_taxonomy_page) {
-            foreach ($product_taxonomy_page as $tax_page) {
+        if ($product_tax_page) {
+            foreach ($product_tax_page as $tax_page) {
                 $title = get_the_title($tax_page) . '[Term Page]';
                 $link = get_edit_post_link($tax_page);
                 $layouts_global_val .= "<li>";
@@ -201,8 +207,8 @@ function action_popups()
                 $layouts_global_val .= "</li>";
             }
         }
-        if ($layouts_global) {
-            foreach ($layouts_global as $layout) {
+        if ($layouts) {
+            foreach ($layouts as $layout) {
                 $title = get_the_title($layout) . '[Layout]';
                 $link = get_edit_post_link($layout);
 
@@ -211,8 +217,8 @@ function action_popups()
                 $layouts_global_val .= "</li>";
             }
         }
-        if ($popups_id) {
-            foreach ($popups_id as $popup) {
+        if ($popups) {
+            foreach ($popups as $popup) {
                 $title = get_the_title($popup) . '[Popup]';
                 $link = get_edit_post_link($popup);
 
@@ -238,7 +244,7 @@ function action_popups()
     }
 }
 
-add_action('wp_footer', 'action_popups');
+add_action('wp_footer', 'action__wp_footer');
 
 
 
@@ -247,7 +253,7 @@ add_action('wp_footer', 'action_popups');
  *
  * @param WP_Admin_Bar $admin_bar Admin bar reference.
  */
-function my_plugin_add_admin_bar_items($admin_bar)
+function action_layout_menu($admin_bar)
 {
     if (!is_admin()) {
         $admin_bar->add_menu(
@@ -263,4 +269,4 @@ function my_plugin_add_admin_bar_items($admin_bar)
         );
     }
 }
-add_action('admin_bar_menu', 'my_plugin_add_admin_bar_items', 999999);
+add_action('admin_bar_menu', 'action_layout_menu', 999999);
