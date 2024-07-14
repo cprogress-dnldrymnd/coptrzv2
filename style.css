@@ -10730,10 +10730,6 @@ input[type="checkbox"] {
   @media screen and (max-width: 575px) {
     .case-study-slider .swiper-slide .inner {
       padding-top: 20px;
-      padding-bottom: 20px; } }
-  @media screen and (max-width: 575px) {
-    .case-study-slider .swiper-slide .inner {
-      padding-top: 20px;
       padding-bottom: 20px;
       margin-left: 10px;
       margin-right: 10px; } }
