@@ -392,7 +392,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $background_gradient_stop_1 = $section_style['background_gradient_stop_1'];
                             $background_gradient_color_2 = $section_style['background_gradient_color_2'];
                             $background_gradient_stop_2 = $section_style['background_gradient_stop_2'];
-                            if ($background_gradient_type == 'radial') {
+                            if ($background_gradient_type == 'radial-gradient') {
                                 $background = "radial-gradient(circle, $background_gradient_color_1 $background_gradient_stop_1, $background_gradient_color_2 $background_gradient_stop_2)";
                             } else {
                                 $background_gradient_direction = $section_style['background_gradient_direction'];
