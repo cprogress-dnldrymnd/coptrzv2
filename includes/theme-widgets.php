@@ -37,11 +37,15 @@ function action_widgets_init()
     while ($index < 5) {
         $before_title = "<h4 class='accordion-header widget-title' id='footerCol$index>";
         $before_title .= "<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse$index' aria-expanded='false' aria-controls='collapse$index'>";
+
         $after_title = "</button>";
         $after_title .= "</h4>";
 
-        $before_widget = "<div id='collapse$index' class='accordion-collapse collapse' aria-labelledby='footerCol$index' data-bs-parent='#accordionFooter'>";
-        $before_widget .= " <div class='accordion-body p-0'>";
+        $after_title .= "<div id='collapse$index' class='accordion-collapse collapse' aria-labelledby='footerCol$index' data-bs-parent='#accordionFooter'>";
+        $after_title .= " <div class='accordion-body p-0'>";
+
+
+        $before_widget = "<div class='accordion-item'>";
 
         $after_widget = "</div></div>";
 
