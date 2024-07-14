@@ -85,6 +85,10 @@
     .logo-box {
         img {
             filter: brightness(0) invert(1);
+            @include responsive(xs) {
+                max-height: 32px;
+                width: auto;
+            }
         }
     }
 }
