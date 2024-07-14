@@ -4783,17 +4783,13 @@ function __section_fields($name = 'sections')
                             ->set_header_template('Tab: <%- heading %>')
 
                     ))
-                    ->add_fields('event_countdown',  array(
-                        Field::make('complex', 'tabs', 'Tabs')
-                            ->add_fields('tabs',  array(
-                                Field::make('text', 'heading', 'Heading'),
-                                Field::make('textarea', 'description', 'Description')->set_width(80),
-                                Field::make('html', 'activate_wysiwyg')->set_width(20)
-                                    ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                    ->add_fields('events_widget',  array(
+                        Field::make('complex', 'events_widget', 'Events Widget')
+                            ->add_fields('countdown',  array(
+                                Field::make('html', 'html')->set_html('<h3>This will display events countdown timer. </h3>'),
                             ))
                             ->set_layout('tabbed-vertical')
-                            ->set_header_template('Tab: <%- heading %>')
-
+                            ->set_header_template('Events Widget: <%- heading %>')
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
