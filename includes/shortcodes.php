@@ -370,34 +370,34 @@ class Shortcodes
             $html .= "<div class='row g-4 g-xs-10px'>";
 
             foreach ($latest_from_coptrz as $post) {
-                $data = [];
+                $data_latest = [];
                 $id = $post['post'][0]['id'];
                 $background = $post['background'];
                 $button_text = $post['button_text'];
                 $is_new = $post['is_new'];
 
-                $data['id'] = $id;
-                $data['col'] = 'col-lg-3 col-md-6';
-                $data['elements'] = array('image', 'date', 'title', 'excerpt', 'button');
-                $data['is_new'] = $is_new;
+                $data_latest['id'] = $id;
+                $data_latest['col'] = 'col-lg-3 col-md-6';
+                $data_latest['elements'] = array('image', 'date', 'title', 'excerpt', 'button');
+                $data_latest['is_new'] = $is_new;
 
                 if ($background == 'featured-image') {
-                    $data['featured'] = true;
+                    $data_latest['featured'] = true;
                 } else {
-                    $data['featured'] = false;
-                    $data['background_class'] = $background;
+                    $data_latest['featured'] = false;
+                    $data_latest['background_class'] = $background;
                 }
                 if (get_post_type() == 'post') {
-                    $data['elements'] = array( 'category', 'image', 'date', 'title', 'button');
-                    $data['taxonomy'] = 'category';
+                    $data_latest['elements'] = array( 'category', 'image', 'date', 'title', 'button');
+                    $data_latest['taxonomy'] = 'category';
                 } else {
-                    $data['elements'] = array('image',  'title', 'button');
+                    $data_latest['elements'] = array('image',  'title', 'button');
                 }
                 if ($button_text) {
-                    $data['button_text'] = $button_text;
+                    $data_latest['button_text'] = $button_text;
                 }
 
-                $html .= __post_box($data);
+                $html .= __post_box($data_latest);
             }
             $html .= "</div>";
             $html .= "</div>";
