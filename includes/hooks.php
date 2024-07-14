@@ -228,4 +228,4 @@ function my_plugin_add_admin_bar_items($admin_bar)
         );
     }
 }
-add_action('admin_bar_menu', 'my_plugin_add_admin_bar_items', 50);
+add_action('admin_bar_menu', 'my_plugin_add_admin_bar_items', 500);
