@@ -300,6 +300,15 @@ section {
     }
 }
 
+.swiper-full-width {
+    .mx-20px {
+        @include responsive(mobile) {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+}
+
 .bg-cover {
     background-size: cover !important;
 }
