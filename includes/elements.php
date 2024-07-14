@@ -238,6 +238,6 @@ function __button($data)
         $attributes_args[] = _attribute('class', array($button_style, 'button-box'));
 
         $_attributes = _attributes($attributes_args);
-        return "<div $_attributes><$tag class='rounded-10px' $link $button_target >$button_text</a></$tag>";
+        return "<div $_attributes><$tag class='rounded-10px' $link $button_target >$button_text</$tag></$div>";
     }
 }
