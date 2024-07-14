@@ -88,6 +88,9 @@ main {
         }
     }
 }
+.background-gradient-default {
+    background: linear-gradient(180deg, #efefef66 0%, #efefef00 100%) 0% 0%;
+}
 .content-margin {
     h2 {
         @include last-child {

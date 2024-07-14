@@ -382,6 +382,13 @@ function ___sections($id = 'sections', $post_id = '')
                         }
 
                         break;
+                    case 'background_gradient':
+                        $background_gradient_type = $section_style['background_gradient_type'];
+                        if ($background_gradient_type != 'custom') {
+                            $classes[] = $background_gradient_type;
+                        }
+                        break;
+
                     case 'container_width':
                         $classes[] = $section_style['container_width'];
                         if ($section_style['custom_container_width']) {

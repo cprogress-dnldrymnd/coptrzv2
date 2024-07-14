@@ -10563,6 +10563,9 @@ hr {
       margin-left: 10px;
       margin-right: 10px; } }
 
+.background-gradient-default {
+  background: transparent linear-gradient(180deg, #EFEFEF66 0%, #EFEFEF00 100%) 0% 0% no-repeat padding-box; }
+
 .content-margin h2:last-child, .content-margin .h2:last-child {
   margin-bottom: 0; }
 .content-margin:not(.flex-row) > *:not(:last-child) {
