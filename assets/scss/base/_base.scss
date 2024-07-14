@@ -149,7 +149,7 @@ main {
 .extend-right.container {
     margin-right: 0;
     padding-right: 0;
-    @media(min-width: 992px) {
+    @media (min-width: 992px) {
         max-width: calc(960px + (50% - (960px / 2)));
     }
     @media (min-width: 1300px) {
@@ -164,14 +164,19 @@ main {
 }
 .extend-left .container,
 .extend-left.container {
-    @include responsive(xs-md) {
-        margin-left: 0;
-        padding-left: 0;
-        max-width: calc(1520px + (50% - (1520px / 2)));
+    margin-left: 0;
+    padding-left: 0;
+    @media (min-width: 992px) {
+        max-width: calc(960px + (50% - (960px / 2)));
     }
-    @include responsive(xs-sm) {
-        margin: 0 !important;
-        padding-right: calc(var(--bs-gutter-x) * 0.5);
+    @media (min-width: 1300px) {
+        max-width: calc(1140px + (50% - (1140px / 2)));
+    }
+    @media (min-width: 1400px) {
+        max-width: calc(1320px + (50% - (1320px / 2)));
+    }
+    @media (min-width: 1500px) {
+        max-width: calc(1420px + (50% - (1420px / 2)));
     }
 }
 

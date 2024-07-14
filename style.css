@@ -10603,10 +10603,6 @@ hr {
     .extend-right .container,
     .extend-right.container {
       max-width: calc(1420px + (50% - (1420px / 2))); } }
-  @media screen and (max-width: 767px) {
-    .extend-right .container,
-    .extend-right.container {
-      padding-left: calc(var(--bs-gutter-x) * 0.5); } }
 
 @media screen and (max-width: 1199px) {
   .extend-left .container,
