@@ -111,6 +111,7 @@ function action_page_selector()
             $value = jQuery(this).val();
             $selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
             active_link_type($selector, $value)
+            console.log('xxx');
         });
 
         jQuery(document).on("change", '.select-page-selector', function(event) {
