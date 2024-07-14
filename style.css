@@ -11688,7 +11688,9 @@ section.product-main .summary.summary.summary .variations tr {
     font-size: 22px;
     font-weight: 400; }
   .products.upsells.upsells.upsells ul.products {
-    flex-direction: column; }
+    flex-direction: column;
+    --bs-gutter-y: 10px;
+    --bs-gutter-x: 10px; }
     .products.upsells.upsells.upsells ul.products li.product {
       width: 100%; }
       .products.upsells.upsells.upsells ul.products li.product .product-inner {
