@@ -11377,7 +11377,8 @@ hr {
       border-color: var(--bs-accent); }
 
 .event-countdown-holder {
-  text-align: center; }
+  text-align: center;
+  font-size: 22px; }
   .event-countdown-holder .countdown-box {
     padding: 10px;
     font-size: 70px;
