@@ -167,9 +167,9 @@ $args_below = array(
         )
     )
 );
-$args_above['post_type'] = 'layouts';
-$args_above['fields'] = 'ids';
-$layouts_below = get_posts($args);
+$args_below['post_type'] = 'layouts';
+$args_below['fields'] = 'ids';
+$layouts_below = get_posts($args_below);
 if ($layouts_below) {
     foreach ($layouts_below as $layout) {
         $layouts_global = $layout->ID;
