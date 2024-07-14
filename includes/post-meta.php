@@ -4691,10 +4691,10 @@ function __section_fields($name = 'sections')
                         Field::make('text', 'shortcode', 'Shortcode')
                     ))
                     ->add_fields('product_slider',  array(
-                        Field::make('text', 'heading', 'Heading'),
-                        Field::make('text', 'button_text', 'Button Text'),
-                        Field::make('text', 'button_url', 'Button URL'),
-                        Field::make('association', 'source', __('Source'))
+                        Field::make('text', 'heading', 'Heading')->set_classes('inline-field inline-field-wide-label'),
+                        Field::make('text', 'button_text', 'Button Text')->set_classes('inline-field inline-field-wide-label')->set_width(50),
+                        Field::make('text', 'button_url', 'Button URL')->set_classes('inline-field inline-field-wide-label')->set_width(50),
+                        Field::make('association', 'source', __('Source'))->set_classes('inline-field inline-field-wide-label')
                             ->set_types(array(
                                 array(
                                     'type'      => 'term',
