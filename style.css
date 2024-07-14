@@ -12235,7 +12235,8 @@ header {
     padding-bottom: 18px;
     padding-top: 18px;
     padding-left: 1rem;
-    padding-right: 1rem; }
+    padding-right: 1rem;
+    margin-bottom: 0; }
   #accordionFooter .accordion-button {
     font-size: 18px; }
   #accordionFooter .accordion-body {

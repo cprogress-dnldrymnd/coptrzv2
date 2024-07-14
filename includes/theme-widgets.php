@@ -42,7 +42,7 @@ function action_widgets_init()
         $after_title .= "</h4>";
 
         $after_title .= "<div id='collapse$index' class='accordion-collapse collapse' aria-labelledby='footerCol$index' data-bs-parent='#accordionFooter'>";
-        $after_title .= " <div class='accordion-body p-0'>";
+        $after_title .= " <div class='accordion-body pt-0'>";
 
 
         $before_widget = "<div class='accordion-item'>";
