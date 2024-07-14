@@ -674,7 +674,8 @@ function ___sections($id = 'sections', $post_id = '')
                         ));
                         break;
                     case 'buttons':
-                        $html .= ____button_modules($items['buttons']);
+                        $buttons_alignment = $items['buttons_alignment'];
+                        $html .= ____button_modules($items['buttons'], $buttons_alignment);
                         break;
                     case 'post_grid':
                         $html .= ____post_grid_module(array(
@@ -1263,10 +1264,11 @@ function _custom_field($data, $html = '')
     }
     return $html;
 }
-function ____button_modules($buttons)
+function ____button_modules($buttons, $buttons_alignment = '')
 {
     if ($buttons) {
-        $html = "<div class='row g-3 button-group-box justify-content-center d-inline-flex'>";
+        $html = "<div class='button-group-box $buttons_alignment'>";
+        $html .= "<div class='row g-3 justify-content-center d-inline-flex'>";
         foreach ($buttons as $button) {
             $html .= __button(array(
                 'button_type' => $button['button_type'],
@@ -1277,6 +1279,7 @@ function ____button_modules($buttons)
                 'button_target' => $button['button_target'],
             ));
         }
+        $html .= "</div>";
         $html .= "</div>";
         return $html;
     }
@@ -2247,7 +2250,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     if ($style == 'style-1' && $background_class == false) {
         $content_box_class[] = 'px-20px pb-20px';
     }
-   
+
 
     if ($bg_image) {
         $class[] = 'xs-padding text-white text-center rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
