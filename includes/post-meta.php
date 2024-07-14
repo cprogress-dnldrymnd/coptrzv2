@@ -4896,7 +4896,7 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                 ),
-                            Field::make('text', 'background_gradient_stop_1', 'Background Gradient Direction')->set_width(50)
+                            Field::make('text', 'background_gradient_direction', 'Background Gradient Direction')->set_width(50)
                                 ->set_default_value('180')
                                 ->set_conditional_logic(
                                     array(
