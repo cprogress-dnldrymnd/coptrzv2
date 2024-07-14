@@ -160,9 +160,8 @@ main {
 .extend-left.container,
 .extend-right .container,
 .extend-right.container {
-   
     @media (min-width: 576px) {
-        max-width: calc(540px + (50% - (540px / 2)));
+        max-width: 100%;
     }
     @media (min-width: 768px) {
         max-width: calc(720px + (50% - (720px / 2)));
@@ -324,11 +323,13 @@ input[type="checkbox"] {
     margin-top: 15px;
     background-color: var(--bs-light);
     border-radius: 5px;
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
     .swiper-pagination-bullet {
         flex: 1 0 0%;
-        border-radius: 5px;
+        border-radius: 15px;
         margin: 0 !important;
         opacity: 0;
+
         &.swiper-pagination-bullet-active {
             opacity: 1;
             background-color: var(--bs-black);
