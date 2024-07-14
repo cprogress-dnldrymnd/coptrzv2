@@ -497,7 +497,10 @@ class Shortcodes
 
     function event_countdown()
     {
-        $html = "<div class='event-countdown'>";
+        $crb_event_start_date = get__post_meta_by_id(get_the_ID(), 'crb_event_start_date');
+        _date_format($crb_event_start_date);
+
+        $html = "<div class='event-countdown' date='$crb_event_start_date'>";
         $html .= "<div class='event-countdown-holder'>";
         $html .= "<div class='countdown-days'></div>";
         $html .= "<div class='countdown-hours'></div>";
