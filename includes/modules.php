@@ -2255,7 +2255,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     $class[] = 'post-box column-holder position-relative overflow-hidden h-100';
     $content_box_class[] = 'content-box content-margin ';
     if ($featured) {
-        $class[] = 'featured-box text-white d-flex flex-column justify-content-between p-20px rounded-10px';
+        $class[] = 'featured-box text-white d-flex flex-column justify-content-end p-20px rounded-10px';
     } else {
         $class[] = 'content-margin';
     }
