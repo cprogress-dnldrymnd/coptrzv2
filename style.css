@@ -10444,6 +10444,21 @@ p:last-child {
     --bs-gutter-x: 10px;
     --bs-gutter-y: 10px; } }
 
+@media screen and (max-width: 767px) {
+  .container,
+  .container-fluid,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    --bs-gutter-x: 10px; } }
+
 .header-padding {
   padding-top: 80.75px; }
 

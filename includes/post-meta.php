@@ -1409,7 +1409,7 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                             ),
-                        Field::make('select', 'horizontal_spacing', 'Horizontal Spacing')->set_width(25)
+                        Field::make('select', 'horizontal_spacing', 'Horizontal Spacing')->set_width(20)
                             ->set_options(
                                 array(
                                     ''     => 'Default',
@@ -1423,7 +1423,7 @@ function __section_fields($name = 'sections')
                                     'gx-0'  => 'None',
                                 )
                             ),
-                        Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(25)
+                        Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(20)
                             ->set_options(
                                 array(
                                     ''     => 'Default',
@@ -1437,7 +1437,7 @@ function __section_fields($name = 'sections')
                                     'gy-0'  => 'None',
                                 )
                             ),
-                        Field::make('select', 'align_items', 'Align Items')->set_width(25)
+                        Field::make('select', 'align_items', 'Align Items')->set_width(20)
                             ->set_options(
                                 array(
                                     ''               => 'Default',
@@ -1454,7 +1454,7 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                             ),
-                        Field::make('select', 'justify_content', 'Justify Content')->set_width(25)
+                        Field::make('select', 'justify_content', 'Justify Content')->set_width(20)
                             ->set_options(
                                 array(
                                     ''                  => 'Default',
@@ -1470,6 +1470,16 @@ function __section_fields($name = 'sections')
                                         'field' => 'is_slider',
                                         'value' => false,
                                     )
+                                )
+                            ),
+                        Field::make('select', 'move_icon_image_left', 'Move Icon/Image on left on mobile')->set_width(20)
+                            ->set_options(
+                                array(
+                                    ''                  => 'Default',
+                                    'justify-content-start'  => 'Start',
+                                    'justify-content-center'  => 'Center',
+                                    'justify-content-end'  => 'End',
+                                    'justify-content-between'  => 'Between',
                                 )
                             ),
 
