@@ -4873,7 +4873,7 @@ function __section_fields($name = 'sections')
                     ->add_fields(
                         'background_gradient',
                         array(
-                            Field::make('select', 'background_gradient', 'Background Gradient Type')
+                            Field::make('select', 'background_gradient', 'Background Gradient Type')->set_classes('inline-field')
                                 ->set_options(
                                     array(
                                         'background-gradient-default'    => 'Default',
@@ -4881,7 +4881,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
 
-                            Field::make('select', 'background_gradient_type', 'Background Gradient Type')
+                            Field::make('select', 'background_gradient_type', 'Background Gradient Type')->set_classes('inline-field')
                                 ->set_options(
                                     array(
                                         'linear-gradient'    => 'Linear Gradient',
@@ -4896,7 +4896,7 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                 ),
-                            Field::make('text', 'background_gradient_direction', 'Background Gradient Direction')->set_width(50)
+                            Field::make('text', 'background_gradient_direction', 'Background Gradient Direction')->set_width(100)->set_classes('inline-field')
                                 ->set_default_value('180')
                                 ->set_conditional_logic(
                                     array(
