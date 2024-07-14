@@ -1325,12 +1325,46 @@ function ____columns_modules($items, $id, $html = '')
                     $classes[] = $column_style['justify_content'];
                     $classes[] = $column_style['flex_direction'];
 
-                    $classes[] = $column_style['text_align'];
-                    $text_align_mobile = $column_style['text_align_mobile'];
+                    $text_align = $column_style['text_align'];
                     $text_align_tablet = $column_style['text_align_tablet'];
+                    $text_align_mobile = $column_style['text_align_mobile'];
+
+                    $classes[] = $text_align;
+
+                    if (!$text_align_tablet) {
+                        if ($text_align == 'text-lg-start') {
+                            $classes[] = 'text-md-start';
+                        } else if ($text_align == 'text-lg-center') {
+                            $classes[] = 'text-md-center';
+                        } else if ($text_align == 'text-lg-end') {
+                            $classes[] = 'text-md-end';
+                        }
+                    } else {
+                        $classes[] = $text_align_tablet;
+                    }
 
 
-
+                    if (!$text_align_mobile) {
+                        if ($text_align_tablet) {
+                            if ($text_align_tablet == 'text-md-start') {
+                                $classes[] = 'text-start';
+                            } else if ($text_align_tablet == 'text-md-center') {
+                                $classes[] = 'text-center';
+                            } else if ($text_align_tablet == 'text-md-end') {
+                                $classes[] = 'text-end';
+                            }
+                        } else {
+                            if ($text_align == 'text-lg-start') {
+                                $classes[] = 'text-start';
+                            } else if ($text_align == 'text-lg-center') {
+                                $classes[] = 'text-center';
+                            } else if ($text_align == 'text-lg-end') {
+                                $classes[] = 'text-end';
+                            }
+                        }
+                    } else {
+                        $classes[] = $text_align_mobile;
+                    }
 
                     if ($column_style['align_items'] || $column_style['justify_content'] || $column_style['flex_direction']) {
                         $classes[] = 'd-flex';
@@ -1505,9 +1539,51 @@ function ____columns_modules($items, $id, $html = '')
                     case 'alignment':
                         $classes[] = $column_style['align_items'];
                         $classes[] = $column_style['justify_content'];
-                        $classes[] = $column_style['text_align'];
-                        if ($column_style['align_items'] || $column_style['justify_content']) {
-                            $classes[] = 'd-flex flex-column';
+                        $classes[] = $column_style['flex_direction'];
+
+                        $text_align = $column_style['text_align'];
+                        $text_align_tablet = $column_style['text_align_tablet'];
+                        $text_align_mobile = $column_style['text_align_mobile'];
+
+                        $classes[] = $text_align;
+
+                        if (!$text_align_tablet) {
+                            if ($text_align == 'text-lg-start') {
+                                $classes[] = 'text-md-start';
+                            } else if ($text_align == 'text-lg-center') {
+                                $classes[] = 'text-md-center';
+                            } else if ($text_align == 'text-lg-end') {
+                                $classes[] = 'text-md-end';
+                            }
+                        } else {
+                            $classes[] = $text_align_tablet;
+                        }
+
+
+                        if (!$text_align_mobile) {
+                            if ($text_align_tablet) {
+                                if ($text_align_tablet == 'text-md-start') {
+                                    $classes[] = 'text-start';
+                                } else if ($text_align_tablet == 'text-md-center') {
+                                    $classes[] = 'text-center';
+                                } else if ($text_align_tablet == 'text-md-end') {
+                                    $classes[] = 'text-end';
+                                }
+                            } else {
+                                if ($text_align == 'text-lg-start') {
+                                    $classes[] = 'text-start';
+                                } else if ($text_align == 'text-lg-center') {
+                                    $classes[] = 'text-center';
+                                } else if ($text_align == 'text-lg-end') {
+                                    $classes[] = 'text-end';
+                                }
+                            }
+                        } else {
+                            $classes[] = $text_align_mobile;
+                        }
+
+                        if ($column_style['align_items'] || $column_style['justify_content'] || $column_style['flex_direction']) {
+                            $classes[] = 'd-flex';
                         }
                         break;
                     case 'text_color':
