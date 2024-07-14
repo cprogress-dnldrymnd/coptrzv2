@@ -1075,7 +1075,7 @@ function ____post_grid_module($data)
                 case 'permalink':
                     $html .= __button(array(
                         'button_type' => get_post_type($post->ID),
-                        'button_text' => '',
+                        'button_text' => $post_title,
                         'button_url' => $post->ID,
                         'button_style' => 'position-absolute',
                     ));
