@@ -1073,6 +1073,8 @@ function ____post_grid_module($data)
                     ));
                     break;
                 case 'permalink':
+                    $hide_button_on_mobile = $item['hide_button_on_mobile'];
+                    $button_class = $hide_button_on_mobile ? ' d-none d-sm-block' : '';
                     $html .= __button(array(
                         'button_type' => get_post_type($post->ID),
                         'button_text' => $post_title,
@@ -1083,7 +1085,7 @@ function ____post_grid_module($data)
                         'button_type' => get_post_type($post->ID),
                         'button_text' => $item['button_text'],
                         'button_url' => $post->ID,
-                        'button_style' => $item['button_style'] . ' position-relative',
+                        'button_style' => $item['button_style'] .  " position-relative$button_class,
                     ));
                     break;
                 case 'featured_image':
