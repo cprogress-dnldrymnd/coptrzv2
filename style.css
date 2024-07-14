@@ -10583,17 +10583,22 @@ hr {
   max-width: 100%;
   --bs-gutter-x: 0; }
 
-@media (min-width: 1500px) {
-  .extend-right .container,
-  .extend-right.container {
-    margin-right: 0;
-    padding-right: 0;
-    max-width: calc(1520px + (50% - (1520px / 2))); } }
-@media screen and (max-width: 991px) {
-  .extend-right .container,
-  .extend-right.container {
-    padding-left: calc(var(--bs-gutter-x) * 0.5);
-    margin: 0 !important; } }
+.extend-right .container,
+.extend-right.container {
+  margin-right: 0;
+  padding-right: 0; }
+  @media (min-width: 1500px) {
+    .extend-right .container,
+    .extend-right.container {
+      max-width: calc(1520px + (50% - (1520px / 2))); } }
+  @media (min-width: 1400px) {
+    .extend-right .container,
+    .extend-right.container {
+      max-width: calc(1320px + (50% - (1320px / 2))); } }
+  @media screen and (max-width: 991px) {
+    .extend-right .container,
+    .extend-right.container {
+      padding-left: calc(var(--bs-gutter-x) * 0.5); } }
 
 @media screen and (max-width: 1199px) {
   .extend-left .container,

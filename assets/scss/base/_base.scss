@@ -147,14 +147,16 @@ main {
 
 .extend-right .container,
 .extend-right.container {
+    margin-right: 0;
+    padding-right: 0;
     @media (min-width: 1500px) {
-        margin-right: 0;
-        padding-right: 0;
         max-width: calc(1520px + (50% - (1520px / 2)));
+    }
+    @media (min-width: 1400px) {
+        max-width: calc(1320px + (50% - (1320px / 2)));
     }
     @include responsive(xs-sm) {
         padding-left: calc(var(--bs-gutter-x) * 0.5);
-        margin: 0 !important;
     }
 }
 .extend-left .container,
