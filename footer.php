@@ -1,6 +1,6 @@
 <?php
 $SVG = new SVG;
-global $templates;
+global $layouts_global;
 $args = array(
     'numberposts' => -1,
     'post_type' => 'layouts',
@@ -17,7 +17,7 @@ $args = array(
 $layouts = get_posts($args);
 foreach ($layouts as $layout) {
     echo do_shortcode("[layouts id='$layout']");
-    $templates[] = $layout;
+    $layouts_global[] = $layout;
 }
 
 

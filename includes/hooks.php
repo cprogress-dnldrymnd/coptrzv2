@@ -184,7 +184,7 @@ function action_popups()
     );
     $posts = get_posts($args);
 
-    foreach($posts as $post) {
+    foreach ($posts as $post) {
         echo __popup($post);
     }
 }
@@ -198,18 +198,32 @@ add_action('wp_footer', 'action_popups');
  *
  * @param WP_Admin_Bar $admin_bar Admin bar reference.
  */
-function my_plugin_add_admin_bar_items( $admin_bar ) {
-	// Run admin bar code here. Will run on both frontend and backend.
-	$admin_bar->add_menu(
-		array(
-			'id'    => 'my-plugin-menu',
-			'title' => 'My Plugin',
-			'href'  => false,
-			'meta'  => array(
-				'class' => 'my-plugin-class',
-				'title' => 'My Plugin Menu',
-			),
-		)
-	);
+function my_plugin_add_admin_bar_items($admin_bar)
+{
+    // Run admin bar code here. Will run on both frontend and backend.
+    $admin_bar->add_menu(
+        array(
+            'id'    => 'layouts-menu',
+            'title' => 'Layouts',
+            'href'  => false,
+            'meta'  => array(
+                'class' => 'my-plugin-class',
+                'title' => 'My Plugin Menu',
+            ),
+        )
+    );
+
+    $admin_bar->add_node(
+        array(
+            'parent' => 'layouts-menu',
+            'id'     => 'layouts-menu-1',
+            'title'  => 'Submenu 1',
+            'href'   => 'https://domain.com/wp-admin/admin.php?page=my-plugin&tab=settings',
+            'meta'   => array(
+                'class' => 'my-plugin-submenu-1-class',
+                'title' => 'Submenu 1',
+            ),
+        )
+    );
 }
-add_action( 'admin_bar_menu', 'my_plugin_add_admin_bar_items', 50 );
+add_action('admin_bar_menu', 'my_plugin_add_admin_bar_items', 50);
