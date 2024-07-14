@@ -19,8 +19,6 @@ foreach ($layouts as $layout) {
     echo do_shortcode("[layouts id='$layout']");
     $layouts_global[] = $layout;
 }
-
-var_dump($layouts_global);
 $hide_footer = get__post_meta('hide_footer');
 if (!$hide_footer) {
 ?>
@@ -83,6 +81,7 @@ if (!$hide_footer) {
 
 <?php } ?>
 </main>
+<?php layouts() ?>
 <?php wp_footer(); ?>
 </body>
 
