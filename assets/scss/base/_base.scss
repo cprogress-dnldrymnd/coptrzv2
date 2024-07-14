@@ -1118,9 +1118,14 @@ hr {
             display: flex;
             align-items: center;
             justify-content: center;
+            @include transition(500ms);
             @include not-last-child {
                 margin-right: 10px;
             }
+        }
+        svg {
+            width: 25px;
+            height: 25px;
         }
         a {
             text-decoration: none;

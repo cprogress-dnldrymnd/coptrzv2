@@ -152,7 +152,7 @@ echo do_shortcode(__layouts($args));
         <div class="container">
             <div class="inner border-top-default sm-padding-top sm-margin-top">
                 <?php the_posts_pagination(array(
-                    'mid_size'  => 3,
+                    'mid_size'  => 2,
                     'next_text' => $SVG->chevron_right(),
                     'prev_text' => $SVG->chevron_left(),
                 )); ?>
