@@ -11,6 +11,7 @@ get_header(); ?>
 $post_type = get_queried_object()->name;
 $class = '';
 $SVG = new SVG;
+$has_pagination = true;
 if (is_home()) {
     $key = 'post_';
     $title = 'All Posts';
@@ -46,6 +47,7 @@ if (is_home()) {
     $title = 'Rare Commercial <br> Capabilities';
     $has_featured = false;
     $has_filter = false;
+    $has_pagination = false;
     $archive_title = 'Capabilities';
     $data = array(
         'col' => true,
@@ -59,6 +61,7 @@ if (is_home()) {
     $key = 'solutions_';
     $title = false;
     $has_featured = false;
+    $has_pagination = false;
     $has_filter = false;
     $archive_title = 'Industry Solutions';
     $data = array(
@@ -147,33 +150,34 @@ echo do_shortcode(__layouts($args));
             </div>
         </div>
     </div>
-
-    <div class="pagination">
-        <div class="container">
-            <div class="inner border-top-default sm-padding-top sm-margin-top">
-                <div class="row g-4">
-                    <div class="col-lg-8">
-                        <?php the_posts_pagination(array(
-                            'mid_size'  => 2,
-                            'next_text' => $SVG->chevron_right(),
-                            'prev_text' => $SVG->chevron_left(),
-                        )); ?>
-                    </div>
-                    <div class="col-lg-4 text-center text-md-end">
-                        <select name="posts_per_page" id="posts_per_page"  class="w-auto select-trigger-change">
-                            <option value="12">Show: 8</option>
-                            <option selected value="12">Show: 12</option>
-                            <option value="16">Show: 16</option>
-                            <option value="20">Show: 20</option>
-                            <option value="24">Show: 24</option>
-                            <option value="28">Show: 28</option>
-                            <option value="32">Show: 32</option>
-                        </select>
+    <?php if ($has_pagination) { ?>
+        <div class="pagination">
+            <div class="container">
+                <div class="inner border-top-default sm-padding-top sm-margin-top">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <?php the_posts_pagination(array(
+                                'mid_size'  => 2,
+                                'next_text' => $SVG->chevron_right(),
+                                'prev_text' => $SVG->chevron_left(),
+                            )); ?>
+                        </div>
+                        <div class="col-lg-4 text-center text-md-end">
+                            <select name="posts_per_page" id="posts_per_page" class="w-auto select-trigger-change">
+                                <option value="12">Show: 8</option>
+                                <option selected value="12">Show: 12</option>
+                                <option value="16">Show: 16</option>
+                                <option value="20">Show: 20</option>
+                                <option value="24">Show: 24</option>
+                                <option value="28">Show: 28</option>
+                                <option value="32">Show: 32</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    <?php } ?>
 </section>
 
 <?php
