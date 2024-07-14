@@ -12184,7 +12184,8 @@ header {
     #footer .footer-bottom .footer-right ul {
       display: inline-flex;
       align-items: center;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+      justify-content: center; }
       #footer .footer-bottom .footer-right ul li {
         display: flex;
         align-items: center; }
