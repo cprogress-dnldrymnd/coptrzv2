@@ -10587,15 +10587,23 @@ hr {
 .extend-right.container {
   margin-right: 0;
   padding-right: 0; }
-  @media (min-width: 1500px) {
+  @media (min-width: 992px) {
     .extend-right .container,
     .extend-right.container {
-      max-width: calc(1420px + (50% - (1420px / 2))); } }
+      max-width: calc(960px + (50% - (960px / 2))); } }
+  @media (min-width: 1300px) {
+    .extend-right .container,
+    .extend-right.container {
+      max-width: calc(1140px + (50% - (1140px / 2))); } }
   @media (min-width: 1400px) {
     .extend-right .container,
     .extend-right.container {
       max-width: calc(1320px + (50% - (1320px / 2))); } }
-  @media screen and (max-width: 991px) {
+  @media (min-width: 1500px) {
+    .extend-right .container,
+    .extend-right.container {
+      max-width: calc(1420px + (50% - (1420px / 2))); } }
+  @media screen and (max-width: 767px) {
     .extend-right .container,
     .extend-right.container {
       padding-left: calc(var(--bs-gutter-x) * 0.5); } }
