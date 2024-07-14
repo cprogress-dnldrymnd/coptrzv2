@@ -206,7 +206,7 @@ class Shortcodes
         $html .= "<div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div>";
 
         $html .= "<div class='col-auto'>";
-        $html .= "<div class='row g-4 button-group-box justify-content-center align-items-center d-inline-flex'>";
+        $html .= "<div class='row g-4 text-center button-group-box justify-content-center align-items-center d-inline-flex'>";
         $html .= __button(array(
             'button_type' => get_post_type($id),
             'button_text' => 'Read Case Study',
