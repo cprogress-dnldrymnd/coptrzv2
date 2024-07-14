@@ -210,18 +210,20 @@ function __swipers() {
         var swiper_sliders = new Swiper($id, {
             loop: true,
             autoplay: false,
-            spaceBetween: 20,
             breakpoints: {
                 0: {
+                    spaceBetween: 10,
                     slidesPerView: $number_of_slides_mobile,
                 },
 
                 768: {
+                    spaceBetween: 10,
                     slidesPerView: $number_of_slides_tablet,
                 },
 
 
                 992: {
+                    spaceBetween: 20,
                     slidesPerView: $number_of_slides,
                 },
             },
