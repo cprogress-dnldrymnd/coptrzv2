@@ -1048,8 +1048,9 @@ function ____post_grid_module($data)
     foreach ($posts_lists as $post) {
         if ($is_slider) {
             $html .= "<div class='swiper-slide'>";
+        } else {
+            $html .= "<div $column_attribute>";
         }
-        $html .= "<div $column_attribute>";
         $html .= "<div $post_attribute>";
         foreach ($post_elements as $item) {
             $type = $item['_type'];
@@ -1169,9 +1170,7 @@ function ____post_grid_module($data)
         }
         $html .= "</div>";
         $html .= "</div>";
-        if ($is_slider) {
-            $html .= "</div>";
-        }
+        $html .= "</div>";
     }
     $html .= "</div>";
     if ($is_slider) {
@@ -1293,7 +1292,7 @@ function ____columns_modules($items, $id, $html = '')
     $classes = array();
     $styles = array();
 
-    if($mobile_styling) {
+    if ($mobile_styling) {
         $classes[] = $mobile_styling;
     }
 
