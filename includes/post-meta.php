@@ -4694,7 +4694,15 @@ function __section_fields($name = 'sections')
                         Field::make('text', 'heading', 'Heading')->set_classes('inline-field inline-field-wide-label'),
                         Field::make('text', 'button_text', 'Button Text')->set_classes('inline-field inline-field-wide-label')->set_width(50),
                         Field::make('text', 'button_url', 'Button URL')->set_classes('inline-field inline-field-wide-label')->set_width(50),
-                        Field::make('association', 'source', __('Source'))->set_classes('inline-field inline-field-wide-label')
+                        Field::make('select', 'source_type', __('Source'))
+                            ->set_options(
+                                array(
+                                    'manually'      => 'Select Manually',
+                                    'category'      => 'Select by Category',
+                                    'main_query'      => 'Main Query(works only for product taxonomy pages)',
+                                )
+                            ),
+                        Field::make('association', 'source', __('Category'))->set_classes('inline-field inline-field-wide-label')
                             ->set_types(array(
                                 array(
                                     'type'      => 'term',
