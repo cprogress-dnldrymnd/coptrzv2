@@ -147,17 +147,17 @@ main {
 
 .extend-right .container,
 .extend-right.container {
-    margin-right: 0;
-    padding-right: 0;
     @media (min-width: 1500px) {
+        margin-right: 0;
+        padding-right: 0;
         max-width: calc(1520px + (50% - (1520px / 2)));
     }
 }
 .extend-left .container,
 .extend-left.container {
-    margin-left: 0;
-    padding-left: 0;
     @media (min-width: 1500px) {
+        margin-left: 0;
+        padding-left: 0;
         max-width: calc(1520px + (50% - (1520px / 2)));
     }
 }
@@ -995,7 +995,7 @@ hr {
             margin-right: 1rem;
             position: absolute;
         }
-        .icon-box{
+        .icon-box {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1025,7 +1025,7 @@ hr {
     }
 }
 
-.swiper-sliders{
+.swiper-sliders {
     .swiper-slide {
         height: auto !important;
     }
