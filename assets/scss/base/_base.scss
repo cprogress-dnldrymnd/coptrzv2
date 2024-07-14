@@ -147,25 +147,27 @@ main {
 
 .extend-right .container,
 .extend-right.container {
-    margin-right: 0;
-    padding-right: 0;
+
     @include responsive(xs-md) {
         margin-right: 0;
         padding-right: 0;
         max-width: calc(1520px + (50% - (1520px / 2)));
     }
     @include responsive(xs-sm) {
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: calc(var(--bs-gutter-x) * .5);
         margin: 0 !important;
     }
 }
 .extend-left .container,
 .extend-left.container {
-    margin-left: 0;
-    padding-left: 0;
     @include responsive(xs-md) {
+        margin-left: 0;
+        padding-left: 0;
         max-width: calc(1520px + (50% - (1520px / 2)));
+    }
+    @include responsive(xs-sm) {
+        margin: 0 !important;
+        padding-right: calc(var(--bs-gutter-x) * .5);
     }
 }
 
