@@ -261,10 +261,7 @@ $spacings_mobile: (
 .g-20px {
     --bs-gutter-x: 20px;
     --bs-gutter-y: 20px;
-    @include responsive(mobile) {
-        --bs-gutter-x: 10px;
-        --bs-gutter-y: 10px;
-    }
+   
 }
 
 .gx-20px {
@@ -273,13 +270,7 @@ $spacings_mobile: (
 .gy-20px {
     --bs-gutter-xy: 20px;
 }
-.g-4,
-.g-5 {
-    @include responsive(xs) {
-        --bs-gutter-x: 10px;
-        --bs-gutter-y: 10px;
-    }
-}
+
 .container,
 .container-fluid,
 .container-sm,
