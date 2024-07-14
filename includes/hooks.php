@@ -200,7 +200,7 @@ add_action('wp_footer', 'action_popups');
  */
 function my_plugin_add_admin_bar_items($admin_bar)
 {
-    global $popups_id;
+    global $layouts_global;
     // Run admin bar code here. Will run on both frontend and backend.
     $admin_bar->add_menu(
         array(
@@ -213,7 +213,7 @@ function my_plugin_add_admin_bar_items($admin_bar)
             ),
         )
     );
-    var_dump($popups_id);
+    var_dump($layouts_global);
     foreach ($layouts_global as $key => $layout) {
         $admin_bar->add_node(
             array(

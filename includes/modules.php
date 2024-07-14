@@ -260,7 +260,6 @@ function ___sections($id = 'sections', $post_id = '')
     $post_id = $post_id ? $post_id : get_the_ID();
     $sections = get__post_meta_by_id($post_id, $id);
     $html = '';
-    global $layouts_global;
     foreach ($sections as $key => $section) {
         $disable_section = $section['disable_section'];
         if (!$disable_section) {
@@ -567,7 +566,7 @@ function ___sections($id = 'sections', $post_id = '')
                 switch ($type) {
                     case 'layouts':
                         $layouts = $items['layouts'];
-                     
+                        global $layouts_global;
                         foreach ($layouts as $layout) {
                             $layout_id = $layout['id'];
                             $layouts_global[] = $layout['id'];
