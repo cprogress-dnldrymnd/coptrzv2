@@ -42,63 +42,19 @@ if (!$hide_footer) {
         </div>
         <div class="footer-columns sm-padding-top sm-padding-bottom">
             <div class="container">
-                <div class="accordion accordionFooter" id="accordionFooter">
+                <div class="accordion accordionFooter">
                     <div class="row g-4">
                         <div class="col-lg col-md-6">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="footerCol1">
-                                    <button class="accordion-button collapsed d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        About Us
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="footerCol1" data-bs-parent="#accordi1xample">
-                                    <div class="accordion-body p-0">
-                                        <?php dynamic_sidebar('footer_column_1') ?>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php dynamic_sidebar('footer_column_1') ?>
                         </div>
                         <div class="col-lg col-md-6">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="footerCol2">
-                                    <button class="accordion-button collapsed d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Solutions
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="footerCol2" data-bs-parent="#accordi2xample">
-                                    <div class="accordion-body p-0">
-                                        <?php dynamic_sidebar('footer_column_2') ?>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php dynamic_sidebar('footer_column_2') ?>
                         </div>
                         <div class="col-lg col-md-6">
-                            <div class="accordion-item">
-                                <h3 class="accordion-header" id="footerCol3">
-                                    <button class="accordion-button collapsed d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Resources
-                                    </button>
-                                </h3>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="footerCol3" data-bs-parent="#accordi3xample">
-                                    <div class="accordion-body p-0">
-                                        <?php dynamic_sidebar('footer_column_3') ?>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php dynamic_sidebar('footer_column_3') ?>
                         </div>
                         <div class="col-lg col-md-6">
-                            <div class="accordion-item">
-                                <h4 class="accordion-header" id="footerCol4">
-                                    <button class="accordion-button collapsed d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Learn
-                                    </button>
-                                </h4>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="footerCol4" data-bs-parent="#accordi4xample">
-                                    <div class="accordion-body p-0">
-                                        <?php dynamic_sidebar('footer_column_4') ?>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php dynamic_sidebar('footer_column_4') ?>
                         </div>
                         <div class="col-lg col-md-6">
                             <?php dynamic_sidebar('footer_column_5') ?>
