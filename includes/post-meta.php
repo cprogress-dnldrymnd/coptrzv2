@@ -4697,8 +4697,8 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'source_type', __('Source'))
                             ->set_options(
                                 array(
-                                    'manually'      => 'Select Manually',
                                     'category'      => 'Select by Category',
+                                    'manually'      => 'Select Manually',
                                     'main_query'      => 'Main Query(works only for product taxonomy pages)',
                                 )
                             ),
@@ -4708,11 +4708,30 @@ function __section_fields($name = 'sections')
                                     'type'      => 'term',
                                     'taxonomy' => 'product_cat',
                                 ),
-                                array(
-                                    'type'      => 'term',
-                                    'taxonomy' => 'pa_brands',
-                                )
                             ))
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'source_type',
+                                        'value' => 'category',
+                                    )
+                                )
+                            ),
+                        Field::make('association', 'products', __('Select Products'))->set_classes('inline-field inline-field-wide-label')
+                            ->set_types(array(
+                                array(
+                                    'type'      => 'post',
+                                    'post_type' => 'product',
+                                ),
+                            ))
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'source_type',
+                                        'value' => 'category',
+                                    )
+                                )
+                            ),
                     ))
                     ->add_fields('case_study_slider',  array(
                         Field::make('html', 'html')->set_html('<h3>This will display featured case study slider </h3>'),
