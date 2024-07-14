@@ -3059,6 +3059,16 @@ function __section_fields($name = 'sections')
                                                         'justify-content-between'  => 'Between',
                                                     )
                                                 ),
+                                            Field::make('select', 'flex_direction', 'Flex Direction')
+                                                ->set_options(
+                                                    array(
+                                                        ''                  => 'Default',
+                                                        'flex-column'  => 'Column',
+                                                        'flex-column-reverse'  => 'Column Reverse',
+                                                        'flex-row'  => 'Row',
+                                                        'flex-row-reverse'  => 'Row Reverse',
+                                                    )
+                                                ),
                                             Field::make('select', 'text_align', 'Text Align[Desktop]')
                                                 ->set_options(
                                                     array(

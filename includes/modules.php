@@ -1323,12 +1323,14 @@ function ____columns_modules($items, $id, $html = '')
                 case 'alignment':
                     $classes[] = $column_style['align_items'];
                     $classes[] = $column_style['justify_content'];
-                    $classes[] = $column_style['text_align'];
                     $classes[] = $column_style['flex_direction'];
-                    $classes[] = $column_style['text_align_mobile'];
+
+                    $classes[] = $column_style['text_align'];
+                    $text_align_mobile = $column_style['text_align_mobile'];
+                    $text_align_tablet = $column_style['text_align_tablet'];
 
 
-                    
+
 
                     if ($column_style['align_items'] || $column_style['justify_content'] || $column_style['flex_direction']) {
                         $classes[] = 'd-flex';
