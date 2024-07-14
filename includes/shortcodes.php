@@ -388,7 +388,7 @@ class Shortcodes
                     $data_latest['background_class'] = $background;
                 }
                 if (get_post_type() == 'post') {
-                    $data_latest['elements'] = array( 'category', 'image', 'date', 'title', 'button');
+                    $data_latest['elements'] = array('category', 'image', 'date', 'title', 'button');
                     $data_latest['taxonomy'] = 'category';
                 } else {
                     $data_latest['elements'] = array('image',  'title', 'button');
@@ -399,6 +399,7 @@ class Shortcodes
 
                 $html .= __post_box($data_latest);
             }
+            $html .= var_dump($data_latest);
             $html .= "</div>";
             $html .= "</div>";
 
