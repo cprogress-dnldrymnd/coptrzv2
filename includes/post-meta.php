@@ -4789,7 +4789,6 @@ function __section_fields($name = 'sections')
                                 Field::make('html', 'html')->set_html('<h3>This will display events countdown timer. </h3>'),
                             ))
                             ->set_layout('tabbed-vertical')
-                            ->set_header_template('Events Widget: <%- heading %>')
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
