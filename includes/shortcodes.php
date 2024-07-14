@@ -369,36 +369,34 @@ class Shortcodes
             $html = "<div class='latest-from-coptrz'>";
             $html .= "<div class='row g-4 g-xs-10px'>";
 
-            foreach ($latest_from_coptrz as $latest) {
-                $data_latest = [];
-                $id = $latest['post'][0]['id'];
-                $background = $latest['background'];
-                $button_text = $latest['button_text'];
-                $is_new = $latest['is_new'];
+            foreach ($latest_from_coptrz as $post) {
+                $data = [];
+                $id = $post['post'][0]['id'];
+                $background = $post['background'];
+                $button_text = $post['button_text'];
+                $is_new = $post['is_new'];
 
-                $data_latest['id'] = $id;
-                $data_latest['col'] = 'col-lg-3 col-md-6';
-                $data_latest['elements'] = array('image', 'date', 'title', 'excerpt', 'button');
-                $data_latest['is_new'] = $is_new;
+                $data['id'] = $id;
+                $data['col'] = 'col-lg-3 col-md-6';
+                $data['is_new'] = $is_new;
 
                 if ($background == 'featured-image') {
-                    $data_latest['featured'] = true;
+                    $data['featured'] = true;
                 } else {
-                    $data_latest['featured'] = false;
-                    $data_latest['background_class'] = $background;
+                    $data['featured'] = false;
+                    $data['background_class'] = $background;
                 }
                 if (get_post_type() == 'post') {
-                    $data_latest['elements'] = array('category', 'image', 'date', 'title', 'button');
-                    $data_latest['taxonomy'] = 'category';
+                    $data['elements'] = array( 'category', 'image', 'date', 'title', 'button');
+                    $data['taxonomy'] = 'category';
                 } else {
-                    $data_latest['elements'] = array('image',  'title', 'button');
+                    $data['elements'] = array('image',  'title', 'button');
                 }
                 if ($button_text) {
-                    $data_latest['button_text'] = $button_text;
+                    $data['button_text'] = $button_text;
                 }
-                $html .= var_dump($data_latest);
 
-                $html .= __post_box($data_latest);
+                $html .= __post_box($data);
             }
             $html .= "</div>";
             $html .= "</div>";
