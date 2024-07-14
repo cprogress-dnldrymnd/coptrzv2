@@ -23,10 +23,9 @@ function action_after_setup_theme()
 	\Carbon_Fields\Carbon_Fields::boot();
 
 
-	global $popups_id, $layouts_global;
+	global $popups_id, $layouts_global, $product_taxonomy_page;
 
 	$popups_id[] = 268179;
-	$layouts_global = [];
 }
 add_action('after_setup_theme', 'action_after_setup_theme');
 
