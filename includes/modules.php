@@ -707,7 +707,8 @@ function ___sections($id = 'sections', $post_id = '')
                         $product_cat = $items['source'];
                         $source_type = $items['source_type'];
                         $products = $items['products'];
-                        $args['numberposts'] = -1;
+                        $numberposts = $items['numberposts'];
+                        $args['numberposts'] = $numberposts ? $numberposts : -1;
                         $args['post_type'] = 'product';
                         $args['fields'] = 'ids';
                         if ($source_type == 'category') {
