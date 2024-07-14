@@ -32,62 +32,31 @@ function action_widgets_init()
             'after_title'   => '</h5>',
         )
     );
-    register_sidebar(
-        array(
-            'name'          => 'Footer Column 1',
-            'id'            => 'footer_column_1',
-            'before_widget' => '<div>',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h5 class="widget-title">',
-            'after_title'   => '</h5>',
-        )
-    );
 
+    $index = 1;
+    while ($index < 6) {
+        $before_title = "<h4 class='accordion-header widget-title' id='footerCol$index>";
+        $before_title = "<button class='accordion-button collapsed d-block d-lg-none' type='button' data-bs-toggle='collapse' data-bs-target='#collapse$index' aria-expanded='false' aria-controls='collapse$index'>";
+        $after_title = "</button>";
+        $after_title .= "</h4>";
 
-    register_sidebar(
-        array(
-            'name'          => 'Footer Column 2',
-            'id'            => 'footer_column_2',
-            'before_widget' => '<div>',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h5 class="widget-title">',
-            'after_title'   => '</h5>',
-        )
-    );
+        $before_widget = "<div id='collapse$index' class='accordion-collapse collapse' aria-labelledby='footerCol$index' data-bs-parent='#accordionFooter'>";
+        $before_widget .= " <div class='accordion-body p-0'>";
 
-    register_sidebar(
-        array(
-            'name'          => 'Footer Column 3',
-            'id'            => 'footer_column_3',
-            'before_widget' => '<div>',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h5 class="widget-title">',
-            'after_title'   => '</h5>',
-        )
-    );
+        $after_widget = "</div></div>";
 
-    register_sidebar(
-        array(
-            'name'          => 'Footer Column 4',
-            'id'            => 'footer_column_4',
-            'before_widget' => '<div>',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h5 class="widget-title">',
-            'after_title'   => '</h5>',
-        )
-    );
+        register_sidebar(
+            array(
+                'name'          => "Footer Column $index",
+                'id'            => "footer_column_$index",
+                'before_widget' => $before_widget,
+                'after_widget'  => $after_widget,
+                'before_title'  => $before_title,
+                'after_title'   => $after_title,
+            )
+        );
+    }
 
-
-    register_sidebar(
-        array(
-            'name'          => 'Footer Column 5',
-            'id'            => 'footer_column_5',
-            'before_widget' => '<div>',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h5 class="widget-title">',
-            'after_title'   => '</h5>',
-        )
-    );
 
     register_sidebar(
         array(
@@ -121,8 +90,5 @@ function action_widgets_init()
             'after_title'   => '</h5>',
         )
     );
-
-
-  
 }
 add_action('widgets_init', 'action_widgets_init');
