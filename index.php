@@ -22,6 +22,7 @@ if (is_home()) {
         'col' => true,
         'featured' => false,
         'style' => 'style-1',
+        'taxonomy' => $category,
         'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
     );
 } else if (is_post_type_archive('events')) {
@@ -37,6 +38,7 @@ if (is_home()) {
         'col' => true,
         'featured' => false,
         'style' => 'style-2',
+        'taxonomy' => $category,
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
     );
 } else if (is_post_type_archive('capabilities')) {
