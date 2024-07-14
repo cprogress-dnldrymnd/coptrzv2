@@ -11199,7 +11199,7 @@ small, .small {
       font-size: 25px; }
       .accordion .accordion-item .accordion-button:after {
         content: none; }
-      .accordion .accordion-item .accordion-button[aria-expanded="true"] .plus-minus:after {
+      .accordion .accordion-item .accordion-button[aria-expanded="true"] .plus-minus:before {
         display: none; }
       @media screen and (max-width: 767px) {
         .accordion .accordion-item .accordion-button {

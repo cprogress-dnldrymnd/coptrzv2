@@ -868,7 +868,7 @@ small {
                 content: none;
             }
             &[aria-expanded="true"] {
-                .plus-minus:after {
+                .plus-minus:before {
                     display: none;
                 }
             }
