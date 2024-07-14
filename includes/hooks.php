@@ -48,6 +48,124 @@ function codemirror_enqueue_scripts($hook)
 }
 
 
+function action_page_selector()
+{
+    $pages = get__posts('page');
+    $select_page = '<label style="display: block" class="cf-field__label" >Select Page</label><select class="select-page-selector">';
+    foreach ($pages as $key => $page) {
+        $select_page .= '<option value="' . $key . '"> ' . $page . ' </option>';
+    }
+    $select_page .= '</select>';
+
+    $posts = get__posts('post');
+    $select_post = '<label style="display: block" class="cf-field__label" >Select Post</label><select class="select-page-selector">';
+    foreach ($posts as $key => $post) {
+        $select_post .= '<option value="' . $key . '"> ' . $post . ' </option>';
+    }
+    $select_post .= '</select>';
+
+    $solutions = get__posts('solutions');
+    $select_solution = '<label style="display: block" class="cf-field__label">Select Solution</label><select class="select-page-selector">';
+    foreach ($solutions as $key => $solution) {
+        $select_solution .= '<option value="' . $key . '"> ' . $solution . ' </option>';
+    }
+    $select_solution .= '</select>';
+
+    $popups = get__posts('popups');
+    $select_popup = '<label style="display: block" class="cf-field__label">Select Popup</label><select class="select-page-selector">';
+    foreach ($popups as $key => $popup) {
+        $select_popup .= '<option value="' . $key . '"> ' . $popup . ' </option>';
+    }
+    $select_popup .= '</select>';
+
+    $products = get__posts('product');
+    $select_product = '<label style="display: block" class="cf-field__label">Select product</label><select class="select-page-selector">';
+    foreach ($products as $key => $product) {
+        $select_product .= '<option value="' . $key . '"> ' . $product . ' </option>';
+    }
+    $select_product .= '</select>';
+
+    $guides = get__posts('guides');
+    $select_guide = '<label style="display: block" class="cf-field__label">Select guide</label><select class="select-page-selector">';
+    foreach ($guides as $key => $guide) {
+        $select_guide .= '<option value="' . $key . '"> ' . $guide . ' </option>';
+    }
+    $select_guide .= '</select>';
+
+    $casestudies = get__posts('casestudies');
+    $select_casestudies = '<label style="display: block" class="cf-field__label">Select casestudies</label><select class="select-page-selector">';
+    foreach ($casestudies as $key => $casestudies) {
+        $select_casestudies .= '<option value="' . $key . '"> ' . $casestudies . ' </option>';
+    }
+    $select_casestudies .= '</select>';
+?>
+    <script>
+        jQuery(document).on("change", '.trigger-selector select', function(event) {
+            $value = jQuery(this).val();
+            $selector = jQuery(this).parent().parent().parent().find('.page-selector');
+            active_link_type($selector, $value)
+        });
+
+
+        jQuery(document).on("change", '.trigger-selector-single select', function(event) {
+            $value = jQuery(this).val();
+            $selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
+            active_link_type($selector, $value)
+        });
+
+        jQuery(document).on("change", '.select-page-selector', function(event) {
+            $value = jQuery(this).val();
+            $input = jQuery(this).parent().parent().parent().parent().parent().find('.field-url input');
+            $input.val($value);
+        });
+
+
+        function active_link_type($selector, $value, $input = '') {
+            if ($value == 'page') {
+                $selector.html('<?= $select_page ?>');
+            } else if ($value == 'post') {
+                $selector.html('<?= $select_post ?>');
+            } else if ($value == 'product') {
+                $selector.html('<?= $select_product ?>');
+            } else if ($value == 'guides') {
+                $selector.html('<?= $select_guide ?>');
+            } else if ($value == 'casestudies') {
+                $selector.html('<?= $select_casestudies ?>');
+            } else if ($value == 'solutions') {
+                $selector.html('<?= $select_solution ?>');
+            } else if ($value == 'popups') {
+                $selector.html('<?= $select_popup ?>');
+            } else {
+                $selector.html('');
+            }
+
+            $selector.find('.select-page-selector').val($input);
+
+
+        }
+
+        setTimeout(function() {
+            jQuery('.trigger-selector select').each(function(index, element) {
+                $value = jQuery(this).val();
+                $selector = jQuery(this).parent().parent().parent().find('.page-selector');
+                $input = jQuery(this).parent().parent().parent().find('.field-url input').val();
+                active_link_type($selector, $value, $input)
+            });
+
+
+            jQuery('.trigger-selector-single select').each(function(index, element) {
+                $value = jQuery(this).val();
+                $selector = jQuery(this).parent().parent().next().next().next().find('.page-selector');
+                $input = jQuery(this).parent().parent().next().next().find('input').val();
+                active_link_type($selector, $value, $input)
+            });
+
+        }, 2000);
+    </script>
+<?php
+}
+
+add_action('admin_footer', 'action_page_selector');
 
 function my_custom_popup()
 {
