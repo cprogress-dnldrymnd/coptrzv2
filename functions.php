@@ -23,7 +23,7 @@ function action_after_setup_theme()
 	\Carbon_Fields\Carbon_Fields::boot();
 
 
-	global $popups_id, $styles;
+	global $popups_id, $templates;
 
 	$popups_id[] = 268179;
 }

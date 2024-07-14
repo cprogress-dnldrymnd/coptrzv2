@@ -190,3 +190,26 @@ function action_popups()
 }
 
 add_action('wp_footer', 'action_popups');
+
+
+
+/**
+ * Add a new admin bar menu item.
+ *
+ * @param WP_Admin_Bar $admin_bar Admin bar reference.
+ */
+function my_plugin_add_admin_bar_items( $admin_bar ) {
+	// Run admin bar code here. Will run on both frontend and backend.
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'my-plugin-menu',
+			'title' => 'My Plugin',
+			'href'  => false,
+			'meta'  => array(
+				'class' => 'my-plugin-class',
+				'title' => 'My Plugin Menu',
+			),
+		)
+	);
+}
+add_action( 'admin_bar_menu', 'my_plugin_add_admin_bar_items', 50 );
