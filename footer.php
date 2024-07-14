@@ -67,7 +67,7 @@ if (!$hide_footer) {
             <div class="container">
                 <div class="inner">
                     <div class="row g-4 align-items-center justify-content-center justify-content-lg-between">
-                        <div class="col-12 col-sm-auto footer-left">
+                        <div class="col-12 col-sm-auto text-center text-lg-start footer-left">
                             <?php dynamic_sidebar('footer_bottom_left') ?>
                         </div>
                         <div class="col-12 col-sm-auto footer-right">

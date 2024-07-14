@@ -12181,6 +12181,9 @@ header {
   #footer .footer-top .container .inner {
     padding: 20px;
     background-color: #262626; }
+    @media screen and (max-width: 575px) {
+      #footer .footer-top .container .inner .site-logo svg {
+        height: 13px; } }
   #footer .footer-bottom {
     padding-bottom: 13px; }
     @media screen and (max-width: 991px) {
