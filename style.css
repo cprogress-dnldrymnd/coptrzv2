@@ -12224,6 +12224,16 @@ header {
       max-height: 32px;
       width: auto; } }
 
+@media screen and (max-width: 767px) {
+  #accordionFooter .row {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0; }
+  #accordionFooter .accordion-item {
+    border-bottom: 1px solid #3b3b3b;
+    border-radius: 0; }
+  #accordionFooter .accordion-header {
+    padding-bottom: 18px;
+    padding-top: 18px; } }
 @media (min-width: 768px) {
   #accordionFooter .accordion-collapse {
     display: block; } }

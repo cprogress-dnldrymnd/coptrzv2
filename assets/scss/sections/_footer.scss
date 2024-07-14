@@ -94,6 +94,24 @@
 }
 
 #accordionFooter {
+    @include responsive(xs) {
+        .row {
+            --bs-gutter-x: 0;
+            --bs-gutter-y: 0;
+        }
+        .accordion-item {
+            border-bottom: 1px solid #3b3b3b;
+            border-radius: 0;
+        }
+        .accordion-header {
+            padding-bottom: 18px;
+            padding-top: 18px;
+        }
+        .accordion-body {
+            padding-bottom: 18px;
+        }
+    }
+
     .accordion-collapse {
         @include responsive(sm-lg) {
             display: block;
