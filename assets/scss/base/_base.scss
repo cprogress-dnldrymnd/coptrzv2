@@ -981,6 +981,8 @@ hr {
 
 .image_left.image_left {
     @include responsive(xs) {
+        padding-left: calc(120px + 2rem);
+        text-align: left !important;
         .icon-box,
         .image-box {
             margin-bottom: 0;
