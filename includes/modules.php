@@ -715,7 +715,13 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($product_cat as $cat) {
                                 $term_ids[] = $cat['id'];
                             }
-                        } else if ($source_type == 'main_query') {
+                        } else if ($source_type == 'manually') {
+                            $include = [];
+                            foreach ($products as $product) {
+                                $include[] = $product['id'];
+                            }
+                            $args['include'] = $include;
+                        } else {
                             $term_id = get_queried_object()->term_id;
                             $args['tax_query'][] = array(
                                 'taxonomy' => 'product_cat',
