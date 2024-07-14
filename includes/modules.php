@@ -1073,6 +1073,12 @@ function ____post_grid_module($data)
                     ));
                     break;
                 case 'permalink':
+                    $html .= $html .= __button(array(
+                        'button_type' => get_post_type($post->ID),
+                        'button_text' => '',
+                        'button_url' => $post->ID,
+                        'button_style' => 'position-absolute',
+                    ));
                     $html .= __button(array(
                         'button_type' => get_post_type($post->ID),
                         'button_text' => $item['button_text'],
