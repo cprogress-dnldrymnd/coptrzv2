@@ -1728,6 +1728,15 @@ function __section_fields($name = 'sections')
                                     ->add_fields(
                                         'buttons',
                                         array(
+                                            Field::make('select', 'buttons_alignment', 'Buttons Alignment')
+                                            ->set_options(
+                                                array(
+                                                    ''                => 'Default',
+                                                    'text-start'                => 'Left',
+                                                    'text-center'                => 'Center',
+                                                    'text-end'                => 'Right',
+                                                )
+                                            ),
                                             Field::make('complex', 'buttons', __('Buttons'))
                                                 ->set_classes('columns')
                                                 ->setup_labels(
@@ -4609,6 +4618,15 @@ function __section_fields($name = 'sections')
                     ->add_fields(
                         'buttons',
                         array(
+                            Field::make('select', 'buttons_alignment', 'Buttons Alignment')
+                                ->set_options(
+                                    array(
+                                        ''                => 'Default',
+                                        'text-start'                => 'Left',
+                                        'text-center'                => 'Center',
+                                        'text-end'                => 'Right',
+                                    )
+                                ),
                             Field::make('complex', 'buttons', __('Buttons'))
                                 ->set_classes('columns')
                                 ->setup_labels(
