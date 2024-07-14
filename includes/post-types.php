@@ -584,17 +584,12 @@ $Popup->publicly_queryable = true;
 $Popup->show_in_admin_bar = true;
 $Popup->has_archive = false;
 $Popup->show_in_rest = true;
+$Popup->rewrite = array(
+    'with_front' => false,
+    'slug' => 'popups'
+);
 
 
-$Popup = new newPostType();
-$Popup->name = 'Mega Menus';
-$Popup->singular_name = 'Mega Menu';
-$Popup->icon = 'dashicons-testimonial';
-$Popup->supports = array('title', 'revisions');
-$Popup->exclude_from_search = true;
-$Popup->publicly_queryable = true;
-$Popup->show_in_admin_bar = true;
-$Popup->has_archive = false;
 
 $Model3d = new newPostType();
 $Model3d->name = '3D Model Libraries';
