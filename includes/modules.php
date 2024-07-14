@@ -730,7 +730,7 @@ function ___sections($id = 'sections', $post_id = '')
                             if ($brands) {
                                 $brand_ids = [];
                                 foreach ($brands as $brand) {
-                                    $brand_ids[] = $brand['brand'];
+                                    $brand_ids[] = $brand['id'];
                                 }
                                 $product_slider_args['tax_query'][] = array(
                                     'taxonomy' => 'pa_brands',
