@@ -213,6 +213,7 @@ function my_plugin_add_admin_bar_items($admin_bar)
             ),
         )
     );
+    var_dump($layouts_global);
     foreach ($layouts_global as $key => $layout) {
         $admin_bar->add_node(
             array(
