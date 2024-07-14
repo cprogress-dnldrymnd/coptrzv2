@@ -99,8 +99,11 @@ class Shortcodes
                         $html .= "<li><a class='item text-white' href='$cat_link'>$cat_name</a></li>";
                     }
                 }
+            } else {
+                $post_type = get_post_type();
+                $link = get_post_type_archive_link($post_type);
+                $html .= "<li><a class='item text-white' href='$link'>$post_type</a></li>";
             }
-
             $html .= "<li><span class='item text-white'  >$title</span></li>";
         } else if ($type == 'term') {
             $term = get_term($id);
