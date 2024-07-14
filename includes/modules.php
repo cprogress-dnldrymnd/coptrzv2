@@ -1282,6 +1282,7 @@ function ____columns_modules($items, $id, $html = '')
     $same_image_height = $items['same_image_height'];
     $horizontal_spacing = $items['horizontal_spacing'];
     $vertical_spacing = $items['vertical_spacing'];
+    $mobile_styling = $items['mobile_styling'];
     $image_fit = $items['image_fit'];
     $image_padding = $items['image_padding'];
     $align_items = $items['align_items'];
@@ -1292,6 +1293,9 @@ function ____columns_modules($items, $id, $html = '')
     $classes = array();
     $styles = array();
 
+    if($mobile_styling) {
+        $classes[] = $mobile_styling;
+    }
 
     if (!$individual_column_settings) {
         foreach ($column_styles as $column_style) {
