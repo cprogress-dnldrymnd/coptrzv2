@@ -454,7 +454,7 @@ function _product_grid_display($id)
 
     $html = "<ul class='products custom-product-grid h-100 m-0 p-0'>";
     $html .= "<li class='product m-0 p-0 w-100 h-100 post-$id $stock_status'>";
-    $html .= "<div class='product-inner rounded-10px border-default h-100 bg-white'>";
+    $html .= "<div class='product-inner rounded-10px border-default h-100'>";
     $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
     $html .= "<div class='wc-img-wrapper'>";
     $html .= "<img width='300' height='225' src='$post_thumnail' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='$title' decoding='async'>";
