@@ -388,7 +388,7 @@ class Shortcodes
                     $data['background_class'] = $background;
                 }
                 if (get_post_type() == 'post') {
-                    $data['elements'] = array('image', 'category', 'date', 'title', 'button');
+                    $data['elements'] = array( 'category', 'image',, 'date', 'title', 'button');
                     $data['taxonomy'] = 'category';
                 } else {
                     $data['elements'] = array('image',  'title', 'button');
