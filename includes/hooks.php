@@ -167,7 +167,7 @@ function action_admin_head()
         ?>
     </style>
 
-<?php
+    <?php
 }
 add_action('admin_head', 'action_admin_head');
 
@@ -175,7 +175,7 @@ add_action('admin_head', 'action_admin_head');
 function action_popups()
 {
 
-    global $popups_id, $layouts_global;
+    global $popups_id;
     $popups = array_unique($popups_id);
     $args = array(
         'post_type' => 'popups',
@@ -188,7 +188,30 @@ function action_popups()
         echo __popup($post);
     }
 
+
     if (current_user_can('administrator')) {
+        global $layouts_global;
+        $layouts_global_val = "<div vclass='ab-sub-wrapper'>";
+        $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
+        foreach ($layouts_global as $layout) {
+            $title = get_the_title($layout);
+            $link = get_edit_post_link($layout);
+
+            $layouts_global_val .= "<li>";
+            $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
+            $layouts_global_val .= "</li>";
+        }
+        $layouts_global_val .= "</ul>";
+
+        $layouts_global_val .= "</div>";
+    ?>
+        <script>
+            jQuery(document).ready(function() {
+
+                jQuery('<?= $layouts_global_val ?>').appendTo('#wp-admin-bar-layouts-menu');
+            });
+        </script>
+<?php
     }
 }
 
