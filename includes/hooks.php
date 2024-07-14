@@ -166,6 +166,27 @@ function action_page_selector()
 }
 
 add_action('admin_footer', 'action_page_selector');
+function get__posts($post_type)
+{
+    $pages_array = array(); // Initialize an empty array
+
+    $args = array(
+        'post_type'      => $post_type, // Get only pages
+        'posts_per_page' => -1, // Get all pages
+        'post_status'    => 'publish', // Get only published pages
+        'fields'         => 'ids', // Only retrieve post IDs for efficiency
+    );
+
+    $posts = get_posts($args);
+
+    if ($posts) {
+        foreach ($posts as $post) {
+            $pages_array[$post] = get_the_title($post); // Add ID => title to the array
+        }
+    }
+
+    return $pages_array;
+}
 
 function my_custom_popup()
 {
