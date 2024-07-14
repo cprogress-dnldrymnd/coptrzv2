@@ -499,6 +499,9 @@ class Shortcodes
     {
         $html = "<div class='event-countdown'>";
         $html .= "<div class='event-countdown-holder'>";
+        $html .= "<div class='countdown-days'></div>";
+        $html .= "<div class='countdown-hours'></div>";
+        $html .= "<div class='countdown-minutes'></div>";
         $html .= "</div>";
         $html .= "</div>";
 
