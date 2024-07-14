@@ -10597,7 +10597,8 @@ hr {
     .extend-right .container,
     .extend-right.container {
       padding-left: 0;
-      padding-right: 0; } }
+      padding-right: 0;
+      margin: 0 !important; } }
 
 .extend-left .container,
 .extend-left.container {
