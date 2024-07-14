@@ -163,7 +163,7 @@ class Shortcodes
             $html .= "<div class='container'>"; //container
             $html .= "<div class='row g-5'>"; //row
 
-            $html .= "<div class='col-lg-8'>";
+            $html .= "<div class='col-lg-8 col-left'>";
             $html .= __description(array(
                 'description' => $post_excerpt,
                 'class' => _attribute('class', array('description-box big-text mb-5'))
@@ -179,8 +179,8 @@ class Shortcodes
             $html .= "</div>";
 
             if ($features) {
-                $html .= "<div class='col-lg-4'>";
-                $html .= "<div class='meta-data text-end'>";
+                $html .= "<div class='col-lg-4 col-right'>";
+                $html .= "<div class='meta-data text-center text-lg-end'>";
                 $html .= "<ul class='list-inline p-0'>";
 
                 foreach ($features as $feature) {
