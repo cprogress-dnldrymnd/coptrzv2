@@ -4871,6 +4871,19 @@ function __section_fields($name = 'sections')
                         )
                     )
                     ->add_fields(
+                        'background_gradient',
+                        array(
+                            Field::make('select', 'background_gradient_type', 'Background Gradient Type')
+                                ->set_options(
+                                    array(
+                                        'background-gradient-default'    => 'Default',
+                                        'custom'  => 'Custom',
+                                    )
+                                ),
+
+                        )
+                    )
+                    ->add_fields(
                         'text_color',
                         array(
                             Field::make('select', 'text_color', 'Text Color')
