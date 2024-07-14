@@ -12183,19 +12183,18 @@ header {
     padding-bottom: 13px; }
     #footer .footer-bottom .footer-right ul {
       display: inline-flex;
-      align-items: center; }
+      align-items: center;
+      flex-wrap: wrap; }
       #footer .footer-bottom .footer-right ul li {
         display: flex;
         align-items: center; }
-        #footer .footer-bottom .footer-right ul li:not(:last-child) {
-          margin-right: 1rem; }
-          #footer .footer-bottom .footer-right ul li:not(:last-child):before {
-            content: '';
-            width: 5px;
-            height: 5px;
-            display: inline-block;
-            border-radius: 20px;
-            background-color: #606060; }
+        #footer .footer-bottom .footer-right ul li:not(:last-child):after {
+          content: '';
+          width: 5px;
+          height: 5px;
+          display: inline-block;
+          border-radius: 20px;
+          background-color: #606060; }
 
 .footer-cta .inner {
   padding-top: 200px; }
