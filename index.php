@@ -99,7 +99,7 @@ if (is_home()) {
     );
 }
 echo do_shortcode(___hero_archive($key, $archive_title));
-if ($has_featured) {
+if ($has_featured &&  !is_paged()) {
     echo ___featured($key);
 }
 
