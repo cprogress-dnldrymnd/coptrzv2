@@ -715,20 +715,13 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($product_cat as $cat) {
                                 $term_ids[] = $cat['id'];
                             }
-
+                        } else if ($source_type == 'main_query') {
+                            $term_id = get_queried_object()->term_id;
                             $args['tax_query'][] = array(
                                 'taxonomy' => 'product_cat',
                                 'field'    => 'term_id',
-                                'terms'    => $term_ids
+                                'terms'    => $term_id
                             );
-                        } else if ($source_type == 'main_query') {
-                            $include = [];
-                            while (have_posts()) {
-                                the_post();
-                                $include[] = get_the_ID();
-                            }
-
-                            $args['include'] = $include;
                         }
                         $products = get_posts($args);
                         $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
