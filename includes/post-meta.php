@@ -3068,6 +3068,16 @@ function __section_fields($name = 'sections')
                                                         'text-end'                => 'Right',
                                                     )
                                                 ),
+
+                                            Field::make('select', 'text_align_mobile', 'Text Align[Mobile]')
+                                                ->set_options(
+                                                    array(
+                                                        ''                => 'Default',
+                                                        'text-start'                => 'Left',
+                                                        'text-center'                => 'Center',
+                                                        'text-end'                => 'Right',
+                                                    )
+                                                ),
                                         )
                                     )
                                     ->add_fields(
@@ -3527,6 +3537,15 @@ function __section_fields($name = 'sections')
                                             )
                                         ),
                                     Field::make('select', 'text_align', 'Text Align')
+                                        ->set_options(
+                                            array(
+                                                ''                => 'Default',
+                                                'text-start'                => 'Left',
+                                                'text-center'                => 'Center',
+                                                'text-end'                => 'Right',
+                                            )
+                                        ),
+                                    Field::make('select', 'text_align_mobile', 'Text Align[Mobile]')
                                         ->set_options(
                                             array(
                                                 ''                => 'Default',
