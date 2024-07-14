@@ -1180,11 +1180,11 @@ function ____post_grid_module($data)
     if ($is_slider) {
         $html .= '</div>'; //end swiper-wrapper
         $html .= '</div>'; //end swiper
-        $html .= '<div class="swiper-nav d-flex justify-content-start">'; // swipernav
+        $html .= '<div class="swiper-nav d-none d-md-flex justify-content-start">'; // swipernav
         $html .= '<div class="swiper-button-prev"></div>';
         $html .= '<div class="swiper-button-next"></div>';
         $html .= '</div>'; //end swipernav
-        $html .= '<div class="swiper-pagination"></div>';
+        $html .= '<div class="swiper-pagination d-flex d-md-none"></div>';
         $html .= '</div>'; //end swiper-holder
     } else {
         $html .= "</div>"; //end-row
