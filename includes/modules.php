@@ -876,6 +876,17 @@ function ___sections($id = 'sections', $post_id = '')
                         }
 
                         break;
+                    case 'events_widget':
+                        $events_widget = $items['events_widget'];
+                        foreach ($events_widget as $event_widget) {
+                            $type = $event_widget['_type'];
+                            switch ($type) {
+                                case 'countdown':
+                                    $html .= do_shortcode('[event_countdown]');
+                                    break;
+                            }
+                        }
+                        break;
                 }
             }
             if (count($container_classes) > 1) {
