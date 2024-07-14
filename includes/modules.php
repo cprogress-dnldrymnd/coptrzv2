@@ -277,6 +277,7 @@ function ___sections($id = 'sections', $post_id = '')
             $is_container_background = false;
             $background_type = false;
             $background  = false;
+            $product_slider_args = [];
             $container_classes[] = 'position-relative container-inner';
             $classes[] = 'section';
             $classes[] = 'section-' . $key;
@@ -701,7 +702,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $html .= $shortcode;
                         break;
                     case 'product_slider':
-                        $args = [];
+                        $product_slider_args = [];
                         $heading = $items['heading'];
                         $button_text = $items['button_text'];
                         $button_url = $items['button_url'];
@@ -709,9 +710,9 @@ function ___sections($id = 'sections', $post_id = '')
                         $source_type = $items['source_type'];
                         $products = $items['products'];
                         $numberposts = $items['numberposts'];
-                        $args['numberposts'] = $numberposts ? $numberposts : -1;
-                        $args['post_type'] = 'product';
-                        $args['fields'] = 'ids';
+                        $product_slider_args['numberposts'] = $numberposts ? $numberposts : -1;
+                        $product_slider_args['post_type'] = 'product';
+                        $product_slider_args['fields'] = 'ids';
                         if ($source_type == 'category') {
                             $term_ids = [];
                             foreach ($product_cat as $cat) {
@@ -722,16 +723,16 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($products as $product) {
                                 $include[] = $product['id'];
                             }
-                            $args['include'] = $include;
+                            $product_slider_args['include'] = $include;
                         } else {
                             $term_id = get_queried_object()->term_id;
-                            $args['tax_query'][] = array(
+                            $product_slider_args['tax_query'][] = array(
                                 'taxonomy' => 'product_cat',
                                 'field'    => 'term_id',
                                 'terms'    => $term_id
                             );
                         }
-                        $products = get_posts($args);
+                        $products = get_posts($product_slider_args);
                         $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
                         break;
                     case 'tabs':
