@@ -12178,7 +12178,6 @@ header {
     padding: 20px;
     background-color: #262626; }
   #footer .footer-bottom {
-    padding-top: 13px;
     padding-bottom: 13px; }
     @media screen and (max-width: 991px) {
       #footer .footer-bottom .inner {
@@ -12203,7 +12202,8 @@ header {
           margin-right: 1rem; }
     @media screen and (min-width: 992px) {
       #footer .footer-bottom {
-        border-top: 1px solid #3c3c3c; } }
+        border-top: 1px solid #3c3c3c;
+        padding-top: 13px; } }
 
 .footer-cta .inner {
   padding-top: 200px; }
