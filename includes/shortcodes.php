@@ -163,7 +163,7 @@ class Shortcodes
             $html .= "<div class='container'>"; //container
             $html .= "<div class='row g-5'>"; //row
 
-            $html .= "<div class='col-lg-8 col-left'>";
+            $html .= "<div class='col-lg-8 col-left text-center text-lg-start'>";
             $html .= __description(array(
                 'description' => $post_excerpt,
                 'class' => _attribute('class', array('description-box big-text mb-5'))
