@@ -218,6 +218,7 @@ function __button($data)
     $button_style       = isset($data['button_style']) ? $data['button_style'] : false;
     $button_text        = isset($data['button_text']) ? $data['button_text'] : false;
     $button_target      = isset($data['button_target']) ? $data['button_target'] : false;
+    $link = '';
 
     if ($button_type != 'popups' && $button_type != 'custom') {
         $tag = 'a';
