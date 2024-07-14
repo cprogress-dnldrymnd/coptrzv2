@@ -3071,7 +3071,7 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'text_align_tablet', 'Text Align[Tablet]')
                                                 ->set_options(
                                                     array(
-                                                        ''                => 'Default',
+                                                        ''                => 'Inherit',
                                                         'text-md-start'                => 'Left',
                                                         'text-md-center'                => 'Center',
                                                         'text-lg-end'                => 'Right',
@@ -3080,7 +3080,7 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'text_align_mobile', 'Text Align[Mobile]')
                                                 ->set_options(
                                                     array(
-                                                        ''                => 'Default',
+                                                        ''                => 'Inherit',
                                                         'text-start'                => 'Left',
                                                         'text-center'                => 'Center',
                                                         'text-end'                => 'Right',
@@ -3544,7 +3544,7 @@ function __section_fields($name = 'sections')
                                                 'flex-row-reverse'  => 'Row Reverse',
                                             )
                                         ),
-                                        Field::make('select', 'text_align', 'Text Align[Desktop]')
+                                    Field::make('select', 'text_align', 'Text Align[Desktop]')
                                         ->set_options(
                                             array(
                                                 ''                => 'Default',
