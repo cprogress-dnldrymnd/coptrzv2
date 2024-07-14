@@ -1952,10 +1952,10 @@ function __accordion_module($data, $class = '')
         $html .= "</button>";
         $html .= "</h3>";
 
-        $html .= "<div id='flush-collapse-$key' class='accordion-collapse pb-3 collapse $content_class' aria-labelledby='flush-heading-$key' data-bs-parent='#accordion-$module_id'>";
+        $html .= "<div id='flush-collapse-$key' class='accordion-collapse collapse $content_class' aria-labelledby='flush-heading-$key' data-bs-parent='#accordion-$module_id'>";
         $html .= __description(array(
             'description' => $description,
-            'class' => _attribute('class', array('description-box small-text')),
+            'class' => _attribute('class', array('description-box small-text pb-3')),
         ));
         $html .= "</div>";
         $html .= "</div>"; //end-accordion-item
