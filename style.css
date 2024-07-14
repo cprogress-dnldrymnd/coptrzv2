@@ -10449,6 +10449,12 @@ p:last-child {
   --bs-gutter-xy: 20px; }
 
 @media screen and (max-width: 767px) {
+  .g-4,
+  .g-5 {
+    --bs-gutter-x: 10px;
+    --bs-gutter-y: 10px; } }
+
+@media screen and (max-width: 767px) {
   .container,
   .container-fluid,
   .container-sm,

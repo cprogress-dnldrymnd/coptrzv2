@@ -357,7 +357,7 @@ class Shortcodes
         $latest_from_coptrz = get__theme_option('latest_from_coptrz');
         if ($latest_from_coptrz) {
             $html = "<div class='latest-from-coptrz'>";
-            $html .= "<div class='row g-4'>";
+            $html .= "<div class='row g-4 g-xs-10px'>";
 
             foreach ($latest_from_coptrz as $post) {
                 $data = [];
