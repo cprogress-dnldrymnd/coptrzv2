@@ -11376,8 +11376,12 @@ hr {
       color: var(--bs-white);
       border-color: var(--bs-accent); }
 
-.event-countdown-holder .countdown-box {
-  padding: 10px; }
+.event-countdown-holder {
+  text-align: center; }
+  .event-countdown-holder .countdown-box {
+    padding: 10px;
+    font-size: 70px;
+    border: 1px solid currentColor; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
