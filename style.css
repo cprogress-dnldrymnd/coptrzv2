@@ -12233,7 +12233,9 @@ header {
     border-radius: 0; }
   #accordionFooter .accordion-header {
     padding-bottom: 18px;
-    padding-top: 18px; } }
+    padding-top: 18px; }
+  #accordionFooter .accordion-body {
+    padding-bottom: 18px; } }
 @media (min-width: 768px) {
   #accordionFooter .accordion-collapse {
     display: block; } }
