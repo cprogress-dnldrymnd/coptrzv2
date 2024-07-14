@@ -56,7 +56,7 @@ if (!$hide_footer) {
                         <div class="col-lg col-md-6">
                             <?php dynamic_sidebar('footer_column_4') ?>
                         </div>
-                        <div class="col-lg col-md-6 text-center">
+                        <div class="col-lg col-md-6 text-center col-5">
                             <?php dynamic_sidebar('footer_column_5') ?>
                         </div>
                     </div>
