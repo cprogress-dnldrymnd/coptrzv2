@@ -4903,6 +4903,10 @@ function __section_fields($name = 'sections')
                                         array(
                                             'field' => 'background_gradient_type',
                                             'value' => 'linear-gradient',
+                                        ),
+                                        array(
+                                            'field' => 'background_gradient',
+                                            'value' => 'custom',
                                         )
                                     )
                                 ),
