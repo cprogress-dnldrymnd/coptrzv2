@@ -11382,7 +11382,8 @@ hr {
   .event-countdown-holder .countdown-box {
     padding: 10px;
     font-size: 70px;
-    border: 1px solid currentColor; }
+    border: 1px solid currentColor;
+    line-height: 1; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins

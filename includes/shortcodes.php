@@ -506,7 +506,7 @@ class Shortcodes
         $html .= "<div class='event-countdown-holder row g-4 align-items-center justify-content-center'>";
         $html .= "<div class='col-auto'>";
         $html .= "<div class='col-days'>";
-        $html .= "<div class='countdown-box countdown-days'></div>";
+        $html .= "<div class='countdown-box countdown-days rounded-corner'></div>";
         $html .= "<span>Days</span>";
         $html .= "</div>";
         $html .= "</div>";
