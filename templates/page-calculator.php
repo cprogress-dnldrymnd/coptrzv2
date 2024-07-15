@@ -110,7 +110,7 @@
                 </div>
                 <div class="result-box">
                     <h3>Your payback period</h3>
-                    <div class="result rounded-corner xs-padding text-center">
+                    <div class="result rounded-corner xs-padding text-center big-text">
                         Approximately X months, X days
                     </div>
                 </div>
