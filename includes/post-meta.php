@@ -115,9 +115,11 @@ function __social_fields()
 
     );
 }
+
 Container::make('theme_options', __('Theme Settings'))
     ->add_tab('General Settings', __general_settings_fields())
-    ->add_tab('Socials', __social_fields());
+    ->add_tab('Socials', __social_fields())
+    ->add_tab('404', __social_fields());
 
 Container::make('theme_options', __('Global Widgets'))
     ->add_tab('Latest From Coptrz', __latest_from_coptrz_fields())
