@@ -11402,6 +11402,8 @@ hr {
 
 .hero-hidden header .header-inner {
   background: var(--bs-black); }
+.hero-hidden .breadcrumbs a {
+  color: var(--bs-black) !important; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins

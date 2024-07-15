@@ -175,7 +175,20 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero .= "</section>";
         return $hero;
     } else {
-        return "<div class='header-spacer'></div>".do_shortcode("[breadcrumbs id='$id']");;
+        $html = "<div class=''>";
+        $html .= "<div class='header-spacer'></div>";
+        $html .= "<div class='container'>";
+        $html .= do_shortcode("[breadcrumbs id='$id']");
+        $html .= __heading(array(
+            'heading' => get_the_title(),
+            'tag' => 'h1',
+            'class' => _attribute('class', $heading_class),
+            ''
+        ));
+
+        $html .= "</div>";
+        $html .= "</div>";
+        return $html;
     }
 }
 function ___hero_product_taxonomy()

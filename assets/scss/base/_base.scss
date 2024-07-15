@@ -1162,4 +1162,9 @@ hr {
     header .header-inner {
         background: var(--bs-black);
     }
+    .breadcrumbs {
+        a {
+            color: var(--bs-black) !important;
+        }
+    }
 }
