@@ -12057,9 +12057,9 @@ section.product-main .summary.summary.summary .variations tr {
     background-color: var(--bs-accent);
     border-color: var(--bs-accent); }
 
-.woocommerce-account .woocommerce {
+.woocommerce-account.woocommerce-account .woocommerce {
   display: flex; }
-  .woocommerce-account .woocommerce:before, .woocommerce-account .woocommerce:after {
+  .woocommerce-account.woocommerce-account .woocommerce:before, .woocommerce-account.woocommerce-account .woocommerce:after {
     content: none; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
