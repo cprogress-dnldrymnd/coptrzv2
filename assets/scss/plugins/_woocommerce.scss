@@ -748,6 +748,8 @@ section.product-main {
                 width: 100px;
                 height: 100px;
                 object-fit: contain;
+                border-radius: 5px;
+                border: 1px solid var(--border-color);
             }
         }
     }

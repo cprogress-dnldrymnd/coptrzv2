@@ -12048,7 +12048,9 @@ section.product-main .summary.summary.summary .variations tr {
   .shop_table.shop_table.shop_table.shop_table.woocommerce-cart-form__contents td.product-thumbnail img {
     width: 100px;
     height: 100px;
-    object-fit: contain; }
+    object-fit: contain;
+    border-radius: 5px;
+    border: 1px solid var(--border-color); }
 
 .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button,
 .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button {

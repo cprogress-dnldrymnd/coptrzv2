@@ -78,6 +78,8 @@ body {
                                 width: 100px;
                                 height: 100px;
                                 object-fit: cover;
+                                border-radius: 5px;
+                                border: 1px solid var(--border-color);
                             }
                         }
                         .name {
