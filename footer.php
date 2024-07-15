@@ -14,8 +14,15 @@ $args = array(
             'key' => '_display_location',
             'value' => 'before_footer',
         ),
+        array(
+            'key'   => '_do_not_display_on',
+            'value' => '404',
+            'compare' => '!='
+        ),
     ),
 );
+
+
 $layouts = get_posts($args);
 foreach ($layouts as $layout) {
     echo do_shortcode("[layouts id='$layout']");
