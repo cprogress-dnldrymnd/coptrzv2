@@ -86,7 +86,7 @@ if (is_home()) {
         'featured' => false,
         'style' => 'style-1',
         'taxonomy' => $category,
-        'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+        'elements' => array('image', 'category', 'title', 'excerpt', 'button')
     );
 } else if (is_post_type_archive('guides')) {
     $key = 'guides_';
