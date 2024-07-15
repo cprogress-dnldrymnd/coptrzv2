@@ -10497,7 +10497,7 @@ body {
             object-fit: cover; }
         .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .name {
           font-size: 18px;
-          font-weight: 700;
+          font-weight: 600;
           line-height: 1.5; }
         .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent {
           border: 1px solid #e5e5e5;
@@ -10666,6 +10666,7 @@ body {
 .woocommerce-checkout.woocommerce-checkout.woocommerce-checkout input[type="tel"],
 .woocommerce-checkout.woocommerce-checkout.woocommerce-checkout input[type="submit"],
 .woocommerce-checkout.woocommerce-checkout.woocommerce-checkout input[type="email"],
+.woocommerce-checkout.woocommerce-checkout.woocommerce-checkout input[type="password"],
 .woocommerce-checkout.woocommerce-checkout.woocommerce-checkout select,
 .woocommerce-checkout.woocommerce-checkout.woocommerce-checkout textarea {
   -webkit-appearance: auto;
