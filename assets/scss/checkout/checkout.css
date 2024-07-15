@@ -10448,14 +10448,14 @@ p:last-child {
 body {
   color: var(--bs-primary); }
 
-.checkout-section.checkout-section {
+.checkout-section.checkout-section.checkout-section.checkout-section {
   font-family: "Poppins"; }
-  .checkout-section.checkout-section .nav-box ul li {
+  .checkout-section.checkout-section.checkout-section.checkout-section .nav-box ul li {
     display: flex;
     align-items: center; }
-    .checkout-section.checkout-section .nav-box ul li.active {
+    .checkout-section.checkout-section.checkout-section.checkout-section .nav-box ul li.active {
       font-weight: bold; }
-    .checkout-section.checkout-section .nav-box ul li:not(:last-child):after {
+    .checkout-section.checkout-section.checkout-section.checkout-section .nav-box ul li:not(:last-child):after {
       content: "";
       background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="8" fill="none"><path d="M1 1l3 3-3 3" stroke="%23000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
       content: "";
@@ -10466,19 +10466,19 @@ body {
       background-position: center;
       background-size: contain;
       background-repeat: no-repeat; }
-  .checkout-section.checkout-section .column-order {
+  .checkout-section.checkout-section.checkout-section.checkout-section .column-order {
     border-left: 1px solid #e5e5e5; }
-    .checkout-section.checkout-section .column-order .column-holder {
+    .checkout-section.checkout-section.checkout-section.checkout-section .column-order .column-holder {
       position: sticky;
       top: 0;
       padding-bottom: 50px; }
-    .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table {
+    .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table {
       border: none;
       border-collapse: collapse; }
-      .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr {
+      .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr {
         padding-top: 20px;
         padding-bottom: 20px; }
-        .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td {
+        .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td {
           border: none;
           padding-top: 30px;
           padding-bottom: 30px;
@@ -10486,45 +10486,45 @@ body {
           vertical-align: bottom;
           padding-left: 0;
           padding-right: 0; }
-        .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .product-image {
+        .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .product-image {
           flex: 0 0 100px;
           margin-right: 2rem; }
-          .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .product-image img {
+          .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .product-image img {
             width: 100px;
             height: 100px;
             object-fit: cover; }
-        .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .name {
+        .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .name {
           font-size: 18px;
           font-weight: 700;
           line-height: 1.5; }
-        .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent {
+        .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent {
           border: 1px solid #e5e5e5;
           display: inline-flex; }
-          .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent .qty {
+          .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent .qty {
             -webkit-appearance: none;
             margin: 0;
             font-weight: 600;
             width: 44px; }
-          .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent .qty,
-          .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button {
+          .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent .qty,
+          .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button {
             border: none;
             background-color: transparent;
             font-size: 1rem;
             height: 36px; }
-          .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button {
+          .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button {
             color: #c4c4c4;
             width: 36px; }
-            .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button:hover, .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button:active, .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button:focus {
+            .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button:hover, .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button:active, .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button:focus {
               background-color: var(--bs-primary); }
-        .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-total {
+        .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-total {
           position: relative;
           text-align: right; }
-          .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-total .woocommerce-Price-amount {
+          .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-total .woocommerce-Price-amount {
             font-weight: 600; }
-          .checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-total .remove-item {
+          .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-total .remove-item {
             cursor: pointer; }
-  .checkout-section.checkout-section .woocommerce-checkout .select2-container--default .select2-search--dropdown .select2-search__field,
-  .checkout-section.checkout-section .woocommerce-checkout .select2-selection {
+  .checkout-section.checkout-section.checkout-section.checkout-section .woocommerce-checkout .select2-container--default .select2-search--dropdown .select2-search__field,
+  .checkout-section.checkout-section.checkout-section.checkout-section .woocommerce-checkout .select2-selection {
     border: 1px solid #e5e5e5;
     border-radius: 4px;
     box-shadow: none;
@@ -10537,34 +10537,34 @@ body {
     display: block;
     max-width: unset;
     opacity: 1; }
-  .checkout-section.checkout-section .button {
+  .checkout-section.checkout-section.checkout-section.checkout-section .button {
     padding: 20px 30px;
     border-radius: 50px;
     background-color: var(--bs-primary);
     color: var(--bs-white); }
-    .checkout-section.checkout-section .button:hover, .checkout-section.checkout-section .button:active, .checkout-section.checkout-section .button:focus {
+    .checkout-section.checkout-section.checkout-section.checkout-section .button:hover, .checkout-section.checkout-section.checkout-section.checkout-section .button:active, .checkout-section.checkout-section.checkout-section.checkout-section .button:focus {
       background-color: #16110e;
       color: var(--bs-white); }
-  .checkout-section.checkout-section .step-buttons a {
+  .checkout-section.checkout-section.checkout-section.checkout-section .step-buttons a {
     cursor: pointer; }
-  .checkout-section.checkout-section .shipping-methods {
+  .checkout-section.checkout-section.checkout-section.checkout-section .shipping-methods {
     border-bottom: 1px solid #e5e5e5;
     padding-bottom: 20px;
     padding-top: 20px;
     font-size: 0; }
-    .checkout-section.checkout-section .shipping-methods .shipping-method-title {
+    .checkout-section.checkout-section.checkout-section.checkout-section .shipping-methods .shipping-method-title {
       font-size: 1rem; }
-    .checkout-section.checkout-section .shipping-methods .woocommerce-shipping-methods {
+    .checkout-section.checkout-section.checkout-section.checkout-section .shipping-methods .woocommerce-shipping-methods {
       flex: 0 0 50%;
       text-align: end;
       font-size: 1rem; }
-      .checkout-section.checkout-section .shipping-methods .woocommerce-shipping-methods li {
+      .checkout-section.checkout-section.checkout-section.checkout-section .shipping-methods .woocommerce-shipping-methods li {
         display: flex;
         flex-direction: row-reverse;
         justify-content: space-between; }
-  .checkout-section.checkout-section .previous-steps {
+  .checkout-section.checkout-section.checkout-section.checkout-section .previous-steps {
     margin-bottom: 3rem; }
-    .checkout-section.checkout-section .previous-steps .previous-step {
+    .checkout-section.checkout-section.checkout-section.checkout-section .previous-steps .previous-step {
       background-color: transparent !important;
       background-image: unset !important;
       border: 1px solid #e5e5e5;
@@ -10580,44 +10580,44 @@ body {
       transition: all 0.2s ease;
       width: 100%;
       margin-bottom: 1rem; }
-      .checkout-section.checkout-section .previous-steps .previous-step .back-to {
+      .checkout-section.checkout-section.checkout-section.checkout-section .previous-steps .previous-step .back-to {
         font-weight: bold;
         color: var(--bs-accent);
         cursor: pointer; }
-  .checkout-section.checkout-section #ship-to-different-address {
+  .checkout-section.checkout-section.checkout-section.checkout-section #ship-to-different-address {
     font-size: 1rem;
     color: var(--bs-primary); }
-    .checkout-section.checkout-section #ship-to-different-address input {
+    .checkout-section.checkout-section.checkout-section.checkout-section #ship-to-different-address input {
       margin: -2px 8px 0 0; }
-    .checkout-section.checkout-section #ship-to-different-address span {
+    .checkout-section.checkout-section.checkout-section.checkout-section #ship-to-different-address span {
       color: inherit; }
-  .checkout-section.checkout-section #checkbox_trigger_field {
+  .checkout-section.checkout-section.checkout-section.checkout-section #checkbox_trigger_field {
     font-weight: 600;
     padding: 0;
     margin: 0; }
-  .checkout-section.checkout-section .td-coupon .notice {
+  .checkout-section.checkout-section.checkout-section.checkout-section .td-coupon .notice {
     margin-top: 2rem;
     font-size: 15px;
     line-height: 1.3;
     font-weight: 400; }
-  .checkout-section.checkout-section tfoot tr td,
-  .checkout-section.checkout-section tfoot tr th {
+  .checkout-section.checkout-section.checkout-section.checkout-section tfoot tr td,
+  .checkout-section.checkout-section.checkout-section.checkout-section tfoot tr th {
     border: none;
     padding: 0;
     font-weight: 400; }
-  .checkout-section.checkout-section tfoot tr td {
+  .checkout-section.checkout-section.checkout-section.checkout-section tfoot tr td {
     text-align: right; }
-  .checkout-section.checkout-section tfoot tr:first-child th,
-  .checkout-section.checkout-section tfoot tr:first-child td {
+  .checkout-section.checkout-section.checkout-section.checkout-section tfoot tr:first-child th,
+  .checkout-section.checkout-section.checkout-section.checkout-section tfoot tr:first-child td {
     padding-top: 30px; }
-  .checkout-section.checkout-section tfoot tr.order-total th,
-  .checkout-section.checkout-section tfoot tr.order-total td {
+  .checkout-section.checkout-section.checkout-section.checkout-section tfoot tr.order-total th,
+  .checkout-section.checkout-section.checkout-section.checkout-section tfoot tr.order-total td {
     border-top: 1px solid #e5e5e5;
     font-size: 20px;
     font-weight: bold;
     padding-top: 30px; }
-  .checkout-section.checkout-section tfoot tr.tax-rate th,
-  .checkout-section.checkout-section tfoot tr.tax-rate td {
+  .checkout-section.checkout-section.checkout-section.checkout-section tfoot tr.tax-rate th,
+  .checkout-section.checkout-section.checkout-section.checkout-section tfoot tr.tax-rate td {
     padding-bottom: 30px; }
 
 .checkout_coupon_custom.checkout_coupon_custom.checkout_coupon_custom {
