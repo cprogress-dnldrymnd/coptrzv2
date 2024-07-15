@@ -18,7 +18,7 @@ $args = array(
         array(
             'key'   => '_do_not_display_on',
             'value' => '404',
-            'compare' => 'NOT EXISTS'
+            'compare' => 'NOT BETWEEN'
         ),
     ),
 );
