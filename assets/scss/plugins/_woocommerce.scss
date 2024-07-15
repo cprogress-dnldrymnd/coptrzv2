@@ -764,6 +764,9 @@ section.product-main {
             @media (min-width: 769px) {
                 width: 25%;
             }
+            @media(max-width: 768px) {
+                margin-bottom: 2rem;
+            }
         }
         .woocommerce-MyAccount-content {
         }
