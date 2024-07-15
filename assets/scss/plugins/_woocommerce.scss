@@ -715,9 +715,11 @@ section.product-main {
     }
 }
 
-.shop_table.shop_table.shop_table {
+.shop_table.shop_table.shop_table.shop_table {
     font-size: 1rem;
-
+    .button.button.button {
+        padding: 5px 10px;
+    }
     &.my_account_orders {
         border: none;
         th,
@@ -736,9 +738,10 @@ section.product-main {
     }
 }
 
-.woocommerce-info.woocommerce-info.woocommerce-info, .shop_table.shop_table.shop_table {
+.woocommerce-info.woocommerce-info.woocommerce-info,
+.shop_table.shop_table.shop_table {
     .button.button.button {
-        padding: 5px 10px;
+        padding: 15px 10px;
         line-height: 1;
         border-radius: 6px;
         background-color: var(--bs-primary);

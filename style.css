@@ -12039,8 +12039,9 @@ section.product-main .summary.summary.summary .variations tr {
     .shop_table.shop_table.shop_table.my_account_orders td {
       font-size: 15px; }
 
-.woocommerce-info.woocommerce-info.woocommerce-info .button.button.button, .shop_table.shop_table.shop_table .button.button.button {
-  padding: 5px 10px;
+.woocommerce-info.woocommerce-info.woocommerce-info .button.button.button,
+.shop_table.shop_table.shop_table .button.button.button {
+  padding: 15px 10px;
   line-height: 1;
   border-radius: 6px;
   background-color: var(--bs-primary);
