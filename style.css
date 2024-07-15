@@ -12060,8 +12060,8 @@ section.product-main .summary.summary.summary .variations tr {
       border-radius: 5px;
       border: 1px solid var(--border-color); }
 
-.woocommerce-MyAccount-content .button.button.button,
-.woocommerce-cart-form__contents .button.button.button, .wc-proceed-to-checkout .button.button.button {
+.woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button,
+.woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button, .wc-proceed-to-checkout.wc-proceed-to-checkout.wc-proceed-to-checkout .button.button.button {
   padding: 15px 10px;
   line-height: 1;
   border-radius: 6px;
@@ -12069,10 +12069,10 @@ section.product-main .summary.summary.summary .variations tr {
   color: var(--bs-white);
   border-color: var(--bs-primary);
   font-weight: 600; }
-  .woocommerce-MyAccount-content .button.button.button:hover, .woocommerce-MyAccount-content .button.button.button:active, .woocommerce-MyAccount-content .button.button.button:focus,
-  .woocommerce-cart-form__contents .button.button.button:hover,
-  .woocommerce-cart-form__contents .button.button.button:active,
-  .woocommerce-cart-form__contents .button.button.button:focus, .wc-proceed-to-checkout .button.button.button:hover, .wc-proceed-to-checkout .button.button.button:active, .wc-proceed-to-checkout .button.button.button:focus {
+  .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:hover, .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:active, .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:focus,
+  .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button:hover,
+  .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button:active,
+  .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button:focus, .wc-proceed-to-checkout.wc-proceed-to-checkout.wc-proceed-to-checkout .button.button.button:hover, .wc-proceed-to-checkout.wc-proceed-to-checkout.wc-proceed-to-checkout .button.button.button:active, .wc-proceed-to-checkout.wc-proceed-to-checkout.wc-proceed-to-checkout .button.button.button:focus {
     background-color: var(--bs-accent);
     border-color: var(--bs-accent); }
 
