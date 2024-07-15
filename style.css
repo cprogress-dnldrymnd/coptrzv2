@@ -11417,7 +11417,8 @@ hr {
 .input-box.input-box input {
   border: none;
   border-radius: none;
-  border-radius: 0; }
+  border-radius: 0;
+  outline: none; }
 
 .your-result .result-box .result {
   background-color: #E9F5FF; }
