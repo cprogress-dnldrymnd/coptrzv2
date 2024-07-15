@@ -11995,6 +11995,7 @@ section.product-main .summary.summary.summary .variations tr {
     font-weight: 500;
     border-bottom: 1px solid;
     width: 100%;
+    display: inline-block;
     -webkit-transition: 500ms;
     -moz-transition: 500ms;
     -ms-transition: 500ms;

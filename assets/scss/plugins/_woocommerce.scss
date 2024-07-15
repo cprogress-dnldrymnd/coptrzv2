@@ -692,6 +692,7 @@ section.product-main {
                 font-weight: 500;
                 border-bottom: 1px solid;
                 width: 100%;
+                display: inline-block;
                 @include transition(500ms);
 
                 @include on-event {
