@@ -320,6 +320,16 @@
         color: var(--bs-white);
     }
 }
+@mixin button-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: var(--bs-white);
+    @include on-event() {
+        background-color: var(--bs-secondary);
+        border-color: var(--bs-secondary);
+        color: var(--bs-white);
+    }
+}
 @mixin status {
     font-size: 13px;
     font-weight: 500;

@@ -10751,6 +10751,18 @@ section .container-inner > *:not(:last-child) {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
+.button-box.button-box.button-box.button-primary a,
+.button-box.button-box.button-box.button-primary button {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: var(--bs-white); }
+  .button-box.button-box.button-box.button-primary a:hover, .button-box.button-box.button-box.button-primary a:active, .button-box.button-box.button-box.button-primary a:focus,
+  .button-box.button-box.button-box.button-primary button:hover,
+  .button-box.button-box.button-box.button-primary button:active,
+  .button-box.button-box.button-box.button-primary button:focus {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--bs-white); }
 .button-box.button-box.button-box.button-small a,
 .button-box.button-box.button-box.button-small button {
   padding: 0.625rem 1.25rem; }

@@ -264,6 +264,12 @@ section {
             @include button-white;
         }
     }
+    &.button-primary {
+        a,
+        button {
+            @include button-primary;
+        }
+    }
     &.button-small {
         a,
         button {
