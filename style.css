@@ -12441,6 +12441,8 @@ section.hero {
 
 section.not-found {
   min-height: 100vh; }
+  section.not-found.background-overlay:before {
+    background: linear-gradient(180deg, #00000075 0%, #000000 100%) 0% 0%; }
 
 section.landing-page {
   min-height: calc(100vh - 40px ); }
