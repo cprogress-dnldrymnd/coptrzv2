@@ -10774,6 +10774,7 @@ input[type="number"],
 input[type="tel"],
 input[type="submit"],
 input[type="email"],
+input[type="password"],
 select,
 textarea {
   padding: 17px 20px;
@@ -12150,6 +12151,7 @@ section.product-main .summary.summary.summary .variations tr {
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="tel"],
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="submit"],
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="email"],
+.form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="password"],
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field select,
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field textarea {
   background-color: transparent;

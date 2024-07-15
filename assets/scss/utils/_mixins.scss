@@ -368,6 +368,7 @@
     input[type="tel"],
     input[type="submit"],
     input[type="email"],
+    input[type="password"],
     select,
     textarea {
         @content;
