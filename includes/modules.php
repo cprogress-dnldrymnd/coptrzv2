@@ -836,8 +836,18 @@ function ___sections($id = 'sections', $post_id = '')
                         $source = $items['source'];
 
                         if ($source == 'post_type') {
+                            $posts = [];
                             $field_key = $items['related_post'][0]['field_key'];
-                            $name = $items['related_post'][0]['label'];
+                            $post_type = $items['related_post'][0]['post_type'];
+                            $name = get_post_type_object($post_type)->labels->singular_name;
+
+                            $posts_list = get__post_meta($field_key);
+                            foreach ($posts_list as $post) {
+                                $posts[] = $post['id'];
+                            }
+
+                            $taxonomy = $post_type . '_category';
+
                         } else {
                             $args['post_type'] = get_post_type();
                             $args['exclude'] = get_the_ID();
@@ -854,15 +864,15 @@ function ___sections($id = 'sections', $post_id = '')
                             );
 
                             $name = get_post_type_object(get_post_type())->labels->singular_name;
+                            $args['post_status'] = 'publish';
+                            $args['numberposts'] = 3;
+                            $args['orderby'] = 'rand';
+                            $args['fields'] = 'ids';
+
+
+                            $posts = get_posts($args);
                         }
-                        $args['post_status'] = 'publish';
-                        $args['numberposts'] = 3;
-                        $args['orderby'] = 'rand';
-                        $args['fields'] = 'ids';
 
-
-                        $posts = get_posts($args);
-                       
                         if ($posts) {
                             $html .= "<div class='row g-4 same-image-height row-global-post'>";
                             foreach ($posts as $post) {
