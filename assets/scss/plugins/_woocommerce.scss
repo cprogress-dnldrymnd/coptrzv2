@@ -716,6 +716,7 @@ section.product-main {
 }
 
 .shop_table.shop_table.shop_table {
+    font-size: 1rem;
     .button.button.button {
         padding: 5px 10px;
         line-height: 1;
@@ -731,6 +732,12 @@ section.product-main {
             border: none;
             padding-top: 15px;
             padding-bottom: 15px;
+        }
+        th {
+            font-weight: 500;
+        }
+        td {
+            font-size: 15px;
         }
     }
 }
