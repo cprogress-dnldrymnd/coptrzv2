@@ -5939,3 +5939,45 @@ Container::make('post_meta', 'Page Settings')
                 )
             ),
     ));
+
+/*-----------------------------------------------------------------------------------*/
+/* Before Footer
+/*-----------------------------------------------------------------------------------*/
+if (is_admin()) {
+
+    Container::make('post_meta', 'Before Footer')
+        ->where('post_type', '=', 'page')
+        ->or_where('post_type', '=', 'guides')
+        ->or_where('post_type', '=', 'casestudies')
+        ->set_context('side')
+        ->add_fields(array(
+            Field::make('select', 'container_width', 'Container Width')
+                ->set_options(
+                    array(
+                        '' => 'Default',
+                        'full-width'      => 'Full Width',
+                        'large-container'      => 'Large Container',
+                        'medium-container'      => 'Medium Container',
+                        'small-container'      => 'Small Container',
+                    )
+                ),
+        ));
+
+    $args = array(
+        'numberposts' => -1,
+        'post_type' => 'layouts',
+        'fields' => 'ids',
+        'orderby' => 'menu_order',
+        'order' => 'ASC',
+        'meta_query' => array(
+            array(
+                'key' => '_display_location',
+                'value' => 'before_footer',
+            ),
+        ),
+    );
+    $layouts = get_posts($args);
+    foreach ($layouts as $layout) {
+        do_shortcode("[layouts id='$layout']");
+    }
+}
