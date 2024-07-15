@@ -17,8 +17,10 @@ $args = array(
 );
 $layouts = get_posts($args);
 foreach ($layouts as $layout) {
-    echo do_shortcode("[layouts id='$layout']");
-    $layouts_global[] = $layout;
+    if (!in_array($layout, $hidden_layouts)) {
+        echo do_shortcode("[layouts id='$layout']");
+        $layouts_global[] = $layout;
+    }
 }
 $hide_footer = get__post_meta('hide_footer');
 if (!$hide_footer) {
