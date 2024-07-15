@@ -1169,6 +1169,9 @@ hr {
     header .header-inner {
         background: var(--bs-black);
     }
+    .mini-cart-wrapper #mini-cart-button .cart-number {
+        background-color: var(--bs-accent);
+    }
     .breadcrumbs {
         .text-white {
             color: var(--bs-black) !important;
