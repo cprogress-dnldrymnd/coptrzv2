@@ -847,7 +847,6 @@ function ___sections($id = 'sections', $post_id = '')
                             }
 
                             $taxonomy = $post_type . '_category';
-
                         } else {
                             $args['post_type'] = get_post_type();
                             $args['exclude'] = get_the_ID();
@@ -1671,7 +1670,7 @@ function ____columns_modules($items, $id, $html = '')
                         }
 
                         if ($column_style['align_items'] || $column_style['justify_content'] || $column_style['flex_direction']) {
-                            $classes[] = 'd-flex';
+                            $classes[] = 'd-flex flex-wrap';
                         }
                         break;
                     case 'text_color':
