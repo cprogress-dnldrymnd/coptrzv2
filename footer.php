@@ -1,6 +1,8 @@
 <?php
 $SVG = new SVG;
 global $layouts_global;
+$hidden_layouts = get__post_meta('hidden_layouts');
+var_dump($hidden_layouts);
 $args = array(
     'numberposts' => -1,
     'post_type' => 'layouts',
