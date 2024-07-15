@@ -12060,8 +12060,8 @@ section.product-main .summary.summary.summary .variations tr {
       border-radius: 5px;
       border: 1px solid var(--border-color); }
 
-.woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button,
-.woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button {
+.woocommerce-MyAccount-content .button.button.button,
+.woocommerce-cart-form__contents .button.button.button, .wc-proceed-to-checkout .button.button.button {
   padding: 15px 10px;
   line-height: 1;
   border-radius: 6px;
@@ -12069,10 +12069,10 @@ section.product-main .summary.summary.summary .variations tr {
   color: var(--bs-white);
   border-color: var(--bs-primary);
   font-weight: 600; }
-  .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:hover, .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:active, .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:focus,
-  .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button:hover,
-  .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button:active,
-  .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button:focus {
+  .woocommerce-MyAccount-content .button.button.button:hover, .woocommerce-MyAccount-content .button.button.button:active, .woocommerce-MyAccount-content .button.button.button:focus,
+  .woocommerce-cart-form__contents .button.button.button:hover,
+  .woocommerce-cart-form__contents .button.button.button:active,
+  .woocommerce-cart-form__contents .button.button.button:focus, .wc-proceed-to-checkout .button.button.button:hover, .wc-proceed-to-checkout .button.button.button:active, .wc-proceed-to-checkout .button.button.button:focus {
     background-color: var(--bs-accent);
     border-color: var(--bs-accent); }
 
@@ -12096,13 +12096,20 @@ section.product-main .summary.summary.summary .variations tr {
   border-radius: 6px; }
 
 .woocommerce-cart .woocommerce {
-  display: flex; }
+  display: flex;
+  margin-left: -2rem;
+  margin-left: -1rem; }
   .woocommerce-cart .woocommerce > * {
-    flex: 0 0 auto; }
+    flex: 0 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem; }
   .woocommerce-cart .woocommerce .woocommerce-cart-form {
     width: 60%; }
   .woocommerce-cart .woocommerce .cart-collaterals {
     width: 40%; }
+    .woocommerce-cart .woocommerce .cart-collaterals .cart_totals {
+      width: 100%;
+      float: none; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
