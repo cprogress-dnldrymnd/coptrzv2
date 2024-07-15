@@ -56,6 +56,11 @@ main {
             background-color: rgba(0, 0, 0, 0.2);
         }
     }
+    &.background-overlay-2 {
+        @include before {
+            background:  linear-gradient(180deg, #00000075 0%, #000000 100%) 0% 0% -box;
+        }
+    }
 }
 
 .background-image {

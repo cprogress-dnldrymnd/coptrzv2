@@ -10533,6 +10533,8 @@ hr {
   background-color: rgba(0, 0, 0, 0.85); }
 .background-overlay.background-overlay-lighter:before {
   background-color: rgba(0, 0, 0, 0.2); }
+.background-overlay.background-overlay-2:before {
+  background: linear-gradient(180deg, #00000075 0%, #000000 100%) 0% 0% box; }
 
 .background-image {
   margin-bottom: 0 !important;
