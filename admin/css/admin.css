@@ -117,4 +117,7 @@ body,
   .page-selector select {
     flex: 0 0 calc(100% - 170px); }
 
+.d-none {
+  display: none !important; }
+
 /*# sourceMappingURL=admin.css.map */
