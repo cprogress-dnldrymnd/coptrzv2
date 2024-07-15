@@ -110,13 +110,13 @@
                 </div>
                 <div class="result-box">
                     <h3>Your payback period</h3>
-                    <div class="result rounded-corner xs-padding text-center big-text text-white ">
+                    <div class="result rounded-corner xs-padding text-center big-text text-primary">
                         Approximately X months, X days
                     </div>
                 </div>
                 <div class="result-box">
                     <h3>ROI over 3 years</h3>
-                    <div class="result rounded-corner xs-padding text-center big-text text-white">
+                    <div class="result rounded-corner xs-padding text-center big-text text-primary">
                         245%
                     </div>
                 </div>
