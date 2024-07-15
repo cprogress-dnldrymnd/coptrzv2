@@ -12045,6 +12045,9 @@ section.product-main .summary.summary.summary .variations tr {
     font-size: 18px;
     font-weight: 600;
     line-height: 1.5; }
+    .shop_table.shop_table.shop_table.shop_table.woocommerce-cart-form__contents td.product-name a {
+      color: var(--bs-primary);
+      text-decoration: none; }
   .shop_table.shop_table.shop_table.shop_table.woocommerce-cart-form__contents td.product-thumbnail img {
     width: 100px;
     height: 100px;
