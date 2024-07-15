@@ -10,6 +10,7 @@ $args = array(
     'orderby' => 'menu_order',
     'order' => 'ASC',
     'meta_query' => array(
+        'relation' => 'AND',
         array(
             'key' => '_display_location',
             'value' => 'before_footer',
