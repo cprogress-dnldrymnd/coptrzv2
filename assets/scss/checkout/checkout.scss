@@ -18,6 +18,9 @@ body {
 }
 .checkout-section.checkout-section.checkout-section.checkout-section {
     font-family: "Poppins";
+    .container {
+        max-width: 1700px;
+    }
     .nav-box {
         ul {
             li {
