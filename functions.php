@@ -78,7 +78,6 @@ function enqueue_scripts()
 	wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js');
 	wp_enqueue_script('bootstrap', vendor_dir . '/twbs/bootstrap/dist/js/bootstrap.min.js');
 
-	wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
 	wp_enqueue_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
 
 	if (is_product()) {
@@ -106,6 +105,8 @@ function enqueue_scripts()
 
 		wp_localize_script('checkout-js', 'countries', $countries);
 		wp_enqueue_script('checkout-js');
+	} else {
+		wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
 	}
 }
 
