@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <section class="not-found text-center md-padding-top md-padding-bottom text-white bg-primary">
     <div class="container content-margin d-flex align-items-center justify-content-center">
-        <div class="inner">
+        <div class="inner content-margin">
             <h1>404 - Page Not Found</h1>
             <div class="description-box">
                 <p>
