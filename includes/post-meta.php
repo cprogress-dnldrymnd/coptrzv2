@@ -5925,8 +5925,8 @@ Container::make('post_meta', 'Popup Settings')
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', 'Page Settings')
     ->where('post_type', '=', 'page')
-    ->set_context('side')
     ->or_where('post_template', '!=', 'templates/page-modules.php')
+    ->set_context('side')
     ->add_fields(array(
         Field::make('select', 'container_width', 'Container Width')
             ->set_options(
