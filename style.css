@@ -12001,10 +12001,6 @@ section.product-main .summary.summary.summary .variations tr {
     -ms-transition: 500ms;
     -o-transition: 500ms;
     transition: 500ms; }
-    .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a:hover, .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a:active, .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a:focus {
-      background-color: var(--bs-accent);
-      color: var(--bs-white);
-      border-color: var(--bs-white); }
   .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li:not(.is-active) {
     opacity: 0.35; }
 

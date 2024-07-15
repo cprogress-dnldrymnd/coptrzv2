@@ -696,9 +696,7 @@ section.product-main {
                 @include transition(500ms);
 
                 @include on-event {
-                    background-color: var(--bs-accent);
-                    color: var(--bs-white);
-                    border-color: var(--bs-white);
+                    @include transform(translateY(5px));
                 }
             }
             &:not(.is-active) {
