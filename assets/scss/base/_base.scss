@@ -1158,3 +1158,8 @@ hr {
 .header-spacer {
     height: 82.5px;
 }
+.hero-hidden {
+    header .header-inner {
+        background: var(--bs-black);
+    }
+}
