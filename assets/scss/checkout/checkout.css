@@ -10507,7 +10507,8 @@ body {
             margin: 0;
             font-weight: 600;
             width: 44px;
-            border-radius: 0; }
+            border-radius: 0;
+            border: none !important; }
           .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent .qty,
           .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .quantity-parent button {
             border: none;
