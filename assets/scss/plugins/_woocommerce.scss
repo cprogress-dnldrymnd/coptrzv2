@@ -714,3 +714,24 @@ section.product-main {
         }
     }
 }
+
+.shop_table.shop_table.shop_table {
+    .button.button.button {
+        padding: 5px 10px;
+        line-height: 1;
+        border-radius: 6px;
+        background-color: var(--bs-primary);
+        color: var(--bs-white);
+        border-color: var(--bs-primary);
+        font-weight: 600;
+    }
+    &.my_account_orders {
+        border: none;
+        th,td {
+            border: none;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+    }
+}
+
