@@ -1116,7 +1116,7 @@ function __section_fields($name = 'sections')
                             ->set_options(
                                 array(
                                     ''      => 'Default Query',
-                                    'post_type'      => 'Select Post Type',
+                                    'post_type'      => 'Post Type',
                                 )
                             ),
                         Field::make('complex', 'related_post', 'Related Posts')
