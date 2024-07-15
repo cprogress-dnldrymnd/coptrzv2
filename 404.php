@@ -1,4 +1,17 @@
 <?php get_header(); ?>
+
+<?php
+$args = array(
+    'meta_query' => array(
+        array(
+            'key'   => '_display_location',
+            'value' => '404',
+        ),
+    )
+);
+echo do_shortcode(__layouts($args));
+?>
+
 <section class="not-found text-center md-padding-top md-padding-bottom text-white bg-primary  d-flex align-items-center justify-content-center">
     <?= __background(271282); ?>
     <div class="container content-margin">
@@ -19,4 +32,5 @@
         </div>
     </div>
 </section>
+
 <?php get_footer(); ?>
