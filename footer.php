@@ -24,9 +24,8 @@ foreach ($layouts as $layout) {
     $do_not_display_on = get__post_meta_by_id($layout, 'do_not_display_on');
     if (is_404() && $do_not_display_on != '404') {
         echo do_shortcode("[layouts id='$layout']");
+        $layouts_global[] = $layout;
     }
-
-    $layouts_global[] = $layout;
 }
 $hide_footer = get__post_meta('hide_footer');
 if (!$hide_footer) {
