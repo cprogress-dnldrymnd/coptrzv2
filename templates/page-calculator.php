@@ -19,7 +19,7 @@
                 </div>
             </div>
             <hr>
-            <div class="inner">
+            <div class="inner px-5">
                 <div class="row form-groups">
                     <div class="col-lg-6">
                         <label for="" class="mb-2 fw-medium">Initial Investment</label>
