@@ -400,7 +400,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $styles_section[]  = '--background-overlay-custom: ' . $section_style['background_overlay_custom'];
                             $background_image_class[] = 'custom-overlay';
                         } else {
-                            $classes[] = 'background-overlay';
+                            $classes[] = "background-overlay $background_overlay_type";
                         }
 
                         break;
