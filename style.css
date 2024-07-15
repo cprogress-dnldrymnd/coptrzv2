@@ -12101,8 +12101,8 @@ section.product-main .summary.summary.summary .variations tr {
     flex: 0 0 auto; }
   .woocommerce-cart .woocommerce .woocommerce-cart-form {
     width: 60%; }
-  .woocommerce-cart .woocommerce .woocommerce-cart-form {
-    width: 60%; }
+  .woocommerce-cart .woocommerce .cart-collaterals {
+    width: 40%; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
