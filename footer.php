@@ -6,6 +6,7 @@ $args = array(
     'numberposts' => -1,
     'post_type' => 'layouts',
     'fields' => 'ids',
+    'exclude' => $hidden_layouts,
     'orderby' => 'menu_order',
     'order' => 'ASC',
     'meta_query' => array(
@@ -17,10 +18,8 @@ $args = array(
 );
 $layouts = get_posts($args);
 foreach ($layouts as $layout) {
-    if (!in_array($layout, $hidden_layouts)) {
-        echo do_shortcode("[layouts id='$layout']");
-        $layouts_global[] = $layout;
-    }
+    echo do_shortcode("[layouts id='$layout']");
+    $layouts_global[] = $layout;
 }
 $hide_footer = get__post_meta('hide_footer');
 if (!$hide_footer) {
