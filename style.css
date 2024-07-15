@@ -12062,8 +12062,9 @@ section.product-main .summary.summary.summary .variations tr {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; }
-  .woocommerce-account.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation {
-    width: 25%; }
+  @media (min-width: 768px) {
+    .woocommerce-account.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation {
+      width: 25%; } }
   .woocommerce-account.woocommerce-account .woocommerce:before, .woocommerce-account.woocommerce-account .woocommerce:after {
     content: none; }
 

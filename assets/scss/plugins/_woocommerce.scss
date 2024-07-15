@@ -761,10 +761,11 @@ section.product-main {
         flex-wrap: wrap;
         justify-content: space-between;
         .woocommerce-MyAccount-navigation {
-            width: 25%;
+            @media (min-width: 769px) {
+                width: 25%;
+            }
         }
         .woocommerce-MyAccount-content {
-
         }
         @include before-after {
             content: none;
