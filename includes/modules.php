@@ -175,7 +175,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero .= "</section>";
         return $hero;
     } else {
-        return "<div class='header-spacer'></div>";
+        return "<div class='header-spacer'></div>".do_shortcode("[breadcrumbs id='$id']");;
     }
 }
 function ___hero_product_taxonomy()
