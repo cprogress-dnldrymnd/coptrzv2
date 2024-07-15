@@ -10539,7 +10539,7 @@ body {
     opacity: 1; }
   .checkout-section.checkout-section.checkout-section.checkout-section .button {
     padding: 20px 30px;
-    border-radius: 50px;
+    border-radius: 10px;
     background-color: var(--bs-primary);
     color: var(--bs-white); }
     .checkout-section.checkout-section.checkout-section.checkout-section .button:hover, .checkout-section.checkout-section.checkout-section.checkout-section .button:active, .checkout-section.checkout-section.checkout-section.checkout-section .button:focus {
