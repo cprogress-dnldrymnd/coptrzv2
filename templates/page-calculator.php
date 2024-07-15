@@ -101,9 +101,9 @@
                 </div>
             </div>
             <div class="inner your-result sm-padding bg-primary rounded-corner text-white">
-                <h2 class="mb-5">Your Results</h2>
-                <hr class="mb-5">
-                <div class="description-box mb-4 ">
+                <h2 class="mb-4">Your Results</h2>
+                <hr class="mb-4">
+                <div class="description-box mb-5 ">
                     <p>
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
                     </p>
