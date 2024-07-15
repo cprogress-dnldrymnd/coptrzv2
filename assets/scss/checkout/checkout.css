@@ -9322,6 +9322,7 @@ textarea.form-control-lg {
   --bs-secondary: #0f0f0f;
   --bs-secondary-rgb: 15, 15, 15;
   --bs-light: #EFEFEF;
+  --bs-light-rgb: 239, 239,239;
   --bs-accent: #2da1ff;
   --red-color: #D64550;
   --border-color: #dbdbdb;
@@ -9983,34 +9984,34 @@ textarea.form-control-lg {
     margin-right: 8rem; }
 
   .lg-padding-top {
-    padding-top: 7rem; }
+    padding-top: 6.5rem; }
 
   .lg-padding-bottom {
-    padding-bottom: 7rem; }
+    padding-bottom: 6.5rem; }
 
   .lg-padding-left {
-    padding-left: 7rem; }
+    padding-left: 6.5rem; }
 
   .lg-padding-right {
-    padding-right: 7rem; }
+    padding-right: 6.5rem; }
 
   .lg-padding {
-    padding: 7rem; }
+    padding: 6.5rem; }
 
   .lg-margin {
-    margin: 7rem; }
+    margin: 6.5rem; }
 
   .lg-margin-top {
-    margin-top: 7rem; }
+    margin-top: 6.5rem; }
 
   .lg-margin-bottom {
-    margin-bottom: 7rem; }
+    margin-bottom: 6.5rem; }
 
   .lg-margin-left {
-    margin-left: 7rem; }
+    margin-left: 6.5rem; }
 
   .lg-margin-right {
-    margin-right: 7rem; }
+    margin-right: 6.5rem; }
 
   .md-padding-top {
     padding-top: 4rem; }
@@ -10133,64 +10134,64 @@ textarea.form-control-lg {
     margin-right: 10rem; }
 
   .lg-padding-top {
-    padding-top: 7rem; }
+    padding-top: 5rem; }
 
   .lg-padding-bottom {
-    padding-bottom: 7rem; }
+    padding-bottom: 5rem; }
 
   .lg-padding-left {
-    padding-left: 7rem; }
+    padding-left: 5rem; }
 
   .lg-padding-right {
-    padding-right: 7rem; }
+    padding-right: 5rem; }
 
   .lg-padding {
-    padding: 7rem; }
+    padding: 5rem; }
 
   .lg-margin {
-    margin: 7rem; }
+    margin: 5rem; }
 
   .lg-margin-top {
-    margin-top: 7rem; }
+    margin-top: 5rem; }
 
   .lg-margin-bottom {
-    margin-bottom: 7rem; }
+    margin-bottom: 5rem; }
 
   .lg-margin-left {
-    margin-left: 7rem; }
+    margin-left: 5rem; }
 
   .lg-margin-right {
-    margin-right: 7rem; }
+    margin-right: 5rem; }
 
   .md-padding-top {
-    padding-top: 4rem; }
+    padding-top: 3rem; }
 
   .md-padding-bottom {
-    padding-bottom: 4rem; }
+    padding-bottom: 3rem; }
 
   .md-padding-left {
-    padding-left: 4rem; }
+    padding-left: 3rem; }
 
   .md-padding-right {
-    padding-right: 4rem; }
+    padding-right: 3rem; }
 
   .md-padding {
-    padding: 4rem; }
+    padding: 3rem; }
 
   .md-margin {
-    margin: 4rem; }
+    margin: 3rem; }
 
   .md-margin-top {
-    margin-top: 4rem; }
+    margin-top: 3rem; }
 
   .md-margin-bottom {
-    margin-bottom: 4rem; }
+    margin-bottom: 3rem; }
 
   .md-margin-left {
-    margin-left: 4rem; }
+    margin-left: 3rem; }
 
   .md-margin-right {
-    margin-right: 4rem; }
+    margin-right: 3rem; }
 
   .sm-padding-top {
     padding-top: 2rem; }
@@ -10286,11 +10287,50 @@ textarea.form-control-lg {
   --bs-gutter-x: 4rem;
   --bs-gutter-y: 4rem; }
 
+.g-20px {
+  --bs-gutter-x: 20px;
+  --bs-gutter-y: 20px; }
+  @media screen and (max-width: 575px) {
+    .g-20px {
+      --bs-gutter-x: 10px;
+      --bs-gutter-y: 10px; } }
+
+.gx-20px {
+  --bs-gutter-x: 20px; }
+
+.gy-20px {
+  --bs-gutter-xy: 20px; }
+
+@media screen and (max-width: 767px) {
+  .g-xs-10px {
+    --bs-gutter-x: 10px;
+    --bs-gutter-y: 10px; } }
+
+@media screen and (max-width: 767px) {
+  .container,
+  .container-fluid,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    --bs-gutter-x: 20px; } }
+
 .header-padding {
   padding-top: 80.75px; }
 
 @media screen and (max-width: 575px) {
   section.mx-20px {
+    margin-left: 10px;
+    margin-right: 10px; } }
+
+@media screen and (max-width: 575px) {
+  .swiper-full-width .mx-20px {
     margin-left: 10px;
     margin-right: 10px; } }
 
@@ -10319,12 +10359,15 @@ body {
   @media screen and (max-width: 767px) {
     .big-text {
       font-size: 1.5rem; } }
+  @media screen and (max-width: 575px) {
+    .big-text {
+      font-size: 1.25rem; } }
 
 .smaller-text {
   font-size: 13px; }
 
 .large-heading {
-  font-size: 2rem; }
+  font-size: 2.25rem; }
   @media (min-width: 992px) {
     .large-heading {
       font-size: 2.5rem; } }
@@ -10367,6 +10410,9 @@ h4, .h4 {
   @media (min-width: 1200px) {
     h4, .h4 {
       font-size: 1.5625rem; } }
+  @media screen and (max-width: 767px) {
+    h4, .h4 {
+      font-size: 1.125rem; } }
 
 a {
   color: var(--bs-accent); }
@@ -10389,6 +10435,9 @@ p:last-child {
 
 .medium-text {
   font-size: 1.125rem; }
+  @media screen and (max-width: 767px) {
+    .medium-text {
+      font-size: 0.9375rem; } }
 
 .large-text {
   font-size: 1.25rem; }
