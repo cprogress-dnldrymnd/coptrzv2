@@ -29,16 +29,29 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <label for="" class="mb-2 fw-medium">Initial Investment</label>
+                        <label for="" class="mb-2 fw-medium">Annual Revenue from Drone Survey Work</label>
                         <div class="input-box d-flex rounded-corner border-default">
                             <div class="icon d-flex align-items-center justify-content-center fw-medium">$</div>
                             <input type="text">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <label for="" class="mb-2 fw-medium">Initial Investment</label>
+                        <label for="" class="mb-2 fw-medium">Annual Operating Costs</label>
                         <div class="input-box d-flex rounded-corner border-default">
                             <div class="icon d-flex align-items-center justify-content-center fw-medium">$</div>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="" class="mb-2 fw-medium">Average Savings per Day Using a Drone</label>
+                        <div class="input-box d-flex rounded-corner border-default">
+                            <div class="icon d-flex align-items-center justify-content-center fw-medium">$</div>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="" class="mb-2 fw-medium">Average Savings per Day Using a Drone</label>
+                        <div class="input-box d-flex rounded-corner border-default">
                             <input type="text">
                         </div>
                     </div>
