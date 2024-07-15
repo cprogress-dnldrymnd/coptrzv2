@@ -1,3 +1,5 @@
 .sass-cache/*
 .vscode/*
-.admin/css/sass-cache/*
+.admin/css/.sass-cache/*
+admin/css/.sass-cache/*
+assets/scss/checkout/.sass-cache/*
