@@ -9,8 +9,8 @@
     echo ___hero_modules();
     ?>
     <section class="calculator medium-container lg-padding-top md-padding-bottom">
-        <div class="container">
-            <div class="inner px-5">
+        <div class="container content-margin">
+            <div class="inner px-5 content-margin">
                 <h1>Project Information</h1>
                 <div class="description-box">
                     <p>
@@ -61,7 +61,7 @@
     </section>
     <section class="background-gradient-default medium-container md-padding-top md-padding-bottom">
         <div class="container">
-            <div class="inner px-5">
+            <div class="inner px-5 content-margin">
                 <h3>Who should we send your report to?</h3>
                 <div class="description-box">
                     <p>
