@@ -11258,7 +11258,8 @@ small, .small {
 
 hr {
   width: 100%;
-  color: var(--border-color); }
+  color: var(--border-color);
+  margin-top: 0; }
 
 .single-capabilities .hero .description-box {
   max-width: 1140px; }
