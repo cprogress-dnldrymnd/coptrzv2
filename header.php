@@ -32,4 +32,9 @@
 		</div>
 	</header>
 	<?php wp_body_open(); ?>
-	<main class="mt-20px">
+	<?php
+	if (!is_404()) {
+		$class = 'mt-20px';
+	}
+	?>
+	<main class="$class">
