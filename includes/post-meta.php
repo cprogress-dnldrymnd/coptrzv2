@@ -5945,24 +5945,6 @@ Container::make('post_meta', 'Page Settings')
 /*-----------------------------------------------------------------------------------*/
 if (is_admin()) {
 
-    Container::make('post_meta', 'Before Footer')
-        ->where('post_type', '=', 'page')
-        ->or_where('post_type', '=', 'guides')
-        ->or_where('post_type', '=', 'casestudies')
-        ->set_context('side')
-        ->add_fields(array(
-            Field::make('select', 'container_width', 'Container Width')
-                ->set_options(
-                    array(
-                        '' => 'Default',
-                        'full-width'      => 'Full Width',
-                        'large-container'      => 'Large Container',
-                        'medium-container'      => 'Medium Container',
-                        'small-container'      => 'Small Container',
-                    )
-                ),
-        ));
-
     $args = array(
         'numberposts' => -1,
         'post_type' => 'layouts',
@@ -5976,8 +5958,18 @@ if (is_admin()) {
             ),
         ),
     );
+    $before_footer_fields = array();
+
     $layouts = get_posts($args);
     foreach ($layouts as $layout) {
-        do_shortcode("[layouts id='$layout']");
+        $title = get_the_title();
+        $before_footer_fields[] = Field::make("checkbox", "hide_layout_$layout", "Hide $title");
     }
+
+    Container::make('post_meta', 'Before Footer')
+        ->where('post_type', '=', 'page')
+        ->or_where('post_type', '=', 'guides')
+        ->or_where('post_type', '=', 'casestudies')
+        ->set_context('side')
+        ->add_fields($before_footer_fields);
 }
