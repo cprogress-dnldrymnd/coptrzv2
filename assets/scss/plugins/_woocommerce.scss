@@ -758,6 +758,7 @@ section.product-main {
 .woocommerce-account.woocommerce-account {
     .woocommerce {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         .woocommerce-MyAccount-navigation {
             width: 25%;

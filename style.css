@@ -12059,6 +12059,7 @@ section.product-main .summary.summary.summary .variations tr {
 
 .woocommerce-account.woocommerce-account .woocommerce {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between; }
   .woocommerce-account.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation {
     width: 25%; }
