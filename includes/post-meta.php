@@ -5930,6 +5930,7 @@ Container::make('post_meta', 'Page Settings')
             ->set_options(
                 array(
                     '' => 'Default',
+                    'full-width'      => 'Full Width',
                     'large-container'      => 'Large Container',
                     'medium-container'      => 'Medium Container',
                     'small-container'      => 'Small Container',
