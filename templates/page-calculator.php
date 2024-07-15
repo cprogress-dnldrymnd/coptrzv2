@@ -10,11 +10,13 @@
     ?>
     <section class="calculator medium-container lg-padding-top lg-padding-bottom">
         <div class="container">
-            <h1>Project Information</h1>
-            <div class="description-box">
-                <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum
-                </p>
+            <div class="inner px-5">
+                <h1>Project Information</h1>
+                <div class="description-box">
+                    <p>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum
+                    </p>
+                </div>
             </div>
             <hr>
         </div>
