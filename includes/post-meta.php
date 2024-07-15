@@ -5624,7 +5624,6 @@ Container::make('post_meta', __('Conditional Display'))
             ->add_options(array(
                 'section' => __('Section'),
                 'archive' => __('Archive'),
-                'product_cat' => __('Product Category'),
                 'after_header' => __('After Header'),
                 'before_footer' => __('Before Footer'),
                 '404' => __('404'),
