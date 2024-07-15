@@ -1451,7 +1451,7 @@ function ____columns_modules($items, $id, $html = '')
                     }
 
                     if ($column_style['align_items'] || $column_style['justify_content'] || $column_style['flex_direction']) {
-                        $classes[] = 'd-flex';
+                        $classes[] = 'd-flex flex-wrap';
                     }
                     break;
                 case 'text_color':
