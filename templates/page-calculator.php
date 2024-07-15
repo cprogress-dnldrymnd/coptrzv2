@@ -19,6 +19,17 @@
                 </div>
             </div>
             <hr>
+            <div class="inner">
+                <div class="row form-groups">
+                    <div class="col-lg-6">
+                        <label for="" class="mb-2">Initial Investment</label>
+                        <div class="input-box d-flex rounded-corner">
+                            <div class="currency">$</div>
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
