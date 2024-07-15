@@ -12042,7 +12042,7 @@ section.product-main .summary.summary.summary .variations tr {
     .shop_table.shop_table.shop_table.shop_table.my_account_orders td {
       font-size: 15px; }
 
-.woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button {
+.woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button, .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button {
   padding: 15px 10px;
   line-height: 1;
   border-radius: 6px;
@@ -12050,7 +12050,7 @@ section.product-main .summary.summary.summary .variations tr {
   color: var(--bs-white);
   border-color: var(--bs-primary);
   font-weight: 600; }
-  .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:hover, .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:active, .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:focus {
+  .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:hover, .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:active, .woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content .button.button.button:focus, .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button:hover, .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button:active, .woocommerce-cart-form__contents.woocommerce-cart-form__contents.woocommerce-cart-form__contents .button.button.button:focus {
     background-color: var(--bs-accent);
     border-color: var(--bs-accent); }
 
