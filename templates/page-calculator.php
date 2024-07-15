@@ -22,9 +22,9 @@
             <div class="inner">
                 <div class="row form-groups">
                     <div class="col-lg-6">
-                        <label for="" class="mb-2">Initial Investment</label>
-                        <div class="input-box d-flex rounded-corner">
-                            <div class="currency">$</div>
+                        <label for="" class="mb-2 fw-medium">Initial Investment</label>
+                        <div class="input-box d-flex rounded-corner border-default">
+                            <div class="icon d-flex align-items-center justify-content-center fw-medium">$</div>
                             <input type="text">
                         </div>
                     </div>

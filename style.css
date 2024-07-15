@@ -11409,6 +11409,15 @@ hr {
 .hero-hidden .breadcrumbs .text-white {
   color: var(--bs-black) !important; }
 
+.input-box.input-box .icon {
+  background-color: var(--border-color);
+  width: 60px;
+  height: 60px;
+  font-size: 17px; }
+.input-box.input-box input {
+  border: none;
+  border-radius: none; }
+
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/
