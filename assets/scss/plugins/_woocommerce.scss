@@ -748,5 +748,9 @@ section.product-main {
         color: var(--bs-white);
         border-color: var(--bs-primary);
         font-weight: 600;
+        @include on-event {
+            background-color: var(--bs-accent);
+            border-color: var(--bs-accent);
+        }
     }
 }
