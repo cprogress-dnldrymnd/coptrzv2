@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div class="inner your-result sm-padding bg-primary rounded-corner text-white">
+            <div class="inner your-result sm-padding bg-primary rounded-corner text-white md-margin-top">
                 <h2 class="mb-4">Your Results</h2>
                 <hr class="mb-4">
                 <div class="description-box mb-5 fw-light small-text">
