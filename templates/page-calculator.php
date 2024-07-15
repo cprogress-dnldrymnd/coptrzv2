@@ -108,7 +108,7 @@
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
                     </p>
                 </div>
-                <div class="result-box mb-4">
+                <div class="result-box mb-5">
                     <h3>Your payback period</h3>
                     <div class="result rounded-corner xs-padding text-center big-text text-primary">
                         Approximately X months, X days
