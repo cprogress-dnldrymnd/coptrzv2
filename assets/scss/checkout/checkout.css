@@ -10450,6 +10450,8 @@ body {
 
 .checkout-section.checkout-section.checkout-section.checkout-section {
   font-family: "Poppins"; }
+  .checkout-section.checkout-section.checkout-section.checkout-section .container {
+    max-width: 1500px; }
   .checkout-section.checkout-section.checkout-section.checkout-section .nav-box ul li {
     display: flex;
     align-items: center; }
