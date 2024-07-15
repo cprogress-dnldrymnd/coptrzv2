@@ -846,7 +846,6 @@ function ___sections($id = 'sections', $post_id = '')
                                 $posts[] = $post['id'];
                             }
 
-                            $taxonomy = $post_type . '_category';
 
                         } else {
                             $args['post_type'] = get_post_type();
