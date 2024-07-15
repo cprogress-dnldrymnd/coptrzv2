@@ -395,6 +395,10 @@ class Shortcodes
                 if ($button_text) {
                     $data['button_text'] = $button_text;
                 }
+                $html .= "<pre>";
+
+                $html .= print_r($data);
+                $html .= "</pre>";
 
                 $html .= __post_box($data);
             }
