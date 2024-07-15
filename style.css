@@ -12161,43 +12161,43 @@ section.product-main .summary.summary.summary .variations tr {
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
 /*-----------------------------------------------------------------------------------*/
-header {
+.header {
   position: absolute;
   left: 0;
   top: 20px;
   right: 0;
   z-index: 999999; }
-  header .header-inner {
+  .header .header-inner {
     padding: 10px 20px;
     background-color: rgba(0, 0, 0, 0);
     backdrop-filter: blur(30px) brightness(115%); }
     @media screen and (max-width: 991px) {
-      header .header-inner {
+      .header .header-inner {
         padding: 20px 15px; } }
     @media screen and (max-width: 575px) {
-      header .header-inner {
+      .header .header-inner {
         padding: 15px;
         margin-top: 10px; } }
-  header .navbar.navbar.navbar .nav-item .nav-link {
+  .header .navbar.navbar.navbar .nav-item .nav-link {
     display: flex;
     align-items: center;
     padding: 10px 1vw;
     border-radius: 10px; }
     @media (min-width: 1200px) and (max-width: 1399px) {
-      header .navbar.navbar.navbar .nav-item .nav-link {
+      .header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 14px;
         padding: 0 5px; } }
     @media (min-width: 992px) and (max-width: 1199px) {
-      header .navbar.navbar.navbar .nav-item .nav-link {
+      .header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 13px;
         padding: 0 5px; } }
-    header .navbar.navbar.navbar .nav-item .nav-link:hover, header .navbar.navbar.navbar .nav-item .nav-link:active, header .navbar.navbar.navbar .nav-item .nav-link:focus {
+    .header .navbar.navbar.navbar .nav-item .nav-link:hover, .header .navbar.navbar.navbar .nav-item .nav-link:active, .header .navbar.navbar.navbar .nav-item .nav-link:focus {
       background-color: var(--bs-black);
       color: var(--bs-white) !important; }
-    header .navbar.navbar.navbar .nav-item .nav-link.active {
+    .header .navbar.navbar.navbar .nav-item .nav-link.active {
       background-color: var(--bs-black);
       color: var(--bs-white) !important; }
-  header .navbar.navbar.navbar .nav-item .submenu {
+  .header .navbar.navbar.navbar .nav-item .submenu {
     position: absolute;
     left: 50%;
     transform: translate(-50%, 20px);
@@ -12212,11 +12212,11 @@ header {
     -ms-transition: 500ms;
     -o-transition: 500ms;
     transition: 500ms; }
-    header .navbar.navbar.navbar .nav-item .submenu.active {
+    .header .navbar.navbar.navbar .nav-item .submenu.active {
       transform: translate(-50%, 0);
       visibility: visible;
       opacity: 1; }
-  header .navbar.navbar.navbar .nav-item .submenu2 {
+  .header .navbar.navbar.navbar .nav-item .submenu2 {
     position: absolute;
     left: 0;
     right: 0;
@@ -12231,82 +12231,82 @@ header {
     -ms-transition: 500ms;
     -o-transition: 500ms;
     transition: 500ms; }
-    header .navbar.navbar.navbar .nav-item .submenu2 .left-menu {
+    .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu {
       max-height: 500px;
       overflow: auto; }
-      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu > li {
+      .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu > li {
         margin-right: 10px; }
-      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar {
+      .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar {
         width: 7px;
         height: 7px; }
-      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-button {
+      .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-button {
         width: 0px;
         height: 0px; }
-      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-thumb {
+      .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-thumb {
         background: #000000;
         border: 0px none #ffffff;
         border-radius: 50px; }
-      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-thumb:hover {
+      .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-thumb:hover {
         background: #000000; }
-      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-thumb:active {
+      .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-thumb:active {
         background: #000000; }
-      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-track {
+      .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-track {
         background: #efefe0;
         border: 0px none #ffffff;
         border-radius: 50px; }
-      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-track:hover {
+      .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-track:hover {
         background: #efefef; }
-      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-track:active {
+      .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-track:active {
         background: #efefef; }
-      header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-corner {
+      .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu::-webkit-scrollbar-corner {
         background: transparent; }
-    header .navbar.navbar.navbar .nav-item .submenu2.active {
+    .header .navbar.navbar.navbar .nav-item .submenu2.active {
       visibility: visible;
       opacity: 1; }
-    header .navbar.navbar.navbar .nav-item .submenu2:before {
+    .header .navbar.navbar.navbar .nav-item .submenu2:before {
       content: "";
       border-bottom: 1px solid var(--border-color);
       display: block;
       margin-bottom: 10px; }
   @media (min-width: 992px) and (max-width: 1199px) {
-    header .site-logo svg {
+    .header .site-logo svg {
       height: 15px; } }
   @media screen and (max-width: 991px) {
-    header .site-logo svg {
+    .header .site-logo svg {
       height: 15px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
-    header .header-right {
+    .header .header-right {
       --bs-gutter-x: 15px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
-    header .header-right .button-box a {
+    .header .header-right .button-box a {
       padding: 0.625rem 1rem;
       font-size: 13px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
-    header .container {
+    .header .container {
       max-width: calc(100% - 50px); } }
   @media screen and (max-width: 575px) {
-    header .container {
+    .header .container {
       padding-left: 20px;
       padding-right: 20px; } }
-  header .menu-burger {
+  .header .menu-burger {
     border: none;
     width: 28px;
     background-color: transparent;
     height: 18px;
     padding: 0;
     position: relative; }
-    header .menu-burger span {
+    .header .menu-burger span {
       height: 2px;
       display: block;
       background-color: var(--bs-white);
       position: absolute;
       left: 0;
       width: 28px; }
-      header .menu-burger span:nth-child(1) {
+      .header .menu-burger span:nth-child(1) {
         top: 0; }
-      header .menu-burger span:nth-child(2) {
+      .header .menu-burger span:nth-child(2) {
         top: 8.5px; }
-      header .menu-burger span:nth-child(3) {
+      .header .menu-burger span:nth-child(3) {
         top: 17px; }
 
 @media screen and (min-width: 992px) {
