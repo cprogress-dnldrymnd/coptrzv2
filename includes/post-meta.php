@@ -5966,7 +5966,7 @@ if (is_admin()) {
         $before_footer_fields[] = Field::make("checkbox", "hide_layout_$layout", "$title");
     }
 
-    Container::make('post_meta', 'Hide Before Footer')
+    Container::make('post_meta', 'Hide Before Footer Layout')
         ->where('post_type', '=', 'page')
         ->or_where('post_type', '=', 'guides')
         ->or_where('post_type', '=', 'casestudies')
