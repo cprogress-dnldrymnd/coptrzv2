@@ -100,10 +100,10 @@
                     </div>
                 </div>
             </div>
-            <div class="inner your-result sm-padding bg-primary text-white rounded-corner">
-                <h2>Your Results</h2>
-                <hr class="text-white">
-                <div class="description-box">
+            <div class="inner your-result sm-padding bg-primary rounded-corner">
+                <h2 class="text-white mb-4">Your Results</h2>
+                <hr class="text-white mb-4">
+                <div class="description-box mb-4">
                     <p>
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
                     </p>
