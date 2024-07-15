@@ -1,5 +1,6 @@
 <?php get_header(); ?>
 <section class="not-found text-center md-padding-top md-padding-bottom text-white bg-primary  d-flex align-items-center justify-content-center">
+    <?= __background($image); ?>
     <div class="container content-margin">
         <div class="inner content-margin">
             <h1>404 - Page Not Found</h1>
