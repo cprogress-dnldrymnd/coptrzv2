@@ -11257,6 +11257,7 @@ small, .small {
     background: currentColor; }
 
 hr {
+  width: 100%;
   color: var(--border-color); }
 
 .single-capabilities .hero .description-box {
