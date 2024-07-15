@@ -1,3 +1,8 @@
 section.not-found {
     min-height: 100vh;
+    &.background-overlay {
+        @include before {
+            background: linear-gradient(180deg, #00000075 0%, #000000 100%) 0% 0%;
+        }
+    }
 }
