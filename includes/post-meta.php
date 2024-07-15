@@ -1121,18 +1121,18 @@ function __section_fields($name = 'sections')
                             ),
                         Field::make('complex', 'related_post', 'Related Posts')
                             ->add_fields('related_guides',  array(
-                                Field::make('hidden', 'post_type', '')->set_default_value('guides'),
-                                Field::make('hidden', 'taxonomy', '')->set_default_value('guides_category'),
+                                Field::make('hidden', 'label', '')->set_default_value('Guides'),
+                                Field::make('hidden', 'field_key', '')->set_default_value('related_guides'),
                                 Field::make('html', 'html')->set_html('<h3>This will display related guides. </h3>'),
                             ))
                             ->add_fields('related_casestudies',  array(
-                                Field::make('hidden', 'post_type', '')->set_default_value('casestudies'),
-                                Field::make('hidden', 'taxonomy', '')->set_default_value('casestudies_category'),
+                                Field::make('hidden', 'label', '')->set_default_value('Case Studies'),
+                                Field::make('hidden', 'field_key', '')->set_default_value('related_casestudies'),
                                 Field::make('html', 'html')->set_html('<h3>This will display related case studies </h3>'),
                             ))
                             ->add_fields('related_post',  array(
-                                Field::make('hidden', 'post_type', '')->set_default_value('post'),
-                                Field::make('hidden', 'taxonomy', '')->set_default_value('category'),
+                                Field::make('hidden', 'label', '')->set_default_value('Post'),
+                                Field::make('hidden', 'field_key', '')->set_default_value('related_post'),
                                 Field::make('html', 'html')->set_html('<h3>This will display related post </h3>'),
                             ))
                             ->set_conditional_logic(

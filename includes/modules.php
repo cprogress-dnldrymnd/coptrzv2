@@ -834,50 +834,35 @@ function ___sections($id = 'sections', $post_id = '')
                     case 'related_post':
 
                         $source = $items['source'];
-                        $related_posts = $items['related_post'];
 
                         if ($source == 'post_type') {
-                            foreach ($related_posts as $related_post) {
-                                $type = $related_post['_type'];
-                                switch ($type) {
-                                    case 'related_guides':
-                                        $post_type = 'guides';
-                                        break;
-                                    case 'related_guides':
-                                        $post_type = 'guides';
-                                        break;
-                                    case 'related_guides':
-                                        $post_type = 'guides';
-                                        break;
-                                }
-                            }
+                            $field_key = $items['related_post'][0]['field_key'];
+                            $name = $items['related_post'][0]['label'];
                         } else {
-                            $post_type = get_post_type();
-                        }
-                        $taxonomy = $post_type . '_category';
-                        $terms = get_the_terms(get_the_ID(), $taxonomy);
-                        $terms_arr = [];
-                        foreach ($terms as $term) {
-                            $terms_arr = $term->term_id;
-                        }
-                        $args = array(
-                            'post_type' => $taxonomy,
-                            'post_status' => 'publish',
-                            'numberposts' => 3,
-                            'orderby'        => 'rand',
-                            'fields' => 'ids',
-                            'exclude' => get_the_ID(),
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => $taxonomy,
-                                    'field'    => 'term_id',
-                                    'terms'    => $terms_arr
-                                )
-                            )
-                        );
-                        $posts = get_posts($args);
-                        $post_type_obj = get_post_type_object(get_post_type());
+                            $args['post_type'] = get_post_type();
+                            $args['exclude'] = get_the_ID();
+                            $taxonomy = get_post_type() . '_category';
+                            $terms = get_the_terms(get_the_ID(), $taxonomy);
+                            $terms_arr = [];
+                            foreach ($terms as $term) {
+                                $terms_arr = $term->term_id;
+                            }
+                            $args['tax_query'][] =  array(
+                                'taxonomy' => $taxonomy,
+                                'field'    => 'term_id',
+                                'terms'    => $terms_arr
+                            );
 
+                            $name = get_post_type_object(get_post_type())->labels->singular_name;
+                        }
+                        $args['post_status'] = 'publish';
+                        $args['numberposts'] = 3;
+                        $args['orderby'] = 'rand';
+                        $args['fields'] = 'ids';
+
+
+                        $posts = get_posts($args);
+                       
                         if ($posts) {
                             $html .= "<div class='row g-4 same-image-height row-global-post'>";
                             foreach ($posts as $post) {
@@ -886,7 +871,7 @@ function ___sections($id = 'sections', $post_id = '')
                                     'featured' => false,
                                     'col' => true,
                                     'taxonomy' => $taxonomy,
-                                    'button_text' => 'Read ' . $post_type_obj->labels->singular_name,
+                                    'button_text' => 'Read ' . $name,
                                     'elements' => array('category', 'image', 'title', 'excerpt', 'button')
                                 );
                                 $html .= __post_box($data);
