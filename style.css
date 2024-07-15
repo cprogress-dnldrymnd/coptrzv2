@@ -11994,6 +11994,9 @@ section.product-main .summary.summary.summary .variations tr {
     font-weight: 500; }
     .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a.is-active {
       opacity: 0.35; }
+    .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a:hover, .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a:active, .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a:focus {
+      background-color: var(--bs-accent);
+      color: var(--bs-white); }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
