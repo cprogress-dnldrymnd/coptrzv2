@@ -1112,7 +1112,31 @@ function __section_fields($name = 'sections')
 
                     ))
                     ->add_fields('related_post',  array(
-                        Field::make('html', 'html')->set_html('<h3>This will display related post base on current post type </h3>'),
+                        Field::make('select', 'source', __('Source'))
+                            ->set_options(
+                                array(
+                                    ''      => 'Default Query',
+                                    'post_type'      => 'Select Post Type',
+                                )
+                            ),
+                        Field::make('complex', 'related_post', 'Related Posts')
+                            ->add_fields('related_guides',  array(
+                                Field::make('html', 'html')->set_html('<h3>This will display related guides. </h3>'),
+                            ))
+                            ->add_fields('related_casestudies',  array(
+                                Field::make('html', 'html')->set_html('<h3>This will display related case studies </h3>'),
+                            ))
+                            ->add_fields('related_post',  array(
+                                Field::make('html', 'html')->set_html('<h3>This will display related post </h3>'),
+                            ))
+                            ->set_conditional_logic(
+                                array(
+                                    array(
+                                        'field' => 'source',
+                                        'value' => 'post_type',
+                                    )
+                                )
+                            ),
                     ))
                     ->add_fields('heading', array(
                         Field::make('html', 'html_1')->set_html('<label>Section Heading Options</label>')->set_classes('cb-label'),
