@@ -12089,12 +12089,14 @@ section.product-main .summary.summary.summary .variations tr {
   .woocommerce-account.woocommerce-account .woocommerce:before, .woocommerce-account.woocommerce-account .woocommerce:after {
     content: none; }
 
-.coupon.coupon input {
+.coupon.coupon.coupon.coupon input {
   max-width: 200px;
   width: 100%;
   height: 47px;
   border-radius: 6px; }
 
+.woocommerce-cart a.remove {
+  color: var(--bs-primary); }
 .woocommerce-cart .woocommerce {
   display: flex;
   flex-wrap: wrap;
