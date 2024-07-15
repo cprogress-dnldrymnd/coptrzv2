@@ -5943,36 +5943,33 @@ Container::make('post_meta', 'Page Settings')
 /*-----------------------------------------------------------------------------------*/
 /* Before Footer
 /*-----------------------------------------------------------------------------------*/
-if (is_admin()) {
-
-    $args = array(
-        'numberposts' => -1,
-        'post_type' => 'layouts',
-        'fields' => 'ids',
-        'orderby' => 'menu_order',
-        'order' => 'ASC',
-        'meta_query' => array(
-            array(
-                'key' => '_display_location',
-                'value' => 'before_footer',
-            ),
+$args = array(
+    'numberposts' => -1,
+    'post_type' => 'layouts',
+    'fields' => 'ids',
+    'orderby' => 'menu_order',
+    'order' => 'ASC',
+    'meta_query' => array(
+        array(
+            'key' => '_display_location',
+            'value' => 'before_footer',
         ),
-    );
-    $before_footer_fields = array();
+    ),
+);
+$before_footer_fields = array();
 
-    $layouts = get_posts($args);
-    foreach ($layouts as $layout) {
-        $title = get_the_title($layout);
-        $before_footer_options[$layout] = $title;
-    }
-
-    Container::make('post_meta', 'Hide Before Footer Layout')
-        ->where('post_type', '=', 'page')
-        ->or_where('post_type', '=', 'guides')
-        ->or_where('post_type', '=', 'casestudies')
-        ->set_context('side')
-        ->add_fields(array(
-            Field::make('set', 'hidden_layouts', __(''))
-                ->set_options($before_footer_options)
-        ));
+$layouts = get_posts($args);
+foreach ($layouts as $layout) {
+    $title = get_the_title($layout);
+    $before_footer_options[$layout] = $title;
 }
+
+Container::make('post_meta', 'Hide Before Footer Layout')
+    ->where('post_type', '=', 'page')
+    ->or_where('post_type', '=', 'guides')
+    ->or_where('post_type', '=', 'casestudies')
+    ->set_context('side')
+    ->add_fields(array(
+        Field::make('set', 'hidden_layouts', __(''))
+            ->set_options($before_footer_options)
+    ));
