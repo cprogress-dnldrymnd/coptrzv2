@@ -63,6 +63,7 @@ if (is_home()) {
     $has_featured = false;
     $has_pagination = false;
     $has_filter = false;
+    $class = "mb-50px";
     $archive_title = 'Industry Solutions';
     $data = array(
         'col' => true,
@@ -78,6 +79,7 @@ if (is_home()) {
     $has_featured = false;
     $has_filter = true;
     $archive_title = 'Blog';
+    $class = "mb-50px";
     $category = 'casestudies_category';
     $data = array(
         'col' => true,
@@ -92,6 +94,7 @@ if (is_home()) {
     $has_featured = false;
     $has_filter = true;
     $archive_title = 'Guides';
+    $class = "mb-50px";
     $category = 'guides_category';
     $data = array(
         'col' => true,
