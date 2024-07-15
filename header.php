@@ -37,4 +37,4 @@
 		$class = 'mt-20px';
 	}
 	?>
-	<main class="$class">
+	<main class="<?= $class ?>">
