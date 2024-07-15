@@ -5963,10 +5963,10 @@ if (is_admin()) {
     $layouts = get_posts($args);
     foreach ($layouts as $layout) {
         $title = get_the_title($layout);
-        $before_footer_fields[] = Field::make("checkbox", "hide_layout_$layout", "Hide $title");
+        $before_footer_fields[] = Field::make("checkbox", "hide_layout_$layout", "$title");
     }
 
-    Container::make('post_meta', 'Before Footer')
+    Container::make('post_meta', 'Hide Before Footer')
         ->where('post_type', '=', 'page')
         ->or_where('post_type', '=', 'guides')
         ->or_where('post_type', '=', 'casestudies')
