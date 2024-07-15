@@ -836,20 +836,23 @@ function ___sections($id = 'sections', $post_id = '')
                         $source = $items['source'];
                         $related_posts = $items['related_post'];
 
-                        if($source)
-                        foreach ($related_posts as $related_post) {
-                            $type = $related_post['_type'];
-                            switch ($type) {
-                                case 'related_guides':
-                                    $post_type = 'guides';
-                                    break;
-                                case 'related_guides':
-                                    $post_type = 'guides';
-                                    break;
-                                case 'related_guides':
-                                    $post_type = 'guides';
-                                    break;
+                        if ($source == 'post_type') {
+                            foreach ($related_posts as $related_post) {
+                                $type = $related_post['_type'];
+                                switch ($type) {
+                                    case 'related_guides':
+                                        $post_type = 'guides';
+                                        break;
+                                    case 'related_guides':
+                                        $post_type = 'guides';
+                                        break;
+                                    case 'related_guides':
+                                        $post_type = 'guides';
+                                        break;
+                                }
                             }
+                        } else {
+                            $post_type = get_post_type();
                         }
                         $taxonomy = $post_type . '_category';
                         $terms = get_the_terms(get_the_ID(), $taxonomy);
