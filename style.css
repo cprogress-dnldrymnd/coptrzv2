@@ -11982,6 +11982,19 @@ section.product-main .summary.summary.summary .variations tr {
     color: var(--bs-black);
     text-decoration: none; }
 
+.woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul {
+  list-style: none;
+  padding: 0; }
+  .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 25px;
+    text-decoration: none;
+    color: var(--bs-primary);
+    font-weight: 500; }
+    .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a.is-active {
+      opacity: 0.35; }
+
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
   border: 1px solid;
