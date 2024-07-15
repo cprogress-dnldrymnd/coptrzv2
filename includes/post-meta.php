@@ -4934,6 +4934,7 @@ function __section_fields($name = 'sections')
                                 ->set_options(
                                     array(
                                         'default'    => 'Default',
+                                        'background-overlay-2'    => 'background-overlay-2',
                                         'image'  => 'Image',
                                         'custom'  => 'Custom',
                                     )
