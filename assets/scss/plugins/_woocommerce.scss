@@ -754,3 +754,14 @@ section.product-main {
         }
     }
 }
+
+.woocommerce-account.woocommerce-account {
+    .woocommerce {
+        display: flex;
+        .woocommerce-MyAccount-navigation {
+        }
+        @include before-after {
+            content: none;
+        }
+    }
+}

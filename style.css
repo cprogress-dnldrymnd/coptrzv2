@@ -12057,6 +12057,11 @@ section.product-main .summary.summary.summary .variations tr {
     background-color: var(--bs-accent);
     border-color: var(--bs-accent); }
 
+.woocommerce-account .woocommerce {
+  display: flex; }
+  .woocommerce-account .woocommerce:before, .woocommerce-account .woocommerce:after {
+    content: none; }
+
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
   border: 1px solid;
