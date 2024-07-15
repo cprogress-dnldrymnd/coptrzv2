@@ -12,7 +12,7 @@
         <div class="container content-margin">
             <div class="inner px-5 content-margin">
                 <h1>Project Information</h1>
-                <div class="description-box">
+                <div class="description-box fw-light small-text">
                     <p>
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum
                     </p>
@@ -63,7 +63,7 @@
         <div class="container">
             <div class="inner px-5 content-margin">
                 <h3>Who should we send your report to?</h3>
-                <div class="description-box">
+                <div class="description-box fw-light small-text">
                     <p>
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum
                     </p>
@@ -103,7 +103,7 @@
             <div class="inner your-result sm-padding bg-primary rounded-corner text-white">
                 <h2 class="mb-4">Your Results</h2>
                 <hr class="mb-4">
-                <div class="description-box mb-5 ">
+                <div class="description-box mb-5 fw-light small-text">
                     <p>
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
                     </p>
