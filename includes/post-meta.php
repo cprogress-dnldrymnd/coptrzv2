@@ -5963,7 +5963,7 @@ if (is_admin()) {
     $layouts = get_posts($args);
     foreach ($layouts as $layout) {
         $title = get_the_title($layout);
-        $before_footer_fields[] = Field::make("checkbox", "hide_layout_$layout", "$title");
+        $before_footer_options[$layout] = $title;
     }
 
     Container::make('post_meta', 'Hide Before Footer Layout')
@@ -5971,5 +5971,8 @@ if (is_admin()) {
         ->or_where('post_type', '=', 'guides')
         ->or_where('post_type', '=', 'casestudies')
         ->set_context('side')
-        ->add_fields($before_footer_fields);
+        ->add_fields(array(
+            Field::make('set', 'hidden_layouts', __('Hidden Layouts'))
+                ->add_options($before_footer_options)
+        ));
 }
