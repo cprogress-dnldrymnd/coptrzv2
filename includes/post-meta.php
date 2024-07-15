@@ -5661,6 +5661,15 @@ Container::make('post_meta', __('Conditional Display'))
                     )
                 )
             ),
+        Field::make('select', 'do_not_display_on', __("Don't display on"))
+            ->add_options(array(
+                'post' => __('Blog Archive'),
+                'casestudies' => __('Case Studies Archive'),
+                'guides' => __('Guides Archive'),
+                'capabilities' => __('Capabilities Archive'),
+                'solutions' => __('Solutions Archive'),
+                '404' => __('404'),
+            )),
     ));
 
 /*-----------------------------------------------------------------------------------*/
