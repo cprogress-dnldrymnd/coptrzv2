@@ -115,11 +115,9 @@ function __social_fields()
 
     );
 }
-
 Container::make('theme_options', __('Theme Settings'))
     ->add_tab('General Settings', __general_settings_fields())
-    ->add_tab('Socials', __social_fields())
-    ->add_tab('404', __social_fields());
+    ->add_tab('Socials', __social_fields());
 
 Container::make('theme_options', __('Global Widgets'))
     ->add_tab('Latest From Coptrz', __latest_from_coptrz_fields())
@@ -5662,7 +5660,29 @@ Container::make('post_meta', __('Conditional Display'))
                     )
                 )
             ),
-       
+        Field::make('select', 'do_not_display_on', __("Don't display on"))
+            ->add_options(array(
+                '' => __('None'),
+                'post' => __('Blog Archive'),
+                'casestudies' => __('Case Studies Archive'),
+                'guides' => __('Guides Archive'),
+                'capabilities' => __('Capabilities Archive'),
+                'solutions' => __('Solutions Archive'),
+                '404' => __('404'),
+            ))
+            ->set_conditional_logic(
+                array(
+                    'relation' => 'OR',
+                    array(
+                        'field' => 'display_location',
+                        'value' => 'after_header',
+                    ),
+                    array(
+                        'field' => 'display_location',
+                        'value' => 'before_footer',
+                    )
+                )
+            ),
     ));
 
 /*-----------------------------------------------------------------------------------*/
