@@ -100,23 +100,23 @@
                     </div>
                 </div>
             </div>
-            <div class="inner your-result sm-padding bg-primary rounded-corner">
-                <h2 class="text-white mb-4">Your Results</h2>
-                <hr class="text-white mb-4">
-                <div class="description-box mb-4">
+            <div class="inner your-result sm-padding bg-primary rounded-corner text-white">
+                <h2 class="mb-5">Your Results</h2>
+                <hr class="mb-5">
+                <div class="description-box mb-4 ">
                     <p>
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
                     </p>
                 </div>
                 <div class="result-box">
                     <h3>Your payback period</h3>
-                    <div class="result rounded-corner xs-padding text-center big-text">
+                    <div class="result rounded-corner xs-padding text-center big-text text-white ">
                         Approximately X months, X days
                     </div>
                 </div>
                 <div class="result-box">
                     <h3>ROI over 3 years</h3>
-                    <div class="result rounded-corner xs-padding text-center big-text">
+                    <div class="result rounded-corner xs-padding text-center big-text text-white">
                         245%
                     </div>
                 </div>
