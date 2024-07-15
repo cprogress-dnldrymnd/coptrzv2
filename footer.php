@@ -27,9 +27,13 @@ foreach ($layouts as $layout) {
             echo do_shortcode("[layouts id='$layout']");
             $layouts_global[] = $layout;
         }
-    } else {
-        echo do_shortcode("[layouts id='$layout']");
-        $layouts_global[] = $layout;
+    } else if (is_post_type_archive()) {
+        $post_type = get_queried_object()->name;
+        echo $post_type;
+        if ($do_not_display_on != $post_type) {
+            echo do_shortcode("[layouts id='$layout']");
+            $layouts_global[] = $layout;
+        }
     }
 }
 $hide_footer = get__post_meta('hide_footer');
