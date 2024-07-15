@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <label for="" class="mb-2 fw-medium">Average Savings per Day Using a Drone</label>
+                        <label for="" class="mb-2 fw-medium">Number of Days Drone Will Be Used Per Year</label>
                         <div class="input-box d-flex rounded-corner border-default">
                             <input type="text">
                         </div>
