@@ -758,7 +758,12 @@ section.product-main {
 .woocommerce-account.woocommerce-account {
     .woocommerce {
         display: flex;
+        justify-content: space-between;
         .woocommerce-MyAccount-navigation {
+            width: 25%;
+        }
+        .woocommerce-MyAccount-content {
+
         }
         @include before-after {
             content: none;

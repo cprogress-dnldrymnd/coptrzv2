@@ -12058,7 +12058,10 @@ section.product-main .summary.summary.summary .variations tr {
     border-color: var(--bs-accent); }
 
 .woocommerce-account.woocommerce-account .woocommerce {
-  display: flex; }
+  display: flex;
+  justify-content: space-between; }
+  .woocommerce-account.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation {
+    width: 25%; }
   .woocommerce-account.woocommerce-account .woocommerce:before, .woocommerce-account.woocommerce-account .woocommerce:after {
     content: none; }
 
