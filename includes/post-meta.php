@@ -5962,7 +5962,7 @@ if (is_admin()) {
 
     $layouts = get_posts($args);
     foreach ($layouts as $layout) {
-        $title = get_the_title();
+        $title = get_the_title($layout);
         $before_footer_fields[] = Field::make("checkbox", "hide_layout_$layout", "Hide $title");
     }
 
