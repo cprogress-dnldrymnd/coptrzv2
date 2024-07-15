@@ -8,3 +8,4 @@ require_once('theme-widgets.php');
 require_once('svg.php');
 require_once('menus.php');
 require_once('woocommerce.php');
+require_once('checkout.php');
