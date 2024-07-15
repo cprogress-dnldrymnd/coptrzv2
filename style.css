@@ -12097,12 +12097,15 @@ section.product-main .summary.summary.summary .variations tr {
 
 .woocommerce-cart .woocommerce {
   display: flex;
+  flex-wrap: wrap;
   margin-left: -2rem;
-  margin-left: -1rem; }
+  margin-right: -1rem; }
   .woocommerce-cart .woocommerce > * {
     flex: 0 0 auto;
     padding-left: 2rem;
     padding-right: 2rem; }
+  .woocommerce-cart .woocommerce .woocommerce-notices-wrapper {
+    width: 100%; }
   .woocommerce-cart .woocommerce .woocommerce-cart-form {
     width: 60%; }
   .woocommerce-cart .woocommerce .cart-collaterals {

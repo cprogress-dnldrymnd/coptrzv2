@@ -813,12 +813,16 @@ section.product-main {
 .woocommerce-cart {
     .woocommerce {
         display: flex;
+        flex-wrap: wrap;
         margin-left: -2rem;
-        margin-left: -1rem;
+        margin-right: -1rem;
         > * {
             flex: 0 0 auto;
             padding-left: 2rem;
             padding-right: 2rem;
+        }
+        .woocommerce-notices-wrapper {
+            width: 100%;
         }
         .woocommerce-cart-form {
             width: 60%;
