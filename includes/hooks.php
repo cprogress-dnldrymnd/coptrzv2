@@ -294,3 +294,15 @@ function action_pre_get_posts($query)
     return;
 }
 add_action('pre_get_posts', 'action_pre_get_posts', 1);
+
+
+function action_body_class($classes)
+{
+    $hero_hidden = get__post_meta('hero_hidden');
+    if ($hero_hidden) {
+        $classes[] = 'hero-hidden';
+    }
+    return $classes;
+}
+
+add_filter('body_class', 'action_body_class');
