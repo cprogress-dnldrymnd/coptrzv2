@@ -698,6 +698,15 @@ section.product-main {
                 @include on-event {
                     @include transform(translateY(5px));
                 }
+                @include responsive(xs-sm) {
+                    font-size: 20px;
+                }
+                @include responsive(xs) {
+                    font-size: 18px;
+                }
+                @include responsive(mobile) {
+                    font-size: 15px;
+                }
             }
             &:not(.is-active) {
                 opacity: 0.35;
