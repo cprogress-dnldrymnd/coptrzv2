@@ -10494,7 +10494,9 @@ body {
           .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .product-image img {
             width: 100px;
             height: 100px;
-            object-fit: cover; }
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid var(--border-color); }
         .checkout-section.checkout-section.checkout-section.checkout-section .column-order .woocommerce-checkout-review-order-table tbody tr td.product-name .name {
           font-size: 18px;
           font-weight: 600;
