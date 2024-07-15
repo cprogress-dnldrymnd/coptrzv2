@@ -5670,7 +5670,20 @@ Container::make('post_meta', __('Conditional Display'))
                 'capabilities' => __('Capabilities Archive'),
                 'solutions' => __('Solutions Archive'),
                 '404' => __('404'),
-            )),
+            ))
+            ->set_conditional_logic(
+                array(
+                    'relation' => 'OR',
+                    array(
+                        'field' => 'display_location',
+                        'value' => 'after_header',
+                    ),
+                    array(
+                        'field' => 'display_location',
+                        'value' => 'before_footer',
+                    )
+                )
+            ),
     ));
 
 /*-----------------------------------------------------------------------------------*/
