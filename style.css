@@ -11416,7 +11416,8 @@ hr {
   font-size: 17px; }
 .input-box.input-box input {
   border: none;
-  border-radius: none; }
+  border-radius: none;
+  border-radius: 0; }
 
 .your-result .result-box .result {
   background-color: #E9F5FF; }
