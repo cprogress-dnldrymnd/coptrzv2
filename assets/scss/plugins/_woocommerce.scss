@@ -717,10 +717,11 @@ section.product-main {
 
 .shop_table.shop_table.shop_table.shop_table {
     font-size: 1rem;
-    .button.button.button {
-        padding: 5px 10px;
-    }
+   
     &.my_account_orders {
+        .button.button.button {
+            padding: 5px 10px;
+        }
         border: none;
         th,
         td {
@@ -738,8 +739,7 @@ section.product-main {
     }
 }
 
-.woocommerce.woocommerce.woocommerce,
-.shop_table.shop_table.shop_table {
+.woocommerce-MyAccount-content.woocommerce-MyAccount-content.woocommerce-MyAccount-content {
     .button.button.button {
         padding: 15px 10px;
         line-height: 1;
