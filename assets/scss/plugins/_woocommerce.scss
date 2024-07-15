@@ -394,7 +394,7 @@ section.product-main {
 .products {
     &.upsells.upsells.upsells {
         margin-top: 2rem;
-    
+
         > h2 {
             font-size: 22px;
             font-weight: 500;
@@ -677,11 +677,11 @@ section.product-main {
     }
 }
 
-
 .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation {
     ul {
         list-style: none;
         padding: 0;
+        border-top: 1px solid;
         li {
             a {
                 padding-top: 20px;
@@ -690,13 +690,18 @@ section.product-main {
                 text-decoration: none;
                 color: var(--bs-primary);
                 font-weight: 500;
-                &.is-active {
-                    opacity: 0.35;
-                }
+                border-bottom: 1px solid;
+                width: 100%;
+                @include transition(500ms);
+
                 @include on-event {
                     background-color: var(--bs-accent);
                     color: var(--bs-white);
+                    border-color: var(--bs-white);
                 }
+            }
+            &:not(.is-active) {
+                opacity: 0.35;
             }
         }
     }
