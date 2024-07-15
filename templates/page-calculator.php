@@ -18,7 +18,7 @@
                     </p>
                 </div>
             </div>
-            <hr>
+            <hr class="my-5">
             <div class="inner px-5">
                 <div class="row g-4 form-groups">
                     <div class="col-lg-6">
