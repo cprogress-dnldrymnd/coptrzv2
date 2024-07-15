@@ -21,6 +21,8 @@ $args = array(
 
 $layouts = get_posts($args);
 foreach ($layouts as $layout) {
+    $do_not_display_on = get__post_meta_by_id($layout, 'do_not_display_on');
+    echo $do_not_display_on;
     echo do_shortcode("[layouts id='$layout']");
     $layouts_global[] = $layout;
 }
