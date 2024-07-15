@@ -101,7 +101,7 @@ if (is_home()) {
         'featured' => false,
         'style' => 'style-1',
         'taxonomy' => $category,
-        'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+        'elements' => array('image', 'category', 'title', 'excerpt', 'button')
     );
 }
 echo do_shortcode(___hero_archive($key, $archive_title));
