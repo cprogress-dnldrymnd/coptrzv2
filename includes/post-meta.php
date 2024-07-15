@@ -5972,7 +5972,7 @@ if (is_admin()) {
         ->or_where('post_type', '=', 'casestudies')
         ->set_context('side')
         ->add_fields(array(
-            Field::make('set', 'hidden_layouts', __('Hidden Layouts'))
+            Field::make('set', 'hidden_layouts', __(''))
                 ->add_options($before_footer_options)
         ));
 }
