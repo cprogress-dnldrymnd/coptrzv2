@@ -832,16 +832,33 @@ function ___sections($id = 'sections', $post_id = '')
 
                         break;
                     case 'related_post':
-                        $taxonomy = get_post_type() . '_category';
 
+                        $source = $items['source'];
+                        $related_posts = $items['related_post'];
+
+                        if($source)
+                        foreach ($related_posts as $related_post) {
+                            $type = $related_post['_type'];
+                            switch ($type) {
+                                case 'related_guides':
+                                    $post_type = 'guides';
+                                    break;
+                                case 'related_guides':
+                                    $post_type = 'guides';
+                                    break;
+                                case 'related_guides':
+                                    $post_type = 'guides';
+                                    break;
+                            }
+                        }
+                        $taxonomy = $post_type . '_category';
                         $terms = get_the_terms(get_the_ID(), $taxonomy);
-
                         $terms_arr = [];
                         foreach ($terms as $term) {
                             $terms_arr = $term->term_id;
                         }
                         $args = array(
-                            'post_type' => get_post_type(),
+                            'post_type' => $taxonomy,
                             'post_status' => 'publish',
                             'numberposts' => 3,
                             'orderby'        => 'rand',

@@ -1136,7 +1136,7 @@ function __section_fields($name = 'sections')
                                         'value' => 'post_type',
                                     )
                                 )
-                            ),
+                            )->set_max(1)
                     ))
                     ->add_fields('heading', array(
                         Field::make('html', 'html_1')->set_html('<label>Section Heading Options</label>')->set_classes('cb-label'),
