@@ -5917,3 +5917,22 @@ Container::make('post_meta', 'Popup Settings')
 
         )
     );
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Default Page
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', 'Page Settings')
+    ->where('post_template', '=', 'page.php')
+    ->add_fields(
+        Field::make('select', 'container_width', 'Container Width')
+            ->set_options(
+                array(
+                    '' => 'Default',
+                    'large-container'      => 'Large Container',
+                    'medium-container'      => 'Medium Container',
+                    'small-container'      => 'Small Container',
+                )
+            ),
+    );
