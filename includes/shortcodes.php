@@ -386,7 +386,7 @@ class Shortcodes
                     $data['featured'] = false;
                     $data['background_class'] = $background;
                 }
-                if (get_post_type() == 'post') {
+                if (get_post_type($id) == 'post') {
                     $data['elements'] = array( 'category', 'image', 'date', 'title', 'button');
                     $data['taxonomy'] = 'category';
                 } else {
@@ -395,10 +395,6 @@ class Shortcodes
                 if ($button_text) {
                     $data['button_text'] = $button_text;
                 }
-                $html .= "<pre>";
-
-                $html .= print_r($data);
-                $html .= "</pre>";
 
                 $html .= __post_box($data);
             }
