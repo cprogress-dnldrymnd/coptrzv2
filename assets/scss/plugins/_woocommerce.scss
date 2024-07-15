@@ -801,3 +801,26 @@ section.product-main {
         }
     }
 }
+
+.coupon.coupon {
+    input {
+        max-width: 200px;
+        width: 100%;
+        height: 47px;
+        border-radius: 6px;
+    }
+}
+.woocommerce-cart {
+    .woocommerce {
+        display: flex;
+        > * {
+            flex: 0 0 auto;
+        }
+        .woocommerce-cart-form {
+            width: 60%;
+        }
+        .cart-collaterals {
+            width: 40%;
+        }
+    }
+}
