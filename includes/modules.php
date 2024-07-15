@@ -177,7 +177,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     } else {
         $html = "<div class='page-title-breadcrumbs'>";
         $html .= "<div class='header-spacer'></div>";
-        $html .= "<div class='container'>";
+        $html .= "<div class='container md-margin-top'>";
         $html .= do_shortcode("[breadcrumbs id='$id']");
         $html .= __heading(array(
             'heading' => get_the_title(),

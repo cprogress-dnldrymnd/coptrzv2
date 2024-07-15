@@ -11402,7 +11402,7 @@ hr {
 
 .hero-hidden header .header-inner {
   background: var(--bs-black); }
-.hero-hidden .breadcrumbs a {
+.hero-hidden .breadcrumbs .text-white {
   color: var(--bs-black) !important; }
 
 /*-----------------------------------------------------------------------------------*/

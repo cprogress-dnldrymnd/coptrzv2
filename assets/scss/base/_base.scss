@@ -575,7 +575,7 @@ small {
                     height: 1px;
                     width: 24px;
                     display: inline-block;
-                    background-color: var(--bs-white);
+                    background-color: currentColor;
                     margin-left: 8px;
                     margin-right: 8px;
                 }
@@ -1163,7 +1163,7 @@ hr {
         background: var(--bs-black);
     }
     .breadcrumbs {
-        a {
+        .text-white {
             color: var(--bs-black) !important;
         }
     }
