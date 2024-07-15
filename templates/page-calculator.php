@@ -100,7 +100,22 @@
                     </div>
                 </div>
             </div>
+            <div class="inner your-result sm-padding bg-primary text-white rounded-corner">
+                <h2>Your Results</h2>
+                <hr class="text-white">
+                <div class="description-box">
+                    <p>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                    </p>
+                </div>
+                <div class="result-box">
+                    <h2>Your payback period</h2>
+                    <div class="result rounded-corner xs-padding text-center">
+                        Approximately X months, X days
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-<?php get_footer(); ?>
+    <?php get_footer(); ?>
