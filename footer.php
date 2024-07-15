@@ -26,7 +26,8 @@ foreach ($layouts as $layout) {
         echo do_shortcode("[layouts id='$layout']");
         $layouts_global[] = $layout;
     } else {
-       
+        echo do_shortcode("[layouts id='$layout']");
+        $layouts_global[] = $layout;
     }
 }
 $hide_footer = get__post_meta('hide_footer');
