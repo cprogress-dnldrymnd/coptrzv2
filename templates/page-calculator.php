@@ -59,7 +59,7 @@
             </div>
         </div>
     </section>
-    <section class="background-gradient-default md-padding-top md-padding-bottom">
+    <section class="background-gradient-default medium-container md-padding-top md-padding-bottom">
         <div class="container">
             <div class="inner px-5">
                 <h3>Who should we send your report to?</h3>
