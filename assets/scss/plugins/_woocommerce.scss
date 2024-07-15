@@ -694,9 +694,9 @@ section.product-main {
                 width: 100%;
                 display: inline-block;
                 @include transition(500ms);
-                @include transform(translateY(0));
+                @include transform(translateX(0));
                 @include on-event {
-                    @include transform(translateY(5px));
+                    @include transform(translateX(5px));
                 }
                 @include responsive(xs-sm) {
                     font-size: 20px;

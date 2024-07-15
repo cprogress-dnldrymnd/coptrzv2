@@ -12001,17 +12001,17 @@ section.product-main .summary.summary.summary .variations tr {
     -ms-transition: 500ms;
     -o-transition: 500ms;
     transition: 500ms;
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    transform: translateY(0); }
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0); }
     .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a:hover, .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a:active, .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a:focus {
-      -webkit-transform: translateY(5px);
-      -moz-transform: translateY(5px);
-      -ms-transform: translateY(5px);
-      -o-transform: translateY(5px);
-      transform: translateY(5px); }
+      -webkit-transform: translateX(5px);
+      -moz-transform: translateX(5px);
+      -ms-transform: translateX(5px);
+      -o-transform: translateX(5px);
+      transform: translateX(5px); }
     @media screen and (max-width: 991px) {
       .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li a {
         font-size: 20px; } }
