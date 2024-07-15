@@ -738,6 +738,11 @@ section.product-main {
         }
     }
     &.woocommerce-cart-form__contents {
+        border: none;
+        td {
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
         td.product-name {
             font-size: 18px;
             font-weight: 600;
