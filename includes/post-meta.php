@@ -5973,6 +5973,6 @@ if (is_admin()) {
         ->set_context('side')
         ->add_fields(array(
             Field::make('set', 'hidden_layouts', __(''))
-                ->add_options($before_footer_options)
+                ->set_options($before_footer_options)
         ));
 }
