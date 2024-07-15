@@ -12004,7 +12004,7 @@ section.product-main .summary.summary.summary .variations tr {
       background-color: var(--bs-accent);
       color: var(--bs-white);
       border-color: var(--bs-white); }
-  .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li.is-active {
+  .woocommerce-MyAccount-navigation.woocommerce-MyAccount-navigation ul li:not(.is-active) {
     opacity: 0.35; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
