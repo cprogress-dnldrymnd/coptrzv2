@@ -93,6 +93,11 @@
                             <input type="text">
                         </div>
                     </div>
+                    <div class="col-lg-12">
+                        <div class="button-box button-accent">
+                            <button>Generate my report</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
