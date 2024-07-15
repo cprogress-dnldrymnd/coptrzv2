@@ -174,6 +174,8 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero .= "</div>";
         $hero .= "</section>";
         return $hero;
+    } else {
+        return "<div class='header-spacer'></div>";
     }
 }
 function ___hero_product_taxonomy()
