@@ -1,7 +1,11 @@
 <?php get_header(); ?>
 
 <?= do_shortcode(___hero_modules()) ?>
-<section class="default-page medium-container md-padding-top md-padding-bottom">
+
+<?php
+$container_width = get__post_meta('container_width');
+?>
+<section class="default-page <?= $container_width ?> md-padding-top md-padding-bottom">
     <div class="container">
         <?php
         the_content();
