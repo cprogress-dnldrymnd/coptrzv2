@@ -12112,7 +12112,9 @@ section.product-main .summary.summary.summary .variations tr {
     width: 40%; }
     .woocommerce-cart .woocommerce .cart-collaterals .cart_totals {
       width: 100%;
-      float: none; }
+      float: none;
+      position: sticky;
+      top: 40px; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;

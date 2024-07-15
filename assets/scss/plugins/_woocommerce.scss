@@ -802,7 +802,7 @@ section.product-main {
     }
 }
 
-.coupon.coupon {
+.coupon.coupon.coupon.coupon {
     input {
         max-width: 200px;
         width: 100%;
@@ -833,6 +833,8 @@ section.product-main {
             .cart_totals {
                 width: 100%;
                 float: none;
+                position: sticky;
+                top: 40px;
             }
         }
     }
