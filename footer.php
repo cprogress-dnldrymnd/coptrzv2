@@ -15,11 +15,6 @@ $args = array(
             'key' => '_display_location',
             'value' => 'before_footer',
         ),
-        array(
-            'key'   => '_do_not_display_on',
-            'value' => '404',
-            'compare' => 'IN'
-        ),
     ),
 );
 
