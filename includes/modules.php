@@ -175,7 +175,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero .= "</section>";
         return $hero;
     } else {
-        $html = "<div class=''>";
+        $html = "<div class='page-title-breadcrumbs'>";
         $html .= "<div class='header-spacer'></div>";
         $html .= "<div class='container'>";
         $html .= do_shortcode("[breadcrumbs id='$id']");
