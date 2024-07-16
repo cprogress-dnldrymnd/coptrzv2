@@ -604,7 +604,7 @@ class Shortcodes
 
     function testimonials()
     {
-        return ___post_grid_module(array(
+        return ____post_grid_module(array(
             'id' => 'testimonial-slider',
             'is_slider' => true,
             'number_of_slides' => 1,
