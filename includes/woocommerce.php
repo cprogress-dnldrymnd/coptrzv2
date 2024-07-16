@@ -852,7 +852,7 @@ function __drone_servicing()
             foreach ($servicing_drones as $drone) {
                 $spec_services = array();
                 foreach ($service_features as $service_feature) {
-                    $spec_services[$service_feature['_type']] = $service_feature['_type'];
+                    $spec_services[$service_feature['_type']] = $service_feature['quantity'];
                 }
 
 
