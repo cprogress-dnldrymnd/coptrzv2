@@ -253,15 +253,6 @@ $Nira_3D->publicly_queryable = false;
 $Nira_3D->show_in_admin_bar = false;
 $Nira_3D->has_archive = false;
 
-$Partners = new newPostType();
-$Partners->name = 'Partners';
-$Partners->singular_name = 'Partner';
-$Partners->icon = 'dashicons-admin-site-alt3';
-$Partners->supports = array('title', 'revisions', 'thumbnail');
-$Partners->exclude_from_search = true;
-$Partners->publicly_queryable = false;
-$Partners->show_in_admin_bar = false;
-$Partners->has_archive = false;
 
 $Team = new newPostType();
 $Team->name = 'Team';
