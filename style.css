@@ -9320,17 +9320,19 @@ textarea.form-control-lg {
 :root {
   --primary-font: Poppins, sans-serif;
   --bs-primary: #000;
+  --bs-dark: #0f0f0f;
+  --bs-dark-rgb: 15, 15, 15;
   --bs-primary-rgb: 0, 0, 0;
-  --bs-secondary: #0f0f0f;
-  --bs-secondary-rgb: 15, 15, 15;
-  --bs-light: #EFEFEF;
-  --bs-light-rgb: 239, 239,239;
+  --bs-secondary: #1c1c1e;
+  --bs-secondary-rgb: 28, 28, 30;
+  --bs-light: #efefef;
+  --bs-light-rgb: 239, 239, 239;
   --bs-accent: #2da1ff;
-  --red-color: #D64550;
+  --red-color: #d64550;
   --border-color: #dbdbdb;
   --light-gray-color: #f2f2f2;
   --bs-accordion-color: inherit;
-  --bs-gray: #85898C; }
+  --bs-gray: #85898c; }
 
 @font-face {
   font-family: "Poppins";

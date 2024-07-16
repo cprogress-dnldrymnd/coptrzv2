@@ -4875,6 +4875,7 @@ function __section_fields($name = 'sections')
                                         ''   => 'None',
                                         'bg-primary'   => 'Primary',
                                         'bg-secondary' => 'Secondary',
+                                        'bg-dark' => 'Dark',
                                         'bg-accent'    => 'Accent',
                                         'bg-white'     => 'White',
                                         'bg-light'     => 'Light',

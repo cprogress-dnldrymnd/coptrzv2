@@ -18,20 +18,21 @@ $light-color: #cfd0d8;
 $body-color: #f7f7fa;
 $light-gray-color: #f2f2f2;
 $border-color: #dbdbdb;
-$red-color: #D64550;
+$red-color: #d64550;
 :root {
 	--primary-font: #{$primary-font};
 	--bs-primary: #000;
+	--bs-dark: #0f0f0f;
+	--bs-dark-rgb: 15, 15, 15;
 	--bs-primary-rgb: 0, 0, 0;
-	--bs-secondary: #0f0f0f;
-	--bs-secondary-rgb: 15, 15, 15;
-	--bs-light: #EFEFEF;
-	--bs-light-rgb: 239, 239,239;
+	--bs-secondary: #1c1c1e;
+	--bs-secondary-rgb: 28, 28, 30;
+	--bs-light: #efefef;
+	--bs-light-rgb: 239, 239, 239;
 	--bs-accent: #{$accent-color};
 	--red-color: #{$red-color};
 	--border-color: #{$border-color};
 	--light-gray-color: #{$light-gray-color};
 	--bs-accordion-color: inherit;
-	--bs-gray: #85898C;
-
+	--bs-gray: #85898c;
 }
