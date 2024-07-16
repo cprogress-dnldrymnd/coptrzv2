@@ -140,13 +140,14 @@
 
                 $Total_Net_Profit_Over_3_Years = (($Net_Annual_Cash_Inflow * 3) - $Initial_Investment);
 
-
+                $ROI = ($Total_Net_Profit_Over_3_Years / $Initial_Investment) * 100;
 
 
                 console.log('Net_Annual_Cash_Inflow' + $Net_Annual_Cash_Inflow.toFixed(2));
                 console.log('Payback_Period' + $Payback_Period.toFixed(2));
                 console.log('Total_Net_Profit_Over_3_Years' + $Total_Net_Profit_Over_3_Years.toFixed(2));
-
+                console.log('ROI' + $ROI.toFixed(2));
+                
                 e.preventDefault();
             });
 
