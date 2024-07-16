@@ -5,10 +5,44 @@ jQuery(document).ready(function () {
     __fixed_heading_position();
     __swipers();
     __input_fields();
-    post_navigation();
+    __ajax_buy_now();
+    __post_navigation();
 });
 
+function __ajax_buy_now() {
+    jQuery('.buy-now').click(function (e) {
+        buy_now_ajax(jQuery(this));
+        e.preventDefault();
+    });
+}
 
+function buy_now_ajax(button) {
+    $buy_now_id = button.prev().val();
+    jQuery('.buy-now').attr('disabled');
+    button.addClass('active').attr('disabled');
+    jQuery.ajax({
+
+        type: "POST",
+
+        //url: "/coptrz/wp-admin/admin-ajax.php",
+
+        url: "/wp-admin/admin-ajax.php",
+
+        data: {
+            action: 'buy_now_ajax',
+            buy_now_id: $buy_now_id,
+        },
+
+        success: function (response) {
+            button.removeClass('active');
+            window.location.href = 'https://coptrz.com/checkout/';
+        },
+        error: function (e) {
+            console.log(e);
+        }
+
+    });
+}
 function __input_fields() {
     jQuery('.remove-first-option-value select option:first-child').attr('value', '');
 
@@ -248,7 +282,7 @@ function __swipers() {
 
 }
 
-function post_navigation() {
+function ___post_navigation() {
     if (jQuery('body').hasClass('single-post')) {
         $post_navigation = '';
         $key = 1;
