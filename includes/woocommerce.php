@@ -358,6 +358,7 @@ function __product_compare($id)
 
     foreach ($products as $product) {
         $html .= "<div class='col-lg-3'>";
+        $html .= "<div class='product-inner d-flex flex-column'>";
         $html .= _product_grid_display($product['id']);
 
         $html .= "<div class='row-services-spec-mobile d-lg-none mt-4'>";
@@ -395,7 +396,6 @@ function __product_compare($id)
             }
 
 
-
             $html .= "<div class='col-4'>";
             $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
@@ -418,6 +418,7 @@ function __product_compare($id)
 
         $html .= "</div>";
 
+        $html .= "</div>";
         $html .= "</div>";
     }
 
