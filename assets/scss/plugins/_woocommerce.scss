@@ -668,8 +668,13 @@ section.product-main {
     }
     &.drone-servicing {
         .row-services-spec-mobile {
-            .col-2 {
-                
+            @include responsive(mobile) {
+                .inner {
+                    flex-direction: column;
+                    .icon-box {
+                        margin-right: 0;
+                    }
+                }
             }
         }
         .active {
