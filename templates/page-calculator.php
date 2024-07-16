@@ -100,9 +100,9 @@
                     </div>
                 </div>
             </div>
-            <div id="results-position" class="md-padding-top"></div>
-            <div class="inner your-result" id="results">
-                <div class="results-holder sm-padding bg-primary rounded-corner text-white">
+            <div class="inner your-result">
+                <div id="results-position" class="md-padding-top"></div>
+                <div class="results-holder sm-padding bg-primary rounded-corner text-white" id="results">
                     <div id="results-animation">
                         <div class="loader"></div>
                     </div>
@@ -151,7 +151,6 @@
 
                 $Total_Net_Profit_Over_3_Years = (($Net_Annual_Cash_Inflow * 3) - $Initial_Investment);
                 $ROI = ($Total_Net_Profit_Over_3_Years / $Initial_Investment) * 100;
-
 
 
                 jQuery('#Payback_Period').text($Payback_Period.toFixed(2) + ' years');
