@@ -25,7 +25,7 @@ function __heading($data, $html = '')
             }
             $html .= "<$tag>$heading</$tag>";
             if ($suffix) {
-                $html .= "<span>$suffix</span>";
+                $html .= "<span class='small-text'>$suffix</span>";
             }
 
             $html .= "</div>";
