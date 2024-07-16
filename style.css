@@ -11438,7 +11438,7 @@ hr {
 #calculator.calculating #results-animation {
   display: block; }
 #calculator.calculated #results-box {
-  display: none; }
+  display: block; }
 
 @keyframes spin {
   from {
