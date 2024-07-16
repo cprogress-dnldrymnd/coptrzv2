@@ -11514,7 +11514,7 @@ hr {
       width: 20px;
       height: 20px;
       right: -10px;
-      background-color: var(--bs-black);
+      background-color: var(--bs-accent);
       border-radius: 50%;
       font-size: 13px;
       text-align: center; }
@@ -12540,8 +12540,6 @@ section.product-main .summary.summary.summary .variations tr {
 
 .mobile-menu-active header .header-inner {
   background-color: var(--bs-black); }
-.mobile-menu-active .mini-cart-wrapper #mini-cart-button .cart-number {
-  background-color: var(--bs-accent); }
 
 #footer {
   font-weight: 300; }
