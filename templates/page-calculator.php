@@ -182,11 +182,13 @@
                 var years = Math.floor(totalDays / 365);
                 var months = Math.floor((totalDays - (years * 365)) / 30);
                 var days = Math.floor(totalDays - (years * 365) - (months * 30));
-
-                if (years > 1 && years != 0) {
-                    $years = years + " years, ";
-                } else {
-                    $years = years + " year, ";
+                
+                if (years != 0) {
+                    if (years > 1) {
+                        $years = years + " years, ";
+                    } else {
+                        $years = years + " year, ";
+                    }
                 }
                 if (months > 1) {
                     $months = months + " months, ";
