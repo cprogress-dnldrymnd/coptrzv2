@@ -11978,12 +11978,6 @@ section.product-main .summary.summary.summary .variations tr {
   height: 30px; }
 .product-compare .comparison > .row:not(:last-child) {
   margin-bottom: 10px; }
-.product-compare.product-compare .row-services [class*="col-"]:nth-child(2) .service-box {
-  background-color: var(--bs-gray); }
-.product-compare.product-compare .row-services [class*="col-"]:nth-child(3) .service-box {
-  background-color: var(--bs-accent); }
-.product-compare.product-compare .row-services [class*="col-"]:nth-child(4) .service-box {
-  background-color: var(--bs-black); }
 
 .custom-product-grid {
   list-style: none;

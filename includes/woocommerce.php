@@ -788,11 +788,15 @@ function __drone_servicing()
     ));
     $html .= "</div>";
 
-    foreach ($servicing_drones as $drone) {
+    foreach ($servicing_drones as $key => $drone) {
+
+
+
         $service_name = $drone['service_name'];
         $service_subheading = $drone['service_subheading'];
         $service_price = $drone['service_price'];
         $html .= "<div class='col-lg-3'>";
+        $html .= $key % 3;
         $html .= "<div class'service-box rounded-corner xs-padding d-flex justify-content-between flex-column'>";
         $html .= __heading(array(
             'heading' => $service_name,
