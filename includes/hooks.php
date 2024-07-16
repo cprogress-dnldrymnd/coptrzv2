@@ -308,3 +308,23 @@ function action_body_class($classes)
 }
 
 add_filter('body_class', 'action_body_class');
+
+
+/**
+ * Custom Smartphone and International field Validation on submit (reject defined prefixes).
+ *
+ * @link  https://wpforms.com/developers/how-to-provide-additional-phone-field-validation/
+ */
+ 
+ function wpf_dev_process_validate_phone( $field_id, $field_submit, $form_data ) {
+ 
+    $prefixes = [ '8', '+8' ];
+  
+    $regexp = implode( '|', $prefixes );
+  
+    if ( preg_match( '/^[' . $regexp . ']/', (string) $field_submit ) ) {
+       wpforms()->process->errors[ $form_data[ 'id' ] ][ $field_id ] = esc_html__( 'The number should not start with "' . implode( '", "', $prefixes) . '"', 'plugin-domain' );
+    }
+ }
+  
+ add_action( 'wpforms_process_validate_phone', 'wpf_dev_process_validate_phone', 10, 3 );
