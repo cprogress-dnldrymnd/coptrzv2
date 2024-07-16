@@ -493,54 +493,56 @@ function __product_compare($id)
 
 function _product_grid_display($id)
 {
-    $product = wc_get_product($id);
-    $title = $product->get_name();
-    $permalink = get_the_permalink($id);
-    $post_thumnail = get_the_post_thumbnail_url($id, 'medium');
-    $stock_status =  $product->get_stock_status();
-    $sku = $product->get_sku();
-    $product_type = $product->get_type();
-    $button_class = ($product_type == 'simple') ? 'col-sm-6' : 'col-12';
+    if (get_post_type($id) == 'product') {
+        $product = wc_get_product($id);
+        $title = $product->get_name();
+        $permalink = get_the_permalink($id);
+        $post_thumnail = get_the_post_thumbnail_url($id, 'medium');
+        $stock_status =  $product->get_stock_status();
+        $sku = $product->get_sku();
+        $product_type = $product->get_type();
+        $button_class = ($product_type == 'simple') ? 'col-sm-6' : 'col-12';
 
-    $html = "<ul class='products custom-product-grid h-100 m-0 p-0'>";
-    $html .= "<li class='product m-0 p-0 w-100 h-100 post-$id $stock_status'>";
-    $html .= "<div class='product-inner rounded-10px border-default h-100 bg-white'>";
-    $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
-    $html .= "<div class='wc-img-wrapper'>";
-    $html .= "<img width='300' height='225' src='$post_thumnail' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='$title' decoding='async'>";
-    $html .= "</div>";
-    $html .= "<h2 class='woocommerce-loop-product__title mb-0'>$title</h2>";
-    $html .= $product->get_price_html();
-    $html .= '<span class="status d-block mb-2 mt-2"></span>';
-
-    $html .= "</a>";
-
-    $html .= "<div class='product-buttons'>";
-    $html .= "<div class='row g-10px'>";
-
-
-    if ($product_type == 'simple') {
-        $html .= "<div class='$button_class'>";
-        $html .= "<a href='?add-to-cart=$id' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$id' data-product_sku='$sku' aria-label='Add to basket: “" . $title . "”' rel='nofollow'>Add to basket</a>";
+        $html = "<ul class='products custom-product-grid h-100 m-0 p-0'>";
+        $html .= "<li class='product m-0 p-0 w-100 h-100 post-$id $stock_status'>";
+        $html .= "<div class='product-inner rounded-10px border-default h-100 bg-white'>";
+        $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
+        $html .= "<div class='wc-img-wrapper'>";
+        $html .= "<img width='300' height='225' src='$post_thumnail' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='$title' decoding='async'>";
         $html .= "</div>";
+        $html .= "<h2 class='woocommerce-loop-product__title mb-0'>$title</h2>";
+        $html .= $product->get_price_html();
+        $html .= '<span class="status d-block mb-2 mt-2"></span>';
+
+        $html .= "</a>";
+
+        $html .= "<div class='product-buttons'>";
+        $html .= "<div class='row g-10px'>";
+
+
+        if ($product_type == 'simple') {
+            $html .= "<div class='$button_class'>";
+            $html .= "<a href='?add-to-cart=$id' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$id' data-product_sku='$sku' aria-label='Add to basket: “" . $title . "”' rel='nofollow'>Add to basket</a>";
+            $html .= "</div>";
+        }
+
+
+
+        $html .= "<div class='$button_class'>";
+        $html .= "<div class='button-box button-bordered'><a href='$permalink'>View Product</a></div>";
+        $html .= "</div>";
+
+        $html .= "</div>";
+
+        $html .= "</div>";
+
+
+        $html .= "</div>";
+        $html .= "</li>";
+        $html .= "</ul>";
+
+        return $html;
     }
-
-
-
-    $html .= "<div class='$button_class'>";
-    $html .= "<div class='button-box button-bordered'><a href='$permalink'>View Product</a></div>";
-    $html .= "</div>";
-
-    $html .= "</div>";
-
-    $html .= "</div>";
-
-
-    $html .= "</div>";
-    $html .= "</li>";
-    $html .= "</ul>";
-
-    return $html;
 }
 
 
