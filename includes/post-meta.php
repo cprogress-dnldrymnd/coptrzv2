@@ -5583,6 +5583,7 @@ Container::make('term_meta', __('Category Properties'))
     ->add_fields(
         array(
             Field::make('image', 'image', __('Logo')),
+            Field::make('checkbox', 'hide_on_slider', __('Hide on Slider')),
         )
     );
 
