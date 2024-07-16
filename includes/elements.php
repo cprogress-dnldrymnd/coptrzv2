@@ -220,7 +220,7 @@ function __button($data)
     $button_target      = isset($data['button_target']) ? $data['button_target'] : false;
     $link = '';
     $class = '';
-    if ($button_type != 'popups' && $button_type != 'custom') {
+    if ($button_type != 'popups' && $button_type != 'custom' && $button_type == 'buy-now') {
         $tag = 'a';
         $button_url = get_permalink($button_url);
         $link = "href='$button_url'";
