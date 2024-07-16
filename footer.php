@@ -56,7 +56,7 @@ if (!$hide_footer) {
                                 <?= do_shortcode('[socials]') ?>
                             </div>
                         </div>
-                        <div class="col-auto col-lg-4">
+                        <div class="col-auto col-lg-4 text-lg-end">
                             <div class="socials">
                                 <?= __image(array(
                                     'image_id' => $footer_drone_experts
