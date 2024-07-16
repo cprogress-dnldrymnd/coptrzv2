@@ -773,6 +773,10 @@ function custom_product_variation_training()
 function __drone_servicing($id)
 {
     $SVG = new SVG;
+    $servicing_heading = get__theme_option('servicing_heading');
+    $servicing_description = get__theme_option('servicing_description');
+    $servicing_drones = get__theme_option('servicing_drones');
+    $servicing_heading = get__theme_option('servicing_heading');
     $products = get__post_meta_by_id($id, 'products');
 
     $specs = array();
@@ -783,7 +787,6 @@ function __drone_servicing($id)
             $specs[$specification->term_id] = $specification->name;
         }
     }
-
     $html = "<div class='product-compare'>";
     $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
     $html .= "<div class='row g-10px'>";
