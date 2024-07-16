@@ -11315,21 +11315,29 @@ hr {
 
 .modal {
   z-index: 999999; }
+  .btn btn-secondary
   .modal.popup-form .modal-dialog {
     max-width: 800px; }
+  .btn btn-secondary
   .modal.popup-form.popup-small .modal-dialog {
     max-width: 600px; }
+  .btn btn-secondary
   .modal.popup-form.popup-medium .modal-dialog {
     max-width: 1000px; }
+  .btn btn-secondary
   .modal.popup-form.popup-large .modal-dialog {
     max-width: 1200px; }
+  .btn btn-secondary
   .modal.popup-form .modal-content {
     border-radius: 0;
     border: none; }
+    .btn btn-secondary
     .modal.popup-form .modal-content.background-primary a {
       color: var(--bs-white) !important; }
+  .btn btn-secondary
   .modal.popup-form .popup-content-default > *:last-child {
     margin-bottom: 0 !important; }
+  .btn btn-secondary
   .modal.popup-form .bg-image img {
     position: absolute;
     left: 0;

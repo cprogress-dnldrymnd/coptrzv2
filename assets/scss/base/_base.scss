@@ -1011,6 +1011,9 @@ hr {
 
 .modal {
     z-index: 999999;
+    .btn-close {
+        position: absolute;
+    }
     &.popup-form {
         .modal-dialog {
             max-width: 800px;
