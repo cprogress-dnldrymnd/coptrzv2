@@ -243,16 +243,6 @@ $FAQs_Category->args = array(
 
 );
 
-$Nira_3D = new newPostType();
-$Nira_3D->name = 'Nira 3D';
-$Nira_3D->singular_name = 'Nira 3D';
-$Nira_3D->icon = 'dashicons-desktop';
-$Nira_3D->supports = array('title', 'revisions', 'thumbnail');
-$Nira_3D->exclude_from_search = true;
-$Nira_3D->publicly_queryable = false;
-$Nira_3D->show_in_admin_bar = false;
-$Nira_3D->has_archive = false;
-
 
 $Team = new newPostType();
 $Team->name = 'Team';
