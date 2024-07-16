@@ -35,7 +35,7 @@ function buy_now_ajax(button) {
 
         success: function (response) {
             button.removeClass('active');
-            window.location.href = $ajax_object.checkout_url;
+            window.location.href = ajax_object.checkout_url;
         },
         error: function (e) {
             console.log(e);
