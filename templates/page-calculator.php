@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div class="inner your-result md-padading-top" id="results">
+            <div class="inner your-result md-padding-top" id="results">
                 <div class="results-holder sm-padding bg-primary rounded-corner text-white">
                     <div id="results-animation">
                         <div class="loader"></div>
