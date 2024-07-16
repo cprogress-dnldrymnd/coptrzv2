@@ -864,8 +864,8 @@ function __drone_servicing()
                     $html .= "<div class='active d-flex align-items-center'> ";
                     $html .= $SVG->check();
                     if ($quantity > 1) {
-                        $html .= "<span class='qty ms-2 text-primary'> ";
-                        $html .= "<span class='smaller-text'>x</span> <span class='fw-'medium'>$quantity</span>";
+                        $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
+                        $html .= "<span class='smaller-text me-2'>x</span> <span class='fw-'medium'>$quantity</span>";
                         $html .= "</span>";
                     }
                     $html .= "</div>";
