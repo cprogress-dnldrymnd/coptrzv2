@@ -833,7 +833,6 @@ function __drone_servicing()
 
     foreach ($specs as $key => $spec) {
         if ($spec != '_') {
-
             $html .= "<div class='row g-10px'>"; //specs-row
 
             $html .= "<div class='col-3'>"; //specs-row-col
@@ -851,10 +850,9 @@ function __drone_servicing()
 
             foreach ($servicing_drones as $drone) {
                 $spec_services = array();
-                foreach ($service_features as $service_feature) {
+                foreach ($drone['service_features'] as $service_feature) {
                     $spec_services[$service_feature['_type']] = $service_feature['quantity'];
                 }
-
 
                 $html .= "<div class='col-3'>";
                 $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
