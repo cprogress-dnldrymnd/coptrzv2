@@ -601,6 +601,11 @@ class Shortcodes
         $html  .= "<div>";
         return $html;
     }
+
+    function testimonials()
+    {
+      
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -620,3 +625,4 @@ add_shortcode('event_countdown', array($Shortcodes, 'event_countdown'));
 add_shortcode('product_compare', array($Shortcodes, 'product_compare'));
 add_shortcode('drone_servicing', array($Shortcodes, 'drone_servicing'));
 add_shortcode('brands_logo_slider', array($Shortcodes, 'brands_logo_slider'));
+add_shortcode('testimonials', array($Shortcodes, 'testimonials'));

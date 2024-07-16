@@ -1110,6 +1110,9 @@ function __section_fields($name = 'sections')
                             ->add_fields('brands_logo_slider', array(
                                 Field::make('html', 'html')->set_html('<h3>This will display brands logo slider. </h3>'),
                             ))
+                            ->add_fields('testimonials', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display testimonial slider. </h3>'),
+                            ))
                     ))
                     ->add_fields('global_post_box_selection',  array(
                         Field::make('select', 'source', __('Source'))
