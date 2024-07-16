@@ -110,6 +110,8 @@ function __servicing_fields()
                         Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
                     ))
                     ->set_duplicate_groups_allowed(false)
+                    ->set_collapsed(true)
+
             ))
 
 
