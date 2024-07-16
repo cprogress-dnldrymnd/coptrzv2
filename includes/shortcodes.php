@@ -623,7 +623,6 @@ class Shortcodes
                     "_type" => "custom_field_1",
                     "custom_field_key" => "_testimonial_content",
                     "custom_field_type" => "p",
-                    "custom_field_class" => "big-text"
                 ),
                 array(
                     "_type" => "post_title",
