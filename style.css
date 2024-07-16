@@ -11446,7 +11446,7 @@ hr {
   animation: l2 2s linear infinite; }
 
 .loader:before {
-  content: "Loading..."; }
+  content: "Calculating..."; }
 
 @keyframes l2 {
   to {
