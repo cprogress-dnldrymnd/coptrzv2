@@ -95,7 +95,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="button-box button-accent">
-                            <button class="w-100">Generate my report</button>
+                            <button class="w-100" id="generate_report">Generate my report</button>
                         </div>
                     </div>
                 </div>
@@ -123,10 +123,26 @@
             </div>
         </div>
     </section>
+    Net Annual Cash Inflow = (Annual Revenue from Drone Survey Work + (Average Savings per Day * Number of Days Drone Will Be Used Per Year)) - Annual Operating Costs
 
     <?php get_footer(); ?>
     <script>
-        jQuery(document).ready(function () {
-            
+        jQuery(document).ready(function() {
+
+            jQuery('#generate_report').click(function(e) {
+                $Initial_Investment = jQuery('input[name="Initial_Investment"]');
+                $Annual_Revenue_from_Drone_Survey_Work = jQuery('input[name="Annual_Revenue_from_Drone_Survey_Work"]');
+                $Annual_Operating_Costs = jQuery('input[name="Annual_Operating_Costs"]');
+                $Average_Savings_per_Day_Using_a_Drone = jQuery('input[name="Average_Savings_per_Day_Using_a_Drone"]');
+                $Number_of_Days_Drone_Will_Be_Used_Per_Year = jQuery('input[name="Number_of_Days_Drone_Will_Be_Used_Per_Year"]');
+                
+                $Net_Annual_Cash_Inflow = ($Annual_Revenue_from_Drone_Survey_Work + ($Average_Savings_per_Day_Using_a_Drone * $Number_of_Days_Drone_Will_Be_Used_Per_Year)) - $Annual_Operating_Costs;
+                $Payback_Period = $Initial_Investment / $Net_Annual_Cash_Inflow;
+
+                console.log($Net_Annual_Cash_Inflow);
+                console.log($Payback_Period);
+               
+                e.preventDefault();
+            });
         });
     </script>
