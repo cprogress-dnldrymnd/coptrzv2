@@ -634,7 +634,11 @@ class Shortcodes
                     "text_color_custom" => ""
                 )
             ),
-            'post_type' => ['post_type'][0]['testimonials'],
+            'post_type' => array(
+                array(
+                    "_type" => "testimonials",
+                )
+            )
         ));
     }
 }
