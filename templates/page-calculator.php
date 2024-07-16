@@ -152,6 +152,7 @@
                 jQuery('#ROI').text(parseInt($ROI) + '%');
 
                 jQuery('#calculator').addClass('calculating');
+                jQuery('#calculator').removeClass('calculated');
                 setTimeout(function() {
                     jQuery('#calculator').addClass('calculated');
                     jQuery('#calculator').removeClass('calculating');
