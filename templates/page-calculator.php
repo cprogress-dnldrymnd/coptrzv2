@@ -153,9 +153,11 @@
 
                 jQuery('#calculator').addClass('calculating');
                 jQuery('#calculator').removeClass('calculated');
+                jQuery('#generate_report').text('Generating');
                 setTimeout(function() {
                     jQuery('#calculator').addClass('calculated');
                     jQuery('#calculator').removeClass('calculating');
+                    jQuery('#generate_report').text('Generate my report');
                 }, 3000);
 
                 e.preventDefault();
