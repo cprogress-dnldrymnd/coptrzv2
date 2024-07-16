@@ -10,7 +10,7 @@ class Shortcodes
                     'heading' => '',
                     'taxonomy' => '',
                     'search_filter' => false,
-                    'items_per_page' => -1,
+                    'items_per_page' => 50,
                     'hide_empty' => true,
                 ),
                 $atts
