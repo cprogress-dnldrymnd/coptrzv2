@@ -840,7 +840,9 @@ function __drone_servicing()
 
 
             foreach ($service_features as $service_feature) {
-                $spec_services[$service_feature['_type']] = $service_feature['_type'];
+                if ($service_feature['_type'] != '_') {
+                    $spec_services[$service_feature['_type']] = $service_feature['_type'];
+                }
             }
 
 
