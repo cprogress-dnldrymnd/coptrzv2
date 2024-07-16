@@ -819,7 +819,7 @@ function __drone_servicing()
 
         foreach ($specs as $key => $spec) {
             if ($spec != '_') {
-                $html .= "<div class='col-6'>"; //specs-row-col
+                $html .= "<div class='col-4'>"; //specs-row-col
                 $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
                 $html .= "<div class='icon-box me-3 text-accent'>";
                 $html .= $SVG->$key();
