@@ -50,7 +50,7 @@ class Shortcodes
 
                 $html .= "<div class='col-lg-3'>";
                 $html .= "<div class='inner text-center h-100 border-default rounded-corner xs-padding'>";
-                $html .= "<a href='$link' class='text-white'>";
+                $html .= "<a href='$link' class='text-primary'>";
 
                 $html .= __image($image_args);
                 $html .= __heading(array(
