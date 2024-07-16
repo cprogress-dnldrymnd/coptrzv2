@@ -175,11 +175,24 @@ function __swipers() {
             freeMode: true,
             centeredSlides: true,
             slidesPerView: 'auto',
-            spaceBetween: 30,
             speed: 5000,
             autoplay: {
                 delay: 0,
                 disableOnInteraction: false
+            },
+            breakpoints: {
+                0: {
+                    spaceBetween: 20,
+                },
+
+                768: {
+                    spaceBetween: 30,
+                },
+
+
+                992: {
+                    spaceBetween: 50,
+                },
             },
         });
     });
