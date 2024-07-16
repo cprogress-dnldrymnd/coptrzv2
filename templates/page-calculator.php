@@ -159,11 +159,12 @@
 
                 jQuery('#calculator').addClass('calculating');
                 jQuery('#calculator').removeClass('calculated');
-                jQuery('#generate_report').hide();
 
                 setTimeout(function() {
                     jQuery('#calculator').addClass('calculated');
                     jQuery('#calculator').removeClass('calculating');
+                    jQuery('#generate_report').hide();
+
                 }, 3000);
 
                 e.preventDefault();
