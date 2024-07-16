@@ -354,7 +354,7 @@ Container::make('theme_options', __('Archives Settings'))
                                 'guides'      => 'Guides',
                                 'casestudies'      => 'Case Studies',
                                 'post'      => 'Post',
-                                'industries' => Industry,
+                                'industries' => 'Industry',
                                 'popups'    => 'Popup',
                                 'custom'     => 'Custom',
                             )
