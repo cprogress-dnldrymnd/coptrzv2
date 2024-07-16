@@ -138,16 +138,14 @@
                 $Net_Annual_Cash_Inflow = ($Annual_Revenue_from_Drone_Survey_Work + ($Average_Savings_per_Day_Using_a_Drone * $Number_of_Days_Drone_Will_Be_Used_Per_Year)) - $Annual_Operating_Costs;
                 $Payback_Period = $Initial_Investment / $Net_Annual_Cash_Inflow;
 
-
-                console.log($Initial_Investment);
-                console.log($Annual_Revenue_from_Drone_Survey_Work);
-                console.log($Annual_Operating_Costs);
-                console.log($Average_Savings_per_Day_Using_a_Drone);
-                console.log($Number_of_Days_Drone_Will_Be_Used_Per_Year);
+                $Total_Net_Profit_Over_3_Years = (($Net_Annual_Cash_Inflow * 3) - $Initial_Investment) - $Initial_Investment;
 
 
-                console.log($Net_Annual_Cash_Inflow.toFixed(2));
-                console.log($Payback_Period.toFixed(2));
+
+
+                console.log('Net_Annual_Cash_Inflow' + $Net_Annual_Cash_Inflow.toFixed(2));
+                console.log('Payback_Period' + $Payback_Period.toFixed(2));
+                console.log('Total_Net_Profit_Over_3_Years' + $Total_Net_Profit_Over_3_Years.toFixed(2));
 
                 e.preventDefault();
             });
@@ -156,6 +154,5 @@
                 $val = jQuery('input[name="' + $name + '"]').val();
                 return parseFloat($val);
             }
-        });
-                ;
+        });;
     </script>
