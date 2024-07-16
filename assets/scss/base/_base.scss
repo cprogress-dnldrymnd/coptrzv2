@@ -1025,6 +1025,9 @@ hr {
             width: 25px;
             height: 25px;
         }
+        @include on-event {
+            background-color: var(--bs-dark) !important;
+        }
     }
     &.popup-form {
         .modal-dialog {

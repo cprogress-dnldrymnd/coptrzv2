@@ -11328,6 +11328,8 @@ hr {
     .modal .btn-popup-close svg {
       width: 25px;
       height: 25px; }
+    .modal .btn-popup-close:hover, .modal .btn-popup-close:active, .modal .btn-popup-close:focus {
+      background-color: var(--bs-dark); }
   .modal.popup-form .modal-dialog {
     max-width: 800px; }
   .modal.popup-form.popup-small .modal-dialog {
