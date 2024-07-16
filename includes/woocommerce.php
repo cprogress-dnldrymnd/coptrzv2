@@ -858,7 +858,10 @@ function __drone_servicing()
                 $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
                 if (array_key_exists($key, $spec_services)) {
-                    $html .= "<div class='active'>";
+
+                    $quantity = $spec_services[$key];
+                    
+                    $html .= "<div class='active'> $quantity";
                     $html .= $SVG->check();
                     $html .= "</div>";
                 } else {
