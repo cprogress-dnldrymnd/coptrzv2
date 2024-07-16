@@ -11441,6 +11441,8 @@ hr {
   display: block; }
 #calculator.calculating #results-animation {
   display: block; }
+#calculator.calculating #generate_report {
+  pointer-events: none; }
 #calculator.calculated #results {
   display: block; }
 #calculator.calculated #results-box {

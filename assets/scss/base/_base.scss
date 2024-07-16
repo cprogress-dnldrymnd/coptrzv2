@@ -1219,6 +1219,9 @@ hr {
         #results-animation {
             display: block;
         }
+        #generate_report {
+            pointer-events: none;
+        }
     }
     &.calculated {
         #results {
