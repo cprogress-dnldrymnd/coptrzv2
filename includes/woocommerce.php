@@ -796,7 +796,8 @@ function __drone_servicing($id)
         $html .= "<div class'service-box'>";
         $html .= __heading(array(
             'heading' => $service_name,
-            'tag' => 'h3'
+            'tag' => 'h3',
+            'suffix' => $service_subheading
         ));
         $html .= "<div class'price-button'>";
 
@@ -816,23 +817,13 @@ function __drone_servicing($id)
     $html .= "</div>";
 
     foreach ($specs as $key => $spec) {
-        $icon = get__term_meta($key, 'icon');
-        $mime_type =  get_post_mime_type($icon);
         $html .= "<div class='row g-10px'>"; //specs-row
 
         $html .= "<div class='col-3'>"; //specs-row-col
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
-        if (str_contains($mime_type, 'svg')) {
-            $html .= __icon(array(
-                'id' => $icon,
-                'class' => _attribute('class', array('me-3 text-accent'))
-            ));
-        } else {
-            $html .= __image(array(
-                'image_id' => $icon,
-                'class' => _attribute('class', array('me-3 text-accent'))
-            ));
-        }
+        $html .= "<div class='icon-box'>";
+        $html .= $SVG->$key();
+        $html .= "</div>"; 
         $html .= __heading(array(
             'heading' => $spec,
             'class' => _attribute('class', array('mb-0')),
