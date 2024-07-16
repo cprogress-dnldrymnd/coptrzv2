@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="37.284" height="30.127" viewBox="0 0 37.284 30.127">
+  <g id="battery" transform="translate(-245.25 -1754.25)">
+    <path id="battery-large-svgrepo-com" d="M30.53,4.488a2.222,2.222,0,0,1,.1.943V7.578h3.578a3.551,3.551,0,0,1,3.561,3.578l.018,17.892a3.566,3.566,0,0,1-3.578,3.578H5.578A3.566,3.566,0,0,1,2,29.049V11.157A3.566,3.566,0,0,1,5.578,7.578H9.157V5.431a2.222,2.222,0,0,1,.1-.943A.894.894,0,0,1,9.645,4.1a2.222,2.222,0,0,1,.943-.1h4.294a2.222,2.222,0,0,1,.943.1.894.894,0,0,1,.391.391,2.222,2.222,0,0,1,.1.943V7.578h7.157V5.431a2.222,2.222,0,0,1,.1-.943.894.894,0,0,1,.391-.391A2.223,2.223,0,0,1,24.9,4H29.2a2.223,2.223,0,0,1,.943.1A.894.894,0,0,1,30.53,4.488Z" transform="translate(244 1751)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" fill-rule="evenodd"/>
+    <path id="Icon_open-bolt" data-name="Icon open-bolt" d="M7.092,0,0,11.821H4.728v7.092L11.821,7.092H7.092Z" transform="translate(254.436 1777.07) rotate(-90)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>
