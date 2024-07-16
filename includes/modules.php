@@ -1361,7 +1361,11 @@ function ____gallery_modules($data)
 
             $html .= __image($image_args);
         }
-        
+        foreach ($gallery as $image) {
+            $image_args['image_id'] = $image;
+
+            $html .= __image($image_args);
+        }
         if ($gallery_style == 'logo-slider') {
             $html  .= "</div>";
             $html  .= "</div>";
