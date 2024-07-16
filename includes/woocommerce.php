@@ -814,7 +814,6 @@ function __drone_servicing()
             'tag' => 'h3',
             'suffix' => $service_subheading
         ));
-        $html .= $service_subheading;
         $html .= "<div class='price-button mt-5'>";
         $html .= "<div class='price mb-3'>£$service_price <span>Excl. VAT</span></div>";
         $html .= __button(array(
