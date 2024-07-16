@@ -1016,8 +1016,6 @@ function ____post_grid_module($data)
     $classes[] = 'column-holder';
     $classes[] = 'position-relative';
 
-    $post_elements = json_encode($post_elements);
-
     $styles = array();
     $classes = array();
     $column_classes = array();
@@ -1141,7 +1139,7 @@ function ____post_grid_module($data)
     $column_attribute = _attributes(array($column_classes_val));
 
     $html = '';
-    $html .= "<div class='post-grid' test='$post_elements'>";
+    $html .= "<div class='post-grid'>";
 
     if ($is_slider) {
         $swiper_id = $id . '-swiper';
