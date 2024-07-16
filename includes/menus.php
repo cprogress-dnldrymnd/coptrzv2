@@ -47,11 +47,12 @@ function header_menu()
 		$ID = $menu['ID'];
 		$menu_item_parent = $menu['menu_item_parent'];
 		if ($menu_item_parent == 0) {
-			$is_mega_menu = carbon_get_nav_menu_item_meta( $ID, 'is_mega_menu' );
+			$is_mega_menu = carbon_get_nav_menu_item_meta($ID, 'is_mega_menu');
+			$class = $is_mega_menu ? 'is-mega-menu' : '';
 			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
 				return ($var['menu_item_parent'] == $ID);
 			});
-			$html .= '<li class="nav-item" '.$is_mega_menu.'>';
+			$html .= '<li class="nav-item ' . $class . '">';
 			$html .= '<a class="nav-link text-white main-nav ' . ($submenus1 ? 'has-children' : '') . '" href="' . $menu['url'] . '">';
 			$html .= $menu['title'];
 			if ($submenus1) {
