@@ -592,6 +592,7 @@ class Shortcodes
         $html  .= "</div>";
         $html  .= "</div>";
         $html  .= "<div>";
+        return $html;
     }
 }
 $Shortcodes = new Shortcodes;
