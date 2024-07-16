@@ -219,7 +219,7 @@ function __button($data)
     $button_text        = isset($data['button_text']) ? $data['button_text'] : false;
     $button_target      = isset($data['button_target']) ? $data['button_target'] : false;
     $link = '';
-
+    $class = '';
     if ($button_type != 'popups' && $button_type != 'custom') {
         $tag = 'a';
         $button_url = get_permalink($button_url);
@@ -228,11 +228,17 @@ function __button($data)
         $button_url = $button_url_custom;
         $tag = 'a';
         $link = "href='$button_url_custom'";
-    } else {
+    } else if ($button_type == 'popup') {
         global $popups_id;
         $popups_id[] = $button_url;
         $tag = 'button';
         $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $button_url . '"';
+    } else if ($button_type == 'buy-now') {
+        global $popups_id;
+        $popups_id[] = $button_url;
+        $tag = 'button';
+        $link = 'data-target="buy-now"';
+        $class = 'buy-now-trigger';
     }
 
     if ($button_text && $button_url) {
@@ -240,6 +246,10 @@ function __button($data)
         $attributes_args[] = _attribute('class', array($button_style, 'button-box'));
 
         $_attributes = _attributes($attributes_args);
-        return "<div $_attributes><$tag class='rounded-10px' $link $button_target >$button_text</$tag></div>";
+        $html = "<div $_attributes>";
+        $html = "<$tag class='rounded-10px $class' $link $button_target>";
+        $html .= $button_text;
+        $html .= "</$tag>";
+        $html .= "</div>";
     }
 }
