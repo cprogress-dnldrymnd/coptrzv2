@@ -59,8 +59,9 @@ if (is_home()) {
         'elements' => array('image', 'title', 'button'),
     );
 } else if (is_post_type_archive('industries')) {
+    $title = get__theme_option('industries_loop_section_title');
     $key = 'industries_';
-    $title = '';
+    $title = $title ? $title : 'Commercial <br> Capabilities';
     $has_featured = false;
     $has_pagination = false;
     $has_filter = false;
