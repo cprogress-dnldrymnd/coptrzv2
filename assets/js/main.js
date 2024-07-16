@@ -80,7 +80,7 @@ function __header_menu() {
         });
 
         jQuery('.has-children-tab').click(function (e) {
-            $target = jQuery(this).attr('target');
+            $target = jQuery(this).attr('url_target');
             jQuery('.has-children-tab.nav-link.active').removeClass('active');
 
             jQuery(this).toggleClass('active');
