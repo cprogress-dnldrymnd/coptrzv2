@@ -19,7 +19,6 @@ $body-color: #f7f7fa;
 $light-gray-color: #f2f2f2;
 $border-color: #dbdbdb;
 $red-color: #D64550;
-
 :root {
 	--primary-font: #{$primary-font};
 	--bs-primary: #000;
@@ -33,5 +32,6 @@ $red-color: #D64550;
 	--border-color: #{$border-color};
 	--light-gray-color: #{$light-gray-color};
 	--bs-accordion-color: inherit;
+	--bs-gray: #85898C;
 
 }

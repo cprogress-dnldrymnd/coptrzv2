@@ -667,7 +667,13 @@ section.product-main {
         }
     }
     &.product-compare {
-        
+        .row-services {
+            [class*="col-"] {
+                &:nth-child(2) {
+                    background-color: var(--bs-gray);
+                }
+            }
+        }
     }
 }
 

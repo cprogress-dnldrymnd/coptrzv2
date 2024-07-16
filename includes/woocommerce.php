@@ -776,7 +776,7 @@ function __drone_servicing()
     }
     $html = "<div class='product-compare drone-servicing' >";
     $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
-    $html .= "<div class='row g-10px'>";
+    $html .= "<div class='row g-10px row-services'>";
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
         'heading' => $servicing_heading,
@@ -793,13 +793,13 @@ function __drone_servicing()
         $service_subheading = $drone['service_subheading'];
         $service_price = $drone['service_price'];
         $html .= "<div class='col-lg-3'>";
-        $html .= "<div class'service-box'>";
+        $html .= "<div class'service-box rounded-corner xs-padding d-flex justify-content-between flex-column'>";
         $html .= __heading(array(
             'heading' => $service_name,
             'tag' => 'h3',
             'suffix' => $service_subheading
         ));
-        $html .= "<div class'price-button'>";
+        $html .= "<div class='price-button mt-5'>";
         $html .= "<div class='price'>£$service_price<span>Excl. VAT</span></div>";
         $html .= __button(array(
             'button_type' => 'custom',
@@ -823,7 +823,7 @@ function __drone_servicing()
 
             $html .= "<div class='col-3'>"; //specs-row-col
             $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
-            $html .= "<div class='icon-box me-3'>";
+            $html .= "<div class='icon-box me-3 text-accent'>";
             $html .= $SVG->$key();
             $html .= "</div>";
             $html .= __heading(array(

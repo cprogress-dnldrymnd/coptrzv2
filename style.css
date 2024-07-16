@@ -9329,7 +9329,8 @@ textarea.form-control-lg {
   --red-color: #D64550;
   --border-color: #dbdbdb;
   --light-gray-color: #f2f2f2;
-  --bs-accordion-color: inherit; }
+  --bs-accordion-color: inherit;
+  --bs-gray: #85898C; }
 
 @font-face {
   font-family: "Poppins";
@@ -11977,6 +11978,8 @@ section.product-main .summary.summary.summary .variations tr {
   height: 30px; }
 .product-compare .comparison > .row:not(:last-child) {
   margin-bottom: 10px; }
+.product-compare.product-compare .row-services [class*="col-"]:nth-child(2) {
+  background-color: var; }
 
 .custom-product-grid {
   list-style: none;
