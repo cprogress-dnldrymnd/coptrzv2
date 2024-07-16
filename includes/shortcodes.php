@@ -573,7 +573,7 @@ class Shortcodes
             'hide_empty' => true,
             'number' => 100
         ));
-        $image_args['class'] = _attribute('class', array('swiper-slide'));
+        $image_args['class'] = _attribute('class', array('image-box'));
         $image_args['size'] = 'medium';
 
 
@@ -583,10 +583,11 @@ class Shortcodes
         $html .= '<div class="swiper-wrapper align-items-center">';
         foreach ($terms as $term) {
             $logo = get___term_meta($term->term_id, 'image');
-
             $image_args['image_id'] = $logo;
-
+            $link = get_term_link($term->term_id);
+            $html  = "<a href='$link'>";
             $html .= __image($image_args);
+            $html  .= "</a>";
         }
 
         $html  .= "</div>";
