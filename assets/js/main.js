@@ -18,8 +18,9 @@ function __ajax_buy_now() {
 
 function buy_now_ajax(button) {
     $buy_now_id = jQuery(this).attr('data-target');
-    jQuery('.buy-now').attr('disabled');
     button.addClass('active').attr('disabled');
+    console.log($buy_now_id);
+
     jQuery.ajax({
 
         type: "POST",
