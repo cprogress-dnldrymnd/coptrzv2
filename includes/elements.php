@@ -228,7 +228,7 @@ function __button($data)
         $button_url = $button_url_custom;
         $tag = 'a';
         $link = "href='$button_url_custom'";
-    } else if ($button_type == 'popup') {
+    } else if ($button_type == 'popups') {
         global $popups_id;
         $popups_id[] = $button_url;
         $tag = 'button';
