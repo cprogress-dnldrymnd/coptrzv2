@@ -12335,7 +12335,7 @@ section.product-main .summary.summary.summary .variations tr {
 .form-box:not(.style-2) .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
-  margin-bottom: 5px; }
+  margin-bottom: 10px; }
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field select option {
   color: var(--bs-primary); }
 .form-box.style-2 .wpforms-form .wpforms-field-container .wpforms-field input[type="text"],
