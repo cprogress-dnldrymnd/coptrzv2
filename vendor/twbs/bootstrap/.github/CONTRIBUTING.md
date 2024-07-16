@@ -92,7 +92,7 @@ Example:
 >
 > Any other information you want to share that is relevant to the issue being
 > reported. This might include the lines of code that you have identified as
-> causing the bug, and potential solutions (and your opinions on their
+> causing the bug, and potential industries (and your opinions on their
 > merits).
 
 ### Reporting upstream browser bugs

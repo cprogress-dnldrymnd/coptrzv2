@@ -58,8 +58,8 @@ if (is_home()) {
         'button_text' => 'Learn More',
         'elements' => array('image', 'title', 'button'),
     );
-} else if (is_post_type_archive('solutions')) {
-    $key = 'solutions_';
+} else if (is_post_type_archive('industries')) {
+    $key = 'industries_';
     $title = false;
     $has_featured = false;
     $has_pagination = false;

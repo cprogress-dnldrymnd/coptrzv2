@@ -231,7 +231,7 @@ Container::make('theme_options', __('Archives Settings'))
                                 'guides'      => 'Guides',
                                 'casestudies'      => 'Case Studies',
                                 'post'      => 'Post',
-                                'solutions' => 'Solution',
+                                'industries' => 'Industry',
                                 'popups'    => 'Popup',
                                 'custom'     => 'Custom',
                             )
@@ -354,7 +354,7 @@ Container::make('theme_options', __('Archives Settings'))
                                 'guides'      => 'Guides',
                                 'casestudies'      => 'Case Studies',
                                 'post'      => 'Post',
-                                'solutions' => 'Solution',
+                                'industries' => Industry,
                                 'popups'    => 'Popup',
                                 'custom'     => 'Custom',
                             )
@@ -466,7 +466,7 @@ Container::make('theme_options', __('Archives Settings'))
                                 'guides'      => 'Guides',
                                 'casestudies'      => 'Case Studies',
                                 'post'      => 'Post',
-                                'solutions' => 'Solution',
+                                'industries' => 'Industry',
                                 'popups'    => 'Popup',
                                 'custom'     => 'Custom',
                             )
@@ -521,17 +521,17 @@ Container::make('theme_options', __('Archives Settings'))
     ->add_tab(
         'Industries',
         array(
-            Field::make('html', 'solutions_hero')->set_html('<label>Hero Settings</label>')->set_classes('cb-label'),
-            Field::make('text', 'solutions_archive_title', __('Archvie Hero Title'))->set_classes('inline-field inline-field-wide-label'),
-            Field::make('textarea', 'solutions_archive_description', __('Archvie Hero Description'))->set_classes('inline-field inline-field-wide-label'),
-            Field::make('select', 'solutions_archive_hero_background_type', __('Background Type'))->set_classes('inline-field inline-field-wide-label')
+            Field::make('html', 'industries_hero')->set_html('<label>Hero Settings</label>')->set_classes('cb-label'),
+            Field::make('text', 'industries_archive_title', __('Archvie Hero Title'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('textarea', 'industries_archive_description', __('Archvie Hero Description'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('select', 'industries_archive_hero_background_type', __('Background Type'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
                         'self-hosted' => 'Self Hosted',
                         'youtube' => 'Youtube',
                     )
                 ),
-            Field::make('select', 'solutions_archive_hero_height', __('Height'))->set_classes('inline-field inline-field-wide-label')
+            Field::make('select', 'industries_archive_hero_height', __('Height'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
                         '' => 'Default',
@@ -539,7 +539,7 @@ Container::make('theme_options', __('Archives Settings'))
                         'small-hero' => 'Small',
                     )
                 ),
-            Field::make('select', 'solutions_archive_hero_alignment', __('Aligment'))->set_classes('inline-field inline-field-wide-label')
+            Field::make('select', 'industries_archive_hero_alignment', __('Aligment'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
                         'text-center' => 'Default/Center',
@@ -547,25 +547,25 @@ Container::make('theme_options', __('Archives Settings'))
                         'text-end' => 'Right',
                     )
                 ),
-            Field::make('file', 'solutions_archive_hero_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
+            Field::make('file', 'industries_archive_hero_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
                 ->set_conditional_logic(
                     array(
                         array(
-                            'field' => 'solutions_archive_hero_background_type',
+                            'field' => 'industries_archive_hero_background_type',
                             'value' => 'self-hosted',
                         )
                     )
                 ),
-            Field::make('text', 'solutions_archive_background_youtube', __('Background Youtube ID'))->set_classes('inline-field inline-field-wide-label')
+            Field::make('text', 'industries_archive_background_youtube', __('Background Youtube ID'))->set_classes('inline-field inline-field-wide-label')
                 ->set_conditional_logic(
                     array(
                         array(
-                            'field' => 'solutions_archive_hero_background_type',
+                            'field' => 'industries_archive_hero_background_type',
                             'value' => 'youtube',
                         )
                     )
                 ),
-            Field::make('complex', 'solutions_archive_hero_buttons', __('Buttons'))->set_classes('inline-field inline-field-wide-label')
+            Field::make('complex', 'industries_archive_hero_buttons', __('Buttons'))->set_classes('inline-field inline-field-wide-label')
                 ->setup_labels(
                     array(
                         'plural_name'   => 'Buttons',
@@ -582,7 +582,7 @@ Container::make('theme_options', __('Archives Settings'))
                                 'guides'      => 'Guides',
                                 'casestudies'      => 'Case Studies',
                                 'post'      => 'Post',
-                                'solutions' => 'Solution',
+                                'industries' => 'Industry',
                                 'popups'    => 'Popup',
                                 'custom'     => 'Custom',
                             )
@@ -695,7 +695,7 @@ Container::make('theme_options', __('Archives Settings'))
                                 'guides'      => 'Guides',
                                 'casestudies'      => 'Case Studies',
                                 'post'      => 'Post',
-                                'solutions' => 'Solution',
+                                'industries' => 'Industry',
                                 'popups'    => 'Popup',
                                 'custom'     => 'Custom',
                             )
@@ -818,7 +818,7 @@ Container::make('theme_options', __('Archives Settings'))
                                 'guides'      => 'Guides',
                                 'guides'      => 'Case Studies',
                                 'post'      => 'Post',
-                                'solutions' => 'Solution',
+                                'industries' => 'Industry',
                                 'popups'    => 'Popup',
                                 'custom'     => 'Custom',
                             )
@@ -959,7 +959,7 @@ function __hero_button_fields()
                             'guides'      => 'Guides',
                             'casestudies'      => 'Case Studies',
                             'post'      => 'Post',
-                            'solutions' => 'Solution',
+                            'industries' => 'Industry',
                             'popups'    => 'Popup',
                             'custom'     => 'Custom',
                         )
@@ -1039,7 +1039,7 @@ Container::make('post_meta', __('Hero'))
     ->or_where('post_type', '=', 'post')
     ->or_where('post_type', '=', 'capabilities')
     ->or_where('post_type', '=', 'casestudies')
-    ->or_where('post_type', '=', 'solutions')
+    ->or_where('post_type', '=', 'industries')
     ->or_where('post_type', '=', 'events')
     ->or_where('post_type', '=', 'guides')
     ->add_tab('Hero Settings', __hero_fields())
@@ -1799,7 +1799,7 @@ function __section_fields($name = 'sections')
                                                                 'guides'      => 'Guides',
                                                                 'casestudies'      => 'Case Studies',
                                                                 'post'      => 'Post',
-                                                                'solutions' => 'Solution',
+                                                                'industries' => 'Industry',
                                                                 'popups'    => 'Popup',
                                                                 'custom'     => 'Custom',
                                                             )
@@ -2599,7 +2599,7 @@ function __section_fields($name = 'sections')
                                                 ->set_duplicate_groups_allowed(false)
                                                 ->set_max(1)
                                                 ->add_fields(
-                                                    'solutions',
+                                                    'industries',
                                                     array(
                                                         Field::make('select', 'source', __('Source'))
                                                             ->set_options(
@@ -2614,7 +2614,7 @@ function __section_fields($name = 'sections')
                                                                 array(
                                                                     array(
                                                                         'type'      => 'post',
-                                                                        'post_type' => 'solutions',
+                                                                        'post_type' => 'industries',
                                                                     )
                                                                 )
                                                             )
@@ -4490,7 +4490,7 @@ function __section_fields($name = 'sections')
                                 ->set_duplicate_groups_allowed(false)
                                 ->set_max(1)
                                 ->add_fields(
-                                    'solutions',
+                                    'industries',
                                     array(
                                         Field::make('select', 'source', __('Source'))
                                             ->set_options(
@@ -4505,7 +4505,7 @@ function __section_fields($name = 'sections')
                                                 array(
                                                     array(
                                                         'type'      => 'post',
-                                                        'post_type' => 'solutions',
+                                                        'post_type' => 'industries',
                                                     )
                                                 )
                                             )
@@ -4688,7 +4688,7 @@ function __section_fields($name = 'sections')
                                                 'guides'      => 'Guides',
                                                 'casestudies'      => 'Case Studies',
                                                 'post'      => 'Post',
-                                                'solutions' => 'Solution',
+                                                'industries' => 'Industry',
                                                 'popups'    => 'Popup',
                                                 'custom'     => 'Custom',
                                             )
@@ -5549,7 +5549,7 @@ Container::make('post_meta', __('Sections'))
     ->or_where('post_type', '=', 'capabilities')
     ->or_where('post_type', '=', 'casestudies')
     ->or_where('post_type', '=', 'producttaxonomypages')
-    ->or_where('post_type', '=', 'solutions')
+    ->or_where('post_type', '=', 'industries')
     ->or_where('post_type', '=', 'events')
     ->add_fields(__section_fields());
 
@@ -5681,7 +5681,7 @@ Container::make('post_meta', __('Conditional Display'))
                 'casestudies' => __('Case Studies Archive'),
                 'guides' => __('Guides Archive'),
                 'capabilities' => __('Capabilities Archive'),
-                'solutions' => __('Solutions Archive'),
+                'industries' => __('Solutions Archive'),
                 '404' => __('404'),
             ))
             ->set_conditional_logic(
@@ -5860,7 +5860,7 @@ Container::make('post_meta', 'Capabilities Settings')
 /* Industry
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', 'Industry Settings')
-    ->where('post_type', '=', 'solutions')
+    ->where('post_type', '=', 'industries')
     ->add_tab(
         'General Settings',
         array(

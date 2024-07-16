@@ -75,8 +75,8 @@ function button_selector() {
             $selector.html(selector.guides);
         } else if ($value == 'casestudies') {
             $selector.html(selector.casestudies);
-        } else if ($value == 'solutions') {
-            $selector.html(selector.solutions);
+        } else if ($value == 'industries') {
+            $selector.html(selector.industries);
         } else if ($value == 'popups') {
             $selector.html(selector.popups);
         } else {

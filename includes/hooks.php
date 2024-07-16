@@ -46,13 +46,13 @@ function action_admin_enqueue_scripts($hook)
     $selector['post'] = $select_post;
 
 
-    $solutions = get__posts('solutions');
+    $industries = get__posts('industries');
     $select_solution = '<label style="display: block" class="cf-field__label">Select Solution</label><select class="select-page-selector">';
-    foreach ($solutions as $key => $solution) {
+    foreach ($industries as $key => $solution) {
         $select_solution .= '<option value="' . $key . '"> ' . $solution . ' </option>';
     }
     $select_solution .= '</select>';
-    $selector['solutions'] = $select_solution;
+    $selector['industries'] = $select_solution;
 
 
     $popups = get__posts('popups');
@@ -280,7 +280,7 @@ function action_pre_get_posts($query)
         $query->set('orderby', 'menu_order');
         $query->set('order', 'ASC');
 
-        if (is_post_type_archive('solutions') || is_post_type_archive('guides')) {
+        if (is_post_type_archive('industries') || is_post_type_archive('guides')) {
             $meta_query[] = [
                 'key' => '_hide_on_list',
                 'value' => 'yes',
@@ -289,7 +289,7 @@ function action_pre_get_posts($query)
 
             $query->set('meta_query', $meta_query);
         }
-        if (is_post_type_archive('solutions') || is_post_type_archive('capabilities')) {
+        if (is_post_type_archive('industries') || is_post_type_archive('capabilities')) {
             $query->set('posts_per_page', -1);
         }
     }
