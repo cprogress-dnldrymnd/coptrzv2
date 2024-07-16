@@ -10752,13 +10752,6 @@ section .container-inner > *:not(:last-child) {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
-.button-box.button-box.button-box.button-accent + .button-bordered a:hover, .button-box.button-box.button-box.button-accent + .button-bordered a:active, .button-box.button-box.button-box.button-accent + .button-bordered a:focus,
-.button-box.button-box.button-box.button-accent + .button-bordered button:hover,
-.button-box.button-box.button-box.button-accent + .button-bordered button:active,
-.button-box.button-box.button-box.button-accent + .button-bordered button:focus {
-  background-color: var(--bs-dark);
-  border-color: var(--bs-dark);
-  color: var(--bs-white); }
 .button-box.button-box.button-box.button-bordered a,
 .button-box.button-box.button-box.button-bordered button {
   background-color: transparent; }

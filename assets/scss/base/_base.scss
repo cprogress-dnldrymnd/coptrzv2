@@ -269,16 +269,7 @@ section {
         button {
             @include button-accent;
         }
-        & + .button-bordered {
-            a,
-            button {
-                @include on-event {
-                    background-color: var(--bs-dark);
-                    border-color: var(--bs-dark);
-                    color: var(--bs-white);
-                }
-            }
-        }
+       
     }
     &.button-bordered {
         a,
