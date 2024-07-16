@@ -269,6 +269,16 @@ section {
         button {
             @include button-accent;
         }
+        & + .button-bordered {
+            a,
+            button {
+                @include on-event {
+                    background-color: var(--bs-white);
+                    border-color: var(--bs-white);
+                    color: var(--bs-primary);
+                }
+            }
+        }
     }
     &.button-bordered {
         a,
@@ -368,7 +378,7 @@ input[type="checkbox"] {
 
         &.swiper-pagination-bullet-active {
             opacity: 1;
-            background-color: var(--bs-black);
+            background-color: var(--bs-primary);
         }
     }
 }
@@ -476,7 +486,7 @@ input[type="checkbox"] {
 }
 
 .border-primary {
-    border-color: var(--bs-black);
+    border-color: var(--bs-primary);
 }
 .border-secondary {
     border-color: var(--bs-secondary);
@@ -618,7 +628,7 @@ small {
             padding: 20px 30px;
             border-radius: 0;
             font-size: 25px;
-            color: var(--bs-black);
+            color: var(--bs-primary);
             border-top: none;
             border-left: none;
             border-right: none;
@@ -657,7 +667,7 @@ small {
         }
         h3 {
             span {
-                color: var(--bs-black);
+                color: var(--bs-primary);
             }
         }
     }
@@ -750,7 +760,7 @@ small {
             &:checked {
                 & + label {
                     color: var(--bs-white);
-                    background-color: var(--bs-black);
+                    background-color: var(--bs-primary);
                 }
             }
         }
@@ -772,7 +782,7 @@ small {
         svg {
             width: 35px;
             height: 35px;
-            color: var(--bs-black);
+            color: var(--bs-primary);
             &.facebook {
                 color: #0080ff;
             }
@@ -802,7 +812,7 @@ small {
             font-size: 20px;
             text-decoration: none;
             font-weight: 500;
-            color: var(--bs-black);
+            color: var(--bs-primary);
         }
 
         &.h3-nav {
@@ -1153,7 +1163,7 @@ hr {
         display: flex;
         .page-numbers {
             padding: 15px;
-            color: var(--bs-black);
+            color: var(--bs-primary);
             border-radius: 10px;
             border: 1px solid;
             height: 60px;
@@ -1197,14 +1207,14 @@ hr {
 }
 .hero-hidden {
     header .header-inner {
-        background: var(--bs-black);
+        background: var(--bs-primary);
     }
     .mini-cart-wrapper #mini-cart-button .cart-number {
         background-color: var(--bs-accent);
     }
     .breadcrumbs {
         .text-white {
-            color: var(--bs-black) !important;
+            color: var(--bs-primary) !important;
         }
     }
 }

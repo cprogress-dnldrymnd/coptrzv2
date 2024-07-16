@@ -314,7 +314,7 @@
 @mixin button-white {
     background-color: var(--bs-white);
     border-color: var(--bs-white);
-    color: var(--bs-black);
+    color: var(--bs-primary);
     @include on-event() {
         background-color: var(--bs-secondary);
         border-color: var(--bs-secondary);
@@ -340,7 +340,7 @@
     background-size: 15px;
     background-position: left center;
     background-repeat: no-repeat;
-    color: var(--bs-black);
+    color: var(--bs-primary);
 }
 @mixin backorder {
     @include before {
