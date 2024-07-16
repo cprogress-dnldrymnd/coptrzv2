@@ -19,8 +19,10 @@
     .navbar.navbar.navbar {
         .nav-item {
             &.is-not-mega-menu {
-                @include responsive(md-lg) {
-                    width: 300px;
+                .submenu {
+                    @include responsive(md-lg) {
+                        width: 300px;
+                    }
                 }
             }
             .nav-link {
