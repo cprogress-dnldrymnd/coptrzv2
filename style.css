@@ -11520,18 +11520,18 @@ hr {
 #brands-slider img {
   height: 60px; }
 
-#testimonial-slider-swiper .post-grid {
+#testimonial-slider .post-grid {
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: space-between; }
-#testimonial-slider-swiper .testimonial-content {
+#testimonial-slider .testimonial-content {
   font-size: 2rem; }
   @media screen and (max-width: 991px) {
-    #testimonial-slider-swiper .testimonial-content {
+    #testimonial-slider .testimonial-content {
       font-size: 1.5rem; } }
   @media screen and (max-width: 767px) {
-    #testimonial-slider-swiper .testimonial-content {
+    #testimonial-slider .testimonial-content {
       font-size: 1.25rem; } }
 
 @keyframes spin {
