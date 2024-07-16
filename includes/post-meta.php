@@ -95,7 +95,7 @@ function __servicing_fields()
             ->add_fields(array(
                 Field::make('text', 'service_name', 'Service Name')->set_classes('inline-field'),
                 Field::make('text', 'service_subheading', 'Service Subheading')->set_classes('inline-field'),
-                Field::make('text', 'service_price', 'Service Price'),
+                Field::make('text', 'service_price', 'Service Price')->set_classes('inline-field'),
                 Field::make('complex', 'service_features', 'Service Features')->set_classes('inline-field')
                     ->add_fields('drone', array(
                         Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
