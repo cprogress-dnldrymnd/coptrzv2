@@ -147,15 +147,16 @@
                 console.log($Number_of_Days_Drone_Will_Be_Used_Per_Year);
 
 
-                console.log($Net_Annual_Cash_Inflow);
-                console.log($Payback_Period);
+                console.log($Net_Annual_Cash_Inflow.toFixed(2));
+                console.log($Payback_Period.toFixed(2));
 
                 e.preventDefault();
             });
 
             function __get_val($name) {
                 $val = jQuery('input[name="' + $name + '"]').val();
-                return parseFloat($val).toFixed(2)
+                return parseFloat($val);
             }
         });
+                ;
     </script>
