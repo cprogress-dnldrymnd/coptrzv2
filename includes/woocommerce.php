@@ -820,7 +820,7 @@ function __drone_servicing()
             $html .= "<div class='row g-10px mb-10px'>";
 
             if ($spec != '_') {
-                $html .= "<div class='col-4'>"; //specs-row-col
+                $html .= "<div class='col-8'>"; //specs-row-col
                 $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
                 $html .= "<div class='icon-box me-3 text-accent'>";
                 $html .= $SVG->$key();
@@ -838,7 +838,7 @@ function __drone_servicing()
                     $spec_services[$service_feature['_type']] = $service_feature['quantity'];
                 }
 
-                $html .= "<div class='col'>";
+                $html .= "<div class='col-4'>";
                 $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
                 if (array_key_exists($key, $spec_services)) {
