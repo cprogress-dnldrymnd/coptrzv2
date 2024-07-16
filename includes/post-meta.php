@@ -5651,6 +5651,7 @@ Container::make('post_meta', __('Conditional Display'))
                 'events' => __('Events'),
                 'capabilities' => __('Capabilities'),
                 'casestudies' => __('Case Studies'),
+                'industries' => __('Industries'),
                 'guides' => __('Guides'),
             ))
             ->set_conditional_logic(
