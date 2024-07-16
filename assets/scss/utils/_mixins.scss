@@ -285,6 +285,7 @@
     font-size: 15px;
     border-radius: 10px;
     line-height: 1.25;
+    text-align: center;
     @include responsive(mobile) {
         font-size: 14px;
         padding: 1.25rem 2rem;

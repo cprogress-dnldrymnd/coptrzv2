@@ -10702,7 +10702,8 @@ section .container-inner > *:not(:last-child) {
   font-weight: 600;
   font-size: 15px;
   border-radius: 10px;
-  line-height: 1.25; }
+  line-height: 1.25;
+  text-align: center; }
   @media screen and (max-width: 575px) {
     .button-box a,
     .button-box button,
@@ -11936,6 +11937,7 @@ section.product-main .summary.summary.summary .variations tr {
     font-size: 15px;
     border-radius: 10px;
     line-height: 1.25;
+    text-align: center;
     background-color: transparent;
     padding: 10px;
     width: 60.75px;
@@ -12141,6 +12143,7 @@ section.product-main .summary.summary.summary .variations tr {
   font-size: 15px;
   border-radius: 10px;
   line-height: 1.25;
+  text-align: center;
   color: var(--bs-white);
   border-color: var(--bs-accent);
   background-color: var(--bs-accent);
