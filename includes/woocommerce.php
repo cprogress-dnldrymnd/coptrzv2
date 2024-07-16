@@ -771,7 +771,9 @@ function __drone_servicing()
         $specs[] = $servicing_drone['_type'];
         $service_features = $servicing_drone['service_features'];
         foreach ($service_features as $service_feature) {
-            $specs[$service_feature['_type']] = $service_feature['_type'];
+            if ($service_feature['_type'] != '_') {
+                $specs[$service_feature['_type']] = $service_feature['_type'];
+            }
         }
     }
     $test = json_encode($specs);
@@ -823,7 +825,7 @@ function __drone_servicing()
         $html .= "<div class='col-3'>"; //specs-row-col
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
         $html .= "<div class='icon-box'>";
-       // $html .= $SVG->$key();
+        // $html .= $SVG->$key();
         $html .= "</div>";
         $html .= __heading(array(
             'heading' => $spec,
