@@ -11525,13 +11525,13 @@ hr {
   flex-direction: column;
   height: 100%;
   justify-content: space-between; }
-#testimonial-slider-swiper .testimonial-slider-swiper {
+#testimonial-slider-swiper .testimonial-content {
   font-size: 2rem; }
   @media screen and (max-width: 991px) {
-    #testimonial-slider-swiper .testimonial-slider-swiper {
+    #testimonial-slider-swiper .testimonial-content {
       font-size: 1.5rem; } }
   @media screen and (max-width: 767px) {
-    #testimonial-slider-swiper .testimonial-slider-swiper {
+    #testimonial-slider-swiper .testimonial-content {
       font-size: 1.25rem; } }
 
 @keyframes spin {

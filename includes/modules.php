@@ -977,8 +977,8 @@ function ____post_grid_module($data)
     $id = isset($data['id']) ? $data['id'] : '';
     $post_box_styles = isset($data['post_box_styles']) ? $data['post_box_styles'] : false;
     $post_elements = isset($data['post_elements']) ? $data['post_elements'] : false;
-    $post_type = isset($data['post_type']) ? $data['post_type'][0]['_type'] : false;
-    $source = isset($data['post_type']) ? $data['post_type'][0]['source'] : false;
+    $post_type = isset($data['post_type'][0]['_type']) ? $data['post_type'][0]['_type'] : false;
+    $source = isset($data['post_type'][0]['source']) ? $data['post_type'][0]['source'] : false;
     $styles_val = '';
     $column_classes_val  = '';
 
@@ -1019,100 +1019,102 @@ function ____post_grid_module($data)
     $styles = array();
     $classes = array();
     $column_classes = array();
-    foreach ($post_box_styles as $post_box_style) {
-        $type = $post_box_style['_type'];
-        switch ($type) {
-            case 'padding':
-                $classes[] = $post_box_style['padding_top'];
-                $classes[] = $post_box_style['padding_bottom'];
-                $classes[] = $post_box_style['padding_left'];
-                $classes[] = $post_box_style['padding_right'];
-                break;
-            case 'margin':
-                $classes[] = $post_box_style['margin_top'];
-                $classes[] = $post_box_style['margin_bottom'];
-                $classes[] = $post_box_style['margin_left'];
-                $classes[] = $post_box_style['margin_right'];
-                break;
-            case 'custom_class':
-                $classes[] = $post_box_style['custom_class'];
-                break;
-            case 'alignment':
-                $classes[] = $post_box_style['align_items'];
-                $classes[] = $post_box_style['justify_content'];
-                $classes[] = $post_box_style['text_align'];
-                if ($post_box_style['align_items'] || $post_box_style['justify_content']) {
-                    $classes[] = 'd-flex flex-column';
-                }
-                break;
-            case 'text_color':
-                $text_color_custom = $post_box_style['text_color_custom'];
-                $classes[] = $post_box_style['text_color'];
-                if ($text_color_custom) {
-                    $styles[] = 'color: ' . $text_color_custom;
-                }
-                break;
-            case 'background_color':
-                $background_color_custom = $post_box_style['background_color_custom'];
-                $classes[] = $post_box_style['background_color'];
-                if ($background_color_custom) {
-                    $styles[] = 'background-color: ' . $background_color_custom;
-                }
-                break;
-            case 'border':
-                $border_radius = $post_box_style['border_radius'];
-                if ($border_radius) {
-                    if ($border_radius == 'custom') {
-                        $border_radius_custom = $post_box_style['border_radius_custom'];
-                        $styles_section[] = "border-radius: $border_radius_custom";
-                    } else {
-                        $classes[] = $border_radius;
+    if ($post_box_styles) {
+        foreach ($post_box_styles as $post_box_style) {
+            $type = $post_box_style['_type'];
+            switch ($type) {
+                case 'padding':
+                    $classes[] = $post_box_style['padding_top'];
+                    $classes[] = $post_box_style['padding_bottom'];
+                    $classes[] = $post_box_style['padding_left'];
+                    $classes[] = $post_box_style['padding_right'];
+                    break;
+                case 'margin':
+                    $classes[] = $post_box_style['margin_top'];
+                    $classes[] = $post_box_style['margin_bottom'];
+                    $classes[] = $post_box_style['margin_left'];
+                    $classes[] = $post_box_style['margin_right'];
+                    break;
+                case 'custom_class':
+                    $classes[] = $post_box_style['custom_class'];
+                    break;
+                case 'alignment':
+                    $classes[] = $post_box_style['align_items'];
+                    $classes[] = $post_box_style['justify_content'];
+                    $classes[] = $post_box_style['text_align'];
+                    if ($post_box_style['align_items'] || $post_box_style['justify_content']) {
+                        $classes[] = 'd-flex flex-column';
                     }
-                }
-                $border_style = $post_box_style['border_style'];
-                if ($border_style) {
-                    if ($border_style == 'border-custom') {
-                        $border_color = $post_box_style['border_color'];
-                        $border_width = $post_box_style['border_width'];
-                        if ($border_color == 'border-custom-color') {
-                            $border_color_custom = $post_box_style['border_color_custom'];
-                            $styles_section[] = "border-color: $border_color_custom";
-                        } else {
-                            $classes[] = $border_color;
-                        }
-
-                        if ($border_width == 'custom') {
-                            $border_width_top =  $post_box_style['border_width_top'];
-                            $border_width_right =  $post_box_style['border_width_right'];
-                            $border_width_bottom =  $post_box_style['border_width_bottom'];
-                            $border_width_left =  $post_box_style['border_width_left'];
-                            $classes[] = 'border-width-custom';
-
-                            if ($border_width_top) {
-                                $styles_section[] = "border-top-width: $border_width_top";
-                            }
-                            if ($border_width_right) {
-                                $styles_section[] = "border-right-width: $border_width_right";
-                            }
-                            if ($border_width_bottom) {
-                                $styles_section[] = "border-bottom-width: $border_width_bottom";
-                            }
-                            if ($border_width_left) {
-                                $styles_section[] = "border-left-width: $border_width_left";
-                            }
-                        } else {
-                            $classes[] = 'border-default';
-                        }
-                    } else {
-                        $classes[] = $border_style;
+                    break;
+                case 'text_color':
+                    $text_color_custom = $post_box_style['text_color_custom'];
+                    $classes[] = $post_box_style['text_color'];
+                    if ($text_color_custom) {
+                        $styles[] = 'color: ' . $text_color_custom;
                     }
-                }
-                break;
-            case 'column_width':
-                $column_classes[] = $post_box_style['column_width'];
-                $column_classes[] = $post_box_style['column_width_tablet'];
-                $column_classes[] = $post_box_style['column_width_mobile'];
-                break;
+                    break;
+                case 'background_color':
+                    $background_color_custom = $post_box_style['background_color_custom'];
+                    $classes[] = $post_box_style['background_color'];
+                    if ($background_color_custom) {
+                        $styles[] = 'background-color: ' . $background_color_custom;
+                    }
+                    break;
+                case 'border':
+                    $border_radius = $post_box_style['border_radius'];
+                    if ($border_radius) {
+                        if ($border_radius == 'custom') {
+                            $border_radius_custom = $post_box_style['border_radius_custom'];
+                            $styles_section[] = "border-radius: $border_radius_custom";
+                        } else {
+                            $classes[] = $border_radius;
+                        }
+                    }
+                    $border_style = $post_box_style['border_style'];
+                    if ($border_style) {
+                        if ($border_style == 'border-custom') {
+                            $border_color = $post_box_style['border_color'];
+                            $border_width = $post_box_style['border_width'];
+                            if ($border_color == 'border-custom-color') {
+                                $border_color_custom = $post_box_style['border_color_custom'];
+                                $styles_section[] = "border-color: $border_color_custom";
+                            } else {
+                                $classes[] = $border_color;
+                            }
+
+                            if ($border_width == 'custom') {
+                                $border_width_top =  $post_box_style['border_width_top'];
+                                $border_width_right =  $post_box_style['border_width_right'];
+                                $border_width_bottom =  $post_box_style['border_width_bottom'];
+                                $border_width_left =  $post_box_style['border_width_left'];
+                                $classes[] = 'border-width-custom';
+
+                                if ($border_width_top) {
+                                    $styles_section[] = "border-top-width: $border_width_top";
+                                }
+                                if ($border_width_right) {
+                                    $styles_section[] = "border-right-width: $border_width_right";
+                                }
+                                if ($border_width_bottom) {
+                                    $styles_section[] = "border-bottom-width: $border_width_bottom";
+                                }
+                                if ($border_width_left) {
+                                    $styles_section[] = "border-left-width: $border_width_left";
+                                }
+                            } else {
+                                $classes[] = 'border-default';
+                            }
+                        } else {
+                            $classes[] = $border_style;
+                        }
+                    }
+                    break;
+                case 'column_width':
+                    $column_classes[] = $post_box_style['column_width'];
+                    $column_classes[] = $post_box_style['column_width_tablet'];
+                    $column_classes[] = $post_box_style['column_width_mobile'];
+                    break;
+            }
         }
     }
     $classes[] = 'column-holder position-relative overflow-hidden content-margin h-100';
