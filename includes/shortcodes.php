@@ -573,12 +573,11 @@ class Shortcodes
             'hide_empty' => true,
             'number' => -1
         ));
+        $image_args['class'] = _attribute('class', array('swiper-slide'));
+        $image_args['size'] = 'medium';
 
 
         $html  = "<div class='gallery'>";
-
-        $image_args['class'] = _attribute('class', array('swiper-slide'));
-        $image_args['size'] = 'medium';
 
         $html .= "<div id='brands-slider' class='swiper swiper-logo-slider'>";
         $html .= '<div class="swiper-wrapper align-items-center">';
