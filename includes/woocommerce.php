@@ -828,7 +828,7 @@ function __drone_servicing()
             $html .= $SVG->$key();
             $html .= "</div>";
             $html .= __heading(array(
-                'heading' => $spec,
+                'heading' => ucwords($spec),
                 'class' => _attribute('class', array('mb-0')),
                 'tag' => 'h5',
             ));
