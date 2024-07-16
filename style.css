@@ -11517,6 +11517,9 @@ hr {
 .taxonomy-terms a {
   text-decoration: none; }
 
+#brands-slider img {
+  height: 60px; }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }
