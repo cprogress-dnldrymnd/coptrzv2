@@ -239,7 +239,7 @@ function __button($data)
         $class = 'buy-now-trigger';
     }
 
-    if ($button_text && $button_url) {
+    if ($button_text && $link) {
         $attributes_args = [];
         $attributes_args[] = _attribute('class', array($button_style, 'button-box'));
 
