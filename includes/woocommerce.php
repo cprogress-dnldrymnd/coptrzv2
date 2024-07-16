@@ -790,15 +790,23 @@ function __drone_servicing()
     $html .= "</div>";
 
     foreach ($servicing_drones as $key => $drone) {
+        $position = $key % 3;
 
+        if ($position == 0) {
+            $class = 'bg-gray';
+        } else if ($position == 1) {
+            $class = 'bg-accent';
+        } else if ($position == 2) {
+            $class = 'bg-black';
+        }
 
 
         $service_name = $drone['service_name'];
         $service_subheading = $drone['service_subheading'];
         $service_price = $drone['service_price'];
         $html .= "<div class='col-lg-3'>";
-        $html .= $key % 3;
-        $html .= "<div class'service-box rounded-corner xs-padding d-flex justify-content-between flex-column'>";
+        $html .=
+            $html .= "<div class'service-box rounded-corner xs-padding d-flex justify-content-between flex-column $class'>";
         $html .= __heading(array(
             'heading' => $service_name,
             'tag' => 'h3',
