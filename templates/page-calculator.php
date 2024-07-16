@@ -4,11 +4,11 @@
 /*-----------------------------------------------------------------------------------*/
 ?>
 <?php get_header(); ?>
-<div class="modules">
+<div class="modules" id="calculator">
     <?php
     echo ___hero_modules();
     ?>
-    <section class="calculator medium-container lg-padding-top md-padding-bottom" id="calculator">
+    <section class="calculator medium-container lg-padding-top md-padding-bottom" >
         <div class="container content-margin">
             <div class="inner px-5 content-margin">
                 <h1>Project Information</h1>
