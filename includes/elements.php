@@ -5,7 +5,7 @@ function __heading($data, $html = '')
     $class = isset($data['class']) ? $data['class'] : false;
     $tag = isset($data['tag']) ? $data['tag'] : 'h2';
     $prefix = isset($data['prefix']) ? $data['prefix'] : false;
-    $suffix = isset($data['prefix']) ? $data['suffix'] : false;
+    $suffix = isset($data['suffix']) ? $data['suffix'] : false;
     $styles = isset($data['styles']) ? $data['styles'] : false;
 
     $attributes_args = [];
