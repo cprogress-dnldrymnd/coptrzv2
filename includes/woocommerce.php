@@ -771,9 +771,7 @@ function __drone_servicing()
         $specs[] = $servicing_drone['_type'];
         $service_features = $servicing_drone['service_features'];
         foreach ($service_features as $service_feature) {
-            if ($service_feature['_type'] != '_') {
-                $specs[$service_feature['_type']] = $service_feature['_type'];
-            }
+            $specs[$service_feature['_type']] = $service_feature['_type'];
         }
     }
     $test = json_encode($specs);
@@ -840,9 +838,7 @@ function __drone_servicing()
             foreach ($servicing_drones as $drone) {
                 $spec_services = array();
                 foreach ($service_features as $service_feature) {
-                    if ($service_feature['_type'] != '_') {
-                        $spec_services[$service_feature['_type']] = $service_feature['_type'];
-                    }
+                    $spec_services[$service_feature['_type']] = $service_feature['_type'];
                 }
 
 
