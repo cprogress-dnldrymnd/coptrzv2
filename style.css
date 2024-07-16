@@ -11316,7 +11316,17 @@ hr {
 .modal {
   z-index: 999999; }
   .modal .btn-close {
-    position: absolute; }
+    position: absolute;
+    right: 20px;
+    z-index: 1;
+    top: 20px;
+    border: none;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px; }
+    .modal .btn-close svg {
+      width: 25px;
+      height: 25px; }
   .modal.popup-form .modal-dialog {
     max-width: 800px; }
   .modal.popup-form.popup-small .modal-dialog {

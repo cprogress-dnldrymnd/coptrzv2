@@ -1013,6 +1013,18 @@ hr {
     z-index: 999999;
     .btn-close {
         position: absolute;
+        right: 20px;
+        z-index: 1;
+        top: 20px;
+        border: none;
+        border-radius: 5px;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        svg {
+            width: 25px;
+            height: 25px;
+        }
     }
     &.popup-form {
         .modal-dialog {
