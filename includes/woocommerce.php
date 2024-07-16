@@ -809,7 +809,7 @@ function __drone_servicing()
         $service_price = $drone['service_price'];
         $html .= "<div class='col-lg-3'>";
         $html .=
-            $html .= "<div class'service-box rounded-corner xs-padding d-flex justify-content-between flex-column $class'>";
+            $html .= "<div class='service-box rounded-corner xs-padding d-flex justify-content-between flex-column $class'>";
         $html .= __heading(array(
             'heading' => $service_name,
             'tag' => 'h3',
