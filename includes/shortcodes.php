@@ -571,7 +571,6 @@ class Shortcodes
         $terms = get_terms(array(
             'taxonomy'   => 'pa_brands',
             'hide_empty' => true,
-            'number' => -1
         ));
         $image_args['class'] = _attribute('class', array('swiper-slide'));
         $image_args['size'] = 'medium';
