@@ -155,7 +155,7 @@
 
             function __get_val($name) {
                 $val = jQuery('input[name="' + $name + '"]').val();
-                return toFixed($val);
+                return parseFloat($val).toFixed(2)
             }
         });
     </script>
