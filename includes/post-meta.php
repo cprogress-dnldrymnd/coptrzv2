@@ -628,8 +628,8 @@ Container::make('theme_options', __('Archives Settings'))
                         ),
                 ))
                 ->set_header_template('Button: <%- button_text %>'),
-                Field::make('html', 'industries_loop')->set_html('<label>Loop Section Settings</label>')->set_classes('cb-label'),
-                Field::make('text', 'industries_loop_section_title', __('Loop Section Title'))->set_classes('inline-field inline-field-wide-label'),
+            Field::make('html', 'industries_loop')->set_html('<label>Loop Section Settings</label>')->set_classes('cb-label'),
+            Field::make('text', 'industries_loop_section_title', __('Loop Section Title'))->set_classes('inline-field inline-field-wide-label'),
         )
     )
     ->add_tab(
@@ -6010,4 +6010,13 @@ Container::make('post_meta', 'Hide Before Footer Layout')
     ->add_fields(array(
         Field::make('set', 'hidden_layouts', __(''))
             ->set_options($before_footer_options)
+    ));
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Menu Settings
+/*-----------------------------------------------------------------------------------*/
+Container::make('nav_menu_item', __('Menu Settings'))
+    ->add_fields(array(
+        Field::make('checkbox', 'is_mega_menu', __('Is Mega Menu')),
     ));
