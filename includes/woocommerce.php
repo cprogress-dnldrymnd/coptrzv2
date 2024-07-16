@@ -860,9 +860,14 @@ function __drone_servicing()
                 if (array_key_exists($key, $spec_services)) {
 
                     $quantity = $spec_services[$key];
-                    
-                    $html .= "<div class='active'> $quantity";
+
+                    $html .= "<div class='active'> ";
                     $html .= $SVG->check();
+                    if ($quantity > 1) {
+                        $html .= "<span class='qty'> ";
+                        $html .= "x $quantity";
+                        $html .= "</span>";
+                    }
                     $html .= "</div>";
                 } else {
                     $html .= "<div class='not-active'>";
