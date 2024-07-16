@@ -610,6 +610,7 @@ class Shortcodes
             'number_of_slides' => 1,
             'number_of_slides_tablet' => 1,
             'number_of_slides_mobile' => 1,
+            'post_grid_id' => 'testimonial-slider',
             'post_elements' => array(
                 array(
                     "_type" => "icon",

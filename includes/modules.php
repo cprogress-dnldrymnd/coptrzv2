@@ -981,6 +981,7 @@ function ____post_grid_module($data)
     $source = isset($data['post_type'][0]['source']) ? $data['post_type'][0]['source'] : false;
     $styles_val = '';
     $column_classes_val  = '';
+    $post_grid_id = isset($data['post_grid_id']) ? $data['post_grid_id'] : '';
 
 
     $args['post_type'] = $post_type;
@@ -1141,7 +1142,7 @@ function ____post_grid_module($data)
     $column_attribute = _attributes(array($column_classes_val));
 
     $html = '';
-    $html .= "<div class='post-grid'>";
+    $html .= "<div class='post-grid' id='$post_grid_id'>";
 
     if ($is_slider) {
         $swiper_id = $id . '-swiper';
