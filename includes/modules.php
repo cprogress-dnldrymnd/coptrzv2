@@ -794,6 +794,9 @@ function ___sections($id = 'sections', $post_id = '')
                                 case 'reviews':
                                     $html .= do_shortcode("[reviews]");
                                     break;
+                                case 'drone_servicing':
+                                    $html .= do_shortcode("[drone_servicing]");
+                                    break;
                             }
                         }
                         break;

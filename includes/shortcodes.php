@@ -387,7 +387,7 @@ class Shortcodes
                     $data['background_class'] = $background;
                 }
                 if (get_post_type($id) == 'post') {
-                    $data['elements'] = array( 'category', 'image', 'date', 'title', 'button');
+                    $data['elements'] = array('category', 'image', 'date', 'title', 'button');
                     $data['taxonomy'] = 'category';
                 } else {
                     $data['elements'] = array('image',  'title', 'button');
@@ -542,6 +542,23 @@ class Shortcodes
 
         return $html;
     }
+
+    function product_compare($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'id' => '',
+                ),
+                $atts
+            )
+        );
+        return __product_compare($id);
+    }
+
+    function drone_servicing() {
+        return __drone_servicing();
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -558,3 +575,5 @@ add_shortcode('reviews', array($Shortcodes, 'reviews'));
 add_shortcode('socials', array($Shortcodes, 'socials'));
 add_shortcode('site_logo', array($Shortcodes, 'site_logo'));
 add_shortcode('event_countdown', array($Shortcodes, 'event_countdown'));
+add_shortcode('product_compare', array($Shortcodes, 'product_compare'));
+add_shortcode('drone_servicing', array($Shortcodes, 'drone_servicing'));

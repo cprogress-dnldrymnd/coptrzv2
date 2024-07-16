@@ -428,20 +428,7 @@ function __product_compare($id)
     return $html;
 }
 
-function product_compare($atts)
-{
-    extract(
-        shortcode_atts(
-            array(
-                'id' => '',
-            ),
-            $atts
-        )
-    );
-    return __product_compare($id);
-}
 
-add_shortcode('product_compare', 'product_compare');
 
 function _product_grid_display($id)
 {
