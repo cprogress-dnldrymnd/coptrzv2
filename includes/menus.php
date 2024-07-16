@@ -49,10 +49,11 @@ function header_menu()
 		if ($menu_item_parent == 0) {
 			$is_mega_menu = carbon_get_nav_menu_item_meta($ID, 'is_mega_menu');
 			$class = $is_mega_menu ? 'is-mega-menu' : '';
+			$ul_class = $is_mega_menu ? 'flex-column' : '';
 			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
 				return ($var['menu_item_parent'] == $ID);
 			});
-			$html .= '<li class="nav-item ' . $class . '">';
+			$html .= "<li class='nav-item  $class'>";
 			$html .= '<a class="nav-link text-white main-nav ' . ($submenus1 ? 'has-children' : '') . '" href="' . $menu['url'] . '">';
 			$html .= $menu['title'];
 			if ($submenus1) {
@@ -63,7 +64,7 @@ function header_menu()
 			if ($submenus1) {
 
 				$html .= '<div class="submenu">';
-				$html .= '<ul class="list-inline d-flex p-0">';
+				$html .= "<ul class='list-inline d-flex p-0 $ul_class'>";
 				foreach ($submenus1 as $submenu1) {
 					$submenu1_id = $submenu1['ID'];
 
