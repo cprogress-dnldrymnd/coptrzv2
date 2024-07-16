@@ -174,32 +174,11 @@ function __swipers() {
             loop: true,
             freeMode: true,
             centeredSlides: true,
+            slidesPerView: 'auto',
             speed: 5000,
             autoplay: {
                 delay: 0,
                 disableOnInteraction: false
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 2,
-                },
-
-                768: {
-                    slidesPerView: 3,
-                },
-
-
-                992: {
-                    slidesPerView: 4,
-                },
-
-                1200: {
-                    slidesPerView: 5,
-                },
-
-                1440: {
-                    slidesPerView: 6,
-                },
             },
         });
     });
