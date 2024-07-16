@@ -122,6 +122,8 @@ function __general_settings_fields()
 {
     return array(
         Field::make('image', 'logo', 'Logo')->set_classes('inline-field inline-field-wide-label'),
+        Field::make('image', 'footer_drone_experts', 'Drone Experts Image')->set_classes('inline-field inline-field-wide-label'),
+
     );
 }
 function __social_fields()
@@ -5889,7 +5891,6 @@ Container::make('post_meta', 'Industry Settings')
         'General Settings',
         array(
             Field::make('checkbox', 'hide_on_list', 'Hide on List'),
-            Field::make('image', 'footer_drone_experts', 'Drone Experts Image'),
         )
     )
     ->add_tab(
