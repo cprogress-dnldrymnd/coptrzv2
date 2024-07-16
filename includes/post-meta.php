@@ -1763,35 +1763,6 @@ function __section_fields($name = 'sections')
                                                     )
                                                 ),
                                             Field::make('media_gallery', 'gallery', __('Gallery')),
-                                            Field::make('text', 'number_of_slides', __('Number of Slides Desktop'))->set_default_value(6)->set_required(true)->set_attribute('type', 'number')
-                                                ->set_conditional_logic(
-                                                    array(
-                                                        array(
-                                                            'field' => 'gallery_style',
-                                                            'value' => 'logo-slider',
-                                                        )
-                                                    )
-                                                ),
-                                            Field::make('text', 'number_of_slides_tablet', __('Number of Slides Tablet'))
-                                                ->set_attribute('type', 'number')
-                                                ->set_conditional_logic(
-                                                    array(
-                                                        array(
-                                                            'field' => 'gallery_style',
-                                                            'value' => 'logo-slider',
-                                                        )
-                                                    )
-                                                ),
-                                            Field::make('text', 'number_of_slides_mobile', __('Number of Slides Mobile'))
-                                                ->set_attribute('type', 'number')
-                                                ->set_conditional_logic(
-                                                    array(
-                                                        array(
-                                                            'field' => 'gallery_style',
-                                                            'value' => 'logo-slider',
-                                                        )
-                                                    )
-                                                ),
                                         )
                                     )
                                     ->add_fields(
