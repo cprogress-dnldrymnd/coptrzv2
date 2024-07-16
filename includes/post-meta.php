@@ -89,7 +89,9 @@ function __featured_case_studies()
 function __servicing_fields()
 {
     return array(
-        Field::make('complex', 'servicing_drones', 'Drone Services')
+        Field::make('text', 'servicing_heading', 'Heading')->set_classes('inline-field'),
+        Field::make('textarea', 'servicing_description', 'Description')->set_classes('inline-field'),
+        Field::make('complex', 'servicing_drones', 'Drone Services')->set_classes('inline-field')
             ->add_fields(array(
                 Field::make('text', 'service_name', 'Service Name')->set_classes('inline-field'),
                 Field::make('text', 'service_subheading', 'Service Subheading')->set_classes('inline-field'),
