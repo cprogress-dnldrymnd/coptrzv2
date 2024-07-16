@@ -800,7 +800,7 @@ function __drone_servicing($id)
             'suffix' => $service_subheading
         ));
         $html .= "<div class'price-button'>";
-
+        $html .= "<div class='price'>$service_price</div>";
         $html .= __button(array(
             'button_type' => 'custom',
             'button_text' => 'Request Service',
@@ -823,7 +823,7 @@ function __drone_servicing($id)
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
         $html .= "<div class='icon-box'>";
         $html .= $SVG->$key();
-        $html .= "</div>"; 
+        $html .= "</div>";
         $html .= __heading(array(
             'heading' => $spec,
             'class' => _attribute('class', array('mb-0')),
@@ -832,20 +832,19 @@ function __drone_servicing($id)
         $html .= "</div>"; //end-inner
         $html .= "</div>"; //end-specs-row-col
 
-        foreach ($products as $product) {
-            $spec_product = array();
+        foreach ($servicing_drones as $drone) {
+            $spec_services = array();
 
-            $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
-            foreach ($pa_specifications as $specification) {
-                $spec_product[$specification->term_id] = $specification->name;
+
+            foreach ($service_features as $service_feature) {
+                $spec_services[$service_feature['_type']] = $service_feature['_type'];
             }
-
 
 
             $html .= "<div class='col-3'>";
             $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
-            if (array_key_exists($key, $spec_product)) {
+            if (array_key_exists($key, $spec_services)) {
                 $html .= "<div class='active'>";
                 $html .= $SVG->check();
                 $html .= "</div>";
