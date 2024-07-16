@@ -560,7 +560,8 @@ class Shortcodes
         return __product_compare($id);
     }
 
-    function drone_servicing() {
+    function drone_servicing()
+    {
         return __drone_servicing();
     }
 }
