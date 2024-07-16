@@ -585,11 +585,11 @@ class Shortcodes
             $logo = get___term_meta($term->term_id, 'image');
             $image_args['image_id'] = $logo;
             $link = get_term_link($term->term_id);
-            $html  = "<div class='swiper-slide'>";
-            $html  = "<a href='$link'>";
+            $html .= "<div class='swiper-slide'>";
+            $html .= "<a href='$link'>";
             $html .= __image($image_args);
-            $html  .= "</a>";
-            $html  .= "</div>";
+            $html .= "</a>";
+            $html .= "</div>";
         }
 
         $html  .= "</div>";
