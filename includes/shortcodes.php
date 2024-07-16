@@ -577,7 +577,7 @@ class Shortcodes
         $image_args['size'] = 'medium';
 
 
-        $html  = "<div class='gallery'>";
+        $html  = "<div class='gallery logo-slider'>";
 
         $html .= "<div id='brands-slider' class='swiper swiper-logo-slider'>";
         $html .= '<div class="swiper-wrapper align-items-center">';
