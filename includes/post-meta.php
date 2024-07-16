@@ -85,6 +85,39 @@ function __featured_case_studies()
             )
     );
 }
+
+function __servicing_fields()
+{
+    return array(
+        Field::make('text', 'servicing_heading', 'Heading')->set_classes('inline-field'),
+        Field::make('textarea', 'servicing_description', 'Description')->set_classes('inline-field'),
+        Field::make('complex', 'servicing_drones', 'Drone Services')->set_classes('inline-field')
+            ->add_fields(array(
+                Field::make('text', 'service_name', 'Service Name')->set_classes('inline-field'),
+                Field::make('text', 'service_subheading', 'Service Subheading')->set_classes('inline-field'),
+                Field::make('text', 'service_price', 'Service Price'),
+                Field::make('complex', 'service_features', 'Service Features')->set_classes('inline-field')
+                    ->add_fields('drone', array(
+                        Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
+                    ))
+                    ->add_fields('drone', array(
+                        Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
+                    ))
+                    ->add_fields('battery', array(
+                        Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
+                    ))
+                    ->add_fields('controller', array(
+                        Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
+                    ))
+                    ->add_fields('payload', array(
+                        Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
+                    ))
+                    ->set_duplicate_groups_allowed(false)
+            ))
+
+
+    );
+}
 function __general_settings_fields()
 {
     return array(
@@ -122,7 +155,8 @@ Container::make('theme_options', __('Theme Settings'))
 Container::make('theme_options', __('Global Widgets'))
     ->add_tab('Latest From Coptrz', __latest_from_coptrz_fields())
     ->add_tab('Reviews', __reviews_field())
-    ->add_tab('Featured Case Studies', __featured_case_studies());
+    ->add_tab('Featured Case Studies', __featured_case_studies())
+    ->add_tab('Servicing', __servicing_fields());
 
 
 
