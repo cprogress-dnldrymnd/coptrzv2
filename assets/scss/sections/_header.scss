@@ -24,6 +24,17 @@
                         width: 300px;
                     }
                 }
+                .submenu2 {
+                    @include responsive(md-lg) {
+                        left: 100%;
+                        width: 300px;
+                        border-radius: 0 10px 10px 0;
+                        @include before {
+                            display: none;
+                        }
+                    
+                    }
+                }
             }
             .nav-link {
                 display: flex;
@@ -264,7 +275,6 @@
                     }
                 }
             }
-            
         }
         @include responsive(mobile) {
             padding: 110px 0 0 0;
@@ -276,5 +286,4 @@
     header .header-inner {
         background-color: var(--bs-primary);
     }
- 
 }
