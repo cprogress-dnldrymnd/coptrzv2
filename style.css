@@ -10694,6 +10694,12 @@ hr {
   .logo-slider .swiper-wrapper img {
     height: 50px;
     width: auto; }
+    @media screen and (max-width: 991px) {
+      .logo-slider .swiper-wrapper img {
+        height: 40px; } }
+    @media screen and (max-width: 767px) {
+      .logo-slider .swiper-wrapper img {
+        height: 30px; } }
 
 section:not(.no-overflow) {
   overflow: hidden;

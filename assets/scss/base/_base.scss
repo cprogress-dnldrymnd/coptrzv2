@@ -224,6 +224,12 @@ main {
         img {
             height: 50px;
             width: auto;
+            @include responsive(xs-sm) {
+                height: 40px;
+            }
+            @include responsive(xs) {
+                height: 30px;
+            }
         }
     }
 }
@@ -1239,4 +1245,3 @@ hr {
         }
     }
 }
-
