@@ -48,7 +48,7 @@ function header_menu()
 		$menu_item_parent = $menu['menu_item_parent'];
 		if ($menu_item_parent == 0) {
 			$is_mega_menu = carbon_get_nav_menu_item_meta($ID, 'is_mega_menu');
-			$class = $is_mega_menu ? 'is-mega-menu' : 'is-not-mega-menu';
+			$class = $is_mega_menu ? 'is-mega-menu' : 'is-not-mega-menu position-relative';
 			$ul_class = $is_mega_menu ? '' : 'flex-column';
 			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
 				return ($var['menu_item_parent'] == $ID);
