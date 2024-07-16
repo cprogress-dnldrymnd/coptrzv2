@@ -11514,6 +11514,9 @@ hr {
   border-color: var(--bs-white);
   color: var(--bs-primary); }
 
+.taxonomy-terms a {
+  text-decoration: none; }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }
