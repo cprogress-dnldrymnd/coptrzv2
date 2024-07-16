@@ -1179,7 +1179,6 @@ hr {
     }
 }
 
-
 .input-box.input-box {
     .icon {
         background-color: var(--border-color);
@@ -1198,12 +1197,15 @@ hr {
 .your-result {
     .result-box {
         .result {
-            background-color: #E9F5FF;
+            background-color: #e9f5ff;
         }
     }
 }
 
 #calculator {
+    #results {
+        display: none;
+    }
     #results-box {
         display: none;
     }
@@ -1211,11 +1213,17 @@ hr {
         display: none;
     }
     &.calculating {
+        #results {
+            display: block;
+        }
         #results-animation {
             display: block;
         }
     }
     &.calculated {
+        #results {
+            display: block;
+        }
         #results-box {
             display: block;
         }
