@@ -140,32 +140,7 @@
                 jQuery('html, body').animate({
                     scrollTop: jQuery("#results-position").offset().top
                 }, 2000);
-                $Initial_Investment = __get_val('Initial_Investment');
-                $Annual_Revenue_from_Drone_Survey_Work = __get_val('Annual_Revenue_from_Drone_Survey_Work');
-                $Annual_Operating_Costs = __get_val('Annual_Operating_Costs');
-                $Average_Savings_per_Day_Using_a_Drone = __get_val('Average_Savings_per_Day_Using_a_Drone');
-                $Number_of_Days_Drone_Will_Be_Used_Per_Year = __get_val('Number_of_Days_Drone_Will_Be_Used_Per_Year');
-
-                $Net_Annual_Cash_Inflow = ($Annual_Revenue_from_Drone_Survey_Work + ($Average_Savings_per_Day_Using_a_Drone * $Number_of_Days_Drone_Will_Be_Used_Per_Year)) - $Annual_Operating_Costs;
-                $Payback_Period = $Initial_Investment / $Net_Annual_Cash_Inflow;
-
-                $Total_Net_Profit_Over_3_Years = (($Net_Annual_Cash_Inflow * 3) - $Initial_Investment);
-                $ROI = ($Total_Net_Profit_Over_3_Years / $Initial_Investment) * 100;
-
-
-                jQuery('#Payback_Period').text($Payback_Period.toFixed(2) + ' years');
-                jQuery('#ROI').text(parseInt($ROI) + '%');
-
-                jQuery('#calculator').addClass('calculating');
-                jQuery('#calculator').removeClass('calculated');
-                jQuery('#generate_report').text('Generating');
-
-                setTimeout(function() {
-                    jQuery('#calculator').addClass('calculated');
-                    jQuery('#calculator').removeClass('calculating');
-                    jQuery('#generate_report').hide();
-
-                }, 3000);
+                
 
                 e.preventDefault();
             });
