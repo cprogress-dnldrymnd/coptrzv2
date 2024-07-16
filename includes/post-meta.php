@@ -4716,8 +4716,8 @@ function __section_fields($name = 'sections')
                                                 'post'      => 'Post',
                                                 'industries' => 'Industry',
                                                 'popups'    => 'Popup',
-                                                'buy-now'    => 'Buy Now(Product Only)',
                                                 'custom'     => 'Custom',
+                                                'buy-now'    => 'Buy Now(Product Only)',
                                             )
                                         ),
                                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
