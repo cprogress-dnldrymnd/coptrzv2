@@ -8,7 +8,7 @@
     <?php
     echo ___hero_modules();
     ?>
-    <section class="calculator medium-container lg-padding-top md-padding-bottom" >
+    <section class="calculator medium-container lg-padding-top md-padding-bottom">
         <div class="container content-margin">
             <div class="inner px-5 content-margin">
                 <h1>Project Information</h1>
@@ -149,7 +149,7 @@
 
 
                 jQuery('#Payback_Period').text($Payback_Period.toFixed(2));
-                jQuery('#ROI').text($ROI.toFixed(2));
+                jQuery('#ROI').text($ROI.toFixed(2) + '%');
 
                 jQuery('#calculator').addClass('calculating');
                 setTimeout(function() {
