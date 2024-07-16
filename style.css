@@ -10684,7 +10684,7 @@ hr {
   .logo-slider .swiper-wrapper .swiper-slide {
     display: inline;
     width: auto;
-    flex-shrink: 0; }
+    flex-shrink: 1; }
   .logo-slider .swiper-wrapper img {
     height: 60px;
     object-fit: contain; }
