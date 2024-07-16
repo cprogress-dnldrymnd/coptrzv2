@@ -100,9 +100,6 @@ function __servicing_fields()
                     ->add_fields('drone', array(
                         Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
                     ))
-                    ->add_fields('drone', array(
-                        Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
-                    ))
                     ->add_fields('battery', array(
                         Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
                     ))
