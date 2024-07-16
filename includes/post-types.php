@@ -303,16 +303,6 @@ $Guides->rewrite = array(
 );
 
 
-$Solutions = new newPostType();
-$Solutions->name = 'Solutions';
-$Solutions->singular_name = Industry;
-$Solutions->icon = 'dashicons-portfolio';
-$Solutions->supports = array('title', 'revisions', 'editor', 'thumbnail', 'page-attributes');
-$Solutions->show_in_rest = false;
-$Solutions->rewrite = array(
-    'with_front' => false,
-    'slug' => 'industry-industries-old'
-);
 
 $Industry = new newPostType();
 $Industry->name = 'Industry';
