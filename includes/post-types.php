@@ -311,6 +311,17 @@ $Solutions->supports = array('title', 'revisions', 'editor', 'thumbnail', 'page-
 $Solutions->show_in_rest = false;
 $Solutions->rewrite = array(
     'with_front' => false,
+    'slug' => 'industry-solutions-old'
+);
+
+$Industry = new newPostType();
+$Industry->name = 'Industry';
+$Industry->singular_name = 'Industries';
+$Industry->icon = 'dashicons-media-document';
+$Industry->supports = array('title', 'revisions', 'editor', 'thumbnail', 'excerpt', 'author');
+$Industry->show_in_rest = true;
+$Industry->rewrite = array(
+    'with_front' => false,
     'slug' => 'industry-solutions'
 );
 
