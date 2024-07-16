@@ -11984,10 +11984,12 @@ section.product-main .summary.summary.summary .variations tr {
 .product-compare .comparison > .row:not(:last-child) {
   margin-bottom: 10px; }
 @media screen and (max-width: 575px) {
-  .product-compare.drone-servicing .row-services-spec-mobile .inner {
+  .product-compare.drone-servicing .row-services-spec-mobile .inner,
+  .product-compare.drone-servicing .row-services-spec-mobile .active {
     flex-direction: column; }
-    .product-compare.drone-servicing .row-services-spec-mobile .inner .icon-box {
-      margin-right: 0; } }
+  .product-compare.drone-servicing .row-services-spec-mobile .icon-box {
+    margin-right: 0 !important;
+    margin-bottom: 10px; } }
 .product-compare.drone-servicing .active .qty {
   font-size: 1.3125rem; }
 .product-compare.drone-servicing .price {
