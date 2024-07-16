@@ -186,7 +186,7 @@
                 if (years != 0) {
                     result = result + years + " years, ";
                 }
-                result = result + months + " months, " + days + " days";
+                result = result + (months + " months, " + days + " days");
 
                 return result;
             }
