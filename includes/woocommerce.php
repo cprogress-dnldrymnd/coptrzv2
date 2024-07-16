@@ -774,8 +774,7 @@ function __drone_servicing()
             $specs[$service_feature['_type']] = $service_feature['_type'];
         }
     }
-    $test = json_encode($specs);
-    $html = "<div class='product-compare drone-servicing' test='$test' >";
+    $html = "<div class='product-compare drone-servicing' >";
     $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
     $html .= "<div class='row g-10px'>";
     $html .= "<div class='col-lg-3'>";
