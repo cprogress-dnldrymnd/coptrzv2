@@ -282,7 +282,7 @@ function __swipers() {
 
 }
 
-function ___post_navigation() {
+function __post_navigation() {
     if (jQuery('body').hasClass('single-post')) {
         $post_navigation = '';
         $key = 1;
