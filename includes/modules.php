@@ -1001,10 +1001,11 @@ function ____post_grid_module($data)
             $posts_ids[] = $post['id'];
         }
         $args['post__in'] = $posts_ids;
+        $args['orderby'] = 'post__in';
     }
     // Get the posts
     $posts_lists = get_posts($args);
-
+    
 
     $classes[] = 'column-holder';
     $classes[] = 'position-relative';
@@ -1133,7 +1134,6 @@ function ____post_grid_module($data)
 
     $html = '';
     $html .= "<div class='post-grid'>";
-    $html .= var_dump($posts_ids);
 
     if ($is_slider) {
         $swiper_id = $id . '-swiper';
