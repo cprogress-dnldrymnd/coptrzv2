@@ -610,30 +610,30 @@ class Shortcodes
             'number_of_slides' => 1,
             'number_of_slides_tablet' => 1,
             'number_of_slides_mobile' => 1,
-            'post_elements' => [
-                [
+            'post_elements' => array(
+                array(
                     "_type" => "icon",
                     "icon" => "271265",
                     "icon_color" => "text-accent",
                     "icon_color_custom" => "",
                     "icon_width" => "",
                     "icon_height" => ""
-                ],
-                [
+                ),
+                array(
                     "_type" => "custom_field_1",
                     "custom_field_key" => "_testimonial_content",
                     "custom_field_type" => "p",
                     "custom_field_class" => "big-text"
-                ],
-                [
+                ),
+                array(
                     "_type" => "post_title",
                     "text_before" => "-",
                     "text_after" => "",
                     "tag" => "p",
                     "text_color" => "",
                     "text_color_custom" => ""
-                ]
-            ],
+                )
+            ),
             'post_type' => 'https://dev.coptrz.com/wp-admin/edit.php?post_type=testimonials',
         ));
     }
