@@ -183,12 +183,21 @@
                 var months = Math.floor((totalDays - (years * 365)) / 30);
                 var days = Math.floor(totalDays - (years * 365) - (months * 30));
                 var result;
-                if (years == 0) {
-                    var result = months + " months, " + days + " days";
-                } else if (years == 1) {
-                    var result = years + " year, " + months + " months, " + days + " days";
+
+                if (years > 1) {
+                    result = result.concat(years + " years, ")
                 } else {
-                    var result = years + " years, " + months + " months, " + days + " days";
+                    result = result.concat(years + " year, ")
+                }
+                if (months > 1) {
+                    result = result.concat(months + " months, ")
+                } else {
+                    result = result.concat(months + " month, ")
+                }
+                if (days > 1) {
+                    result = result.concat(days + " days, ")
+                } else {
+                    result = result.concat(days + " day, ")
                 }
 
                 return result;
