@@ -794,10 +794,13 @@ function __drone_servicing()
 
         if ($position == 0) {
             $class = 'bg-gray';
+            $button_class = 'button-primary';
         } else if ($position == 1) {
             $class = 'bg-accent';
+            $button_class = 'button-primary';
         } else if ($position == 2) {
             $class = 'bg-black';
+            $button_class = 'button-accent';
         }
 
 
@@ -818,7 +821,7 @@ function __drone_servicing()
             'button_type' => 'custom',
             'button_text' => 'Request Service',
             'button_url_custom' => '#',
-            'button_style' => 'button-accent',
+            'button_style' => $button_class,
         ));
 
         $html .= "</div>";
