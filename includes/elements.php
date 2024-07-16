@@ -104,7 +104,7 @@ function __image($data)
     $class = isset($data['class']) ? $data['class'] : false;
     $style = isset($data['style']) ? $data['style'] : false;
     $placeholder = isset($data['placeholder']) ? $data['placeholder'] : false;
-
+    $attributes_args = [];
     if ($featured_image) {
         $image = get_the_post_thumbnail($featured_image, $size);
     } else {
