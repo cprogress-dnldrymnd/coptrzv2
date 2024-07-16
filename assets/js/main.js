@@ -169,9 +169,6 @@ function __swipers() {
 
     jQuery('.swiper-logo-slider').each(function (index, element) {
         $id = '#' + jQuery(this).attr('id');
-        $number_of_slides = jQuery(this).attr('number_of_slides');
-        $number_of_slides_tablet = jQuery(this).attr('number_of_slides_tablet');
-        $number_of_slides_mobile = jQuery(this).attr('number_of_slides_mobile');
 
         var logoSwiper = new Swiper($id, {
             loop: true,
@@ -184,22 +181,27 @@ function __swipers() {
             },
             breakpoints: {
                 0: {
-                    slidesPerView: $number_of_slides_mobile,
+                    slidesPerView: 2,
                 },
 
                 768: {
-                    slidesPerView: $number_of_slides_tablet,
+                    slidesPerView: 3,
                 },
 
 
                 992: {
-                    slidesPerView: $number_of_slides,
+                    slidesPerView: 4,
                 },
 
+                1200: {
+                    slidesPerView: 5,
+                },
+
+                1440: {
+                    slidesPerView: 6,
+                },
             },
-
         });
-
     });
 
     jQuery('.swiper-sliders').each(function (index, element) {
