@@ -757,7 +757,7 @@ function custom_product_variation_training()
 
 
 
-function __drone_servicing($id)
+function __drone_servicing()
 {
     $SVG = new SVG;
     $servicing_heading = get__theme_option('servicing_heading');
