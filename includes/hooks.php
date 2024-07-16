@@ -308,3 +308,45 @@ function action_body_class($classes)
 }
 
 add_filter('body_class', 'action_body_class');
+
+/**
+ * Set the country code on Smart Phone form field country flag
+ *
+ * @link   https://wpforms.com/how-to-set-a-default-flag-on-smart-phone-field-with-gdpr/
+ */
+  
+ function wpf_dev_smart_phone_field_initial_country() {
+    ?>
+    <script type="text/javascript">
+        jQuery( document ).on( 'wpformsReady', function() {
+            jQuery( '.wpforms-smart-phone-field' ).each(function(e){
+                var $el = jQuery( this ),
+                    iti = $el.data( 'plugin_intlTelInput' ),
+                    options;
+                // Options are located in different keys of minified and unminified versions of jquery.intl-tel-input.js.
+                if ( iti.d ) {
+                    options = Object.assign( {}, iti.d );
+                } else if ( iti.options ) {
+                    options = Object.assign( {}, iti.options );
+                }
+                if ( ! options ) {
+                    return;
+                }
+                $el.intlTelInput( 'destroy' );
+                  
+                // Put a country code here according to this list: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+                options.initialCountry = 'GB'.toLowerCase();
+                  
+                $el.intlTelInput( options );
+                  
+                // Restore hidden input name after intlTelInput is reinitialized.
+                $el.siblings( 'input[type="hidden"]' ).each(function() {
+                    const $hiddenInput = jQuery( this );
+                    $hiddenInput.attr( 'name', $hiddenInput.attr( 'name' ).replace( 'wpf-temp-', '' ) );
+                });
+            });
+        } );
+    </script>
+    <?php
+}
+add_action( 'wpforms_wp_footer_end', 'wpf_dev_smart_phone_field_initial_country', 30 );
