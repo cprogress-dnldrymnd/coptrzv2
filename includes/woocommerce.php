@@ -826,7 +826,7 @@ function __drone_servicing()
                 $html .= "</div>";
                 $html .= __heading(array(
                     'heading' => ucwords($spec),
-                    'class' => _attribute('class', array('mb-0')),
+                    'class' => _attribute('class', array('mb-0 text-primary')),
                     'tag' => 'h5',
                 ));
                 $html .= "</div>"; //end-inner
