@@ -160,8 +160,8 @@
                     jQuery('#calculator').addClass('calculated');
                     jQuery('#calculator').removeClass('calculating');
                     jQuery('#generate_report').hide();
-                    $('html, body').animate({
-                        scrollTop: $("#results").offset().top
+                    jQuery('html, body').animate({
+                        scrollTop: jQuery("#results").offset().top
                     }, 2000);
 
                 }, 3000);
