@@ -182,25 +182,24 @@
                 var years = Math.floor(totalDays / 365);
                 var months = Math.floor((totalDays - (years * 365)) / 30);
                 var days = Math.floor(totalDays - (years * 365) - (months * 30));
-                var result = '';
 
                 if (years > 1) {
-                    result = result.concat(years + " years, ")
+                    $years = years + " years, ";
                 } else {
-                    result = result.concat(years + " year, ")
+                    $years = years + " year, ";
                 }
                 if (months > 1) {
-                    result = result.concat(months + " months, ")
+                    $months = months + " months, ";
                 } else {
-                    result = result.concat(months + " month, ")
+                    $months = months + " month, ";
                 }
                 if (days > 1) {
-                    result = result.concat(days + " days, ")
+                    $days = days + " days, ";
                 } else {
-                    result = result.concat(days + " day, ")
+                    $days = days + " day, ";
                 }
 
-                return result;
+                return $years + $months + $days;
             }
         });;
     </script>
