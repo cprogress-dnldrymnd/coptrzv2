@@ -815,6 +815,7 @@ function __drone_servicing()
             'suffix' => $service_subheading
         ));
 
+        $html .= "<div class='row g-10px row-services d-lg-none'>";
 
         foreach ($servicing_drones as $drone) {
             $spec_services = array();
@@ -822,6 +823,7 @@ function __drone_servicing()
                 $spec_services[$service_feature['_type']] = $service_feature['quantity'];
             }
 
+            $html .= "<div class='col-3'>";
             $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
             $quantity = $spec_services[$key];
 
@@ -842,8 +844,10 @@ function __drone_servicing()
 
             $html .= "</div>";
             $html .= "</div>";
+            $html .= "</div>";
         }
 
+        $html .= "</div>";
 
 
         $html .= "<div class='price-button mt-5'>";
