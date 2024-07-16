@@ -668,9 +668,15 @@ section.product-main {
     }
     &.product-compare {
         .active {
-        .qty {
-            font-size: 21px;
+            .qty {
+                font-size: 1.3125rem;
+            }
         }
+        .price {
+            font-size: 1.5rem;
+            span {
+                font-size: 1rem;
+            }
         }
         .button-box {
             a {
