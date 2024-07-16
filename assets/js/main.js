@@ -26,7 +26,7 @@ function buy_now_ajax(button) {
 
         //url: "/coptrz/wp-admin/admin-ajax.php",
 
-        url: "/wp-admin/admin-ajax.php",
+        url: ajax_object.ajax_url,
 
         data: {
             action: 'buy_now_ajax',
@@ -35,7 +35,7 @@ function buy_now_ajax(button) {
 
         success: function (response) {
             button.removeClass('active');
-            window.location.href = 'https://coptrz.com/checkout/';
+            window.location.href = $ajax_object.checkout_url;
         },
         error: function (e) {
             console.log(e);

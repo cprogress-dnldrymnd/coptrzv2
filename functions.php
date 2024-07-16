@@ -77,8 +77,17 @@ function enqueue_scripts()
 	wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
 	wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js');
 	wp_enqueue_script('bootstrap', vendor_dir . '/twbs/bootstrap/dist/js/bootstrap.min.js');
-
-	wp_enqueue_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
+	
+	wp_register_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
+	wp_localize_script(
+		'main',
+		'ajax_object',
+		array(
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'checkout_url' => wc_get_cart_url(),
+		)
+	);
+	wp_enqueue_script('main');
 
 	if (is_product()) {
 		wp_enqueue_script('single-product', assets_dir . 'js/single-product.js', NULL, coptz_version);
