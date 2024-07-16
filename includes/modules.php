@@ -1831,7 +1831,7 @@ function ____columns_modules($items, $id, $html = '')
             $type = $item['_type'];
             switch ($type) {
                 case 'global_widgets':
-                    $global_widgets = $items['global_widgets'];
+                    $global_widgets = $item['global_widgets'];
                     foreach ($global_widgets as $global_widget) {
                         $type = $global_widget['_type'];
                         switch ($type) {
