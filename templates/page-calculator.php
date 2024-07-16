@@ -149,7 +149,7 @@
 
 
                 jQuery('#Payback_Period').text($Payback_Period.toFixed(2) + ' years');
-                jQuery('#ROI').text($ROI.toFixed(2) + '%');
+                jQuery('#ROI').text(parseInt($ROI) + '%');
 
                 jQuery('#calculator').addClass('calculating');
                 setTimeout(function() {
