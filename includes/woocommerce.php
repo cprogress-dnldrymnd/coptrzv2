@@ -820,52 +820,53 @@ function __drone_servicing()
     $html .= "</div>";
 
     foreach ($specs as $key => $spec) {
-        $html .= "<div class='row g-10px'>"; //specs-row
+        if ($key != '_') {
 
-        $html .= "<div class='col-3'>"; //specs-row-col
-        $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
-        $html .= "<div class='icon-box'>";
-        // $html .= $SVG->$key();
-        $html .= "</div>";
-        $html .= __heading(array(
-            'heading' => $spec,
-            'class' => _attribute('class', array('mb-0')),
-            'tag' => 'h5',
-        ));
-        $html .= "</div>"; //end-inner
-        $html .= "</div>"; //end-specs-row-col
+            $html .= "<div class='row g-10px'>"; //specs-row
 
-        foreach ($servicing_drones as $drone) {
-            $spec_services = array();
+            $html .= "<div class='col-3'>"; //specs-row-col
+            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+            $html .= "<div class='icon-box'>";
+            // $html .= $SVG->$key();
+            $html .= "</div>";
+            $html .= __heading(array(
+                'heading' => $spec,
+                'class' => _attribute('class', array('mb-0')),
+                'tag' => 'h5',
+            ));
+            $html .= "</div>"; //end-inner
+            $html .= "</div>"; //end-specs-row-col
 
-
-            foreach ($service_features as $service_feature) {
-                if ($service_feature['_type'] != '_') {
-                    $spec_services[$service_feature['_type']] = $service_feature['_type'];
+            foreach ($servicing_drones as $drone) {
+                $spec_services = array();
+                foreach ($service_features as $service_feature) {
+                    if ($service_feature['_type'] != '_') {
+                        $spec_services[$service_feature['_type']] = $service_feature['_type'];
+                    }
                 }
+
+
+                $html .= "<div class='col-3'>";
+                $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
+
+                if (array_key_exists($key, $spec_services)) {
+                    $html .= "<div class='active'>";
+                    $html .= $SVG->check();
+                    $html .= "</div>";
+                } else {
+                    $html .= "<div class='not-active'>";
+                    $html .= $SVG->xmark();
+                    $html .= "</div>";
+                }
+
+                $html .= "</div>";
+                $html .= "</div>";
             }
 
 
-            $html .= "<div class='col-3'>";
-            $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
-            if (array_key_exists($key, $spec_services)) {
-                $html .= "<div class='active'>";
-                $html .= $SVG->check();
-                $html .= "</div>";
-            } else {
-                $html .= "<div class='not-active'>";
-                $html .= $SVG->xmark();
-                $html .= "</div>";
-            }
-
-            $html .= "</div>";
-            $html .= "</div>";
+            $html .= "</div>"; //end-specs-row
         }
-
-
-
-        $html .= "</div>"; //end-specs-row
     }
     $html .= "</div>"; //end products-specifications
 
