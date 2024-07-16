@@ -1005,7 +1005,7 @@ function ____post_grid_module($data)
     }
     // Get the posts
     $posts_lists = get_posts($args);
-    
+
 
     $classes[] = 'column-holder';
     $classes[] = 'position-relative';
@@ -1962,17 +1962,19 @@ function ____columns_modules($items, $id, $html = '')
                     break;
 
                 case 'post_grid':
-                    $html .= ____post_grid_module(array(
-                        'id' => $id,
-                        'is_slider' => $item['is_slider'],
-                        'number_of_slides' => $item['number_of_slides'],
-                        'number_of_slides_tablet' => $item['number_of_slides_tablet'],
-                        'number_of_slides_mobile' => $item['number_of_slides_mobile'],
-                        'post_box_styles' => $item['post_box_styles'],
-                        'post_elements' => $item['post_elements'],
-                        'post_type' => $item['post_type'],
-                    ));
-                    break;
+                    if ($item['post_type']) {
+                        $html .= ____post_grid_module(array(
+                            'id' => $id,
+                            'is_slider' => $item['is_slider'],
+                            'number_of_slides' => $item['number_of_slides'],
+                            'number_of_slides_tablet' => $item['number_of_slides_tablet'],
+                            'number_of_slides_mobile' => $item['number_of_slides_mobile'],
+                            'post_box_styles' => $item['post_box_styles'],
+                            'post_elements' => $item['post_elements'],
+                            'post_type' => $item['post_type'],
+                        ));
+                        break;
+                    }
             }
         }
         $html .= '</div>'; //end column-holder
@@ -2749,7 +2751,7 @@ function __popup($id)
     $html .= "<div class='modal-dialog modal-dialog-centered'>"; //modal-dialog
     $html .= "<div class='modal-content rounded-corner overflow-hidden  $background_color_val'>";
     $html .= "<div class='modal-body p-0 '>"; //modal-body
-    $html .= "<button type='button' class='btn-popup-close bg-accent text-white' data-bs-dismiss='modal'>".$SVG->close()."</button>";
+    $html .= "<button type='button' class='btn-popup-close bg-accent text-white' data-bs-dismiss='modal'>" . $SVG->close() . "</button>";
     if ($popup_layout == 'contact_form') {
         $html .= "<div class='row g-0'>"; //row
         $html .= "<div class='$col_class'>"; //col
