@@ -156,13 +156,13 @@
                 jQuery('#calculator').addClass('calculating');
                 jQuery('#calculator').removeClass('calculated');
                 jQuery('#generate_report').text('Generating');
+                jQuery('html, body').animate({
+                    scrollTop: jQuery("#results").offset().top
+                }, 2000);
                 setTimeout(function() {
                     jQuery('#calculator').addClass('calculated');
                     jQuery('#calculator').removeClass('calculating');
                     jQuery('#generate_report').hide();
-                    jQuery('html, body').animate({
-                        scrollTop: jQuery("#results").offset().top
-                    }, 2000);
 
                 }, 3000);
 
