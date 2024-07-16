@@ -39,6 +39,7 @@ foreach ($layouts as $layout) {
     }
 }
 $hide_footer = get__post_meta('hide_footer');
+$footer_drone_experts = get__theme_option('footer_drone_experts');
 if (!$hide_footer) {
 ?>
 
@@ -57,7 +58,9 @@ if (!$hide_footer) {
                         </div>
                         <div class="col-auto">
                             <div class="socials">
-                                <?= ?>
+                                <?= __image(array(
+                                    'image_id' => $footer_drone_experts
+                                )) ?>
                             </div>
                         </div>
                     </div>
