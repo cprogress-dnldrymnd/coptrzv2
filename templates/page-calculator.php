@@ -123,7 +123,6 @@
             </div>
         </div>
     </section>
-    Net Annual Cash Inflow = (Annual Revenue from Drone Survey Work + (Average Savings per Day * Number of Days Drone Will Be Used Per Year)) - Annual Operating Costs
 
     <?php get_footer(); ?>
     <script>
