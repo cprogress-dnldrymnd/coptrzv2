@@ -844,7 +844,6 @@ function __drone_servicing()
 
             $html .= "</div>";
             $html .= "</div>";
-            $html .= "</div>";
         }
 
         $html .= "</div>";
