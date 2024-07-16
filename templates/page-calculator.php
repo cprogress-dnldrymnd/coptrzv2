@@ -104,7 +104,7 @@
                 <div id="results-animation">
                     <div class="loader"></div>
                 </div>
-                <div id="results-box">
+                <div id="results-box d-none">
                     <h2 class="mb-4">Your Results</h2>
                     <hr class="mb-4">
                     <div class="description-box mb-5 fw-light small-text">
