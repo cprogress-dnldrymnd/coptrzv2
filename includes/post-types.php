@@ -37,6 +37,7 @@ class newPostType
                     'new_item'           => __('New ' . $this->singular_name, $this->text_domain),
                     'edit_item'          => __('Edit ' . $this->singular_name, $this->text_domain),
                     'view_item'          => __('View ' . $this->singular_name, $this->text_domain),
+                    'view_items'          => __('View ' . $this->name, $this->text_domain),
                     'all_items'          => __('All ' . $this->name, $this->text_domain),
                     'search_items'       => __('Search ' . $this->name, $this->text_domain),
                     'parent_item_colon'  => __('Parent :' . $this->name, $this->text_domain),
