@@ -130,19 +130,24 @@
         jQuery(document).ready(function() {
 
             jQuery('#generate_report').click(function(e) {
-                $Initial_Investment = jQuery('input[name="Initial_Investment"]');
-                $Annual_Revenue_from_Drone_Survey_Work = jQuery('input[name="Annual_Revenue_from_Drone_Survey_Work"]');
-                $Annual_Operating_Costs = jQuery('input[name="Annual_Operating_Costs"]');
-                $Average_Savings_per_Day_Using_a_Drone = jQuery('input[name="Average_Savings_per_Day_Using_a_Drone"]');
-                $Number_of_Days_Drone_Will_Be_Used_Per_Year = jQuery('input[name="Number_of_Days_Drone_Will_Be_Used_Per_Year"]');
-                
+                $Initial_Investment = __get_val('Initial_Investment');
+                $Annual_Revenue_from_Drone_Survey_Work = __get_val('Annual_Revenue_from_Drone_Survey_Work');
+                $Annual_Operating_Costs = __get_val();
+                $Average_Savings_per_Day_Using_a_Drone = __get_val('Average_Savings_per_Day_Using_a_Drone');
+                $Number_of_Days_Drone_Will_Be_Used_Per_Year = __get_val('Number_of_Days_Drone_Will_Be_Used_Per_Year');
+
                 $Net_Annual_Cash_Inflow = ($Annual_Revenue_from_Drone_Survey_Work + ($Average_Savings_per_Day_Using_a_Drone * $Number_of_Days_Drone_Will_Be_Used_Per_Year)) - $Annual_Operating_Costs;
                 $Payback_Period = $Initial_Investment / $Net_Annual_Cash_Inflow;
 
                 console.log($Net_Annual_Cash_Inflow);
                 console.log($Payback_Period);
-               
+
                 e.preventDefault();
             });
+
+            function __get_val($name) {
+                $val = jQuery('input[name="' + $name + '"]').val();
+                return parseFloat($val);
+            }
         });
     </script>
