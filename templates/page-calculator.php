@@ -153,7 +153,7 @@
                 $Total_Net_Profit_Over_3_Years = (($Net_Annual_Cash_Inflow * 3) - $Initial_Investment);
                 $ROI = ($Total_Net_Profit_Over_3_Years / $Initial_Investment) * 100;
 
-        
+
 
 
                 jQuery('#Payback_Period').text(yearsToYearsMonthsDays($Payback_Period));
@@ -182,7 +182,11 @@
                 var years = Math.floor(totalDays / 365);
                 var months = Math.floor((totalDays - (years * 365)) / 30);
                 var days = Math.floor(totalDays - (years * 365) - (months * 30));
-                var result = years + " years, " + months + " months, " + days + " days";
+                var result;
+                if (years != 0) {
+                    result = result + years + " years, ";
+                }
+                result = result + months + " months, " + days + " days";
 
                 return result;
             }
