@@ -360,7 +360,7 @@ function __product_compare($id)
         $mime_type =  get_post_mime_type($icon);
         $html .= "<div class='row g-10px d-none d-lg-block'>"; //specs-row
 
-        $html .= "<div class='col-3'>"; //specs-row-col
+        $html .= "<div class='col-8'>"; //specs-row-col
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
         if (str_contains($mime_type, 'svg')) {
             $html .= __icon(array(
@@ -390,7 +390,7 @@ function __product_compare($id)
 
 
 
-        $html .= "<div class='col-3'>";
+        $html .= "<div class='col-4'>";
         $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
         if (array_key_exists($key, $spec_product)) {
