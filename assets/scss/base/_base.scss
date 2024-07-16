@@ -213,6 +213,7 @@ main {
         .swiper-slide {
             display: inline;
             width: auto;
+            flex-shrink: 0;
         }
         img {
             height: 60px;

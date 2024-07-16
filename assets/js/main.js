@@ -175,6 +175,7 @@ function __swipers() {
             freeMode: true,
             centeredSlides: true,
             slidesPerView: 'auto',
+            spaceBetween: 30,
             speed: 5000,
             autoplay: {
                 delay: 0,
