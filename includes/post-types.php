@@ -306,8 +306,16 @@ $Guides->rewrite = array(
 
 
 $Industry = new newPostType();
-$Industry->name = 'Industry';
+$Industry->name = 'Industries';
 $Industry->singular_name = 'Industries';
+$Industry->icon = 'dashicons-media-document';
+$Industry->supports = array('title', 'revisions', 'editor', 'thumbnail', 'excerpt', 'author');
+$Industry->show_in_rest = true;
+
+
+$Industry = new newPostType();
+$Industry->name = 'Industries';
+$Industry->singular_name = 'Industry';
 $Industry->icon = 'dashicons-media-document';
 $Industry->supports = array('title', 'revisions', 'editor', 'thumbnail', 'excerpt', 'author');
 $Industry->show_in_rest = true;
@@ -315,7 +323,6 @@ $Industry->rewrite = array(
     'with_front' => false,
     'slug' => 'industry-solutions'
 );
-
 
 
 $Capabilities = new newPostType();
