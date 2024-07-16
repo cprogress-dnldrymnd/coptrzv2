@@ -32,27 +32,27 @@
                         <label for="" class="mb-2 fw-medium">Annual Revenue from Drone Survey Work</label>
                         <div class="input-box d-flex rounded-corner border-default">
                             <div class="icon d-flex align-items-center justify-content-center fw-medium">$</div>
-                            <input type="number" name="Annual_Revenue_from_Drone_Survey_Work" value="200000">
+                            <input type="number" name="Annual_Revenue_from_Drone_Survey_Work" value="70000">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <label for="" class="mb-2 fw-medium">Annual Operating Costs</label>
                         <div class="input-box d-flex rounded-corner border-default">
                             <div class="icon d-flex align-items-center justify-content-center fw-medium">$</div>
-                            <input type="number" name="Annual_Operating_Costs" value="50000">
+                            <input type="number" name="Annual_Operating_Costs" value="30000">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <label for="" class="mb-2 fw-medium">Average Savings per Day Using a Drone</label>
                         <div class="input-box d-flex rounded-corner border-default">
                             <div class="icon d-flex align-items-center justify-content-center fw-medium">$</div>
-                            <input type="number" name="Average_Savings_per_Day_Using_a_Drone" value="10000">
+                            <input type="number" name="Average_Savings_per_Day_Using_a_Drone" value="500">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <label for="" class="mb-2 fw-medium">Number of Days Drone Will Be Used Per Year</label>
                         <div class="input-box d-flex rounded-corner border-default">
-                            <input type="number" name="Number_of_Days_Drone_Will_Be_Used_Per_Year" value="100">
+                            <input type="number" name="Number_of_Days_Drone_Will_Be_Used_Per_Year" value="150">
                         </div>
                     </div>
                 </div>
