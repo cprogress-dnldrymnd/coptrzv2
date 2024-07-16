@@ -833,7 +833,7 @@ function __drone_servicing()
 
     foreach ($specs as $key => $spec) {
         if ($spec != '_') {
-            $html .= "<div class='row g-10px'>"; //specs-row
+            $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
 
             $html .= "<div class='col-3'>"; //specs-row-col
             $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
