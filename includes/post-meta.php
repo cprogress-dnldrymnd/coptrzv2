@@ -4716,6 +4716,7 @@ function __section_fields($name = 'sections')
                                                 'post'      => 'Post',
                                                 'industries' => 'Industry',
                                                 'popups'    => 'Popup',
+                                                'buy-now'    => 'Buy Now(Product Only)',
                                                 'custom'     => 'Custom',
                                             )
                                         ),
