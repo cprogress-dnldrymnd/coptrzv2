@@ -247,7 +247,7 @@ function __button($data)
 
         $_attributes = _attributes($attributes_args);
         $html = "<div $_attributes>";
-        $html = "<$tag class='rounded-10px $class' $link $button_target>";
+        $html .= "<$tag class='rounded-10px $class' $link $button_target>";
         $html .= $button_text;
         $html .= "</$tag>";
         $html .= "</div>";
