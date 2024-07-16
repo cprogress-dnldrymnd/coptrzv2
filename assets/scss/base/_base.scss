@@ -1245,3 +1245,13 @@ hr {
         }
     }
 }
+
+.hide-first-option-value {
+    select {
+        option {
+            @include first-child {
+                display: none;
+            }
+        }
+    }
+}

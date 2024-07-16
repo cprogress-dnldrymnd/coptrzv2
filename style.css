@@ -11464,6 +11464,9 @@ hr {
 #calculator.calculated #results-box {
   display: block; }
 
+.hide-first-option-value select option:first-child {
+  display: none; }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }
