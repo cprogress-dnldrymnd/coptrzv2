@@ -1098,6 +1098,9 @@ function __section_fields($name = 'sections')
                             ->add_fields('reviews', array(
                                 Field::make('html', 'html')->set_html('<h3>This will display reviews from different platform </h3>'),
                             ))
+                            ->add_fields('drone_servicing', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display drone servicing blocks. </h3>'),
+                            ))
                     ))
                     ->add_fields('global_post_box_selection',  array(
                         Field::make('select', 'source', __('Source'))
