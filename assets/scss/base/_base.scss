@@ -1202,3 +1202,22 @@ hr {
         }
     }
 }
+
+#calculator {
+    #results-box {
+        display: none;
+    }
+    #results-animation {
+        display: none;
+    }
+    &.calculating {
+        #results-animation {
+            display: block;
+        }
+    }
+    &.calculated {
+        #results-box {
+            display: block;
+        }
+    }
+}

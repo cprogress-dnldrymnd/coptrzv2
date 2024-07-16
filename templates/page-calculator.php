@@ -8,7 +8,7 @@
     <?php
     echo ___hero_modules();
     ?>
-    <section class="calculator medium-container lg-padding-top md-padding-bottom">
+    <section class="calculator medium-container lg-padding-top md-padding-bottom" id="calculator">
         <div class="container content-margin">
             <div class="inner px-5 content-margin">
                 <h1>Project Information</h1>
@@ -104,7 +104,7 @@
                 <div id="results-animation">
                     <div class="loader"></div>
                 </div>
-                <div id="results-box d-none">
+                <div id="results-box">
                     <h2 class="mb-4">Your Results</h2>
                     <hr class="mb-4">
                     <div class="description-box mb-5 fw-light small-text">
@@ -152,6 +152,12 @@
                 console.log('Payback_Period' + $Payback_Period.toFixed(2));
                 console.log('Total_Net_Profit_Over_3_Years' + $Total_Net_Profit_Over_3_Years.toFixed(2));
                 console.log('ROI' + $ROI.toFixed(2));
+
+                jQuery('#calculator').addClass('calculating');
+                setTimeout(function() {
+                    jQuery('#calculator').addClass('calculated');
+                    jQuery('#calculator').removeClass('calculating');
+                }, 3000);
 
                 e.preventDefault();
             });

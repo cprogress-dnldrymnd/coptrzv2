@@ -11431,6 +11431,15 @@ hr {
 .your-result .result-box .result {
   background-color: #E9F5FF; }
 
+#calculator #results-box {
+  display: none; }
+#calculator #results-animation {
+  display: none; }
+#calculator.calculating #results-animation {
+  display: block; }
+#calculator.calculated #results-box {
+  display: none; }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }
