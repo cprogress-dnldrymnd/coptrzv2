@@ -580,18 +580,16 @@ class Shortcodes
         $image_args['class'] = _attribute('class', array('swiper-slide'));
         $image_args['size'] = 'medium';
 
-        $html .= "<div id='$id' class='swiper swiper-logo-slider'>";
+        $html .= "<div id='brands-slider' class='swiper swiper-logo-slider'>";
         $html .= '<div class="swiper-wrapper align-items-center">';
-        foreach ($gallery as $image) {
-            $image_args['image_id'] = $image;
+        foreach ($terms as $term) {
+            $logo = get___term_meta($term->term_id, 'image');
+
+            $image_args['image_id'] = $logo;
 
             $html .= __image($image_args);
         }
-        foreach ($gallery as $image) {
-            $image_args['image_id'] = $image;
 
-            $html .= __image($image_args);
-        }
         $html  .= "</div>";
         $html  .= "</div>";
         $html  .= "<div>";
