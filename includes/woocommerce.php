@@ -817,7 +817,7 @@ function __drone_servicing()
 
         $html .= "<div class='row-services-spec-mobile d-lg-none mt-4'>";
         foreach ($specs as $key => $spec) {
-            $html .= "<div class='row g-10px'>";
+            $html .= "<div class='row g-10px mb-10px'>";
 
             if ($spec != '_') {
                 $html .= "<div class='col-4'>"; //specs-row-col
