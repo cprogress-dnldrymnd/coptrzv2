@@ -11315,7 +11315,7 @@ hr {
 
 .modal {
   z-index: 999999; }
-  .modal .btn-close {
+  .modal .btn-popup-close {
     position: absolute;
     right: 20px;
     z-index: 1;
@@ -11325,7 +11325,7 @@ hr {
     width: 30px;
     height: 30px;
     padding: 0; }
-    .modal .btn-close svg {
+    .modal .btn-popup-close svg {
       width: 25px;
       height: 25px; }
   .modal.popup-form .modal-dialog {

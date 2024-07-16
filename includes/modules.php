@@ -2749,7 +2749,7 @@ function __popup($id)
     $html .= "<div class='modal-dialog modal-dialog-centered'>"; //modal-dialog
     $html .= "<div class='modal-content  $background_color_val'>";
     $html .= "<div class='modal-body p-0 '>"; //modal-body
-    $html .= "<button type='button' class='btn-close bg-accent text-white' data-bs-dismiss='modal'>".$SVG->close()."</button>";
+    $html .= "<button type='button' class='btn-popup-close bg-accent text-white' data-bs-dismiss='modal'>".$SVG->close()."</button>";
     if ($popup_layout == 'contact_form') {
         $html .= "<div class='row g-0'>"; //row
         $html .= "<div class='$col_class'>"; //col
