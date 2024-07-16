@@ -10,14 +10,14 @@ jQuery(document).ready(function () {
 });
 
 function __ajax_buy_now() {
-    jQuery('.buy-now').click(function (e) {
+    jQuery('.buy-now-trigger').click(function (e) {
         buy_now_ajax(jQuery(this));
         e.preventDefault();
     });
 }
 
 function buy_now_ajax(button) {
-    $buy_now_id = button.prev().val();
+    $buy_now_id = jQuery(this).attr('data-target');
     jQuery('.buy-now').attr('disabled');
     button.addClass('active').attr('disabled');
     jQuery.ajax({
