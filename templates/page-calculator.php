@@ -101,23 +101,28 @@
                 </div>
             </div>
             <div class="inner your-result sm-padding bg-primary rounded-corner text-white md-margin-top">
-                <h2 class="mb-4">Your Results</h2>
-                <hr class="mb-4">
-                <div class="description-box mb-5 fw-light small-text">
-                    <p>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                    </p>
+                <div id="results-animation">
+                    <div class="loader"></div>
                 </div>
-                <div class="result-box mb-5">
-                    <h3>Your payback period</h3>
-                    <div class="result rounded-corner xs-padding text-center big-text text-primary">
-                        Approximately X months, X days
+                <div id="results-box" class="d-none">
+                    <h2 class="mb-4">Your Results</h2>
+                    <hr class="mb-4">
+                    <div class="description-box mb-5 fw-light small-text">
+                        <p>
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        </p>
                     </div>
-                </div>
-                <div class="result-box">
-                    <h3>ROI over 3 years</h3>
-                    <div class="result rounded-corner xs-padding text-center big-text text-primary">
-                        245%
+                    <div class="result-box mb-5">
+                        <h3>Your payback period</h3>
+                        <div class="result rounded-corner xs-padding text-center big-text text-primary">
+                            Approximately X months, X days
+                        </div>
+                    </div>
+                    <div class="result-box">
+                        <h3>ROI over 3 years</h3>
+                        <div class="result rounded-corner xs-padding text-center big-text text-primary">
+                            245%
+                        </div>
                     </div>
                 </div>
             </div>
@@ -147,7 +152,7 @@
                 console.log('Payback_Period' + $Payback_Period.toFixed(2));
                 console.log('Total_Net_Profit_Over_3_Years' + $Total_Net_Profit_Over_3_Years.toFixed(2));
                 console.log('ROI' + $ROI.toFixed(2));
-                
+
                 e.preventDefault();
             });
 
