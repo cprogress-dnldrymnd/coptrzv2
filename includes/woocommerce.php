@@ -814,6 +814,38 @@ function __drone_servicing()
             'tag' => 'h3',
             'suffix' => $service_subheading
         ));
+
+
+        foreach ($servicing_drones as $drone) {
+            $spec_services = array();
+            foreach ($drone['service_features'] as $service_feature) {
+                $spec_services[$service_feature['_type']] = $service_feature['quantity'];
+            }
+
+            $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
+            $quantity = $spec_services[$key];
+
+            if (array_key_exists($key, $spec_services)) {
+
+                $html .= "<div class='active d-flex align-items-center'> ";
+                $html .= $SVG->check();
+                if ($quantity > 1) {
+                    $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
+                    $html .= "<span class='smaller-text me-2'>x</span> <span class='fw-'medium'>$quantity</span>";
+                    $html .= "</span>";
+                }
+            } else {
+                $html .= "<div class='not-active d-flex align-items-center'>";
+                $html .= $SVG->xmark();
+                $html .= "</div>";
+            }
+
+            $html .= "</div>";
+            $html .= "</div>";
+        }
+
+
+
         $html .= "<div class='price-button mt-5'>";
         $html .= "<div class='price mb-3'>£$service_price <span>Excl. VAT</span></div>";
         $html .= __button(array(
