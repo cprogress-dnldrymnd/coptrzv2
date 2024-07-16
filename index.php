@@ -45,7 +45,7 @@ if (is_home()) {
 } else if (is_post_type_archive('capabilities')) {
     $title = get__theme_option('capabilities_loop_section_title');
     $key = 'capabilities_';
-    $title = $title ? $title : 'Rare Commercial <br> Capabilities';
+    $title = $title ? $title : 'Commercial <br> Capabilities';
     $has_featured = false;
     $has_filter = false;
     $has_pagination = false;
