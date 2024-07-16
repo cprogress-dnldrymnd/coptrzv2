@@ -817,32 +817,53 @@ function __drone_servicing()
 
         $html .= "<div class='row g-10px row-services d-lg-none'>";
 
-        $spec_services = array();
-        foreach ($drone['service_features'] as $service_feature) {
-            $spec_services[$service_feature['_type']] = $service_feature['quantity'];
-        }
+        foreach ($specs as $key => $spec) {
+            if ($spec != '_') {
+                $html .= "<div class='col-3'>"; //specs-row-col
+                $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+                $html .= "<div class='icon-box me-3 text-accent'>";
+                $html .= $SVG->$key();
+                $html .= "</div>";
+                $html .= __heading(array(
+                    'heading' => ucwords($spec),
+                    'class' => _attribute('class', array('mb-0')),
+                    'tag' => 'h5',
+                ));
+                $html .= "</div>"; //end-inner
+                $html .= "</div>"; //end-specs-row-col
 
-        $html .= "<div class='col-6'>";
-        $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
-        $quantity = $spec_services[$key];
+                foreach ($servicing_drones as $drone) {
+                    $spec_services = array();
+                    foreach ($drone['service_features'] as $service_feature) {
+                        $spec_services[$service_feature['_type']] = $service_feature['quantity'];
+                    }
 
-        if (array_key_exists($key, $spec_services)) {
+                    $html .= "<div class='col-3'>";
+                    $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
-            $html .= "<div class='active d-flex align-items-center'> ";
-            $html .= $SVG->check();
-            if ($quantity > 1) {
-                $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
-                $html .= "<span class='smaller-text me-2'>x</span> <span class='fw-'medium'>$quantity</span>";
-                $html .= "</span>";
+                    if (array_key_exists($key, $spec_services)) {
+
+                        $quantity = $spec_services[$key];
+
+                        $html .= "<div class='active d-flex align-items-center'> ";
+                        $html .= $SVG->check();
+                        if ($quantity > 1) {
+                            $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
+                            $html .= "<span class='smaller-text me-2'>x</span> <span class='fw-'medium'>$quantity</span>";
+                            $html .= "</span>";
+                        }
+                        $html .= "</div>";
+                    } else {
+                        $html .= "<div class='not-active d-flex align-items-center'>";
+                        $html .= $SVG->xmark();
+                        $html .= "</div>";
+                    }
+
+                    $html .= "</div>";
+                    $html .= "</div>";
+                }
             }
-        } else {
-            $html .= "<div class='not-active d-flex align-items-center'>";
-            $html .= $SVG->xmark();
-            $html .= "</div>";
         }
-
-        $html .= "</div>";
-        $html .= "</div>";
 
         $html .= "</div>";
 
