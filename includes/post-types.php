@@ -273,12 +273,6 @@ $Team->publicly_queryable = false;
 $Team->show_in_admin_bar = false;
 $Team->has_archive = false;
 
-$Careers = new newPostType();
-$Careers->name = 'Careers';
-$Careers->singular_name = 'Career';
-$Careers->icon = 'dashicons-businessman';
-$Careers->supports = array('title', 'revisions', 'thumbnail', 'editor', 'excerpt');
-$Careers->show_in_rest = true;
 
 $Case_Studies = new newPostType();
 $Case_Studies->name = 'Case Studies';
