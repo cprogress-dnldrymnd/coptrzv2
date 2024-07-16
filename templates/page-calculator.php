@@ -185,9 +185,10 @@
                 var result;
                 if (years == 0) {
                     var result = months + " months, " + days + " days";
+                } else if (years == 1) {
+                    var result = years + " year, " + months + " months, " + days + " days";
                 } else {
                     var result = years + " years, " + months + " months, " + days + " days";
-
                 }
 
                 return result;
