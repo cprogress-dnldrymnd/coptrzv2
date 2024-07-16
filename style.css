@@ -11520,6 +11520,15 @@ hr {
 #brands-slider img {
   height: 60px; }
 
+#testimonial-slider-swiper .testimonial-slider-swiper {
+  font-size: 2rem; }
+  @media screen and (max-width: 991px) {
+    #testimonial-slider-swiper .testimonial-slider-swiper {
+      font-size: 1.5rem; } }
+  @media screen and (max-width: 767px) {
+    #testimonial-slider-swiper .testimonial-slider-swiper {
+      font-size: 1.25rem; } }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }

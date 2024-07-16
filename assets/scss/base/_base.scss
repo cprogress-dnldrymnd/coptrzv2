@@ -1312,3 +1312,15 @@ hr {
         height: 60px;
     }
 }
+
+#testimonial-slider-swiper {
+    .testimonial-slider-swiper {
+        font-size: 2rem;
+        @include responsive(xs-sm) {
+            font-size: 1.5rem;
+        }
+        @include responsive(xs) {
+            font-size: 1.25rem;
+        }
+    }
+}
