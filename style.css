@@ -11490,7 +11490,13 @@ hr {
 .bg-primary .button-box.button-box.button-box.button-accent a:focus,
 .bg-primary .button-box.button-box.button-box.button-accent button:hover,
 .bg-primary .button-box.button-box.button-box.button-accent button:active,
-.bg-primary .button-box.button-box.button-box.button-accent button:focus {
+.bg-primary .button-box.button-box.button-box.button-accent button:focus,
+.bg-accent .button-box.button-box.button-box.button-accent a:hover,
+.bg-accent .button-box.button-box.button-box.button-accent a:active,
+.bg-accent .button-box.button-box.button-box.button-accent a:focus,
+.bg-accent .button-box.button-box.button-box.button-accent button:hover,
+.bg-accent .button-box.button-box.button-box.button-accent button:active,
+.bg-accent .button-box.button-box.button-box.button-accent button:focus {
   background-color: var(--bs-white);
   border-color: var(--bs-white);
   color: var(--bs-primary); }
