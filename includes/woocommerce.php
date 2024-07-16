@@ -880,7 +880,8 @@ function __drone_servicing()
     }
 
     $html .= "<div class='row g-10px row-services'>";
-
+    $html .= "<div class='col-lg-3'>";
+    $html .= "</div>";
     foreach ($servicing_drones as $key => $drone) {
         $position = $key % 3;
 
