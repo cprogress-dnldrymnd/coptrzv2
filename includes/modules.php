@@ -1830,6 +1830,32 @@ function ____columns_modules($items, $id, $html = '')
         foreach ($items as $item) {
             $type = $item['_type'];
             switch ($type) {
+                case 'global_widgets':
+                    $global_widgets = $items['global_widgets'];
+                    foreach ($global_widgets as $global_widget) {
+                        $type = $global_widget['_type'];
+                        switch ($type) {
+                            case 'latest_from_coptrz':
+                                $html .= do_shortcode("[latest_from_coptrz]");
+                                break;
+                            case 'case_study_slider':
+                                $html .= do_shortcode("[case_study_slider_grid]");
+                                break;
+                            case 'reviews':
+                                $html .= do_shortcode("[reviews]");
+                                break;
+                            case 'drone_servicing':
+                                $html .= do_shortcode("[drone_servicing]");
+                                break;
+                            case 'brands_logo_slider':
+                                $html .= do_shortcode("[brands_logo_slider]");
+                                break;
+                            case 'testimonials':
+                                $html .= do_shortcode("[testimonials]");
+                                break;
+                        }
+                    }
+                    break;
                 case 'heading':
                     $html .= ____heading_modules($item);
                     break;
