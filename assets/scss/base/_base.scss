@@ -213,6 +213,13 @@ main {
         .swiper-slide {
             display: inline;
             width: auto;
+            margin-right: 50px;
+            @include responsive(xs-sm) {
+                margin-right: 30px;
+            }
+            @include responsive(xs) {
+                margin-right: 20px;
+            }
         }
         img {
             height: 50px;

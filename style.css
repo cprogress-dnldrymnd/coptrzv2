@@ -10683,7 +10683,14 @@ hr {
   transition-timing-function: linear !important; }
   .logo-slider .swiper-wrapper .swiper-slide {
     display: inline;
-    width: auto; }
+    width: auto;
+    margin-right: 50px; }
+    @media screen and (max-width: 991px) {
+      .logo-slider .swiper-wrapper .swiper-slide {
+        margin-right: 30px; } }
+    @media screen and (max-width: 767px) {
+      .logo-slider .swiper-wrapper .swiper-slide {
+        margin-right: 20px; } }
   .logo-slider .swiper-wrapper img {
     height: 50px;
     width: auto; }
