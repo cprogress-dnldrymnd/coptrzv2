@@ -898,8 +898,6 @@ function __drone_servicing()
         $html .= "<div class='col-lg-3'>";
         $html .= "<div class='service-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
 
-        $html .= "<div class='price-button mt-5'>";
-        $html .= "<div class='price mb-3'>£$service_price <span>Excl. VAT</span></div>";
         $html .= __button(array(
             'button_type' => 'custom',
             'button_text' => 'Request Service',
@@ -907,7 +905,6 @@ function __drone_servicing()
             'button_style' => $button_class,
         ));
 
-        $html .= "</div>";
 
         $html .= "</div>";
         $html .= "</div>";
