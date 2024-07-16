@@ -251,5 +251,7 @@ function __button($data)
         $html .= $button_text;
         $html .= "</$tag>";
         $html .= "</div>";
+
+        return $html;
     }
 }
