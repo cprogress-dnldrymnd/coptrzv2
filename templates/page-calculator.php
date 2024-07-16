@@ -100,7 +100,8 @@
                     </div>
                 </div>
             </div>
-            <div class="inner your-result md-padding-top" id="results">
+            <div id="results-position" class="md-padding-top"></div>
+            <div class="inner your-result" id="results">
                 <div class="results-holder sm-padding bg-primary rounded-corner text-white">
                     <div id="results-animation">
                         <div class="loader"></div>
@@ -137,7 +138,7 @@
 
             jQuery('#generate_report').click(function(e) {
                 jQuery('html, body').animate({
-                    scrollTop: jQuery("#results").offset().top
+                    scrollTop: jQuery("#results-position").offset().top
                 }, 2000);
                 $Initial_Investment = __get_val('Initial_Investment');
                 $Annual_Revenue_from_Drone_Survey_Work = __get_val('Annual_Revenue_from_Drone_Survey_Work');
