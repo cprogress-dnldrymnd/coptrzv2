@@ -815,7 +815,7 @@ function __drone_servicing()
             'suffix' => $service_subheading
         ));
 
-        $html .= "<div class='row g-10px row-services d-lg-none'>";
+        $html .= "<div class='row g-10px row-services d-lg-none mt-4'>";
 
         foreach ($specs as $key => $spec) {
             if ($spec != '_') {
