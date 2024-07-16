@@ -2743,12 +2743,13 @@ function __popup($id)
     $background_color_val =  $background_color ? $background_color : 'background-white';
     $col_class = get_the_post_thumbnail_url($id) ? 'col-lg-6 ' : 'col-12';
     $image_class = get_the_post_thumbnail_url($id) ? 'col-lg-6 ' : 'col-12';
+    $SVG = new SVG;
 
     $html = "<div class='modal fade modal-v2 popup-form $popup_max_width' id='modal-$id' tabindex='-1' aria-labelledby='modalSearchLabel' aria-hidden='true'>"; //modal
     $html .= "<div class='modal-dialog modal-dialog-centered'>"; //modal-dialog
     $html .= "<div class='modal-content  $background_color_val'>";
     $html .= "<div class='modal-body p-0 '>"; //modal-body
-
+    $html .= "<button type='button class='btn btn-secondary data-bs-dismiss='modal'>".$SVG->close()."</button>";
     if ($popup_layout == 'contact_form') {
         $html .= "<div class='row g-0'>"; //row
         $html .= "<div class='$col_class'>"; //col
