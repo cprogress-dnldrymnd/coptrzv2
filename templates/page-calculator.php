@@ -139,7 +139,7 @@
             jQuery('#generate_report').click(function(e) {
                 jQuery('html, body').animate({
                     scrollTop: jQuery("#results-position").offset().top
-                }, 2000);
+                }, 500);
                 
 
                 e.preventDefault();
