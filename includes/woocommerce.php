@@ -825,7 +825,7 @@ function __drone_servicing()
             $html .= "<div class='col-3'>"; //specs-row-col
             $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
             $html .= "<div class='icon-box'>";
-            // $html .= $SVG->$key();
+            $html .= $SVG->$key();
             $html .= "</div>";
             $html .= __heading(array(
                 'heading' => $spec,
