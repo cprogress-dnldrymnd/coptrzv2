@@ -92,7 +92,7 @@ function __servicing_fields()
         Field::make('text', 'servicing_heading', 'Heading')->set_classes('inline-field'),
         Field::make('textarea', 'servicing_description', 'Description')->set_classes('inline-field'),
         Field::make('complex', 'servicing_drones', 'Drone Services')->set_classes('inline-field')
-        ->set_header_template('Drone Service: <%- servicing_heading %>'),
+            ->set_header_template('Drone Service: <%- servicing_heading %>')
             ->add_fields(array(
                 Field::make('text', 'service_name', 'Service Name')->set_classes('inline-field'),
                 Field::make('text', 'service_subheading', 'Service Subheading')->set_classes('inline-field'),
