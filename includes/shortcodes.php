@@ -634,7 +634,7 @@ class Shortcodes
                     "text_color_custom" => ""
                 )
             ),
-            'post_type' => 'https://dev.coptrz.com/wp-admin/edit.php?post_type=testimonials',
+            'post_type' => ['post_type'][0]['testimonials'],
         ));
     }
 }
