@@ -48,15 +48,15 @@ if (!$hide_footer) {
             <div class="container">
                 <div class="inner rounded-10px">
                     <div class="row g-3 justify-content-between align-items-center">
-                        <div class="col-lg-4">
+                        <div class="col-auto col-lg-4">
                             <?= do_shortcode('[site_logo]') ?>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-auto col-lg-4">
                             <div class="socials text-center">
                                 <?= do_shortcode('[socials]') ?>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-auto col-lg-4">
                             <div class="socials">
                                 <?= __image(array(
                                     'image_id' => $footer_drone_experts
