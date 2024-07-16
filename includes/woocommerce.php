@@ -776,15 +776,15 @@ function __drone_servicing($id)
     $servicing_heading = get__theme_option('servicing_heading');
     $servicing_description = get__theme_option('servicing_description');
     $servicing_drones = get__theme_option('servicing_drones');
-    $servicing_heading = get__theme_option('servicing_heading');
-    $products = get__post_meta_by_id($id, 'products');
+
 
     $specs = array();
 
-    foreach ($products as $product) {
-        $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
-        foreach ($pa_specifications as $specification) {
-            $specs[$specification->term_id] = $specification->name;
+    foreach ($servicing_drones as $servicing_drone) {
+        $specs[] = $servicing_drone['_type'];
+        $service_features = $servicing_drone['service_features'];
+        foreach ($service_features as $service_feature) {
+            $specs[$service_feature['_type']] = $service_feature['_type'];
         }
     }
     $html = "<div class='product-compare'>";
@@ -792,13 +792,37 @@ function __drone_servicing($id)
     $html .= "<div class='row g-10px'>";
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
-        'heading' => get_the_title($id),
+        'heading' => $servicing_heading,
+    ));
+
+    $html .= __description(array(
+        'description' => $servicing_description,
+        'class' => _attribute('class', array('description-box')),
     ));
     $html .= "</div>";
 
-    foreach ($products as $product) {
+    foreach ($servicing_drones as $drone) {
+        $service_name = $drone['service_name'];
+        $service_subheading = $drone['service_subheading'];
+        $service_price = $drone['service_price'];
         $html .= "<div class='col-lg-3'>";
-        $html .= _product_grid_display($product['id']);
+        $html .= "<div class'service-box'>";
+        $html .= __heading(array(
+            'heading' => $service_name,
+            'tag' => 'h3'
+        ));
+        $html .= "<div class'price-button'>";
+
+        $html .= __button(array(
+            'button_type' => 'custom',
+            'button_text' => 'Request Service',
+            'button_url_custom' => '#',
+            'button_style' => 'button-accent',
+        ));
+
+        $html .= "</div>";
+
+        $html .= "</div>";
         $html .= "</div>";
     }
 
