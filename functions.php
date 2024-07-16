@@ -84,7 +84,7 @@ function enqueue_scripts()
 		'ajax_object',
 		array(
 			'ajax_url' => admin_url('admin-ajax.php'),
-			'checkout_url' => wc_get_cart_url(),
+			'checkout_url' => wc_get_checkout_url(),
 		)
 	);
 	wp_enqueue_script('main');
