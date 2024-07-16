@@ -583,8 +583,10 @@ class Shortcodes
         $html .= '<div class="swiper-wrapper align-items-center">';
         foreach ($terms as $term) {
             $logo = get___term_meta($term->term_id, 'image');
+            $hide_on_slider = get___term_meta($term->term_id, 'hide_on_slider');
+
             $image_args['image_id'] = $logo;
-            if ($logo) {
+            if ($logo && !$hide_on_slider) {
                 $link = get_term_link($term->term_id);
                 $html .= "<div class='swiper-slide'>";
                 $html .= "<a href='$link'>";
