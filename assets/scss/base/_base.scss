@@ -211,7 +211,7 @@ main {
     .swiper-wrapper {
         transition-timing-function: linear !important;
         .swiper-slide {
-            display: inline;
+            display: flex;
             width: auto;
             margin-right: 50px;
             @include responsive(xs-sm) {

@@ -10682,7 +10682,7 @@ hr {
 .logo-slider .swiper-wrapper {
   transition-timing-function: linear !important; }
   .logo-slider .swiper-wrapper .swiper-slide {
-    display: inline;
+    display: flex;
     width: auto;
     margin-right: 50px; }
     @media screen and (max-width: 991px) {
