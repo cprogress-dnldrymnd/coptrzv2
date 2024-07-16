@@ -141,6 +141,7 @@
 
                 console.log($Net_Annual_Cash_Inflow);
                 console.log($Payback_Period);
+                console.log($Initial_Investment);
 
                 e.preventDefault();
             });
