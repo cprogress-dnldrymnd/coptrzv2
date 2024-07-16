@@ -5889,6 +5889,7 @@ Container::make('post_meta', 'Industry Settings')
         'General Settings',
         array(
             Field::make('checkbox', 'hide_on_list', 'Hide on List'),
+            Field::make('image', 'footer_drone_experts', 'Drone Experts Image'),
         )
     )
     ->add_tab(

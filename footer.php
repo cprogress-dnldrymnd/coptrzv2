@@ -55,6 +55,11 @@ if (!$hide_footer) {
                                 <?= do_shortcode('[socials]') ?>
                             </div>
                         </div>
+                        <div class="col-auto">
+                            <div class="socials">
+                                <?= ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
