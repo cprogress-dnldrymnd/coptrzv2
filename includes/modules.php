@@ -2747,7 +2747,7 @@ function __popup($id)
 
     $html = "<div class='modal fade modal-v2 popup-form $popup_max_width' id='modal-$id' tabindex='-1' aria-labelledby='modalSearchLabel' aria-hidden='true'>"; //modal
     $html .= "<div class='modal-dialog modal-dialog-centered'>"; //modal-dialog
-    $html .= "<div class='modal-content  $background_color_val'>";
+    $html .= "<div class='modal-content rounded-corner overflow-hidden  $background_color_val'>";
     $html .= "<div class='modal-body p-0 '>"; //modal-body
     $html .= "<button type='button' class='btn-popup-close bg-accent text-white' data-bs-dismiss='modal'>".$SVG->close()."</button>";
     if ($popup_layout == 'contact_form') {
