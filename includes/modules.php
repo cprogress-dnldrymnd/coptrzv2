@@ -971,14 +971,14 @@ function ___tab_modules($tabs, $id)
 function ____post_grid_module($data)
 {
     $is_slider = $data['is_slider'];
-    $number_of_slides = $data['number_of_slides'];
-    $number_of_slides_tablet = $data['number_of_slides_tablet'];
-    $number_of_slides_mobile = $data['number_of_slides_mobile'];
-    $id = $data['id'];
-    $post_box_styles = $data['post_box_styles'];
-    $post_elements = $data['post_elements'];
-    $post_type = $data['post_type'][0]['_type'];
-    $source = $data['post_type'][0]['source'];
+    $number_of_slides = isset($data['number_of_slides']) ? $data['number_of_slides'] : 1;
+    $number_of_slides_tablet = isset($data['number_of_slides_tablet']) ? $data['number_of_slides_tablet'] : 1;
+    $number_of_slides_mobile = isset($data['number_of_slides_mobile']) ? $data['number_of_slides_mobile'] : 1;
+    $id = isset($data['id']) ? $data['id'] : '';
+    $post_box_styles = isset($data['post_box_styles']) ? $data['post_box_styles'] : false;
+    $post_elements = isset($data['post_elements']) ? $data['post_elements'] : false;
+    $post_type = isset($data['post_type']) ? $data['post_type'][0]['_type'] : false;
+    $source = isset($data['post_type']) ? $data['post_type'][0]['source'] : false;
     $styles_val = '';
     $column_classes_val  = '';
 
