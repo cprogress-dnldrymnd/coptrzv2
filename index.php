@@ -60,7 +60,7 @@ if (is_home()) {
     );
 } else if (is_post_type_archive('industries')) {
     $key = 'industries_';
-    $title = false;
+    $title = 'Industry Solutions';
     $has_featured = false;
     $has_pagination = false;
     $has_filter = false;
