@@ -11481,6 +11481,18 @@ hr {
 .hide-first-option-value select option:first-child {
   display: none; }
 
+.bg-dark .button-box.button-box.button-box.button-accent a:hover, .bg-dark .button-box.button-box.button-box.button-accent a:active, .bg-dark .button-box.button-box.button-box.button-accent a:focus,
+.bg-dark .button-box.button-box.button-box.button-accent button:hover,
+.bg-dark .button-box.button-box.button-box.button-accent button:active,
+.bg-dark .button-box.button-box.button-box.button-accent button:focus,
+.bg-primary .button-box.button-box.button-box.button-accent a:hover,
+.bg-primary .button-box.button-box.button-box.button-accent a:active,
+.bg-primary .button-box.button-box.button-box.button-accent a:focus,
+.bg-primary .button-box.button-box.button-box.button-accent button:hover,
+.bg-primary .button-box.button-box.button-box.button-accent button:active,
+.bg-primary .button-box.button-box.button-box.button-accent button:focus {
+  border-color: var(--bs-white); }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }

@@ -1272,3 +1272,19 @@ hr {
         }
     }
 }
+
+.bg-dark,
+.bg-primary {
+    .button-box.button-box.button-box {
+        &.button-accent {
+            a,
+            button {
+                @include on-event {
+                    background-color: var(--bs-white);
+                    border-color: var(--bs-white);
+                    color: var(--bs-primary);
+                }
+            }
+        }
+    }
+}
