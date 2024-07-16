@@ -278,6 +278,7 @@ function action_pre_get_posts($query)
     if (!is_admin() && $query->is_main_query()) {
         $query->set('post_status', 'publish');
         $query->set('orderby', 'menu_order');
+        $query->set('order', 'ASC');
 
         if (is_post_type_archive('solutions') || is_post_type_archive('guides')) {
             $meta_query[] = [
