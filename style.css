@@ -10415,6 +10415,9 @@ p:last-child {
 .bg-accent {
   background-color: var(--bs-accent); }
 
+.bg-gray {
+  background-color: var(--bg-accent); }
+
 .small-width.small-width.small-width {
   max-width: 730px; }
 
