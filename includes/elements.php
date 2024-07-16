@@ -233,9 +233,9 @@ function __button($data)
         $popups_id[] = $button_url;
         $tag = 'button';
         $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $button_url . '"';
-    } else  {
+    } else {
         $tag = 'button';
-        $link = 'data-target="buy-now"';
+        $link = 'data-target="' . get_the_ID() . '"';
         $class = 'buy-now-trigger';
     }
 
