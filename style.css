@@ -11491,7 +11491,9 @@ hr {
 .bg-primary .button-box.button-box.button-box.button-accent button:hover,
 .bg-primary .button-box.button-box.button-box.button-accent button:active,
 .bg-primary .button-box.button-box.button-box.button-accent button:focus {
-  border-color: var(--bs-white); }
+  background-color: var(--bs-white);
+  border-color: var(--bs-white);
+  color: var(--bs-primary); }
 
 @keyframes spin {
   from {
