@@ -668,7 +668,9 @@ section.product-main {
     }
     &.product-compare {
         .active {
-        
+        .qty {
+            font-size: 21px;
+        }
         }
         .button-box {
             a {

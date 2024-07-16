@@ -11983,6 +11983,8 @@ section.product-main .summary.summary.summary .variations tr {
   height: 30px; }
 .product-compare .comparison > .row:not(:last-child) {
   margin-bottom: 10px; }
+.product-compare.product-compare .active .qty {
+  font-size: 21px; }
 .product-compare.product-compare .button-box a {
   width: 100%; }
 
