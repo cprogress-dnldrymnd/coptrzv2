@@ -10,7 +10,7 @@ class Shortcodes
                     'heading' => '',
                     'taxonomy' => '',
                     'search_filter' => false,
-                    'items_per_page' => 16,
+                    'items_per_page' => -1,
                     'hide_empty' => true,
                 ),
                 $atts
@@ -564,6 +564,38 @@ class Shortcodes
     {
         return __drone_servicing();
     }
+
+    function brands_logo_slider()
+    {
+
+        $terms = get_terms(array(
+            'taxonomy'   => 'pa_brands',
+            'hide_empty' => true,
+            'number' => -1
+        ));
+
+
+        $html  = "<div class='gallery'>";
+
+        $image_args['class'] = _attribute('class', array('swiper-slide'));
+        $image_args['size'] = 'medium';
+
+        $html .= "<div id='$id' class='swiper swiper-logo-slider'>";
+        $html .= '<div class="swiper-wrapper align-items-center">';
+        foreach ($gallery as $image) {
+            $image_args['image_id'] = $image;
+
+            $html .= __image($image_args);
+        }
+        foreach ($gallery as $image) {
+            $image_args['image_id'] = $image;
+
+            $html .= __image($image_args);
+        }
+        $html  .= "</div>";
+        $html  .= "</div>";
+        $html  .= "<div>";
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -582,3 +614,4 @@ add_shortcode('site_logo', array($Shortcodes, 'site_logo'));
 add_shortcode('event_countdown', array($Shortcodes, 'event_countdown'));
 add_shortcode('product_compare', array($Shortcodes, 'product_compare'));
 add_shortcode('drone_servicing', array($Shortcodes, 'drone_servicing'));
+add_shortcode('brands_logo_slider', array($Shortcodes, 'brands_logo_slider'));

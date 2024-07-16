@@ -797,6 +797,9 @@ function ___sections($id = 'sections', $post_id = '')
                                 case 'drone_servicing':
                                     $html .= do_shortcode("[drone_servicing]");
                                     break;
+                                case 'brands_logo_slider':
+                                    $html .= do_shortcode("[brands_logo_slider]");
+                                    break;
                             }
                         }
                         break;
@@ -1336,10 +1339,6 @@ function ____gallery_modules($data)
     $id = $data['id'];
     $gallery = $data['gallery'];
     $gallery_style = $data['gallery_style'];
-    $number_of_slides = $data['number_of_slides'];
-    $number_of_slides_tablet = $data['number_of_slides_tablet'];
-    $number_of_slides_mobile = $data['number_of_slides_mobile'];
-    $image_args = [];
     if ($gallery) {
         $html  = "<div class='gallery $gallery_style'>";
 
