@@ -324,7 +324,7 @@ function buy_now_button()
 {
     $product_id = get_the_ID();
     $html = '<div class="button-box button-bordered buy-now-button">';
-    $html .= "<button class='buy-now-trigger' data-target='$product_id'>";
+    $html .= "<button class='buy-now-trigger buy-now-trigger-main' data-target='$product_id'>";
     $html .= 'Buy Now';
     $html .= '</button>';
     $html .= '</div>';
