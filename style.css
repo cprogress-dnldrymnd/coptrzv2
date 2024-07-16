@@ -10683,8 +10683,7 @@ hr {
   transition-timing-function: linear !important; }
   .logo-slider .swiper-wrapper .swiper-slide {
     display: inline;
-    width: auto;
-    flex-shrink: 1; }
+    width: auto; }
   .logo-slider .swiper-wrapper img {
     height: 60px;
     width: auto; }
