@@ -213,11 +213,10 @@ main {
         .swiper-slide {
             display: inline;
             width: auto;
-            flex-shrink: 1;
         }
         img {
             height: 60px;
-            object-fit: contain;
+            width: auto;
         }
     }
 }
