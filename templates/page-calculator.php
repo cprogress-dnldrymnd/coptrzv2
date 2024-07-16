@@ -100,28 +100,30 @@
                     </div>
                 </div>
             </div>
-            <div class="inner your-result sm-padding bg-primary rounded-corner text-white md-margin-top" id="results">
-                <div id="results-animation">
-                    <div class="loader"></div>
-                </div>
-                <div id="results-box">
-                    <h2 class="mb-4">Your Results</h2>
-                    <hr class="mb-4">
-                    <div class="description-box mb-5 fw-light small-text">
-                        <p>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                        </p>
+            <div class="inner your-result md-padading-top" id="results">
+                <div class="results-holder sm-padding bg-primary rounded-corner text-white">
+                    <div id="results-animation">
+                        <div class="loader"></div>
                     </div>
-                    <div class="result-box mb-5">
-                        <h3>Your payback period</h3>
-                        <div class="result rounded-corner xs-padding text-center big-text text-primary" id="Payback_Period">
-                            Approximately X months, X days
+                    <div id="results-box">
+                        <h2 class="mb-4">Your Results</h2>
+                        <hr class="mb-4">
+                        <div class="description-box mb-5 fw-light small-text">
+                            <p>
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                            </p>
                         </div>
-                    </div>
-                    <div class="result-box">
-                        <h3>ROI over 3 years</h3>
-                        <div class="result rounded-corner xs-padding text-center big-text text-primary" id="ROI">
-                            245%
+                        <div class="result-box mb-5">
+                            <h3>Your payback period</h3>
+                            <div class="result rounded-corner xs-padding text-center big-text text-primary" id="Payback_Period">
+                                Approximately X months, X days
+                            </div>
+                        </div>
+                        <div class="result-box">
+                            <h3>ROI over 3 years</h3>
+                            <div class="result rounded-corner xs-padding text-center big-text text-primary" id="ROI">
+                                245%
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -158,6 +160,10 @@
                     jQuery('#calculator').addClass('calculated');
                     jQuery('#calculator').removeClass('calculating');
                     jQuery('#generate_report').hide();
+                    $('html, body').animate({
+                        scrollTop: $("#results").offset().top
+                    }, 2000);
+
                 }, 3000);
 
                 e.preventDefault();
