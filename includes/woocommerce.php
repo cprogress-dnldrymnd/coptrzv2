@@ -800,7 +800,7 @@ function __drone_servicing()
             'suffix' => $service_subheading
         ));
         $html .= "<div class'price-button'>";
-        $html .= "<div class='price'>$service_price</div>";
+        $html .= "<div class='price'>£$service_price<span>Excl. VAT</span></div>";
         $html .= __button(array(
             'button_type' => 'custom',
             'button_text' => 'Request Service',
