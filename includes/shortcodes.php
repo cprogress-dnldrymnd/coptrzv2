@@ -604,7 +604,39 @@ class Shortcodes
 
     function testimonials()
     {
-      
+        return ___post_grid_module(array(
+            'id' => $id,
+            'is_slider' => $item['is_slider'],
+            'number_of_slides' => $item['number_of_slides'],
+            'number_of_slides_tablet' => $item['number_of_slides_tablet'],
+            'number_of_slides_mobile' => $item['number_of_slides_mobile'],
+            'post_box_styles' => $item['post_box_styles'],
+            'post_elements' => [
+                [
+                    "_type" => "icon",
+                    "icon" => "271265",
+                    "icon_color" => "text-accent",
+                    "icon_color_custom" => "",
+                    "icon_width" => "",
+                    "icon_height" => ""
+                ],
+                [
+                    "_type" => "custom_field_1",
+                    "custom_field_key" => "_testimonial_content",
+                    "custom_field_type" => "p",
+                    "custom_field_class" => "big-text"
+                ],
+                [
+                    "_type" => "post_title",
+                    "text_before" => "-",
+                    "text_after" => "",
+                    "tag" => "p",
+                    "text_color" => "",
+                    "text_color_custom" => ""
+                ]
+            ],
+            'post_type' => 'https://dev.coptrz.com/wp-admin/edit.php?post_type=testimonials',
+        ));
     }
 }
 $Shortcodes = new Shortcodes;
