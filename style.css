@@ -11983,13 +11983,13 @@ section.product-main .summary.summary.summary .variations tr {
   height: 30px; }
 .product-compare .comparison > .row:not(:last-child) {
   margin-bottom: 10px; }
-.product-compare.product-compare .active .qty {
+.product-compare.drone-servicing .active .qty {
   font-size: 1.3125rem; }
-.product-compare.product-compare .price {
+.product-compare.drone-servicing .price {
   font-size: 1.5rem; }
-  .product-compare.product-compare .price span {
+  .product-compare.drone-servicing .price span {
     font-size: 1rem; }
-.product-compare.product-compare .button-box a {
+.product-compare.drone-servicing .button-box a {
   width: 100%; }
 
 .custom-product-grid {

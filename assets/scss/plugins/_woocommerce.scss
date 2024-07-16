@@ -666,7 +666,12 @@ section.product-main {
             }
         }
     }
-    &.product-compare {
+    &.drone-servicing {
+        .row-services-spec-mobile {
+            .col-2 {
+                
+            }
+        }
         .active {
             .qty {
                 font-size: 1.3125rem;
