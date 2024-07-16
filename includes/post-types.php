@@ -312,7 +312,7 @@ $Industry->supports = array('title', 'revisions', 'editor', 'thumbnail', 'excerp
 $Industry->show_in_rest = true;
 $Industry->rewrite = array(
     'with_front' => false,
-    'slug' => 'industry-industries'
+    'slug' => 'industry-solutions'
 );
 
 
