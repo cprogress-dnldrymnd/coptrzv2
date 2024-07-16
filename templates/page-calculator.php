@@ -132,7 +132,7 @@
             jQuery('#generate_report').click(function(e) {
                 $Initial_Investment = __get_val('Initial_Investment');
                 $Annual_Revenue_from_Drone_Survey_Work = __get_val('Annual_Revenue_from_Drone_Survey_Work');
-                $Annual_Operating_Costs = __get_val();
+                $Annual_Operating_Costs = __get_val('$Annual_Operating_Costs');
                 $Average_Savings_per_Day_Using_a_Drone = __get_val('Average_Savings_per_Day_Using_a_Drone');
                 $Number_of_Days_Drone_Will_Be_Used_Per_Year = __get_val('Number_of_Days_Drone_Will_Be_Used_Per_Year');
 
