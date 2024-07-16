@@ -138,7 +138,7 @@
                 $Net_Annual_Cash_Inflow = ($Annual_Revenue_from_Drone_Survey_Work + ($Average_Savings_per_Day_Using_a_Drone * $Number_of_Days_Drone_Will_Be_Used_Per_Year)) - $Annual_Operating_Costs;
                 $Payback_Period = $Initial_Investment / $Net_Annual_Cash_Inflow;
 
-                $Total_Net_Profit_Over_3_Years = (($Net_Annual_Cash_Inflow * 3) - $Initial_Investment) - $Initial_Investment;
+                $Total_Net_Profit_Over_3_Years = (($Net_Annual_Cash_Inflow * 3) - $Initial_Investment);
 
 
 
