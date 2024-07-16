@@ -670,7 +670,19 @@ section.product-main {
         .row-services {
             [class*="col-"] {
                 &:nth-child(2) {
-                    background-color: var(--bs-gray);
+                    .service-box {
+                        background-color: var(--bs-gray);
+                    }
+                }
+                &:nth-child(3) {
+                    .service-box {
+                        background-color: var(--bs-accent);
+                    }
+                }
+                &:nth-child(4) {
+                    .service-box {
+                        background-color: var(--bs-black);
+                    }
                 }
             }
         }
