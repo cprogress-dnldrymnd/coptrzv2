@@ -136,6 +136,9 @@
         jQuery(document).ready(function() {
 
             jQuery('#generate_report').click(function(e) {
+                jQuery('html, body').animate({
+                    scrollTop: jQuery("#results").offset().top
+                }, 2000);
                 $Initial_Investment = __get_val('Initial_Investment');
                 $Annual_Revenue_from_Drone_Survey_Work = __get_val('Annual_Revenue_from_Drone_Survey_Work');
                 $Annual_Operating_Costs = __get_val('Annual_Operating_Costs');
@@ -156,9 +159,7 @@
                 jQuery('#calculator').addClass('calculating');
                 jQuery('#calculator').removeClass('calculated');
                 jQuery('#generate_report').text('Generating');
-                jQuery('html, body').animate({
-                    scrollTop: jQuery("#results").offset().top
-                }, 2000);
+
                 setTimeout(function() {
                     jQuery('#calculator').addClass('calculated');
                     jQuery('#calculator').removeClass('calculating');
