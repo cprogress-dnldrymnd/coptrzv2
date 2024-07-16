@@ -1157,8 +1157,6 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                             ),
-
-
                     ))
                     ->add_fields('related_post',  array(
                         Field::make('select', 'source', __('Source'))
@@ -1583,6 +1581,27 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                     ->set_collapsed(true)
+                                    ->add_fields('global_widgets',  array(
+                                        Field::make('complex', 'global_widgets')
+                                            ->add_fields('case_study_slider', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display featured case study slider section </h3>'),
+                                            ))
+                                            ->add_fields('latest_from_coptrz', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display latest from coptrz section </h3>'),
+                                            ))
+                                            ->add_fields('reviews', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display reviews from different platform </h3>'),
+                                            ))
+                                            ->add_fields('drone_servicing', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display drone servicing blocks. </h3>'),
+                                            ))
+                                            ->add_fields('brands_logo_slider', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display brands logo slider. </h3>'),
+                                            ))
+                                            ->add_fields('testimonials', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display testimonial slider. </h3>'),
+                                            ))
+                                    ))
                                     ->add_fields('heading', array(
                                         Field::make('html', 'html_1')->set_html('<label>Heading Options</label>')->set_classes('cb-label'),
                                         Field::make('checkbox', 'has_prefix', __('Heading Has Prefix'))->set_width(33),
