@@ -11339,7 +11339,6 @@ hr {
   .modal.popup-form.popup-large .modal-dialog {
     max-width: 1200px; }
   .modal.popup-form .modal-content {
-    border-radius: 0;
     border: none; }
     .modal.popup-form .modal-content.background-primary a {
       color: var(--bs-white) !important; }
