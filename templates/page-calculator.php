@@ -114,13 +114,13 @@
                     </div>
                     <div class="result-box mb-5">
                         <h3>Your payback period</h3>
-                        <div class="result rounded-corner xs-padding text-center big-text text-primary">
+                        <div class="result rounded-corner xs-padding text-center big-text text-primary" id="Payback_Period">
                             Approximately X months, X days
                         </div>
                     </div>
                     <div class="result-box">
                         <h3>ROI over 3 years</h3>
-                        <div class="result rounded-corner xs-padding text-center big-text text-primary">
+                        <div class="result rounded-corner xs-padding text-center big-text text-primary" id="ROI">
                             245%
                         </div>
                     </div>
@@ -144,14 +144,12 @@
                 $Payback_Period = $Initial_Investment / $Net_Annual_Cash_Inflow;
 
                 $Total_Net_Profit_Over_3_Years = (($Net_Annual_Cash_Inflow * 3) - $Initial_Investment);
-
                 $ROI = ($Total_Net_Profit_Over_3_Years / $Initial_Investment) * 100;
 
 
-                console.log('Net_Annual_Cash_Inflow' + $Net_Annual_Cash_Inflow.toFixed(2));
-                console.log('Payback_Period' + $Payback_Period.toFixed(2));
-                console.log('Total_Net_Profit_Over_3_Years' + $Total_Net_Profit_Over_3_Years.toFixed(2));
-                console.log('ROI' + $ROI.toFixed(2));
+
+                jQuery('#Payback_Period').text($Payback_Period.toFixed(2));
+                jQuery('#ROI').text($ROI.toFixed(2));
 
                 jQuery('#calculator').addClass('calculating');
                 setTimeout(function() {
