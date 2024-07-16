@@ -780,6 +780,7 @@ function __drone_servicing()
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
         'heading' => $servicing_heading,
+        'class' => _attribute('class', array('mb-3')),
     ));
 
     $html .= __description(array(
