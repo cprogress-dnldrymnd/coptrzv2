@@ -605,12 +605,11 @@ class Shortcodes
     function testimonials()
     {
         return ___post_grid_module(array(
-            'id' => $id,
-            'is_slider' => $item['is_slider'],
-            'number_of_slides' => $item['number_of_slides'],
-            'number_of_slides_tablet' => $item['number_of_slides_tablet'],
-            'number_of_slides_mobile' => $item['number_of_slides_mobile'],
-            'post_box_styles' => $item['post_box_styles'],
+            'id' => 'testimonial-slider',
+            'is_slider' => true,
+            'number_of_slides' => 1,
+            'number_of_slides_tablet' => 1,
+            'number_of_slides_mobile' => 1,
             'post_elements' => [
                 [
                     "_type" => "icon",
