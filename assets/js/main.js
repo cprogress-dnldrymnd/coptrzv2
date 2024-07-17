@@ -8,7 +8,7 @@ jQuery(document).ready(function () {
     __ajax_buy_now();
     __post_navigation();
     __filters();
-    __ajax();
+    __ajax_trigger();
 });
 
 
@@ -47,6 +47,10 @@ function __ajax() {
         typingTimer = setTimeout(doneTyping, doneTypingInterval);
     });
 
+
+}
+
+function __ajax_trigger() {
     jQuery('input[name="s"]').on('keydown', function () {
         clearTimeout(typingTimer);
     });
@@ -55,7 +59,6 @@ function __ajax() {
         __ajax();
     }
 }
-
 
 function __filters() {
     jQuery('.trigger-change-link').change(function (e) {
