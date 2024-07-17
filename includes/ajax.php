@@ -31,9 +31,10 @@ function archive_ajax()
 	if ($s) {
 		$args['s'] = $s;
 	}
+	$the_query = new WP_Query($args);
 
-	while (have_posts()) {
-		the_post();
+	while ($the_query->have_posts()) {
+		$the_query->the_post();
 		echo '<div class="row g-4 same-image-height">';
 		$data_val['id'] = get_the_ID();
 		if (get_post_type() == 'events') {
@@ -42,7 +43,6 @@ function archive_ajax()
 		echo __post_box($data_val);
 		echo '</div>';
 	}
-
 	wp_reset_postdata();
 
 

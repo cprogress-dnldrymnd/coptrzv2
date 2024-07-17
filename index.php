@@ -39,6 +39,7 @@ if (is_home() || is_category()) {
     $elements_array[] = 'excerpt';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
+    $data['post_type'] = 'post';
 } else if (is_post_type_archive('events')) {
     $key = 'events_';
     $title = false;
@@ -51,6 +52,8 @@ if (is_home() || is_category()) {
     $elements_array[] = 'category';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
+    $data['post_type'] = 'events';
+
 } else if (is_post_type_archive('capabilities')) {
     $title = get__theme_option('capabilities_loop_section_title');
     $key = 'capabilities_';
@@ -97,6 +100,7 @@ if (is_home() || is_category()) {
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
+    $data['post_type'] = 'casestudies';
 } else if (is_post_type_archive('guides') || is_tax('guides_category')) {
     $key = 'guides_';
     $title = 'All Guides';
@@ -110,6 +114,7 @@ if (is_home() || is_category()) {
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
+    $data['post_type'] = 'guides';
 }
 echo do_shortcode(___hero_archive($key, $archive_title, $category));
 if ($has_featured &&  !is_paged()) {
