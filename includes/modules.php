@@ -1975,6 +1975,13 @@ function ____columns_modules($items, $id, $html = '')
                     $html .= do_shortcode("[wpforms id='$id' title='false']");
                     $html .= "</div>";
                     break;
+                case 'cf7':
+                    $id = $item['form'][0]['id'];
+                    $style = $item['style'];
+                    $html .= "<div class='form-box $style'>";
+                    $html .= do_shortcode("[contact-form-7 id='$id']");
+                    $html .= "</div>";
+                    break;
                 case 'divider':
                     $divider_classes = array();
                     $divider_styles  = array();
