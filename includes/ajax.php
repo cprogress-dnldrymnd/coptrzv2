@@ -30,17 +30,17 @@ function archive_ajax()
 		$args['s'] = $s;
 	}
 	$the_query = new WP_Query($args);
-
+	echo '<div class="row g-4 same-image-height">';
 	while ($the_query->have_posts()) {
 		$the_query->the_post();
-		echo '<div class="row g-4 same-image-height">';
 		$data_val['id'] = get_the_ID();
 		if (get_post_type() == 'events') {
 			$data['additional_content'] = _events_additional_content(get_the_ID());
 		}
 		echo __post_box($data_val);
-		echo '</div>';
 	}
+	echo '</div>';
+
 	wp_reset_postdata();
 
 
