@@ -179,7 +179,8 @@ echo do_shortcode(__layouts($args));
                                 <option value="18">Show: 18</option>
                                 <option value="21">Show: 21</option>
                                 <option value="24">Show: 24</option>
-                                <option value="32">Show: 32</option>
+                                <option value="27">Show: 27</option>
+                                <option value="30">Show: 30</option>
                             </select>
                         </div>
                     </div>
