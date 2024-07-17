@@ -36,7 +36,9 @@
         }
     }
     &.style-2 {
-        margin-top: 2rem;
+        .wpcf7-response-output {
+            margin-top: 2rem;
+        }
         .input-label {
             font-size: 14px;
         }
