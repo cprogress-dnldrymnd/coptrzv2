@@ -13,9 +13,10 @@ $class = '';
 $SVG = new SVG;
 $has_pagination = true;
 
+global $archive_data;
 
-$data['col'] = true;
-$data['featured'] = false;
+$archive_data['col'] = true;
+$archive_data['featured'] = false;
 
 $elements_array[] = 'image';
 $elements_array[] = 'title';
@@ -36,8 +37,8 @@ if (is_home() || is_category()) {
     $elements_array[] = 'category';
     $elements_array[] = 'date';
     $elements_array[] = 'excerpt';
-    $data['elements'] = $elements_array;
-    $data['taxonomy'] = $category;
+    $archive_data['elements'] = $elements_array;
+    $archive_data['taxonomy'] = $category;
 } else if (is_post_type_archive('events')) {
     $key = 'events_';
     $title = false;
@@ -48,8 +49,8 @@ if (is_home() || is_category()) {
     $class = 'border-bottom-default sm-padding-bottom sm-margin-bottom';
 
     $elements_array[] = 'category';
-    $data['elements'] = $elements_array;
-    $data['taxonomy'] = $category;
+    $archive_data['elements'] = $elements_array;
+    $archive_data['taxonomy'] = $category;
 } else if (is_post_type_archive('capabilities')) {
     $title = get__theme_option('capabilities_loop_section_title');
     $key = 'capabilities_';
@@ -67,10 +68,10 @@ if (is_home() || is_category()) {
         'elements' => array('image', 'title', 'button'),
     );
     $elements_array[] = 'category';
-    $data['button_text'] = 'Learn More';
-    $data['elements'] = $elements_array;
-    $data['taxonomy'] = $category;
-    $data['style'] = 'style-3';
+    $archive_data['button_text'] = 'Learn More';
+    $archive_data['elements'] = $elements_array;
+    $archive_data['taxonomy'] = $category;
+    $archive_data['style'] = 'style-3';
 } else if (is_post_type_archive('industries')) {
     $title = get__theme_option('industries_loop_section_title');
     $key = 'industries_';
@@ -81,8 +82,8 @@ if (is_home() || is_category()) {
     $class = "mb-50px";
     $archive_title = 'Industry Solutions';
     $elements_array[] = 'category';
-    $data['button_text'] = 'Learn More';
-    $data['elements'] = $elements_array;
+    $archive_data['button_text'] = 'Learn More';
+    $archive_data['elements'] = $elements_array;
 } else if (is_post_type_archive('casestudies') || is_tax('casestudies_category')) {
     $key = 'casestudies_';
     $title = 'All Case Studies';
@@ -93,9 +94,9 @@ if (is_home() || is_category()) {
     $category = 'casestudies_category';
     $elements_array[] = 'category';
     $elements_array[] = 'excerpt';
-    $data['button_text'] = 'Learn More';
-    $data['elements'] = $elements_array;
-    $data['taxonomy'] = $category;
+    $archive_data['button_text'] = 'Learn More';
+    $archive_data['elements'] = $elements_array;
+    $archive_data['taxonomy'] = $category;
 } else if (is_post_type_archive('guides') || is_tax('guides_category')) {
     $key = 'guides_';
     $title = 'All Guides';
@@ -106,9 +107,9 @@ if (is_home() || is_category()) {
     $category = 'guides_category';
     $elements_array[] = 'category';
     $elements_array[] = 'excerpt';
-    $data['button_text'] = 'Learn More';
-    $data['elements'] = $elements_array;
-    $data['taxonomy'] = $category;
+    $archive_data['button_text'] = 'Learn More';
+    $archive_data['elements'] = $elements_array;
+    $archive_data['taxonomy'] = $category;
 }
 echo do_shortcode(___hero_archive($key, $archive_title, $category));
 if ($has_featured &&  !is_paged()) {
@@ -149,24 +150,25 @@ echo do_shortcode(__layouts($args));
                     <circle id="Ellipse_9" data-name="Ellipse 9" cx="6.5" cy="6.5" r="6.5" transform="translate(55 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle>
                     <circle id="Ellipse_10" data-name="Ellipse 10" cx="6.5" cy="6.5" r="6.5" transform="translate(80 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle>
                 </svg></div>
+            <?php
+            if (!$has_filter && $title) {
+                echo "<h2 class='text-center'>$title</h2>";
+            }
+            ?>
             <div id="results">
-                <?php
-                if (!$has_filter && $title) {
-                    echo "<h2 class='text-center'>$title</h2>";
-                }
-                ?>
                 <div class="row g-4 same-image-height">
                     <?php
                     while (have_posts()) {
                         the_post();
-                        $data['id'] = get_the_ID();
+                        $archive_data['id'] = get_the_ID();
                         if ($key == 'events_') {
-                            $data['additional_content'] = _events_additional_content(get_the_ID());
+                            $archive_data['additional_content'] = _events_additional_content(get_the_ID());
                         }
                         echo __post_box($data);
                     }
                     ?>
                 </div>
+
             </div>
         </div>
     </div>

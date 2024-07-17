@@ -34,7 +34,14 @@ function archive_ajax()
 
 
 
-	$the_query = new WP_Query($args);
+	while (have_posts()) {
+		the_post();
+		$data['id'] = get_the_ID();
+		if ($key == 'events_') {
+			$data['additional_content'] = _events_additional_content(get_the_ID());
+		}
+		echo __post_box($data);
+	}
 
 	echo $s;
 	echo $posts_per_page;
