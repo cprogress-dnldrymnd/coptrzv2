@@ -428,7 +428,7 @@ function __product_compare($id)
     foreach ($specs as $key => $spec) {
         $icon = get__term_meta($key, 'icon');
         $mime_type =  get_post_mime_type($icon);
-        $html .= "<div class='row g-10px d-none d-lg-block'>"; //specs-row
+        $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
 
         $html .= "<div class='col-3'>"; //specs-row-col
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
