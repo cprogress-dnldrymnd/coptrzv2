@@ -2530,14 +2530,28 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     $html .= "<div class='container'>";
     $html .= "<div class='inner $class'>";
     $html .= "<div class='row g-3 justify-content-between align-items-end'>";
-    if ($title) {
+
+    if (is_taxonomy($taxonomy)) {
+        $main_term_id = get_queried_object()->name;
         $html .= "<div class='col-auto'>";
         $html .= __heading(array(
-            'heading' => $title,
+            'heading' => $main_term_id->name,
             'class' => _attribute('class', array('mb-0')),
         ));
         $html .= "</div>";
+    } else {
+        if ($title) {
+            $html .= "<div class='col-auto'>";
+            $html .= __heading(array(
+                'heading' => $title,
+                'class' => _attribute('class', array('mb-0')),
+            ));
+            $html .= "</div>";
+        }
     }
+
+
+
 
 
     if ($key == 'events_') {
