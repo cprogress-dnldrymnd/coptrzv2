@@ -106,7 +106,7 @@ if (is_home() || is_category()) {
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
 }
-echo do_shortcode(___hero_archive($key, $archive_title));
+echo do_shortcode(___hero_archive($key, $archive_title, $category));
 if ($has_featured &&  !is_paged()) {
     echo ___featured($key);
 }
