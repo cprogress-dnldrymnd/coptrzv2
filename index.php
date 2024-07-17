@@ -15,8 +15,8 @@ $has_pagination = true;
 
 global $archive_data;
 
-$archive_data['col'] = true;
-$archive_data['featured'] = false;
+$data['col'] = true;
+$data['featured'] = false;
 
 $elements_array[] = 'image';
 $elements_array[] = 'title';
@@ -37,8 +37,8 @@ if (is_home() || is_category()) {
     $elements_array[] = 'category';
     $elements_array[] = 'date';
     $elements_array[] = 'excerpt';
-    $archive_data['elements'] = $elements_array;
-    $archive_data['taxonomy'] = $category;
+    $data['elements'] = $elements_array;
+    $data['taxonomy'] = $category;
 } else if (is_post_type_archive('events')) {
     $key = 'events_';
     $title = false;
@@ -49,8 +49,8 @@ if (is_home() || is_category()) {
     $class = 'border-bottom-default sm-padding-bottom sm-margin-bottom';
 
     $elements_array[] = 'category';
-    $archive_data['elements'] = $elements_array;
-    $archive_data['taxonomy'] = $category;
+    $data['elements'] = $elements_array;
+    $data['taxonomy'] = $category;
 } else if (is_post_type_archive('capabilities')) {
     $title = get__theme_option('capabilities_loop_section_title');
     $key = 'capabilities_';
@@ -68,10 +68,10 @@ if (is_home() || is_category()) {
         'elements' => array('image', 'title', 'button'),
     );
     $elements_array[] = 'category';
-    $archive_data['button_text'] = 'Learn More';
-    $archive_data['elements'] = $elements_array;
-    $archive_data['taxonomy'] = $category;
-    $archive_data['style'] = 'style-3';
+    $data['button_text'] = 'Learn More';
+    $data['elements'] = $elements_array;
+    $data['taxonomy'] = $category;
+    $data['style'] = 'style-3';
 } else if (is_post_type_archive('industries')) {
     $title = get__theme_option('industries_loop_section_title');
     $key = 'industries_';
@@ -82,8 +82,8 @@ if (is_home() || is_category()) {
     $class = "mb-50px";
     $archive_title = 'Industry Solutions';
     $elements_array[] = 'category';
-    $archive_data['button_text'] = 'Learn More';
-    $archive_data['elements'] = $elements_array;
+    $data['button_text'] = 'Learn More';
+    $data['elements'] = $elements_array;
 } else if (is_post_type_archive('casestudies') || is_tax('casestudies_category')) {
     $key = 'casestudies_';
     $title = 'All Case Studies';
@@ -94,9 +94,9 @@ if (is_home() || is_category()) {
     $category = 'casestudies_category';
     $elements_array[] = 'category';
     $elements_array[] = 'excerpt';
-    $archive_data['button_text'] = 'Learn More';
-    $archive_data['elements'] = $elements_array;
-    $archive_data['taxonomy'] = $category;
+    $data['button_text'] = 'Learn More';
+    $data['elements'] = $elements_array;
+    $data['taxonomy'] = $category;
 } else if (is_post_type_archive('guides') || is_tax('guides_category')) {
     $key = 'guides_';
     $title = 'All Guides';
@@ -107,9 +107,9 @@ if (is_home() || is_category()) {
     $category = 'guides_category';
     $elements_array[] = 'category';
     $elements_array[] = 'excerpt';
-    $archive_data['button_text'] = 'Learn More';
-    $archive_data['elements'] = $elements_array;
-    $archive_data['taxonomy'] = $category;
+    $data['button_text'] = 'Learn More';
+    $data['elements'] = $elements_array;
+    $data['taxonomy'] = $category;
 }
 echo do_shortcode(___hero_archive($key, $archive_title, $category));
 if ($has_featured &&  !is_paged()) {
@@ -160,11 +160,11 @@ echo do_shortcode(__layouts($args));
                     <?php
                     while (have_posts()) {
                         the_post();
-                        $archive_data['id'] = get_the_ID();
+                        $data['id'] = get_the_ID();
                         if ($key == 'events_') {
-                            $archive_data['additional_content'] = _events_additional_content(get_the_ID());
+                            $data['additional_content'] = _events_additional_content(get_the_ID());
                         }
-                        echo __post_box($archive_data);
+                        echo __post_box($data);
                     }
                     ?>
                 </div>
@@ -232,6 +232,8 @@ $args = array(
     )
 );
 echo do_shortcode(__layouts($args));
+
+$archive_data = $data;
 ?>
 
 <?php get_footer(); ?>
