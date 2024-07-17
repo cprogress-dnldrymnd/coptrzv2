@@ -12409,7 +12409,7 @@ section.product-main .summary.summary.summary .variations tr {
     width: 100%; }
 
 .form-box [class*="col-"] .input {
-  margin-bottom: 1rem; }
+  margin-bottom: 0; }
 .form-box:not(.style-2) .input .filled .input-label {
   top: -13px; }
 .form-box:not(.style-2) .input .input-label {
