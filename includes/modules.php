@@ -2429,7 +2429,7 @@ function ___hero_archive($key, $title, $taxonomy = false)
 {
 
 
-    if (is_taxonomy($taxonomy)) {
+    if (is_tax($taxonomy) || is_category()) {
         $term = get_queried_object();
         $hero_heading = $term->name;
         $hero_description = $term->description;
