@@ -13,7 +13,7 @@ jQuery(document).ready(function () {
 function __filters() {
     jQuery('.trigger-change-link').change(function (e) {
         $term_link = jQuery('option:selected', this).attr('term_link');
-        window.location = $term_link;
+        window.location.href = $term_link;
     });
 }
 
