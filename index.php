@@ -83,7 +83,7 @@ if (is_home() || is_category()) {
     $elements_array[] = 'category';
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
-} else if (is_post_type_archive('casestudies') || is_taxonomy('casestudies_category')) {
+} else if (is_post_type_archive('casestudies') || is_tax('casestudies_category')) {
     $key = 'casestudies_';
     $title = 'All Case Studies';
     $has_featured = false;
@@ -96,7 +96,7 @@ if (is_home() || is_category()) {
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
-} else if (is_post_type_archive('guides') || is_taxonomy('guides_category')) {
+} else if (is_post_type_archive('guides') || is_tax('guides_category')) {
     $key = 'guides_';
     $title = 'All Guides';
     $has_featured = false;
@@ -106,7 +106,7 @@ if (is_home() || is_category()) {
     $category = 'guides_category';
     $elements_array[] = 'category';
     $elements_array[] = 'excerpt';
-    $data['button_text'] = 'Learn Mores';
+    $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
 }
