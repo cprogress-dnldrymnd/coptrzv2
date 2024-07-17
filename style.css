@@ -11911,17 +11911,17 @@ section.product-main .summary.summary.summary .variations tr {
       width: 100%; }
       @media screen and (min-width: 1200px) {
         .products.upsells.upsells.upsells ul.products li.product .product-inner {
-          padding-right: 160px; } }
-      .products.upsells.upsells.upsells ul.products li.product .wc-img-wrapper {
-        position: absolute;
-        right: 25px;
-        width: 120px;
-        height: 120px;
-        margin: 0;
-        padding: 0;
-        top: 50px; }
-        .products.upsells.upsells.upsells ul.products li.product .wc-img-wrapper img {
-          margin: 0; }
+          padding-right: 160px; }
+        .products.upsells.upsells.upsells ul.products li.product .wc-img-wrapper {
+          position: absolute;
+          right: 25px;
+          width: 120px;
+          height: 120px;
+          margin: 0;
+          padding: 0;
+          top: 50px; }
+          .products.upsells.upsells.upsells ul.products li.product .wc-img-wrapper img {
+            margin: 0; } }
       .products.upsells.upsells.upsells ul.products li.product .woocommerce-loop-product__title {
         font-size: 17px; }
       .products.upsells.upsells.upsells ul.products li.product:not(:last-child) {
