@@ -202,7 +202,12 @@ echo do_shortcode(__layouts($args));
     <?php } ?>
 </section>
 
+<pre>
+    <?php get_queried_object() ?>
+</pre>
 <?php
+
+
 $args = array(
     'meta_query' => array(
         'relation' => 'AND',
