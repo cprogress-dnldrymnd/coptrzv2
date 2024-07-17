@@ -12387,6 +12387,7 @@ section.product-main .summary.summary.summary .variations tr {
     line-height: 1;
     top: 17px;
     font-weight: 300;
+    cursor: text;
     -webkit-transition: 300ms;
     -moz-transition: 300ms;
     -ms-transition: 300ms;

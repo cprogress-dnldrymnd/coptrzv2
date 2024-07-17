@@ -1,6 +1,9 @@
 .input {
     position: relative;
     margin-bottom: 1rem;
+    label {
+        width: 100%;
+    }
     .input-label {
         position: absolute;
         left: 10px;
@@ -11,6 +14,7 @@
         line-height: 1;
         top: 17px;
         font-weight: 300;
+        cursor: text;
         @include transition(300ms);
         z-index: 1;
     }
