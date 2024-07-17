@@ -2786,7 +2786,7 @@ function __popup($id)
     if ($popup_layout == 'contact_form') {
         $html .= "<div class='row g-0'>"; //row
         $html .= "<div class='$col_class'>"; //col
-        $html .= "<div class='form-box px-4 py-5 h-100 d-flex align-items-center'>"; //form-holder
+        $html .= "<div class='form-box p-4  h-100 d-flex align-items-center'>"; //form-holder
         $html .= "<div class='form-inner w-100'>"; //form-inner 
         $html .= do_shortcode(get_the_content(NULL, false, $id));
         $html .= "</div>"; //form-inner
