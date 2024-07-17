@@ -31,9 +31,8 @@ function archive_ajax()
 	if ($s) {
 		$args['s'] = $s;
 	}
-	echo $data;
 
-	var_dump(json_decode($data));
+	var_dump(json_decode(stripslashes($data), true));
 
 	echo $s;
 	echo $posts_per_page;
