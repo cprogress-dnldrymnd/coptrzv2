@@ -10814,6 +10814,9 @@ textarea {
   textarea::placeholder {
     text-transform: capitalize; }
 
+option {
+  text-transform: capitalize; }
+
 input[type="checkbox"] {
   width: 26px;
   height: 26px; }
