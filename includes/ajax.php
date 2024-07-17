@@ -43,6 +43,8 @@ function archive_ajax()
 		echo '</div>';
 	}
 
+	wp_reset_postdata();
+
 
 	die();
 }
