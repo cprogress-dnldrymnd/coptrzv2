@@ -11876,8 +11876,14 @@ section.product-main > .container > .row > div > div {
   margin: 0 !important; }
 section.product-main > .container > .row > div:first-child {
   width: 57%; }
+  @media screen and (max-width: 991px) {
+    section.product-main > .container > .row > div:first-child {
+      width: 100%; } }
 section.product-main > .container > .row > div:last-child {
   width: 43%; }
+  @media screen and (max-width: 991px) {
+    section.product-main > .container > .row > div:last-child {
+      width: 100%; } }
 section.product-main .summary.summary.summary .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
   color: var(--bs-white);
   border-color: var(--bs-accent);

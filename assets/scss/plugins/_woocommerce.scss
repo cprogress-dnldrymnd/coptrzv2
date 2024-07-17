@@ -363,9 +363,15 @@ section.product-main {
             }
             @include first-child {
                 width: 57%;
+                @include responsive(xs-sm) {
+                    width: 100%;
+                }
             }
             @include last-child {
                 width: 43%;
+                @include responsive(xs-sm) {
+                    width: 100%;
+                }
             }
         }
     }
