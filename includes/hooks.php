@@ -280,9 +280,6 @@ function action_pre_get_posts($query)
         $query->set('orderby', 'menu_order');
         $query->set('order', 'ASC');
 
-        if (isset($posts_per_page)) {
-            $query->set('posts_per_page', $posts_per_page);
-        }
 
         if (is_post_type_archive('industries') || is_post_type_archive('guides')) {
             $meta_query[] = [
@@ -295,6 +292,10 @@ function action_pre_get_posts($query)
         }
         if (is_post_type_archive('industries') || is_post_type_archive('capabilities')) {
             $query->set('posts_per_page', -1);
+        } else {
+            if (isset($_GET['posts_per_page'])) {
+                $query->set('posts_per_page', $_GET['posts_per_page']);
+            }
         }
     }
     return;
