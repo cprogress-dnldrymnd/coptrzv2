@@ -1019,7 +1019,9 @@ hr {
         color: var(--bs-white);
     }
 }
-
+.modal-backdrop {
+    z-index: 9999;
+}
 .modal {
     z-index: 999999;
     .btn-popup-close {

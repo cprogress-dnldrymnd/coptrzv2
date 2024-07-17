@@ -11327,6 +11327,9 @@ hr {
 .site-logo a {
   color: var(--bs-white); }
 
+.modal-backdrop {
+  z-index: 9999; }
+
 .modal {
   z-index: 999999; }
   .modal .btn-popup-close {
