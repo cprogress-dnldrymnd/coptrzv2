@@ -10,6 +10,11 @@
 
 .form-box {
     &:not(.style-2) {
+        .filled {
+            .input-label {
+                top: -13px;
+            }
+        }
         .input {
             .input-label {
                 position: absolute;
@@ -26,11 +31,7 @@
                 z-index: 1;
             }
         }
-        .filled {
-            .input-label {
-                top: -13px;
-            }
-        }
+        
     }
 }
 

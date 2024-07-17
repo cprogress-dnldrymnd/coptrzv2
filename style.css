@@ -12408,6 +12408,8 @@ section.product-main .summary.summary.summary .variations tr {
   .input label {
     width: 100%; }
 
+.form-box:not(.style-2) .filled .input-label {
+  top: -13px; }
 .form-box:not(.style-2) .input .input-label {
   position: absolute;
   left: 10px;
@@ -12425,8 +12427,6 @@ section.product-main .summary.summary.summary .variations tr {
   -o-transition: 300ms;
   transition: 300ms;
   z-index: 1; }
-.form-box:not(.style-2) .filled .input-label {
-  top: -13px; }
 
 .wpcf7 .wpcf7-spinner {
   position: absolute;
