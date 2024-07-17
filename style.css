@@ -12407,25 +12407,26 @@ section.product-main .summary.summary.summary .variations tr {
   margin-bottom: 1rem; }
   .input label {
     width: 100%; }
-  .input .input-label {
-    position: absolute;
-    left: 10px;
-    background-color: var(--bs-white);
-    color: rgba(28, 28, 30, 0.75);
-    padding: 5px;
-    font-size: 15px;
-    line-height: 1;
-    top: 17px;
-    font-weight: 300;
-    cursor: text;
-    -webkit-transition: 300ms;
-    -moz-transition: 300ms;
-    -ms-transition: 300ms;
-    -o-transition: 300ms;
-    transition: 300ms;
-    z-index: 1; }
   .input .filled .input-label {
     top: -13px; }
+
+.form-box:not(.style-2) .input .input-label {
+  position: absolute;
+  left: 10px;
+  background-color: var(--bs-white);
+  color: rgba(28, 28, 30, 0.75);
+  padding: 5px;
+  font-size: 15px;
+  line-height: 1;
+  top: 17px;
+  font-weight: 300;
+  cursor: text;
+  -webkit-transition: 300ms;
+  -moz-transition: 300ms;
+  -ms-transition: 300ms;
+  -o-transition: 300ms;
+  transition: 300ms;
+  z-index: 1; }
 
 .wpcf7 .wpcf7-spinner {
   position: absolute;
