@@ -32,16 +32,10 @@ function archive_ajax()
 		$args['s'] = $s;
 	}
 
+	global $archive_data;
 
 
-	while (have_posts()) {
-		the_post();
-		$data['id'] = get_the_ID();
-		if ($key == 'events_') {
-			$data['additional_content'] = _events_additional_content(get_the_ID());
-		}
-		echo __post_box($data);
-	}
+	var_dump($archive_data);
 
 	echo $s;
 	echo $posts_per_page;
