@@ -172,12 +172,26 @@ echo do_shortcode(__layouts($args));
                             )); ?>
                         </div>
                         <div class="col-lg-4 text-center text-md-end">
+
                             <select name="posts_per_page" id="posts_per_page" class="w-auto number-post-trigger">
-                                <option value="6">Show: 6</option>
-                                <option selected value="12">Show: 12</option>
-                                <option value="18">Show: 18</option>
-                                <option value="24">Show: 24</option>
-                                <option value="30">Show: 30</option>
+
+                                <?php
+                                $show_options = array(6, 12, 18, 24, 30);
+                                foreach ($show_options as $option) {
+                                    if (isset($_GET['posts_per_page'])) {
+                                        if ($_GET['posts_per_page'] == $option) {
+                                            $selected = 'selected';
+                                        }
+                                    } else {
+                                        if (12 == $option) {
+                                            $selected = 'selected';
+                                        }
+                                    }
+                                    echo "<option $selected value='$option'>Show: $option</option>";
+                                }
+                                ?>
+
+
                             </select>
                         </div>
                     </div>
