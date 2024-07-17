@@ -20,7 +20,7 @@ function archive_ajax()
 	$data = $_POST['data'];
 	$s = isset($_POST['s']) ? $_POST['s'] : false;
 	$posts_per_page = isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : false;
-
+	$data_val = json_decode(stripslashes($data), true);
 	if (is_home()) {
 		$args['post_type'] = 'post';
 		if ($posts_per_page) {
@@ -32,10 +32,17 @@ function archive_ajax()
 		$args['s'] = $s;
 	}
 
-	var_dump(json_decode(stripslashes($data), true));
+	while (have_posts()) {
+		the_post();
+		echo '<div class="row g-4 same-image-height">';
+		$data_val['id'] = get_the_ID();
+		if (get_post_type() == 'events') {
+			$data['additional_content'] = _events_additional_content(get_the_ID());
+		}
+		echo __post_box($data_val);
+		echo '</div>';
+	}
 
-	echo $s;
-	echo $posts_per_page;
 
 	die();
 }
