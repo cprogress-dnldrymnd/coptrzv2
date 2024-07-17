@@ -31,23 +31,29 @@ function archive_ajax()
 		$args['s'] = $s;
 	}
 
-	if($data_val['cat']) {
+	if ($data_val['cat']) {
 		$args['cat'] = $data_val['cat'];
 	}
 
-	if($data_val['tax_query']) {
+	if ($data_val['tax_query']) {
 		$args['tax_query'] = $data_val['tax_query'];
 	}
 
 	$the_query = new WP_Query($args);
 	echo '<div class="row g-4 same-image-height">';
-	while ($the_query->have_posts()) {
-		$the_query->the_post();
-		$data_val['id'] = get_the_ID();
-		if (get_post_type() == 'events') {
-			$data_val['additional_content'] = _events_additional_content(get_the_ID());
+	if ($the_query->have_posts()) {
+		while ($the_query->have_posts()) {
+			$the_query->the_post();
+			$data_val['id'] = get_the_ID();
+			if (get_post_type() == 'events') {
+				$data_val['additional_content'] = _events_additional_content(get_the_ID());
+			}
+			echo __post_box($data_val);
 		}
-		echo __post_box($data_val);
+	} else {
+		echo '<div class="col-12 text-center">';
+		echo "<h2>No results found for $s</h2>";
+		echo '</div>';
 	}
 	echo '</div>';
 
