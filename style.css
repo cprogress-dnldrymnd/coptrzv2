@@ -10803,7 +10803,8 @@ textarea {
   border-radius: 10px;
   line-height: 1;
   width: 100%;
-  max-width: 100%; }
+  max-width: 100%;
+  text-transform: capitalize; }
   input[type="text"]::placeholder,
   input[type="number"]::placeholder,
   input[type="tel"]::placeholder,
