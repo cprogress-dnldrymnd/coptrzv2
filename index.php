@@ -105,9 +105,9 @@ if (is_home() || is_category()) {
     if (is_tax('casestudies_category')) {
         $data['tax_query'] = array(
             array(
-                'taxonomy' => 'people',
-                'field' => 'slug',
-                'terms' => 'bob',
+                'taxonomy' => 'casestudies_category',
+                'field' => 'term_id',
+                'terms' => get_queried_object()->term_id,
             ),
         );
     }
@@ -125,6 +125,16 @@ if (is_home() || is_category()) {
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
     $data['post_type'] = 'guides';
+
+    if (is_tax('guides_category')) {
+        $data['tax_query'] = array(
+            array(
+                'taxonomy' => 'guides_category',
+                'field' => 'term_id',
+                'terms' => get_queried_object()->term_id,
+            ),
+        );
+    }
 }
 echo do_shortcode(___hero_archive($key, $archive_title, $category));
 if ($has_featured &&  !is_paged()) {
