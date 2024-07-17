@@ -11909,8 +11909,9 @@ section.product-main .summary.summary.summary .variations tr {
     margin-bottom: 0; }
     .products.upsells.upsells.upsells ul.products li.product {
       width: 100%; }
-      .products.upsells.upsells.upsells ul.products li.product .product-inner {
-        padding-right: 160px; }
+      @media screen and (min-width: 1200px) {
+        .products.upsells.upsells.upsells ul.products li.product .product-inner {
+          padding-right: 160px; } }
       .products.upsells.upsells.upsells ul.products li.product .wc-img-wrapper {
         position: absolute;
         right: 25px;
