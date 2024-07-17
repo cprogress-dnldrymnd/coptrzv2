@@ -486,7 +486,7 @@ $Case_Study_Category->args = array(
     'query_var'    => true,
     'rewrite'      => array(
         'with_front' => false,
-        'slug'         => 'case-study-category',
+        'slug'         => 'case-studies',
     )
 );
 
