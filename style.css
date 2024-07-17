@@ -12393,25 +12393,6 @@ section.product-main .summary.summary.summary .variations tr {
     -o-transition: 300ms;
     transition: 300ms;
     z-index: 1; }
-  .input .wpcf7-form-control-wrap {
-    position: static; }
-  .input input[type="text"],
-  .input input[type="number"],
-  .input input[type="tel"],
-  .input input[type="submit"],
-  .input input[type="email"],
-  .input input[type="password"],
-  .input select,
-  .input textarea {
-    outline: none; }
-  .input .wpcf7-not-valid-tip {
-    position: absolute;
-    bottom: -3px;
-    font-size: 13px;
-    background: #ffd5d5;
-    border-radius: 0 0 10px 10px;
-    width: 100%;
-    text-align: center; }
   .input .filled label {
     top: -13px; }
 
@@ -12419,6 +12400,25 @@ section.product-main .summary.summary.summary .variations tr {
   position: absolute;
   right: 0;
   top: 18px; }
+.wpcf7 .wpcf7-form-control-wrap {
+  position: static; }
+.wpcf7 input[type="text"],
+.wpcf7 input[type="number"],
+.wpcf7 input[type="tel"],
+.wpcf7 input[type="submit"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="password"],
+.wpcf7 select,
+.wpcf7 textarea {
+  outline: none; }
+.wpcf7 .wpcf7-not-valid-tip {
+  position: absolute;
+  bottom: -3px;
+  font-size: 13px;
+  background: #ffd5d5;
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+  text-align: center; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
