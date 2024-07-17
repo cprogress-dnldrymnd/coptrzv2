@@ -203,7 +203,7 @@ echo do_shortcode(__layouts($args));
 </section>
 
 <pre>
-    <?php get_queried_object() ?>
+    <?php var_dump(get_queried_object()) ?>
 </pre>
 <?php
 
