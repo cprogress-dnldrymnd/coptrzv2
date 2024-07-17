@@ -11,3 +11,11 @@ function buy_now_ajax()
 	}
 	die();
 }
+
+
+add_action('wp_ajax_nopriv_archive_ajax', 'archive_ajax'); // for not logged in users
+add_action('wp_ajax_archive_ajax', 'archive_ajax');
+function archive_ajax()
+{
+	
+}

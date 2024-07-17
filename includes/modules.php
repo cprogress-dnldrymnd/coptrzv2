@@ -2531,7 +2531,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     $html .= "<div class='inner $class'>";
     $html .= "<div class='row g-3 justify-content-between align-items-end'>";
 
-    if (is_taxonomy($taxonomy)) {
+    if (is_tax($taxonomy) || is_category()) {
         $main_term_id = get_queried_object();
         $html .= "<div class='col-auto'>";
         $html .= __heading(array(
@@ -2600,7 +2600,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
         $term_id = $term->term_id;
         $term_link = get_term_link($term_id);
         $selected = '';
-        if (is_taxonomy($taxonomy)) {
+        if (is_tax($taxonomy) || is_category()) {
             $main_term_id = get_queried_object()->term_id;
             if ($main_term_id == $term_id) {
                 $selected = 'selected';
