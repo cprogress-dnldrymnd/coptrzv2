@@ -12,7 +12,11 @@ $post_type = get_queried_object()->name;
 $class = '';
 $SVG = new SVG;
 $has_pagination = true;
-$elements_array = [];
+
+
+$data['col'] = true;
+$data['featured'] = false;
+
 $elements_array[] = 'image';
 $elements_array[] = 'title';
 $elements_array[] = 'button';
@@ -26,15 +30,9 @@ if (is_home()) {
     $class = "mb-50px";
     $elements_array[] = 'category';
     $elements_array[] = 'date';
-
-
-    $data = array(
-        'col' => true,
-        'featured' => false,
-        'style' => 'style-1',
-        'taxonomy' => $category,
-        'elements' => $elements_array
-    );
+    $data['elements'] = $elements_array;
+    $data['taxonomy'] = $category;
+    
 } else if (is_post_type_archive('events')) {
     $key = 'events_';
     $title = false;
