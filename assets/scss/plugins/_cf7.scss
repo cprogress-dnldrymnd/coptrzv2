@@ -9,7 +9,7 @@
         padding: 5px;
         font-size: 15px;
         line-height: 1;
-        top: 15px;
+        top: 17px;
         font-weight: 300;
         @include transition(300ms);
         z-index: 1;
@@ -28,5 +28,11 @@
         border-radius: 0 0 10px 10px;
         width: 100%;
         text-align: center;
+    }
+    .filled {
+        label {
+            top: -13px;
+
+        }
     }
 }
