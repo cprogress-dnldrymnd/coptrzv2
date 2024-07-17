@@ -25,7 +25,7 @@ function __ajax() {
 
         data: {
             action: 'archive_ajax',
-            s: ,
+            s: $s,
         },
 
         success: function (response) {
