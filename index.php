@@ -164,7 +164,7 @@ echo do_shortcode(__layouts($args));
                         if ($key == 'events_') {
                             $archive_data['additional_content'] = _events_additional_content(get_the_ID());
                         }
-                        echo __post_box($data);
+                        echo __post_box($archive_data);
                     }
                     ?>
                 </div>
