@@ -2430,13 +2430,15 @@ function ___hero_archive($key, $title, $taxonomy = false)
 
 
     if ($taxonomy) {
-        $hero_heading = get_queried_object()->name;
+        $term = get_queried_object();
+        $hero_heading = $term->name;
+        $hero_description = $term->description;
     } else {
+        $hero_description = get__theme_option($key . 'archive_description');
         $hero_heading = get__theme_option($key . 'archive_title');
     }
 
 
-    $hero_description = get__theme_option($key . 'archive_description');
     $hero_background = get__theme_option($key . 'archive_hero_background');
     $hero_background_youtube = get__theme_option($key . 'archive_background_youtube');
     $hero_background_type = get__theme_option($key . 'archive_hero_background_type');
