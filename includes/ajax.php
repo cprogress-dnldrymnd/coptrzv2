@@ -18,23 +18,14 @@ add_action('wp_ajax_archive_ajax', 'archive_ajax');
 function archive_ajax()
 {
 
-	$args['post_type'] = $post_type;
-	$args['posts_per_page'] = $posts_per_page;
-	$args['post_status'] = 'publish';
+	$s = isset($_POST['s']) ? $_POST['s'] : false;
+	$posts_per_page = isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : false;
 
 
-	if ($terms || $terms_category) {
-		if ($taxonomy != 'category') {
-			$args['tax_query'] = array(
-				'relation' => 'OR',
-				array(
-					'taxonomy' => $taxonomy,
-					'field'    => 'term_id',
-					'terms'    => $terms . $terms_category,
-				),
-			);
-		} else {
-			$args['cat'] = $terms . $terms_category;
+	if (is_home()) {
+		$args['post_type'] = 'post';
+		if ($posts_per_page) {
+			$args['posts_per_page'] = $posts_per_page;
 		}
 	}
 
