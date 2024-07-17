@@ -17,7 +17,7 @@ add_action('wp_ajax_nopriv_archive_ajax', 'archive_ajax'); // for not logged in 
 add_action('wp_ajax_archive_ajax', 'archive_ajax');
 function archive_ajax()
 {
-
+	$data = $_POST['data'];
 	$s = isset($_POST['s']) ? $_POST['s'] : false;
 	$posts_per_page = isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : false;
 
@@ -33,7 +33,7 @@ function archive_ajax()
 	}
 
 
-
+	var_dump(json_decode($data));
 
 	echo $s;
 	echo $posts_per_page;
