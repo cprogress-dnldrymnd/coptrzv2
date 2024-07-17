@@ -35,6 +35,10 @@ function archive_ajax()
 		$args['cat'] = $data_val['cat'];
 	}
 
+	if($data_val['tax_query']) {
+		$args['tax_query'] = $data_val['tax_query'];
+	}
+
 	$the_query = new WP_Query($args);
 	echo '<div class="row g-4 same-image-height">';
 	while ($the_query->have_posts()) {
