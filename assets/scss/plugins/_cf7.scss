@@ -47,4 +47,28 @@
         width: 100%;
         text-align: center;
     }
+
+    form.sent .wpcf7-response-output {
+        margin: 0;
+        border: 1px dotted #46b450;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 15px;
+        padding: 1.5rem;
+        background-color: rgb(70 180 80 / 18%);
+    }
+}
+.popup-form {
+    .wpcf7 {
+        form.sent .wpcf7-response-output {
+            position: absolute;
+            right: 20px;
+            z-index: 1;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            width: calc(50% - 40px);
+            padding: 2rem;
+        }
+    }
 }
