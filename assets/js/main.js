@@ -15,6 +15,12 @@ function __filters() {
         $term_link = jQuery('option:selected', this).attr('term_link');
         window.location.href = $term_link;
     });
+
+    jQuery('.number-post-trigger').change(function (e) {
+        $val = jQuery(this).val();
+        $url = location.protocol + '//' + location.host + location.pathname;
+        console.log($url);
+    });
 }
 
 
