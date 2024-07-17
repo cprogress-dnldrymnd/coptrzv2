@@ -208,6 +208,7 @@ function __swipers() {
         var logoSwiper = new Swiper($id, {
             loop: true,
             freeMode: true,
+            cssMode: true,
             centeredSlides: true,
             slidesPerView: 'auto',
             speed: 5000,
