@@ -2582,7 +2582,15 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
         $term_name = $term->name;
         $term_id = $term->term_id;
         $term_link = get_term_link($term_id);
-        $html .= "<option term_link='$term_link' value='$term_id'>Category: $term_name</option>";
+        $selected = '';
+        if ($taxonomy) {
+            $main_term_id = get_queried_object()->term_id;
+            if ($main_term_id == $term_id) {
+                $selected = 'selected';
+            }
+        }
+
+        $html .= "<option $selected term_link='$term_link' value='$term_id'>Category: $term_name</option>";
     }
     $html .= "</select>";
     $html .= "</div>";

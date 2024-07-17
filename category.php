@@ -24,7 +24,7 @@ $data = array(
     'taxonomy' => $category,
     'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
 );
-echo do_shortcode(___hero_archive($key, $archive_title, 'category'));
+echo do_shortcode(___hero_archive($key, $archive_title, true));
 ?>
 
 <section class="archive-posts md-padding-top md-padding-bottom border-top-default" id="posts">
