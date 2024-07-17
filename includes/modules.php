@@ -2636,8 +2636,6 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     $html .= "</div>";
     $html .= "</div>";
 
-    $html .= "<input type='hidden' name='post_type' >";
-
     return $html;
 }
 
