@@ -205,6 +205,13 @@ function __swipers() {
     jQuery('.swiper-logo-slider').each(function (index, element) {
         $id = '#' + jQuery(this).attr('id');
 
+        $swiper_slides = jQuery(this).find('.swiper-slide');
+        $swiper_slides.each(function (index, element) {
+            $width = jQuery(this).innerWidth();
+            jQuery(this).css('width', $width + 'px');
+        });
+
+        /*
         var logoSwiper = new Swiper($id, {
             loop: true,
             freeMode: true,
@@ -228,7 +235,7 @@ function __swipers() {
                     spaceBetween: 50,
                 },
             },
-        });
+        });*/
     });
 
     jQuery('.swiper-sliders').each(function (index, element) {
