@@ -1,10 +1,19 @@
 section.archive-posts {
     .loading-results {
         display: none;
+        svg {
+            animation-name: spin;
+            animation-duration: 5000ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
     }
     &.loading-post {
         .loading-results {
             display: block;
+        }
+        #results {
+            display: none;
         }
     }
 }

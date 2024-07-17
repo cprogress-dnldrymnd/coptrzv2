@@ -147,7 +147,7 @@ $archive_data = $data;
     ?>
     <div class="post-grid-holder">
         <div class="container">
-            <div class="loading-results"> <svg class="spin" xmlns="http://www.w3.org/2000/svg" id="Group_27" data-name="Group 27" width="123" height="123" viewBox="0 0 123 123">
+            <div class="loading-results p-5 text-center"> <svg class="spin" xmlns="http://www.w3.org/2000/svg" id="Group_27" data-name="Group 27" width="123" height="123" viewBox="0 0 123 123">
                     <g id="Ellipse_2" data-name="Ellipse 2" fill="none" stroke="#2DA1FF" stroke-width="2">
                         <circle cx="61.5" cy="61.5" r="61.5" stroke="none"></circle>
                         <circle cx="61.5" cy="61.5" r="60.5" fill="none"></circle>

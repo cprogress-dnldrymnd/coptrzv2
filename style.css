@@ -12843,8 +12843,15 @@ section.hero {
 
 section.archive-posts .loading-results {
   display: none; }
+  section.archive-posts .loading-results svg {
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; }
 section.archive-posts.loading-post .loading-results {
   display: block; }
+section.archive-posts.loading-post #results {
+  display: none; }
 
 section.landing-page {
   min-height: calc(100vh - 40px ); }
