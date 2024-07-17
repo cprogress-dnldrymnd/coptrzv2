@@ -19,6 +19,7 @@ function archive_ajax()
 {
 	$data = $_POST['data'];
 	$s = isset($_POST['s']) ? $_POST['s'] : false;
+
 	$posts_per_page = isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : false;
 	$data_val = json_decode(stripslashes($data), true);
 	if ($posts_per_page) {
@@ -29,6 +30,11 @@ function archive_ajax()
 	if ($s) {
 		$args['s'] = $s;
 	}
+
+	if($data['cat']) {
+		$args['cat'] = $data['cat'];
+	}
+
 	$the_query = new WP_Query($args);
 	echo '<div class="row g-4 same-image-height">';
 	while ($the_query->have_posts()) {

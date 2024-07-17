@@ -26,6 +26,7 @@ if (is_home() || is_category()) {
     $title = 'All Posts';
     if (is_category()) {
         $has_featured = false;
+        $data['cat'] = get_queried_object()->term_id;
     } else {
         $has_featured = true;
     }
@@ -53,7 +54,6 @@ if (is_home() || is_category()) {
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
     $data['post_type'] = 'events';
-
 } else if (is_post_type_archive('capabilities')) {
     $title = get__theme_option('capabilities_loop_section_title');
     $key = 'capabilities_';
@@ -101,6 +101,16 @@ if (is_home() || is_category()) {
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
     $data['post_type'] = 'casestudies';
+
+    if (is_tax('casestudies_category')) {
+        $data['tax_query'] = array(
+            array(
+                'taxonomy' => 'people',
+                'field' => 'slug',
+                'terms' => 'bob',
+            ),
+        );
+    }
 } else if (is_post_type_archive('guides') || is_tax('guides_category')) {
     $key = 'guides_';
     $title = 'All Guides';
