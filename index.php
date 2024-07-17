@@ -92,7 +92,6 @@ if (is_home()) {
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
-    
 } else if (is_post_type_archive('guides')) {
     $key = 'guides_';
     $title = 'All Guides';
