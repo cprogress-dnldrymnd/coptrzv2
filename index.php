@@ -204,9 +204,6 @@ echo do_shortcode(__layouts($args));
     <?php } ?>
 </section>
 
-<pre>
-    <?php var_dump(get_queried_object()) ?>
-</pre>
 <?php
 
 
