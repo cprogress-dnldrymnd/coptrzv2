@@ -30,6 +30,7 @@ function __ajax() {
 
         success: function (response) {
             $result_holder.html(response);
+            console.log($s);
             $archive_section.removeClass('loading-post');
 
         },
