@@ -241,7 +241,7 @@ function action__wp_footer()
                 jQuery("<?= $layouts_global_val ?>").appendTo('#wp-admin-bar-layouts-menu');
             });
         </script>
-<?php
+    <?php
     }
 }
 
@@ -280,6 +280,10 @@ function action_pre_get_posts($query)
         $query->set('orderby', 'menu_order');
         $query->set('order', 'ASC');
 
+        if (isset($posts_per_page)) {
+            $query->set('posts_per_page', $posts_per_page);
+        }
+
         if (is_post_type_archive('industries') || is_post_type_archive('guides')) {
             $meta_query[] = [
                 'key' => '_hide_on_list',
@@ -314,39 +318,40 @@ add_filter('body_class', 'action_body_class');
  *
  * @link   https://wpforms.com/how-to-set-a-default-flag-on-smart-phone-field-with-gdpr/
  */
-  
- function wpf_dev_smart_phone_field_initial_country() {
+
+function wpf_dev_smart_phone_field_initial_country()
+{
     ?>
     <script type="text/javascript">
-        jQuery( document ).on( 'wpformsReady', function() {
-            jQuery( '.wpforms-smart-phone-field' ).each(function(e){
-                var $el = jQuery( this ),
-                    iti = $el.data( 'plugin_intlTelInput' ),
+        jQuery(document).on('wpformsReady', function() {
+            jQuery('.wpforms-smart-phone-field').each(function(e) {
+                var $el = jQuery(this),
+                    iti = $el.data('plugin_intlTelInput'),
                     options;
                 // Options are located in different keys of minified and unminified versions of jquery.intl-tel-input.js.
-                if ( iti.d ) {
-                    options = Object.assign( {}, iti.d );
-                } else if ( iti.options ) {
-                    options = Object.assign( {}, iti.options );
+                if (iti.d) {
+                    options = Object.assign({}, iti.d);
+                } else if (iti.options) {
+                    options = Object.assign({}, iti.options);
                 }
-                if ( ! options ) {
+                if (!options) {
                     return;
                 }
-                $el.intlTelInput( 'destroy' );
-                  
+                $el.intlTelInput('destroy');
+
                 // Put a country code here according to this list: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
                 options.initialCountry = 'GB'.toLowerCase();
-                  
-                $el.intlTelInput( options );
-                  
+
+                $el.intlTelInput(options);
+
                 // Restore hidden input name after intlTelInput is reinitialized.
-                $el.siblings( 'input[type="hidden"]' ).each(function() {
-                    const $hiddenInput = jQuery( this );
-                    $hiddenInput.attr( 'name', $hiddenInput.attr( 'name' ).replace( 'wpf-temp-', '' ) );
+                $el.siblings('input[type="hidden"]').each(function() {
+                    const $hiddenInput = jQuery(this);
+                    $hiddenInput.attr('name', $hiddenInput.attr('name').replace('wpf-temp-', ''));
                 });
             });
-        } );
+        });
     </script>
-    <?php
+<?php
 }
-add_action( 'wpforms_wp_footer_end', 'wpf_dev_smart_phone_field_initial_country', 30 );
+add_action('wpforms_wp_footer_end', 'wpf_dev_smart_phone_field_initial_country', 30);
