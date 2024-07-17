@@ -8,84 +8,56 @@ jQuery(document).ready(function () {
     __ajax_buy_now();
     __post_navigation();
     __filters();
+    __ajax();
 });
 
 
-function ajax() {
-
+function __ajax() {
     $archive_section = jQuery('.archive-posts')
 
+    $loading = jQuery('<div class="loading-results"> <svg class="spin" xmlns="http://www.w3.org/2000/svg" id="Group_27" data-name="Group 27" width="123" height="123" viewBox="0 0 123 123"> <g id="Ellipse_2" data-name="Ellipse 2" fill="none" stroke="#2DA1FF" stroke-width="2"> <circle cx="61.5" cy="61.5" r="61.5" stroke="none"></circle> <circle cx="61.5" cy="61.5" r="60.5" fill="none"></circle> </g> <circle id="Ellipse_8" data-name="Ellipse 8" cx="6.5" cy="6.5" r="6.5" transform="translate(30 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle> <circle id="Ellipse_9" data-name="Ellipse 9" cx="6.5" cy="6.5" r="6.5" transform="translate(55 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle> <circle id="Ellipse_10" data-name="Ellipse 10" cx="6.5" cy="6.5" r="6.5" transform="translate(80 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle> </svg></div>');
 
-	$loading = jQuery('<div class="loading-results"> <svg class="spin" xmlns="http://www.w3.org/2000/svg" id="Group_27" data-name="Group 27" width="123" height="123" viewBox="0 0 123 123"> <g id="Ellipse_2" data-name="Ellipse 2" fill="none" stroke="#2DA1FF" stroke-width="2"> <circle cx="61.5" cy="61.5" r="61.5" stroke="none"></circle> <circle cx="61.5" cy="61.5" r="60.5" fill="none"></circle> </g> <circle id="Ellipse_8" data-name="Ellipse 8" cx="6.5" cy="6.5" r="6.5" transform="translate(30 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle> <circle id="Ellipse_9" data-name="Ellipse 9" cx="6.5" cy="6.5" r="6.5" transform="translate(55 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle> <circle id="Ellipse_10" data-name="Ellipse 10" cx="6.5" cy="6.5" r="6.5" transform="translate(80 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle> </svg></div>');
+    $archive_section.addClass('loading-post');
 
-	$archive_section.addClass('loading-post');
+    jQuery.ajax({
+        type: "POST",
 
-	if ($event_type == 'html') {
-		jQuery('#results  .results-holder').html($loading);
-		$loadmore.addClass('d-none');
-	} else {
-		$loadmore.addClass('loading');
-		$loadmore.find('span').text('Loading');
-	}
+        url: ajax_object.ajax_url,
 
-	jQuery.ajax({
+        data: {
+            action: 'archive_ajax',
+        },
 
-		type: "POST",
+        success: function (response) {
+            if ($event_type == 'append') {
+                $result_holder_row = $result_holder.find('.row');
+                jQuery(response).appendTo($result_holder_row);
+            } else {
+                jQuery('#pagination').html('');
+            }
+            $archive_section.removeClass('loading-post');
 
-		//url: "/coptrz/wp-admin/admin-ajax.php",
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
 
-		url: "/wp-admin/admin-ajax.php",
+    var typingTimer;
+    var doneTypingInterval = 500;
 
-		data: {
+    jQuery('input[name="s"]').on('keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    });
 
-			action: 'archive_ajax',
+    jQuery('input[name="s"]').on('keydown', function () {
+        clearTimeout(typingTimer);
+    });
 
-			post_type: $post_type,
-
-			taxonomy: $taxonomy,
-
-			is_search: $is_search,
-
-			terms: $terms_value,
-
-			post_types: $post_types_value,
-
-			terms_category: $terms_category,
-
-			page: $page,
-
-			posts_per_page: $posts_per_page,
-
-			s: $s,
-
-			offset: $offset_val,
-
-			sortby: $sortby
-
-		},
-
-		success: function (response) {
-			if ($event_type == 'append') {
-				$result_holder_row = $result_holder.find('.row');
-				jQuery(response).appendTo($result_holder_row);
-			} else {
-				$result_holder.html(response);
-				jQuery('#pagination').html('');
-				jQuery('.pagination').appendTo('#pagination');
-			}
-			$loadmore.removeClass('d-none loading');
-
-			$loadmore.find('span').text('Load more');
-
-			$archive_section.removeClass('loading-post');
-
-			results_height();
-		},
-		error: function (e) {
-			console.log(e);
-		}
-
-	});
+    function doneTyping() {
+        __ajax();
+    }
 }
 
 
