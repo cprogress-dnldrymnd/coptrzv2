@@ -96,7 +96,7 @@ if (is_home() || is_category()) {
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
-} else if (is_post_type_archive('guides')) {
+} else if (is_post_type_archive('guides') || is_taxonomy('guides_category')) {
     $key = 'guides_';
     $title = 'All Guides';
     $has_featured = false;
