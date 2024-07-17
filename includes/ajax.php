@@ -21,11 +21,8 @@ function archive_ajax()
 	$s = isset($_POST['s']) ? $_POST['s'] : false;
 	$posts_per_page = isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : false;
 	$data_val = json_decode(stripslashes($data), true);
-	if (is_home()) {
-		$args['post_type'] = 'post';
-		if ($posts_per_page) {
-			$args['posts_per_page'] = $posts_per_page;
-		}
+	if ($posts_per_page) {
+		$args['posts_per_page'] = $posts_per_page;
 	}
 	$args['post_type'] = $data_val['post_type'];
 
