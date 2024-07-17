@@ -5,16 +5,16 @@
         width: 100%;
     }
 
-  
+    .filled {
+        .input-label {
+            top: -13px;
+        }
+    }
 }
 
 .form-box {
     &:not(.style-2) {
-        .filled {
-            .input-label {
-                top: -13px;
-            }
-        }
+       
         .input {
             .input-label {
                 position: absolute;
