@@ -178,6 +178,7 @@ echo do_shortcode(__layouts($args));
                                 <?php
                                 $show_options = array(6, 12, 18, 24, 30);
                                 foreach ($show_options as $option) {
+                                    $selected = '';
                                     if (isset($_GET['posts_per_page'])) {
                                         if ($_GET['posts_per_page'] == $option) {
                                             $selected = 'selected';
