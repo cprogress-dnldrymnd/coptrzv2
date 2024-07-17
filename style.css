@@ -12429,6 +12429,19 @@ section.product-main .summary.summary.summary .variations tr {
   -o-transition: 300ms;
   transition: 300ms;
   z-index: 1; }
+.form-box.style-2 {
+  margin-top: 2rem; }
+  .form-box.style-2 .input-label {
+    font-size: 14px; }
+  .form-box.style-2 input[type="text"],
+  .form-box.style-2 input[type="number"],
+  .form-box.style-2 input[type="tel"],
+  .form-box.style-2 input[type="submit"],
+  .form-box.style-2 input[type="email"],
+  .form-box.style-2 input[type="password"],
+  .form-box.style-2 select,
+  .form-box.style-2 textarea {
+    padding: 13px; }
 
 .wpcf7 .wpcf7-spinner {
   position: absolute;

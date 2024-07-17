@@ -35,6 +35,15 @@
             }
         }
     }
+    &.style-2 {
+        margin-top: 2rem;
+        .input-label {
+            font-size: 14px;
+        }
+        @include inputs {
+            padding: 13px;
+        }
+    }
 }
 
 .wpcf7 {
