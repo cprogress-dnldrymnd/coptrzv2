@@ -140,22 +140,24 @@ echo do_shortcode(__layouts($args));
     ?>
     <div class="post-grid-holder">
         <div class="container">
-            <?php
-            if (!$has_filter && $title) {
-                echo "<h2 class='text-center'>$title</h2>";
-            }
-            ?>
-            <div class="row g-4 same-image-height">
+            <div id="results">
                 <?php
-                while (have_posts()) {
-                    the_post();
-                    $data['id'] = get_the_ID();
-                    if ($key == 'events_') {
-                        $data['additional_content'] = _events_additional_content(get_the_ID());
-                    }
-                    echo __post_box($data);
+                if (!$has_filter && $title) {
+                    echo "<h2 class='text-center'>$title</h2>";
                 }
                 ?>
+                <div class="row g-4 same-image-height">
+                    <?php
+                    while (have_posts()) {
+                        the_post();
+                        $data['id'] = get_the_ID();
+                        if ($key == 'events_') {
+                            $data['additional_content'] = _events_additional_content(get_the_ID());
+                        }
+                        echo __post_box($data);
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </div>
