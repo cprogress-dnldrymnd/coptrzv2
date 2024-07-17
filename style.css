@@ -12841,6 +12841,11 @@ section.hero {
     max-width: 1112px;
     display: inline-block; }
 
+section.archive-posts .loading-results {
+  display: none; }
+section.archive-posts.loading-post .loading-results {
+  display: block; }
+
 section.landing-page {
   min-height: calc(100vh - 40px ); }
   section.landing-page .text-holder > *:not(:last-child) {

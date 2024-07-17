@@ -1,0 +1,10 @@
+section.archive-posts {
+    .loading-results {
+        display: none;
+    }
+    &.loading-post {
+        .loading-results {
+            display: block;
+        }
+    }
+}
