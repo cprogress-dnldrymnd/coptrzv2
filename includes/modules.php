@@ -2532,7 +2532,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     $html .= "<div class='row g-3 justify-content-between align-items-end'>";
 
     if (is_taxonomy($taxonomy)) {
-        $main_term_id = get_queried_object()->name;
+        $main_term_id = get_queried_object();
         $html .= "<div class='col-auto'>";
         $html .= __heading(array(
             'heading' => $main_term_id->name,
