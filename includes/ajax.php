@@ -21,7 +21,6 @@ function archive_ajax()
 	$s = isset($_POST['s']) ? $_POST['s'] : false;
 	$posts_per_page = isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : false;
 
-
 	if (is_home()) {
 		$args['post_type'] = 'post';
 		if ($posts_per_page) {
@@ -37,6 +36,7 @@ function archive_ajax()
 
 	$the_query = new WP_Query($args);
 
+	echo $s;
 
 	die();
 }
