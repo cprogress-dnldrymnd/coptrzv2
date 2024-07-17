@@ -31,8 +31,8 @@ function archive_ajax()
 		$args['s'] = $s;
 	}
 
-	if($data['cat']) {
-		$args['cat'] = $data['cat'];
+	if($data_val['cat']) {
+		$args['cat'] = $data_val['cat'];
 	}
 
 	$the_query = new WP_Query($args);
