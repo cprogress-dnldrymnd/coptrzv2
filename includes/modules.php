@@ -2571,13 +2571,16 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
         $html .= "</div>";
         $html .= "</div>";
     }
-    $site_url = get_site_url();
+
+    $all_url = get_post_type_archive_link(get_post_type());
+
+
     $html .= "<div class='col-auto'>";
 
     $html .= "<div class='row g-3 align-items-center'>";
     $html .= "<div class='col-auto'>";
     $html .= "<select name='category' class='trigger-change-link'>";
-    $html .= "<option term_link='$site_url' value=''>Category: All</option>";
+    $html .= "<option term_link='$all_url' value=''>Category: All</option>";
     foreach ($terms as $term) {
         $term_name = $term->name;
         $term_id = $term->term_id;
