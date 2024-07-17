@@ -20,7 +20,7 @@ $data['featured'] = false;
 $elements_array[] = 'image';
 $elements_array[] = 'title';
 $elements_array[] = 'button';
-if (is_home()) {
+if (is_home() || is_category()) {
     $key = 'post_';
     $title = 'All Posts';
     $has_featured = true;
