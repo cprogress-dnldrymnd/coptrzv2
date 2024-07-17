@@ -9,6 +9,13 @@ jQuery(document).ready(function () {
     __post_navigation();
 });
 
+function __filters() {
+    jQuery('select[name="category"]').change(function (e) { 
+        e.preventDefault();
+        
+    });
+}
+
 function __ajax_buy_now() {
     jQuery('.buy-now-trigger').click(function (e) {
         buy_now_ajax(jQuery(this));

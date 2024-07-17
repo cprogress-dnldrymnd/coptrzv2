@@ -11733,9 +11733,9 @@ ul.products.products.products {
         @media screen and (max-width: 991px) {
           ul.products.products.products li.product.product .product-inner .woocommerce-loop-product__title {
             font-size: 1.75rem; } }
-        @media (min-width: 1200px) {
+        @media screen and (max-width: 767px) {
           ul.products.products.products li.product.product .product-inner .woocommerce-loop-product__title {
-            font-size: 2rem; } }
+            font-size: 1.5rem; } }
       ul.products.products.products li.product.product .product-inner .onsale {
         left: 10px;
         top: 10px;
