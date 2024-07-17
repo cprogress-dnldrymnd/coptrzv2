@@ -51,7 +51,7 @@ function archive_ajax()
 			echo __post_box($data_val);
 		}
 	} else {
-		echo '<div class="col-12 text-center mt-5">';
+		echo '<div class="col-12 text-center -margin-top">';
 		echo "<h2>No results found for $s</h2>";
 		echo '</div>';
 	}
