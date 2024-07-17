@@ -2612,7 +2612,8 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     foreach ($terms as $term) {
         $term_name = $term->name;
         $term_id = $term->term_id;
-        $html .= "<option value='$term_id'>Category: $term_name</option>";
+        $term_link = get_term_link($term_id);
+        $html .= "<option term_link='$term_link' value='$term_id'>Category: $term_name</option>";
     }
     $html .= "</select>";
     $html .= "</div>";
