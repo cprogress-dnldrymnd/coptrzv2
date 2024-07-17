@@ -23,7 +23,11 @@ $elements_array[] = 'button';
 if (is_home() || is_category()) {
     $key = 'post_';
     $title = 'All Posts';
-    $has_featured = true;
+    if (is_category()) {
+        $has_featured = false;
+    } else {
+        $has_featured = true;
+    }
     $has_filter = true;
     $archive_title = 'Blog';
     $category = 'category';
