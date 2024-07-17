@@ -66,17 +66,17 @@ function __input_fields() {
 
     jQuery(".wpcf7-form-control-wrap input, .wpcf7-form-control-wrap select, .wpcf7-form-control-wrap textarea").on("blur input focus", function () {
         if (this.value) {
-            jQuery(this).parent().addClass("filled");
+            jQuery(this).parent().parent().addClass("filled");
         } else {
-            jQuery(this).parent().removeClass("filled");
+            jQuery(this).parent().parent().removeClass("filled");
         }
     });
 
     jQuery(".wpcf7-form-control-wrap input, .wpcf7-form-control-wrap select,  .wpcf7-form-control-wrap textarea").on("focus", function () {
         if (this) {
-            jQuery(this).parent().addClass("filled");
+            jQuery(this).parent().parent().addClass("filled");
         } else {
-            jQuery(this).parent().removeClass("filled");
+            jQuery(this).parent().parent().removeClass("filled");
         }
     });
 }
