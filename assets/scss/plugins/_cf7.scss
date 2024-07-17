@@ -1,7 +1,7 @@
 .input {
     position: relative;
     margin-bottom: 1rem;
-    label {
+    .input-label {
         position: absolute;
         left: 10px;
         background-color: var(--bs-white);
@@ -16,7 +16,7 @@
     }
 
     .filled {
-        label {
+        .input-label {
             top: -13px;
         }
     }
