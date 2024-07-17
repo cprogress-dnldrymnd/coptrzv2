@@ -2581,7 +2581,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     foreach ($terms as $term) {
         $term_name = $term->name;
         $term_id = $term->term_id;
-        $term_link = rtrim(get_term_link($term_id));
+        $term_link = get_term_link($term_id);
         $selected = '';
         if ($taxonomy) {
             $main_term_id = get_queried_object()->term_id;
