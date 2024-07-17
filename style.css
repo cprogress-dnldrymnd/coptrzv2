@@ -10686,12 +10686,12 @@ hr {
     width: auto; }
     .logo-slider .swiper-wrapper .swiper-slide img {
       margin-right: 50px; }
-    @media screen and (max-width: 991px) {
-      .logo-slider .swiper-wrapper .swiper-slide {
-        margin-right: 30px; } }
-    @media screen and (max-width: 767px) {
-      .logo-slider .swiper-wrapper .swiper-slide {
-        margin-right: 20px; } }
+      @media screen and (max-width: 991px) {
+        .logo-slider .swiper-wrapper .swiper-slide img {
+          margin-right: 30px; } }
+      @media screen and (max-width: 767px) {
+        .logo-slider .swiper-wrapper .swiper-slide img {
+          margin-right: 20px; } }
   .logo-slider .swiper-wrapper img {
     height: 50px;
     width: auto; }
