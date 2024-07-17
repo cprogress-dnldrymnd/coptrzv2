@@ -2788,7 +2788,7 @@ function __popup($id)
         $html .= "</div>"; //form-holder
         $html .= "</div>"; //col
         if (get_the_post_thumbnail_url($id)) {
-            $html .= " <div class='$image_class bg-image'>";
+            $html .= " <div class='$image_class bg-image d-none d-lg-block'>";
             $html .= __image(array(
                 'image_id' => get_post_thumbnail_id($id),
                 'size' => 'large',
