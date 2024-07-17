@@ -106,7 +106,7 @@ if (is_home() || is_category()) {
     $category = 'guides_category';
     $elements_array[] = 'category';
     $elements_array[] = 'excerpt';
-    $data['button_text'] = 'Learn More';
+    $data['button_text'] = 'Learn Mores';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
 }
