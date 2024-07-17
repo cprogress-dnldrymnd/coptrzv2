@@ -10732,11 +10732,11 @@ section .container-inner > *:not(:last-child) {
       font-size: 14px;
       padding: 1.25rem 2rem; } }
 
-.wp-element-button.wp-element-button.wp-element-button {
+.wp-element-button.wp-element-button.wp-element-button, .wpcf7-submit.wpcf7-submit.wpcf7-submit {
   color: var(--bs-white);
   border-color: var(--bs-accent);
   background-color: var(--bs-accent); }
-  .wp-element-button.wp-element-button.wp-element-button:hover, .wp-element-button.wp-element-button.wp-element-button:active, .wp-element-button.wp-element-button.wp-element-button:focus {
+  .wp-element-button.wp-element-button.wp-element-button:hover, .wp-element-button.wp-element-button.wp-element-button:active, .wp-element-button.wp-element-button.wp-element-button:focus, .wpcf7-submit.wpcf7-submit.wpcf7-submit:hover, .wpcf7-submit.wpcf7-submit.wpcf7-submit:active, .wpcf7-submit.wpcf7-submit.wpcf7-submit:focus {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
@@ -12419,13 +12419,6 @@ section.product-main .summary.summary.summary .variations tr {
   border-radius: 0 0 10px 10px;
   width: 100%;
   text-align: center; }
-.wpcf7 .wpcf7-submit.wpcf7-submit.wpcf7-submit {
-  background-color: var(--bs-accent);
-  color: var(--bs-white); }
-  .wpcf7 .wpcf7-submit.wpcf7-submit.wpcf7-submit:hover, .wpcf7 .wpcf7-submit.wpcf7-submit.wpcf7-submit:active, .wpcf7 .wpcf7-submit.wpcf7-submit.wpcf7-submit:focus {
-    background-color: var(--bs-white);
-    border-color: var(--bs-accent);
-    color: var(--bs-accent); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer

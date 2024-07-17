@@ -43,15 +43,4 @@
         width: 100%;
         text-align: center;
     }
-    .wpcf7-submit.wpcf7-submit.wpcf7-submit {
-        background-color: var(--bs-accent);
-        color: var(--bs-white);
-        border-color: var(--bs-accent);
-
-        @include on-event {
-            background-color: var(--bs-white);
-            border-color: var(--bs-accent);
-            color: var(--bs-accent);
-        }
-    }
 }
