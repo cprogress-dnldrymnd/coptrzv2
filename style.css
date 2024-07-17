@@ -12471,6 +12471,8 @@ section.product-main .summary.summary.summary .variations tr {
   color: #fff;
   width: calc(50% - 40px);
   padding: 2rem; }
+.popup-form .wpcf7 form.sent .wpcf7-response-output {
+  background-color: #46b450; }
 .popup-form .wpcf7 form.invalid .wpcf7-response-output, .popup-form .wpcf7 form.unaccepted .wpcf7-response-output {
   background-color: #ffb900;
   border-color: #ffb900;

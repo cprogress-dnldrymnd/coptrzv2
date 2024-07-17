@@ -87,12 +87,15 @@
                 width: calc(50% - 40px);
                 padding: 2rem;
             }
-
+            &.sent {
+                .wpcf7-response-output {
+                    background-color: #46b450;
+                }
+            }
             &.invalid,
             &.unaccepted {
                 .wpcf7-response-output {
                     background-color: #ffb900;
-                    border-color: #ffb900;
                     color: var(--bs-black);
                 }
             }
