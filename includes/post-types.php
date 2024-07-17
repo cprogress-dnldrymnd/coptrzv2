@@ -485,6 +485,7 @@ $Case_Study_Category->args = array(
     'hierarchical' => true,
     'query_var'    => true,
     'rewrite'      => array(
+        'with_front' => false,
         'slug'         => 'case-study-category',
     )
 );
@@ -521,6 +522,7 @@ $Guide_Category->args = array(
     'hierarchical' => true,
     'query_var'    => true,
     'rewrite'      => array(
+        'with_front' => false,
         'slug'         => 'guide-category',
     )
 );
