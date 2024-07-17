@@ -11,7 +11,7 @@ $related_products_array = array();
 foreach ($related_products as $related_product) {
     $related_products_array[] = $related_product['id'];
 }
-echo __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, false);
+echo __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, false, 'Related-Products');
 
 
 if ($related_casestudies) {
@@ -22,7 +22,7 @@ if ($related_casestudies) {
         'style' => 'style-1',
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
     );
-    echo do_shortcode(__related_posts($related_casestudies, $data, $related_casestudies_heading));
+    echo do_shortcode(__related_posts($related_casestudies, $data, $related_casestudies_heading, 'Case-Studies'));
 }
 
 echo do_shortcode(___sections('sections_after_main', get_the_ID()));

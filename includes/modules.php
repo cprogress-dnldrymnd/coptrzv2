@@ -2695,9 +2695,9 @@ function __layouts($args, $return = '')
 }
 
 
-function __related_posts($posts, $data, $heading = 'Related Guides',)
+function __related_posts($posts, $data, $heading = 'Related Guides', $section_id = 'Related-Post')
 {
-    $html = "<section class='related-guides border-top-default md-padding-top md-padding-bottom'>";
+    $html = "<section class='related-guides border-top-default md-padding-top md-padding-bottom' id='$section_id'>";
     $html .= "<div class='container'>";
     $html .= "<h2 class='text-center px-20px'>$heading</h2>";
 

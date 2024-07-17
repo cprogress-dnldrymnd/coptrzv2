@@ -618,11 +618,11 @@ function save_custom_product_options($post_ID, $product, $update)
 }
 
 
-function __linked_products($field, $button_text, $button_link, $id, $title, $shorcode = false, $include_section = true, $is_slider = true)
+function __linked_products($field, $button_text, $button_link, $id, $title, $shorcode = false, $include_section = true, $is_slider = true, $section_id = 'Related-Products')
 {
 
     if ($include_section) {
-        $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom'>";
+        $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom' id='$section_id'>";
     } else {
         $html = "<div class='related-products-slider'>";
     }
