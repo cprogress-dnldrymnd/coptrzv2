@@ -10683,8 +10683,7 @@ hr {
   transition-timing-function: linear !important; }
   .logo-slider .swiper-wrapper .swiper-slide {
     display: flex;
-    width: auto;
-    margin-right: 50px; }
+    width: auto; }
     @media screen and (max-width: 991px) {
       .logo-slider .swiper-wrapper .swiper-slide {
         margin-right: 30px; } }
