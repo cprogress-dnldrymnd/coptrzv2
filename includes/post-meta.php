@@ -2010,7 +2010,7 @@ function __section_fields($name = 'sections')
                                                     array(
                                                         array(
                                                             'type'      => 'post',
-                                                            'post_type' => 'wpcf7',
+                                                            'post_type' => 'cf7',
                                                         )
                                                     )
                                                 )
