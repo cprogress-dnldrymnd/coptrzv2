@@ -28,11 +28,12 @@ if (is_home()) {
     $archive_title = 'Blog';
     $category = 'category';
     $class = "mb-50px";
+
     $elements_array[] = 'category';
     $elements_array[] = 'date';
+    $elements_array[] = 'excerpt';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
-    
 } else if (is_post_type_archive('events')) {
     $key = 'events_';
     $title = false;
@@ -41,13 +42,10 @@ if (is_home()) {
     $archive_title = 'Events';
     $category = 'events_category';
     $class = 'border-bottom-default sm-padding-bottom sm-margin-bottom';
-    $data = array(
-        'col' => true,
-        'featured' => false,
-        'style' => 'style-2',
-        'taxonomy' => $category,
-        'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
-    );
+
+    $elements_array[] = 'category';
+    $data['elements'] = $elements_array;
+    $data['taxonomy'] = $category;
 } else if (is_post_type_archive('capabilities')) {
     $title = get__theme_option('capabilities_loop_section_title');
     $key = 'capabilities_';
@@ -64,6 +62,11 @@ if (is_home()) {
         'button_text' => 'Learn More',
         'elements' => array('image', 'title', 'button'),
     );
+    $elements_array[] = 'category';
+    $data['button_text'] = 'Learn More';
+    $data['elements'] = $elements_array;
+    $data['taxonomy'] = $category;
+    $data['style'] = 'style-3';
 } else if (is_post_type_archive('industries')) {
     $title = get__theme_option('industries_loop_section_title');
     $key = 'industries_';
@@ -73,14 +76,9 @@ if (is_home()) {
     $has_filter = false;
     $class = "mb-50px";
     $archive_title = 'Industry Solutions';
-    $data = array(
-        'col' => true,
-        'featured' => false,
-        'bg_image' => true,
-        'style' => 'style-3',
-        'button_text' => 'Learn More',
-        'elements' => array('image', 'title', 'button'),
-    );
+    $elements_array[] = 'category';
+    $data['button_text'] = 'Learn More';
+    $data['elements'] = $elements_array;
 } else if (is_post_type_archive('casestudies')) {
     $key = 'casestudies_';
     $title = 'All Case Studies';
@@ -89,13 +87,12 @@ if (is_home()) {
     $archive_title = 'Blog';
     $class = "mb-50px";
     $category = 'casestudies_category';
-    $data = array(
-        'col' => true,
-        'featured' => false,
-        'style' => 'style-1',
-        'taxonomy' => $category,
-        'elements' => array('image', 'category', 'title', 'excerpt', 'button')
-    );
+    $elements_array[] = 'category';
+    $elements_array[] = 'excerpt';
+    $data['button_text'] = 'Learn More';
+    $data['elements'] = $elements_array;
+    $data['taxonomy'] = $category;
+    
 } else if (is_post_type_archive('guides')) {
     $key = 'guides_';
     $title = 'All Guides';
@@ -104,13 +101,11 @@ if (is_home()) {
     $archive_title = 'Guides';
     $class = "mb-50px";
     $category = 'guides_category';
-    $data = array(
-        'col' => true,
-        'featured' => false,
-        'style' => 'style-1',
-        'taxonomy' => $category,
-        'elements' => array('image', 'category', 'title', 'excerpt', 'button')
-    );
+    $elements_array[] = 'category';
+    $elements_array[] = 'excerpt';
+    $data['button_text'] = 'Learn More';
+    $data['elements'] = $elements_array;
+    $data['taxonomy'] = $category;
 }
 echo do_shortcode(___hero_archive($key, $archive_title));
 if ($has_featured &&  !is_paged()) {
