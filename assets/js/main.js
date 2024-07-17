@@ -39,6 +39,12 @@ function __ajax() {
         }
     });
 
+
+
+}
+
+function __ajax_trigger() {
+
     var typingTimer;
     var doneTypingInterval = 500;
 
@@ -47,10 +53,6 @@ function __ajax() {
         typingTimer = setTimeout(doneTyping, doneTypingInterval);
     });
 
-
-}
-
-function __ajax_trigger() {
     jQuery('input[name="s"]').on('keydown', function () {
         clearTimeout(typingTimer);
     });
