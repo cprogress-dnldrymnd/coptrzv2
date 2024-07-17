@@ -37,6 +37,7 @@ function archive_ajax()
 	$the_query = new WP_Query($args);
 
 	echo $s;
+	echo $posts_per_page;
 
 	die();
 }
