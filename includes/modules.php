@@ -2612,7 +2612,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     $html .= "</select>";
     $html .= "</div>";
 
-    if ($key == 'post_' || $key == 'casestudies_') {
+    if ($key == 'post_' || $key == 'casestudies_' || $key == 'guides_') {
         $html .= "<div class='col-auto'>";
         $html .= "<input  type='text' placeholder='Start typing to filter...' name='s'>";
         $html .= "</div>";
