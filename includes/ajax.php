@@ -31,7 +31,7 @@ function archive_ajax()
 	if ($s) {
 		$args['s'] = $s;
 	}
-
+	echo $data;
 
 	var_dump(json_decode($data));
 
