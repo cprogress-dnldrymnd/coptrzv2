@@ -196,9 +196,9 @@
                     $months = months + " month, ";
                 }
                 if (days > 1) {
-                    $days = days + " days, ";
+                    $days = days + " days";
                 } else {
-                    $days = days + " day, ";
+                    $days = days + " day";
                 }
 
                 return $years + $months + $days;
