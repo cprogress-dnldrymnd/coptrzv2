@@ -12,6 +12,10 @@ $post_type = get_queried_object()->name;
 $class = '';
 $SVG = new SVG;
 $has_pagination = true;
+$elements_array = [];
+$elements_array[] = 'image';
+$elements_array[] = 'title';
+$elements_array[] = 'button';
 if (is_home()) {
     $key = 'post_';
     $title = 'All Posts';
@@ -20,12 +24,16 @@ if (is_home()) {
     $archive_title = 'Blog';
     $category = 'category';
     $class = "mb-50px";
+    $elements_array[] = 'category';
+    $elements_array[] = 'date';
+
+
     $data = array(
         'col' => true,
         'featured' => false,
         'style' => 'style-1',
         'taxonomy' => $category,
-        'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+        'elements' => $elements_array
     );
 } else if (is_post_type_archive('events')) {
     $key = 'events_';
@@ -105,7 +113,7 @@ if (is_home()) {
         'taxonomy' => $category,
         'elements' => array('image', 'category', 'title', 'excerpt', 'button')
     );
-} 
+}
 echo do_shortcode(___hero_archive($key, $archive_title));
 if ($has_featured &&  !is_paged()) {
     echo ___featured($key);
