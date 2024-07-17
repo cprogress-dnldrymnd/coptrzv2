@@ -18,6 +18,7 @@ function __ajax() {
     $s = jQuery('#search').val();
     $archive_section.addClass('loading-post');
     $data = jQuery('#posts').attr('data');
+    $query = jQuery('#posts').attr('query');
 
     jQuery.ajax({
         type: "POST",
@@ -27,7 +28,8 @@ function __ajax() {
         data: {
             action: 'archive_ajax',
             s: $s,
-            data: $data
+            data: $data,
+            query: $query,
         },
 
         success: function (response) {

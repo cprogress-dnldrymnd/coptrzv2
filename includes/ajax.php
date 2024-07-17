@@ -18,25 +18,22 @@ add_action('wp_ajax_archive_ajax', 'archive_ajax');
 function archive_ajax()
 {
 	$data = $_POST['data'];
+	$query = $_POST['query'];
 	$s = isset($_POST['s']) ? $_POST['s'] : false;
 
 	$posts_per_page = isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : false;
 	$data_val = json_decode(stripslashes($data), true);
+	$query_val = json_decode(stripslashes($query), true);
 	if ($posts_per_page) {
 		$args['posts_per_page'] = $posts_per_page;
 	}
+
+	$args = $query_val;
+
 	$args['post_type'] = $data_val['post_type'];
 
 	if ($s) {
 		$args['s'] = $s;
-	}
-
-	if ($data_val['cat']) {
-		$args['cat'] = $data_val['cat'];
-	}
-
-	if ($data_val['tax_query']) {
-		$args['tax_query'] = $data_val['tax_query'];
 	}
 
 	$the_query = new WP_Query($args);

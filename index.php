@@ -14,6 +14,7 @@ $SVG = new SVG;
 $has_pagination = true;
 
 global $archive_data;
+$query['posts_per_page'] = isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : 12;
 
 $data['col'] = true;
 $data['featured'] = false;
@@ -26,7 +27,7 @@ if (is_home() || is_category()) {
     $title = 'All Posts';
     if (is_category()) {
         $has_featured = false;
-        $data['cat'] = get_queried_object()->term_id;
+        $query['cat'] = get_queried_object()->term_id;
     } else {
         $has_featured = true;
     }
@@ -40,7 +41,8 @@ if (is_home() || is_category()) {
     $elements_array[] = 'excerpt';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
-    $data['post_type'] = 'post';
+
+    $query['post_type'] = 'post';
 } else if (is_post_type_archive('events')) {
     $key = 'events_';
     $title = false;
@@ -49,11 +51,11 @@ if (is_home() || is_category()) {
     $archive_title = 'Events';
     $category = 'events_category';
     $class = 'border-bottom-default sm-padding-bottom sm-margin-bottom';
-
     $elements_array[] = 'category';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
-    $data['post_type'] = 'events';
+
+    $query['post_type'] = 'events';
 } else if (is_post_type_archive('capabilities')) {
     $title = get__theme_option('capabilities_loop_section_title');
     $key = 'capabilities_';
@@ -100,10 +102,12 @@ if (is_home() || is_category()) {
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
-    $data['post_type'] = 'casestudies';
+
+
+    $query['post_type'] = 'casestudies';
 
     if (is_tax('casestudies_category')) {
-        $data['tax_query'] = array(
+        $query['tax_query'] = array(
             array(
                 'taxonomy' => 'casestudies_category',
                 'field' => 'term_id',
@@ -124,10 +128,10 @@ if (is_home() || is_category()) {
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
-    $data['post_type'] = 'guides';
 
+    $query['post_type'] = 'guides';
     if (is_tax('guides_category')) {
-        $data['tax_query'] = array(
+        $query['tax_query'] = array(
             array(
                 'taxonomy' => 'guides_category',
                 'field' => 'term_id',
@@ -159,7 +163,7 @@ echo do_shortcode(__layouts($args));
 $archive_data = $data;
 ?>
 
-<section class="archive-posts md-padding-top md-padding-bottom border-top-default" id="posts" data='<?= json_encode($data) ?>'>
+<section class="archive-posts md-padding-top md-padding-bottom border-top-default" id="posts" query='<?= json_encode($query) ?>' data='<?= json_encode($data) ?>'>
     <?php
     if ($has_filter) {
         echo ___posts_header($key, $title, $category, $class);
