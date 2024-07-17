@@ -32,10 +32,8 @@ function archive_ajax()
 		$args['s'] = $s;
 	}
 
-	global $archive_data;
 
 
-	var_dump($archive_data);
 
 	echo $s;
 	echo $posts_per_page;

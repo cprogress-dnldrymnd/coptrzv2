@@ -134,7 +134,7 @@ echo do_shortcode(__layouts($args));
 $archive_data = $data;
 ?>
 
-<section class="archive-posts md-padding-top md-padding-bottom border-top-default" id="posts">
+<section class="archive-posts md-padding-top md-padding-bottom border-top-default" id="posts" data="<?= json_encode($data) ?>">
     <?php
     if ($has_filter) {
         echo ___posts_header($key, $title, $category, $class);
