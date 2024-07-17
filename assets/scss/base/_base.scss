@@ -303,6 +303,9 @@ section {
     line-height: 1;
     width: 100%;
     max-width: 100%;
+    &::placeholder {
+        text-transform: capitalize;
+    }
 }
 input[type="checkbox"] {
     width: 26px;

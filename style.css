@@ -10804,6 +10804,15 @@ textarea {
   line-height: 1;
   width: 100%;
   max-width: 100%; }
+  input[type="text"]::placeholder,
+  input[type="number"]::placeholder,
+  input[type="tel"]::placeholder,
+  input[type="submit"]::placeholder,
+  input[type="email"]::placeholder,
+  input[type="password"]::placeholder,
+  select::placeholder,
+  textarea::placeholder {
+    text-transform: capitalize; }
 
 input[type="checkbox"] {
   width: 26px;
@@ -12316,7 +12325,8 @@ section.product-main .summary.summary.summary .variations tr {
   .wpforms-form .wpforms-field-container .wpforms-field .wpforms-field-label {
     font-size: 15px;
     line-height: 1;
-    font-weight: 300; }
+    font-weight: 300;
+    text-transform: capitalize; }
 .wpforms-form .wpforms-submit-container {
   margin-top: 2rem; }
 
