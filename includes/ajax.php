@@ -41,7 +41,7 @@ function archive_ajax()
 		$the_query->the_post();
 		$data_val['id'] = get_the_ID();
 		if (get_post_type() == 'events') {
-			$data['additional_content'] = _events_additional_content(get_the_ID());
+			$data_val['additional_content'] = _events_additional_content(get_the_ID());
 		}
 		echo __post_box($data_val);
 	}
