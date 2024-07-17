@@ -15,7 +15,7 @@ jQuery(document).ready(function () {
 function __ajax() {
     $archive_section = jQuery('.archive-posts');
     $result_holder = jQuery('#results');
-
+    $s = jQuery('input[name="s"]').val();
     $archive_section.addClass('loading-post');
 
     jQuery.ajax({
@@ -25,6 +25,7 @@ function __ajax() {
 
         data: {
             action: 'archive_ajax',
+            s: ,
         },
 
         success: function (response) {
