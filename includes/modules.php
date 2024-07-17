@@ -2523,7 +2523,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
 {
     $terms = get_terms(array(
         'taxonomy'   => $taxonomy,
-        'hide_empty' => false,
+        'hide_empty' => true,
     ));
 
     $html = "<div class='post-archive-header'>";
