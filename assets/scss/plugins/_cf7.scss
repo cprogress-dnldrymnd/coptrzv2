@@ -14,18 +14,16 @@
         @include transition(300ms);
         z-index: 1;
     }
-    
+
     .filled {
         label {
             top: -13px;
-
         }
     }
-    
 }
 
 .wpcf7 {
-    .wpcf7-spinner{
+    .wpcf7-spinner {
         position: absolute;
         right: 0;
         top: 18px;
@@ -44,5 +42,16 @@
         border-radius: 0 0 10px 10px;
         width: 100%;
         text-align: center;
+    }
+    .wpcf7-submit.wpcf7-submit.wpcf7-submit {
+        background-color: var(--bs-accent);
+        color: var(--bs-white);
+        border-color: var(--bs-accent);
+
+        @include on-event {
+            background-color: var(--bs-white);
+            border-color: var(--bs-accent);
+            color: var(--bs-accent);
+        }
     }
 }

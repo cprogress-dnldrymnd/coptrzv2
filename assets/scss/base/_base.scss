@@ -263,7 +263,7 @@ section {
 .wp-element-button.wp-element-button.wp-element-button, .wpcf7-submit.wpcf7-submit.wpcf7-submit {
     @include button-style;
 }
-.wp-element-button.wp-element-button.wp-element-button, .wpcf7-submit.wpcf7-submit.wpcf7-submit {
+.wp-element-button.wp-element-button.wp-element-button {
     @include button-accent;
 }
 .button-box.button-box.button-box {
