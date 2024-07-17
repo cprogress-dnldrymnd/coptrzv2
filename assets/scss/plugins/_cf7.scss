@@ -1,5 +1,6 @@
 .input {
     position: relative;
+    margin-bottom: 1rem;
     label {
         position: absolute;
         left: 10px;
@@ -11,5 +12,21 @@
         top: 15px;
         font-weight: 300;
         @include transition(300ms);
+        z-index: 1;
+    }
+    .wpcf7-form-control-wrap {
+        position: static;
+    }
+    @include inputs {
+        outline: none;
+    }
+    .wpcf7-not-valid-tip {
+        position: absolute;
+        bottom: -11px;
+        font-size: 13px;
+        background: #ffd5d5;
+        border-radius: 0 0 10px 10px;
+        width: 100%;
+        text-align: center;
     }
 }
