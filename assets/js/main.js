@@ -19,7 +19,8 @@ function __filters() {
     jQuery('.number-post-trigger').change(function (e) {
         $val = jQuery(this).val();
         $url = location.protocol + '//' + location.host + location.pathname;
-        console.log($url);
+        $link = $url + "?posts_per_page=" + $val;
+        window.location.href = $link;
     });
 }
 
