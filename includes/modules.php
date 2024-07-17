@@ -2477,46 +2477,6 @@ function ___hero_archive($key, $title)
     return $hero;
 }
 
-function ___hero_archive_old($key, $title)
-{
-
-    $hero_heading = get__theme_option($key . 'archive_title');
-    $hero_description = get__theme_option($key . 'archive_description');
-    $hero_background = get__theme_option($key . 'archive_background');
-    $hero_height = 'small-hero';
-    $text_align = 'text-start';
-
-
-    $heading_class[] = 'large-heading';
-    $heading_class[] = 'mb-3';
-
-    $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
-    $hero .= __background($hero_background);
-
-    $hero .= "<div class='container'>";
-
-    $hero .= "[breadcrumbs type='archive' archive_title='$title']";
-
-    $hero .= __heading(array(
-        'heading' => $hero_heading,
-        'tag' => 'h1',
-        'class' => _attribute('class', $heading_class),
-        ''
-    ));
-
-    $hero .= __description(array(
-        'description' => $hero_description,
-        'class' => _attribute('class', array('description-box small-text')),
-    ));
-
-
-
-    $hero .= "</div>";
-    $hero .= "</section>";
-
-    return $hero;
-}
-
 
 function ___featured($key)
 {
