@@ -160,9 +160,7 @@ ul.products.products.products {
                     object-fit: cover;
                 }
             }
-            .woocommerce-loop-product__title {
-                color: var(--bs-primary);
-            }
+
             .price {
                 color: var(--bs-primary);
                 font-weight: 400;
@@ -173,6 +171,13 @@ ul.products.products.products {
             }
             .woocommerce-loop-product__title {
                 font-size: 2rem;
+                color: var(--bs-primary);
+               @include responsive(xs-sm) {
+                    font-size: 1.75rem;
+                }
+                @include responsive(xs) {
+                    font-size: 1.5rem;
+                }
             }
             .onsale {
                 left: 10px;
