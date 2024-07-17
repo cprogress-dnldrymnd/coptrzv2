@@ -12474,7 +12474,7 @@ section.product-main .summary.summary.summary .variations tr {
 .popup-form .wpcf7 form.invalid .wpcf7-response-output, .popup-form .wpcf7 form.unaccepted .wpcf7-response-output {
   background-color: #ffb900;
   border-color: #ffb900;
-  color: var(--bs-white); }
+  color: var(--bs-black); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
