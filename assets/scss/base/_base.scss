@@ -213,6 +213,9 @@ main {
         .swiper-slide {
             display: flex;
             width: auto;
+            img {
+                margin-right: 50px;
+            }
             @include responsive(xs-sm) {
                 margin-right: 30px;
             }

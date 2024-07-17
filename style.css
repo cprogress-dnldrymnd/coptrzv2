@@ -10684,6 +10684,8 @@ hr {
   .logo-slider .swiper-wrapper .swiper-slide {
     display: flex;
     width: auto; }
+    .logo-slider .swiper-wrapper .swiper-slide img {
+      margin-right: 50px; }
     @media screen and (max-width: 991px) {
       .logo-slider .swiper-wrapper .swiper-slide {
         margin-right: 30px; } }
