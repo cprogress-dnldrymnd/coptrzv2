@@ -17,7 +17,7 @@ function __ajax() {
     $result_holder = jQuery('#results');
     $s = jQuery('#search').val();
     $archive_section.addClass('loading-post');
-    $data = jQuery('posts').attr('data');
+    $data = jQuery('#posts').attr('data');
 
     jQuery.ajax({
         type: "POST",
