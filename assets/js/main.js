@@ -7,12 +7,25 @@ jQuery(document).ready(function () {
     __input_fields();
     __ajax_buy_now();
     __post_navigation();
+    __filters();
 });
 
 function __filters() {
-    jQuery('select[name="category"]').change(function (e) { 
+    jQuery('.trigger-change-link').change(function (e) {
+        $term_link = jQuery(this).attr('term_link');
+
+        jQuery.ajax({
+            url: $term_link,
+            type: "GET",
+            success: function () {
+                alert("done");
+                return false;
+            },
+            error: function () {
+                alert("testing error");
+            }
+        });
         e.preventDefault();
-        
     });
 }
 

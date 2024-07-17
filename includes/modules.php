@@ -2576,7 +2576,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
 
     $html .= "<div class='row g-3 align-items-center'>";
     $html .= "<div class='col-auto'>";
-    $html .= "<select name='category'>";
+    $html .= "<select name='category' class='trigger-change-link'>";
     $html .= "<option  value=''>Category: All</option>";
     foreach ($terms as $term) {
         $term_name = $term->name;
