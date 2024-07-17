@@ -79,7 +79,7 @@ if (is_home()) {
     $elements_array[] = 'category';
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
-} else if (is_post_type_archive('casestudies')) {
+} else if (is_post_type_archive('casestudies') || is_taxonomy('casestudies_category')) {
     $key = 'casestudies_';
     $title = 'All Case Studies';
     $has_featured = false;
