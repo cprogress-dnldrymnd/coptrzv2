@@ -1996,6 +1996,28 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                     ->add_fields(
+                                        'cf7',
+                                        array(
+                                            Field::make('select', 'style', 'Style')
+                                                ->set_options(
+                                                    array(
+                                                        ''   => 'Default',
+                                                        'style-2' => 'Style 2',
+                                                    )
+                                                ),
+                                            Field::make('association', 'form', 'Select Form')
+                                                ->set_types(
+                                                    array(
+                                                        array(
+                                                            'type'      => 'post',
+                                                            'post_type' => 'wpcf7',
+                                                        )
+                                                    )
+                                                )
+                                                ->set_max(1)
+                                        )
+                                    )
+                                    ->add_fields(
                                         'post_grid',
                                         array(
                                             Field::make('html', 'post_box_settings_html')->set_html('<label>Post Box Settings</label>')->set_classes('cb-label'),
