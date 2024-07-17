@@ -2425,10 +2425,17 @@ function __post_box($data, $class = [], $content_box_class = [])
     $html .= "</div>"; //col
     return $html;
 }
-function ___hero_archive($key, $title)
+function ___hero_archive($key, $title, $taxonomy = false)
 {
 
-    $hero_heading = get__theme_option($key . 'archive_title');
+
+    if ($taxonomy) {
+        $hero_heading = get_queried_object()->name;
+    } else {
+        $hero_heading = get__theme_option($key . 'archive_title');
+    }
+
+
     $hero_description = get__theme_option($key . 'archive_description');
     $hero_background = get__theme_option($key . 'archive_hero_background');
     $hero_background_youtube = get__theme_option($key . 'archive_background_youtube');
