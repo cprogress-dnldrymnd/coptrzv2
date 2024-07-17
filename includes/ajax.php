@@ -17,5 +17,6 @@ add_action('wp_ajax_nopriv_archive_ajax', 'archive_ajax'); // for not logged in 
 add_action('wp_ajax_archive_ajax', 'archive_ajax');
 function archive_ajax()
 {
-	
+	echo 'test';
+	die();
 }
