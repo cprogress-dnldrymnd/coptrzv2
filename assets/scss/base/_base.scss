@@ -269,7 +269,6 @@ section {
         button {
             @include button-accent;
         }
-       
     }
     &.button-bordered {
         a,
@@ -303,11 +302,12 @@ section {
     line-height: 1;
     width: 100%;
     max-width: 100%;
-    text-transform: capitalize;
     &::placeholder {
         text-transform: capitalize;
     }
 }
+
+select,
 option {
     text-transform: capitalize;
 }
