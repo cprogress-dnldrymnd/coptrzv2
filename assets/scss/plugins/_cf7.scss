@@ -14,6 +14,22 @@
         @include transition(300ms);
         z-index: 1;
     }
+    
+    .filled {
+        label {
+            top: -13px;
+
+        }
+    }
+    
+}
+
+.wpcf7 {
+    .wpcf7-spinner{
+        position: absolute;
+        right: 0;
+        top: 18px;
+    }
     .wpcf7-form-control-wrap {
         position: static;
     }
@@ -28,11 +44,5 @@
         border-radius: 0 0 10px 10px;
         width: 100%;
         text-align: center;
-    }
-    .filled {
-        label {
-            top: -13px;
-
-        }
     }
 }
