@@ -2557,7 +2557,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     if ($key == 'events_') {
         $events_category = get_terms(array(
             'taxonomy'   => 'events_category',
-            'hide_empty' => false,
+            'hide_empty' => true,
         ));
 
         $html .= "<div class='col-auto'>";
