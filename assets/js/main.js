@@ -13,20 +13,14 @@ jQuery(document).ready(function () {
 function __filters() {
     jQuery('.trigger-change-link').change(function (e) {
         $term_link = jQuery(this).attr('term_link');
-
-        jQuery.ajax({
-            url: $term_link,
-            type: "GET",
-            success: function () {
-                alert("done");
-                return false;
-            },
-            error: function () {
-                alert("testing error");
-            }
-        });
-        e.preventDefault();
+        window.location.href = $term_link;
     });
+}
+
+function processAjaxData(response, urlPath) {
+    document.getElementById("content").innerHTML = response.html;
+    document.title = response.pageTitle;
+    window.history.pushState({ "html": response.html, "pageTitle": response.pageTitle }, "", urlPath);
 }
 
 function __ajax_buy_now() {
