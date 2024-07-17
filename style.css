@@ -12407,9 +12407,9 @@ section.product-main .summary.summary.summary .variations tr {
   margin-bottom: 1rem; }
   .input label {
     width: 100%; }
-  .input .filled .input-label {
-    top: -13px; }
 
+.form-box:not(.style-2) .input .filled .input-label {
+  top: -13px; }
 .form-box:not(.style-2) .input .input-label {
   position: absolute;
   left: 10px;

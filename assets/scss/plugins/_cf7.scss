@@ -4,18 +4,16 @@
     label {
         width: 100%;
     }
-
-    .filled {
-        .input-label {
-            top: -13px;
-        }
-    }
 }
 
 .form-box {
     &:not(.style-2) {
-       
         .input {
+            .filled {
+                .input-label {
+                    top: -13px;
+                }
+            }
             .input-label {
                 position: absolute;
                 left: 10px;
@@ -31,7 +29,6 @@
                 z-index: 1;
             }
         }
-        
     }
 }
 
