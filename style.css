@@ -12463,14 +12463,8 @@ section.product-main .summary.summary.summary .variations tr {
   background-color: rgba(255, 185, 0, 0.2); }
 
 .popup-form .wpcf7 form .wpcf7-response-output {
-  position: absolute;
-  right: 20px;
-  z-index: 1;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #fff;
-  width: calc(50% - 40px);
-  padding: 2rem; }
+  padding: 2rem;
+  color: #fff; }
   .popup-form .wpcf7 form .wpcf7-response-output:before {
     content: "";
     width: 50px;
@@ -12480,6 +12474,14 @@ section.product-main .summary.summary.summary .variations tr {
     margin-right: auto;
     margin-bottom: 1rem;
     background-size: contain; }
+  @media screen and (min-width: 992px) {
+    .popup-form .wpcf7 form .wpcf7-response-output {
+      position: absolute;
+      right: 20px;
+      z-index: 1;
+      top: 50%;
+      transform: translateY(-50%);
+      width: calc(50% - 40px); } }
 .popup-form .wpcf7 form.sent .wpcf7-response-output {
   background-color: #46b450; }
   .popup-form .wpcf7 form.sent .wpcf7-response-output:before {

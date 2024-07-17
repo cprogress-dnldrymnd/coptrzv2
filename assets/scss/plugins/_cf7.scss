@@ -78,14 +78,9 @@
     .wpcf7 {
         form {
             .wpcf7-response-output {
-                position: absolute;
-                right: 20px;
-                z-index: 1;
-                top: 50%;
-                transform: translateY(-50%);
-                color: #fff;
-                width: calc(50% - 40px);
+               
                 padding: 2rem;
+                color: #fff;
                 @include before {
                     content: "";
                     width: 50px;
@@ -95,6 +90,14 @@
                     margin-right: auto;
                     margin-bottom: 1rem;
                     background-size: contain;
+                }
+                @include responsive(md-lg) {
+                    position: absolute;
+                    right: 20px;
+                    z-index: 1;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: calc(50% - 40px);
                 }
             }
             &.sent {
