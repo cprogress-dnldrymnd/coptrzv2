@@ -2614,7 +2614,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
 
     if ($key == 'post_' || $key == 'casestudies_' || $key == 'guides_') {
         $html .= "<div class='col-auto'>";
-        $html .= "<input  type='text' placeholder='Start typing to filter...' name='s'>";
+        $html .= "<input id='search' type='text' placeholder='Start typing to filter...' name='s'>";
         $html .= "</div>";
     }
 
