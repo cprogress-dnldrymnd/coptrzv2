@@ -21,31 +21,40 @@ if (!defined('ABSPATH')) {
 }
 
 global $product;
+$product_category_page = false;
+$class = 'col-sm-12';
+if (is_product_taxonomy()) {
+	$product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
+	$class = 'col-sm-6';
+}
+
 ?>
 <div class="product-buttons">
 	<div class="row g-10px">
-		<div class="col-sm-6">
-			<?php
-			echo apply_filters(
-				'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
-				sprintf(
-					'<a href="%s" aria-describedby="woocommerce_loop_add_to_cart_link_describedby_%s" data-quantity="%s" class="%s" %s>%s</a>',
-					esc_url($product->add_to_cart_url()),
-					esc_attr($product->get_id()),
-					esc_attr(isset($args['quantity']) ? $args['quantity'] : 1),
-					esc_attr(isset($args['class']) ? $args['class'] : 'button'),
-					isset($args['attributes']) ? wc_implode_html_attributes($args['attributes']) : '',
-					esc_html($product->add_to_cart_text())
-				),
-				$product,
-				$args
-			);
-			?>
-			<span id="woocommerce_loop_add_to_cart_link_describedby_<?php echo esc_attr($product->get_id()); ?>" class="screen-reader-text">
-				<?php echo esc_html($args['aria-describedby_text']); ?>
-			</span>
-		</div>
-		<div class="col-sm-6">
+		<?php if (!$product_category_page) { ?>
+			<div class="<?= $class ?>">
+				<?php
+				echo apply_filters(
+					'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
+					sprintf(
+						'<a href="%s" aria-describedby="woocommerce_loop_add_to_cart_link_describedby_%s" data-quantity="%s" class="%s" %s>%s</a>',
+						esc_url($product->add_to_cart_url()),
+						esc_attr($product->get_id()),
+						esc_attr(isset($args['quantity']) ? $args['quantity'] : 1),
+						esc_attr(isset($args['class']) ? $args['class'] : 'button'),
+						isset($args['attributes']) ? wc_implode_html_attributes($args['attributes']) : '',
+						esc_html($product->add_to_cart_text())
+					),
+					$product,
+					$args
+				);
+				?>
+				<span id="woocommerce_loop_add_to_cart_link_describedby_<?php echo esc_attr($product->get_id()); ?>" class="screen-reader-text">
+					<?php echo esc_html($args['aria-describedby_text']); ?>
+				</span>
+			</div>
+		<?php } ?>
+		<div class="<?= $class ?>">
 			<div class="button-box button-bordered"><a href="<?= get_the_permalink() ?>">Discover</a></div>
 		</div>
 	</div>
