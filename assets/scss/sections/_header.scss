@@ -76,6 +76,7 @@
                 }
             }
             .submenu-inner {
+                width: 100%;
                 @include responsive(md-lg) {
                     background-color: var(--bs-white);
                     padding: 10px;
