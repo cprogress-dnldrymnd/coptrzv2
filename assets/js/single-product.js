@@ -16,6 +16,11 @@ function __training() {
         __training_ajax();
     });
 
+
+
+}
+
+function __training_swiper() {
     var swiper_training = new Swiper('.swiper-training', {
         loop: false,
         autoplay: false,
@@ -25,7 +30,6 @@ function __training() {
             prevEl: ".swiper-button-prev",
         },
     });
-
 }
 
 function __training_ajax() {
@@ -51,12 +55,14 @@ function __training_ajax() {
 
             success: function (response) {
                 $result_holder.html(response);
+                __training_swiper();
                 jQuery('.ajax-loading').removeClass('loading-post');
             },
             error: function (e) {
                 console.log(e);
             }
         });
+
     }, 300);
 
 }
