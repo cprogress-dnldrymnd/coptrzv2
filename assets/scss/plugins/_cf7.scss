@@ -49,7 +49,9 @@
             margin-top: 1rem;
         }
         @include inputs {
-            padding: 13px;
+            &:not([type="submit"]) {
+                padding: 13px;
+            }
         }
     }
 }
