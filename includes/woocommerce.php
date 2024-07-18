@@ -737,7 +737,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
         }
 
 
-        $child_array[$child] = array(
+        $child_array[] = array(
             'product_id' => $child,
             'product_attribute_array' => $product_attribute_array,
             'sku' => $variation->get_sku(),
