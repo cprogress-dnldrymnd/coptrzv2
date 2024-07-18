@@ -761,7 +761,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
     if ($sortby == 'latest') {
         usort($child_array, 'date_compare_latest');
     } else {
-        ksort($child_array, 'date_compare_oldest');
+        usort($child_array, 'date_compare_oldest');
     }
 
     // return var_dump($child_array);
