@@ -67,18 +67,20 @@
                     color: var(--bs-white) !important;
                 }
             }
-            .submenu {
-                position: absolute;
-                left: 50%;
-                transform: translate(-50%, 20px);
+            .submenu-inner {
+                background-color: var(--bs-white);
                 background-color: var(--bs-white);
                 padding: 10px;
                 border-radius: 10px;
                 margin-top: 20px;
+            }
+            .submenu {
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 20px);
                 opacity: 0;
                 visibility: hidden;
                 @include transition(500ms);
-
                 &.active {
                     transform: translate(-50%, 0);
                     visibility: visible;
@@ -271,9 +273,6 @@
                     &.active {
                         @include transform(translateX(0));
                     }
-                }
-                .submenu-inner {
-                    
                 }
             }
 
