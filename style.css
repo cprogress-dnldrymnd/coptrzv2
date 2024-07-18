@@ -12430,9 +12430,11 @@ section.product-main .summary.summary.summary .variations tr {
   transition: 300ms;
   z-index: 1; }
 .form-box.style-2 .wpcf7-response-output {
-  margin-top: 2rem; }
+  margin-top: 1rem; }
 .form-box.style-2 .input-label {
   font-size: 14px; }
+.form-box.style-2 .wpcf7-submit {
+  margin-top: 2rem; }
 .form-box.style-2 input[type="text"],
 .form-box.style-2 input[type="number"],
 .form-box.style-2 input[type="tel"],

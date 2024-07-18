@@ -37,10 +37,13 @@
     }
     &.style-2 {
         .wpcf7-response-output {
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
         .input-label {
             font-size: 14px;
+        }
+        .wpcf7-submit {
+            margin-top: 2rem;
         }
         @include inputs {
             padding: 13px;
