@@ -30,7 +30,7 @@ if (is_product_taxonomy()) {
 	$class = '';
 }
 ?>
-<div class="product-buttons">
+<div class="product-buttons <?= $class ?>">
 	<div class="row g-10px">
 		<?php if ($product_category_page) { ?>
 			<div class="<?= $col_class ?>">
