@@ -9,7 +9,9 @@ jQuery(document).ready(function () {
 function __training() {
 
     jQuery('.trigger-training-ajax').click(function (e) {
-        __training_ajax();
+        setTimeout(function () {
+            __training_ajax();
+        }, 300);
     });
 
     var swiper_training = new Swiper('.swiper-training', {
