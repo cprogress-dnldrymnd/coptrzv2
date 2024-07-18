@@ -723,13 +723,13 @@ function date_compare_latest($element1, $element2)
 
 function date_compare_oldest($element1, $element2)
 {
-    $datea = strtotime(str_replace('/', '-', $element1));
-    $dateb = strtotime(str_replace('/', '-', $element2));
-    if ($datea == $dateb) {
+    $datetime1 = strtotime($element1['datetime']);
+    $datetime2 = strtotime($element2['datetime']);
+    if ($datetime1 == $datetime2) {
         return 0;
     }
 
-    return ($datea < $dateb) ? -1 : 1;
+    return ($datetime1 < $datetime2) ? -1 : 1;
 }
 
 function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $sortby = 'latest', $location = false)
