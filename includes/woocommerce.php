@@ -736,7 +736,6 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
             $product_attribute_array[$key] = $attr;
         }
 
-
         $child_array[] = array(
             'product_id' => $child,
             'product_attribute_array' => $product_attribute_array,
@@ -749,7 +748,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
 
     usort($child_array, 'date_compare');
 
-    // return var_dump($child_array);
+    return var_dump($child_array);
 
     $children_chunk = array_chunk($child_array, 4);
 
