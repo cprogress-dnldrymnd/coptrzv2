@@ -24,10 +24,12 @@
                                 <p class="fw-medium medium-text">Select delivery method:</p>
                                 <div class="filter-box bg-light rounded-corner">
                                     <div class="row">
-                                        <div class="col-auto"><input name="delivery_method" value="online-self-paced" type="radio" id="online" checked>
+                                        <div class="col-auto">
+                                            <input name="delivery_method" value="online-self-paced" type="radio" id="online" checked>
                                             <label class="rounded-corner trigger-training-ajax" for="online">Online Self-paced</label>
                                         </div>
-                                        <div class="col-auto"><input name="delivery_method" value="classroom" type="radio" id="classroom">
+                                        <div class="col-auto">
+                                            <input name="delivery_method" value="classroom" type="radio" id="classroom">
                                             <label class="rounded-corner trigger-training-ajax" for="classroom">Classroom</label>
                                         </div>
                                     </div>

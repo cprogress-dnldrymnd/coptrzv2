@@ -10,7 +10,6 @@ function __training() {
 
     jQuery('.trigger-training-ajax').click(function (e) {
         __training_ajax();
-        e.preventDefault();
     });
 
     var swiper_training = new Swiper('.swiper-training', {
