@@ -1232,6 +1232,10 @@ hr {
 
         .text-black {
             color: var(--bs-white) !important;
+            @include on-event {
+                background-color: var(--bs-white) !important;
+                color: var(--bs-black) !important;
+            }
         }
     }
 }
