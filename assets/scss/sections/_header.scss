@@ -21,7 +21,10 @@
             &.is-not-mega-menu {
                 .submenu {
                     @include responsive(md-lg) {
-                        width: 300px;
+                        width: 500px;
+                        li {
+                            
+                        }
                     }
                 }
                 .submenu2 {
