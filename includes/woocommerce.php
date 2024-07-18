@@ -740,6 +740,9 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
         $child_array[$child] = array(
             'product_id' => $child,
             'product_attribute_array' => $product_attribute_array,
+            'sku' => $variation->get_sku(),
+            'price' => $variation->get_price_html(),
+            'stock_status_variation' => $variation->get_stock_status(),
             'datetime' => $product_attribute_array['date']
         );
     }
@@ -761,12 +764,14 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
         $html .= '<div class="row g-4">'; //row
         foreach ($children as $child) {
             $product_id = $child['product_id'];
-            $variation = wc_get_product($product_id);
-            $product_attribute = $variation->get_attributes();
+            $sku = $child['sku'];
+            $price = $child['price'];
+            $product_attribute_array = $child['product_attribute_array'];
+            $stock_status_variation = $child['stock_status_variation'];
+
             $variation_name = '';
             $lastElement = end($product_attribute);
 
-            $product_attribute_array = $child['product_attribute_array'];
             foreach ($product_attribute as $key => $attr) {
                 $variation_name .= $attr . ' ';
                 if ($attr != $lastElement) {
@@ -777,9 +782,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
 
             $json = json_encode($product_attribute_array);
 
-            $stock_status_variation = $variation->get_stock_status();
-            $sku = $variation->get_sku();
-            $price = $variation->get_price_html();
+        
             $html .= '<div class="col-lg-6">';
 
 
