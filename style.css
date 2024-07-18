@@ -12307,6 +12307,13 @@ section.product-main .summary.summary.summary .variations tr {
       position: sticky;
       top: 40px; }
 
+.training-map-holder {
+  max-width: 556px; }
+  .training-map-holder span {
+    position: absolute; }
+    .training-map-holder span svg {
+      width: 28px; }
+
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
   border: 1px solid;

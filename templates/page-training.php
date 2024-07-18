@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-lg-6">
                     <?php $SVG = new SVG; ?>
-                    <div class="image-box training-map-holder">
+                    <div class="image-box training-map-holder position-relative">
                         <img src="https://dev.coptrz.com/wp-content/uploads/2024/07/map.jpg" alt="">
                         <span id="edinburgh"><?= $SVG->location() ?></span>
                         <span id="leeds"><?= $SVG->location() ?></span>
