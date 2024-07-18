@@ -180,8 +180,8 @@ function __header_menu() {
                    
                     jQuery('body').removeClass('mini-cart-active');
                 }, function () {
-                    jQuery(this).removeClass('active');
-                    jQuery(this).next().removeClass('active');
+                    jQuery(this).find(' > .nav-link').removeClass('active');
+                    jQuery(this).find(' > .nav-link > .submenu').removeClass('active');
                 }
             );
         } else {
