@@ -1034,3 +1034,16 @@ function __drone_servicing()
 
     return $html;
 }
+
+
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+
+/**
+ * @snippet       Remove Sorting Dropdown @ WooCommerce Shop & Archives
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 7
+ * @community     https://businessbloomer.com/club/
+ */
+  
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
