@@ -153,7 +153,7 @@
     .site-logo {
         svg {
             @include responsive(md) {
-                height: 15px;
+                height: 13px;
             }
             @include responsive(xs-sm) {
                 height: 15px;
@@ -167,7 +167,7 @@
         .button-box {
             a {
                 @include responsive(md) {
-                    padding: 0.625rem 1rem;
+                    padding: 0.625rem 10px;
                     font-size: 13px;
                 }
             }

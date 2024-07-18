@@ -12653,7 +12653,7 @@ section.product-main .summary.summary.summary .variations tr {
       margin-bottom: 10px; }
   @media (min-width: 992px) and (max-width: 1199px) {
     .header .site-logo svg {
-      height: 15px; } }
+      height: 13px; } }
   @media screen and (max-width: 991px) {
     .header .site-logo svg {
       height: 15px; } }
@@ -12662,7 +12662,7 @@ section.product-main .summary.summary.summary .variations tr {
       --bs-gutter-x: 10px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .header .header-right .button-box a {
-      padding: 0.625rem 1rem;
+      padding: 0.625rem 10px;
       font-size: 13px; } }
   @media screen and (min-width: 992px) {
     .header .header-right .button-box {
