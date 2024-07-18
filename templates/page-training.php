@@ -54,6 +54,7 @@
                                             }
                                         }
                                     }
+                                    $locations = array_unique($locations);
                                     ?>
 
                                     <select name="category" class="trigger-training-ajax-select">
