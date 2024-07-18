@@ -1220,6 +1220,13 @@ hr {
             color: var(--bs-primary) !important;
         }
     }
+
+    .header .navbar.navbar.navbar .nav-item .submenu-inner {
+        background-color: var(--bs-black);
+        .text-black {
+            color: var(--bs-white) !important;
+        }
+    }
 }
 
 .input-box.input-box {

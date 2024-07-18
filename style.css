@@ -11463,6 +11463,10 @@ hr {
   background-color: var(--bs-accent); }
 .hero-hidden .breadcrumbs .text-white {
   color: var(--bs-primary) !important; }
+.hero-hidden .header .navbar.navbar.navbar .nav-item .submenu-inner {
+  background-color: var(--bs-black); }
+  .hero-hidden .header .navbar.navbar.navbar .nav-item .submenu-inner .text-black {
+    color: var(--bs-white) !important; }
 
 .input-box.input-box .icon {
   background-color: var(--border-color);
