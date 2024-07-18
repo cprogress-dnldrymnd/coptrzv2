@@ -111,7 +111,7 @@ function action_woocommerce_before_shop_loop_item()
         $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
     }
     if ($product_category_page) {
-        $class = 'rounded-10px border-default';
+        $class = 'rounded-10px border-default p-20px';
     }
     echo "<div class='product-inner h-100 $class'>";
 };
@@ -355,7 +355,7 @@ function __product_compare($id)
 
     foreach ($products as $product) {
         $html .= "<div class='col-lg-3'>";
-        $html .= "<div class='product-inner d-flex flex-column'>";
+        $html .= "<div class='product-inner p-20px d-flex flex-column'>";
         $html .= _product_grid_display($product['id']);
 
         $html .= "<div class='row-services-spec-mobile d-lg-none mt-4'>";
@@ -502,7 +502,7 @@ function _product_grid_display($id)
 
         $html = "<ul class='products custom-product-grid h-100 m-0 p-0'>";
         $html .= "<li class='product m-0 p-0 w-100 h-100 post-$id $stock_status'>";
-        $html .= "<div class='product-inner rounded-10px border-default h-100 bg-white'>";
+        $html .= "<div class='product-inner p-20px rounded-10px border-default h-100 bg-white'>";
         $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
         $html .= "<div class='wc-img-wrapper'>";
         $html .= "<img width='300' height='225' src='$post_thumnail' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='$title' decoding='async'>";
