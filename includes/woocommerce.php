@@ -64,16 +64,7 @@ function action_woocommerce_before_shop_loop()
 
     echo '<section class="product-archive-loop sm-padding-top lg-padding-bottom border-top-default no-overflow">';
     echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-lg-3">';
-    /**
-     * Hook: woocommerce_sidebar.
-     *
-     * @hooked woocommerce_get_sidebar - 10
-     */
-    do_action('woocommerce_sidebar');
-    echo '</div>';
-    echo '<div class="col-lg-9">';
+
 }
 
 add_action('woocommerce_before_shop_loop', 'action_woocommerce_before_shop_loop');
@@ -82,8 +73,6 @@ function action_woocommerce_after_shop_loop()
 {
     $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
     if (!$product_category_page) {
-        echo '</div>';
-        echo '</div>';
         echo '</div>';
         echo '</section>';
     }
