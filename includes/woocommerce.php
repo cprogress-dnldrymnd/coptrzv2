@@ -729,7 +729,7 @@ function date_compare_oldest($element1, $element2)
         return 0;
     }
 
-    return ($datetime1 < $datetime2) ? -1 : 1;
+    return ($datetime1 > $datetime2) ? -1 : 1;
 }
 
 function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $sortby = 'latest', $location = false)
