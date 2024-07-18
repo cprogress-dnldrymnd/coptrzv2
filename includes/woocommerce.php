@@ -772,9 +772,18 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
         usort($child_array, 'date_compare_oldest');
     }
 
+
+    if ($location !== false) {
+        $child_array_val = array_filter($child_array, function ($var) use ($location) {
+            return ($var['location'] == $location);
+        });
+    } else {
+        $child_array_val = $child_array;
+    }
+
     // return var_dump($child_array);
 
-    $children_chunk = array_chunk($child_array, 4);
+    $children_chunk = array_chunk($child_array_val, 4);
 
     $html = '<div class="product-custom-variation product-training-variation">';
 
