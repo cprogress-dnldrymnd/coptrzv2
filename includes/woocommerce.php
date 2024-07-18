@@ -62,7 +62,7 @@ function action_woocommerce_before_shop_loop()
 {
 
 
-    echo '<section class="product-archive-loop sm-padding-top lg-padding-bottom border-top-default no-overflow">';
+    echo '<section class="product-archive-loop md-padding-top md-padding-bottom border-top-default no-overflow">';
     echo '<div class="container">';
 
 }

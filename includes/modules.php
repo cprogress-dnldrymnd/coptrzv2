@@ -239,6 +239,7 @@ function ___hero_product_taxonomy()
             'class' => _attribute('class', $heading_class),
             ''
         ));
+        
         if ($term_description_val) {
             $hero .= __description(array(
                 'description' => $term_description_val,
