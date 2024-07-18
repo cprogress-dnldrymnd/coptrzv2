@@ -743,9 +743,9 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
 
     usort($child_array, 'date_compare'); 
 
-    return var_dump($child_array);
+   // return var_dump($child_array);
 
-    $children_chunk = array_chunk($children, 4);
+    $children_chunk = array_chunk($child_array, 4);
 
     $html = '<div class="product-custom-variation product-training-variation">';
 
