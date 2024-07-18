@@ -721,10 +721,10 @@ function date_compare($element1, $element2)
     return $datetime1 - $datetime2;
 }
 
-function custom_product_variation_training($delivery_method = 'online-self-paced', $sortby = 'latest', $location = false)
+function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $sortby = 'latest', $location = false)
 {
-    global $product;
     $SVG = new SVG;
+    $product = wc_get_product( $product_id );
     $children = $product->get_children();
 
     $child_array = [];

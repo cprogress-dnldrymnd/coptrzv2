@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div id="results">
-                        <?= custom_product_variation_training() ?>
+                        <?= custom_product_variation_training(get_the_ID()) ?>
                     </div>
                 </div>
                 <div class="col-lg-6">
