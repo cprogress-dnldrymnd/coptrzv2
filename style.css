@@ -11469,13 +11469,13 @@ hr {
   background-color: var(--bs-accent); }
 .hero-hidden .breadcrumbs .text-white {
   color: var(--bs-primary) !important; }
-.hero-hidden .header .navbar.navbar.navbar .nav-item .submenu-inner {
+.hero-hidden .heade.header .navbar.navbar.navbar .submenu-inner {
   background-color: var(--bs-black); }
-.hero-hidden .header .navbar.navbar.navbar .nav-item .submenu2 {
+.hero-hidden .heade.header .navbar.navbar.navbar .submenu2 {
   background-color: var(--bs-black); }
-.hero-hidden .header .navbar.navbar.navbar .nav-item .nav-link {
+.hero-hidden .heade.header .navbar.navbar.navbar .nav-link {
   color: var(--bs-white) !important; }
-  .hero-hidden .header .navbar.navbar.navbar .nav-item .nav-link:hover, .hero-hidden .header .navbar.navbar.navbar .nav-item .nav-link:active, .hero-hidden .header .navbar.navbar.navbar .nav-item .nav-link:focus {
+  .hero-hidden .heade.header .navbar.navbar.navbar .nav-link:hover, .hero-hidden .heade.header .navbar.navbar.navbar .nav-link:active, .hero-hidden .heade.header .navbar.navbar.navbar .nav-link:focus {
     background-color: var(--bs-white) !important;
     color: var(--bs-black) !important; }
 

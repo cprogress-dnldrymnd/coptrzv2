@@ -59,3 +59,11 @@ function archive_ajax()
 
 	die();
 }
+
+
+add_action('wp_ajax_nopriv_training_ajax', 'training_ajax'); // for not logged in users
+add_action('wp_ajax_training_ajax', 'training_ajax');
+function training_ajax()
+{
+	
+}
