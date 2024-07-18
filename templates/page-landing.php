@@ -24,7 +24,7 @@ $form_args = array(
 );
 ?>
 
-<section class="landing-page bg-primary header-padding rounded-corner mx-20px d-flex align-items-center justify-content-center" id="enquire">
+<section class="landing-page bg-primary header-padding rounded-corner mx-20px d-flex align-items-center justify-content-center" >
     <?php
     if ($background_youtube && $background_type == 'youtube') {
         echo __background($background_youtube, true);
@@ -41,7 +41,7 @@ $form_args = array(
                         <?php the_content() ?>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" id="enquire">
                     <?= __form($form_args) ?>
                 </div>
             </div>
