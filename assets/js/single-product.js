@@ -8,6 +8,11 @@ jQuery(document).ready(function () {
 
 function __training() {
 
+    jQuery('.trigger-training-ajax').click(function (e) {
+        __training_ajax();
+        e.preventDefault();
+    });
+
     var swiper_training = new Swiper('.swiper-training', {
         loop: false,
         autoplay: false,
@@ -20,6 +25,29 @@ function __training() {
 
 }
 
+function __training_ajax() {
+    $result_holder = jQuery('#results');
+    $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
+    $sortby = jQuery('select[name="sort"]:checked').val();
+    jQuery.ajax({
+        type: "POST",
+
+        url: ajax_object.ajax_url,
+
+        data: {
+            action: 'training_ajax',
+            delivery_method: $delivery_method,
+            sortby: $sortby,
+        },
+
+        success: function (response) {
+            $result_holder.html(response);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
+}
 
 function __quantity() {
     jQuery('form.cart').on('click', 'button.plus, button.minus', function () {

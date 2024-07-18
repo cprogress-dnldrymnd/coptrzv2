@@ -25,10 +25,10 @@
                                 <div class="filter-box bg-light rounded-corner">
                                     <div class="row">
                                         <div class="col-auto"><input name="delivery_method" value="online-self-paced" type="radio" id="Online" checked="">
-                                            <label class="rounded-corner" for="Online">Online Self-paced</label>
+                                            <label class="rounded-corner trigger-training-ajax" for="Online">Online Self-paced</label>
                                         </div>
                                         <div class="col-auto"><input name="delivery_method" value="classroom" type="radio" id="Classroom">
-                                            <label class="rounded-corner" for="Classroom">Classroom</label>
+                                            <label class="rounded-corner trigger-training-ajax" for="Classroom">Classroom</label>
                                         </div>
                                     </div>
                                 </div>
@@ -53,16 +53,13 @@
                 </div>
             </div>
         </div>
-        Edinburgh, Leeds, Rugby, Cardiff, Kent, Hampshire
-
-
-
-
 
         <div class="training-list">
             <div class="row">
                 <div class="col-lg-6">
-                    <?= custom_product_variation_training() ?>
+                    <div id="results">
+                        <?= custom_product_variation_training() ?>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <?php $SVG = new SVG; ?>
