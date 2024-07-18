@@ -12564,11 +12564,12 @@ section.product-main .summary.summary.summary .variations tr {
     border-radius: 10px; }
     @media (min-width: 1200px) and (max-width: 1399px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
-        font-size: 14px;
-        padding: 10px; } }
+        font-size: 14px; } }
     @media (min-width: 992px) and (max-width: 1199px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
-        font-size: 13px;
+        font-size: 13px; } }
+    @media screen and (min-width: 992px) {
+      .header .navbar.navbar.navbar .nav-item .nav-link {
         padding: 10px; } }
     .header .navbar.navbar.navbar .nav-item .nav-link:hover, .header .navbar.navbar.navbar .nav-item .nav-link:active, .header .navbar.navbar.navbar .nav-item .nav-link:focus {
       background-color: var(--bs-primary);
@@ -12653,14 +12654,14 @@ section.product-main .summary.summary.summary .variations tr {
   @media screen and (max-width: 991px) {
     .header .site-logo svg {
       height: 15px; } }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 992px) {
     .header .header-right {
       --bs-gutter-x: 10px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .header .header-right .button-box a {
       padding: 0.625rem 1rem;
       font-size: 13px; } }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 992px) {
     .header .header-right .button-box {
       margin-left: 1rem; } }
   @media (min-width: 992px) and (max-width: 1199px) {
