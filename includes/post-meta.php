@@ -237,7 +237,7 @@ Container::make('theme_options', __('Archives Settings'))
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
-                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url inline-field inline-field-wide-label')
+                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url-cb inline-field inline-field-wide-label')
                         ->set_conditional_logic(
                             array(
                                 array(
@@ -360,7 +360,7 @@ Container::make('theme_options', __('Archives Settings'))
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
-                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url inline-field inline-field-wide-label')
+                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url-cb inline-field inline-field-wide-label')
                         ->set_conditional_logic(
                             array(
                                 array(
@@ -472,7 +472,7 @@ Container::make('theme_options', __('Archives Settings'))
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
-                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url inline-field inline-field-wide-label')
+                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url-cb inline-field inline-field-wide-label')
                         ->set_conditional_logic(
                             array(
                                 array(
@@ -588,7 +588,7 @@ Container::make('theme_options', __('Archives Settings'))
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
-                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url inline-field inline-field-wide-label')
+                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url-cb inline-field inline-field-wide-label')
                         ->set_conditional_logic(
                             array(
                                 array(
@@ -702,7 +702,7 @@ Container::make('theme_options', __('Archives Settings'))
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
-                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url inline-field inline-field-wide-label')
+                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url-cb inline-field inline-field-wide-label')
                         ->set_conditional_logic(
                             array(
                                 array(
@@ -825,7 +825,7 @@ Container::make('theme_options', __('Archives Settings'))
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
-                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url inline-field inline-field-wide-label')
+                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url-cb inline-field inline-field-wide-label')
                         ->set_conditional_logic(
                             array(
                                 array(
@@ -966,7 +966,7 @@ function __hero_button_fields()
                         )
                     ),
                 Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
-                Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+                Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url-cb')
                     ->set_conditional_logic(
                         array(
                             array(
@@ -1831,7 +1831,7 @@ function __section_fields($name = 'sections')
                                                             )
                                                         ),
                                                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
-                                                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+                                                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url-cb')
                                                         ->set_conditional_logic(
                                                             array(
                                                                 array(
@@ -4743,7 +4743,7 @@ function __section_fields($name = 'sections')
                                             )
                                         ),
                                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
-                                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url')
+                                    Field::make('text', 'button_url', __('Button URL'))->set_classes('field-url-cb')
                                         ->set_conditional_logic(
                                             array(
                                                 array(
