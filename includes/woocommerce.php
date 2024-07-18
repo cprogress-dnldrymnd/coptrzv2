@@ -107,7 +107,7 @@ function action_woocommerce_after_shop_loop_item()
     if (!$product_category_page) {
         echo __description(array(
             'description' => get_the_excerpt(),
-            'class' => _attribute('class', array('product-desc')),
+            'class' => _attribute('class', array('product-desc px-20px')),
         ));
     }
     echo "</div>";
