@@ -11713,6 +11713,8 @@ ul.products.products.products {
       display: flex;
       flex-direction: column;
       justify-content: space-between; }
+      ul.products.products.products li.product.product .product-inner > .woocommerce-LoopProduct-link {
+        position: absolute; }
       ul.products.products.products li.product.product .product-inner .wc-img-wrapper {
         padding: 35%;
         position: relative; }
