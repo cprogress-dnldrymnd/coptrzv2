@@ -21,7 +21,7 @@
             &.is-not-mega-menu {
                 .submenu {
                     @include responsive(md-lg) {
-                        width: 500px;
+                        width: 550px;
                         li {
                             width: 50%;
                         }
@@ -53,7 +53,7 @@
                 }
                 @include responsive(md) {
                     font-size: 13px;
-                    padding: 0 5px;
+                    padding: 10px;
                 }
                 @include on-event {
                     background-color: var(--bs-primary);
@@ -161,6 +161,10 @@
         @include responsive(md) {
             --bs-gutter-x: 15px;
         }
+        @include responsive(small-lg) {
+            --bs-gutter-x: 10px;
+
+        }
         .button-box {
             a {
                 @include responsive(md) {
@@ -168,6 +172,9 @@
                     font-size: 13px;
                 }
             }
+        @include responsive(small-lg) {
+            margin-left: 1rem;
+        }
         }
     }
     .container {

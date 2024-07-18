@@ -12545,7 +12545,7 @@ section.product-main .summary.summary.summary .variations tr {
         margin-top: 10px; } }
   @media screen and (min-width: 992px) {
     .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu {
-      width: 500px; }
+      width: 550px; }
       .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu li {
         width: 50%; } }
   @media screen and (min-width: 992px) {
@@ -12569,7 +12569,7 @@ section.product-main .summary.summary.summary .variations tr {
     @media (min-width: 992px) and (max-width: 1199px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 13px;
-        padding: 0 5px; } }
+        padding: 10px; } }
     .header .navbar.navbar.navbar .nav-item .nav-link:hover, .header .navbar.navbar.navbar .nav-item .nav-link:active, .header .navbar.navbar.navbar .nav-item .nav-link:focus {
       background-color: var(--bs-primary);
       color: var(--bs-white) !important; }
@@ -12656,10 +12656,16 @@ section.product-main .summary.summary.summary .variations tr {
   @media (min-width: 992px) and (max-width: 1199px) {
     .header .header-right {
       --bs-gutter-x: 15px; } }
+  @media (min-width: 1200px) and (max-width: 1399px) {
+    .header .header-right {
+      --bs-gutter-x: 10px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .header .header-right .button-box a {
       padding: 0.625rem 1rem;
       font-size: 13px; } }
+  @media (min-width: 1200px) and (max-width: 1399px) {
+    .header .header-right .button-box {
+      margin-left: 1rem; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .header .container {
       max-width: calc(100% - 50px); } }
