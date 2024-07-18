@@ -64,14 +64,6 @@ if (is_home() || is_category()) {
     $has_filter = false;
     $has_pagination = false;
     $archive_title = 'Capabilities';
-    $data = array(
-        'col' => true,
-        'featured' => false,
-        'bg_image' => true,
-        'style' => 'style-3',
-        'button_text' => 'Learn More',
-        'elements' => array('image', 'title', 'button'),
-    );
     $elements_array[] = 'category';
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
@@ -88,6 +80,7 @@ if (is_home() || is_category()) {
     $archive_title = 'Industry Solutions';
     $elements_array[] = 'category';
     $data['button_text'] = 'Learn More';
+    $data['style'] = 'style-3';
     $data['elements'] = $elements_array;
 } else if (is_post_type_archive('casestudies') || is_tax('casestudies_category')) {
     $key = 'casestudies_';
