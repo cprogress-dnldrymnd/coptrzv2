@@ -11709,7 +11709,6 @@ ul.products.products.products {
     position: relative;
     flex: 0 0 auto; }
     ul.products.products.products li.product.product .product-inner {
-      padding: 20px;
       position: relative;
       display: flex;
       flex-direction: column;
