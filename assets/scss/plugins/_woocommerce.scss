@@ -940,6 +940,12 @@ body {
     ul.page-numbers.page-numbers {
         display: flex;
         border: none;
+        li {
+            border: none;
+            @include not-last-child {
+                margin-right: 10px;
+            }
+        }
         .page-numbers {
             padding: 15px;
             color: var(--bs-primary);
@@ -951,9 +957,7 @@ body {
             align-items: center;
             justify-content: center;
             @include transition(500ms);
-            @include not-last-child {
-                margin-right: 10px;
-            }
+            
         }
         svg {
             width: 25px;
