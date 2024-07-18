@@ -723,9 +723,13 @@ function date_compare_latest($element1, $element2)
 
 function date_compare_oldest($element1, $element2)
 {
-    $datetime1 = strtotime($element1['datetime']);
-    $datetime2 = strtotime($element2['datetime']);
-    return $datetime1 - $datetime2;
+    $datea = strtotime(str_replace('/', '-', $element1));
+    $dateb = strtotime(str_replace('/', '-', $element2));
+    if ($datea == $dateb) {
+        return 0;
+    }
+
+    return ($datea < $dateb) ? -1 : 1;
 }
 
 function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $sortby = 'latest', $location = false)
@@ -754,11 +758,10 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
             );
         }
     }
-    usort($child_array, 'date_compare_latest');
-
-    if ($sortby == 'oldest') {
-        ksort($child_array);
+    if ($sortby == 'latest') {
+        usort($child_array, 'date_compare_latest');
     } else {
+        ksort($child_array, 'date_compare_oldest');
     }
 
     // return var_dump($child_array);
