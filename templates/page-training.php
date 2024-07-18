@@ -57,7 +57,7 @@
                                     $locations = array_unique($locations);
                                     ?>
 
-                                    <select name="category" class="trigger-training-ajax-select">
+                                    <select name="location" class="trigger-training-ajax-select">
                                         <option value="">Location: All</option>
                                         <?php foreach ($locations as $location) { ?>
                                             <option value="<?= $location ?>" class="text-capitalize"><?= $location ?></option>

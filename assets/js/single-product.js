@@ -40,7 +40,8 @@ function __training_ajax() {
         $product_id = jQuery('input[name="product_id"]').val();
         $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
         $sortby = jQuery('select[name="sort"]').val();
-
+        $location = jQuery('select[name="location"]').val();
+        
         jQuery.ajax({
             type: "POST",
 
@@ -50,6 +51,7 @@ function __training_ajax() {
                 action: 'training_ajax',
                 product_id: $product_id,
                 delivery_method: $delivery_method,
+                location: $location,
                 sortby: $sortby,
             },
 

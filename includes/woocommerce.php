@@ -736,6 +736,8 @@ function date_compare_oldest($element1, $element2)
     return ($datetime1 > $datetime2) ? -1 : 1;
 }
 
+
+
 function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $sortby = 'latest', $location = false)
 {
     $SVG = new SVG;
@@ -758,9 +760,16 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 'sku' => $variation->get_sku(),
                 'price' => $variation->get_price_html(),
                 'stock_status_variation' => $variation->get_stock_status(),
+                'location' => $product_attribute_array['pa_location'],
                 'datetime' => $product_attribute_array['date']
             );
         }
+    }
+
+    if ($location !== false) {
+        $child_array = array_filter($child_array, function ($var) use ($location) {
+            return ($var['location'] == $location);
+        });
     }
     if ($sortby == 'latest') {
         usort($child_array, 'date_compare_latest');
