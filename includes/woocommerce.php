@@ -114,6 +114,9 @@ function action_woocommerce_before_shop_loop_item()
         $class = 'rounded-10px border-default p-20px';
     }
     echo "<div class='product-inner h-100 $class'>";
+    if (!$product_category_page) {
+        echo "<div class='product-info'>";
+    }
 };
 
 
