@@ -27,12 +27,13 @@ $class = 'mb-5';
 if (is_product_taxonomy()) {
 	$product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
 	if ($product_category_page) {
+		$col_class = 'col-sm-6';
+		$class = '';
+	} else {
 		echo __description(array(
 			'description' => get_the_excerpt(),
 			'class' => _attribute('class', array('product-desc px-20px')),
 		));
-		$col_class = 'col-sm-6';
-		$class = '';
 	}
 }
 ?>
