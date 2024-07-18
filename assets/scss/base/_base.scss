@@ -222,7 +222,6 @@ main {
                     margin-right: 20px;
                 }
             }
-            
         }
         img {
             height: 50px;
@@ -260,10 +259,12 @@ section {
 .button-box a,
 .button-box button,
 .button.button.button.button.button,
-.wp-element-button.wp-element-button.wp-element-button, .wpcf7-submit.wpcf7-submit.wpcf7-submit {
+.wp-element-button.wp-element-button.wp-element-button,
+.wpcf7-submit.wpcf7-submit.wpcf7-submit {
     @include button-style;
 }
-.wp-element-button.wp-element-button.wp-element-button, .wpcf7-submit.wpcf7-submit.wpcf7-submit {
+.wp-element-button.wp-element-button.wp-element-button,
+.wpcf7-submit.wpcf7-submit.wpcf7-submit {
     @include button-accent;
 }
 .button-box.button-box.button-box {
@@ -1221,8 +1222,14 @@ hr {
         }
     }
 
-    .header .navbar.navbar.navbar .nav-item .submenu-inner {
-        background-color: var(--bs-black);
+    .header .navbar.navbar.navbar .nav-item {
+        .submenu-inner {
+            background-color: var(--bs-black);
+        }
+        .submenu2 {
+            background-color: var(--bs-black);
+        }
+
         .text-black {
             color: var(--bs-white) !important;
         }
