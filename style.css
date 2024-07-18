@@ -11476,7 +11476,8 @@ hr {
 .hero-hidden .header .navbar.navbar.navbar .nav-item .text-black {
   color: var(--bs-white) !important; }
   .hero-hidden .header .navbar.navbar.navbar .nav-item .text-black:hover, .hero-hidden .header .navbar.navbar.navbar .nav-item .text-black:active, .hero-hidden .header .navbar.navbar.navbar .nav-item .text-black:focus {
-    background-color: var(--bs-black); }
+    background-color: var(--bs-white) !important;
+    color: var(--bs-black) !important; }
 
 .input-box.input-box .icon {
   background-color: var(--border-color);

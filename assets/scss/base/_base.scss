@@ -1230,7 +1230,7 @@ hr {
             background-color: var(--bs-black);
         }
 
-        .text-black {
+        .nav-link {
             color: var(--bs-white) !important;
             @include on-event {
                 background-color: var(--bs-white) !important;
