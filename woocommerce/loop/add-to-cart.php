@@ -26,8 +26,10 @@ $col_class = 'col-sm-12';
 $class = 'mb-5';
 if (is_product_taxonomy()) {
 	$product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
-	$col_class = 'col-sm-6';
-	$class = '';
+	if ($product_category_page) {
+		$col_class = 'col-sm-6';
+		$class = '';
+	}
 }
 ?>
 <div class="product-buttons <?= $class ?>">
