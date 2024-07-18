@@ -724,7 +724,7 @@ function date_compare($element1, $element2)
 function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $sortby = 'latest', $location = false)
 {
     $SVG = new SVG;
-    $product = wc_get_product( $product_id );
+    $product = wc_get_product($product_id);
     $children = $product->get_children();
 
     $child_array = [];
@@ -747,10 +747,10 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
             );
         }
     }
-    if ($sortby == 'latest') {
-        usort($child_array, 'date_compare');
-    } else {
-        ksort($child_array, 'date_compare');
+    usort($child_array, 'date_compare');
+    
+    if ($sortby == 'oldest') {
+        array_reverse($child_array);
     }
 
     // return var_dump($child_array);
