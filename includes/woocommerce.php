@@ -1056,7 +1056,7 @@ remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
 remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
 
 
-function woocommerce_after_shop_loop_item_title()
+function action_woocommerce_after_shop_loop_item_title()
 {
     $product_category_page = false;
     if (is_product_taxonomy()) {
