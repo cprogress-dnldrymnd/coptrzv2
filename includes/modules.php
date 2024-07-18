@@ -2759,7 +2759,7 @@ function __form($args)
 
     $html .= "<div class='form-box p-20px small-text fw-light'>";
     $html .= "<div class='inner mt-20px'>";
-    $html .= do_shortcode("[wpforms id='$form_id' title='false']");
+    $html .= do_shortcode("[contact-form-7 id='$form_id']");
     $html .= "</div>";
     $html .= "</div>";
 
