@@ -172,18 +172,36 @@ function __block_accordion() {
 
 function __header_menu() {
     if (jQuery('header').length > 0) {
-     
+        if (window.innerWidth > 991) {
+            jQuery(".has-children.main-nav").hover(
+                function () {
+                    jQuery(this).toggleClass('active');
+                    jQuery(this).next().toggleClass('active');
+                    jQuery('body').removeClass('mini-cart-active');
+                }, function () {
+                    jQuery(this).removeClass('active');
+                    jQuery(this).next().removeClass('active');
+                }
+            );
+        } else {
+            jQuery('.has-children.main-nav').click(function (e) {
+                if (jQuery(this).hasClass('active')) {
+                    jQuery(this).removeClass('active');
+                    jQuery(this).next().removeClass('active');
+                } else {
+                    jQuery('.has-children.main-nav.active').removeClass('active');
+                    jQuery('.submenu.active').removeClass('active');
 
-        jQuery(".has-children.main-nav").hover(
-            function () {
-                jQuery(this).toggleClass('active');
-                jQuery(this).next().toggleClass('active');
+                    jQuery(this).toggleClass('active');
+                    jQuery(this).next().toggleClass('active');
+                }
                 jQuery('body').removeClass('mini-cart-active');
-            }, function () {
-                jQuery(this).removeClass('active');
-                jQuery(this).next().removeClass('active');
-            }
-        );
+
+                e.preventDefault();
+            });
+        }
+
+
 
         jQuery('.has-children.sub-nav').click(function (e) {
             if (jQuery(this).hasClass('active')) {
