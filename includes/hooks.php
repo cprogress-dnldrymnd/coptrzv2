@@ -314,7 +314,7 @@ function action_body_class($classes)
         $classes[] = 'hero-hidden';
     }
 
-    if($product_category_page) {
+    if(!$product_category_page) {
         $classes[] = 'hide-price';
         $classes[] = 'hide-stock';
         $classes[] = 'product-loop-style-1';
