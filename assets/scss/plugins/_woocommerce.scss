@@ -172,7 +172,7 @@ ul.products.products.products {
             .woocommerce-loop-product__title {
                 font-size: 2rem;
                 color: var(--bs-primary);
-               @include responsive(xs-sm) {
+                @include responsive(xs-sm) {
                     font-size: 1.75rem;
                 }
                 @include responsive(xs) {
@@ -902,5 +902,25 @@ section.product-main {
             width: 28px;
             height: 28px;
         }
+    }
+}
+
+body {
+    &.hide-price {
+        .product-archive-loop {
+            .price {
+                display: none;
+            }
+        }
+    }
+    &.hide-stock {
+        .product-archive-loop {
+            .status {
+                display: none;
+            }
+        }
+    }
+    &.product-loop-style-1 {
+        
     }
 }

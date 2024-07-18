@@ -64,7 +64,6 @@ function action_woocommerce_before_shop_loop()
 
     echo '<section class="product-archive-loop md-padding-top md-padding-bottom border-top-default no-overflow">';
     echo '<div class="container">';
-
 }
 
 add_action('woocommerce_before_shop_loop', 'action_woocommerce_before_shop_loop');
@@ -106,7 +105,15 @@ function action_woocommerce_after_shop_loop_item()
 add_action('woocommerce_before_shop_loop_item', 'action_woocommerce_before_shop_loop_item', 10, 0);
 function action_woocommerce_before_shop_loop_item()
 {
-    echo "<div class='product-inner rounded-10px border-default h-100'>";
+    $product_category_page = false;
+    $class = '';
+    if (is_product_taxonomy()) {
+        $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
+    }
+    if ($product_category_page) {
+        $class = 'rounded-10px border-default';
+    }
+    echo "<div class='product-inner h-100 $class'>";
 };
 
 
@@ -1036,7 +1043,7 @@ function __drone_servicing()
 }
 
 
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
 
 /**
  * @snippet       Remove Sorting Dropdown @ WooCommerce Shop & Archives
@@ -1045,5 +1052,5 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
  * @compatible    WooCommerce 7
  * @community     https://businessbloomer.com/club/
  */
-  
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
