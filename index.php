@@ -64,7 +64,6 @@ if (is_home() || is_category()) {
     $has_filter = false;
     $has_pagination = false;
     $archive_title = 'Capabilities';
-    $elements_array[] = 'category';
     $data['button_text'] = 'Learn More';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
@@ -78,7 +77,6 @@ if (is_home() || is_category()) {
     $has_filter = false;
     $class = "mb-50px";
     $archive_title = 'Industry Solutions';
-    $elements_array[] = 'category';
     $data['button_text'] = 'Learn More';
     $data['style'] = 'style-3';
     $data['elements'] = $elements_array;
