@@ -6061,20 +6061,3 @@ Container::make('post_meta', 'Hide Before Footer Layout')
             ->set_options($before_footer_options)
     ));
 
-
-/*-----------------------------------------------------------------------------------*/
-/* Menu Settings
-/*-----------------------------------------------------------------------------------*/
-Container::make('nav_menu_item', __('Menu Settings'))
-    ->add_fields(array(
-        Field::make('checkbox', 'is_mega_menu', __('Is Mega Menu')),
-        Field::make('checkbox', 'is_two_column', __('Is Two Column'))
-            ->set_conditional_logic(
-                array(
-                    array(
-                        'field' => 'is_mega_menu',
-                        'value' => false,
-                    )
-                )
-            ),
-    ));
