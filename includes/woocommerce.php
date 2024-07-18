@@ -773,7 +773,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
     }
 
 
-    if ($location !== false) {
+    if ($location) {
         $child_array_val = array_filter($child_array, function ($var) use ($location) {
             return ($var['location'] == $location);
         });
