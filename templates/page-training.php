@@ -24,7 +24,7 @@
                                 <p class="fw-medium medium-text">Select delivery method:</p>
                                 <div class="filter-box bg-light rounded-corner">
                                     <div class="row">
-                                        <div class="col-auto"><input name="delivery_method" value="online-self-paced" type="radio" id="Online" checked="">
+                                        <div class="col-auto"><input name="delivery_method" value="online-self-paced" type="radio" id="Online" checked>
                                             <label class="rounded-corner trigger-training-ajax" for="Online">Online Self-paced</label>
                                         </div>
                                         <div class="col-auto"><input name="delivery_method" value="classroom" type="radio" id="Classroom">
