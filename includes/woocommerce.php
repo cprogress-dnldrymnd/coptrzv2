@@ -99,17 +99,6 @@ if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
 add_action('woocommerce_after_shop_loop_item', 'action_woocommerce_after_shop_loop_item', 10, 0);
 function action_woocommerce_after_shop_loop_item()
 {
-
-    $product_category_page = false;
-    if (is_product_taxonomy()) {
-        $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
-    }
-    if (!$product_category_page) {
-        echo __description(array(
-            'description' => get_the_excerpt(),
-            'class' => _attribute('class', array('product-desc px-20px')),
-        ));
-    }
     echo "</div>";
 };
 //Add DIV start element before shop loop item
@@ -1065,3 +1054,20 @@ remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
  */
 
 remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
+
+
+function woocommerce_after_shop_loop_item_title()
+{
+    $product_category_page = false;
+    if (is_product_taxonomy()) {
+        $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
+    }
+    if (!$product_category_page) {
+        echo __description(array(
+            'description' => get_the_excerpt(),
+            'class' => _attribute('class', array('product-desc px-20px')),
+        ));
+    }
+}
+
+add_action('woocommerce_after_shop_loop_item_title', 'action_woocommerce_after_shop_loop_item_title');
