@@ -53,6 +53,8 @@ function header_menu()
 			$class_col = $is_two_column ? 'is-two-column' : '';
 			if (!$is_mega_menu) {
 				$ul_class = $is_two_column  ? 'flex-wrap' : 'flex-column';
+			} else {
+				$ul_class = '';
 			}
 			$url = $menu['url'];
 			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
