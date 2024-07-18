@@ -67,5 +67,6 @@ function training_ajax()
 {
 	$delivery_method = isset($_POST['delivery_method']) ? $_POST['delivery_method'] : 'online-self-paced';
 	$sortby = isset($_POST['sortby']) ? $_POST['sortby'] : 'latest';
-	custom_product_variation_training();
+	custom_product_variation_training($delivery_method, $sortby);
+	die();
 }
