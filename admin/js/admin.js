@@ -59,7 +59,7 @@ function button_selector() {
 
     jQuery(document).on("change", '.select-page-selector', function (event) {
         $value = jQuery(this).val();
-        $input = jQuery(this).parent().parent().parent().parent().parent().find('.field-url input');
+        $input = jQuery(this).parent().parent().parent().parent().parent().find('.field-url-cb input');
         $input.val($value);
     });
 
@@ -92,7 +92,7 @@ function button_selector() {
         jQuery('.trigger-selector select').each(function (index, element) {
             $value = jQuery(this).val();
             $selector = jQuery(this).parent().parent().parent().find('.page-selector');
-            $input = jQuery(this).parent().parent().parent().find('.field-url input').val();
+            $input = jQuery(this).parent().parent().parent().find('.field-url-cb input').val();
             active_link_type($selector, $value, $input)
         });
     }, 2000);
