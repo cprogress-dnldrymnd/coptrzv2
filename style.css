@@ -12316,12 +12316,13 @@ section.product-main .summary.summary.summary .variations tr {
       height: 28px; }
 
 body.hide-price .product-archive-loop .price {
-  display: none; }
+  display: none !important; }
 body.hide-stock .product-archive-loop .status {
-  display: none; }
+  display: none !important; }
 body.product-loop-style-1 .wc-img-wrapper {
   border: 1px solid var(--border-color); }
-body.product-loop-style-1 .woocommerce-loop-product__title {
+body.product-loop-style-1 .woocommerce-loop-product__title,
+body.product-loop-style-1 .product-buttons {
   padding-left: 20px;
   padding-right: 20px; }
 
