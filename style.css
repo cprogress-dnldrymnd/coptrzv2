@@ -12580,11 +12580,12 @@ section.product-main .summary.summary.summary .variations tr {
     .header .navbar.navbar.navbar .nav-item .nav-link.active {
       background-color: var(--bs-primary);
       color: var(--bs-white) !important; }
-  .header .navbar.navbar.navbar .nav-item .submenu-inner {
-    background-color: var(--bs-white);
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 20px; }
+  @media screen and (min-width: 992px) {
+    .header .navbar.navbar.navbar .nav-item .submenu-inner {
+      background-color: var(--bs-white);
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 20px; } }
   .header .navbar.navbar.navbar .nav-item .submenu {
     position: absolute;
     left: 50%;

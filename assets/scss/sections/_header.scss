@@ -68,10 +68,12 @@
                 }
             }
             .submenu-inner {
-                background-color: var(--bs-white);
-                padding: 10px;
-                border-radius: 10px;
-                margin-top: 20px;
+                @include responsive(md-lg) {
+                    background-color: var(--bs-white);
+                    padding: 10px;
+                    border-radius: 10px;
+                    margin-top: 20px;
+                }
             }
             .submenu {
                 position: absolute;
