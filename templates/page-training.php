@@ -50,7 +50,7 @@
                                         $product_attribute = $variation->get_attributes();
                                         foreach ($product_attribute as $key => $attr) {
                                             if ($key == 'pa_location') {
-                                                $locations[$key] = $attr;
+                                                $locations[] = $attr;
                                             }
                                         }
                                     }
@@ -58,8 +58,8 @@
 
                                     <select name="category" class="trigger-training-ajax-select">
                                         <option value="">Location: All</option>
-                                        <?php foreach ($locations as $key => $location) { ?>
-                                            <option value="<?= $key ?>"><?= $location ?></option>
+                                        <?php foreach ($locations as $location) { ?>
+                                            <option value="<?= $location ?>"><?= $location ?></option>
 
                                         <?php } ?>
                                     </select>
