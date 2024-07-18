@@ -28,6 +28,7 @@ function __training() {
 
 function __training_ajax() {
     $result_holder = jQuery('#results');
+    $product_id = jQuery('input[name="product_id"]').val();
     $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
     $sortby = jQuery('select[name="sort"]').val();
 
@@ -40,6 +41,7 @@ function __training_ajax() {
 
         data: {
             action: 'training_ajax',
+            product_id: $product_id,
             delivery_method: $delivery_method,
             sortby: $sortby,
         },

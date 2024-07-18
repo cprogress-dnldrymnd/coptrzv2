@@ -13,6 +13,7 @@
 </div>
 
 <section class="training-product lg-padding-top lg-padding-bottom border-top-default" id="Book-Course">
+    <input type="hidden" name="product_id" value="<?= get_the_ID() ?>">
     <div class="container">
         <h2 class="text-center">Book a GVC <br> Training Course</h2>
         <div class="post-archive-header">
