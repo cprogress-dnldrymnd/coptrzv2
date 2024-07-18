@@ -40,8 +40,28 @@
                         <div class="col-auto">
                             <div class="row g-3 align-items-center">
                                 <div class="col-auto">
+
+                                    <?php
+                                    global $product;
+                                    $children = $product->get_children();
+                                    $locations = [];
+                                    foreach ($children as $child) {
+                                        $variation = wc_get_product($child);
+                                        $product_attribute = $variation->get_attributes();
+                                        foreach ($product_attribute as $key => $attr) {
+                                            if ($key == 'pa_location') {
+                                                $locations[$key] = $attr;
+                                            }
+                                        }
+                                    }
+                                    ?>
+
                                     <select name="category" class="trigger-training-ajax-select">
                                         <option value="">Location: All</option>
+                                        <?php foreach ($locations as $key => $location) { ?>
+                                            <option value="<?= $key ?>"><?= $location ?></option>
+
+                                        <?php } ?>
                                     </select>
                                 </div>
                                 <div class="col-auto">
