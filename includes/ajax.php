@@ -65,5 +65,7 @@ add_action('wp_ajax_nopriv_training_ajax', 'training_ajax'); // for not logged i
 add_action('wp_ajax_training_ajax', 'training_ajax');
 function training_ajax()
 {
+	$delivery_method = isset($_POST['delivery_method']) ? $_POST['delivery_method'] : 'online-self-paced';
+	$sortby = isset($_POST['sortby']) ? $_POST['sortby'] : 'latest';
 	custom_product_variation_training();
 }
