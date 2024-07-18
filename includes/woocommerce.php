@@ -735,15 +735,18 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
         foreach ($product_attribute as $key => $attr) {
             $product_attribute_array[$key] = $attr;
         }
+
+
         $child_array[$child] = array(
             'product_id' => $child,
+            'product_attribute_array' => $product_attribute_array,
             'datetime' => $product_attribute_array['date']
         );
     }
 
-    usort($child_array, 'date_compare'); 
+    usort($child_array, 'date_compare');
 
-   // return var_dump($child_array);
+    // return var_dump($child_array);
 
     $children_chunk = array_chunk($child_array, 4);
 
@@ -762,15 +765,8 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
             $product_attribute = $variation->get_attributes();
             $variation_name = '';
             $lastElement = end($product_attribute);
-
-            $product_attribute_array = [];
-            foreach ($product_attribute as $key => $attr) {
-                $variation_name .= $attr . ' ';
-                if ($attr != $lastElement) {
-                    $variation_name .= ' | ';
-                }
-                $product_attribute_array[$key] = $attr;
-            }
+            $product_attribute_array = $child['product_attribute_array'];
+         
 
             $json = json_encode($product_attribute_array);
 
