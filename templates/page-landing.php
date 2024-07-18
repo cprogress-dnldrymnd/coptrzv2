@@ -24,7 +24,7 @@ $form_args = array(
 );
 ?>
 
-<section class="landing-page bg-primary header-padding rounded-corner mx-20px d-flex align-items-center justify-content-center">
+<section class="landing-page bg-primary header-padding rounded-corner mx-20px d-flex align-items-center justify-content-center" id="enquire">
     <?php
     if ($background_youtube && $background_type == 'youtube') {
         echo __background($background_youtube, true);

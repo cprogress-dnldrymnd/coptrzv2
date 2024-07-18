@@ -29,7 +29,7 @@ $SVG = new SVG;
             </button>
         </div>
         <div class="col-auto button-box button-accent button-small d-none d-lg-block">
-        <button class="rounded-10px" data-bs-toggle="modal" data-bs-target="#modal-268179" target="_self">Enquire Now</button>
+            <button class="rounded-10px" data-bs-toggle="modal" data-bs-target="#modal-268179" target="_self">Enquire Now</button>
         </div>
     </div>
 </div>
