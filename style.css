@@ -12544,9 +12544,9 @@ section.product-main .summary.summary.summary .variations tr {
         padding: 15px;
         margin-top: 10px; } }
   @media screen and (min-width: 992px) {
-    .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu {
+    .header .navbar.navbar.navbar .nav-item.is-not-mega-menu.is-two-column .submenu {
       width: 550px; }
-      .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu li {
+      .header .navbar.navbar.navbar .nav-item.is-not-mega-menu.is-two-column .submenu li {
         width: 50%; } }
   @media screen and (min-width: 992px) {
     .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu2 {
