@@ -184,7 +184,7 @@
             --bs-gutter-x: 10px;
         }
         .button-box {
-            a {
+            a,button {
                 @include responsive(md) {
                     padding: 0.625rem 10px;
                     font-size: 13px;
