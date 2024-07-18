@@ -51,7 +51,7 @@ function header_menu()
 			$is_two_column = carbon_get_nav_menu_item_meta($ID, 'is_two_column');
 			$class = $is_mega_menu ? 'is-mega-menu' : 'is-not-mega-menu position-relative';
 			$class_col = $is_two_column ? 'is-two-column':'';
-			$ul_class = $is_two_column ? '' : 'flex-wrap';
+			$ul_class = $is_two_column ? 'flex-wrap' : '';
 			$url = $menu['url'];
 			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
 				return ($var['menu_item_parent'] == $ID);

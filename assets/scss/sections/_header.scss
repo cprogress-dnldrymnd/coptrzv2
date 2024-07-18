@@ -19,6 +19,11 @@
     .navbar.navbar.navbar {
         .nav-item {
             &.is-not-mega-menu {
+                .submenu {
+                    @include responsive(md-lg) {
+                        width: 300px;
+                    }
+                }
                 &.is-two-column {
                     .submenu {
                         @include responsive(md-lg) {
@@ -29,8 +34,7 @@
                         }
                     }
                 }
-              
-              
+
                 .submenu2 {
                     @include responsive(md-lg) {
                         left: 100%;
