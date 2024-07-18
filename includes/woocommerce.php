@@ -735,7 +735,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
         foreach ($product_attribute as $key => $attr) {
             $product_attribute_array[$key] = $attr;
         }
-        $child_array[] = array(
+        $child_array[$child] = array(
             'product_id' => $child,
             'datetime' => $product_attribute_array['date']
         );
@@ -757,7 +757,8 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
         $html .= '<div class="swiper-slide">'; //swiper-slide
         $html .= '<div class="row g-4">'; //row
         foreach ($children as $child) {
-            $variation = wc_get_product($child['product_id']);
+            $product_id = $child['product_id'];
+            $variation = wc_get_product($product_id);
             $product_attribute = $variation->get_attributes();
             $variation_name = '';
             $lastElement = end($product_attribute);
@@ -779,8 +780,8 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
             $html .= '<div class="col-lg-6">';
 
 
-            $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
-            $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100 h-100'>"; //label
+            $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$product_id' data_variations='$json' value='$product_id'  name='variation-radio'>";
+            $html .= "<label for='variation-$product_id' class='variation-label status-style-2 w-100 h-100'>"; //label
             $html .= "<div class='inner product-inner w-100 p-20px rounded-corner  h-100 d-flex flex-column justify-content-between'>"; //inner
 
             $html .= "<div class='info-box d-flex flex-column justify-content-between'>";
@@ -819,7 +820,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
             $html .= '</div>';
 
             $html .= "<div class='button-box button-bordered mt-3'>";
-            $html .= "<a href='?add-to-cart=$child' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$child' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
+            $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
             $html .= '</div>';
 
             $html .= '</div>'; //inner
