@@ -12484,6 +12484,11 @@ section.product-main .summary.summary.summary .variations tr {
 .wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.unaccepted .wpcf7-response-output {
   border-color: #ffb900;
   background-color: rgba(255, 185, 0, 0.2); }
+.wpcf7 .wpcf7-list-item {
+  margin: 0; }
+  .wpcf7 .wpcf7-list-item .label {
+    display: flex;
+    align-items: center; }
 
 .popup-form .wpcf7 form .wpcf7-response-output {
   padding: 2rem;

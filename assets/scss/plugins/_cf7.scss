@@ -103,6 +103,16 @@
             }
         }
     }
+    .wpcf7-list-item {
+        margin: 0;
+        input {
+            margin-right: 10px;
+        }
+        label {
+            display: flex;
+            align-items: center;
+        }
+    }
 }
 .popup-form {
     .wpcf7 {
