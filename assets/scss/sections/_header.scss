@@ -19,17 +19,18 @@
     .navbar.navbar.navbar {
         .nav-item {
             &.is-not-mega-menu {
-                .submenu {
-                    @include responsive(md-lg) {
-                        width: 550px;
-                        li {
-                            width: 50%;
+                &.is-two-column {
+                    .submenu {
+                        @include responsive(md-lg) {
+                            width: 550px;
+                            li {
+                                width: 50%;
+                            }
                         }
                     }
                 }
-                .is-two-column {
-                    
-                }
+              
+              
                 .submenu2 {
                     @include responsive(md-lg) {
                         left: 100%;
