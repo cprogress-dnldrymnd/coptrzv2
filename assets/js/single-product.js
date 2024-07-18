@@ -9,6 +9,7 @@ jQuery(document).ready(function () {
 function __training() {
 
     jQuery('.trigger-training-ajax').click(function (e) {
+        jQuery('.ajax-loading').addClass('loading-post');
         setTimeout(function () {
             __training_ajax();
         }, 300);
@@ -31,8 +32,6 @@ function __training_ajax() {
     $product_id = jQuery('input[name="product_id"]').val();
     $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
     $sortby = jQuery('select[name="sort"]').val();
-    $ajax_holder = jQuery('.ajax-loading');
-    $ajax_holder.addClass('loading-post');
 
     jQuery.ajax({
         type: "POST",
@@ -48,8 +47,7 @@ function __training_ajax() {
 
         success: function (response) {
             $result_holder.html(response);
-            $ajax_holder.removeClass('loading-post');
-
+            jQuery('.ajax-loading').removeClass('loading-post');
         },
         error: function (e) {
             console.log(e);
