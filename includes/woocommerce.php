@@ -714,17 +714,25 @@ function __get_product_taxonomy_page($id)
     }
 }
 
-function date_compare($element1, $element2)
+function date_compare_latest($element1, $element2)
 {
     $datetime1 = strtotime($element1['datetime']);
     $datetime2 = strtotime($element2['datetime']);
     return $datetime1 - $datetime2;
 }
 
+
+function date_compare_oldest($element1, $element2)
+{
+    $datetime1 = strtotime($element1['datetime']);
+    $datetime2 = strtotime($element2['datetime']);
+    return $datetime2 - $datetime1;
+}
+
 function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $sortby = 'latest', $location = false)
 {
     $SVG = new SVG;
-    $product = wc_get_product($product_id);
+    $product = wc_get_product( $product_id );
     $children = $product->get_children();
 
     $child_array = [];
@@ -747,10 +755,10 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
             );
         }
     }
-    usort($child_array, 'date_compare');
-    
-    if ($sortby == 'oldest') {
-        array_reverse($child_array);
+    if ($sortby == 'latest') {
+        usort($child_array, 'date_compare_latest');
+    } else {
+        ksort($child_array, 'date_compare_oldest');
     }
 
     // return var_dump($child_array);
