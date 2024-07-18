@@ -12565,7 +12565,7 @@ section.product-main .summary.summary.summary .variations tr {
     @media (min-width: 1200px) and (max-width: 1399px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 14px;
-        padding: 0 5px; } }
+        padding: 10px; } }
     @media (min-width: 992px) and (max-width: 1199px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 13px;
