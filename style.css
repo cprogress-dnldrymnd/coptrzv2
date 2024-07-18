@@ -12485,7 +12485,8 @@ section.product-main .summary.summary.summary .variations tr {
   border-color: #ffb900;
   background-color: rgba(255, 185, 0, 0.2); }
 .wpcf7 .wpcf7-list-item {
-  margin: 0; }
+  margin: 0;
+  font-size: 14px; }
   .wpcf7 .wpcf7-list-item input {
     margin-right: 10px; }
   .wpcf7 .wpcf7-list-item label {
