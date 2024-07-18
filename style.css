@@ -12319,6 +12319,11 @@ body.hide-price .product-archive-loop .price {
   display: none; }
 body.hide-stock .product-archive-loop .status {
   display: none; }
+body.product-loop-style-1 .wc-img-wrapper {
+  border: 1px solid var(--border-color); }
+body.product-loop-style-1 .woocommerce-loop-product__title {
+  padding-left: 20px;
+  padding-right: 20px; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
