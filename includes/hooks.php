@@ -317,6 +317,7 @@ function action_body_class($classes)
     if($product_category_page) {
         $classes[] = 'hide-price';
         $classes[] = 'hide-stock';
+        $classes[] = 'product-loop-style-1';
     }
     return $classes;
 }
