@@ -22,16 +22,18 @@ if (!defined('ABSPATH')) {
 
 global $product;
 $product_category_page = false;
-$class = 'col-sm-12';
+$col_class = 'col-sm-12';
+$class = 'mb-5';
 if (is_product_taxonomy()) {
 	$product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
-	$class = 'col-sm-6';
+	$col_class = 'col-sm-6';
+	$class = '';
 }
 ?>
 <div class="product-buttons">
 	<div class="row g-10px">
 		<?php if ($product_category_page) { ?>
-			<div class="<?= $class ?>">
+			<div class="<?= $col_class ?>">
 				<?php
 				echo apply_filters(
 					'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
@@ -53,7 +55,7 @@ if (is_product_taxonomy()) {
 				</span>
 			</div>
 		<?php } ?>
-		<div class="<?= $class ?>">
+		<div class="<?= $col_class ?>">
 			<div class="button-box button-bordered"><a href="<?= get_the_permalink() ?>">Discover</a></div>
 		</div>
 	</div>
