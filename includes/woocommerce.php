@@ -731,6 +731,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
     foreach ($children as $child) {
         $variation = wc_get_product($child);
         $product_attribute = $variation->get_attributes();
+        $product_attribute_array = [];
         foreach ($product_attribute as $key => $attr) {
             $product_attribute_array[$key] = $attr;
         }
@@ -761,7 +762,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
             $variation_name = '';
             $lastElement = end($product_attribute);
 
-            $product_attribute_array = array();
+            $product_attribute_array = [];
             foreach ($product_attribute as $key => $attr) {
                 $variation_name .= $attr . ' ';
                 if ($attr != $lastElement) {
