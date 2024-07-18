@@ -737,6 +737,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
         }
         
 
+        if ($product_attribute_array['pa_delivery-methods'] == $delivery_method) {
             $child_array[] = array(
                 'product_id' => $child,
                 'product_attributes' => $variation->get_attributes(),
@@ -745,6 +746,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
                 'stock_status_variation' => $variation->get_stock_status(),
                 'datetime' => $product_attribute_array['date']
             );
+        }
     }
     if ($sortby == 'latest') {
         usort($child_array, 'date_compare');
