@@ -12582,7 +12582,6 @@ section.product-main .summary.summary.summary .variations tr {
       color: var(--bs-white) !important; }
   .header .navbar.navbar.navbar .nav-item .submenu-inner {
     background-color: var(--bs-white);
-    background-color: var(--bs-white);
     padding: 10px;
     border-radius: 10px;
     margin-top: 20px; }
