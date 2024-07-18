@@ -38,7 +38,6 @@
                         @include before {
                             display: none;
                         }
-                    
                     }
                 }
             }
@@ -49,10 +48,11 @@
                 border-radius: 10px;
                 @include responsive(small-lg) {
                     font-size: 14px;
-                    padding: 10px;
                 }
                 @include responsive(md) {
                     font-size: 13px;
+                }
+                @include responsive(lg) {
                     padding: 10px;
                 }
                 @include on-event {
@@ -158,12 +158,8 @@
         }
     }
     .header-right {
-        @include responsive(md) {
-            --bs-gutter-x: 15px;
-        }
-        @include responsive(small-lg) {
+        @include responsive(lg) {
             --bs-gutter-x: 10px;
-
         }
         .button-box {
             a {
@@ -172,9 +168,10 @@
                     font-size: 13px;
                 }
             }
-        @include responsive(small-lg) {
-            margin-left: 1rem;
-        }
+
+            @include responsive(lg) {
+                margin-left: 1rem;
+            }
         }
     }
     .container {
