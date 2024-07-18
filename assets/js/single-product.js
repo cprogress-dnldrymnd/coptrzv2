@@ -42,7 +42,6 @@ function __training_ajax() {
         $sortby = jQuery('select[name="sort"]').val();
         $location = jQuery('select[name="location"]').val();
         
-        console.log($location);
         jQuery.ajax({
             type: "POST",
 
