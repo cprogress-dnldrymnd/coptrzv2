@@ -756,7 +756,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
     }
     usort($child_array, 'date_compare_latest');
 
-    if ($sortby == 'latest') {
+    if ($sortby == 'oldest') {
         ksort($child_array);
     } else {
     }
