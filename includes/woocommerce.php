@@ -736,7 +736,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
             $product_attribute_array[$key] = $attr;
         }
         $child_array[] = array(
-            'child' => $child,
+            'product_id' => $child,
             'datetime' => $product_attribute_array['date']
         );
     }
@@ -757,7 +757,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
         $html .= '<div class="swiper-slide">'; //swiper-slide
         $html .= '<div class="row g-4">'; //row
         foreach ($children as $child) {
-            $variation = wc_get_product($child);
+            $variation = wc_get_product($child['product_id']);
             $product_attribute = $variation->get_attributes();
             $variation_name = '';
             $lastElement = end($product_attribute);
