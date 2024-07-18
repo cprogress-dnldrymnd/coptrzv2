@@ -239,11 +239,10 @@ function ___hero_product_taxonomy()
             'class' => _attribute('class', $heading_class),
             ''
         ));
-
-        if ($parent) {
+        if ($term_description_val) {
             $hero .= __description(array(
                 'description' => $term_description_val,
-                'class' => _attribute('class', array('description-box small-text mb-4')),
+                'class' => _attribute('class', array('description-box small-text small-width')),
             ));
         }
 
@@ -256,16 +255,7 @@ function ___hero_product_taxonomy()
         $hero .= "</div>";
         $hero .= "</section>";
 
-        if (!$parent && $term_description_val) {
-            $hero .= "<section class='sm-padding-top sm-padding-bottom term-description'>";
-            $hero .= "<div class='container'>";
-            $hero .= __description(array(
-                'description' => $term_description_val,
-                'class' => _attribute('class', array('description-box small-text small-width')),
-            ));
-            $hero .= "</div>";
-            $hero .= "</section>";
-        }
+      
 
         return $hero;
     }
