@@ -519,7 +519,7 @@ function _product_grid_display($id)
 
 
         $html .= "<div class='$button_class'>";
-        $html .= "<div class='button-box button-bordered'><a href='$permalink'>Discover</a></div>";
+        $html .= "<div class='button-box button-bordered'><a href='$permalink'>View Product</a></div>";
         $html .= "</div>";
 
         $html .= "</div>";

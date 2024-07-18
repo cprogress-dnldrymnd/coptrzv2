@@ -46,7 +46,7 @@ global $product;
 			</span>
 		</div>
 		<div class="col-sm-6">
-			<div class="button-box button-bordered"><a href="<?= get_the_permalink() ?>">View Product</a></div>
+			<div class="button-box button-bordered"><a href="<?= get_the_permalink() ?>">Discover</a></div>
 		</div>
 	</div>
 </div>
