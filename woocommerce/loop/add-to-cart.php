@@ -26,13 +26,11 @@ $class = 'col-sm-12';
 if (is_product_taxonomy()) {
 	$product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
 	$class = 'col-sm-6';
-	echo $product_category_page;
 }
-
 ?>
 <div class="product-buttons">
 	<div class="row g-10px">
-		<?php if (!$product_category_page) { ?>
+		<?php if ($product_category_page) { ?>
 			<div class="<?= $class ?>">
 				<?php
 				echo apply_filters(
