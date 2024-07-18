@@ -736,14 +736,16 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
             $product_attribute_array[$key] = $attr;
         }
 
-        $child_array[] = array(
-            'product_id' => $child,
-            'product_attributes' => $variation->get_attributes(),
-            'sku' => $variation->get_sku(),
-            'price' => $variation->get_price_html(),
-            'stock_status_variation' => $variation->get_stock_status(),
-            'datetime' => $product_attribute_array['date']
-        );
+        if ($product_attribute_array['delivery_method'] == $delivery_method) {
+            $child_array[] = array(
+                'product_id' => $child,
+                'product_attributes' => $variation->get_attributes(),
+                'sku' => $variation->get_sku(),
+                'price' => $variation->get_price_html(),
+                'stock_status_variation' => $variation->get_stock_status(),
+                'datetime' => $product_attribute_array['date']
+            );
+        }
     }
 
     usort($child_array, 'date_compare');
@@ -781,7 +783,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
 
             $json = json_encode($product_attribute_array);
 
-        
+
             $html .= '<div class="col-lg-6">';
 
 
