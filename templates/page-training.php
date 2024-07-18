@@ -40,12 +40,12 @@
                         <div class="col-auto">
                             <div class="row g-3 align-items-center">
                                 <div class="col-auto">
-                                    <select name="category">
+                                    <select name="category" class="trigger-training-ajax-select">
                                         <option value="">Location: All</option>
                                     </select>
                                 </div>
                                 <div class="col-auto">
-                                    <select name="sort">
+                                    <select name="sort" class="trigger-training-ajax-select">
                                         <option value="latest">Sort By: Latest</option>
                                         <option value="oldest">Sort By: Oldest</option>
                                     </select>

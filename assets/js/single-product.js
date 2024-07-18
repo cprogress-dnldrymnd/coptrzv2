@@ -9,10 +9,11 @@ jQuery(document).ready(function () {
 function __training() {
 
     jQuery('.trigger-training-ajax').click(function (e) {
-        jQuery('.ajax-loading').addClass('loading-post');
-        setTimeout(function () {
-            __training_ajax();
-        }, 300);
+        __training_ajax();
+    });
+
+    jQuery('.trigger-training-ajax-select').change(function (e) {
+        __training_ajax();
     });
 
     var swiper_training = new Swiper('.swiper-training', {
@@ -28,31 +29,36 @@ function __training() {
 }
 
 function __training_ajax() {
-    $result_holder = jQuery('#results');
-    $product_id = jQuery('input[name="product_id"]').val();
-    $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
-    $sortby = jQuery('select[name="sort"]').val();
+    jQuery('.ajax-loading').addClass('loading-post');
 
-    jQuery.ajax({
-        type: "POST",
+    setTimeout(function () {
+        $result_holder = jQuery('#results');
+        $product_id = jQuery('input[name="product_id"]').val();
+        $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
+        $sortby = jQuery('select[name="sort"]').val();
 
-        url: ajax_object.ajax_url,
+        jQuery.ajax({
+            type: "POST",
 
-        data: {
-            action: 'training_ajax',
-            product_id: $product_id,
-            delivery_method: $delivery_method,
-            sortby: $sortby,
-        },
+            url: ajax_object.ajax_url,
 
-        success: function (response) {
-            $result_holder.html(response);
-            jQuery('.ajax-loading').removeClass('loading-post');
-        },
-        error: function (e) {
-            console.log(e);
-        }
-    });
+            data: {
+                action: 'training_ajax',
+                product_id: $product_id,
+                delivery_method: $delivery_method,
+                sortby: $sortby,
+            },
+
+            success: function (response) {
+                $result_holder.html(response);
+                jQuery('.ajax-loading').removeClass('loading-post');
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }, 300);
+
 }
 
 function __quantity() {
