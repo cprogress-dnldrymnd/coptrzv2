@@ -714,12 +714,139 @@ function __get_product_taxonomy_page($id)
     }
 }
 
+function date_compare($element1, $element2)
+{
+    $datetime1 = strtotime($element1['datetime']);
+    $datetime2 = strtotime($element2['datetime']);
+    return $datetime1 - $datetime2;
+}
 
-function custom_product_variation_training()
+function custom_product_variation_training($delivery_method = 'online-self-paced', $location = false, $sortby = 'latest')
 {
     global $product;
     $SVG = new SVG;
     $children = $product->get_children();
+
+    $child_array = [];
+    foreach ($children as $child) {
+        $variation = wc_get_product($child);
+        $product_attribute = $variation->get_attributes();
+        foreach ($product_attribute as $key => $attr) {
+            $product_attribute_array[$key] = $attr;
+        }
+        $child_array[] = array(
+            'child' => $child,
+            'datetime' => $product_attribute_array['date']
+        );
+    }
+
+    usort($array, 'date_compare'); 
+
+    return var_dump($child_array);
+
+    $children_chunk = array_chunk($children, 4);
+
+    $html = '<div class="product-custom-variation product-training-variation">';
+
+    $html .= "<div class='swiper swiper-training'>"; //swiper
+    $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+
+
+    foreach ($children_chunk as $children) {
+        $html .= '<div class="swiper-slide">'; //swiper-slide
+        $html .= '<div class="row g-4">'; //row
+        foreach ($children as $child) {
+            $variation = wc_get_product($child);
+            $product_attribute = $variation->get_attributes();
+            $variation_name = '';
+            $lastElement = end($product_attribute);
+
+            $product_attribute_array = array();
+            foreach ($product_attribute as $key => $attr) {
+                $variation_name .= $attr . ' ';
+                if ($attr != $lastElement) {
+                    $variation_name .= ' | ';
+                }
+                $product_attribute_array[$key] = $attr;
+            }
+
+            $json = json_encode($product_attribute_array);
+
+            $stock_status_variation = $variation->get_stock_status();
+            $sku = $variation->get_sku();
+            $price = $variation->get_price_html();
+            $html .= '<div class="col-lg-6">';
+
+
+            $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
+            $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100 h-100'>"; //label
+            $html .= "<div class='inner product-inner w-100 p-20px rounded-corner  h-100 d-flex flex-column justify-content-between'>"; //inner
+
+            $html .= "<div class='info-box d-flex flex-column justify-content-between'>";
+
+            if ($product_attribute_array['date'] || $product_attribute_array['pa_location']) {
+                $html .= "<div class='row g-3 justify-content-between mb-3'>";
+
+                if ($product_attribute_array['date']) {
+                    $html .= "<div class='col-auto'>";
+                    if ($product_attribute_array['date'] != 'N/A') {
+                        $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
+                        $html .= _date_format($product_attribute_array['date']);
+                        $html .= '</span>';
+                    }
+                    $html .= '</div>';
+                }
+
+                if ($product_attribute_array['pa_location']) {
+                    $html .= "<div class='col-auto'>";
+                    $html .= "<span class='location smaller-text '>";
+                    $html .= $SVG->location();
+                    $html .= $product_attribute_array['pa_location'];
+                    $html .= '</span>';
+                    $html .= '</div>';
+                }
+                $html .= '</div>';
+            }
+            $html .= __heading(array(
+                'heading' => $product_attribute_array['course-type'],
+                'tag' => 'h3'
+            ));
+            $html .= '<div>';
+            $html .= $price;
+            $html .= '</div>';
+
+            $html .= '</div>';
+
+            $html .= "<div class='button-box button-bordered mt-3'>";
+            $html .= "<a href='?add-to-cart=$child' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$child' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
+            $html .= '</div>';
+
+            $html .= '</div>'; //inner
+            $html .= '</label>'; //label
+            $html .= '</div>';
+        }
+        $html .= '</div>'; //end-row
+        $html .= '</div>'; //swiper-slide
+
+    }
+    $html .= '</div>'; //end-swiper-wrapper
+    $html .= '<div class="swiper-nav d-flex justify-content-start mt-5">'; // swipernav
+    $html .= '<div class="swiper-button-prev"></div>';
+    $html .= '<div class="swiper-button-next"></div>';
+    $html .= '</div>'; //end swipernav
+    $html .= '</div>'; //end-swiper
+    $html .= '</div>';
+
+    echo $html;
+}
+
+
+function custom_product_variation_training_backup($delivery_method = 'online-self-paced', $location = false, $sortby = 'latest')
+{
+    global $product;
+    $SVG = new SVG;
+    $children = $product->get_children();
+
 
     $children_chunk = array_chunk($children, 4);
 

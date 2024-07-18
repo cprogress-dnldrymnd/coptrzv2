@@ -36,15 +36,15 @@
                         </div>
                         <div class="col-auto">
                             <div class="row g-3 align-items-center">
-                                <div class="col-auto"><select name="category">
-                                        <option value="">Category: All</option>
-
+                                <div class="col-auto">
+                                    <select name="category">
+                                        <option value="">Location: All</option>
                                     </select>
                                 </div>
                                 <div class="col-auto">
                                     <select name="sort">
-                                        <option value="ASC">Sort By: Latest</option>
-                                        <option value="DESC">Sort By: Oldest</option>
+                                        <option value="latest">Sort By: Latest</option>
+                                        <option value="oldest">Sort By: Oldest</option>
                                     </select>
                                 </div>
                             </div>
