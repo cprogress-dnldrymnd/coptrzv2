@@ -765,8 +765,15 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
             $product_attribute = $variation->get_attributes();
             $variation_name = '';
             $lastElement = end($product_attribute);
+
             $product_attribute_array = $child['product_attribute_array'];
-         
+            foreach ($product_attribute as $key => $attr) {
+                $variation_name .= $attr . ' ';
+                if ($attr != $lastElement) {
+                    $variation_name .= ' | ';
+                }
+                $product_attribute_array[$key] = $attr;
+            }
 
             $json = json_encode($product_attribute_array);
 
