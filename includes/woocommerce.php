@@ -718,7 +718,11 @@ function date_compare_latest($element1, $element2)
 {
     $datetime1 = strtotime($element1['datetime']);
     $datetime2 = strtotime($element2['datetime']);
-    return $datetime1 - $datetime2;
+    if ($datetime1 == $datetime2) {
+        return 0;
+    }
+
+    return ($datetime1 < $datetime2) ? -1 : 1;
 }
 
 function date_compare_oldest($element1, $element2)
@@ -762,13 +766,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
         }
     }
 
-    if ($location !== false) {
-        $child_array_val = array_filter($child_array, function ($var) use ($location) {
-            return ($var['location'] == $location);
-        });
-    } else {
-        $child_array_val = $child_array;
-    }
+ 
     if ($sortby == 'latest') {
         usort($child_array_val, 'date_compare_latest');
     } else {
