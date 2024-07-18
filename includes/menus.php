@@ -54,12 +54,11 @@ function header_menu()
 			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
 				return ($var['menu_item_parent'] == $ID);
 			});
+			$class_parent = '';
+			$anchor_class = '';
 			if ($submenus1) {
 				$class_parent = 'parent-has-submenu';
 				$anchor_class = 'has-children';
-			} else {
-				$class_parent = '';
-				$anchor_class = '';
 			}
 			$html .= "<li class='nav-item parent $class_parent $class '>";
 			$html .= "<a class='nav-link text-white main-nav $anchor_class' href='$url'>";
