@@ -12323,8 +12323,8 @@ body.product-loop-style-1 .wc-img-wrapper {
   border: 1px solid var(--border-color); }
 body.product-loop-style-1 .woocommerce-loop-product__title,
 body.product-loop-style-1 .product-buttons {
-  padding-left: 20px;
-  padding-right: 20px; }
+  padding-left: 20px !important;
+  padding-right: 20px !important; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
