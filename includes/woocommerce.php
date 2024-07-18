@@ -747,8 +747,11 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
             );
         }
     }
-
-    usort($child_array, 'date_compare');
+    if ($sortby == 'latest') {
+        usort($child_array, 'date_compare');
+    } else {
+        ksort($child_array, 'date_compare');
+    }
 
     // return var_dump($child_array);
 
