@@ -4,7 +4,7 @@
     label {
         width: 100%;
     }
-    .input-label{
+    .input-label {
         text-transform: capitalize;
     }
 }
@@ -40,13 +40,13 @@
     }
     &.style-2 {
         .wpcf7-response-output {
-            margin-top: 1rem;
+            margin-top: 2rem;
         }
         .input-label {
             font-size: 14px;
         }
         .wpcf7-submit {
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
         @include inputs {
             padding: 13px;
