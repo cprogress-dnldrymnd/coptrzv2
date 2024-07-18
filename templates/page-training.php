@@ -57,9 +57,18 @@
             </div>
         </div>
 
-        <div class="training-list">
+        <div class="training-list ajax-loading">
             <div class="row">
                 <div class="col-lg-6">
+                    <div class="loading-results p-5 text-center"> <svg class="spin" xmlns="http://www.w3.org/2000/svg" id="Group_27" data-name="Group 27" width="123" height="123" viewBox="0 0 123 123">
+                            <g id="Ellipse_2" data-name="Ellipse 2" fill="none" stroke="#2DA1FF" stroke-width="2">
+                                <circle cx="61.5" cy="61.5" r="61.5" stroke="none"></circle>
+                                <circle cx="61.5" cy="61.5" r="60.5" fill="none"></circle>
+                            </g>
+                            <circle id="Ellipse_8" data-name="Ellipse 8" cx="6.5" cy="6.5" r="6.5" transform="translate(30 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle>
+                            <circle id="Ellipse_9" data-name="Ellipse 9" cx="6.5" cy="6.5" r="6.5" transform="translate(55 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle>
+                            <circle id="Ellipse_10" data-name="Ellipse 10" cx="6.5" cy="6.5" r="6.5" transform="translate(80 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle>
+                        </svg></div>
                     <div id="results">
                         <?= custom_product_variation_training(get_the_ID()) ?>
                     </div>

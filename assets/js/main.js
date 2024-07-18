@@ -13,7 +13,7 @@ jQuery(document).ready(function () {
 
 
 function __ajax() {
-    $archive_section = jQuery('.archive-posts');
+    $archive_section = jQuery('.ajax-loading');
     $result_holder = jQuery('#results');
     $s = jQuery('#search').val();
     $archive_section.addClass('loading-post');

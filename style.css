@@ -11559,6 +11559,18 @@ hr {
       #testimonial-slider .testimonial-content {
         font-size: 1.25rem; } }
 
+.ajax-loading.loading-post .loading-results {
+  display: block; }
+.ajax-loading.loading-post #results {
+  display: none; }
+.ajax-loading .loading-results {
+  display: none; }
+  .ajax-loading .loading-results svg {
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }
@@ -13002,18 +13014,6 @@ section.hero {
   section.hero .description-box {
     max-width: 1112px;
     display: inline-block; }
-
-section.archive-posts .loading-results {
-  display: none; }
-  section.archive-posts .loading-results svg {
-    animation-name: spin;
-    animation-duration: 5000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear; }
-section.archive-posts.loading-post .loading-results {
-  display: block; }
-section.archive-posts.loading-post #results {
-  display: none; }
 
 section.landing-page {
   min-height: calc(100vh - 40px ); }

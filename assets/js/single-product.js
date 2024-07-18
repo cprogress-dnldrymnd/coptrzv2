@@ -31,9 +31,9 @@ function __training_ajax() {
     $product_id = jQuery('input[name="product_id"]').val();
     $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
     $sortby = jQuery('select[name="sort"]').val();
+    $product_custom_variation = jQuery('.product-custom-variation');
 
-    console.log($delivery_method);
-    console.log($sortby);
+
     jQuery.ajax({
         type: "POST",
 
