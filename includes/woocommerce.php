@@ -736,7 +736,6 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
             $product_attribute_array[$key] = $attr;
         }
         
-
         if ($product_attribute_array['pa_delivery-methods'] == $delivery_method) {
             $child_array[] = array(
                 'product_id' => $child,
