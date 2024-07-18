@@ -12571,6 +12571,9 @@ section.product-main .summary.summary.summary .variations tr {
     @media screen and (min-width: 992px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
         padding: 10px; } }
+    @media (min-width: 992px) and (max-width: 1199px) {
+      .header .navbar.navbar.navbar .nav-item .nav-link {
+        padding: 10px 5px; } }
     .header .navbar.navbar.navbar .nav-item .nav-link:hover, .header .navbar.navbar.navbar .nav-item .nav-link:active, .header .navbar.navbar.navbar .nav-item .nav-link:focus {
       background-color: var(--bs-primary);
       color: var(--bs-white) !important; }

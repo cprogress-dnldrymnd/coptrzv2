@@ -52,8 +52,11 @@
                 @include responsive(md) {
                     font-size: 13px;
                 }
-                @include responsive(md-lg) {
+                @include responsive(small-lg) {
                     padding: 10px;
+                }
+                @include responsive(md) {
+                    padding: 10px 5px;
                 }
                 @include on-event {
                     background-color: var(--bs-primary);
