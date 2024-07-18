@@ -937,8 +937,9 @@ body {
 
 
 .woocommerce-pagination.woocommerce-pagination {
-    ul.page-numbers {
+    ul.page-numbers.page-numbers {
         display: flex;
+        border: none;
         .page-numbers {
             padding: 15px;
             color: var(--bs-primary);

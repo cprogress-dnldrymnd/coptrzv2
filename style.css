@@ -12328,9 +12328,10 @@ body.product-loop-style-1 .product-buttons {
   padding-left: 20px !important;
   padding-right: 20px !important; }
 
-.woocommerce-pagination.woocommerce-pagination ul.page-numbers {
-  display: flex; }
-  .woocommerce-pagination.woocommerce-pagination ul.page-numbers .page-numbers {
+.woocommerce-pagination.woocommerce-pagination ul.page-numbers.page-numbers {
+  display: flex;
+  border: none; }
+  .woocommerce-pagination.woocommerce-pagination ul.page-numbers.page-numbers .page-numbers {
     padding: 15px;
     color: var(--bs-primary);
     border-radius: 10px;
@@ -12345,14 +12346,14 @@ body.product-loop-style-1 .product-buttons {
     -ms-transition: 500ms;
     -o-transition: 500ms;
     transition: 500ms; }
-    .woocommerce-pagination.woocommerce-pagination ul.page-numbers .page-numbers:not(:last-child) {
+    .woocommerce-pagination.woocommerce-pagination ul.page-numbers.page-numbers .page-numbers:not(:last-child) {
       margin-right: 10px; }
-  .woocommerce-pagination.woocommerce-pagination ul.page-numbers svg {
+  .woocommerce-pagination.woocommerce-pagination ul.page-numbers.page-numbers svg {
     width: 25px;
     height: 25px; }
-  .woocommerce-pagination.woocommerce-pagination ul.page-numbers a {
+  .woocommerce-pagination.woocommerce-pagination ul.page-numbers.page-numbers a {
     text-decoration: none; }
-    .woocommerce-pagination.woocommerce-pagination ul.page-numbers a:hover, .woocommerce-pagination.woocommerce-pagination ul.page-numbers a:active, .woocommerce-pagination.woocommerce-pagination ul.page-numbers a:focus {
+    .woocommerce-pagination.woocommerce-pagination ul.page-numbers.page-numbers a:hover, .woocommerce-pagination.woocommerce-pagination ul.page-numbers.page-numbers a:active, .woocommerce-pagination.woocommerce-pagination ul.page-numbers.page-numbers a:focus {
       background-color: var(--bs-accent);
       color: var(--bs-white);
       border-color: var(--bs-accent); }
