@@ -12545,7 +12545,9 @@ section.product-main .summary.summary.summary .variations tr {
         margin-top: 10px; } }
   @media screen and (min-width: 992px) {
     .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu {
-      width: 500px; } }
+      width: 500px; }
+      .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu li {
+        width: 50%; } }
   @media screen and (min-width: 992px) {
     .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu2 {
       left: 100%;
