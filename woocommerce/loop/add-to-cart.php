@@ -32,7 +32,7 @@ if (is_product_taxonomy()) {
 	} else {
 		echo __description(array(
 			'description' => get_the_excerpt(),
-			'class' => _attribute('class', array('product-desc px-20px')),
+			'class' => _attribute('class', array('product-desc px-20px mb-4')),
 		));
 	}
 }
