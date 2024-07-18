@@ -306,8 +306,17 @@ add_action('pre_get_posts', 'action_pre_get_posts', 1);
 function action_body_class($classes)
 {
     $hero_hidden = get__post_meta('hero_hidden');
+    $product_category_page = false;
+    if (is_product_taxonomy()) {
+        $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
+    }
     if ($hero_hidden) {
         $classes[] = 'hero-hidden';
+    }
+
+    if($product_category_page) {
+        $classes[] = 'hide-price';
+        $classes[] = 'hide-stock';
     }
     return $classes;
 }
