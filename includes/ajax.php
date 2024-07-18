@@ -65,5 +65,5 @@ add_action('wp_ajax_nopriv_training_ajax', 'training_ajax'); // for not logged i
 add_action('wp_ajax_training_ajax', 'training_ajax');
 function training_ajax()
 {
-	
+	custom_product_variation_training();
 }

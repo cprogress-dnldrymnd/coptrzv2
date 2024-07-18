@@ -721,7 +721,7 @@ function date_compare($element1, $element2)
     return $datetime1 - $datetime2;
 }
 
-function custom_product_variation_training($delivery_method = 'online-self-paced', $location = false, $sortby = 'latest')
+function custom_product_variation_training($delivery_method = 'online-self-paced', $sortby = 'latest', $location = false)
 {
     global $product;
     $SVG = new SVG;
@@ -735,7 +735,7 @@ function custom_product_variation_training($delivery_method = 'online-self-paced
         foreach ($product_attribute as $key => $attr) {
             $product_attribute_array[$key] = $attr;
         }
-        
+
         if ($product_attribute_array['pa_delivery-methods'] == $delivery_method) {
             $child_array[] = array(
                 'product_id' => $child,
