@@ -34,6 +34,7 @@ if (is_product_taxonomy()) {
 			'description' => get_the_excerpt(),
 			'class' => _attribute('class', array('product-desc px-20px mb-4')),
 		));
+		echo '</div>';
 		
 	}
 }
