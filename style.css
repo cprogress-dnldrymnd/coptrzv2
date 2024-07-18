@@ -11473,9 +11473,9 @@ hr {
   background-color: var(--bs-black); }
 .hero-hidden .header .navbar.navbar.navbar .nav-item .submenu2 {
   background-color: var(--bs-black); }
-.hero-hidden .header .navbar.navbar.navbar .nav-item .text-black {
+.hero-hidden .header .navbar.navbar.navbar .nav-item .nav-link {
   color: var(--bs-white) !important; }
-  .hero-hidden .header .navbar.navbar.navbar .nav-item .text-black:hover, .hero-hidden .header .navbar.navbar.navbar .nav-item .text-black:active, .hero-hidden .header .navbar.navbar.navbar .nav-item .text-black:focus {
+  .hero-hidden .header .navbar.navbar.navbar .nav-item .nav-link:hover, .hero-hidden .header .navbar.navbar.navbar .nav-item .nav-link:active, .hero-hidden .header .navbar.navbar.navbar .nav-item .nav-link:focus {
     background-color: var(--bs-white) !important;
     color: var(--bs-black) !important; }
 
