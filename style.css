@@ -12408,7 +12408,7 @@ section.product-main .summary.summary.summary .variations tr {
   .input label {
     width: 100%; }
   .input .input-label {
-    text-transform: uppercase; }
+    text-transform: capitalize; }
 
 .form-box [class*="col-"] .input {
   margin-bottom: 0; }
