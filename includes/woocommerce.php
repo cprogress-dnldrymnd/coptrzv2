@@ -767,14 +767,16 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
     }
 
     if ($location !== false) {
-        $child_array = array_filter($child_array, function ($var) use ($location) {
+        $child_array_val = array_filter($child_array, function ($var) use ($location) {
             return ($var['location'] == $location);
         });
+    } else {
+        $child_array_val = $child_array;
     }
     if ($sortby == 'latest') {
-        usort($child_array, 'date_compare_latest');
+        usort($child_array_val, 'date_compare_latest');
     } else {
-        usort($child_array, 'date_compare_oldest');
+        usort($child_array_val, 'date_compare_oldest');
     }
 
     // return var_dump($child_array);
