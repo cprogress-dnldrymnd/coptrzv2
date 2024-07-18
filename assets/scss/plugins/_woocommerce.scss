@@ -934,3 +934,37 @@ body {
         }
     }
 }
+
+
+.woocommerce-pagination.woocommerce-pagination {
+    ul.page-numbers {
+        display: flex;
+        .page-numbers {
+            padding: 15px;
+            color: var(--bs-primary);
+            border-radius: 10px;
+            border: 1px solid;
+            height: 60px;
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include transition(500ms);
+            @include not-last-child {
+                margin-right: 10px;
+            }
+        }
+        svg {
+            width: 25px;
+            height: 25px;
+        }
+        a {
+            text-decoration: none;
+            @include on-event {
+                background-color: var(--bs-accent);
+                color: var(--bs-white);
+                border-color: var(--bs-accent);
+            }
+        }
+    }
+}
