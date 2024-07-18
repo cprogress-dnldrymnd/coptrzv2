@@ -12552,6 +12552,9 @@ section.product-main .summary.summary.summary .variations tr {
         padding: 15px;
         margin-top: 10px; } }
   @media screen and (min-width: 992px) {
+    .header .navbar.navbar.navbar .nav-item.is-mega-menu .sub-nav {
+      white-space: nowrap; } }
+  @media screen and (min-width: 992px) {
     .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu {
       width: 300px; } }
   @media screen and (min-width: 992px) {

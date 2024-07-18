@@ -19,7 +19,11 @@
     .navbar.navbar.navbar {
         .nav-item {
             &.is-mega-menu {
-                
+                .sub-nav {
+                    @include responsive(md-lg) {
+                        white-space: nowrap;
+                    }
+                }
             }
             &.is-not-mega-menu {
                 .submenu {
