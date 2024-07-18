@@ -1022,12 +1022,12 @@ function __hero_form_fields()
                     'style-2' => 'Style 2',
                 )
             ),
-        Field::make('association', 'hero_form', 'Select Form')->set_classes('inline-field')
+        Field::make('association', 'cf7', 'Select Form')->set_classes('inline-field')
             ->set_types(
                 array(
                     array(
                         'type'      => 'post',
-                        'post_type' => 'wpforms',
+                        'post_type' => 'wpcf7_contact_form',
                     )
                 )
             )
