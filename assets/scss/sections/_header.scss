@@ -27,6 +27,9 @@
                         }
                     }
                 }
+                .is-two-column {
+                    
+                }
                 .submenu2 {
                     @include responsive(md-lg) {
                         left: 100%;

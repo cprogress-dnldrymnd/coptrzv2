@@ -50,7 +50,8 @@ function header_menu()
 			$is_mega_menu = carbon_get_nav_menu_item_meta($ID, 'is_mega_menu');
 			$is_two_column = carbon_get_nav_menu_item_meta($ID, 'is_two_column');
 			$class = $is_mega_menu ? 'is-mega-menu' : 'is-not-mega-menu position-relative';
-			$class_col = $is_two_column ? 'is-two-column flex-wrap':'';
+			$class_col = $is_two_column ? 'is-two-column':'';
+			$ul_class = $is_two_column ? '' : 'flex-wrap';
 			$url = $menu['url'];
 			$submenus1 = array_filter($menus_array, function ($var) use ($ID) {
 				return ($var['menu_item_parent'] == $ID);
@@ -61,7 +62,7 @@ function header_menu()
 				$class_parent = 'parent-has-submenu';
 				$anchor_class = 'has-children';
 			}
-			$html .= "<li class='nav-item parent $class_parent $class '>";
+			$html .= "<li class='nav-item parent $class_parent $class $class_col'>";
 			$html .= "<a class='nav-link text-white main-nav $anchor_class' href='$url'>";
 			$html .= $menu['title'];
 			if ($submenus1) {
@@ -73,7 +74,7 @@ function header_menu()
 
 				$html .= '<div class="submenu">';//submenu 1
 				$html .= '<div class="submenu-inner">';
-				$html .= "<ul class='list-inline d-flex p-0 $class_col'>";
+				$html .= "<ul class='list-inline d-flex p-0 $ul_class'>";
 				foreach ($submenus1 as $submenu1) {
 					$submenu1_id = $submenu1['ID'];
 
