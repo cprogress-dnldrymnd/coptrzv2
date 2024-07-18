@@ -12,7 +12,7 @@
     ?>
 </div>
 
-<section class="training-product lg-padding-top lg-padding-bottom border-top-default">
+<section class="training-product lg-padding-top lg-padding-bottom border-top-default" id="Book-Course">
     <div class="container">
         <h2 class="text-center">Book a GVC <br> Training Course</h2>
         <div class="post-archive-header">
@@ -53,6 +53,10 @@
                 </div>
             </div>
         </div>
+        Edinburgh, Leeds, Rugby, Cardiff, Kent, Hampshire
+
+
+
 
 
         <div class="training-list">
@@ -61,8 +65,15 @@
                     <?= custom_product_variation_training() ?>
                 </div>
                 <div class="col-lg-6">
-                    <div class="image-box">
+                    <?php $SVG = new SVG; ?>
+                    <div class="image-box training-map-holder">
                         <img src="https://dev.coptrz.com/wp-content/uploads/2024/07/map.jpg" alt="">
+                        <span id="edinburgh"><?= $SVG->location() ?></span>
+                        <span id="leeds"><?= $SVG->location() ?></span>
+                        <span id="rugby"><?= $SVG->location() ?></span>
+                        <span id="cardiff"><?= $SVG->location() ?></span>
+                        <span id="kent"><?= $SVG->location() ?></span>
+                        <span id="hampshire"><?= $SVG->location() ?></span>
                     </div>
                 </div>
             </div>
