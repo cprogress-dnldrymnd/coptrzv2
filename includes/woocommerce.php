@@ -718,11 +718,7 @@ function date_compare_latest($element1, $element2)
 {
     $datetime1 = strtotime($element1['datetime']);
     $datetime2 = strtotime($element2['datetime']);
-    if ($datetime1 == $datetime2) {
-        return 0;
-    }
-
-    return ($datetime1 < $datetime2) ? -1 : 1;
+    return $datetime1 - $datetime2;
 }
 
 function date_compare_oldest($element1, $element2)
