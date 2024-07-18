@@ -68,6 +68,7 @@ if (is_home() || is_category()) {
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
     $data['style'] = 'style-3';
+    $data['bg_image'] = true;
 } else if (is_post_type_archive('industries')) {
     $title = get__theme_option('industries_loop_section_title');
     $key = 'industries_';
@@ -80,6 +81,8 @@ if (is_home() || is_category()) {
     $data['button_text'] = 'Learn More';
     $data['style'] = 'style-3';
     $data['elements'] = $elements_array;
+    $data['bg_image'] = true;
+
 } else if (is_post_type_archive('casestudies') || is_tax('casestudies_category')) {
     $key = 'casestudies_';
     $title = 'All Case Studies';
