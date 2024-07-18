@@ -173,10 +173,11 @@ function __block_accordion() {
 function __header_menu() {
     if (jQuery('header').length > 0) {
         if (window.innerWidth > 991) {
-            jQuery(".has-children.main-nav").hover(
+            jQuery(".parent-has-submenu").hover(
                 function () {
-                    jQuery(this).toggleClass('active');
-                    jQuery(this).next().toggleClass('active');
+                    jQuery(this).find(' > .nav-link').addClass('active');
+                    jQuery(this).find(' > .nav-link > .submenu').addClass('active');
+                   
                     jQuery('body').removeClass('mini-cart-active');
                 }, function () {
                     jQuery(this).removeClass('active');
