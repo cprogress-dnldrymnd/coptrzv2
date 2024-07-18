@@ -28,7 +28,10 @@ function __training() {
 function __training_ajax() {
     $result_holder = jQuery('#results');
     $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
-    $sortby = jQuery('select[name="sort"]:checked').val();
+    $sortby = jQuery('select[name="sort"]').val();
+
+    console.log($delivery_method);
+    console.log($sortby);
     jQuery.ajax({
         type: "POST",
 
