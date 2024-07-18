@@ -59,7 +59,7 @@
                                     <select name="category" class="trigger-training-ajax-select">
                                         <option value="">Location: All</option>
                                         <?php foreach ($locations as $location) { ?>
-                                            <option value="<?= $location ?>"><?= $location ?></option>
+                                            <option value="<?= $location ?>" class="text-capitalize"><?= $location ?></option>
 
                                         <?php } ?>
                                     </select>
