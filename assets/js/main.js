@@ -9,15 +9,9 @@ jQuery(document).ready(function () {
     __post_navigation();
     __filters();
     __ajax_trigger();
-    __tooltips();
 });
 
-function __tooltips() {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-}
+
 
 function __ajax() {
     $archive_section = jQuery('.ajax-loading');

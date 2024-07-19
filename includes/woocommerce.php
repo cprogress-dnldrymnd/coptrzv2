@@ -787,94 +787,98 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
 
     $html = '<div class="product-custom-variation product-training-variation">';
 
-    $html .= "<div class='swiper swiper-training'>"; //swiper
-    $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+    if ($child_array_val) {
+        $html .= "<div class='swiper swiper-training'>"; //swiper
+        $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
 
-    foreach ($children_chunk as $children) {
-        $html .= '<div class="swiper-slide">'; //swiper-slide
-        $html .= '<div class="row g-4">'; //row
-        foreach ($children as $child) {
-            $product_id = $child['product_id'];
-            $sku = $child['sku'];
-            $price = $child['price'];
-            $product_attributes = $child['product_attributes'];
-            $stock_status_variation = $child['stock_status_variation'];
+        foreach ($children_chunk as $children) {
+            $html .= '<div class="swiper-slide">'; //swiper-slide
+            $html .= '<div class="row g-4">'; //row
+            foreach ($children as $child) {
+                $product_id = $child['product_id'];
+                $sku = $child['sku'];
+                $price = $child['price'];
+                $product_attributes = $child['product_attributes'];
+                $stock_status_variation = $child['stock_status_variation'];
 
-            $variation_name = '';
-            $lastElement = end($product_attributes);
+                $variation_name = '';
+                $lastElement = end($product_attributes);
 
-            foreach ($product_attributes as $key => $attr) {
-                $variation_name .= $attr . ' ';
-                if ($attr != $lastElement) {
-                    $variation_name .= ' | ';
+                foreach ($product_attributes as $key => $attr) {
+                    $variation_name .= $attr . ' ';
+                    if ($attr != $lastElement) {
+                        $variation_name .= ' | ';
+                    }
+                    $product_attribute_array[$key] = $attr;
                 }
-                $product_attribute_array[$key] = $attr;
-            }
 
-            $json = json_encode($product_attribute_array);
+                $json = json_encode($product_attribute_array);
 
 
-            $html .= '<div class="col-lg-6">';
+                $html .= '<div class="col-lg-6">';
 
 
-            $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$product_id' data_variations='$json' value='$product_id'  name='variation-radio'>";
-            $html .= "<label for='variation-$product_id' class='variation-label status-style-2 w-100 h-100'>"; //label
-            $html .= "<div class='inner product-inner w-100 p-20px rounded-corner  h-100 d-flex flex-column justify-content-between'>"; //inner
+                $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$product_id' data_variations='$json' value='$product_id'  name='variation-radio'>";
+                $html .= "<label for='variation-$product_id' class='variation-label status-style-2 w-100 h-100'>"; //label
+                $html .= "<div class='inner product-inner w-100 p-20px rounded-corner  h-100 d-flex flex-column justify-content-between'>"; //inner
 
-            $html .= "<div class='info-box d-flex flex-column justify-content-between'>";
+                $html .= "<div class='info-box d-flex flex-column justify-content-between'>";
 
-            if ($product_attribute_array['date'] || $product_attribute_array['pa_location']) {
-                $html .= "<div class='row g-3 justify-content-between mb-3'>";
+                if ($product_attribute_array['date'] || $product_attribute_array['pa_location']) {
+                    $html .= "<div class='row g-3 justify-content-between mb-3'>";
 
-                if ($product_attribute_array['date']) {
-                    $html .= "<div class='col-auto'>";
-                    if ($product_attribute_array['date'] != 'N/A') {
-                        $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
-                        $html .= _date_format($product_attribute_array['date']);
+                    if ($product_attribute_array['date']) {
+                        $html .= "<div class='col-auto'>";
+                        if ($product_attribute_array['date'] != 'N/A') {
+                            $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
+                            $html .= _date_format($product_attribute_array['date']);
+                            $html .= '</span>';
+                        }
+                        $html .= '</div>';
+                    }
+
+                    if ($product_attribute_array['pa_location']) {
+                        $html .= "<div class='col-auto'>";
+                        $html .= "<span class='location smaller-text '>";
+                        $html .= $SVG->location();
+                        $html .= $product_attribute_array['pa_location'];
                         $html .= '</span>';
+                        $html .= '</div>';
                     }
                     $html .= '</div>';
                 }
+                $html .= __heading(array(
+                    'heading' => $product_attribute_array['course-type'],
+                    'tag' => 'h3'
+                ));
+                $html .= '<div>';
+                $html .= $price;
+                $html .= '</div>';
 
-                if ($product_attribute_array['pa_location']) {
-                    $html .= "<div class='col-auto'>";
-                    $html .= "<span class='location smaller-text '>";
-                    $html .= $SVG->location();
-                    $html .= $product_attribute_array['pa_location'];
-                    $html .= '</span>';
-                    $html .= '</div>';
-                }
+                $html .= '</div>';
+
+                $html .= "<div class='button-box button-bordered mt-3'>";
+                $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
+                $html .= '</div>';
+
+                $html .= '</div>'; //inner
+                $html .= '</label>'; //label
                 $html .= '</div>';
             }
-            $html .= __heading(array(
-                'heading' => $product_attribute_array['course-type'],
-                'tag' => 'h3'
-            ));
-            $html .= '<div>';
-            $html .= $price;
-            $html .= '</div>';
+            $html .= '</div>'; //end-row
+            $html .= '</div>'; //swiper-slide
 
-            $html .= '</div>';
-
-            $html .= "<div class='button-box button-bordered mt-3'>";
-            $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
-            $html .= '</div>';
-
-            $html .= '</div>'; //inner
-            $html .= '</label>'; //label
-            $html .= '</div>';
         }
-        $html .= '</div>'; //end-row
-        $html .= '</div>'; //swiper-slide
-
+        $html .= '</div>'; //end-swiper-wrapper
+        $html .= '<div class="swiper-nav d-flex justify-content-start mt-5">'; // swipernav
+        $html .= '<div class="swiper-button-prev"></div>';
+        $html .= '<div class="swiper-button-next"></div>';
+        $html .= '</div>'; //end swipernav
+        $html .= '</div>'; //end-swiper
+    } else {
+        $html .= '<h2 class="my-5">No training found.</h2>';
     }
-    $html .= '</div>'; //end-swiper-wrapper
-    $html .= '<div class="swiper-nav d-flex justify-content-start mt-5">'; // swipernav
-    $html .= '<div class="swiper-button-prev"></div>';
-    $html .= '<div class="swiper-button-next"></div>';
-    $html .= '</div>'; //end swipernav
-    $html .= '</div>'; //end-swiper
     $html .= '</div>';
 
     echo $html;
