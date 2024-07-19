@@ -147,7 +147,7 @@
 
             jQuery('#generate_report').click(function(e) {
 
-                console.log(jQuery("#form_id").valid());
+                console.log(jQuery("#calculator-form").valid());
 
 
                 jQuery('html, body').animate({
