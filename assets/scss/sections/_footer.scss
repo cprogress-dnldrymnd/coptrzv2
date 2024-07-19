@@ -73,8 +73,25 @@
 }
 
 .reviews {
+    .column-holder {
+        @include transition(500ms);
+        .stars {
+            svg {
+                @include transition(500ms);
+            }
+        }
+        @include on-event {
+            background-color: var(--bs-accent) !important;
+            .stars {
+                svg {
+                    color: var(--bs-secondary);
+                }
+            }
+        }
+    }
     .logo-box {
-        img, svg {
+        img,
+        svg {
             height: 35px;
             width: auto;
         }

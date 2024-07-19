@@ -12970,7 +12970,18 @@ body.product-loop-style-1 .product-buttons {
 .footer-cta .inner {
   padding-top: 200px; }
 
-.reviews .logo-box img, .reviews .logo-box svg {
+.reviews .column-holder {
+  -webkit-transition: 500ms;
+  -moz-transition: 500ms;
+  -ms-transition: 500ms;
+  -o-transition: 500ms;
+  transition: 500ms; }
+  .reviews .column-holder:hover, .reviews .column-holder:active, .reviews .column-holder:focus {
+    background-color: var(--bs-accent) !important; }
+    .reviews .column-holder:hover .stars svg, .reviews .column-holder:active .stars svg, .reviews .column-holder:focus .stars svg {
+      color: var(--bs-secondary); }
+.reviews .logo-box img,
+.reviews .logo-box svg {
   height: 35px;
   width: auto; }
 .reviews .review-box .review-text {
