@@ -5781,7 +5781,7 @@ Container::make('post_meta', __('Conditional Display'))
                 array(
                     array(
                         'field' => 'display_location',
-                        'value' => 'archive',
+                        'value' => 'single',
                     )
                 )
             ),
