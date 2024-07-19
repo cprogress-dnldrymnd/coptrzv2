@@ -50,8 +50,7 @@
             margin-top: 1rem;
         }
         @include inputs {
-            &:not([type="submit"]),
-            &:not(.iti__tel-input) {
+            &:not([type="submit"]):not(.iti__tel-input) {
                 padding: 13px;
             }
         }

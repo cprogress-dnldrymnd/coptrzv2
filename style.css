@@ -12568,21 +12568,14 @@ body.product-loop-style-1 .product-buttons {
   display: block; }
 .form-box.style-2 .wpcf7-submit {
   margin-top: 1rem; }
-.form-box.style-2 input[type="text"]:not([type="submit"]), .form-box.style-2 input[type="text"]:not(.iti__tel-input),
-.form-box.style-2 input[type="number"]:not([type="submit"]),
-.form-box.style-2 input[type="number"]:not(.iti__tel-input),
-.form-box.style-2 input[type="tel"]:not([type="submit"]),
-.form-box.style-2 input[type="tel"]:not(.iti__tel-input),
-.form-box.style-2 input[type="submit"]:not([type="submit"]),
-.form-box.style-2 input[type="submit"]:not(.iti__tel-input),
-.form-box.style-2 input[type="email"]:not([type="submit"]),
-.form-box.style-2 input[type="email"]:not(.iti__tel-input),
-.form-box.style-2 input[type="password"]:not([type="submit"]),
-.form-box.style-2 input[type="password"]:not(.iti__tel-input),
-.form-box.style-2 select:not([type="submit"]),
-.form-box.style-2 select:not(.iti__tel-input),
-.form-box.style-2 textarea:not([type="submit"]),
-.form-box.style-2 textarea:not(.iti__tel-input) {
+.form-box.style-2 input[type="text"]:not([type="submit"]):not(.iti__tel-input),
+.form-box.style-2 input[type="number"]:not([type="submit"]):not(.iti__tel-input),
+.form-box.style-2 input[type="tel"]:not([type="submit"]):not(.iti__tel-input),
+.form-box.style-2 input[type="submit"]:not([type="submit"]):not(.iti__tel-input),
+.form-box.style-2 input[type="email"]:not([type="submit"]):not(.iti__tel-input),
+.form-box.style-2 input[type="password"]:not([type="submit"]):not(.iti__tel-input),
+.form-box.style-2 select:not([type="submit"]):not(.iti__tel-input),
+.form-box.style-2 textarea:not([type="submit"]):not(.iti__tel-input) {
   padding: 13px; }
 
 .iti {
