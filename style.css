@@ -12350,7 +12350,7 @@ section.product-main .summary.summary.summary .variations tr {
       width: 28px;
       height: 28px; }
     .training-map-holder span:hover, .training-map-holder span:active, .training-map-holder span:focus {
-      animation: MoveUpDown 300ms linear infinite; }
+      animation: MoveUpDown 1s linear infinite; }
   .training-map-holder #edinburgh {
     top: 29%;
     left: 55%; }
