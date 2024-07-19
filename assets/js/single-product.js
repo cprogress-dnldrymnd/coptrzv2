@@ -53,7 +53,7 @@ function __training_ajax() {
         }
         jQuery('.training-map-holder span').removeClass('active');
         if ($location) {
-            $delivery_method = 'classroom';
+            jQuery('input[name="delivery_method"][value="classroom"]').prop('checked', true).trigger('change');
             jQuery('#' + $location).addClass('active');
         }
 
