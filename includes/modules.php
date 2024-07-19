@@ -2737,6 +2737,7 @@ function __form($args)
         $html .= "<div class='col-lg-3'>";
         $html .= __image($image_args);
         $html .= "</div>";
+    } else {
         $class = 'col-12';
         $heading_class = 'mb-0';
     }
