@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="row g-3 align-items-center">
-                                <div class="col-auto">
+                                <div class="col-auto col-location d-none">
 
                                     <?php
                                     global $product;
