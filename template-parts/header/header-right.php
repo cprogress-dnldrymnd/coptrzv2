@@ -35,7 +35,7 @@ $SVG = new SVG;
         $button_text = get__theme_option('header_button_text');
         $button_url = get__theme_option('header_button_url');
         $button_url_custom = get__theme_option('header_button_url_custom');
-        $button_type = get__theme_option('header_button_style');
+        $button_style = get__theme_option('header_button_style');
         $button_target = get__theme_option('header_button_target');
         echo __button(array(
             'button_type' => $button_type,
