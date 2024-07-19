@@ -38,7 +38,7 @@ echo ___hero_modules('text-start', 'small-hero');
                     <?= do_shortcode('[layouts id=271847]') ?>
                     <?php
                     global $layouts_global;
-                    $layouts_global = 271847;
+                    $layouts_global[] = 271847;
                     ?>
                     <?php
                     $avatar = get_avatar(get_the_author_meta('ID'));
