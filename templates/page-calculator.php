@@ -140,6 +140,9 @@
             </div>
         </section>
     </form>
+    <div class="cf7-form d-none">
+        <?= do_shortcode('[contact-form-7 id="2412b9c" title="Calculator"]') ?>
+    </div>
     <?php get_footer(); ?>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script>
