@@ -12976,6 +12976,12 @@ body.product-loop-style-1 .product-buttons {
   -ms-transition: 500ms;
   -o-transition: 500ms;
   transition: 500ms; }
+  .reviews .column-holder .stars svg {
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+    transition: 500ms; }
   .reviews .column-holder:hover, .reviews .column-holder:active, .reviews .column-holder:focus {
     background-color: var(--bs-accent) !important; }
     .reviews .column-holder:hover .stars svg, .reviews .column-holder:active .stars svg, .reviews .column-holder:focus .stars svg {
