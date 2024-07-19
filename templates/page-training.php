@@ -66,12 +66,6 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                                <div class="col-auto">
-                                    <select name="sort" class="trigger-training-ajax-select">
-                                        <option value="latest">Sort By: Latest</option>
-                                        <option value="oldest">Sort By: Oldest</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
                     </div>

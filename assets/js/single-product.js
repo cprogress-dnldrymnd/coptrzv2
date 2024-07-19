@@ -18,10 +18,6 @@ function __training() {
         __training_ajax('classroom');
     });
 
-    jQuery('.trigger-training-ajax-select').change(function (e) {
-        __training_ajax();
-    });
-
     jQuery('.trigger-location-change').click(function (e) {
         $value = jQuery(this).attr('value');
         jQuery('select[name="location"]').val($value);
@@ -57,7 +53,6 @@ function __training_ajax($delivery_method = false) {
             $delivery_method_val = jQuery('input[name="delivery_method"]:checked').val();
 
         }
-        $sortby = jQuery('select[name="sort"]').val();
         $location = jQuery('select[name="location"]').val();
 
         if ($delivery_method_val == 'classroom') {
@@ -81,7 +76,6 @@ function __training_ajax($delivery_method = false) {
                 product_id: $product_id,
                 delivery_method: $delivery_method_val,
                 location: $location,
-                sortby: $sortby,
             },
 
             success: function (response) {

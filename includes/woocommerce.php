@@ -766,12 +766,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
         }
     }
 
-    if ($sortby == 'latest') {
-        usort($child_array, 'date_compare_latest');
-    } else {
-        usort($child_array, 'date_compare_oldest');
-    }
-
+    usort($child_array, 'date_compare_latest');
 
     if ($location) {
         $child_array_val = array_filter($child_array, function ($var) use ($location) {
