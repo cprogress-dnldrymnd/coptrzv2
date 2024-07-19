@@ -907,7 +907,7 @@ section.product-main {
             height: 28px;
         }
         @include on-event {
-            animation: MoveUpDown 300ms linear infinite;
+            animation: MoveUpDown 1s linear infinite;
         }
     }
     #edinburgh {
