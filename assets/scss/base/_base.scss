@@ -875,7 +875,7 @@ small {
 
 #post-content {
     a {
-        &:not(.wp-element-button) {
+        &:not(.wp-element-button):not(.rounded-10px) {
             color: var(--bs-accent);
         }
     }

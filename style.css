@@ -11211,7 +11211,7 @@ small, .small {
   position: sticky;
   top: 32px; }
 
-#post-content a:not(.wp-element-button) {
+#post-content a:not(.wp-element-button):not(.rounded-10px) {
   color: var(--bs-accent); }
 #post-content h1, #post-content .h1,
 #post-content h2,
