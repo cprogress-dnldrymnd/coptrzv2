@@ -2034,28 +2034,7 @@ function __section_fields($name = 'sections')
                                                 ),
                                         )
                                     )
-                                    ->add_fields(
-                                        'wp_form',
-                                        array(
-                                            Field::make('select', 'style', 'Style')
-                                                ->set_options(
-                                                    array(
-                                                        ''   => 'Default',
-                                                        'style-2' => 'Style 2',
-                                                    )
-                                                ),
-                                            Field::make('association', 'form', 'Select Form')
-                                                ->set_types(
-                                                    array(
-                                                        array(
-                                                            'type'      => 'post',
-                                                            'post_type' => 'wpforms',
-                                                        )
-                                                    )
-                                                )
-                                                ->set_max(1)
-                                        )
-                                    )
+                                  
                                     ->add_fields(
                                         'cf7',
                                         array(

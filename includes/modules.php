@@ -1965,14 +1965,6 @@ function ____columns_modules($items, $id, $html = '')
                         'lower_opacity' => $lower_opacity
                     ));
                     break;
-
-                case 'wp_form':
-                    $id = $item['form'][0]['id'];
-                    $style = $item['style'];
-                    $html .= "<div class='form-box $style'>";
-                    $html .= do_shortcode("[wpforms id='$id' title='false']");
-                    $html .= "</div>";
-                    break;
                 case 'cf7':
                     $id = $item['form'][0]['id'];
                     $style = $item['style'];
