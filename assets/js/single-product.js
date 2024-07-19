@@ -7,6 +7,7 @@ jQuery(document).ready(function () {
 });
 
 function __training() {
+    __training_swiper();
 
     jQuery('.trigger-training-ajax').click(function (e) {
         __training_ajax();
