@@ -141,6 +141,7 @@
         </section>
     </form>
     <?php get_footer(); ?>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script>
         jQuery(document).ready(function() {
 
