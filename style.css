@@ -12985,7 +12985,7 @@ body.product-loop-style-1 .product-buttons {
   .reviews .column-holder:hover, .reviews .column-holder:active, .reviews .column-holder:focus {
     background-color: var(--bs-accent) !important; }
     .reviews .column-holder:hover .stars svg, .reviews .column-holder:active .stars svg, .reviews .column-holder:focus .stars svg {
-      color: var(--bs-secondary); }
+      color: var(--bs-white); }
 .reviews .logo-box img,
 .reviews .logo-box svg {
   height: 35px;
