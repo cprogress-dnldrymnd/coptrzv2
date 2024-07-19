@@ -10546,22 +10546,22 @@ hr {
 .background-overlay.background-overlay-2:before {
   background: linear-gradient(180deg, #00000075 0%, #000000 100%) 0% 0%; }
 
-.background-image {
+.background-image.background-image {
   margin-bottom: 0 !important;
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0; }
-  .background-image img,
-  .background-image video {
+  .background-image.background-image img,
+  .background-image.background-image video {
     width: 100%;
     height: 100%;
     object-fit: cover; }
-  .background-image + div {
+  .background-image.background-image + div {
     position: relative;
     z-index: 2; }
-  .background-image iframe {
+  .background-image.background-image iframe {
     width: 100%;
     height: 100%;
     -webkit-transform: scale(1.6);
@@ -10571,21 +10571,21 @@ hr {
     transform: scale(1.6);
     pointer-events: none; }
     @media screen and (max-width: 991px) {
-      .background-image iframe {
+      .background-image.background-image iframe {
         -webkit-transform: scale(1.7);
         -moz-transform: scale(1.7);
         -ms-transform: scale(1.7);
         -o-transform: scale(1.7);
         transform: scale(1.7); } }
     @media screen and (max-width: 767px) {
-      .background-image iframe {
+      .background-image.background-image iframe {
         -webkit-transform: scale(3);
         -moz-transform: scale(3);
         -ms-transform: scale(3);
         -o-transform: scale(3);
         transform: scale(3); } }
   @media screen and (max-width: 575px) {
-    .background-image.mx-20px {
+    .background-image.background-image.mx-20px {
       margin-left: 10px;
       margin-right: 10px; } }
 
