@@ -912,6 +912,11 @@ section.product-main {
             }
             animation: MoveUpDown 1s linear infinite;
         }
+        &.active {
+            svg {
+                color: var(--bs-accent);
+            }
+        }
     }
     #edinburgh {
         top: 29%;
