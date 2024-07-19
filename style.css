@@ -10531,11 +10531,14 @@ hr {
   background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%;
   z-index: 1; }
 .background-overlay + * {
-  z-index: 2; }
+  z-index: 2;
+  position: relative; }
   .background-overlay + * + * {
-    z-index: 2; }
+    z-index: 2;
+    position: relative; }
     .background-overlay + * + * + * {
-      z-index: 2; }
+      z-index: 2;
+      position: relative; }
 .background-overlay.background-overlay-darker:before {
   background-color: rgba(0, 0, 0, 0.85); }
 .background-overlay.background-overlay-lighter:before {
