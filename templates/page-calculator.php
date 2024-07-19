@@ -102,7 +102,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="button-box button-accent">
-                                <button class="w-100" type="submit" id="generate_report">Generate my report</button>
+                                <button class="w-100" type="submit" id="">Generate my report</button>
                             </div>
                         </div>
                     </div>
