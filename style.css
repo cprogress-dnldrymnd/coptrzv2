@@ -11580,10 +11580,15 @@ hr {
   to {
     background-size: 100% 3px; } }
 @keyframes MoveUpDown {
-  from {
-    transform: scale(1); }
-  to {
-    transform: scale(1.1); } }
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7); }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); } }
 .loader {
   width: fit-content;
   font-weight: bold;
