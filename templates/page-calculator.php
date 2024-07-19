@@ -26,34 +26,34 @@
                             <label for="" class="mb-2 fw-medium">Initial Investment</label>
                             <div class="input-box d-flex rounded-corner border-default">
                                 <div class="icon d-flex align-items-center justify-content-center fw-medium">£</div>
-                                <input type="number" name="Initial_Investment" value="100000" require>
+                                <input type="number" name="Initial_Investment" value="100000" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">Annual Revenue from Drone Survey Work</label>
                             <div class="input-box d-flex rounded-corner border-default">
                                 <div class="icon d-flex align-items-center justify-content-center fw-medium">£</div>
-                                <input type="number" name="Annual_Revenue_from_Drone_Survey_Work" value="70000" require>
+                                <input type="number" name="Annual_Revenue_from_Drone_Survey_Work" value="70000" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">Annual Operating Costs</label>
                             <div class="input-box d-flex rounded-corner border-default">
                                 <div class="icon d-flex align-items-center justify-content-center fw-medium">£</div>
-                                <input type="number" name="Annual_Operating_Costs" value="30000" require>
+                                <input type="number" name="Annual_Operating_Costs" value="30000" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">Average Savings per Day Using a Drone</label>
                             <div class="input-box d-flex rounded-corner border-default">
                                 <div class="icon d-flex align-items-center justify-content-center fw-medium">£</div>
-                                <input type="number" name="Average_Savings_per_Day_Using_a_Drone" value="500" require>
+                                <input type="number" name="Average_Savings_per_Day_Using_a_Drone" value="500" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">Number of Days Drone Will Be Used Per Year</label>
                             <div class="input-box d-flex rounded-corner border-default">
-                                <input type="number" name="Number_of_Days_Drone_Will_Be_Used_Per_Year" value="150" require>
+                                <input type="number" name="Number_of_Days_Drone_Will_Be_Used_Per_Year" value="150" required>
                             </div>
                         </div>
                     </div>
@@ -73,13 +73,13 @@
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">First Name</label>
                             <div class="input-box d-flex rounded-corner border-default">
-                                <input type="text" name="First_Name" require>
+                                <input type="text" name="First_Name" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">Last Name</label>
                             <div class="input-box d-flex rounded-corner border-default">
-                                <input type="text" name="Last_Name" require>
+                                <input type="text" name="Last_Name" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -91,7 +91,7 @@
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">Email Address</label>
                             <div class="input-box d-flex rounded-corner border-default">
-                                <input type="text" name="Email_Address" require>
+                                <input type="text" name="Email_Address" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -102,7 +102,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="button-box button-accent">
-                                <button class="w-100" type="submit" id="">Generate my report</button>
+                                <button class="w-100" type="submit" id="generate_report">Generate my report</button>
                             </div>
                         </div>
                     </div>
