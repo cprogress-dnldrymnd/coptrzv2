@@ -907,6 +907,9 @@ section.product-main {
             height: 28px;
         }
         @include on-event {
+            svg {
+                color: var(--bs-accent);
+            }
             animation: MoveUpDown 1s linear infinite;
         }
     }
