@@ -9,8 +9,15 @@ jQuery(document).ready(function () {
     __post_navigation();
     __filters();
     __ajax_trigger();
+    __tooltips();
 });
 
+function __tooltips() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+}
 
 function __ajax() {
     $archive_section = jQuery('.ajax-loading');
@@ -177,7 +184,7 @@ function __header_menu() {
                 function () {
                     jQuery(this).find(' > .nav-link').addClass('active');
                     jQuery(this).find(' > .submenu').addClass('active');
-                   
+
                     jQuery('body').removeClass('mini-cart-active');
                 }, function () {
                     jQuery(this).find(' > .nav-link').removeClass('active');
