@@ -879,6 +879,10 @@ small {
             color: var(--bs-accent);
         }
     }
+    .container {
+        --bs-gutter-x: 0;
+        --bs-gutter-y: 0;
+    }
     @include headings {
         b {
             font-weight: 500 !important;

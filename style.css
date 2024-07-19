@@ -11213,6 +11213,9 @@ small, .small {
 
 #post-content a:not(.wp-element-button):not(.rounded-10px) {
   color: var(--bs-accent); }
+#post-content .container {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0; }
 #post-content h1, #post-content .h1,
 #post-content h2,
 #post-content .h2,
