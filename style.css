@@ -11489,7 +11489,7 @@ hr {
   width: 60px;
   height: 60px;
   font-size: 17px; }
-.input-box.input-box .error {
+.input-box.input-box label.error {
   position: absolute;
   bottom: -3px;
   font-size: 13px;
