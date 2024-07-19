@@ -13,8 +13,13 @@ function __training() {
         __training_ajax();
     });
 
+    jQuery('.trigger-training-ajax-location').change(function (e) { 
+        e.preventDefault();
+        
+    });
+
     jQuery('.trigger-training-ajax-select').change(function (e) {
-        __training_ajax();
+        __training_ajax('classroom');
     });
 
     jQuery('.trigger-location-change').click(function (e) {

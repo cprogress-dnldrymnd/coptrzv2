@@ -57,7 +57,7 @@
                                     $locations = array_unique($locations);
                                     ?>
 
-                                    <select name="location" class="trigger-training-ajax-select">
+                                    <select name="location" class="trigger-training-ajax-location">
                                         <option value="">Location: All</option>
                                         <?php foreach ($locations as $location) { ?>
                                             <?php if ($location != 'online') { ?>
