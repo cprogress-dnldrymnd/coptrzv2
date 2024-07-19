@@ -44,12 +44,14 @@
         }
         .input-label {
             font-size: 14px;
+            display: block;
         }
         .wpcf7-submit {
             margin-top: 1rem;
         }
         @include inputs {
-            &:not([type="submit"]) {
+            &:not([type="submit"]),
+            &:not(.iti__tel-input) {
                 padding: 13px;
             }
         }
