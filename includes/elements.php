@@ -40,7 +40,7 @@ function __heading($data, $html = '')
             $html .= "</div>";
         } else {
             if ($link) {
-                $html .= "<a href='$link'>";
+                $html .= "<a class='text-inherit text-decoration-none' href='$link'>";
             }
             $html .= "<$tag $_attributes>$heading</$tag>";
             if ($link) {
