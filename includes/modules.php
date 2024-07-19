@@ -54,7 +54,7 @@ function _date_format($date_input, $include_year = false)
         $current_year = date("Y");
         $year = date('Y', $date);
         if ($year != $current_year) {
-            $newDate .= $year;
+            $newDate .= " $year";
         }
     }
     return $newDate;
