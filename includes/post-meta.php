@@ -5788,8 +5788,8 @@ Container::make('post_meta', __('Conditional Display'))
         Field::make('select', 'display_location_archive_position', __('Position'))
             ->add_options(array(
                 '' => __('Select Position'),
-                'above_loop' => __('Above Loop'),
-                'below_loop' => __('Below Loop'),
+                'above_content' => __('Above Content'),
+                'below_content' => __('Below Content'),
             ))
             ->set_conditional_logic(
                 array(
