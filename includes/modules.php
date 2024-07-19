@@ -1356,7 +1356,7 @@ function ____gallery_modules($data)
             $image_args['size'] = 'large';
 
             $html .= '<div class="row g-5">';
-            $image_args['class'] = _attribute('class', array('col-lg-4'));
+            $image_args['class'] = _attribute('class', array('col-auto'));
         }
 
         foreach ($gallery as $image) {
@@ -1364,10 +1364,12 @@ function ____gallery_modules($data)
 
             $html .= __image($image_args);
         }
-        foreach ($gallery as $image) {
-            $image_args['image_id'] = $image;
+        if ($gallery_style == 'logo-slider') {
+            foreach ($gallery as $image) {
+                $image_args['image_id'] = $image;
 
-            $html .= __image($image_args);
+                $html .= __image($image_args);
+            }
         }
         if ($gallery_style == 'logo-slider') {
             $html  .= "</div>";
