@@ -941,6 +941,11 @@ function custom_product_variation_training_backup($delivery_method = 'online-sel
                     if ($product_attribute_array['date'] != 'N/A') {
                         $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
                         $html .= _date_format($product_attribute_array['date'], true);
+                        $current_year = date("Y");
+                        $year = date('Y', $product_attribute_array['date']);
+                        $html .= $year;
+                        $html .= $current_year;
+
                         $html .= '</span>';
                     }
                     $html .= '</div>';
