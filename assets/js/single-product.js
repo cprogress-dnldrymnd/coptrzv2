@@ -48,12 +48,14 @@ function __training_ajax() {
         $sortby = jQuery('select[name="sort"]').val();
         $location = jQuery('select[name="location"]').val();
 
-        if ($delivery_method == 'online-self-paced') {
-            $location = 'online';
+        if ($delivery_method == 'classroom') {
+            jQuery('.col-location').removeClass('d-none');
+        } else {
+            jQuery('.col-location').addClass('d-none');
+            $location = '';
         }
         jQuery('.training-map-holder span').removeClass('active');
         if ($location) {
-            jQuery('input[name="delivery_method"][value="classroom"]').prop('checked', true).trigger('change');
             jQuery('#' + $location).addClass('active');
         }
 
