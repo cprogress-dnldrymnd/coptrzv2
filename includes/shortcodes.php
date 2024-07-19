@@ -421,9 +421,12 @@ class Shortcodes
                 $review_score = $review['review_score'];
                 $review_text = $review['review_text'];
                 $review_logo = $review['review_logo'];
+                $review_url = $review['review_url'];
                 $html .= "<div class='col-lg-4'>";
                 $html .= "<div class='column-holder bg-secondary xs-padding rounded-10px'>";
-
+                if ($review_url) {
+                    $html .= "<a target='_blank' href='$review_url'>";
+                }
                 $html .= "<div class='review-box d-flex justify-content-lg-between'>";
                 $html .= "<div class='review-text'> $review_score </div>";
 
@@ -444,7 +447,9 @@ class Shortcodes
                     'image_id' => $review_logo,
                     'class' => _attribute('class', array('logo-box text-center mt-4'))
                 ));
-
+                if ($review_url) {
+                    $html .= "</a>";
+                }
                 $html .= "</div>";
                 $html .= "</div>";
             }
