@@ -11498,6 +11498,8 @@ hr {
   width: 100%;
   text-align: center;
   color: #dc3232; }
+.input-box.input-box .iti__tel-input {
+  border-radius: 10px; }
 .input-box.input-box input {
   border: none;
   border-radius: none;
