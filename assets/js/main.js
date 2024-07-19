@@ -11,7 +11,23 @@ jQuery(document).ready(function () {
     __ajax_trigger();
 });
 
-
+function phone_input() {
+    if (jQuery('input[type="tel"]').length != 0) {
+        const input = document.querySelector('input[type="tel"]');
+        const iti = window.intlTelInput(input, {
+            initialCountry: "gb",
+            separateDialCode: true,
+        });
+        jQuery('input[type="tel"]').val('+44');
+        input.addEventListener("countrychange", function () {
+            const selectedCountryData = iti.getSelectedCountryData();
+            if (selectedCountryData) {
+                const dialCode = selectedCountryData.dialCode;
+                jQuery(this).val('+' + dialCode);
+            }
+        });
+    }
+}
 
 function __ajax() {
     $archive_section = jQuery('.ajax-loading');
@@ -173,7 +189,7 @@ function __block_accordion() {
 
 function __header_menu() {
     setTimeout(function () {
-       jQuery('.header').removeClass('overflow-hidden');
+        jQuery('.header').removeClass('overflow-hidden');
     }, 500);
     if (jQuery('header').length > 0) {
         if (window.innerWidth > 991) {

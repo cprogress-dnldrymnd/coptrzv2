@@ -78,6 +78,10 @@ function enqueue_scripts()
 	wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js');
 	wp_enqueue_script('bootstrap', vendor_dir . '/twbs/bootstrap/dist/js/bootstrap.min.js');
 
+
+	wp_enqueue_style('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/css/intlTelInput.css', NULL, coptz_version);
+	wp_enqueue_script('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/js/intlTelInput.min.js', NULL, coptz_version);
+
 	wp_register_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
 	wp_localize_script(
 		'main',
@@ -107,9 +111,7 @@ function enqueue_scripts()
 	}
 
 	if (is_checkout()) {
-		wp_enqueue_style('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/css/intlTelInput.css', NULL, coptz_version);
 		wp_enqueue_style('checkout-style', assets_dir . 'scss/checkout/checkout.css', NULL, coptz_version);
-		wp_enqueue_script('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/js/intlTelInput.min.js', NULL, coptz_version);
 		wp_register_script('checkout-js', assets_dir . 'js/checkout.js', ['jquery'], coptz_version);
 
 		$countries_obj = new WC_Countries();
