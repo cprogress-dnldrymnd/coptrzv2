@@ -12345,6 +12345,9 @@ section.product-main .summary.summary.summary .variations tr {
 
 .training-map-holder {
   max-width: 556px; }
+  .training-map-holder > svg {
+    width: 100%;
+    height: auto; }
   .training-map-holder span {
     position: absolute;
     cursor: pointer; }

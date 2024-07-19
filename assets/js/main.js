@@ -172,6 +172,9 @@ function __block_accordion() {
 }
 
 function __header_menu() {
+    setTimeout(function () {
+       jQuery('.header').removeClass('overflow-hidden');
+    }, 500);
     if (jQuery('header').length > 0) {
         if (window.innerWidth > 991) {
             jQuery(".parent-has-submenu").hover(

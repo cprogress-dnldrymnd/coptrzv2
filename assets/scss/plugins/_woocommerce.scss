@@ -899,6 +899,10 @@ section.product-main {
 
 .training-map-holder {
     max-width: 556px;
+    >svg {
+        width: 100%;
+        height: auto;
+    }
     span {
         position: absolute;
         cursor: pointer;

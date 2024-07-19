@@ -20,7 +20,7 @@
 
 
 <body <?php body_class(); ?>>
-	<header class="header small-text">
+	<header class="header small-text overflow-hidden">
 		<div class="container">
 			<div class="header-inner mt-20px rounded-10px">
 				<div class="row justify-content-between">
