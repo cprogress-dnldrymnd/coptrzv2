@@ -12585,6 +12585,9 @@ body.product-loop-style-1 .product-buttons {
 .form-box.style-2 textarea:not(.iti__tel-input) {
   padding: 13px; }
 
+.iti__country-name {
+  color: var(--bs-black); }
+
 .wpcf7 .wpcf7-spinner {
   position: absolute;
   right: 0;

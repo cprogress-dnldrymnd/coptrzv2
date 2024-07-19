@@ -57,7 +57,12 @@
         }
     }
 }
-
+.iti {
+    width: 100%;
+}
+.iti__country-name {
+    color: var(--bs-black);
+}
 .wpcf7 {
     .wpcf7-spinner {
         position: absolute;
