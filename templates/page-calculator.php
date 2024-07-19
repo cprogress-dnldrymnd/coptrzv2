@@ -97,7 +97,7 @@
                         </div>
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">Telephone</label>
-                            <div class="input-box d-flex rounded-corner border-default position-relative">
+                            <div class="input-box d-flex rounded-corner border-default overflow-visible position-relative">
                                 <input type="tel" name="Telephone">
                             </div>
                         </div>
