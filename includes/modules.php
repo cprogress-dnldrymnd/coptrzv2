@@ -2727,7 +2727,7 @@ function __form($args)
     $description_args['description'] =  $form_description;
     $description_args['class'] =  _attribute('class', array('description-box'));
 
-    $html = "<div class='form-box bg-white rounded-corner $form_style'>"; //form-holder
+    $html = "<div class='form-holder bg-white rounded-corner'>"; //form-holder
     $html .= " <div class='form-header bg-accent text-white'>"; //form-header
     $html .= "<div class='row g-0 align-items-center'>"; //row
 
@@ -2756,7 +2756,7 @@ function __form($args)
     $html .= "</div>"; //end-row
     $html .= "</div>"; //end-form-header
 
-    $html .= "<div class='form-box p-20px small-text fw-light'>";
+    $html .= "<div class='form-box p-20px small-text fw-light $form_style'>";
     $html .= "<div class='inner mt-20px'>";
     $html .= do_shortcode("[contact-form-7 id='$form_id']");
     $html .= "</div>";
