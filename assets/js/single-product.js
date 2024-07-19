@@ -14,7 +14,8 @@ function __training() {
     });
 
     jQuery('.trigger-training-ajax-location').change(function (e) { 
-        __training_ajax();
+        jQuery('input[name="delivery_method"][value="classroom"]').prop('checked', true);
+        __training_ajax('classroom');
     });
 
     jQuery('.trigger-training-ajax-select').change(function (e) {
