@@ -126,6 +126,66 @@ function __general_settings_fields()
 
     );
 }
+function __header_fields()
+{
+    return array(
+        Field::make('html', 'html_header_button')->set_html('<label>Header Button</label>')->set_classes('cb-label'),
+        Field::make('select', 'header_button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
+            ->set_options(
+                array(
+                    ''          => 'Select Button Type',
+                    'page'      => 'Page',
+                    'product'      => 'Product',
+                    'guides'      => 'Guides',
+                    'casestudies'      => 'Case Studies',
+                    'post'      => 'Post',
+                    'industries' => 'Industry',
+                    'popups'    => 'Popup',
+                    'custom'     => 'Custom',
+                )
+            ),
+        Field::make('text', 'header_button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
+        Field::make('text', 'header_button_url', __('Button URL'))->set_classes('field-url-cb inline-field inline-field-wide-label')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field'   => 'header_button_type',
+                        'value'   => 'custom',
+                        'compare' => '!='
+                    )
+                )
+            ),
+        Field::make('html', 'html')
+            ->set_html('<div class="page-selector">  </div>'),
+        Field::make('text', 'header_button_url_custom', __('Button URL'))->set_classes('inline-field inline-field-wide-label')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'header_button_type',
+                        'value' => 'custom',
+                    )
+                )
+            ),
+        Field::make('select', 'header_button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
+            ->set_options(
+                array(
+                    'button-accent'      => 'Accent',
+                    'button-primary'      => 'Primary',
+                    'button-secondary' => 'Secondary',
+                    'button-white' => 'White',
+                    'button-bordered'    => 'Bordered',
+                )
+            ),
+        Field::make('select', 'header_button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
+            ->set_options(
+                array(
+                    'target="_self"'      => 'Default',
+                    'target="_blank"'      => 'New Tab',
+                )
+            ),
+
+    );
+}
 function __social_fields()
 {
     return array(
@@ -152,6 +212,7 @@ function __social_fields()
 }
 Container::make('theme_options', __('Theme Settings'))
     ->add_tab('General Settings', __general_settings_fields())
+    ->add_tab('Header', __header_fields())
     ->add_tab('Socials', __social_fields());
 
 Container::make('theme_options', __('Global Widgets'))
