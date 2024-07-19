@@ -14,12 +14,11 @@ function __training() {
     });
 
     jQuery('.trigger-training-ajax-location').change(function (e) { 
-        e.preventDefault();
-        
+        __training_ajax();
     });
 
     jQuery('.trigger-training-ajax-select').change(function (e) {
-        __training_ajax('classroom');
+        __training_ajax();
     });
 
     jQuery('.trigger-location-change').click(function (e) {
