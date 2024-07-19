@@ -46,14 +46,14 @@ function __training_ajax() {
         $product_id = jQuery('input[name="product_id"]').val();
         $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
         $sortby = jQuery('select[name="sort"]').val();
+        $location = jQuery('select[name="location"]').val();
 
         if($delivery_method == 'classroom') {
             jQuery('.col-location').removeClass('d-none');
         } else {
             jQuery('.col-location').addClass('d-none');
-            $delivery_method = 'online-self-paced';
+            $location = '';
         }
-        $location = jQuery('select[name="location"]').val();
         
         jQuery.ajax({
             type: "POST",
