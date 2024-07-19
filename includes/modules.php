@@ -2334,7 +2334,11 @@ function __post_box($data, $class = [], $content_box_class = [])
     if ($style == 'style-1' && $background_class == false) {
         $content_box_class[] = 'px-20px pb-20px';
     }
+    $link = false;
 
+    if (in_array('button', $elements)) {
+        $link = $id;
+    }
 
     if ($bg_image) {
         $class[] = 'xs-padding text-white text-center rounded-corner overflow-hidden h1-100 bg-black d-flex align-items-end justify-content-center';
@@ -2348,6 +2352,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     $class_attribute = _attribute('class', $class);
     $content_box_class_attribute = _attribute('class', $content_box_class);
     $html .= "<div $class_attribute>"; //inner
+
     if ($featured) {
         $html .= __background($image);
         $html .= __post_category($id, $taxonomy, 'text-white');
@@ -2360,7 +2365,8 @@ function __post_box($data, $class = [], $content_box_class = [])
                 'image_id' => $image,
                 'placeholder' => true,
                 'size' => 'large',
-                'class' => _attribute('class', array('image-box rounded-corner overflow-hidden'))
+                'class' => _attribute('class', array('image-box rounded-corner overflow-hidden')),
+                'link' => $link
             ));
         }
 
@@ -2385,6 +2391,7 @@ function __post_box($data, $class = [], $content_box_class = [])
         $html .= __heading(array(
             'heading' => get_the_title($id),
             'tag' => $tag,
+            'link' => $link
         ));
     }
     if (get_post_type($id) == 'product') {

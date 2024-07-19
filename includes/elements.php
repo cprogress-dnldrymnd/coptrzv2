@@ -7,6 +7,7 @@ function __heading($data, $html = '')
     $prefix = isset($data['prefix']) ? $data['prefix'] : false;
     $suffix = isset($data['suffix']) ? $data['suffix'] : false;
     $styles = isset($data['styles']) ? $data['styles'] : false;
+    $link = isset($data['link']) ? get_permalink($data['link']) : false;
 
     $attributes_args = [];
     if ($class) {
@@ -18,19 +19,33 @@ function __heading($data, $html = '')
     $_attributes = _attributes($attributes_args);
 
     if ($heading) {
+
         if ($prefix || $suffix) {
             $html .= "<div $_attributes>";
+
             if ($prefix) {
                 $html .= "<span>$prefix</span>";
             }
+            if ($link) {
+                $html .= "<a href='$link'>";
+            }
             $html .= "<$tag>$heading</$tag>";
+            if ($link) {
+                $html .= "</a>";
+            }
             if ($suffix) {
                 $html .= "<span class='small-text'>$suffix</span>";
             }
 
             $html .= "</div>";
         } else {
+            if ($link) {
+                $html .= "<a href='$link'>";
+            }
             $html .= "<$tag $_attributes>$heading</$tag>";
+            if ($link) {
+                $html .= "</a>";
+            }
         }
     }
     return $html;
