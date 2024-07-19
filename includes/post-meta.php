@@ -62,6 +62,7 @@ function __reviews_field()
                 Field::make('text', 'review_label', __('Review Label'))->set_classes('inline-field'),
                 Field::make('text', 'review_score', __('Review Score'))->set_classes('inline-field'),
                 Field::make('text', 'review_text', __('Review Text'))->set_classes('inline-field'),
+                Field::make('text', 'review_url', __('Review URL'))->set_classes('inline-field'),
                 Field::make('image', 'review_logo', __('Review Logo'))->set_classes('inline-field'),
 
             ))
