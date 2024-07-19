@@ -60,8 +60,9 @@
                                     <select name="location" class="trigger-training-ajax-select">
                                         <option value="">Location: All</option>
                                         <?php foreach ($locations as $location) { ?>
-                                            <option value="<?= $location ?>" class="text-capitalize"><?= $location ?></option>
-
+                                            <?php if ($location != 'online') { ?>
+                                                <option value="<?= $location ?>" class="text-capitalize"><?= $location ?></option>
+                                            <?php } ?>
                                         <?php } ?>
                                     </select>
                                 </div>
