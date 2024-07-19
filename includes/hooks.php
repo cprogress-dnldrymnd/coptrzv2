@@ -121,6 +121,7 @@ function get__posts($post_type)
     $args = array(
         'post_type'      => $post_type, // Get only pages
         'orderby' => 'title',
+        'order' => 'ASC',
         'posts_per_page' => -1, // Get all pages
         'post_status'    => 'publish', // Get only published pages
         'fields'         => 'ids', // Only retrieve post IDs for efficiency
