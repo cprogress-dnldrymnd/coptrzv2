@@ -8,7 +8,8 @@
     <?php
     echo ___hero_modules();
     ?>
-    <form>
+
+    <form id="calculator-form">
         <section class="calculator medium-container lg-padding-top md-padding-bottom">
             <div class="container content-margin">
                 <div class="inner px-5 content-margin">
@@ -102,7 +103,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="button-box button-accent">
-                                <button class="w-100" type="submit" id="">Generate my report</button>
+                                <button class="w-100" type="submit" id="generate_report">Generate my report</button>
                             </div>
                         </div>
                     </div>
@@ -144,6 +145,10 @@
         jQuery(document).ready(function() {
 
             jQuery('#generate_report').click(function(e) {
+
+                console.log(jQuery("#form_id").valid());
+
+
                 jQuery('html, body').animate({
                     scrollTop: jQuery("#results-position").offset().top
                 }, 100);
