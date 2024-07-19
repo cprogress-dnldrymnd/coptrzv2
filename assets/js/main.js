@@ -9,9 +9,10 @@ jQuery(document).ready(function () {
     __post_navigation();
     __filters();
     __ajax_trigger();
+    __phone_input();
 });
 
-function phone_input() {
+function __phone_input() {
     if (jQuery('input[type="tel"]').length != 0) {
         const input = document.querySelector('input[type="tel"]');
         const iti = window.intlTelInput(input, {
