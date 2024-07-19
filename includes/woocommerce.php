@@ -664,7 +664,7 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
     }
     if ($is_slider) {
 
-        $html .= "<div class='container mt-4'><div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev' id='swiper-prev-$id'></div> <div class='swiper-button-next' id='swiper-next-$id'></div> </div> </div>";
+        $html .= "<div class='container no-extend mt-4'><div class='row g-4 justify-content-between align-items-center'> <div class='col-auto'> <div class='swiper-nav d-inline-flex'> <div class='swiper-button-prev' id='swiper-prev-$id'></div> <div class='swiper-button-next' id='swiper-next-$id'></div> </div> </div>";
 
         if ($button_text) {
             $html .= "<div class='col-auto'>";
