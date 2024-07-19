@@ -27,7 +27,7 @@ function __heading($data, $html = '')
                 $html .= "<span>$prefix</span>";
             }
             if ($link) {
-                $html .= "<a href='$link'>";
+                $html .= "<a class='text-inherit text-decoration-none' href='$link'>";
             }
             $html .= "<$tag>$heading</$tag>";
             if ($link) {
@@ -119,6 +119,8 @@ function __image($data)
     $class = isset($data['class']) ? $data['class'] : false;
     $style = isset($data['style']) ? $data['style'] : false;
     $placeholder = isset($data['placeholder']) ? $data['placeholder'] : false;
+    $link = isset($data['link']) ? get_permalink($data['link']) : false;
+
     $attributes_args = [];
     if ($featured_image) {
         $image = get_the_post_thumbnail($featured_image, $size);
@@ -133,8 +135,16 @@ function __image($data)
             $attributes_args[] = $style;
         }
         $_attributes = _attributes($attributes_args);
-
-        return "<div $_attributes>$image</div>";
+        $html =  "<div $_attributes>";
+        if ($link) {
+            $html .= "<a class='text-inherit text-decoration-none' href='$link'>";
+        }
+        $html .= $image;
+        if ($link) {
+            $html .= '</a>';
+        }
+        $html .=  "</div>";
+        return $html;
     } else {
         if ($placeholder) {
             $class = _attribute('class', array('is-placeholder image-box rounded-corner overflow-hidden bg-black'));
