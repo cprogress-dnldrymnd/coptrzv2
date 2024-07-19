@@ -28,8 +28,25 @@ $SVG = new SVG;
                 <span></span>
             </button>
         </div>
-        <div class="col-auto button-box button-accent button-small d-none d-lg-block">
-            <button class="rounded-10px" data-bs-toggle="modal" data-bs-target="#modal-268179" target="_self">Enquire Now</button>
-        </div>
+
+        <?php
+
+        $button_type = get__theme_option('header_button_type');
+        $button_text = get__theme_option('header_button_text');
+        $button_url = get__theme_option('header_button_url');
+        $button_url_custom = get__theme_option('header_button_url_custom');
+        $button_type = get__theme_option('header_button_style');
+        $button_target = get__theme_option('header_button_target');
+        echo __button(array(
+            'button_type' => $button_type,
+            'button_text' => $button_text,
+            'button_url' => $button_url,
+            'button_url_custom' => $button_url_custom,
+            'button_style' => $button_style . ' button-accent button-small d-none d-lg-block',
+            'button_target' => $button_target,
+        ));
+        ?>
+
+      
     </div>
 </div>
