@@ -12585,6 +12585,9 @@ body.product-loop-style-1 .product-buttons {
 .form-box.style-2 textarea:not(.iti__tel-input) {
   padding: 13px; }
 
+.iti {
+  width: 100%; }
+
 .iti__country-name {
   color: var(--bs-black); }
 
