@@ -1355,7 +1355,7 @@ function ____gallery_modules($data)
         } else {
             $image_args['size'] = 'large';
 
-            $html .= '<div class="row g-5">';
+            $html .= '<div class="row g-5 justify-content-center align-items-center">';
             $image_args['class'] = _attribute('class', array('col-auto'));
         }
 
