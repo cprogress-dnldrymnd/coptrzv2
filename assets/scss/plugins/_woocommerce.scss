@@ -902,10 +902,12 @@ section.product-main {
     span {
         position: absolute;
         cursor: pointer;
-        animation: MoveUpDown 300ms linear infinite;
         svg {
             width: 28px;
             height: 28px;
+        }
+        @include on-event {
+            animation: MoveUpDown 300ms linear infinite;
         }
     }
     #edinburgh {
@@ -928,7 +930,7 @@ section.product-main {
         top: 81%;
         left: 85%;
     }
-    #hampshire{
+    #hampshire {
         top: 86%;
         left: 67%;
     }

@@ -12345,8 +12345,7 @@ section.product-main .summary.summary.summary .variations tr {
   max-width: 556px; }
   .training-map-holder span {
     position: absolute;
-    cursor: pointer;
-    animation: MoveUpDown 300ms linear infinite; }
+    cursor: pointer; }
     .training-map-holder span svg {
       width: 28px;
       height: 28px; }
