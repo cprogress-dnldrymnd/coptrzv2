@@ -2731,16 +2731,22 @@ function __form($args)
     $html .= " <div class='form-header bg-accent text-white'>"; //form-header
     $html .= "<div class='row g-0 align-items-center'>"; //row
 
-    $html .= "<div class='col-lg-3'>";
-    $html .= __image($image_args);
-    $html .= "</div>";
+    $class = 'col-lg=9';
+    $heading_class = '';
+    if ($form_image) {
+        $html .= "<div class='col-lg-3'>";
+        $html .= __image($image_args);
+        $html .= "</div>";
+        $class = 'col-12';
+        $heading_class = 'mb-0';
+    }
 
-
-    $html .= "<div class='col-lg-9'>";
+    $html .= "<div class='$class'>";
     $html .= "<div class='column-holder p-20px'>";
     $html .= __heading(array(
         'tag' => 'h3',
         'heading' => $form_heading,
+        'class' => _attribute('class', array($heading_class))
     ));
     $html .= __description($description_args);
     $html .= "</div>";
