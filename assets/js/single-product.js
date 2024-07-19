@@ -55,7 +55,9 @@ function __training_ajax() {
             $location = '';
         }
         jQuery('.training-map-holder span').removeClass('active');
-        jQuery('#'+$location).addClass('active');
+        if($location) {
+            jQuery('#'+$location).addClass('active');
+        }
 
         jQuery.ajax({
             type: "POST",
