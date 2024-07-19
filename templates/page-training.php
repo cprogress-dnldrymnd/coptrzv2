@@ -97,7 +97,7 @@
                 <div class="col-lg-6">
                     <?php $SVG = new SVG; ?>
                     <div class="image-box training-map-holder position-relative">
-                        <img src="https://dev.coptrz.com/wp-content/uploads/2024/07/map.jpg" alt="">
+                        <?= $SVG->uk() ?>
                         <span class="trigger-location-change" id="edinburgh" value="edinburgh"><?= $SVG->location() ?></span>
                         <span class="trigger-location-change" id="leeds" value="leeds"><?= $SVG->location() ?></span>
                         <span class="trigger-location-change" id="rugby" value="rugby"><?= $SVG->location() ?></span>
