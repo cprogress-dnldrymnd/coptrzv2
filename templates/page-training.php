@@ -98,12 +98,12 @@
                     <?php $SVG = new SVG; ?>
                     <div class="image-box training-map-holder position-relative">
                         <?= $SVG->uk() ?>
-                        <span class="trigger-location-change" id="edinburgh" value="edinburgh"><?= $SVG->location() ?></span>
-                        <span class="trigger-location-change" id="leeds" value="leeds"><?= $SVG->location() ?></span>
-                        <span class="trigger-location-change" id="rugby" value="rugby"><?= $SVG->location() ?></span>
-                        <span class="trigger-location-change" id="cardiff" value="cardiff"><?= $SVG->location() ?></span>
-                        <span class="trigger-location-change" id="kent" value="kent"><?= $SVG->location() ?></span>
-                        <span class="trigger-location-change" id="hampshire" value="hampshire"><?= $SVG->location() ?></span>
+                        <span class="trigger-location-change" id="edinburgh" value="edinburgh"><?= $SVG->location() ?><div class='pulse'></div></span>
+                        <span class="trigger-location-change" id="leeds" value="leeds"><?= $SVG->location() ?><div class='pulse'></div></span>
+                        <span class="trigger-location-change" id="rugby" value="rugby"><?= $SVG->location() ?><div class='pulse'></div></span>
+                        <span class="trigger-location-change" id="cardiff" value="cardiff"><?= $SVG->location() ?><div class='pulse'></div></span>
+                        <span class="trigger-location-change" id="kent" value="kent"><?= $SVG->location() ?><div class='pulse'></div></span>
+                        <span class="trigger-location-change" id="hampshire" value="hampshire"><?= $SVG->location() ?><div class='pulse'></div></span>
                     </div>
                 </div>
             </div>

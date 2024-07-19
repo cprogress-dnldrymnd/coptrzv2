@@ -7,6 +7,21 @@
     }
 }
 
+@keyframes l2 {
+    to {
+        background-size: 100% 3px;
+    }
+}
+
+@keyframes MoveUpDown {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-5px);
+    }
+}
+
 .loader {
     width: fit-content;
     font-weight: bold;
@@ -18,9 +33,4 @@
 }
 .loader:before {
     content: "Calculating...";
-}
-@keyframes l2 {
-    to {
-        background-size: 100% 3px;
-    }
 }

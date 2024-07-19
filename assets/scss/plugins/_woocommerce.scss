@@ -902,6 +902,7 @@ section.product-main {
     span {
         position: absolute;
         cursor: pointer;
+        animation: MoveUpDown 300ms linear infinite;
         svg {
             width: 28px;
             height: 28px;
