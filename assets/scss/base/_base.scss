@@ -162,20 +162,20 @@ main {
     }
 }
 
-.extend-right .container,
+.extend-right .container:not(.no-extend),
 .extend-right.container {
     margin-right: 0;
     padding-right: 0;
 }
-.extend-left .container,
+.extend-left .container:not(.no-extend),
 .extend-left.container {
     margin-left: 0;
     padding-left: 0;
 }
 
-.extend-left .container,
+.extend-leftcontainer:not(.no-extend),
 .extend-left.container,
-.extend-right .container,
+.extend-right .container:not(.no-extend),
 .extend-right.container {
     @media (min-width: 576px) {
         max-width: 100%;

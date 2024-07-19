@@ -10623,56 +10623,56 @@ hr {
   max-width: 100%;
   --bs-gutter-x: 0; }
 
-.extend-right .container,
+.extend-right .container:not(.no-extend),
 .extend-right.container {
   margin-right: 0;
   padding-right: 0; }
 
-.extend-left .container,
+.extend-left .container:not(.no-extend),
 .extend-left.container {
   margin-left: 0;
   padding-left: 0; }
 
 @media (min-width: 576px) {
-  .extend-left .container,
+  .extend-leftcontainer:not(.no-extend),
   .extend-left.container,
-  .extend-right .container,
+  .extend-right .container:not(.no-extend),
   .extend-right.container {
     max-width: 100%; } }
 @media (min-width: 768px) {
-  .extend-left .container,
+  .extend-leftcontainer:not(.no-extend),
   .extend-left.container,
-  .extend-right .container,
+  .extend-right .container:not(.no-extend),
   .extend-right.container {
     max-width: calc(720px + (50% - (720px / 2))); } }
 @media (min-width: 992px) {
-  .extend-left .container,
+  .extend-leftcontainer:not(.no-extend),
   .extend-left.container,
-  .extend-right .container,
+  .extend-right .container:not(.no-extend),
   .extend-right.container {
     max-width: calc(960px + (50% - (960px / 2))); } }
 @media (min-width: 1300px) {
-  .extend-left .container,
+  .extend-leftcontainer:not(.no-extend),
   .extend-left.container,
-  .extend-right .container,
+  .extend-right .container:not(.no-extend),
   .extend-right.container {
     max-width: calc(1140px + (50% - (1140px / 2))); } }
 @media (min-width: 1400px) {
-  .extend-left .container,
+  .extend-leftcontainer:not(.no-extend),
   .extend-left.container,
-  .extend-right .container,
+  .extend-right .container:not(.no-extend),
   .extend-right.container {
     max-width: calc(1320px + (50% - (1320px / 2))); } }
 @media (min-width: 1500px) {
-  .extend-left .container,
+  .extend-leftcontainer:not(.no-extend),
   .extend-left.container,
-  .extend-right .container,
+  .extend-right .container:not(.no-extend),
   .extend-right.container {
     max-width: calc(1420px + (50% - (1420px / 2))); } }
 @media (min-width: 1600px) {
-  .extend-left .container,
+  .extend-leftcontainer:not(.no-extend),
   .extend-left.container,
-  .extend-right .container,
+  .extend-right .container:not(.no-extend),
   .extend-right.container {
     max-width: calc(1520px + (50% - (1520px / 2))); } }
 
