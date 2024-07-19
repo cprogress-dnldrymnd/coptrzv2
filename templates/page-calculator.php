@@ -92,13 +92,13 @@
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">Email Address</label>
                             <div class="input-box d-flex rounded-corner border-default">
-                                <input type="text" name="Email_Address" required>
+                                <input type="email" name="Email_Address" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">Telephone</label>
                             <div class="input-box d-flex rounded-corner border-default">
-                                <input type="text" name="Telephone">
+                                <input type="tel" name="Telephone">
                             </div>
                         </div>
                         <div class="col-lg-12">
