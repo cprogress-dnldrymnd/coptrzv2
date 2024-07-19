@@ -2739,7 +2739,7 @@ function __form($args)
         $html .= "</div>";
     } else {
         $class = 'col-12';
-        $heading_class = 'mb-0';
+        $heading_class = 'mb-0 text-center';
     }
 
     $html .= "<div class='$class'>";
