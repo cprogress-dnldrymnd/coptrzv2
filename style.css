@@ -12970,6 +12970,9 @@ body.product-loop-style-1 .product-buttons {
 .footer-cta .inner {
   padding-top: 200px; }
 
+.reviews .logo-box img, .reviews .logo-box svg {
+  height: 35px;
+  width: auto; }
 .reviews .review-box .review-text {
   font-size: 80px;
   font-weight: 600;

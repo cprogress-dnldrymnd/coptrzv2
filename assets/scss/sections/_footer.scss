@@ -73,6 +73,12 @@
 }
 
 .reviews {
+    .logo-box {
+        img, svg {
+            height: 35px;
+            width: auto;
+        }
+    }
     .review-box {
         .review-text {
             font-size: 80px;
