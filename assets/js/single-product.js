@@ -16,6 +16,12 @@ function __training() {
         __training_ajax();
     });
 
+    jQuery('.trigger-location-change').click(function (e) { 
+        $value = jQuery(this).attr('value');
+        jQuery('select[name="location"]').val($value).trigger('change');
+x
+        e.preventDefault();
+    });
 
 
 }

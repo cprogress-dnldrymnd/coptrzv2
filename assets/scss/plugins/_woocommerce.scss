@@ -147,7 +147,7 @@ ul.products.products.products {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;;
+            position: relative;
             > .woocommerce-LoopProduct-link {
                 position: absolute;
             }
@@ -901,10 +901,35 @@ section.product-main {
     max-width: 556px;
     span {
         position: absolute;
+        cursor: pointer;
         svg {
             width: 28px;
             height: 28px;
         }
+    }
+    #edinburgh {
+        top: 29%;
+        left: 55%;
+    }
+    #leeds {
+        top: 55%;
+        left: 72%;
+    }
+    #rugby {
+        top: 70%;
+        left: 67%;
+    }
+    #cardiff {
+        top: 78%;
+        left: 57%;
+    }
+    #kent {
+        top: 81%;
+        left: 85%;
+    }
+    #hampshire{
+        top: 86%;
+        left: 67%;
     }
 }
 
@@ -935,7 +960,6 @@ body {
     }
 }
 
-
 .woocommerce-pagination.woocommerce-pagination {
     ul.page-numbers.page-numbers {
         display: flex;
@@ -957,7 +981,6 @@ body {
             align-items: center;
             justify-content: center;
             @include transition(500ms);
-            
         }
         svg {
             width: 25px;

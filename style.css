@@ -12339,10 +12339,29 @@ section.product-main .summary.summary.summary .variations tr {
 .training-map-holder {
   max-width: 556px; }
   .training-map-holder span {
-    position: absolute; }
+    position: absolute;
+    cursor: pointer; }
     .training-map-holder span svg {
       width: 28px;
       height: 28px; }
+  .training-map-holder #edinburgh {
+    top: 29%;
+    left: 55%; }
+  .training-map-holder #leeds {
+    top: 55%;
+    left: 72%; }
+  .training-map-holder #rugby {
+    top: 70%;
+    left: 67%; }
+  .training-map-holder #cardiff {
+    top: 78%;
+    left: 57%; }
+  .training-map-holder #kent {
+    top: 81%;
+    left: 85%; }
+  .training-map-holder #hampshire {
+    top: 86%;
+    left: 67%; }
 
 body.hide-price .product-archive-loop .price {
   display: none !important; }
