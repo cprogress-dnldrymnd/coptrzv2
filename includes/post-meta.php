@@ -2035,7 +2035,7 @@ function __section_fields($name = 'sections')
                                                 ),
                                         )
                                     )
-
+                                  
                                     ->add_fields(
                                         'cf7',
                                         array(
@@ -5729,7 +5729,6 @@ Container::make('post_meta', __('Conditional Display'))
             ->add_options(array(
                 'section' => __('Section'),
                 'archive' => __('Archive'),
-                'single' => __('Single'),
                 'after_header' => __('After Header'),
                 'before_footer' => __('Before Footer'),
                 '404' => __('404'),
@@ -5750,38 +5749,6 @@ Container::make('post_meta', __('Conditional Display'))
                     array(
                         'field' => 'display_location',
                         'value' => 'archive',
-                    )
-                )
-            ),
-        Field::make('select', 'display_location_single', __('Select Single'))
-            ->add_options(array(
-                '' => __('Select Single'),
-                'post' => __('Post'),
-                'events' => __('Events'),
-                'capabilities' => __('Capabilities'),
-                'casestudies' => __('Case Studies'),
-                'industries' => __('Industries'),
-                'guides' => __('Guides'),
-            ))
-            ->set_conditional_logic(
-                array(
-                    array(
-                        'field' => 'display_location',
-                        'value' => 'single',
-                    )
-                )
-            ),
-        Field::make('select', 'display_location_single_position', __('Position'))
-            ->add_options(array(
-                '' => __('Select Position'),
-                'above_content' => __('Abonve Contet'),
-                'below_content' => __('Below Content'),
-            ))
-            ->set_conditional_logic(
-                array(
-                    array(
-                        'field' => 'display_location',
-                        'value' => 'single',
                     )
                 )
             ),
