@@ -51,6 +51,7 @@ function __training_ajax() {
             jQuery('.col-location').removeClass('d-none');
         } else {
             jQuery('.col-location').addClass('d-none');
+            $delivery_method = 'online-self-paced';
         }
         $location = jQuery('select[name="location"]').val();
         
