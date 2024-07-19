@@ -25,6 +25,7 @@ function __training() {
     jQuery('.trigger-location-change').click(function (e) {
         $value = jQuery(this).attr('value');
         jQuery('select[name="location"]').val($value);
+        jQuery('input[name="delivery_method"][value="classroom"]').prop('checked', true);
         __training_ajax('classroom');
         e.preventDefault();
     });
