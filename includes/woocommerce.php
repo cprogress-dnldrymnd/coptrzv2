@@ -1038,11 +1038,12 @@ function __drone_servicing()
                     $quantity = $spec_services[$key];
 
                     $html .= "<div class='active d-flex align-items-center'> ";
-                    $html .= $SVG->check();
-                    if ($quantity > 1) {
+                    if ($quantity && $quantity > 0) {
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
                         $html .= "<span class='smaller-text me-2'>x</span> <span class='fw-'medium'>$quantity</span>";
                         $html .= "</span>";
+                    } else {
+                        $html .= $SVG->check();
                     }
                     $html .= "</div>";
                 } else {
