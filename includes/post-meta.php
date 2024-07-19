@@ -5753,7 +5753,7 @@ Container::make('post_meta', __('Conditional Display'))
                     )
                 )
             ),
-        Field::make('select', 'display_location_archive', __('Select Single'))
+        Field::make('select', 'display_location_single', __('Select Single'))
             ->add_options(array(
                 '' => __('Select Single'),
                 'post' => __('Post'),
@@ -5768,6 +5768,20 @@ Container::make('post_meta', __('Conditional Display'))
                     array(
                         'field' => 'display_location',
                         'value' => 'single',
+                    )
+                )
+            ),
+        Field::make('select', 'display_location_single_position', __('Position'))
+            ->add_options(array(
+                '' => __('Select Position'),
+                'above_loop' => __('Above Loop'),
+                'below_loop' => __('Below Loop'),
+            ))
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'display_location',
+                        'value' => 'archive',
                     )
                 )
             ),
