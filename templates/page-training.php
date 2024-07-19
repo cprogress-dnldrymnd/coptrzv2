@@ -99,7 +99,7 @@
                     <?php $SVG = new SVG; ?>
                     <div class="image-box training-map-holder position-relative">
                         <?= $SVG->uk() ?>
-                        <span class="trigger-location-change" id="edinburgh" value="edinburgh"><?= $SVG->location() ?><div class='pulse'></div></span>
+                        <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edinburgh"class="trigger-location-change" id="edinburgh" value="edinburgh"><?= $SVG->location() ?><div class='pulse'></div></span>
                         <span class="trigger-location-change" id="leeds" value="leeds"><?= $SVG->location() ?><div class='pulse'></div></span>
                         <span class="trigger-location-change" id="rugby" value="rugby"><?= $SVG->location() ?><div class='pulse'></div></span>
                         <span class="trigger-location-change" id="cardiff" value="cardiff"><?= $SVG->location() ?><div class='pulse'></div></span>

@@ -12350,7 +12350,8 @@ section.product-main .summary.summary.summary .variations tr {
     cursor: pointer; }
     .training-map-holder span svg {
       width: 28px;
-      height: 28px; }
+      height: 28px;
+      transition: 300ms; }
     .training-map-holder span:hover, .training-map-holder span:active, .training-map-holder span:focus {
       animation: MoveUpDown 1s linear infinite; }
       .training-map-holder span:hover svg, .training-map-holder span:active svg, .training-map-holder span:focus svg {
