@@ -35,6 +35,7 @@ echo ___hero_modules('text-start', 'small-hero');
             <div class="col-lg-7 col-post-content px-5">
                 <div class="column-holder the-content content-margin fw-light" id="post-content">
                     <?php the_content() ?>
+                    <?= do_shortcode('[layouts id=271847]') ?>
                     <?php
                     $avatar = get_avatar(get_the_author_meta('ID'));
                     ?>
