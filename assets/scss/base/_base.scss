@@ -614,7 +614,14 @@ small {
                 @include last-child {
                     display: none;
                 }
-            }
+                &:nth-last-child(2) {
+                    &:not(:first-child) {
+                        @include after {
+                            content: none;
+                        }
+                    }
+                }
+             }
         }
     }
 }
