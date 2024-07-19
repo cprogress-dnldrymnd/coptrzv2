@@ -17,10 +17,9 @@ function __training() {
         __training_ajax();
     });
 
-    jQuery('.trigger-location-change').click(function (e) { 
+    jQuery('.trigger-location-change').click(function (e) {
         $value = jQuery(this).attr('value');
         jQuery('select[name="location"]').val($value).trigger('change');
-x
         e.preventDefault();
     });
 
@@ -49,15 +48,12 @@ function __training_ajax() {
         $sortby = jQuery('select[name="sort"]').val();
         $location = jQuery('select[name="location"]').val();
 
-        if($delivery_method == 'classroom') {
-            jQuery('.col-location').removeClass('d-none');
-        } else {
-            jQuery('.col-location').addClass('d-none');
-            $location = '';
+        if ($delivery_method == 'online-self-paced') {
+            $location = 'online';
         }
         jQuery('.training-map-holder span').removeClass('active');
-        if($location) {
-            jQuery('#'+$location).addClass('active');
+        if ($location) {
+            jQuery('#' + $location).addClass('active');
         }
 
         jQuery.ajax({
