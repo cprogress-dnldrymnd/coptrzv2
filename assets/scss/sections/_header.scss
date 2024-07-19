@@ -180,7 +180,8 @@
         }
     }
     .header-right {
-        @include responsive(md-lg) {
+       
+        @media(max-width: 1399px) and (min-width: 992px) {
             --bs-gutter-x: 10px;
         }
         .button-box {

@@ -12788,7 +12788,7 @@ body.product-loop-style-1 .product-buttons {
   @media screen and (max-width: 991px) {
     .header .site-logo svg {
       height: 15px; } }
-  @media screen and (min-width: 992px) {
+  @media (max-width: 1399px) and (min-width: 992px) {
     .header .header-right {
       --bs-gutter-x: 10px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
