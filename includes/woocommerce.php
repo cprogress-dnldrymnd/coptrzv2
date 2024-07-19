@@ -969,7 +969,7 @@ function __drone_servicing()
                     $html .= "<div class='active d-flex align-items-center'> ";
                     if ($quantity && $quantity > 0) {
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
-                        $html .= "<span class='smaller-text me-2'>x</span> <span class='fw-'medium'>$quantity</span>";
+                        $html .= "<span class='fw-'medium'>$quantity</span>";
                         $html .= "</span>";
                     } else {
                         $html .= $SVG->check();
@@ -1040,7 +1040,7 @@ function __drone_servicing()
                     $html .= "<div class='active d-flex align-items-center'> ";
                     if ($quantity && $quantity > 0) {
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
-                        $html .= "<span class='smaller-text me-2'>x</span> <span class='fw-'medium'>$quantity</span>";
+                        $html .= "<span class='fw-'medium'>$quantity</span>";
                         $html .= "</span>";
                     } else {
                         $html .= $SVG->check();
