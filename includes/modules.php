@@ -2727,7 +2727,7 @@ function __form($args)
     $description_args['description'] =  $form_description;
     $description_args['class'] =  _attribute('class', array('description-box'));
 
-    $html = "<div class='form-holder bg-white rounded-corner $form_style'>"; //form-holder
+    $html = "<div class='form-box bg-white rounded-corner $form_style'>"; //form-holder
     $html .= " <div class='form-header bg-accent text-white'>"; //form-header
     $html .= "<div class='row g-0 align-items-center'>"; //row
 
