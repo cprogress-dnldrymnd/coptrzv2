@@ -19,7 +19,8 @@ function __training() {
 
     jQuery('.trigger-location-change').click(function (e) {
         $value = jQuery(this).attr('value');
-        jQuery('select[name="location"]').val($value).trigger('change');
+        jQuery('select[name="location"]').val($value);
+        __training_ajax('classroom');
         e.preventDefault();
     });
 
@@ -38,13 +39,18 @@ function __training_swiper() {
     });
 }
 
-function __training_ajax() {
+function __training_ajax($delivery_method = false) {
     jQuery('.ajax-loading').addClass('loading-post');
 
     setTimeout(function () {
         $result_holder = jQuery('#results');
         $product_id = jQuery('input[name="product_id"]').val();
-        $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
+        if ($delivery_method) {
+
+        } else {
+            $delivery_method = jQuery('input[name="delivery_method"]:checked').val();
+
+        }
         $sortby = jQuery('select[name="sort"]').val();
         $location = jQuery('select[name="location"]').val();
 
