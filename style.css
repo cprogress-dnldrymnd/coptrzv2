@@ -11038,6 +11038,9 @@ small, .small {
       background-color: currentColor;
       margin-left: 8px;
       margin-right: 8px; }
+    @media screen and (max-width: 575px) {
+      .breadcrumbs ul li:last-child {
+        display: none; } }
 
 .single-layouts header,
 .single-producttaxonomypages header {

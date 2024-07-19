@@ -610,6 +610,11 @@ small {
                     margin-right: 8px;
                 }
             }
+            @include responsive(mobile) {
+                @include last-child {
+                    display: none;
+                }
+            }
         }
     }
 }
