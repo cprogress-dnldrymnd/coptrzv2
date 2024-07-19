@@ -99,11 +99,11 @@
                     <div class="image-box training-map-holder position-relative">
                         <img src="https://dev.coptrz.com/wp-content/uploads/2024/07/map.jpg" alt="">
                         <span class="trigger-location-change" id="edinburgh" value="edinburgh"><?= $SVG->location() ?></span>
-                        <span class="trigger-location-change" id="leeds" value="edinburgh"><?= $SVG->location() ?></span>
-                        <span class="trigger-location-change" id="rugby" value="edinburgh"><?= $SVG->location() ?></span>
-                        <span class="trigger-location-change" id="cardiff" value="edinburgh"><?= $SVG->location() ?></span>
-                        <span class="trigger-location-change" id="kent" value="edinburgh"><?= $SVG->location() ?></span>
-                        <span class="trigger-location-change" id="hampshire" value="edinburgh"><?= $SVG->location() ?></span>
+                        <span class="trigger-location-change" id="leeds" value="leeds"><?= $SVG->location() ?></span>
+                        <span class="trigger-location-change" id="rugby" value="rugby"><?= $SVG->location() ?></span>
+                        <span class="trigger-location-change" id="cardiff" value="cardiff"><?= $SVG->location() ?></span>
+                        <span class="trigger-location-change" id="kent" value="kent"><?= $SVG->location() ?></span>
+                        <span class="trigger-location-change" id="hampshire" value="hampshire"><?= $SVG->location() ?></span>
                     </div>
                 </div>
             </div>
