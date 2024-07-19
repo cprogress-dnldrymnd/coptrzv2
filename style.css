@@ -11489,6 +11489,15 @@ hr {
   width: 60px;
   height: 60px;
   font-size: 17px; }
+.input-box.input-box .error {
+  position: absolute;
+  bottom: -3px;
+  font-size: 13px;
+  background: #ffd5d5;
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+  text-align: center;
+  color: #dc3232; }
 .input-box.input-box input {
   border: none;
   border-radius: none;
