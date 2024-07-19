@@ -50,8 +50,13 @@ function _date_format($date_input, $include_year = false)
     $newDate = " $day";
     $newDate .= "<sup>$sup</sup>";
     $newDate .= " $month";
-    $year = date('Y', $date);
-        $newDate .= $year;
+    if ($include_year == true) {
+        $current_year = date("Y");
+        $year = date('Y', $date);
+        if ($year != $current_year) {
+            $newDate .= $year;
+        }
+    }
     return $newDate;
 }
 
