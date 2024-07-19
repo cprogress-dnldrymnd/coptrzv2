@@ -41,7 +41,7 @@ function action_module_content()
 add_action('shutdown', 'action_module_content');
 */
 
-function _date_format($date_input)
+function _date_format($date_input, $include_year = false)
 {
     $date = strtotime($date_input);
     $day = date('j', $date);
@@ -50,6 +50,10 @@ function _date_format($date_input)
     $newDate = " $day";
     $newDate .= "<sup>$sup</sup>";
     $newDate .= " $month";
+    if ($include_year) {
+        $year = date('Y', $date);
+        $newDate .= $year;
+    }
     return $newDate;
 }
 
@@ -239,7 +243,7 @@ function ___hero_product_taxonomy()
             'class' => _attribute('class', $heading_class),
             ''
         ));
-        
+
         if ($term_description_val) {
             $hero .= __description(array(
                 'description' => $term_description_val,
@@ -256,7 +260,7 @@ function ___hero_product_taxonomy()
         $hero .= "</div>";
         $hero .= "</section>";
 
-      
+
 
         return $hero;
     }
