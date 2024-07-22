@@ -12473,7 +12473,8 @@ body.product-loop-style-1 .product-buttons {
   border-radius: 50px;
   border: 1px solid #EAEAEA;
   width: 62px;
-  height: 38px; }
+  height: 38px;
+  cursor: pointer; }
   .toggle-switch:before {
     content: '';
     position: absolute;
