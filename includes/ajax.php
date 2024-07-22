@@ -29,7 +29,7 @@ function archive_ajax()
 	$args['post_status'] = 'publish';
 	
 	if ($events_type != false) {
-		$args['tax_query'] = array(
+		$args['tax_query'][] = array(
 			array(
 				'taxonomy' => 'events_type',
 				'field' => 'term_id',
