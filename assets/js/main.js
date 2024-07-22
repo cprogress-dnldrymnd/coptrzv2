@@ -70,8 +70,6 @@ function __ajax() {
 
         success: function (response) {
             $result_holder.html(response);
-            console.log($s);
-            console.log($data);
             $archive_section.removeClass('loading-post');
 
         },
