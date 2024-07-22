@@ -1082,3 +1082,19 @@ body {
         }
     }
 }
+
+.remote-supports {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    .row {
+        .col-lg-6 {
+            @include odd {
+                background-color: var(--bs-gray);
+            }
+            @include even {
+                background-color: var(--bs-light);
+            }
+        }
+    }
+}

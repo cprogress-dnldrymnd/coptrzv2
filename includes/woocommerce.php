@@ -1373,12 +1373,12 @@ function __remote_support()
     $html = "<div class='remote-supports'>";
     $html .= __heading(array(
         'heading' => $remote_support_heading,
-        'class' => _attribute('class', array('mb-0 text-center')),
+        'class' => _attribute('class', array('text-center')),
         'tag' => 'h2',
     ));
     $html .= __description(array(
         'description' => $remote_support_description,
-        'class' => _attribute('class', array('description-box text-center')),
+        'class' => _attribute('class', array('description-box text-center mb-4')),
     ));
     $html .= "<div class='row g-10px'>";
 
@@ -1389,7 +1389,7 @@ function __remote_support()
         $icon = $remote_support['remote_support_icon'];
         $icon_text = $remote_support['remote_support_icon_text'];
         $html .= "<div class='col-lg-6'>";
-        $html .= "<div class='support-box p-3 content-margin'>";
+        $html .= "<div class='support-box p-3 content-margin text-white text-center'>";
 
         $html .= __heading(array(
             'heading' => $heading,
