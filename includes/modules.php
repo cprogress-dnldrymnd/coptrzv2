@@ -2749,7 +2749,7 @@ function __form($args)
     $html .= " <div class='form-header bg-accent text-white'>"; //form-header
     $html .= "<div class='row g-0 align-items-center'>"; //row
 
-    $class = 'col-lg=9';
+    $class = 'col-lg-9';
     $heading_class = '';
     if ($form_image) {
         $html .= "<div class='col-lg-3'>";
