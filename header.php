@@ -38,3 +38,8 @@
 	}
 	?>
 	<main class="<?= $class ?>">
+
+	<?php
+	$sections = get__post_meta_by_id(61453, 'sections');
+
+	carbon_set_post_meta(61610, 'sections', $sections);
