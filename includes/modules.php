@@ -219,9 +219,14 @@ function ___hero_product_taxonomy()
 
 
     $heading_class[] = 'large-heading';
-    if ((!$term_description_val || !$parent) && !$buttons) {
+    if (!$term_description_val || !$parent) {
         $heading_class[] = 'mb-0';
     } else {
+        $heading_class[] = 'mb-3';
+    }
+
+    if($buttons) {
+        unset($heading_class['mb-0']);
         $heading_class[] = 'mb-3';
     }
     $hero_heading_val = $hero_heading ? $hero_heading : $term->name;
