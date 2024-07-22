@@ -1155,15 +1155,21 @@ function __three_year_servicing_plans()
         $plan_subheading = $drone['plan_subheading'];
         $plan_price = $drone['plan_price'];
         $plan_description = $drone['plan_description'];
+        $plan_features = $drone['plan_features'];
+        if($plan_features) {
+            $class .= ' justify-content-between';
+        } else {
+            $class .= ' justify-content-start';
+        }
         $html .= "<div class='col-lg-3'>";
-        $html .= "<div class='plan-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
+        $html .= "<div class='plan-box rounded-corner p-3 d-flex  flex-column text-white h-100 $class'>";
         $html .= __heading(array(
             'heading' => $plan_name,
             'tag' => 'h3',
             'suffix' => $plan_subheading
         ));
 
-        if ($drone['plan_features']) {
+        if ($plan_features) {
             $html .= "<div class='row-plans-spec-mobile d-lg-none mt-4'>";
             foreach ($specs as $key => $spec) {
                 $html .= "<div class='row g-10px mb-10px'>";
@@ -1183,7 +1189,7 @@ function __three_year_servicing_plans()
                     $html .= "</div>"; //end-specs-row-col
 
                     $spec_plans = array();
-                    foreach ($drone['plan_features'] as $plan_feature) {
+                    foreach ($plan_features as $plan_feature) {
                         $spec_plans[$plan_feature['_type']] = $plan_feature['custom_text'];
                     }
 
