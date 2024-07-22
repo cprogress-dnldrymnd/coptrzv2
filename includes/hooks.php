@@ -295,7 +295,7 @@ function action_pre_get_posts($query)
         if (is_post_type_archive('industries') || is_post_type_archive('capabilities')) {
             $query->set('posts_per_page', -1);
         } else if (is_post_type_archive('events') || is_tax('events_category')) {
-            $query->set('meta_key', 'crb_event_start_date');
+            $query->set('meta_key', '_crb_event_start_date');
             $query->set('orderby', 'meta_value_num');
         } else {
             if (isset($_GET['posts_per_page'])) {
