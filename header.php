@@ -38,3 +38,28 @@
 	}
 	?>
 	<main class="<?= $class ?>">
+
+		<?php
+		if (is_product() && get_the_ID() != 61453) {
+			$sections = get__post_meta_by_id(61453, 'sections');
+			$sections_after_main = get__post_meta_by_id(61453, 'sections_after_main');
+
+
+			$args = array(
+				'numberposts' => -1,
+				'post_type'   => 'product',
+				'fields' => 'ids',
+			);
+
+			$products = get_posts($args);
+
+			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
+			carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
+
+			$data = array(
+				'ID' => get_the_ID(),
+				'post_content' => '',
+			);
+
+			wp_update_post($data);
+		}
