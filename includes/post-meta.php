@@ -125,6 +125,8 @@ function __servicing_fields()
                 Field::make('text', 'plan_name', 'Plan Name')->set_classes('inline-field'),
                 Field::make('text', 'plan_subheading', 'Plan Subheading')->set_classes('inline-field'),
                 Field::make('text', 'plan_price', 'Plan Price')->set_classes('inline-field'),
+                Field::make('textarea', 'plan_description', __('Plan Description'))->set_width(80)->set_classes('editor-field inline-field'),
+                Field::make('html', 'activate_wysiwyg')->set_width(20),
                 Field::make('complex', 'plan_features', 'Plan Features')->set_classes('inline-field')
                     ->add_fields('servicing', array(
                         Field::make('text', 'custom_text', __('Custom Text'))->set_classes('inline-field'),
