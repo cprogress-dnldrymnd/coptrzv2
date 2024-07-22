@@ -1137,7 +1137,7 @@ function __three_year_servicing_plans()
     
     $html .= "<div class='d-flex align-items-center fw-medium small-text'>";
     $html .= "<span>Small Drone</span>";
-    $html .= "<div class='toggle-switch mx-3'>";
+    $html .= "<div class='toggle-switch toggle-switch-drone-size mx-3'>";
     $html .= "</div>";
     $html .= "<span>Large Drone</span>";
     $html .= "</div>";
@@ -1163,6 +1163,7 @@ function __three_year_servicing_plans()
         $plan_name = $drone['plan_name'];
         $plan_subheading = $drone['plan_subheading'];
         $plan_price = $drone['plan_price'];
+        $plan_price_large = $drone['plan_price_large'];
         $plan_description = $drone['plan_description'];
         $plan_features = $drone['plan_features'];
         if($plan_features) {
@@ -1235,7 +1236,8 @@ function __three_year_servicing_plans()
 
 
         $html .= "<div class='price-button mt-5'>";
-        $html .= "<div class='price mb-3'>£$plan_price <span>Excl. VAT</span></div>";
+        $html .= "<div class='price mb-3 small-drone-price'>£$plan_price <span>Excl. VAT</span></div>";
+        $html .= "<div class='price mb-3 large-drone-price'>£$plan_price_large <span>Excl. VAT</span></div>";
         if ($plan_description) {
             $html .= __description(array(
                 'description' => $plan_description,

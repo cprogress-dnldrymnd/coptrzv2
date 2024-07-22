@@ -16,8 +16,11 @@ jQuery(document).ready(function () {
 function __toggle_input() {
     jQuery('.toggle-switch').click(function (e) {
         jQuery(this).toggleClass('active');
+        jQuery('.drone-plans').toggleClass('large-drone-active');
         e.preventDefault();
     });
+
+
 }
 
 function __phone_input() {

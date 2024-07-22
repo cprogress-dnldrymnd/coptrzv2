@@ -12467,11 +12467,16 @@ body.product-loop-style-1 .product-buttons {
       bottom: 0;
       top: 0;
       width: calc(25% + 3px); } }
+  .drone-plans:not(.large-drone-active) .large-drone-price {
+    display: none; }
+  .drone-plans.large-drone-active .small-drone-price {
+    display: none; }
 
 .toggle-switch {
   padding: 7px;
   border-radius: 50px;
   border: 1px solid #eaeaea;
+  background-color: #f6f6f6;
   width: 62px;
   height: 38px;
   position: relative;
