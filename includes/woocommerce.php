@@ -1241,7 +1241,7 @@ function __three_year_servicing_plans()
             $html .= $SVG->$key();
             $html .= "</div>";
             $html .= __heading(array(
-                'heading' => str_replace('_', ' ', ucwords($spec)),,
+                'heading' => str_replace('_', ' ', ucwords($spec)),
                 'class' => _attribute('class', array('mb-0')),
                 'tag' => 'h5',
             ));
