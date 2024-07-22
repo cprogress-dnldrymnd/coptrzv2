@@ -28,7 +28,7 @@ function archive_ajax()
 	$args = $query_val;
 	$args['post_status'] = 'publish';
 	
-	if ($events_type != false) {
+	if ($events_type != 'false') {
 		$args['tax_query'] = array(
 			array(
 				'taxonomy' => 'events_type',
