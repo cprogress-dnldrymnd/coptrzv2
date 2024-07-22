@@ -44,14 +44,14 @@
 
 		$args = array(
 			'numberposts' => -1,
+			'post_type'   => 'product',
 			'fields' => 'ids',
-			'post_type'   => 'product'
 		);
 
 		$products = get_posts($args);
 
 		foreach ($products as $product) {
-			echo $product->ID;
+			echo $product;
 		}
 
 		$sections = get__post_meta_by_id(61453, 'sections');
