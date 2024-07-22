@@ -12446,12 +12446,12 @@ body.product-loop-style-1 .product-buttons {
       color: var(--bs-white);
       border-color: var(--bs-accent); }
 
-.drone-plans .plan-description {
-  border-top: 1px solid;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem; }
-.drone-plans .row-plans-main {
+.drone-plans {
   position: relative; }
+  .drone-plans .plan-description {
+    border-top: 1px solid;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem; }
   @media screen and (min-width: 992px) {
     .drone-plans .row-plans-main .col-lg-3:last-child {
       position: absolute;

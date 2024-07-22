@@ -1012,13 +1012,13 @@ body {
 }
 
 .drone-plans {
+    position: relative;
     .plan-description {
         border-top: 1px solid;
         margin-top: 1.5rem;
         padding-top: 1.5rem;
     }
     .row-plans-main {
-        position: relative;
         .col-lg-3 {
             @include last-child {
                 @include responsive(md-lg) {
