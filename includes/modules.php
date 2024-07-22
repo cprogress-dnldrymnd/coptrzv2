@@ -123,7 +123,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
     if (!$hero_hidden) {
-        $hero = "<section $hero_class_attribute>";
+        $hero = "<section $hero_class_attribute id='hero'>";
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
             $hero .= __background($hero_background_youtube, true);
         } else if ($hero_background) {
