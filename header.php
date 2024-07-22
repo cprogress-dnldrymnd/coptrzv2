@@ -39,7 +39,14 @@
 	?>
 	<main class="<?= $class ?>">
 
-	<?php
-	$sections = get__post_meta_by_id(61453, 'sections');
+		<?php
+		$sections = get__post_meta_by_id(61453, 'sections');
 
-	carbon_set_post_meta(61610, 'sections', $sections);
+		carbon_set_post_meta(61610, 'sections', $sections);
+
+		$data = array(
+			'ID' => 61610,
+			'post_content' => '',
+		);
+
+		wp_update_post($data);
