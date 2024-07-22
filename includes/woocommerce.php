@@ -1395,7 +1395,7 @@ function __remote_support()
             'id' => $icon,
             'class' => _attribute('class', array('me-3 text-accent'))
         ));
-        $html .= "<span>$icon_text</span";
+        $html .= "<span>$icon_text</span>";
 
         $html .= "</div>";
 
