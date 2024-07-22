@@ -5755,7 +5755,7 @@ Container::make('post_meta', __('Product Settings'))
                 )
             )
     ))
-    ->add_tab('Related Guides', array(
+    ->add_tab('Related Training', array(
         Field::make('association', 'related_training', 'Related Training')
             ->set_types(
                 array(
