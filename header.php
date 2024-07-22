@@ -18,11 +18,14 @@
 	<?php wp_head(); ?>
 </head>
 
+<?php
+$header_background = get__post_meta('header_background');
+?>
 
 <body <?php body_class(); ?>>
 	<header class="header small-text overflow-hidden">
 		<div class="container">
-			<div class="header-inner mt-20px rounded-10px">
+			<div class="header-inner mt-20px rounded-10px <?= $header_background ?>">
 				<div class="row justify-content-between">
 					<?php get_template_part('template-parts/header/header-left') ?>
 					<?php get_template_part('template-parts/header/header-menu') ?>
