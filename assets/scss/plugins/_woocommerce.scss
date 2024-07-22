@@ -1063,11 +1063,11 @@ body {
         background-color: var(--bs-accent);
         left: 7px;
         top: 6px;
-        @include transition(500ms);
     }
     &.active {
         @include before {
-            transform: translateX(100%);
+            left: auto;
+            right: 6px;
         }
     }
 }

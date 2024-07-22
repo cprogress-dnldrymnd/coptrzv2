@@ -12474,6 +12474,7 @@ body.product-loop-style-1 .product-buttons {
   border: 1px solid #eaeaea;
   width: 62px;
   height: 38px;
+  position: relative;
   cursor: pointer; }
   .toggle-switch:before {
     content: "";
@@ -12483,15 +12484,9 @@ body.product-loop-style-1 .product-buttons {
     border-radius: 50%;
     background-color: var(--bs-accent);
     left: 7px;
-    top: 6px;
-    position: relative;
-    -webkit-transition: 500ms;
-    -moz-transition: 500ms;
-    -ms-transition: 500ms;
-    -o-transition: 500ms;
-    transition: 500ms; }
+    top: 6px; }
   .toggle-switch.active:before {
-    transform: translateX(100%); }
+    left: auto; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
