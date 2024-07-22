@@ -124,7 +124,8 @@ function __servicing_fields()
             ->add_fields(array(
                 Field::make('text', 'plan_name', 'Plan Name')->set_classes('inline-field'),
                 Field::make('text', 'plan_subheading', 'Plan Subheading')->set_classes('inline-field'),
-                Field::make('text', 'plan_price', 'Plan Price')->set_classes('inline-field'),
+                Field::make('text', 'plan_price', 'Small Drone Plan Price')->set_classes('inline-field'),
+                Field::make('text', 'plan_price_large', 'Large Drone Plan Price')->set_classes('inline-field'),
                 Field::make('textarea', 'plan_description', __('Plan Description'))->set_width(80)->set_classes('editor-field inline-field'),
                 Field::make('html', 'activate_wysiwyg')->set_width(20)
                     ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
