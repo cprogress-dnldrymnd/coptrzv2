@@ -1380,7 +1380,7 @@ function __remote_support()
         'description' => $remote_support_description,
         'class' => _attribute('class', array('description-box text-center mb-4')),
     ));
-    $html .= "<div class='row g-10px'>";
+    $html .= "<div class='row g-4'>";
 
     foreach ($remote_supports as $remote_support) {
         $heading = $remote_support['remote_support_heading'];
