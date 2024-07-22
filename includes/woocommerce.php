@@ -1218,7 +1218,7 @@ function __three_year_servicing_plans()
         $html .= "<div class='price mb-3'>£$plan_price <span>Excl. VAT</span></div>";
         $html .= __button(array(
             'button_type' => 'custom',
-            'button_text' => 'Request Plan',
+            'button_text' => 'Request Service',
             'button_url_custom' => '#',
             'button_style' => $button_class,
         ));
@@ -1308,7 +1308,7 @@ function __three_year_servicing_plans()
 
         $html .= __button(array(
             'button_type' => 'custom',
-            'button_text' => 'Request Plan',
+            'button_text' => 'Request Service',
             'button_url_custom' => '#',
             'button_style' => $button_class,
         ));
