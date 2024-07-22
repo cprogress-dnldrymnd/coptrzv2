@@ -51,7 +51,6 @@
 		$products = get_posts($args);
 
 		foreach ($products as $product) {
-			echo $product;
 		}
 
 		$sections = get__post_meta_by_id(61453, 'sections');
