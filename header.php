@@ -41,6 +41,9 @@
 
 		<?php
 
+		$sections = get__post_meta_by_id(61453, 'sections');
+		$sections_after_main = get__post_meta_by_id(61453, 'sections_after_main');
+
 
 		$args = array(
 			'numberposts' => -1,
@@ -51,17 +54,14 @@
 		$products = get_posts($args);
 
 		foreach ($products as $product) {
+
+			carbon_set_post_meta($product, 'sections', $sections);
+			carbon_set_post_meta($product, 'sections_after_main', $sections_after_main);
+
+			$data = array(
+				'ID' => 61610,
+				'post_content' => '',
+			);
+
+			wp_update_post($data);
 		}
-
-		$sections = get__post_meta_by_id(61453, 'sections');
-		$sections_after_main = get__post_meta_by_id(61453, 'sections_after_main');
-
-		carbon_set_post_meta(61610, 'sections', $sections);
-		carbon_set_post_meta(61610, 'sections_after_main', $sections_after_main);
-
-		$data = array(
-			'ID' => 61610,
-			'post_content' => '',
-		);
-
-		wp_update_post($data);
