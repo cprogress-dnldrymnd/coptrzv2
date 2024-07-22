@@ -20,6 +20,7 @@ function archive_ajax()
 	$data = $_POST['data'];
 	$query = $_POST['query'];
 	$s = isset($_POST['s']) ? $_POST['s'] : false;
+	$events_type = isset($_POST['s']) ? $_POST['events_type'] : false;
 
 	$posts_per_page = isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : false;
 	$data_val = json_decode(stripslashes($data), true);
@@ -29,6 +30,16 @@ function archive_ajax()
 	}
 
 	$args = $query_val;
+
+	if ($events_type) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'events_type',
+				'field' => 'term_id',
+				'terms' => $events_type,
+			),
+		);
+	}
 
 	$args['post_type'] = $data_val['post_type'];
 
