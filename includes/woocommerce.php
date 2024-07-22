@@ -1154,6 +1154,7 @@ function __three_year_servicing_plans()
         $plan_name = $drone['plan_name'];
         $plan_subheading = $drone['plan_subheading'];
         $plan_price = $drone['plan_price'];
+        $plan_description = $drone['plan_description'];
         $html .= "<div class='col-lg-3'>";
         $html .= "<div class='plan-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
         $html .= __heading(array(
@@ -1205,6 +1206,8 @@ function __three_year_servicing_plans()
                     $html .= "</div>";
                 }
 
+                
+
                 $html .= "</div>";
                 $html .= "</div>";
             }
@@ -1222,6 +1225,13 @@ function __three_year_servicing_plans()
             'button_url_custom' => '#',
             'button_style' => $button_class,
         ));
+
+        if($plan_description) {
+            $html .= __description(array(
+                'description' => $plan_description,
+                'class' => _attribute('class', array('description-box')),
+            ));
+        }
 
         $html .= "</div>";
 
