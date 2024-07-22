@@ -118,7 +118,8 @@ function __servicing_fields()
             ->set_header_template('Drone Service: <%- service_name %>')
             ->set_collapsed(true),
         Field::make('html', 'servicing_html_2')->set_html('<label>3-Year Servicing Plans</label>')->set_classes('cb-label'),
-
+        Field::make('text', 'servicing_3_year_heading', 'Heading')->set_classes('inline-field'),
+        Field::make('textarea', 'servicing_3_year_description', 'Description')->set_classes('inline-field'),
 
     );
 }
