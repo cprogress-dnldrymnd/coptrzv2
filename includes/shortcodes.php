@@ -513,9 +513,9 @@ class Shortcodes
 
     function event_countdown()
     {
-        $crb_event_start_date = get__post_meta_by_id(get_the_ID(), 'crb_event_start_date');
-        $crb_event_start_time = get__post_meta_by_id(get_the_ID(), 'crb_event_start_time');
-        $date_val = $crb_event_start_date . ' ' . $crb_event_start_time;
+        $event_start_datetime = get__post_meta_by_id(get_the_ID(), 'event_start_datetime');
+        $event_end_datetime = get__post_meta_by_id(get_the_ID(), 'event_end_datetime');
+        $date_val = $event_start_datetime . ' ' . $event_end_datetime;
         $date = strtotime($date_val);
         $date_format = date('M j, Y H:i:s', $date);
         $html = "<div class='event-countdown fw-medium' date='$date_format'>";

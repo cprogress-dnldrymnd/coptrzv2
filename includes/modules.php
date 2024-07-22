@@ -83,9 +83,9 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $text_align = $hero_alignment ? $hero_alignment : 'text-center';
 
     if (get_post_type($id) == 'events') {
-        $crb_event_start_date = get__post_meta_by_id($id, 'crb_event_start_date');
-        $crb_event_start_time = get__post_meta_by_id($id, 'crb_event_start_time');
-        $date_time = _date_format($crb_event_start_date) . ' | ' . $crb_event_start_time;
+        $event_start_datetime = get__post_meta_by_id($id, 'event_start_datetime');
+        $event_end_datetime = get__post_meta_by_id($id, 'event_end_datetime');
+        $date_time = _date_format($event_start_datetime) . ' | ' . $event_end_datetime;
         $hero_description .= $hero_description . $date_time;
     }
 
@@ -2653,22 +2653,22 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
 function _events_additional_content($id)
 {
     $SVG = new SVG;
-    $crb_event_start_date = get__post_meta_by_id($id, 'crb_event_start_date');
-    $crb_event_start_time = get__post_meta_by_id($id, 'crb_event_start_time');
+    $event_start_datetime = get__post_meta_by_id($id, 'event_start_datetime');
+    $event_end_datetime = get__post_meta_by_id($id, 'event_end_datetime');
     $location = get_the_terms($id, 'events_location');
 
     $additional_content = '<ul class="meta-box list-inline text-small fw-medium">';
-    if ($crb_event_start_date) {
+    if ($event_start_datetime) {
         $additional_content .= "<li class='d-flex align-items-center'>";
         $additional_content .= $SVG->calendar();
-        $additional_content .= _date_format($crb_event_start_date);
+        $additional_content .= _date_format($event_start_datetime);
         $additional_content .= "</li>";
     }
 
-    if ($crb_event_start_time) {
+    if ($event_end_datetime) {
         $additional_content .= "<li class='d-flex align-items-center'>";
         $additional_content .= $SVG->clock();
-        $additional_content .= $crb_event_start_time;
+        $additional_content .= $event_end_datetime;
         $additional_content .= "</li>";
     }
 
