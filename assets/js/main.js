@@ -48,6 +48,10 @@ function __ajax() {
     $archive_section.addClass('loading-post');
     $data = jQuery('#posts').attr('data');
     $query = jQuery('#posts').attr('query');
+    if (jQuery('input[name="events_type"]').length > 0) {
+        $events_type = jQuery('input[name="events_type"]:checked').val();
+    }
+
 
     jQuery.ajax({
         type: "POST",
@@ -59,6 +63,7 @@ function __ajax() {
             s: $s,
             data: $data,
             query: $query,
+            events_type: $events_type
         },
 
         success: function (response) {
@@ -78,7 +83,6 @@ function __ajax() {
 }
 
 function __ajax_trigger() {
-
     var typingTimer;
     var doneTypingInterval = 500;
 
@@ -96,12 +100,8 @@ function __ajax_trigger() {
     }
 
 
-
     jQuery('input[name="events_type"]').on('change', function () {
-
-        $events_type = jQuery('input[name="events_type"]:checked').val();
-
-        console.log($events_type);
+        __ajax();
     });
 
 }
