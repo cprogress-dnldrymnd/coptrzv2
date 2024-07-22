@@ -297,6 +297,7 @@ function action_pre_get_posts($query)
         } else if (is_post_type_archive('events') || is_tax('events_category')) {
             $query->set('meta_key', '_crb_event_start_date');
             $query->set('orderby', 'meta_value_num');
+            $query->set('order', 'ASC');
         } else {
             if (isset($_GET['posts_per_page'])) {
                 $query->set('posts_per_page', $_GET['posts_per_page']);
