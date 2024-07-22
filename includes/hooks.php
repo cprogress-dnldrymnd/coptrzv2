@@ -297,7 +297,7 @@ function action_pre_get_posts($query)
         } else if (is_post_type_archive('events') || is_tax('events_category')) {
             $meta_query[] = [
                 'key'     => '_crb_event_start_date',
-                'value'   => date('jS F Y'),
+                'value'   => date('Y-m-d'),
                 'compare' => '>=',
                 'type'    => 'DATETIME'
             ];
