@@ -120,6 +120,31 @@ function __servicing_fields()
         Field::make('html', 'servicing_html_2')->set_html('<label>3-Year Servicing Plans</label>')->set_classes('cb-label'),
         Field::make('text', 'servicing_3_year_heading', 'Heading')->set_classes('inline-field'),
         Field::make('textarea', 'servicing_3_year_description', 'Description')->set_classes('inline-field'),
+        Field::make('complex', 'servicing_3_year_drones', 'Drone Services Plan')->set_classes('inline-field')
+            ->add_fields(array(
+                Field::make('text', 'service_name', 'Service Name')->set_classes('inline-field'),
+                Field::make('text', 'service_subheading', 'Service Subheading')->set_classes('inline-field'),
+                Field::make('text', 'service_price', 'Service Price')->set_classes('inline-field'),
+                Field::make('complex', 'service_features', 'Service Features')->set_classes('inline-field')
+                    ->add_fields('servicing', array(
+                        Field::make('text', 'custom_text', __('Custom Text'))->set_classes('inline-field'),
+                    ))
+                    ->add_fields('3_x_operations_manual_reviews', array(
+                        Field::make('text', 'custom_text', __('Custom Text'))->set_classes('inline-field'),
+                    ))
+                    ->add_fields('drone_mastery_course', array(
+                        Field::make('text', 'custom_text', __('Custom Text'))->set_classes('inline-field'),
+                    ))
+                    ->add_fields('free_loan_replacement_drone', array(
+                        Field::make('text', 'custom_text', __('Custom Text'))->set_classes('inline-field'),
+                    ))
+                    ->set_duplicate_groups_allowed(false)
+                    ->set_collapsed(true)
+
+            ))
+            ->set_header_template('Drone Service: <%- service_name %>')
+            ->set_collapsed(true),
+
 
     );
 }
