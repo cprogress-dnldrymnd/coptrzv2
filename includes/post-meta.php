@@ -5794,7 +5794,7 @@ add_filter('carbon_fields_association_field_options_related_training_post_produc
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
-        'terms'    => $term_ids
+        'terms'    => 30
     );
 
     $query_arguments['tax_query'] = $tax_query;
