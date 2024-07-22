@@ -1121,7 +1121,7 @@ function __three_year_servicing_plans()
             $specs[$plan_feature['_type']] = $plan_feature['_type'];
         }
     }
-    $html = "<div class='product-compare drone-servicing' >";
+    $html = "<div class='product-compare drone-plans' >";
     $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
     $html .= "<div class='row g-10px row-plans'>";
     $html .= "<div class='col-lg-3'>";

@@ -897,7 +897,7 @@ section.product-main {
 
 .training-map-holder {
     max-width: 556px;
-    >svg {
+    > svg {
         width: 100%;
         height: auto;
     }
@@ -1006,6 +1006,22 @@ body {
                 background-color: var(--bs-accent);
                 color: var(--bs-white);
                 border-color: var(--bs-accent);
+            }
+        }
+    }
+}
+
+.drone-plans {
+    .row-plans {
+        .col-lg-3 {
+            @include last-child {
+                @include responsive(xs-sm) {
+                    position: absolute;
+                    right: -5px;
+                    bottom: 0;
+                    top: 0;
+                    width: calc(25% + 3px);
+                }
             }
         }
     }
