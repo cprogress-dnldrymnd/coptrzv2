@@ -12454,11 +12454,12 @@ body.product-loop-style-1 .product-buttons {
     padding-top: 1.5rem; }
   .drone-plans .plan-box.justify-content-start {
     position: relative; }
-    .drone-plans .plan-box.justify-content-start .button-box {
-      position: absolute;
-      bottom: 1rem;
-      left: 1rem;
-      right: 1rem; }
+    @media screen and (min-width: 992px) {
+      .drone-plans .plan-box.justify-content-start .button-box {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem; } }
   @media screen and (min-width: 992px) {
     .drone-plans .row-plans-main .col-lg-3:last-child {
       position: absolute;

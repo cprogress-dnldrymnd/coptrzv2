@@ -1022,10 +1022,12 @@ body {
         &.justify-content-start {
             position: relative;
             .button-box {
-                position: absolute;
-                bottom: 1rem;
-                left: 1rem;
-                right: 1rem;
+                @include responsive(md-lg) {
+                    position: absolute;
+                    bottom: 1rem;
+                    left: 1rem;
+                    right: 1rem;
+                }
             }
         }
     }
