@@ -12471,12 +12471,12 @@ body.product-loop-style-1 .product-buttons {
 .toggle-switch {
   padding: 7px;
   border-radius: 50px;
-  border: 1px solid #EAEAEA;
+  border: 1px solid #eaeaea;
   width: 62px;
   height: 38px;
   cursor: pointer; }
   .toggle-switch:before {
-    content: '';
+    content: "";
     position: absolute;
     width: 24px;
     height: 24px;
@@ -12484,8 +12484,14 @@ body.product-loop-style-1 .product-buttons {
     background-color: var(--bs-accent);
     left: 7px;
     top: 6px;
-    transition: 500ms;
-    position: relative; }
+    position: relative;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+    transition: 500ms; }
+  .toggle-switch.active:before {
+    transform: translateX(100%); }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;

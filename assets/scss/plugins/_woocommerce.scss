@@ -1046,16 +1046,16 @@ body {
     }
 }
 
-
 .toggle-switch {
     padding: 7px;
     border-radius: 50px;
-    border: 1px solid #EAEAEA;
+    border: 1px solid #eaeaea;
     width: 62px;
     height: 38px;
+    position: relative;
     cursor: pointer;
-    &:before{
-        content: '';
+    @include before {
+        content: "";
         position: absolute;
         width: 24px;
         height: 24px;
@@ -1063,7 +1063,11 @@ body {
         background-color: var(--bs-accent);
         left: 7px;
         top: 6px;
-        transition: 500ms;
-        position: relative;
+        @include transition(500ms);
+    }
+    &.active {
+        @include before {
+            transform: translateX(100%);
+        }
     }
 }
