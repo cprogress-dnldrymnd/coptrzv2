@@ -384,6 +384,42 @@ $Events_Category->args = array(
     'show_in_rest' => true,
 );
 
+$Events_Type = new newTaxonomy();
+$Events_Type->taxonomy = 'events_type';
+$Events_Type->post_type = 'events';
+$Events_Type->args = array(
+    'label'        => 'Events Type',
+    'labels' => array(
+        'name'                       => _x('Events Types', 'Taxonomy General Name', 'text_domain'),
+        'singular_name'              => _x('Events Type', 'Taxonomy Singular Name', 'text_domain'),
+        'menu_name'                  => __('Events Type', 'text_domain'),
+        'all_items'                  => __('All Items', 'text_domain'),
+        'parent_item'                => __('Parent Item', 'text_domain'),
+        'parent_item_colon'          => __('Parent Item:', 'text_domain'),
+        'new_item_name'              => __('New Item Name', 'text_domain'),
+        'add_new_item'               => __('Add New Item', 'text_domain'),
+        'edit_item'                  => __('Edit Item', 'text_domain'),
+        'update_item'                => __('Update Item', 'text_domain'),
+        'view_item'                  => __('View Item', 'text_domain'),
+        'separate_items_with_commas' => __('Separate items with commas', 'text_domain'),
+        'add_or_remove_items'        => __('Add or remove items', 'text_domain'),
+        'choose_from_most_used'      => __('Choose from the most used', 'text_domain'),
+        'popular_items'              => __('Popular Items', 'text_domain'),
+        'search_items'               => __('Search Items', 'text_domain'),
+        'not_found'                  => __('Not Found', 'text_domain'),
+        'no_terms'                   => __('No items', 'text_domain'),
+        'items_list'                 => __('Items list', 'text_domain'),
+        'items_list_navigation'      => __('Items list navigation', 'text_domain'),
+    ),
+    'rewrite'      => array('slug' => 'events-type'),
+    'show_in_rest' => true,
+    'hierarchical' => true,
+    'query_var'    => true,
+    'has_archive'  => true,
+    'show_in_rest' => true,
+);
+
+
 $Webinars_Category = new newTaxonomy();
 $Webinars_Category->taxonomy = 'webinars_category';
 $Webinars_Category->post_type = 'webinars';
