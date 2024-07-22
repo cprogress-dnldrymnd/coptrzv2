@@ -1121,10 +1121,10 @@ function __three_year_servicing_plans()
             $specs[$plan_feature['_type']] = $plan_feature['_type'];
         }
     }
-    $html = "<div class='product-compare drone-servicing'>";
-    $html .= "<div class='comparison products-specifications products-specifications-v2'>";
-    $html .= "<div class='row g-10px row-plans'>"; //row-plans
-    $html .= "<div class='col-lg-3'>"; //col-first
+    $html = "<div class='product-compare drone-servicing' >";
+    $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
+    $html .= "<div class='row g-10px row-plans'>";
+    $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
         'heading' => $servicing_heading,
         'class' => _attribute('class', array('mb-3')),
@@ -1134,33 +1134,7 @@ function __three_year_servicing_plans()
         'description' => $servicing_description,
         'class' => _attribute('class', array('description-box')),
     ));
-
-    $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
-    foreach ($specs as $key => $spec) {
-        if ($spec != '_') {
-
-            $html .= "<div class='col-12'>"; //specs-row-col
-            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
-            $html .= "<div class='icon-box me-3 text-accent'>";
-            $html .= $SVG->$key();
-            $html .= "</div>";
-            $html .= __heading(array(
-                'heading' => str_replace('_', ' ', ucwords($spec)),
-                'class' => _attribute('class', array('mb-0')),
-                'tag' => 'h5',
-            ));
-            $html .= "</div>"; //end-inner
-            $html .= "</div>"; //end-specs-row-col
-
-
-
-
-        }
-    }
-    $html .= "</div>"; //end-specs-row
-
-
-    $html .= "</div>"; //col-first
+    $html .= "</div>";
 
     foreach ($servicing_drones as $key => $drone) {
         $position = $key % 3;
@@ -1180,16 +1154,67 @@ function __three_year_servicing_plans()
         $plan_name = $drone['plan_name'];
         $plan_subheading = $drone['plan_subheading'];
         $plan_price = $drone['plan_price'];
-        $html .= "<div class='col-lg-3'>"; //col
-        $html .= "<div class='plan-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>"; //plan-box
+        $html .= "<div class='col-lg-3'>";
+        $html .= "<div class='plan-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
         $html .= __heading(array(
             'heading' => $plan_name,
             'tag' => 'h3',
             'suffix' => $plan_subheading
         ));
 
+        $html .= "<div class='row-plans-spec-mobile d-lg-none mt-4'>";
+        foreach ($specs as $key => $spec) {
+            $html .= "<div class='row g-10px mb-10px'>";
 
-        $html .= "<div class='price-button mt-5'>"; //price-button
+            if ($spec != '_') {
+                $html .= "<div class='col-8'>"; //specs-row-col
+                $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+                $html .= "<div class='icon-box me-3 text-accent'>";
+                $html .= $SVG->$key();
+                $html .= "</div>";
+                $html .= __heading(array(
+                    'heading' => str_replace('_', ' ', ucwords($spec)),
+                    'class' => _attribute('class', array('mb-0 text-primary')),
+                    'tag' => 'h5',
+                ));
+                $html .= "</div>"; //end-inner
+                $html .= "</div>"; //end-specs-row-col
+
+                $spec_plans = array();
+                foreach ($drone['plan_features'] as $plan_feature) {
+                    $spec_plans[$plan_feature['_type']] = $plan_feature['custom_text'];
+                }
+
+                $html .= "<div class='col-4'>";
+                $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
+
+                if (array_key_exists($key, $spec_plans)) {
+                    $custom_text = $spec_plans[$key];
+                    $html .= "<div class='active d-flex align-items-center'> ";
+                    if ($custom_text) {
+                        $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
+                        $html .= "<span class='fw-'medium'>$custom_text</span>";
+                        $html .= "</span>";
+                    } else {
+                        $html .= $SVG->check();
+                    }
+                    $html .= "</div>";
+                } else {
+                    $html .= "<div class='not-active d-flex align-items-center'>";
+                    $html .= $SVG->xmark();
+                    $html .= "</div>";
+                }
+
+                $html .= "</div>";
+                $html .= "</div>";
+            }
+            $html .= "</div>";
+        }
+        $html .= "</div>";
+
+
+
+        $html .= "<div class='price-button mt-5'>";
         $html .= "<div class='price mb-3'>£$plan_price <span>Excl. VAT</span></div>";
         $html .= __button(array(
             'button_type' => 'custom',
@@ -1198,49 +1223,68 @@ function __three_year_servicing_plans()
             'button_style' => $button_class,
         ));
 
-        $html .= "</div>"; //price-button
-        $html .= "<div class='row g-10px'>"; //row-specs
-        foreach ($servicing_drones as $drone) {
-            $spec_plans = array();
-            foreach ($drone['plan_features'] as $plan_feature) {
-                $spec_plans[$plan_feature['_type']] = $plan_feature['custom_text'];
-            }
+        $html .= "</div>";
 
-            $html .= "<div class='col-12'>";
-            $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
-
-            if (array_key_exists($key, $spec_plans)) {
-
-                $custom_text = $spec_plans[$key];
-
-                $html .= "<div class='active d-flex align-items-center'> ";
-                if ($custom_text && $custom_text > 0) {
-                    $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
-                    $html .= "<span class='fw-'medium'>$custom_text</span>";
-                    $html .= "</span>";
-                } else {
-                    $html .= $SVG->check();
-                }
-                $html .= "</div>";
-            } else {
-                $html .= "<div class='not-active d-flex align-items-center'>";
-                $html .= $SVG->xmark();
-                $html .= "</div>";
-            }
-
-            $html .= "</div>";
-            $html .= "</div>";
-        }
-        $html .= "</div>"; //row-specs
-
-
-        $html .= "</div>"; //plan-box
-        $html .= "</div>"; //col
+        $html .= "</div>";
+        $html .= "</div>";
     }
 
     $html .= "</div>";
 
+    foreach ($specs as $key => $spec) {
+        if ($spec != '_') {
+            $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
 
+            $html .= "<div class='col-3'>"; //specs-row-col
+            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+            $html .= "<div class='icon-box me-3 text-accent'>";
+            $html .= $SVG->$key();
+            $html .= "</div>";
+            $html .= __heading(array(
+                'heading' => str_replace('_', ' ', ucwords($spec)),
+                'class' => _attribute('class', array('mb-0')),
+                'tag' => 'h5',
+            ));
+            $html .= "</div>"; //end-inner
+            $html .= "</div>"; //end-specs-row-col
+
+            foreach ($servicing_drones as $drone) {
+                $spec_plans = array();
+                foreach ($drone['plan_features'] as $plan_feature) {
+                    $spec_plans[$plan_feature['_type']] = $plan_feature['custom_text'];
+                }
+
+                $html .= "<div class='col-3'>";
+                $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
+
+                if (array_key_exists($key, $spec_plans)) {
+
+                    $custom_text = $spec_plans[$key];
+
+                    $html .= "<div class='active d-flex align-items-center'> ";
+                    if ($custom_text && $custom_text > 0) {
+                        $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
+                        $html .= "<span class='fw-'medium'>$custom_text</span>";
+                        $html .= "</span>";
+                    } else {
+                        $html .= $SVG->check();
+                    }
+                    $html .= "</div>";
+                } else {
+                    $html .= "<div class='not-active d-flex align-items-center'>";
+                    $html .= $SVG->xmark();
+                    $html .= "</div>";
+                }
+
+                $html .= "</div>";
+                $html .= "</div>";
+            }
+
+
+
+            $html .= "</div>"; //end-specs-row
+        }
+    }
 
     $html .= "<div class='row g-10px row-plans  d-none d-lg-flex'>";
     $html .= "<div class='col-lg-3'>";
