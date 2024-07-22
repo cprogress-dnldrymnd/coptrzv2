@@ -4817,7 +4817,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('complex', 'buttons', __('Buttons'))
-                                ->set_classes('columns')
+                         
                                 ->setup_labels(
                                     array(
                                         'plural_name'   => 'Buttons',
