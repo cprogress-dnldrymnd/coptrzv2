@@ -12505,7 +12505,7 @@ body.product-loop-style-1 .product-buttons {
   .remote-supports .row .col-lg-6:nth-child(odd) .support-box {
     background-color: var(--bs-gray);
     background-color: var(--bs-gray); }
-  .remote-supports .row .col-lg-6:nth-child(even) {
+  .remote-supports .row .col-lg-6:nth-child(even) .support-box {
     background-color: var(--bs-light); }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
