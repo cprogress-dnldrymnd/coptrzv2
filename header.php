@@ -50,7 +50,7 @@
 
 		$products = get_posts($args);
 
-		foreach($products as $product) {
+		foreach ($products as $product) {
 			echo $product->ID;
 		}
 
