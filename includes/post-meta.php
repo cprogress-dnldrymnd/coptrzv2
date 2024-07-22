@@ -5761,7 +5761,7 @@ Container::make('post_meta', __('Product Settings'))
                 array(
                     array(
                         'type'      => 'post',
-                        'post_type' => 'products',
+                        'post_type' => 'product',
                     )
                 )
             )
