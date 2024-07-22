@@ -41,6 +41,7 @@
 
 		<?php
 		if (is_product() && get_the_ID() != 61453) {
+			/*
 			$sections = get__post_meta_by_id(61453, 'sections');
 			$sections_after_main = get__post_meta_by_id(61453, 'sections_after_main');
 
@@ -69,3 +70,4 @@
 
 			wp_update_post($data);
 		}
+*/
