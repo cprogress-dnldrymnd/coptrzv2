@@ -97,7 +97,7 @@ function __ajax_trigger() {
 
 
 
-    jQuery('input[name="events_category"]').on('change', function () {
+    jQuery('input[name="events_type"]').on('change', function () {
 
         $events_type = jQuery('input[name="events_type"]:checked').val();
 
