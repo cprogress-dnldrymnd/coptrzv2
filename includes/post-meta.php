@@ -5789,7 +5789,7 @@ Container::make('post_meta', __('Product Settings'))
             )
     ));
 
-add_filter('carbon_fields_association_field_options_related_training_post_product', function ($query_arguments) {
+add_filter('carbon_fields_association_field_options_related_training_product_post', function ($query_arguments) {
     // Order posts by title alphabetically, for example:
     $query_arguments['orderby'] = 'post_title';
     $query_arguments['order'] = 'desc';
