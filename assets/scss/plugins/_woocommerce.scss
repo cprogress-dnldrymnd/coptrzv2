@@ -1101,9 +1101,20 @@ body {
             }
         }
     }
+    .price {
+        font-size: 1.5rem;
+        span {
+            font-size: 1rem;
+        }
+    }
     .support-box-icon {
         background-color: rgba(255, 255, 255, 0.1);
         border-radius: 0 0 5px 5px;
-        padding: 1rem 5px 5px;
+        padding: 1rem 10px 5px 10px;
+        font-size: 15px;
+        font-weight: 500;
+        svg {
+            color: var(--bs-white);
+        }
     }
 }
