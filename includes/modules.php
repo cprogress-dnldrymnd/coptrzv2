@@ -2548,7 +2548,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     $html .= "<div class='inner $class'>";
     $html .= "<div class='row g-3 justify-content-between align-items-end'>";
 
-    if (is_tax($taxonomy) || is_category()) {
+    if (is_tax($taxonomy) || is_category() && $key != 'events_' ) {
         $main_term_id = get_queried_object();
         $html .= "<div class='col-auto'>";
         $html .= __heading(array(
