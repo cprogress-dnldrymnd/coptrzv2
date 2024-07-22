@@ -10,7 +10,15 @@ jQuery(document).ready(function () {
     __filters();
     __ajax_trigger();
     __phone_input();
+    __toggle_input();
 });
+
+function __toggle_input() {
+    jQuery('.toggle-switch').click(function (e) {
+        jQuery(this).toggleClass('active');
+        e.preventDefault();
+    });
+}
 
 function __phone_input() {
     if (jQuery('input[type="tel"]').length != 0) {
