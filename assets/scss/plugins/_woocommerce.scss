@@ -1092,12 +1092,11 @@ body {
             @include odd {
                 .support-box {
                     background-color: var(--bs-gray);
-                    background-color: var(--bs-gray);
                 }
             }
             @include even {
                 .support-box {
-                    background-color: var(--bs-light);
+                    background-color: var(--bs-accent);
                 }
             }
         }

@@ -1416,7 +1416,7 @@ function __remote_support()
             'button_type' => 'custom',
             'button_text' => 'Request Service',
             'button_url_custom' => '#',
-            'button_style' => 'btn-primary',
+            'button_style' => 'button-primary',
         ));
 
         $html .= "</div>";

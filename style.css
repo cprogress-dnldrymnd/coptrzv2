@@ -12503,10 +12503,9 @@ body.product-loop-style-1 .product-buttons {
   margin-left: auto;
   margin-right: auto; }
   .remote-supports .row .col-lg-6:nth-child(odd) .support-box {
-    background-color: var(--bs-gray);
     background-color: var(--bs-gray); }
   .remote-supports .row .col-lg-6:nth-child(even) .support-box {
-    background-color: var(--bs-light); }
+    background-color: var(--bs-accent); }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
