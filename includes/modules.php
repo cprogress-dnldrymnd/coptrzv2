@@ -2589,9 +2589,9 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
         $html .= "<label class='rounded-corner' for='term-all'>All</label>";
         $html .= "</div>";
 
-        foreach ($events_category as $category) {
-            $term_name = $category->name;
-            $term_id = $category->term_id;
+        foreach ($events_category as $event_category) {
+            $term_name = $event_category->name;
+            $term_id = $event_category->term_id;
             $html .= "<div class='col-auto'>";
             $html .= "<input name='events_category' value='$term_id' type='radio' id='term-$term_id'>";
             $html .= "<label class='rounded-corner' for='term-$term_id'>$term_name</label>";
