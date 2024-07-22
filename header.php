@@ -38,30 +38,3 @@
 	}
 	?>
 	<main class="<?= $class ?>">
-
-		<?php
-
-		$sections = get__post_meta_by_id(61453, 'sections');
-		$sections_after_main = get__post_meta_by_id(61453, 'sections_after_main');
-
-
-		$args = array(
-			'numberposts' => -1,
-			'post_type'   => 'product',
-			'fields' => 'ids',
-		);
-
-		$products = get_posts($args);
-
-		foreach ($products as $product) {
-
-			carbon_set_post_meta($product, 'sections', $sections);
-			carbon_set_post_meta($product, 'sections_after_main', $sections_after_main);
-
-			$data = array(
-				'ID' => $product,
-				'post_content' => '',
-			);
-
-			wp_update_post($data);
-		}
