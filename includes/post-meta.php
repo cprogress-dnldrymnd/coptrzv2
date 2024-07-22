@@ -5744,13 +5744,24 @@ Container::make('term_meta', __('Category Properties'))
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Product Settings'))
     ->where('post_type', '=', 'product')
-    ->add_fields(array(
+    ->add_tab('Related Guides', array(
         Field::make('association', 'related_guides', 'Related Guides')
             ->set_types(
                 array(
                     array(
                         'type'      => 'post',
                         'post_type' => 'guides',
+                    )
+                )
+            )
+    ))
+    ->add_tab('Related Guides', array(
+        Field::make('association', 'related_training', 'Related Training')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'products',
                     )
                 )
             )
