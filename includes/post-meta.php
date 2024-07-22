@@ -5789,7 +5789,7 @@ Container::make('post_meta', __('Product Settings'))
             )
     ));
 
-add_filter('carbon_fields_association_field_options_related_training_product_post', function ($query_arguments) {
+add_filter('carbon_fields_association_field_options_related_training_post_product', function ($query_arguments) {
     // Order posts by title alphabetically, for example:
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
@@ -5797,7 +5797,7 @@ add_filter('carbon_fields_association_field_options_related_training_product_pos
         'terms'    => $term_ids
     );
 
-    $query_arguments['tax_query'] = $desc;
+    $query_arguments['tax_query'] = $tax_query;
 
     return $query_arguments;
 });
