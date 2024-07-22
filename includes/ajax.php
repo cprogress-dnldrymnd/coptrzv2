@@ -41,7 +41,6 @@ function archive_ajax()
 		);
 	}
 
-	$args['post_type'] = $data_val['post_type'];
 
 	if ($s) {
 		$args['s'] = $s;
