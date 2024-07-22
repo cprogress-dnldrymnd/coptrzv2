@@ -53,8 +53,14 @@
 
 			$products = get_posts($args);
 
-			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
-			carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
+			$sections_r = get__post_meta_by_id(get_the_ID(), 'sections');
+			$sections_after_main_r = get__post_meta_by_id(get_the_ID(), 'sections_after_main');
+			if (!$sections_r) {
+				carbon_set_post_meta(get_the_ID(), 'sections', $sections);
+			}
+			if (!$sections_after_main_r) {
+				carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
+			}
 
 			$data = array(
 				'ID' => get_the_ID(),
