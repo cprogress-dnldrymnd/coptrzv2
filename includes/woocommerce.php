@@ -1134,7 +1134,7 @@ function __three_year_servicing_plans()
         'description' => $servicing_description,
         'class' => _attribute('class', array('description-box')),
     ));
-    
+
     $html .= "<div class='d-flex align-items-center fw-medium small-text'>";
     $html .= "<span>Small Drone</span>";
     $html .= "<div class='toggle-switch toggle-switch-drone-size mx-3'>";
@@ -1143,7 +1143,7 @@ function __three_year_servicing_plans()
     $html .= "</div>";
 
     $html .= "</div>";
-    
+
 
     foreach ($servicing_drones as $key => $drone) {
         $position = $key % 3;
@@ -1166,7 +1166,7 @@ function __three_year_servicing_plans()
         $plan_price_large = $drone['plan_price_large'];
         $plan_description = $drone['plan_description'];
         $plan_features = $drone['plan_features'];
-        if($plan_features) {
+        if ($plan_features) {
             $class .= ' justify-content-between';
         } else {
             $class .= ' justify-content-start';
@@ -1364,6 +1364,56 @@ function __three_year_servicing_plans()
     return $html;
 }
 
+function __remote_support()
+{
+    $remote_support_heading = get__theme_option('remote_support_heading');
+    $remote_support_description = get__theme_option('remote_support_description');
+    $remote_supports = get__theme_option('remote_supporrt');
+
+    $html = "<div class='remote-supports'>";
+    $html .= __heading(array(
+        'heading' => $remote_support_heading,
+        'class' => _attribute('class', array('mb-0 text-center')),
+        'tag' => 'h2',
+    ));
+    $html .= __description(array(
+        'description' => $remote_support_description,
+        'class' => _attribute('class', array('description-box text-center')),
+    ));
+    $html = "<div class='row g-10px'>";
+
+    foreach ($remote_supports as $remote_support) {
+        $heading = $remote_support['remote_support_heading'];
+        $description = $remote_support['remote_support_description'];
+        $price = $remote_support['remote_support_price'];
+        $icon = $remote_support['remote_support_icon'];
+        $icon_text = $remote_support['remote_support_icon_text'];
+        $html = "<div class='col-lg-6'>";
+        $html = "<div class='support-box p-3 content-margin'>";
+
+        $html .= __heading(array(
+            'heading' => $heading,
+            'class' => _attribute('class', array('mb-0 text-center')),
+            'tag' => 'h2',
+        ));
+        $html .= __description(array(
+            'description' => $description,
+            'class' => _attribute('class', array('description-box text-center')),
+        ));
+
+        $html .= __button(array(
+            'button_type' => 'custom',
+            'button_text' => 'Request Service',
+            'button_url_custom' => '#',
+            'button_style' => 'btn-primary',
+        ));
+
+        $html .= "</div>";
+        $html .= "</div>";
+    }
+
+    $html .= "</div>";
+}
 
 remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
 

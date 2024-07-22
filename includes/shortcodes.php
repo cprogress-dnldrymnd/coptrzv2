@@ -578,6 +578,11 @@ class Shortcodes
         return __three_year_servicing_plans();
     }
 
+    function remote_support() {
+        return __remote_support();
+
+    }
+
     function brands_logo_slider()
     {
 
