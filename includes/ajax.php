@@ -45,9 +45,7 @@ function archive_ajax()
 
 	$the_query = new WP_Query($args);
 	echo '<div class="row g-4 same-image-height">';
-	echo '<pre>';
-	var_dump($args);
-	echo '</pre>';
+
 	if ($the_query->have_posts()) {
 		while ($the_query->have_posts()) {
 			$the_query->the_post();
