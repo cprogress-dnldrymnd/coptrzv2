@@ -1134,6 +1134,31 @@ function __three_year_servicing_plans()
         'description' => $servicing_description,
         'class' => _attribute('class', array('description-box')),
     ));
+
+    foreach ($specs as $key => $spec) {
+        if ($spec != '_') {
+            $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
+
+            $html .= "<div class='col-3'>"; //specs-row-col
+            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+            $html .= "<div class='icon-box me-3 text-accent'>";
+            $html .= $SVG->$key();
+            $html .= "</div>";
+            $html .= __heading(array(
+                'heading' => str_replace('_', ' ', ucwords($spec)),
+                'class' => _attribute('class', array('mb-0')),
+                'tag' => 'h5',
+            ));
+            $html .= "</div>"; //end-inner
+            $html .= "</div>"; //end-specs-row-col
+
+
+
+
+            $html .= "</div>"; //end-specs-row
+        }
+    }
+
     $html .= "</div>"; //col-first
 
     foreach ($servicing_drones as $key => $drone) {
@@ -1214,29 +1239,7 @@ function __three_year_servicing_plans()
 
     $html .= "</div>";
 
-    foreach ($specs as $key => $spec) {
-        if ($spec != '_') {
-            $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
 
-            $html .= "<div class='col-3'>"; //specs-row-col
-            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
-            $html .= "<div class='icon-box me-3 text-accent'>";
-            $html .= $SVG->$key();
-            $html .= "</div>";
-            $html .= __heading(array(
-                'heading' => str_replace('_', ' ', ucwords($spec)),
-                'class' => _attribute('class', array('mb-0')),
-                'tag' => 'h5',
-            ));
-            $html .= "</div>"; //end-inner
-            $html .= "</div>"; //end-specs-row-col
-
-
-
-
-            $html .= "</div>"; //end-specs-row
-        }
-    }
 
     $html .= "<div class='row g-10px row-plans  d-none d-lg-flex'>";
     $html .= "<div class='col-lg-3'>";
