@@ -5798,6 +5798,7 @@ add_filter('carbon_fields_association_field_options_related_training_post_produc
     );
 
     $query_arguments['tax_query'] = $tax_query;
+    $query_arguments['post_status'] = 'publish';
 
     return $query_arguments;
 });
@@ -5811,6 +5812,7 @@ add_filter('carbon_fields_association_field_options_compatible_payloads_post_pro
     );
 
     $query_arguments['tax_query'] = $tax_query;
+    $query_arguments['post_status'] = 'publish';
 
     return $query_arguments;
 });
@@ -5824,6 +5826,7 @@ add_filter('carbon_fields_association_field_options_accessories_post_product', f
     );
 
     $query_arguments['tax_query'] = $tax_query;
+    $query_arguments['post_status'] = 'publish';
 
     return $query_arguments;
 });
