@@ -59,7 +59,7 @@
 			carbon_set_post_meta($product, 'sections_after_main', $sections_after_main);
 
 			$data = array(
-				'ID' => 61610,
+				'ID' => $product,
 				'post_content' => '',
 			);
 
