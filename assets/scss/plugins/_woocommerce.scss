@@ -1090,10 +1090,15 @@ body {
     .row {
         .col-lg-6 {
             @include odd {
-                background-color: var(--bs-gray);
+                .support-box {
+                    background-color: var(--bs-gray);
+                    background-color: var(--bs-gray);
+                }
             }
             @include even {
-                background-color: var(--bs-light);
+                .support-box {
+                    background-color: var(--bs-light);
+                }
             }
         }
     }

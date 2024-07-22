@@ -12502,7 +12502,8 @@ body.product-loop-style-1 .product-buttons {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto; }
-  .remote-supports .row .col-lg-6:nth-child(odd) {
+  .remote-supports .row .col-lg-6:nth-child(odd) .support-box {
+    background-color: var(--bs-gray);
     background-color: var(--bs-gray); }
   .remote-supports .row .col-lg-6:nth-child(even) {
     background-color: var(--bs-light); }
