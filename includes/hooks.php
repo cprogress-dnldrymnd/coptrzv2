@@ -294,6 +294,9 @@ function action_pre_get_posts($query)
         }
         if (is_post_type_archive('industries') || is_post_type_archive('capabilities')) {
             $query->set('posts_per_page', -1);
+        } else if (is_post_type_archive('events')) {
+            $query->set('meta_key', 'crb_event_start_date');
+            $query->set('orderby', 'meta_value_num');
         } else {
             if (isset($_GET['posts_per_page'])) {
                 $query->set('posts_per_page', $_GET['posts_per_page']);
@@ -326,7 +329,7 @@ function action_body_class($classes)
         $classes[] = "hero-$header_background";
     }
 
-    
+
     return $classes;
 }
 
