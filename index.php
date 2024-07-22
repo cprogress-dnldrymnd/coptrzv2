@@ -59,7 +59,7 @@ if (is_home() || is_category()) {
     if (is_tax('events_category')) {
         $query['tax_query'] = array(
             array(
-                'taxonomy' => 'events_category',
+                'taxonomy' => 'events_type',
                 'field' => 'term_id',
                 'terms' => get_queried_object()->term_id,
             ),
