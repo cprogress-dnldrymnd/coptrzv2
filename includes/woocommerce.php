@@ -1391,7 +1391,10 @@ function __remote_support()
         $html .= "<div class='col-lg-6'>";
         $html .= "<div class='support-box rounded-corner px-4 pb-4 content-margin text-white text-center'>";
         $html .= "<div class='support-box-icon'>";
-       
+        $html .= __icon(array(
+            'id' => $icon,
+            'class' => _attribute('class', array('me-3 text-accent'))
+        ));
         $html .= "<span>$icon_text</span";
 
         $html .= "</div>";
