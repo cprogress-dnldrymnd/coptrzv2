@@ -1018,6 +1018,7 @@ body {
         padding-top: 1.5rem;
     }
     .row-plans {
+        position: relative;
         .col-lg-3 {
             @include last-child {
                 @include responsive(md-lg) {

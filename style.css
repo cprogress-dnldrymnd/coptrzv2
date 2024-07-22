@@ -12450,13 +12450,15 @@ body.product-loop-style-1 .product-buttons {
   border-top: 1px solid;
   margin-top: 1.5rem;
   padding-top: 1.5rem; }
-@media screen and (min-width: 992px) {
-  .drone-plans .row-plans .col-lg-3:last-child {
-    position: absolute;
-    right: -5px;
-    bottom: 0;
-    top: 0;
-    width: calc(25% + 3px); } }
+.drone-plans .row-plans {
+  position: relative; }
+  @media screen and (min-width: 992px) {
+    .drone-plans .row-plans .col-lg-3:last-child {
+      position: absolute;
+      right: -5px;
+      bottom: 0;
+      top: 0;
+      width: calc(25% + 3px); } }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
