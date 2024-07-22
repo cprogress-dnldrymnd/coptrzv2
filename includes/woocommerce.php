@@ -22,17 +22,21 @@ add_action('woocommerce_before_main_content', 'action_woocommerce_before_main_co
 
 function action_woocommerce_after_single_product_summary()
 {
-    $single_product_content_after = get__post_meta('single_product_content_after');
+    $related_training = get_post_meta(get_the_ID(), 'related_training', true);
     $compatible_payloads = get_post_meta(get_the_ID(), 'compatible_payloads', true);
     $accessories = get_post_meta(get_the_ID(), 'accessories', true);
 
     echo do_shortcode(___sections('sections_after_main', get_the_ID()));
 
+    if ($related_training) {
+        echo __linked_products($related_training, 'All Payloads', '#', 'swiper-payloads', 'Compatible Payloads');
+    }
+
     if ($compatible_payloads) {
         echo __linked_products($compatible_payloads, 'All Payloads', '#', 'swiper-payloads', 'Compatible Payloads');
     }
 
-    if ($compatible_payloads) {
+    if ($accessories) {
         echo __linked_products($accessories, 'All Accessories', '#', 'swiper-accessories', 'Accessories');
     }
 }
@@ -569,6 +573,23 @@ function add_linked_custom_product_field()
 ?>
     <div class="options_group ">
         <p class="form-field">
+            <label for="related_training"><?php esc_html_e('Compatible Payloads', 'woocommerce'); ?></label>
+            <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="related_training" name="related_training[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products">
+                <?php
+                $product_ids = !empty(get_post_meta($product_object->get_id(), 'related_training', true)) ? get_post_meta($product_object->get_id(), 'related_training', true) : array();
+                foreach ($product_ids as $product_id) {
+                    $product = wc_get_product($product_id);
+                    if (is_object($product)) {
+                        echo '<option value="' . esc_attr($product_id) . '"' . selected(true, true, false) . '>' . wp_kses_post($product->get_formatted_name()) . '</option>';
+                    }
+                }
+                ?>
+            </select> <?php echo wc_help_tip(__('Select compatible payloads for this product.', 'woocommerce')); // WPCS: XSS ok. 
+                        ?>
+        </p>
+    </div>
+    <div class="options_group ">
+        <p class="form-field">
             <label for="compatible_payloads"><?php esc_html_e('Compatible Payloads', 'woocommerce'); ?></label>
             <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="compatible_payloads" name="compatible_payloads[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products">
                 <?php
@@ -609,6 +630,9 @@ function add_linked_custom_product_field()
 add_action('save_post_product', 'save_custom_product_options', 10, 3);
 function save_custom_product_options($post_ID, $product, $update)
 {
+    $related_training = isset($_POST['related_training']) ? $_POST['related_training'] : array();
+    update_post_meta($post_ID, 'related_training', $related_training);
+
     $compatible_payloads = isset($_POST['compatible_payloads']) ? $_POST['compatible_payloads'] : array();
     update_post_meta($post_ID, 'compatible_payloads', $compatible_payloads);
 
