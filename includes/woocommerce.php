@@ -1139,7 +1139,7 @@ function __three_year_servicing_plans()
         if ($spec != '_') {
             $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
 
-            $html .= "<div class='col-3'>"; //specs-row-col
+            $html .= "<div class='col-12'>"; //specs-row-col
             $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
             $html .= "<div class='icon-box me-3 text-accent'>";
             $html .= $SVG->$key();
@@ -1198,7 +1198,7 @@ function __three_year_servicing_plans()
         ));
 
         $html .= "</div>"; //price-button
-        $html .= "<div class='row g-3'>"; //row-specs
+        $html .= "<div class='row g-10px'>"; //row-specs
         foreach ($servicing_drones as $drone) {
             $spec_plans = array();
             foreach ($drone['plan_features'] as $plan_feature) {
