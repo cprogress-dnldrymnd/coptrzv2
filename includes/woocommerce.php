@@ -1116,14 +1116,14 @@ function __three_year_servicing_plans()
 
     foreach ($servicing_drones as $servicing_drone) {
         $specs[] = $servicing_drone['_type'];
-        $service_features = $servicing_drone['service_features'];
-        foreach ($service_features as $service_feature) {
-            $specs[$service_feature['_type']] = $service_feature['_type'];
+        $plan_features = $servicing_drone['plan_features'];
+        foreach ($plan_features as $plan_feature) {
+            $specs[$plan_feature['_type']] = $plan_feature['_type'];
         }
     }
     $html = "<div class='product-compare drone-servicing' >";
     $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
-    $html .= "<div class='row g-10px row-services'>";
+    $html .= "<div class='row g-10px row-plans'>";
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
         'heading' => $servicing_heading,
@@ -1151,18 +1151,18 @@ function __three_year_servicing_plans()
         }
 
 
-        $service_name = $drone['service_name'];
-        $service_subheading = $drone['service_subheading'];
-        $service_price = $drone['service_price'];
+        $plan_name = $drone['plan_name'];
+        $plan_subheading = $drone['plan_subheading'];
+        $plan_price = $drone['plan_price'];
         $html .= "<div class='col-lg-3'>";
-        $html .= "<div class='service-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
+        $html .= "<div class='plan-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
         $html .= __heading(array(
-            'heading' => $service_name,
+            'heading' => $plan_name,
             'tag' => 'h3',
-            'suffix' => $service_subheading
+            'suffix' => $plan_subheading
         ));
 
-        $html .= "<div class='row-services-spec-mobile d-lg-none mt-4'>";
+        $html .= "<div class='row-plans-spec-mobile d-lg-none mt-4'>";
         foreach ($specs as $key => $spec) {
             $html .= "<div class='row g-10px mb-10px'>";
 
@@ -1180,16 +1180,16 @@ function __three_year_servicing_plans()
                 $html .= "</div>"; //end-inner
                 $html .= "</div>"; //end-specs-row-col
 
-                $spec_services = array();
-                foreach ($drone['service_features'] as $service_feature) {
-                    $spec_services[$service_feature['_type']] = $service_feature['custom_text'];
+                $spec_plans = array();
+                foreach ($drone['plan_features'] as $plan_feature) {
+                    $spec_plans[$plan_feature['_type']] = $plan_feature['custom_text'];
                 }
 
                 $html .= "<div class='col-4'>";
                 $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
-                if (array_key_exists($key, $spec_services)) {
-                    $custom_text = $spec_services[$key];
+                if (array_key_exists($key, $spec_plans)) {
+                    $custom_text = $spec_plans[$key];
                     $html .= "<div class='active d-flex align-items-center'> ";
                     if ($custom_text) {
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
@@ -1215,10 +1215,10 @@ function __three_year_servicing_plans()
 
 
         $html .= "<div class='price-button mt-5'>";
-        $html .= "<div class='price mb-3'>£$service_price <span>Excl. VAT</span></div>";
+        $html .= "<div class='price mb-3'>£$plan_price <span>Excl. VAT</span></div>";
         $html .= __button(array(
             'button_type' => 'custom',
-            'button_text' => 'Request Service',
+            'button_text' => 'Request Plan',
             'button_url_custom' => '#',
             'button_style' => $button_class,
         ));
@@ -1249,17 +1249,17 @@ function __three_year_servicing_plans()
             $html .= "</div>"; //end-specs-row-col
 
             foreach ($servicing_drones as $drone) {
-                $spec_services = array();
-                foreach ($drone['service_features'] as $service_feature) {
-                    $spec_services[$service_feature['_type']] = $service_feature['custom_text'];
+                $spec_plans = array();
+                foreach ($drone['plan_features'] as $plan_feature) {
+                    $spec_plans[$plan_feature['_type']] = $plan_feature['custom_text'];
                 }
 
                 $html .= "<div class='col-3'>";
                 $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
-                if (array_key_exists($key, $spec_services)) {
+                if (array_key_exists($key, $spec_plans)) {
 
-                    $custom_text = $spec_services[$key];
+                    $custom_text = $spec_plans[$key];
 
                     $html .= "<div class='active d-flex align-items-center'> ";
                     if ($custom_text && $custom_text > 0) {
@@ -1286,7 +1286,7 @@ function __three_year_servicing_plans()
         }
     }
 
-    $html .= "<div class='row g-10px row-services  d-none d-lg-flex'>";
+    $html .= "<div class='row g-10px row-plans  d-none d-lg-flex'>";
     $html .= "<div class='col-lg-3'>";
     $html .= "</div>";
     foreach ($servicing_drones as $key => $drone) {
@@ -1304,11 +1304,11 @@ function __three_year_servicing_plans()
         }
 
         $html .= "<div class='col-lg-3'>";
-        $html .= "<div class='service-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
+        $html .= "<div class='plan-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
 
         $html .= __button(array(
             'button_type' => 'custom',
-            'button_text' => 'Request Service',
+            'button_text' => 'Request Plan',
             'button_url_custom' => '#',
             'button_style' => $button_class,
         ));
