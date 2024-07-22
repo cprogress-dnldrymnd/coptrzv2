@@ -1048,5 +1048,19 @@ body {
 
 
 .toggle-switch {
-    
+    padding: 7px;
+    border-radius: 50px;
+    border: 1px solid #EAEAEA;
+    width: 62px;
+    height: 38px;
+    &:before{
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: var(--bs-accent);
+        left: 7px;
+        transition: 500ms;
+    }
 }
