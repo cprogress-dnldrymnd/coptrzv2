@@ -1020,7 +1020,7 @@ body {
     .row-plans {
         .col-lg-3 {
             @include last-child {
-                @include responsive(xs-sm) {
+                @include responsive(md-lg) {
                     position: absolute;
                     right: -5px;
                     bottom: 0;
