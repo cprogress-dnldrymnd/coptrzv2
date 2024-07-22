@@ -12450,10 +12450,10 @@ body.product-loop-style-1 .product-buttons {
   border-top: 1px solid;
   margin-top: 1.5rem;
   padding-top: 1.5rem; }
-.drone-plans .row-plans {
+.drone-plans .row-plans-main {
   position: relative; }
   @media screen and (min-width: 992px) {
-    .drone-plans .row-plans .col-lg-3:last-child {
+    .drone-plans .row-plans-main .col-lg-3:last-child {
       position: absolute;
       right: -5px;
       bottom: 0;

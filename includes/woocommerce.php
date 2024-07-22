@@ -1123,7 +1123,7 @@ function __three_year_servicing_plans()
     }
     $html = "<div class='product-compare drone-servicing  drone-plans' >";
     $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
-    $html .= "<div class='row g-10px row-plans'>";
+    $html .= "<div class='row g-10px row-plans row-plans-main'>";
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
         'heading' => $servicing_heading,
