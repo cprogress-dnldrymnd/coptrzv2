@@ -1219,14 +1219,6 @@ function __three_year_servicing_plans()
 
         $html .= "<div class='price-button mt-5'>";
         $html .= "<div class='price mb-3'>£$plan_price <span>Excl. VAT</span></div>";
-
-        if ($plan_description) {
-            $html .= __description(array(
-                'description' => $plan_description,
-                'class' => _attribute('class', array('description-box plan-description')),
-            ));
-        }
-        $html .= "</div>";
         $html .= __button(array(
             'button_type' => 'custom',
             'button_text' => 'Request Service',
@@ -1234,7 +1226,15 @@ function __three_year_servicing_plans()
             'button_style' => $button_class,
         ));
 
+        $html .= "</div>";
 
+        if ($plan_description) {
+            $html .= __description(array(
+                'description' => $plan_description,
+                'class' => _attribute('class', array('description-box plan-description')),
+            ));
+        }
+        
         $html .= "</div>";
 
 
