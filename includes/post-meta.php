@@ -1926,7 +1926,6 @@ function __section_fields($name = 'sections')
                                                     )
                                                 ),
                                             Field::make('complex', 'buttons', __('Buttons'))
-                                                ->set_classes('columns')
                                                 ->setup_labels(
                                                     array(
                                                         'plural_name'   => 'Buttons',
@@ -1947,6 +1946,7 @@ function __section_fields($name = 'sections')
                                                                 'industries' => 'Industry',
                                                                 'popups'    => 'Popup',
                                                                 'custom'     => 'Custom',
+                                                                'buy-now'    => 'Buy Now(Product Only)',
                                                             )
                                                         ),
                                                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
@@ -4817,7 +4817,7 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('complex', 'buttons', __('Buttons'))
-                         
+
                                 ->setup_labels(
                                     array(
                                         'plural_name'   => 'Buttons',
@@ -6122,7 +6122,7 @@ Container::make('post_meta', 'Page Settings')
             ),
     ));
 
-    Container::make('post_meta', 'Page Settings')
+Container::make('post_meta', 'Page Settings')
     ->where('post_template', '=', 'templates/page-modules.php')
     ->set_context('side')
     ->add_fields(array(
