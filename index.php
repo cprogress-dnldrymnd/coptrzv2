@@ -43,7 +43,7 @@ if (is_home() || is_category()) {
     $data['taxonomy'] = $category;
 
     $query['post_type'] = 'post';
-} else if (is_post_type_archive('events')) {
+} else if (is_post_type_archive('events') || is_tax('events_category')) {
     $key = 'events_';
     $title = false;
     $has_featured = false;
@@ -54,8 +54,17 @@ if (is_home() || is_category()) {
     $elements_array[] = 'category';
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
-
     $query['post_type'] = 'events';
+    
+    if (is_tax('events_category')) {
+        $query['tax_query'] = array(
+            array(
+                'taxonomy' => 'events_category',
+                'field' => 'term_id',
+                'terms' => get_queried_object()->term_id,
+            ),
+        );
+    }
 } else if (is_post_type_archive('capabilities')) {
     $title = get__theme_option('capabilities_loop_section_title');
     $key = 'capabilities_';
