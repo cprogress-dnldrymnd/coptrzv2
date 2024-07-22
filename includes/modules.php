@@ -2573,7 +2573,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
 
     if ($key == 'events_') {
         $events_category = get_terms(array(
-            'taxonomy'   => 'events_category',
+            'taxonomy'   => 'events_type',
             'hide_empty' => true,
         ));
 
