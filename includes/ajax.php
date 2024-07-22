@@ -31,7 +31,7 @@ function archive_ajax()
 
 	$args = $query_val;
 
-	if ($events_type) {
+	if ($events_type != false) {
 		$args['tax_query'] = array(
 			array(
 				'taxonomy' => 'events_type',
