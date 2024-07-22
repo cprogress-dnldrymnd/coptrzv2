@@ -1018,6 +1018,17 @@ body {
         margin-top: 1.5rem;
         padding-top: 1.5rem;
     }
+    .plan-box {
+        &.justify-content-start {
+            position: relative;
+            .button-box {
+                position: absolute;
+                bottom: 1rem;
+                left: 1rem;
+                right: 1rem;
+            }
+        }
+    }
     .row-plans-main {
         .col-lg-3 {
             @include last-child {
