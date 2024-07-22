@@ -144,12 +144,22 @@ function __servicing_fields()
                     ))
                     ->set_duplicate_groups_allowed(false)
                     ->set_collapsed(true)
-
             ))
             ->set_header_template('Plan : <%- plan_name %>')
             ->set_collapsed(true)
             ->set_max(3),
-
+        Field::make('html', 'servicing_html_3')->set_html('<label>Remote Support</label>')->set_classes('cb-label'),
+        Field::make('text', 'remote_support_heading', 'Heading')->set_classes('inline-field'),
+        Field::make('textarea', 'remote_support_description', 'Description')->set_classes('inline-field'),
+        Field::make('complex', 'remote_supporrt', 'Remote Supports')->set_classes('inline-field')
+            ->add_fields(array(
+                Field::make('text', 'remote_support_heading', __('Heading'))->set_classes('inline-field'),
+                Field::make('text', 'remote_support_description', __('Description'))->set_classes('inline-field'),
+                Field::make('text', 'remote_support_price', __('Price'))->set_classes('inline-field'),
+                Field::make('image', 'remote_support_icon', __('Icon'))->set_classes('inline-field'),
+                Field::make('text', 'remote_support_icon_text', __('Icon Text'))->set_classes('inline-field'),
+            ))
+            ->set_collapsed(true),
 
     );
 }
