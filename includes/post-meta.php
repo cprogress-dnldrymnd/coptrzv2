@@ -143,7 +143,8 @@ function __servicing_fields()
 
             ))
             ->set_header_template('Drone Service: <%- service_name %>')
-            ->set_collapsed(true),
+            ->set_collapsed(true)
+            ->set_max(2),
 
 
     );
