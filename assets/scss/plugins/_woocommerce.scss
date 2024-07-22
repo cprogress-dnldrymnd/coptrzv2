@@ -441,6 +441,9 @@ section.product-main {
                     padding-bottom: 20px;
                     border-radius: 10px;
                     border: 1px solid var(--border-color);
+                    .product-buttons {
+                        margin-bottom: 0 !important;
+                    }
                 }
                 @include responsive(lg) {
                     @include upsell_style;
