@@ -886,7 +886,7 @@ function __drone_servicing()
     $servicing_heading = get__theme_option('servicing_heading');
     $servicing_description = get__theme_option('servicing_description');
     $servicing_drones = get__theme_option('servicing_drones');
-    
+
     $specs = array();
 
     foreach ($servicing_drones as $servicing_drone) {
@@ -1111,7 +1111,7 @@ function __three_year_servicing_plans()
     $servicing_heading = get__theme_option('servicing_3_year_heading');
     $servicing_description = get__theme_option('servicing_3_year_description');
     $servicing_drones = get__theme_option('servicing_3_year_drones');
-    
+
     $specs = array();
 
     foreach ($servicing_drones as $servicing_drone) {
@@ -1173,7 +1173,7 @@ function __three_year_servicing_plans()
                 $html .= $SVG->$key();
                 $html .= "</div>";
                 $html .= __heading(array(
-                    'heading' => ucwords($spec),
+                    'heading' => str_replace('_', ' ', ucwords($spec)),
                     'class' => _attribute('class', array('mb-0 text-primary')),
                     'tag' => 'h5',
                 ));
