@@ -1390,6 +1390,15 @@ function __remote_support()
         $icon_text = $remote_support['remote_support_icon_text'];
         $html .= "<div class='col-lg-6'>";
         $html .= "<div class='support-box p-3 content-margin text-white text-center'>";
+        $html .= "<div class='support-box-icon'>";
+        $html .= "<span>$icon_text</span";
+        $html .= __icon(array(
+            'id' => $icon,
+            'class' => _attribute('class', array('me-3 text-accent'))
+        ));
+        $html .= "<span>$icon_text</span";
+
+        $html .= "</div>";
 
         $html .= __heading(array(
             'heading' => $heading,
@@ -1400,6 +1409,9 @@ function __remote_support()
             'description' => $description,
             'class' => _attribute('class', array('description-box text-center')),
         ));
+
+        $html .= "<div class='price mb-3'>£$price <span>Excl. VAT</span></div>";
+
 
         $html .= __button(array(
             'button_type' => 'custom',
