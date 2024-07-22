@@ -886,8 +886,232 @@ function __drone_servicing()
     $servicing_heading = get__theme_option('servicing_heading');
     $servicing_description = get__theme_option('servicing_description');
     $servicing_drones = get__theme_option('servicing_drones');
+    
+    $specs = array();
+
+    foreach ($servicing_drones as $servicing_drone) {
+        $specs[] = $servicing_drone['_type'];
+        $service_features = $servicing_drone['service_features'];
+        foreach ($service_features as $service_feature) {
+            $specs[$service_feature['_type']] = $service_feature['_type'];
+        }
+    }
+    $html = "<div class='product-compare drone-servicing' >";
+    $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
+    $html .= "<div class='row g-10px row-services'>";
+    $html .= "<div class='col-lg-3'>";
+    $html .= __heading(array(
+        'heading' => $servicing_heading,
+        'class' => _attribute('class', array('mb-3')),
+    ));
+
+    $html .= __description(array(
+        'description' => $servicing_description,
+        'class' => _attribute('class', array('description-box')),
+    ));
+    $html .= "</div>";
+
+    foreach ($servicing_drones as $key => $drone) {
+        $position = $key % 3;
+
+        if ($position == 0) {
+            $class = 'bg-gray';
+            $button_class = 'button-primary';
+        } else if ($position == 1) {
+            $class = 'bg-accent';
+            $button_class = 'button-primary';
+        } else if ($position == 2) {
+            $class = 'bg-black';
+            $button_class = 'button-accent';
+        }
 
 
+        $service_name = $drone['service_name'];
+        $service_subheading = $drone['service_subheading'];
+        $service_price = $drone['service_price'];
+        $html .= "<div class='col-lg-3'>";
+        $html .= "<div class='service-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
+        $html .= __heading(array(
+            'heading' => $service_name,
+            'tag' => 'h3',
+            'suffix' => $service_subheading
+        ));
+
+        $html .= "<div class='row-services-spec-mobile d-lg-none mt-4'>";
+        foreach ($specs as $key => $spec) {
+            $html .= "<div class='row g-10px mb-10px'>";
+
+            if ($spec != '_') {
+                $html .= "<div class='col-8'>"; //specs-row-col
+                $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+                $html .= "<div class='icon-box me-3 text-accent'>";
+                $html .= $SVG->$key();
+                $html .= "</div>";
+                $html .= __heading(array(
+                    'heading' => ucwords($spec),
+                    'class' => _attribute('class', array('mb-0 text-primary')),
+                    'tag' => 'h5',
+                ));
+                $html .= "</div>"; //end-inner
+                $html .= "</div>"; //end-specs-row-col
+
+                $spec_services = array();
+                foreach ($drone['service_features'] as $service_feature) {
+                    $spec_services[$service_feature['_type']] = $service_feature['quantity'];
+                }
+
+                $html .= "<div class='col-4'>";
+                $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
+
+                if (array_key_exists($key, $spec_services)) {
+                    $quantity = $spec_services[$key];
+                    $html .= "<div class='active d-flex align-items-center'> ";
+                    if ($quantity && $quantity > 0) {
+                        $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
+                        $html .= "<span class='fw-'medium'>$quantity</span>";
+                        $html .= "</span>";
+                    } else {
+                        $html .= $SVG->check();
+                    }
+                    $html .= "</div>";
+                } else {
+                    $html .= "<div class='not-active d-flex align-items-center'>";
+                    $html .= $SVG->xmark();
+                    $html .= "</div>";
+                }
+
+                $html .= "</div>";
+                $html .= "</div>";
+            }
+            $html .= "</div>";
+        }
+        $html .= "</div>";
+
+
+
+        $html .= "<div class='price-button mt-5'>";
+        $html .= "<div class='price mb-3'>£$service_price <span>Excl. VAT</span></div>";
+        $html .= __button(array(
+            'button_type' => 'custom',
+            'button_text' => 'Request Service',
+            'button_url_custom' => '#',
+            'button_style' => $button_class,
+        ));
+
+        $html .= "</div>";
+
+        $html .= "</div>";
+        $html .= "</div>";
+    }
+
+    $html .= "</div>";
+
+    foreach ($specs as $key => $spec) {
+        if ($spec != '_') {
+            $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
+
+            $html .= "<div class='col-3'>"; //specs-row-col
+            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+            $html .= "<div class='icon-box me-3 text-accent'>";
+            $html .= $SVG->$key();
+            $html .= "</div>";
+            $html .= __heading(array(
+                'heading' => ucwords($spec),
+                'class' => _attribute('class', array('mb-0')),
+                'tag' => 'h5',
+            ));
+            $html .= "</div>"; //end-inner
+            $html .= "</div>"; //end-specs-row-col
+
+            foreach ($servicing_drones as $drone) {
+                $spec_services = array();
+                foreach ($drone['service_features'] as $service_feature) {
+                    $spec_services[$service_feature['_type']] = $service_feature['quantity'];
+                }
+
+                $html .= "<div class='col-3'>";
+                $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
+
+                if (array_key_exists($key, $spec_services)) {
+
+                    $quantity = $spec_services[$key];
+
+                    $html .= "<div class='active d-flex align-items-center'> ";
+                    if ($quantity && $quantity > 0) {
+                        $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
+                        $html .= "<span class='fw-'medium'>$quantity</span>";
+                        $html .= "</span>";
+                    } else {
+                        $html .= $SVG->check();
+                    }
+                    $html .= "</div>";
+                } else {
+                    $html .= "<div class='not-active d-flex align-items-center'>";
+                    $html .= $SVG->xmark();
+                    $html .= "</div>";
+                }
+
+                $html .= "</div>";
+                $html .= "</div>";
+            }
+
+
+
+            $html .= "</div>"; //end-specs-row
+        }
+    }
+
+    $html .= "<div class='row g-10px row-services  d-none d-lg-flex'>";
+    $html .= "<div class='col-lg-3'>";
+    $html .= "</div>";
+    foreach ($servicing_drones as $key => $drone) {
+        $position = $key % 3;
+
+        if ($position == 0) {
+            $class = 'bg-gray';
+            $button_class = 'button-primary';
+        } else if ($position == 1) {
+            $class = 'bg-accent';
+            $button_class = 'button-primary';
+        } else if ($position == 2) {
+            $class = 'bg-black';
+            $button_class = 'button-accent';
+        }
+
+        $html .= "<div class='col-lg-3'>";
+        $html .= "<div class='service-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
+
+        $html .= __button(array(
+            'button_type' => 'custom',
+            'button_text' => 'Request Service',
+            'button_url_custom' => '#',
+            'button_style' => $button_class,
+        ));
+
+
+        $html .= "</div>";
+        $html .= "</div>";
+    }
+    $html .= "</div>";
+
+
+
+    $html .= "</div>"; //end products-specifications
+
+    $html .= "</div>";
+
+
+    return $html;
+}
+
+
+function __drone_servicing_3_years()
+{
+    $SVG = new SVG;
+    $servicing_heading = get__theme_option('servicing_heading');
+    $servicing_description = get__theme_option('servicing_description');
+    $servicing_drones = get__theme_option('servicing_drones');
+    
     $specs = array();
 
     foreach ($servicing_drones as $servicing_drone) {

@@ -569,7 +569,7 @@ class Shortcodes
 
     function drone_servicing()
     {
-        return __drone_servicing();
+        return __drone_servicing() . __drone_servicing_3_years();
     }
 
     function brands_logo_slider()
