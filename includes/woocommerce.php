@@ -1135,9 +1135,9 @@ function __three_year_servicing_plans()
         'class' => _attribute('class', array('description-box')),
     ));
 
+    $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
     foreach ($specs as $key => $spec) {
         if ($spec != '_') {
-            $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
 
             $html .= "<div class='col-12'>"; //specs-row-col
             $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
@@ -1155,9 +1155,10 @@ function __three_year_servicing_plans()
 
 
 
-            $html .= "</div>"; //end-specs-row
         }
     }
+    $html .= "</div>"; //end-specs-row
+
 
     $html .= "</div>"; //col-first
 
