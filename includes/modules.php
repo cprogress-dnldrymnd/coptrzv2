@@ -2585,7 +2585,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
 
         $html .= "<div class='row'>";
         $html .= "<div class='col-auto'>";
-        $html .= "<input name='events_category' value='' type='radio' id='term-all' checked>";
+        $html .= "<input name='events_type' value='' type='radio' id='term-all' checked>";
         $html .= "<label class='rounded-corner' for='term-all'>All</label>";
         $html .= "</div>";
 
@@ -2593,7 +2593,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
             $term_name = $event_category->name;
             $term_id = $event_category->term_id;
             $html .= "<div class='col-auto'>";
-            $html .= "<input name='events_category' value='$term_id' type='radio' id='term-$term_id'>";
+            $html .= "<input name='events_type' value='$term_id' type='radio' id='term-$term_id'>";
             $html .= "<label class='rounded-corner' for='term-$term_id'>$term_name</label>";
             $html .= "</div>";
         }
