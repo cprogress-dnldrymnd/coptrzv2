@@ -50,6 +50,8 @@ function __ajax() {
     $query = jQuery('#posts').attr('query');
     if (jQuery('input[name="events_type"]').length > 0) {
         $events_type = jQuery('input[name="events_type"]:checked').val();
+    } else {
+        $events_type = false;
     }
 
 
