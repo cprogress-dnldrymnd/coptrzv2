@@ -1136,6 +1136,18 @@ function __three_year_servicing_plans()
     ));
     $html .= "</div>";
 
+    $html .= "<div>";
+    $html .= "<span>Small Drone</span>";
+
+    $html .= "<div class='toggle-switch'>";
+    $html .= "</div>";
+
+
+    $html .= "<span>Large Drone</span>";
+    $html .= "</div>";
+
+
+    
     foreach ($servicing_drones as $key => $drone) {
         $position = $key % 3;
 
