@@ -5794,6 +5794,32 @@ add_filter('carbon_fields_association_field_options_related_training_post_produc
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
+        'terms'    => array(32, 789)
+    );
+
+    $query_arguments['tax_query'] = $tax_query;
+
+    return $query_arguments;
+});
+
+add_filter('carbon_fields_association_field_options_compatible_payloads_post_product', function ($query_arguments) {
+    // Order posts by title alphabetically, for example:
+    $tax_query[] = array(
+        'taxonomy' => 'product_cat',
+        'field'    => 'term_id',
+        'terms'    => 29
+    );
+
+    $query_arguments['tax_query'] = $tax_query;
+
+    return $query_arguments;
+});
+
+add_filter('carbon_fields_association_field_options_accessories_post_product', function ($query_arguments) {
+    // Order posts by title alphabetically, for example:
+    $tax_query[] = array(
+        'taxonomy' => 'product_cat',
+        'field'    => 'term_id',
         'terms'    => 30
     );
 
