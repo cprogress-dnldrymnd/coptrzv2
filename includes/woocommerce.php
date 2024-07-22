@@ -1380,7 +1380,7 @@ function __remote_support()
         'description' => $remote_support_description,
         'class' => _attribute('class', array('description-box text-center')),
     ));
-    $html = "<div class='row g-10px'>";
+    $html .= "<div class='row g-10px'>";
 
     foreach ($remote_supports as $remote_support) {
         $heading = $remote_support['remote_support_heading'];
@@ -1388,8 +1388,8 @@ function __remote_support()
         $price = $remote_support['remote_support_price'];
         $icon = $remote_support['remote_support_icon'];
         $icon_text = $remote_support['remote_support_icon_text'];
-        $html = "<div class='col-lg-6'>";
-        $html = "<div class='support-box p-3 content-margin'>";
+        $html .= "<div class='col-lg-6'>";
+        $html .= "<div class='support-box p-3 content-margin'>";
 
         $html .= __heading(array(
             'heading' => $heading,
