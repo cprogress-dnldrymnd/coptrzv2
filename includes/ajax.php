@@ -26,7 +26,8 @@ function archive_ajax()
 	$query_val = json_decode(stripslashes($query), true);
 
 	$args = $query_val;
-
+	$args['post_status'] = 'publish';
+	
 	if ($events_type != false) {
 		$args['tax_query'] = array(
 			array(
