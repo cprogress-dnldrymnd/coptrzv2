@@ -22,26 +22,36 @@ add_action('woocommerce_before_main_content', 'action_woocommerce_before_main_co
 
 function action_woocommerce_after_single_product_summary()
 {
-    $related_training = get_post_meta(get_the_ID(), 'related_training', true);
-    $compatible_payloads = get_post_meta(get_the_ID(), 'compatible_payloads', true);
-    $accessories = get_post_meta(get_the_ID(), 'accessories', true);
+    $related_training = get__post_meta('related_training');
+    $compatible_payloads = get__post_meta('compatible_payloads');
+    $accessories = get__post_meta('accessories');
 
     echo do_shortcode(___sections('sections_after_main', get_the_ID()));
 
     if ($related_training) {
-        echo __linked_products($related_training, 'All Payloads', '#', 'swiper-payloads', 'Compatible Payloads');
+
+        echo __linked_products(__get_assoc_post_ids($related_training), 'All Trainings', '#', 'swiper-payloads', 'Related Training');
     }
 
     if ($compatible_payloads) {
-        echo __linked_products($compatible_payloads, 'All Payloads', '#', 'swiper-payloads', 'Compatible Payloads');
+        echo __linked_products(__get_assoc_post_ids($compatible_payloads), 'All Payloads', '#', 'swiper-payloads', 'Compatible Payloads');
     }
 
     if ($accessories) {
-        echo __linked_products($accessories, 'All Accessories', '#', 'swiper-accessories', 'Accessories');
+        echo __linked_products(__get_assoc_post_ids($accessories), 'All Accessories', '#', 'swiper-accessories', 'Accessories');
     }
 }
 
 add_action('woocommerce_after_single_product_summary', 'action_woocommerce_after_single_product_summary');
+
+function __get_assoc_post_ids($posts, $post_arr = [])
+{
+    foreach ($posts as $post) {
+        $post_arr[] = $post['id'];
+    }
+
+    return $post_arr;
+}
 
 function action_woocommerce_after_single_product()
 {
