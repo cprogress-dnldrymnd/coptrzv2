@@ -2636,14 +2636,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     }
 
 
-    if ($key == 'events_') {
-        $html .= "<div class='col-auto'>";
-        $html .= "<select name='sort'>";
-        $html .= "<option value='ASC'>Sort By: Latest</option>";
-        $html .= "<option value='DESC'>Sort By: Oldest</option>";
-        $html .= "</select>";
-        $html .= "</div>";
-    }
+ 
 
     $html .= "</div>";
     $html .= "</div>";
