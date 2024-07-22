@@ -313,6 +313,11 @@ function action_body_class($classes)
     $product_category_page = false;
     if (is_product_taxonomy()) {
         $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
+        if (!$product_category_page) {
+            $classes[] = 'hide-price';
+            $classes[] = 'hide-stock';
+            $classes[] = 'product-loop-style-1';
+        }
     }
     if ($hero_hidden) {
         $classes[] = 'hero-hidden';
@@ -321,11 +326,7 @@ function action_body_class($classes)
         $classes[] = "hero-$header_background";
     }
 
-    if (!$product_category_page) {
-        $classes[] = 'hide-price';
-        $classes[] = 'hide-stock';
-        $classes[] = 'product-loop-style-1';
-    }
+    
     return $classes;
 }
 
