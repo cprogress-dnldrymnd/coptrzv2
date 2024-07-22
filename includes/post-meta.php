@@ -90,6 +90,7 @@ function __featured_case_studies()
 function __servicing_fields()
 {
     return array(
+        Field::make('html', 'servicing_html_1')->set_html('<label>Drone Service</label>')->set_classes('cb-label'),
         Field::make('text', 'servicing_heading', 'Heading')->set_classes('inline-field'),
         Field::make('textarea', 'servicing_description', 'Description')->set_classes('inline-field'),
         Field::make('complex', 'servicing_drones', 'Drone Services')->set_classes('inline-field')
@@ -99,23 +100,25 @@ function __servicing_fields()
                 Field::make('text', 'service_price', 'Service Price')->set_classes('inline-field'),
                 Field::make('complex', 'service_features', 'Service Features')->set_classes('inline-field')
                     ->add_fields('drone', array(
-                        Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
+                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
                     ))
                     ->add_fields('battery', array(
-                        Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
+                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
                     ))
                     ->add_fields('controller', array(
-                        Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
+                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
                     ))
                     ->add_fields('payload', array(
-                        Field::make('text', 'quantity', __('Quantity'))->set_classes('inline-field'),
+                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
                     ))
                     ->set_duplicate_groups_allowed(false)
                     ->set_collapsed(true)
 
             ))
             ->set_header_template('Drone Service: <%- service_name %>')
-            ->set_collapsed(true)
+            ->set_collapsed(true),
+        Field::make('html', 'servicing_html_2')->set_html('<label>3-Year Servicing Plans</label>')->set_classes('cb-label'),
+
 
     );
 }
@@ -2035,7 +2038,7 @@ function __section_fields($name = 'sections')
                                                 ),
                                         )
                                     )
-                                  
+
                                     ->add_fields(
                                         'cf7',
                                         array(
