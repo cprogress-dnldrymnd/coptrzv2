@@ -314,8 +314,8 @@ function action_body_class($classes)
     if (is_product_taxonomy()) {
         $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
     }
-    if ($hero_hidden && !$header_background) {
-        $classes[] = 'hero-bg-black';
+    if ($hero_hidden) {
+        $classes[] = 'hero-hidden';
     }
     if ($header_background) {
         $classes[] = "hero-$header_background";
