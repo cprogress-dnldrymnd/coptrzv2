@@ -5925,8 +5925,8 @@ Container::make('post_meta', 'Event Settings')
     ->or_where('post_type', '=', 'events')
     ->add_fields(
         array(
-            Field::make('datetime', 'event_start_datetime', __('Event Start Datetime')),
-            Field::make('datetime', 'event_end_datetime', 'Event End Datetime')
+            Field::make('date_time', 'event_start_datetime', __('Event Start Datetime')),
+            Field::make('date_time', 'event_end_datetime', 'Event End Datetime')
         )
     );
 
