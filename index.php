@@ -57,6 +57,17 @@ if (is_home() || is_category()) {
     $query['post_type'] = 'events';
     
     if (is_tax('events_category')) {
+        $meta_query[] = [
+            'key'     => '_event_start_datetime',
+            'value'   => date('Y-m-d'),
+            'compare' => '>=',
+            'type'    => 'DATETIME'
+        ];
+
+        $query['meta_query'] = $meta_query;
+        $query['orderby'] = $meta_value;
+        $query['order'] = $ASC;
+
         $query['tax_query'] = array(
             array(
                 'taxonomy' => 'events_category',
