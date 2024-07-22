@@ -573,7 +573,7 @@ function add_linked_custom_product_field()
 ?>
     <div class="options_group ">
         <p class="form-field">
-            <label for="related_training"><?php esc_html_e('Compatible Payloads', 'woocommerce'); ?></label>
+            <label for="related_training"><?php esc_html_e('Related Training', 'woocommerce'); ?></label>
             <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="related_training" name="related_training[]" data-sortable="true" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_products">
                 <?php
                 $product_ids = !empty(get_post_meta($product_object->get_id(), 'related_training', true)) ? get_post_meta($product_object->get_id(), 'related_training', true) : array();
