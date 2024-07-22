@@ -227,7 +227,7 @@ function ___hero_product_taxonomy()
 
     if($buttons) {
         unset($heading_class['mb-0']);
-        $heading_class[] = 'mb-3';
+        $heading_class[] = 'mb-5';
     }
     $hero_heading_val = $hero_heading ? $hero_heading : $term->name;
 
