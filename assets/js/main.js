@@ -94,6 +94,13 @@ function __ajax_trigger() {
     function doneTyping() {
         __ajax();
     }
+
+
+
+    jQuery('input[name="events_category"]').on('change', function () {
+        console.log('test');
+    });
+
 }
 
 function __filters() {
