@@ -1228,17 +1228,23 @@ hr {
 .header-spacer {
     height: 82.5px;
 }
-.hero-hidden.hero-hidden, .hero-bg-black.hero-bg-black  {
+
+.hero-hidden.hero-hidden {
+    &:not(.hero-bg-black) {
+        .breadcrumbs {
+            .text-white {
+                color: var(--bs-primary) !important;
+            }
+        }
+    }
+}
+.hero-hidden.hero-hidden,
+.hero-bg-black.hero-bg-black {
     header .header-inner {
         background: var(--bs-primary);
     }
     .mini-cart-wrapper #mini-cart-button .cart-number {
         background-color: var(--bs-accent);
-    }
-    .breadcrumbs {
-        .text-white {
-            color: var(--bs-primary) !important;
-        }
     }
 
     .heade.header .navbar.navbar.navbar {
@@ -1263,7 +1269,6 @@ hr {
         background: var(--bs-white);
     }
 }
-
 
 .input-box.input-box {
     .icon {

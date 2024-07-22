@@ -11477,19 +11477,28 @@ hr {
 .header-spacer {
   height: 82.5px; }
 
-.hero-hidden.hero-hidden header .header-inner, .hero-bg-black.hero-bg-black header .header-inner {
-  background: var(--bs-primary); }
-.hero-hidden.hero-hidden .mini-cart-wrapper #mini-cart-button .cart-number, .hero-bg-black.hero-bg-black .mini-cart-wrapper #mini-cart-button .cart-number {
-  background-color: var(--bs-accent); }
-.hero-hidden.hero-hidden .breadcrumbs .text-white, .hero-bg-black.hero-bg-black .breadcrumbs .text-white {
+.hero-hidden.hero-hidden:not(.hero-bg-black) .breadcrumbs .text-white {
   color: var(--bs-primary) !important; }
-.hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .submenu-inner, .hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .submenu-inner {
+
+.hero-hidden.hero-hidden header .header-inner,
+.hero-bg-black.hero-bg-black header .header-inner {
+  background: var(--bs-primary); }
+.hero-hidden.hero-hidden .mini-cart-wrapper #mini-cart-button .cart-number,
+.hero-bg-black.hero-bg-black .mini-cart-wrapper #mini-cart-button .cart-number {
+  background-color: var(--bs-accent); }
+.hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .submenu-inner,
+.hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .submenu-inner {
   background-color: var(--bs-black); }
-.hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .submenu2, .hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .submenu2 {
+.hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .submenu2,
+.hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .submenu2 {
   background-color: var(--bs-black); }
-.hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .nav-link, .hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .nav-link {
+.hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .nav-link,
+.hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .nav-link {
   color: var(--bs-white) !important; }
-  .hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .nav-link:hover, .hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .nav-link:active, .hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .nav-link:focus, .hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .nav-link:hover, .hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .nav-link:active, .hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .nav-link:focus {
+  .hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .nav-link:hover, .hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .nav-link:active, .hero-hidden.hero-hidden .heade.header .navbar.navbar.navbar .nav-link:focus,
+  .hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .nav-link:hover,
+  .hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .nav-link:active,
+  .hero-bg-black.hero-bg-black .heade.header .navbar.navbar.navbar .nav-link:focus {
     background-color: var(--bs-white) !important;
     color: var(--bs-black) !important; }
 
