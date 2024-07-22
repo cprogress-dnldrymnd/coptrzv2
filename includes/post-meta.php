@@ -142,7 +142,7 @@ function __servicing_fields()
                     ->set_collapsed(true)
 
             ))
-            ->set_header_template('Drone Service: <%- plan_name %>')
+            ->set_header_template('Plan : <%- plan_name %>')
             ->set_collapsed(true)
             ->set_max(3),
 
