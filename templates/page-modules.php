@@ -1,7 +1,7 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
 /* Template Name: Modules 
-/* Template Post Type: page, guides
+/* Template Post Type: page, guides, industries
 /*-----------------------------------------------------------------------------------*/
 ?>
 <?php get_header(); ?>
