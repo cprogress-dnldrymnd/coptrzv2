@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32.289" height="32.289" viewBox="0 0 32.289 32.289">
+  <g id="drone" transform="translate(-6 -6)">
+    <path id="Path_401" data-name="Path 401" d="M12.278,38.763a4.485,4.485,0,1,0-4.485-4.485A4.485,4.485,0,0,0,12.278,38.763Zm0,1.794A6.278,6.278,0,1,0,6,34.278,6.278,6.278,0,0,0,12.278,40.557Z" transform="translate(0 -2.268)" fill="currentColor" fill-rule="evenodd"/>
+    <path id="Path_402" data-name="Path 402" d="M14.389,34.82a1.57,1.57,0,1,1-1.57-1.57A1.57,1.57,0,0,1,14.389,34.82Z" transform="translate(-0.541 -2.809)" fill="currentColor"/>
+    <path id="Path_403" data-name="Path 403" d="M34.278,38.763a4.485,4.485,0,1,0-4.485-4.485A4.485,4.485,0,0,0,34.278,38.763Zm0,1.794A6.278,6.278,0,1,0,28,34.278,6.278,6.278,0,0,0,34.278,40.557Z" transform="translate(-2.268 -2.268)" fill="currentColor" fill-rule="evenodd"/>
+    <path id="Path_404" data-name="Path 404" d="M36.389,34.82a1.57,1.57,0,1,1-1.57-1.57A1.57,1.57,0,0,1,36.389,34.82Z" transform="translate(-2.809 -2.809)" fill="currentColor"/>
+    <path id="Path_405" data-name="Path 405" d="M34.278,16.763a4.485,4.485,0,1,0-4.485-4.485A4.485,4.485,0,0,0,34.278,16.763Zm0,1.794A6.278,6.278,0,1,0,28,12.278,6.278,6.278,0,0,0,34.278,18.557Z" transform="translate(-2.268 0)" fill="currentColor" fill-rule="evenodd"/>
+    <path id="Path_406" data-name="Path 406" d="M36.389,12.82a1.57,1.57,0,1,1-1.57-1.57A1.57,1.57,0,0,1,36.389,12.82Z" transform="translate(-2.809 -0.541)" fill="currentColor"/>
+    <path id="Path_407" data-name="Path 407" d="M12.278,16.763a4.485,4.485,0,1,0-4.485-4.485A4.485,4.485,0,0,0,12.278,16.763Zm0,1.794A6.278,6.278,0,1,0,6,12.278,6.278,6.278,0,0,0,12.278,18.557Z" transform="translate(0 0)" fill="currentColor" fill-rule="evenodd"/>
+    <path id="Path_408" data-name="Path 408" d="M14.389,12.82a1.57,1.57,0,1,1-1.57-1.57A1.57,1.57,0,0,1,14.389,12.82Z" transform="translate(-0.541 -0.541)" fill="currentColor"/>
+    <path id="Path_409" data-name="Path 409" d="M18.13,22.665,13,32.732,22.866,27.5l9.866,5.235L27.6,22.665,32.338,13l-9.471,4.832L13.395,13Zm-.757-5.621,2.367,4.831a1.794,1.794,0,0,1-.013,1.6l-2.551,5.005,4.847-2.572a1.794,1.794,0,0,1,1.682,0l4.847,2.572L26,23.479a1.794,1.794,0,0,1-.013-1.6l2.367-4.831L23.681,19.43a1.794,1.794,0,0,1-1.63,0Z" transform="translate(-0.722 -0.722)" fill="currentColor" fill-rule="evenodd"/>
+  </g>
+</svg>

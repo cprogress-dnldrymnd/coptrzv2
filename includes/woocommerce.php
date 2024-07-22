@@ -1105,12 +1105,12 @@ function __drone_servicing()
 }
 
 
-function __drone_servicing_3_years()
+function __three_year_servicing_plans()
 {
     $SVG = new SVG;
-    $servicing_heading = get__theme_option('servicing_heading');
-    $servicing_description = get__theme_option('servicing_description');
-    $servicing_drones = get__theme_option('servicing_drones');
+    $servicing_heading = get__theme_option('servicing_3_year_heading');
+    $servicing_description = get__theme_option('servicing_3_year_description');
+    $servicing_drones = get__theme_option('servicing_3_year_drones');
     
     $specs = array();
 
@@ -1182,18 +1182,18 @@ function __drone_servicing_3_years()
 
                 $spec_services = array();
                 foreach ($drone['service_features'] as $service_feature) {
-                    $spec_services[$service_feature['_type']] = $service_feature['quantity'];
+                    $spec_services[$service_feature['_type']] = $service_feature['custom_text'];
                 }
 
                 $html .= "<div class='col-4'>";
                 $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
                 if (array_key_exists($key, $spec_services)) {
-                    $quantity = $spec_services[$key];
+                    $custom_text = $spec_services[$key];
                     $html .= "<div class='active d-flex align-items-center'> ";
-                    if ($quantity && $quantity > 0) {
+                    if ($custom_text) {
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
-                        $html .= "<span class='fw-'medium'>$quantity</span>";
+                        $html .= "<span class='fw-'medium'>$custom_text</span>";
                         $html .= "</span>";
                     } else {
                         $html .= $SVG->check();
@@ -1251,7 +1251,7 @@ function __drone_servicing_3_years()
             foreach ($servicing_drones as $drone) {
                 $spec_services = array();
                 foreach ($drone['service_features'] as $service_feature) {
-                    $spec_services[$service_feature['_type']] = $service_feature['quantity'];
+                    $spec_services[$service_feature['_type']] = $service_feature['custom_text'];
                 }
 
                 $html .= "<div class='col-3'>";
@@ -1259,12 +1259,12 @@ function __drone_servicing_3_years()
 
                 if (array_key_exists($key, $spec_services)) {
 
-                    $quantity = $spec_services[$key];
+                    $custom_text = $spec_services[$key];
 
                     $html .= "<div class='active d-flex align-items-center'> ";
-                    if ($quantity && $quantity > 0) {
+                    if ($custom_text && $custom_text > 0) {
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
-                        $html .= "<span class='fw-'medium'>$quantity</span>";
+                        $html .= "<span class='fw-'medium'>$custom_text</span>";
                         $html .= "</span>";
                     } else {
                         $html .= $SVG->check();

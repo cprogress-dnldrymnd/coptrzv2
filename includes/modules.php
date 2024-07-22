@@ -795,6 +795,12 @@ function ___sections($id = 'sections', $post_id = '')
                                 case 'drone_servicing':
                                     $html .= do_shortcode("[drone_servicing]");
                                     break;
+                                case 'three_year_servicing_plans':
+                                    $html .= do_shortcode("[three_year_servicing_plans]");
+                                    break;
+                                case 'remote_support':
+                                    $html .= do_shortcode("[remote_support]");
+                                    break;
                                 case 'brands_logo_slider':
                                     $html .= do_shortcode("[brands_logo_slider]");
                                     break;

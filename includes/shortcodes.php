@@ -569,7 +569,13 @@ class Shortcodes
 
     function drone_servicing()
     {
-        return __drone_servicing() . __drone_servicing_3_years();
+        return __drone_servicing();
+    }
+
+
+    function three_year_servicing_plans()
+    {
+        return __three_year_servicing_plans();
     }
 
     function brands_logo_slider()
@@ -669,3 +675,4 @@ add_shortcode('product_compare', array($Shortcodes, 'product_compare'));
 add_shortcode('drone_servicing', array($Shortcodes, 'drone_servicing'));
 add_shortcode('brands_logo_slider', array($Shortcodes, 'brands_logo_slider'));
 add_shortcode('testimonials', array($Shortcodes, 'testimonials'));
+add_shortcode('three_year_servicing_plans', array($Shortcodes, 'three_year_servicing_plans'));
