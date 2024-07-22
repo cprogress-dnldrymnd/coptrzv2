@@ -1134,9 +1134,7 @@ function __three_year_servicing_plans()
         'description' => $servicing_description,
         'class' => _attribute('class', array('description-box')),
     ));
-    $html .= "</div>";
     
-
     $html .= "<div class='d-flex align-items-center fw-medium small-text'>";
     $html .= "<span>Small Drone</span>";
 
@@ -1146,6 +1144,9 @@ function __three_year_servicing_plans()
 
     $html .= "<span>Large Drone</span>";
     $html .= "</div>";
+
+    $html .= "</div>";
+    
 
     foreach ($servicing_drones as $key => $drone) {
         $position = $key % 3;
