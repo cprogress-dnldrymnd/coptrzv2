@@ -1067,8 +1067,7 @@ body {
     }
     &.active {
         @include before {
-            left: auto;
-            right: 6px;
+            left: 29px;
         }
     }
 }

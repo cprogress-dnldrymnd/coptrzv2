@@ -12484,10 +12484,14 @@ body.product-loop-style-1 .product-buttons {
     border-radius: 50%;
     background-color: var(--bs-accent);
     left: 7px;
-    top: 6px; }
+    top: 6px;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+    transition: 500ms; }
   .toggle-switch.active:before {
-    left: auto;
-    right: 6px; }
+    left: auto; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
