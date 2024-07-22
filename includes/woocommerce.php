@@ -1136,10 +1136,10 @@ function __three_year_servicing_plans()
     ));
     $html .= "</div>";
 
-    $html .= "<div>";
+    $html .= "<div class='d-flex align-items-center fw-medium small-text'>";
     $html .= "<span>Small Drone</span>";
 
-    $html .= "<div class='toggle-switch'>";
+    $html .= "<div class='toggle-switch mx-3'>";
     $html .= "</div>";
 
 
