@@ -122,10 +122,10 @@ function __servicing_fields()
         Field::make('textarea', 'servicing_3_year_description', 'Description')->set_classes('inline-field'),
         Field::make('complex', 'servicing_3_year_drones', 'Drone Services Plan')->set_classes('inline-field')
             ->add_fields(array(
-                Field::make('text', 'service_name', 'Service Name')->set_classes('inline-field'),
-                Field::make('text', 'service_subheading', 'Service Subheading')->set_classes('inline-field'),
-                Field::make('text', 'service_price', 'Service Price')->set_classes('inline-field'),
-                Field::make('complex', 'service_features', 'Service Features')->set_classes('inline-field')
+                Field::make('text', 'plan_name', 'Plan Name')->set_classes('inline-field'),
+                Field::make('text', 'plan_subheading', 'Plan Subheading')->set_classes('inline-field'),
+                Field::make('text', 'plan_price', 'Plan Price')->set_classes('inline-field'),
+                Field::make('complex', 'plan_features', 'Plan Features')->set_classes('inline-field')
                     ->add_fields('servicing', array(
                         Field::make('text', 'custom_text', __('Custom Text'))->set_classes('inline-field'),
                     ))
