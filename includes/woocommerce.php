@@ -1206,7 +1206,7 @@ function __three_year_servicing_plans()
                     $html .= "</div>";
                 }
 
-                
+
 
                 $html .= "</div>";
                 $html .= "</div>";
@@ -1226,16 +1226,19 @@ function __three_year_servicing_plans()
             'button_style' => $button_class,
         ));
 
-        if($plan_description) {
+        $html .= "</div>";
+
+        if ($plan_description) {
             $html .= __description(array(
                 'description' => $plan_description,
                 'class' => _attribute('class', array('description-box')),
             ));
         }
-
+        
         $html .= "</div>";
 
-        $html .= "</div>";
+
+
         $html .= "</div>";
     }
 
