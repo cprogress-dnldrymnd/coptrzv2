@@ -12447,7 +12447,7 @@ body.product-loop-style-1 .product-buttons {
       border-color: var(--bs-accent); }
 
 @media screen and (max-width: 991px) {
-  .drone-plans .row-plans {
+  .drone-plans .row-plans .col-lg-3:last-child {
     position: absolute;
     right: -5px;
     bottom: 0;
