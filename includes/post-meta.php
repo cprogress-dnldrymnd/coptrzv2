@@ -5765,6 +5765,28 @@ Container::make('post_meta', __('Product Settings'))
                     )
                 )
             )
+    ))
+    ->add_tab('Compatible Payloads', array(
+        Field::make('association', 'compatible_payloads', 'Compatible Payloads')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'product',
+                    )
+                )
+            )
+    ))
+    ->add_tab('Accessories', array(
+        Field::make('association', 'accessories', 'Accesories')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'product',
+                    )
+                )
+            )
     ));
 
 
