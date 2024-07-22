@@ -971,6 +971,9 @@ body {
             padding-left: 20px !important;
             padding-right: 20px !important;
         }
+        .product-inner > .woocommerce-LoopProduct-link {
+            position: absolute;
+        }
     }
 }
 
