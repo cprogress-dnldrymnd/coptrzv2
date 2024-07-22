@@ -5784,7 +5784,11 @@ Container::make('post_meta', __('Product Settings'))
                     array(
                         'type'      => 'post',
                         'post_type' => 'product',
-                    )
+                    ),
+                    array(
+                        'type' => 'term',
+                        'taxonomy' => 'product_cat',
+                    ),
                 )
             )
     ));
