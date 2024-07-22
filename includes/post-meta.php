@@ -6125,6 +6125,20 @@ Container::make('post_meta', 'Page Settings')
             ),
     ));
 
+    Container::make('post_meta', 'Page Settings')
+    ->where('post_template', '=', 'templates/page-modules.php')
+    ->set_context('side')
+    ->add_fields(array(
+        Field::make('select', 'header_background', 'Header Background')
+            ->set_options(
+                array(
+                    '' => 'Default',
+                    'bg-black'      => 'Black',
+                    'bg-white'      => 'White',
+                )
+            ),
+    ));
+
 /*-----------------------------------------------------------------------------------*/
 /* Before Footer
 /*-----------------------------------------------------------------------------------*/
