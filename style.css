@@ -12486,7 +12486,8 @@ body.product-loop-style-1 .product-buttons {
     left: 7px;
     top: 6px; }
   .toggle-switch.active:before {
-    left: auto; }
+    left: auto;
+    right: 6px; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
