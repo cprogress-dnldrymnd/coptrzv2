@@ -1053,6 +1053,7 @@ body {
     border: 1px solid #EAEAEA;
     width: 62px;
     height: 38px;
+    cursor: pointer;
     &:before{
         content: '';
         position: absolute;
@@ -1061,6 +1062,8 @@ body {
         border-radius: 50%;
         background-color: var(--bs-accent);
         left: 7px;
+        top: 6px;
         transition: 500ms;
+        position: relative;
     }
 }

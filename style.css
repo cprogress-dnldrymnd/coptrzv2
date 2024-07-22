@@ -12481,7 +12481,10 @@ body.product-loop-style-1 .product-buttons {
     height: 24px;
     border-radius: 50%;
     background-color: var(--bs-accent);
-    left: 7px; }
+    left: 7px;
+    top: 6px;
+    transition: 500ms;
+    position: relative; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
