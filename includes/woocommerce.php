@@ -994,7 +994,7 @@ function __drone_servicing()
         $html .= __button(array(
             'button_type' => 'custom',
             'button_text' => 'Request Service',
-            'button_url_custom' => '#',
+            'button_url_custom' => '#hero',
             'button_style' => $button_class,
         ));
 
@@ -1084,7 +1084,7 @@ function __drone_servicing()
         $html .= __button(array(
             'button_type' => 'custom',
             'button_text' => 'Request Service',
-            'button_url_custom' => '#',
+            'button_url_custom' => '#hero',
             'button_style' => $button_class,
         ));
 
@@ -1247,7 +1247,7 @@ function __three_year_servicing_plans()
         $html .= __button(array(
             'button_type' => 'custom',
             'button_text' => 'Request Service',
-            'button_url_custom' => '#',
+            'button_url_custom' => '#hero',
             'button_style' => $button_class,
         ));
 
@@ -1344,7 +1344,7 @@ function __three_year_servicing_plans()
         $html .= __button(array(
             'button_type' => 'custom',
             'button_text' => 'Request Service',
-            'button_url_custom' => '#',
+            'button_url_custom' => '#hero',
             'button_style' => $button_class,
         ));
 
@@ -1415,7 +1415,7 @@ function __remote_support()
         $html .= __button(array(
             'button_type' => 'custom',
             'button_text' => 'Request Service',
-            'button_url_custom' => '#',
+            'button_url_custom' => '#hero',
             'button_style' => 'button-primary',
         ));
 
