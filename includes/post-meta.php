@@ -159,6 +159,7 @@ function __servicing_fields()
                 Field::make('image', 'remote_support_icon', __('Icon'))->set_classes('inline-field'),
                 Field::make('text', 'remote_support_icon_text', __('Icon Text'))->set_classes('inline-field'),
             ))
+            ->set_header_template('Remote Support : <%- remote_support_heading %>')
             ->set_collapsed(true),
 
     );
