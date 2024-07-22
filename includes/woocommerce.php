@@ -1394,7 +1394,7 @@ function __remote_support()
         $html .= __heading(array(
             'heading' => $heading,
             'class' => _attribute('class', array('mb-0 text-center')),
-            'tag' => 'h2',
+            'tag' => 'h3',
         ));
         $html .= __description(array(
             'description' => $description,
