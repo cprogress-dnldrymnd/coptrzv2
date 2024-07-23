@@ -229,7 +229,6 @@ function __header_menu() {
 
             jQuery('.has-children-tab').hover(
                 function () {
-                    jQuery('.left-menu').removeClass('active');
                     $target = jQuery(this).attr('url_target');
                     jQuery('.has-children-tab.nav-link.active').removeClass('active');
         
@@ -241,7 +240,14 @@ function __header_menu() {
                     e.preventDefault();
 
                 }, function () {
-                   
+                    $target = jQuery(this).attr('url_target');
+        
+                    jQuery(this).toggleClass('active');
+                    jQuery(this).next().toggleClass('active');
+        
+                    jQuery('.tab-links').addClass('d-none');
+                    jQuery($target).removeClass('d-none');
+                    e.preventDefault();
                 }
             );
         } else {
