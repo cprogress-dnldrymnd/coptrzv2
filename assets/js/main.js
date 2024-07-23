@@ -227,10 +227,18 @@ function __header_menu() {
                 }
             );
 
-            jQuery(".submenu2.active .has-submenu").hover(
+            jQuery('.has-children-tab').hover(
                 function () {
                     jQuery('.left-menu').removeClass('active');
-                    jQuery(this).find('.left-menu').addClass('active');
+                    $target = jQuery(this).attr('url_target');
+                    jQuery('.has-children-tab.nav-link.active').removeClass('active');
+        
+                    jQuery(this).toggleClass('active');
+                    jQuery(this).next().toggleClass('active');
+        
+                    jQuery('.tab-links').addClass('d-none');
+                    jQuery($target).removeClass('d-none');
+                    e.preventDefault();
 
                 }, function () {
                    
