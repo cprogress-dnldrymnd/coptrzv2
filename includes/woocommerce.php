@@ -20,6 +20,12 @@ function action_woocommerce_before_main_content()
 
 add_action('woocommerce_before_main_content', 'action_woocommerce_before_main_content');
 
+function action_woocommerce_after_main_content() {
+    echo 'test';
+}
+
+add_action('woocommerce_after_main_content', 'action_woocommerce_after_main_content');
+
 function action_woocommerce_after_single_product_summary()
 {
     $related_training = get__post_meta('related_training');
