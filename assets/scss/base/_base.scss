@@ -365,6 +365,9 @@ input[type="checkbox"] {
     justify-content: center;
     color: currentColor;
     border-radius: 10px;
+    &.swiper-button-lock {
+        opacity: 0.3;
+    }
     @include after {
         font-size: 15px;
     }
