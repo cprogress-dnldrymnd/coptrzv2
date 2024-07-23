@@ -229,6 +229,7 @@ function __header_menu() {
 
             jQuery(".submenu2.active .has-submenu").hover(
                 function () {
+                    jQuery('.left-menu').removeClass('active');
                     jQuery(this).find('.left-menu').addClass('active');
 
                 }, function () {
