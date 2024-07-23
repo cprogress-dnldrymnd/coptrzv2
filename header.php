@@ -41,7 +41,7 @@
 
 		<?php
 
-		if (get_post_type() ==  'industries' ) {
+		if (get_post_type() ==  'industries' && get_the_ID() != 65092) {
 
 			$sections = get__post_meta_by_id(65092, 'sections');
 			$hero_description = get__post_meta_by_id(65092, 'hero_description');
@@ -68,6 +68,9 @@
 			carbon_set_post_meta(get_the_ID(), 'hero_form_description', $hero_form_description);
 			carbon_set_post_meta(get_the_ID(), 'hero_form_style', $hero_form_style);
 			carbon_set_post_meta(get_the_ID(), 'hero_form', $hero_form);
+
+
+			$sections_after_main = get__post_meta_by_id(65092, 'sections_after_main');
 
 
 			carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections);
