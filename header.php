@@ -70,14 +70,10 @@
 			carbon_set_post_meta(get_the_ID(), 'hero_form', $hero_form);
 
 
-			/*
 			$sections_after_main = get__post_meta_by_id(271277, 'sections_after_main');
-
 			$sections_after_main_r = get__post_meta_by_id(get_the_ID(), 'sections_after_main');
+			carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
 
-			if (!$sections_after_main_r) {
-				carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
-			}*/
 
 			$data = array(
 				'ID' => get_the_ID(),
