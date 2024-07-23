@@ -930,6 +930,21 @@ function ___sections($id = 'sections', $post_id = '')
                             $related_products = get__post_meta('drones');
                             $related_products_heading = 'Drones';
                             $related_id = 'Related-Drones';
+                            $slider_id = 'Related-Drones-Slider';
+                            $button_text = 'All Drones';
+                        } else if ($type == 'related_payloads') {
+                            $related_products = get__post_meta('payloads');
+                            $related_products_heading = 'Payloads';
+                            $related_id = 'Related-Payloads';
+                            $slider_id = 'Related-Payloads-Slider';
+                            $button_text = 'All Payloads';
+                        } else if ($type == 'related_accessories') {
+                            $related_products = get__post_meta('accessories');
+                            $related_products_heading = 'Accessories';
+                            $related_id = 'Related-Accessories';
+                            $slider_id = 'Related-Accessories-Slider';
+                            $button_text = 'All Accessories';
+                        } else {
                         }
 
                         if ($related_products) {
@@ -937,7 +952,7 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($related_products as $related_product) {
                                 $related_products_array[] = $related_product['id'];
                             }
-                            $html .= __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, true, $related_id);
+                            $html .= __linked_products($related_products_array, $button_text, '/product-category/accessories-and-parts/', $slider_id, $related_products_heading, false, true, true, $related_id);
                         }
                         break;
                     case 'events_widget':
