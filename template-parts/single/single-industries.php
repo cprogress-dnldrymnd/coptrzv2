@@ -1,6 +1,7 @@
 <?php
 $related_guides_heading = get__post_meta('related_guides_heading');
 $related_guides = get__post_meta('related_guides');
+
 $related_casestudies_heading = get__post_meta('related_casestudies_heading');
 $related_casestudies = get__post_meta('related_casestudies');
 
