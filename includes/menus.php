@@ -42,7 +42,6 @@ function header_menu()
 			'url' => $url,
 		);
 	}
-	return var_dump($header_menu);
 
 	foreach ($menus_array as $menu) {
 		$ID = $menu['ID'];
