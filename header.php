@@ -41,31 +41,21 @@
 
 		<?php
 
-		if (get_post_type() ==  'casestudies' && get_the_ID() != 148845) {
+		if (get_post_type() ==  'guides' && get_the_ID() != 271333) {
 
-			$sections = get__post_meta_by_id(148845, 'sections');
-			$hero_description = get__post_meta_by_id(148845, 'hero_description');
-			$hero_height = get__post_meta_by_id(148845, 'hero_height');
-			$hero_alignment = get__post_meta_by_id(148845, 'hero_alignment');
+			$sections = get__post_meta_by_id(271333, 'sections');
+			$hero_description = get__post_meta_by_id(271333, 'hero_description');
+			$hero_height = get__post_meta_by_id(271333, 'hero_height');
+			$hero_alignment = get__post_meta_by_id(271333, 'hero_alignment');
 
-			$hero_form_enable = get__post_meta_by_id(148845, 'hero_form_enable');
-			$hero_form_image = get__post_meta_by_id(148845, 'hero_form_image');
-			$hero_form_heading = get__post_meta_by_id(148845, 'hero_form_heading');
-			$hero_form_description = get__post_meta_by_id(148845, 'hero_form_description');
-			$hero_form_style = get__post_meta_by_id(148845, 'hero_form_style');
-			$hero_form = get__post_meta_by_id(148845, 'hero_form');
-
-			$drones = get__post_meta_by_id(148845, 'drones');
-			$payloads = get__post_meta_by_id(148845, 'payloads');
-			$accessories = get__post_meta_by_id(148845, 'accessories');
-			$related_casestudies_heading = get__post_meta_by_id(148845, 'related_casestudies_heading');
-			$related_casestudies = get__post_meta_by_id(148845, 'related_casestudies');
-			$related_guides_heading = get__post_meta_by_id(148845, 'related_guides_heading');
-			$related_guides = get__post_meta_by_id(148845, 'related_guides');
-			
+			$hero_form_enable = get__post_meta_by_id(271333, 'hero_form_enable');
+			$hero_form_image = get__post_meta_by_id(271333, 'hero_form_image');
+			$hero_form_heading = get__post_meta_by_id(271333, 'hero_form_heading');
+			$hero_form_description = get__post_meta_by_id(271333, 'hero_form_description');
+			$hero_form_style = get__post_meta_by_id(271333, 'hero_form_style');
+			$hero_form = get__post_meta_by_id(271333, 'hero_form');
 
 
-			$sections_r = get__post_meta_by_id(get_the_ID(), 'sections');
 			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
 			carbon_set_post_meta(get_the_ID(), 'hero_description', $hero_description);
 			carbon_set_post_meta(get_the_ID(), 'hero_height', $hero_height);
