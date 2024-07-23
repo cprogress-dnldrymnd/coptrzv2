@@ -932,18 +932,21 @@ function ___sections($id = 'sections', $post_id = '')
                             $related_id = 'Related-Drones';
                             $slider_id = 'Related-Drones-Slider';
                             $button_text = 'All Drones';
+                            $button_link = '/product-category/drones/';
                         } else if ($type == 'related_payloads') {
                             $related_products = get__post_meta('payloads');
                             $related_products_heading = 'Payloads';
                             $related_id = 'Related-Payloads';
                             $slider_id = 'Related-Payloads-Slider';
                             $button_text = 'All Payloads';
+                            $button_link = '/product-category/payloads-and-attachments/';
                         } else if ($type == 'related_accessories') {
                             $related_products = get__post_meta('accessories');
                             $related_products_heading = 'Accessories';
                             $related_id = 'Related-Accessories';
                             $slider_id = 'Related-Accessories-Slider';
                             $button_text = 'All Accessories';
+                            $button_link = '/product-category/accessories-and-parts/';
                         } else {
                         }
 
@@ -952,7 +955,7 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($related_products as $related_product) {
                                 $related_products_array[] = $related_product['id'];
                             }
-                            $html .= __linked_products($related_products_array, $button_text, '/product-category/accessories-and-parts/', $slider_id, $related_products_heading, false, true, true, $related_id);
+                            $html .= __linked_products($related_products_array, $button_text, $button_link, $slider_id, $related_products_heading, false, true, true, $related_id);
                         }
                         break;
                     case 'events_widget':
