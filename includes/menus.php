@@ -85,8 +85,10 @@ function header_menu()
 					$submenus2 = array_filter($menus_array, function ($var) use ($submenu1_id) {
 						return ($var['menu_item_parent'] == $submenu1_id);
 					});
-
-					$html .= '<li>';
+					if ($submenus2) {
+						$class_parent = 'parent-has-submenu';
+					}
+					$html .= "<li class='$class_parent'>";
 					$html .= '<a class="nav-link text-black sub-nav ' . ($submenus2 ? 'has-children' : '') . '"  href="' . $submenu1['url'] . '">';
 					$html .= $submenu1['title'];
 					if ($submenus2) {
