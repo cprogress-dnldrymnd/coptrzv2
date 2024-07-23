@@ -43,13 +43,16 @@ function action_woocommerce_after_main_content()
             ));
 
             foreach ($product_cat as $cat) {
-                $cat_id = $cat->term_id;
 
                 $product_slider_args['tax_query'][] = array(
                     'taxonomy' => 'product_cat',
                     'field'    => 'term_id',
-                    'terms'    => $cat_id
+                    'terms'    =>  $cat->term_id
                 );
+
+                echo '<pre>';
+                var_dump($product_slider_args);
+                echo '</pre>';
 
                 $products = get_posts($product_slider_args);
                 echo __linked_products($products, 'Shop Full Range', get_term_link($cat->term_id), 'swiper-cat-' . $cat->term_id, $cat->name, true, false);
