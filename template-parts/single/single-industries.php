@@ -15,6 +15,7 @@ if ($related_guides) {
         'featured' => false,
         'taxonomy' => 'guides_category',
         'style' => 'style-1',
+        'button_text' => 'Read Guide',
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
     );
     echo do_shortcode(__related_posts($related_guides, $data, $related_guides_heading, 'Case-Studies'));
