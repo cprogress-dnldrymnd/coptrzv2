@@ -55,6 +55,14 @@
 			$hero_form_style = get__post_meta_by_id(65092, 'hero_form_style');
 			$hero_form = get__post_meta_by_id(65092, 'hero_form');
 
+			$drones = get__post_meta_by_id(65092, 'drones');
+			$payloads = get__post_meta_by_id(65092, 'payloads');
+			$accessories = get__post_meta_by_id(65092, 'accessories');
+			$related_casestudies_heading = get__post_meta_by_id(65092, 'related_casestudies_heading');
+			$related_casestudies = get__post_meta_by_id(65092, 'related_casestudies');
+			$related_guides_heading = get__post_meta_by_id(65092, 'related_guides_heading');
+			$related_guides = get__post_meta_by_id(65092, 'related_guides');
+			
 
 
 			$sections_r = get__post_meta_by_id(get_the_ID(), 'sections');
@@ -68,6 +76,13 @@
 			carbon_set_post_meta(get_the_ID(), 'hero_form_description', $hero_form_description);
 			carbon_set_post_meta(get_the_ID(), 'hero_form_style', $hero_form_style);
 			carbon_set_post_meta(get_the_ID(), 'hero_form', $hero_form);
+
+			carbon_set_post_meta(get_the_ID(), 'drones', $drones);
+			carbon_set_post_meta(get_the_ID(), 'payloads', $payloads);
+			carbon_set_post_meta(get_the_ID(), 'related_casestudies_heading', $related_casestudies_heading);
+			carbon_set_post_meta(get_the_ID(), 'related_casestudies', $related_casestudies);
+			carbon_set_post_meta(get_the_ID(), 'related_guides_heading', $related_guides_heading);
+			carbon_set_post_meta(get_the_ID(), 'related_guides', $related_guides);
 
 
 			$sections_after_main = get__post_meta_by_id(65092, 'sections_after_main');
