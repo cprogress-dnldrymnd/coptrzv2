@@ -227,27 +227,29 @@ function __header_menu() {
                 }
             );
 
-            jQuery('.has-children-tab').hover(
+            jQuery('.submenu2 .nav-link"').hover(
                 function () {
                     $target = jQuery(this).attr('url_target');
                     jQuery('.has-children-tab.nav-link.active').removeClass('active');
-        
+
                     jQuery(this).toggleClass('active');
                     jQuery(this).next().toggleClass('active');
-        
+
                     jQuery('.tab-links').addClass('d-none');
                     jQuery($target).removeClass('d-none');
                     e.preventDefault();
 
                 }, function () {
-                    $target = jQuery(this).attr('url_target');
-        
-                    jQuery(this).toggleClass('active');
-                    jQuery(this).next().toggleClass('active');
-        
-                    jQuery('.tab-links').addClass('d-none');
-                    jQuery($target).addClass('d-none');
-                    e.preventDefault();
+                    if (!jQuery(this).hasClass('has-children-tab')) {
+                        $target = jQuery(this).attr('url_target');
+
+                        jQuery(this).toggleClass('active');
+                        jQuery(this).next().toggleClass('active');
+
+                        jQuery('.tab-links').addClass('d-none');
+                        jQuery($target).addClass('d-none');
+                        e.preventDefault();
+                    }
                 }
             );
         } else {
