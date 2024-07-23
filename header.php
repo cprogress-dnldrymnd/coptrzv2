@@ -41,7 +41,7 @@
 
 		<?php
 
-		if (get_post_type() ==  'industries' && get_the_ID() != 65092) {
+		if (get_post_type() ==  'industries' ) {
 
 			$sections = get__post_meta_by_id(65092, 'sections');
 			$hero_description = get__post_meta_by_id(65092, 'hero_description');
