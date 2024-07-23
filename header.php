@@ -40,29 +40,46 @@
 	<main class="<?= $class ?>">
 
 		<?php
-		
-		if (is_product() && get_the_ID() != 61453) {
-		
-			$sections = get__post_meta_by_id(61453, 'sections');
-			$sections_after_main = get__post_meta_by_id(61453, 'sections_after_main');
+
+		if (get_post_type() ==  'industries' && get_the_ID() != 65092) {
+
+			$sections = get__post_meta_by_id(65092, 'sections');
+			$hero_description = get__post_meta_by_id(65092, 'hero_description');
+			$hero_height = get__post_meta_by_id(65092, 'hero_height');
+			$hero_alignment = get__post_meta_by_id(65092, 'hero_alignment');
+
+			$hero_form_enable = get__post_meta_by_id(65092, 'hero_form_enable');
+			$hero_form_image = get__post_meta_by_id(65092, 'hero_form_image');
+			$hero_form_heading = get__post_meta_by_id(65092, 'hero_form_enable');
+			$hero_form_description = get__post_meta_by_id(65092, 'hero_form_description');
+			$hero_form_style = get__post_meta_by_id(65092, 'hero_form_style');
+			$hero_form = get__post_meta_by_id(65092, 'hero_form');
 
 
-			$args = array(
-				'numberposts' => -1,
-				'post_type'   => 'product',
-				'fields' => 'ids',
-			);
-
-			$products = get_posts($args);
 
 			$sections_r = get__post_meta_by_id(get_the_ID(), 'sections');
-			$sections_after_main_r = get__post_meta_by_id(get_the_ID(), 'sections_after_main');
 			if (!$sections_r) {
 				carbon_set_post_meta(get_the_ID(), 'sections', $sections);
+				carbon_set_post_meta(get_the_ID(), 'hero_description', $hero_description);
+				carbon_set_post_meta(get_the_ID(), 'hero_height', $hero_height);
+				carbon_set_post_meta(get_the_ID(), 'hero_alignment', $hero_alignment);
+				carbon_set_post_meta(get_the_ID(), 'hero_form_enable', $hero_form_enable);
+				carbon_set_post_meta(get_the_ID(), 'hero_form_image', $hero_form_image);
+				carbon_set_post_meta(get_the_ID(), 'hero_form_heading', $hero_form_heading);
+				carbon_set_post_meta(get_the_ID(), 'hero_form_description', $hero_form_description);
+				carbon_set_post_meta(get_the_ID(), 'hero_form_style', $hero_form_style);
+				carbon_set_post_meta(get_the_ID(), 'v', $hero_form);
 			}
+
+
+			/*
+			$sections_after_main = get__post_meta_by_id(65092, 'sections_after_main');
+
+			$sections_after_main_r = get__post_meta_by_id(get_the_ID(), 'sections_after_main');
+
 			if (!$sections_after_main_r) {
 				carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
-			}
+			}*/
 
 			$data = array(
 				'ID' => get_the_ID(),
