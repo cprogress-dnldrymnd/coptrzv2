@@ -21,9 +21,7 @@ function header_menu()
 
 	$menuID = $menuLocations['header-menu']; // Get the *primary* menu ID
 
-	$args = array(
-		'post_parent' => 0
-	);
+
 	$header_menu = wp_get_nav_menu_items($menuID, $args); // Get the array
 
 
@@ -42,6 +40,7 @@ function header_menu()
 			'url' => $url,
 		);
 	}
+	return var_dump($header_menu);
 
 	foreach ($menus_array as $menu) {
 		$ID = $menu['ID'];
