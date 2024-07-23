@@ -41,7 +41,7 @@
 
 		<?php
 
-		if (get_post_type() ==  'industries' && get_the_ID() != 148845) {
+		if (get_post_type() ==  'casestudies' && get_the_ID() != 148845) {
 
 			$sections = get__post_meta_by_id(148845, 'sections');
 			$hero_description = get__post_meta_by_id(148845, 'hero_description');
