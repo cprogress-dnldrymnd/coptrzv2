@@ -33,12 +33,13 @@ function action_woocommerce_after_main_content()
             $product_slider_args['tax_query'][] = array(
                 'taxonomy' => 'pa_brands',
                 'field'    => 'term_id',
-                'terms'    => $term->term_id
+                'terms'    => $term->term_id,
             );
 
             $product_cat = get_terms(array(
                 'taxonomy'   => 'product_cat',
                 'hide_empty' => true,
+                'parent' => 0
             ));
 
             foreach ($product_cat as $cat) {
@@ -49,7 +50,6 @@ function action_woocommerce_after_main_content()
                     'field'    => 'term_id',
                     'terms'    => $cat_id
                 );
-
 
                 $products = get_posts($product_slider_args);
                 echo __linked_products($products, 'Shop Full Range', get_term_link($cat->term_id), 'swiper-cat-' . $cat->term_id, $cat->name, true, false);
