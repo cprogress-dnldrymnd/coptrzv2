@@ -20,8 +20,13 @@ function action_woocommerce_before_main_content()
 
 add_action('woocommerce_before_main_content', 'action_woocommerce_before_main_content');
 
-function action_woocommerce_after_main_content() {
-    echo 'test';
+function action_woocommerce_after_main_content()
+{
+    if (is_product_taxonomy()) {
+        if (get_queried_object()->taxonomy == 'pa_brands') {
+            echo 'test';
+        }
+    }
 }
 
 add_action('woocommerce_after_main_content', 'action_woocommerce_after_main_content');
