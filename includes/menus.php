@@ -22,7 +22,7 @@ function header_menu()
 	$menuID = $menuLocations['header-menu']; // Get the *primary* menu ID
 
 
-	$header_menu = wp_get_nav_menu_items($menuID, $args); // Get the array
+	$header_menu = wp_get_nav_menu_items($menuID); // Get the array
 
 
 	$html = '<nav class="navbar position-static p-0">';
