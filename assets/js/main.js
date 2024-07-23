@@ -246,7 +246,7 @@ function __header_menu() {
                     jQuery(this).next().toggleClass('active');
         
                     jQuery('.tab-links').addClass('d-none');
-                    jQuery($target).removeClass('d-none');
+                    jQuery($target).addClass('d-none');
                     e.preventDefault();
                 }
             );
