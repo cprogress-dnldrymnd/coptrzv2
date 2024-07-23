@@ -7,12 +7,14 @@ $related_casestudies = get__post_meta('related_casestudies');
 
 echo ___hero_modules();
 echo do_shortcode(___sections('sections', get_the_ID()));
-$related_products_array = array();
-foreach ($related_products as $related_product) {
-    $related_products_array[] = $related_product['id'];
-}
-echo __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, false, 'Related-Products');
 
+if ($related_products) {
+    $related_products_array = array();
+    foreach ($related_products as $related_product) {
+        $related_products_array[] = $related_product['id'];
+    }
+    echo __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, false, 'Related-Products');
+}
 
 if ($related_casestudies) {
     $data = array(
