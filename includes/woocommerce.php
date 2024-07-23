@@ -26,24 +26,23 @@ function action_woocommerce_after_main_content()
         $term = get_queried_object();
         if ($term->taxonomy == 'pa_brands') {
 
-            $product_slider_args['numberposts'] = -1;
-            $product_slider_args['post_type'] = 'product';
-            $product_slider_args['fields'] = 'ids';
-
-            $product_slider_args['tax_query'][] = array(
-                'taxonomy' => 'pa_brands',
-                'field'    => 'term_id',
-                'terms'    => $term->term_id,
-            );
-
             $product_cat = get_terms(array(
                 'taxonomy'   => 'product_cat',
                 'hide_empty' => true,
                 'parent' => 0
             ));
-
+            $product_slider_args = [];
             foreach ($product_cat as $cat) {
 
+                $product_slider_args['numberposts'] = -1;
+                $product_slider_args['post_type'] = 'product';
+                $product_slider_args['fields'] = 'ids';
+
+                $product_slider_args['tax_query'][] = array(
+                    'taxonomy' => 'pa_brands',
+                    'field'    => 'term_id',
+                    'terms'    => $term->term_id,
+                );
                 $product_slider_args['tax_query'][] = array(
                     'taxonomy' => 'product_cat',
                     'field'    => 'term_id',
