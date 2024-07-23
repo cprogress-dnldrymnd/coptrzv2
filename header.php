@@ -50,7 +50,7 @@
 
 			$hero_form_enable = get__post_meta_by_id(65092, 'hero_form_enable');
 			$hero_form_image = get__post_meta_by_id(65092, 'hero_form_image');
-			$hero_form_heading = get__post_meta_by_id(65092, 'hero_form_enable');
+			$hero_form_heading = get__post_meta_by_id(65092, 'hero_form_heading');
 			$hero_form_description = get__post_meta_by_id(65092, 'hero_form_description');
 			$hero_form_style = get__post_meta_by_id(65092, 'hero_form_style');
 			$hero_form = get__post_meta_by_id(65092, 'hero_form');
@@ -68,7 +68,7 @@
 				carbon_set_post_meta(get_the_ID(), 'hero_form_heading', $hero_form_heading);
 				carbon_set_post_meta(get_the_ID(), 'hero_form_description', $hero_form_description);
 				carbon_set_post_meta(get_the_ID(), 'hero_form_style', $hero_form_style);
-				carbon_set_post_meta(get_the_ID(), 'v', $hero_form);
+				carbon_set_post_meta(get_the_ID(), 'hero_form', $hero_form);
 			}
 
 
