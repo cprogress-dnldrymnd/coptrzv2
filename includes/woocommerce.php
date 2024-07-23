@@ -23,8 +23,37 @@ add_action('woocommerce_before_main_content', 'action_woocommerce_before_main_co
 function action_woocommerce_after_main_content()
 {
     if (is_product_taxonomy()) {
-        if (get_queried_object()->taxonomy == 'pa_brands') {
-            echo 'test';
+        $term = get_queried_object();
+        if ($term->taxonomy == 'pa_brands') {
+
+            $product_slider_args['numberposts'] = -1;
+            $product_slider_args['post_type'] = 'product';
+            $product_slider_args['fields'] = 'ids';
+
+            $product_slider_args['tax_query'][] = array(
+                'taxonomy' => 'pa_brands',
+                'field'    => 'term_id',
+                'terms'    => $term->term_id
+            );
+
+            $product_cat = get_terms(array(
+                'taxonomy'   => 'product_cat',
+                'hide_empty' => true,
+            ));
+
+            foreach ($product_cat as $cat) {
+                $cat_id = $cat->term_id;
+
+                $product_slider_args['tax_query'][] = array(
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => $cat_id
+                );
+
+
+                $products = get_posts($product_slider_args);
+                echo __linked_products($products, 'Shop Full Range', get_term_link($cat->term_id), 'swiper-cat-' . $cat->term_id, $cat->name, true, false);
+            }
         }
     }
 }

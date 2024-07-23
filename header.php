@@ -40,8 +40,3 @@
 	<main class="<?= $class ?>">
 
 		<?php
-
-		if (get_post_type() ==  'industries' && get_the_ID() != 65092) {
-
-		
-		}
