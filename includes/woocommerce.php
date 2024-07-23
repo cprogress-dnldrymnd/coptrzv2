@@ -54,7 +54,9 @@ function action_woocommerce_after_main_content()
                 echo '</pre>';
 
                 $products = get_posts($product_slider_args);
-                echo __linked_products($products, 'Shop Full Range', get_term_link($cat->term_id), 'swiper-cat-' . $cat->term_id, $cat->name, false, true, true);
+                if ($products) {
+                    echo __linked_products($products, 'Shop Full Range', get_term_link($cat->term_id), 'swiper-cat-' . $cat->term_id, $cat->name, false, true, true);
+                }
             }
         }
     }
