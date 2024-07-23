@@ -10869,7 +10869,8 @@ input[type="checkbox"] {
   border-radius: 10px; }
   .swiper-button-next.swiper-button-lock,
   .swiper-button-prev.swiper-button-lock {
-    opacity: 0.3; }
+    opacity: 0.3;
+    cursor: not-allowed; }
   .swiper-button-next:after,
   .swiper-button-prev:after {
     font-size: 15px; }

@@ -367,6 +367,7 @@ input[type="checkbox"] {
     border-radius: 10px;
     &.swiper-button-lock {
         opacity: 0.3;
+        cursor: not-allowed;
     }
     @include after {
         font-size: 15px;
