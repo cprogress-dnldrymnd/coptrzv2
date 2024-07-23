@@ -17,7 +17,7 @@ if ($related_guides) {
         'style' => 'style-1',
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
     );
-    echo do_shortcode(__related_posts($related_guides, $data, $related_casestudies_heading, 'Case-Studies'));
+    echo do_shortcode(__related_posts($related_guides, $data, $related_guides_heading, 'Case-Studies'));
 }
 
 if ($related_casestudies) {
