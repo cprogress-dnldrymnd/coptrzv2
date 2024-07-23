@@ -54,8 +54,9 @@
 			$hero_form_description = get__post_meta_by_id(271277, 'hero_form_description');
 			$hero_form_style = get__post_meta_by_id(271277, 'hero_form_style');
 			$hero_form = get__post_meta_by_id(271277, 'hero_form');
+			$buttons = get__post_meta_by_id(271277, 'buttons');
 
-
+			
 
 			$sections_r = get__post_meta_by_id(get_the_ID(), 'sections');
 			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
@@ -68,6 +69,7 @@
 			carbon_set_post_meta(get_the_ID(), 'hero_form_description', $hero_form_description);
 			carbon_set_post_meta(get_the_ID(), 'hero_form_style', $hero_form_style);
 			carbon_set_post_meta(get_the_ID(), 'hero_form', $hero_form);
+			carbon_set_post_meta(get_the_ID(), 'buttons', $buttons);
 
 
 			$sections_after_main = get__post_meta_by_id(271277, 'sections_after_main');
