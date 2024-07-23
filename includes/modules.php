@@ -937,7 +937,7 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($related_products as $related_product) {
                                 $related_products_array[] = $related_product['id'];
                             }
-                            $html .= __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, false, $related_id);
+                            $html .= __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, true, $related_id);
                         }
                         break;
                     case 'events_widget':
