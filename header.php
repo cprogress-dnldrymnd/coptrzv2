@@ -43,58 +43,5 @@
 
 		if (get_post_type() ==  'industries' && get_the_ID() != 65092) {
 
-			$sections = get__post_meta_by_id(65092, 'sections');
-			$hero_description = get__post_meta_by_id(65092, 'hero_description');
-			$hero_height = get__post_meta_by_id(65092, 'hero_height');
-			$hero_alignment = get__post_meta_by_id(65092, 'hero_alignment');
-
-			$hero_form_enable = get__post_meta_by_id(65092, 'hero_form_enable');
-			$hero_form_image = get__post_meta_by_id(65092, 'hero_form_image');
-			$hero_form_heading = get__post_meta_by_id(65092, 'hero_form_heading');
-			$hero_form_description = get__post_meta_by_id(65092, 'hero_form_description');
-			$hero_form_style = get__post_meta_by_id(65092, 'hero_form_style');
-			$hero_form = get__post_meta_by_id(65092, 'hero_form');
-
-			$drones = get__post_meta_by_id(65092, 'drones');
-			$payloads = get__post_meta_by_id(65092, 'payloads');
-			$accessories = get__post_meta_by_id(65092, 'accessories');
-			$related_casestudies_heading = get__post_meta_by_id(65092, 'related_casestudies_heading');
-			$related_casestudies = get__post_meta_by_id(65092, 'related_casestudies');
-			$related_guides_heading = get__post_meta_by_id(65092, 'related_guides_heading');
-			$related_guides = get__post_meta_by_id(65092, 'related_guides');
-			
-
-
-			$sections_r = get__post_meta_by_id(get_the_ID(), 'sections');
-			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
-			carbon_set_post_meta(get_the_ID(), 'hero_description', $hero_description);
-			carbon_set_post_meta(get_the_ID(), 'hero_height', $hero_height);
-			carbon_set_post_meta(get_the_ID(), 'hero_alignment', $hero_alignment);
-			carbon_set_post_meta(get_the_ID(), 'hero_form_enable', $hero_form_enable);
-			carbon_set_post_meta(get_the_ID(), 'hero_form_image', $hero_form_image);
-			carbon_set_post_meta(get_the_ID(), 'hero_form_heading', $hero_form_heading);
-			carbon_set_post_meta(get_the_ID(), 'hero_form_description', $hero_form_description);
-			carbon_set_post_meta(get_the_ID(), 'hero_form_style', $hero_form_style);
-			carbon_set_post_meta(get_the_ID(), 'hero_form', $hero_form);
-
-			carbon_set_post_meta(get_the_ID(), 'drones', $drones);
-			carbon_set_post_meta(get_the_ID(), 'payloads', $payloads);
-			carbon_set_post_meta(get_the_ID(), 'accessories', $accessories);
-			carbon_set_post_meta(get_the_ID(), 'related_casestudies_heading', $related_casestudies_heading);
-			carbon_set_post_meta(get_the_ID(), 'related_casestudies', $related_casestudies);
-			carbon_set_post_meta(get_the_ID(), 'related_guides_heading', $related_guides_heading);
-			carbon_set_post_meta(get_the_ID(), 'related_guides', $related_guides);
-
-
-			$sections_after_main = get__post_meta_by_id(65092, 'sections_after_main');
-
-
-			carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
-
-			$data = array(
-				'ID' => get_the_ID(),
-				'post_content' => '',
-			);
-
-			wp_update_post($data);
+		
 		}
