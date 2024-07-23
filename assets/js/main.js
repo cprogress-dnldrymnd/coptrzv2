@@ -226,6 +226,15 @@ function __header_menu() {
                     jQuery(this).find(' > .nav-link + div').removeClass('active');
                 }
             );
+
+            jQuery(".submenu2.active .has-submenu").hover(
+                function () {
+                    jQuery(this).find('.left-menu').addClass('active');
+
+                }, function () {
+                   
+                }
+            );
         } else {
             jQuery('.has-children.main-nav').click(function (e) {
                 if (jQuery(this).hasClass('active')) {
