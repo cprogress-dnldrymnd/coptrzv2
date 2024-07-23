@@ -225,7 +225,7 @@ function ___hero_product_taxonomy()
         $heading_class[] = 'mb-3';
     }
 
-    if($buttons) {
+    if ($buttons) {
         unset($heading_class['mb-0']);
         $heading_class[] = 'mb-5';
     }
@@ -922,6 +922,22 @@ function ___sections($id = 'sections', $post_id = '')
                             $html .= "</div>";
                         }
 
+                        break;
+
+                    case 'related_products':
+                        $type = $items['related_post'][0]['_key'];
+                        if ($type == 'related_drones') {
+                            $related_products = get__post_meta('drones');
+                            $related_products_heading = 'Drones';
+                        }
+
+                        if ($related_products) {
+                            $related_products_array = array();
+                            foreach ($related_products as $related_product) {
+                                $related_products_array[] = $related_product['id'];
+                            }
+                            $html .= __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, false, 'Related-Products');
+                        }
                         break;
                     case 'events_widget':
                         $events_widget = $items['events_widget'];
@@ -2548,7 +2564,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     $html .= "<div class='inner $class'>";
     $html .= "<div class='row g-3 justify-content-between align-items-end'>";
 
-    if ((is_tax($taxonomy) || is_category()) && $key != 'events_' ) {
+    if ((is_tax($taxonomy) || is_category()) && $key != 'events_') {
         $main_term_id = get_queried_object();
         $html .= "<div class='col-auto'>";
         $html .= __heading(array(
@@ -2636,7 +2652,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     }
 
 
- 
+
 
     $html .= "</div>";
     $html .= "</div>";
