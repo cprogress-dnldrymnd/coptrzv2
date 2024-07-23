@@ -925,9 +925,8 @@ function ___sections($id = 'sections', $post_id = '')
                         break;
 
                     case 'related_products':
-                        $type = $items['category'][0]['html'];
+                        $type = $items['category'];
                         $html .= $type;
-                        $html .= 'dsdsds';
                         if ($type == 'related_drones') {
                             $related_products = get__post_meta('drones');
                             $related_products_heading = 'Drones';
