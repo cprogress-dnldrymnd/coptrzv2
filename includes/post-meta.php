@@ -6116,40 +6116,7 @@ Container::make('post_meta', 'Industry Settings')
                     )
                 )
         )
-    )
-    > add_tab('Drones', array(
-        Field::make('association', 'drones', 'Related Training')
-            ->set_types(
-                array(
-                    array(
-                        'type'      => 'post',
-                        'post_type' => 'product',
-                    )
-                )
-            )
-    ))
-    ->add_tab('Payloads', array(
-        Field::make('association', 'payloads', 'Compatible Payloads')
-            ->set_types(
-                array(
-                    array(
-                        'type'      => 'post',
-                        'post_type' => 'product',
-                    )
-                )
-            )
-    ))
-    ->add_tab('Training', array(
-        Field::make('association', 'accessories', 'Accesories')
-            ->set_types(
-                array(
-                    array(
-                        'type'      => 'post',
-                        'post_type' => 'product',
-                    ),
-                )
-            )
-    ));
+    );
 
 
 
