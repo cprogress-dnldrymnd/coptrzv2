@@ -1304,6 +1304,19 @@ function __section_fields($name = 'sections')
                                 )
                             )->set_max(1)
                     ))
+                    ->add_fields('related_products',  array(
+                        Field::make('complex', 'category', 'Category')
+                            ->add_fields('related_drones',  array(
+                                Field::make('html', 'html')->set_html('<h3>This will display related drones slider. </h3>'),
+                            ))
+                            ->add_fields('related_payloads',  array(
+                                Field::make('html', 'html')->set_html('<h3>This will display related payloads slider. </h3>'),
+                            ))
+                            ->add_fields('related_accessories',  array(
+                                Field::make('html', 'html')->set_html('<h3>This will display related accessories slider. </h3>'),
+                            ))
+                            ->set_max(1)
+                    ))
                     ->add_fields('heading', array(
                         Field::make('html', 'html_1')->set_html('<label>Section Heading Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'has_prefix', __('Heading Has Prefix'))->set_width(20),
