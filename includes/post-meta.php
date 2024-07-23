@@ -6131,7 +6131,7 @@ Container::make('post_meta', 'Industry Settings')
         )
     )
     ->add_tab('Drones', array(
-        Field::make('association', 'drones', 'Related Training')
+        Field::make('association', 'drones', 'Drones')
             ->set_types(
                 array(
                     array(
@@ -6142,7 +6142,7 @@ Container::make('post_meta', 'Industry Settings')
             )
     ))
     ->add_tab('Payloads', array(
-        Field::make('association', 'payloads', 'Compatible Payloads')
+        Field::make('association', 'payloads', 'Payloads')
             ->set_types(
                 array(
                     array(
@@ -6152,7 +6152,7 @@ Container::make('post_meta', 'Industry Settings')
                 )
             )
     ))
-    ->add_tab('Training', array(
+    ->add_tab('Accesories', array(
         Field::make('association', 'accessories', 'Accesories')
             ->set_types(
                 array(
@@ -6164,6 +6164,36 @@ Container::make('post_meta', 'Industry Settings')
             )
     ));
 
+
+    add_filter('carbon_fields_association_field_options_drones_post_product', function ($query_arguments) {
+        // Order posts by title alphabetically, for example:
+        $tax_query[] = array(
+            'taxonomy' => 'product_cat',
+            'field'    => 'term_id',
+            'terms'    => 27
+        );
+    
+        $query_arguments['tax_query'] = $tax_query;
+        $query_arguments['post_status'] = 'publish';
+    
+        return $query_arguments;
+    });
+
+    
+    add_filter('carbon_fields_association_field_options_payloads_post_product', function ($query_arguments) {
+        // Order posts by title alphabetically, for example:
+        $tax_query[] = array(
+            'taxonomy' => 'product_cat',
+            'field'    => 'term_id',
+            'terms'    => 29
+        );
+    
+        $query_arguments['tax_query'] = $tax_query;
+        $query_arguments['post_status'] = 'publish';
+    
+        return $query_arguments;
+    });
+    
 
 
 /*-----------------------------------------------------------------------------------*/
