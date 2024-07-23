@@ -63,7 +63,7 @@ function header_menu()
 			$class_parent = '';
 			$anchor_class = '';
 			if ($submenus1) {
-				$class_parent = 'parent-has-submenu';
+				$class_parent = 'has-submenu';
 				$anchor_class = 'has-children';
 			}
 			$html .= "<li class='nav-item position-relative parent $class_parent $class $class_col'>";
@@ -86,7 +86,7 @@ function header_menu()
 						return ($var['menu_item_parent'] == $submenu1_id);
 					});
 					if ($submenus2) {
-						$class_parent = 'parent-has-submenu';
+						$class_parent = 'has-submenu';
 					}
 					$html .= "<li class='$class_parent'>";
 					$html .= '<a class="nav-link text-black sub-nav ' . ($submenus2 ? 'has-children' : '') . '"  href="' . $submenu1['url'] . '">';

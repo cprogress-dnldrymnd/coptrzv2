@@ -215,7 +215,7 @@ function __header_menu() {
     }, 500);
     if (jQuery('header').length > 0) {
         if (window.innerWidth > 991) {
-            jQuery(".parent-has-submenu").hover(
+            jQuery(".has-submenu").hover(
                 function () {
                     jQuery(this).find(' > .nav-link').addClass('active');
                     jQuery(this).find(' > .nav-link + div').addClass('active');
