@@ -929,6 +929,7 @@ function ___sections($id = 'sections', $post_id = '')
                         if ($type == 'related_drones') {
                             $related_products = get__post_meta('drones');
                             $related_products_heading = 'Drones';
+                            $related_id = 'Related-Drones';
                         }
 
                         if ($related_products) {
@@ -936,7 +937,7 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($related_products as $related_product) {
                                 $related_products_array[] = $related_product['id'];
                             }
-                            $html .= __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, false, 'Related-Products');
+                            $html .= __linked_products($related_products_array, false, false, false, $related_products_heading, false, true, false, $related_id);
                         }
                         break;
                     case 'events_widget':
