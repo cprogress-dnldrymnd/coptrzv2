@@ -31,8 +31,8 @@ function action_woocommerce_after_main_content()
                 'hide_empty' => true,
                 'parent' => 0
             ));
-            $product_slider_args = [];
             foreach ($product_cat as $cat) {
+                $product_slider_args = [];
 
                 $product_slider_args['numberposts'] = -1;
                 $product_slider_args['post_type'] = 'product';
