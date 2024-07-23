@@ -41,19 +41,19 @@
 
 		<?php
 
-		if (get_post_type() ==  'industries' && get_the_ID() != 65092) {
+		if (get_post_type() ==  'capabilities' && get_the_ID() != 271277) {
 
-			$sections = get__post_meta_by_id(65092, 'sections');
-			$hero_description = get__post_meta_by_id(65092, 'hero_description');
-			$hero_height = get__post_meta_by_id(65092, 'hero_height');
-			$hero_alignment = get__post_meta_by_id(65092, 'hero_alignment');
+			$sections = get__post_meta_by_id(271277, 'sections');
+			$hero_description = get__post_meta_by_id(271277, 'hero_description');
+			$hero_height = get__post_meta_by_id(271277, 'hero_height');
+			$hero_alignment = get__post_meta_by_id(271277, 'hero_alignment');
 
-			$hero_form_enable = get__post_meta_by_id(65092, 'hero_form_enable');
-			$hero_form_image = get__post_meta_by_id(65092, 'hero_form_image');
-			$hero_form_heading = get__post_meta_by_id(65092, 'hero_form_heading');
-			$hero_form_description = get__post_meta_by_id(65092, 'hero_form_description');
-			$hero_form_style = get__post_meta_by_id(65092, 'hero_form_style');
-			$hero_form = get__post_meta_by_id(65092, 'hero_form');
+			$hero_form_enable = get__post_meta_by_id(271277, 'hero_form_enable');
+			$hero_form_image = get__post_meta_by_id(271277, 'hero_form_image');
+			$hero_form_heading = get__post_meta_by_id(271277, 'hero_form_heading');
+			$hero_form_description = get__post_meta_by_id(271277, 'hero_form_description');
+			$hero_form_style = get__post_meta_by_id(271277, 'hero_form_style');
+			$hero_form = get__post_meta_by_id(271277, 'hero_form');
 
 
 
@@ -71,7 +71,7 @@
 
 
 			/*
-			$sections_after_main = get__post_meta_by_id(65092, 'sections_after_main');
+			$sections_after_main = get__post_meta_by_id(271277, 'sections_after_main');
 
 			$sections_after_main_r = get__post_meta_by_id(get_the_ID(), 'sections_after_main');
 
