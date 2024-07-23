@@ -38,5 +38,3 @@
 	}
 	?>
 	<main class="<?= $class ?>">
-
-	
