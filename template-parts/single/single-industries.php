@@ -13,7 +13,7 @@ if ($related_guides) {
     $data = array(
         'col' => false,
         'featured' => false,
-        'taxonomy' => 'casestudies_category',
+        'taxonomy' => 'guides_category',
         'style' => 'style-1',
         'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
     );
