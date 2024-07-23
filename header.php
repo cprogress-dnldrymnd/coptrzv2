@@ -58,18 +58,16 @@
 
 
 			$sections_r = get__post_meta_by_id(get_the_ID(), 'sections');
-			if (!$sections_r) {
-				carbon_set_post_meta(get_the_ID(), 'sections', $sections);
-				carbon_set_post_meta(get_the_ID(), 'hero_description', $hero_description);
-				carbon_set_post_meta(get_the_ID(), 'hero_height', $hero_height);
-				carbon_set_post_meta(get_the_ID(), 'hero_alignment', $hero_alignment);
-				carbon_set_post_meta(get_the_ID(), 'hero_form_enable', $hero_form_enable);
-				carbon_set_post_meta(get_the_ID(), 'hero_form_image', $hero_form_image);
-				carbon_set_post_meta(get_the_ID(), 'hero_form_heading', $hero_form_heading);
-				carbon_set_post_meta(get_the_ID(), 'hero_form_description', $hero_form_description);
-				carbon_set_post_meta(get_the_ID(), 'hero_form_style', $hero_form_style);
-				carbon_set_post_meta(get_the_ID(), 'hero_form', $hero_form);
-			}
+			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
+			carbon_set_post_meta(get_the_ID(), 'hero_description', $hero_description);
+			carbon_set_post_meta(get_the_ID(), 'hero_height', $hero_height);
+			carbon_set_post_meta(get_the_ID(), 'hero_alignment', $hero_alignment);
+			carbon_set_post_meta(get_the_ID(), 'hero_form_enable', $hero_form_enable);
+			carbon_set_post_meta(get_the_ID(), 'hero_form_image', $hero_form_image);
+			carbon_set_post_meta(get_the_ID(), 'hero_form_heading', $hero_form_heading);
+			carbon_set_post_meta(get_the_ID(), 'hero_form_description', $hero_form_description);
+			carbon_set_post_meta(get_the_ID(), 'hero_form_style', $hero_form_style);
+			carbon_set_post_meta(get_the_ID(), 'hero_form', $hero_form);
 
 
 			/*
