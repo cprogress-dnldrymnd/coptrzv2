@@ -10,8 +10,8 @@ echo do_shortcode(___sections('sections', get_the_ID()));
 
 if ($related_guides) {
     $related_guides_array = array();
-    foreach ($related_products as $related_product) {
-        $related_guides_array[] = $related_product['id'];
+    foreach ($related_guides as $related_guide) {
+        $related_guides_array[] = $related_guide['id'];
     }
     echo __linked_products($related_guides_array, false, false, false, $related_guides_heading, false, true, false, 'Related-Guides');
 }
