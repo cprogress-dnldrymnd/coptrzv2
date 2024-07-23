@@ -227,7 +227,7 @@ function __header_menu() {
                 }
             );
 
-            jQuery('.submenu2 .nav-link"').hover(
+            jQuery('.submenu2 .nav-link').hover(
                 function () {
                     $target = jQuery(this).attr('url_target');
                     jQuery('.has-children-tab.nav-link.active').removeClass('active');
