@@ -79,6 +79,7 @@
 
 			carbon_set_post_meta(get_the_ID(), 'drones', $drones);
 			carbon_set_post_meta(get_the_ID(), 'payloads', $payloads);
+			carbon_set_post_meta(get_the_ID(), 'accessories', $accessories);
 			carbon_set_post_meta(get_the_ID(), 'related_casestudies_heading', $related_casestudies_heading);
 			carbon_set_post_meta(get_the_ID(), 'related_casestudies', $related_casestudies);
 			carbon_set_post_meta(get_the_ID(), 'related_guides_heading', $related_guides_heading);
