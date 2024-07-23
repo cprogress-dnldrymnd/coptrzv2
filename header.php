@@ -73,7 +73,7 @@
 			$sections_after_main = get__post_meta_by_id(65092, 'sections_after_main');
 
 
-			carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections);
+			carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
 
 			$data = array(
 				'ID' => get_the_ID(),
