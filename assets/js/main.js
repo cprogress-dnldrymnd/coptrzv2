@@ -218,12 +218,12 @@ function __header_menu() {
             jQuery(".parent-has-submenu").hover(
                 function () {
                     jQuery(this).find(' > .nav-link').addClass('active');
-                    jQuery(this).find(' > .submenu').addClass('active');
+                    jQuery(this).find(' > .nav-link + div').addClass('active');
 
                     jQuery('body').removeClass('mini-cart-active');
                 }, function () {
                     jQuery(this).find(' > .nav-link').removeClass('active');
-                    jQuery(this).find(' > .submenu').removeClass('active');
+                    jQuery(this).find(' > .nav-link + div').removeClass('active');
                 }
             );
         } else {
