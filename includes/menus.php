@@ -79,6 +79,7 @@ function header_menu()
 				$html .= '<div class="submenu">'; //submenu 1
 				$html .= '<div class="submenu-inner">';
 				$html .= "<ul class='list-inline d-flex p-0 $ul_class'>";
+				$html .= var_dump($menus_array);
 				foreach ($submenus1 as $submenu1) {
 					$submenu1_id = $submenu1['ID'];
 
