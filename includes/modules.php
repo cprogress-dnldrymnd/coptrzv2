@@ -925,7 +925,7 @@ function ___sections($id = 'sections', $post_id = '')
                         break;
 
                     case 'related_products':
-                        $type = $items['category'][0]['_key'];
+                        $type = $items['category'][0]['html'];
                         $html .= $type;
                         $html .= 'dsdsds';
                         if ($type == 'related_drones') {
