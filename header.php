@@ -40,7 +40,7 @@
 	<main class="<?= $class ?>">
 
 		<?php
-			/*
+		
 		if (is_product() && get_the_ID() != 61453) {
 		
 			$sections = get__post_meta_by_id(61453, 'sections');
@@ -71,4 +71,3 @@
 
 			wp_update_post($data);
 		}
-*/
