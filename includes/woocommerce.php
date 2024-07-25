@@ -730,9 +730,8 @@ function __get_product_taxonomy_page($id)
         'fields' => 'ids',
         'meta_query' => array(
             array(
-                'key' => '_product_tax',
+                'key' => '_product_term_id',
                 'value' => $id,
-                'compare' => 'LIKE',
             ),
         ),
     );
