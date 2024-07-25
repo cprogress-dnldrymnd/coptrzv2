@@ -861,7 +861,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $posts_list = $posts;
                         }
 
-                        $html .= "<div class='row g-4 same-image-height row-global-post' style='--image-padding: 35%'>";
+                        $html .= "<div class='row g-4 justify-content-center same-image-height row-global-post' style='--image-padding: 35%'>";
 
                         foreach ($posts_list as $post) {
                             $data = array(
