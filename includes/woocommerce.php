@@ -4,6 +4,7 @@ remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0
 function action_woocommerce_before_main_content()
 {
     if (is_product_taxonomy()) {
+        $product_taxonomy_page = [];
         echo do_shortcode(___hero_product_taxonomy());
         $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
         if ($product_category_page) {

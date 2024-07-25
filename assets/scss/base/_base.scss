@@ -979,7 +979,7 @@ small {
     display: flex;
     align-items: center;
     position: relative;
-
+    margin-left: 2rem;
     @include before {
         content: "";
         width: 2px;

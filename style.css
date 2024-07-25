@@ -11319,7 +11319,8 @@ small, .small {
   height: 14px;
   display: flex;
   align-items: center;
-  position: relative; }
+  position: relative;
+  margin-left: 2rem; }
   .plus-minus:before {
     content: "";
     width: 2px;
