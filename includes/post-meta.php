@@ -3062,9 +3062,11 @@ function __section_fields($name = 'sections')
                                         array(
                                             Field::make('complex', 'spec_box', __(''))
                                                 ->add_fields(array(
-                                                    Field::make('textarea', 'spec_label', __('Spec Label')),
-                                                    Field::make('textarea', 'spec_value', __('Spec Value')),
+                                                    Field::make('text', 'spec_label', __('Spec Label'))->set_classes('inline-field-wide-label'),
+                                                    Field::make('text', 'spec_value', __('Spec Value'))->set_classes('inline-field-wide-label'),
                                                 ))
+                                                ->set_header_template('Column: <%- spec_label %>')
+                                                ->set_layout('tabbed-vertical'),
 
                                         )
                                     ),
