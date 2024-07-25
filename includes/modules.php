@@ -203,7 +203,6 @@ function ___hero_product_taxonomy()
 
     $term = get_queried_object();
     $id = $term->term_id;
-    $parent = $term->parent;
     $hero_heading = get___term_meta($id, 'hero_heading');
     $hero_description = get___term_meta($id, 'hero_description');
     $hero_hidden = get___term_meta($id, 'hero_hidden');
@@ -219,12 +218,14 @@ function ___hero_product_taxonomy()
 
 
     $heading_class[] = 'large-heading';
-    if (!$term_description_val || !$parent) {
+    if (!$term_description_val ) {
         $heading_class[] = 'mb-0';
     } else {
         $heading_class[] = 'mb-3';
     }
 
+
+    
     if ($buttons) {
         unset($heading_class['mb-0']);
         $heading_class[] = 'mb-5';
