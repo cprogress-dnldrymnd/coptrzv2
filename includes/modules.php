@@ -824,13 +824,13 @@ function ___sections($id = 'sections', $post_id = '')
                         $column_width_tablet = $items['column_width_tablet'];
                         $column_width_mobile = $items['column_width_mobile'];
 
-                        if ($column_width && $column_width != '') {
+                        if ($column_width) {
                             $col_class[] = $column_width;
                         }
-                        if ($column_width_tablet && $column_width != '') {
+                        if ($column_width_tablet) {
                             $col_class[] = $column_width_tablet;
                         }
-                        if ($column_width_mobile && $column_width != '') {
+                        if ($column_width_mobile) {
                             $col_class[] = $column_width_mobile;
                         }
 
