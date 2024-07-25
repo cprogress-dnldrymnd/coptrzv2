@@ -820,6 +820,20 @@ function ___sections($id = 'sections', $post_id = '')
                         $posts = $items['post'];
                         $source = $items['source'];
                         $category = $items['category'];
+                        $column_width = $items['column_width'];
+                        $column_width_tablet = $items['column_width_tablet'];
+                        $column_width_mobile = $items['column_width_mobile'];
+
+                        if($column_width) {
+                            $col_class[] = $column_width;
+                        }
+                        if($column_width_tablet) {
+                            $col_class[] = $column_width_tablet;
+                        }
+                        if($column_width_mobile) {
+                            $col_class[] = $column_width_mobile;
+                        }
+                        
                         $category_arr = [];
                         $posts_list = [];
                         foreach ($category as $cat) {
@@ -853,10 +867,10 @@ function ___sections($id = 'sections', $post_id = '')
                             $data = array(
                                 'id' => $post['id'],
                                 'featured' => false,
-                                'col' => true,
+                                'col' => _attribute('class', $col_class),
                                 'tag' => 'h4',
                                 'description_class' => 'excerpt-no-limit mb-0__related_posts',
-                                'elements' => array('image', 'title', 'content')
+                                'elements' => array('image', 'title', 'content'),
                             );
                             $html .= __post_box($data);
                         }
