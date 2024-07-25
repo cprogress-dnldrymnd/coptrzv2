@@ -329,6 +329,9 @@ section {
 
 .col-lg-20 {
     flex: 0 0 auto;
+    @include responsive(sm-lg) {
+        width: 33.333333333%;
+    }
     @include responsive(md-lg) {
         width: 20%;
     }
