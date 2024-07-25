@@ -212,10 +212,10 @@ main {
 }
 .large-container {
     .container {
-        @media((min-width: 1700px)) {
+        @media (min-width: 1700px) {
             max-width: 1620px;
         }
-        @media((min-width: 1800px)) {
+        @media (min-width: 1800px) {
             max-width: 1720px;
         }
     }

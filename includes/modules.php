@@ -2081,7 +2081,7 @@ function ____columns_modules($items, $id, $html = '')
                             $spec_label = $spec['spec_label'];
                             $spec_value = $spec['spec_value'];
                             $html .= "<div class='col-auto'>";
-                            $html .= "<div class='spec-label small-text fw-medium'>$spec_label</div>";
+                            $html .= "<div class='spec-label small-text fw-medium text-uppercase'>$spec_label</div>";
                             $html .= "<div class='spec-value big-text'>$spec_value</div>";
                             $html .= "</div>";
                         }
