@@ -874,10 +874,7 @@ function ___sections($id = 'sections', $post_id = '')
                             if ($global_col_class) {
                                 $data['col'] = $global_col_class;
                             } else {
-                                $data['col'] = array(
-                                    'col-lg-4',
-                                    'col-md-6',
-                                );
+                                $data['col'] = 'col-lg-4 col-md-6';
                             }
 
                             $html .= __post_box($data);
