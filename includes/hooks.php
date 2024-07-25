@@ -388,7 +388,7 @@ add_action('wpforms_wp_footer_end', 'wpf_dev_smart_phone_field_initial_country',
 
 function filter_add_spaces_to_field_names($formData) {
     foreach ($formData->posted_data as $key => $value) {
-        $key2 = str_replace('%20', ' ', $key);
+        $key2 = str_replace('___', ' ', $key);
         if ($key != $key2) {
             unset($formData->posted_data[$key]);
             $formData->posted_data[$key2] = $value;
