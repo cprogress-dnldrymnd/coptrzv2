@@ -16,7 +16,7 @@ function action_woocommerce_before_main_content()
                 array(
                     'key' => '_product_tax',
                     'value' => get_queried_object()->term_id,
-                    'compare' => 'IN',
+                    'compare' => 'BETWEEN',
                 ),
             ),
         );
