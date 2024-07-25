@@ -362,6 +362,7 @@ section.product-main {
     }
     > .container > .row {
         > div {
+            flex:  0 0 auto;
             > div {
                 width: 100% !important;
                 float: none !important;
