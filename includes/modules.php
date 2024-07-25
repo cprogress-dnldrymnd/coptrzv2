@@ -2071,8 +2071,23 @@ function ____columns_modules($items, $id, $html = '')
                             'post_elements' => $item['post_elements'],
                             'post_type' => $item['post_type'],
                         ));
-                        break;
                     }
+                    break;
+                case 'spec_box':
+                    $spec_box[] = $item['spec_box'];
+                    if ($spec_box) {
+                        $html .= "<div class='row g-4'>";
+                        foreach ($spec_box as $spec) {
+                            $spec_label= $spec['spec_label'];
+                            $spec_value= $spec['spec_value'];
+                            $html .= "<div class='col-auto'>";
+                            $html .= "<div class='spec-label small-text'>$spec_label</div>";
+                            $html .= "<div class='spec-value big-text'>$spec_value</div>";
+                            $html .= "</div>";
+                        }
+                        $html .= "</div>";
+                    }
+                    break;
             }
         }
         $html .= '</div>'; //end column-holder
