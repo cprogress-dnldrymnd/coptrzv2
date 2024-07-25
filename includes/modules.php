@@ -824,16 +824,16 @@ function ___sections($id = 'sections', $post_id = '')
                         $column_width_tablet = $items['column_width_tablet'];
                         $column_width_mobile = $items['column_width_mobile'];
 
-                        if($column_width) {
+                        if ($column_width) {
                             $col_class[] = $column_width;
                         }
-                        if($column_width_tablet) {
+                        if ($column_width_tablet) {
                             $col_class[] = $column_width_tablet;
                         }
-                        if($column_width_mobile) {
+                        if ($column_width_mobile) {
                             $col_class[] = $column_width_mobile;
                         }
-                        
+
                         $category_arr = [];
                         $posts_list = [];
                         foreach ($category as $cat) {
@@ -867,7 +867,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $data = array(
                                 'id' => $post['id'],
                                 'featured' => false,
-                                'col' => _attribute('class', $col_class),
+                                'col' => $col_class,
                                 'tag' => 'h4',
                                 'description_class' => 'excerpt-no-limit mb-0__related_posts',
                                 'elements' => array('image', 'title', 'content'),
@@ -2264,7 +2264,11 @@ function _styles()
 function _attribute($name, $attributes, $separator = ' ')
 {
     $html = "$name='";
-    $html .= implode($separator, array_unique($attributes));
+    if (is_array($attributes)) {
+        $html .= implode($separator, array_unique($attributes));
+    } else {
+        $html .= $attributes;
+    }
     $html .= "'";
     return $html;
 }
@@ -2407,7 +2411,8 @@ function __post_box($data, $class = [], $content_box_class = [])
     if ($col == true && $col != false && is_bool($col)) {
         $html = "<div class='col-lg-4 col-sm-6'>"; //col
     } else {
-        $html = "<div class='$col'>"; //col
+        $col_class = _attribute('class', $col);
+        $html = "<div $col_class>"; //col
     }
     $class_attribute = _attribute('class', $class);
     $content_box_class_attribute = _attribute('class', $content_box_class);
