@@ -867,11 +867,13 @@ function ___sections($id = 'sections', $post_id = '')
                             $data = array(
                                 'id' => $post['id'],
                                 'featured' => false,
-                                'col' => $col_class,
                                 'tag' => 'h4',
                                 'description_class' => 'excerpt-no-limit mb-0__related_posts',
                                 'elements' => array('image', 'title', 'content'),
                             );
+                            if ($col_class) {
+                                $data['col'] = $col_class;
+                            }
                             $html .= __post_box($data);
                         }
 
