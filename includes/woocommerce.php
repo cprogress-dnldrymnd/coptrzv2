@@ -244,7 +244,7 @@ function product_specifications()
 {
     echo __product_specifications(true);
 }
-add_action('woocommerce_before_variations_form', 'product_specifications');
+add_action('woocommerce_before_add_to_cart_form', 'product_specifications');
 
 /**
  * Output radio buttons on WooCommerce variations.
