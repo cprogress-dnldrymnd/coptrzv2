@@ -1270,6 +1270,60 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                             ),
+                        Field::make('select', 'column_width', __('Column Width Desktop'))
+                            ->set_options(
+                                array(
+                                    'col-lg'     => 'Default',
+                                    'col-12'    => '100.00%',
+                                    'col-lg-11' => '91.67%',
+                                    'col-lg-10' => '83.33%',
+                                    'col-lg-9'  => '75.00%',
+                                    'col-lg-8'  => '67.00%',
+                                    'col-lg-7'  => '58.33%',
+                                    'col-lg-6'  => '50.00%',
+                                    'col-lg-5'  => '41.67%',
+                                    'col-lg-4'  => '33.33%',
+                                    'col-lg-3'  => '25.00%',
+                                    'col-lg-2'  => '16.67%',
+                                    'col-lg-1'  => '08.33%',
+                                )
+                            ),
+                        Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
+                            ->set_options(
+                                array(
+                                    ''     => 'Default',
+                                    'col-md-12'    => '100.00%',
+                                    'col-md-11' => '91.67%',
+                                    'col-md-10' => '83.33%',
+                                    'col-md-9'  => '75.00%',
+                                    'col-md-8'  => '67.00%',
+                                    'col-md-7'  => '58.33%',
+                                    'col-md-6'  => '50.00%',
+                                    'col-md-5'  => '41.67%',
+                                    'col-md-4'  => '33.33%',
+                                    'col-md-3'  => '25.00%',
+                                    'col-md-2'  => '16.67%',
+                                    'col-md-1'  => '08.33%',
+                                )
+                            ),
+                        Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
+                            ->set_options(
+                                array(
+                                    ''     => 'Default',
+                                    'col-12' => '100%',
+                                    'col-11' => '91.67%',
+                                    'col-10' => '83.33%',
+                                    'col-9'  => '75.00%',
+                                    'col-8'  => '67.00%',
+                                    'col-7'  => '58.33%',
+                                    'col-6'  => '50.00%',
+                                    'col-5'  => '41.67%',
+                                    'col-4'  => '33.33%',
+                                    'col-3'  => '25.00%',
+                                    'col-2'  => '16.67%',
+                                    'col-1'  => '08.33%',
+                                )
+                            ),
                     ))
                     ->add_fields('related_post',  array(
                         Field::make('select', 'source', __('Source'))
@@ -6155,35 +6209,35 @@ Container::make('post_meta', 'Industry Settings')
     ));
 
 
-    add_filter('carbon_fields_association_field_options_drones_post_product', function ($query_arguments) {
-        // Order posts by title alphabetically, for example:
-        $tax_query[] = array(
-            'taxonomy' => 'product_cat',
-            'field'    => 'term_id',
-            'terms'    => 27
-        );
-    
-        $query_arguments['tax_query'] = $tax_query;
-        $query_arguments['post_status'] = 'publish';
-    
-        return $query_arguments;
-    });
+add_filter('carbon_fields_association_field_options_drones_post_product', function ($query_arguments) {
+    // Order posts by title alphabetically, for example:
+    $tax_query[] = array(
+        'taxonomy' => 'product_cat',
+        'field'    => 'term_id',
+        'terms'    => 27
+    );
 
-    
-    add_filter('carbon_fields_association_field_options_payloads_post_product', function ($query_arguments) {
-        // Order posts by title alphabetically, for example:
-        $tax_query[] = array(
-            'taxonomy' => 'product_cat',
-            'field'    => 'term_id',
-            'terms'    => 29
-        );
-    
-        $query_arguments['tax_query'] = $tax_query;
-        $query_arguments['post_status'] = 'publish';
-    
-        return $query_arguments;
-    });
-    
+    $query_arguments['tax_query'] = $tax_query;
+    $query_arguments['post_status'] = 'publish';
+
+    return $query_arguments;
+});
+
+
+add_filter('carbon_fields_association_field_options_payloads_post_product', function ($query_arguments) {
+    // Order posts by title alphabetically, for example:
+    $tax_query[] = array(
+        'taxonomy' => 'product_cat',
+        'field'    => 'term_id',
+        'terms'    => 29
+    );
+
+    $query_arguments['tax_query'] = $tax_query;
+    $query_arguments['post_status'] = 'publish';
+
+    return $query_arguments;
+});
+
 
 
 /*-----------------------------------------------------------------------------------*/
