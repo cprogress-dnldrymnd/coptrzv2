@@ -2074,7 +2074,7 @@ function ____columns_modules($items, $id, $html = '')
                     }
                     break;
                 case 'spec_box':
-                    $spec_box[] = $item['spec_box'];
+                    $spec_box = $item['spec_box'];
                     if ($spec_box) {
                         $html .= "<div class='row g-4'>";
                         foreach ($spec_box as $spec) {
