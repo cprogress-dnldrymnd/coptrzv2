@@ -22,21 +22,6 @@ function action_woocommerce_before_main_content()
         echo do_shortcode(___hero_product_taxonomy());
         $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
 
-
-        $args = array(
-            'numberposts' => -1,
-            'post_type' => 'producttaxonomypages',
-            'fields' => 'ids',
-            'meta_query' => array(
-                array(
-                    'key' => '_product_term_id',
-                    'value' => get_queried_object()->term_id
-                ),
-            ),
-        );
-        $product_page = get_posts($args);
-
-        echo json_encode($product_page);
         if ($product_category_page) {
             global $product_taxonomy_page;
             $product_taxonomy_page[] = $product_category_page;
