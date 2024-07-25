@@ -2078,8 +2078,8 @@ function ____columns_modules($items, $id, $html = '')
                     if ($spec_box) {
                         $html .= "<div class='row g-4'>";
                         foreach ($spec_box as $spec) {
-                            $spec_label= $spec['spec_label'];
-                            $spec_value= $spec['spec_value'];
+                            $spec_label = $spec['spec_label'];
+                            $spec_value = $spec['spec_value'];
                             $html .= "<div class='col-auto'>";
                             $html .= "<div class='spec-label small-text'>$spec_label</div>";
                             $html .= "<div class='spec-value big-text'>$spec_value</div>";
