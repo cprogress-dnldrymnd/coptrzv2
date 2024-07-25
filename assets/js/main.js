@@ -237,6 +237,7 @@ function __header_menu() {
 
                     jQuery('.tab-links').addClass('d-none');
                     jQuery($target).removeClass('d-none');
+                    e.preventDefault();
 
                 }, function () {
                     if (!jQuery(this).hasClass('has-children-tab')) {
@@ -247,6 +248,7 @@ function __header_menu() {
 
                         jQuery('.tab-links').addClass('d-none');
                         jQuery($target).addClass('d-none');
+                        e.preventDefault();
                     }
                 }
             );
@@ -266,25 +268,25 @@ function __header_menu() {
 
                 e.preventDefault();
             });
+            jQuery('.has-children.sub-nav').click(function (e) {
+                if (jQuery(this).hasClass('active')) {
+                    jQuery(this).removeClass('active');
+                    jQuery(this).next().removeClass('active');
+                } else {
+                    jQuery('.has-children.sub-nav.active').removeClass('active');
+                    jQuery('.submenu2.active').removeClass('active');
+    
+                    jQuery(this).toggleClass('active');
+                    jQuery(this).next().toggleClass('active');
+                }
+                jQuery('body').removeClass('mini-cart-active');
+    
+            });
         }
 
 
 
-        jQuery('.has-children.sub-nav').click(function (e) {
-            if (jQuery(this).hasClass('active')) {
-                jQuery(this).removeClass('active');
-                jQuery(this).next().removeClass('active');
-            } else {
-                jQuery('.has-children.sub-nav.active').removeClass('active');
-                jQuery('.submenu2.active').removeClass('active');
-
-                jQuery(this).toggleClass('active');
-                jQuery(this).next().toggleClass('active');
-            }
-            jQuery('body').removeClass('mini-cart-active');
-
-            e.preventDefault();
-        });
+      
 
         jQuery('.has-children-tab').click(function (e) {
             $target = jQuery(this).attr('url_target');
