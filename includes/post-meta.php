@@ -1284,6 +1284,7 @@ function __section_fields($name = 'sections')
                                     'col-lg-5'  => '41.67%',
                                     'col-lg-4'  => '33.33%',
                                     'col-lg-3'  => '25.00%',
+                                    'col-lg-20'  => '20.00%',
                                     'col-lg-2'  => '16.67%',
                                     'col-lg-1'  => '08.33%',
                                 )
@@ -1302,6 +1303,7 @@ function __section_fields($name = 'sections')
                                     'col-md-5'  => '41.67%',
                                     'col-md-4'  => '33.33%',
                                     'col-md-3'  => '25.00%',
+                                    'col-md-20'  => '20.00%',
                                     'col-md-2'  => '16.67%',
                                     'col-md-1'  => '08.33%',
                                 )

@@ -70,7 +70,6 @@ $spacings_tablet: (
     "md": 4rem,
     "sm": 2rem,
     "xs": 1rem
-
 );
 
 $spacings_mobile: (
@@ -325,5 +324,19 @@ section {
 }
 
 .text-inherit {
-   color: inherit !important;
+    color: inherit !important;
+}
+
+.col-lg-20 {
+    flex: 0 0 auto;
+    @include responsive(md-lg) {
+        width: 20%;
+    }
+}
+
+.col-md-20 {
+    flex: 0 0 auto;
+    @include responsive(sm-lg) {
+        width: 20%;
+    }
 }
