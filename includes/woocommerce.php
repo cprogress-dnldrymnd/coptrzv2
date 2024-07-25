@@ -29,14 +29,12 @@ function action_woocommerce_before_main_content()
             'fields' => 'ids',
             'meta_query' => array(
                 array(
-                    'key' => '_product_tax',
-                    'value' => get_queried_object()->term_id,
-                    'compare' => 'EXISTS',
+                    'key' => get_queried_object()->term_id,
+                    'value' => $id,
                 ),
             ),
         );
         $product_page = get_posts($args);
-
 
         echo json_encode($product_page);
         if ($product_category_page) {
