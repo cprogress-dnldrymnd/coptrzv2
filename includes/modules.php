@@ -860,9 +860,9 @@ function ___sections($id = 'sections', $post_id = '')
                         } else {
                             $posts_list = $posts;
                         }
-                        $test = json_decode($global_col_class);
+                        $test = json_encode($global_col_class);
 
-                        $html .= "<div test='$global_col_class' class='row g-4 justify-content-center same-image-height row-global-post' style='--image-padding: 35%'>";
+                        $html .= "<div test='$test' class='row g-4 justify-content-center same-image-height row-global-post' style='--image-padding: 35%'>";
 
                         foreach ($posts_list as $post) {
                             $data = array(
