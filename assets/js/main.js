@@ -237,7 +237,7 @@ function __header_menu() {
 
                     jQuery('.tab-links').addClass('d-none');
                     jQuery($target).removeClass('d-none');
-                    e.preventDefault();
+           
 
                 }, function () {
                     if (!jQuery(this).hasClass('has-children-tab')) {
@@ -248,7 +248,7 @@ function __header_menu() {
 
                         jQuery('.tab-links').addClass('d-none');
                         jQuery($target).addClass('d-none');
-                        e.preventDefault();
+                     
                     }
                 }
             );
