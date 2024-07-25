@@ -29,8 +29,8 @@ function action_woocommerce_before_main_content()
             'fields' => 'ids',
             'meta_query' => array(
                 array(
-                    'key' => get_queried_object()->term_id,
-                    'value' => $id,
+                    'key' => '_product_term_id',
+                    'value' => get_queried_object()->term_id
                 ),
             ),
         );
