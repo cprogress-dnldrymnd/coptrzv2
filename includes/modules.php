@@ -817,6 +817,7 @@ function ___sections($id = 'sections', $post_id = '')
                         break;
 
                     case 'global_post_box_selection':
+                        $global_col_class = [];
                         $posts = $items['post'];
                         $source = $items['source'];
                         $category = $items['category'];
