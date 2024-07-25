@@ -12076,8 +12076,10 @@ section.product-main .summary.summary.summary .variations tr {
     .products-specifications.products-specifications-v2 .inner h5, .products-specifications.products-specifications-v2 .inner .h5 {
       font-size: 14px; }
 
+.products-specifications-v2 + .cart {
+  margin-top: 2rem; }
+
 .product-custom-variation.product-custom-variation {
-  margin-top: 2rem;
   margin-bottom: 2rem; }
   .product-custom-variation.product-custom-variation .select-variant {
     font-size: 22px; }

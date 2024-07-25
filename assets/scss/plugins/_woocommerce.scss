@@ -488,9 +488,11 @@ section.product-main {
         }
     }
 }
+.products-specifications-v2 + .cart {
+    margin-top: 2rem;
+}
 
 .product-custom-variation.product-custom-variation {
-    margin-top: 2rem;
     margin-bottom: 2rem;
     .select-variant {
         font-size: 22px;
