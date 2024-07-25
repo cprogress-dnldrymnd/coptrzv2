@@ -332,7 +332,7 @@ section {
     @include responsive(sm-lg) {
         width: 33.333333333%;
     }
-    @include responsive(md-lg) {
+    @include responsive(lg) {
         width: 20%;
     }
 }
