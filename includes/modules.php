@@ -874,6 +874,12 @@ function ___sections($id = 'sections', $post_id = '')
                             if ($col_class) {
                                 $data['col'] = $col_class;
                             }
+                            if ($col_class) {
+                                $data['col'] = array(
+                                    'col-lg-4',
+                                    'col-md-6',
+                                );
+                            }
                             $html .= __post_box($data);
                         }
 
