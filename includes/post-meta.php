@@ -1273,7 +1273,7 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'column_width', __('Column Width Desktop'))
                             ->set_options(
                                 array(
-                                    'col-lg'     => 'Default',
+                                    ''     => 'Default',
                                     'col-12'    => '100.00%',
                                     'col-lg-11' => '91.67%',
                                     'col-lg-10' => '83.33%',
