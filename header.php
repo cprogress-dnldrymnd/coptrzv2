@@ -38,3 +38,18 @@
 	}
 	?>
 	<main class="<?= $class ?>">
+		<?php
+		$args = array(
+			'numberposts' => -1,
+			'post_type' => 'producttaxonomypages',
+			'fields' => 'ids',
+
+		);
+		$product_page = get_posts($args);
+
+		foreach ($product_page as $page) {
+			$id = $page->ID;
+			$product_term_id = get__post_meta_by_id($id, 'product_tax')[0]['id'];
+			update_post_meta($id, '_product_term_id', $product_term_id);
+		}
+		?>
