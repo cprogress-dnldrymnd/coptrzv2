@@ -3056,6 +3056,17 @@ function __section_fields($name = 'sections')
                                         array(
                                             Field::make('textarea', 'custom_html', __('Custom HTML')),
                                         )
+                                    )
+                                    ->add_fields(
+                                        'spec_box',
+                                        array(
+                                            Field::make('complex', 'spec_box', __(''))
+                                                ->add_fields(array(
+                                                    Field::make('textarea', 'spec_label', __('Spec Label')),
+                                                    Field::make('textarea', 'spec_value', __('Spec Value')),
+                                                ))
+
+                                        )
                                     ),
 
                                 //Individual Columns Styles
