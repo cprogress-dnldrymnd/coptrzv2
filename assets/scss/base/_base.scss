@@ -210,6 +210,16 @@ main {
         max-width: 1000px;
     }
 }
+.large-container {
+    .container {
+        @media((min-width: 1700px)) {
+            max-width: 1620px;
+        }
+        @media((min-width: 1800px)) {
+            max-width: 1720px;
+        }
+    }
+}
 .logo-slider {
     .swiper-wrapper {
         transition-timing-function: linear !important;
