@@ -105,6 +105,13 @@ function header_menu()
 							$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
 								return ($var['menu_item_parent'] == $submenu2_id);
 							});
+
+							$html .= '<li class="close-submenu">';
+							$html .= $submenu1['title'];
+							$html .= '</li>';
+
+
+
 							$html .= '<li>';
 							$html .= '<a class="nav-link text-black  ' . ($submenus3 ? 'has-children-tab' : '') . '"  url_target="#submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">';
 							$html .= $submenu2['title'];
