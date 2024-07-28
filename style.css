@@ -12961,11 +12961,12 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
     border: none;
     background-color: transparent;
     padding: 0;
-    position: relative; }
+    position: relative;
+    color: var(--bs-white); }
     .header .menu-burger .icon .menu,
     .header .menu-burger .icon .menu::before,
     .header .menu-burger .icon .menu::after {
-      background: var(--bs-primary);
+      background-color: currentColor;
       content: "";
       display: block;
       height: 3px;
@@ -12989,6 +12990,18 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 @media screen and (min-width: 992px) {
   .admin-bar header {
     top: 52px; } }
+
+body.mobile-menu-active .icon .menu {
+  background: transparent; }
+  body.mobile-menu-active .icon .menu:before {
+    transform: rotate(45deg); }
+  body.mobile-menu-active .icon .menu:after {
+    transform: rotate(-45deg); }
+
+body.mobile-menu-active .icon .menu::before,
+body.mobile-menu-active .icon .menu::after {
+  top: 0;
+  transition: top ease 0.3s, transform ease 0.3s 0.3s; }
 
 #offCanvasMenu {
   width: 100%; }

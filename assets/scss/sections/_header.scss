@@ -212,10 +212,11 @@
         background-color: transparent;
         padding: 0;
         position: relative;
+        color: var(--bs-white);
         .icon .menu,
         .icon .menu::before,
         .icon .menu::after {
-            background: var(--bs-primary);
+            background-color: currentColor;
             content: "";
             display: block;
             height: 3px;
@@ -254,6 +255,27 @@
         }
     }
 }
+
+body.mobile-menu-active {
+    .icon {
+        .menu {
+            background: transparent;
+            @include before {
+                transform: rotate(45deg);
+            }
+            @include after {
+                transform: rotate(-45deg);
+            }
+            @include before-after {
+                top: 0;
+                transition:
+                    top ease 0.3s,
+                    transform ease 0.3s 0.3s;
+            }
+        }
+    }
+}
+
 
 #offCanvasMenu {
     width: 100%;
