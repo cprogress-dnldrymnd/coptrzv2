@@ -13017,6 +13017,8 @@ body.mobile-menu-active header .menu-burger .icon .menu {
       #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav {
         width: 100%;
         flex-direction: column !important; }
+        #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .nav-item {
+          position: static !important; }
         #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .nav-link {
           display: flex;
           align-items: center;
