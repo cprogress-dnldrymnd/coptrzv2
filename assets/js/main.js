@@ -266,8 +266,8 @@ function __header_menu() {
                     }, 100);
 
                 } else {
-                    jQuery('.has-children.main-nav.active').removeClass('active');
-                    jQuery('.submenu.active').removeClass('active');
+                    jQuery('.has-children.main-nav.active').removeClass('active show-menu');
+                    jQuery('.submenu.active').removeClass('active show-menu');
 
                     var $this = jQuery(this);
 
