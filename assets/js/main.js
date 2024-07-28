@@ -297,14 +297,18 @@ function __header_menu() {
                 setTimeout(function () {
                     $this.parent().parent().parent().parent().removeClass('active');
                     $this.parent().parent().parent().parent().prev().removeClass('active');
-    
+
                 }, 300);
                 e.preventDefault();
             });
 
             jQuery('.tab-links').each(function (index, element) {
-                
-                
+                $id = jQuery(this).attr('id');
+
+                $parent_id = '#anchor-' + $id;
+
+                jQuery(this).insertAfter($parent_id);
+
             });
 
             $nav = jQuery('#menu-desktop .navbar');
