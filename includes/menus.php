@@ -77,6 +77,13 @@ function header_menu()
 				$html .= '<div class="submenu">'; //submenu 1
 				$html .= '<div class="submenu-inner">';
 				$html .= "<ul class='list-inline d-flex p-0 $ul_class'>";
+
+				$html .= '<li class="close-submenu">';
+				$html .= '<a class="nav-link text-black"' >
+					$html .= $menu['title'];
+				$html .= "</a>";
+				$html .= '</li>';
+
 				foreach ($submenus1 as $submenu1) {
 					$submenu1_id = $submenu1['ID'];
 
@@ -100,17 +107,18 @@ function header_menu()
 						$html .= '<div class="col-lg-5">';
 						$html .= '<ul class="list-inline left-menu d-flex flex-column p-0">';
 
+						$html .= '<li class="close-submenu">';
+						$html .= '<a class="nav-link text-black"' >
+							$html .= $submenu1['title'];
+						$html .= "</a>";
+						$html .= '</li>';
+
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
 							$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
 								return ($var['menu_item_parent'] == $submenu2_id);
 							});
 
-							$html .= '<li class="close-submenu">';
-							$html .= '<a class="nav-link text-black"' >
-								$html .= $submenu1['title'];
-							$html .= "</a>";
-							$html .= '</li>';
 
 
 
