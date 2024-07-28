@@ -109,8 +109,8 @@ function header_menu()
 						$html .= '<ul class="list-inline left-menu d-flex flex-column p-0">';
 
 						$html .= '<li class="close-submenu has-submenu d-block d-lg-none">';
-						$html .= '<a class="nav-link text-black"' >
-							$html .= $submenu1['title'];
+						$html .= '<a class="nav-link text-black">';
+						$html .= $submenu1['title'];
 						$html .= '<span class="icon"></span>';
 						$html .= "</a>";
 						$html .= '</li>';
