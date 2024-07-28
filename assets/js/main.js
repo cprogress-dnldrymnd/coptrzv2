@@ -254,28 +254,17 @@ function __header_menu() {
             );
         } else {
             jQuery('.has-children.main-nav').click(function (e) {
-                if (jQuery(this).hasClass('show-menu')) {
-                    var $this = jQuery(this);
+                var $this = jQuery(this);
 
+                $this.toggleClass('active');
+                $this.next().toggleClass('active');
+
+                setTimeout(function () {
                     $this.toggleClass('show-menu');
                     $this.next().toggleClass('show-menu');
+                }, 100);
 
-                    setTimeout(function () {
-                        $this.toggleClass('active');
-                        $this.next().toggleClass('active');
-                    }, 100);
-
-                } else {
-                    var $this = jQuery(this);
-
-                    $this.toggleClass('active');
-                    $this.next().toggleClass('active');
-
-                    setTimeout(function () {
-                        $this.toggleClass('show-menu');
-                        $this.next().toggleClass('show-menu');
-                    }, 100);
-                }
+                
                 jQuery('body').removeClass('mini-cart-active');
 
                 e.preventDefault();
