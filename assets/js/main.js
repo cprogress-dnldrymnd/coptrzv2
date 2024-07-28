@@ -274,10 +274,9 @@ function __header_menu() {
                     $this.addClass('active');
                     $this.next().addClass('active');
 
-                    $this.removeClass('show-menu');
-                        $this.next().removeClass('show-menu');
                     setTimeout(function () {
-                        
+                        $this.addClass('show-menu');
+                        $this.next().addClass('show-menu');
                     }, 100);
                 }
                 jQuery('body').removeClass('mini-cart-active');
