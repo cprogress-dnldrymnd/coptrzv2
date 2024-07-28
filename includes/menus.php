@@ -146,7 +146,7 @@ function header_menu()
 								return ($var['menu_item_parent'] == $submenu2_id);
 							});
 							if ($submenus3) {
-								$html .= '<ul class="list-inline left-menu d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu2_id . '">';
+								$html .= '<ul class="submenu-3 list-inline left-menu d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu2_id . '">';
 								foreach ($submenus3 as $submenu3) {
 									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '">' . $submenu3['title'] . '</a>';
 								}
