@@ -78,7 +78,7 @@ function header_menu()
 				$html .= '<div class="submenu-inner">';
 				$html .= "<ul class='list-inline d-flex p-0 $ul_class'>";
 
-				$html .= '<li class="close-submenu has-submenu d-block d-lg-none">';
+				$html .= '<li class="close-submenu close-submenu-1 has-submenu d-block d-lg-none">';
 				$html .= '<a class="nav-link text-black">';
 				$html .= $menu['title'];
 				$html .= '<span class="icon"></span>';
@@ -108,7 +108,7 @@ function header_menu()
 						$html .= '<div class="col-lg-5">';
 						$html .= '<ul class="list-inline left-menu d-flex flex-column p-0">';
 
-						$html .= '<li class="close-submenu has-submenu d-block d-lg-none">';
+						$html .= '<li class="close-submenu close-submenu-2 has-submenu d-block d-lg-none">';
 						$html .= '<a class="nav-link text-black">';
 						$html .= $submenu1['title'];
 						$html .= '<span class="icon"></span>';

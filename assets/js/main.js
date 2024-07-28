@@ -296,10 +296,16 @@ function __header_menu() {
 
             });
 
-            jQuery('.close-submenu').click(function (e) {
-                console.log('xxsdsds');
+            jQuery('.close-submenu-1').click(function (e) {
                 jQuery(this).parent().parent().parent().removeClass('active');
                 jQuery(this).parent().parent().parent().prev().removeClass('active');
+                e.preventDefault();
+            });
+
+            
+            jQuery('.close-submenu-2').click(function (e) {
+                jQuery(this).parent().parent().parent().parent().removeClass('active');
+                jQuery(this).parent().parent().parent().parent().parent().prev().removeClass('active');
                 e.preventDefault();
 
             });
