@@ -13014,6 +13014,7 @@ body.mobile-menu-active header .menu-burger .icon .menu {
       height: 100%;
       overflow-x: hidden; }
       #offCanvasMenu .offcanvas-body #menu-mobile .close-submenu a {
+        cursor: pointer;
         flex-direction: row-reverse; }
         #offCanvasMenu .offcanvas-body #menu-mobile .close-submenu a .icon {
           -webkit-transform: scaleX(-1);

@@ -295,6 +295,7 @@ body.mobile-menu-active {
             overflow-x: hidden;
             .close-submenu {
                 a {
+                    cursor: pointer;
                     flex-direction: row-reverse;
                     .icon {
                         @include transform(scaleX(-1));

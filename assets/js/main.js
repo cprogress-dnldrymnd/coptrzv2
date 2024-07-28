@@ -302,6 +302,11 @@ function __header_menu() {
                 e.preventDefault();
             });
 
+            jQuery('.tab-links').each(function (index, element) {
+                
+                
+            });
+
             $nav = jQuery('#menu-desktop .navbar');
             $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">  <div class="offcanvas-body"> <div id="menu-mobile"> </div> </div> </div>');
 
