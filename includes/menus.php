@@ -107,7 +107,9 @@ function header_menu()
 							});
 
 							$html .= '<li class="close-submenu">';
-							$html .= $submenu1['title'];
+							$html .= '<a class="nav-link text-black"' >
+								$html .= $submenu1['title'];
+							$html .= "</a>";
 							$html .= '</li>';
 
 
