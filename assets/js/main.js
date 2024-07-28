@@ -297,6 +297,7 @@ function __header_menu() {
             });
 
             jQuery('.close-submenu').click(function (e) {
+                console.log('xxsdsds');
                 jQuery(this).parents('active').removeClass('active');
                 e.preventDefault();
 
