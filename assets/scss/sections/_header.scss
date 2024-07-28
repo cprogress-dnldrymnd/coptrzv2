@@ -293,7 +293,12 @@ body.mobile-menu-active {
             position: relative;
             height: 100%;
             .close-submenu {
-                
+                a {
+                    flex-direction: row-reverse;
+                    .icon {
+                        @include transform(scaleX(-1));
+                    }
+                }
             }
             .main-nav {
                 color: var(--bs-primary) !important;

@@ -13012,6 +13012,8 @@ body.mobile-menu-active header .menu-burger .icon .menu {
       border-top: 1px solid var(--border-color);
       position: relative;
       height: 100%; }
+      #offCanvasMenu .offcanvas-body #menu-mobile .close-submenu a {
+        flex-direction: row-reverse; }
       #offCanvasMenu .offcanvas-body #menu-mobile .main-nav {
         color: var(--bs-primary) !important; }
       #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav {
