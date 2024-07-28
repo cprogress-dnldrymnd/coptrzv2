@@ -254,7 +254,7 @@ function __header_menu() {
             );
         } else {
             jQuery('.has-children.main-nav').click(function (e) {
-                if (jQuery(this).hasClass('active') && jQuery(this).hasClass('show-menu')) {
+                if (jQuery(this).hasClass('active')) {
                     var $this = jQuery(this);
 
                     $this.toggleClass('show-menu');
