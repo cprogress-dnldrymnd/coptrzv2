@@ -305,7 +305,7 @@ function __header_menu() {
             
             jQuery('.close-submenu-2').click(function (e) {
                 jQuery(this).parent().parent().parent().parent().removeClass('active');
-                jQuery(this).parent().parent().parent().parent().parent().prev().removeClass('active');
+                jQuery(this).parent().parent().parent().parent().prev().removeClass('active');
                 e.preventDefault();
 
             });
