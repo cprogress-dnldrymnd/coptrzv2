@@ -12962,7 +12962,8 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
     background-color: transparent;
     padding: 0;
     position: relative;
-    color: var(--bs-white); }
+    color: var(--bs-white);
+    outline: none; }
     .header .menu-burger .icon .menu,
     .header .menu-burger .icon .menu::before,
     .header .menu-burger .icon .menu::after {
@@ -12993,13 +12994,13 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 
 body.mobile-menu-active header .header-inner {
   background-color: var(--bs-primary); }
-body.mobile-menu-active .menu-burger .icon .menu {
+body.mobile-menu-active header .menu-burger .icon .menu {
   background: transparent; }
-  body.mobile-menu-active .menu-burger .icon .menu:before {
+  body.mobile-menu-active header .menu-burger .icon .menu:before {
     transform: rotate(45deg); }
-  body.mobile-menu-active .menu-burger .icon .menu:after {
+  body.mobile-menu-active header .menu-burger .icon .menu:after {
     transform: rotate(-45deg); }
-  body.mobile-menu-active .menu-burger .icon .menu:before, body.mobile-menu-active .menu-burger .icon .menu:after {
+  body.mobile-menu-active header .menu-burger .icon .menu:before, body.mobile-menu-active header .menu-burger .icon .menu:after {
     top: 0;
     transition: top ease 0.3s, transform ease 0.3s 0.3s; }
 
