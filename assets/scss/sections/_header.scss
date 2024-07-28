@@ -351,12 +351,12 @@ body.mobile-menu-active {
                     &.active {
                         visibility: visible;
                         opacity: 1;
-                        display: block;
+                        display: block !important;
                     }
                     &:not(.active) {
                         visibility: hidden;
                         opacity: 0;
-                        display: none;
+                        display: none !important;
                     }
                 }
             }
