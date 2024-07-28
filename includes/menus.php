@@ -148,7 +148,7 @@ function header_menu()
 							if ($submenus3) {
 
 								$html .= '<ul class="submenu3 list-inline left-menu d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu2_id . '">';
-								$html .= '<li class="close-submenu close-submenu-2 has-submenu d-block d-lg-none">';
+								$html .= '<li class="close-submenu close-submenu-3 has-submenu d-block d-lg-none">';
 								$html .= '<a class="nav-link text-black">';
 								$html .= $submenu2['title'];
 								$html .= '<span class="icon"></span>';
