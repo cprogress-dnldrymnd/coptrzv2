@@ -13081,13 +13081,13 @@ body.mobile-menu-active header .menu-burger .icon .menu {
           #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu3.active {
             visibility: visible;
             opacity: 1;
-            display: block; }
+            display: block !important; }
           #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu:not(.active),
           #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu2:not(.active),
           #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu3:not(.active) {
             visibility: hidden;
             opacity: 0;
-            display: none; }
+            display: none !important; }
       #offCanvasMenu .offcanvas-body #menu-mobile ul li a.nav-link {
         padding-left: 20px;
         padding-right: 20px;
