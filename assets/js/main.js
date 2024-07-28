@@ -254,28 +254,16 @@ function __header_menu() {
             );
         } else {
             jQuery('.has-children.main-nav').click(function (e) {
-                if (jQuery(this).hasClass('active')) {
-                    var $this = jQuery(this);
+                var $this = jQuery(this);
 
+                $this.toggleClass('active');
+                $this.next().toggleClass('active');
+
+                setTimeout(function () {
                     $this.toggleClass('show-menu');
                     $this.next().toggleClass('show-menu');
+                }, 300);
 
-                    setTimeout(function () {
-                        $this.toggleClass('active');
-                        $this.next().toggleClass('active');
-                    }, 300);
-
-                } else {
-                    var $this = jQuery(this);
-
-                    $this.toggleClass('active');
-                    $this.next().toggleClass('active');
-
-                    setTimeout(function () {
-                        $this.toggleClass('show-menu');
-                        $this.next().toggleClass('show-menu');
-                    }, 300);
-                }
                 jQuery('body').removeClass('mini-cart-active');
 
                 e.preventDefault();
@@ -309,8 +297,12 @@ function __header_menu() {
             });
 
             jQuery('.close-submenu-1').click(function (e) {
-                jQuery(this).parent().parent().parent().removeClass('active');
-                jQuery(this).parent().parent().parent().prev().removeClass('active');
+                jQuery(this).parent().parent().parent().removeClass('show-menu');
+                jQuery(this).parent().parent().parent().prev().removeClass('show-menu');
+                setTimeout(function () {
+                    jQuery(this).parent().parent().parent().removeClass('active');
+                    jQuery(this).parent().parent().parent().prev().removeClass('active');
+                }, 300);
                 e.preventDefault();
             });
 
