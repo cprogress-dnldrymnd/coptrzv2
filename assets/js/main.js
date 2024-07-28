@@ -262,7 +262,7 @@ function __header_menu() {
                 setTimeout(function () {
                     $this.addClass('show-menu');
                     $this.next().addClass('show-menu');
-                }, 50);
+                }, 100);
 
                 jQuery('body').removeClass('mini-cart-active');
 
@@ -303,7 +303,7 @@ function __header_menu() {
                 setTimeout(function () {
                     $this.parent().parent().parent().removeClass('active');
                     $this.parent().parent().parent().prev().removeClass('active');
-                }, 50);
+                }, 100);
                 e.preventDefault();
             });
 
