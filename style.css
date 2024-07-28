@@ -13014,6 +13014,12 @@ body.mobile-menu-active header .menu-burger .icon .menu {
       height: 100%; }
       #offCanvasMenu .offcanvas-body #menu-mobile .close-submenu a {
         flex-direction: row-reverse; }
+        #offCanvasMenu .offcanvas-body #menu-mobile .close-submenu a .icon {
+          -webkit-transform: scaleX(-1);
+          -moz-transform: scaleX(-1);
+          -ms-transform: scaleX(-1);
+          -o-transform: scaleX(-1);
+          transform: scaleX(-1); }
       #offCanvasMenu .offcanvas-body #menu-mobile .main-nav {
         color: var(--bs-primary) !important; }
       #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav {

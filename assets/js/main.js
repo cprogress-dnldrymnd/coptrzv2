@@ -296,6 +296,11 @@ function __header_menu() {
 
             });
 
+            jQuery('.close-submenu').click(function (e) {
+                jQuery(this).parents('active').removeClass('active');
+                e.preventDefault();
+
+            });
 
             $nav = jQuery('#menu-desktop .navbar');
             $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">  <div class="offcanvas-body"> <div id="menu-mobile"> </div> </div> </div>');
