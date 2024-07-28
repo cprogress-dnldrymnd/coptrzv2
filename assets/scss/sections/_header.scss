@@ -208,6 +208,10 @@
     }
 
     .menu-burger {
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        position: relative;
         .icon .menu,
         .icon .menu::before,
         .icon .menu::after {
