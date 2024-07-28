@@ -23,9 +23,9 @@ $SVG = new SVG;
         </div>
         <div class="col-auto d-flex align-items-center d-lg-none">
             <button class="menu-burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu" aria-controls="offCanvasMenu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <div class="icon">
+                    <div class="menu"></div>
+                </div>
             </button>
         </div>
 

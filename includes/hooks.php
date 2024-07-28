@@ -386,14 +386,13 @@ function wpf_dev_smart_phone_field_initial_country()
 add_action('wpforms_wp_footer_end', 'wpf_dev_smart_phone_field_initial_country', 30);
 
 
-function filter_add_spaces_to_field_names($formData) {
-    foreach ($formData->posted_data as $key => $value) {
-        $key2 = str_replace('___', ' ', $key);
-        if ($key != $key2) {
-            unset($formData->posted_data[$key]);
-            $formData->posted_data[$key2] = $value;
-        }
-    }
-    return $formData;
-}
-add_filter('cfdb_form_data', 'filter_add_spaces_to_field_names');
+add_filter('wpcf7_form_tag_data_option', function($data, $options, $args) {
+	$data = [];
+	foreach ($options as $option) {
+		if ($option === 'checkbox_options') {
+			$data = array_merge($data, ['Checkbox Option A', 'Checkbox Option B']);
+		}
+
+	}
+	return $data;
+}, 10, 3);
