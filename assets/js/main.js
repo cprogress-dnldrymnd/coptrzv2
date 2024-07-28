@@ -254,29 +254,26 @@ function __header_menu() {
             );
         } else {
             jQuery('.has-children.main-nav').click(function (e) {
-                jQuery('.has-children.main-nav').removeClass('active show-menu');
-                jQuery('.submenu').removeClass('active show-menu');
-
                 if (jQuery(this).hasClass('show-menu')) {
                     var $this = jQuery(this);
 
-                    $this.removeClass('show-menu');
-                    $this.next().removeClass('show-menu');
+                    $this.toggleClass('show-menu');
+                    $this.next().toggleClass('show-menu');
 
                     setTimeout(function () {
-                        $this.removeClass('active');
-                        $this.next().removeClass('active');
+                        $this.toggleClass('active');
+                        $this.next().toggleClass('active');
                     }, 100);
 
                 } else {
                     var $this = jQuery(this);
 
-                    $this.addClass('active');
-                    $this.next().addClass('active');
+                    $this.toggleClass('active');
+                    $this.next().toggleClass('active');
 
                     setTimeout(function () {
-                        $this.addClass('show-menu');
-                        $this.next().addClass('show-menu');
+                        $this.toggleClass('show-menu');
+                        $this.next().toggleClass('show-menu');
                     }, 100);
                 }
                 jQuery('body').removeClass('mini-cart-active');
