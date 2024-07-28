@@ -255,15 +255,29 @@ function __header_menu() {
         } else {
             jQuery('.has-children.main-nav').click(function (e) {
                 if (jQuery(this).hasClass('active')) {
+                    var $this = jQuery(this);
 
-                    jQuery(this).removeClass('show-menu');
-                    jQuery(this).next().removeClass('show-menu');
+                    $this.removeClass('show-menu');
+                    $this.next().removeClass('show-menu');
 
                     setTimeout(function () {
-                        jQuery(this).removeClass('active');
-                        jQuery(this).next().removeClass('active');
+                        $this.removeClass('active');
+                        $this.next().removeClass('active');
                     }, 100);
 
+                } else {
+                    jQuery('.has-children.main-nav.active').removeClass('active');
+                    jQuery('.submenu.active').removeClass('active');
+
+                    var $this = jQuery(this);
+
+                    $this.addClass('active');
+                    $this.next().addClass('active');
+
+                    setTimeout(function () {
+                        $this.removeClass('show-menu');
+                        $this.next().removeClass('show-menu');
+                    }, 100);
                 }
                 jQuery('body').removeClass('mini-cart-active');
 
