@@ -269,6 +269,9 @@ function __header_menu() {
                     jQuery('.has-children.main-nav.active').removeClass('active show-menu');
                     jQuery('.submenu.active').removeClass('active show-menu');
 
+                    jQuery('.has-children.main-nav.show-menu').removeClass('show-menu');
+                    jQuery('.submenu.show-menu').removeClass('show-menu');
+
                     var $this = jQuery(this);
 
                     $this.addClass('active');
