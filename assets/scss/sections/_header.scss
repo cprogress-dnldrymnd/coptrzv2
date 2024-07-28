@@ -342,8 +342,18 @@ body.mobile-menu-active {
                     ul {
                         flex-direction: column;
                     }
-                    &.active {
+                    &.show-menu {
                         @include transform(translateX(0));
+                    }
+                    &.active {
+                        visibility: visible;
+                        opacity: 1;
+                        display: block;
+                    }
+                    &:not(.active) {
+                        visibility: hidden;
+                        opacity: 0;
+                        display: none;
                     }
                 }
             }

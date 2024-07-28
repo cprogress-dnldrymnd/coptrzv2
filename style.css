@@ -13065,13 +13065,23 @@ body.mobile-menu-active header .menu-burger .icon .menu {
           #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu ul,
           #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu2 ul {
             flex-direction: column; }
-          #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu.active,
-          #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu2.active {
+          #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu.show-menu,
+          #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu2.show-menu {
             -webkit-transform: translateX(0);
             -moz-transform: translateX(0);
             -ms-transform: translateX(0);
             -o-transform: translateX(0);
             transform: translateX(0); }
+          #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu.active,
+          #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu2.active {
+            visibility: visible;
+            opacity: 1;
+            display: block; }
+          #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu:not(.active),
+          #offCanvasMenu .offcanvas-body #menu-mobile .navbar-nav .submenu2:not(.active) {
+            visibility: hidden;
+            opacity: 0;
+            display: none; }
       #offCanvasMenu .offcanvas-body #menu-mobile ul li a.nav-link {
         padding-left: 20px;
         padding-right: 20px;
