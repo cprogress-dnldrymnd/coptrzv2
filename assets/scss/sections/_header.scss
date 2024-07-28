@@ -305,6 +305,15 @@ body.mobile-menu-active {
             .main-nav {
                 color: var(--bs-primary) !important;
             }
+            .has-children-tab {
+                & + ul {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    right: 0;
+                    background-color: var(--bs-white);
+                }
+            }
             .navbar-nav {
                 width: 100%;
                 flex-direction: column !important;
