@@ -253,36 +253,18 @@ function __header_menu() {
                 }
             );
         } else {
-            jQuery('.has-children.main-nav').click(function (e) {
+            jQuery('.has-children.main-nav, .has-children.sub-nav').click(function (e) {
                 var $this = jQuery(this);
-
                 $this.addClass('active');
                 $this.next().addClass('active');
-
                 setTimeout(function () {
                     $this.addClass('show-menu');
                     $this.next().addClass('show-menu');
                 }, 50);
-
-                jQuery('body').removeClass('mini-cart-active');
-
-                e.preventDefault();
-            });
-            jQuery('.has-children.sub-nav').click(function (e) {
-                if (jQuery(this).hasClass('active')) {
-                    jQuery(this).removeClass('active');
-                    jQuery(this).next().removeClass('active');
-                } else {
-                    jQuery('.has-children.sub-nav.active').removeClass('active');
-                    jQuery('.submenu2.active').removeClass('active');
-
-                    jQuery(this).toggleClass('active');
-                    jQuery(this).next().toggleClass('active');
-                }
                 jQuery('body').removeClass('mini-cart-active');
                 e.preventDefault();
             });
-
+    
             jQuery('.has-children-tab').click(function (e) {
                 $target = jQuery(this).attr('url_target');
                 jQuery('.has-children-tab.nav-link.active').removeClass('active');
