@@ -254,9 +254,8 @@ function __header_menu() {
             );
         } else {
             jQuery('.has-children.main-nav').click(function (e) {
-                jQuery('.has-children.main-nav.active').removeClass('active show-menu');
-                jQuery('.submenu.active').removeClass('active show-menu');
-
+                jQuery('.has-children.main-nav').removeClass('active show-menu');
+                jQuery('.submenu').removeClass('active show-menu');
 
                 if (jQuery(this).hasClass('show-menu')) {
                     var $this = jQuery(this);
