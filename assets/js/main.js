@@ -264,7 +264,7 @@ function __header_menu() {
                 jQuery('body').removeClass('mini-cart-active');
                 e.preventDefault();
             });
-    
+
             jQuery('.has-children-tab').click(function (e) {
                 $target = jQuery(this).attr('url_target');
                 jQuery('.has-children-tab.nav-link.active').removeClass('active');
@@ -291,10 +291,15 @@ function __header_menu() {
 
 
             jQuery('.close-submenu-2').click(function (e) {
-                jQuery(this).parent().parent().parent().parent().removeClass('active');
-                jQuery(this).parent().parent().parent().parent().prev().removeClass('active');
+                var $this = jQuery(this);
+                $this.parent().parent().parent().parent().removeClass('show-menu');
+                $this.parent().parent().parent().parent().prev().removeClass('show-menu');
+                setTimeout(function () {
+                    $this.parent().parent().parent().parent().removeClass('active');
+                    $this.parent().parent().parent().parent().prev().removeClass('active');
+    
+                }, 300);
                 e.preventDefault();
-
             });
 
             $nav = jQuery('#menu-desktop .navbar');
