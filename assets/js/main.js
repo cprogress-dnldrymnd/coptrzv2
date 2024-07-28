@@ -256,12 +256,12 @@ function __header_menu() {
             jQuery('.has-children.main-nav').click(function (e) {
                 var $this = jQuery(this);
 
-                $this.toggleClass('active');
-                $this.next().toggleClass('active');
+                $this.addClass('active');
+                $this.next().addClass('active');
 
                 setTimeout(function () {
-                    $this.toggleClass('show-menu');
-                    $this.next().toggleClass('show-menu');
+                    $this.addClass('show-menu');
+                    $this.next().addClass('show-menu');
                 }, 300);
 
                 jQuery('body').removeClass('mini-cart-active');
