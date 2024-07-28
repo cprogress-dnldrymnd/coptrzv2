@@ -264,17 +264,6 @@ function __header_menu() {
                         jQuery(this).next().removeClass('active');
                     }, 100);
 
-                } else {
-                    jQuery('.has-children.main-nav.active').removeClass('active');
-                    jQuery('.submenu.active').removeClass('active');
-
-                    jQuery(this).addClass('active');
-                    jQuery(this).next().addClass('active');
-
-                    setTimeout(function () {
-                        jQuery(this).removeClass('show-menu');
-                        jQuery(this).next().removeClass('show-menu');
-                    }, 100);
                 }
                 jQuery('body').removeClass('mini-cart-active');
 
