@@ -290,6 +290,18 @@ function __header_menu() {
                 e.preventDefault();
             });
 
+            
+            jQuery('.close-submenu-3').click(function (e) {
+                var $this = jQuery(this);
+                $this.parent().removeClass('show-menu');
+                $this.parent().prev().removeClass('show-menu');
+                setTimeout(function () {
+                    $this.parent().addClass('show-menu');
+                    $this.parent().prev().addClass('show-menu');
+                }, 300);
+                e.preventDefault();
+            });
+
             jQuery('.tab-links').each(function (index, element) {
                 $id = jQuery(this).attr('id');
 
