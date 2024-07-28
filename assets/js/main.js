@@ -297,11 +297,12 @@ function __header_menu() {
             });
 
             jQuery('.close-submenu-1').click(function (e) {
-                jQuery(this).parent().parent().parent().removeClass('show-menu');
-                jQuery(this).parent().parent().parent().prev().removeClass('show-menu');
+                var $this = jQuery(this);
+                $this.parent().parent().parent().removeClass('show-menu');
+                $this.parent().parent().parent().prev().removeClass('show-menu');
                 setTimeout(function () {
-                    jQuery(this).parent().parent().parent().removeClass('active');
-                    jQuery(this).parent().parent().parent().prev().removeClass('active');
+                    $this.parent().parent().parent().removeClass('active');
+                    $this.parent().parent().parent().prev().removeClass('active');
                 }, 300);
                 e.preventDefault();
             });
