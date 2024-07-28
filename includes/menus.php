@@ -123,7 +123,6 @@ function header_menu()
 
 
 
-
 							$html .= '<li>';
 							$html .= '<a class="nav-link text-black  ' . ($submenus3 ? 'has-children-tab' : '') . '"  url_target="#submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">';
 							$html .= $submenu2['title'];
