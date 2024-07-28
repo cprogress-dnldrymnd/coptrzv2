@@ -280,7 +280,7 @@ function __header_menu() {
                     jQuery(this).next().toggleClass('active');
                 }
                 jQuery('body').removeClass('mini-cart-active');
-
+                e.preventDefault();
             });
 
             jQuery('.has-children-tab').click(function (e) {
