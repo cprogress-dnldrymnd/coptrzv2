@@ -257,7 +257,6 @@ function __header_menu() {
                 var $this = jQuery(this);
                 $this.addClass('active');
                 $this.next().addClass('active');
-                $this.parent().addClass('active-submenu');
                 setTimeout(function () {
                     $this.addClass('show-menu');
                     $this.next().addClass('show-menu');
