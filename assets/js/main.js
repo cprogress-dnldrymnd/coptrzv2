@@ -296,8 +296,8 @@ function __header_menu() {
                 $this.parent().removeClass('show-menu');
                 $this.parent().prev().removeClass('show-menu');
                 setTimeout(function () {
-                    $this.parent().addClass('show-menu');
-                    $this.parent().prev().addClass('show-menu');
+                    $this.parent().removeClass('show-menu');
+                    $this.parent().prev().removeClass('show-menu');
                 }, 300);
                 e.preventDefault();
             });
