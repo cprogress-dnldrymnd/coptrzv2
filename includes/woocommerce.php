@@ -1146,14 +1146,8 @@ function __three_year_servicing_plans()
         'class' => _attribute('class', array('description-box')),
     ));
 
-    $html .= "<div class='d-flex align-items-center fw-medium small-text'>";
-    $html .= "<span>Small Drone</span>";
-    $html .= "<div class='toggle-switch toggle-switch-drone-size mx-3'>";
-    $html .= "</div>";
-    $html .= "<span>Large Drone</span>";
-    $html .= "</div>";
 
-    $html .= '<div class="filter-style-1"><div class="filter-box bg-light rounded-corner"> <div class="row"> <div class="col-auto"> <input name="drone_size" value="small-drone" type="radio" id="small-drone" checked> <label class="rounded-corner" for="small-drone">Small Drone</label> </div> <div class="col-auto"> <input name="drone_size" value="large-drone" type="radio" id="large-drone"> <label class="rounded-corner" for="large-drone">Large Drone</label> </div> </div> </div></div>';
+    $html .= '<div class="filter-style-1"><div class="filter-box d-inline-block bg-light rounded-corner"> <div class="row"> <div class="col-auto"> <input name="drone_size" value="small-drone" type="radio" id="small-drone" checked> <label class="rounded-corner" for="small-drone">Small Drone</label> </div> <div class="col-auto"> <input name="drone_size" value="large-drone" type="radio" id="large-drone"> <label class="rounded-corner" for="large-drone">Large Drone</label> </div> </div> </div></div>';
 
     $html .= "</div>";
 

@@ -12251,6 +12251,8 @@ section.product-main .summary.summary.summary .variations tr {
   height: 30px; }
 .product-compare .comparison > .row:not(:last-child) {
   margin-bottom: 10px; }
+.product-compare.drone-servicing .filter-style-1 .filter-box label {
+  padding: 20px; }
 @media screen and (max-width: 575px) {
   .product-compare.drone-servicing .row-services-spec-mobile .inner,
   .product-compare.drone-servicing .row-services-spec-mobile .active {

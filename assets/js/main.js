@@ -20,6 +20,12 @@ function __toggle_input() {
         e.preventDefault();
     });
 
+    jQuery('.toggle-switch').click(function (e) {
+        jQuery(this).toggleClass('active');
+        jQuery('.drone-plans').toggleClass('large-drone-active');
+        e.preventDefault();
+    });
+
 
 }
 
