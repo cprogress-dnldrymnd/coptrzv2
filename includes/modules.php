@@ -71,8 +71,13 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero_background_type = 'self-hosted';
     } else {
         $hero_background = get__post_meta('hero_background');
-        $hero_background_youtube = get__post_meta('hero_background_youtube');
-        $hero_background_type = get__post_meta('hero_background_type');
+        if ($hero_background) {
+            $hero_background_youtube = get__post_meta('hero_background_youtube');
+            $hero_background_type = get__post_meta('hero_background_type');
+        } else {
+            $hero_background = get_post_thumbnail_id();
+            $hero_background_type = 'self-hosted';
+        }
     }
 
 
