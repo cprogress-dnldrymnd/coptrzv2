@@ -12890,12 +12890,7 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
     padding: 10px;
     margin-top: 1px;
     opacity: 0;
-    visibility: hidden;
-    -webkit-transition: 500ms;
-    -moz-transition: 500ms;
-    -ms-transition: 500ms;
-    -o-transition: 500ms;
-    transition: 500ms; }
+    visibility: hidden; }
     .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu {
       max-height: 500px;
       overflow: auto; }

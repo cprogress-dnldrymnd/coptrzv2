@@ -115,7 +115,7 @@
                 opacity: 0;
                 visibility: hidden;
 
-                @include transition(500ms);
+                //@include transition(500ms);
                 .left-menu {
                     max-height: 500px;
                     overflow: auto;
