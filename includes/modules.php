@@ -110,7 +110,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         if (!$hero_alignment) {
             $text_align = 'text-left';
         } else {
-            $text_align = $hero_alignment;
+            $text_align = $hero_alignment ? $hero_alignment : 'text-center';
         }
     }
 
