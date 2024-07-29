@@ -75,18 +75,9 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero_background_type = get__post_meta('hero_background_type');
     }
 
-
     $hero_height = get__post_meta('hero_height') ? get__post_meta('hero_height') : $hero_height_args;
     $hero_alignment = get__post_meta('hero_alignment') ? get__post_meta('hero_alignment') : $hero_alignment_args;
-    if (!$hero_background && !$hero_background_youtube) {
-        if (!$hero_height) {
-            $hero_height = 'small-hero';
-        }
 
-        if (!$hero_alignment) {
-            $hero_height = 'text-start';
-        }
-    }
     $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
     $buttons = get__post_meta('buttons');
 
@@ -109,7 +100,20 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_form_description = get__post_meta('hero_form_description');
     $hero_form_style = get__post_meta('hero_form_style');
     $hero_form = get__post_meta('hero_form');
-    $text_align = $hero_alignment ? $hero_alignment : 'text-center';
+
+
+    if (!$hero_background && !$hero_background_youtube) {
+        if (!$hero_height) {
+            $hero_height = 'small-hero';
+        }
+
+        if (!$hero_alignment) {
+            $text_align = 'text-left';
+        } else {
+            $text_align = $hero_alignment ? $hero_alignment : 'text-center';
+        }
+    }
+
 
     if (get_post_type($id) == 'events') {
         $event_start_datetime = get__post_meta_by_id($id, 'event_start_datetime');
