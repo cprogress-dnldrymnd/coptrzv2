@@ -282,7 +282,6 @@ function action_pre_get_posts($query)
         $query->set('orderby', 'menu_order');
         $query->set('order', 'ASC');
 
-
         if (is_post_type_archive('industries') || is_post_type_archive('guides')) {
             $meta_query[] = [
                 'key' => '_hide_on_list',
@@ -304,6 +303,8 @@ function action_pre_get_posts($query)
             $query->set('meta_query', $meta_query);
             $query->set('orderby', 'meta_value');
             $query->set('order', 'ASC');
+        } else if (is_home()) {
+            $query->set('posts_per_page', 1);
         } else {
             if (isset($_GET['posts_per_page'])) {
                 $query->set('posts_per_page', $_GET['posts_per_page']);
@@ -386,13 +387,12 @@ function wpf_dev_smart_phone_field_initial_country()
 add_action('wpforms_wp_footer_end', 'wpf_dev_smart_phone_field_initial_country', 30);
 
 
-add_filter('wpcf7_form_tag_data_option', function($data, $options, $args) {
-	$data = [];
-	foreach ($options as $option) {
-		if ($option === 'checkbox_options') {
-			$data = array_merge($data, ['Checkbox Option A', 'Checkbox Option B']);
-		}
-
-	}
-	return $data;
+add_filter('wpcf7_form_tag_data_option', function ($data, $options, $args) {
+    $data = [];
+    foreach ($options as $option) {
+        if ($option === 'checkbox_options') {
+            $data = array_merge($data, ['Checkbox Option A', 'Checkbox Option B']);
+        }
+    }
+    return $data;
 }, 10, 3);
