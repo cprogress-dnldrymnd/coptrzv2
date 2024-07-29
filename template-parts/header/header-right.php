@@ -8,7 +8,7 @@ $SVG = new SVG;
                 <?= $SVG->user(); ?>
             </a>
         </div>
-        <div class="col-auto d-flex align-items-center">
+        <div class="col-auto d-flex align-items-center wc-components">
             <div class="mini-cart-wrapper">
                 <a href="#" id="mini-cart-button" class="header-icon cart-icon text-white d-flex align-items-center">
                     <?= $SVG->cart(); ?>
@@ -21,7 +21,7 @@ $SVG = new SVG;
                 </div>
             </div>
         </div>
-        <div class="col-auto d-flex align-items-center d-lg-none">
+        <div class="col-auto d-flex align-items-center d-lg-none wc-components">
             <button class="menu-burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu" aria-controls="offCanvasMenu">
                 <div class="icon">
                     <div class="menu"></div>
