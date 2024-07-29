@@ -78,7 +78,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
     $hero_height = get__post_meta('hero_height') ? get__post_meta('hero_height') : $hero_height_args;
     $hero_alignment = get__post_meta('hero_alignment') ? get__post_meta('hero_alignment') : $hero_alignment_args;
-    if (!$hero_background && !$hero_background_type) {
+    if (!$hero_background && !$hero_background_youtube) {
         if (!$hero_height) {
             $hero_height = 'small-hero';
         }
