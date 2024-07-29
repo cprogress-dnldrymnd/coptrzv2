@@ -11170,17 +11170,17 @@ small, .small {
 .meta-box li:not(:last-child) {
   margin-bottom: 10px; }
 
-.event-filter .filter-box {
+.filter-style-1 .filter-box {
   padding: 7px; }
-  .event-filter .filter-box label {
+  .filter-style-1 .filter-box label {
     padding: 20px 41px;
     cursor: pointer; }
-    .event-filter .filter-box label:hover, .event-filter .filter-box label:active, .event-filter .filter-box label:focus {
+    .filter-style-1 .filter-box label:hover, .filter-style-1 .filter-box label:active, .filter-style-1 .filter-box label:focus {
       color: var(--bs-white);
       background-color: var(--bs-secondary); }
-  .event-filter .filter-box input {
+  .filter-style-1 .filter-box input {
     display: none; }
-    .event-filter .filter-box input:checked + label {
+    .filter-style-1 .filter-box input:checked + label {
       color: var(--bs-white);
       background-color: var(--bs-primary); }
 

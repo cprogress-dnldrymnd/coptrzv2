@@ -21,7 +21,7 @@
                 <div class="inner border-bottom-default sm-padding-bottom sm-margin-bottom">
                     <div class="row g-3 justify-content-between align-items-end">
                         <div class="col-auto">
-                            <div class="event-filter">
+                            <div class="filter-style-1">
                                 <p class="fw-medium medium-text">Select delivery method:</p>
                                 <div class="filter-box bg-light rounded-corner">
                                     <div class="row">
