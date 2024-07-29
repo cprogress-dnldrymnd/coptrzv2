@@ -66,9 +66,17 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_heading = get__post_meta('hero_heading');
     $hero_description = get__post_meta('hero_description');
     $hero_hidden = get__post_meta('hero_hidden');
-    $hero_background = get__post_meta('hero_background');
-    $hero_background_youtube = get__post_meta('hero_background_youtube');
-    $hero_background_type = get__post_meta('hero_background_type');
+    if (is_single()) {
+        $hero_background = get_post_thumbnail_id();
+        $hero_background_type = 'self-hosted';
+    } else {
+        $hero_background = get__post_meta('hero_background');
+        $hero_background_youtube = get__post_meta('hero_background_youtube');
+        $hero_background_type = get__post_meta('hero_background_type');
+    }
+
+
+
     $hero_alignment = get__post_meta('hero_alignment') ? get__post_meta('hero_alignment') : $hero_alignment_args;
     $hero_height = get__post_meta('hero_height') ? get__post_meta('hero_height') : $hero_height_args;
     $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
@@ -218,14 +226,14 @@ function ___hero_product_taxonomy()
 
 
     $heading_class[] = 'large-heading';
-    if (!$term_description_val ) {
+    if (!$term_description_val) {
         $heading_class[] = 'mb-0';
     } else {
         $heading_class[] = 'mb-3';
     }
 
 
-    
+
     if ($buttons) {
         unset($heading_class['mb-0']);
         $heading_class[] = 'mb-5';
