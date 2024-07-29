@@ -112,6 +112,8 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         } else {
             $text_align = $hero_alignment ? $hero_alignment : 'text-center';
         }
+    } else {
+        $text_align = $hero_alignment ? $hero_alignment : 'text-center';
     }
 
 
