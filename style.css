@@ -10546,7 +10546,6 @@ hr {
   left: 0;
   right: 0;
   bottom: 0;
-  background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%;
   z-index: 1; }
 .background-overlay + * {
   z-index: 2;

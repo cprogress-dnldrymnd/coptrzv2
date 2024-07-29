@@ -35,6 +35,7 @@ main {
         right: 0;
         bottom: 0;
         background: transparent linear-gradient(180deg, #00000029 0%, #00000061 100%) 0% 0%;
+        background-color: rgba(0, 0, 0, 0.2);
         z-index: 1;
     }
     & + * {
