@@ -97,7 +97,7 @@
                 transform: translate(-50%, 20px);
                 opacity: 0;
                 visibility: hidden;
-                @include transition(500ms);
+                //@include transition(500ms);
                 &.active {
                     transform: translate(-50%, 0);
                     visibility: visible;
