@@ -291,7 +291,6 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         '' => 'Default',
-                        'medium-hero' => 'Medium',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -414,7 +413,6 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         '' => 'Default',
-                        'medium-hero' => 'Medium',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -526,7 +524,6 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         '' => 'Default',
-                        'medium-hero' => 'Medium',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -642,7 +639,6 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         '' => 'Default',
-                        'medium-hero' => 'Medium',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -756,7 +752,6 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         '' => 'Default',
-                        'medium-hero' => 'Medium',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -879,7 +874,6 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         '' => 'Default',
-                        'medium-hero' => 'Medium',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -1012,7 +1006,6 @@ function __hero_fields()
             ->set_options(
                 array(
                     '' => 'Default',
-                    'medium-hero' => 'Medium',
                     'small-hero' => 'Small',
                 )
             ),
