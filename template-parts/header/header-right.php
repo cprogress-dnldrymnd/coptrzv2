@@ -3,7 +3,7 @@ $SVG = new SVG;
 ?>
 <div class="col-auto d-flex align-items-center">
     <div class="row g-4 header-right">
-        <div class="col-auto d-flex align-items-center">
+        <div class="col-auto d-flex align-items-center wc-components">
             <a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" class="header-icon account-icon text-white d-flex align-items-center">
                 <?= $SVG->user(); ?>
             </a>
@@ -21,7 +21,7 @@ $SVG = new SVG;
                 </div>
             </div>
         </div>
-        <div class="col-auto d-flex align-items-center d-lg-none wc-components">
+        <div class="col-auto d-flex align-items-center d-lg-none ">
             <button class="menu-burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu" aria-controls="offCanvasMenu">
                 <div class="icon">
                     <div class="menu"></div>
