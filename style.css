@@ -12820,12 +12820,14 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
       .header .header-inner {
         padding: 15px;
         margin-top: 10px; } }
-  .header .navbar.navbar.navbar li:hover .submenu, .header .navbar.navbar.navbar li:hover .submenu2, .header .navbar.navbar.navbar li:active .submenu, .header .navbar.navbar.navbar li:active .submenu2, .header .navbar.navbar.navbar li:focus .submenu, .header .navbar.navbar.navbar li:focus .submenu2 {
-    -webkit-transition: 200ms;
-    -moz-transition: 200ms;
-    -ms-transition: 200ms;
-    -o-transition: 200ms;
-    transition: 200ms; }
+  .header .navbar.navbar.navbar li:hover, .header .navbar.navbar.navbar li:active, .header .navbar.navbar.navbar li:focus {
+    z-index: 9999; }
+    .header .navbar.navbar.navbar li:hover .submenu, .header .navbar.navbar.navbar li:hover .submenu2, .header .navbar.navbar.navbar li:active .submenu, .header .navbar.navbar.navbar li:active .submenu2, .header .navbar.navbar.navbar li:focus .submenu, .header .navbar.navbar.navbar li:focus .submenu2 {
+      -webkit-transition: 200ms;
+      -moz-transition: 200ms;
+      -ms-transition: 200ms;
+      -o-transition: 200ms;
+      transition: 200ms; }
   @media screen and (min-width: 992px) {
     .header .navbar.navbar.navbar .nav-item.is-mega-menu .sub-nav {
       white-space: nowrap; } }
