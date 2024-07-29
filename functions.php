@@ -6,7 +6,7 @@ define('coptz_version', 4.4);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
-define('vendor_dir', theme_dir . 'vendor/');
+define('vendor_dir', assets_dir . 'vendor/');
 /*-----------------------------------------------------------------------------------*/
 /* After Theme Setup
 /*-----------------------------------------------------------------------------------*/
@@ -76,7 +76,7 @@ function enqueue_scripts()
 {
 	wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
 	wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js');
-	wp_enqueue_script('bootstrap', vendor_dir . '/twbs/bootstrap/dist/js/bootstrap.min.js');
+	wp_enqueue_script('bootstrap', vendor_dir . '/bootstrap/js/bootstrap.min.js');
 
 
 	wp_enqueue_style('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/css/intlTelInput.css', NULL, coptz_version);
