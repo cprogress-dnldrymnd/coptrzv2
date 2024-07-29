@@ -168,7 +168,7 @@ class Shortcodes
             $logo = get__post_meta_by_id($id, 'logo');
             $html .= "<div class='swiper-slide'>"; //swiper-slide
          
-            $html .= "<div class='inner md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
+            $html .= "<div class='inner bg-primary md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
 
             $html .= "<div class='container'>"; //container
             $html .= "<div class='row g-5'>"; //row
