@@ -20,6 +20,9 @@
         li {
             @include on-event {
                 z-index: 9999;
+                .submenu, .submenu2 {
+                    @include transition(200ms);
+                }
             }
         }
         .nav-item {
@@ -29,9 +32,8 @@
                         white-space: nowrap;
                     }
                 }
-              
             }
-          
+
             &.is-not-mega-menu {
                 .submenu {
                     @include responsive(md-lg) {
@@ -104,7 +106,7 @@
                 transform: translate(-50%, 20px);
                 opacity: 0;
                 visibility: hidden;
-                @include transition(200ms);
+               // @include transition(200ms);
                 &.active {
                     transform: translate(-50%, 0);
                     visibility: visible;
@@ -122,7 +124,7 @@
                 opacity: 0;
                 visibility: hidden;
 
-                @include transition(200ms);
+                //@include transition(200ms);
                 .left-menu {
                     max-height: 500px;
                     overflow: auto;
@@ -312,7 +314,7 @@ body.mobile-menu-active {
             .main-nav {
                 color: var(--bs-primary) !important;
             }
-        
+
             .navbar-nav {
                 width: 100%;
                 flex-direction: column !important;
