@@ -83,10 +83,15 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $buttons = get__post_meta('buttons');
 
     $hero_form_enable = get__post_meta('hero_form_enable');
+
+    $hero_form_image_val = get__post_meta('hero_form_image');
+
     if (get_post_type() == 'guides') {
-        $hero_form_image = get_post_thumbnail_id();
+        if (!$hero_form_image_val) {
+            $hero_form_image = get_post_thumbnail_id();
+        }
     } else {
-        $hero_form_image = get__post_meta('hero_form_image');
+        $hero_form_image = $hero_form_image_val;
     }
 
 
