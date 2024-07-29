@@ -12823,6 +12823,8 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   @media screen and (min-width: 992px) {
     .header .navbar.navbar.navbar .nav-item.is-mega-menu .sub-nav {
       white-space: nowrap; } }
+  .header .navbar.navbar.navbar .nav-item.is-mega-menu:hover, .header .navbar.navbar.navbar .nav-item.is-mega-menu:active, .header .navbar.navbar.navbar .nav-item.is-mega-menu:focus {
+    z-index: 9999; }
   @media screen and (min-width: 992px) {
     .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu {
       width: 300px; } }
