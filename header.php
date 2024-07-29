@@ -38,3 +38,14 @@
 	}
 	?>
 	<main class="<?= $class ?>">
+
+		<?php
+		$posts = get_posts(array(
+			'post_type' => 'guides',
+			'numberposts' => -1,
+			'fields' => 'ids'
+		));
+		foreach($posts as $post) {
+			update_post_meta($post, 'hero_form_image', '');
+		}
+		?>
