@@ -12820,10 +12820,7 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
       .header .header-inner {
         padding: 15px;
         margin-top: 10px; } }
-  @media screen and (min-width: 992px) {
-    .header .navbar.navbar.navbar .nav-item.is-mega-menu .sub-nav {
-      white-space: nowrap; } }
-  .header .navbar.navbar.navbar .nav-item.is-mega-menu:hover, .header .navbar.navbar.navbar .nav-item.is-mega-menu:active, .header .navbar.navbar.navbar .nav-item.is-mega-menu:focus {
+  .header .navbar.navbar.navbar .nav-item:hover, .header .navbar.navbar.navbar .nav-item:active, .header .navbar.navbar.navbar .nav-item:focus {
     z-index: 9999; }
   @media screen and (min-width: 992px) {
     .header .navbar.navbar.navbar .nav-item.is-not-mega-menu .submenu {

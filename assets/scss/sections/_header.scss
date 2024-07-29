@@ -18,15 +18,8 @@
     }
     .navbar.navbar.navbar {
         .nav-item {
-            &.is-mega-menu {
-                .sub-nav {
-                    @include responsive(md-lg) {
-                        white-space: nowrap;
-                    }
-                }
-                @include on-event {
-                    z-index: 9999;
-                }
+            @include on-event {
+                z-index: 9999;
             }
             &.is-not-mega-menu {
                 .submenu {
