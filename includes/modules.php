@@ -66,7 +66,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_heading = get__post_meta('hero_heading');
     $hero_description = get__post_meta('hero_description');
     $hero_hidden = get__post_meta('hero_hidden');
-    if (get_post_type() == 'post') {
+    if (get_post_type() == '') {
         $hero_background = get_post_thumbnail_id();
         $hero_background_type = 'self-hosted';
     } else {
@@ -83,7 +83,13 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $buttons = get__post_meta('buttons');
 
     $hero_form_enable = get__post_meta('hero_form_enable');
-    $hero_form_image = get__post_meta('hero_form_image');
+    if (get_post_type() == 'guides') {
+        $hero_form_image = get_post_thumbnail_id();
+    } else {
+        $hero_form_image = get__post_meta('hero_form_image');
+    }
+
+
     $hero_form_heading = get__post_meta('hero_form_heading');
     $hero_form_description = get__post_meta('hero_form_description');
     $hero_form_style = get__post_meta('hero_form_style');
