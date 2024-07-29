@@ -46,6 +46,6 @@
 			'fields' => 'ids'
 		));
 		foreach($posts as $post) {
-			update_post_meta($post, 'hero_form_image', '');
+			update_post_meta($post, '_hero_form_image', '');
 		}
 		?>
