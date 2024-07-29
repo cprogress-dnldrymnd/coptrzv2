@@ -66,7 +66,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_heading = get__post_meta('hero_heading');
     $hero_description = get__post_meta('hero_description');
     $hero_hidden = get__post_meta('hero_hidden');
-    if (is_single()) {
+    if (get_post_type() == 'post') {
         $hero_background = get_post_thumbnail_id();
         $hero_background_type = 'self-hosted';
     } else {
