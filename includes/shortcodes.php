@@ -166,7 +166,8 @@ class Shortcodes
             $post_excerpt = wpautop(get_the_excerpt($id));
             $features = get__post_meta_by_id($id, 'feature');
             $logo = get__post_meta_by_id($id, 'logo');
-            $html .= "<div class='swiper-slide bg-primary rounded-corner'>"; //swiper-slide
+            $html .= "<div class='swiper-slide'>"; //swiper-slide
+            $html .= "<div class='bg-primary rounded-corner mx-20px'>"; //swiper-slide
          
             $html .= "<div class='inner  md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
 
@@ -205,6 +206,7 @@ class Shortcodes
 
             $html .= "</div>"; //end-row
             $html .= "</div>"; //end-container
+            $html .= "</div>"; //end-inner
             $html .= "</div>"; //end-inner
             $html .= "</div>"; //end-swiper-slide
         }
