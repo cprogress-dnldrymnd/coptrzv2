@@ -17,6 +17,11 @@
         }
     }
     .navbar.navbar.navbar {
+        li {
+            @include on-event {
+                z-index: 9999;
+            }
+        }
         .nav-item {
             &.is-mega-menu {
                 .sub-nav {
@@ -26,9 +31,7 @@
                 }
               
             }
-            @include on-event {
-                z-index: 9999;
-            }
+          
             &.is-not-mega-menu {
                 .submenu {
                     @include responsive(md-lg) {
