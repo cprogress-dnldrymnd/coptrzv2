@@ -24,6 +24,9 @@
                         white-space: nowrap;
                     }
                 }
+                @include on-event {
+                    z-index: 9999;
+                }
             }
             &.is-not-mega-menu {
                 .submenu {
