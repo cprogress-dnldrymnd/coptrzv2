@@ -76,11 +76,21 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     }
 
 
-
-    $hero_alignment = get__post_meta('hero_alignment') ? get__post_meta('hero_alignment') : $hero_alignment_args;
     $hero_height = get__post_meta('hero_height') ? get__post_meta('hero_height') : $hero_height_args;
+    $hero_alignment = get__post_meta('hero_alignment') ? get__post_meta('hero_alignment') : $hero_alignment_args;
+    if (!$hero_background && !$hero_background_type) {
+        if (!$hero_height) {
+            $hero_height = 'small-hero';
+        }
+
+        if (!$hero_alignment) {
+            $hero_height = 'text-start';
+        }
+    }
     $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
     $buttons = get__post_meta('buttons');
+
+
 
     $hero_form_enable = get__post_meta('hero_form_enable');
 
