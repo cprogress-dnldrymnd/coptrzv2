@@ -19,12 +19,11 @@ function __toggle_input() {
         jQuery('.drone-plans').toggleClass('large-drone-active');
         e.preventDefault();
     });
-
-    jQuery('.toggle-switch').click(function (e) {
-        jQuery(this).toggleClass('active');
+    jQuery('input[name="drone_size"]').change(function (e) {
         jQuery('.drone-plans').toggleClass('large-drone-active');
         e.preventDefault();
     });
+
 
 
 }
