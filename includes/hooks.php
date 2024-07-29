@@ -304,7 +304,8 @@ function action_pre_get_posts($query)
             $query->set('orderby', 'meta_value');
             $query->set('order', 'ASC');
         } else if (is_home()) {
-            $query->set('posts_per_page', 1);
+            $query->set('orderby', 'date');
+            $query->set('order', 'DESC');
         } else {
             if (isset($_GET['posts_per_page'])) {
                 $query->set('posts_per_page', $_GET['posts_per_page']);
