@@ -16,6 +16,11 @@
         }
     }
     &:not(.style-2) {
+        .input-tel {
+            .input-label {
+                top: -13px !important;
+            }
+        }
         .input {
             .filled {
                 .input-label {

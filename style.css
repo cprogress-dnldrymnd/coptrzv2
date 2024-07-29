@@ -12680,6 +12680,8 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 
 .form-box [class*="col-"] .input {
   margin-bottom: 0; }
+.form-box:not(.style-2) .input-tel .input-label {
+  top: -13px; }
 .form-box:not(.style-2) .input .filled .input-label {
   top: -13px; }
 .form-box:not(.style-2) .input .input-label {
