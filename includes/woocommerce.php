@@ -1446,3 +1446,14 @@ remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
  */
 
 remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
+
+
+function woocommerce_disable_shop_page() {
+    global $post;
+    if (is_shop()):
+    global $wp_query;
+    $wp_query->set_404();
+    status_header(404);
+    endif;
+}
+add_action( 'wp', 'woocommerce_disable_shop_page' );
