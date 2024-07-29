@@ -12876,7 +12876,12 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
     left: 50%;
     transform: translate(-50%, 20px);
     opacity: 0;
-    visibility: hidden; }
+    visibility: hidden;
+    -webkit-transition: 200ms;
+    -moz-transition: 200ms;
+    -ms-transition: 200ms;
+    -o-transition: 200ms;
+    transition: 200ms; }
     .header .navbar.navbar.navbar .nav-item .submenu.active {
       transform: translate(-50%, 0);
       visibility: visible;
@@ -12890,7 +12895,12 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
     padding: 10px;
     margin-top: 1px;
     opacity: 0;
-    visibility: hidden; }
+    visibility: hidden;
+    -webkit-transition: 200ms;
+    -moz-transition: 200ms;
+    -ms-transition: 200ms;
+    -o-transition: 200ms;
+    transition: 200ms; }
     .header .navbar.navbar.navbar .nav-item .submenu2 .left-menu {
       max-height: 500px;
       overflow: auto; }
