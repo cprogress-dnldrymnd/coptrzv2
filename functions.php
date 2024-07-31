@@ -138,3 +138,10 @@ add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn
 /* Require Files
 /*-----------------------------------------------------------------------------------*/
 require_once('includes/_required_files.php');
+
+
+function canonical() {
+	if(is_single() || is_page()) {
+		return get_the_permalink();
+	}
+}
