@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	<meta name="author" content="">
 	<meta name="format-detection" content="telephone=no">
-
+	<link xxxxx rel="canonical" href="" />
 	<title>
 		<?php bloginfo('name'); // show the blog name, from settings 
 		?> |
