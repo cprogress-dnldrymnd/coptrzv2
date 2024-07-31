@@ -935,7 +935,10 @@ function ___sections($id = 'sections', $post_id = '')
 
                             $posts_list = get__post_meta($field_key);
                             foreach ($posts_list as $post) {
-                                $posts[] = $post['id'];
+                                $post_status = get_post_status($post['id']);
+                                if($post_status=='publish') {
+                                    $posts[] = $post['id'];
+                                }
                             }
 
                             $taxonomy = $post_type . '_category';
