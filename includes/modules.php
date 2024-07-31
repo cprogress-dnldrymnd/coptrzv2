@@ -1015,7 +1015,10 @@ function ___sections($id = 'sections', $post_id = '')
                         if ($related_products) {
                             $related_products_array = array();
                             foreach ($related_products as $related_product) {
-                                $related_products_array[] = $related_product['id'];
+                                $post_status = get_post_status($related_product['id']);
+                                if($post_status=='publish') {
+                                    $related_products_array[] = $related_product['id'];
+                                }
                             }
                             $html .= __linked_products($related_products_array, $button_text, $button_link, $slider_id, $related_products_heading, false, true, true, $related_id);
                         }
