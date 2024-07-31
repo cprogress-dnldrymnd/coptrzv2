@@ -39,3 +39,6 @@
 	}
 	?>
 	<main class="<?= $class ?>">
+		<?php
+		$queried_object = get_queried_object();
+		echo $queried_object->slug;
