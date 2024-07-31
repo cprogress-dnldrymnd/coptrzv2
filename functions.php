@@ -147,8 +147,7 @@ function canonical() {
 		$term_link = get_term_link(get_queried_object()->term_id);
 		return $term_link;
 	} else if(is_post_type_archive()) {
-		$name = get_post_type_object($post_type)->labels->singular_name;
-		$archive_link = get_post_type_archive_link($name);
+		$archive_link = get_post_type_archive_link(get_post_type());
 		return $archive_link;
 	}
 }
