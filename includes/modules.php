@@ -2822,10 +2822,13 @@ function __related_posts($posts, $data, $heading = 'Related Guides', $section_id
 
     $html .= "<div class='row g-4 same-image-height' style='--image-padding: 37%;'>";
     foreach ($posts as $post) {
-        $html .= "<div class='col-md-4 col-sm-12'>";
-        $data['id'] = $post['id'];
-        $html .= __post_box($data);
-        $html .= '</div>';
+        $post_status = get_post_status($post['id']);
+        if($post_status=='publish') {
+            $html .= "<div class='col-md-4 col-sm-12'>";
+            $data['id'] = $post['id'];
+            $html .= __post_box($data);
+            $html .= '</div>';
+        } 
     }
     $html .= '</div>';
 
