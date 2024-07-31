@@ -1213,6 +1213,10 @@ hr {
             @include not-last-child {
                 margin-right: 10px;
             }
+            &.current {
+                background-color: var(--bs-accent);
+                color: var(--bs-white);
+            }
         }
         svg {
             width: 25px;

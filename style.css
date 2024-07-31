@@ -11483,6 +11483,9 @@ hr {
     transition: 500ms; }
     .navigation.pagination .nav-links .page-numbers:not(:last-child) {
       margin-right: 10px; }
+    .navigation.pagination .nav-links .page-numbers.current {
+      background-color: var(--bs-accent);
+      color: var(--bs-white); }
   .navigation.pagination .nav-links svg {
     width: 25px;
     height: 25px; }
