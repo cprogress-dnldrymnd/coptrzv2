@@ -102,7 +102,10 @@ add_action('woocommerce_after_single_product_summary', 'action_woocommerce_after
 function __get_assoc_post_ids($posts, $post_arr = [])
 {
     foreach ($posts as $post) {
-        $post_arr[] = $post['id'];
+        $post_status = get_post_status($post['id']);
+        if($post_status=='publish') {
+            $post_arr[] = $post['id'];
+        }
     }
 
     return $post_arr;
