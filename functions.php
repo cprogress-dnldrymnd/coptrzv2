@@ -79,7 +79,7 @@ function enqueue_scripts()
 
 	wp_enqueue_script('swiper', vendor_dir . 'swiper/js/swiper-bundle.min.js');
 	wp_enqueue_script('bootstrap', vendor_dir . 'bootstrap/js/bootstrap.min.js');
-	wp_enqueue_script('intlTelInput', vendor_dir.'intlTelInput/js/intlTelInput.min');
+	wp_enqueue_script('intlTelInput', vendor_dir.'intlTelInput/js/intlTelInput.min.js');
 	wp_register_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
 	wp_localize_script(
 		'main',
