@@ -771,6 +771,8 @@ function ___sections($id = 'sections', $post_id = '')
                         $product_slider_args['numberposts'] = $numberposts ? $numberposts : -1;
                         $product_slider_args['post_type'] = 'product';
                         $product_slider_args['fields'] = 'ids';
+                        $product_slider_args['post_status'] = 'publish';
+                        
                         if ($source_type == 'category') {
                             $term_ids = [];
                             foreach ($product_cat as $cat) {
@@ -794,6 +796,7 @@ function ___sections($id = 'sections', $post_id = '')
                                     'field'    => 'term_id',
                                     'terms'    => $brand_ids
                                 );
+                              
                             }
                         } else if ($source_type == 'manually') {
                             $include = [];
