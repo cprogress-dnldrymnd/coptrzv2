@@ -149,5 +149,8 @@ function canonical() {
 	} else if(is_post_type_archive()) {
 		$archive_link = get_post_type_archive_link(get_post_type());
 		return $archive_link;
+	} else if(is_home()) {
+		$blog_url = get_permalink( get_option( 'page_for_posts' ) ); 
+		return $blog_url;
 	}
 }
