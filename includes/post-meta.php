@@ -1598,6 +1598,7 @@ function __section_fields($name = 'sections')
                             ->set_options(
                                 array(
                                     'style-1' => 'Style 1',
+                                    'style-2' => 'Style 2',
                                 )
                             )
                             ->set_conditional_logic(
