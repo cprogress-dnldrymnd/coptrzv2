@@ -416,7 +416,7 @@ function __swipers() {
         $number_of_slides_mobile = jQuery(this).attr('number_of_slides_mobile');
         $autoplay = jQuery(this).attr('autoplay');
 
-        if ($autoplay == true) {
+        if ($autoplay == '1') {
             var swiper_sliders = new Swiper($id, {
                 loop: true,
                 autoplay: {
