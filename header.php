@@ -43,8 +43,7 @@
 		if (get_post_type() == 'guides' ) {
 
 			$sections = get__post_meta_by_id(291432, 'sections');
-			$hero_description = get__post_meta_by_id(291432, 'hero_description');
-
+			
 			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
 
 		}
