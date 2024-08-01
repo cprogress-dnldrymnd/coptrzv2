@@ -1637,24 +1637,6 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                             ),
-                        Field::make('checkbox', 'autoplay', __('Autoplay'))->set_default_value(6)->set_required(true)->set_attribute('type', 'number')->set_width(25)
-                            ->set_conditional_logic(
-                                array(
-                                    array(
-                                        'field' => 'is_slider',
-                                        'value' => true,
-                                    )
-                                )
-                            ),
-                        Field::make('text', 'autoplay_delay', __('Autoplay Delay'))->set_default_value(6)->set_required(true)->set_attribute('type', 'number')->set_width(25)
-                            ->set_conditional_logic(
-                                array(
-                                    array(
-                                        'field' => 'is_slider',
-                                        'value' => true,
-                                    )
-                                )
-                            ),
                         Field::make('select', 'image_fit', __('Image Fit'))->set_width(50)
                             ->set_options(
                                 array(
