@@ -414,34 +414,71 @@ function __swipers() {
         $number_of_slides = jQuery(this).attr('number_of_slides');
         $number_of_slides_tablet = jQuery(this).attr('number_of_slides_tablet');
         $number_of_slides_mobile = jQuery(this).attr('number_of_slides_mobile');
-        var swiper_sliders = new Swiper($id, {
-            loop: true,
-            autoplay: false,
-            breakpoints: {
-                0: {
-                    spaceBetween: 10,
-                    slidesPerView: $number_of_slides_mobile,
-                },
+        $autoplay = jQuery(this).attr('autoplay');
 
-                768: {
-                    spaceBetween: 10,
-                    slidesPerView: $number_of_slides_tablet,
-                },
+        if ($autoplay == true) {
+            var swiper_sliders = new Swiper($id, {
+                loop: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  },
+                breakpoints: {
+                    0: {
+                        spaceBetween: 10,
+                        slidesPerView: $number_of_slides_mobile,
+                    },
+
+                    768: {
+                        spaceBetween: 10,
+                        slidesPerView: $number_of_slides_tablet,
+                    },
 
 
-                992: {
-                    spaceBetween: 20,
-                    slidesPerView: $number_of_slides,
+                    992: {
+                        spaceBetween: 20,
+                        slidesPerView: $number_of_slides,
+                    },
                 },
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            pagination: {
-                el: ".swiper-pagination",
-            },
-        });
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                },
+            });
+        } else {
+            var swiper_sliders = new Swiper($id, {
+                loop: true,
+                autoplay: false,
+                breakpoints: {
+                    0: {
+                        spaceBetween: 10,
+                        slidesPerView: $number_of_slides_mobile,
+                    },
+
+                    768: {
+                        spaceBetween: 10,
+                        slidesPerView: $number_of_slides_tablet,
+                    },
+
+
+                    992: {
+                        spaceBetween: 20,
+                        slidesPerView: $number_of_slides,
+                    },
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                },
+            });
+        }
+
 
     });
 

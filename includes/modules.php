@@ -1503,6 +1503,8 @@ function ____columns_modules($items, $id, $html = '')
     $number_of_slides = $items['number_of_slides'];
     $number_of_slides_tablet = $items['number_of_slides_tablet'];
     $number_of_slides_mobile = $items['number_of_slides_mobile'];
+    $autoplay = $items['autoplay'] ? $items['autoplay']: false;
+    $autoplay_delay = $items['autoplay_delay'];
     $same_image_height = $items['same_image_height'];
     $horizontal_spacing = $items['horizontal_spacing'];
     $vertical_spacing = $items['vertical_spacing'];
@@ -1690,7 +1692,8 @@ function ____columns_modules($items, $id, $html = '')
         $number_of_slides_attr = _attribute('number_of_slides', array($number_of_slides));
         $number_of_slides_tablet_attr = _attribute('number_of_slides_tablet', array($number_of_slides_tablet));
         $number_of_slides_mobile_attr = _attribute('number_of_slides_mobile', array($number_of_slides_mobile));
-        $slides_attr = _attributes(array($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr));
+        $autoplay = _attribute('autoplay', array($autoplay));
+        $slides_attr = _attributes(array($number_of_slides_attr, $number_of_slides_tablet_attr, $number_of_slides_mobile_attr, $autoplay));
 
         $html .= "<div class='swiper-holder $slider_style'>"; //swiper-holder
         $html .= "<div class='swiper swiper-sliders' id='$swiper_id' $slides_attr>"; //swiper
