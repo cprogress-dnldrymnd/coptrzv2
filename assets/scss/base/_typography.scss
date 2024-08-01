@@ -44,10 +44,12 @@ h2 {
     @media (min-width: 992px) {
         font-size: 2.5rem;
         margin-bottom: 3rem;
+        
     }
     @media (min-width: 1200px) {
         font-size: 3.375rem;
     }
+    
 }
 
 h3 {
@@ -55,9 +57,15 @@ h3 {
     margin-bottom: 1rem;
     @media (min-width: 992px) {
         font-size: 1.75rem;
+        &.small-heading {
+            font-size: 1.5rem;
+        }
     }
     @media (min-width: 1200px) {
         font-size: 2rem;
+        &.small-heading {
+            font-size: 1.5rem;
+        }
     }
    
 }

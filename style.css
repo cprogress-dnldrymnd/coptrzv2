@@ -10042,7 +10042,9 @@ h3, .h3 {
   margin-bottom: 1rem; }
   @media (min-width: 992px) {
     h3, .h3 {
-      font-size: 1.75rem; } }
+      font-size: 1.75rem; }
+      h3.small-heading, .small-heading.h3 {
+        font-size: 1.5rem; } }
   @media (min-width: 1200px) {
     h3, .h3 {
       font-size: 2rem; } }
