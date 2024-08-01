@@ -5792,7 +5792,6 @@ Container::make('post_meta', __('Sections'))
     ->or_where('post_type', '=', 'producttaxonomypages')
     ->or_where('post_type', '=', 'industries')
     ->or_where('post_type', '=', 'events')
-    ->or_where('post_type', '=', 'guides')
     ->add_fields(__section_fields());
 
 
