@@ -4,9 +4,10 @@
 <head>
 	<meta charset="<?php bloginfo('charset'); ?>" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="author" content="">
 	<meta name="format-detection" content="telephone=no">
+	<link rel="canonical" href="<?= canonical() ?>" />
 	<title>
 		<?php bloginfo('name'); // show the blog name, from settings 
 		?> |
@@ -38,3 +39,4 @@
 	}
 	?>
 	<main class="<?= $class ?>">
+		

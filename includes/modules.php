@@ -771,6 +771,8 @@ function ___sections($id = 'sections', $post_id = '')
                         $product_slider_args['numberposts'] = $numberposts ? $numberposts : -1;
                         $product_slider_args['post_type'] = 'product';
                         $product_slider_args['fields'] = 'ids';
+                        $product_slider_args['post_status'] = 'publish';
+                        
                         if ($source_type == 'category') {
                             $term_ids = [];
                             foreach ($product_cat as $cat) {
@@ -794,6 +796,7 @@ function ___sections($id = 'sections', $post_id = '')
                                     'field'    => 'term_id',
                                     'terms'    => $brand_ids
                                 );
+                              
                             }
                         } else if ($source_type == 'manually') {
                             $include = [];
@@ -932,7 +935,10 @@ function ___sections($id = 'sections', $post_id = '')
 
                             $posts_list = get__post_meta($field_key);
                             foreach ($posts_list as $post) {
-                                $posts[] = $post['id'];
+                                $post_status = get_post_status($post['id']);
+                                if($post_status=='publish') {
+                                    $posts[] = $post['id'];
+                                }
                             }
 
                             $taxonomy = $post_type . '_category';
@@ -1009,7 +1015,10 @@ function ___sections($id = 'sections', $post_id = '')
                         if ($related_products) {
                             $related_products_array = array();
                             foreach ($related_products as $related_product) {
-                                $related_products_array[] = $related_product['id'];
+                                $post_status = get_post_status($related_product['id']);
+                                if($post_status=='publish') {
+                                    $related_products_array[] = $related_product['id'];
+                                }
                             }
                             $html .= __linked_products($related_products_array, $button_text, $button_link, $slider_id, $related_products_heading, false, true, true, $related_id);
                         }
@@ -2819,10 +2828,13 @@ function __related_posts($posts, $data, $heading = 'Related Guides', $section_id
 
     $html .= "<div class='row g-4 same-image-height' style='--image-padding: 37%;'>";
     foreach ($posts as $post) {
-        $html .= "<div class='col-md-4 col-sm-12'>";
-        $data['id'] = $post['id'];
-        $html .= __post_box($data);
-        $html .= '</div>';
+        $post_status = get_post_status($post['id']);
+        if($post_status=='publish') {
+            $html .= "<div class='col-md-4 col-sm-12'>";
+            $data['id'] = $post['id'];
+            $html .= __post_box($data);
+            $html .= '</div>';
+        } 
     }
     $html .= '</div>';
 
