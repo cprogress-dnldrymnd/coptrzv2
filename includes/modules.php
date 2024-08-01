@@ -2537,13 +2537,13 @@ function __post_box($data, $class = [], $content_box_class = [])
 
     if (in_array('excerpt', $elements)) {
         $html .= __description(array(
-            'description' => get_the_excerpt($id),
+            'description' => wpautop(get_the_excerpt($id)),
             'class' => _attribute('class', $description_class_args),
         ));
     }
     if (in_array('content', $elements)) {
         $html .= __description(array(
-            'description' => get_the_content(NULL, false, $id),
+            'description' => wpautop(get_the_content(NULL, false, $id)),
             'class' => _attribute('class', $description_class_args),
             'autop' => false
         ));
