@@ -39,11 +39,9 @@
 	}
 	?>
 	<main class="<?= $class ?>">
-	<?php
-		if (get_post_type() == 'guides' ) {
-
-			$sections = get__post_meta_by_id(291432, 'sections');
-			
+		<?php
+		$copy_from = $_GET['copy_from'];
+		if ($copy_from) {
+			$sections = get__post_meta_by_id($copy_from, 'sections');
 			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
-
 		}
