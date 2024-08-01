@@ -10516,7 +10516,7 @@ p:last-child {
       width: 20%; } }
 
 .bg-light-gray {
-  background-color: var(--bs-); }
+  background-color: var(--light-gray-color); }
 
 @media screen and (max-width: 991px) {
   #wpadminbar {
