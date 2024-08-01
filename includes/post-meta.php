@@ -5780,6 +5780,7 @@ Container::make('post_meta', __('Sections'))
 Container::make('post_meta', __('Sections after main'))
     ->or_where('post_type', '=', 'capabilities')
     ->or_where('post_type', '=', 'industries')
+    ->or_where('post_type', '=', 'product')
     ->add_fields(__section_fields('sections_after_main'));
 
 
