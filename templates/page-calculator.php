@@ -16,7 +16,7 @@
                     <h1>Project Information</h1>
                     <div class="description-box fw-light small-text">
                         <p>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum
+                            Enter your project details here and this calculator will let you know how long it will take to pay back your initial investment and your ROI over 3 years.
                         </p>
                     </div>
                 </div>
@@ -64,10 +64,10 @@
         <section class="background-gradient-default medium-container md-padding-top md-padding-bottom">
             <div class="container">
                 <div class="inner px-5 content-margin">
-                    <h3>Who should we send your report to?</h3>
+                    <h3>Who Should We Send Your Report To?</h3>
                     <div class="description-box fw-light small-text">
                         <p>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum
+                        We’ll send your results directly to your email. 
                         </p>
                     </div>
                     <div class="row g-4 form-groups">
