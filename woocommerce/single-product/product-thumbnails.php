@@ -31,6 +31,8 @@ $image_ids[] = $post_thumbnail_id;
 foreach ($attachment_ids as $attachment_id) {
 	$image_ids[] = $attachment_id;
 }
+
+$images_ids_per_slides = array_chunk($image_ids, 6);
 ?>
 <div class="product-thumb-holder">
 	<div class="swiper product-thumb">
@@ -38,32 +40,21 @@ foreach ($attachment_ids as $attachment_id) {
 			<?php
 			if ($image_ids) {
 				$key = 1;
-				echo '<div class="swiper-slide">';
-				echo '<div class="row g-4">';
-				foreach ($image_ids as  $id) {
-					$var = $key % 6;
-					if ($var == 0) {
-						echo '<div class="swiper-slide">';
-						echo '<div class="row g-4">';
+
+				foreach ($images_ids_per_slides as  $images_ids_per_slide) {
+					echo '<div class="swiper-slide">';
+					echo '<div class="row g-4">';
+				
+					foreach ($images_ids_per_slide as $id) {
+						echo '<div class="col-6">';
+						echo apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($id), $post_thumbnail_id);
+						echo '</div">';
 					}
 
-					echo '<div class="col-6">';
-					echo apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($id), $post_thumbnail_id);
+
 					echo '</div">';
-
-
-
-
-					if ($var == 0  && $counter < count($image_ids)) {
-						echo '</div">';
-						echo '</div">';
-						echo '<div class="swiper-slide">';
-						echo '<div class="row g-4">';
-					}
-					$key++;
+					echo '</div">';
 				}
-				echo '</div">';
-				echo '</div">';
 			}
 			?>
 
