@@ -39,6 +39,7 @@ foreach ($attachment_ids as $attachment_id) {
 				<?php foreach ($image_ids as $key => $id) { ?>
 					<?php
 					$var = $key % 6;
+					echo $var;
 					?>
 					<?php
 					if ($var == 0) {
