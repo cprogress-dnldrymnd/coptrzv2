@@ -35,32 +35,35 @@ foreach ($attachment_ids as $attachment_id) {
 <div class="product-thumb-holder">
 	<div class="swiper product-thumb">
 		<div class="swiper-wrapper">
-			<?php if ($image_ids) { ?>
-				<?php foreach ($image_ids as $key => $id) { ?>
-					<?php
+			<?php
+			if ($image_ids) {
+				$key = 1;
+				echo '<div class="swiper-slide">';
+				echo '<div class="row g-4">';
+				foreach ($image_ids as  $id) {
 					$var = $key % 6;
-					?>
-					<?php
 					if ($var == 0) {
 						echo '<div class="swiper-slide">';
 						echo '<div class="row g-4">';
 					}
-					
+
 					echo '<div class="col-6">';
 					echo apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($id), $post_thumbnail_id);
 					echo '</div">';
-					?>
 
 
-					<?php
-					if ($var == 0) {
+
+
+					if ($var == 0  && $counter < count($image_ids)) {
 						echo '</div">';
 						echo '</div">';
+						echo '<div class="swiper-slide">';
+						echo '<div class="row g-4">';
 					}
-					?>
-
-				<?php } ?>
-			<?php } ?>
+					$key++;
+				}
+			}
+			?>
 
 		</div>
 		<div class="swiper-nav d-inline-flex">
