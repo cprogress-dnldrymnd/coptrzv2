@@ -12250,8 +12250,13 @@ hr {
     animation-iteration-count: infinite;
     animation-timing-function: linear; }
 
-.the-content iframe {
-  width: 100%; }
+.the-content .iframe-holder iframe {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  object-fit: cover;
+  left: 0;
+  top: 0; }
 
 @keyframes spin {
   from {

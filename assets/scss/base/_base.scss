@@ -1435,7 +1435,17 @@ hr {
 }
 
 .the-content {
-    iframe {
-        width: 100%;
+  
+    .iframe-holder {
+        position: relative;
+        padding: 28% 0;
+        iframe {
+            width: 100%;
+            position: absolute;
+            height: 100%;
+            object-fit: cover;
+            left: 0;
+            top: 0;
+        }
     }
 }
