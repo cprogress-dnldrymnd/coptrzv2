@@ -1435,10 +1435,14 @@ hr {
 }
 
 .the-content {
-  
+    img {
+        border-radius: 10px;
+    }
     .iframe-holder {
         position: relative;
         padding: 28% 0;
+        border-radius: 10px;
+        overflow: hidden;
         iframe {
             width: 100%;
             position: absolute;
