@@ -391,5 +391,5 @@ add_filter('wpcf7_form_tag_data_option', function ($data, $options, $args) {
 
 
 add_filter( 'woocommerce_gallery_thumbnail_size', function( $size ) {
-    return 'large';
+    return 'medium';
 } );
