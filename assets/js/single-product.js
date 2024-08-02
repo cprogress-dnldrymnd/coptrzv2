@@ -141,6 +141,10 @@ function __product_gallery() {
         autoplay: false,
         spaceBetween: 0,
         slidesPerView: 1,
+        navigation: {
+            nextEl: ".swiper-button-next-thumb",
+            prevEl: ".swiper-button-prev-thumb",
+        },
     });
 
     var product_main_image = new Swiper('.product-main-image', {

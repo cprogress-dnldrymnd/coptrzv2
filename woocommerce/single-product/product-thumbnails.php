@@ -60,8 +60,8 @@ $images_ids_per_slides = array_chunk($image_ids, 6);
 
 		</div>
 		<div class="swiper-nav d-inline-flex">
-			<div class="swiper-button-prev"></div>
-			<div class="swiper-button-next "></div>
+			<div class="swiper-button-prev swiper-button-prev-thumb"></div>
+			<div class="swiper-button-next swiper-button-next-thumb"></div>
 		</div>
 	</div>
 </div>
