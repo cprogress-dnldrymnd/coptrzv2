@@ -11,7 +11,20 @@ jQuery(document).ready(function () {
     __ajax_trigger();
     __phone_input();
     __toggle_input();
+    __blog_content();
 });
+
+function __blog_content() {
+    if (jQuery('.the-content > *:nth-child(2) + ul').length > 0) {
+        jQuery('#download-gvc').insertAfter('.the-content > *:nth-child(3)');
+    } else {
+        jQuery('#download-gvc').inserAfter('.the-content > *:nth-child(2)');
+    }
+
+    jQuery('.the-content iframe').each(function (index, element) {
+        jQuery(this).parent().addClass('iframe-holder');
+    });
+}
 
 function __toggle_input() {
 
@@ -422,7 +435,7 @@ function __swipers() {
                 autoplay: {
                     delay: 2500,
                     disableOnInteraction: false,
-                  },
+                },
                 breakpoints: {
                     0: {
                         spaceBetween: 10,

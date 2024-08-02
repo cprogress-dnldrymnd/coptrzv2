@@ -244,11 +244,6 @@ function action__wp_footer()
             });
             jQuery('#download-gvc').appendTo('.the-content > *:nth-child(2)');
 
-            if (jQuery('.the-content > *:nth-child(2) + ul').length > 0) {
-                jQuery('#download-gvc').insertAfter('.the-content > *:nth-child(3)');
-            } else {
-                jQuery('#download-gvc').inserAfter('.the-content > *:nth-child(2)');
-            }
         </script>
 
     <?php
