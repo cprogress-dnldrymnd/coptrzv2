@@ -41,7 +41,7 @@ foreach ($attachment_ids as $attachment_id) {
 					$var = $key % 6;
 					?>
 					<?php
-					if ($var == 0) {
+					if ($var == 1) {
 						echo '<div class="swiper-slide">';
 						echo '<div class="row g-4">';
 					}
@@ -52,7 +52,7 @@ foreach ($attachment_ids as $attachment_id) {
 					</div>
 
 					<?php
-					if ($var == 0) {
+					if ($var == 1) {
 						echo '</div">';
 						echo '</div">';
 					}
