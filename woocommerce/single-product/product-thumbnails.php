@@ -62,6 +62,8 @@ foreach ($attachment_ids as $attachment_id) {
 					}
 					$key++;
 				}
+				echo '</div">';
+				echo '</div">';
 			}
 			?>
 
