@@ -491,10 +491,10 @@ input[type="checkbox"] {
 }
 
 .same-image-height {
-    .image-box {
+    .image-box, .video-box {
         position: relative;
         padding: var(--image-padding, 30%);
-        img {
+        img, video, iframe {
             position: absolute;
             left: 0;
             top: 0;
@@ -567,6 +567,7 @@ input[type="checkbox"] {
 }
 
 .video-box {
+    line-height: 0;
     video,
     iframe {
         width: 100% !important;
