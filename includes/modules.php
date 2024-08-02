@@ -772,7 +772,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $product_slider_args['post_type'] = 'product';
                         $product_slider_args['fields'] = 'ids';
                         $product_slider_args['post_status'] = 'publish';
-                        
+
                         if ($source_type == 'category') {
                             $term_ids = [];
                             foreach ($product_cat as $cat) {
@@ -796,7 +796,6 @@ function ___sections($id = 'sections', $post_id = '')
                                     'field'    => 'term_id',
                                     'terms'    => $brand_ids
                                 );
-                              
                             }
                         } else if ($source_type == 'manually') {
                             $include = [];
@@ -936,7 +935,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $posts_list = get__post_meta($field_key);
                             foreach ($posts_list as $post) {
                                 $post_status = get_post_status($post['id']);
-                                if($post_status=='publish') {
+                                if ($post_status == 'publish') {
                                     $posts[] = $post['id'];
                                 }
                             }
@@ -1016,7 +1015,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $related_products_array = array();
                             foreach ($related_products as $related_product) {
                                 $post_status = get_post_status($related_product['id']);
-                                if($post_status=='publish') {
+                                if ($post_status == 'publish') {
                                     $related_products_array[] = $related_product['id'];
                                 }
                             }
@@ -1503,7 +1502,7 @@ function ____columns_modules($items, $id, $html = '')
     $number_of_slides = $items['number_of_slides'];
     $number_of_slides_tablet = $items['number_of_slides_tablet'];
     $number_of_slides_mobile = $items['number_of_slides_mobile'];
-    $autoplay = $items['autoplay'] ? $items['autoplay']: false;
+    $autoplay = $items['autoplay'] ? $items['autoplay'] : false;
     $autoplay_delay = $items['autoplay_delay'];
     $same_image_height = $items['same_image_height'];
     $horizontal_spacing = $items['horizontal_spacing'];
@@ -2047,6 +2046,19 @@ function ____columns_modules($items, $id, $html = '')
                     $image_args['class'] = _attribute('class', $image_classes);
 
                     $html .= __image($image_args);
+                    break;
+                case 'video':
+                    $autoplay = $items['autoplay'] ? true : false;
+                    $video_type = $items['video_type'];
+                    $video = $items['video'];
+                    $youtube_video_id = $items['youtube_video_id'];
+                    $html .= __video(array(
+                        'youtube_video_id' => $youtube_video_id,
+                        'autoplay' => $autoplay,
+                        'video_id' => $video,
+                        'video_type' => $video_type,
+                        'class' => _attribute('class', array('video-box', $video_type))
+                    ));
                     break;
                 case 'gallery':
                     $html .= ____gallery_modules(array(
@@ -2832,12 +2844,12 @@ function __related_posts($posts, $data, $heading = 'Related Guides', $section_id
     $html .= "<div class='row g-4 same-image-height' style='--image-padding: 37%;'>";
     foreach ($posts as $post) {
         $post_status = get_post_status($post['id']);
-        if($post_status=='publish') {
+        if ($post_status == 'publish') {
             $html .= "<div class='col-md-4 col-sm-12'>";
             $data['id'] = $post['id'];
             $html .= __post_box($data);
             $html .= '</div>';
-        } 
+        }
     }
     $html .= '</div>';
 
