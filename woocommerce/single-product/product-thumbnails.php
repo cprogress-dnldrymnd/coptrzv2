@@ -42,9 +42,11 @@ $images_ids_per_slides = array_chunk($image_ids, 6);
 				$key = 1;
 
 				foreach ($images_ids_per_slides as  $images_ids_per_slide) {
-					echo '<div class="swiper-slide">';
+					if (count($image_ids) > 6) {
+						echo '<div class="swiper-slide">';
+					}
 					echo '<div class="row g-4">';
-				
+
 					foreach ($images_ids_per_slide as $id) {
 						echo '<div class="col-6">';
 						echo apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($id), $post_thumbnail_id);
@@ -53,15 +55,19 @@ $images_ids_per_slides = array_chunk($image_ids, 6);
 
 
 					echo '</div>';
-					echo '</div>';
+					if (count($image_ids) > 6) {
+						echo '</div>';
+					}
 				}
 			}
 			?>
 
 		</div>
-		<div class="swiper-nav d-inline-flex">
-			<div class="swiper-button-prev swiper-button-prev-thumb"></div>
-			<div class="swiper-button-next swiper-button-next-thumb"></div>
-		</div>
+		<?php if (count($image_ids) > 6) { ?>
+			<div class="swiper-nav d-inline-flex">
+				<div class="swiper-button-prev swiper-button-prev-thumb"></div>
+				<div class="swiper-button-next swiper-button-next-thumb"></div>
+			</div>
+		<?php } ?>
 	</div>
 </div>
