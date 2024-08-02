@@ -26,8 +26,13 @@ if (!function_exists('wc_get_gallery_image_html')) {
 global $product;
 $post_thumbnail_id = $product->get_image_id();
 $attachment_ids = $product->get_gallery_image_ids();
+
+$image_ids[] = $post_thumbnail_id;
+foreach ($attachment_ids as $attachment_id) {
+	$image_ids[] = $attachment_id;
+}
 ?>
-<div class="product-thumb-holder mt-20px">
+<div class="product-thumb-holder">
 	<div thumbsSlider class="swiper product-thumb">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
