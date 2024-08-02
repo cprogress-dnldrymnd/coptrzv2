@@ -2048,10 +2048,10 @@ function ____columns_modules($items, $id, $html = '')
                     $html .= __image($image_args);
                     break;
                 case 'video':
-                    $autoplay = $items['autoplay'] ? true : false;
-                    $video_type = $items['video_type'];
-                    $video = $items['video'];
-                    $youtube_video_id = $items['youtube_video_id'];
+                    $autoplay = $item['autoplay'] ? true : false;
+                    $video_type = $item['video_type'];
+                    $video = $item['video'];
+                    $youtube_video_id = $item['youtube_video_id'];
                     $html .= __video(array(
                         'youtube_video_id' => $youtube_video_id,
                         'autoplay' => $autoplay,
