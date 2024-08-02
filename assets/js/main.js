@@ -18,7 +18,7 @@ function __blog_content() {
     if (jQuery('.the-content > *:nth-child(2) + ul').length > 0) {
         jQuery('#download-gvc').insertAfter('.the-content > *:nth-child(3)');
     } else {
-        jQuery('#download-gvc').inserAfter('.the-content > *:nth-child(2)');
+        jQuery('#download-gvc').insertAfter('.the-content > *:nth-child(2)');
     }
 
     jQuery('.the-content iframe').each(function (index, element) {
