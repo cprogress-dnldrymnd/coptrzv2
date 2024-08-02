@@ -13,7 +13,7 @@ function __training() {
         __training_ajax();
     });
 
-    jQuery('.trigger-training-ajax-location').change(function (e) { 
+    jQuery('.trigger-training-ajax-location').change(function (e) {
         jQuery('input[name="delivery_method"][value="classroom"]').prop('checked', true);
         __training_ajax('classroom');
     });
@@ -139,26 +139,8 @@ function __product_gallery() {
     var product_thumb = new Swiper('.product-thumb', {
         loop: true,
         autoplay: false,
-        spaceBetween: 10,
-        breakpoints: {
-            0: {
-                slidesPerView: 3,
-            },
-
-            768: {
-                slidesPerView: 4,
-            },
-
-
-            992: {
-                slidesPerView: 5,
-            },
-
-            1200: {
-                slidesPerView: 6,
-            },
-
-        },
+        spaceBetween: 0,
+        slidesPerView: 1,
     });
 
     var product_main_image = new Swiper('.product-main-image', {

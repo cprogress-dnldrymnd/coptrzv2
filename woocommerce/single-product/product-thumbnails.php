@@ -33,7 +33,7 @@ foreach ($attachment_ids as $attachment_id) {
 }
 ?>
 <div class="product-thumb-holder">
-	<div thumbsSlider class="swiper product-thumb">
+	<div class="swiper product-thumb">
 		<div class="swiper-wrapper">
 			<?php if ($image_ids) { ?>
 				<?php foreach ($image_ids as $key => $id) { ?>
