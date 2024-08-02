@@ -52,8 +52,8 @@ $images_ids_per_slides = array_chunk($image_ids, 6);
 					}
 
 
-					echo '</div">';
-					echo '</div">';
+					echo '</div>';
+					echo '</div>';
 				}
 			}
 			?>
