@@ -12603,9 +12603,11 @@ ul.products.products.products {
     height: 100%;
     object-fit: contain; }
 
-section.product-main .images {
+section.product-main .images.images.images.images {
   position: sticky;
-  top: 52px; }
+  top: 52px;
+  width: 100%;
+  float: none; }
 section.product-main > .container > .row > div {
   flex: 0 0 auto; }
   section.product-main > .container > .row > div > div {

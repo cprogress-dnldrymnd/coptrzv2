@@ -356,10 +356,13 @@ ul.products.products.products {
 }
 
 section.product-main {
-    .images {
+    .images.images.images.images {
         position: sticky;
         top: 52px;
+        width: 100%;
+        float: none;
     }
+    /*
     > .container > .row {
         > div {
             flex:  0 0 auto;
@@ -401,7 +404,7 @@ section.product-main {
                 flex-direction: column;
             }
         }
-    }
+    }*/
 }
 @mixin upsell_style {
     .product-inner {
