@@ -44,12 +44,13 @@ foreach ($attachment_ids as $attachment_id) {
 					if ($var == 0) {
 						echo '<div class="swiper-slide">';
 						echo '<div class="row g-4">';
+					} else {
+						echo '<div class="col-6">';
+						echo apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($id), $post_thumbnail_id);
+						echo '</div">';
 					}
 					?>
 
-					<div class="col-6">
-						<?= apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($id), $post_thumbnail_id); ?>
-					</div>
 
 					<?php
 					if ($var == 1) {
