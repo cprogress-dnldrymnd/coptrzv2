@@ -56,7 +56,7 @@ foreach ($attachment_ids as $attachment_id) {
 
 
 					<?php
-					if ($var == 1) {
+					if ($var == 0) {
 						echo '</div">';
 						echo '</div">';
 					}
