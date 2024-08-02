@@ -40,7 +40,7 @@ $wrapper_classes   = apply_filters(
 ?>
 <div class="images">
 	<div class="woocommerce-product-gallery__wrapper">
-		<div class="row">
+		<div class="row g-4">
 			<div class="col-lg-7">
 				<div class="product-main-image-holder">
 					<div class="swiper product-main-image border-default rounded-corner overflow-hidden">
