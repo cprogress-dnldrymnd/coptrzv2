@@ -84,11 +84,11 @@ $wrapper_classes   = apply_filters(
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-lg-5">
-			<?php
-			do_action('woocommerce_product_thumbnails');
-			?>
+			<div class="col-lg-5">
+				<?php
+				do_action('woocommerce_product_thumbnails');
+				?>
+			</div>
 		</div>
 	</div>
 </div>
