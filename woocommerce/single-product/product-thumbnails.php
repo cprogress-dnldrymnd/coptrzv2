@@ -52,7 +52,7 @@ foreach ($attachment_ids as $attachment_id) {
 					</div>
 
 					<?php
-					if ($var == 5) {
+					if ($var == 1) {
 						echo '</div">';
 						echo '</div">';
 					}
