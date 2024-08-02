@@ -243,6 +243,13 @@ function action__wp_footer()
                 jQuery("<?= $layouts_global_val ?>").appendTo('#wp-admin-bar-layouts-menu');
             });
             jQuery('#download-gvc').appendTo('.the-content > *:nth-child(2)');
+
+            if (jQuery('.the-content > *:nth-child(2) + ul').length > 0) {
+                jQuery('#download-gvc').appendTo('.the-content > *:nth-child(2)');
+
+            } else {
+                jQuery('#download-gvc').appendTo('.the-content > *:nth-child(3)');
+            }
         </script>
 
     <?php
