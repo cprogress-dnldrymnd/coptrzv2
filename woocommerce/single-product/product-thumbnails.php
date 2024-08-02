@@ -38,17 +38,17 @@ foreach ($attachment_ids as $attachment_id) {
 			<div class="swiper-slide">
 				<?= apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($post_thumbnail_id), $post_thumbnail_id); ?>
 			</div>
-			<?php
-			if ($attachment_ids && $product->get_image_id()) {
-				foreach ($attachment_ids as $attachment_id) {
-			?>
-					<div class="swiper-slide">
-						<?= apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($attachment_id), $attachment_id); ?>
-					</div>
-			<?php
-				}
-			}
-			?>
+
+			<?php if ($image_ids) { ?>
+				<?php foreach ($image_ids as $key => $id) { ?>
+					<?php
+					$item = $key % 6;
+					echo $item;
+					?>
+
+				<?php } ?>
+			<?php } ?>
+
 		</div>
 		<div class="swiper-nav d-inline-flex">
 			<div class="swiper-button-prev"></div>
