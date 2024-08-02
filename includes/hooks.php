@@ -268,10 +268,10 @@ function hero_form_redirect()
     if ($hero_form_enable) {
     ?>
         <script>
-            document.addEventListener('wpcf7submit', function(event) {
+            document.addEventListener('wpcf7mailsent', function(event) {
                 setTimeout(function() {
                     if (<?= $form_id ?> == event.detail.contactFormId) {
-                        window.open = '<?= $redirect ?>';
+                        window.open(<?= $redirect ?>, '_blank');
                     }
                 }, 3000);
             }, false);
