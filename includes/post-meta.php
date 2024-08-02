@@ -1115,8 +1115,7 @@ function __hero_form_fields()
         Field::make('image', 'hero_form_image', 'Image')->set_classes('inline-field'),
         Field::make('text', 'hero_form_heading', 'Form Heading')->set_classes('inline-field'),
         Field::make('text', 'hero_form_description', 'Form Description')->set_classes('inline-field'),
-        Field::make('select', 'hero_form_redirect_type', 'Form Redirect Type')->set_classes('inline-field'),
-        Field::make('select', 'hero_form_style', 'Style')->set_classes('inline-field')
+        Field::make('select', 'hero_form_redirect_type', 'Form Redirect Type')->set_classes('inline-field')
             ->set_options(
                 array(
                     'pdf'   => 'PDF File',
@@ -1134,14 +1133,21 @@ function __hero_form_fields()
                 )
             ),
         Field::make('text', 'hero_form_redirect_url', 'Select Form')->set_classes('inline-field')
-        ->set_conditional_logic(
-            array(
+            ->set_conditional_logic(
                 array(
-                    'field' => 'hero_form_redirect_type',
-                    'value' => 'custom',
+                    array(
+                        'field' => 'hero_form_redirect_type',
+                        'value' => 'custom',
+                    )
                 )
-            )
-        ),
+            ),
+        Field::make('select', 'hero_form_style', 'Style')->set_classes('inline-field')
+            ->set_options(
+                array(
+                    ''   => 'Default',
+                    'style-2' => 'Style 2',
+                )
+            ),
         Field::make('association', 'hero_form', 'Select Form')->set_classes('inline-field')
             ->set_types(
                 array(
