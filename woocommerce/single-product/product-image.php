@@ -40,49 +40,55 @@ $wrapper_classes   = apply_filters(
 ?>
 <div class="images">
 	<div class="woocommerce-product-gallery__wrapper">
-		<div class="product-main-image-holder">
-			<div class="swiper product-main-image border-default rounded-corner overflow-hidden">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<?php
-
-						if ($post_thumbnail_id) {
-							echo __image(array(
-								'image_id' => $post_thumbnail_id,
-								'class' => _attribute('class', array('product-image')),
-								'size' => 'large'
-							));
-						} else {
-							$html  = '<div class="product-image woocommerce-product-gallery__image--placeholder">';
-							$html .= sprintf('<img src="%s" alt="%s" class="wp-post-image" />', esc_url(wc_placeholder_img_src('woocommerce_single')), esc_html__('Awaiting product image', 'woocommerce'));
-							$html .= '</div>';
-							echo $html;
-						}
-
-						?>
-					</div>
-					<?php
-					if ($attachment_ids && $product->get_image_id()) {
-						foreach ($attachment_ids as $attachment_id) {
-					?>
+		<div class="row">
+			<div class="col-lg-7">
+				<div class="product-main-image-holder">
+					<div class="swiper product-main-image border-default rounded-corner overflow-hidden">
+						<div class="swiper-wrapper">
 							<div class="swiper-slide">
 								<?php
-								echo __image(array(
-									'image_id' => $attachment_id,
-									'class' => _attribute('class', array('product-image')),
-									'size' => 'large'
-								));
+
+								if ($post_thumbnail_id) {
+									echo __image(array(
+										'image_id' => $post_thumbnail_id,
+										'class' => _attribute('class', array('product-image')),
+										'size' => 'large'
+									));
+								} else {
+									$html  = '<div class="product-image woocommerce-product-gallery__image--placeholder">';
+									$html .= sprintf('<img src="%s" alt="%s" class="wp-post-image" />', esc_url(wc_placeholder_img_src('woocommerce_single')), esc_html__('Awaiting product image', 'woocommerce'));
+									$html .= '</div>';
+									echo $html;
+								}
+
 								?>
 							</div>
-					<?php
-						}
-					}
-					?>
+							<?php
+							if ($attachment_ids && $product->get_image_id()) {
+								foreach ($attachment_ids as $attachment_id) {
+							?>
+									<div class="swiper-slide">
+										<?php
+										echo __image(array(
+											'image_id' => $attachment_id,
+											'class' => _attribute('class', array('product-image')),
+											'size' => 'large'
+										));
+										?>
+									</div>
+							<?php
+								}
+							}
+							?>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<?php
-		do_action('woocommerce_product_thumbnails');
-		?>
+		<div class="col-lg-5">
+			<?php
+			do_action('woocommerce_product_thumbnails');
+			?>
+		</div>
 	</div>
 </div>
