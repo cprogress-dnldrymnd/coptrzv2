@@ -11586,7 +11586,7 @@ input[type="checkbox"] {
 .same-image-height .image-box, .same-image-height .video-box {
   position: relative;
   padding: var(--image-padding, 30%); }
-  .same-image-height .image-box img, .same-image-height .image-box video, .same-image-height .video-box img, .same-image-height .video-box video {
+  .same-image-height .image-box img, .same-image-height .image-box video, .same-image-height .image-box iframe, .same-image-height .video-box img, .same-image-height .video-box video, .same-image-height .video-box iframe {
     position: absolute;
     left: 0;
     top: 0;
