@@ -2057,7 +2057,7 @@ function ____columns_modules($items, $id, $html = '')
                         'autoplay' => $autoplay,
                         'video_id' => $video,
                         'video_type' => $video_type,
-                        'class' => _attribute('class', array('video-box', $video_type))
+                        'class' => _attribute('class', array('video-box rounded-corner overflow-hidden', $video_type))
                     ));
                     break;
                 case 'gallery':
