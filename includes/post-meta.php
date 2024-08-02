@@ -1421,12 +1421,12 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'tag', __('Tag'))->set_width(20)
                             ->set_options(
                                 array(
-                                    'h1' => 'h1',
                                     'h2' => 'h2',
                                     'h3' => 'h3',
                                     'h4' => 'h4',
                                     'h5' => 'h5',
                                     'h6' => 'h6',
+                                    'h1' => 'h1',
                                 )
                             )
                             ->set_default_value('h2')
