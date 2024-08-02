@@ -1118,6 +1118,7 @@ function __hero_form_fields()
         Field::make('select', 'hero_form_redirect_type', 'Form Redirect Type')->set_classes('inline-field')
             ->set_options(
                 array(
+                    ''   => 'None',
                     'pdf'   => 'PDF File',
                     'custom' => 'Custom URL',
                 )
