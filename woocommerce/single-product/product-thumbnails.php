@@ -40,11 +40,24 @@ foreach ($attachment_ids as $attachment_id) {
 					<?php
 					$var = $key % 6;
 					?>
-					<?php if ($var == 0) { ?>
-						<div class="swiper-slide">
-							<?= apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($id), $post_thumbnail_id); ?>
-						</div>
-					<?php } ?>
+					<?php
+					if ($var == 0) {
+						echo '<div class="swiper-slide">';
+						echo '<div class="row g-4">';
+					}
+					?>
+
+					<div class="col-6">
+						<?= apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($id), $post_thumbnail_id); ?>
+					</div>
+
+					<?php
+					if ($var == 0) {
+						echo '</div">';
+						echo '</div">';
+					}
+					?>
+
 				<?php } ?>
 			<?php } ?>
 
