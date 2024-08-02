@@ -45,5 +45,9 @@ $attachment_ids = $product->get_gallery_image_ids();
 			}
 			?>
 		</div>
+		<div class="swiper-nav d-inline-flex">
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next "></div>
+		</div>
 	</div>
 </div>
