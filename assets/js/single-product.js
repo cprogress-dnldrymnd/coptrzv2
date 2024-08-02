@@ -147,9 +147,6 @@ function __product_gallery() {
         loop: true,
         autoplay: false,
         slidesPerView: 1,
-        thumbs: {
-            swiper: product_thumb,
-        },
     });
 
 } 
