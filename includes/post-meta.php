@@ -1991,6 +1991,37 @@ function __section_fields($name = 'sections')
                                             ),
                                     ))
                                     ->add_fields(
+                                        'video',
+                                        array(
+                                            Field::make('checkbox', 'autoplay', __('Is Video Autoplay'))->set_width(100),
+                                            Field::make('select', 'video_type', __('Background Type'))->set_classes('inline-field')
+                                                ->set_options(
+                                                    array(
+                                                        'youtube' => 'Youtube',
+                                                        'self-hosted' => 'Self Hosted',
+                                                    )
+                                                ),
+                                            Field::make('file', 'video', __('Video'))->set_classes('inline-field')->set_type(array('video'))
+                                                ->set_conditional_logic(
+                                                    array(
+                                                        array(
+                                                            'field' => 'video_type',
+                                                            'value' => 'self-hosted',
+                                                        )
+                                                    )
+                                                ),
+                                            Field::make('text', 'youtube_video_id', __('Youtube ID'))->set_classes('inline-field')
+                                                ->set_conditional_logic(
+                                                    array(
+                                                        array(
+                                                            'field' => 'video_type',
+                                                            'value' => 'youtube',
+                                                        )
+                                                    )
+                                                ),
+                                        )
+                                    )
+                                    ->add_fields(
                                         'gallery',
                                         array(
                                             Field::make('select', 'gallery_style', 'Gallery Style')
