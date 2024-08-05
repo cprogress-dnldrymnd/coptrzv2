@@ -69,6 +69,7 @@ function __ajax() {
     } else {
         $events_type = false;
     }
+    console.log($link);
 
     $link_url_param = '?url=' + $link;
 
