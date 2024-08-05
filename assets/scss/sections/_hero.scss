@@ -116,6 +116,10 @@ body {
                 .form-header {
                     border-radius: 0;
                 }
+                .form-box {
+                    border: 1px solid var(--bs-light);
+                    border-radius: 0 0 10px 10px;
+                }
                 .container {
                     max-width: 100%;
                     padding-top: 0;
