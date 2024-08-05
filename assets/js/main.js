@@ -70,14 +70,14 @@ function __ajax() {
     }
 
     if ($posts_per_page != '') {
-       var  $ajax_url_param = 'posts_per_page=' + $posts_per_page;
+        var $ajax_url_param = 'posts_per_page=' + $posts_per_page;
     }
 
 
     jQuery.ajax({
         type: "POST",
 
-        url: ajax_object.ajax_url + '?' + ajax_url_param,
+        url: ajax_object.ajax_url + '?' + $ajax_url_param,
 
         data: {
             action: 'archive_ajax',
