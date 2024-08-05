@@ -13941,9 +13941,11 @@ section.hero {
   body.hero-has-form section.hero {
     padding-top: 0;
     padding-bottom: 0;
-    border-radius: 10px 10px 0 0; }
+    border-radius: 10px 10px 0 0;
+    background-color: transparent !important; }
     body.hero-has-form section.hero .hero-left-content {
-      padding: 110px 1rem 1rem 1rem; }
+      padding: 110px 1rem 1rem 1rem;
+      background-color: var(--bs-primary) !important; }
     body.hero-has-form section.hero .form-holder {
       border-radius: 0; }
     body.hero-has-form section.hero .form-header {

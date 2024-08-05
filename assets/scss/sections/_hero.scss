@@ -102,8 +102,10 @@ body {
                 padding-top: 0;
                 padding-bottom: 0;
                 border-radius: 10px 10px 0 0;
+                background-color: transparent !important;
                 .hero-left-content {
                     padding: 110px 1rem 1rem 1rem;
+                    background-color: var(--bs-primary) !important;
                 }
                 .form-holder {
                     border-radius: 0;
