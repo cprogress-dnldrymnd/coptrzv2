@@ -60,7 +60,7 @@ function _date_format($date_input, $include_year = false)
     }
     return $newDate;
 }
-function _pagination($has_pagination, $query, $data = false)
+function _pagination($has_pagination, $query, $data=false)
 {
     if ($has_pagination) {
         ob_start();
@@ -82,7 +82,7 @@ function _pagination($has_pagination, $query, $data = false)
                                         'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
                                         'total'        => $query->max_num_pages,
                                         'current'      => max(1, get_query_var('paged')),
-                                        'format'       => 'page/%#%',
+                                        'format'       => '?paged=%#%',
                                         'show_all'     => false,
                                         'type'         => 'plain',
                                         'end_size'     => 2,
@@ -96,14 +96,13 @@ function _pagination($has_pagination, $query, $data = false)
 
                                     if ($data) {
                                         $url = $data['url'];
-                                        if (isset($data['posts_per_page'])) {
+                                        if(isset($data['posts_per_page'])) {
                                             $posts_per_page = $data['posts_per_page'];
                                         }
-                                        echo str_replace('/wp-admin/admin-ajax.php?paged=', $url . 'page/' . $posts_per_page, $paginate_links);
+                                        echo str_replace('/wp-admin/admin-ajax.php?paged=', $url.'page/', $paginate_links);
                                     } else {
                                         echo $paginate_links;
                                     }
-                                    echo $paginate_links;
 
 
                                     ?>
