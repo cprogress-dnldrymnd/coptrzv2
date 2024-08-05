@@ -20,7 +20,7 @@ $data['col'] = true;
 $data['featured'] = false;
 $black_header = false;
 $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
-$url = 'http://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
+$url = $uri_parts[0];
 $data['url'] = $url;
 
 $elements_array[] = 'image';
