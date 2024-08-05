@@ -70,7 +70,7 @@ function __ajax() {
     }
 
     if ($posts_per_page != '') {
-        $ajax_url_param = 'posts_per_page=' + $posts_per_page;
+       var  $ajax_url_param = 'posts_per_page=' + $posts_per_page;
     }
 
 
