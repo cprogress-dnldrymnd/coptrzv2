@@ -62,8 +62,16 @@ function _date_format($date_input, $include_year = false)
 }
 function modify_get_pagenum_link_defaults($result, $pagenum)
 {
-    if(isset($_GET['url'])) {
-        return $_GET['url'] . 'page/' . $pagenum;
+    if (isset($_GET['url'])) {
+        $url =  $_GET['url'] . 'page/' . $pagenum;
+        if (isset($_GET['posts_per_page'])) {
+            $posts_per_page = '&posts_per_page=' . $_GET['posts_per_page'];
+        }
+        if (isset($_GET['s'])) {
+            $s = 's=' . $_GET['s'];
+        }
+
+        return $url . '?' . $posts_per_page + $s;
     }
 }
 add_filter("get_pagenum_link", "modify_get_pagenum_link_defaults", 10, 2);
