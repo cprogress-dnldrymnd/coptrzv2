@@ -153,7 +153,7 @@ function buy_now_ajax(button) {
 
         //url: "/coptrz/wp-admin/admin-ajax.php",
 
-        url: ajax_object.ajax_url,
+        url: ajax_object.ajax_url+'?test=test',
 
         data: {
             action: 'buy_now_ajax',
