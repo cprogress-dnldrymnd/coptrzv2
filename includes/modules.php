@@ -1314,7 +1314,13 @@ function ____post_grid_module($data)
                     break;
                 case 'column_width':
                     $column_classes[] = $post_box_style['column_width'];
-                    $column_classes[] = $post_box_style['column_width_tablet'];
+
+                    if (count($posts_lists) == 3 && $post_box_style['column_width_tablet'] == 'col-md-6') {
+                        $column_classes[] = $post_box_style['column_width_tablet'];
+                    } else {
+                        $column_classes[] = $post_box_style['column_width_tablet'];
+
+                    }
                     $column_classes[] = $post_box_style['column_width_mobile'];
                     break;
             }
@@ -1767,11 +1773,7 @@ function ____columns_modules($items, $id, $html = '')
                         $column_class[] = $column_width;
                     }
                     if ($column_width_tablet) {
-                        if (count($columns) == 3 && $column_width_tablet == 'col-md-6') {
-                            $column_class[] = 'col-md-12 '.count($columns);
-                        } else {
-                            $column_class[] = $column_width_tablet;
-                        }
+                        $column_class[] = $column_width_tablet;
                     }
                     if ($column_width_mobile) {
                         $column_class[] = $column_width_mobile;
