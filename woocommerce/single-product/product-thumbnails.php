@@ -45,7 +45,7 @@ $images_ids_per_slides = array_chunk($image_ids, 6);
 					if (count($image_ids) > 6) {
 						echo '<div class="swiper-slide">';
 					}
-					echo '<div class="row g-4 wp100">';
+					echo '<div class="row g-4 w-100">';
 
 					foreach ($images_ids_per_slide as $id) {
 						echo '<div class="col-6">';
