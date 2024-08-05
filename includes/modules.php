@@ -95,7 +95,7 @@ function _pagination($has_pagination, $query, $url=false)
                                     ));
 
                                     if ($url) {
-                                        echo str_replace('wp-admin/admin-ajax.php?paged=', $url.'/page/', $paginate_links);
+                                        echo str_replace('wp-admin/admin-ajax.php?paged=', $url.'page/', $paginate_links);
                                     } else {
                                         echo $paginate_links;
                                     }
