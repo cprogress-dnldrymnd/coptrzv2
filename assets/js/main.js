@@ -63,21 +63,28 @@ function __ajax() {
     $data = jQuery('#posts').attr('data');
     $query = jQuery('#posts').attr('query');
     $posts_per_page = jQuery('#posts').attr('posts_per_page');
+    $link = jQuery('link[rel="canonical"').attr('href');
     if (jQuery('input[name="events_type"]').length > 0) {
         $events_type = jQuery('input[name="events_type"]:checked').val();
     } else {
         $events_type = false;
     }
 
+    $link_url_param = '?url=' + $link;
+
     if ($posts_per_page != '') {
-        var $ajax_url_param = 'posts_per_page=' + $posts_per_page;
+        var $posts_per_page_param = '&posts_per_page=' + $posts_per_page;
+    }
+
+    if ($s != '') {
+        var $s_param = '&s=' + $s;
     }
 
 
     jQuery.ajax({
         type: "POST",
 
-        url: ajax_object.ajax_url + '?' + $ajax_url_param,
+        url: ajax_object.ajax_url + $link_url_param + $posts_per_page_param + $s_param,
 
         data: {
             action: 'archive_ajax',
