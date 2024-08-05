@@ -325,6 +325,7 @@ function action_pre_get_posts($query)
 
             $query->set('meta_query', $meta_query);
         }
+        
         if (is_post_type_archive('industries') || is_post_type_archive('capabilities')) {
             $query->set('posts_per_page', -1);
         } else if (is_post_type_archive('events') || is_tax('events_category')) {
@@ -337,7 +338,7 @@ function action_pre_get_posts($query)
             $query->set('meta_query', $meta_query);
             $query->set('orderby', 'meta_value');
             $query->set('order', 'ASC');
-        } else if (is_home()) {
+        } else if (is_home() || is_category()) {
             $query->set('orderby', 'date');
             $query->set('order', 'DESC');
         } 
