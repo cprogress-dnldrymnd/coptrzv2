@@ -20,7 +20,8 @@
         li {
             @include on-event {
                 z-index: 9999;
-                .submenu, .submenu2 {
+                .submenu,
+                .submenu2 {
                     @include transition(200ms);
                 }
             }
@@ -106,7 +107,7 @@
                 transform: translate(-50%, 20px);
                 opacity: 0;
                 visibility: hidden;
-               // @include transition(200ms);
+                // @include transition(200ms);
                 &.active {
                     transform: translate(-50%, 0);
                     visibility: visible;
@@ -387,6 +388,17 @@ body.mobile-menu-active {
         }
         @include responsive(mobile) {
             padding: 110px 0 0 0;
+        }
+    }
+}
+
+body {
+    &.no-hero-bg {
+        .header .navbar.navbar.navbar .nav-item .nav-link {
+            @include on-event {
+                background-color: var(--bs-white);
+                color: var(--bs-black);
+            }
         }
     }
 }
