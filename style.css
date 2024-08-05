@@ -13462,7 +13462,10 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
         margin-top: 10px; } }
   .header .navbar.navbar.navbar li:hover, .header .navbar.navbar.navbar li:active, .header .navbar.navbar.navbar li:focus {
     z-index: 9999; }
-    .header .navbar.navbar.navbar li:hover .submenu, .header .navbar.navbar.navbar li:hover .submenu2, .header .navbar.navbar.navbar li:active .submenu, .header .navbar.navbar.navbar li:active .submenu2, .header .navbar.navbar.navbar li:focus .submenu, .header .navbar.navbar.navbar li:focus .submenu2 {
+    .header .navbar.navbar.navbar li:hover .submenu,
+    .header .navbar.navbar.navbar li:hover .submenu2, .header .navbar.navbar.navbar li:active .submenu,
+    .header .navbar.navbar.navbar li:active .submenu2, .header .navbar.navbar.navbar li:focus .submenu,
+    .header .navbar.navbar.navbar li:focus .submenu2 {
       -webkit-transition: 200ms;
       -moz-transition: 200ms;
       -ms-transition: 200ms;
@@ -13746,7 +13749,7 @@ body.mobile-menu-active header .menu-burger .icon .menu {
 
 body.no-hero-bg .header .navbar.navbar.navbar .nav-item .nav-link:hover, body.no-hero-bg .header .navbar.navbar.navbar .nav-item .nav-link:active, body.no-hero-bg .header .navbar.navbar.navbar .nav-item .nav-link:focus {
   background-color: var(--bs-white);
-  color: var(--bs-black); }
+  color: var(--bs-primary); }
 
 #footer {
   font-weight: 300; }
