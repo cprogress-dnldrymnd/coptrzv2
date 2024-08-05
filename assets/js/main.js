@@ -161,41 +161,7 @@ function __filters() {
 }
 
 
-function __ajax_buy_now() {
-    jQuery('.buy-now-trigger').click(function (e) {
-        buy_now_ajax(jQuery(this));
-        e.preventDefault();
-    });
-}
 
-function buy_now_ajax(button) {
-    $buy_now_id = button.attr('data-target');
-    button.addClass('active').attr('disabled');
-    console.log($buy_now_id);
-
-    jQuery.ajax({
-
-        type: "POST",
-
-        //url: "/coptrz/wp-admin/admin-ajax.php",
-
-        url: ajax_object.ajax_url,
-
-        data: {
-            action: 'buy_now_ajax',
-            buy_now_id: $buy_now_id,
-        },
-
-        success: function (response) {
-            button.removeClass('active');
-            window.location.href = ajax_object.checkout_url;
-        },
-        error: function (e) {
-            console.log(e);
-        }
-
-    });
-}
 function __input_fields() {
     jQuery('.remove-first-option-value select option:first-child').attr('value', '');
 

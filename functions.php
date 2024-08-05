@@ -82,16 +82,7 @@ function enqueue_scripts()
 	wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js');
 	wp_enqueue_script('bootstrap', vendor_dir . 'bootstrap/js/bootstrap.min.js');
 	//wp_enqueue_script('intlTelInput', vendor_dir.'intlTelInput/js/intlTelInput.min.js');
-	wp_register_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
-	wp_localize_script(
-		'main',
-		'ajax_object',
-		array(
-			'ajax_url' => admin_url('admin-ajax.php'),
-			'checkout_url' => wc_get_checkout_url(),
-		)
-	);
-	wp_enqueue_script('main');
+	wp_enqueue_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
 
 	if (is_product()) {
 		wp_register_script('single-product', assets_dir . 'js/single-product.js', NULL, coptz_version);
@@ -110,24 +101,7 @@ function enqueue_scripts()
 		wp_enqueue_script('single-event', assets_dir . 'js/single-event.js', NULL, coptz_version);
 	}
 
-	if (is_checkout()) {
-		wp_enqueue_style('checkout-style', assets_dir . 'scss/checkout/checkout.css', NULL, coptz_version);
-		wp_register_script('checkout-js', assets_dir . 'js/checkout.js', ['jquery'], coptz_version);
-
-		$countries_obj = new WC_Countries();
-
-		// Get the array of allowed countries (key = country code, value = country name)
-		$allowed_countries = $countries_obj->get_allowed_countries();
-		$countries = [];
-		foreach ($allowed_countries as $key => $country) {
-			$countries[] = $key;
-		}
-
-		wp_localize_script('checkout-js', 'countries', $countries);
-		wp_enqueue_script('checkout-js');
-	} else {
-		wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
-	}
+	wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn and allow Wordpress to call it automatcally in the header

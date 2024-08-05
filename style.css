@@ -11136,7 +11136,8 @@ p:last-child {
     margin: 0 !important; } }
 
 img {
-  max-width: 100%; }
+  max-width: 100%;
+  height: auto; }
 
 hr {
   color: var(--border-color); }

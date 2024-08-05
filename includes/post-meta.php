@@ -2067,7 +2067,6 @@ function __section_fields($name = 'sections')
                                                                 'industries' => 'Industry',
                                                                 'popups'    => 'Popup',
                                                                 'custom'     => 'Custom',
-                                                                'buy-now'    => 'Buy Now(Product Only)',
                                                             )
                                                         ),
                                                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
@@ -4971,7 +4970,6 @@ function __section_fields($name = 'sections')
                                                 'industries' => 'Industry',
                                                 'popups'    => 'Popup',
                                                 'custom'     => 'Custom',
-                                                'buy-now'    => 'Buy Now(Product Only)',
                                             )
                                         ),
                                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
