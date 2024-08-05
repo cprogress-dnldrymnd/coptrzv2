@@ -143,7 +143,7 @@ require_once('includes/_required_files.php');
 function canonical() {
 	if(is_single() || is_page()) {
 		return get_the_permalink();
-	} else if(is_tax()) {
+	} else if(is_tax() || is_category()) {
 		$term_link = get_term_link(get_queried_object()->term_id);
 		return $term_link;
 	} else if(is_post_type_archive()) {
