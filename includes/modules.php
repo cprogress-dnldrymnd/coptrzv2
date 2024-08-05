@@ -47,9 +47,11 @@ function _date_format($date_input, $include_year = false)
     $day = date('j', $date);
     $sup = date('S', $date);
     $month = date('F', $date);
+    $Y = date('Y', $date);
     $newDate = " $day";
     $newDate .= "<sup>$sup</sup>";
     $newDate .= " $month";
+    $newDate .= " $Y";
     if ($include_year == true) {
         $current_year = date("Y");
         $year = date('Y', $date);
@@ -2462,7 +2464,7 @@ function __post_box($data, $class = [], $content_box_class = [])
         $class[] = 'p-20px d-flex flex-column justify-content-between';
     }
     $image = get_post_thumbnail_id($id);
-    $date = _date_format(get_the_date('jS F Y', $id), true);
+    $date = _date_format(get_the_date('jS F', $id));
 
     $class[] = 'post-box column-holder position-relative overflow-hidden h-100';
     $content_box_class[] = 'content-box content-margin ';
