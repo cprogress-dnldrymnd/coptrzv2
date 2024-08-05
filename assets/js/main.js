@@ -12,7 +12,19 @@ jQuery(document).ready(function () {
     __phone_input();
     __toggle_input();
     __blog_content();
+    __hero();
 });
+jQuery(window).on("resize", function () {
+    __hero();
+    __header_menu();
+});
+function __hero() {
+    if (window.innerWidth > 991) {
+        jQuery('body.hero-has-form #hero .background-image').appendTo('.col-lg-7');
+    } else {
+        jQuery('body.hero-has-form #hero').prependTo('.col-lg-7');
+    }
+}
 
 function __blog_content() {
     if (jQuery('.the-content > *:nth-child(2) + ul').length > 0) {
