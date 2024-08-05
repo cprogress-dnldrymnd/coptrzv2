@@ -60,7 +60,18 @@ function _date_format($date_input, $include_year = false)
     }
     return $newDate;
 }
+function my_get_pagenum_link( $pagenum = 1, $escape = true, $base = null ) {
+    global $wp_rewrite;
 
+    $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
+    $base = 'http://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
+
+    $pagenum = (int) $pagenum;
+
+    $request = $base ? remove_query_arg( 'paged', $base ) : remove_query_arg( 'paged' );
+
+    return $request;
+}
 function _pagination($has_pagination, $query)
 {
     if ($has_pagination) {
@@ -79,8 +90,9 @@ function _pagination($has_pagination, $query)
                             <nav class="navigation pagination">
                                 <div class="nav-links">
                                     <?php
+                                    $my_get_pagenum_link = my_get_pagenum_link( get_query_var('paged') - 1, true);
                                     echo paginate_links(array(
-                                        'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+                                        'base'         => str_replace(999999999, '%#%', esc_url($my_get_pagenum_link)),
                                         'total'        => $query->max_num_pages,
                                         'current'      => max(1, get_query_var('paged')),
                                         'format'       => '?paged=%#%',
