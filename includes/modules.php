@@ -2462,7 +2462,7 @@ function __post_box($data, $class = [], $content_box_class = [])
         $class[] = 'p-20px d-flex flex-column justify-content-between';
     }
     $image = get_post_thumbnail_id($id);
-    $date = _date_format(get_the_date('jS F', $id));
+    $date = _date_format(get_the_date('jS F Y', $id));
 
     $class[] = 'post-box column-holder position-relative overflow-hidden h-100';
     $content_box_class[] = 'content-box content-margin ';
