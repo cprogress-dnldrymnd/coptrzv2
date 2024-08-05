@@ -72,7 +72,7 @@ function __ajax() {
     jQuery.ajax({
         type: "POST",
 
-        url: ajax_object.ajax_url+'?test=test',
+        url: ajax_object.ajax_url,
 
         data: {
             action: 'archive_ajax',
