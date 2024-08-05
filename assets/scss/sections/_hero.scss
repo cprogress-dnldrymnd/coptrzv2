@@ -54,6 +54,12 @@ section.hero {
 
 body {
     &.hero-has-form  {
-        
+        section.hero {
+            .container {
+                @include responsive(xs-sm) {
+                    padding-top: 0;
+                }
+            }
+        }
     }
 }

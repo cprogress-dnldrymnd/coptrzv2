@@ -13927,6 +13927,10 @@ section.hero {
     max-width: 1112px;
     display: inline-block; }
 
+@media screen and (max-width: 991px) {
+  body.hero-has-form section.hero .container {
+    padding-top: 0; } }
+
 section.landing-page {
   min-height: calc(100vh - 40px ); }
   section.landing-page .text-holder > *:not(:last-child) {
