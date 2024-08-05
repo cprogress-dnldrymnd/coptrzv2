@@ -492,10 +492,13 @@ input[type="checkbox"] {
 }
 
 .same-image-height {
-    .image-box, .video-box {
+    .image-box,
+    .video-box {
         position: relative;
         padding: var(--image-padding, 30%);
-        img, video, iframe {
+        img,
+        video,
+        iframe {
             position: absolute;
             left: 0;
             top: 0;
@@ -863,31 +866,35 @@ small {
     position: sticky;
     top: 32px;
 }
-
-#post-content {
-    a {
-        &:not(.wp-element-button):not(.rounded-10px) {
-            color: var(--bs-accent);
+.col-post-content {
+    @include responsive(xs-sm) {
+        padding: 0;
+    }
+    #post-content {
+        a {
+            &:not(.wp-element-button):not(.rounded-10px) {
+                color: var(--bs-accent);
+            }
         }
-    }
-    .container {
-        --bs-gutter-x: 0;
-        --bs-gutter-y: 0;
-    }
-    @include headings {
-        b {
+        .container {
+            --bs-gutter-x: 0;
+            --bs-gutter-y: 0;
+        }
+        @include headings {
+            b {
+                font-weight: 500 !important;
+            }
             font-weight: 500 !important;
         }
-        font-weight: 500 !important;
-    }
-    h2 {
-        @include responsive(md-lg) {
-            font-size: 2rem;
+        h2 {
+            @include responsive(md-lg) {
+                font-size: 2rem;
+            }
         }
-    }
-    h3 {
-        @include responsive(md-lg) {
-            font-size: 1.5rem;
+        h3 {
+            @include responsive(md-lg) {
+                font-size: 1.5rem;
+            }
         }
     }
 }
@@ -1292,8 +1299,6 @@ hr {
         outline: none;
     }
 }
-
-
 
 .your-result {
     .result-box {

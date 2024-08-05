@@ -11584,10 +11584,16 @@ input[type="checkbox"] {
   height: var(--height);
   border-radius: var(--border-radius); }
 
-.same-image-height .image-box, .same-image-height .video-box {
+.same-image-height .image-box,
+.same-image-height .video-box {
   position: relative;
   padding: var(--image-padding, 30%); }
-  .same-image-height .image-box img, .same-image-height .image-box video, .same-image-height .image-box iframe, .same-image-height .video-box img, .same-image-height .video-box video, .same-image-height .video-box iframe {
+  .same-image-height .image-box img,
+  .same-image-height .image-box video,
+  .same-image-height .image-box iframe,
+  .same-image-height .video-box img,
+  .same-image-height .video-box video,
+  .same-image-height .video-box iframe {
     position: absolute;
     left: 0;
     top: 0;
@@ -11834,40 +11840,43 @@ small, .small {
   position: sticky;
   top: 32px; }
 
-#post-content a:not(.wp-element-button):not(.rounded-10px) {
+@media screen and (max-width: 991px) {
+  .col-post-content {
+    padding: 0; } }
+.col-post-content #post-content a:not(.wp-element-button):not(.rounded-10px) {
   color: var(--bs-accent); }
-#post-content .container {
+.col-post-content #post-content .container {
   --bs-gutter-x: 0;
   --bs-gutter-y: 0; }
-#post-content h1, #post-content .h1,
-#post-content h2,
-#post-content .h2,
-#post-content h3,
-#post-content .h3,
-#post-content h4,
-#post-content .h4,
-#post-content h5,
-#post-content .h5,
-#post-content h6,
-#post-content .h6 {
+.col-post-content #post-content h1, .col-post-content #post-content .h1,
+.col-post-content #post-content h2,
+.col-post-content #post-content .h2,
+.col-post-content #post-content h3,
+.col-post-content #post-content .h3,
+.col-post-content #post-content h4,
+.col-post-content #post-content .h4,
+.col-post-content #post-content h5,
+.col-post-content #post-content .h5,
+.col-post-content #post-content h6,
+.col-post-content #post-content .h6 {
   font-weight: 500 !important; }
-  #post-content h1 b, #post-content .h1 b,
-  #post-content h2 b,
-  #post-content .h2 b,
-  #post-content h3 b,
-  #post-content .h3 b,
-  #post-content h4 b,
-  #post-content .h4 b,
-  #post-content h5 b,
-  #post-content .h5 b,
-  #post-content h6 b,
-  #post-content .h6 b {
+  .col-post-content #post-content h1 b, .col-post-content #post-content .h1 b,
+  .col-post-content #post-content h2 b,
+  .col-post-content #post-content .h2 b,
+  .col-post-content #post-content h3 b,
+  .col-post-content #post-content .h3 b,
+  .col-post-content #post-content h4 b,
+  .col-post-content #post-content .h4 b,
+  .col-post-content #post-content h5 b,
+  .col-post-content #post-content .h5 b,
+  .col-post-content #post-content h6 b,
+  .col-post-content #post-content .h6 b {
     font-weight: 500 !important; }
 @media screen and (min-width: 992px) {
-  #post-content h2, #post-content .h2 {
+  .col-post-content #post-content h2, .col-post-content #post-content .h2 {
     font-size: 2rem; } }
 @media screen and (min-width: 992px) {
-  #post-content h3, #post-content .h3 {
+  .col-post-content #post-content h3, .col-post-content #post-content .h3 {
     font-size: 1.5rem; } }
 
 .accordion {
