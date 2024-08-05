@@ -72,7 +72,7 @@ function __ajax() {
     jQuery.ajax({
         type: "POST",
 
-        url: ajax_object.ajax_url,
+        url: ajax_object.ajax_url+'?test=test',
 
         data: {
             action: 'archive_ajax',
@@ -153,7 +153,7 @@ function buy_now_ajax(button) {
 
         //url: "/coptrz/wp-admin/admin-ajax.php",
 
-        url: ajax_object.ajax_url+'?test=test',
+        url: ajax_object.ajax_url,
 
         data: {
             action: 'buy_now_ajax',
