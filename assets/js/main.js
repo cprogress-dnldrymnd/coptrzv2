@@ -98,6 +98,7 @@ function __ajax() {
         success: function (response) {
             $result_holder.html(response);
             $archive_section.removeClass('loading-post');
+            jQuery('.post-grid-holder + .pagination').remove();
 
         },
         error: function (e) {
