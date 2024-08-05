@@ -20,15 +20,15 @@ function archive_ajax()
 	$data = $_POST['data'];
 	$query = $_POST['query'];
 	$s = isset($_POST['s']) ? $_POST['s'] : false;
-	$events_type = isset($_POST['events_type']) ? $_POST['events_type'] : NULL;
+	$events_type = isset($_POST['events_type']) ? $_POST['events_type'] : false;
 
 	$data_val = json_decode(stripslashes($data), true);
 	$query_val = json_decode(stripslashes($query), true);
 
 	$args = $query_val;
 	$args['post_status'] = 'publish';
-	
-	if ($events_type != NULL) {
+
+	if ($events_type != false && $events_type != 'false') {
 		$args['tax_query'][] = array(
 			array(
 				'taxonomy' => 'events_type',
