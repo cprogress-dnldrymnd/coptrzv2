@@ -11842,7 +11842,7 @@ small, .small {
 
 @media screen and (max-width: 991px) {
   .col-post-content {
-    padding: 0; } }
+    padding: 0 !important; } }
 .col-post-content #post-content a:not(.wp-element-button):not(.rounded-10px) {
   color: var(--bs-accent); }
 .col-post-content #post-content .container {
