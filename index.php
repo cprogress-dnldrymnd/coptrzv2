@@ -220,7 +220,7 @@ $archive_data = $data;
             </div>
         </div>
     </div>
-    <?= _pagination($has_pagination) ?>
+    <?= _pagination($has_pagination, false) ?>
 
 </section>
 

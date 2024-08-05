@@ -60,11 +60,14 @@ function _date_format($date_input, $include_year = false)
     }
     return $newDate;
 }
-function _pagination($has_pagination)
+function _pagination($has_pagination, $query)
 {
     if ($has_pagination) {
         ob_start();
         $SVG = new SVG;
+        if ($query == false) {
+            $query = $GLOBALS['wp_query'];
+        }
 
 ?>
         <div class="pagination">
@@ -76,7 +79,23 @@ function _pagination($has_pagination)
                                 'mid_size'  => 2,
                                 'next_text' => $SVG->chevron_right(),
                                 'prev_text' => $SVG->chevron_left(),
-                            )); ?>
+                            ));
+                            echo paginate_links(array(
+                                'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+                                'total'        => $query->max_num_pages,
+                                'current'      => max(1, get_query_var('paged')),
+                                'format'       => '?paged=%#%',
+                                'show_all'     => false,
+                                'type'         => 'plain',
+                                'end_size'     => 2,
+                                'mid_size'     => 1,
+                                'prev_next'    => true,
+                                'prev_text'    => $SVG->chevron_right(),
+                                'next_text'    => $SVG->chevron_left(),
+                                'add_args'     => false,
+                                'add_fragment' => '',
+                            ));
+                            ?>
                         </div>
                         <div class="col-lg-4 text-center text-md-end">
 
