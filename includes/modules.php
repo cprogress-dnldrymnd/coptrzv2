@@ -71,7 +71,7 @@ function modify_get_pagenum_link_defaults($result, $pagenum)
             $s = 's=' . $_GET['s'];
         }
 
-        return $url . '?' . $posts_per_page . $s;
+        return $url;
     }
 }
 add_filter("get_pagenum_link", "modify_get_pagenum_link_defaults", 10, 2);
