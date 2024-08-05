@@ -103,6 +103,7 @@ function _pagination($has_pagination, $query, $data = false)
                                     } else {
                                         echo $paginate_links;
                                     }
+                                    echo $paginate_links;
 
 
                                     ?>
