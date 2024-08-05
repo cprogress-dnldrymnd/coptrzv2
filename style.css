@@ -13938,6 +13938,12 @@ section.hero {
   body.hero-has-form section.hero {
     padding-top: 0;
     padding-bottom: 0; }
+    body.hero-has-form section.hero .background-image.background-image iframe {
+      -webkit-transform: scale(2.5);
+      -moz-transform: scale(2.5);
+      -ms-transform: scale(2.5);
+      -o-transform: scale(2.5);
+      transform: scale(2.5); }
     body.hero-has-form section.hero .hero-left-content {
       padding: 110px 1rem 1rem 1rem; }
     body.hero-has-form section.hero .form-holder {
