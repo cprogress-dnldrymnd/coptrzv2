@@ -68,7 +68,7 @@ function archive_ajax()
 	wp_reset_postdata();
 
 	if ($data_val['has_pagination'] == true || $data_val['has_pagination'] == 'true') {
-		echo _pagination(true, $the_query);
+		echo _pagination(true, $the_query, $data_val['url']);
 	}
 
 	die();

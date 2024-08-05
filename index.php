@@ -19,6 +19,9 @@ $query['posts_per_page'] = isset($_GET['posts_per_page']) ? $_GET['posts_per_pag
 $data['col'] = true;
 $data['featured'] = false;
 $black_header = false;
+$uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
+$url = 'http://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
+$data['url'] = $url;
 
 $elements_array[] = 'image';
 $elements_array[] = 'title';
