@@ -93,8 +93,10 @@ function _pagination($has_pagination, $query)
                                         'add_args'     => false,
                                         'add_fragment' => '',
                                     ));
+                                    $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
+                                    $url = 'http://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
 
-                                    echo str_replace('wp-admin/admin-ajax.php', '', $paginate_links);
+                                    echo str_replace('wp-admin/admin-ajax.php', $url, $paginate_links);
 
                                     ?>
                                 </div>
