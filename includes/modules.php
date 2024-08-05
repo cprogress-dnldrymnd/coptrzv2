@@ -82,7 +82,7 @@ function _pagination($has_pagination, $query, $data = false)
                                         'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
                                         'total'        => $query->max_num_pages,
                                         'current'      => max(1, get_query_var('paged')),
-                                        'format'       => '?paged=%#%',
+                                        'format'       => 'page/%#%',
                                         'show_all'     => false,
                                         'type'         => 'plain',
                                         'end_size'     => 2,
@@ -99,7 +99,6 @@ function _pagination($has_pagination, $query, $data = false)
                                         if (isset($data['posts_per_page'])) {
                                             $posts_per_page = $data['posts_per_page'];
                                         }
-                                        
                                         echo str_replace('/wp-admin/admin-ajax.php?paged=', $url . 'page/?posts_per_page=' . $posts_per_page, $paginate_links);
                                     } else {
                                         echo $paginate_links;
