@@ -63,8 +63,13 @@ function archive_ajax()
 	}
 	echo '</div>';
 
+
+
 	wp_reset_postdata();
 
+	if ($data_val['has_pagination'] == true || $data_val['has_pagination'] == 'true') {
+		echo 'has-pagination';
+	}
 
 	die();
 }
