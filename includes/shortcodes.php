@@ -100,7 +100,9 @@ class Shortcodes
                         $cat_name = $cat->name;
                         $parent = $cat->parent;
                         $cat_link = get_term_link($cat->term_id);
-                        $html .= "<li><a class='item text-white' href='$cat_link'>$cat_name</a></li>";
+                        if(!$parent) {
+                            $html .= "<li><a class='item text-white' href='$cat_link'>$cat_name</a></li>";
+                        }
                     }
                 }
             } else {
