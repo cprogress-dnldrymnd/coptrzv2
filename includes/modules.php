@@ -94,15 +94,8 @@ function _pagination($has_pagination, $query, $data = false)
                                         'add_fragment' => '',
                                     ));
 
-                                    if ($data) {
-                                        $url = $data['url'];
-                                        if (isset($data['posts_per_page'])) {
-                                            $posts_per_page = $data['posts_per_page'];
-                                        }
-                                        echo str_replace(get_site_url() . '/wp-admin/admin-ajax.php?paged=', $url . 'page/', $paginate_links);
-                                    } else {
-                                        echo $paginate_links;
-                                    }
+                                 
+                                    echo $paginate_links;
 
 
                                     ?>
