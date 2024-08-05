@@ -88,8 +88,8 @@ function _pagination($has_pagination, $query, $data=false)
                                         'end_size'     => 2,
                                         'mid_size'     => 1,
                                         'prev_next'    => true,
-                                        'prev_text'    => $SVG->chevron_right(),
-                                        'next_text'    => $SVG->chevron_left(),
+                                        'prev_text'    => $SVG->chevron_left(),
+                                        'next_text'    => $SVG->chevron_right(),
                                         'add_args'     => false,
                                         'add_fragment' => '',
                                     ));
