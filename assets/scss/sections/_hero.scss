@@ -54,6 +54,9 @@ section.hero {
                     margin-left: auto;
                     margin-right: auto;
                 }
+                @include responsive(xs) {
+                   display: none;
+                }
             }
             h3 {
                 span {
