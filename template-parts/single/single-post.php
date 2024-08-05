@@ -24,7 +24,7 @@ echo ___hero_modules('text-start', 'small-hero');
 <section class="post-content-v2 sm-padding-top sm-padding-bottom no-overflow border-top-default px-4">
     <div class="container-fluid">
         <div class="row g-0">
-            <div class="col col-post-nav">
+            <div class="col col-post-nav d-none d-lg-block">
                 <div class="column-holder post-navigation-holder">
                     <h3>Contents</h3>
                     <ul id="post-navigation" class="d-flex flex-wrap list-inline">
