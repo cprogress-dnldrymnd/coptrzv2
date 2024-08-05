@@ -5,7 +5,6 @@ jQuery(document).ready(function () {
     __fixed_heading_position();
     __swipers();
     __input_fields();
-    __ajax_buy_now();
     __post_navigation();
     __filters();
     __ajax_trigger();
