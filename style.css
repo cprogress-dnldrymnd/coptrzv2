@@ -13928,8 +13928,11 @@ section.hero {
     display: inline-block; }
 
 @media screen and (max-width: 991px) {
+  body.hero-has-form section.hero .hero-left-content {
+    padding: 1rem; }
   body.hero-has-form section.hero .container {
-    padding-top: 0; } }
+    max-width: 100%;
+    padding-top: 20px; } }
 
 section.landing-page {
   min-height: calc(100vh - 40px ); }

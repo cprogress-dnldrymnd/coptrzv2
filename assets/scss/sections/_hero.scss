@@ -53,11 +53,15 @@ section.hero {
 }
 
 body {
-    &.hero-has-form  {
-        section.hero {
-            .container {
-                @include responsive(xs-sm) {
-                    padding-top: 0;
+    &.hero-has-form {
+        @include responsive(xs-sm) {
+            section.hero {
+                .hero-left-content {
+                    padding: 1rem;
+                }
+                .container {
+                    max-width: 100%;
+                    padding-top: 20px;
                 }
             }
         }
