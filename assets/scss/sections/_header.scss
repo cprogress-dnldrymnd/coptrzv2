@@ -397,7 +397,7 @@ body {
         .header .navbar.navbar.navbar .nav-item .nav-link {
             @include on-event {
                 background-color: var(--bs-white);
-                color: var(--bs-primary);
+                color: var(--bs-primary) !important;
             }
         }
     }

@@ -13749,7 +13749,7 @@ body.mobile-menu-active header .menu-burger .icon .menu {
 
 body.no-hero-bg .header .navbar.navbar.navbar .nav-item .nav-link:hover, body.no-hero-bg .header .navbar.navbar.navbar .nav-item .nav-link:active, body.no-hero-bg .header .navbar.navbar.navbar .nav-item .nav-link:focus {
   background-color: var(--bs-white);
-  color: var(--bs-primary); }
+  color: var(--bs-primary) !important; }
 
 #footer {
   font-weight: 300; }
