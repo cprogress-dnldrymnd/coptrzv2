@@ -1767,7 +1767,7 @@ function ____columns_modules($items, $id, $html = '')
                         $column_class[] = $column_width;
                     }
                     if ($column_width_tablet) {
-                        if(count($items) == 3 && $column_width_tablet == 'col-md-6') {
+                        if (count($items) == 3 && $column_width_tablet == 'col-md-6') {
                             $column_class[] = 'col-md-12';
                         } else {
                             $column_class[] = $column_width_tablet;
