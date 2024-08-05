@@ -75,27 +75,28 @@ function _pagination($has_pagination, $query)
                 <div class="inner border-top-default sm-padding-top sm-margin-top">
                     <div class="row g-4">
                         <div class="col-lg-8">
-                            <?php the_posts_pagination(array(
-                                'mid_size'  => 2,
-                                'next_text' => $SVG->chevron_right(),
-                                'prev_text' => $SVG->chevron_left(),
-                            ));
-                            echo paginate_links(array(
-                                'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
-                                'total'        => $query->max_num_pages,
-                                'current'      => max(1, get_query_var('paged')),
-                                'format'       => '?paged=%#%',
-                                'show_all'     => false,
-                                'type'         => 'plain',
-                                'end_size'     => 2,
-                                'mid_size'     => 1,
-                                'prev_next'    => true,
-                                'prev_text'    => $SVG->chevron_right(),
-                                'next_text'    => $SVG->chevron_left(),
-                                'add_args'     => false,
-                                'add_fragment' => '',
-                            ));
-                            ?>
+                            <nav class="navigation pagination">
+                                <div class="nav-links">
+                                    <?php
+                                    echo paginate_links(array(
+                                        'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+                                        'total'        => $query->max_num_pages,
+                                        'current'      => max(1, get_query_var('paged')),
+                                        'format'       => '?paged=%#%',
+                                        'show_all'     => false,
+                                        'type'         => 'plain',
+                                        'end_size'     => 2,
+                                        'mid_size'     => 1,
+                                        'prev_next'    => true,
+                                        'prev_text'    => $SVG->chevron_right(),
+                                        'next_text'    => $SVG->chevron_left(),
+                                        'add_args'     => false,
+                                        'add_fragment' => '',
+                                    ));
+                                    ?>
+                                </div>
+                            </nav>
+
                         </div>
                         <div class="col-lg-4 text-center text-md-end">
 
