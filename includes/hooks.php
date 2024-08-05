@@ -355,8 +355,7 @@ add_action('pre_get_posts', 'action_pre_get_posts', 1);
 
 function action_body_class($classes)
 {
-    $hero_hidden = get__post_meta('hero_hidden');
-    $header_background = get__post_meta('header_background');
+    
 
     $product_category_page = false;
     if (is_product_taxonomy()) {
@@ -367,12 +366,27 @@ function action_body_class($classes)
             $classes[] = 'product-loop-style-1';
         }
     }
-    if ($hero_hidden) {
-        $classes[] = 'hero-hidden';
+    if(is_single() || is_page()) {
+        $header_background = get__post_meta('header_background');
+
+        $hero_hidden = get__post_meta('hero_hidden');
+        $hero_background = get__post_meta('hero_background');
+        $hero_background_youtube = get__post_meta('hero_background_youtube');
+   
+    
+        if ($hero_hidden) {
+            $classes[] = 'hero-hidden';
+        }
+
+        if(!$hero_background && !$hero_background) {
+            $classes[] = 'no-hero-bg';
+        }
+
+        if ($header_background) {
+            $classes[] = "hero-$header_background";
+        }
     }
-    if ($header_background) {
-        $classes[] = "hero-$header_background";
-    }
+  
 
 
     return $classes;
