@@ -47,7 +47,7 @@ echo ___hero_modules('text-start', 'small-hero');
                 </div>
             </div>
             <div class="col col-sidebar">
-                <div class="column-holder mt-4 mt-lg-0" id="blog-single-sidebar">
+                <div class="column-holder mt-5 mt-lg-0" id="blog-single-sidebar">
                     <?php dynamic_sidebar('blog_single_sidebar') ?>
                 </div>
             </div>
