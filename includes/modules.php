@@ -94,12 +94,8 @@ function _pagination($has_pagination, $query, $url=false)
                                         'add_fragment' => '',
                                     ));
 
-                                    if ($url) {
-                                        echo str_replace('wp-admin/admin-ajax.php', $url, $paginate_links);
-                                    } else {
-                                        echo $paginate_links;
-                                    }
-
+                                  
+                                    echo $paginate_links;
 
                                     ?>
                                 </div>
