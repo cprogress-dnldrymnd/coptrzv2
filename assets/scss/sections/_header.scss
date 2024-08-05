@@ -394,8 +394,12 @@ body.mobile-menu-active {
 
 body {
     &.no-hero-bg {
-        .header .navbar.navbar.navbar .nav-item .nav-link {
+        .header .navbar.navbar.navbar .nav-item .main-nav {
             @include on-event {
+                background-color: var(--bs-white);
+                color: var(--bs-primary) !important;
+            }
+            &.active {
                 background-color: var(--bs-white);
                 color: var(--bs-primary) !important;
             }
