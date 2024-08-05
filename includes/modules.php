@@ -2631,12 +2631,13 @@ function __post_box($data, $class = [], $content_box_class = [])
             'link' => $link
         ));
     }
+    /*
     if (get_post_type($id) == 'product') {
         $product = wc_get_product($id);
         $html .= "<div class='price-box'>";
         $html .= $product->get_price_html();
         $html .= '</div>';
-    }
+    }*/
 
     if (in_array('excerpt', $elements)) {
         $html .= __description(array(
