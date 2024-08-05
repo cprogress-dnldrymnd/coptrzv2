@@ -152,5 +152,8 @@ function canonical() {
 	} else if(is_home()) {
 		$blog_url = get_permalink( get_option( 'page_for_posts' ) ); 
 		return $blog_url;
+	} else {
+		$term_link = get_term_link(get_queried_object()->term_id);
+		return $term_link;
 	}
 }
