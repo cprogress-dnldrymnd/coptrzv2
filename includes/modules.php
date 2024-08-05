@@ -62,7 +62,7 @@ function _date_format($date_input, $include_year = false)
 }
 function modify_get_pagenum_link_defaults($result, $pagenum)
 {
-    return canonical();
+    return canonical() . 'page/' . $pagenum;
 }
 add_filter("get_pagenum_link", "modify_get_pagenum_link_defaults", 10, 2);
 
