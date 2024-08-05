@@ -866,6 +866,14 @@ small {
     position: sticky;
     top: 32px;
 }
+.post-details {
+    .px-5 {
+        @include responsive(mobile) {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    }
+}
 .col-post-content {
     @include responsive(xs-sm) {
         padding: 0 !important;
