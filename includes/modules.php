@@ -60,6 +60,12 @@ function _date_format($date_input, $include_year = false)
     }
     return $newDate;
 }
+function modify_get_pagenum_link_defaults($result, $pagenum)
+{
+    return 'test.com';
+}
+add_filter("get_pagenum_link", "modify_get_pagenum_link_defaults", 10, 2);
+
 function _pagination($has_pagination, $query, $data = false)
 {
     if ($has_pagination) {
@@ -79,7 +85,7 @@ function _pagination($has_pagination, $query, $data = false)
                                 <div class="nav-links">
                                     <?php
                                     $paginate_links = paginate_links(array(
-                                        'base'         => str_replace(999999999, '%#%', '/page/'.get_query_var('paged')),
+                                        'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
                                         'total'        => $query->max_num_pages,
                                         'current'      => max(1, get_query_var('paged')),
                                         'format'       => '?paged=%#%',
@@ -94,7 +100,7 @@ function _pagination($has_pagination, $query, $data = false)
                                         'add_fragment' => '',
                                     ));
 
-                                 
+
                                     echo $paginate_links;
 
 
