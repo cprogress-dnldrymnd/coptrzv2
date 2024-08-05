@@ -66,6 +66,8 @@ function my_get_pagenum_link( $pagenum = 1, $escape = true, $base = null ) {
     $pagenum = (int) $pagenum;
 
     $request = $base ? remove_query_arg( 'paged', $base ) : remove_query_arg( 'paged' );
+
+    return $request;
 }
 function _pagination($has_pagination, $query)
 {
