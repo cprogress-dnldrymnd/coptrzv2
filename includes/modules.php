@@ -79,7 +79,7 @@ function _pagination($has_pagination, $query, $data = false)
                                 <div class="nav-links">
                                     <?php
                                     $paginate_links = paginate_links(array(
-                                        'base'         => str_replace(999999999, '%#%', 'test.com'),
+                                        'base'         => str_replace(999999999, '%#%', 'test.com/page/'.get_query_var('paged')),
                                         'total'        => $query->max_num_pages,
                                         'current'      => max(1, get_query_var('paged')),
                                         'format'       => '?paged=%#%',
