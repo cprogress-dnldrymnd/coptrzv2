@@ -43,6 +43,18 @@ function archive_ajax()
 		$args['s'] = $s;
 	}
 
+	if($query['post_type'] == 'events') {
+		$meta_query[] = [
+			'key'     => '_event_start_datetime',
+			'value'   => date('Y-m-d'),
+			'compare' => '>=',
+			'type'    => 'DATETIME'
+		];
+		$args['meta_query'] = $meta_query;
+		$args['orderby'] = 'meta_value';
+		$args['order'] = 'ASC';
+	}
+
 	$the_query = new WP_Query($args);
 
 	echo '<div class="row g-4 same-image-height">';
