@@ -60,7 +60,7 @@ function _date_format($date_input, $include_year = false)
     }
     return $newDate;
 }
-function _pagination($has_pagination, $query, $url=false)
+function _pagination($has_pagination, $query, $data=false)
 {
     if ($has_pagination) {
         ob_start();
@@ -95,7 +95,7 @@ function _pagination($has_pagination, $query, $url=false)
                                     ));
 
                                     if ($url) {
-                                        echo str_replace('/wp-admin/admin-ajax.php?paged=', $url.'page/'.get_query_var('posts_per_page'), $paginate_links);
+                                        echo str_replace('/wp-admin/admin-ajax.php?paged=', $url.'page/', $paginate_links);
                                     } else {
                                         echo $paginate_links;
                                     }
