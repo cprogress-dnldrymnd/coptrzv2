@@ -100,7 +100,6 @@ function _pagination($has_pagination, $query, $url=false)
                                         echo $paginate_links;
                                     }
 
-                                    echo $paginate_links;
 
                                     ?>
                                 </div>
