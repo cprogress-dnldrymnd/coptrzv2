@@ -78,8 +78,8 @@ function _pagination($has_pagination, $query)
                             <nav class="navigation pagination">
                                 <div class="nav-links">
                                     <?php
-                                    echo paginate_links(array(
-                                        'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+                                    $paginate_links = paginate_links(array(
+                                        'base'         => str_replace(999999999, '%#%', esc_url()),
                                         'total'        => $query->max_num_pages,
                                         'current'      => max(1, get_query_var('paged')),
                                         'format'       => '?paged=%#%',
@@ -93,6 +93,8 @@ function _pagination($has_pagination, $query)
                                         'add_args'     => false,
                                         'add_fragment' => '',
                                     ));
+
+                                    echo str_replace('wp-admin/admin-ajax.php', '', $paginate_links);
                                     ?>
                                 </div>
                             </nav>
