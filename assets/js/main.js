@@ -62,17 +62,22 @@ function __ajax() {
     $archive_section.addClass('loading-post');
     $data = jQuery('#posts').attr('data');
     $query = jQuery('#posts').attr('query');
+    $posts_per_page = jQuery('#posts').attr('posts_per_page');
     if (jQuery('input[name="events_type"]').length > 0) {
         $events_type = jQuery('input[name="events_type"]:checked').val();
     } else {
         $events_type = false;
     }
 
+    if ($posts_per_page != '') {
+        $ajax_url_param = 'posts_per_page=' + $posts_per_page;
+    }
+
 
     jQuery.ajax({
         type: "POST",
 
-        url: ajax_object.ajax_url,
+        url: ajax_object.ajax_url + '?' + ajax_url_param,
 
         data: {
             action: 'archive_ajax',
