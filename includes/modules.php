@@ -2578,7 +2578,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     $html .= "</div>"; //col
     return $html;
 }
-function ___hero_archive($key, $title, $taxonomy = false)
+function ___hero_archive($key, $title, $taxonomy = false, $black_header = false)
 {
 
 
@@ -2591,10 +2591,12 @@ function ___hero_archive($key, $title, $taxonomy = false)
         $hero_heading = get__theme_option($key . 'archive_title');
     }
 
+    if ($black_header == false) {
+        $hero_background = get__theme_option($key . 'archive_hero_background');
+        $hero_background_youtube = get__theme_option($key . 'archive_background_youtube');
+        $hero_background_type = get__theme_option($key . 'archive_hero_background_type');
+    }
 
-    $hero_background = get__theme_option($key . 'archive_hero_background');
-    $hero_background_youtube = get__theme_option($key . 'archive_background_youtube');
-    $hero_background_type = get__theme_option($key . 'archive_hero_background_type');
     $hero_alignment = get__theme_option($key . 'archive_hero_alignment');
     $hero_height = get__theme_option($key . 'archive_hero_height');
     $buttons = get__theme_option($key . 'archive_hero_buttons');
@@ -2604,10 +2606,12 @@ function ___hero_archive($key, $title, $taxonomy = false)
     $heading_class[] = 'large-heading';
 
     $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
-    if ($hero_background_youtube && $hero_background_type == 'youtube') {
-        $hero .= __background($hero_background_youtube, true);
-    } else if ($hero_background) {
-        $hero .= __background($hero_background);
+    if ($black_header == false) {
+        if ($hero_background_youtube && $hero_background_type == 'youtube') {
+            $hero .= __background($hero_background_youtube, true);
+        } else if ($hero_background) {
+            $hero .= __background($hero_background);
+        }
     }
     $hero .= "<div class='container'>";
 

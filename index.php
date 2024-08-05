@@ -154,7 +154,7 @@ if (is_home() || is_category()) {
         );
     }
 }
-echo do_shortcode(___hero_archive($key, $archive_title, $category));
+echo do_shortcode(___hero_archive($key, $archive_title, $category, true));
 if ($has_featured &&  !is_paged()) {
     echo ___featured($key);
 }
