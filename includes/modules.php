@@ -962,7 +962,7 @@ function ___sections($id = 'sections', $post_id = '')
                         }
                         if ($column_width_tablet) {
                             if (count($posts) == 3 && $column_width_tablet == 'col-md-6') {
-                                $global_col_class[] = 'col-md-12';
+                                $global_col_class[] = 'col-md-12 post-style-tablet';
                             } else {
                                 $global_col_class[] = $column_width_tablet;
                             }
