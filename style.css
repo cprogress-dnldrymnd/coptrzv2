@@ -13937,7 +13937,11 @@ section.hero {
 
 @media screen and (max-width: 991px) {
   body.hero-has-form header .container {
-    max-width: calc(100% - 60px); }
+    max-width: calc(100% - 60px); } }
+  @media screen and (max-width: 991px) and (max-width: 767px) {
+    body.hero-has-form header .container {
+      max-width: 100%; } }
+@media screen and (max-width: 991px) {
   body.hero-has-form section.hero {
     padding-top: 0;
     padding-bottom: 0;
