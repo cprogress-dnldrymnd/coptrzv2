@@ -1841,6 +1841,7 @@ function ____columns_modules($items, $id, $html = '')
 
     foreach ($columns as $key => $column) {
         $items = $column['items'];
+        $column_id = $column['column_id'];
         if ($individual_column_settings) {
             $classes = array();
             $styles = array();
@@ -2038,8 +2039,13 @@ function ____columns_modules($items, $id, $html = '')
         }
 
 
+        if($column_id) {
+            $column_id_val = _attribute('id', $column_id, ' ');
 
-        $column_attributes = _attributes(array($classes_val, $styles_val));
+        }
+        $column_attributes = _attributes(array($classes_val, $styles_val, $column_id_val));
+
+        
         if ($is_slider) {
             $html .= '<div class="swiper-slide">'; //swiper-slide
         } else {
