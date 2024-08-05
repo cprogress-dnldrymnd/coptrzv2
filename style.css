@@ -13954,6 +13954,9 @@ section.hero {
       border-radius: 0; }
     body.hero-has-form section.hero .form-header {
       border-radius: 0; }
+    body.hero-has-form section.hero .form-box {
+      border: 1px solid var(--bs-light);
+      border-radius: 0 0 10px 10px; }
     body.hero-has-form section.hero .container {
       max-width: 100%;
       padding-top: 0;
