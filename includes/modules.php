@@ -60,7 +60,7 @@ function _date_format($date_input, $include_year = false)
     }
     return $newDate;
 }
-function _pagination($has_pagination, $query, $data=false)
+function _pagination($has_pagination, $query, $data = false)
 {
     if ($has_pagination) {
         ob_start();
@@ -94,8 +94,13 @@ function _pagination($has_pagination, $query, $data=false)
                                         'add_fragment' => '',
                                     ));
 
-                                    if ($url) {
-                                        echo str_replace('/wp-admin/admin-ajax.php?paged=', $url.'page/', $paginate_links);
+                                    if ($data) {
+                                        $url = $data['url'];
+                                        if (isset($data['posts_per_page'])) {
+                                            $posts_per_page = $data['posts_per_page'];
+                                        }
+                                        
+                                        echo str_replace('/wp-admin/admin-ajax.php?paged=', $url . 'page/?posts_per_page=' . $posts_per_page, $paginate_links);
                                     } else {
                                         echo $paginate_links;
                                     }
