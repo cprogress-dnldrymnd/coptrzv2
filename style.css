@@ -13747,10 +13747,10 @@ body.mobile-menu-active header .menu-burger .icon .menu {
       #offCanvasMenu .offcanvas-body {
         padding: 110px 0 0 0; } }
 
-body.no-hero-bg .header .navbar.navbar.navbar .nav-item .nav-link:hover, body.no-hero-bg .header .navbar.navbar.navbar .nav-item .nav-link:active, body.no-hero-bg .header .navbar.navbar.navbar .nav-item .nav-link:focus {
+body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav:hover, body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav:active, body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav:focus {
   background-color: var(--bs-white);
   color: var(--bs-primary) !important; }
-body.no-hero-bg .header .navbar.navbar.navbar .nav-item .nav-link.active {
+body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
   background-color: var(--bs-white);
   color: var(--bs-primary) !important; }
 
