@@ -104,6 +104,15 @@ class Shortcodes
                             $html .= "<li><a class='item text-white' href='$cat_link'>$cat_name</a></li>";
                         }
                     }
+
+                    foreach ($product_cat as $cat) {
+                        $cat_name = $cat->name;
+                        $parent = $cat->parent;
+                        $cat_link = get_term_link($cat->term_id);
+                        if($parent) {
+                            $html .= "<li><a class='item text-white' href='$cat_link'>$cat_name</a></li>";
+                        }
+                    }
                 }
             } else {
                 $post_type = get_post_type();
