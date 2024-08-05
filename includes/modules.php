@@ -68,7 +68,6 @@ function _pagination($has_pagination, $query, $data = false)
         if ($query == false) {
             $query = $GLOBALS['wp_query'];
         }
-        $query = $GLOBALS['wp_query'];
 
 ?>
         <div class="pagination">
