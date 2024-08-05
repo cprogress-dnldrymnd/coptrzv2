@@ -60,7 +60,6 @@ function _date_format($date_input, $include_year = false)
     }
     return $newDate;
 }
-function 
 
 function _pagination($has_pagination, $query, $data = false)
 {
