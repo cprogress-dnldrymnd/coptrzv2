@@ -91,21 +91,27 @@ body {
     &.hero-has-form {
         @include responsive(xs-sm) {
             header {
-                .header-inner {
-                    margin-top: 40px;
-                }
+             
                 .container {
-                    max-width: calc(100% - 80px);
+                    max-width: calc(100% - 40px);
                 }
             }
             section.hero {
                 padding-top: 0;
+                padding-bottom: 0;
                 .hero-left-content {
                     padding: 110px 1rem 1rem 1rem;
+                }
+                .form-holder {
+                    border-radius: 0;
+                }
+                .form-header {
+                    border-radius: 0;
                 }
                 .container {
                     max-width: 100%;
                     padding-top: 20px;
+                    --bs-gutter-x: 0;
                 }
             }
         }
