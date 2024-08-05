@@ -355,7 +355,7 @@ add_action('pre_get_posts', 'action_pre_get_posts', 1);
 
 function action_body_class($classes)
 {
-    
+
 
     $product_category_page = false;
     if (is_product_taxonomy()) {
@@ -366,27 +366,33 @@ function action_body_class($classes)
             $classes[] = 'product-loop-style-1';
         }
     }
-    if(is_single() || is_page()) {
+    if (is_single() || is_page()) {
         $header_background = get__post_meta('header_background');
 
         $hero_hidden = get__post_meta('hero_hidden');
-        $hero_background = get__post_meta('hero_background');
-        $hero_background_youtube = get__post_meta('hero_background_youtube');
-   
-    
-        if ($hero_hidden) {
-            $classes[] = 'hero-hidden';
-        }
-
-        if(!$hero_background_youtube && !$hero_background) {
-            $classes[] = 'no-hero-bg';
-        }
 
         if ($header_background) {
             $classes[] = "hero-$header_background";
         }
+
+        if ($hero_hidden) {
+            $classes[] = 'hero-hidden';
+        } else {
+            $hero_background = get__post_meta('hero_background');
+            $hero_background_youtube = get__post_meta('hero_background_youtube');
+
+            $hero_form_enable = get__post_meta('hero_form_enable');
+            $hero_form = get__post_meta('hero_form');
+
+            if ($hero_form_enable && $hero_form) {
+                $classes[] = 'hero-has-form';
+            }
+            if (!$hero_background_youtube && !$hero_background) {
+                $classes[] = 'no-hero-bg';
+            }
+        }
     }
-  
+
 
 
     return $classes;
