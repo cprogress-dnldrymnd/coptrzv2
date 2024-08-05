@@ -11714,25 +11714,6 @@ small, .small {
   margin-left: auto;
   margin-right: auto; }
 
-.form-holder {
-  overflow: visible; }
-  .form-holder .form-header {
-    border-radius: 10px 10px 0 0; }
-    .form-holder .form-header .image-box {
-      margin-top: -20px;
-      margin-bottom: -20px;
-      padding: 50%;
-      position: relative; }
-      .form-holder .form-header .image-box img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain; }
-    .form-holder .form-header h3 span, .form-holder .form-header .h3 span {
-      color: var(--bs-primary); }
-
 .post-category a {
   color: inherit;
   text-decoration: none;
@@ -13913,6 +13894,28 @@ section.hero {
         margin-right: 10px; }
       section.hero .description-box ul li:not(:last-child) {
         margin-bottom: 14px; }
+  section.hero .form-holder {
+    overflow: visible; }
+    section.hero .form-holder .form-header {
+      border-radius: 10px 10px 0 0; }
+      @media screen and (min-width: 992px) {
+        section.hero .form-holder .form-header .image-box {
+          margin-top: -20px;
+          margin-bottom: -20px;
+          padding: 50%;
+          position: relative; }
+          section.hero .form-holder .form-header .image-box img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; } }
+      @media screen and (max-width: 991px) {
+        section.hero .form-holder .form-header .image-box {
+          max-width: 160px; } }
+      section.hero .form-holder .form-header h3 span, section.hero .form-holder .form-header .h3 span {
+        color: var(--bs-primary); }
   @media screen and (max-width: 575px) {
     section.hero {
       margin-left: 10px;
