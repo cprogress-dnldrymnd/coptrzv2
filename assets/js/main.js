@@ -20,9 +20,9 @@ jQuery(window).on("resize", function () {
 });
 function __hero() {
     if (window.innerWidth > 991) {
-        jQuery('body.hero-has-form #hero .background-image').appendTo('.col-lg-7');
-    } else {
         jQuery('body.hero-has-form #hero').prependTo('.col-lg-7');
+    } else {
+        jQuery('body.hero-has-form #hero .background-image').appendTo('.col-lg-7');
     }
 }
 
