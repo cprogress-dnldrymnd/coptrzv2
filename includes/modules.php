@@ -233,7 +233,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
     $col_content_class = [];
     if ($hero_form_enable) {
-        $col_content_class[] = 'text-white col-lg-7';
+        $col_content_class[] = 'text-white col-lg-7 position-relative';
     } else {
         $hero_class[] = 'text-white';
     }
