@@ -38,6 +38,7 @@ function archive_ajax()
 		);
 	}
 
+	echo $events_type;
 
 	if ($s) {
 		$args['s'] = $s;
