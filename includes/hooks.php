@@ -378,7 +378,7 @@ function action_body_class($classes)
             $classes[] = 'hero-hidden';
         }
 
-        if(!$hero_background && !$hero_background) {
+        if(!$hero_background_youtube && !$hero_background) {
             $classes[] = 'no-hero-bg';
         }
 
