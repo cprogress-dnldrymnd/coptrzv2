@@ -2856,10 +2856,10 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
     }
     $html .= "</select>";
     $html .= "</div>";
-
+    $s = $_GET['s'];
     if ($key == 'post_' || $key == 'casestudies_' || $key == 'guides_') {
         $html .= "<div class='col-auto'>";
-        $html .= "<input id='search' type='text' placeholder='Start typing to filter...' name='s'>";
+        $html .= "<input id='search' type='text' value='$s' placeholder='Start typing to filter...' name='s'>";
         $html .= "</div>";
     }
 
