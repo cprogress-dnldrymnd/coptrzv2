@@ -261,8 +261,8 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             $hero .= "<div class='row align-items-center'>"; //row
             $hero .= "<div $col_content_class_attribute>"; //col
         }
-        $hero .= "<div class='hero-left-content position-relative overflow-hidden hero-bg-mobile'>"; 
-        
+        $hero .= "<div class='hero-left-content position-relative overflow-hidden hero-bg-mobile'>";
+
         if (!$breadcrumbs_hidden) {
             $hero .= do_shortcode("[breadcrumbs id='$id']");
         }
@@ -1319,9 +1319,9 @@ function ____post_grid_module($data)
                         $column_classes[] = 'col-md-12';
                     } else {
                         $column_classes[] = $post_box_style['column_width_tablet'];
-
                     }
                     $column_classes[] = $post_box_style['column_width_mobile'];
+                    $column_classes[] = count($posts_lists);
                     break;
             }
         }
