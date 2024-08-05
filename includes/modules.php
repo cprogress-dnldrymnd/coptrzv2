@@ -261,6 +261,8 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             $hero .= "<div class='row align-items-center'>"; //row
             $hero .= "<div $col_content_class_attribute>"; //col
         }
+        $hero .= "<div class='hero-left-content'>"; 
+        
         if (!$breadcrumbs_hidden) {
             $hero .= do_shortcode("[breadcrumbs id='$id']");
         }
@@ -284,6 +286,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             $hero .= ____button_modules($buttons);
             $hero .= "</div>";
         }
+        $hero .= "</div>";
 
         if ($hero_form_enable) {
             $hero .= "</div>"; //end-col
