@@ -310,7 +310,7 @@ add_action('admin_bar_menu', 'action_layout_menu', 999999);
 
 function action_pre_get_posts($query)
 {
-    if (!is_admin() && $query->is_main_query()) {
+    if (!is_admin() && $query->is_main_query() && !is_single() && !is_page()) {
         $query->set('post_status', 'publish');
         $query->set('orderby', 'menu_order');
         $query->set('order', 'ASC');
