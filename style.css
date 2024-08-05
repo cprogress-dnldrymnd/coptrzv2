@@ -11842,7 +11842,7 @@ small, .small {
 
 @media screen and (max-width: 575px) {
   .post-details .px-5 {
-    padding-left: 0;
+    padding-left: 0 !important;
     padding-right: 0 !important; } }
 
 @media screen and (max-width: 991px) {
