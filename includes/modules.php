@@ -961,7 +961,11 @@ function ___sections($id = 'sections', $post_id = '')
                             $global_col_class[] = $column_width;
                         }
                         if ($column_width_tablet) {
-                            $global_col_class[] = $column_width_tablet;
+                            if (count($posts) == 3 && $column_width_tablet == 'col-md-6') {
+                                $global_col_class[] = 'col-md-12';
+                            } else {
+                                $global_col_class[] = $column_width_tablet;
+                            }
                         }
                         if ($column_width_mobile) {
                             $global_col_class[] = $column_width_mobile;
@@ -1314,9 +1318,8 @@ function ____post_grid_module($data)
                     break;
                 case 'column_width':
                     $column_classes[] = $post_box_style['column_width'];
-
                     if (count($posts_lists) == 3 && $post_box_style['column_width_tablet'] == 'col-md-6') {
-                        $column_classes[] = 'col-md-12';
+                        $column_classes[] = 'col-md-12 post-style-tablet';
                     } else {
                         $column_classes[] = $post_box_style['column_width_tablet'];
                     }
