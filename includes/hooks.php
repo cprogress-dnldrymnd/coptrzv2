@@ -243,7 +243,6 @@ function action__wp_footer()
                 jQuery("<?= $layouts_global_val ?>").appendTo('#wp-admin-bar-layouts-menu');
             });
             jQuery('#download-gvc').appendTo('.the-content > *:nth-child(2)');
-
         </script>
 
     <?php
@@ -325,7 +324,7 @@ function action_pre_get_posts($query)
 
             $query->set('meta_query', $meta_query);
         }
-        
+
         if (is_post_type_archive('industries') || is_post_type_archive('capabilities')) {
             $query->set('posts_per_page', -1);
         } else if (is_post_type_archive('events') || is_tax('events_category')) {
@@ -341,9 +340,12 @@ function action_pre_get_posts($query)
         } else if (is_home() || is_category()) {
             $query->set('orderby', 'date');
             $query->set('order', 'DESC');
-        } 
+        }
         if (isset($_GET['posts_per_page'])) {
             $query->set('posts_per_page', $_GET['posts_per_page']);
+        }
+        if (isset($_GET['posts_per_page'])) {
+            $query->set('s', $_GET['s']);
         }
     }
     return;
@@ -390,6 +392,6 @@ add_filter('wpcf7_form_tag_data_option', function ($data, $options, $args) {
 }, 10, 3);
 
 
-add_filter( 'woocommerce_gallery_thumbnail_size', function( $size ) {
+add_filter('woocommerce_gallery_thumbnail_size', function ($size) {
     return 'medium';
-} );
+});
