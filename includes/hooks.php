@@ -340,10 +340,9 @@ function action_pre_get_posts($query)
         } else if (is_home()) {
             $query->set('orderby', 'date');
             $query->set('order', 'DESC');
-        } else {
-            if (isset($_GET['posts_per_page'])) {
-                $query->set('posts_per_page', $_GET['posts_per_page']);
-            }
+        } 
+        if (isset($_GET['posts_per_page'])) {
+            $query->set('posts_per_page', $_GET['posts_per_page']);
         }
     }
     return;
