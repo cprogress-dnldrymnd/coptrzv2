@@ -22,7 +22,7 @@ function __hero() {
     if (window.innerWidth > 991) {
         jQuery('body.hero-has-form #hero .background-image').prependTo('#hero');
     } else {
-        jQuery('body.hero-has-form #hero .background-image').prependTo('.col-lg-7');
+        jQuery('body.hero-has-form #hero .background-image').prependTo('.hero-left-content');
     }
 }
 
