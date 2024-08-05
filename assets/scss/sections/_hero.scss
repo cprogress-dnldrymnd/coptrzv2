@@ -90,9 +90,18 @@ section.hero {
 body {
     &.hero-has-form {
         @include responsive(xs-sm) {
+            header {
+                .header-inner {
+                    margin-top: 40px;
+                }
+                .container {
+                    max-width: calc(100% - 80px);
+                }
+            }
             section.hero {
+                padding-top: 0;
                 .hero-left-content {
-                    padding: 1rem;
+                    padding: 110px 1rem 1rem 1rem;
                 }
                 .container {
                     max-width: 100%;
