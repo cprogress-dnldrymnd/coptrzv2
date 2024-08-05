@@ -1316,7 +1316,7 @@ function ____post_grid_module($data)
                     $column_classes[] = $post_box_style['column_width'];
 
                     if (count($posts_lists) == 3 && $post_box_style['column_width_tablet'] == 'col-md-6') {
-                        $column_classes[] = $post_box_style['column_width_tablet'];
+                        $column_classes[] = 'col-md-12';
                     } else {
                         $column_classes[] = $post_box_style['column_width_tablet'];
 
