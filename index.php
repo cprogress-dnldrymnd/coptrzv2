@@ -18,6 +18,7 @@ $query['posts_per_page'] = isset($_GET['posts_per_page']) ? $_GET['posts_per_pag
 
 $data['col'] = true;
 $data['featured'] = false;
+$black_header = false;
 
 $elements_array[] = 'image';
 $elements_array[] = 'title';
@@ -28,6 +29,7 @@ if (is_home() || is_category()) {
     if (is_category()) {
         $has_featured = false;
         $query['cat'] = get_queried_object()->term_id;
+        $black_header = true;
     } else {
         $has_featured = true;
     }
@@ -42,6 +44,8 @@ if (is_home() || is_category()) {
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
 
+
+
     $query['post_type'] = 'post';
 } else if (is_post_type_archive('events') || is_tax('events_category')) {
     $key = 'events_';
@@ -55,7 +59,7 @@ if (is_home() || is_category()) {
     $data['elements'] = $elements_array;
     $data['taxonomy'] = $category;
     $query['post_type'] = 'events';
-    
+
     if (is_tax('events_category')) {
         $meta_query[] = [
             'key'     => '_event_start_datetime',
@@ -102,7 +106,6 @@ if (is_home() || is_category()) {
     $data['style'] = 'style-3';
     $data['elements'] = $elements_array;
     $data['bg_image'] = true;
-
 } else if (is_post_type_archive('casestudies') || is_tax('casestudies_category')) {
     $key = 'casestudies_';
     $title = 'All Case Studies';
@@ -154,7 +157,7 @@ if (is_home() || is_category()) {
         );
     }
 }
-echo do_shortcode(___hero_archive($key, $archive_title, $category, true));
+echo do_shortcode(___hero_archive($key, $archive_title, $category, $black_header));
 if ($has_featured &&  !is_paged()) {
     echo ___featured($key);
 }
