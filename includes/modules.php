@@ -68,7 +68,7 @@ function modify_get_pagenum_link_defaults($result, $pagenum)
             $posts_per_page = '&posts_per_page=' . $_GET['posts_per_page'];
         }
         if (isset($_GET['s'])) {
-            $s = 's=' . $_GET['s'];
+            $s = '&s=' . $_GET['s'];
         }
 
         return $url . '?' . $posts_per_page . $s;
