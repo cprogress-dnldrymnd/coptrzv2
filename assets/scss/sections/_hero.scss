@@ -91,9 +91,8 @@ body {
     &.hero-has-form {
         @include responsive(xs-sm) {
             header {
-             
                 .container {
-                    max-width: calc(100% - 40px);
+                    max-width: calc(100% - 60px);
                 }
             }
             section.hero {
@@ -110,7 +109,7 @@ body {
                 }
                 .container {
                     max-width: 100%;
-                    padding-top: 20px;
+                    padding-top: 0;
                     --bs-gutter-x: 0;
                 }
             }
