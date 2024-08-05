@@ -60,7 +60,54 @@ function _date_format($date_input, $include_year = false)
     }
     return $newDate;
 }
+function _pagination($has_pagination)
+{
+    if ($has_pagination) {
+        ob_start();
+        $SVG = new SVG;
 
+?>
+        <div class="pagination">
+            <div class="container">
+                <div class="inner border-top-default sm-padding-top sm-margin-top">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <?php the_posts_pagination(array(
+                                'mid_size'  => 2,
+                                'next_text' => $SVG->chevron_right(),
+                                'prev_text' => $SVG->chevron_left(),
+                            )); ?>
+                        </div>
+                        <div class="col-lg-4 text-center text-md-end">
+
+                            <select name="posts_per_page" id="posts_per_page" class="w-auto number-post-trigger">
+
+                                <?php
+                                $show_options = array(6, 12, 18, 24, 30);
+                                foreach ($show_options as $option) {
+                                    $selected = '';
+                                    if (isset($_GET['posts_per_page'])) {
+                                        if ($_GET['posts_per_page'] == $option) {
+                                            $selected = 'selected';
+                                        }
+                                    } else {
+                                        if (12 == $option) {
+                                            $selected = 'selected';
+                                        }
+                                    }
+                                    echo "<option $selected value='$option'>Show: $option</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<?php
+        return ob_get_clean();
+    }
+}
 function ___hero_modules($hero_alignment_args = false, $hero_height_args = false)
 {
     $id = get_the_ID();
