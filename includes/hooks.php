@@ -344,7 +344,7 @@ function action_pre_get_posts($query)
         if (isset($_GET['posts_per_page'])) {
             $query->set('posts_per_page', $_GET['posts_per_page']);
         }
-        if (isset($_GET['posts_per_page'])) {
+        if (isset($_GET['s'])) {
             $query->set('s', $_GET['s']);
         }
     }
