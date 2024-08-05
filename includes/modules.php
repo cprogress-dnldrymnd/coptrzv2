@@ -66,6 +66,8 @@ function my_get_pagenum_link( $pagenum = 1, $escape = true, $base = null ) {
     $pagenum = (int) $pagenum;
 
     $request = $base ? remove_query_arg( 'paged', $base ) : remove_query_arg( 'paged' );
+
+    return $request;
 }
 function _pagination($has_pagination, $query)
 {
@@ -87,7 +89,7 @@ function _pagination($has_pagination, $query)
                                     <?php
                                     $my_get_pagenum_link = my_get_pagenum_link( get_query_var('paged') - 1, true, 'http://localhost:1234/vendor_new/display-vendor-results' );
                                     echo paginate_links(array(
-                                        'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+                                        'base'         => str_replace(999999999, '%#%', esc_url($my_get_pagenum_link)),
                                         'total'        => $query->max_num_pages,
                                         'current'      => max(1, get_query_var('paged')),
                                         'format'       => '?paged=%#%',
