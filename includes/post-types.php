@@ -329,7 +329,7 @@ $Events_Location->args = array(
         'items_list'                 => __('Items list', 'text_domain'),
         'items_list_navigation'      => __('Items list navigation', 'text_domain'),
     ),
-    'rewrite'      => array('slug' => 'events-category'),
+    'rewrite'      => array('slug' => 'events-location'),
     'hierarchical' => true,
     'query_var'    => true,
     'has_archive'  => true,
