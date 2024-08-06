@@ -1562,7 +1562,7 @@ function ____gallery_modules($data)
     $id = $data['id'];
     $gallery = $data['gallery'];
     $gallery_style = $data['gallery_style'];
-   
+
 
 
     if ($gallery) {
@@ -1593,13 +1593,19 @@ function ____gallery_modules($data)
             $image_args['size'] = 'large';
             $html .= "<div class='row same-image-height $vertical_spacing $horizontal_spacing justify-content-center align-items-center'>";
             $column_class_args[] = 'rounded-corner';
-            $image_args['class'] = _attribute('class', $column_class_args);
+
+            $column_grid_class = _attributes(_attribute('class', $column_class_args));
         }
 
         foreach ($gallery as $image) {
             $image_args['image_id'] = $image;
-
-            $html .= __image($image_args);
+            if ($gallery_style == 'logo-slider') {
+                $html .= __image($image_args);
+            } else {
+                $html  .= "<div $column_grid_class>";
+                $html .= __image($image_args);
+                $html  .= "</div>";
+            }
         }
         if ($gallery_style == 'logo-slider') {
             foreach ($gallery as $image) {
