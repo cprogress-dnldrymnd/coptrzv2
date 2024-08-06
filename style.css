@@ -13752,6 +13752,10 @@ body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
 
 .top-bar {
   height: 65px; }
+  .top-bar a {
+    text-decoration: none; }
+  .top-bar + .header {
+    margin-top: calc(65px + 20px); }
 
 #footer {
   font-weight: 300; }

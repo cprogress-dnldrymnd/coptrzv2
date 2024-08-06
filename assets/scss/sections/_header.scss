@@ -409,4 +409,10 @@ body {
 
 .top-bar {
     height: 65px;
+    a {
+        text-decoration: none;
+    }
+    & + .header {
+        margin-top: calc(65px + 20px);
+    }
 }
