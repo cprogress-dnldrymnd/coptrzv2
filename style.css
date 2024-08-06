@@ -13768,7 +13768,8 @@ body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
   @media screen and (max-width: 575px) {
     .top-bar {
       margin-left: 10px;
-      margin-right: 10px; } }
+      margin-right: 10px;
+      margin-top: 10px; } }
 
 #footer {
   font-weight: 300; }

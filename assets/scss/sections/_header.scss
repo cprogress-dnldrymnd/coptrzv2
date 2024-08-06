@@ -418,6 +418,9 @@ body {
     }
     & + .header {
         margin-top: calc(var(--top-bar-height) + 20px);
+        @include responsive(mobile) {
+            margin-top: calc(var(--top-bar-height) + 10px);
+        }
     }
     @include responsive(xs-sm) {
         --top-bar-height: 50px;
@@ -428,5 +431,6 @@ body {
     @include responsive(mobile) {
         margin-left: 10px;
         margin-right: 10px;
+        margin-top: 10px;
     }
 }
