@@ -1578,6 +1578,18 @@ function ____gallery_modules($data)
             $column_width_mobile = $data['column_width_mobile'];
             $vertical_spacing = $data['vertical_spacing'];
             $horizontal_spacing = $data['horizontal_spacing'];
+            $same_image_height = $data['same_image_height'];
+            $row_class[] = 'row same-image-height justify-content-center align-items-center';
+            if($same_image_height) {
+                $row_class[] = 'same-image-height';
+            }
+            if($vertical_spacing) {
+                $row_class[] = $vertical_spacing;
+            }
+            if($horizontal_spacing) {
+                $row_class[] = $horizontal_spacing;
+            }
+            
             if ($column_width) {
                 $column_class_args[] = $column_width;
             }
@@ -1590,7 +1602,8 @@ function ____gallery_modules($data)
             $image_args['class'] = _attribute('class', array('image-box rounded-corner'));
             $image_args['size'] = 'large';
             $column_grid_class = _attribute('class', $column_class_args);
-            $html .= "<div class='row same-image-height $vertical_spacing $horizontal_spacing justify-content-center align-items-center'>";
+            $row_class_val = _attribute('class', $row_class);
+            $html .= "<div $row_class_val>";
      
         }
 
