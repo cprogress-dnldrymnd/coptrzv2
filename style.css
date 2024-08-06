@@ -13744,7 +13744,7 @@ body.mobile-menu-active header .menu-burger .icon .menu {
         height: 61px; }
     @media screen and (max-width: 575px) {
       #offCanvasMenu .offcanvas-body {
-        padding: 110px 0 0 0; } }
+        padding: calc(110px + var(--top-bar-height) + var(--top-bar-offset)) 0 0 0; } }
 
 body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav:hover, body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav:active, body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav:focus {
   background-color: var(--bs-white);

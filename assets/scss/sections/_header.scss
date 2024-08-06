@@ -390,7 +390,7 @@ body.mobile-menu-active {
             }
         }
         @include responsive(mobile) {
-            padding: 110px 0 0 0;
+            padding: calc(110px + var(--top-bar-height) + var(--top-bar-offset)) 0 0 0;
         }
     }
 }
