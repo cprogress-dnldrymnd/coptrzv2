@@ -406,9 +406,16 @@ body {
         }
     }
 }
-
-.top-bar {
+body {
     --top-bar-height: 65px;
+    @include responsive(xs-sm) {
+        --top-bar-height: 50px;
+    }
+    @include responsive(xs) {
+        --top-bar-height: 40px;
+    }
+}
+.top-bar {
     height: var(--top-bar-height);
     a {
         text-decoration: none;
@@ -422,12 +429,7 @@ body {
             margin-top: calc(var(--top-bar-height) + 10px);
         }
     }
-    @include responsive(xs-sm) {
-        --top-bar-height: 50px;
-    }
-    @include responsive(xs) {
-        --top-bar-height: 40px;
-    }
+
     @include responsive(mobile) {
         margin-left: 10px;
         margin-right: 10px;

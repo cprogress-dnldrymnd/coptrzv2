@@ -13750,8 +13750,10 @@ body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
   background-color: var(--bs-white);
   color: var(--bs-primary) !important; }
 
+body {
+  --top-bar-height: 65px; }
+
 .top-bar {
-  --top-bar-height: 65px;
   height: var(--top-bar-height); }
   .top-bar a {
     text-decoration: none; }
@@ -13759,6 +13761,9 @@ body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
       color: var(--bs-accent) !important; }
   .top-bar + .header {
     margin-top: calc(var(--top-bar-height) + 20px); }
+    @media screen and (max-width: 575px) {
+      .top-bar + .header {
+        margin-top: calc(var(--top-bar-height) + 10px); } }
   @media screen and (max-width: 991px) {
     .top-bar {
       --top-bar-height: 50px; } }
