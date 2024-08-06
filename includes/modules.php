@@ -1556,6 +1556,20 @@ function ____gallery_modules($data)
     $id = $data['id'];
     $gallery = $data['gallery'];
     $gallery_style = $data['gallery_style'];
+    $column_width = $data['column_width'] ? $data['column_width'] : 'col-auto';
+    $column_width_tablet = $data['column_width_tablet'];
+    $column_width_mobile = $data['column_width_mobile'];
+
+    if($column_width) {
+        $column_class_args[] = $column_width;
+    }
+    if($column_width_tablet) {
+        $column_class_args[] = $column_width_tablet;
+    }
+    if($column_width_mobile) {
+        $column_class_args[] = $column_width_mobile;
+    }
+
     if ($gallery) {
         $html  = "<div class='gallery $gallery_style'>";
 
@@ -1569,7 +1583,7 @@ function ____gallery_modules($data)
             $image_args['size'] = 'large';
 
             $html .= '<div class="row g-5 justify-content-center align-items-center">';
-            $image_args['class'] = _attribute('class', array('col-auto'));
+            $image_args['class'] = _attribute('class', $column_class_args);
         }
 
         foreach ($gallery as $image) {
