@@ -13770,10 +13770,7 @@ body {
     .top-bar a:hover, .top-bar a:active, .top-bar a:focus {
       color: var(--bs-accent) !important; }
   .top-bar + .header {
-    margin-top: calc(var(--top-bar-height) + 20px); }
-    @media screen and (max-width: 575px) {
-      .top-bar + .header {
-        margin-top: calc(var(--top-bar-height) + 10px); } }
+    margin-top: calc(var(--top-bar-height) + var(--top-bar-offset)); }
   @media screen and (max-width: 575px) {
     .top-bar {
       margin-left: 10px;
