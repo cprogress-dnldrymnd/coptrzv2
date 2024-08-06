@@ -4218,6 +4218,50 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                 ),
+                            Field::make('select', 'horizontal_spacing', 'Horizontal Spacing')->set_width(20)
+                                ->set_options(
+                                    array(
+                                        ''     => 'Default',
+                                        'gx-6'  => 'Huge',
+                                        'gx-5'  => 'Extra Large',
+                                        'gx-4'  => 'Large',
+                                        'gx-3'  => 'Medium',
+                                        'gx-2'  => 'Small',
+                                        'gx-1'  => 'Extra Small',
+                                        'gx-20px'  => '20px',
+                                        'gx-0'  => 'None',
+                                    )
+                                )
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'gallery_style',
+                                            'value' => 'grid',
+                                        )
+                                    )
+                                ),
+                            Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(20)
+                                ->set_options(
+                                    array(
+                                        ''     => 'Default',
+                                        'gy-6'  => 'Huge',
+                                        'gy-5'  => 'Extra Large',
+                                        'gy-4'  => 'Large',
+                                        'gy-3'  => 'Medium',
+                                        'gy-2'  => 'Small',
+                                        'gy-1'  => 'Extra Small',
+                                        'gy-20px'  => '20px',
+                                        'gy-0'  => 'None',
+                                    )
+                                )
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'gallery_style',
+                                            'value' => 'grid',
+                                        )
+                                    )
+                                ),
                         )
                     )
                     ->add_fields(
