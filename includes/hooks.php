@@ -412,10 +412,7 @@ add_filter('wpcf7_form_tag_data_option', function ($data, $options, $args) {
 }, 10, 3);
 
 
-function wpse95147_filter_wp_title( $title ) {
-    if ( is_single() || ( is_home() && !is_front_page() ) || ( is_page() && !is_front_page() ) ) {
-        $title = single_post_title( '', false );
-    }
-    return $title;
-}
-add_filter( 'wp_title', 'wpse95147_filter_wp_title' );
+add_filter('woocommerce_gallery_thumbnail_size', function ($size) {
+    return 'medium';
+});
+
