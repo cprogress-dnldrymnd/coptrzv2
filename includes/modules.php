@@ -1562,21 +1562,8 @@ function ____gallery_modules($data)
     $id = $data['id'];
     $gallery = $data['gallery'];
     $gallery_style = $data['gallery_style'];
-    $column_width = $data['column_width'] ? $data['column_width'] : 'col-auto';
-    $column_width_tablet = $data['column_width_tablet'];
-    $column_width_mobile = $data['column_width_mobile'];
-    $vertical_spacing = $data['vertical_spacing'];
-    $horizontal_spacing = $data['horizontal_spacing'];
+   
 
-    if($column_width) {
-        $column_class_args[] = $column_width;
-    }
-    if($column_width_tablet) {
-        $column_class_args[] = $column_width_tablet;
-    }
-    if($column_width_mobile) {
-        $column_class_args[] = $column_width_mobile;
-    }
 
     if ($gallery) {
         $html  = "<div class='gallery $gallery_style'>";
@@ -1588,9 +1575,24 @@ function ____gallery_modules($data)
             $html .= "<div id='$id' class='swiper swiper-logo-slider'>";
             $html .= '<div class="swiper-wrapper align-items-center">';
         } else {
-            $image_args['size'] = 'large';
+            $column_width = $data['column_width'] ? $data['column_width'] : 'col-auto';
+            $column_width_tablet = $data['column_width_tablet'];
+            $column_width_mobile = $data['column_width_mobile'];
+            $vertical_spacing = $data['vertical_spacing'];
+            $horizontal_spacing = $data['horizontal_spacing'];
+            if ($column_width) {
+                $column_class_args[] = $column_width;
+            }
+            if ($column_width_tablet) {
+                $column_class_args[] = $column_width_tablet;
+            }
+            if ($column_width_mobile) {
+                $column_class_args[] = $column_width_mobile;
+            }
 
+            $image_args['size'] = 'large';
             $html .= "<div class='row $vertical_spacing $horizontal_spacing justify-content-center align-items-center'>";
+            $column_class_args[] = 'rounded-corner';
             $image_args['class'] = _attribute('class', $column_class_args);
         }
 
@@ -2061,13 +2063,12 @@ function ____columns_modules($items, $id, $html = '')
         }
 
 
-        if($column_id) {
+        if ($column_id) {
             $column_id_val = _attribute('id', $column_id, ' ');
-
         }
         $column_attributes = _attributes(array($classes_val, $styles_val, $column_id_val));
 
-        
+
         if ($is_slider) {
             $html .= '<div class="swiper-slide">'; //swiper-slide
         } else {
