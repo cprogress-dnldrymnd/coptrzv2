@@ -23,7 +23,7 @@
 
 
 <body <?php body_class(); ?>>
-	<div class="top-bar rounded-corner bg-primary">
+	<div class="top-bar rounded-corner bg-primary mx-20px">
 		<div class="container">
 			<a href="">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
