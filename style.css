@@ -13764,6 +13764,8 @@ body {
       --top-bar-offset: 10px; } }
 
 .top-bar {
+  z-index: 9999;
+  position: relative;
   height: var(--top-bar-height); }
   .top-bar a {
     text-decoration: none; }
