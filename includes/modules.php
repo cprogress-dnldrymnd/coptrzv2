@@ -826,6 +826,7 @@ function ___sections($id = 'sections', $post_id = '')
                             'column_width_mobile' => $items['column_width_mobile'],
                             'vertical_spacing' => $items['vertical_spacing'],
                             'horizontal_spacing' => $items['horizontal_spacing'],
+                            'same_image_height' => $items['same_image_height'],
                         ));
 
                         break;
