@@ -13649,7 +13649,7 @@ body.mobile-menu-active header .menu-burger .icon .menu {
 #offCanvasMenu {
   width: 100%; }
   #offCanvasMenu .offcanvas-body {
-    padding: 140px 0 0 0; }
+    padding: calc(140px + var(--top-bar-height) + var(--top-bar-offset)) 0 0 0; }
     #offCanvasMenu .offcanvas-body #menu-mobile {
       border-top: 1px solid var(--border-color);
       position: relative;
@@ -13751,13 +13751,17 @@ body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
   color: var(--bs-primary) !important; }
 
 body {
-  --top-bar-height: 65px; }
+  --top-bar-height: 65px;
+  --top-bar-offset: 20px; }
   @media screen and (max-width: 991px) {
     body {
       --top-bar-height: 50px; } }
   @media screen and (max-width: 767px) {
     body {
       --top-bar-height: 40px; } }
+  @media screen and (max-width: 575px) {
+    body {
+      --top-bar-offset: 10px; } }
 
 .top-bar {
   height: var(--top-bar-height); }
