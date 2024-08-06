@@ -95,6 +95,7 @@ function enqueue_scripts()
 	if (is_product()) {
 		wp_register_script('single-product', assets_dir . 'js/single-product.js', NULL, coptz_version);
 		wp_localize_script(
+			'single-product',
 			'ajax_object',
 			array(
 				'ajax_url' => admin_url('admin-ajax.php'),
