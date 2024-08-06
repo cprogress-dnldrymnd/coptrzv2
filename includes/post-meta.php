@@ -4144,6 +4144,7 @@ function __section_fields($name = 'sections')
                                 ->set_options(
                                     array(
                                         'col-lg'     => 'Default',
+                                        'col-auto'     => 'Auto',
                                         'col-12'    => '100.00%',
                                         'col-lg-11' => '91.67%',
                                         'col-lg-10' => '83.33%',
@@ -4170,6 +4171,7 @@ function __section_fields($name = 'sections')
                                 ->set_options(
                                     array(
                                         ''     => 'Default',
+                                        'col-auto'     => 'Auto',
                                         'col-md-12'    => '100.00%',
                                         'col-md-11' => '91.67%',
                                         'col-md-10' => '83.33%',
@@ -4196,6 +4198,7 @@ function __section_fields($name = 'sections')
                                 ->set_options(
                                     array(
                                         ''     => 'Default',
+                                        'col-auto'     => 'Auto',
                                         'col-12' => '100%',
                                         'col-11' => '91.67%',
                                         'col-10' => '83.33%',
