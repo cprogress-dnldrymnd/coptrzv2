@@ -821,7 +821,12 @@ function ___sections($id = 'sections', $post_id = '')
                             'number_of_slides' => $items['number_of_slides'],
                             'number_of_slides_tablet' => $items['number_of_slides_tablet'],
                             'number_of_slides_mobile' => $items['number_of_slides_mobile'],
+                            'column_width' => $items['column_width'],
+                            'column_width_tablet' => $items['column_width_tablet'],
+                            'column_width_mobile' => $items['column_width_mobile'],
+                            
                         ));
+
                         break;
                     case 'buttons':
                         $buttons_alignment = $items['buttons_alignment'];
