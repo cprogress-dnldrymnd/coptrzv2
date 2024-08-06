@@ -273,9 +273,15 @@ $spacings_mobile: (
 
 .gx-20px {
     --bs-gutter-x: 20px;
+    @include responsive(xs) {
+        --bs-gutter-x: 10px;
+    }
 }
 .gy-20px {
     --bs-gutter-y: 20px;
+    @include responsive(xs) {
+        --bs-gutter-y: 10px;
+    }
 }
 .g-xs-10px {
     @include responsive(xs) {

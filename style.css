@@ -11060,9 +11060,15 @@ p:last-child {
 
 .gx-20px {
   --bs-gutter-x: 20px; }
+  @media screen and (max-width: 767px) {
+    .gx-20px {
+      --bs-gutter-x: 10px; } }
 
 .gy-20px {
   --bs-gutter-y: 20px; }
+  @media screen and (max-width: 767px) {
+    .gy-20px {
+      --bs-gutter-y: 10px; } }
 
 @media screen and (max-width: 767px) {
   .g-xs-10px {
