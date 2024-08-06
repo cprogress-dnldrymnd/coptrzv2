@@ -4,6 +4,9 @@
     top: 20px;
     right: 0;
     z-index: 9999;
+    @include responsive(mobile) {
+        top: 10px;
+    }
     .header-inner {
         padding: 10px 20px;
         background-color: rgba(0, 0, 0, 0);

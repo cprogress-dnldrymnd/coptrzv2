@@ -13445,6 +13445,9 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   top: 20px;
   right: 0;
   z-index: 9999; }
+  @media screen and (max-width: 575px) {
+    .header {
+      top: 10px; } }
   .header .header-inner {
     padding: 10px 20px;
     background-color: rgba(0, 0, 0, 0);
