@@ -11062,7 +11062,7 @@ p:last-child {
   --bs-gutter-x: 20px; }
 
 .gy-20px {
-  --bs-gutter-xy: 20px; }
+  --bs-gutter-y: 20px; }
 
 @media screen and (max-width: 767px) {
   .g-xs-10px {
