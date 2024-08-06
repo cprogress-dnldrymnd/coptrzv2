@@ -13758,10 +13758,17 @@ body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
     .top-bar a:hover, .top-bar a:active, .top-bar a:focus {
       color: var(--bs-accent) !important; }
   .top-bar + .header {
-    margin-top: calc(65px + 20px); }
+    margin-top: calc(var(--top-bar-height) + 20px); }
   @media screen and (max-width: 991px) {
     .top-bar {
+      --top-bar-height: 50px; } }
+  @media screen and (max-width: 767px) {
+    .top-bar {
       --top-bar-height: 40px; } }
+  @media screen and (max-width: 575px) {
+    .top-bar {
+      margin-left: 10px;
+      margin-right: 10px; } }
 
 #footer {
   font-weight: 300; }

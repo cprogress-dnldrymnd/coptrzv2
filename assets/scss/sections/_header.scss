@@ -420,6 +420,13 @@ body {
         margin-top: calc(var(--top-bar-height) + 20px);
     }
     @include responsive(xs-sm) {
+        --top-bar-height: 50px;
+    }
+    @include responsive(xs) {
         --top-bar-height: 40px;
+    }
+    @include responsive(mobile) {
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
