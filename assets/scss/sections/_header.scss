@@ -408,7 +408,8 @@ body {
 }
 
 .top-bar {
-    height: 65px;
+    --top-bar-height: 65px;
+    height: var(--top-bar-height);
     a {
         text-decoration: none;
         @include on-event {
@@ -416,6 +417,9 @@ body {
         }
     }
     & + .header {
-        margin-top: calc(65px + 20px);
+        margin-top: calc(var(--top-bar-height) + 20px);
+    }
+    @include responsive(xs-sm) {
+        --top-bar-height: 40px;
     }
 }

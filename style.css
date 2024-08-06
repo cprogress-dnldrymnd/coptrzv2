@@ -13751,13 +13751,17 @@ body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
   color: var(--bs-primary) !important; }
 
 .top-bar {
-  height: 65px; }
+  --top-bar-height: 65px;
+  height: var(--top-bar-height); }
   .top-bar a {
     text-decoration: none; }
     .top-bar a:hover, .top-bar a:active, .top-bar a:focus {
       color: var(--bs-accent) !important; }
   .top-bar + .header {
     margin-top: calc(65px + 20px); }
+  @media screen and (max-width: 991px) {
+    .top-bar {
+      --top-bar-height: 40px; } }
 
 #footer {
   font-weight: 300; }
