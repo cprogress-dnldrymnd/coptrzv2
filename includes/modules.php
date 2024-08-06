@@ -3041,8 +3041,8 @@ function __form($args)
         $html .= __image($image_args);
         $html .= "</div>";
     } else {
-        $class = 'col-12';
-        $heading_class = 'mb-0 text-center';
+        $class = 'col-12 text-center';
+        $heading_class = 'mb-1';
     }
 
     $html .= "<div class='$class'>";
