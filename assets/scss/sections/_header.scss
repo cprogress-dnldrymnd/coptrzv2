@@ -411,6 +411,9 @@ body {
     height: 65px;
     a {
         text-decoration: none;
+        @include on-event {
+            color: var(--bs-accent) !important;
+        }
     }
     & + .header {
         margin-top: calc(65px + 20px);

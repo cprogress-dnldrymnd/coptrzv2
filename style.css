@@ -13754,6 +13754,8 @@ body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
   height: 65px; }
   .top-bar a {
     text-decoration: none; }
+    .top-bar a:hover, .top-bar a:active, .top-bar a:focus {
+      color: var(--bs-accent); }
   .top-bar + .header {
     margin-top: calc(65px + 20px); }
 
