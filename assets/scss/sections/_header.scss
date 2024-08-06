@@ -420,6 +420,8 @@ body {
     }
 }
 .top-bar {
+    z-index: 9999;
+    position: relative;
     height: var(--top-bar-height);
     a {
         text-decoration: none;
