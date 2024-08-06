@@ -1461,3 +1461,8 @@ function woocommerce_disable_shop_page() {
     endif;
 }
 add_action( 'wp', 'woocommerce_disable_shop_page' );
+
+
+add_filter('woocommerce_gallery_thumbnail_size', function ($size) {
+    return 'medium';
+});
