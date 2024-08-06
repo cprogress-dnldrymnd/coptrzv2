@@ -824,7 +824,8 @@ function ___sections($id = 'sections', $post_id = '')
                             'column_width' => $items['column_width'],
                             'column_width_tablet' => $items['column_width_tablet'],
                             'column_width_mobile' => $items['column_width_mobile'],
-                            
+                            'vertical_spacing' => $items['vertical_spacing'],
+                            'horizontal_spacing' => $items['horizontal_spacing'],
                         ));
 
                         break;
@@ -1564,6 +1565,8 @@ function ____gallery_modules($data)
     $column_width = $data['column_width'] ? $data['column_width'] : 'col-auto';
     $column_width_tablet = $data['column_width_tablet'];
     $column_width_mobile = $data['column_width_mobile'];
+    $vertical_spacing = $data['vertical_spacing'];
+    $horizontal_spacing = $data['horizontal_spacing'];
 
     if($column_width) {
         $column_class_args[] = $column_width;
@@ -1587,7 +1590,7 @@ function ____gallery_modules($data)
         } else {
             $image_args['size'] = 'large';
 
-            $html .= '<div class="row g-5 justify-content-center align-items-center">';
+            $html .= "<div class='row $vertical_spacing $horizontal_spacing justify-content-center align-items-center'>";
             $image_args['class'] = _attribute('class', $column_class_args);
         }
 
