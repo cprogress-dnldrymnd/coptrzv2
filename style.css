@@ -13750,6 +13750,9 @@ body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
   background-color: var(--bs-white);
   color: var(--bs-primary) !important; }
 
+.top-bar {
+  height: 65px; }
+
 #footer {
   font-weight: 300; }
   #footer ul {
