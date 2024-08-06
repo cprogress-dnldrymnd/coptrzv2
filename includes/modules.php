@@ -1563,8 +1563,6 @@ function ____gallery_modules($data)
     $gallery = $data['gallery'];
     $gallery_style = $data['gallery_style'];
 
-
-
     if ($gallery) {
         $html  = "<div class='gallery $gallery_style'>";
 
@@ -1592,7 +1590,7 @@ function ____gallery_modules($data)
             $image_args['class'] = _attribute('class', array('image-box'));
             $image_args['size'] = 'large';
             $column_class_args[] = 'rounded-corner';
-            $column_grid_class = _attributes(_attribute('class', $column_class_args));
+            $column_grid_class = _attribute('class', $column_class_args);
             $html .= "<div class='row same-image-height $vertical_spacing $horizontal_spacing justify-content-center align-items-center'>";
      
         }
