@@ -10,7 +10,9 @@
 	<?php if (!is_404()) { ?>
 		<link rel="canonical" href="<?= canonical() ?>" />
 	<?php } ?>
-
+	<title>
+		<?php wp_title('') ?>
+	</title>
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
 	<?php wp_head(); ?>
