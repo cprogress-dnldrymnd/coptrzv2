@@ -13752,6 +13752,12 @@ body.no-hero-bg .header .navbar.navbar.navbar .nav-item .main-nav.active {
 
 body {
   --top-bar-height: 65px; }
+  @media screen and (max-width: 991px) {
+    body {
+      --top-bar-height: 50px; } }
+  @media screen and (max-width: 767px) {
+    body {
+      --top-bar-height: 40px; } }
 
 .top-bar {
   height: var(--top-bar-height); }
@@ -13764,12 +13770,6 @@ body {
     @media screen and (max-width: 575px) {
       .top-bar + .header {
         margin-top: calc(var(--top-bar-height) + 10px); } }
-  @media screen and (max-width: 991px) {
-    .top-bar {
-      --top-bar-height: 50px; } }
-  @media screen and (max-width: 767px) {
-    .top-bar {
-      --top-bar-height: 40px; } }
   @media screen and (max-width: 575px) {
     .top-bar {
       margin-left: 10px;
