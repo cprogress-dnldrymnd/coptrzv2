@@ -1589,12 +1589,12 @@ function ____gallery_modules($data)
             if ($column_width_mobile) {
                 $column_class_args[] = $column_width_mobile;
             }
-
+            $image_args['class'] = _attribute('class', array('image-box'));
             $image_args['size'] = 'large';
-            $html .= "<div class='row same-image-height $vertical_spacing $horizontal_spacing justify-content-center align-items-center'>";
             $column_class_args[] = 'rounded-corner';
-
             $column_grid_class = _attributes(_attribute('class', $column_class_args));
+            $html .= "<div class='row same-image-height $vertical_spacing $horizontal_spacing justify-content-center align-items-center'>";
+     
         }
 
         foreach ($gallery as $image) {
