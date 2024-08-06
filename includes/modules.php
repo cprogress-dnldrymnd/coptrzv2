@@ -1579,7 +1579,7 @@ function ____gallery_modules($data)
             $vertical_spacing = $data['vertical_spacing'];
             $horizontal_spacing = $data['horizontal_spacing'];
             $same_image_height = $data['same_image_height'];
-            $row_class[] = 'row same-image-height justify-content-center align-items-center';
+            $row_class[] = 'row justify-content-center align-items-center';
             if($same_image_height) {
                 $row_class[] = 'same-image-height';
             }
