@@ -4265,6 +4265,16 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                 ),
+                            Field::make('checkbox', 'same_image_height', __('Same Image Height'))
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'gallery_style',
+                                            'value' => 'grid',
+                                        )
+                                    )
+                                ),
+
                         )
                     )
                     ->add_fields(
