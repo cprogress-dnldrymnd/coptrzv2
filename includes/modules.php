@@ -1591,7 +1591,7 @@ function ____gallery_modules($data)
             }
 
             $image_args['size'] = 'large';
-            $html .= "<div class='row $vertical_spacing $horizontal_spacing justify-content-center align-items-center'>";
+            $html .= "<div class='row same-image-height $vertical_spacing $horizontal_spacing justify-content-center align-items-center'>";
             $column_class_args[] = 'rounded-corner';
             $image_args['class'] = _attribute('class', $column_class_args);
         }
