@@ -2653,7 +2653,9 @@ function __post_box($data, $class = [], $content_box_class = [])
 
     if ($featured) {
         $html .= __background($image);
-        $html .= __post_category($id, $taxonomy, 'text-white');
+        if($taxonomy != false) {
+            $html .= __post_category($id, $taxonomy, 'text-white');
+        }
     } else {
         if ($bg_image) {
             $html .= __background($image);
@@ -2669,7 +2671,7 @@ function __post_box($data, $class = [], $content_box_class = [])
         }
 
         $html .= "<div $content_box_class_attribute>";
-        if (in_array('category', $elements) && $taxonomy) {
+        if (in_array('category', $elements) && $taxonomy && $taxonomy != false) {
             $html .= __post_category($id, $taxonomy, 'text-black');
         }
     }
