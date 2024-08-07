@@ -11498,7 +11498,12 @@ input[type="checkbox"] {
   .swiper-nav.swiper-nav.swiper-nav .swiper-button-prev {
     position: static !important;
     transform: none;
-    margin: 0; }
+    margin: 0;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms; }
     .swiper-nav.swiper-nav.swiper-nav .swiper-button-next:hover, .swiper-nav.swiper-nav.swiper-nav .swiper-button-next:active, .swiper-nav.swiper-nav.swiper-nav .swiper-button-next:focus,
     .swiper-nav.swiper-nav.swiper-nav .swiper-button-prev:hover,
     .swiper-nav.swiper-nav.swiper-nav .swiper-button-prev:active,
