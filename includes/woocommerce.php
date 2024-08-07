@@ -436,22 +436,15 @@ function __product_compare($id)
         foreach ($product_attributes as $product_attribute) {
             $taxonomy_details = get_taxonomy($product_attribute);
             $product_attribute_values = get_the_terms($product['id'], $product_attribute);
-            $html .= "<div class='row g-10px mb-10px'>"; //specs-row
-            $html .= "<div class='col-8'>";
+
+            $html .= "<div class='col-12'>";
             $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
-            $html .= $taxonomy_details->labels->singular_name;
+            $html .= $taxonomy_details->labels->singular_name . ' | ' . $product_attribute_value->name;
+
             $html .= "</div>";
             $html .= "</div>";
 
-            
-            $html .= "<div class='col-4'>";
-            $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
-            foreach ($product_attribute_values as $product_attribute_value) {
-                $html .= $product_attribute_value->name;
-            }
-            $html .= "</div>";
-            $html .= "</div>";
-            $html .= "</div>";
+
         }
 
         $html .= "</div>";
