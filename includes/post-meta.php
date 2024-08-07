@@ -1685,7 +1685,7 @@ function __section_fields($name = 'sections')
                                     )
                                 )
                             ),
-                        Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings'))->set_width(2330),
+                        Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings'))->set_width(33),
                         Field::make('checkbox', 'is_slider', __('Is Slider'))->set_width(33),
                         Field::make('checkbox', 'same_image_height', __('Same Image Height'))->set_width(33),
                         Field::make('select', 'slider_style', __('Slider Style'))->set_width(25)
