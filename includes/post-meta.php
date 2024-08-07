@@ -1192,7 +1192,7 @@ function __section_fields($name = 'sections')
                     'singular_name' => 'Section',
                 )
             )
-            ->set_collapsed(true)
+            ->set_layout('tabbed-vertical')
 
             ->add_fields(array(
                 Field::make('html', 'sec_1')->set_html('<label>Section Settings</label>')->set_classes('cb-label'),
