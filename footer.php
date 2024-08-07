@@ -43,7 +43,7 @@ $footer_drone_experts = get__theme_option('footer_drone_experts');
 if (!$hide_footer) {
 ?>
 
-    <footer id="footer" class="bg-black text-white small-text">
+    <footer id="footer" class="bg-black text-white small-text overflow-hidden">
         <div class="footer-top">
             <div class="container">
                 <div class="inner rounded-10px">
