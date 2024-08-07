@@ -86,7 +86,7 @@ function action_woocommerce_after_single_product_summary()
     echo do_shortcode(___sections('sections_after_main', get_the_ID()));
 
     if ($drones) {
-        echo __linked_products(__get_assoc_post_ids($drones), 'All Drones', '/product-category/drones/', 'swiper-drones', 'Other Drones');
+        echo __linked_products(__get_assoc_post_ids($drones), 'All Drones', '/product-category/drones/', 'swiper-drones', 'Drones');
     }
 
 
