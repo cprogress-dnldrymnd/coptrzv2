@@ -1192,7 +1192,6 @@ function __section_fields($name = 'sections')
                     'singular_name' => 'Section',
                 )
             )
-            ->set_layout('tabbed-vertical')
 
             ->add_fields(array(
                 Field::make('html', 'sec_1')->set_html('<label>Section Settings</label>')->set_classes('cb-label'),
@@ -1208,7 +1207,7 @@ function __section_fields($name = 'sections')
                             'singular_name' => 'Section Item',
                         )
                     )
-                    ->set_layout('grid')
+                    ->set_layout('tabbed-vertical')
                     ->add_fields('layouts', array(
                         Field::make('association', 'layouts', 'Select Layouts')
                             ->set_types(
