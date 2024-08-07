@@ -1051,7 +1051,6 @@ function ___sections($id = 'sections', $post_id = '')
                                 $taxonomy =  'false';
                             }
 
-                            $html .= $taxonomy;
                         } else {
                             $args['post_type'] = get_post_type();
                             $args['exclude'] = get_the_ID();
@@ -1076,6 +1075,7 @@ function ___sections($id = 'sections', $post_id = '')
 
                             $posts = get_posts($args);
                         }
+                        $html .= $taxonomy;
 
                         if ($posts) {
                             $html .= "<div class='row g-4 same-image-height row-global-post'>";
