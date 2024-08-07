@@ -204,7 +204,7 @@ function __video($data)
     }
 }
 
-function __background($background, $is_youtube = false)
+function __background($background, $is_youtube = false, $autoplay = true, $hero = false)
 {
     if ($is_youtube == false) {
         $mime_type =  get_post_mime_type($background);
@@ -221,7 +221,7 @@ function __background($background, $is_youtube = false)
             ));
         }
     } else {
-        return "<div id='player' video_id='$background'></div>";
+        return "<div class='background-image background-overlay'><div id='player' video_id='$background'></div</iframe></div>";
     }
 }
 
