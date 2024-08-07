@@ -6185,7 +6185,7 @@ Container::make('post_meta', __('Product Settings'))
                     )
                 )
             ),
-        Field::make('set', 'product_attributes', 'Select Product Attributes')
+        Field::make('multiselect', 'product_attributes', 'Select Product Attributes')
             ->set_options(
                 array(
                     'pa_survey-grade' => 'Survey-Grade',
