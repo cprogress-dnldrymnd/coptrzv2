@@ -6125,6 +6125,17 @@ Container::make('post_meta', __('Product Settings'))
                     ),
                 )
             )
+    ))
+    ->add_tab('Softwares', array(
+        Field::make('association', 'softwares', 'Softwares')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'product',
+                    ),
+                )
+            )
     ));
 
 add_filter('carbon_fields_association_field_options_related_training_post_product', function ($query_arguments) {
@@ -6161,6 +6172,20 @@ add_filter('carbon_fields_association_field_options_accessories_post_product', f
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
         'terms'    => 30
+    );
+
+    $query_arguments['tax_query'] = $tax_query;
+    $query_arguments['post_status'] = 'publish';
+
+    return $query_arguments;
+});
+
+add_filter('carbon_fields_association_field_options_softwares_post_product', function ($query_arguments) {
+    // Order posts by title alphabetically, for example:
+    $tax_query[] = array(
+        'taxonomy' => 'product_cat',
+        'field'    => 'term_id',
+        'terms'    => 776
     );
 
     $query_arguments['tax_query'] = $tax_query;
