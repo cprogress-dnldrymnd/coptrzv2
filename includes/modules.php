@@ -1046,13 +1046,10 @@ function ___sections($id = 'sections', $post_id = '')
                             $post_col_class[] = $column_width_mobile;
                         }
 
-
                         if ($source == 'post_type') {
                             $posts = [];
                             $field_key = $items['related_post'][0]['field_key'];
                             $post_type = $items['related_post'][0]['post_type'];
-
-
                             $name = get_post_type_object($post_type)->labels->singular_name;
 
                             $posts_list = get__post_meta($field_key);

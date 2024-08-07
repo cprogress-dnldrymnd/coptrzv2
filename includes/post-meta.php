@@ -1417,7 +1417,7 @@ function __section_fields($name = 'sections')
                                 )
                             ),
                         Field::make('checkbox', 'hide_excerpt', __('Hide Excerpt')),
-                        Field::make('complex', 'hide_excerpt', 'Related Posts')
+                        Field::make('complex', 'related_post', 'Related Posts')
                             ->add_fields('related_guides',  array(
                                 Field::make('hidden', 'post_type')->set_default_value('guides')->set_classes('d-none'),
                                 Field::make('hidden', 'field_key')->set_default_value('related_guides')->set_classes('d-none'),
