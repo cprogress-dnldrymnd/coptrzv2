@@ -6190,7 +6190,6 @@ Container::make('post_meta', __('Product Settings'))
                 array(
                     'pa_survey-grade' => 'Survey-Grade',
                     'pa_zoom' => 'Zoom',
-                    'Flight Time' => 'Flight Time',
                     'pa_flight-time' => 'Flight Time',
                     'pa_ip-rating' => 'IP Rating',
                 )
