@@ -498,13 +498,13 @@ function __product_compare($id)
 
     foreach ($product_attributes as $product_attribute) {
 
-        $taxonomy_details = get_taxonomy( $product_attribute );
-        
+        $taxonomy_details = get_taxonomy($product_attribute);
+
         $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
 
         $html .= "<div class='col-3'>"; //specs-row-col
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
-      
+
         $html .= __heading(array(
             'heading' => $taxonomy_details->labels->singular_name,
             'class' => _attribute('class', array('mb-0')),
@@ -514,8 +514,27 @@ function __product_compare($id)
         $html .= "</div>"; //end-specs-row-col
 
 
+        foreach ($products as $product) {
+            $spec = get_the_terms($product['id'], 'product_attribute');
+
+
+            $html .= "<div class='col-3'>";
+            $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
+
+            foreach ($specs as $pec) {
+                $html .= $spec->name;
+            }
+
+
+            $html .= "</div>";
+            $html .= "</div>";
+        }
+
+
         $html .= "</div>";
     }
+
+
 
     foreach ($specs as $key => $spec) {
         $icon = get__term_meta($key, 'icon');
