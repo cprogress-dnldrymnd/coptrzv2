@@ -499,14 +499,14 @@ function __product_compare($id)
     foreach ($product_attributes as $product_attribute) {
 
         $taxonomy_details = get_taxonomy( $product_attribute );
-
+        $html .= var_dump($taxonomy_details);
         $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
 
         $html .= "<div class='col-3'>"; //specs-row-col
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
       
         $html .= __heading(array(
-            'heading' => $taxonomy_details->singular_name,
+            'heading' => $taxonomy_details->name,
             'class' => _attribute('class', array('mb-0')),
             'tag' => 'h5',
         ));
