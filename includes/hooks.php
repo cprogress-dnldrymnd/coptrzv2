@@ -282,6 +282,7 @@ function action__wp_footer()
                         loop: 1,
                     },
                     events: {
+                        'onReady': onPlayerReady,
                         'onStateChange': function(event) {
                             var YTP = event.target;
                             if (event.data === 1) {
@@ -295,6 +296,10 @@ function action__wp_footer()
                         }
                     }
                 });
+
+                function onPlayerReady(event) {
+                    jQuery('.background-image iframe').addClass('show');
+                }
             }
         }
     </script>
