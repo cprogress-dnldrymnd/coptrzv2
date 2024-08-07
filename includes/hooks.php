@@ -276,6 +276,9 @@ function action__wp_footer()
                         controls: 0,
                         showinfo: 0,
                         rel: 0,
+                        playsinline: 1,
+                        autoplay: 1,
+                        loop: 1,
                     },
                     events: {
                         'onReady': onPlayerReady,
