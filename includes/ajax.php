@@ -96,6 +96,7 @@ function brands_ajax()
 	$terms = get_terms(array(
 		'taxonomy'   => 'pa_brands',
 		'hide_empty' => false,
+		'name__like'    => $s
 	));
 	$html = "<div class='row g-3 same-image-height' style='--object-fit: contain; --image-padding: 20%'>";
 	foreach ($terms as $term) {
