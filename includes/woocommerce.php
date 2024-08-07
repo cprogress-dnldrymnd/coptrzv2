@@ -432,7 +432,7 @@ function __product_compare($id)
         $html .= "<div class='product-inner  d-flex flex-column'>";
         $html .= _product_grid_display($product['id']);
 
-        $html .= "<div class='row-services-spec-mobile d-lg-none mt-4'>";
+        $html .= "<div class='row-services-spec-mobile g-3 d-lg-none mt-4'>";
         foreach ($product_attributes as $product_attribute) {
             $taxonomy_details = get_taxonomy($product_attribute);
             $product_attribute_values = get_the_terms($product['id'], $product_attribute);
