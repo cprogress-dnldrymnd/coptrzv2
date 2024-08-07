@@ -97,6 +97,9 @@ main {
         @include responsive(xs) {
             @include transform(scale(3));
         }
+        &.show {
+            opacity: 1;
+        }
     }
     &.mx-20px {
         @include responsive(mobile) {
