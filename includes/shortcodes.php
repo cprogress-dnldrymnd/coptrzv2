@@ -11,7 +11,7 @@ class Shortcodes
                     'taxonomy' => '',
                     'search_filter' => false,
                     'items_per_page' => 50,
-                    'hide_empty' => true,
+                    'hide_empty' => false,
                 ),
                 $atts
             )
