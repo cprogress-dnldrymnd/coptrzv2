@@ -221,8 +221,7 @@ function __background($background, $is_youtube = false)
             ));
         }
     } else {
-        $source = "https://www.youtube.com/embed/$background?loop=1&controls=0&rel=0&playsinline=1&autoplay=1&mute=1&controls=0&playlist=$background";
-        return "<div class='background-image background-overlay'><iframe src='$source'></iframe></div>";
+        return "<div class='background-image background-overlay'><div id='player' video_id='$background'></div></iframe></div>";
     }
 }
 

@@ -252,7 +252,53 @@ function action__wp_footer()
             jQuery('#download-gvc').appendTo('.the-content > *:nth-child(2)');
         });
     </script>
+    <script>
+        video_id = document.getElementById('player').getAttribute('video_id');
+        console.log(video_id);
+        if (video_id) {
+            // 2. This code loads the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
 
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            // 3. This function creates an <iframe> (and YouTube player)
+            //    after the API code downloads.
+            var player;
+
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    height: '390',
+                    width: '640',
+                    videoId: video_id,
+                    playerVars: {
+                        controls: 1,
+                        showinfo: 0,
+                        rel: 0,
+                        autoplay: 1,
+                        mute: 1,
+                        playsinline: 1,
+                        playlist: video_id,
+                        loop: 1,
+                    },
+                    events: {
+                        'onStateChange': function(event) {
+                            var YTP = event.target;
+                            if (event.data === 1) {
+                                var remains = YTP.getDuration() - YTP.getCurrentTime();
+                                if (this.rewindTO)
+                                    clearTimeout(this.rewindTO);
+                                this.rewindTO = setTimeout(function() {
+                                    YTP.seekTo(0);
+                                }, (remains - 0.1) * 1000);
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    </script>
     <?php
 }
 
