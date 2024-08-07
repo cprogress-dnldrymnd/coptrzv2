@@ -488,8 +488,8 @@ function __swipers() {
                     },
                 },
                 navigation: {
-                    nextEl: $id + ".swiper-button-next",
-                    prevEl: $id + ".swiper-button-prev",
+                    nextEl: $id + " .swiper-button-next",
+                    prevEl: $id + " .swiper-button-prev",
                 },
                 pagination: {
                     el: ".swiper-pagination",
@@ -517,8 +517,8 @@ function __swipers() {
                     },
                 },
                 navigation: {
-                    nextEl: $id + ".swiper-button-next",
-                    prevEl: $id + ".swiper-button-prev",
+                    nextEl: $id + " .swiper-button-next",
+                    prevEl: $id + " .swiper-button-prev",
                 },
                 pagination: {
                     el: ".swiper-pagination",
