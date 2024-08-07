@@ -6104,6 +6104,17 @@ Container::make('post_meta', __('Product Settings'))
                 )
             )
     ))
+    ->add_tab('Related Drones', array(
+        Field::make('association', 'drones', 'Related Drones')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'product',
+                    )
+                )
+            )
+    ))
     ->add_tab('Compatible Payloads', array(
         Field::make('association', 'compatible_payloads', 'Compatible Payloads')
             ->set_types(
@@ -6186,6 +6197,20 @@ add_filter('carbon_fields_association_field_options_softwares_post_product', fun
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
         'terms'    => 776
+    );
+
+    $query_arguments['tax_query'] = $tax_query;
+    $query_arguments['post_status'] = 'publish';
+
+    return $query_arguments;
+});
+
+add_filter('carbon_fields_association_field_options_drones_post_product', function ($query_arguments) {
+    // Order posts by title alphabetically, for example:
+    $tax_query[] = array(
+        'taxonomy' => 'product_cat',
+        'field'    => 'term_id',
+        'terms'    => 27
     );
 
     $query_arguments['tax_query'] = $tax_query;
