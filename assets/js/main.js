@@ -529,7 +529,7 @@ function __swipers() {
 
     });
 
-    var swiper_sliders = new Swiper('.swiper-full-width', {
+    var swiper_fullwidth = new Swiper('.swiper-full-width', {
         loop: true,
         autoplay: false,
         slidesPerView: 1,
