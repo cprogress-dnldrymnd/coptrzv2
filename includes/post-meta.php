@@ -6093,6 +6093,17 @@ Container::make('post_meta', __('Product Settings'))
                 )
             )
     ))
+    ->add_tab('Related Case Studies', array(
+        Field::make('association', 'related_casestudies', 'Related Guides')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'casestudies',
+                    )
+                )
+            )
+    ))
     ->add_tab('Related Training', array(
         Field::make('association', 'related_training', 'Related Training')
             ->set_types(
