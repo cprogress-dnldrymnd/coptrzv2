@@ -22,6 +22,7 @@ function __ajax_brands() {
     $result_holder = jQuery('#results');
     $archive_section = jQuery('.ajax-loading');
     $s = jQuery('input[name="brand_search"]').val();
+    $archive_section.addClass('loading-post');
 
     jQuery.ajax({
         type: "POST",
