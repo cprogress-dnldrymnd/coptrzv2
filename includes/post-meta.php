@@ -1355,6 +1355,13 @@ function __section_fields($name = 'sections')
                                     'post_type'      => 'Post Type',
                                 )
                             ),
+                        Field::make('select', 'style', __('Style'))
+                            ->set_options(
+                                array(
+                                    ''      => 'Default',
+                                    'info-above-image'      => 'Info Above Image',
+                                )
+                            ),
                         Field::make('complex', 'related_post', 'Related Posts')
                             ->add_fields('related_guides',  array(
                                 Field::make('hidden', 'post_type')->set_default_value('guides')->set_classes('d-none'),
