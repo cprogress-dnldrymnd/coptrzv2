@@ -254,6 +254,7 @@ function action__wp_footer()
     </script>
     <script>
         video_id = document.getElementById('player').getAttribute('video_id');
+        console.log(video_id);
         if (video_id) {
             // 2. This code loads the IFrame Player API code asynchronously.
             var tag = document.createElement('script');
@@ -270,7 +271,7 @@ function action__wp_footer()
                 player = new YT.Player('player', {
                     height: '390',
                     width: '640',
-                    videoId: YOUR_ID_HERE,
+                    videoId: video_id,
                     playerVars: {
                         controls: 0,
                         showinfo: 0,
