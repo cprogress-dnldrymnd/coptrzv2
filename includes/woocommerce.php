@@ -515,14 +515,14 @@ function __product_compare($id)
 
 
         foreach ($products as $product) {
-            $specs = get_the_terms($product['id'], 'product_attribute');
+            $product_attribute_values = get_the_terms($product['id'], $product_attribute);
 
 
             $html .= "<div class='col-3'>";
             $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
-            foreach ($specs as $spec) {
-                $html .= $spec->name;
+            foreach ($product_attribute_values as $product_attribute_value) {
+                $html .= $product_attribute_value->name;
             }
 
 
