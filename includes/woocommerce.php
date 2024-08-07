@@ -441,6 +441,7 @@ function __product_compare($id)
             $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
             $taxonomy_details->labels->singular_name;
             $html .= "</div>";
+            $html .= "</div>";
 
             
             $html .= "<div class='col-4'>";
