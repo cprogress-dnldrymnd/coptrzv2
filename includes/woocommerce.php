@@ -90,7 +90,7 @@ function action_woocommerce_after_single_product_summary()
     }
 
     if ($softwares) {
-        echo __linked_products(__get_assoc_post_ids($softwares), 'All Softwares', '/product-category/softwares/', 'swiper-payloads', 'Compatible Payloads');
+        echo __linked_products(__get_assoc_post_ids($softwares), 'All Softwares', '/product-category/softwares/', 'swiper-payloads', 'Softwares');
     }
 
     if ($compatible_payloads) {
