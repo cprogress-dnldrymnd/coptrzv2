@@ -1371,6 +1371,11 @@ function __section_fields($name = 'sections')
                                 Field::make('hidden', 'field_key')->set_default_value('related_post')->set_classes('d-none'),
                                 Field::make('html', 'html')->set_html('<h3>This will display related post </h3>'),
                             ))
+                            ->add_fields('related_industries',  array(
+                                Field::make('hidden', 'post_type')->set_default_value('post')->set_classes('d-none'),
+                                Field::make('hidden', 'field_key')->set_default_value('related_industries')->set_classes('d-none'),
+                                Field::make('html', 'html')->set_html('<h3>This will display related industries </h3>'),
+                            ))
                             ->set_conditional_logic(
                                 array(
                                     array(
@@ -6004,6 +6009,17 @@ Container::make('term_meta', __('Category Properties'))
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Product Settings'))
     ->where('post_type', '=', 'product')
+    ->add_tab('Related Guides', array(
+        Field::make('association', 'related_industries', 'Related Industries')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'industries',
+                    )
+                )
+            )
+    ))
     ->add_tab('Related Guides', array(
         Field::make('association', 'related_guides', 'Related Guides')
             ->set_types(
