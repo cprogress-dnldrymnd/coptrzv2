@@ -703,23 +703,7 @@ function _product_grid_display($id)
         $html .= "</a>";
 
         $html .= "<div class='product-buttons'>";
-        $html .= "<div class='row g-10px'>";
-
-
-        if ($product_type == 'simple') {
-            $html .= "<div class='$button_class'>";
-            $html .= "<a href='?add-to-cart=$id' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$id' data-product_sku='$sku' aria-label='Add to basket: “" . $title . "”' rel='nofollow'>Add to basket</a>";
-            $html .= "</div>";
-        }
-
-
-
-        $html .= "<div class='$button_class'>";
         $html .= "<div class='button-box button-bordered'><a href='$permalink'>View Product</a></div>";
-        $html .= "</div>";
-
-        $html .= "</div>";
-
         $html .= "</div>";
 
 
