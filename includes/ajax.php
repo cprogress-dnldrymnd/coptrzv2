@@ -123,7 +123,7 @@ function brands_ajax()
 		}
 	}
 
-	return $html;
+	echo $html;
 
 	die();
 }
