@@ -515,7 +515,7 @@ function __product_compare($id)
 
 
         foreach ($products as $product) {
-            $spec = get_the_terms($product['id'], 'product_attribute');
+            $specs = get_the_terms($product['id'], 'product_attribute');
 
 
             $html .= "<div class='col-3'>";
