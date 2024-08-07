@@ -291,8 +291,6 @@ function action__wp_footer()
                                 this.rewindTO = setTimeout(function() {
                                     YTP.seekTo(0);
                                 }, (remains - 0.1) * 1000);
-
-                                console.log(remains);
                             }
                         }
                     }
