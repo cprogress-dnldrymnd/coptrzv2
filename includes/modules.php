@@ -1048,7 +1048,7 @@ function ___sections($id = 'sections', $post_id = '')
                             if ($post_type != 'industries') {
                                 $taxonomy = $post_type . '_category';
                             } else {
-                                $taxonomy =  false;
+                                $taxonomy =  'false';
                             }
 
                             $html .= $taxonomy;
