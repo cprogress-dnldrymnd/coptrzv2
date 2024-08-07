@@ -11130,6 +11130,9 @@ p:last-child {
 .bg-light-gray {
   background-color: var(--light-gray-color); }
 
+.object-fit-cover, .object-fit-cover img {
+  object-fit: cover; }
+
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
