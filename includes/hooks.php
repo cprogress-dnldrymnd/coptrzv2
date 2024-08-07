@@ -298,7 +298,9 @@ function action__wp_footer()
                 });
 
                 function onPlayerReady(event) {
-                    jQuery('.background-image iframe').addClass('show');
+                    setTimeout(function() {
+                        jQuery('.background-image iframe').addClass('show');
+                    }, 300);
                 }
             }
         }
