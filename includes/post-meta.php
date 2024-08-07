@@ -6243,6 +6243,8 @@ Container::make('post_meta', __('Product Settings'))
                     'pa_zoom' => 'Zoom',
                     'pa_flight-time' => 'Flight Time',
                     'pa_ip-rating' => 'IP Rating',
+                    'pa_lens-types' => 'Lens Type', 
+                    'pa_max-video-resolution' => 'Max Video Resolution', 
                 )
             ),
     ));
