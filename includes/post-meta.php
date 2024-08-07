@@ -5299,6 +5299,78 @@ function __section_fields($name = 'sections')
                             ->set_header_template('Tab: <%- heading %>')
 
                     ))
+                    ->add_fields(
+                        'accordion',
+                        array(
+                            Field::make('checkbox', 'open_first_item', __('Open First Item')),
+                            Field::make('checkbox', 'with_border', __('With Border')),
+                            Field::make('checkbox', 'lower_opacity', __('Lower opacity for not active')),
+                            Field::make('select', 'accordion_source', __('Accordion Source'))
+                                ->set_options(
+                                    array(
+                                        ''      => 'Custom',
+                                        'faqs'      => 'FAQs Select Manually',
+                                        'faqs_category'      => 'FAQs by Category',
+                                    )
+                                ),
+                            Field::make('complex', 'accordion', __('Accordion'))
+                                ->set_layout('tabbed-vertical')
+                                ->add_fields(
+                                    array(
+                                        Field::make('text', 'heading', __('Heading')),
+                                        Field::make('textarea', 'description', __('Description'))->set_width(80),
+                                        Field::make('html', 'activate_wysiwyg')->set_width(20)
+                                            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                                    )
+                                )
+                                ->set_header_template('<%- heading  %>')
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'accordion_source',
+                                            'value' => '',
+                                            'comapre' => '='
+                                        )
+                                    )
+                                ),
+                            Field::make('association', 'faqs', 'Select FAQs')
+                                ->set_types(
+                                    array(
+                                        array(
+                                            'type'      => 'post',
+                                            'post_type' => 'faq',
+                                        )
+                                    )
+                                )
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'accordion_source',
+                                            'value' => 'faqs',
+                                            'comapre' => '='
+                                        )
+                                    )
+                                ),
+                            Field::make('association', 'faqs_category', 'Select FAQs Category')
+                                ->set_types(
+                                    array(
+                                        array(
+                                            'type'      => 'term',
+                                            'taxonomy' => 'faqs_category',
+                                        )
+                                    )
+                                )
+                                ->set_conditional_logic(
+                                    array(
+                                        array(
+                                            'field' => 'accordion_source',
+                                            'value' => 'faqs_category',
+                                            'comapre' => '='
+                                        )
+                                    )
+                                ),
+                        )
+                    )
                     ->add_fields('events_widget',  array(
                         Field::make('complex', 'events_widget', 'Events Widget')
                             ->add_fields('countdown',  array(

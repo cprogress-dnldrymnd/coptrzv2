@@ -920,6 +920,26 @@ function ___sections($id = 'sections', $post_id = '')
                         $tabs = $items['tabs'];
                         $html .= ___tab_modules($tabs, $section_id_val);
                         break;
+
+                    case 'accordion':
+                        $accordion = $items['accordion'];
+                        $accordion_source = $items['accordion_source'];
+                        $faqs = $items['faqs'];
+                        $faqs_category = $items['faqs_category'];
+                        $open_first_item = $items['open_first_item'];
+                        $with_border = $items['with_border'];
+                        $lower_opacity = $items['lower_opacity'];
+                        $html .= __accordion_module(array(
+                            'accordion' => $accordion,
+                            'accordion_source' => $accordion_source,
+                            'faqs' => $faqs,
+                            'faqs_category' => $faqs_category,
+                            'open_first_item' => $open_first_item,
+                            'module_id' => $id,
+                            'with_border' => $with_border,
+                            'lower_opacity' => $lower_opacity
+                        ));
+                        break;
                     case 'global_widgets':
                         $global_widgets = $items['global_widgets'];
                         foreach ($global_widgets as $global_widget) {
@@ -1089,8 +1109,8 @@ function ___sections($id = 'sections', $post_id = '')
                         if ($posts) {
                             $html .= "<div class='row g-4 same-image-height row-global-post'>";
                             foreach ($posts as $post) {
-                                $elements = array('category', 'image', 'title','button');
-                                if(!$hide_excerpt) {
+                                $elements = array('category', 'image', 'title', 'button');
+                                if (!$hide_excerpt) {
                                     $elements[] = 'excerpt';
                                 }
                                 $data = array(
