@@ -11202,6 +11202,7 @@ hr {
   .background-image.background-image iframe {
     width: 100%;
     height: 100%;
+    opacity: 1;
     -webkit-transform: scale(1.6);
     -moz-transform: scale(1.6);
     -ms-transform: scale(1.6);
