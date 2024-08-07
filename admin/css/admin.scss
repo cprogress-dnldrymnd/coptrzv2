@@ -3,19 +3,7 @@ body,
 #wpadminbar *:not(.ab-icon), .carbon-box *:not(.dashicons-before):not(.dashicons) {
     font-family: "Poppins", sans-serif !important;
 }
-.columns {
-    > .cf-field__body {
-        overflow: auto;
-        > .cf-complex__groups {
-            display: flex;
-            flex-wrap: wrap;
-            > div {
-                flex: 0 0 33%;
-                padding: 5px;
-            }
-        }
-    }
-}
+
 
 .cb-label.cb-label.cb-label {
     background-color: #555d66;
