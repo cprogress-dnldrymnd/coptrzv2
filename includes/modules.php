@@ -1101,10 +1101,10 @@ function ___sections($id = 'sections', $post_id = '')
                                     $data['taxonomy'] = $taxonomy;
                                 }
 
-                                if (!$column_width_mobile && !$column_width_tablet && $column_width_mobile) {
+                                if (!$column_width && !$column_width_tablet && $column_width_mobile) {
                                     $data['col'] = true;
                                 } else {
-                                    $data['col'] = _attribute('class', $post_col_class);
+                                    $data['col'] = $column_width . ' ' . $column_width_tablet . ' ' . $column_width_mobile;
                                 }
                                 if ($style == 'info-above-image') {
                                     $data['featured'] = true;
