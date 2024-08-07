@@ -1050,6 +1050,8 @@ function ___sections($id = 'sections', $post_id = '')
                             } else {
                                 $taxonomy =  false;
                             }
+
+                            $html .= $taxonomy;
                         } else {
                             $args['post_type'] = get_post_type();
                             $args['exclude'] = get_the_ID();
@@ -1086,7 +1088,7 @@ function ___sections($id = 'sections', $post_id = '')
                                     'button_text' => 'Read ' . $name,
                                     'elements' => array('category', 'image', 'title', 'excerpt', 'button')
                                 );
-                                $html .= __post_box($data);
+                               // $html .= __post_box($data);
                             }
 
                             $html .= "</div>";
