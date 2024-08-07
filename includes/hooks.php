@@ -265,7 +265,7 @@ function action__wp_footer()
                 player = new YT.Player('player', {
                     height: '390',
                     width: '640',
-                    videoId: YOUR_ID_HERE,
+                    videoId: video_id,
                     playerVars: {
                         controls: 0,
                         showinfo: 0,
