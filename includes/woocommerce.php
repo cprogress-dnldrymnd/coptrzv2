@@ -439,7 +439,7 @@ function __product_compare($id)
 
             $html .= "<div class='col-12'>";
             $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
-            $html .= $taxonomy_details->labels->singular_name . ' | ';
+            $html .= $taxonomy_details->labels->singular_name . ': ';
             foreach ($product_attribute_values as $product_attribute_value) {
                 $html .= $product_attribute_value->name;
             }
