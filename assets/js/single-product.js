@@ -154,7 +154,7 @@ function __product_gallery() {
     });
 
     jQuery('.product-thumb-holder .woocommerce-product-gallery__image').click(function (e) {
-        $key = jQuery(this).attr('target');
+        $key = jQuery(this).parent().attr('target');
         console.log($key);
         product_main_image.slideTo($key);
     });
