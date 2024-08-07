@@ -221,7 +221,7 @@ function __background($background, $is_youtube = false)
             ));
         }
     } else {
-        return "<div id='player'>";
+        return "<div id='player' video_id='$background'>";
     }
 }
 
