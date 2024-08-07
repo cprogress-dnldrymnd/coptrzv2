@@ -285,27 +285,6 @@ function action__wp_footer()
                     }
                 });
             }
-
-            // 4. The API will call this function when the video player is ready.
-            function onPlayerReady(event) {
-                event.target.playVideo();
-
-                var interval_is_stopped = false;
-                setInterval(function() {
-                    var current_time = event.target.getCurrentTime();
-
-                    if (current_time > 14.9 && !interval_is_stopped) {
-                        interval_is_stopped = true;
-                        jQuery('#player').fadeTo(400, 0.7, function() {
-                            player.seekTo(0);
-                            jQuery(this).fadeTo(400, 1, function() {
-                                interval_is_stopped = false;
-                            });
-                        });
-                    }
-                }, 10);
-
-            }
         }
     </script>
     <?php
