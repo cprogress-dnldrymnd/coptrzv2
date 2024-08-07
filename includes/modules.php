@@ -1122,7 +1122,7 @@ function ___sections($id = 'sections', $post_id = '')
                         }
 
                         break;
-
+                        /*
                     case 'related_products':
                         $type = $items['category'][0]['_type'];
                         if ($type == 'related_drones') {
@@ -1160,6 +1160,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $html .= __linked_products($related_products_array, $button_text, $button_link, $slider_id, $related_products_heading, false, true, true, $related_id);
                         }
                         break;
+                        */
                     case 'events_widget':
                         $events_widget = $items['events_widget'];
                         foreach ($events_widget as $event_widget) {
