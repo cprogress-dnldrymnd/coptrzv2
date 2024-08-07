@@ -44,7 +44,7 @@ function __ajax_brands() {
 function __hero() {
     setTimeout(function () {
         jQuery('.background-image iframe').addClass('show');
-    }, 200);
+    }, 50);
     if (window.innerWidth > 991) {
         jQuery('body.hero-has-form #hero .background-image').prependTo('#hero');
     } else {
