@@ -153,6 +153,12 @@ function __product_gallery() {
         slidesPerView: 1,
     });
 
-    
+
+    jQuery('.product-thumb-holder .thumb-nav').click(swiper, function () {
+        $key = jQuery(this).attr('target');
+        product_main_image.slideTo($key);
+    })
+
+
 
 } 

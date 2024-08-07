@@ -56,7 +56,7 @@ $images_ids_per_slides = array_chunk($image_ids, 6);
 
 					foreach ($images_ids_per_slide as $image) {
 						$key = $image['key'];
-						echo "<div class='col-6' target='$key'>";
+						echo "<div class='col-6 thumb-nav' target='$key'>";
 						echo apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($image['id']), $post_thumbnail_id);
 						echo '</div>';
 					}
