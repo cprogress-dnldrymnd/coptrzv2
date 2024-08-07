@@ -2720,6 +2720,7 @@ function __post_box($data, $class = [], $content_box_class = [])
         $html .= __heading(array(
             'heading' => get_the_title($id),
             'tag' => $tag,
+            'class' => _attribute('class', 'small-heading'),
             'link' => $link
         ));
     }
