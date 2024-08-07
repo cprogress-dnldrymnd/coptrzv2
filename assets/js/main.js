@@ -534,8 +534,8 @@ function __swipers() {
         autoplay: false,
         slidesPerView: 1,
         navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-full-width .swiper-button-next",
+            prevEl: ".swiper-full-width .swiper-button-prev",
         },
     });
 
