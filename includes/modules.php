@@ -782,6 +782,7 @@ function ___sections($id = 'sections', $post_id = '')
                         if ($custom_size) {
                             if ($image_height) {
                                 $image_styles[] = "--height: $image_height;";
+                                $image_classes[] = 'object-fit-cover';
                             }
                             if ($image_width) {
                                 $image_styles[] = "--width: $image_width;";
