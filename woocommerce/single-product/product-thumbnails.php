@@ -27,8 +27,11 @@ global $product;
 $post_thumbnail_id = $product->get_image_id();
 $attachment_ids = $product->get_gallery_image_ids();
 
-$image_ids[] = $post_thumbnail_id;
-$key = 0;
+$image_ids[] = array(
+	'key' => 0,
+	'id' => $post_thumbnail_id
+);
+$key = 1;
 foreach ($attachment_ids as $attachment_id) {
 	$image_ids[] = array(
 		'key' => $key,
