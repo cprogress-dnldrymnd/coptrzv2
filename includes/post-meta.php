@@ -1839,6 +1839,7 @@ function __section_fields($name = 'sections')
                                     'singular_name' => 'Columnn',
                                 )
                             )
+                            ->set_layout('tabbed-vertical')
                             ->set_classes('columns')
                             ->add_fields(array(
                                 Field::make('text', 'column_title', __('Column Title')),
