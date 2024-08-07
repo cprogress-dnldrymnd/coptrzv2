@@ -253,32 +253,26 @@ function action__wp_footer()
         });
     </script>
     <script>
-        // 2. This code loads the IFrame Player API code asynchronously.
-        var tag = document.createElement('script');
-
         video_id = document.getElementById('player').getAttribute('video_id');
         if (video_id) {
-            console.log(video_id);
-
-            tag.src = "https://www.youtube.com/iframe_api";
-            var firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
+            // 2. This code loads the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
             // 3. This function creates an <iframe> (and YouTube player)
             //    after the API code downloads.
             var player;
 
             function onYouTubeIframeAPIReady() {
                 player = new YT.Player('player', {
-                    height: '100%',
-                    width: '100%',
-                    videoId: video_id,
+                    height: '390',
+                    width: '640',
+                    videoId: YOUR_ID_HERE,
                     playerVars: {
-                        'playsinline': 1
+                        controls: 0,
+                        showinfo: 0,
+                        rel: 0,
                     },
                     events: {
                         'onReady': onPlayerReady,
-                        'onStateChange': onPlayerStateChange
                     }
                 });
             }
@@ -286,22 +280,22 @@ function action__wp_footer()
             // 4. The API will call this function when the video player is ready.
             function onPlayerReady(event) {
                 event.target.playVideo();
-            }
 
-            // 5. The API calls this function when the player's state changes.
-            //    The function indicates that when playing a video (state=1),
-            //    the player should play for six seconds and then stop.
-            var done = false;
+                var interval_is_stopped = false;
+                setInterval(function() {
+                    var current_time = event.target.getCurrentTime();
 
-            function onPlayerStateChange(event) {
-                if (event.data == YT.PlayerState.PLAYING && !done) {
-                    setTimeout(stopVideo, 6000);
-                    done = true;
-                }
-            }
+                    if (current_time > 14.9 && !interval_is_stopped) {
+                        interval_is_stopped = true;
+                        jQuery('#player').fadeTo(400, 0.7, function() {
+                            player.seekTo(0);
+                            jQuery(this).fadeTo(400, 1, function() {
+                                interval_is_stopped = false;
+                            });
+                        });
+                    }
+                }, 10);
 
-            function stopVideo() {
-                player.stopVideo();
             }
         }
     </script>
