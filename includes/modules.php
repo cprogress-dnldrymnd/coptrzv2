@@ -1045,8 +1045,11 @@ function ___sections($id = 'sections', $post_id = '')
                                     $posts[] = $post['id'];
                                 }
                             }
-
-                            $taxonomy = $post_type . '_category';
+                            if ($post_type != 'industries') {
+                                $taxonomy = $post_type . '_category';
+                            } else {
+                                $taxonomy =  false;
+                            }
                         } else {
                             $args['post_type'] = get_post_type();
                             $args['exclude'] = get_the_ID();
@@ -1582,16 +1585,16 @@ function ____gallery_modules($data)
             $horizontal_spacing = $data['horizontal_spacing'];
             $same_image_height = $data['same_image_height'];
             $row_class[] = 'row justify-content-center align-items-center';
-            if($same_image_height) {
+            if ($same_image_height) {
                 $row_class[] = 'same-image-height';
             }
-            if($vertical_spacing) {
+            if ($vertical_spacing) {
                 $row_class[] = $vertical_spacing;
             }
-            if($horizontal_spacing) {
+            if ($horizontal_spacing) {
                 $row_class[] = $horizontal_spacing;
             }
-            
+
             if ($column_width) {
                 $column_class_args[] = $column_width;
             }
@@ -1606,7 +1609,6 @@ function ____gallery_modules($data)
             $column_grid_class = _attribute('class', $column_class_args);
             $row_class_val = _attribute('class', $row_class);
             $html .= "<div $row_class_val>";
-     
         }
 
         foreach ($gallery as $image) {
