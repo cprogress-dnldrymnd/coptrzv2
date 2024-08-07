@@ -290,7 +290,7 @@ function action__wp_footer()
                                     clearTimeout(this.rewindTO);
                                 this.rewindTO = setTimeout(function() {
                                     YTP.seekTo(0);
-                                }, (remains - 0.1) * 1000);
+                                }, (remains - 1) * 1000);
                             }
                         }
                     }
