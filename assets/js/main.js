@@ -488,8 +488,8 @@ function __swipers() {
                     },
                 },
                 navigation: {
-                    nextEl: ".swiper-sliders .swiper-button-next",
-                    prevEl: ".swiper-sliders .swiper-button-prev",
+                    nextEl: ".post-grid .swiper-button-next",
+                    prevEl: ".post-grid .swiper-button-prev",
                 },
                 pagination: {
                     el: ".swiper-pagination",
@@ -517,8 +517,8 @@ function __swipers() {
                     },
                 },
                 navigation: {
-                    nextEl: ".swiper-sliders .swiper-button-next",
-                    prevEl: ".swiper-sliders .swiper-button-prev",
+                    nextEl: ".post-grid .swiper-button-next",
+                    prevEl: ".post-grid .swiper-button-prev",
                 },
                 pagination: {
                     el: ".swiper-pagination",
