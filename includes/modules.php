@@ -1092,10 +1092,14 @@ function ___sections($id = 'sections', $post_id = '')
                         if ($posts) {
                             $html .= "<div class='row g-4 same-image-height row-global-post'>";
                             foreach ($posts as $post) {
+                                $elements[] = array('category', 'image', 'title','button');
+                                if(!$hide_excerpt) {
+                                    $elements[] = 'excerpt';
+                                }
                                 $data = array(
                                     'id' => $post,
                                     'button_text' => 'Read ' . $name,
-                                    'elements' => array('category', 'image', 'title', 'excerpt', 'button')
+                                    'elements' => $elements
                                 );
                                 if ($taxonomy) {
                                     $data['taxonomy'] = $taxonomy;
