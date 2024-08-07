@@ -5294,10 +5294,7 @@ function __section_fields($name = 'sections')
                                 )
                             ),
                     ))
-                    ->add_fields('case_study_slider',  array(
-                        Field::make('html', 'html')->set_html('<h3>This will display featured case study slider </h3>'),
-                    ))
-
+               
                     ->add_fields('tabs',  array(
                         Field::make('complex', 'tabs', 'Tabs')
                             ->add_fields('tabs',  array(

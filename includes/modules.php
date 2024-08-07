@@ -920,9 +920,6 @@ function ___sections($id = 'sections', $post_id = '')
                         $tabs = $items['tabs'];
                         $html .= ___tab_modules($tabs, $section_id_val);
                         break;
-                    case 'case_study_slider':
-                        $html .= do_shortcode("[case_study_slider_grid]");
-                        break;
                     case 'global_widgets':
                         $global_widgets = $items['global_widgets'];
                         foreach ($global_widgets as $global_widget) {
