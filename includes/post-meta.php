@@ -5154,13 +5154,13 @@ function __section_fields($name = 'sections')
                                     )
                                 ),
                             Field::make('complex', 'buttons', __('Buttons'))
-
                                 ->setup_labels(
                                     array(
                                         'plural_name'   => 'Buttons',
                                         'singular_name' => 'Button',
                                     )
                                 )
+                                ->set_layout('tabbed-vertical')
                                 ->add_fields(array(
                                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field')
                                         ->set_options(
