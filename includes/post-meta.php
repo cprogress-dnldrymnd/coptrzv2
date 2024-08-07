@@ -1372,7 +1372,7 @@ function __section_fields($name = 'sections')
                                 Field::make('html', 'html')->set_html('<h3>This will display related post </h3>'),
                             ))
                             ->add_fields('related_industries',  array(
-                                Field::make('hidden', 'post_type')->set_default_value('post')->set_classes('d-none'),
+                                Field::make('hidden', 'post_type')->set_default_value('industries')->set_classes('d-none'),
                                 Field::make('hidden', 'field_key')->set_default_value('related_industries')->set_classes('d-none'),
                                 Field::make('html', 'html')->set_html('<h3>This will display related industries </h3>'),
                             ))
