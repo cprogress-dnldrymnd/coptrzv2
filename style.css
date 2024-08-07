@@ -11200,6 +11200,7 @@ hr {
     position: relative;
     z-index: 2; }
   .background-image.background-image iframe {
+    pointer-events: none;
     width: 100%;
     height: 100%;
     opacity: 0;
