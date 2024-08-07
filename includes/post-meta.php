@@ -1676,15 +1676,7 @@ function __section_fields($name = 'sections')
                         )
                     )
                     ->add_fields('columns', array(
-                        Field::make('html', 'html_422')->set_html('<label>Section Row Settings</label>')->set_classes('cb-label')
-                            ->set_conditional_logic(
-                                array(
-                                    array(
-                                        'field' => 'is_slider',
-                                        'value' => false,
-                                    )
-                                )
-                            ),
+                        Field::make('html', 'html_422')->set_html('<label>Section Row Settings</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'individual_column_settings', __('Individual Column Settings'))->set_width(33),
                         Field::make('checkbox', 'is_slider', __('Is Slider'))->set_width(33),
                         Field::make('checkbox', 'same_image_height', __('Same Image Height'))->set_width(33),
