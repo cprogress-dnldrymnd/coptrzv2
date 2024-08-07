@@ -427,65 +427,29 @@ function __product_compare($id)
     ));
 
     $html .= "</div>";
-
     foreach ($products as $product) {
         $html .= "<div class='col-lg-3'>";
         $html .= "<div class='product-inner  d-flex flex-column'>";
         $html .= _product_grid_display($product['id']);
 
         $html .= "<div class='row-services-spec-mobile d-lg-none mt-4'>";
-        foreach ($specs as $key => $spec) {
-            $icon = get__term_meta($key, 'icon');
-            $mime_type =  get_post_mime_type($icon);
-            $html .= "<div class='row g-10px mb-10px'>"; //specs-row
+        foreach ($product_attributes as $product_attribute) {
+            $taxonomy_details = get_taxonomy($product_attribute);
+            $product_attribute_values = get_the_terms($product['id'], $product_attribute);
 
-            $html .= "<div class='col-8'>"; //specs-row-col
-            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
-            if (str_contains($mime_type, 'svg')) {
-                $html .= __icon(array(
-                    'id' => $icon,
-                    'class' => _attribute('class', array('me-3 text-accent'))
-                ));
-            } else {
-                $html .= __image(array(
-                    'image_id' => $icon,
-                    'class' => _attribute('class', array('me-3 text-accent'))
-                ));
-            }
-            $html .= __heading(array(
-                'heading' => $spec,
-                'class' => _attribute('class', array('mb-0 text-primary')),
-                'tag' => 'h5',
-            ));
-            $html .= "</div>"; //end-inner
-            $html .= "</div>"; //end-specs-row-col
+            $html .= "<div class='col-8'>";
+            $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
+            $taxonomy_details->labels->singular_name;
+            $html .= "</div>";
 
-            $spec_product = array();
-
-            $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
-            foreach ($pa_specifications as $specification) {
-                $spec_product[$specification->term_id] = $specification->name;
-            }
-
-
+            
             $html .= "<div class='col-4'>";
             $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
-
-            if (array_key_exists($key, $spec_product)) {
-                $html .= "<div class='active'>";
-                $html .= $SVG->check();
-                $html .= "</div>";
-            } else {
-                $html .= "<div class='not-active'>";
-                $html .= $SVG->xmark();
-                $html .= "</div>";
+            foreach ($product_attribute_values as $product_attribute_value) {
+                $html .= $product_attribute_value->name;
             }
-
             $html .= "</div>";
             $html .= "</div>";
-
-
-            $html .= "</div>"; //end-specs-row
         }
 
         $html .= "</div>";
@@ -528,7 +492,6 @@ function __product_compare($id)
             foreach ($product_attribute_values as $product_attribute_value) {
                 $html .= $product_attribute_value->name;
             }
-
 
             $html .= "</div>";
             $html .= "</div>";
