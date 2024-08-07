@@ -1851,7 +1851,7 @@ function __section_fields($name = 'sections')
                                             'singular_name' => 'Item',
                                         )
                                     )
-                                    ->set_collapsed(true)
+                                    ->set_layout('tabbed-vertical')
                                     ->add_fields('global_widgets',  array(
                                         Field::make('complex', 'global_widgets')
                                             ->add_fields('case_study_slider', array(
@@ -2121,7 +2121,7 @@ function __section_fields($name = 'sections')
                                                         'singular_name' => 'Button',
                                                     )
                                                 )
-
+                                                ->set_layout('tabbed-vertical')
                                                 ->add_fields(array(
                                                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field')
                                                         ->set_options(
