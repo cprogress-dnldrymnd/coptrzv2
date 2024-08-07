@@ -300,7 +300,7 @@ function action__wp_footer()
                 function onPlayerReady(event) {
                     setTimeout(function() {
                         jQuery('.background-image iframe').addClass('show');
-                    }, 300);
+                    }, 500);
                 }
             }
         }
