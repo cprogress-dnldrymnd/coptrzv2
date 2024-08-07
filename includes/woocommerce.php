@@ -80,20 +80,25 @@ function action_woocommerce_after_single_product_summary()
     $related_training = get__post_meta('related_training');
     $compatible_payloads = get__post_meta('compatible_payloads');
     $accessories = get__post_meta('accessories');
+    $softwares = get__post_meta('softwares');
 
     echo do_shortcode(___sections('sections_after_main', get_the_ID()));
 
     if ($related_training) {
 
-        echo __linked_products(__get_assoc_post_ids($related_training), 'All Trainings', '#', 'swiper-payloads', 'Related Training');
+        echo __linked_products(__get_assoc_post_ids($related_training), 'All Trainings', '/product-category/training/', 'swiper-payloads', 'Related Training');
+    }
+
+    if ($softwares) {
+        echo __linked_products(__get_assoc_post_ids($softwares), 'All Softwares', '/product-category/softwares/', 'swiper-payloads', 'Compatible Payloads');
     }
 
     if ($compatible_payloads) {
-        echo __linked_products(__get_assoc_post_ids($compatible_payloads), 'All Payloads', '#', 'swiper-payloads', 'Compatible Payloads');
+        echo __linked_products(__get_assoc_post_ids($compatible_payloads), 'All Payloads', '/product-category/payloads-and-attachments/', 'swiper-payloads', 'Compatible Payloads');
     }
 
     if ($accessories) {
-        echo __linked_products(__get_assoc_post_ids($accessories), 'All Accessories', '#', 'swiper-accessories', 'Accessories');
+        echo __linked_products(__get_assoc_post_ids($accessories), 'All Accessories', '/product-category/accessories-and-parts/', 'swiper-accessories', 'Accessories');
     }
 }
 
