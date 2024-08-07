@@ -81,8 +81,14 @@ function action_woocommerce_after_single_product_summary()
     $compatible_payloads = get__post_meta('compatible_payloads');
     $accessories = get__post_meta('accessories');
     $softwares = get__post_meta('softwares');
+    $drones = get__post_meta('drones');
 
     echo do_shortcode(___sections('sections_after_main', get_the_ID()));
+
+    if ($drones) {
+        echo __linked_products(__get_assoc_post_ids($drones), 'All Drones', '/product-category/drones/', 'swiper-drones', 'Other Drones');
+    }
+
 
     if ($related_training) {
 
@@ -90,7 +96,7 @@ function action_woocommerce_after_single_product_summary()
     }
 
     if ($softwares) {
-        echo __linked_products(__get_assoc_post_ids($softwares), 'All Softwares', '/product-category/softwares/', 'swiper-payloads', 'Softwares');
+        echo __linked_products(__get_assoc_post_ids($softwares), 'All Softwares', '/product-category/softwares/', 'swiper-softwares', 'Softwares');
     }
 
     if ($compatible_payloads) {
