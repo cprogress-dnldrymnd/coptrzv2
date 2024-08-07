@@ -28,8 +28,10 @@ $post_thumbnail_id = $product->get_image_id();
 $attachment_ids = $product->get_gallery_image_ids();
 
 $image_ids[] = $post_thumbnail_id;
+$key = 0;
 foreach ($attachment_ids as $attachment_id) {
-	$image_ids[] = $attachment_id;
+	$image_ids[$key] = $attachment_id;
+	$key++;
 }
 
 $images_ids_per_slides = array_chunk($image_ids, 6);
