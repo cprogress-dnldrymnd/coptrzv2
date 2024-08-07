@@ -221,7 +221,7 @@ function __background($background, $is_youtube = false, $autoplay = true, $hero 
             ));
         }
     } else {
-        return "<div class='background-image background-overlay'><div id='player' video_id='$background'></div</iframe></div>";
+        return "<div class='background-image background-overlay'><div id='player' video_id='$background'></div></div>";
     }
 }
 
