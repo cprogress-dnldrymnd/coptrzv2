@@ -12194,6 +12194,8 @@ hr {
 #calculator.calculated #results-box {
   display: block; }
 
+.hide-first-option-value .input-label {
+  display: none; }
 .hide-first-option-value select option:first-child {
   display: none; }
 

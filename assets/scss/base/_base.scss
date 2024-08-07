@@ -1348,6 +1348,9 @@ hr {
 }
 
 .hide-first-option-value {
+    .input-label {
+        display: none;
+    }
     select {
         option {
             @include first-child {
