@@ -1836,7 +1836,7 @@ function __section_fields($name = 'sections')
                             ->add_fields(array(
                                 Field::make('text', 'column_title', __('Column Title')),
                                 Field::make('text', 'column_id', __('Column ID')),
-                                Field::make('complex', 'items', __(''))
+                                Field::make('complex', 'items', __('Column Items'))
                                     ->set_classes('items')
                                     ->setup_labels(
                                         array(
