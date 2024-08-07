@@ -1208,6 +1208,7 @@ function __section_fields($name = 'sections')
                             'singular_name' => 'Section Item',
                         )
                     )
+                    ->set_layout('grid')
                     ->add_fields('layouts', array(
                         Field::make('association', 'layouts', 'Select Layouts')
                             ->set_types(
