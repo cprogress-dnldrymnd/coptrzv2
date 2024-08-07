@@ -19,8 +19,10 @@ jQuery(window).on("resize", function () {
 });
 
 function __ajax_brands() {
-    $s = jQuery('input[name="brand_search"]').val();
     $result_holder = jQuery('#results');
+    $archive_section = jQuery('.ajax-loading');
+    $s = jQuery('input[name="brand_search"]').val();
+
     jQuery.ajax({
         type: "POST",
 
@@ -33,6 +35,7 @@ function __ajax_brands() {
 
         success: function (response) {
             $result_holder.html(response);
+            $archive_section.removeClass('loading-post');
         },
         error: function (e) {
             console.log(e);
