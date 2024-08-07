@@ -103,7 +103,7 @@ function __get_assoc_post_ids($posts, $post_arr = [])
 {
     foreach ($posts as $post) {
         $post_status = get_post_status($post['id']);
-        if($post_status=='publish') {
+        if ($post_status == 'publish') {
             $post_arr[] = $post['id'];
         }
     }
@@ -403,8 +403,186 @@ function buy_now_button()
 }
 add_action('woocommerce_after_add_to_cart_button', 'buy_now_button', 20);
 
-
 function __product_compare($id)
+{
+    $SVG = new SVG;
+    $products = get__post_meta_by_id($id, 'products');
+    $product_attributes = get__post_meta_by_id($id, 'product_attributes');
+
+    $specs = array();
+
+    foreach ($products as $product) {
+        $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
+        foreach ($pa_specifications as $specification) {
+            $specs[$specification->term_id] = $specification->name;
+        }
+    }
+
+    $html = "<div class='product-compare'>";
+    $html .= "<div class='comparison products-specifications products-specifications-v2'>"; //products-specifications
+    $html .= "<div class='row g-10px'>";
+    $html .= "<div class='col-lg-3'>";
+    $html .= __heading(array(
+        'heading' => get_the_title($id),
+    ));
+
+    $html .= "</div>";
+
+    foreach ($products as $product) {
+        $html .= "<div class='col-lg-3'>";
+        $html .= "<div class='product-inner  d-flex flex-column'>";
+        $html .= _product_grid_display($product['id']);
+
+        $html .= "<div class='row-services-spec-mobile d-lg-none mt-4'>";
+        foreach ($specs as $key => $spec) {
+            $icon = get__term_meta($key, 'icon');
+            $mime_type =  get_post_mime_type($icon);
+            $html .= "<div class='row g-10px mb-10px'>"; //specs-row
+
+            $html .= "<div class='col-8'>"; //specs-row-col
+            $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+            if (str_contains($mime_type, 'svg')) {
+                $html .= __icon(array(
+                    'id' => $icon,
+                    'class' => _attribute('class', array('me-3 text-accent'))
+                ));
+            } else {
+                $html .= __image(array(
+                    'image_id' => $icon,
+                    'class' => _attribute('class', array('me-3 text-accent'))
+                ));
+            }
+            $html .= __heading(array(
+                'heading' => $spec,
+                'class' => _attribute('class', array('mb-0 text-primary')),
+                'tag' => 'h5',
+            ));
+            $html .= "</div>"; //end-inner
+            $html .= "</div>"; //end-specs-row-col
+
+            $spec_product = array();
+
+            $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
+            foreach ($pa_specifications as $specification) {
+                $spec_product[$specification->term_id] = $specification->name;
+            }
+
+
+            $html .= "<div class='col-4'>";
+            $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
+
+            if (array_key_exists($key, $spec_product)) {
+                $html .= "<div class='active'>";
+                $html .= $SVG->check();
+                $html .= "</div>";
+            } else {
+                $html .= "<div class='not-active'>";
+                $html .= $SVG->xmark();
+                $html .= "</div>";
+            }
+
+            $html .= "</div>";
+            $html .= "</div>";
+
+
+            $html .= "</div>"; //end-specs-row
+        }
+
+        $html .= "</div>";
+
+        $html .= "</div>";
+        $html .= "</div>";
+    }
+
+    $html .= "</div>";
+
+    foreach ($product_attributes as $product_attribute) {
+
+        $taxonomy_details = get_taxonomy( $product_attribute );
+
+        $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
+
+        $html .= "<div class='col-3'>"; //specs-row-col
+        $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+      
+        $html .= __heading(array(
+            'heading' => $taxonomy_details->name,
+            'class' => _attribute('class', array('mb-0')),
+            'tag' => 'h5',
+        ));
+        $html .= "</div>"; //end-inner
+        $html .= "</div>"; //end-specs-row-col
+
+
+        $html .= "</div>";
+    }
+
+    foreach ($specs as $key => $spec) {
+        $icon = get__term_meta($key, 'icon');
+        $mime_type =  get_post_mime_type($icon);
+        $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
+
+        $html .= "<div class='col-3'>"; //specs-row-col
+        $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
+        if (str_contains($mime_type, 'svg')) {
+            $html .= __icon(array(
+                'id' => $icon,
+                'class' => _attribute('class', array('me-3 text-accent'))
+            ));
+        } else {
+            $html .= __image(array(
+                'image_id' => $icon,
+                'class' => _attribute('class', array('me-3 text-accent'))
+            ));
+        }
+        $html .= __heading(array(
+            'heading' => $spec,
+            'class' => _attribute('class', array('mb-0')),
+            'tag' => 'h5',
+        ));
+        $html .= "</div>"; //end-inner
+        $html .= "</div>"; //end-specs-row-col
+
+        foreach ($products as $product) {
+            $spec_product = array();
+
+            $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
+            foreach ($pa_specifications as $specification) {
+                $spec_product[$specification->term_id] = $specification->name;
+            }
+
+
+
+            $html .= "<div class='col-3'>";
+            $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
+
+            if (array_key_exists($key, $spec_product)) {
+                $html .= "<div class='active'>";
+                $html .= $SVG->check();
+                $html .= "</div>";
+            } else {
+                $html .= "<div class='not-active'>";
+                $html .= $SVG->xmark();
+                $html .= "</div>";
+            }
+
+            $html .= "</div>";
+            $html .= "</div>";
+        }
+
+
+
+        $html .= "</div>"; //end-specs-row
+    }
+    $html .= "</div>"; //end products-specifications
+
+    $html .= "</div>";
+
+
+    return $html;
+}
+
+function __product_compare_oldd($id)
 {
     $SVG = new SVG;
     $products = get__post_meta_by_id($id, 'products');
@@ -582,7 +760,7 @@ function _product_grid_display($id)
         $html .= "<img width='300' height='225' src='$post_thumnail' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='$title' decoding='async'>";
         $html .= "</div>";
         $html .= "<h2 class='woocommerce-loop-product__title mb-0'>$title</h2>";
-       // $html .= $product->get_price_html();
+        // $html .= $product->get_price_html();
         $html .= '<span class="status d-block mb-2 mt-2"></span>';
 
         $html .= "</a>";
@@ -1451,15 +1629,16 @@ remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
 remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
 
 
-function woocommerce_disable_shop_page() {
+function woocommerce_disable_shop_page()
+{
     global $post;
-    if (is_shop()):
-    global $wp_query;
-    $wp_query->set_404();
-    status_header(404);
+    if (is_shop()) :
+        global $wp_query;
+        $wp_query->set_404();
+        status_header(404);
     endif;
 }
-add_action( 'wp', 'woocommerce_disable_shop_page' );
+add_action('wp', 'woocommerce_disable_shop_page');
 
 
 add_filter('woocommerce_gallery_thumbnail_size', function ($size) {
