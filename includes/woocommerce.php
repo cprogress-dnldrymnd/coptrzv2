@@ -505,7 +505,7 @@ function __product_compare($id)
         $html .= "<div class='col-3'>"; //specs-row-col
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
         $html .= "<div class='me-3 text-accent'>"; //icon
-        $html .= $SVG->check();
+        $html .= $SVG->battery();
         $html .= "</div>"; //end-icon
 
 
