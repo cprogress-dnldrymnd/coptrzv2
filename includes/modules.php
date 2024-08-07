@@ -1048,9 +1048,8 @@ function ___sections($id = 'sections', $post_id = '')
                             if ($post_type != 'industries') {
                                 $taxonomy = $post_type . '_category';
                             } else {
-                                $taxonomy =  'false';
+                                $taxonomy =  false;
                             }
-
                         } else {
                             $args['post_type'] = get_post_type();
                             $args['exclude'] = get_the_ID();
@@ -1075,7 +1074,6 @@ function ___sections($id = 'sections', $post_id = '')
 
                             $posts = get_posts($args);
                         }
-                        $html .= $taxonomy;
 
                         if ($posts) {
                             $html .= "<div class='row g-4 same-image-height row-global-post'>";
@@ -1084,11 +1082,13 @@ function ___sections($id = 'sections', $post_id = '')
                                     'id' => $post,
                                     'featured' => false,
                                     'col' => true,
-                                    'taxonomy' => $taxonomy,
                                     'button_text' => 'Read ' . $name,
                                     'elements' => array('category', 'image', 'title', 'excerpt', 'button')
                                 );
-                               // $html .= __post_box($data);
+                                if ($taxonomy) {
+                                    $data['taxonomy'] = $taxonomy;
+                                }
+                                $html .= __post_box($data);
                             }
 
                             $html .= "</div>";
@@ -2655,7 +2655,7 @@ function __post_box($data, $class = [], $content_box_class = [])
 
     if ($featured) {
         $html .= __background($image);
-        if($taxonomy != false) {
+        if ($taxonomy != false) {
             $html .= __post_category($id, $taxonomy, 'text-white');
         }
     } else {
