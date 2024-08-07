@@ -153,11 +153,11 @@ function __product_gallery() {
         slidesPerView: 1,
     });
 
-
-    jQuery('.product-thumb-holder .woocommerce-product-gallery__image').click(swiper, function () {
+    jQuery('.product-thumb-holder .woocommerce-product-gallery__image').click(function (e) {
         $key = jQuery(this).attr('target');
         product_main_image.slideTo($key);
-    })
+
+    });
 
 
 
