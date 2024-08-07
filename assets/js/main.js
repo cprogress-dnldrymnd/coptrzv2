@@ -13,10 +13,7 @@ jQuery(document).ready(function () {
     __blog_content();
     __hero();
 });
-jQuery(window).on("resize", function () {
-    __hero();
-    __header_menu();
-});
+
 
 function __ajax_brands() {
     $result_holder = jQuery('#results');
