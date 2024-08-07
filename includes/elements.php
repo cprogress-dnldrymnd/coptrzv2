@@ -204,7 +204,7 @@ function __video($data)
     }
 }
 
-function __background($background, $is_youtube = false, $autoplay = true)
+function __background($background, $is_youtube = false)
 {
     if ($is_youtube == false) {
         $mime_type =  get_post_mime_type($background);
@@ -221,8 +221,7 @@ function __background($background, $is_youtube = false, $autoplay = true)
             ));
         }
     } else {
-        $source = "https://www.youtube.com/embed/$background?loop=1&controls=0&rel=0&playsinline=1&autoplay=1&mute=1&controls=0&playlist=$background";
-        return "<div class='background-image background-overlay'><iframe src='$source'></iframe></div>";
+        return "<div id='player'>";
     }
 }
 
@@ -269,7 +268,7 @@ function __button($data)
         $popups_id[] = $button_url;
         $tag = 'button';
         $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $button_url . '"';
-    } 
+    }
 
     if ($button_text && $link) {
         $attributes_args = [];
