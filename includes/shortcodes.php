@@ -34,10 +34,11 @@ class Shortcodes
         }
         if ($search_filter) {
             $html .= "<div class='col-auto'>";
-            $html .= "<input type='text' placeholder='Start typing to filter...' name='s'>";
+            $html .= "<input type='text' placeholder='Start typing to filter...' name='brand_search'>";
             $html .= "</div>";
         }
         $html .= "</div>";
+        $html .= "<div id='results'>";
 
         $html .= "<div class='row g-3 same-image-height' style='--object-fit: contain; --image-padding: 20%'>";
         foreach ($terms as $term) {
@@ -63,6 +64,7 @@ class Shortcodes
                 $html .= "</div>";
             }
         }
+        $html .= "</div>";
         $html .= "</div>";
 
         $html .= "</div>";

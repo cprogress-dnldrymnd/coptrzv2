@@ -86,3 +86,44 @@ function training_ajax()
 	custom_product_variation_training($product_id, $delivery_method, $sortby, $location);
 	die();
 }
+
+add_action('wp_ajax_nopriv_brands_ajax', 'brands_ajax'); // for not logged in users
+add_action('wp_ajax_brands_ajax', 'brands_ajax');
+
+function brands_ajax()
+{
+	$s = $_POST['s'];
+	$terms = get_terms(array(
+		'taxonomy'   => 'pa_brands',
+		'hide_empty' => false,
+		'number' => -1
+	));
+	$html = "<div class='row g-3 same-image-height' style='--object-fit: contain; --image-padding: 20%'>";
+	foreach ($terms as $term) {
+		$logo = get___term_meta($term->term_id, 'image');
+		$link = get_term_link($term->term_id);
+		if ($logo) {
+			$image_args['image_id'] = $logo;
+			$image_args['size'] = 'medium';
+			$image_args['class'] = _attribute('class', array('image-box mb-3'));
+
+			$html .= "<div class='col-lg-3'>";
+			$html .= "<div class='inner text-center h-100 border-default rounded-corner xs-padding'>";
+			$html .= "<a href='$link' class='text-primary'>";
+
+			$html .= __image($image_args);
+			$html .= __heading(array(
+				'heading' => $term->name,
+				'class' => _attribute('class', array('mb-0')),
+				'tag' => 'h3',
+			));
+			$html .= "</a>";
+			$html .= "</div>";
+			$html .= "</div>";
+		}
+	}
+
+	return $html;
+
+	die();
+}

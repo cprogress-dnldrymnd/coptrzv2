@@ -17,6 +17,29 @@ jQuery(window).on("resize", function () {
     __hero();
     __header_menu();
 });
+
+function __ajax_brands() {
+    $s = jQuery('input[name="brand_search"]').val();
+    $result_holder = jQuery('#results');
+    jQuery.ajax({
+        type: "POST",
+
+        url: ajax_object.ajax_url,
+
+        data: {
+            action: 'brands_ajax',
+            s: $s,
+        },
+
+        success: function (response) {
+            $result_holder.html(response);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
+}
+
 function __hero() {
     if (window.innerWidth > 991) {
         jQuery('body.hero-has-form #hero .background-image').prependTo('#hero');
@@ -134,8 +157,24 @@ function __ajax_trigger() {
         clearTimeout(typingTimer);
     });
 
+    jQuery('input[name="brand_search"]').on('keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(doneTyping_brand, doneTypingInterval);
+    });
+    jQuery('input[name="brand_search"]').on('keydown', function () {
+        clearTimeout(typingTimer);
+    });
+
+
+
+
     function doneTyping() {
         __ajax();
+    }
+
+
+    function doneTyping_brand() {
+        __ajax_brands();
     }
 
 
