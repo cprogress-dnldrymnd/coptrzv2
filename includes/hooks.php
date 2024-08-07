@@ -468,3 +468,24 @@ add_filter('wpcf7_form_tag_data_option', function ($data, $options, $args) {
 add_filter('woocommerce_gallery_thumbnail_size', function ($size) {
     return 'medium';
 });
+
+add_filter( 'wpcf7_form_elements', 'imp_wpcf7_form_elements' );
+function imp_wpcf7_form_elements( $content ) {
+    $str_pos = strpos( $content, 'name="first-name"' );
+    if ($str_pos) {
+        $content = substr_replace( $content, ' autocomplete="both" autocomplete="off" ', $str_pos, 0 );     
+    }
+
+    $str_pos = strpos( $content, 'name="last-name"' );
+    if ($str_pos) {
+        $content = substr_replace( $content, ' autocomplete="both" autocomplete="off" ', $str_pos, 0 );
+    }
+
+    
+    $str_pos = strpos( $content, 'name="company"' );
+    if ($str_pos) {
+        $content = substr_replace( $content, ' autocomplete="both" autocomplete="off" ', $str_pos, 0 );
+    }
+
+    return $content;
+}
