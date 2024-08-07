@@ -280,11 +280,9 @@ function action__wp_footer()
                         autoplay: 1,
                         loop: 1,
                     },
-                    events: {
-                        'onReady': onPlayerReady,
-                    }
                 });
             }
+
         }
     </script>
     <?php
