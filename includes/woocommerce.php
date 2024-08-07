@@ -506,7 +506,7 @@ function __product_compare($id)
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
       
         $html .= __heading(array(
-            'heading' => $taxonomy_details->name,
+            'heading' => $taxonomy_details->singular_name,
             'class' => _attribute('class', array('mb-0')),
             'tag' => 'h5',
         ));
