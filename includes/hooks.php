@@ -257,6 +257,8 @@ function action__wp_footer()
         var tag = document.createElement('script');
 
         player = document.getElementById('player');
+        video_id = player.getAttribute('video_id');
+        console.log(video_id);
         if (player.length > 0) {
             video_id = player.getAttribute('video_id');
             console.log(video_id);
