@@ -11499,6 +11499,13 @@ input[type="checkbox"] {
     position: static !important;
     transform: none;
     margin: 0; }
+    .swiper-nav.swiper-nav.swiper-nav .swiper-button-next:hover, .swiper-nav.swiper-nav.swiper-nav .swiper-button-next:active, .swiper-nav.swiper-nav.swiper-nav .swiper-button-next:focus,
+    .swiper-nav.swiper-nav.swiper-nav .swiper-button-prev:hover,
+    .swiper-nav.swiper-nav.swiper-nav .swiper-button-prev:active,
+    .swiper-nav.swiper-nav.swiper-nav .swiper-button-prev:focus {
+      background-color: var(--bs-accent);
+      border-color: var(--bs-accent);
+      color: var(--bs-white); }
   .swiper-nav.swiper-nav.swiper-nav .swiper-button-prev {
     margin-right: 1rem; }
 

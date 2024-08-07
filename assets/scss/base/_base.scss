@@ -366,8 +366,11 @@ input[type="checkbox"] {
         position: static !important;
         transform: none;
         margin: 0;
+        @include transition(300ms);
         @include on-event {
-            
+            background-color: var(--bs-accent);
+            border-color: var(--bs-accent);
+            color: var(--bs-white);
         }
     }
     .swiper-button-prev {
