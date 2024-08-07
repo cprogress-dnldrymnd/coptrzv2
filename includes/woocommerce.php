@@ -521,7 +521,7 @@ function __product_compare($id)
             $html .= "<div class='col-3'>";
             $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
-            foreach ($specs as $pec) {
+            foreach ($specs as $spec) {
                 $html .= $spec->name;
             }
 
