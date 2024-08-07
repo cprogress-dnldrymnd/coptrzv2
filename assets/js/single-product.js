@@ -153,7 +153,6 @@ function __product_gallery() {
         slidesPerView: 1,
     });
 
-
     
 
 } 
