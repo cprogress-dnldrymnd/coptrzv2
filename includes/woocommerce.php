@@ -408,7 +408,6 @@ function __product_compare($id)
 {
     $SVG = new SVG;
     $products = get__post_meta_by_id($id, 'products');
-
     $specs = array();
 
     foreach ($products as $product) {

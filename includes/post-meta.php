@@ -6184,7 +6184,17 @@ Container::make('post_meta', __('Product Settings'))
                         'post_type' => 'product',
                     )
                 )
-            )
+            ),
+        Field::make('association', 'multiselect', 'Select Product Attributes')
+            ->set_options(
+                array(
+                    'pa_survey-grade' => 'Survey-Grade',
+                    'pa_zoom' => 'Zoom',
+                    'Flight Time' => 'Flight Time',
+                    'pa_flight-time' => 'Flight Time',
+                    'pa_ip-rating' => 'IP Rating',
+                )
+            ),
     ));
 /*-----------------------------------------------------------------------------------*/
 /* Layouts
