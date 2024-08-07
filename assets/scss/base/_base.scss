@@ -89,6 +89,7 @@ main {
         width: 100%;
         height: 100%;
         opacity: 0;
+        @include transition(300ms);
         @include transform(scale(1.6));
         pointer-events: none;
         @include responsive(xs-sm) {
