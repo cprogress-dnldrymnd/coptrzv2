@@ -11223,6 +11223,8 @@ hr {
         -ms-transform: scale(3);
         -o-transform: scale(3);
         transform: scale(3); } }
+    .background-image.background-image iframe.show {
+      opacity: 1; }
   @media screen and (max-width: 575px) {
     .background-image.background-image.mx-20px {
       margin-left: 10px;
