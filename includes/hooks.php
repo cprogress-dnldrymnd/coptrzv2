@@ -270,8 +270,8 @@ function action__wp_footer()
 
             function onYouTubeIframeAPIReady() {
                 player = new YT.Player('player', {
-                    height: '390',
-                    width: '640',
+                    height: '100%',
+                    width: '100%',
                     videoId: video_id,
                     playerVars: {
                         'playsinline': 1
