@@ -1446,6 +1446,7 @@ function __section_fields($name = 'sections')
                                 )
                             )->set_max(1)
                     ))
+                    /*
                     ->add_fields('related_products',  array(
                         Field::make('complex', 'category', 'Category')
                             ->add_fields('related_drones',  array(
@@ -1458,7 +1459,7 @@ function __section_fields($name = 'sections')
                                 Field::make('html', 'html')->set_html('<h3>This will display related accessories slider. </h3>'),
                             ))
                             ->set_max(1)
-                    ))
+                    ))*/
                     ->add_fields('heading', array(
                         Field::make('html', 'html_1')->set_html('<label>Section Heading Options</label>')->set_classes('cb-label'),
                         Field::make('checkbox', 'has_prefix', __('Heading Has Prefix'))->set_width(20),
@@ -6094,7 +6095,7 @@ Container::make('post_meta', __('Product Settings'))
             )
     ))
     ->add_tab('Related Case Studies', array(
-        Field::make('association', 'related_casestudies', 'Related Guides')
+        Field::make('association', 'related_casestudies', 'Related Case Studies')
             ->set_types(
                 array(
                     array(
