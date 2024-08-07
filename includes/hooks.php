@@ -254,7 +254,6 @@ function action__wp_footer()
     </script>
     <script>
         video_id = document.getElementById('player').getAttribute('video_id');
-        console.log(video_id);
         if (video_id) {
             // 2. This code loads the IFrame Player API code asynchronously.
             var tag = document.createElement('script');
@@ -292,6 +291,8 @@ function action__wp_footer()
                                 this.rewindTO = setTimeout(function() {
                                     YTP.seekTo(0);
                                 }, (remains - 0.1) * 1000);
+
+                                console.log(remains);
                             }
                         }
                     }
