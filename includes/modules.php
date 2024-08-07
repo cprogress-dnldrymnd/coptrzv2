@@ -1029,13 +1029,30 @@ function ___sections($id = 'sections', $post_id = '')
 
                         break;
                     case 'related_post':
-
                         $source = $items['source'];
+                        $column_width = $items['column_width'];
+                        $column_width_tablet = $items['column_width_tablet'];
+                        $column_width_mobile = $items['column_width_mobile'];
+                        $style = $items['style'];
+                        $hide_excerpt = $items['hide_excerpt'];
+
+                        if ($column_width) {
+                            $post_col_class[] = $column_width;
+                        }
+                        if ($column_width_tablet) {
+                            $post_col_class[] = $column_width_tablet;
+                        }
+                        if ($column_width_mobile) {
+                            $post_col_class[] = $column_width_mobile;
+                        }
+
 
                         if ($source == 'post_type') {
                             $posts = [];
                             $field_key = $items['related_post'][0]['field_key'];
                             $post_type = $items['related_post'][0]['post_type'];
+
+
                             $name = get_post_type_object($post_type)->labels->singular_name;
 
                             $posts_list = get__post_meta($field_key);
@@ -1080,13 +1097,22 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($posts as $post) {
                                 $data = array(
                                     'id' => $post,
-                                    'featured' => false,
-                                    'col' => true,
                                     'button_text' => 'Read ' . $name,
                                     'elements' => array('category', 'image', 'title', 'excerpt', 'button')
                                 );
                                 if ($taxonomy) {
                                     $data['taxonomy'] = $taxonomy;
+                                }
+
+                                if (!$column_width_mobile && !$column_width_tablet && $column_width_mobile) {
+                                    $data['col'] = true;
+                                } else {
+                                    $data['col'] = _attribute('class', $post_col_class);
+                                }
+                                if ($style == 'info-above-image') {
+                                    $data['featured'] = true;
+                                } else {
+                                    $data['featured'] = false;
                                 }
                                 $html .= __post_box($data);
                             }
