@@ -504,7 +504,7 @@ function __product_compare($id)
 
         $html .= "<div class='col-3'>"; //specs-row-col
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
-
+        $html .= $SVG->check();
         $html .= __heading(array(
             'heading' => $taxonomy_details->labels->singular_name,
             'class' => _attribute('class', array('mb-0')),
@@ -535,64 +535,6 @@ function __product_compare($id)
     }
 
 
-
-    foreach ($specs as $key => $spec) {
-        $icon = get__term_meta($key, 'icon');
-        $mime_type =  get_post_mime_type($icon);
-        $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
-
-        $html .= "<div class='col-3'>"; //specs-row-col
-        $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
-        if (str_contains($mime_type, 'svg')) {
-            $html .= __icon(array(
-                'id' => $icon,
-                'class' => _attribute('class', array('me-3 text-accent'))
-            ));
-        } else {
-            $html .= __image(array(
-                'image_id' => $icon,
-                'class' => _attribute('class', array('me-3 text-accent'))
-            ));
-        }
-        $html .= __heading(array(
-            'heading' => $spec,
-            'class' => _attribute('class', array('mb-0')),
-            'tag' => 'h5',
-        ));
-        $html .= "</div>"; //end-inner
-        $html .= "</div>"; //end-specs-row-col
-
-        foreach ($products as $product) {
-            $spec_product = array();
-
-            $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
-            foreach ($pa_specifications as $specification) {
-                $spec_product[$specification->term_id] = $specification->name;
-            }
-
-
-
-            $html .= "<div class='col-3'>";
-            $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
-
-            if (array_key_exists($key, $spec_product)) {
-                $html .= "<div class='active'>";
-                $html .= $SVG->check();
-                $html .= "</div>";
-            } else {
-                $html .= "<div class='not-active'>";
-                $html .= $SVG->xmark();
-                $html .= "</div>";
-            }
-
-            $html .= "</div>";
-            $html .= "</div>";
-        }
-
-
-
-        $html .= "</div>"; //end-specs-row
-    }
     $html .= "</div>"; //end products-specifications
 
     $html .= "</div>";
