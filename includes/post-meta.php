@@ -6009,7 +6009,7 @@ Container::make('term_meta', __('Category Properties'))
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Product Settings'))
     ->where('post_type', '=', 'product')
-    ->add_tab('Related Guides', array(
+    ->add_tab('Related Industries', array(
         Field::make('association', 'related_industries', 'Related Industries')
             ->set_types(
                 array(
