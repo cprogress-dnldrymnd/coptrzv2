@@ -239,6 +239,8 @@ function __input_fields() {
             jQuery(this).parent().parent().removeClass("filled");
         }
     });
+
+    jQuery('.wpcf7-form-control').attr('autocomplete', 'off');
 }
 
 function __fixed_heading_position() {
