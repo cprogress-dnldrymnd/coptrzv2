@@ -39,7 +39,6 @@ foreach ($attachment_ids as $attachment_id) {
 	);
 	$key++;
 }
-var_dump($image_ids);
 $images_ids_per_slides = array_chunk($image_ids, 6);
 ?>
 <div class="product-thumb-holder">
