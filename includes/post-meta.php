@@ -6223,7 +6223,7 @@ Container::make('post_meta', __('Product Settings'))
     ));
 
 add_filter('carbon_fields_association_field_options_related_training_post_product', function ($query_arguments) {
-    // Order posts by title alphabetically, for example:
+    
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6237,7 +6237,7 @@ add_filter('carbon_fields_association_field_options_related_training_post_produc
 });
 
 add_filter('carbon_fields_association_field_options_compatible_payloads_post_product', function ($query_arguments) {
-    // Order posts by title alphabetically, for example:
+    
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6251,7 +6251,7 @@ add_filter('carbon_fields_association_field_options_compatible_payloads_post_pro
 });
 
 add_filter('carbon_fields_association_field_options_accessories_post_product', function ($query_arguments) {
-    // Order posts by title alphabetically, for example:
+    
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6265,7 +6265,7 @@ add_filter('carbon_fields_association_field_options_accessories_post_product', f
 });
 
 add_filter('carbon_fields_association_field_options_softwares_post_product', function ($query_arguments) {
-    // Order posts by title alphabetically, for example:
+    
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6279,7 +6279,7 @@ add_filter('carbon_fields_association_field_options_softwares_post_product', fun
 });
 
 add_filter('carbon_fields_association_field_options_drones_post_product', function ($query_arguments) {
-    // Order posts by title alphabetically, for example:
+    
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6635,7 +6635,7 @@ Container::make('post_meta', 'Industry Settings')
 
 
 add_filter('carbon_fields_association_field_options_drones_post_product', function ($query_arguments) {
-    // Order posts by title alphabetically, for example:
+    
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6650,7 +6650,7 @@ add_filter('carbon_fields_association_field_options_drones_post_product', functi
 
 
 add_filter('carbon_fields_association_field_options_payloads_post_product', function ($query_arguments) {
-    // Order posts by title alphabetically, for example:
+    
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
