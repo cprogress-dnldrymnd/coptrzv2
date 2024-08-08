@@ -471,9 +471,6 @@ add_filter('wpcf7_form_tag_data_option', function ($data, $options, $args) {
 }, 10, 3);
 
 
-add_filter('woocommerce_gallery_thumbnail_size', function ($size) {
-    return 'medium';
-});
 
 
 // remove "Private: " from titles
