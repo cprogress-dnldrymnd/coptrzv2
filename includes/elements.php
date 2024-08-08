@@ -7,8 +7,7 @@ function __heading($data, $html = '')
     $prefix = isset($data['prefix']) ? $data['prefix'] : false;
     $suffix = isset($data['suffix']) ? $data['suffix'] : false;
     $styles = isset($data['styles']) ? $data['styles'] : false;
-    $post_status = get_post_status($data['link']);
-
+    $post_status = isset($data['link']) ? get_post_status($data['link']) : false;
     $link = isset($data['link']) ? get_permalink($data['link']) : false;
 
     $attributes_args = [];
@@ -33,7 +32,7 @@ function __heading($data, $html = '')
                 $html .= "<a class='text-inherit text-decoration-none' href='$link'>";
             }
             $html .= "<$tag>$heading</$tag>";
-            if ($link) {
+            if ($link && $post_status == 'publish') {
                 $html .= "</a>";
             }
             if ($suffix) {
@@ -42,11 +41,11 @@ function __heading($data, $html = '')
 
             $html .= "</div>";
         } else {
-            if ($link) {
+            if ($link && $post_status == 'publish') {
                 $html .= "<a class='text-inherit text-decoration-none' href='$link'>";
             }
             $html .= "<$tag $_attributes>$heading</$tag>";
-            if ($link) {
+            if ($link && $post_status == 'publish') {
                 $html .= "</a>";
             }
         }
