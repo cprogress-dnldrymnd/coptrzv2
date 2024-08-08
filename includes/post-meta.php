@@ -6292,7 +6292,7 @@ add_filter('carbon_fields_association_field_options_drones_post_product', functi
     return $query_arguments;
 });
 
-add_filter('carbon_fields_association_field_options_related_industries_post_product', function ($query_arguments) {
+add_filter('carbon_fields_association_field_options_related_industries_post_industries', function ($query_arguments) {
     $query_arguments['post_status'] = array('publish', 'private');
     return $query_arguments;
 });
