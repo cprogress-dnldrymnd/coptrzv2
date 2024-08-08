@@ -146,7 +146,7 @@ function action_woocommerce_after_single_product()
             'taxonomy' => 'casestudies_category',
             'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
         );
-        echo do_shortcode(__related_posts($related_casestudies,  $data, 'Related Guides'));
+        echo do_shortcode(__related_posts($related_casestudies,  $data, 'Related Case Studies'));
     }
 }
 
