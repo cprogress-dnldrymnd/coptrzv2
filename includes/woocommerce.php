@@ -440,7 +440,7 @@ function __product_compare($id)
     $html .= "</div>";
     foreach ($products as $product) {
         $html .= "<div class='col-lg-3'>";
-        $html .= "<div class='product-inner  d-flex flex-column'>";
+        $html .= "<div class='product-inner h-100 d-flex flex-column'>";
         $html .= _product_grid_display($product['id']);
 
         $html .= "<div class='row-services-spec-mobile row g-3 d-lg-none mt-4 mb-5'>";
@@ -682,9 +682,7 @@ function _product_grid_display($id)
         $permalink = get_the_permalink($id);
         $post_thumnail = get_the_post_thumbnail_url($id, 'medium');
         $stock_status =  $product->get_stock_status();
-
         $status = get_post_status($id);
-
 
         $html = "<ul class='products h-100 custom-product-grid h-100 m-0 p-0'>";
         $html .= "<li class='product h-100 m-0 p-0 w-100 h-100 post-$id $stock_status'>";
