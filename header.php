@@ -53,8 +53,10 @@
 		<?php
 		$copy_from = $_GET['copy_from'];
 		$copy_after = $_GET['copy_after'];
-		$guides = $_GET['guides'];
 		$training = $_GET['training'];
+		$software = $_GET['software'];
+		$accessories = $_GET['accessories'];
+		$drones = $_GET['drones'];
 		if ($copy_from) {
 			$sections = get__post_meta_by_id($copy_from, 'sections');
 			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
@@ -64,13 +66,19 @@
 				carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
 			}
 
-			if ($guides == 'true') {
-				$sections_after_main = get__post_meta_by_id($copy_from, 'related_guides');
-				carbon_set_post_meta(get_the_ID(), 'related_guides', $sections_after_main);
-			}
 			
 			if ($training == 'true') {
 				$related_training = get__post_meta_by_id($copy_from, 'related_training');
 				carbon_set_post_meta(get_the_ID(), 'related_training', $related_training);
+			}
+
+			if ($software == 'true') {
+				$related_software = get__post_meta_by_id($copy_from, 'related_software');
+				carbon_set_post_meta(get_the_ID(), 'related_software', $related_software);
+			}
+
+			if ($drones == 'true') {
+				$drones = get__post_meta_by_id($copy_from, 'drones');
+				carbon_set_post_meta(get_the_ID(), 'drones', $drones);
 			}
 		}
