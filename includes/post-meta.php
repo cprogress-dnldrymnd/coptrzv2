@@ -6245,7 +6245,7 @@ add_filter('carbon_fields_association_field_options_compatible_payloads_post_pro
     );
 
     $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = 'publish';
+    $query_arguments['post_status'] = array('publish', 'private');
 
     return $query_arguments;
 });
@@ -6259,7 +6259,7 @@ add_filter('carbon_fields_association_field_options_accessories_post_product', f
     );
 
     $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = 'publish';
+    $query_arguments['post_status'] = array('publish', 'private');
 
     return $query_arguments;
 });
@@ -6273,7 +6273,7 @@ add_filter('carbon_fields_association_field_options_softwares_post_product', fun
     );
 
     $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = 'publish';
+    $query_arguments['post_status'] = array('publish', 'private');
 
     return $query_arguments;
 });
@@ -6287,7 +6287,7 @@ add_filter('carbon_fields_association_field_options_drones_post_product', functi
     );
 
     $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = 'publish';
+    $query_arguments['post_status'] = array('publish', 'private');
 
     return $query_arguments;
 });
