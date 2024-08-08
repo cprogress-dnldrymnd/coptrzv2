@@ -6325,7 +6325,7 @@ Container::make('post_meta', __('Product Settings'))
                     'pa_lens-types' => 'Lens Type', 
                     'pa_max-video-resolution' => 'Max Video Resolution', 
                     'pa_max-rated-depth' => 'Max Rated Depth', 
-                    'pa_max-battery' => 'Max Batter', 
+                    'pa_max-battery' => 'Max Battery', 
                     'pa_single-shot' => 'Single Shot', 
                     'pa_thermal' => 'Thermal', 
                     'pa_sensor' => 'Sensor', 
