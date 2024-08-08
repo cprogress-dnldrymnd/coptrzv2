@@ -52,7 +52,13 @@
 	<main class="<?= $class ?>">
 		<?php
 		$copy_from = $_GET['copy_from'];
+		$copy_after = $_GET['copy_after'];
 		if ($copy_from) {
 			$sections = get__post_meta_by_id($copy_from, 'sections');
 			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
+
+			if ($copy_after == 'true') {
+				$sections_after_main = get__post_meta_by_id($copy_from, 'sections_after_main');
+				carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
+			}
 		}
