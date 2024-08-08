@@ -6317,6 +6317,7 @@ Container::make('post_meta', __('Product Settings'))
                     'pa_ip-rating' => 'IP Rating',
                     'pa_lens-types' => 'Lens Type', 
                     'pa_max-video-resolution' => 'Max Video Resolution', 
+                    'pa_single-shot' => 'Single Shot', 
                     'weight' => 'Weight', 
                 )
             ),
