@@ -259,10 +259,12 @@ function __button($data)
 
     if ($button_type != 'popups' && $button_type != 'custom' && $button_type != 'buy-now') {
         $tag = 'a';
+        $post_status = get_post_status($button_url);
         $button_url = get_permalink($button_url);
         $link = "href='$button_url'";
-        $post_status = get_post_status($button_url);
-       
+        if ($post_status != 'publish') {
+            $display = false;
+        } 
     } else if ($button_type == 'custom') {
         $button_url = $button_url_custom;
         $tag = 'a';
