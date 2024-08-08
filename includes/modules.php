@@ -2654,8 +2654,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     $description_class_args[] = 'description-box small-text';
     $description_class_args[] = $description_class;
     $additional_content = isset($data['additional_content']) ? $data['additional_content'] : false;
-    $post_status = get_post_status($id);
-
+   
     if ($background_class) {
         $class[] = $background_class;
         $class[] = 'rounded-corner';
@@ -2768,7 +2767,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     if ($additional_content) {
         $html .= $additional_content;
     }
-    if (in_array('button', $elements) && $post_status != 'private') {
+    if (in_array('button', $elements)) {
         $html .= __button(array(
             'button_type' => get_post_type($id),
             'button_text' => $button_text ? $button_text : 'Read More',

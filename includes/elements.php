@@ -255,10 +255,18 @@ function __button($data)
     $button_target      = isset($data['button_target']) ? $data['button_target'] : false;
     $link = '';
     $class = '';
+    $display = true;
+
     if ($button_type != 'popups' && $button_type != 'custom' && $button_type != 'buy-now') {
         $tag = 'a';
         $button_url = get_permalink($button_url);
         $link = "href='$button_url'";
+
+
+        $post_status = get_post_status($button_url);
+        if ($post_status != 'publish') {
+            $display = false;
+        }
     } else if ($button_type == 'custom') {
         $button_url = $button_url_custom;
         $tag = 'a';
@@ -268,9 +276,9 @@ function __button($data)
         $popups_id[] = $button_url;
         $tag = 'button';
         $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $button_url . '"';
-    } 
+    }
 
-    if ($button_text && $link) {
+    if ($button_text && $link && $display) {
         $attributes_args = [];
         $attributes_args[] = _attribute('class', array($button_style, 'button-box'));
 
