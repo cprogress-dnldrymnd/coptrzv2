@@ -2768,7 +2768,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     if ($additional_content) {
         $html .= $additional_content;
     }
-    if (in_array('button', $elements) && $post_status == 'private') {
+    if (in_array('button', $elements) && $post_status != 'private') {
         $html .= __button(array(
             'button_type' => get_post_type($id),
             'button_text' => $button_text ? $button_text : 'Read More',
