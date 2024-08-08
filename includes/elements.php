@@ -261,8 +261,6 @@ function __button($data)
         $tag = 'a';
         $button_url = get_permalink($button_url);
         $link = "href='$button_url'";
-
-
         $post_status = get_post_status($button_url);
         if ($post_status != 'publish') {
             $display = false;
@@ -278,7 +276,7 @@ function __button($data)
         $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $button_url . '"';
     }
 
-    if ($button_text && $link && $display) {
+    if ($button_text && $link && $display == true) {
         $attributes_args = [];
         $attributes_args[] = _attribute('class', array($button_style, 'button-box'));
 
