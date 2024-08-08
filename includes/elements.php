@@ -264,6 +264,8 @@ function __button($data)
         $post_status = get_post_status($button_url);
         if ($post_status != 'publish') {
             $display = false;
+        } else {
+            $display = true;
         }
     } else if ($button_type == 'custom') {
         $button_url = $button_url_custom;
