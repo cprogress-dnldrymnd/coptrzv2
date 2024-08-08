@@ -478,9 +478,14 @@ function __product_compare($id)
         $html .= $SVG->battery();
         $html .= "</div>"; //end-icon
 
+        if ($product_attribute == 'weight') {
+            $heading = 'Weight';
+        } else {
+            $heading = $taxonomy_details->labels->singular_name;
+        }
 
         $html .= __heading(array(
-            'heading' => $taxonomy_details->labels->singular_name,
+            'heading' => $heading,
             'class' => _attribute('class', array('mb-0')),
             'tag' => 'h5',
         ));
@@ -495,9 +500,16 @@ function __product_compare($id)
             $html .= "<div class='col-3'>";
             $html .= "<div class='inner inner-specs-list  h-100 d-flex align-items-center justify-content-center'>"; //inner
 
-            foreach ($product_attribute_values as $product_attribute_value) {
-                $html .= $product_attribute_value->name;
+            if ($product_attribute == 'weight') {
+                $product = wc_get_product($product['id']);
+                $html .= $product->get_weight();
+            } else {
+
+                foreach ($product_attribute_values as $product_attribute_value) {
+                    $html .= $product_attribute_value->name;
+                }
             }
+
 
             $html .= "</div>";
             $html .= "</div>";
