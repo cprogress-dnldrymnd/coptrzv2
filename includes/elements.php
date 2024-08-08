@@ -7,6 +7,8 @@ function __heading($data, $html = '')
     $prefix = isset($data['prefix']) ? $data['prefix'] : false;
     $suffix = isset($data['suffix']) ? $data['suffix'] : false;
     $styles = isset($data['styles']) ? $data['styles'] : false;
+    $post_status = get_post_status($data['link']);
+
     $link = isset($data['link']) ? get_permalink($data['link']) : false;
 
     $attributes_args = [];
@@ -18,6 +20,7 @@ function __heading($data, $html = '')
     }
     $_attributes = _attributes($attributes_args);
 
+
     if ($heading) {
 
         if ($prefix || $suffix) {
@@ -26,7 +29,7 @@ function __heading($data, $html = '')
             if ($prefix) {
                 $html .= "<span>$prefix</span>";
             }
-            if ($link) {
+            if ($link && $post_status == 'publish') {
                 $html .= "<a class='text-inherit text-decoration-none' href='$link'>";
             }
             $html .= "<$tag>$heading</$tag>";
@@ -264,7 +267,7 @@ function __button($data)
         $link = "href='$button_url'";
         if ($post_status != 'publish') {
             $display = false;
-        } 
+        }
     } else if ($button_type == 'custom') {
         $button_url = $button_url_custom;
         $tag = 'a';
