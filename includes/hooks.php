@@ -474,3 +474,11 @@ add_filter('wpcf7_form_tag_data_option', function ($data, $options, $args) {
 add_filter('woocommerce_gallery_thumbnail_size', function ($size) {
     return 'medium';
 });
+
+
+// remove "Private: " from titles
+function remove_private_prefix($title) {
+	$title = str_replace('Private: ', '', $title);
+	return $title;
+}
+add_filter('the_title', 'remove_private_prefix');
