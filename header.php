@@ -73,12 +73,17 @@
 			}
 
 			if ($software == 'true') {
-				$related_software = get__post_meta_by_id($copy_from, 'related_software');
-				carbon_set_post_meta(get_the_ID(), 'related_software', $related_software);
+				$related_software = get__post_meta_by_id($copy_from, 'softwares');
+				carbon_set_post_meta(get_the_ID(), 'softwares', $related_software);
 			}
 
 			if ($drones == 'true') {
 				$drones = get__post_meta_by_id($copy_from, 'drones');
 				carbon_set_post_meta(get_the_ID(), 'drones', $drones);
+			}
+
+			if ($accessories == 'true') {
+				$accessories = get__post_meta_by_id($copy_from, 'accessories');
+				carbon_set_post_meta(get_the_ID(), 'accessories', $accessories);
 			}
 		}
