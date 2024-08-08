@@ -89,7 +89,6 @@ function action_woocommerce_after_single_product_summary()
         echo __linked_products(__get_assoc_post_ids($drones), 'All Drones', '/product-category/drones/', 'swiper-drones', 'Drones');
     }
 
-
     if ($related_training) {
 
         echo __linked_products(__get_assoc_post_ids($related_training), 'All Trainings', '/product-category/training/', 'swiper-payloads', 'Related Training');
@@ -114,7 +113,7 @@ function __get_assoc_post_ids($posts, $post_arr = [])
 {
     foreach ($posts as $post) {
         $post_status = get_post_status($post['id']);
-        if ($post_status == 'publish') {
+        if ($post_status == 'publish' || $post_status == 'private') {
             $post_arr[] = $post['id'];
         }
     }
