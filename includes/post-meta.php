@@ -6319,6 +6319,7 @@ Container::make('post_meta', __('Product Settings'))
                     'pa_max-video-resolution' => 'Max Video Resolution', 
                     'pa_single-shot' => 'Single Shot', 
                     'pa_thermal' => 'Thermal', 
+                    'pa_sensor' => 'Sensor', 
                     'weight' => 'Weight', 
                 )
             ),
