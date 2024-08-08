@@ -6330,6 +6330,7 @@ Container::make('post_meta', __('Product Settings'))
                     'pa_thermal' => 'Thermal', 
                     'pa_sensor' => 'Sensor', 
                     'weight' => 'Weight', 
+                    'pa_camera' => 'Camera', 
                 )
             ),
     ));
