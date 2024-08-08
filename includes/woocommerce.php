@@ -699,15 +699,18 @@ function _product_grid_display($id)
         $html = "<ul class='products h-100 custom-product-grid h-100 m-0 p-0'>";
         $html .= "<li class='product h-100 m-0 p-0 w-100 h-100 post-$id $stock_status'>";
         $html .= "<div class='product-inner h-100 p-20px rounded-10px border-default h-100 bg-white'>";
-        $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
+        if ($status == 'publish') {
+            $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
+        }
         $html .= "<div class='wc-img-wrapper'>";
         $html .= "<img width='300' height='225' src='$post_thumnail' class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail' alt='$title' decoding='async'>";
         $html .= "</div>";
         $html .= "<h2 class='woocommerce-loop-product__title mb-0'>$title</h2>";
         // $html .= $product->get_price_html();
         $html .= '<span class="status d-block mb-2 mt-2"></span>';
-
-        $html .= "</a>";
+        if ($status == 'publish') {
+            $html .= "</a>";
+        }
 
         if ($status == 'publish') {
             $html .= "<div class='product-buttons'>";
