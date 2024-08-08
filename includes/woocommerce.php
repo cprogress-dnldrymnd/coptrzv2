@@ -124,6 +124,7 @@ function __get_assoc_post_ids($posts, $post_arr = [])
 function action_woocommerce_after_single_product()
 {
     $related_guides = get__post_meta('related_guides');
+    $related_casestudies = get__post_meta('related_casestudies');
 
     if ($related_guides) {
         $data = array(
@@ -134,6 +135,18 @@ function action_woocommerce_after_single_product()
             'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
         );
         echo do_shortcode(__related_posts($related_guides,  $data, 'Related Guides'));
+    }
+
+    
+    if ($related_casestudies) {
+        $data = array(
+            'col' => false,
+            'featured' => false,
+            'style' => 'style-1',
+            'taxonomy' => 'casestudies_category',
+            'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
+        );
+        echo do_shortcode(__related_posts($related_casestudies,  $data, 'Related Guides'));
     }
 }
 
