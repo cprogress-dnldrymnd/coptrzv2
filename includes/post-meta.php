@@ -6318,6 +6318,7 @@ Container::make('post_meta', __('Product Settings'))
                     'pa_lens-types' => 'Lens Type', 
                     'pa_max-video-resolution' => 'Max Video Resolution', 
                     'pa_single-shot' => 'Single Shot', 
+                    'pa_thermal' => 'Thermal', 
                     'weight' => 'Weight', 
                 )
             ),
