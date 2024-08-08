@@ -686,8 +686,8 @@ function _product_grid_display($id)
         $status = get_post_status($id);
 
 
-        $html = "<ul class='products d-inline custom-product-grid h-100 m-0 p-0'>";
-        $html .= "<li class='product d-inline m-0 p-0 w-100 h-100 post-$id $stock_status'>";
+        $html = "<ul class='products h-100 custom-product-grid h-100 m-0 p-0'>";
+        $html .= "<li class='product h-100 m-0 p-0 w-100 h-100 post-$id $stock_status'>";
         $html .= "<div class='product-inner h-100 p-20px rounded-10px border-default h-100 bg-white'>";
         $html .= "<a href='$permalink' class='woocommerce-LoopProduct-link woocommerce-loop-product__link'>";
         $html .= "<div class='wc-img-wrapper'>";
