@@ -53,6 +53,8 @@
 		<?php
 		$copy_from = $_GET['copy_from'];
 		$copy_after = $_GET['copy_after'];
+		$guides = $_GET['guides'];
+		$training = $_GET['training'];
 		if ($copy_from) {
 			$sections = get__post_meta_by_id($copy_from, 'sections');
 			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
@@ -60,5 +62,15 @@
 			if ($copy_after == 'true') {
 				$sections_after_main = get__post_meta_by_id($copy_from, 'sections_after_main');
 				carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
+			}
+
+			if ($guides == 'true') {
+				$sections_after_main = get__post_meta_by_id($copy_from, 'related_guides');
+				carbon_set_post_meta(get_the_ID(), 'related_guides', $sections_after_main);
+			}
+			
+			if ($training == 'true') {
+				$related_training = get__post_meta_by_id($copy_from, 'related_training');
+				carbon_set_post_meta(get_the_ID(), 'related_training', $related_training);
 			}
 		}
