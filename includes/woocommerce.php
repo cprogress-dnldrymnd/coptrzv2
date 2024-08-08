@@ -456,9 +456,6 @@ function __product_compare($id)
             }
             $html .= "</div>";
             $html .= "</div>";
-
-
-       
         }
 
         $html .= "</div>";
@@ -685,9 +682,9 @@ function _product_grid_display($id)
         $permalink = get_the_permalink($id);
         $post_thumnail = get_the_post_thumbnail_url($id, 'medium');
         $stock_status =  $product->get_stock_status();
-        $sku = $product->get_sku();
-        $product_type = $product->get_type();
-        $button_class = ($product_type == 'simple') ? 'col-sm-6' : 'col-12';
+
+        $status = get_post_status($id);
+
 
         $html = "<ul class='products custom-product-grid h-100 m-0 p-0'>";
         $html .= "<li class='product m-0 p-0 w-100 h-100 post-$id $stock_status'>";
@@ -702,11 +699,11 @@ function _product_grid_display($id)
 
         $html .= "</a>";
 
-        $html .= "<div class='product-buttons'>";
-        $html .= "<div class='button-box button-bordered'><a href='$permalink'>View Product</a></div>";
-        $html .= "</div>";
-
-
+        if ($status == 'publish') {
+            $html .= "<div class='product-buttons'>";
+            $html .= "<div class='button-box button-bordered'><a href='$permalink'>View Product</a></div>";
+            $html .= "</div>";
+        }
         $html .= "</div>";
         $html .= "</li>";
         $html .= "</ul>";
