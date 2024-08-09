@@ -13550,7 +13550,7 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
         font-size: 13px; } }
     @media (min-width: 1200px) and (max-width: 1399px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
-        padding: 10px; } }
+        padding: 10px 8px; } }
     @media (min-width: 992px) and (max-width: 1199px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
         padding: 10px 5px; } }
@@ -13634,6 +13634,9 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   @media screen and (max-width: 360px) {
     .header .site-logo svg {
       height: 12px; } }
+  @media (min-width: 992px) and (max-width: 1200px) {
+    .header .site-logo svg {
+      height: 15px; } }
   @media (max-width: 1399px) and (min-width: 992px) {
     .header .header-right {
       --bs-gutter-x: 10px; } }
@@ -13643,6 +13646,9 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
       padding: 0.625rem 10px;
       font-size: 13px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
+    .header .container {
+      max-width: calc(100% - 50px); } }
+  @media (min-width: 1200px) and (max-width: 1499px) {
     .header .container {
       max-width: calc(100% - 50px); } }
   @media screen and (max-width: 575px) {

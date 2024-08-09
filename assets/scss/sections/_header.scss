@@ -81,7 +81,7 @@
                     font-size: 13px;
                 }
                 @include responsive(small-lg) {
-                    padding: 10px;
+                    padding: 10px 8px;
                 }
                 @include responsive(md) {
                     padding: 10px 5px;
@@ -193,6 +193,9 @@
             @include responsive(xxxs) {
                 height: 12px;
             }
+            @media (min-width: 992px) and (max-width: 1200px) {
+                height: 15px;
+            }
         }
     }
     .header-right {
@@ -207,12 +210,13 @@
                     font-size: 13px;
                 }
             }
-
-           
         }
     }
     .container {
         @include responsive(md) {
+            max-width: calc(100% - 50px);
+        }
+        @media (min-width: 1200px) and (max-width: 1499px) {
             max-width: calc(100% - 50px);
         }
         @include responsive(mobile) {
