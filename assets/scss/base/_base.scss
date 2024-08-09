@@ -1456,3 +1456,15 @@ hr {
         }
     }
 }
+
+.wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown {
+    width: auto;
+    .wpml-ls-item-toggle:after {
+        background-color: transparent !important;
+        border: none;
+        color: var(--bs-white);
+        @include after {
+            display: none;
+        }
+    }
+}
