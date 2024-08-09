@@ -184,6 +184,9 @@
     }
     .site-logo {
         svg {
+            @media (min-width: 1200px) and (max-width: 1399px) {
+                height: 15px;
+            }
             @include responsive(md) {
                 height: 13px;
             }
@@ -193,9 +196,7 @@
             @include responsive(xxxs) {
                 height: 12px;
             }
-            @media (min-width: 992px) and (max-width: 1200px) {
-                height: 15px;
-            }
+            
         }
     }
     .header-right {

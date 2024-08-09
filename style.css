@@ -13625,6 +13625,9 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
       border-bottom: 1px solid var(--border-color);
       display: block;
       margin-bottom: 10px; }
+  @media (min-width: 992px) and (max-width: 1200px) {
+    .header .site-logo svg {
+      height: 15px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .header .site-logo svg {
       height: 13px; } }
@@ -13634,9 +13637,6 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   @media screen and (max-width: 360px) {
     .header .site-logo svg {
       height: 12px; } }
-  @media (min-width: 992px) and (max-width: 1200px) {
-    .header .site-logo svg {
-      height: 15px; } }
   @media (max-width: 1399px) and (min-width: 992px) {
     .header .header-right {
       --bs-gutter-x: 10px; } }
