@@ -114,4 +114,8 @@ body,
 .d-none {
   display: none !important; }
 
+.cf-complex__tabs-item.cf-complex__tabs-item.cf-complex__tabs-item--current {
+  background-color: #2c3338;
+  color: #fff; }
+
 /*# sourceMappingURL=admin.css.map */
