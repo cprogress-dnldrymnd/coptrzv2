@@ -3,16 +3,16 @@ $SVG = new SVG;
 ?>
 <div class="col-auto d-flex align-items-center">
     <div class="row g-4 header-right">
-   
+        <div class="col-auto d-flex align-items-center">
+            <?= do_shortcode('[wpml_language_selector_widget]') ?>
+        </div>
+
         <div class="col-auto d-flex align-items-center d-lg-none ">
             <button class="menu-burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu" aria-controls="offCanvasMenu">
                 <div class="icon">
                     <div class="menu"></div>
                 </div>
             </button>
-        </div>
-        <div class="col-auto d-flex align-items-center">
-            <?= do_shortcode('[wpml_language_selector_widget]') ?>
         </div>
 
         <?php
