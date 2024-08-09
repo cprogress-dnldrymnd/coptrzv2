@@ -1473,7 +1473,10 @@ hr {
         }
         &.wpml-ls-link{
             min-width: 85px;
-            border-radius: 5px;
+            border-radius: 10px;
+            @include on-event {
+                background-color: var(--bs-white);
+            }
         }
     }
     .wpml-ls-sub-menu.wpml-ls-sub-menu {
@@ -1489,7 +1492,7 @@ hr {
             display: inline-block;
             position: absolute;
             top: 5px;
-            left: 7px;
+            left: 11px;
         }
     }
 }
