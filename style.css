@@ -12295,11 +12295,11 @@ hr {
 
 .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown {
   width: auto; }
-  .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown .wpml-ls-item-toggle:after {
+  .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown .wpml-ls-item-toggle {
     background-color: transparent !important;
     border: none;
     color: var(--bs-white); }
-    .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown .wpml-ls-item-toggle:after:after {
+    .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown .wpml-ls-item-toggle:after {
       display: none; }
 
 @keyframes spin {
