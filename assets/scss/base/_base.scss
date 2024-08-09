@@ -1462,7 +1462,8 @@ hr {
     .wpml-ls-item-toggle {
         background-color: transparent !important;
         border: none;
-        color: var(--bs-white);
+        color: var(--bs-white) !important;
+        padding: 0;
         @include after {
             display: none;
         }

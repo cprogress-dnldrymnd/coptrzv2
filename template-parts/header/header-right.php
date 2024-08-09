@@ -11,7 +11,7 @@ $SVG = new SVG;
                 </div>
             </button>
         </div>
-        <div class="col-auto">
+        <div class="col-auto d-flex align-items-center">
             <?= do_shortcode('[wpml_language_selector_widget]') ?>
         </div>
 
