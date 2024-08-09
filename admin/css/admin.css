@@ -114,6 +114,11 @@ body,
 .d-none {
   display: none !important; }
 
+.cf-complex__tabs-item.cf-complex__tabs-item span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; }
 .cf-complex__tabs-item.cf-complex__tabs-item.cf-complex__tabs-item--current {
   background-color: #2c3338;
   color: #fff; }
