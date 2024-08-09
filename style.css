@@ -12298,7 +12298,7 @@ hr {
   .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown .wpml-ls-item-toggle {
     background-color: transparent !important;
     border: none;
-    color: var(--bs-white);
+    color: var(--bs-white) !important;
     padding: 0; }
     .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown .wpml-ls-item-toggle:after {
       display: none; }
