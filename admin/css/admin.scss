@@ -151,3 +151,9 @@ body,
         color: #fff;
     }
 }
+.cf-container__tabs-item.cf-container__tabs-item {
+    &.cf-container__tabs-item--current {
+        background-color: #2c3338;
+        color: #fff;
+    }
+}
