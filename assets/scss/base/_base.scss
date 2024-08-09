@@ -1460,14 +1460,16 @@ hr {
 .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown {
     width: auto;
     a {
-        background-color: transparent !important;
         border: none;
         color: var(--bs-white) !important;
-        padding: 0;
         display: flex;
         align-items: center;
         @include after {
             display: none;
+        }
+        &.wpml-ls-item-toggle {
+            background-color: transparent !important;
+            padding: 0;
         }
     }
 }
