@@ -12299,7 +12299,9 @@ hr {
     background-color: transparent !important;
     border: none;
     color: var(--bs-white) !important;
-    padding: 0; }
+    padding: 0;
+    display: flex;
+    align-items: center; }
     .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown .wpml-ls-item-toggle:after {
       display: none; }
 
