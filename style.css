@@ -12297,14 +12297,16 @@ hr {
   width: auto; }
   .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown a {
     border: none;
-    color: var(--bs-white) !important;
     display: flex;
     align-items: center; }
     .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown a:after {
       display: none; }
     .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown a.wpml-ls-item-toggle {
       background-color: transparent !important;
-      padding: 0; }
+      padding: 0;
+      color: var(--bs-white) !important; }
+    .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown a.wpml-ls-link {
+      min-width: 85px; }
 
 @keyframes spin {
   from {

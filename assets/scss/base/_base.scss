@@ -1461,7 +1461,6 @@ hr {
     width: auto;
     a {
         border: none;
-        color: var(--bs-white) !important;
         display: flex;
         align-items: center;
         @include after {
@@ -1470,6 +1469,10 @@ hr {
         &.wpml-ls-item-toggle {
             background-color: transparent !important;
             padding: 0;
+            color: var(--bs-white) !important;
+        }
+        &.wpml-ls-link{
+            min-width: 85px;
         }
     }
 }
