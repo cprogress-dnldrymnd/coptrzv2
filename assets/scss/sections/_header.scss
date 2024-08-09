@@ -190,6 +190,9 @@
             @include responsive(xs-sm) {
                 height: 15px;
             }
+            @include responsive(xxxs) {
+                height: 12px;
+            }
         }
     }
     .header-right {

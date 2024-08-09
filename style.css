@@ -13631,6 +13631,9 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   @media screen and (max-width: 991px) {
     .header .site-logo svg {
       height: 15px; } }
+  @media screen and (max-width: 360px) {
+    .header .site-logo svg {
+      height: 12px; } }
   @media (max-width: 1399px) and (min-width: 992px) {
     .header .header-right {
       --bs-gutter-x: 10px; } }
