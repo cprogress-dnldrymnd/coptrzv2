@@ -1473,6 +1473,23 @@ hr {
         }
         &.wpml-ls-link{
             min-width: 85px;
+            border-radius: 5px;
+        }
+    }
+    .wpml-ls-sub-menu.wpml-ls-sub-menu {
+        border: none;
+        padding-top: 19px;
+        @include before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 15px solid var(--bs-white);
+            display: inline-block;
+            position: absolute;
+            top: 5px;
+            left: 7px;
         }
     }
 }
