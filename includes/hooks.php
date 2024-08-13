@@ -166,7 +166,11 @@ function action_admin_head()
             echo '.edit-post-header__toolbar, .editor-preview-dropdown__toggle, button[aria-controls="tabs-0-edit-post/block-view"] { display: none !important; }';
         }
 
-        ?>
+        ?>.column-wpseo-focuskw,
+        .column-wpseo-metadesc,
+        .column-wpseo-title {
+            display: none !important;
+        }
     </style>
 
     <?php
@@ -474,8 +478,9 @@ add_filter('wpcf7_form_tag_data_option', function ($data, $options, $args) {
 
 
 // remove "Private: " from titles
-function remove_private_prefix($title) {
-	$title = str_replace('Private: ', '', $title);
-	return $title;
+function remove_private_prefix($title)
+{
+    $title = str_replace('Private: ', '', $title);
+    return $title;
 }
 add_filter('the_title', 'remove_private_prefix');
