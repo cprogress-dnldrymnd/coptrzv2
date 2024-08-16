@@ -13503,6 +13503,10 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 .bq-poweredby {
   display: none !important; }
 
+.bq-cart-button .bq-icon-cart {
+  font-size: 22px;
+  color: var(--bs-white); }
+
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
 /*-----------------------------------------------------------------------------------*/
