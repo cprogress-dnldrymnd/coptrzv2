@@ -13503,9 +13503,12 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 .bq-poweredby {
   display: none !important; }
 
-.bq-cart-button .bq-icon-cart {
+.bq-cart-button.bq-cart-button .bq-icon-cart {
   font-size: 22px;
   color: var(--bs-white); }
+
+.booqable-embeddable-cart.booqable-embeddable-cart * {
+  font-family: 'Poppins', sans-serif; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
