@@ -13517,21 +13517,47 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   .bq-cart__sidebar.bq-cart__sidebar *,
   .bq-cart__lines.bq-cart__lines * {
     font-family: 'Poppins', sans-serif !important; }
+  .booqable-component.booqable-components .fa-classic,
+  .booqable-component.booqable-components .fa-light,
+  .booqable-component.booqable-components .fa-regular,
+  .booqable-component.booqable-components .fa-solid,
+  .booqable-component.booqable-components .fa-thin,
+  .booqable-component.booqable-components .fal,
+  .booqable-component.booqable-components .far,
+  .booqable-component.booqable-components .fas,
+  .booqable-component.booqable-components .fat,
+  .booqable-component.booqable-component .fa-classic,
+  .booqable-component.booqable-component .fa-light,
+  .booqable-component.booqable-component .fa-regular,
+  .booqable-component.booqable-component .fa-solid,
+  .booqable-component.booqable-component .fa-thin,
+  .booqable-component.booqable-component .fal,
+  .booqable-component.booqable-component .far,
+  .booqable-component.booqable-component .fas,
+  .booqable-component.booqable-component .fat,
+  .bq-cart__sidebar.bq-cart__sidebar .fa-classic,
+  .bq-cart__sidebar.bq-cart__sidebar .fa-light,
+  .bq-cart__sidebar.bq-cart__sidebar .fa-regular,
+  .bq-cart__sidebar.bq-cart__sidebar .fa-solid,
+  .bq-cart__sidebar.bq-cart__sidebar .fa-thin,
+  .bq-cart__sidebar.bq-cart__sidebar .fal,
+  .bq-cart__sidebar.bq-cart__sidebar .far,
+  .bq-cart__sidebar.bq-cart__sidebar .fas,
+  .bq-cart__sidebar.bq-cart__sidebar .fat,
+  .bq-cart__lines.bq-cart__lines .fa-classic,
+  .bq-cart__lines.bq-cart__lines .fa-light,
+  .bq-cart__lines.bq-cart__lines .fa-regular,
+  .bq-cart__lines.bq-cart__lines .fa-solid,
+  .bq-cart__lines.bq-cart__lines .fa-thin,
+  .bq-cart__lines.bq-cart__lines .fal,
+  .bq-cart__lines.bq-cart__lines .far,
+  .bq-cart__lines.bq-cart__lines .fas,
+  .bq-cart__lines.bq-cart__lines .fat {
+    font-family: Font Awesome\ 6 Pro !important; }
 
 .booqable-component td,
 .booqable-component th {
   color: var(--bs-primary); }
-
-.fa-classic,
-.fa-light,
-.fa-regular,
-.fa-solid,
-.fa-thin,
-.fal,
-.far,
-.fas,
-.fat {
-  font-family: Font Awesome\ 6 Pro !important; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
