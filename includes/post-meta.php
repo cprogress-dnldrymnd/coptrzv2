@@ -1149,7 +1149,7 @@ function __hero_form_fields()
                     'style-2' => 'Style 2',
                 )
             ),
-        Field::make('association', 'hero_form', 'Select Form')->set_classes('inline-field')
+        Field::make('association', 'hero_formx', 'Select Form')->set_classes('inline-field')
             ->set_types(
                 array(
                     array(
