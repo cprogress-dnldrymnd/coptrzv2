@@ -8,11 +8,25 @@
 }
 
 .booqable-component.booqable-components,
-.booqable-component.booqable-component, .bq-cart__sidebar.bq-cart__sidebar, .bq-cart__lines.bq-cart__lines {
+.booqable-component.booqable-component,
+.bq-cart__sidebar.bq-cart__sidebar,
+.bq-cart__lines.bq-cart__lines {
   font-family: 'Poppins', sans-serif !important;
 
   * {
     font-family: 'Poppins', sans-serif !important;
+  }
+
+  .fa-classic,
+  .fa-light,
+  .fa-regular,
+  .fa-solid,
+  .fa-thin,
+  .fal,
+  .far,
+  .fas,
+  .fat {
+    font-family: Font Awesome\ 6 Pro !important;
   }
 }
 
