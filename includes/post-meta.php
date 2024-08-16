@@ -1153,6 +1153,7 @@ function __hero_form_fields()
             ->set_types(
                 array(
                     array(
+                        'type'      => 'post',
                         'post_type' => 'wpcf7_contact_form',
                     )
                 )
