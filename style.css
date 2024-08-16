@@ -13508,7 +13508,7 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   color: var(--bs-white); }
 
 .booqable-component.booqable-components * {
-  font-family: 'Poppins', sans-serif; }
+  font-family: 'Poppins', sans-serif !important; }
 
 .booqable-component td,
 .booqable-component th {
