@@ -1164,7 +1164,7 @@ function __hero_form_fields()
 add_filter('carbon_fields_association_field_options_hero_form_post_wpcf7_contact_form', function ($query_arguments) {
 
     $tax_query[] = array(
-        'post_type' => 'wpcf7_contact_form',
+        'post_type' => 'guides',
     );
 
     $query_arguments['post_status'] = array('publish', 'private');
