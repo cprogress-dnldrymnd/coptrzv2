@@ -40,15 +40,7 @@ foreach ($layouts as $layout) {
 }
 $hide_footer = get__post_meta('hide_footer');
 $footer_drone_experts = get__theme_option('footer_drone_experts');
-$wpcf7_contact_form = get_posts(array(
-    'post_type' => 'wpcf7_contact_form',
-    'numberposts' => -1,
-));
 
-foreach($wpcf7_contact_form as $form) {
-    echo $form->post_title;
-    echo '<br>';
-}
 if (!$hide_footer) {
 ?>
 

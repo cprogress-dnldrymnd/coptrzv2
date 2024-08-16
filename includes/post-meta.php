@@ -1154,7 +1154,7 @@ function __hero_form_fields()
                 array(
                     array(
                         'type'      => 'post',
-                        'post_type' => 'wpcf7_contact_form',
+                        'post_type' => 'guides',
                     )
                 )
             )
