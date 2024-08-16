@@ -7,8 +7,13 @@
   color: var(--bs-white);
 }
 
-.booqable-embeddable-cart.booqable-embeddable-cart {
+.booqable-component.booqable-components {
   * {
     font-family: 'Poppins', sans-serif;
   }
+}
+
+.booqable-component td,
+.booqable-component th {
+  color: var(--bs-primary);
 }
