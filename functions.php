@@ -19,8 +19,8 @@ function action_after_setup_theme()
 	//add_theme_support('wc-product-gallery-lightbox');
 	//add_theme_support('wc-product-gallery-slider');
 
-	require_once('vendor/autoload.php');
-	\Carbon_Fields\Carbon_Fields::boot();
+	//require_once('vendor/autoload.php');
+	//\Carbon_Fields\Carbon_Fields::boot();
 
 
 	global $popups_id, $layouts_global, $product_taxonomy_page;
