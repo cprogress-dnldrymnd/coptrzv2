@@ -371,6 +371,50 @@ function action_layout_menu($admin_bar)
 add_action('admin_bar_menu', 'action_layout_menu', 999999);
 
 
+function action_pre_get_posts($query)
+{
+    if (!is_admin() && $query->is_main_query() && !is_single() && !is_page()) {
+        $query->set('post_status', 'publish');
+        $query->set('orderby', 'menu_order');
+        $query->set('order', 'ASC');
+
+        if (is_post_type_archive('industries') || is_post_type_archive('guides')) {
+            $meta_query[] = [
+                'key' => '_hide_on_list',
+                'value' => 'yes',
+                'compare' => 'NOT IN',
+            ];
+
+            $query->set('meta_query', $meta_query);
+        }
+
+        if (is_post_type_archive('industries') || is_post_type_archive('capabilities')) {
+            $query->set('posts_per_page', -1);
+        } else if (is_post_type_archive('events') || is_tax('events_category')) {
+            $meta_query[] = [
+                'key'     => '_event_start_datetime',
+                'value'   => date('Y-m-d'),
+                'compare' => '>=',
+                'type'    => 'DATETIME'
+            ];
+            $query->set('meta_query', $meta_query);
+            $query->set('orderby', 'meta_value');
+            $query->set('order', 'ASC');
+        } else if (is_home() || is_category()) {
+            $query->set('orderby', 'date');
+            $query->set('order', 'DESC');
+        }
+        if (isset($_GET['posts_per_page'])) {
+            $query->set('posts_per_page', $_GET['posts_per_page']);
+        }
+        if (isset($_GET['s'])) {
+            $query->set('s', $_GET['s']);
+        }
+    }
+    return;
+}
+add_action('pre_get_posts', 'action_pre_get_posts', 1);
+
 
 function action_body_class($classes)
 {
