@@ -13852,6 +13852,10 @@ body {
       margin-right: 10px;
       margin-top: 10px; } }
 
+@media screen and (max-width: 1399px) {
+  .mini-cart {
+    margin-right: 1rem; } }
+
 #footer {
   font-weight: 300; }
   #footer ul {

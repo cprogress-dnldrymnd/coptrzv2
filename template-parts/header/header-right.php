@@ -6,7 +6,7 @@ $SVG = new SVG;
         <div class="col-auto d-flex align-items-center">
             <?= do_shortcode('[wpml_language_selector_widget]') ?>
         </div>
-        <div class="col-auto d-flex align-items-center">
+        <div class="col-auto d-flex align-items-center mini-cart">
             <div class="mini-cart-wrapper">
                 <a href="#" id="mini-cart-button" class="header-icon cart-icon text-white d-flex align-items-center">
                     <?= $SVG->cart(); ?>
