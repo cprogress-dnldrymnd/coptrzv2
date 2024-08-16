@@ -7,7 +7,10 @@
   color: var(--bs-white);
 }
 
-.booqable-component.booqable-components {
+.booqable-component.booqable-components,
+.booqable-component.booqable-component {
+  font-family: 'Poppins', sans-serif !important;
+
   * {
     font-family: 'Poppins', sans-serif !important;
   }
