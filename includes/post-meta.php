@@ -6106,6 +6106,7 @@ Container::make('post_meta', __('Sections'))
     ->or_where('post_type', '=', 'producttaxonomypages')
     ->or_where('post_type', '=', 'industries')
     ->or_where('post_type', '=', 'events')
+    ->or_where('post_type', '=', 'rentals')
     ->add_fields(__section_fields());
 
 
@@ -6818,4 +6819,14 @@ Container::make('nav_menu_item', __('Menu Settings'))
                     )
                 )
             ),
+    ));
+
+    /*-----------------------------------------------------------------------------------*/
+/* Products
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', __('Rental Settings'))
+    ->where('post_type', '=', 'rentals')
+    ->add_tab('Gallery', array(
+        Field::make('media_gallery', 'gallery', 'Gallery')
+         
     ));
