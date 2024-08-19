@@ -12,8 +12,8 @@ foreach ($attachment_ids as $attachment_id) {
 $images_ids_per_slides = array_chunk($image_ids, 6);
 
 echo ___hero_modules('text-start', 'small-hero');
-echo do_shortcode(___sections('sections', get_the_ID()));
 echo do_shortcode(get__post_meta('shortcode'));
+echo do_shortcode(___sections('sections', get_the_ID()));
 ?>
 
 <?= do_shortcode('[layouts id=292999]') ?>
