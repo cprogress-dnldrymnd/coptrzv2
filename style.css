@@ -13556,8 +13556,14 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
     font-family: Font Awesome\ 6 Pro !important; }
 
 .booqable-component td,
-.booqable-component th {
+.booqable-component th,
+.booqable-component.booqable-component {
   color: var(--bs-primary); }
+
+.booqable-component.booqable-component.booqable-component-product-detail {
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
