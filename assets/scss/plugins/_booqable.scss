@@ -35,3 +35,9 @@
 .booqable-component.booqable-component {
   color: var(--bs-primary);
 }
+
+.booqable-component.booqable-component.booqable-component-product-detail {
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0;
+}
