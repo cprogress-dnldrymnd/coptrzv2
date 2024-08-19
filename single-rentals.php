@@ -38,9 +38,8 @@ echo do_shortcode(___sections('sections', get_the_ID()));
               <div class="swiper product-thumb">
                 <div class="swiper-wrapper">
                   <?php
-                  if ($image_ids) {
+                  if ($attachment_ids) {
                     $key = 1;
-
                     foreach ($images_ids_per_slides as $images_ids_per_slide) {
                       if (count($image_ids) > 6) {
                         echo '<div class="swiper-slide">';
