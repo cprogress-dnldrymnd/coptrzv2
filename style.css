@@ -11144,6 +11144,9 @@ p:last-child {
   .html.html.html {
     margin: 0 !important; } }
 
+strong {
+  font-weight: bold; }
+
 img {
   max-width: 100%;
   height: auto; }
@@ -13564,6 +13567,18 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   box-shadow: none !important;
   border-radius: 0;
   margin: 0; }
+
+.single-rentals section.hero ul {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 730px;
+  margin-left: -1rem;
+  margin-right: -1rem; }
+  .single-rentals section.hero ul li {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex: 0 0 auto;
+    width: 50%; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer

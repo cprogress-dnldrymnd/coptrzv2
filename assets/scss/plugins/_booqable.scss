@@ -41,5 +41,26 @@
   border-radius: 0;
   margin: 0;
 
-  
+
+}
+
+.single-rentals {
+  section.hero {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 730px;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      li {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        flex: 0 0 auto;
+        width: 50%;
+        @include responsive(mobile) {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
