@@ -281,7 +281,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         ));
 
         if(get_post_type( ) == 'rentals') {
-            echo do_shortcode( get__post_meta('shortcode') );
+            $hero.= do_shortcode( get__post_meta('shortcode') );
         }
 
         if ($buttons) {
