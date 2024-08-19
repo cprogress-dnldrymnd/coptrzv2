@@ -6827,5 +6827,5 @@ Container::make('nav_menu_item', __('Menu Settings'))
 Container::make('post_meta', __('Rental Settings'))
     ->where('post_type', '=', 'rentals')
      ->add_tab('Booqable', array(
-        Field::make('text', 'data_id', 'Data ID')
+        Field::make('text', 'shortcode', 'Shortcode')
     ));
