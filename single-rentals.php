@@ -1,7 +1,16 @@
 <?php get_header() ?>
 <?php
 $attachment_ids = get__post_meta('gallery');
-$images_ids_per_slides = array_chunk($attachment_ids, 6);
+
+foreach ($attachment_ids as $attachment_id) {
+  $image_ids[] = array(
+    'key' => $key,
+    'id'  => $attachment_id
+  );
+  $key++;
+}
+$images_ids_per_slides = array_chunk($image_ids, 6);
+
 echo ___hero_modules('text-start', 'small-hero');
 echo do_shortcode(___sections('sections', get_the_ID()));
 ?>
@@ -38,10 +47,11 @@ echo do_shortcode(___sections('sections', get_the_ID()));
               <div class="swiper product-thumb">
                 <div class="swiper-wrapper">
                   <?php
-                  if ($attachment_ids) {
+                  if ($image_ids) {
                     $key = 1;
+
                     foreach ($images_ids_per_slides as $images_ids_per_slide) {
-                      if (count($attachment_ids) > 6) {
+                      if (count($image_ids) > 6) {
                         echo '<div class="swiper-slide">';
                       }
                       echo '<div class="row g-4 w-100">';
@@ -55,7 +65,7 @@ echo do_shortcode(___sections('sections', get_the_ID()));
 
 
                       echo '</div>';
-                      if (count($attachment_ids) > 6) {
+                      if (count($image_ids) > 6) {
                         echo '</div>';
                       }
                     }
@@ -63,7 +73,7 @@ echo do_shortcode(___sections('sections', get_the_ID()));
                   ?>
 
                 </div>
-                <?php if (count($attachment_ids) > 6) { ?>
+                <?php if (count($image_ids) > 6) { ?>
                   <div class="swiper-nav d-inline-flex">
                     <div class="swiper-button-prev swiper-button-prev-thumb"></div>
                     <div class="swiper-button-next swiper-button-next-thumb"></div>
