@@ -1178,6 +1178,7 @@ Container::make('post_meta', __('Hero'))
     ->or_where('post_type', '=', 'industries')
     ->or_where('post_type', '=', 'events')
     ->or_where('post_type', '=', 'guides')
+    ->or_where('post_type', '=', 'rentals')
     ->add_tab('Hero Settings', __hero_fields())
     ->add_tab('Hero Buttons', __hero_button_fields())
     ->add_tab('Hero Form', __hero_form_fields());
