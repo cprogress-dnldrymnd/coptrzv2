@@ -3,7 +3,7 @@
 echo ___hero_modules('text-start', 'small-hero');
 ?>
 
-<section class="booqable-rental">
+<section class="booqable-rental md-padding">
   <div class="container">
     <?= do_shortcode(get__post_meta('shortcode')); ?>
   </div>
