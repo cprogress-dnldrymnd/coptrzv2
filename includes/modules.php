@@ -289,6 +289,10 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             'class'       => _attribute('class', array('description-box fw-light medium-text small-width mx-auto mb-4')),
         ));
 
+        if (get_post_type() == 'rentals') {
+            $data_id = get__post_meta('data_id');
+            $hero .= do_shortcode('[booqable_button id="'.$data_id.'"]');
+        }
 
         if ($buttons) {
             $hero .= "<div>";
