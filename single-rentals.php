@@ -5,6 +5,7 @@ $attachment_ids = get__post_meta('gallery');
 
 <?php
 echo ___hero_modules('text-start', 'small-hero');
+echo do_shortcode(___sections('sections', get_the_ID()));
 ?>
 <section class="product-main md-padding">
   <div class="container">
