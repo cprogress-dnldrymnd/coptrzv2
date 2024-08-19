@@ -6827,6 +6827,6 @@ Container::make('nav_menu_item', __('Menu Settings'))
 Container::make('post_meta', __('Rental Settings'))
     ->where('post_type', '=', 'rentals')
      ->add_tab('General Settings', array(
-        Field::make('rich_text', 'included_in_package', 'Include in Package'),
+        Field::make('textarea', 'included_in_package', 'Include in Package'),
         Field::make('text', 'shortcode', 'Shortcode')
     ));
