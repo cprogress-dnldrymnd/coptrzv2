@@ -2,7 +2,11 @@
 <?php 
 $attachment_ids = get__post_meta('gallery');
 ?>
-<section class="product-main">
+
+<?php
+echo ___hero_modules('text-start', 'small-hero');
+?>
+<section class="product-main md-padding">
   <div class="container">
     <div class="images">
       <div class="woocommerce-product-gallery__wrapper">
@@ -35,8 +39,5 @@ $attachment_ids = get__post_meta('gallery');
     </div>
   </div>
 </section>
-<?php
-echo ___hero_modules('text-start', 'small-hero');
-?>
 <?= do_shortcode('[layouts id=292999]') ?>
 <?php get_footer() ?>
