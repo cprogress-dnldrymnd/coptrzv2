@@ -1996,7 +1996,7 @@ function __section_fields($name = 'sections')
                                     ->add_fields('description',  array(
                                         Field::make('textarea', 'description', __('Description'))->set_width(80)->set_classes('editor-field'),
                                         Field::make('html', 'activate_wysiwyg')->set_width(20)
-                                            ->set_html('<button class="button button-primary button-large wysiwyg-editor-trigger">Wysiwyg Editor</button>'),
+                                            ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger">Wysiwyg Editor</span>'),
                                         Field::make('text', 'description_width', __('Description Custom Width')),
                                         Field::make('select', 'description_alignment', __('Description Alignment'))
                                             ->set_options(
