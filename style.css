@@ -13568,19 +13568,19 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   border-radius: 0;
   margin: 0; }
 
-.single-rentals section.hero .description-box ul {
+.single-rentals section.hero .description-box ul:not(.fullwidth-list) {
   display: flex;
   flex-wrap: wrap;
   max-width: 730px;
   margin-left: -1rem;
   margin-right: -1rem; }
-  .single-rentals section.hero .description-box ul li {
+  .single-rentals section.hero .description-box ul:not(.fullwidth-list) li {
     padding-left: 1rem;
     padding-right: 1rem;
     flex: 0 0 auto;
     width: 50%; }
     @media screen and (max-width: 575px) {
-      .single-rentals section.hero .description-box ul li {
+      .single-rentals section.hero .description-box ul:not(.fullwidth-list) li {
         width: 100%; } }
 
 /*-----------------------------------------------------------------------------------*/
