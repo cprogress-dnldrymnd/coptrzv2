@@ -41,7 +41,7 @@ echo do_shortcode(___sections('sections', get_the_ID()));
                   if ($attachment_ids) {
                     $key = 1;
                     foreach ($images_ids_per_slides as $images_ids_per_slide) {
-                      if (count($image_ids) > 6) {
+                      if (count($attachment_ids) > 6) {
                         echo '<div class="swiper-slide">';
                       }
                       echo '<div class="row g-4 w-100">';
@@ -55,7 +55,7 @@ echo do_shortcode(___sections('sections', get_the_ID()));
 
 
                       echo '</div>';
-                      if (count($image_ids) > 6) {
+                      if (count($attachment_ids) > 6) {
                         echo '</div>';
                       }
                     }
