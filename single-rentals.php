@@ -11,25 +11,6 @@ $attachment_ids = get__post_meta('gallery');
             <div class="product-main-image-holder">
               <div class="swiper product-main-image border-default rounded-corner overflow-hidden">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <?php
-
-                    if ($post_thumbnail_id) {
-                      echo __image(array(
-                        'image_id' => $post_thumbnail_id,
-                        'class'    => _attribute('class', array('product-image')),
-                        'size'     => 'large'
-                      ));
-                    }
-                    else {
-                      $html = '<div class="product-image woocommerce-product-gallery__image--placeholder">';
-                      $html .= sprintf('<img src="%s" alt="%s" class="wp-post-image" />', esc_url(wc_placeholder_img_src('woocommerce_single')), esc_html__('Awaiting product image', 'woocommerce'));
-                      $html .= '</div>';
-                      echo $html;
-                    }
-
-                    ?>
-                  </div>
                   <?php
                   foreach ($attachment_ids as $attachment_id) {
                     ?>
