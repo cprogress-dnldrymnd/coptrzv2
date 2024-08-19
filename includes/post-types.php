@@ -608,3 +608,14 @@ $Global_Post_Boxes->args = array(
     'query_var'    => true,
     'show_in_rest' => true,
 );
+
+$Rentals = new newPostType();
+$Rentals->name = 'Rentals';
+$Rentals->singular_name = 'Rental';
+$Rentals->icon = 'dashicons-portfolio';
+$Rentals->supports = array('title', 'revisions', 'editor', 'thumbnail', 'excerpt', 'author');
+$Rentals->show_in_rest = true;
+$Rentals->rewrite = array(
+    'with_front' => false,
+    'slug' => 'rental'
+);
