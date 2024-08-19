@@ -5,7 +5,7 @@ echo ___hero_modules('text-start', 'small-hero');
 
 <section class="booqable-rental md-padding">
   <div class="container">
-    <div class="row">
+    <div class="row align-items-center">
       <div class="col-lg-6">
         <?= do_shortcode(get__post_meta('shortcode')); ?>
       </div>
