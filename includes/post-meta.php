@@ -6826,9 +6826,6 @@ Container::make('nav_menu_item', __('Menu Settings'))
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Rental Settings'))
     ->where('post_type', '=', 'rentals')
-    ->add_tab('Gallery', array(
-        Field::make('media_gallery', 'gallery', 'Gallery')
-    ))
      ->add_tab('Booqable', array(
         Field::make('text', 'shortcode', 'Shortcode')
     ));

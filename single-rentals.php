@@ -1,18 +1,15 @@
 <?php get_header() ?>
 <?php
-$attachment_ids = get__post_meta('gallery');
-
-foreach ($attachment_ids as $attachment_id) {
-  $image_ids[] = array(
-    'key' => $key,
-    'id'  => $attachment_id
-  );
-  $key++;
-}
-$images_ids_per_slides = array_chunk($image_ids, 6);
-
 echo ___hero_modules('text-start', 'small-hero');
-echo do_shortcode(get__post_meta('shortcode'));
+?>
+
+<section class="booqable-rental">
+  <div class="container">
+    <?= do_shortcode(get__post_meta('shortcode')); ?>
+  </div>
+</section>
+
+<?php
 echo do_shortcode(___sections('sections', get_the_ID()));
 ?>
 
