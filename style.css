@@ -13567,6 +13567,17 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   box-shadow: none !important;
   border-radius: 0;
   margin: 0; }
+  .booqable-component.booqable-component.booqable-component.booqable-component-product-detail .booqable-product-detail-wrapper {
+    min-height: 0;
+    padding: 0; }
+  .booqable-component.booqable-component.booqable-component.booqable-component-product-detail .bq-product-name {
+    font-size: 2.5rem; }
+    @media screen and (max-width: 991px) {
+      .booqable-component.booqable-component.booqable-component.booqable-component-product-detail .bq-product-name {
+        font-size: 2rem; } }
+    @media screen and (max-width: 767px) {
+      .booqable-component.booqable-component.booqable-component.booqable-component-product-detail .bq-product-name {
+        font-size: 1.5rem; } }
 
 .single-rentals section.hero .description-box {
   max-width: 100%; }
