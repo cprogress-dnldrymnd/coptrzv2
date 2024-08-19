@@ -13561,7 +13561,7 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   color: var(--bs-primary); }
 
 .booqable-component.booqable-component.booqable-component.booqable-component-product-detail {
-  box-shadow: none;
+  box-shadow: none !important;
   border-radius: 0;
   margin: 0; }
 
