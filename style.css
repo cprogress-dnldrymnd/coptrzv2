@@ -12328,6 +12328,11 @@ hr {
       top: 5px;
       left: 11px; }
 
+.description-box h3, .description-box .h3 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-weight: 600; }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }
