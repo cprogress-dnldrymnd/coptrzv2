@@ -93,7 +93,7 @@
 			}
 			if ($related_casestudies == 'true') {
 				$related_casestudies = get__post_meta_by_id($copy_from, 'related_casestudies');
-				carbon_set_post_meta(get_the_ID(), 'related_casestudies', $accessories);
+				carbon_set_post_meta(get_the_ID(), 'related_casestudies', $related_casestudies);
 			}
 
 		}
