@@ -6,10 +6,10 @@ echo ___hero_modules('text-start', 'small-hero');
 <section class="booqable-rental md-padding">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-lg-6">
+      <div class="col-lg-7">
         <?= do_shortcode(get__post_meta('shortcode')); ?>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-5">
         <h3>Included in the package</h3>
         <?= get__post_meta('included_in_package') ?>
       </div>
