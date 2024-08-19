@@ -13579,6 +13579,9 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
     padding-right: 1rem;
     flex: 0 0 auto;
     width: 50%; }
+    @media screen and (max-width: 575px) {
+      .single-rentals section.hero ul li {
+        width: 100%; } }
 
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
