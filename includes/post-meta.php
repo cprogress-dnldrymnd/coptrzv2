@@ -128,7 +128,7 @@ function __servicing_fields()
                 Field::make('text', 'plan_price_large', 'Large Drone Plan Price')->set_classes('inline-field'),
                 Field::make('textarea', 'plan_description', __('Plan Description'))->set_width(80)->set_classes('editor-field inline-field'),
                 Field::make('html', 'activate_wysiwyg')->set_width(20)
-                    ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                    ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
                 Field::make('complex', 'plan_features', 'Plan Features')->set_classes('inline-field')
                     ->add_fields('servicing', array(
                         Field::make('text', 'custom_text', __('Custom Text'))->set_classes('inline-field'),
@@ -994,7 +994,7 @@ function __hero_fields()
         Field::make('text', 'hero_heading', __('Heading'))->set_help_text('')->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to page title'),
         Field::make('textarea', 'hero_description', __('Description'))->set_width(80)->set_classes('editor-field inline-field'),
         Field::make('html', 'activate_wysiwyg')->set_width(20)
-            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+            ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
         Field::make('select', 'hero_background_type', __('Background Type'))->set_classes('inline-field')
             ->set_options(
                 array(
@@ -1584,7 +1584,7 @@ function __section_fields($name = 'sections')
                         Field::make('html', 'html_4')->set_html('<label>Section Description Settings</label>')->set_classes('cb-label'),
                         Field::make('textarea', 'description', __('Description'))->set_width(80)->set_classes('editor-field'),
                         Field::make('html', 'activate_wysiwyg')->set_width(20)
-                            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                            ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
                         Field::make('text', 'description_width', __('Description Custom Width')),
                         Field::make('select', 'description_alignment', __('Description Alignment'))
                             ->set_options(
@@ -2232,7 +2232,7 @@ function __section_fields($name = 'sections')
                                                         Field::make('text', 'heading', __('Heading')),
                                                         Field::make('textarea', 'description', __('Description'))->set_width(80),
                                                         Field::make('html', 'activate_wysiwyg')->set_width(20)
-                                                            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                                                            ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
                                                     )
                                                 )
                                                 ->set_header_template('<%- heading  %>')
@@ -5303,7 +5303,7 @@ function __section_fields($name = 'sections')
                                 Field::make('text', 'heading', 'Heading'),
                                 Field::make('textarea', 'description', 'Description')->set_width(80),
                                 Field::make('html', 'activate_wysiwyg')->set_width(20)
-                                    ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                                    ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
                             ))
                             ->set_layout('tabbed-vertical')
                             ->set_header_template('Tab: <%- heading %>')
@@ -5330,7 +5330,7 @@ function __section_fields($name = 'sections')
                                         Field::make('text', 'heading', __('Heading')),
                                         Field::make('textarea', 'description', __('Description'))->set_width(80),
                                         Field::make('html', 'activate_wysiwyg')->set_width(20)
-                                            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                                            ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
                                     )
                                 )
                                 ->set_header_template('<%- heading  %>')
