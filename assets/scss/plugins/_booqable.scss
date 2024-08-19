@@ -47,6 +47,7 @@
 .single-rentals {
   section.hero {
     .description-box {
+      max-width: 100%;
       ul:not(.fullwidth-list) {
         display: flex;
         flex-wrap: wrap;
