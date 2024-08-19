@@ -17,7 +17,7 @@ $attachment_ids = get__post_meta('gallery');
                     <div class="swiper-slide">
                       <?php
                       echo __image(array(
-                        'image_id' => $attachment_id['id'],
+                        'image_id' => $attachment_id,
                         'class'    => _attribute('class', array('product-image')),
                         'size'     => 'large'
                       ));
