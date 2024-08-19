@@ -280,6 +280,9 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             'class' => _attribute('class', array('description-box fw-light medium-text small-width mx-auto mb-4')),
         ));
 
+        if(get_post_type( ) == 'rentals') {
+            echo do_shortcode( get__post_meta('shortcode') );
+        }
 
         if ($buttons) {
             $hero .= "<div>";
