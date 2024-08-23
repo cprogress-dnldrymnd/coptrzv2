@@ -128,7 +128,7 @@ function __servicing_fields()
                 Field::make('text', 'plan_price_large', 'Large Drone Plan Price')->set_classes('inline-field'),
                 Field::make('textarea', 'plan_description', __('Plan Description'))->set_width(80)->set_classes('editor-field inline-field'),
                 Field::make('html', 'activate_wysiwyg')->set_width(20)
-                    ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                    ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
                 Field::make('complex', 'plan_features', 'Plan Features')->set_classes('inline-field')
                     ->add_fields('servicing', array(
                         Field::make('text', 'custom_text', __('Custom Text'))->set_classes('inline-field'),
@@ -994,7 +994,7 @@ function __hero_fields()
         Field::make('text', 'hero_heading', __('Heading'))->set_help_text('')->set_classes('inline-field')->set_attribute('placeholder', 'Defaults to page title'),
         Field::make('textarea', 'hero_description', __('Description'))->set_width(80)->set_classes('editor-field inline-field'),
         Field::make('html', 'activate_wysiwyg')->set_width(20)
-            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+            ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
         Field::make('select', 'hero_background_type', __('Background Type'))->set_classes('inline-field')
             ->set_options(
                 array(
@@ -1161,6 +1161,14 @@ function __hero_form_fields()
             ->set_max(1)
     );
 }
+add_filter('carbon_fields_association_field_options_hero_form_post_wpcf7_contact_form', function ($query_arguments) {
+    $query_arguments = array(
+        'post_type' => 'wpcf7_contact_form',
+    );
+
+    return $query_arguments;
+});
+
 Container::make('post_meta', __('Hero'))
     ->where('post_type', '=', 'page')
     ->or_where('post_type', '=', 'product')
@@ -1170,6 +1178,7 @@ Container::make('post_meta', __('Hero'))
     ->or_where('post_type', '=', 'industries')
     ->or_where('post_type', '=', 'events')
     ->or_where('post_type', '=', 'guides')
+    ->or_where('post_type', '=', 'rentals')
     ->add_tab('Hero Settings', __hero_fields())
     ->add_tab('Hero Buttons', __hero_button_fields())
     ->add_tab('Hero Form', __hero_form_fields());
@@ -1575,7 +1584,7 @@ function __section_fields($name = 'sections')
                         Field::make('html', 'html_4')->set_html('<label>Section Description Settings</label>')->set_classes('cb-label'),
                         Field::make('textarea', 'description', __('Description'))->set_width(80)->set_classes('editor-field'),
                         Field::make('html', 'activate_wysiwyg')->set_width(20)
-                            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                            ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
                         Field::make('text', 'description_width', __('Description Custom Width')),
                         Field::make('select', 'description_alignment', __('Description Alignment'))
                             ->set_options(
@@ -1987,7 +1996,7 @@ function __section_fields($name = 'sections')
                                     ->add_fields('description',  array(
                                         Field::make('textarea', 'description', __('Description'))->set_width(80)->set_classes('editor-field'),
                                         Field::make('html', 'activate_wysiwyg')->set_width(20)
-                                            ->set_html('<button class="button button-primary button-large wysiwyg-editor-trigger">Wysiwyg Editor</button>'),
+                                            ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger">Wysiwyg Editor</span>'),
                                         Field::make('text', 'description_width', __('Description Custom Width')),
                                         Field::make('select', 'description_alignment', __('Description Alignment'))
                                             ->set_options(
@@ -2223,7 +2232,7 @@ function __section_fields($name = 'sections')
                                                         Field::make('text', 'heading', __('Heading')),
                                                         Field::make('textarea', 'description', __('Description'))->set_width(80),
                                                         Field::make('html', 'activate_wysiwyg')->set_width(20)
-                                                            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                                                            ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
                                                     )
                                                 )
                                                 ->set_header_template('<%- heading  %>')
@@ -5294,7 +5303,7 @@ function __section_fields($name = 'sections')
                                 Field::make('text', 'heading', 'Heading'),
                                 Field::make('textarea', 'description', 'Description')->set_width(80),
                                 Field::make('html', 'activate_wysiwyg')->set_width(20)
-                                    ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                                    ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
                             ))
                             ->set_layout('tabbed-vertical')
                             ->set_header_template('Tab: <%- heading %>')
@@ -5321,7 +5330,7 @@ function __section_fields($name = 'sections')
                                         Field::make('text', 'heading', __('Heading')),
                                         Field::make('textarea', 'description', __('Description'))->set_width(80),
                                         Field::make('html', 'activate_wysiwyg')->set_width(20)
-                                            ->set_html('<a class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</a>'),
+                                            ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger" >Wysiwyg Editor</span>'),
                                     )
                                 )
                                 ->set_header_template('<%- heading  %>')
@@ -6097,6 +6106,7 @@ Container::make('post_meta', __('Sections'))
     ->or_where('post_type', '=', 'producttaxonomypages')
     ->or_where('post_type', '=', 'industries')
     ->or_where('post_type', '=', 'events')
+    ->or_where('post_type', '=', 'rentals')
     ->add_fields(__section_fields());
 
 
@@ -6809,4 +6819,13 @@ Container::make('nav_menu_item', __('Menu Settings'))
                     )
                 )
             ),
+    ));
+
+/*-----------------------------------------------------------------------------------*/
+/* Products
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', __('Rental Settings'))
+    ->where('post_type', '=', 'rentals')
+     ->add_tab('General Settings', array(
+        Field::make('text', 'shortcode', 'Shortcode')
     ));

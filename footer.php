@@ -40,6 +40,7 @@ foreach ($layouts as $layout) {
 }
 $hide_footer = get__post_meta('hide_footer');
 $footer_drone_experts = get__theme_option('footer_drone_experts');
+
 if (!$hide_footer) {
 ?>
 

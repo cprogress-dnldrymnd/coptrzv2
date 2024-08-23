@@ -17,6 +17,45 @@
 
     <?php wp_head(); ?>
 </head>
+<?php
+$copy_from = $_GET['copy_from'];
+$copy_after = $_GET['copy_after'];
+$training = $_GET['training'];
+$software = $_GET['software'];
+$accessories = $_GET['accessories'];
+$drones = $_GET['drones'];
+if ($copy_from) {
+    $sections = get__post_meta_by_id($copy_from, 'sections');
+    carbon_set_post_meta(get_the_ID(), 'sections', $sections);
+
+    if ($copy_after == 'true') {
+        $sections_after_main = get__post_meta_by_id($copy_from, 'sections_after_main');
+        carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
+    }
+
+
+    if ($training == 'true') {
+        $related_training = get__post_meta_by_id($copy_from, 'related_training');
+        carbon_set_post_meta(get_the_ID(), 'related_training', $related_training);
+    }
+
+    if ($software == 'true') {
+        $related_software = get__post_meta_by_id($copy_from, 'softwares');
+        carbon_set_post_meta(get_the_ID(), 'softwares', $related_software);
+    }
+
+    if ($drones == 'true') {
+        $drones = get__post_meta_by_id($copy_from, 'drones');
+        carbon_set_post_meta(get_the_ID(), 'drones', $drones);
+    }
+
+    if ($accessories == 'true') {
+        $accessories = get__post_meta_by_id($copy_from, 'accessories');
+        carbon_set_post_meta(get_the_ID(), 'accessories', $accessories);
+    }
+}
+
+?>
 
 <body <?php body_class(); ?>>
     <?php

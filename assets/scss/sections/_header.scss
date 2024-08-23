@@ -448,3 +448,9 @@ body {
         margin-top: 10px;
     }
 }
+
+.mini-cart {
+    @include responsive(xs-lg) {
+        margin-right: 1rem;
+    }
+}

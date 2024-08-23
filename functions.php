@@ -19,8 +19,8 @@ function action_after_setup_theme()
 	//add_theme_support('wc-product-gallery-lightbox');
 	//add_theme_support('wc-product-gallery-slider');
 
-	require_once('vendor/autoload.php');
-	\Carbon_Fields\Carbon_Fields::boot();
+	//require_once('vendor/autoload.php');
+	//\Carbon_Fields\Carbon_Fields::boot();
 
 
 	global $popups_id, $layouts_global, $product_taxonomy_page;
@@ -54,7 +54,7 @@ function get__term_meta($term_id, $value)
 function get___term_meta($term_id, $value)
 {
 	if (function_exists('carbon_get_term_meta')) {
-		return carbon_get_term_meta($term_id,  $value);
+		return carbon_get_term_meta($term_id, $value);
 	}
 }
 
@@ -92,7 +92,7 @@ function enqueue_scripts()
 	);
 	wp_enqueue_script('main');
 
-	if (is_product()) {
+	if (is_product() || get_post_type() == 'rentals') {
 		wp_register_script('single-product', assets_dir . 'js/single-product.js', NULL, coptz_version);
 		wp_localize_script(
 			'single-product',
@@ -125,16 +125,20 @@ function canonical()
 {
 	if (is_single() || is_page()) {
 		return get_the_permalink();
-	} else if (is_tax() || is_category()) {
+	}
+	else if (is_tax() || is_category()) {
 		$term_link = get_term_link(get_queried_object()->term_id);
 		return $term_link;
-	} else if (is_post_type_archive()) {
+	}
+	else if (is_post_type_archive()) {
 		$archive_link = get_post_type_archive_link(get_post_type());
 		return $archive_link;
-	} else if (is_home()) {
+	}
+	else if (is_home()) {
 		$blog_url = get_permalink(get_option('page_for_posts'));
 		return $blog_url;
-	} else {
+	}
+	else {
 		$term_link = get_term_link(get_queried_object()->term_id);
 		return $term_link;
 	}

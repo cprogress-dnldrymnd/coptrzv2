@@ -1,0 +1,87 @@
+.bq-poweredby {
+  display: none !important;
+}
+
+.bq-cart-button.bq-cart-button .bq-icon-cart {
+  font-size: 22px;
+  color: var(--bs-white);
+}
+
+.booqable-component.booqable-components,
+.booqable-component.booqable-component,
+.bq-cart__sidebar.bq-cart__sidebar,
+.bq-cart__lines.bq-cart__lines {
+  font-family: 'Poppins', sans-serif !important;
+
+  * {
+    font-family: 'Poppins', sans-serif !important;
+  }
+
+  .fa-classic,
+  .fa-light,
+  .fa-regular,
+  .fa-solid,
+  .fa-thin,
+  .fal,
+  .far,
+  .fas,
+  .fat {
+    font-family: Font Awesome\ 6 Pro !important;
+  }
+}
+
+.booqable-component td,
+.booqable-component th,
+.booqable-component.booqable-component {
+  color: var(--bs-primary);
+}
+
+.booqable-component.booqable-component.booqable-component.booqable-component-product-detail {
+  box-shadow: none !important;
+  border-radius: 0;
+  margin: 0;
+  .booqable-product-detail-wrapper {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .bq-product-name {
+    font-size: 2.5rem;
+
+    @include responsive(xs-sm) {
+      font-size: 2rem;
+    }
+
+    @include responsive(xs) {
+      font-size: 1.5rem;
+    }
+  }
+
+}
+
+.single-rentals {
+  section.hero {
+    .description-box {
+      max-width: 100%;
+
+      ul:not(.fullwidth-list) {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 730px;
+        margin-left: -1rem;
+        margin-right: -1rem;
+
+        li {
+          padding-left: 1rem;
+          padding-right: 1rem;
+          flex: 0 0 auto;
+          width: 50%;
+
+          @include responsive(mobile) {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
