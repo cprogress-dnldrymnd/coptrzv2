@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="author" content="">
 	<meta name="format-detection" content="telephone=no">
-	<?php if (!is_404()) { ?>
+	<?php if (!is_404() && !is_search()) { ?>
 		<link rel="canonical" href="<?= canonical() ?>" />
 	<?php } ?>
 	<title>
