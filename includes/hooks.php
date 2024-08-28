@@ -485,3 +485,5 @@ function remove_private_prefix($title)
     return $title;
 }
 add_filter('the_title', 'remove_private_prefix');
+
+add_filter( 'user_can_richedit' , '__return_false', 50 );
