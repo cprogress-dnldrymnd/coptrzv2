@@ -723,3 +723,4 @@ add_shortcode('drone_servicing', array($Shortcodes, 'drone_servicing'));
 add_shortcode('three_year_servicing_plans', array($Shortcodes, 'three_year_servicing_plans'));
 add_shortcode('remote_support', array($Shortcodes, 'remote_support'));
 add_shortcode('post_title', array($Shortcodes, 'post_title'));
+add_shortcode('permalink', array($Shortcodes, 'permalink'));
