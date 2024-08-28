@@ -1,12 +1,11 @@
 <?php
-/*
 function action_module_content()
 {
     // Check if a post was updated (add your specific conditions here)
     if (did_action('post_updated')) {
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-        if (get_post_type() == 'productcategorypages') {
+        if (get_post_type() == 'page') {
             $post_content = '<!-- wp:html -->';
 
             if (_is_module()) {
@@ -26,6 +25,7 @@ function action_module_content()
             wp_update_post($my_post);
         }
 
+        /*
         if (get_post_type() == 'product') {
 
             $single_product_content = ___hero_modules();
@@ -35,11 +35,11 @@ function action_module_content()
 
             update_post_meta(get_the_ID(), '_single_product_content', $single_product_content);
             update_post_meta(get_the_ID(), '_single_product_content_after', $single_product_content_after);
-        }
+        }*/
     }
 }
 add_action('shutdown', 'action_module_content');
-*/
+
 
 function _date_format($date_input, $include_year = false)
 {
