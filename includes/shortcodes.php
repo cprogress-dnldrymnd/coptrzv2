@@ -702,7 +702,7 @@ class Shortcodes
     }
 
     function capabilities()
-    {   
+    {
         $html = '';
         $related_products_heading = get__post_meta('related_products_heading');
         $related_products = get__post_meta('related_products');
@@ -726,7 +726,39 @@ class Shortcodes
             );
             $html .= do_shortcode(__related_posts($related_casestudies, $data, $related_casestudies_heading, 'Case-Studies'));
         }
-        return  $html;
+        return $html;
+    }
+
+    function industries()
+    {
+        $related_guides_heading = get__post_meta('related_guides_heading');
+        $related_guides = get__post_meta('related_guides');
+        $related_casestudies_heading = get__post_meta('related_casestudies_heading');
+        $related_casestudies = get__post_meta('related_casestudies');
+        $html = '';
+        if ($related_guides) {
+            $data = array(
+                'col'         => false,
+                'featured'    => false,
+                'taxonomy'    => 'guides_category',
+                'style'       => 'style-1',
+                'button_text' => 'Read Guide',
+                'elements'    => array('image', 'category', 'title', 'excerpt', 'button'),
+            );
+            $html .= do_shortcode(__related_posts($related_guides, $data, $related_guides_heading, 'Case-Studies'));
+        }
+
+        if ($related_casestudies) {
+            $data = array(
+                'col'      => false,
+                'featured' => false,
+                'taxonomy' => 'casestudies_category',
+                'style'    => 'style-1',
+                'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
+            );
+            $html .= do_shortcode(__related_posts($related_casestudies, $data, $related_casestudies_heading, 'Case-Studies'));
+        }
+        return $html;
     }
 }
 $Shortcodes = new Shortcodes;
@@ -753,3 +785,4 @@ add_shortcode('remote_support', array($Shortcodes, 'remote_support'));
 add_shortcode('post_title', array($Shortcodes, 'post_title'));
 add_shortcode('permalink', array($Shortcodes, 'permalink'));
 add_shortcode('capabilities', array($Shortcodes, 'capabilities'));
+add_shortcode('industries', array($Shortcodes, 'industries'));
