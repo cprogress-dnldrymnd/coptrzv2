@@ -215,7 +215,7 @@ $archive_data = $data;
                         if ($key == 'events_') {
                             $data['additional_content'] = _events_additional_content(get_the_ID());
                         }
-                        echo __post_box($data);
+                        echo do_shortcode(__post_box($data));
                     }
                     ?>
                 </div>
