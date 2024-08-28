@@ -7,7 +7,7 @@ $related_casestudies = get__post_meta('related_casestudies');
 
 
 echo ___hero_modules();
-echo do_shortcode(___sections('sections', get_the_ID()));
+the_content();
 
 if ($related_guides) {
     $data = array(
