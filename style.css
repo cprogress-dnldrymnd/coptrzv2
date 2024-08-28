@@ -12332,6 +12332,9 @@ hr {
   margin-top: 3rem;
   margin-bottom: 3rem;
   font-weight: 600; }
+.description-box h4, .description-box .h4 {
+  margin-bottom: 2rem;
+  margin-top: 2rem; }
 
 @keyframes spin {
   from {

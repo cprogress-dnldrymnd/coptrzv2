@@ -161,10 +161,11 @@ function action_admin_head()
 ?>
     <style>
         <?php
+        /*
         if (_is_module() || get_post_type() == 'producttaxonomypages' || get_post_type() == 'layouts') {
             echo '.wp-block-post-content { display: none !important }';
             echo '.edit-post-header__toolbar, .editor-preview-dropdown__toggle, button[aria-controls="tabs-0-edit-post/block-view"] { display: none !important; }';
-        }
+        }*/
 
         ?>.column-wpseo-focuskw,
         .column-wpseo-metadesc,
