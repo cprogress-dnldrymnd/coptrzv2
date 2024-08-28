@@ -2372,7 +2372,7 @@ function ____columns_modules($items, $id, $html = '')
                     $id = $item['form'][0]['id'];
                     $style = $item['style'];
                     $html .= "<div class='form-box $style'>";
-                    $html .= do_shortcode("[contact-form-7 id='$id']");
+                    $html .= "[contact-form-7 id='$id']";
                     $html .= "</div>";
                     break;
                 case 'divider':
