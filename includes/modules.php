@@ -6,7 +6,7 @@ function action_module_content()
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
             return;
-        if (get_post_type() == 'page') {
+        if (get_post_type() == 'page' || get_post_type() == 'guides') {
             if (_is_module()) {
 
                 $post_content = '<!-- wp:html -->';
