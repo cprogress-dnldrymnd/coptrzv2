@@ -8,10 +8,13 @@ function action_module_content()
             return;
         if (get_post_type() == 'page') {
             $post_content = '<!-- wp:html -->';
+            $post_content .= ___hero_modules();
 
             if (_is_module()) {
-                $post_content .= ___hero_modules();
                 $post_content .= ___sections();
+            }
+            else {
+                $post_content .= get_the_content();
             }
 
 
