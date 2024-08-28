@@ -1,18 +1,4 @@
 <?php
-function action_module_content()
-{
-    // Check if a post was updated (add your specific conditions here)
-    if (did_action('post_updated')) {
-        // Check if this is an autosave
-        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-
-        if (get_post_type() == 'producttaxonomypages') {
-            $product_term_id = get__post_meta('product_tax')[0]['id'];
-            update_post_meta(get_the_ID(), '_product_term_id', $product_term_id);
-        }
-    }
-}
-add_action('shutdown', 'action_module_content');
 
 remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
 
