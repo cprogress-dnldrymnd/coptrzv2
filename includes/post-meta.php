@@ -13,7 +13,7 @@ use Carbon_Fields\Field;
 
 function __latest_from_coptrz_fields()
 {
-    return  array(
+    return array(
         Field::make('complex', 'latest_from_coptrz')
             ->add_fields(array(
                 Field::make('text', 'label', __('Label'))->set_classes('inline-field'),
@@ -22,10 +22,10 @@ function __latest_from_coptrz_fields()
                     ->set_options(
                         array(
                             'featured-image' => 'Featured Image',
-                            'bg-primary'      => 'Background Primary',
-                            'bg-secondary'      => 'Background Secondary',
+                            'bg-primary'     => 'Background Primary',
+                            'bg-secondary'   => 'Background Secondary',
                             'bg-accent'      => 'Background Accent',
-                            'bg-white' => 'Background White',
+                            'bg-white'       => 'Background White',
                         )
                     ),
                 Field::make('checkbox', 'is_new', __('Is New'))->set_classes('inline-field'),
@@ -179,15 +179,15 @@ function __header_fields()
         Field::make('select', 'header_button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
             ->set_options(
                 array(
-                    ''          => 'Select Button Type',
-                    'page'      => 'Page',
-                    'product'      => 'Product',
+                    ''            => 'Select Button Type',
+                    'page'        => 'Page',
+                    'product'     => 'Product',
                     'guides'      => 'Guides',
-                    'casestudies'      => 'Case Studies',
-                    'post'      => 'Post',
-                    'industries' => 'Industry',
-                    'popups'    => 'Popup',
-                    'custom'     => 'Custom',
+                    'casestudies' => 'Case Studies',
+                    'post'        => 'Post',
+                    'industries'  => 'Industry',
+                    'popups'      => 'Popup',
+                    'custom'      => 'Custom',
                 )
             ),
         Field::make('text', 'header_button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
@@ -215,18 +215,18 @@ function __header_fields()
         Field::make('select', 'header_button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
             ->set_options(
                 array(
-                    'button-accent'      => 'Accent',
-                    'button-primary'      => 'Primary',
+                    'button-accent'    => 'Accent',
+                    'button-primary'   => 'Primary',
                     'button-secondary' => 'Secondary',
-                    'button-white' => 'White',
-                    'button-bordered'    => 'Bordered',
+                    'button-white'     => 'White',
+                    'button-bordered'  => 'Bordered',
                 )
             ),
         Field::make('select', 'header_button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
             ->set_options(
                 array(
-                    'target="_self"'      => 'Default',
-                    'target="_blank"'      => 'New Tab',
+                    'target="_self"'  => 'Default',
+                    'target="_blank"' => 'New Tab',
                 )
             ),
 
@@ -284,13 +284,13 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'self-hosted' => 'Self Hosted',
-                        'youtube' => 'Youtube',
+                        'youtube'     => 'Youtube',
                     )
                 ),
             Field::make('select', 'post_archive_hero_height', __('Height'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
-                        '' => 'Default',
+                        ''           => 'Default',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -298,8 +298,8 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'text-center' => 'Default/Center',
-                        'text-start' => 'Left',
-                        'text-end' => 'Right',
+                        'text-start'  => 'Left',
+                        'text-end'    => 'Right',
                     )
                 ),
             Field::make('file', 'post_archive_hero_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
@@ -331,15 +331,15 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                ''          => 'Select Button Type',
-                                'page'      => 'Page',
-                                'product'      => 'Product',
+                                ''            => 'Select Button Type',
+                                'page'        => 'Page',
+                                'product'     => 'Product',
                                 'guides'      => 'Guides',
-                                'casestudies'      => 'Case Studies',
-                                'post'      => 'Post',
-                                'industries' => 'Industry',
-                                'popups'    => 'Popup',
-                                'custom'     => 'Custom',
+                                'casestudies' => 'Case Studies',
+                                'post'        => 'Post',
+                                'industries'  => 'Industry',
+                                'popups'      => 'Popup',
+                                'custom'      => 'Custom',
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
@@ -367,18 +367,18 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'button-accent'      => 'Accent',
-                                'button-primary'      => 'Primary',
+                                'button-accent'    => 'Accent',
+                                'button-primary'   => 'Primary',
                                 'button-secondary' => 'Secondary',
-                                'button-white' => 'White',
-                                'button-bordered'    => 'Bordered',
+                                'button-white'     => 'White',
+                                'button-bordered'  => 'Bordered',
                             )
                         ),
                     Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'target="_self"'      => 'Default',
-                                'target="_blank"'      => 'New Tab',
+                                'target="_self"'  => 'Default',
+                                'target="_blank"' => 'New Tab',
                             )
                         ),
                 ))
@@ -406,13 +406,13 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'self-hosted' => 'Self Hosted',
-                        'youtube' => 'Youtube',
+                        'youtube'     => 'Youtube',
                     )
                 ),
             Field::make('select', 'events_archive_hero_height', __('Height'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
-                        '' => 'Default',
+                        ''           => 'Default',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -420,8 +420,8 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'text-center' => 'Default/Center',
-                        'text-start' => 'Left',
-                        'text-end' => 'Right',
+                        'text-start'  => 'Left',
+                        'text-end'    => 'Right',
                     )
                 ),
             Field::make('file', 'events_archive_hero_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
@@ -453,15 +453,15 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                ''          => 'Select Button Type',
-                                'page'      => 'Page',
-                                'product'      => 'Product',
+                                ''            => 'Select Button Type',
+                                'page'        => 'Page',
+                                'product'     => 'Product',
                                 'guides'      => 'Guides',
-                                'casestudies'      => 'Case Studies',
-                                'post'      => 'Post',
-                                'industries' => 'Industry',
-                                'popups'    => 'Popup',
-                                'custom'     => 'Custom',
+                                'casestudies' => 'Case Studies',
+                                'post'        => 'Post',
+                                'industries'  => 'Industry',
+                                'popups'      => 'Popup',
+                                'custom'      => 'Custom',
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
@@ -489,18 +489,18 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'button-accent'      => 'Accent',
-                                'button-primary'      => 'Primary',
+                                'button-accent'    => 'Accent',
+                                'button-primary'   => 'Primary',
                                 'button-secondary' => 'Secondary',
-                                'button-white' => 'White',
-                                'button-bordered'    => 'Bordered',
+                                'button-white'     => 'White',
+                                'button-bordered'  => 'Bordered',
                             )
                         ),
                     Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'target="_self"'      => 'Default',
-                                'target="_blank"'      => 'New Tab',
+                                'target="_self"'  => 'Default',
+                                'target="_blank"' => 'New Tab',
                             )
                         ),
                 ))
@@ -517,13 +517,13 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'self-hosted' => 'Self Hosted',
-                        'youtube' => 'Youtube',
+                        'youtube'     => 'Youtube',
                     )
                 ),
             Field::make('select', 'capabilities_archive_hero_height', __('Height'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
-                        '' => 'Default',
+                        ''           => 'Default',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -531,8 +531,8 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'text-center' => 'Default/Center',
-                        'text-start' => 'Left',
-                        'text-end' => 'Right',
+                        'text-start'  => 'Left',
+                        'text-end'    => 'Right',
                     )
                 ),
             Field::make('file', 'capabilities_archive_hero_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
@@ -564,15 +564,15 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                ''          => 'Select Button Type',
-                                'page'      => 'Page',
-                                'product'      => 'Product',
+                                ''            => 'Select Button Type',
+                                'page'        => 'Page',
+                                'product'     => 'Product',
                                 'guides'      => 'Guides',
-                                'casestudies'      => 'Case Studies',
-                                'post'      => 'Post',
-                                'industries' => 'Industry',
-                                'popups'    => 'Popup',
-                                'custom'     => 'Custom',
+                                'casestudies' => 'Case Studies',
+                                'post'        => 'Post',
+                                'industries'  => 'Industry',
+                                'popups'      => 'Popup',
+                                'custom'      => 'Custom',
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
@@ -600,18 +600,18 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'button-accent'      => 'Accent',
-                                'button-primary'      => 'Primary',
+                                'button-accent'    => 'Accent',
+                                'button-primary'   => 'Primary',
                                 'button-secondary' => 'Secondary',
-                                'button-white' => 'White',
-                                'button-bordered'    => 'Bordered',
+                                'button-white'     => 'White',
+                                'button-bordered'  => 'Bordered',
                             )
                         ),
                     Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'target="_self"'      => 'Default',
-                                'target="_blank"'      => 'New Tab',
+                                'target="_self"'  => 'Default',
+                                'target="_blank"' => 'New Tab',
                             )
                         ),
                 ))
@@ -632,13 +632,13 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'self-hosted' => 'Self Hosted',
-                        'youtube' => 'Youtube',
+                        'youtube'     => 'Youtube',
                     )
                 ),
             Field::make('select', 'industries_archive_hero_height', __('Height'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
-                        '' => 'Default',
+                        ''           => 'Default',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -646,8 +646,8 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'text-center' => 'Default/Center',
-                        'text-start' => 'Left',
-                        'text-end' => 'Right',
+                        'text-start'  => 'Left',
+                        'text-end'    => 'Right',
                     )
                 ),
             Field::make('file', 'industries_archive_hero_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
@@ -679,15 +679,15 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                ''          => 'Select Button Type',
-                                'page'      => 'Page',
-                                'product'      => 'Product',
+                                ''            => 'Select Button Type',
+                                'page'        => 'Page',
+                                'product'     => 'Product',
                                 'guides'      => 'Guides',
-                                'casestudies'      => 'Case Studies',
-                                'post'      => 'Post',
-                                'industries' => 'Industry',
-                                'popups'    => 'Popup',
-                                'custom'     => 'Custom',
+                                'casestudies' => 'Case Studies',
+                                'post'        => 'Post',
+                                'industries'  => 'Industry',
+                                'popups'      => 'Popup',
+                                'custom'      => 'Custom',
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
@@ -715,18 +715,18 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'button-accent'      => 'Accent',
-                                'button-primary'      => 'Primary',
+                                'button-accent'    => 'Accent',
+                                'button-primary'   => 'Primary',
                                 'button-secondary' => 'Secondary',
-                                'button-white' => 'White',
-                                'button-bordered'    => 'Bordered',
+                                'button-white'     => 'White',
+                                'button-bordered'  => 'Bordered',
                             )
                         ),
                     Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'target="_self"'      => 'Default',
-                                'target="_blank"'      => 'New Tab',
+                                'target="_self"'  => 'Default',
+                                'target="_blank"' => 'New Tab',
                             )
                         ),
                 ))
@@ -745,13 +745,13 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'self-hosted' => 'Self Hosted',
-                        'youtube' => 'Youtube',
+                        'youtube'     => 'Youtube',
                     )
                 ),
             Field::make('select', 'casestudies_archive_hero_height', __('Height'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
-                        '' => 'Default',
+                        ''           => 'Default',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -759,8 +759,8 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'text-center' => 'Default/Center',
-                        'text-start' => 'Left',
-                        'text-end' => 'Right',
+                        'text-start'  => 'Left',
+                        'text-end'    => 'Right',
                     )
                 ),
             Field::make('file', 'casestudies_archive_hero_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
@@ -792,15 +792,15 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                ''          => 'Select Button Type',
-                                'page'      => 'Page',
-                                'product'      => 'Product',
+                                ''            => 'Select Button Type',
+                                'page'        => 'Page',
+                                'product'     => 'Product',
                                 'guides'      => 'Guides',
-                                'casestudies'      => 'Case Studies',
-                                'post'      => 'Post',
-                                'industries' => 'Industry',
-                                'popups'    => 'Popup',
-                                'custom'     => 'Custom',
+                                'casestudies' => 'Case Studies',
+                                'post'        => 'Post',
+                                'industries'  => 'Industry',
+                                'popups'      => 'Popup',
+                                'custom'      => 'Custom',
                             )
                         ),
                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
@@ -828,18 +828,18 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'button-accent'      => 'Accent',
-                                'button-primary'      => 'Primary',
+                                'button-accent'    => 'Accent',
+                                'button-primary'   => 'Primary',
                                 'button-secondary' => 'Secondary',
-                                'button-white' => 'White',
-                                'button-bordered'    => 'Bordered',
+                                'button-white'     => 'White',
+                                'button-bordered'  => 'Bordered',
                             )
                         ),
                     Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'target="_self"'      => 'Default',
-                                'target="_blank"'      => 'New Tab',
+                                'target="_self"'  => 'Default',
+                                'target="_blank"' => 'New Tab',
                             )
                         ),
                 ))
@@ -867,13 +867,13 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'self-hosted' => 'Self Hosted',
-                        'youtube' => 'Youtube',
+                        'youtube'     => 'Youtube',
                     )
                 ),
             Field::make('select', 'guides_archive_hero_height', __('Height'))->set_classes('inline-field inline-field-wide-label')
                 ->set_options(
                     array(
-                        '' => 'Default',
+                        ''           => 'Default',
                         'small-hero' => 'Small',
                     )
                 ),
@@ -881,8 +881,8 @@ Container::make('theme_options', __('Archives Settings'))
                 ->set_options(
                     array(
                         'text-center' => 'Default/Center',
-                        'text-start' => 'Left',
-                        'text-end' => 'Right',
+                        'text-start'  => 'Left',
+                        'text-end'    => 'Right',
                     )
                 ),
             Field::make('file', 'guides_archive_hero_background', __('Background'))->set_classes('inline-field inline-field-wide-label')->set_type(array('video', 'image'))
@@ -914,14 +914,14 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                ''          => 'Select Button Type',
-                                'page'      => 'Page',
-                                'product'      => 'Product',
-                                'guides'      => 'Guides',
-                                'guides'      => 'Case Studies',
-                                'post'      => 'Post',
+                                ''           => 'Select Button Type',
+                                'page'       => 'Page',
+                                'product'    => 'Product',
+                                'guides'     => 'Guides',
+                                'guides'     => 'Case Studies',
+                                'post'       => 'Post',
                                 'industries' => 'Industry',
-                                'popups'    => 'Popup',
+                                'popups'     => 'Popup',
                                 'custom'     => 'Custom',
                             )
                         ),
@@ -950,18 +950,18 @@ Container::make('theme_options', __('Archives Settings'))
                     Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'button-accent'      => 'Accent',
-                                'button-primary'      => 'Primary',
+                                'button-accent'    => 'Accent',
+                                'button-primary'   => 'Primary',
                                 'button-secondary' => 'Secondary',
-                                'button-white' => 'White',
-                                'button-bordered'    => 'Bordered',
+                                'button-white'     => 'White',
+                                'button-bordered'  => 'Bordered',
                             )
                         ),
                     Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
-                                'target="_self"'      => 'Default',
-                                'target="_blank"'      => 'New Tab',
+                                'target="_self"'  => 'Default',
+                                'target="_blank"' => 'New Tab',
                             )
                         ),
                 ))
@@ -999,23 +999,23 @@ function __hero_fields()
             ->set_options(
                 array(
                     'self-hosted' => 'Self Hosted',
-                    'youtube' => 'Youtube',
+                    'youtube'     => 'Youtube',
                 )
             ),
         Field::make('select', 'hero_height', __('Height'))->set_classes('inline-field')
             ->set_options(
                 array(
-                    '' => 'Default',
+                    ''           => 'Default',
                     'small-hero' => 'Small',
                 )
             ),
         Field::make('select', 'hero_alignment', __('Aligment'))->set_classes('inline-field')
             ->set_options(
                 array(
-                    '' => 'Default',
+                    ''            => 'Default',
                     'text-center' => 'Center',
-                    'text-start' => 'Left',
-                    'text-end' => 'Right',
+                    'text-start'  => 'Left',
+                    'text-end'    => 'Right',
                 )
             ),
         Field::make('file', 'hero_background', __('Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
@@ -1054,15 +1054,15 @@ function __hero_button_fields()
                 Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field')
                     ->set_options(
                         array(
-                            ''          => 'Select Button Type',
-                            'page'      => 'Page',
-                            'product'      => 'Product',
+                            ''            => 'Select Button Type',
+                            'page'        => 'Page',
+                            'product'     => 'Product',
                             'guides'      => 'Guides',
-                            'casestudies'      => 'Case Studies',
-                            'post'      => 'Post',
-                            'industries' => 'Industry',
-                            'popups'    => 'Popup',
-                            'custom'     => 'Custom',
+                            'casestudies' => 'Case Studies',
+                            'post'        => 'Post',
+                            'industries'  => 'Industry',
+                            'popups'      => 'Popup',
+                            'custom'      => 'Custom',
                         )
                     ),
                 Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
@@ -1090,18 +1090,18 @@ function __hero_button_fields()
                 Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field')
                     ->set_options(
                         array(
-                            'button-accent'      => 'Accent',
-                            'button-primary'      => 'Primary',
+                            'button-accent'    => 'Accent',
+                            'button-primary'   => 'Primary',
                             'button-secondary' => 'Secondary',
-                            'button-white' => 'White',
-                            'button-bordered'    => 'Bordered',
+                            'button-white'     => 'White',
+                            'button-bordered'  => 'Bordered',
                         )
                     ),
                 Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field')
                     ->set_options(
                         array(
-                            'target="_self"'      => 'Default',
-                            'target="_blank"'      => 'New Tab',
+                            'target="_self"'  => 'Default',
+                            'target="_blank"' => 'New Tab',
                         )
                     ),
             ))
@@ -1118,8 +1118,8 @@ function __hero_form_fields()
         Field::make('select', 'hero_form_redirect_type', 'Form Redirect Type')->set_classes('inline-field')
             ->set_options(
                 array(
-                    ''   => 'None',
-                    'pdf'   => 'PDF File',
+                    ''       => 'None',
+                    'pdf'    => 'PDF File',
                     'custom' => 'Custom URL',
                 )
             ),
@@ -1145,7 +1145,7 @@ function __hero_form_fields()
         Field::make('select', 'hero_form_style', 'Style')->set_classes('inline-field')
             ->set_options(
                 array(
-                    ''   => 'Default',
+                    ''        => 'Default',
                     'style-2' => 'Style 2',
                 )
             ),
@@ -1228,7 +1228,7 @@ function __section_fields($name = 'sections')
                                 )
                             )
                     ))
-                    ->add_fields('global_widgets',  array(
+                    ->add_fields('global_widgets', array(
                         Field::make('complex', 'global_widgets')
                             ->add_fields('case_study_slider', array(
                                 Field::make('html', 'html')->set_html('<h3>This will display featured case study slider section </h3>'),
@@ -1255,12 +1255,12 @@ function __section_fields($name = 'sections')
                                 Field::make('html', 'html')->set_html('<h3>This will display testimonial slider. </h3>'),
                             ))
                     ))
-                    ->add_fields('global_post_box_selection',  array(
+                    ->add_fields('global_post_box_selection', array(
                         Field::make('select', 'source', __('Source'))
                             ->set_options(
                                 array(
-                                    'manually'      => 'Select Manually',
-                                    'category'      => 'Select by Category',
+                                    'manually' => 'Select Manually',
+                                    'category' => 'Select by Category',
                                 )
                             ),
                         Field::make('association', 'post', 'Select Items')
@@ -1284,7 +1284,7 @@ function __section_fields($name = 'sections')
                             ->set_types(
                                 array(
                                     array(
-                                        'type'      => 'term',
+                                        'type'     => 'term',
                                         'taxonomy' => 'global_post_boxes_category',
                                     )
                                 )
@@ -1292,8 +1292,8 @@ function __section_fields($name = 'sections')
                             ->set_conditional_logic(
                                 array(
                                     array(
-                                        'field' => 'source',
-                                        'value' => 'category',
+                                        'field'   => 'source',
+                                        'value'   => 'category',
                                         'comapre' => '='
                                     )
                                 )
@@ -1301,7 +1301,7 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'column_width', __('Column Width Desktop'))
                             ->set_options(
                                 array(
-                                    ''     => 'Default',
+                                    ''          => 'Default',
                                     'col-12'    => '100.00%',
                                     'col-lg-11' => '91.67%',
                                     'col-lg-10' => '83.33%',
@@ -1312,7 +1312,7 @@ function __section_fields($name = 'sections')
                                     'col-lg-5'  => '41.67%',
                                     'col-lg-4'  => '33.33%',
                                     'col-lg-3'  => '25.00%',
-                                    'col-lg-20'  => '20.00%',
+                                    'col-lg-20' => '20.00%',
                                     'col-lg-2'  => '16.67%',
                                     'col-lg-1'  => '08.33%',
                                 )
@@ -1320,8 +1320,8 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
                             ->set_options(
                                 array(
-                                    ''     => 'Default',
-                                    'col-md-12'    => '100.00%',
+                                    ''          => 'Default',
+                                    'col-md-12' => '100.00%',
                                     'col-md-11' => '91.67%',
                                     'col-md-10' => '83.33%',
                                     'col-md-9'  => '75.00%',
@@ -1331,7 +1331,7 @@ function __section_fields($name = 'sections')
                                     'col-md-5'  => '41.67%',
                                     'col-md-4'  => '33.33%',
                                     'col-md-3'  => '25.00%',
-                                    'col-md-20'  => '20.00%',
+                                    'col-md-20' => '20.00%',
                                     'col-md-2'  => '16.67%',
                                     'col-md-1'  => '08.33%',
                                 )
@@ -1339,7 +1339,7 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
                             ->set_options(
                                 array(
-                                    ''     => 'Default',
+                                    ''       => 'Default',
                                     'col-12' => '100%',
                                     'col-11' => '91.67%',
                                     'col-10' => '83.33%',
@@ -1355,25 +1355,25 @@ function __section_fields($name = 'sections')
                                 )
                             ),
                     ))
-                    ->add_fields('related_post',  array(
+                    ->add_fields('related_post', array(
                         Field::make('select', 'source', __('Source'))
                             ->set_options(
                                 array(
-                                    ''      => 'Default Query',
-                                    'post_type'      => 'Post Type',
+                                    ''          => 'Default Query',
+                                    'post_type' => 'Post Type',
                                 )
                             ),
                         Field::make('select', 'style', __('Style'))
                             ->set_options(
                                 array(
-                                    ''      => 'Default',
-                                    'info-above-image'      => 'Info Above Image',
+                                    ''                 => 'Default',
+                                    'info-above-image' => 'Info Above Image',
                                 )
                             ),
                         Field::make('select', 'column_width', __('Column Width Desktop'))
                             ->set_options(
                                 array(
-                                    'col-lg'     => 'Default',
+                                    'col-lg'    => 'Default',
                                     'col-12'    => '100.00%',
                                     'col-lg-11' => '91.67%',
                                     'col-lg-10' => '83.33%',
@@ -1391,8 +1391,8 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
                             ->set_options(
                                 array(
-                                    ''     => 'Default',
-                                    'col-md-12'    => '100.00%',
+                                    ''          => 'Default',
+                                    'col-md-12' => '100.00%',
                                     'col-md-11' => '91.67%',
                                     'col-md-10' => '83.33%',
                                     'col-md-9'  => '75.00%',
@@ -1409,7 +1409,7 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
                             ->set_options(
                                 array(
-                                    ''     => 'Default',
+                                    ''       => 'Default',
                                     'col-12' => '100%',
                                     'col-11' => '91.67%',
                                     'col-10' => '83.33%',
@@ -1426,22 +1426,22 @@ function __section_fields($name = 'sections')
                             ),
                         Field::make('checkbox', 'hide_excerpt', __('Hide Excerpt')),
                         Field::make('complex', 'related_post', 'Related Posts')
-                            ->add_fields('related_guides',  array(
+                            ->add_fields('related_guides', array(
                                 Field::make('hidden', 'post_type')->set_default_value('guides')->set_classes('d-none'),
                                 Field::make('hidden', 'field_key')->set_default_value('related_guides')->set_classes('d-none'),
                                 Field::make('html', 'html')->set_html('<h3>This will display related guides. </h3>'),
                             ))
-                            ->add_fields('related_casestudies',  array(
+                            ->add_fields('related_casestudies', array(
                                 Field::make('hidden', 'post_type')->set_default_value('casestudies')->set_classes('d-none'),
                                 Field::make('hidden', 'field_key')->set_default_value('related_casestudies')->set_classes('d-none'),
                                 Field::make('html', 'html')->set_html('<h3>This will display related case studies </h3>'),
                             ))
-                            ->add_fields('related_post',  array(
+                            ->add_fields('related_post', array(
                                 Field::make('hidden', 'post_type')->set_default_value('post')->set_classes('d-none'),
                                 Field::make('hidden', 'field_key')->set_default_value('related_post')->set_classes('d-none'),
                                 Field::make('html', 'html')->set_html('<h3>This will display related post </h3>'),
                             ))
-                            ->add_fields('related_industries',  array(
+                            ->add_fields('related_industries', array(
                                 Field::make('hidden', 'post_type')->set_default_value('industries')->set_classes('d-none'),
                                 Field::make('hidden', 'field_key')->set_default_value('related_industries')->set_classes('d-none'),
                                 Field::make('html', 'html')->set_html('<h3>This will display related industries </h3>'),
@@ -1517,10 +1517,10 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'size', __('Heading Size'))->set_width(20)
                             ->set_options(
                                 array(
-                                    '' => 'Default',
-                                    'large-heading' => 'Large Heading',
+                                    ''               => 'Default',
+                                    'large-heading'  => 'Large Heading',
                                     'medium-heading' => 'Medium Heading',
-                                    'small-heading' => 'Small Heading',
+                                    'small-heading'  => 'Small Heading',
                                 )
                             )
                             ->set_conditional_logic(
@@ -1534,10 +1534,10 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'text_align', __('Text Align'))->set_width(20)
                             ->set_options(
                                 array(
-                                    '' => 'Default',
-                                    'text-start' => 'Text Left',
-                                    'text-center' => 'Text Center',
-                                    'text-end' => 'Text Right',
+                                    ''             => 'Default',
+                                    'text-start'   => 'Text Left',
+                                    'text-center'  => 'Text Center',
+                                    'text-end'     => 'Text Right',
                                     'text-justify' => 'Text Justify',
                                 )
                             )
@@ -1552,13 +1552,13 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'text_color', 'Text Color')->set_width(20)
                             ->set_options(
                                 array(
-                                    ''   => 'Default',
-                                    'text-primary'   => 'Primary',
-                                    'text-secondary' => 'Secondary',
-                                    'text-accent'    => 'Accent',
-                                    'text-white'     => 'White',
-                                    'text-light-gray'     => 'Light Gray',
-                                    'text-custom'    => 'Custom',
+                                    ''                => 'Default',
+                                    'text-primary'    => 'Primary',
+                                    'text-secondary'  => 'Secondary',
+                                    'text-accent'     => 'Accent',
+                                    'text-white'      => 'White',
+                                    'text-light-gray' => 'Light Gray',
+                                    'text-custom'     => 'Custom',
                                 )
                             )
                             ->set_conditional_logic(
@@ -1580,7 +1580,7 @@ function __section_fields($name = 'sections')
                             ),
                     ))
                     ->set_header_template('Heading: <%- heading %>')
-                    ->add_fields('description',  array(
+                    ->add_fields('description', array(
                         Field::make('html', 'html_4')->set_html('<label>Section Description Settings</label>')->set_classes('cb-label'),
                         Field::make('textarea', 'description', __('Description'))->set_width(80)->set_classes('editor-field'),
                         Field::make('html', 'activate_wysiwyg')->set_width(20)
@@ -1589,7 +1589,7 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'description_alignment', __('Description Alignment'))
                             ->set_options(
                                 array(
-                                    '' => 'Default/Left',
+                                    ''        => 'Default/Left',
                                     'ms-auto' => 'Right',
                                     'mx-auto' => 'Center',
                                 )
@@ -1597,10 +1597,10 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'description_size', __('Description Size'))->set_width(20)
                             ->set_options(
                                 array(
-                                    '' => 'Default',
-                                    'small-text' => 'Small Text',
+                                    ''            => 'Default',
+                                    'small-text'  => 'Small Text',
                                     'medium-text' => 'Medium Text',
-                                    'large-text' => 'Large Text',
+                                    'large-text'  => 'Large Text',
                                 )
                             )
                     ))
@@ -1612,9 +1612,9 @@ function __section_fields($name = 'sections')
                                 array(
                                     ''          => 'Default',
                                     'full'      => 'Full',
-                                    'large'      => 'Large',
-                                    'medium' => 'Medium',
-                                    'thumbnail'    => 'Thumbnail',
+                                    'large'     => 'Large',
+                                    'medium'    => 'Medium',
+                                    'thumbnail' => 'Thumbnail',
                                 )
                             ),
                         Field::make('checkbox', 'is_background_image', __('Is background image')),
@@ -1655,7 +1655,7 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'video_type', __('Background Type'))->set_classes('inline-field')
                                 ->set_options(
                                     array(
-                                        'youtube' => 'Youtube',
+                                        'youtube'     => 'Youtube',
                                         'self-hosted' => 'Self Hosted',
                                     )
                                 ),
@@ -1736,7 +1736,7 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'image_fit', __('Image Fit'))->set_width(50)
                             ->set_options(
                                 array(
-                                    '' => 'Cover',
+                                    ''        => 'Cover',
                                     'contain' => 'Contain',
                                 )
                             )
@@ -1761,38 +1761,38 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'horizontal_spacing', 'Horizontal Spacing')->set_width(20)
                             ->set_options(
                                 array(
-                                    ''     => 'Default',
-                                    'gx-6'  => 'Huge',
-                                    'gx-5'  => 'Extra Large',
-                                    'gx-4'  => 'Large',
-                                    'gx-3'  => 'Medium',
-                                    'gx-2'  => 'Small',
-                                    'gx-1'  => 'Extra Small',
-                                    'gx-20px'  => '20px',
-                                    'gx-0'  => 'None',
+                                    ''        => 'Default',
+                                    'gx-6'    => 'Huge',
+                                    'gx-5'    => 'Extra Large',
+                                    'gx-4'    => 'Large',
+                                    'gx-3'    => 'Medium',
+                                    'gx-2'    => 'Small',
+                                    'gx-1'    => 'Extra Small',
+                                    'gx-20px' => '20px',
+                                    'gx-0'    => 'None',
                                 )
                             ),
                         Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(20)
                             ->set_options(
                                 array(
-                                    ''     => 'Default',
-                                    'gy-6'  => 'Huge',
-                                    'gy-5'  => 'Extra Large',
-                                    'gy-4'  => 'Large',
-                                    'gy-3'  => 'Medium',
-                                    'gy-2'  => 'Small',
-                                    'gy-1'  => 'Extra Small',
-                                    'gy-20px'  => '20px',
-                                    'gy-0'  => 'None',
+                                    ''        => 'Default',
+                                    'gy-6'    => 'Huge',
+                                    'gy-5'    => 'Extra Large',
+                                    'gy-4'    => 'Large',
+                                    'gy-3'    => 'Medium',
+                                    'gy-2'    => 'Small',
+                                    'gy-1'    => 'Extra Small',
+                                    'gy-20px' => '20px',
+                                    'gy-0'    => 'None',
                                 )
                             ),
                         Field::make('select', 'align_items', 'Align Items')->set_width(20)
                             ->set_options(
                                 array(
-                                    ''               => 'Default',
+                                    ''                   => 'Default',
                                     'align-items-start'  => 'Start',
-                                    'align-items-center'  => 'Center',
-                                    'align-items-end'  => 'End',
+                                    'align-items-center' => 'Center',
+                                    'align-items-end'    => 'End',
                                 )
                             )
                             ->set_conditional_logic(
@@ -1806,11 +1806,11 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'justify_content', 'Justify Content')->set_width(20)
                             ->set_options(
                                 array(
-                                    ''                  => 'Default',
-                                    'justify-content-start'  => 'Start',
+                                    ''                        => 'Default',
+                                    'justify-content-start'   => 'Start',
                                     'justify-content-center'  => 'Center',
-                                    'justify-content-end'  => 'End',
-                                    'justify-content-between'  => 'Between',
+                                    'justify-content-end'     => 'End',
+                                    'justify-content-between' => 'Between',
                                 )
                             )
                             ->set_conditional_logic(
@@ -1824,9 +1824,9 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'mobile_styling', 'Mobile Styling')->set_width(20)
                             ->set_options(
                                 array(
-                                    ''                  => 'Default',
+                                    ''            => 'Default',
                                     'image_left'  => 'Image/Icon on Left',
-                                    'image_right'  => 'Image/Icon on Right',
+                                    'image_right' => 'Image/Icon on Right',
                                 )
                             ),
 
@@ -1855,7 +1855,7 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                     ->set_layout('tabbed-vertical')
-                                    ->add_fields('global_widgets',  array(
+                                    ->add_fields('global_widgets', array(
                                         Field::make('complex', 'global_widgets')
                                             ->add_fields('case_study_slider', array(
                                                 Field::make('html', 'html')->set_html('<h3>This will display featured case study slider section </h3>'),
@@ -1930,10 +1930,10 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'size', __('Heading Size'))
                                             ->set_options(
                                                 array(
-                                                    '' => 'Default',
-                                                    'large-heading' => 'Large Heading',
+                                                    ''               => 'Default',
+                                                    'large-heading'  => 'Large Heading',
                                                     'medium-heading' => 'Medium Heading',
-                                                    'small-heading' => 'Small Heading',
+                                                    'small-heading'  => 'Small Heading',
                                                 )
                                             )
                                             ->set_conditional_logic(
@@ -1947,10 +1947,10 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'text_align', __('Text Align'))
                                             ->set_options(
                                                 array(
-                                                    '' => 'Default',
-                                                    'text-start' => 'Text Left',
-                                                    'text-center' => 'Text Center',
-                                                    'text-end' => 'Text Right',
+                                                    ''             => 'Default',
+                                                    'text-start'   => 'Text Left',
+                                                    'text-center'  => 'Text Center',
+                                                    'text-end'     => 'Text Right',
                                                     'text-justify' => 'Text Justify',
                                                 )
                                             )
@@ -1965,13 +1965,13 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'text_color', 'Text Color')
                                             ->set_options(
                                                 array(
-                                                    ''   => 'Default',
-                                                    'text-primary'   => 'Primary',
-                                                    'text-secondary' => 'Secondary',
-                                                    'text-accent'    => 'Accent',
-                                                    'text-white'     => 'White',
-                                                    'text-light-gray'     => 'Light Gray',
-                                                    'text-custom'    => 'Custom',
+                                                    ''                => 'Default',
+                                                    'text-primary'    => 'Primary',
+                                                    'text-secondary'  => 'Secondary',
+                                                    'text-accent'     => 'Accent',
+                                                    'text-white'      => 'White',
+                                                    'text-light-gray' => 'Light Gray',
+                                                    'text-custom'     => 'Custom',
                                                 )
                                             )
                                             ->set_conditional_logic(
@@ -1993,7 +1993,7 @@ function __section_fields($name = 'sections')
                                             ),
                                     ))
                                     ->set_header_template('Heading: <%- heading %>')
-                                    ->add_fields('description',  array(
+                                    ->add_fields('description', array(
                                         Field::make('textarea', 'description', __('Description'))->set_width(80)->set_classes('editor-field'),
                                         Field::make('html', 'activate_wysiwyg')->set_width(20)
                                             ->set_html('<span class="button button-primary button-large wysiwyg-editor-trigger">Wysiwyg Editor</span>'),
@@ -2001,7 +2001,7 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'description_alignment', __('Description Alignment'))
                                             ->set_options(
                                                 array(
-                                                    '' => 'Default/Left',
+                                                    ''        => 'Default/Left',
                                                     'ms-auto' => 'Right',
                                                     'mx-auto' => 'Center',
                                                 )
@@ -2009,10 +2009,10 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'description_size', __('Description Size'))->set_width(20)
                                             ->set_options(
                                                 array(
-                                                    '' => 'Default',
-                                                    'small-text' => 'Small Text',
+                                                    ''            => 'Default',
+                                                    'small-text'  => 'Small Text',
                                                     'medium-text' => 'Medium Text',
-                                                    'large-text' => 'Large Text',
+                                                    'large-text'  => 'Large Text',
                                                 )
                                             )
 
@@ -2025,9 +2025,9 @@ function __section_fields($name = 'sections')
                                                 array(
                                                     ''          => 'Default',
                                                     'full'      => 'Full',
-                                                    'large'      => 'Large',
-                                                    'medium' => 'Medium',
-                                                    'thumbnail'    => 'Thumbnail',
+                                                    'large'     => 'Large',
+                                                    'medium'    => 'Medium',
+                                                    'thumbnail' => 'Thumbnail',
                                                 )
                                             ),
                                         Field::make('checkbox', 'is_background_image', __('Is background image')),
@@ -2068,7 +2068,7 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'video_type', __('Background Type'))->set_classes('inline-field')
                                                 ->set_options(
                                                     array(
-                                                        'youtube' => 'Youtube',
+                                                        'youtube'     => 'Youtube',
                                                         'self-hosted' => 'Self Hosted',
                                                     )
                                                 ),
@@ -2098,8 +2098,8 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'gallery_style', 'Gallery Style')
                                                 ->set_options(
                                                     array(
-                                                        'logo-slider'   => 'Logo Slider',
-                                                        'grid' => 'Grid',
+                                                        'logo-slider' => 'Logo Slider',
+                                                        'grid'        => 'Grid',
                                                     )
                                                 ),
                                             Field::make('media_gallery', 'gallery', __('Gallery')),
@@ -2111,10 +2111,10 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'buttons_alignment', 'Buttons Alignment')
                                                 ->set_options(
                                                     array(
-                                                        ''                => 'Default',
-                                                        'text-start'                => 'Left',
-                                                        'text-center'                => 'Center',
-                                                        'text-end'                => 'Right',
+                                                        ''            => 'Default',
+                                                        'text-start'  => 'Left',
+                                                        'text-center' => 'Center',
+                                                        'text-end'    => 'Right',
                                                     )
                                                 ),
                                             Field::make('complex', 'buttons', __('Buttons'))
@@ -2129,15 +2129,15 @@ function __section_fields($name = 'sections')
                                                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field')
                                                         ->set_options(
                                                             array(
-                                                                ''          => 'Select Button Type',
-                                                                'page'      => 'Page',
-                                                                'product'      => 'Product',
+                                                                ''            => 'Select Button Type',
+                                                                'page'        => 'Page',
+                                                                'product'     => 'Product',
                                                                 'guides'      => 'Guides',
-                                                                'casestudies'      => 'Case Studies',
-                                                                'post'      => 'Post',
-                                                                'industries' => 'Industry',
-                                                                'popups'    => 'Popup',
-                                                                'custom'     => 'Custom',
+                                                                'casestudies' => 'Case Studies',
+                                                                'post'        => 'Post',
+                                                                'industries'  => 'Industry',
+                                                                'popups'      => 'Popup',
+                                                                'custom'      => 'Custom',
                                                             )
                                                         ),
                                                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
@@ -2165,18 +2165,18 @@ function __section_fields($name = 'sections')
                                                     Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field')
                                                         ->set_options(
                                                             array(
-                                                                'button-accent'      => 'Accent',
-                                                                'button-primary'      => 'Primary',
+                                                                'button-accent'    => 'Accent',
+                                                                'button-primary'   => 'Primary',
                                                                 'button-secondary' => 'Secondary',
-                                                                'button-white' => 'White',
-                                                                'button-bordered'    => 'Bordered',
+                                                                'button-white'     => 'White',
+                                                                'button-bordered'  => 'Bordered',
                                                             )
                                                         ),
                                                     Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field')
                                                         ->set_options(
                                                             array(
-                                                                'target="_self"'      => 'Default',
-                                                                'target="_blank"'      => 'New Tab',
+                                                                'target="_self"'  => 'Default',
+                                                                'target="_blank"' => 'New Tab',
                                                             )
                                                         ),
                                                 ))
@@ -2189,13 +2189,13 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'icon_color', 'Text Color')
                                             ->set_options(
                                                 array(
-                                                    ''   => 'Default',
-                                                    'text-primary'   => 'Primary',
-                                                    'text-secondary' => 'Secondary',
-                                                    'text-accent'    => 'Accent',
-                                                    'text-white'     => 'White',
-                                                    'text-light-gray'     => 'Light Gray',
-                                                    'text-custom'    => 'Custom',
+                                                    ''                => 'Default',
+                                                    'text-primary'    => 'Primary',
+                                                    'text-secondary'  => 'Secondary',
+                                                    'text-accent'     => 'Accent',
+                                                    'text-white'      => 'White',
+                                                    'text-light-gray' => 'Light Gray',
+                                                    'text-custom'     => 'Custom',
                                                 )
                                             ),
                                         Field::make('color', 'icon_color_custom', __('Text Color'))
@@ -2220,9 +2220,9 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'accordion_source', __('Accordion Source'))
                                                 ->set_options(
                                                     array(
-                                                        ''      => 'Custom',
-                                                        'faqs'      => 'FAQs Select Manually',
-                                                        'faqs_category'      => 'FAQs by Category',
+                                                        ''              => 'Custom',
+                                                        'faqs'          => 'FAQs Select Manually',
+                                                        'faqs_category' => 'FAQs by Category',
                                                     )
                                                 ),
                                             Field::make('complex', 'accordion', __('Accordion'))
@@ -2239,8 +2239,8 @@ function __section_fields($name = 'sections')
                                                 ->set_conditional_logic(
                                                     array(
                                                         array(
-                                                            'field' => 'accordion_source',
-                                                            'value' => '',
+                                                            'field'   => 'accordion_source',
+                                                            'value'   => '',
                                                             'comapre' => '='
                                                         )
                                                     )
@@ -2257,8 +2257,8 @@ function __section_fields($name = 'sections')
                                                 ->set_conditional_logic(
                                                     array(
                                                         array(
-                                                            'field' => 'accordion_source',
-                                                            'value' => 'faqs',
+                                                            'field'   => 'accordion_source',
+                                                            'value'   => 'faqs',
                                                             'comapre' => '='
                                                         )
                                                     )
@@ -2267,7 +2267,7 @@ function __section_fields($name = 'sections')
                                                 ->set_types(
                                                     array(
                                                         array(
-                                                            'type'      => 'term',
+                                                            'type'     => 'term',
                                                             'taxonomy' => 'faqs_category',
                                                         )
                                                     )
@@ -2275,8 +2275,8 @@ function __section_fields($name = 'sections')
                                                 ->set_conditional_logic(
                                                     array(
                                                         array(
-                                                            'field' => 'accordion_source',
-                                                            'value' => 'faqs_category',
+                                                            'field'   => 'accordion_source',
+                                                            'value'   => 'faqs_category',
                                                             'comapre' => '='
                                                         )
                                                     )
@@ -2290,7 +2290,7 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'style', 'Style')
                                                 ->set_options(
                                                     array(
-                                                        ''   => 'Default',
+                                                        ''        => 'Default',
                                                         'style-2' => 'Style 2',
                                                     )
                                                 ),
@@ -2354,12 +2354,12 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'background_color', 'Background Color')
                                                             ->set_options(
                                                                 array(
-                                                                    'bg-primary'   => 'Primary',
-                                                                    'bg-secondary' => 'Secondary',
-                                                                    'bg-accent'    => 'Accent',
-                                                                    'bg-white'     => 'White',
-                                                                    'bg-light-gray'     => 'Light Gray',
-                                                                    'bg-custom'    => 'Custom',
+                                                                    'bg-primary'    => 'Primary',
+                                                                    'bg-secondary'  => 'Secondary',
+                                                                    'bg-accent'     => 'Accent',
+                                                                    'bg-white'      => 'White',
+                                                                    'bg-light-gray' => 'Light Gray',
+                                                                    'bg-custom'     => 'Custom',
                                                                 )
                                                             ),
                                                         Field::make('color', 'background_color_custom', __('Background Color'))
@@ -2379,12 +2379,12 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'text_color', 'Text Color')
                                                             ->set_options(
                                                                 array(
-                                                                    'text-primary'   => 'Primary',
-                                                                    'text-secondary' => 'Secondary',
-                                                                    'text-accent'    => 'Accent',
-                                                                    'text-white'     => 'White',
-                                                                    'text-light-gray'     => 'Light Gray',
-                                                                    'text-custom'    => 'Custom',
+                                                                    'text-primary'    => 'Primary',
+                                                                    'text-secondary'  => 'Secondary',
+                                                                    'text-accent'     => 'Accent',
+                                                                    'text-white'      => 'White',
+                                                                    'text-light-gray' => 'Light Gray',
+                                                                    'text-custom'     => 'Custom',
                                                                 )
                                                             ),
                                                         Field::make('color', 'text_color_custom', __('Text Color'))
@@ -2404,44 +2404,44 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'padding_top', 'Padding Top')
                                                             ->set_options(
                                                                 array(
-                                                                    ''                => 'No Padding',
-                                                                    'xl-padding-top'  => 'Extra Large',
-                                                                    'lg-padding-top'  => 'Large',
-                                                                    'md-padding-top'  => 'Medium',
-                                                                    'sm-padding-top'  => 'Small',
+                                                                    ''               => 'No Padding',
+                                                                    'xl-padding-top' => 'Extra Large',
+                                                                    'lg-padding-top' => 'Large',
+                                                                    'md-padding-top' => 'Medium',
+                                                                    'sm-padding-top' => 'Small',
                                                                     'xs-padding-top' => 'Extra Small',
                                                                 )
                                                             ),
                                                         Field::make('select', 'padding_bottom', 'Padding Bottom')
                                                             ->set_options(
                                                                 array(
-                                                                    ''                   => 'No Padding',
-                                                                    'xl-padding-bottom'  => 'Extra Large',
-                                                                    'lg-padding-bottom'  => 'Large',
-                                                                    'md-padding-bottom'  => 'Medium',
-                                                                    'sm-padding-bottom'  => 'Small',
+                                                                    ''                  => 'No Padding',
+                                                                    'xl-padding-bottom' => 'Extra Large',
+                                                                    'lg-padding-bottom' => 'Large',
+                                                                    'md-padding-bottom' => 'Medium',
+                                                                    'sm-padding-bottom' => 'Small',
                                                                     'xs-padding-bottom' => 'Extra Small',
                                                                 )
                                                             ),
                                                         Field::make('select', 'padding_left', 'Padding left')
                                                             ->set_options(
                                                                 array(
-                                                                    ''                 => 'No Padding',
-                                                                    'xl-padding-left'  => 'Extra Large',
-                                                                    'lg-padding-left'  => 'Large',
-                                                                    'md-padding-left'  => 'Medium',
-                                                                    'sm-padding-left'  => 'Small',
+                                                                    ''                => 'No Padding',
+                                                                    'xl-padding-left' => 'Extra Large',
+                                                                    'lg-padding-left' => 'Large',
+                                                                    'md-padding-left' => 'Medium',
+                                                                    'sm-padding-left' => 'Small',
                                                                     'xs-padding-left' => 'Extra Small',
                                                                 )
                                                             ),
                                                         Field::make('select', 'padding_right', 'Padding right')
                                                             ->set_options(
                                                                 array(
-                                                                    ''                  => 'No Padding',
-                                                                    'xl-padding-right'  => 'Extra Large',
-                                                                    'lg-padding-right'  => 'Large',
-                                                                    'md-padding-right'  => 'Medium',
-                                                                    'sm-padding-right'  => 'Small',
+                                                                    ''                 => 'No Padding',
+                                                                    'xl-padding-right' => 'Extra Large',
+                                                                    'lg-padding-right' => 'Large',
+                                                                    'md-padding-right' => 'Medium',
+                                                                    'sm-padding-right' => 'Small',
                                                                     'xs-padding-right' => 'Extra Small',
                                                                 )
                                                             ),
@@ -2454,44 +2454,44 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'margin_top', 'Margin Top')
                                                             ->set_options(
                                                                 array(
-                                                                    ''               => 'No margin',
-                                                                    'xl-margin-top'  => 'Extra Large',
-                                                                    'lg-margin-top'  => 'Large',
-                                                                    'md-margin-top'  => 'Medium',
-                                                                    'sm-margin-top'  => 'Small',
+                                                                    ''              => 'No margin',
+                                                                    'xl-margin-top' => 'Extra Large',
+                                                                    'lg-margin-top' => 'Large',
+                                                                    'md-margin-top' => 'Medium',
+                                                                    'sm-margin-top' => 'Small',
                                                                     'xs-margin-top' => 'Extra Small',
                                                                 )
                                                             ),
                                                         Field::make('select', 'margin_bottom', 'Margin Bottom')
                                                             ->set_options(
                                                                 array(
-                                                                    ''                  => 'No margin',
-                                                                    'xl-margin-bottom'  => 'Extra Large',
-                                                                    'lg-margin-bottom'  => 'Large',
-                                                                    'md-margin-bottom'  => 'Medium',
-                                                                    'sm-margin-bottom'  => 'Small',
+                                                                    ''                 => 'No margin',
+                                                                    'xl-margin-bottom' => 'Extra Large',
+                                                                    'lg-margin-bottom' => 'Large',
+                                                                    'md-margin-bottom' => 'Medium',
+                                                                    'sm-margin-bottom' => 'Small',
                                                                     'xs-margin-bottom' => 'Extra Small',
                                                                 )
                                                             ),
                                                         Field::make('select', 'margin_left', 'Margin Left')
                                                             ->set_options(
                                                                 array(
-                                                                    ''                => 'No margin',
-                                                                    'xl-margin-left'  => 'Extra Large',
-                                                                    'lg-margin-left'  => 'Large',
-                                                                    'md-margin-left'  => 'Medium',
-                                                                    'sm-margin-left'  => 'Small',
+                                                                    ''               => 'No margin',
+                                                                    'xl-margin-left' => 'Extra Large',
+                                                                    'lg-margin-left' => 'Large',
+                                                                    'md-margin-left' => 'Medium',
+                                                                    'sm-margin-left' => 'Small',
                                                                     'xs-margin-left' => 'Extra Small',
                                                                 )
                                                             ),
                                                         Field::make('select', 'margin_right', 'Margin Right')
                                                             ->set_options(
                                                                 array(
-                                                                    ''                 => 'No margin',
-                                                                    'xl-margin-right'  => 'Extra Large',
-                                                                    'lg-margin-right'  => 'Large',
-                                                                    'md-margin-right'  => 'Medium',
-                                                                    'sm-margin-right'  => 'Small',
+                                                                    ''                => 'No margin',
+                                                                    'xl-margin-right' => 'Extra Large',
+                                                                    'lg-margin-right' => 'Large',
+                                                                    'md-margin-right' => 'Medium',
+                                                                    'sm-margin-right' => 'Small',
                                                                     'xs-margin-right' => 'Extra Small',
                                                                 )
                                                             ),
@@ -2504,29 +2504,29 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'align_items', 'Align Items')
                                                             ->set_options(
                                                                 array(
-                                                                    ''               => 'Default',
+                                                                    ''                   => 'Default',
                                                                     'align-items-start'  => 'Start',
-                                                                    'align-items-center'  => 'Center',
-                                                                    'align-items-end'  => 'End',
+                                                                    'align-items-center' => 'Center',
+                                                                    'align-items-end'    => 'End',
                                                                 )
                                                             ),
                                                         Field::make('select', 'justify_content', 'Justify Content')
                                                             ->set_options(
                                                                 array(
-                                                                    ''                  => 'Default',
-                                                                    'justify-content-start'  => 'Start',
+                                                                    ''                        => 'Default',
+                                                                    'justify-content-start'   => 'Start',
                                                                     'justify-content-center'  => 'Center',
-                                                                    'justify-content-end'  => 'End',
-                                                                    'justify-content-between'  => 'Between',
+                                                                    'justify-content-end'     => 'End',
+                                                                    'justify-content-between' => 'Between',
                                                                 )
                                                             ),
                                                         Field::make('select', 'text_align', 'Text Align')
                                                             ->set_options(
                                                                 array(
-                                                                    ''                => 'Default',
-                                                                    'text-start'                => 'Left',
-                                                                    'text-center'                => 'Center',
-                                                                    'text-end'                => 'Right',
+                                                                    ''            => 'Default',
+                                                                    'text-start'  => 'Left',
+                                                                    'text-center' => 'Center',
+                                                                    'text-end'    => 'Right',
                                                                 )
                                                             ),
                                                     )
@@ -2537,7 +2537,7 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'column_width', __('Column Width Desktop'))
                                                             ->set_options(
                                                                 array(
-                                                                    'col-lg'     => 'Default',
+                                                                    'col-lg'    => 'Default',
                                                                     'col-12'    => '100.00%',
                                                                     'col-lg-11' => '91.67%',
                                                                     'col-lg-10' => '83.33%',
@@ -2555,8 +2555,8 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
                                                             ->set_options(
                                                                 array(
-                                                                    ''     => 'Default',
-                                                                    'col-md-12'    => '100.00%',
+                                                                    ''          => 'Default',
+                                                                    'col-md-12' => '100.00%',
                                                                     'col-md-11' => '91.67%',
                                                                     'col-md-10' => '83.33%',
                                                                     'col-md-9'  => '75.00%',
@@ -2573,7 +2573,7 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
                                                             ->set_options(
                                                                 array(
-                                                                    ''     => 'Default',
+                                                                    ''       => 'Default',
                                                                     'col-12' => '100%',
                                                                     'col-11' => '91.67%',
                                                                     'col-10' => '83.33%',
@@ -2596,17 +2596,17 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'border_radius', 'Border Radius')->set_classes('inline-field-wide-label')
                                                             ->set_options(
                                                                 array(
-                                                                    ''   => 'None',
-                                                                    'rounded-corner'   => 'Default[10px]',
-                                                                    'custom'   => 'Custom',
+                                                                    ''               => 'None',
+                                                                    'rounded-corner' => 'Default[10px]',
+                                                                    'custom'         => 'Custom',
                                                                 )
                                                             ),
                                                         Field::make('text', 'border_radius_custom', 'Custom Border Radius')->set_classes('inline-field-wide-label')
                                                             ->set_conditional_logic(
                                                                 array(
                                                                     array(
-                                                                        'field' => 'border_radius',
-                                                                        'value' => 'custom',
+                                                                        'field'   => 'border_radius',
+                                                                        'value'   => 'custom',
                                                                         'compare' => '='
                                                                     )
                                                                 )
@@ -2614,22 +2614,22 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'border_style', 'Border Style')->set_classes('inline-field-wide-label')
                                                             ->set_options(
                                                                 array(
-                                                                    ''   => 'None',
-                                                                    'border-default'   => 'Default',
-                                                                    'border-custom'   => 'Custom',
+                                                                    ''               => 'None',
+                                                                    'border-default' => 'Default',
+                                                                    'border-custom'  => 'Custom',
                                                                 )
                                                             ),
 
                                                         Field::make('select', 'border_color', 'Border Color')->set_classes('inline-field-wide-label')
                                                             ->set_options(
                                                                 array(
-                                                                    'border-default'   => 'Default',
-                                                                    'border-primary'   => 'Primary',
-                                                                    'border-secondary' => 'Secondary',
-                                                                    'border-accent'    => 'Accent',
-                                                                    'border-white'     => 'White',
-                                                                    'border-light-gray'     => 'Light Gray',
-                                                                    'border-custom-color'    => 'Custom',
+                                                                    'border-default'      => 'Default',
+                                                                    'border-primary'      => 'Primary',
+                                                                    'border-secondary'    => 'Secondary',
+                                                                    'border-accent'       => 'Accent',
+                                                                    'border-white'        => 'White',
+                                                                    'border-light-gray'   => 'Light Gray',
+                                                                    'border-custom-color' => 'Custom',
                                                                 )
                                                             )
                                                             ->set_conditional_logic(
@@ -2653,7 +2653,7 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'border_width', 'Border Width')->set_classes('inline-field-wide-label')
                                                             ->set_options(array(
                                                                 'default' => 'Default[1px]',
-                                                                'custom' => 'Custom'
+                                                                'custom'  => 'Custom'
                                                             ))
                                                             ->set_conditional_logic(
                                                                 array(
@@ -2720,26 +2720,26 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'tag', __('Post Title Tag'))
                                                             ->set_options(
                                                                 array(
-                                                                    '' => 'Default',
+                                                                    ''   => 'Default',
                                                                     'h2' => 'h2',
                                                                     'h3' => 'h3',
                                                                     'h4' => 'h4',
                                                                     'h5' => 'h5',
                                                                     'h6' => 'h6',
-                                                                    'p' => 'p',
+                                                                    'p'  => 'p',
                                                                 )
                                                             ),
                                                         Field::make('select', 'text_color', 'Text Color')
                                                             ->set_options(
                                                                 array(
-                                                                    ''   => 'Default',
-                                                                    'text-primary'   => 'Primary',
-                                                                    'text-secondary' => 'Secondary',
-                                                                    'text-accent'    => 'Accent',
-                                                                    'text-white'     => 'White',
-                                                                    'text-light-gray'     => 'Light Gray',
-                                                                    'text-body-color'     => 'Body',
-                                                                    'text-custom'    => 'Custom',
+                                                                    ''                => 'Default',
+                                                                    'text-primary'    => 'Primary',
+                                                                    'text-secondary'  => 'Secondary',
+                                                                    'text-accent'     => 'Accent',
+                                                                    'text-white'      => 'White',
+                                                                    'text-light-gray' => 'Light Gray',
+                                                                    'text-body-color' => 'Body',
+                                                                    'text-custom'     => 'Custom',
                                                                 )
                                                             ),
                                                         Field::make('color', 'text_color_custom', __('Text Color'))
@@ -2761,9 +2761,9 @@ function __section_fields($name = 'sections')
                                                                 array(
                                                                     ''          => 'Default',
                                                                     'full'      => 'Full',
-                                                                    'large'      => 'Large',
-                                                                    'medium' => 'Medium',
-                                                                    'thumbnail'    => 'Thumbnail',
+                                                                    'large'     => 'Large',
+                                                                    'medium'    => 'Medium',
+                                                                    'thumbnail' => 'Thumbnail',
                                                                 )
                                                             ),
                                                         Field::make('checkbox', 'is_background_image', __('Is Background Image')),
@@ -2793,11 +2793,11 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'button_style', __('Button Style'))->set_width(20)
                                                             ->set_options(
                                                                 array(
-                                                                    'button-accent'      => 'Accent',
-                                                                    'button-primary'      => 'Primary',
+                                                                    'button-accent'    => 'Accent',
+                                                                    'button-primary'   => 'Primary',
                                                                     'button-secondary' => 'Secondary',
-                                                                    'button-white' => 'White',
-                                                                    'button-bordered'    => 'Bordered',
+                                                                    'button-white'     => 'White',
+                                                                    'button-bordered'  => 'Bordered',
                                                                 )
                                                             ),
                                                     )
@@ -2808,13 +2808,13 @@ function __section_fields($name = 'sections')
                                                     Field::make('select', 'icon_color', 'Text Color')
                                                         ->set_options(
                                                             array(
-                                                                ''   => 'Default',
-                                                                'text-primary'   => 'Primary',
-                                                                'text-secondary' => 'Secondary',
-                                                                'text-accent'    => 'Accent',
-                                                                'text-white'     => 'White',
-                                                                'text-light-gray'     => 'Light Gray',
-                                                                'text-custom'    => 'Custom',
+                                                                ''                => 'Default',
+                                                                'text-primary'    => 'Primary',
+                                                                'text-secondary'  => 'Secondary',
+                                                                'text-accent'     => 'Accent',
+                                                                'text-white'      => 'White',
+                                                                'text-light-gray' => 'Light Gray',
+                                                                'text-custom'     => 'Custom',
                                                             )
                                                         ),
                                                     Field::make('color', 'icon_color_custom', __('Text Color'))
@@ -2837,13 +2837,13 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                                             ->set_options(
                                                                 array(
-                                                                    'p'      => 'p',
-                                                                    'h2'      => 'h2',
-                                                                    'h3'      => 'h3',
-                                                                    'h4'      => 'h4',
-                                                                    'h5'      => 'h5',
-                                                                    'h6'      => 'h6',
-                                                                    'img'      => 'img',
+                                                                    'p'   => 'p',
+                                                                    'h2'  => 'h2',
+                                                                    'h3'  => 'h3',
+                                                                    'h4'  => 'h4',
+                                                                    'h5'  => 'h5',
+                                                                    'h6'  => 'h6',
+                                                                    'img' => 'img',
                                                                 )
                                                             ),
                                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -2857,13 +2857,13 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                                             ->set_options(
                                                                 array(
-                                                                    'p'      => 'p',
-                                                                    'h2'      => 'h2',
-                                                                    'h3'      => 'h3',
-                                                                    'h4'      => 'h4',
-                                                                    'h5'      => 'h5',
-                                                                    'h6'      => 'h6',
-                                                                    'img'      => 'img',
+                                                                    'p'   => 'p',
+                                                                    'h2'  => 'h2',
+                                                                    'h3'  => 'h3',
+                                                                    'h4'  => 'h4',
+                                                                    'h5'  => 'h5',
+                                                                    'h6'  => 'h6',
+                                                                    'img' => 'img',
                                                                 )
                                                             ),
                                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -2877,13 +2877,13 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                                             ->set_options(
                                                                 array(
-                                                                    'p'      => 'p',
-                                                                    'h2'      => 'h2',
-                                                                    'h3'      => 'h3',
-                                                                    'h4'      => 'h4',
-                                                                    'h5'      => 'h5',
-                                                                    'h6'      => 'h6',
-                                                                    'img'      => 'img',
+                                                                    'p'   => 'p',
+                                                                    'h2'  => 'h2',
+                                                                    'h3'  => 'h3',
+                                                                    'h4'  => 'h4',
+                                                                    'h5'  => 'h5',
+                                                                    'h6'  => 'h6',
+                                                                    'img' => 'img',
                                                                 )
                                                             ),
                                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -2897,13 +2897,13 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                                             ->set_options(
                                                                 array(
-                                                                    'p'      => 'p',
-                                                                    'h2'      => 'h2',
-                                                                    'h3'      => 'h3',
-                                                                    'h4'      => 'h4',
-                                                                    'h5'      => 'h5',
-                                                                    'h6'      => 'h6',
-                                                                    'img'      => 'img',
+                                                                    'p'   => 'p',
+                                                                    'h2'  => 'h2',
+                                                                    'h3'  => 'h3',
+                                                                    'h4'  => 'h4',
+                                                                    'h5'  => 'h5',
+                                                                    'h6'  => 'h6',
+                                                                    'img' => 'img',
                                                                 )
                                                             ),
                                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -2917,13 +2917,13 @@ function __section_fields($name = 'sections')
                                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                                             ->set_options(
                                                                 array(
-                                                                    'p'      => 'p',
-                                                                    'h2'      => 'h2',
-                                                                    'h3'      => 'h3',
-                                                                    'h4'      => 'h4',
-                                                                    'h5'      => 'h5',
-                                                                    'h6'      => 'h6',
-                                                                    'img'      => 'img',
+                                                                    'p'   => 'p',
+                                                                    'h2'  => 'h2',
+                                                                    'h3'  => 'h3',
+                                                                    'h4'  => 'h4',
+                                                                    'h5'  => 'h5',
+                                                                    'h6'  => 'h6',
+                                                                    'img' => 'img',
                                                                 )
                                                             ),
                                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -2942,7 +2942,7 @@ function __section_fields($name = 'sections')
                                                             ->set_options(
                                                                 array(
                                                                     'all'      => 'Select All',
-                                                                    'manually'      => 'Select Manually',
+                                                                    'manually' => 'Select Manually',
                                                                 )
                                                             ),
 
@@ -2974,8 +2974,8 @@ function __section_fields($name = 'sections')
                                                             ->set_options(
                                                                 array(
                                                                     'all'      => 'Select All',
-                                                                    'manually'      => 'Select Manually',
-                                                                    'category'      => 'Select by Category',
+                                                                    'manually' => 'Select Manually',
+                                                                    'category' => 'Select by Category',
                                                                 )
                                                             ),
 
@@ -3000,7 +3000,7 @@ function __section_fields($name = 'sections')
                                                             ->set_types(
                                                                 array(
                                                                     array(
-                                                                        'type'      => 'term',
+                                                                        'type'     => 'term',
                                                                         'taxonomy' => 'casestudies_category',
                                                                     )
                                                                 )
@@ -3008,8 +3008,8 @@ function __section_fields($name = 'sections')
                                                             ->set_conditional_logic(
                                                                 array(
                                                                     array(
-                                                                        'field' => 'source',
-                                                                        'value' => 'category',
+                                                                        'field'   => 'source',
+                                                                        'value'   => 'category',
                                                                         'comapre' => '='
                                                                     )
                                                                 )
@@ -3025,8 +3025,8 @@ function __section_fields($name = 'sections')
                                                             ->set_options(
                                                                 array(
                                                                     'all'      => 'Select All',
-                                                                    'manually'      => 'Select Manually',
-                                                                    'category'      => 'Select by Category',
+                                                                    'manually' => 'Select Manually',
+                                                                    'category' => 'Select by Category',
                                                                 )
                                                             ),
 
@@ -3051,7 +3051,7 @@ function __section_fields($name = 'sections')
                                                             ->set_types(
                                                                 array(
                                                                     array(
-                                                                        'type'      => 'term',
+                                                                        'type'     => 'term',
                                                                         'taxonomy' => 'testimonial_category',
                                                                     )
                                                                 )
@@ -3059,8 +3059,8 @@ function __section_fields($name = 'sections')
                                                             ->set_conditional_logic(
                                                                 array(
                                                                     array(
-                                                                        'field' => 'source',
-                                                                        'value' => 'category',
+                                                                        'field'   => 'source',
+                                                                        'value'   => 'category',
                                                                         'comapre' => '='
                                                                     )
                                                                 )
@@ -3075,7 +3075,7 @@ function __section_fields($name = 'sections')
                                                             ->set_options(
                                                                 array(
                                                                     'all'      => 'Select All',
-                                                                    'manually'      => 'Select Manually',
+                                                                    'manually' => 'Select Manually',
                                                                 )
                                                             ),
 
@@ -3110,57 +3110,57 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'margin_top', 'Margin Top')
                                                 ->set_options(
                                                     array(
-                                                        ''               => 'No margin',
-                                                        'xl-margin-top'  => 'Extra Large',
-                                                        'lg-margin-top'  => 'Large',
-                                                        'md-margin-top'  => 'Medium',
-                                                        'sm-margin-top'  => 'Small',
+                                                        ''              => 'No margin',
+                                                        'xl-margin-top' => 'Extra Large',
+                                                        'lg-margin-top' => 'Large',
+                                                        'md-margin-top' => 'Medium',
+                                                        'sm-margin-top' => 'Small',
                                                         'xs-margin-top' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'margin_bottom', 'Margin Bottom')
                                                 ->set_options(
                                                     array(
-                                                        ''                  => 'No margin',
-                                                        'xl-margin-bottom'  => 'Extra Large',
-                                                        'lg-margin-bottom'  => 'Large',
-                                                        'md-margin-bottom'  => 'Medium',
-                                                        'sm-margin-bottom'  => 'Small',
+                                                        ''                 => 'No margin',
+                                                        'xl-margin-bottom' => 'Extra Large',
+                                                        'lg-margin-bottom' => 'Large',
+                                                        'md-margin-bottom' => 'Medium',
+                                                        'sm-margin-bottom' => 'Small',
                                                         'xs-margin-bottom' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'margin_left', 'Margin Left')
                                                 ->set_options(
                                                     array(
-                                                        ''                => 'No margin',
-                                                        'xl-margin-left'  => 'Extra Large',
-                                                        'lg-margin-left'  => 'Large',
-                                                        'md-margin-left'  => 'Medium',
-                                                        'sm-margin-left'  => 'Small',
+                                                        ''               => 'No margin',
+                                                        'xl-margin-left' => 'Extra Large',
+                                                        'lg-margin-left' => 'Large',
+                                                        'md-margin-left' => 'Medium',
+                                                        'sm-margin-left' => 'Small',
                                                         'xs-margin-left' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'margin_right', 'Margin Right')
                                                 ->set_options(
                                                     array(
-                                                        ''                 => 'No margin',
-                                                        'xl-margin-right'  => 'Extra Large',
-                                                        'lg-margin-right'  => 'Large',
-                                                        'md-margin-right'  => 'Medium',
-                                                        'sm-margin-right'  => 'Small',
+                                                        ''                => 'No margin',
+                                                        'xl-margin-right' => 'Extra Large',
+                                                        'lg-margin-right' => 'Large',
+                                                        'md-margin-right' => 'Medium',
+                                                        'sm-margin-right' => 'Small',
                                                         'xs-margin-right' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'border_color', 'Border Color')
                                                 ->set_options(
                                                     array(
-                                                        ''   => 'Default',
-                                                        'text-primary'   => 'Primary',
-                                                        'text-secondary' => 'Secondary',
-                                                        'text-accent'    => 'Accent',
-                                                        'text-white'     => 'White',
+                                                        ''                    => 'Default',
+                                                        'text-primary'        => 'Primary',
+                                                        'text-secondary'      => 'Secondary',
+                                                        'text-accent'         => 'Accent',
+                                                        'text-white'          => 'White',
                                                         'text-light-gray'     => 'Light Gray',
-                                                        'border-custom-color'    => 'Custom',
+                                                        'border-custom-color' => 'Custom',
                                                     )
                                                 ),
                                             Field::make('color', 'border_color_custom', __('Border Color'))
@@ -3227,12 +3227,12 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'background_color', 'Background Color')
                                                 ->set_options(
                                                     array(
-                                                        'bg-primary'   => 'Primary',
-                                                        'bg-secondary' => 'Secondary',
-                                                        'bg-accent'    => 'Accent',
-                                                        'bg-white'     => 'White',
-                                                        'bg-light-gray'     => 'Light Gray',
-                                                        'bg-custom'    => 'Custom',
+                                                        'bg-primary'    => 'Primary',
+                                                        'bg-secondary'  => 'Secondary',
+                                                        'bg-accent'     => 'Accent',
+                                                        'bg-white'      => 'White',
+                                                        'bg-light-gray' => 'Light Gray',
+                                                        'bg-custom'     => 'Custom',
                                                     )
                                                 ),
                                             Field::make('color', 'background_color_custom', __('Background Color'))
@@ -3253,22 +3253,22 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'background_size', 'Background Size')
                                                 ->set_options(
                                                     array(
-                                                        'bg-cover' => 'Cover',
-                                                        'bg-contain'  => 'Contain',
+                                                        'bg-cover'   => 'Cover',
+                                                        'bg-contain' => 'Contain',
                                                     )
                                                 ),
                                             Field::make('select', 'background_attachment', 'Background Attachment')
                                                 ->set_options(
                                                     array(
-                                                        'bg-scroll'    => 'Scroll',
+                                                        'bg-scroll' => 'Scroll',
                                                         'bg-fixed'  => 'Fixed',
                                                     )
                                                 ),
                                             Field::make('select', 'background_repeat', 'Background Repeat')
                                                 ->set_options(
                                                     array(
-                                                        'bg-no-repeat'    => 'No Repeat',
-                                                        'bg-repeat'  => 'No Repeat',
+                                                        'bg-no-repeat' => 'No Repeat',
+                                                        'bg-repeat'    => 'No Repeat',
                                                     )
                                                 ),
                                         )
@@ -3279,8 +3279,8 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'background_overlay_type', 'Background Overlay Type')
                                                 ->set_options(
                                                     array(
-                                                        'default'    => 'Default',
-                                                        'image'  => 'Image',
+                                                        'default' => 'Default',
+                                                        'image'   => 'Image',
                                                         'custom'  => 'Custom',
                                                     )
                                                 ),
@@ -3320,12 +3320,12 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'text_color', 'Text Color')
                                                 ->set_options(
                                                     array(
-                                                        'text-primary'   => 'Primary',
-                                                        'text-secondary' => 'Secondary',
-                                                        'text-accent'    => 'Accent',
-                                                        'text-white'     => 'White',
-                                                        'text-light-gray'     => 'Light Gray',
-                                                        'text-custom'    => 'Custom',
+                                                        'text-primary'    => 'Primary',
+                                                        'text-secondary'  => 'Secondary',
+                                                        'text-accent'     => 'Accent',
+                                                        'text-white'      => 'White',
+                                                        'text-light-gray' => 'Light Gray',
+                                                        'text-custom'     => 'Custom',
                                                     )
                                                 ),
                                             Field::make('color', 'text_color_custom', __('Text Color'))
@@ -3345,44 +3345,44 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'padding_top', 'Padding Top')
                                                 ->set_options(
                                                     array(
-                                                        ''                => 'No Padding',
-                                                        'xl-padding-top'  => 'Extra Large',
-                                                        'lg-padding-top'  => 'Large',
-                                                        'md-padding-top'  => 'Medium',
-                                                        'sm-padding-top'  => 'Small',
+                                                        ''               => 'No Padding',
+                                                        'xl-padding-top' => 'Extra Large',
+                                                        'lg-padding-top' => 'Large',
+                                                        'md-padding-top' => 'Medium',
+                                                        'sm-padding-top' => 'Small',
                                                         'xs-padding-top' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'padding_bottom', 'Padding Bottom')
                                                 ->set_options(
                                                     array(
-                                                        ''                   => 'No Padding',
-                                                        'xl-padding-bottom'  => 'Extra Large',
-                                                        'lg-padding-bottom'  => 'Large',
-                                                        'md-padding-bottom'  => 'Medium',
-                                                        'sm-padding-bottom'  => 'Small',
+                                                        ''                  => 'No Padding',
+                                                        'xl-padding-bottom' => 'Extra Large',
+                                                        'lg-padding-bottom' => 'Large',
+                                                        'md-padding-bottom' => 'Medium',
+                                                        'sm-padding-bottom' => 'Small',
                                                         'xs-padding-bottom' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'padding_left', 'Padding left')
                                                 ->set_options(
                                                     array(
-                                                        ''                 => 'No Padding',
-                                                        'xl-padding-left'  => 'Extra Large',
-                                                        'lg-padding-left'  => 'Large',
-                                                        'md-padding-left'  => 'Medium',
-                                                        'sm-padding-left'  => 'Small',
+                                                        ''                => 'No Padding',
+                                                        'xl-padding-left' => 'Extra Large',
+                                                        'lg-padding-left' => 'Large',
+                                                        'md-padding-left' => 'Medium',
+                                                        'sm-padding-left' => 'Small',
                                                         'xs-padding-left' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'padding_right', 'Padding right')
                                                 ->set_options(
                                                     array(
-                                                        ''                  => 'No Padding',
-                                                        'xl-padding-right'  => 'Extra Large',
-                                                        'lg-padding-right'  => 'Large',
-                                                        'md-padding-right'  => 'Medium',
-                                                        'sm-padding-right'  => 'Small',
+                                                        ''                 => 'No Padding',
+                                                        'xl-padding-right' => 'Extra Large',
+                                                        'lg-padding-right' => 'Large',
+                                                        'md-padding-right' => 'Medium',
+                                                        'sm-padding-right' => 'Small',
                                                         'xs-padding-right' => 'Extra Small',
                                                     )
                                                 ),
@@ -3395,44 +3395,44 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'margin_top', 'Margin Top')
                                                 ->set_options(
                                                     array(
-                                                        ''               => 'No margin',
-                                                        'xl-margin-top'  => 'Extra Large',
-                                                        'lg-margin-top'  => 'Large',
-                                                        'md-margin-top'  => 'Medium',
-                                                        'sm-margin-top'  => 'Small',
+                                                        ''              => 'No margin',
+                                                        'xl-margin-top' => 'Extra Large',
+                                                        'lg-margin-top' => 'Large',
+                                                        'md-margin-top' => 'Medium',
+                                                        'sm-margin-top' => 'Small',
                                                         'xs-margin-top' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'margin_bottom', 'Margin Bottom')
                                                 ->set_options(
                                                     array(
-                                                        ''                  => 'No margin',
-                                                        'xl-margin-bottom'  => 'Extra Large',
-                                                        'lg-margin-bottom'  => 'Large',
-                                                        'md-margin-bottom'  => 'Medium',
-                                                        'sm-margin-bottom'  => 'Small',
+                                                        ''                 => 'No margin',
+                                                        'xl-margin-bottom' => 'Extra Large',
+                                                        'lg-margin-bottom' => 'Large',
+                                                        'md-margin-bottom' => 'Medium',
+                                                        'sm-margin-bottom' => 'Small',
                                                         'xs-margin-bottom' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'margin_left', 'Margin Left')
                                                 ->set_options(
                                                     array(
-                                                        ''                => 'No margin',
-                                                        'xl-margin-left'  => 'Extra Large',
-                                                        'lg-margin-left'  => 'Large',
-                                                        'md-margin-left'  => 'Medium',
-                                                        'sm-margin-left'  => 'Small',
+                                                        ''               => 'No margin',
+                                                        'xl-margin-left' => 'Extra Large',
+                                                        'lg-margin-left' => 'Large',
+                                                        'md-margin-left' => 'Medium',
+                                                        'sm-margin-left' => 'Small',
                                                         'xs-margin-left' => 'Extra Small',
                                                     )
                                                 ),
                                             Field::make('select', 'margin_right', 'Margin Right')
                                                 ->set_options(
                                                     array(
-                                                        ''                 => 'No margin',
-                                                        'xl-margin-right'  => 'Extra Large',
-                                                        'lg-margin-right'  => 'Large',
-                                                        'md-margin-right'  => 'Medium',
-                                                        'sm-margin-right'  => 'Small',
+                                                        ''                => 'No margin',
+                                                        'xl-margin-right' => 'Extra Large',
+                                                        'lg-margin-right' => 'Large',
+                                                        'md-margin-right' => 'Medium',
+                                                        'sm-margin-right' => 'Small',
                                                         'xs-margin-right' => 'Extra Small',
                                                     )
                                                 ),
@@ -3445,57 +3445,57 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'align_items', 'Align Items')
                                                 ->set_options(
                                                     array(
-                                                        ''               => 'Default',
+                                                        ''                   => 'Default',
                                                         'align-items-start'  => 'Start',
-                                                        'align-items-center'  => 'Center',
-                                                        'align-items-end'  => 'End',
+                                                        'align-items-center' => 'Center',
+                                                        'align-items-end'    => 'End',
                                                     )
                                                 ),
                                             Field::make('select', 'justify_content', 'Justify Content')
                                                 ->set_options(
                                                     array(
-                                                        ''                  => 'Default',
-                                                        'justify-content-start'  => 'Start',
+                                                        ''                        => 'Default',
+                                                        'justify-content-start'   => 'Start',
                                                         'justify-content-center'  => 'Center',
-                                                        'justify-content-end'  => 'End',
-                                                        'justify-content-between'  => 'Between',
+                                                        'justify-content-end'     => 'End',
+                                                        'justify-content-between' => 'Between',
                                                     )
                                                 ),
                                             Field::make('select', 'flex_direction', 'Flex Direction')
                                                 ->set_options(
                                                     array(
-                                                        ''                  => 'Default',
-                                                        'flex-column'  => 'Column',
-                                                        'flex-column-reverse'  => 'Column Reverse',
-                                                        'flex-row'  => 'Row',
-                                                        'flex-row-reverse'  => 'Row Reverse',
+                                                        ''                    => 'Default',
+                                                        'flex-column'         => 'Column',
+                                                        'flex-column-reverse' => 'Column Reverse',
+                                                        'flex-row'            => 'Row',
+                                                        'flex-row-reverse'    => 'Row Reverse',
                                                     )
                                                 ),
                                             Field::make('select', 'text_align', 'Text Align[Desktop]')
                                                 ->set_options(
                                                     array(
-                                                        ''                => 'Default',
-                                                        'text-lg-start'                => 'Left',
-                                                        'text-lg-center'                => 'Center',
-                                                        'text-lg-end'                => 'Right',
+                                                        ''               => 'Default',
+                                                        'text-lg-start'  => 'Left',
+                                                        'text-lg-center' => 'Center',
+                                                        'text-lg-end'    => 'Right',
                                                     )
                                                 ),
                                             Field::make('select', 'text_align_tablet', 'Text Align[Tablet]')
                                                 ->set_options(
                                                     array(
-                                                        ''                => 'Inherit',
-                                                        'text-md-start'                => 'Left',
-                                                        'text-md-center'                => 'Center',
-                                                        'text-lg-end'                => 'Right',
+                                                        ''               => 'Inherit',
+                                                        'text-md-start'  => 'Left',
+                                                        'text-md-center' => 'Center',
+                                                        'text-lg-end'    => 'Right',
                                                     )
                                                 ),
                                             Field::make('select', 'text_align_mobile', 'Text Align[Mobile]')
                                                 ->set_options(
                                                     array(
-                                                        ''                => 'Inherit',
-                                                        'text-start'                => 'Left',
-                                                        'text-center'                => 'Center',
-                                                        'text-end'                => 'Right',
+                                                        ''            => 'Inherit',
+                                                        'text-start'  => 'Left',
+                                                        'text-center' => 'Center',
+                                                        'text-end'    => 'Right',
                                                     )
                                                 ),
                                         )
@@ -3506,7 +3506,7 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'column_width', __('Column Width Desktop'))
                                                 ->set_options(
                                                     array(
-                                                        'col-lg'     => 'Default',
+                                                        'col-lg'    => 'Default',
                                                         'col-12'    => '100.00%',
                                                         'col-lg-11' => '91.67%',
                                                         'col-lg-10' => '83.33%',
@@ -3524,8 +3524,8 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
                                                 ->set_options(
                                                     array(
-                                                        ''     => 'Default',
-                                                        'col-md-12'    => '100.00%',
+                                                        ''          => 'Default',
+                                                        'col-md-12' => '100.00%',
                                                         'col-md-11' => '91.67%',
                                                         'col-md-10' => '83.33%',
                                                         'col-md-9'  => '75.00%',
@@ -3542,7 +3542,7 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
                                                 ->set_options(
                                                     array(
-                                                        ''     => 'Default',
+                                                        ''       => 'Default',
                                                         'col-12' => '100%',
                                                         'col-11' => '91.67%',
                                                         'col-10' => '83.33%',
@@ -3565,17 +3565,17 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'border_radius', 'Border Radius')->set_classes('inline-field-wide-label')
                                                 ->set_options(
                                                     array(
-                                                        ''   => 'None',
-                                                        'rounded-corner'   => 'Default[10px]',
-                                                        'custom'   => 'Custom',
+                                                        ''               => 'None',
+                                                        'rounded-corner' => 'Default[10px]',
+                                                        'custom'         => 'Custom',
                                                     )
                                                 ),
                                             Field::make('text', 'border_radius_custom', 'Custom Border Radius')->set_classes('inline-field-wide-label')
                                                 ->set_conditional_logic(
                                                     array(
                                                         array(
-                                                            'field' => 'border_radius',
-                                                            'value' => 'custom',
+                                                            'field'   => 'border_radius',
+                                                            'value'   => 'custom',
                                                             'compare' => '='
                                                         )
                                                     )
@@ -3583,22 +3583,22 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'border_style', 'Border Style')->set_classes('inline-field-wide-label')
                                                 ->set_options(
                                                     array(
-                                                        ''   => 'None',
-                                                        'border-default'   => 'Default',
-                                                        'border-custom'   => 'Custom',
+                                                        ''               => 'None',
+                                                        'border-default' => 'Default',
+                                                        'border-custom'  => 'Custom',
                                                     )
                                                 ),
 
                                             Field::make('select', 'border_color', 'Border Color')->set_classes('inline-field-wide-label')
                                                 ->set_options(
                                                     array(
-                                                        'border-default'   => 'Default',
-                                                        'border-primary'   => 'Primary',
-                                                        'border-secondary' => 'Secondary',
-                                                        'border-accent'    => 'Accent',
-                                                        'border-white'     => 'White',
-                                                        'border-light-gray'     => 'Light Gray',
-                                                        'border-custom-color'    => 'Custom',
+                                                        'border-default'      => 'Default',
+                                                        'border-primary'      => 'Primary',
+                                                        'border-secondary'    => 'Secondary',
+                                                        'border-accent'       => 'Accent',
+                                                        'border-white'        => 'White',
+                                                        'border-light-gray'   => 'Light Gray',
+                                                        'border-custom-color' => 'Custom',
                                                     )
                                                 )
                                                 ->set_conditional_logic(
@@ -3622,7 +3622,7 @@ function __section_fields($name = 'sections')
                                             Field::make('select', 'border_width', 'Border Width')->set_classes('inline-field-wide-label')
                                                 ->set_options(array(
                                                     'default' => 'Default[1px]',
-                                                    'custom' => 'Custom'
+                                                    'custom'  => 'Custom'
                                                 ))
                                                 ->set_conditional_logic(
                                                     array(
@@ -3712,12 +3712,12 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'background_color', 'Background Color')
                                         ->set_options(
                                             array(
-                                                'bg-primary'   => 'Primary',
-                                                'bg-secondary' => 'Secondary',
-                                                'bg-accent'    => 'Accent',
-                                                'bg-white'     => 'White',
-                                                'bg-light-gray'     => 'Light Gray',
-                                                'bg-custom'    => 'Custom',
+                                                'bg-primary'    => 'Primary',
+                                                'bg-secondary'  => 'Secondary',
+                                                'bg-accent'     => 'Accent',
+                                                'bg-white'      => 'White',
+                                                'bg-light-gray' => 'Light Gray',
+                                                'bg-custom'     => 'Custom',
                                             )
                                         ),
                                     Field::make('color', 'background_color_custom', __('Background Color'))
@@ -3738,22 +3738,22 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'background_size', 'Background Size')
                                         ->set_options(
                                             array(
-                                                'bg-cover' => 'Cover',
-                                                'bg-contain'  => 'Contain',
+                                                'bg-cover'   => 'Cover',
+                                                'bg-contain' => 'Contain',
                                             )
                                         ),
                                     Field::make('select', 'background_attachment', 'Background Attachment')
                                         ->set_options(
                                             array(
-                                                'bg-scroll'    => 'Scroll',
+                                                'bg-scroll' => 'Scroll',
                                                 'bg-fixed'  => 'Fixed',
                                             )
                                         ),
                                     Field::make('select', 'background_repeat', 'Background Repeat')
                                         ->set_options(
                                             array(
-                                                'bg-no-repeat'    => 'No Repeat',
-                                                'bg-repeat'  => 'No Repeat',
+                                                'bg-no-repeat' => 'No Repeat',
+                                                'bg-repeat'    => 'No Repeat',
                                             )
                                         ),
                                 )
@@ -3764,8 +3764,8 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'background_overlay_type', 'Background Overlay Type')
                                         ->set_options(
                                             array(
-                                                'default'    => 'Default',
-                                                'image'  => 'Image',
+                                                'default' => 'Default',
+                                                'image'   => 'Image',
                                                 'custom'  => 'Custom',
                                             )
                                         ),
@@ -3805,12 +3805,12 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'text_color', 'Text Color')
                                         ->set_options(
                                             array(
-                                                'text-primary'   => 'Primary',
-                                                'text-secondary' => 'Secondary',
-                                                'text-accent'    => 'Accent',
-                                                'text-white'     => 'White',
-                                                'text-light-gray'     => 'Light Gray',
-                                                'text-custom'    => 'Custom',
+                                                'text-primary'    => 'Primary',
+                                                'text-secondary'  => 'Secondary',
+                                                'text-accent'     => 'Accent',
+                                                'text-white'      => 'White',
+                                                'text-light-gray' => 'Light Gray',
+                                                'text-custom'     => 'Custom',
                                             )
                                         ),
                                     Field::make('color', 'text_color_custom', __('Text Color'))
@@ -3830,44 +3830,44 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'padding_top', 'Padding Top')
                                         ->set_options(
                                             array(
-                                                ''                => 'No Padding',
-                                                'xl-padding-top'  => 'Extra Large',
-                                                'lg-padding-top'  => 'Large',
-                                                'md-padding-top'  => 'Medium',
-                                                'sm-padding-top'  => 'Small',
+                                                ''               => 'No Padding',
+                                                'xl-padding-top' => 'Extra Large',
+                                                'lg-padding-top' => 'Large',
+                                                'md-padding-top' => 'Medium',
+                                                'sm-padding-top' => 'Small',
                                                 'xs-padding-top' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'padding_bottom', 'Padding Bottom')
                                         ->set_options(
                                             array(
-                                                ''                   => 'No Padding',
-                                                'xl-padding-bottom'  => 'Extra Large',
-                                                'lg-padding-bottom'  => 'Large',
-                                                'md-padding-bottom'  => 'Medium',
-                                                'sm-padding-bottom'  => 'Small',
+                                                ''                  => 'No Padding',
+                                                'xl-padding-bottom' => 'Extra Large',
+                                                'lg-padding-bottom' => 'Large',
+                                                'md-padding-bottom' => 'Medium',
+                                                'sm-padding-bottom' => 'Small',
                                                 'xs-padding-bottom' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'padding_left', 'Padding left')
                                         ->set_options(
                                             array(
-                                                ''                 => 'No Padding',
-                                                'xl-padding-left'  => 'Extra Large',
-                                                'lg-padding-left'  => 'Large',
-                                                'md-padding-left'  => 'Medium',
-                                                'sm-padding-left'  => 'Small',
+                                                ''                => 'No Padding',
+                                                'xl-padding-left' => 'Extra Large',
+                                                'lg-padding-left' => 'Large',
+                                                'md-padding-left' => 'Medium',
+                                                'sm-padding-left' => 'Small',
                                                 'xs-padding-left' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'padding_right', 'Padding right')
                                         ->set_options(
                                             array(
-                                                ''                  => 'No Padding',
-                                                'xl-padding-right'  => 'Extra Large',
-                                                'lg-padding-right'  => 'Large',
-                                                'md-padding-right'  => 'Medium',
-                                                'sm-padding-right'  => 'Small',
+                                                ''                 => 'No Padding',
+                                                'xl-padding-right' => 'Extra Large',
+                                                'lg-padding-right' => 'Large',
+                                                'md-padding-right' => 'Medium',
+                                                'sm-padding-right' => 'Small',
                                                 'xs-padding-right' => 'Extra Small',
                                             )
                                         ),
@@ -3880,44 +3880,44 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'margin_top', 'Margin Top')
                                         ->set_options(
                                             array(
-                                                ''               => 'No margin',
-                                                'xl-margin-top'  => 'Extra Large',
-                                                'lg-margin-top'  => 'Large',
-                                                'md-margin-top'  => 'Medium',
-                                                'sm-margin-top'  => 'Small',
+                                                ''              => 'No margin',
+                                                'xl-margin-top' => 'Extra Large',
+                                                'lg-margin-top' => 'Large',
+                                                'md-margin-top' => 'Medium',
+                                                'sm-margin-top' => 'Small',
                                                 'xs-margin-top' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'margin_bottom', 'Margin Bottom')
                                         ->set_options(
                                             array(
-                                                ''                  => 'No margin',
-                                                'xl-margin-bottom'  => 'Extra Large',
-                                                'lg-margin-bottom'  => 'Large',
-                                                'md-margin-bottom'  => 'Medium',
-                                                'sm-margin-bottom'  => 'Small',
+                                                ''                 => 'No margin',
+                                                'xl-margin-bottom' => 'Extra Large',
+                                                'lg-margin-bottom' => 'Large',
+                                                'md-margin-bottom' => 'Medium',
+                                                'sm-margin-bottom' => 'Small',
                                                 'xs-margin-bottom' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'margin_left', 'Margin Left')
                                         ->set_options(
                                             array(
-                                                ''                => 'No margin',
-                                                'xl-margin-left'  => 'Extra Large',
-                                                'lg-margin-left'  => 'Large',
-                                                'md-margin-left'  => 'Medium',
-                                                'sm-margin-left'  => 'Small',
+                                                ''               => 'No margin',
+                                                'xl-margin-left' => 'Extra Large',
+                                                'lg-margin-left' => 'Large',
+                                                'md-margin-left' => 'Medium',
+                                                'sm-margin-left' => 'Small',
                                                 'xs-margin-left' => 'Extra Small',
                                             )
                                         ),
                                     Field::make('select', 'margin_right', 'Margin Right')
                                         ->set_options(
                                             array(
-                                                ''                 => 'No margin',
-                                                'xl-margin-right'  => 'Extra Large',
-                                                'lg-margin-right'  => 'Large',
-                                                'md-margin-right'  => 'Medium',
-                                                'sm-margin-right'  => 'Small',
+                                                ''                => 'No margin',
+                                                'xl-margin-right' => 'Extra Large',
+                                                'lg-margin-right' => 'Large',
+                                                'md-margin-right' => 'Medium',
+                                                'sm-margin-right' => 'Small',
                                                 'xs-margin-right' => 'Extra Small',
                                             )
                                         ),
@@ -3930,57 +3930,57 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'align_items', 'Align Items')
                                         ->set_options(
                                             array(
-                                                ''               => 'Default',
+                                                ''                   => 'Default',
                                                 'align-items-start'  => 'Start',
-                                                'align-items-center'  => 'Center',
-                                                'align-items-end'  => 'End',
+                                                'align-items-center' => 'Center',
+                                                'align-items-end'    => 'End',
                                             )
                                         ),
                                     Field::make('select', 'justify_content', 'Justify Content')
                                         ->set_options(
                                             array(
-                                                ''                  => 'Default',
-                                                'justify-content-start'  => 'Start',
+                                                ''                        => 'Default',
+                                                'justify-content-start'   => 'Start',
                                                 'justify-content-center'  => 'Center',
-                                                'justify-content-end'  => 'End',
-                                                'justify-content-between'  => 'Between',
+                                                'justify-content-end'     => 'End',
+                                                'justify-content-between' => 'Between',
                                             )
                                         ),
                                     Field::make('select', 'flex_direction', 'Flex Direction')
                                         ->set_options(
                                             array(
-                                                ''                  => 'Default',
-                                                'flex-column'  => 'Column',
-                                                'flex-column-reverse'  => 'Column Reverse',
-                                                'flex-row'  => 'Row',
-                                                'flex-row-reverse'  => 'Row Reverse',
+                                                ''                    => 'Default',
+                                                'flex-column'         => 'Column',
+                                                'flex-column-reverse' => 'Column Reverse',
+                                                'flex-row'            => 'Row',
+                                                'flex-row-reverse'    => 'Row Reverse',
                                             )
                                         ),
                                     Field::make('select', 'text_align', 'Text Align[Desktop]')
                                         ->set_options(
                                             array(
-                                                ''                => 'Default',
-                                                'text-lg-start'                => 'Left',
-                                                'text-lg-center'                => 'Center',
-                                                'text-lg-end'                => 'Right',
+                                                ''               => 'Default',
+                                                'text-lg-start'  => 'Left',
+                                                'text-lg-center' => 'Center',
+                                                'text-lg-end'    => 'Right',
                                             )
                                         ),
                                     Field::make('select', 'text_align_tablet', 'Text Align[Tablet]')
                                         ->set_options(
                                             array(
-                                                ''                => 'Inherit',
-                                                'text-md-start'                => 'Left',
-                                                'text-md-center'                => 'Center',
-                                                'text-lg-end'                => 'Right',
+                                                ''               => 'Inherit',
+                                                'text-md-start'  => 'Left',
+                                                'text-md-center' => 'Center',
+                                                'text-lg-end'    => 'Right',
                                             )
                                         ),
                                     Field::make('select', 'text_align_mobile', 'Text Align[Mobile]')
                                         ->set_options(
                                             array(
-                                                ''                => 'Inherit',
-                                                'text-start'                => 'Left',
-                                                'text-center'                => 'Center',
-                                                'text-end'                => 'Right',
+                                                ''            => 'Inherit',
+                                                'text-start'  => 'Left',
+                                                'text-center' => 'Center',
+                                                'text-end'    => 'Right',
                                             )
                                         ),
                                 )
@@ -3991,58 +3991,58 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'column_width', __('Column Width Desktop'))
                                         ->set_options(
                                             array(
-                                                'col-lg'     => 'Default',
-                                                'col-12'    => '100.00%',
-                                                'col-lg-11' => '91.67%',
-                                                'col-lg-10' => '83.33%',
-                                                'col-lg-9'  => '75.00%',
-                                                'col-lg-8'  => '67.00%',
-                                                'col-lg-7'  => '58.33%',
-                                                'col-lg-6'  => '50.00%',
-                                                'col-lg-5'  => '41.67%',
-                                                'col-lg-4'  => '33.33%',
-                                                'col-lg-3'  => '25.00%',
-                                                'col-lg-2'  => '16.67%',
-                                                'col-lg-1'  => '08.33%',
-                                                'col-lg-auto'  => 'auto',
+                                                'col-lg'      => 'Default',
+                                                'col-12'      => '100.00%',
+                                                'col-lg-11'   => '91.67%',
+                                                'col-lg-10'   => '83.33%',
+                                                'col-lg-9'    => '75.00%',
+                                                'col-lg-8'    => '67.00%',
+                                                'col-lg-7'    => '58.33%',
+                                                'col-lg-6'    => '50.00%',
+                                                'col-lg-5'    => '41.67%',
+                                                'col-lg-4'    => '33.33%',
+                                                'col-lg-3'    => '25.00%',
+                                                'col-lg-2'    => '16.67%',
+                                                'col-lg-1'    => '08.33%',
+                                                'col-lg-auto' => 'auto',
                                             )
                                         ),
                                     Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
                                         ->set_options(
                                             array(
-                                                ''     => 'Default',
-                                                'col-md-12'    => '100.00%',
-                                                'col-md-11' => '91.67%',
-                                                'col-md-10' => '83.33%',
-                                                'col-md-9'  => '75.00%',
-                                                'col-md-8'  => '67.00%',
-                                                'col-md-7'  => '58.33%',
-                                                'col-md-6'  => '50.00%',
-                                                'col-md-5'  => '41.67%',
-                                                'col-md-4'  => '33.33%',
-                                                'col-md-3'  => '25.00%',
-                                                'col-md-2'  => '16.67%',
-                                                'col-md-1'  => '08.33%',
-                                                'col-md-auto'  => 'auto',
+                                                ''            => 'Default',
+                                                'col-md-12'   => '100.00%',
+                                                'col-md-11'   => '91.67%',
+                                                'col-md-10'   => '83.33%',
+                                                'col-md-9'    => '75.00%',
+                                                'col-md-8'    => '67.00%',
+                                                'col-md-7'    => '58.33%',
+                                                'col-md-6'    => '50.00%',
+                                                'col-md-5'    => '41.67%',
+                                                'col-md-4'    => '33.33%',
+                                                'col-md-3'    => '25.00%',
+                                                'col-md-2'    => '16.67%',
+                                                'col-md-1'    => '08.33%',
+                                                'col-md-auto' => 'auto',
                                             )
                                         ),
                                     Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
                                         ->set_options(
                                             array(
-                                                ''     => 'Default',
-                                                'col-12' => '100%',
-                                                'col-11' => '91.67%',
-                                                'col-10' => '83.33%',
-                                                'col-9'  => '75.00%',
-                                                'col-8'  => '67.00%',
-                                                'col-7'  => '58.33%',
-                                                'col-6'  => '50.00%',
-                                                'col-5'  => '41.67%',
-                                                'col-4'  => '33.33%',
-                                                'col-3'  => '25.00%',
-                                                'col-2'  => '16.67%',
-                                                'col-1'  => '08.33%',
-                                                'col-auto'  => 'auto',
+                                                ''         => 'Default',
+                                                'col-12'   => '100%',
+                                                'col-11'   => '91.67%',
+                                                'col-10'   => '83.33%',
+                                                'col-9'    => '75.00%',
+                                                'col-8'    => '67.00%',
+                                                'col-7'    => '58.33%',
+                                                'col-6'    => '50.00%',
+                                                'col-5'    => '41.67%',
+                                                'col-4'    => '33.33%',
+                                                'col-3'    => '25.00%',
+                                                'col-2'    => '16.67%',
+                                                'col-1'    => '08.33%',
+                                                'col-auto' => 'auto',
                                             )
                                         ),
                                 )
@@ -4053,17 +4053,17 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'border_radius', 'Border Radius')->set_classes('inline-field-wide-label')
                                         ->set_options(
                                             array(
-                                                ''   => 'None',
-                                                'rounded-corner'   => 'Default[10px]',
-                                                'custom'   => 'Custom',
+                                                ''               => 'None',
+                                                'rounded-corner' => 'Default[10px]',
+                                                'custom'         => 'Custom',
                                             )
                                         ),
                                     Field::make('text', 'border_radius_custom', 'Custom Border Radius')->set_classes('inline-field-wide-label')
                                         ->set_conditional_logic(
                                             array(
                                                 array(
-                                                    'field' => 'border_radius',
-                                                    'value' => 'custom',
+                                                    'field'   => 'border_radius',
+                                                    'value'   => 'custom',
                                                     'compare' => '='
                                                 )
                                             )
@@ -4071,22 +4071,22 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'border_style', 'Border Style')->set_classes('inline-field-wide-label')
                                         ->set_options(
                                             array(
-                                                ''   => 'None',
-                                                'border-default'   => 'Default',
-                                                'border-custom'   => 'Custom',
+                                                ''               => 'None',
+                                                'border-default' => 'Default',
+                                                'border-custom'  => 'Custom',
                                             )
                                         ),
 
                                     Field::make('select', 'border_color', 'Border Color')->set_classes('inline-field-wide-label')
                                         ->set_options(
                                             array(
-                                                'border-default'   => 'Default',
-                                                'border-primary'   => 'Primary',
-                                                'border-secondary' => 'Secondary',
-                                                'border-accent'    => 'Accent',
-                                                'border-white'     => 'White',
-                                                'border-light-gray'     => 'Light Gray',
-                                                'border-custom-color'    => 'Custom',
+                                                'border-default'      => 'Default',
+                                                'border-primary'      => 'Primary',
+                                                'border-secondary'    => 'Secondary',
+                                                'border-accent'       => 'Accent',
+                                                'border-white'        => 'White',
+                                                'border-light-gray'   => 'Light Gray',
+                                                'border-custom-color' => 'Custom',
                                             )
                                         )
                                         ->set_conditional_logic(
@@ -4110,7 +4110,7 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'border_width', 'Border Width')->set_classes('inline-field-wide-label')
                                         ->set_options(array(
                                             'default' => 'Default[1px]',
-                                            'custom' => 'Custom'
+                                            'custom'  => 'Custom'
                                         ))
                                         ->set_conditional_logic(
                                             array(
@@ -4175,8 +4175,8 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'gallery_style', 'Gallery Style')
                                 ->set_options(
                                     array(
-                                        'logo-slider'   => 'Logo Slider',
-                                        'grid' => 'Grid',
+                                        'logo-slider' => 'Logo Slider',
+                                        'grid'        => 'Grid',
                                     )
                                 ),
                             Field::make('media_gallery', 'gallery', __('Gallery')),
@@ -4213,8 +4213,8 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'column_width', __('Column Width Desktop'))
                                 ->set_options(
                                     array(
-                                        'col-lg'     => 'Default',
-                                        'col-auto'     => 'Auto',
+                                        'col-lg'    => 'Default',
+                                        'col-auto'  => 'Auto',
                                         'col-12'    => '100.00%',
                                         'col-lg-11' => '91.67%',
                                         'col-lg-10' => '83.33%',
@@ -4240,9 +4240,9 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
                                 ->set_options(
                                     array(
-                                        ''     => 'Default',
-                                        'col-auto'     => 'Auto',
-                                        'col-md-12'    => '100.00%',
+                                        ''          => 'Default',
+                                        'col-auto'  => 'Auto',
+                                        'col-md-12' => '100.00%',
                                         'col-md-11' => '91.67%',
                                         'col-md-10' => '83.33%',
                                         'col-md-9'  => '75.00%',
@@ -4267,20 +4267,20 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
                                 ->set_options(
                                     array(
-                                        ''     => 'Default',
-                                        'col-auto'     => 'Auto',
-                                        'col-12' => '100%',
-                                        'col-11' => '91.67%',
-                                        'col-10' => '83.33%',
-                                        'col-9'  => '75.00%',
-                                        'col-8'  => '67.00%',
-                                        'col-7'  => '58.33%',
-                                        'col-6'  => '50.00%',
-                                        'col-5'  => '41.67%',
-                                        'col-4'  => '33.33%',
-                                        'col-3'  => '25.00%',
-                                        'col-2'  => '16.67%',
-                                        'col-1'  => '08.33%',
+                                        ''         => 'Default',
+                                        'col-auto' => 'Auto',
+                                        'col-12'   => '100%',
+                                        'col-11'   => '91.67%',
+                                        'col-10'   => '83.33%',
+                                        'col-9'    => '75.00%',
+                                        'col-8'    => '67.00%',
+                                        'col-7'    => '58.33%',
+                                        'col-6'    => '50.00%',
+                                        'col-5'    => '41.67%',
+                                        'col-4'    => '33.33%',
+                                        'col-3'    => '25.00%',
+                                        'col-2'    => '16.67%',
+                                        'col-1'    => '08.33%',
                                     )
                                 )
                                 ->set_conditional_logic(
@@ -4294,15 +4294,15 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'horizontal_spacing', 'Horizontal Spacing')->set_width(20)
                                 ->set_options(
                                     array(
-                                        ''     => 'Default',
-                                        'gx-6'  => 'Huge',
-                                        'gx-5'  => 'Extra Large',
-                                        'gx-4'  => 'Large',
-                                        'gx-3'  => 'Medium',
-                                        'gx-2'  => 'Small',
-                                        'gx-1'  => 'Extra Small',
-                                        'gx-20px'  => '20px',
-                                        'gx-0'  => 'None',
+                                        ''        => 'Default',
+                                        'gx-6'    => 'Huge',
+                                        'gx-5'    => 'Extra Large',
+                                        'gx-4'    => 'Large',
+                                        'gx-3'    => 'Medium',
+                                        'gx-2'    => 'Small',
+                                        'gx-1'    => 'Extra Small',
+                                        'gx-20px' => '20px',
+                                        'gx-0'    => 'None',
                                     )
                                 )
                                 ->set_conditional_logic(
@@ -4316,15 +4316,15 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'vertical_spacing', 'Vertical Spacing')->set_width(20)
                                 ->set_options(
                                     array(
-                                        ''     => 'Default',
-                                        'gy-6'  => 'Huge',
-                                        'gy-5'  => 'Extra Large',
-                                        'gy-4'  => 'Large',
-                                        'gy-3'  => 'Medium',
-                                        'gy-2'  => 'Small',
-                                        'gy-1'  => 'Extra Small',
-                                        'gy-20px'  => '20px',
-                                        'gy-0'  => 'None',
+                                        ''        => 'Default',
+                                        'gy-6'    => 'Huge',
+                                        'gy-5'    => 'Extra Large',
+                                        'gy-4'    => 'Large',
+                                        'gy-3'    => 'Medium',
+                                        'gy-2'    => 'Small',
+                                        'gy-1'    => 'Extra Small',
+                                        'gy-20px' => '20px',
+                                        'gy-0'    => 'None',
                                     )
                                 )
                                 ->set_conditional_logic(
@@ -4395,12 +4395,12 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'background_color', 'Background Color')
                                             ->set_options(
                                                 array(
-                                                    'bg-primary'   => 'Primary',
-                                                    'bg-secondary' => 'Secondary',
-                                                    'bg-accent'    => 'Accent',
-                                                    'bg-white'     => 'White',
-                                                    'bg-light-gray'     => 'Light Gray',
-                                                    'bg-custom'    => 'Custom',
+                                                    'bg-primary'    => 'Primary',
+                                                    'bg-secondary'  => 'Secondary',
+                                                    'bg-accent'     => 'Accent',
+                                                    'bg-white'      => 'White',
+                                                    'bg-light-gray' => 'Light Gray',
+                                                    'bg-custom'     => 'Custom',
                                                 )
                                             ),
                                         Field::make('color', 'background_color_custom', __('Background Color'))
@@ -4420,12 +4420,12 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'text_color', 'Text Color')
                                             ->set_options(
                                                 array(
-                                                    'text-primary'   => 'Primary',
-                                                    'text-secondary' => 'Secondary',
-                                                    'text-accent'    => 'Accent',
-                                                    'text-white'     => 'White',
-                                                    'text-light-gray'     => 'Light Gray',
-                                                    'text-custom'    => 'Custom',
+                                                    'text-primary'    => 'Primary',
+                                                    'text-secondary'  => 'Secondary',
+                                                    'text-accent'     => 'Accent',
+                                                    'text-white'      => 'White',
+                                                    'text-light-gray' => 'Light Gray',
+                                                    'text-custom'     => 'Custom',
                                                 )
                                             ),
                                         Field::make('color', 'text_color_custom', __('Text Color'))
@@ -4445,44 +4445,44 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'padding_top', 'Padding Top')
                                             ->set_options(
                                                 array(
-                                                    ''                => 'No Padding',
-                                                    'xl-padding-top'  => 'Extra Large',
-                                                    'lg-padding-top'  => 'Large',
-                                                    'md-padding-top'  => 'Medium',
-                                                    'sm-padding-top'  => 'Small',
+                                                    ''               => 'No Padding',
+                                                    'xl-padding-top' => 'Extra Large',
+                                                    'lg-padding-top' => 'Large',
+                                                    'md-padding-top' => 'Medium',
+                                                    'sm-padding-top' => 'Small',
                                                     'xs-padding-top' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'padding_bottom', 'Padding Bottom')
                                             ->set_options(
                                                 array(
-                                                    ''                   => 'No Padding',
-                                                    'xl-padding-bottom'  => 'Extra Large',
-                                                    'lg-padding-bottom'  => 'Large',
-                                                    'md-padding-bottom'  => 'Medium',
-                                                    'sm-padding-bottom'  => 'Small',
+                                                    ''                  => 'No Padding',
+                                                    'xl-padding-bottom' => 'Extra Large',
+                                                    'lg-padding-bottom' => 'Large',
+                                                    'md-padding-bottom' => 'Medium',
+                                                    'sm-padding-bottom' => 'Small',
                                                     'xs-padding-bottom' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'padding_left', 'Padding left')
                                             ->set_options(
                                                 array(
-                                                    ''                 => 'No Padding',
-                                                    'xl-padding-left'  => 'Extra Large',
-                                                    'lg-padding-left'  => 'Large',
-                                                    'md-padding-left'  => 'Medium',
-                                                    'sm-padding-left'  => 'Small',
+                                                    ''                => 'No Padding',
+                                                    'xl-padding-left' => 'Extra Large',
+                                                    'lg-padding-left' => 'Large',
+                                                    'md-padding-left' => 'Medium',
+                                                    'sm-padding-left' => 'Small',
                                                     'xs-padding-left' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'padding_right', 'Padding right')
                                             ->set_options(
                                                 array(
-                                                    ''                  => 'No Padding',
-                                                    'xl-padding-right'  => 'Extra Large',
-                                                    'lg-padding-right'  => 'Large',
-                                                    'md-padding-right'  => 'Medium',
-                                                    'sm-padding-right'  => 'Small',
+                                                    ''                 => 'No Padding',
+                                                    'xl-padding-right' => 'Extra Large',
+                                                    'lg-padding-right' => 'Large',
+                                                    'md-padding-right' => 'Medium',
+                                                    'sm-padding-right' => 'Small',
                                                     'xs-padding-right' => 'Extra Small',
                                                 )
                                             ),
@@ -4495,44 +4495,44 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'margin_top', 'Margin Top')
                                             ->set_options(
                                                 array(
-                                                    ''               => 'No margin',
-                                                    'xl-margin-top'  => 'Extra Large',
-                                                    'lg-margin-top'  => 'Large',
-                                                    'md-margin-top'  => 'Medium',
-                                                    'sm-margin-top'  => 'Small',
+                                                    ''              => 'No margin',
+                                                    'xl-margin-top' => 'Extra Large',
+                                                    'lg-margin-top' => 'Large',
+                                                    'md-margin-top' => 'Medium',
+                                                    'sm-margin-top' => 'Small',
                                                     'xs-margin-top' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'margin_bottom', 'Margin Bottom')
                                             ->set_options(
                                                 array(
-                                                    ''                  => 'No margin',
-                                                    'xl-margin-bottom'  => 'Extra Large',
-                                                    'lg-margin-bottom'  => 'Large',
-                                                    'md-margin-bottom'  => 'Medium',
-                                                    'sm-margin-bottom'  => 'Small',
+                                                    ''                 => 'No margin',
+                                                    'xl-margin-bottom' => 'Extra Large',
+                                                    'lg-margin-bottom' => 'Large',
+                                                    'md-margin-bottom' => 'Medium',
+                                                    'sm-margin-bottom' => 'Small',
                                                     'xs-margin-bottom' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'margin_left', 'Margin Left')
                                             ->set_options(
                                                 array(
-                                                    ''                => 'No margin',
-                                                    'xl-margin-left'  => 'Extra Large',
-                                                    'lg-margin-left'  => 'Large',
-                                                    'md-margin-left'  => 'Medium',
-                                                    'sm-margin-left'  => 'Small',
+                                                    ''               => 'No margin',
+                                                    'xl-margin-left' => 'Extra Large',
+                                                    'lg-margin-left' => 'Large',
+                                                    'md-margin-left' => 'Medium',
+                                                    'sm-margin-left' => 'Small',
                                                     'xs-margin-left' => 'Extra Small',
                                                 )
                                             ),
                                         Field::make('select', 'margin_right', 'Margin Right')
                                             ->set_options(
                                                 array(
-                                                    ''                 => 'No margin',
-                                                    'xl-margin-right'  => 'Extra Large',
-                                                    'lg-margin-right'  => 'Large',
-                                                    'md-margin-right'  => 'Medium',
-                                                    'sm-margin-right'  => 'Small',
+                                                    ''                => 'No margin',
+                                                    'xl-margin-right' => 'Extra Large',
+                                                    'lg-margin-right' => 'Large',
+                                                    'md-margin-right' => 'Medium',
+                                                    'sm-margin-right' => 'Small',
                                                     'xs-margin-right' => 'Extra Small',
                                                 )
                                             ),
@@ -4545,29 +4545,29 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'align_items', 'Align Items')
                                             ->set_options(
                                                 array(
-                                                    ''               => 'Default',
+                                                    ''                   => 'Default',
                                                     'align-items-start'  => 'Start',
-                                                    'align-items-center'  => 'Center',
-                                                    'align-items-end'  => 'End',
+                                                    'align-items-center' => 'Center',
+                                                    'align-items-end'    => 'End',
                                                 )
                                             ),
                                         Field::make('select', 'justify_content', 'Justify Content')
                                             ->set_options(
                                                 array(
-                                                    ''                  => 'Default',
-                                                    'justify-content-start'  => 'Start',
+                                                    ''                        => 'Default',
+                                                    'justify-content-start'   => 'Start',
                                                     'justify-content-center'  => 'Center',
-                                                    'justify-content-end'  => 'End',
-                                                    'justify-content-between'  => 'Between',
+                                                    'justify-content-end'     => 'End',
+                                                    'justify-content-between' => 'Between',
                                                 )
                                             ),
                                         Field::make('select', 'text_align', 'Text Align')
                                             ->set_options(
                                                 array(
-                                                    ''                => 'Default',
-                                                    'text-start'                => 'Left',
-                                                    'text-center'                => 'Center',
-                                                    'text-end'                => 'Right',
+                                                    ''            => 'Default',
+                                                    'text-start'  => 'Left',
+                                                    'text-center' => 'Center',
+                                                    'text-end'    => 'Right',
                                                 )
                                             ),
                                     )
@@ -4578,7 +4578,7 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'column_width', __('Column Width Desktop'))
                                             ->set_options(
                                                 array(
-                                                    'col-lg'     => 'Default',
+                                                    'col-lg'    => 'Default',
                                                     'col-12'    => '100.00%',
                                                     'col-lg-11' => '91.67%',
                                                     'col-lg-10' => '83.33%',
@@ -4596,8 +4596,8 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'column_width_tablet', __('Column Width Tablet'))
                                             ->set_options(
                                                 array(
-                                                    ''     => 'Default',
-                                                    'col-md-12'    => '100.00%',
+                                                    ''          => 'Default',
+                                                    'col-md-12' => '100.00%',
                                                     'col-md-11' => '91.67%',
                                                     'col-md-10' => '83.33%',
                                                     'col-md-9'  => '75.00%',
@@ -4614,7 +4614,7 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'column_width_mobile', __('Column Width Mobile'))
                                             ->set_options(
                                                 array(
-                                                    ''     => 'Default',
+                                                    ''       => 'Default',
                                                     'col-12' => '100%',
                                                     'col-11' => '91.67%',
                                                     'col-10' => '83.33%',
@@ -4637,17 +4637,17 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'border_radius', 'Border Radius')->set_classes('inline-field-wide-label')
                                             ->set_options(
                                                 array(
-                                                    ''   => 'None',
-                                                    'rounded-corner'   => 'Default[10px]',
-                                                    'custom'   => 'Custom',
+                                                    ''               => 'None',
+                                                    'rounded-corner' => 'Default[10px]',
+                                                    'custom'         => 'Custom',
                                                 )
                                             ),
                                         Field::make('text', 'border_radius_custom', 'Custom Border Radius')->set_classes('inline-field-wide-label')
                                             ->set_conditional_logic(
                                                 array(
                                                     array(
-                                                        'field' => 'border_radius',
-                                                        'value' => 'custom',
+                                                        'field'   => 'border_radius',
+                                                        'value'   => 'custom',
                                                         'compare' => '='
                                                     )
                                                 )
@@ -4655,22 +4655,22 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'border_style', 'Border Style')->set_classes('inline-field-wide-label')
                                             ->set_options(
                                                 array(
-                                                    ''   => 'None',
-                                                    'border-default'   => 'Default',
-                                                    'border-custom'   => 'Custom',
+                                                    ''               => 'None',
+                                                    'border-default' => 'Default',
+                                                    'border-custom'  => 'Custom',
                                                 )
                                             ),
 
                                         Field::make('select', 'border_color', 'Border Color')->set_classes('inline-field-wide-label')
                                             ->set_options(
                                                 array(
-                                                    'border-default'   => 'Default',
-                                                    'border-primary'   => 'Primary',
-                                                    'border-secondary' => 'Secondary',
-                                                    'border-accent'    => 'Accent',
-                                                    'border-white'     => 'White',
-                                                    'border-light-gray'     => 'Light Gray',
-                                                    'border-custom-color'    => 'Custom',
+                                                    'border-default'      => 'Default',
+                                                    'border-primary'      => 'Primary',
+                                                    'border-secondary'    => 'Secondary',
+                                                    'border-accent'       => 'Accent',
+                                                    'border-white'        => 'White',
+                                                    'border-light-gray'   => 'Light Gray',
+                                                    'border-custom-color' => 'Custom',
                                                 )
                                             )
                                             ->set_conditional_logic(
@@ -4694,7 +4694,7 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'border_width', 'Border Width')->set_classes('inline-field-wide-label')
                                             ->set_options(array(
                                                 'default' => 'Default[1px]',
-                                                'custom' => 'Custom'
+                                                'custom'  => 'Custom'
                                             ))
                                             ->set_conditional_logic(
                                                 array(
@@ -4760,26 +4760,26 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'tag', __('Post Title Tag'))
                                             ->set_options(
                                                 array(
-                                                    '' => 'Default',
+                                                    ''   => 'Default',
                                                     'h2' => 'h2',
                                                     'h3' => 'h3',
                                                     'h4' => 'h4',
                                                     'h5' => 'h5',
                                                     'h6' => 'h6',
-                                                    'p' => 'p',
+                                                    'p'  => 'p',
                                                 )
                                             ),
                                         Field::make('select', 'text_color', 'Text Color')
                                             ->set_options(
                                                 array(
-                                                    ''   => 'Default',
-                                                    'text-primary'   => 'Primary',
-                                                    'text-secondary' => 'Secondary',
-                                                    'text-accent'    => 'Accent',
-                                                    'text-white'     => 'White',
-                                                    'text-light-gray'     => 'Light Gray',
-                                                    'text-body-color'     => 'Body',
-                                                    'text-custom'    => 'Custom',
+                                                    ''                => 'Default',
+                                                    'text-primary'    => 'Primary',
+                                                    'text-secondary'  => 'Secondary',
+                                                    'text-accent'     => 'Accent',
+                                                    'text-white'      => 'White',
+                                                    'text-light-gray' => 'Light Gray',
+                                                    'text-body-color' => 'Body',
+                                                    'text-custom'     => 'Custom',
                                                 )
                                             ),
                                         Field::make('color', 'text_color_custom', __('Text Color'))
@@ -4801,9 +4801,9 @@ function __section_fields($name = 'sections')
                                                 array(
                                                     ''          => 'Default',
                                                     'full'      => 'Full',
-                                                    'large'      => 'Large',
-                                                    'medium' => 'Medium',
-                                                    'thumbnail'    => 'Thumbnail',
+                                                    'large'     => 'Large',
+                                                    'medium'    => 'Medium',
+                                                    'thumbnail' => 'Thumbnail',
                                                 )
                                             ),
                                         Field::make('checkbox', 'is_background_image', __('Is Background Image')),
@@ -4833,11 +4833,11 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'button_style', __('Button Style'))->set_width(20)
                                             ->set_options(
                                                 array(
-                                                    'button-accent'      => 'Accent',
-                                                    'button-primary'      => 'Primary',
+                                                    'button-accent'    => 'Accent',
+                                                    'button-primary'   => 'Primary',
                                                     'button-secondary' => 'Secondary',
-                                                    'button-white' => 'White',
-                                                    'button-bordered'    => 'Bordered',
+                                                    'button-white'     => 'White',
+                                                    'button-bordered'  => 'Bordered',
                                                 )
                                             ),
                                     )
@@ -4848,13 +4848,13 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'icon_color', 'Text Color')
                                         ->set_options(
                                             array(
-                                                ''   => 'Default',
-                                                'text-primary'   => 'Primary',
-                                                'text-secondary' => 'Secondary',
-                                                'text-accent'    => 'Accent',
-                                                'text-white'     => 'White',
-                                                'text-light-gray'     => 'Light Gray',
-                                                'text-custom'    => 'Custom',
+                                                ''                => 'Default',
+                                                'text-primary'    => 'Primary',
+                                                'text-secondary'  => 'Secondary',
+                                                'text-accent'     => 'Accent',
+                                                'text-white'      => 'White',
+                                                'text-light-gray' => 'Light Gray',
+                                                'text-custom'     => 'Custom',
                                             )
                                         ),
                                     Field::make('color', 'icon_color_custom', __('Text Color'))
@@ -4877,13 +4877,13 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                             ->set_options(
                                                 array(
-                                                    'p'      => 'p',
-                                                    'h2'      => 'h2',
-                                                    'h3'      => 'h3',
-                                                    'h4'      => 'h4',
-                                                    'h5'      => 'h5',
-                                                    'h6'      => 'h6',
-                                                    'img'      => 'img',
+                                                    'p'   => 'p',
+                                                    'h2'  => 'h2',
+                                                    'h3'  => 'h3',
+                                                    'h4'  => 'h4',
+                                                    'h5'  => 'h5',
+                                                    'h6'  => 'h6',
+                                                    'img' => 'img',
                                                 )
                                             ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -4897,13 +4897,13 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                             ->set_options(
                                                 array(
-                                                    'p'      => 'p',
-                                                    'h2'      => 'h2',
-                                                    'h3'      => 'h3',
-                                                    'h4'      => 'h4',
-                                                    'h5'      => 'h5',
-                                                    'h6'      => 'h6',
-                                                    'img'      => 'img',
+                                                    'p'   => 'p',
+                                                    'h2'  => 'h2',
+                                                    'h3'  => 'h3',
+                                                    'h4'  => 'h4',
+                                                    'h5'  => 'h5',
+                                                    'h6'  => 'h6',
+                                                    'img' => 'img',
                                                 )
                                             ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -4917,13 +4917,13 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                             ->set_options(
                                                 array(
-                                                    'p'      => 'p',
-                                                    'h2'      => 'h2',
-                                                    'h3'      => 'h3',
-                                                    'h4'      => 'h4',
-                                                    'h5'      => 'h5',
-                                                    'h6'      => 'h6',
-                                                    'img'      => 'img',
+                                                    'p'   => 'p',
+                                                    'h2'  => 'h2',
+                                                    'h3'  => 'h3',
+                                                    'h4'  => 'h4',
+                                                    'h5'  => 'h5',
+                                                    'h6'  => 'h6',
+                                                    'img' => 'img',
                                                 )
                                             ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -4937,13 +4937,13 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                             ->set_options(
                                                 array(
-                                                    'p'      => 'p',
-                                                    'h2'      => 'h2',
-                                                    'h3'      => 'h3',
-                                                    'h4'      => 'h4',
-                                                    'h5'      => 'h5',
-                                                    'h6'      => 'h6',
-                                                    'img'      => 'img',
+                                                    'p'   => 'p',
+                                                    'h2'  => 'h2',
+                                                    'h3'  => 'h3',
+                                                    'h4'  => 'h4',
+                                                    'h5'  => 'h5',
+                                                    'h6'  => 'h6',
+                                                    'img' => 'img',
                                                 )
                                             ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -4957,13 +4957,13 @@ function __section_fields($name = 'sections')
                                         Field::make('select', 'custom_field_type', __('Custom Field Type'))
                                             ->set_options(
                                                 array(
-                                                    'p'      => 'p',
-                                                    'h2'      => 'h2',
-                                                    'h3'      => 'h3',
-                                                    'h4'      => 'h4',
-                                                    'h5'      => 'h5',
-                                                    'h6'      => 'h6',
-                                                    'img'      => 'img',
+                                                    'p'   => 'p',
+                                                    'h2'  => 'h2',
+                                                    'h3'  => 'h3',
+                                                    'h4'  => 'h4',
+                                                    'h5'  => 'h5',
+                                                    'h6'  => 'h6',
+                                                    'img' => 'img',
                                                 )
                                             ),
                                         Field::make('text', 'custom_field_class', __('Wrapper Class')),
@@ -4982,7 +4982,7 @@ function __section_fields($name = 'sections')
                                             ->set_options(
                                                 array(
                                                     'all'      => 'Select All',
-                                                    'manually'      => 'Select Manually',
+                                                    'manually' => 'Select Manually',
                                                 )
                                             ),
 
@@ -5014,8 +5014,8 @@ function __section_fields($name = 'sections')
                                             ->set_options(
                                                 array(
                                                     'all'      => 'Select All',
-                                                    'manually'      => 'Select Manually',
-                                                    'category'      => 'Select by Category',
+                                                    'manually' => 'Select Manually',
+                                                    'category' => 'Select by Category',
                                                 )
                                             ),
 
@@ -5040,7 +5040,7 @@ function __section_fields($name = 'sections')
                                             ->set_types(
                                                 array(
                                                     array(
-                                                        'type'      => 'term',
+                                                        'type'     => 'term',
                                                         'taxonomy' => 'casestudies_category',
                                                     )
                                                 )
@@ -5048,8 +5048,8 @@ function __section_fields($name = 'sections')
                                             ->set_conditional_logic(
                                                 array(
                                                     array(
-                                                        'field' => 'source',
-                                                        'value' => 'category',
+                                                        'field'   => 'source',
+                                                        'value'   => 'category',
                                                         'comapre' => '='
                                                     )
                                                 )
@@ -5065,8 +5065,8 @@ function __section_fields($name = 'sections')
                                             ->set_options(
                                                 array(
                                                     'all'      => 'Select All',
-                                                    'manually'      => 'Select Manually',
-                                                    'category'      => 'Select by Category',
+                                                    'manually' => 'Select Manually',
+                                                    'category' => 'Select by Category',
                                                 )
                                             ),
 
@@ -5091,7 +5091,7 @@ function __section_fields($name = 'sections')
                                             ->set_types(
                                                 array(
                                                     array(
-                                                        'type'      => 'term',
+                                                        'type'     => 'term',
                                                         'taxonomy' => 'testimonial_category',
                                                     )
                                                 )
@@ -5099,8 +5099,8 @@ function __section_fields($name = 'sections')
                                             ->set_conditional_logic(
                                                 array(
                                                     array(
-                                                        'field' => 'source',
-                                                        'value' => 'category',
+                                                        'field'   => 'source',
+                                                        'value'   => 'category',
                                                         'comapre' => '='
                                                     )
                                                 )
@@ -5115,7 +5115,7 @@ function __section_fields($name = 'sections')
                                             ->set_options(
                                                 array(
                                                     'all'      => 'Select All',
-                                                    'manually'      => 'Select Manually',
+                                                    'manually' => 'Select Manually',
                                                 )
                                             ),
 
@@ -5150,10 +5150,10 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'buttons_alignment', 'Buttons Alignment')
                                 ->set_options(
                                     array(
-                                        ''                => 'Default',
-                                        'text-start'                => 'Left',
-                                        'text-center'                => 'Center',
-                                        'text-end'                => 'Right',
+                                        ''            => 'Default',
+                                        'text-start'  => 'Left',
+                                        'text-center' => 'Center',
+                                        'text-end'    => 'Right',
                                     )
                                 ),
                             Field::make('complex', 'buttons', __('Buttons'))
@@ -5168,15 +5168,15 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'button_type', __('Button Type'))->set_classes('trigger-selector inline-field')
                                         ->set_options(
                                             array(
-                                                ''          => 'Select Button Type',
-                                                'page'      => 'Page',
-                                                'product'      => 'Product',
+                                                ''            => 'Select Button Type',
+                                                'page'        => 'Page',
+                                                'product'     => 'Product',
                                                 'guides'      => 'Guides',
-                                                'casestudies'      => 'Case Studies',
-                                                'post'      => 'Post',
-                                                'industries' => 'Industry',
-                                                'popups'    => 'Popup',
-                                                'custom'     => 'Custom',
+                                                'casestudies' => 'Case Studies',
+                                                'post'        => 'Post',
+                                                'industries'  => 'Industry',
+                                                'popups'      => 'Popup',
+                                                'custom'      => 'Custom',
                                             )
                                         ),
                                     Field::make('text', 'button_text', __('Button Text'))->set_classes('inline-field'),
@@ -5204,25 +5204,25 @@ function __section_fields($name = 'sections')
                                     Field::make('select', 'button_style', __('Button Style'))->set_classes('inline-field')
                                         ->set_options(
                                             array(
-                                                'button-accent'      => 'Accent',
-                                                'button-primary'      => 'Primary',
+                                                'button-accent'    => 'Accent',
+                                                'button-primary'   => 'Primary',
                                                 'button-secondary' => 'Secondary',
-                                                'button-white' => 'White',
-                                                'button-bordered'    => 'Bordered',
+                                                'button-white'     => 'White',
+                                                'button-bordered'  => 'Bordered',
                                             )
                                         ),
                                     Field::make('select', 'button_target', __('Button Target'))->set_classes('inline-field')
                                         ->set_options(
                                             array(
-                                                'target="_self"'      => 'Default',
-                                                'target="_blank"'      => 'New Tab',
+                                                'target="_self"'  => 'Default',
+                                                'target="_blank"' => 'New Tab',
                                             )
                                         ),
                                 ))
                                 ->set_header_template('Button: <%- button_text %>'),
                         )
                     )
-                    ->add_fields('product_compare',  array(
+                    ->add_fields('product_compare', array(
                         Field::make('association', 'compareproducts', 'Select Product Compare')
                             ->set_types(
                                 array(
@@ -5234,10 +5234,10 @@ function __section_fields($name = 'sections')
                             )
                             ->set_max(1)
                     ))
-                    ->add_fields('shortcode',  array(
+                    ->add_fields('shortcode', array(
                         Field::make('text', 'shortcode', 'Shortcode')
                     ))
-                    ->add_fields('product_slider',  array(
+                    ->add_fields('product_slider', array(
                         Field::make('text', 'heading', 'Heading')->set_classes('inline-field inline-field-wide-label'),
                         Field::make('text', 'button_text', 'Button Text')->set_classes('inline-field inline-field-wide-label'),
                         Field::make('text', 'button_url', 'Button URL')->set_classes('inline-field inline-field-wide-label'),
@@ -5245,15 +5245,15 @@ function __section_fields($name = 'sections')
                         Field::make('select', 'source_type', __('Source'))->set_classes('inline-field inline-field-wide-label')
                             ->set_options(
                                 array(
-                                    'category'      => 'Select by Category',
-                                    'manually'      => 'Select Manually',
-                                    'main_query'      => 'Main Query(works only for product taxonomy pages)',
+                                    'category'   => 'Select by Category',
+                                    'manually'   => 'Select Manually',
+                                    'main_query' => 'Main Query(works only for product taxonomy pages)',
                                 )
                             ),
                         Field::make('association', 'source', __('Category'))->set_classes('inline-field inline-field-wide-label')
                             ->set_types(array(
                                 array(
-                                    'type'      => 'term',
+                                    'type'     => 'term',
                                     'taxonomy' => 'product_cat',
                                 ),
                             ))
@@ -5268,7 +5268,7 @@ function __section_fields($name = 'sections')
                         Field::make('association', 'brand', __('Brands'))->set_classes('inline-field inline-field-wide-label')
                             ->set_types(array(
                                 array(
-                                    'type'      => 'term',
+                                    'type'     => 'term',
                                     'taxonomy' => 'pa_brands',
                                 ),
                             ))
@@ -5296,10 +5296,10 @@ function __section_fields($name = 'sections')
                                 )
                             ),
                     ))
-               
-                    ->add_fields('tabs',  array(
+
+                    ->add_fields('tabs', array(
                         Field::make('complex', 'tabs', 'Tabs')
-                            ->add_fields('tabs',  array(
+                            ->add_fields('tabs', array(
                                 Field::make('text', 'heading', 'Heading'),
                                 Field::make('textarea', 'description', 'Description')->set_width(80),
                                 Field::make('html', 'activate_wysiwyg')->set_width(20)
@@ -5318,9 +5318,9 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'accordion_source', __('Accordion Source'))
                                 ->set_options(
                                     array(
-                                        ''      => 'Custom',
-                                        'faqs'      => 'FAQs Select Manually',
-                                        'faqs_category'      => 'FAQs by Category',
+                                        ''              => 'Custom',
+                                        'faqs'          => 'FAQs Select Manually',
+                                        'faqs_category' => 'FAQs by Category',
                                     )
                                 ),
                             Field::make('complex', 'accordion', __('Accordion'))
@@ -5337,8 +5337,8 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'accordion_source',
-                                            'value' => '',
+                                            'field'   => 'accordion_source',
+                                            'value'   => '',
                                             'comapre' => '='
                                         )
                                     )
@@ -5355,8 +5355,8 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'accordion_source',
-                                            'value' => 'faqs',
+                                            'field'   => 'accordion_source',
+                                            'value'   => 'faqs',
                                             'comapre' => '='
                                         )
                                     )
@@ -5365,7 +5365,7 @@ function __section_fields($name = 'sections')
                                 ->set_types(
                                     array(
                                         array(
-                                            'type'      => 'term',
+                                            'type'     => 'term',
                                             'taxonomy' => 'faqs_category',
                                         )
                                     )
@@ -5373,17 +5373,17 @@ function __section_fields($name = 'sections')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'accordion_source',
-                                            'value' => 'faqs_category',
+                                            'field'   => 'accordion_source',
+                                            'value'   => 'faqs_category',
                                             'comapre' => '='
                                         )
                                     )
                                 ),
                         )
                     )
-                    ->add_fields('events_widget',  array(
+                    ->add_fields('events_widget', array(
                         Field::make('complex', 'events_widget', 'Events Widget')
-                            ->add_fields('countdown',  array(
+                            ->add_fields('countdown', array(
                                 Field::make('html', 'html')->set_html('<h3>This will display events countdown timer. </h3>'),
                             ))
                             ->set_layout('tabbed-vertical')
@@ -5403,15 +5403,15 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'background_color', 'Section Background Color')
                                 ->set_options(
                                     array(
-                                        ''   => 'None',
-                                        'bg-primary'   => 'Primary',
-                                        'bg-secondary' => 'Secondary',
-                                        'bg-dark' => 'Dark',
-                                        'bg-accent'    => 'Accent',
-                                        'bg-white'     => 'White',
-                                        'bg-light'     => 'Light',
-                                        'bg-light-gray'     => 'Light Gray',
-                                        'bg-custom'    => 'Custom',
+                                        ''              => 'None',
+                                        'bg-primary'    => 'Primary',
+                                        'bg-secondary'  => 'Secondary',
+                                        'bg-dark'       => 'Dark',
+                                        'bg-accent'     => 'Accent',
+                                        'bg-white'      => 'White',
+                                        'bg-light'      => 'Light',
+                                        'bg-light-gray' => 'Light Gray',
+                                        'bg-custom'     => 'Custom',
                                     )
                                 ),
                             Field::make('color', 'background_color_custom', __('Section Background Color'))
@@ -5427,13 +5427,13 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'background_color_container', 'Container Background Color')
                                 ->set_options(
                                     array(
-                                        ''   => 'None',
-                                        'bg-primary'   => 'Primary',
-                                        'bg-secondary' => 'Secondary',
-                                        'bg-accent'    => 'Accent',
-                                        'bg-white'     => 'White',
-                                        'bg-light'     => 'Light',
-                                        'bg-light-gray'     => 'Light Gray',
+                                        ''              => 'None',
+                                        'bg-primary'    => 'Primary',
+                                        'bg-secondary'  => 'Secondary',
+                                        'bg-accent'     => 'Accent',
+                                        'bg-white'      => 'White',
+                                        'bg-light'      => 'Light',
+                                        'bg-light-gray' => 'Light Gray',
                                     )
                                 ),
                         )
@@ -5445,22 +5445,22 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'background_size', 'Background Size')
                                 ->set_options(
                                     array(
-                                        'bg-cover' => 'Cover',
-                                        'bg-contain'  => 'Contain',
+                                        'bg-cover'   => 'Cover',
+                                        'bg-contain' => 'Contain',
                                     )
                                 ),
                             Field::make('select', 'background_attachment', 'Background Attachment')
                                 ->set_options(
                                     array(
-                                        'bg-scroll'    => 'Scroll',
+                                        'bg-scroll' => 'Scroll',
                                         'bg-fixed'  => 'Fixed',
                                     )
                                 ),
                             Field::make('select', 'background_repeat', 'Background Repeat')
                                 ->set_options(
                                     array(
-                                        'bg-no-repeat'    => 'No Repeat',
-                                        'bg-repeat'  => 'No Repeat',
+                                        'bg-no-repeat' => 'No Repeat',
+                                        'bg-repeat'    => 'No Repeat',
                                     )
                                 ),
                         )
@@ -5473,7 +5473,7 @@ function __section_fields($name = 'sections')
                                 ->set_options(
                                     array(
                                         'self-hosted' => 'Self Hosted',
-                                        'youtube' => 'Youtube',
+                                        'youtube'     => 'Youtube',
                                     )
                                 ),
                             Field::make('file', 'background', __('Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
@@ -5502,10 +5502,10 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'background_overlay_type', 'Background Overlay Type')
                                 ->set_options(
                                     array(
-                                        'default'    => 'Default',
-                                        'background-overlay-2'    => 'Background Overlay 2',
-                                        'image'  => 'Image',
-                                        'custom'  => 'Custom',
+                                        'default'              => 'Default',
+                                        'background-overlay-2' => 'Background Overlay 2',
+                                        'image'                => 'Image',
+                                        'custom'               => 'Custom',
                                     )
                                 ),
                             Field::make('image', 'background_overlay_image', 'Image Background Overlay')
@@ -5544,16 +5544,16 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'background_gradient', 'Background Gradient')->set_classes('inline-field inline-field-wide-label')
                                 ->set_options(
                                     array(
-                                        'background-gradient-default'    => 'Default',
-                                        'custom'  => 'Custom',
+                                        'background-gradient-default' => 'Default',
+                                        'custom'                      => 'Custom',
                                     )
                                 ),
 
                             Field::make('select', 'background_gradient_type', 'Background Gradient Type')->set_classes('inline-field inline-field-wide-label')
                                 ->set_options(
                                     array(
-                                        'linear-gradient'    => 'Linear Gradient',
-                                        'radial-gradient'  => 'Radial Gradient',
+                                        'linear-gradient' => 'Linear Gradient',
+                                        'radial-gradient' => 'Radial Gradient',
                                     )
                                 )
                                 ->set_conditional_logic(
@@ -5628,12 +5628,12 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'text_color', 'Text Color')
                                 ->set_options(
                                     array(
-                                        'text-primary'   => 'Primary',
-                                        'text-secondary' => 'Secondary',
-                                        'text-accent'    => 'Accent',
-                                        'text-white'     => 'White',
-                                        'text-light-gray'     => 'Light Gray',
-                                        'text-custom'    => 'Custom',
+                                        'text-primary'    => 'Primary',
+                                        'text-secondary'  => 'Secondary',
+                                        'text-accent'     => 'Accent',
+                                        'text-white'      => 'White',
+                                        'text-light-gray' => 'Light Gray',
+                                        'text-custom'     => 'Custom',
                                     )
                                 ),
                             Field::make('color', 'text_color_custom', __('Text Color'))
@@ -5654,46 +5654,46 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'padding_top', 'Padding Top')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                => 'No Padding',
-                                        'xl-padding-top'  => 'Extra Large',
-                                        'lg-padding-top'  => 'Large',
-                                        'md-padding-top'  => 'Medium',
-                                        'sm-padding-top'  => 'Small',
+                                        ''               => 'No Padding',
+                                        'xl-padding-top' => 'Extra Large',
+                                        'lg-padding-top' => 'Large',
+                                        'md-padding-top' => 'Medium',
+                                        'sm-padding-top' => 'Small',
                                         'xs-padding-top' => 'Extra Small',
-                                        'pt-20px' => '20px',
+                                        'pt-20px'        => '20px',
                                     )
                                 ),
                             Field::make('select', 'padding_bottom', 'Padding Bottom')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                   => 'No Padding',
-                                        'xl-padding-bottom'  => 'Extra Large',
-                                        'lg-padding-bottom'  => 'Large',
-                                        'md-padding-bottom'  => 'Medium',
-                                        'sm-padding-bottom'  => 'Small',
+                                        ''                  => 'No Padding',
+                                        'xl-padding-bottom' => 'Extra Large',
+                                        'lg-padding-bottom' => 'Large',
+                                        'md-padding-bottom' => 'Medium',
+                                        'sm-padding-bottom' => 'Small',
                                         'xs-padding-bottom' => 'Extra Small',
-                                        'pb-20px' => '20px',
+                                        'pb-20px'           => '20px',
                                     )
                                 ),
                             Field::make('select', 'padding_left', 'Padding left')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                 => 'No Padding',
-                                        'xl-padding-left'  => 'Extra Large',
-                                        'lg-padding-left'  => 'Large',
-                                        'md-padding-left'  => 'Medium',
-                                        'sm-padding-left'  => 'Small',
+                                        ''                => 'No Padding',
+                                        'xl-padding-left' => 'Extra Large',
+                                        'lg-padding-left' => 'Large',
+                                        'md-padding-left' => 'Medium',
+                                        'sm-padding-left' => 'Small',
                                         'xs-padding-left' => 'Extra Small',
                                     )
                                 ),
                             Field::make('select', 'padding_right', 'Padding right')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                  => 'No Padding',
-                                        'xl-padding-right'  => 'Extra Large',
-                                        'lg-padding-right'  => 'Large',
-                                        'md-padding-right'  => 'Medium',
-                                        'sm-padding-right'  => 'Small',
+                                        ''                 => 'No Padding',
+                                        'xl-padding-right' => 'Extra Large',
+                                        'lg-padding-right' => 'Large',
+                                        'md-padding-right' => 'Medium',
+                                        'sm-padding-right' => 'Small',
                                         'xs-padding-right' => 'Extra Small',
                                     )
                                 ),
@@ -5701,47 +5701,47 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'container_padding_top', 'Padding Top')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                => 'Default',
-                                        'xl-padding-top'  => 'Extra Large',
-                                        'lg-padding-top'  => 'Large',
-                                        'md-padding-top'  => 'Medium',
-                                        'sm-padding-top'  => 'Small',
+                                        ''               => 'Default',
+                                        'xl-padding-top' => 'Extra Large',
+                                        'lg-padding-top' => 'Large',
+                                        'md-padding-top' => 'Medium',
+                                        'sm-padding-top' => 'Small',
                                         'xs-padding-top' => 'Extra Small',
                                     )
                                 ),
                             Field::make('select', 'container_padding_bottom', 'Padding Bottom')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                   => 'Default',
-                                        'xl-padding-bottom'  => 'Extra Large',
-                                        'lg-padding-bottom'  => 'Large',
-                                        'md-padding-bottom'  => 'Medium',
-                                        'sm-padding-bottom'  => 'Small',
+                                        ''                  => 'Default',
+                                        'xl-padding-bottom' => 'Extra Large',
+                                        'lg-padding-bottom' => 'Large',
+                                        'md-padding-bottom' => 'Medium',
+                                        'sm-padding-bottom' => 'Small',
                                         'xs-padding-bottom' => 'Extra Small',
                                     )
                                 ),
                             Field::make('select', 'container_padding_left', 'Padding left')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                 => 'Default',
-                                        'xl-padding-left'  => 'Extra Large',
-                                        'lg-padding-left'  => 'Large',
-                                        'md-padding-left'  => 'Medium',
-                                        'sm-padding-left'  => 'Small',
+                                        ''                => 'Default',
+                                        'xl-padding-left' => 'Extra Large',
+                                        'lg-padding-left' => 'Large',
+                                        'md-padding-left' => 'Medium',
+                                        'sm-padding-left' => 'Small',
                                         'xs-padding-left' => 'Extra Small',
-                                        'ps-0' => 'None',
+                                        'ps-0'            => 'None',
                                     )
                                 ),
                             Field::make('select', 'container_padding_right', 'Padding right')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                  => 'Default',
-                                        'xl-padding-right'  => 'Extra Large',
-                                        'lg-padding-right'  => 'Large',
-                                        'md-padding-right'  => 'Medium',
-                                        'sm-padding-right'  => 'Small',
+                                        ''                 => 'Default',
+                                        'xl-padding-right' => 'Extra Large',
+                                        'lg-padding-right' => 'Large',
+                                        'md-padding-right' => 'Medium',
+                                        'sm-padding-right' => 'Small',
                                         'xs-padding-right' => 'Extra Small',
-                                        'pe-0' => 'None',
+                                        'pe-0'             => 'None',
                                     )
                                 ),
 
@@ -5753,49 +5753,49 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'margin_top', 'Margin Top')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''               => 'No margin',
-                                        'xl-margin-top'  => 'Extra Large',
-                                        'lg-margin-top'  => 'Large',
-                                        'md-margin-top'  => 'Medium',
-                                        'sm-margin-top'  => 'Small',
+                                        ''              => 'No margin',
+                                        'xl-margin-top' => 'Extra Large',
+                                        'lg-margin-top' => 'Large',
+                                        'md-margin-top' => 'Medium',
+                                        'sm-margin-top' => 'Small',
                                         'xs-margin-top' => 'Extra Small',
-                                        'mt-20px' => '20px',
+                                        'mt-20px'       => '20px',
                                     )
                                 ),
                             Field::make('select', 'margin_bottom', 'Margin Bottom')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                  => 'No margin',
-                                        'xl-margin-bottom'  => 'Extra Large',
-                                        'lg-margin-bottom'  => 'Large',
-                                        'md-margin-bottom'  => 'Medium',
-                                        'sm-margin-bottom'  => 'Small',
+                                        ''                 => 'No margin',
+                                        'xl-margin-bottom' => 'Extra Large',
+                                        'lg-margin-bottom' => 'Large',
+                                        'md-margin-bottom' => 'Medium',
+                                        'sm-margin-bottom' => 'Small',
                                         'xs-margin-bottom' => 'Extra Small',
-                                        'mb-20px' => '20px',
+                                        'mb-20px'          => '20px',
                                     )
                                 ),
                             Field::make('select', 'margin_left', 'Margin Left')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                => 'No margin',
-                                        'xl-margin-left'  => 'Extra Large',
-                                        'lg-margin-left'  => 'Large',
-                                        'md-margin-left'  => 'Medium',
-                                        'sm-margin-left'  => 'Small',
+                                        ''               => 'No margin',
+                                        'xl-margin-left' => 'Extra Large',
+                                        'lg-margin-left' => 'Large',
+                                        'md-margin-left' => 'Medium',
+                                        'sm-margin-left' => 'Small',
                                         'xs-margin-left' => 'Extra Small',
-                                        'ms-20px' => '20px',
+                                        'ms-20px'        => '20px',
                                     )
                                 ),
                             Field::make('select', 'margin_right', 'Margin Right')->set_width(25)
                                 ->set_options(
                                     array(
-                                        ''                 => 'No margin',
-                                        'xl-margin-right'  => 'Extra Large',
-                                        'lg-margin-right'  => 'Large',
-                                        'md-margin-right'  => 'Medium',
-                                        'sm-margin-right'  => 'Small',
+                                        ''                => 'No margin',
+                                        'xl-margin-right' => 'Extra Large',
+                                        'lg-margin-right' => 'Large',
+                                        'md-margin-right' => 'Medium',
+                                        'sm-margin-right' => 'Small',
                                         'xs-margin-right' => 'Extra Small',
-                                        'me-20px' => '20px',
+                                        'me-20px'         => '20px',
                                     )
                                 ),
 
@@ -5807,29 +5807,29 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'align_items', 'Align Items')
                                 ->set_options(
                                     array(
-                                        ''               => 'Default',
+                                        ''                   => 'Default',
                                         'align-items-start'  => 'Start',
-                                        'align-items-center'  => 'Center',
-                                        'align-items-end'  => 'End',
+                                        'align-items-center' => 'Center',
+                                        'align-items-end'    => 'End',
                                     )
                                 ),
                             Field::make('select', 'justify_content', 'Justify Content')
                                 ->set_options(
                                     array(
-                                        ''                  => 'Default',
-                                        'justify-content-start'  => 'Start',
+                                        ''                        => 'Default',
+                                        'justify-content-start'   => 'Start',
                                         'justify-content-center'  => 'Center',
-                                        'justify-content-end'  => 'End',
-                                        'justify-content-between'  => 'Between',
+                                        'justify-content-end'     => 'End',
+                                        'justify-content-between' => 'Between',
                                     )
                                 ),
                             Field::make('select', 'text_align', 'Text Align')
                                 ->set_options(
                                     array(
-                                        ''                => 'Default',
-                                        'text-start'                => 'Left',
-                                        'text-center'                => 'Center',
-                                        'text-end'                => 'Right',
+                                        ''            => 'Default',
+                                        'text-start'  => 'Left',
+                                        'text-center' => 'Center',
+                                        'text-end'    => 'Right',
                                     )
                                 ),
                         )
@@ -5840,14 +5840,14 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'container_width', 'Container Width')
                                 ->set_options(
                                     array(
-                                        ''               => 'Default',
+                                        ''                 => 'Default',
                                         'large-container'  => 'Large',
-                                        'medium-container'  => 'Medium',
+                                        'medium-container' => 'Medium',
                                         'small-container'  => 'Small',
-                                        'full-width'  => 'Full',
-                                        'extend-right'  => 'Padding Left',
-                                        'extend-left'  => 'Padding Right',
-                                        'custom-container'  => 'Custom',
+                                        'full-width'       => 'Full',
+                                        'extend-right'     => 'Padding Left',
+                                        'extend-left'      => 'Padding Right',
+                                        'custom-container' => 'Custom',
                                     )
                                 ),
                             Field::make('text', 'custom_container_width', 'Custom Container Width')
@@ -5874,17 +5874,17 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'border_radius', 'Border Radius')->set_classes('inline-field inline-field-wide-label')
                                 ->set_options(
                                     array(
-                                        ''   => 'None',
-                                        'rounded-corner'   => 'Default[10px]',
-                                        'custom'   => 'Custom',
+                                        ''               => 'None',
+                                        'rounded-corner' => 'Default[10px]',
+                                        'custom'         => 'Custom',
                                     )
                                 ),
                             Field::make('text', 'border_radius_custom', 'Custom Border Radius')->set_classes('inline-field inline-field-wide-label')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'border_radius',
-                                            'value' => 'custom',
+                                            'field'   => 'border_radius',
+                                            'value'   => 'custom',
                                             'compare' => '='
                                         )
                                     )
@@ -5892,22 +5892,22 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'border_style', 'Border Style')->set_classes('inline-field inline-field-wide-label')
                                 ->set_options(
                                     array(
-                                        ''   => 'None',
-                                        'border-default'   => 'Default',
-                                        'border-custom'   => 'Custom',
+                                        ''               => 'None',
+                                        'border-default' => 'Default',
+                                        'border-custom'  => 'Custom',
                                     )
                                 ),
 
                             Field::make('select', 'border_color', 'Border Color')->set_classes('inline-field inline-field-wide-label')
                                 ->set_options(
                                     array(
-                                        'border-default'   => 'Default',
-                                        'border-primary'   => 'Primary',
-                                        'border-secondary' => 'Secondary',
-                                        'border-accent'    => 'Accent',
-                                        'border-white'     => 'White',
-                                        'border-light-gray'     => 'Light Gray',
-                                        'border-custom-color'    => 'Custom',
+                                        'border-default'      => 'Default',
+                                        'border-primary'      => 'Primary',
+                                        'border-secondary'    => 'Secondary',
+                                        'border-accent'       => 'Accent',
+                                        'border-white'        => 'White',
+                                        'border-light-gray'   => 'Light Gray',
+                                        'border-custom-color' => 'Custom',
                                     )
                                 )
                                 ->set_conditional_logic(
@@ -5931,7 +5931,7 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'border_width', 'Border Width')->set_classes('inline-field inline-field-wide-label')
                                 ->set_options(array(
                                     'default' => 'Default[1px]',
-                                    'custom' => 'Custom'
+                                    'custom'  => 'Custom'
                                 ))
                                 ->set_conditional_logic(
                                     array(
@@ -5982,17 +5982,17 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'container_border_radius', 'Border Radius')->set_classes('inline-field inline-field-wide-label')
                                 ->set_options(
                                     array(
-                                        ''   => 'None',
-                                        'rounded-corner'   => 'Default[10px]',
-                                        'custom'   => 'Custom',
+                                        ''               => 'None',
+                                        'rounded-corner' => 'Default[10px]',
+                                        'custom'         => 'Custom',
                                     )
                                 ),
                             Field::make('text', 'container_border_radius_custom', 'Custom Border Radius')->set_classes('inline-field inline-field-wide-label')
                                 ->set_conditional_logic(
                                     array(
                                         array(
-                                            'field' => 'container_border_radius',
-                                            'value' => 'custom',
+                                            'field'   => 'container_border_radius',
+                                            'value'   => 'custom',
                                             'compare' => '='
                                         )
                                     )
@@ -6000,22 +6000,22 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'container_border_style', 'Border Style')->set_classes('inline-field inline-field-wide-label')
                                 ->set_options(
                                     array(
-                                        ''   => 'None',
-                                        'border-default'   => 'Default',
-                                        'border-custom'   => 'Custom',
+                                        ''               => 'None',
+                                        'border-default' => 'Default',
+                                        'border-custom'  => 'Custom',
                                     )
                                 ),
 
                             Field::make('select', 'container_border_color', 'Border Color')->set_classes('inline-field inline-field-wide-label')
                                 ->set_options(
                                     array(
-                                        'border-default'   => 'Default',
-                                        'border-primary'   => 'Primary',
-                                        'border-secondary' => 'Secondary',
-                                        'border-accent'    => 'Accent',
-                                        'border-white'     => 'White',
-                                        'border-light-gray'     => 'Light Gray',
-                                        'border-custom-color'    => 'Custom',
+                                        'border-default'      => 'Default',
+                                        'border-primary'      => 'Primary',
+                                        'border-secondary'    => 'Secondary',
+                                        'border-accent'       => 'Accent',
+                                        'border-white'        => 'White',
+                                        'border-light-gray'   => 'Light Gray',
+                                        'border-custom-color' => 'Custom',
                                     )
                                 )
                                 ->set_conditional_logic(
@@ -6039,7 +6039,7 @@ function __section_fields($name = 'sections')
                             Field::make('select', 'container_border_width', 'Border Width')->set_classes('inline-field inline-field-wide-label')
                                 ->set_options(array(
                                     'default' => 'Default[1px]',
-                                    'custom' => 'Custom'
+                                    'custom'  => 'Custom'
                                 ))
                                 ->set_conditional_logic(
                                     array(
@@ -6234,7 +6234,7 @@ Container::make('post_meta', __('Product Settings'))
     ));
 
 add_filter('carbon_fields_association_field_options_related_training_post_product', function ($query_arguments) {
-    
+
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6248,7 +6248,7 @@ add_filter('carbon_fields_association_field_options_related_training_post_produc
 });
 
 add_filter('carbon_fields_association_field_options_compatible_payloads_post_product', function ($query_arguments) {
-    
+
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6262,7 +6262,7 @@ add_filter('carbon_fields_association_field_options_compatible_payloads_post_pro
 });
 
 add_filter('carbon_fields_association_field_options_accessories_post_product', function ($query_arguments) {
-    
+
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6276,7 +6276,7 @@ add_filter('carbon_fields_association_field_options_accessories_post_product', f
 });
 
 add_filter('carbon_fields_association_field_options_softwares_post_product', function ($query_arguments) {
-    
+
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6290,7 +6290,7 @@ add_filter('carbon_fields_association_field_options_softwares_post_product', fun
 });
 
 add_filter('carbon_fields_association_field_options_drones_post_product', function ($query_arguments) {
-    
+
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6329,19 +6329,19 @@ Container::make('post_meta', __('Product Settings'))
         Field::make('multiselect', 'product_attributes', 'Select Product Attributes')
             ->set_options(
                 array(
-                    'pa_survey-grade' => 'Survey-Grade',
-                    'pa_zoom' => 'Zoom',
-                    'pa_flight-time' => 'Flight Time',
-                    'pa_ip-rating' => 'IP Rating',
-                    'pa_lens-types' => 'Lens Type', 
-                    'pa_max-video-resolution' => 'Max Video Resolution', 
-                    'pa_max-rated-depth' => 'Max Rated Depth', 
-                    'pa_max-battery' => 'Max Battery', 
-                    'pa_single-shot' => 'Single Shot', 
-                    'pa_thermal' => 'Thermal', 
-                    'pa_sensor' => 'Sensor', 
-                    'weight' => 'Weight', 
-                    'pa_camera' => 'Camera', 
+                    'pa_survey-grade'         => 'Survey-Grade',
+                    'pa_zoom'                 => 'Zoom',
+                    'pa_flight-time'          => 'Flight Time',
+                    'pa_ip-rating'            => 'IP Rating',
+                    'pa_lens-types'           => 'Lens Type',
+                    'pa_max-video-resolution' => 'Max Video Resolution',
+                    'pa_max-rated-depth'      => 'Max Rated Depth',
+                    'pa_max-battery'          => 'Max Battery',
+                    'pa_single-shot'          => 'Single Shot',
+                    'pa_thermal'              => 'Thermal',
+                    'pa_sensor'               => 'Sensor',
+                    'weight'                  => 'Weight',
+                    'pa_camera'               => 'Camera',
                 )
             ),
     ));
@@ -6354,22 +6354,22 @@ Container::make('post_meta', __('Conditional Display'))
     ->add_fields(array(
         Field::make('select', 'display_location', __('Display Location'))
             ->add_options(array(
-                'section' => __('Section'),
-                'archive' => __('Archive'),
-                'after_header' => __('After Header'),
+                'section'       => __('Section'),
+                'archive'       => __('Archive'),
+                'after_header'  => __('After Header'),
                 'before_footer' => __('Before Footer'),
-                '404' => __('404'),
+                '404'           => __('404'),
             )),
 
         Field::make('select', 'display_location_archive', __('Select Archive'))
             ->add_options(array(
-                '' => __('Select Archive'),
-                'post' => __('Post'),
-                'events' => __('Events'),
+                ''             => __('Select Archive'),
+                'post'         => __('Post'),
+                'events'       => __('Events'),
                 'capabilities' => __('Capabilities'),
-                'casestudies' => __('Case Studies'),
-                'industries' => __('Industries'),
-                'guides' => __('Guides'),
+                'casestudies'  => __('Case Studies'),
+                'industries'   => __('Industries'),
+                'guides'       => __('Guides'),
             ))
             ->set_conditional_logic(
                 array(
@@ -6381,7 +6381,7 @@ Container::make('post_meta', __('Conditional Display'))
             ),
         Field::make('select', 'display_location_archive_position', __('Position'))
             ->add_options(array(
-                '' => __('Select Position'),
+                ''           => __('Select Position'),
                 'above_loop' => __('Above Loop'),
                 'below_loop' => __('Below Loop'),
             ))
@@ -6395,13 +6395,13 @@ Container::make('post_meta', __('Conditional Display'))
             ),
         Field::make('select', 'do_not_display_on', __("Don't display on"))
             ->add_options(array(
-                '' => __('None'),
-                'post' => __('Blog Archive'),
-                'casestudies' => __('Case Studies Archive'),
-                'guides' => __('Guides Archive'),
+                ''             => __('None'),
+                'post'         => __('Blog Archive'),
+                'casestudies'  => __('Case Studies Archive'),
+                'guides'       => __('Guides Archive'),
                 'capabilities' => __('Capabilities Archive'),
-                'industries' => __('Solutions Archive'),
-                '404' => __('404'),
+                'industries'   => __('Solutions Archive'),
+                '404'          => __('404'),
             ))
             ->set_conditional_logic(
                 array(
@@ -6428,11 +6428,11 @@ Container::make('post_meta', __('Select taxonomy term to display content'))
             ->set_types(
                 array(
                     array(
-                        'type'      => 'term',
+                        'type'     => 'term',
                         'taxonomy' => 'product_cat',
                     ),
                     array(
-                        'type'      => 'term',
+                        'type'     => 'term',
                         'taxonomy' => 'pa_brands',
                     )
                 )
@@ -6450,7 +6450,7 @@ Container::make('post_meta', __('Landing Page Settings'))
             ->set_options(
                 array(
                     'self-hosted' => 'Self Hosted',
-                    'youtube' => 'Youtube',
+                    'youtube'     => 'Youtube',
                 )
             ),
         Field::make('file', 'background', __('Background'))->set_classes('inline-field')->set_type(array('video', 'image'))
@@ -6612,44 +6612,12 @@ Container::make('post_meta', 'Industry Settings')
                     )
                 )
         )
-    )
-    ->add_tab('Drones', array(
-        Field::make('association', 'drones', 'Drones')
-            ->set_types(
-                array(
-                    array(
-                        'type'      => 'post',
-                        'post_type' => 'product',
-                    )
-                )
-            )
-    ))
-    ->add_tab('Payloads', array(
-        Field::make('association', 'payloads', 'Payloads')
-            ->set_types(
-                array(
-                    array(
-                        'type'      => 'post',
-                        'post_type' => 'product',
-                    )
-                )
-            )
-    ))
-    ->add_tab('Accesories', array(
-        Field::make('association', 'accessories', 'Accesories')
-            ->set_types(
-                array(
-                    array(
-                        'type'      => 'post',
-                        'post_type' => 'product',
-                    ),
-                )
-            )
-    ));
+    );
+
 
 
 add_filter('carbon_fields_association_field_options_drones_post_product', function ($query_arguments) {
-    
+
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6664,7 +6632,7 @@ add_filter('carbon_fields_association_field_options_drones_post_product', functi
 
 
 add_filter('carbon_fields_association_field_options_payloads_post_product', function ($query_arguments) {
-    
+
     $tax_query[] = array(
         'taxonomy' => 'product_cat',
         'field'    => 'term_id',
@@ -6704,29 +6672,29 @@ Container::make('post_meta', 'Popup Settings')
             Field::make('select', 'popup_layout', 'Popup Layout')
                 ->set_options(
                     array(
-                        ''                => 'Default',
-                        'contact_form'     => 'Contact Form',
+                        ''             => 'Default',
+                        'contact_form' => 'Contact Form',
                     )
                 ),
             Field::make('select', 'popup_max_width', 'Popup Max Width')
                 ->set_options(
                     array(
-                        'popup-default'    => 'Default',
-                        'popup-small'     => 'Small',
-                        'popup-medium'     => 'Medium',
-                        'popup-large'     => 'Large',
+                        'popup-default' => 'Default',
+                        'popup-small'   => 'Small',
+                        'popup-medium'  => 'Medium',
+                        'popup-large'   => 'Large',
                     )
                 ),
             Field::make('select', 'background_color', 'Background Color')
                 ->set_options(
                     array(
-                        ''   => 'None',
-                        'background-primary'   => 'Primary',
-                        'background-secondary' => 'Secondary',
-                        'background-accent'    => 'Accent',
-                        'background-white'     => 'White',
-                        'background-light-gray'     => 'Light Gray',
-                        'background-body-color'     => 'Body',
+                        ''                      => 'None',
+                        'background-primary'    => 'Primary',
+                        'background-secondary'  => 'Secondary',
+                        'background-accent'     => 'Accent',
+                        'background-white'      => 'White',
+                        'background-light-gray' => 'Light Gray',
+                        'background-body-color' => 'Body',
                     )
                 ),
 
@@ -6746,11 +6714,11 @@ Container::make('post_meta', 'Page Settings')
         Field::make('select', 'container_width', 'Container Width')
             ->set_options(
                 array(
-                    '' => 'Default',
-                    'full-width'      => 'Full Width',
-                    'large-container'      => 'Large Container',
-                    'medium-container'      => 'Medium Container',
-                    'small-container'      => 'Small Container',
+                    ''                 => 'Default',
+                    'full-width'       => 'Full Width',
+                    'large-container'  => 'Large Container',
+                    'medium-container' => 'Medium Container',
+                    'small-container'  => 'Small Container',
                 )
             ),
     ));
@@ -6762,9 +6730,9 @@ Container::make('post_meta', 'Page Settings')
         Field::make('select', 'header_background', 'Header Background')
             ->set_options(
                 array(
-                    '' => 'Default',
-                    'bg-black'      => 'Black',
-                    'bg-white'      => 'White',
+                    ''         => 'Default',
+                    'bg-black' => 'Black',
+                    'bg-white' => 'White',
                 )
             ),
     ));
@@ -6774,13 +6742,13 @@ Container::make('post_meta', 'Page Settings')
 /*-----------------------------------------------------------------------------------*/
 $args = array(
     'numberposts' => -1,
-    'post_type' => 'layouts',
-    'fields' => 'ids',
-    'orderby' => 'menu_order',
-    'order' => 'ASC',
-    'meta_query' => array(
+    'post_type'   => 'layouts',
+    'fields'      => 'ids',
+    'orderby'     => 'menu_order',
+    'order'       => 'ASC',
+    'meta_query'  => array(
         array(
-            'key' => '_display_location',
+            'key'   => '_display_location',
             'value' => 'before_footer',
         ),
     ),
@@ -6826,6 +6794,6 @@ Container::make('nav_menu_item', __('Menu Settings'))
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Rental Settings'))
     ->where('post_type', '=', 'rentals')
-     ->add_tab('General Settings', array(
+    ->add_tab('General Settings', array(
         Field::make('text', 'shortcode', 'Shortcode')
     ));
