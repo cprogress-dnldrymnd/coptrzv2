@@ -7,6 +7,7 @@
 <?php get_header(); ?>
 <div class="modules">
     <?php
+    echo ___hero_modules();
     the_content();
     ?>
 </div>
