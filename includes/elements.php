@@ -270,9 +270,8 @@ function __button($data)
     if ($button_type != 'popups' && $button_type != 'custom' && $button_type != 'buy-now') {
         $tag = 'a';
         $post_status = get_post_status($button_url);
-        if ($button_url) {
-            $button_url = '[permalink id=' . $button_url . ']';
-        }
+        $button_url = '[permalink id=' . $button_url . ']';
+
         $link = "href='$button_url'";
         if ($post_status != 'publish') {
             $display = false;
