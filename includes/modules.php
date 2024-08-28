@@ -7,22 +7,23 @@ function action_module_content()
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
             return;
         if (get_post_type() == 'page') {
-            $post_content = '<!-- wp:html -->';
-
             if (_is_module()) {
+
+                $post_content = '<!-- wp:html -->';
+
                 $post_content .= ___sections();
+
+
+                $post_content .= '<!-- /wp:html -->';
+
+                $my_post = array(
+                    'ID'           => get_the_ID(),
+                    'post_content' => $post_content,
+                );
+
+                // Update the post into the database
+                wp_update_post($my_post);
             }
-
-
-            $post_content .= '<!-- /wp:html -->';
-
-            $my_post = array(
-                'ID'           => get_the_ID(),
-                'post_content' => $post_content,
-            );
-
-            // Update the post into the database
-            wp_update_post($my_post);
         }
 
         /*
