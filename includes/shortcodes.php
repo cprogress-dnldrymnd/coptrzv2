@@ -7,11 +7,11 @@ class Shortcodes
         extract(
             shortcode_atts(
                 array(
-                    'heading' => '',
-                    'taxonomy' => '',
-                    'search_filter' => false,
+                    'heading'        => '',
+                    'taxonomy'       => '',
+                    'search_filter'  => false,
                     'items_per_page' => 50,
-                    'hide_empty' => false,
+                    'hide_empty'     => false,
                 ),
                 $atts
             )
@@ -21,11 +21,11 @@ class Shortcodes
         $terms = get_terms(array(
             'taxonomy'   => $taxonomy,
             'hide_empty' => $hide_empty,
-            'number' => $items_per_page
+            'number'     => $items_per_page
         ));
 
         $html = "<div class='taxonomy-terms ajax-loading'>";
-  
+
 
         $html .= "<div class='row g-4 justify-content-between'>";
         if ($heading) {
@@ -67,8 +67,8 @@ class Shortcodes
                 $html .= __image($image_args);
                 $html .= __heading(array(
                     'heading' => $term->name,
-                    'class' => _attribute('class', array('mb-0')),
-                    'tag' => 'h3',
+                    'class'   => _attribute('class', array('mb-0')),
+                    'tag'     => 'h3',
                 ));
                 $html .= "</a>";
                 $html .= "</div>";
@@ -88,8 +88,8 @@ class Shortcodes
         extract(
             shortcode_atts(
                 array(
-                    'type' => 'page',
-                    'id' => get_the_ID(),
+                    'type'          => 'page',
+                    'id'            => get_the_ID(),
                     'archive_title' => '',
                 ),
                 $atts
@@ -113,7 +113,7 @@ class Shortcodes
                         $cat_name = $cat->name;
                         $parent = $cat->parent;
                         $cat_link = get_term_link($cat->term_id);
-                        if(!$parent) {
+                        if (!$parent) {
                             $html .= "<li><a class='item text-white' href='$cat_link'>$cat_name</a></li>";
                         }
                     }
@@ -122,12 +122,13 @@ class Shortcodes
                         $cat_name = $cat->name;
                         $parent = $cat->parent;
                         $cat_link = get_term_link($cat->term_id);
-                        if($parent) {
+                        if ($parent) {
                             $html .= "<li><a class='item text-white' href='$cat_link'>$cat_name</a></li>";
                         }
                     }
                 }
-            } else {
+            }
+            else {
                 $post_type = get_post_type();
                 if ($post_type != 'page') {
                     $link = get_post_type_archive_link($post_type);
@@ -137,7 +138,8 @@ class Shortcodes
                 }
             }
             $html .= "<li><span class='item text-white'  >$title</span></li>";
-        } else if ($type == 'term') {
+        }
+        else if ($type == 'term') {
             $term = get_term($id);
             $parent = (isset($term->parent)) ? get_term_by('id', $term->parent, $term->taxonomy) : false;
             if ($parent) {
@@ -146,7 +148,8 @@ class Shortcodes
                 $html .= "<li><a class='item text-white' href='$parent_link'>$parent_name</a></li>";
             }
             $html .= "<li><span class='item text-white'  >$term->name</span></li>";
-        } else if ($type == 'archive') {
+        }
+        else if ($type == 'archive') {
             if ($archive_title) {
                 $html .= "<li><span class='item text-white'  >$archive_title</span></li>";
             }
@@ -191,7 +194,7 @@ class Shortcodes
             $features = get__post_meta_by_id($id, 'feature');
             $logo = get__post_meta_by_id($id, 'logo');
             $html .= "<div class='swiper-slide bg-primary rounded-corner'>"; //swiper-slide
-         
+
             $html .= "<div class='inner  md-padding-bottom lg-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
 
             $html .= "<div class='container'>"; //container
@@ -200,14 +203,14 @@ class Shortcodes
             $html .= "<div class='col-lg-8 col-left text-center text-lg-start'>";
             $html .= __description(array(
                 'description' => $post_excerpt,
-                'class' => _attribute('class', array('description-box big-text mb-lg-5'))
+                'class'       => _attribute('class', array('description-box big-text mb-lg-5'))
             ));
             if ($logo) {
                 $html .= __image(array(
-                    'image_id' => $logo,
+                    'image_id'    => $logo,
                     'placeholder' => true,
-                    'size' => 'large',
-                    'class' => _attribute('class', array('logo-box'))
+                    'size'        => 'large',
+                    'class'       => _attribute('class', array('logo-box'))
                 ));
             }
             $html .= "</div>";
@@ -242,17 +245,17 @@ class Shortcodes
         $html .= "<div class='col-auto'>";
         $html .= "<div class='row g-4 text-center button-group-box justify-content-center align-items-center d-inline-flex'>";
         $html .= __button(array(
-            'button_type' => get_post_type($id),
-            'button_text' => 'Read Case Study',
-            'button_url' => $id,
+            'button_type'  => get_post_type($id),
+            'button_text'  => 'Read Case Study',
+            'button_url'   => $id,
             'button_style' => 'button-accent col-12 col-sm-auto',
         ));
 
         $html .= __button(array(
-            'button_type' => 'custom',
-            'button_text' => 'All Case Studies',
+            'button_type'       => 'custom',
+            'button_text'       => 'All Case Studies',
             'button_url_custom' => get_post_type_archive_link('casestudies'),
-            'button_style' => 'button-bordered col-12 col-sm-auto',
+            'button_style'      => 'button-bordered col-12 col-sm-auto',
         ));
         $html .= "</div>";
         $html .= "</div>";
@@ -285,7 +288,7 @@ class Shortcodes
     function blog_meta()
     {
         ob_start();
-?>
+        ?>
         <div class="blog-meta small-text">
             <div class="row">
                 <div class="col-auto">
@@ -294,7 +297,7 @@ class Shortcodes
                 </div>
             </div>
         </div>
-    <?php
+        <?php
         return ob_get_clean();
     }
 
@@ -320,7 +323,7 @@ class Shortcodes
     function post_link()
     {
         ob_start();
-    ?>
+        ?>
         <button onclick="copy_link()" class="post-link-copy">
             <input class="d-none" id="copy-link" value="<?= get_permalink(get_the_ID()) ?>">
             <span>Copy Link</span>
@@ -340,7 +343,7 @@ class Shortcodes
                 jQuery('.post-link-copy span').text('Link Copied');
             }
         </script>
-<?php
+        <?php
         return ob_get_clean();
     }
 
@@ -356,7 +359,7 @@ class Shortcodes
 
             'category__and ' => $categories,
 
-            'orderby' => 'rand'
+            'orderby'        => 'rand'
 
         );
         $query = new WP_Query($args);
@@ -369,10 +372,10 @@ class Shortcodes
                 $query->the_post();
                 $html .= "<div class='col-12'>";
                 $data = array(
-                    'id' => get_the_ID(),
+                    'id'       => get_the_ID(),
                     'featured' => false,
-                    'col' => false,
-                    'style' => 'style-1',
+                    'col'      => false,
+                    'style'    => 'style-1',
                     'taxonomy' => 'category',
                     'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
                 );
@@ -406,15 +409,17 @@ class Shortcodes
 
                 if ($background == 'featured-image') {
                     $data['featured'] = true;
-                } else {
+                }
+                else {
                     $data['featured'] = false;
                     $data['background_class'] = $background;
                 }
                 if (get_post_type($id) == 'post') {
                     $data['elements'] = array('category', 'image', 'date', 'title', 'button');
                     $data['taxonomy'] = 'category';
-                } else {
-                    $data['elements'] = array('image',  'title', 'button');
+                }
+                else {
+                    $data['elements'] = array('image', 'title', 'button');
                 }
                 if ($button_text) {
                     $data['button_text'] = $button_text;
@@ -463,7 +468,7 @@ class Shortcodes
                 $html .= "</div>";
                 $html .= __image(array(
                     'image_id' => $review_logo,
-                    'class' => _attribute('class', array('logo-box text-center mt-4'))
+                    'class'    => _attribute('class', array('logo-box text-center mt-4'))
                 ));
                 if ($review_url) {
                     $html .= "</a>";
@@ -596,7 +601,8 @@ class Shortcodes
         return __three_year_servicing_plans();
     }
 
-    function remote_support() {
+    function remote_support()
+    {
         return __remote_support();
 
     }
@@ -607,13 +613,13 @@ class Shortcodes
         $terms = get_terms(array(
             'taxonomy'   => 'pa_brands',
             'hide_empty' => true,
-            'number' => 100
+            'number'     => 100
         ));
         $image_args['class'] = _attribute('class', array('image-box'));
         $image_args['size'] = 'medium';
 
 
-        $html  = "<div class='gallery logo-slider'>";
+        $html = "<div class='gallery logo-slider'>";
 
         $html .= "<div id='brands-slider' class='swiper swiper-logo-slider'>";
         $html .= '<div class="swiper-wrapper align-items-center">';
@@ -632,54 +638,67 @@ class Shortcodes
             }
         }
 
-        $html  .= "</div>";
-        $html  .= "</div>";
-        $html  .= "<div>";
+        $html .= "</div>";
+        $html .= "</div>";
+        $html .= "<div>";
         return $html;
     }
 
     function testimonials()
     {
         return ____post_grid_module(array(
-            'id' => 'testimonial-slider',
-            'is_slider' => true,
-            'number_of_slides' => 1,
+            'id'                      => 'testimonial-slider',
+            'is_slider'               => true,
+            'number_of_slides'        => 1,
             'number_of_slides_tablet' => 1,
             'number_of_slides_mobile' => 1,
-            'post_grid_id' => 'testimonial-slider',
-            'post_elements' => array(
+            'post_grid_id'            => 'testimonial-slider',
+            'post_elements'           => array(
                 array(
-                    "_type" => "icon",
-                    "icon" => "271265",
-                    "icon_color" => "text-accent",
+                    "_type"             => "icon",
+                    "icon"              => "271265",
+                    "icon_color"        => "text-accent",
                     "icon_color_custom" => "",
-                    "icon_width" => "",
-                    "icon_height" => ""
+                    "icon_width"        => "",
+                    "icon_height"       => ""
                 ),
                 array(
-                    "_type" => "custom_field_1",
-                    "custom_field_key" => "_testimonial_content",
-                    "custom_field_type" => "p",
+                    "_type"              => "custom_field_1",
+                    "custom_field_key"   => "_testimonial_content",
+                    "custom_field_type"  => "p",
                     "custom_field_class" => "testimonial-content"
                 ),
                 array(
-                    "_type" => "post_title",
-                    "text_before" => "-",
-                    "text_after" => "",
-                    "tag" => "p",
-                    "text_color" => "",
+                    "_type"             => "post_title",
+                    "text_before"       => "-",
+                    "text_after"        => "",
+                    "tag"               => "p",
+                    "text_color"        => "",
                     "text_color_custom" => ""
                 )
             ),
-            'post_type' => array(
+            'post_type'               => array(
                 array(
                     "_type" => "testimonials",
                 )
             )
         ));
     }
-    function post_title() {
+    function post_title()
+    {
         return get_the_title();
+    }
+    function permalink($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'id' => '',
+                ),
+                $atts
+            )
+        );
+        return get_the_permalink($id);
     }
 }
 $Shortcodes = new Shortcodes;
