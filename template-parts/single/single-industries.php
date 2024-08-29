@@ -1,6 +1,6 @@
 <?php
 echo ___hero_modules();
-the_content();
+echo do_shortcode(get_post_meta(get_the_ID(), '_sections_html', true));
 $related_guides_heading = get__post_meta('related_guides_heading');
 $related_guides = get__post_meta('related_guides');
 $related_casestudies_heading = get__post_meta('related_casestudies_heading');
