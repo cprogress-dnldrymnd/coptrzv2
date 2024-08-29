@@ -23,6 +23,12 @@ function action_module_content()
                 if ($sections_after_main) {
                     update_post_meta(get_the_ID(), '_sections_after_main_html', $sections_after_main);
                 }
+
+                $my_post = array(
+                    'ID'           => get_the_ID(),
+                    'post_content' => '',
+                );
+                wp_update_post($my_post);
             }
         }
 
