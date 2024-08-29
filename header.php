@@ -20,14 +20,6 @@
 
 
 <body <?php body_class(); ?>>
-	<pre>
-		<?php
-		$test = apply_filters( 'wpml_post_language_details', NULL, 297151 );
-		$my_current_lang = apply_filters('wpml_current_language', NULL);
-		var_dump($test);
-		var_dump($my_current_lang);
-		?>
-	</pre>
 	<?php if (!is_404()) { ?>
 		<div
 			class="top-bar rounded-corner bg-primary mx-20px mt-20px d-flex align-items-center justify-content-center text-center">

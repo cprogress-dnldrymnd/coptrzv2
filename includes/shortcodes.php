@@ -284,7 +284,11 @@ class Shortcodes
             )
         );
         $wpml_post_language_details = apply_filters('wpml_post_language_details', NULL, 297151);
-        return do_shortcode(get_post_meta($id, '_sections_html', true));
+        $language_code = $wpml_post_language_details['language_code'];
+        $my_current_lang = apply_filters('wpml_current_language', NULL);
+        if ($language_code == $my_current_lang) {
+            return do_shortcode(get_post_meta($id, '_sections_html', true));
+        }
     }
     function blog_meta()
     {
@@ -702,7 +706,7 @@ class Shortcodes
         return get_the_permalink($id);
     }
 
-   
+
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
