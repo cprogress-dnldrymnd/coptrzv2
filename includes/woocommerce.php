@@ -13,7 +13,7 @@ function action_woocommerce_before_main_content()
             $product_taxonomy_page[] = $product_category_page;
             echo do_shortcode(get_post_meta($product_category_page, '_sections_html', true));
             $term_id = get_queried_object()->term_id;
-
+            $product_slider_args['tax_query']['relation'] = 'AND';
             $product_slider_args['numberposts'] = -1;
             $product_slider_args['post_type'] = 'product';
             $product_slider_args['fields'] = 'ids';
@@ -23,27 +23,9 @@ function action_woocommerce_before_main_content()
                 'field'    => 'term_id',
                 'terms'    => $term_id
             );
+            
             $products = get_posts($product_slider_args);
             echo do_shortcode( __linked_products($products, false, false, 'swiper-series', 'Series Product Range', true, true) );
-
-            $product_accessories_slider_args['tax_query']['relation'] = 'AND';
-            $product_accessories_slider_args['numberposts'] = -1;
-            $product_accessories_slider_args['post_type'] = 'product';
-            $product_accessories_slider_args['fields'] = 'ids';
-            $product_accessories_slider_args['post_status'] = 'publish';
-            $product_accessories_slider_args['tax_query'][] = array(
-                'taxonomy' => 'product_cat',
-                'field'    => 'term_id',
-                'terms'    => $term_id
-            );
-            $product_accessories_slider_args['tax_query'][] = array(
-                'taxonomy' => 'product_cat',
-                'field'    => 'term_id',
-                'terms'    => 30
-            );
-            $products = get_posts($product_accessories_slider_args);
-            echo do_shortcode(__linked_products($products, false, false, 'swiper-series-acc', 'Accessories', true, true));
-
         }
     }
     else if (is_product()) {
