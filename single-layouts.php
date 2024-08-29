@@ -58,7 +58,8 @@ if ($copy_from) {
 ?>
 <body <?php body_class(); ?>>
     <?php
-    echo do_shortcode(___sections('sections', get_the_ID()));
+    echo do_shortcode(get_post_meta(get_the_ID(), '_sections_html', true));
+
     ?>
     <?php wp_footer(); ?>
 </body>
