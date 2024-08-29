@@ -107,26 +107,29 @@ function enqueue_scripts()
 	if (get_post_type() == 'events') {
 		wp_enqueue_script('single-event', assets_dir . 'js/single-event.js', NULL, coptz_version);
 	}
+	/*
+		if (is_checkout()) {
+			wp_enqueue_style('checkout-style', assets_dir . 'scss/checkout/checkout.css', NULL, coptz_version);
+			wp_register_script('checkout-js', assets_dir . 'js/checkout.js', ['jquery'], coptz_version);
 
-	if (is_checkout()) {
-		wp_enqueue_style('checkout-style', assets_dir . 'scss/checkout/checkout.css', NULL, coptz_version);
-		wp_register_script('checkout-js', assets_dir . 'js/checkout.js', ['jquery'], coptz_version);
+			$countries_obj = new WC_Countries();
 
-		$countries_obj = new WC_Countries();
+			// Get the array of allowed countries (key = country code, value = country name)
+			$allowed_countries = $countries_obj->get_allowed_countries();
+			$countries = [];
+			foreach ($allowed_countries as $key => $country) {
+				$countries[] = $key;
+			}
 
-		// Get the array of allowed countries (key = country code, value = country name)
-		$allowed_countries = $countries_obj->get_allowed_countries();
-		$countries = [];
-		foreach ($allowed_countries as $key => $country) {
-			$countries[] = $key;
+			wp_localize_script('checkout-js', 'countries', $countries);
+			wp_enqueue_script('checkout-js');
 		}
+		else {
+			wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
+		}
+	*/
+	wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
 
-		wp_localize_script('checkout-js', 'countries', $countries);
-		wp_enqueue_script('checkout-js');
-	}
-	else {
-		wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
-	}
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn and allow Wordpress to call it automatcally in the header
