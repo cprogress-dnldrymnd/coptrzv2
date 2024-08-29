@@ -22,8 +22,8 @@
 <body <?php body_class(); ?>>
 	<pre>
 		<?php
-		$TEST = apply_filters( 'wpml_post_language_details', NULL, 297151 );
-		var_dump(get_post_meta($TEST));
+		$test = apply_filters( 'wpml_post_language_details', NULL, 297151 );
+		var_dump($test);
 		?>
 	</pre>
 	<?php if (!is_404()) { ?>
