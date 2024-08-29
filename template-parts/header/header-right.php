@@ -16,7 +16,7 @@ $SVG = new SVG;
         <?php } ?>
         <div class="col-auto d-flex align-items-center mini-cart">
             <?php
-            if (get_post_type() == 'rentals') {
+            if (get_post_type() == 'rentals' || get_the_ID() == 292371) {
                 echo do_shortcode('[booqable_cart_button href="' . get_site_url() . '/basket"]');
             }
             else {
