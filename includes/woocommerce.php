@@ -25,7 +25,7 @@ function action_woocommerce_before_main_content()
             );
             $products = get_posts($product_slider_args);
 
-            echo __linked_products($products, false, false, 'swiper-series', 'Series Product Range', true, true);
+            echo do_shortcode( __linked_products($products, false, false, 'swiper-series', 'Series Product Range', true, true) );
         }
     }
     else if (is_product()) {
