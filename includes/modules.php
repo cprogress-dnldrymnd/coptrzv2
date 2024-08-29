@@ -14,20 +14,13 @@ function action_module_content()
         );
         if (in_array(get_post_type(), $post_types)) {
             if (_is_module()) {
-
-                $post_content = '<!-- wp:html -->';
-
-                $post_content .= ___sections();
-
-                $post_content .= '<!-- /wp:html -->';
-
-                $my_post = array(
-                    'ID'           => get_the_ID(),
-                    'post_content' => $post_content,
-                );
+                $sections = ___sections();
                 $sections_after_main = ___sections('sections_after_main');
-                wp_update_post($my_post);
-                if($sections_after_main) {
+
+                if ($sections) {
+                    update_post_meta(get_the_ID(), '_sections_html', $sections);
+                }
+                if ($sections_after_main) {
                     update_post_meta(get_the_ID(), '_sections_after_main_html', $sections_after_main);
                 }
             }
