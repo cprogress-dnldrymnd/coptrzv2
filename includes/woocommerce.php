@@ -42,7 +42,7 @@ function action_woocommerce_before_main_content()
                 'terms'    => 30
             );
             $products = get_posts($product_accessories_slider_args);
-            echo do_shortcode(__linked_products($products, false, false, 'swiper-series', 'Series Product Range', true, true));
+            echo do_shortcode(__linked_products($products, false, false, 'swiper-series-acc', 'Accesories', true, true));
 
         }
     }
