@@ -271,11 +271,6 @@ function bbloomer_translate_may_also_like()
     return 'COPTRZ Recommended Accessories:';
 }
 
-function product_specifications()
-{
-    echo __product_specifications(true);
-}
-add_action('woocommerce_before_add_to_cart_form', 'product_specifications');
 
 /**
  * Output radio buttons on WooCommerce variations.
