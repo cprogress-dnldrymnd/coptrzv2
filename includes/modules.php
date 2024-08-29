@@ -10,26 +10,23 @@ function action_module_content()
             'page',
             'guides',
             'casestudies',
+            'product',
             'industries'
         );
         if (in_array(get_post_type(), $post_types)) {
-            if (_is_module()) {
-                $sections = ___sections();
-                $sections_after_main = ___sections('sections_after_main');
-
-                if ($sections) {
-                    update_post_meta(get_the_ID(), '_sections_html', $sections);
-                }
-                if ($sections_after_main) {
-                    update_post_meta(get_the_ID(), '_sections_after_main_html', $sections_after_main);
-                }
-
-                $my_post = array(
-                    'ID'           => get_the_ID(),
-                    'post_content' => '',
-                );
-                wp_update_post($my_post);
+            $sections = ___sections();
+            $sections_after_main = ___sections('sections_after_main');
+            if ($sections) {
+                update_post_meta(get_the_ID(), '_sections_html', $sections);
             }
+            if ($sections_after_main) {
+                update_post_meta(get_the_ID(), '_sections_after_main_html', $sections_after_main);
+            }
+            $my_post = array(
+                'ID'           => get_the_ID(),
+                'post_content' => '',
+            );
+            wp_update_post($my_post);
         }
 
         /*
