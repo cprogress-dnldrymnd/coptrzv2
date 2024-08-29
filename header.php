@@ -65,13 +65,10 @@
 		if ($copy_from) {
 			$sections = get__post_meta_by_id($copy_from, 'sections');
 			carbon_set_post_meta(get_the_ID(), 'sections', $sections);
-			update_post_meta(get_the_ID(), '_sections_html', $sections);
 
 			if ($copy_after == 'true') {
 				$sections_after_main = get__post_meta_by_id($copy_from, 'sections_after_main');
 				carbon_set_post_meta(get_the_ID(), 'sections_after_main', $sections_after_main);
-				update_post_meta(get_the_ID(), '_sections_after_main_html', $sections_after_main);
-
 			}
 
 			if ($training == 'true') {
