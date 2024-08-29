@@ -13,6 +13,11 @@ function action_woocommerce_before_main_content()
             $product_taxonomy_page[] = $product_category_page;
             echo do_shortcode(get_post_meta($product_category_page, '_sections_html', true));
             $term_id = get_queried_object()->term_id;
+
+            $product_slider_args['numberposts'] = -1;
+            $product_slider_args['post_type'] = 'product';
+            $product_slider_args['fields'] = 'ids';
+            $product_slider_args['post_status'] = 'publish';
             $product_slider_args['tax_query'][] = array(
                 'taxonomy' => 'product_cat',
                 'field'    => 'term_id',
