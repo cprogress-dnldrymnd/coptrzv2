@@ -6,7 +6,12 @@ function action_module_content()
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
             return;
-        if (get_post_type() == 'page' || get_post_type() == 'guides') {
+        $post_types = array(
+            'page',
+            'guides',
+            'casestudies',
+        );
+        if (in_array(get_post_type(), $post_types)) {
             if (_is_module()) {
 
                 $post_content = '<!-- wp:html -->';
@@ -423,7 +428,7 @@ function ___sections($id = 'sections', $post_id = '')
     $sections = get__post_meta_by_id($post_id, $id);
     $html = '';
     global $layouts_global;
-
+    
     foreach ($sections as $key => $section) {
         $disable_section = $section['disable_section'];
         if (!$disable_section) {
