@@ -283,7 +283,7 @@ class Shortcodes
                 $atts
             )
         );
-        return do_shortcode( ___sections('sections', $id) );
+        return do_shortcode(get_post_meta($id, '_sections_html', true));
     }
     function blog_meta()
     {
