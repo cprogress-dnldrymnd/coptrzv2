@@ -13,10 +13,11 @@ function action_woocommerce_before_main_content()
             $product_taxonomy_page[] = $product_category_page;
             echo do_shortcode(___sections('sections', $product_category_page));
         }
-    } else if (is_product()) {
+    }
+    else if (is_product()) {
         echo ___hero_modules();
         echo __product_specifications();
-        echo do_shortcode(___sections('sections', get_the_ID()));
+        echo do_shortcode(get_post_meta(get_the_ID(), '_sections_html', true));
     }
 }
 
@@ -31,7 +32,7 @@ function action_woocommerce_after_main_content()
             $product_cat = get_terms(array(
                 'taxonomy'   => 'product_cat',
                 'hide_empty' => true,
-                'parent' => 0
+                'parent'     => 0
             ));
             foreach ($product_cat as $cat) {
                 $product_slider_args = [];
@@ -48,7 +49,7 @@ function action_woocommerce_after_main_content()
                 $product_slider_args['tax_query'][] = array(
                     'taxonomy' => 'product_cat',
                     'field'    => 'term_id',
-                    'terms'    =>  $cat->term_id
+                    'terms'    => $cat->term_id
                 );
                 $products = get_posts($product_slider_args);
                 if ($products) {
@@ -69,7 +70,7 @@ function action_woocommerce_after_single_product_summary()
     $softwares = get__post_meta('softwares');
     $drones = get__post_meta('drones');
 
-    echo do_shortcode(___sections('sections_after_main', get_the_ID()));
+    echo do_shortcode(get_post_meta(get_the_ID(), '_sections_after_main_html', true));
 
     if ($drones) {
         echo __linked_products(__get_assoc_post_ids($drones), 'All Drones', '/product-category/drones/', 'swiper-drones', 'Drones');
@@ -114,25 +115,25 @@ function action_woocommerce_after_single_product()
 
     if ($related_guides) {
         $data = array(
-            'col' => false,
+            'col'      => false,
             'featured' => false,
-            'style' => 'style-1',
+            'style'    => 'style-1',
             'taxonomy' => 'guides_category',
             'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
         );
-        echo do_shortcode(__related_posts($related_guides,  $data, 'Related Guides'));
+        echo do_shortcode(__related_posts($related_guides, $data, 'Related Guides'));
     }
 
-    
+
     if ($related_casestudies) {
         $data = array(
-            'col' => false,
+            'col'      => false,
             'featured' => false,
-            'style' => 'style-1',
+            'style'    => 'style-1',
             'taxonomy' => 'casestudies_category',
             'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
         );
-        echo do_shortcode(__related_posts($related_casestudies,  $data, 'Related Case Studies'));
+        echo do_shortcode(__related_posts($related_casestudies, $data, 'Related Case Studies'));
     }
 }
 
@@ -181,7 +182,8 @@ add_action('woocommerce_after_shop_loop_item', 'action_woocommerce_after_shop_lo
 function action_woocommerce_after_shop_loop_item()
 {
     echo "</div>";
-};
+}
+;
 //Add DIV start element before shop loop item
 add_action('woocommerce_before_shop_loop_item', 'action_woocommerce_before_shop_loop_item', 10, 0);
 function action_woocommerce_before_shop_loop_item()
@@ -198,7 +200,8 @@ function action_woocommerce_before_shop_loop_item()
     if (!$product_category_page) {
         echo "<div class='product-info'>";
     }
-};
+}
+;
 
 
 function brands_filter()
@@ -321,8 +324,8 @@ function custom_product_variation()
         $html .= "<div class='col-auto'>";
         $html .= __image(array(
             'image_id' => $thumbnail,
-            'class' => _attribute('class', array('variation-image')),
-            'size' => 'thumbnail'
+            'class'    => _attribute('class', array('variation-image')),
+            'size'     => 'thumbnail'
         ));
         $html .= '</div>';
 
@@ -330,7 +333,7 @@ function custom_product_variation()
         $html .= "<div class='info-box'>";
         $html .= __heading(array(
             'heading' => $variation_name,
-            'tag' => 'h5'
+            'tag'     => 'h5'
         ));
         $html .= $price;
         $html .= '<div class="accordion-item">'; //accordion-item
@@ -387,7 +390,8 @@ add_action('woocommerce_before_quantity_input_field', 'bbloomer_display_quantity
 
 function bbloomer_display_quantity_minus()
 {
-    if (!is_product()) return;
+    if (!is_product())
+        return;
     echo '<button type="button" class="minus" >-</button>';
 }
 
@@ -395,7 +399,8 @@ add_action('woocommerce_after_quantity_input_field', 'bbloomer_display_quantity_
 
 function bbloomer_display_quantity_plus()
 {
-    if (!is_product()) return;
+    if (!is_product())
+        return;
     echo '<button type="button" class="plus" >+</button>';
 }
 
@@ -478,14 +483,15 @@ function __product_compare($id)
 
         if ($product_attribute == 'weight') {
             $heading = 'Weight';
-        } else {
+        }
+        else {
             $heading = $taxonomy_details->labels->singular_name;
         }
 
         $html .= __heading(array(
             'heading' => $heading,
-            'class' => _attribute('class', array('mb-0')),
-            'tag' => 'h5',
+            'class'   => _attribute('class', array('mb-0')),
+            'tag'     => 'h5',
         ));
         $html .= "</div>"; //end-inner
         $html .= "</div>"; //end-specs-row-col
@@ -501,7 +507,8 @@ function __product_compare($id)
             if ($product_attribute == 'weight') {
                 $product = wc_get_product($product['id']);
                 $html .= $product->get_weight();
-            } else {
+            }
+            else {
 
                 foreach ($product_attribute_values as $product_attribute_value) {
                     $html .= $product_attribute_value->name;
@@ -557,26 +564,27 @@ function __product_compare_oldd($id)
         $html .= "<div class='row-services-spec-mobile d-lg-none mt-4'>";
         foreach ($specs as $key => $spec) {
             $icon = get__term_meta($key, 'icon');
-            $mime_type =  get_post_mime_type($icon);
+            $mime_type = get_post_mime_type($icon);
             $html .= "<div class='row g-10px mb-10px'>"; //specs-row
 
             $html .= "<div class='col-8'>"; //specs-row-col
             $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
             if (str_contains($mime_type, 'svg')) {
                 $html .= __icon(array(
-                    'id' => $icon,
+                    'id'    => $icon,
                     'class' => _attribute('class', array('me-3 text-accent'))
                 ));
-            } else {
+            }
+            else {
                 $html .= __image(array(
                     'image_id' => $icon,
-                    'class' => _attribute('class', array('me-3 text-accent'))
+                    'class'    => _attribute('class', array('me-3 text-accent'))
                 ));
             }
             $html .= __heading(array(
                 'heading' => $spec,
-                'class' => _attribute('class', array('mb-0 text-primary')),
-                'tag' => 'h5',
+                'class'   => _attribute('class', array('mb-0 text-primary')),
+                'tag'     => 'h5',
             ));
             $html .= "</div>"; //end-inner
             $html .= "</div>"; //end-specs-row-col
@@ -596,7 +604,8 @@ function __product_compare_oldd($id)
                 $html .= "<div class='active'>";
                 $html .= $SVG->check();
                 $html .= "</div>";
-            } else {
+            }
+            else {
                 $html .= "<div class='not-active'>";
                 $html .= $SVG->xmark();
                 $html .= "</div>";
@@ -619,26 +628,27 @@ function __product_compare_oldd($id)
 
     foreach ($specs as $key => $spec) {
         $icon = get__term_meta($key, 'icon');
-        $mime_type =  get_post_mime_type($icon);
+        $mime_type = get_post_mime_type($icon);
         $html .= "<div class='row g-10px d-none d-lg-flex'>"; //specs-row
 
         $html .= "<div class='col-3'>"; //specs-row-col
         $html .= "<div class='inner h-100 d-flex align-items-center'>"; //inner
         if (str_contains($mime_type, 'svg')) {
             $html .= __icon(array(
-                'id' => $icon,
+                'id'    => $icon,
                 'class' => _attribute('class', array('me-3 text-accent'))
             ));
-        } else {
+        }
+        else {
             $html .= __image(array(
                 'image_id' => $icon,
-                'class' => _attribute('class', array('me-3 text-accent'))
+                'class'    => _attribute('class', array('me-3 text-accent'))
             ));
         }
         $html .= __heading(array(
             'heading' => $spec,
-            'class' => _attribute('class', array('mb-0')),
-            'tag' => 'h5',
+            'class'   => _attribute('class', array('mb-0')),
+            'tag'     => 'h5',
         ));
         $html .= "</div>"; //end-inner
         $html .= "</div>"; //end-specs-row-col
@@ -660,7 +670,8 @@ function __product_compare_oldd($id)
                 $html .= "<div class='active'>";
                 $html .= $SVG->check();
                 $html .= "</div>";
-            } else {
+            }
+            else {
                 $html .= "<div class='not-active'>";
                 $html .= $SVG->xmark();
                 $html .= "</div>";
@@ -691,7 +702,7 @@ function _product_grid_display($id)
         $title = $product->get_name();
         $permalink = get_the_permalink($id);
         $post_thumnail = get_the_post_thumbnail_url($id, 'medium');
-        $stock_status =  $product->get_stock_status();
+        $stock_status = $product->get_stock_status();
         $status = get_post_status($id);
 
         $html = "<ul class='products h-100 custom-product-grid h-100 m-0 p-0'>";
@@ -743,7 +754,8 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 
     if ($include_section) {
         $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom' id='$section_id'>";
-    } else {
+    }
+    else {
         $html = "<div class='related-products-slider'>";
     }
 
@@ -754,7 +766,8 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
         $html .= "<div class='swiper-holder'>"; //swiper-holder
         $html .= "<div class='swiper swiper-linked-products' id='$id'>"; //swiper
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
-    } else {
+    }
+    else {
         $html .= "<div class='container'>"; //container
         $html .= "<div class='row g-4'>"; //row
     }
@@ -763,12 +776,14 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 
         if ($is_slider) {
             $html .= "<div class='swiper-slide'>"; //swiper-slide
-        } else {
+        }
+        else {
             $html .= "<div class='col-lg-3 col-md-6'>"; //col
         }
         if ($shorcode == false) {
             $html .= _product_grid_display($product_id);
-        } else {
+        }
+        else {
             $html .= "[product_grid_display id='$product_id']";
         }
         $html .= '</div>'; //end-swiper-slide // col
@@ -779,7 +794,8 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
         $html .= '</div>'; //end-swiper
         $html .= '</div>'; //end-swiper-holder
         $html .= '</div>'; //end-container
-    } else {
+    }
+    else {
         $html .= '</div>'; //end-row
         $html .= '</div>'; //end-container
     }
@@ -803,7 +819,8 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 
     if ($include_section) {
         $html .= '</section>';
-    } else {
+    }
+    else {
         $html .= '</div>';
     }
 
@@ -818,11 +835,11 @@ function __get_product_taxonomy_page($id)
 {
     $args = array(
         'numberposts' => -1,
-        'post_type' => 'producttaxonomypages',
-        'fields' => 'ids',
-        'meta_query' => array(
+        'post_type'   => 'producttaxonomypages',
+        'fields'      => 'ids',
+        'meta_query'  => array(
             array(
-                'key' => '_product_term_id',
+                'key'   => '_product_term_id',
                 'value' => $id,
             ),
         ),
@@ -875,13 +892,13 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
 
         if ($product_attribute_array['pa_delivery-methods'] == $delivery_method) {
             $child_array[] = array(
-                'product_id' => $child,
-                'product_attributes' => $variation->get_attributes(),
-                'sku' => $variation->get_sku(),
-                'price' => $variation->get_price_html(),
+                'product_id'             => $child,
+                'product_attributes'     => $variation->get_attributes(),
+                'sku'                    => $variation->get_sku(),
+                'price'                  => $variation->get_price_html(),
                 'stock_status_variation' => $variation->get_stock_status(),
-                'location' => $product_attribute_array['pa_location'],
-                'datetime' => $product_attribute_array['date']
+                'location'               => $product_attribute_array['pa_location'],
+                'datetime'               => $product_attribute_array['date']
             );
         }
     }
@@ -892,7 +909,8 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
         $child_array_val = array_filter($child_array, function ($var) use ($location) {
             return ($var['location'] == $location);
         });
-    } else {
+    }
+    else {
         $child_array_val = $child_array;
     }
 
@@ -965,7 +983,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 }
                 $html .= __heading(array(
                     'heading' => $product_attribute_array['course-type'],
-                    'tag' => 'h3'
+                    'tag'     => 'h3'
                 ));
                 /*
                 $html .= '<div>';
@@ -992,7 +1010,8 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
         $html .= '<div class="swiper-button-next"></div>';
         $html .= '</div>'; //end swipernav
         $html .= '</div>'; //end-swiper
-    } else {
+    }
+    else {
         $html .= '<h2 class="my-5">No training found.</h2>';
     }
     $html .= '</div>';
@@ -1023,12 +1042,12 @@ function __drone_servicing()
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
         'heading' => $servicing_heading,
-        'class' => _attribute('class', array('mb-3')),
+        'class'   => _attribute('class', array('mb-3')),
     ));
 
     $html .= __description(array(
         'description' => $servicing_description,
-        'class' => _attribute('class', array('description-box')),
+        'class'       => _attribute('class', array('description-box')),
     ));
     $html .= "</div>";
 
@@ -1038,10 +1057,12 @@ function __drone_servicing()
         if ($position == 0) {
             $class = 'bg-gray';
             $button_class = 'button-primary';
-        } else if ($position == 1) {
+        }
+        else if ($position == 1) {
             $class = 'bg-accent';
             $button_class = 'button-primary';
-        } else if ($position == 2) {
+        }
+        else if ($position == 2) {
             $class = 'bg-black';
             $button_class = 'button-accent';
         }
@@ -1054,8 +1075,8 @@ function __drone_servicing()
         $html .= "<div class='service-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
         $html .= __heading(array(
             'heading' => $service_name,
-            'tag' => 'h3',
-            'suffix' => $service_subheading
+            'tag'     => 'h3',
+            'suffix'  => $service_subheading
         ));
 
         $html .= "<div class='row-services-spec-mobile d-lg-none mt-4'>";
@@ -1070,8 +1091,8 @@ function __drone_servicing()
                 $html .= "</div>";
                 $html .= __heading(array(
                     'heading' => ucwords($spec),
-                    'class' => _attribute('class', array('mb-0 text-primary')),
-                    'tag' => 'h5',
+                    'class'   => _attribute('class', array('mb-0 text-primary')),
+                    'tag'     => 'h5',
                 ));
                 $html .= "</div>"; //end-inner
                 $html .= "</div>"; //end-specs-row-col
@@ -1091,11 +1112,13 @@ function __drone_servicing()
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
                         $html .= "<span class='fw-'medium'>$quantity</span>";
                         $html .= "</span>";
-                    } else {
+                    }
+                    else {
                         $html .= $SVG->check();
                     }
                     $html .= "</div>";
-                } else {
+                }
+                else {
                     $html .= "<div class='not-active d-flex align-items-center'>";
                     $html .= $SVG->xmark();
                     $html .= "</div>";
@@ -1113,10 +1136,10 @@ function __drone_servicing()
         $html .= "<div class='price-button mt-5'>";
         $html .= "<div class='price mb-3'>£$service_price <span>Excl. VAT</span></div>";
         $html .= __button(array(
-            'button_type' => 'custom',
-            'button_text' => 'Request Service',
+            'button_type'       => 'custom',
+            'button_text'       => 'Request Service',
             'button_url_custom' => '#hero',
-            'button_style' => $button_class,
+            'button_style'      => $button_class,
         ));
 
         $html .= "</div>";
@@ -1138,8 +1161,8 @@ function __drone_servicing()
             $html .= "</div>";
             $html .= __heading(array(
                 'heading' => ucwords($spec),
-                'class' => _attribute('class', array('mb-0')),
-                'tag' => 'h5',
+                'class'   => _attribute('class', array('mb-0')),
+                'tag'     => 'h5',
             ));
             $html .= "</div>"; //end-inner
             $html .= "</div>"; //end-specs-row-col
@@ -1162,11 +1185,13 @@ function __drone_servicing()
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
                         $html .= "<span class='fw-'medium'>$quantity</span>";
                         $html .= "</span>";
-                    } else {
+                    }
+                    else {
                         $html .= $SVG->check();
                     }
                     $html .= "</div>";
-                } else {
+                }
+                else {
                     $html .= "<div class='not-active d-flex align-items-center'>";
                     $html .= $SVG->xmark();
                     $html .= "</div>";
@@ -1191,10 +1216,12 @@ function __drone_servicing()
         if ($position == 0) {
             $class = 'bg-gray';
             $button_class = 'button-primary';
-        } else if ($position == 1) {
+        }
+        else if ($position == 1) {
             $class = 'bg-accent';
             $button_class = 'button-primary';
-        } else if ($position == 2) {
+        }
+        else if ($position == 2) {
             $class = 'bg-black';
             $button_class = 'button-accent';
         }
@@ -1203,10 +1230,10 @@ function __drone_servicing()
         $html .= "<div class='service-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
 
         $html .= __button(array(
-            'button_type' => 'custom',
-            'button_text' => 'Request Service',
+            'button_type'       => 'custom',
+            'button_text'       => 'Request Service',
             'button_url_custom' => '#hero',
-            'button_style' => $button_class,
+            'button_style'      => $button_class,
         ));
 
 
@@ -1248,12 +1275,12 @@ function __three_year_servicing_plans()
     $html .= "<div class='col-lg-3'>";
     $html .= __heading(array(
         'heading' => $servicing_heading,
-        'class' => _attribute('class', array('mb-3')),
+        'class'   => _attribute('class', array('mb-3')),
     ));
 
     $html .= __description(array(
         'description' => $servicing_description,
-        'class' => _attribute('class', array('description-box')),
+        'class'       => _attribute('class', array('description-box')),
     ));
 
 
@@ -1268,10 +1295,12 @@ function __three_year_servicing_plans()
         if ($position == 0) {
             $class = 'bg-gray';
             $button_class = 'button-primary';
-        } else if ($position == 1) {
+        }
+        else if ($position == 1) {
             $class = 'bg-accent';
             $button_class = 'button-primary';
-        } else if ($position == 2) {
+        }
+        else if ($position == 2) {
             $class = 'bg-black';
             $button_class = 'button-accent';
         }
@@ -1285,15 +1314,16 @@ function __three_year_servicing_plans()
         $plan_features = $drone['plan_features'];
         if ($plan_features) {
             $class .= ' justify-content-between';
-        } else {
+        }
+        else {
             $class .= ' justify-content-start';
         }
         $html .= "<div class='col-lg-3'>";
         $html .= "<div class='plan-box rounded-corner p-3 d-flex  flex-column text-white h-100 $class'>";
         $html .= __heading(array(
             'heading' => $plan_name,
-            'tag' => 'h3',
-            'suffix' => $plan_subheading
+            'tag'     => 'h3',
+            'suffix'  => $plan_subheading
         ));
 
         if ($plan_features) {
@@ -1309,8 +1339,8 @@ function __three_year_servicing_plans()
                     $html .= "</div>";
                     $html .= __heading(array(
                         'heading' => str_replace('_', ' ', ucwords($spec)),
-                        'class' => _attribute('class', array('mb-0 text-primary')),
-                        'tag' => 'h5',
+                        'class'   => _attribute('class', array('mb-0 text-primary')),
+                        'tag'     => 'h5',
                     ));
                     $html .= "</div>"; //end-inner
                     $html .= "</div>"; //end-specs-row-col
@@ -1330,11 +1360,13 @@ function __three_year_servicing_plans()
                             $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
                             $html .= "<span class='fw-'medium'>$custom_text</span>";
                             $html .= "</span>";
-                        } else {
+                        }
+                        else {
                             $html .= $SVG->check();
                         }
                         $html .= "</div>";
-                    } else {
+                    }
+                    else {
                         $html .= "<div class='not-active d-flex align-items-center'>";
                         $html .= $SVG->xmark();
                         $html .= "</div>";
@@ -1358,14 +1390,14 @@ function __three_year_servicing_plans()
         if ($plan_description) {
             $html .= __description(array(
                 'description' => $plan_description,
-                'class' => _attribute('class', array('description-box plan-description')),
+                'class'       => _attribute('class', array('description-box plan-description')),
             ));
         }
         $html .= __button(array(
-            'button_type' => 'custom',
-            'button_text' => 'Request Service',
+            'button_type'       => 'custom',
+            'button_text'       => 'Request Service',
             'button_url_custom' => '#hero',
-            'button_style' => $button_class,
+            'button_style'      => $button_class,
         ));
 
 
@@ -1394,8 +1426,8 @@ function __three_year_servicing_plans()
             $html .= "</div>";
             $html .= __heading(array(
                 'heading' => str_replace('_', ' ', ucwords($spec)),
-                'class' => _attribute('class', array('mb-0')),
-                'tag' => 'h5',
+                'class'   => _attribute('class', array('mb-0')),
+                'tag'     => 'h5',
             ));
             $html .= "</div>"; //end-inner
             $html .= "</div>"; //end-specs-row-col
@@ -1418,11 +1450,13 @@ function __three_year_servicing_plans()
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
                         $html .= "<span class='fw-'medium'>$custom_text</span>";
                         $html .= "</span>";
-                    } else {
+                    }
+                    else {
                         $html .= $SVG->check();
                     }
                     $html .= "</div>";
-                } else {
+                }
+                else {
                     $html .= "<div class='not-active d-flex align-items-center'>";
                     $html .= $SVG->xmark();
                     $html .= "</div>";
@@ -1447,10 +1481,12 @@ function __three_year_servicing_plans()
         if ($position == 0) {
             $class = 'bg-gray';
             $button_class = 'button-primary';
-        } else if ($position == 1) {
+        }
+        else if ($position == 1) {
             $class = 'bg-accent';
             $button_class = 'button-primary';
-        } else if ($position == 2) {
+        }
+        else if ($position == 2) {
             $class = 'bg-black';
             $button_class = 'button-accent';
         }
@@ -1459,10 +1495,10 @@ function __three_year_servicing_plans()
         $html .= "<div class='plan-box rounded-corner p-3 d-flex justify-content-between flex-column text-white h-100 $class'>";
 
         $html .= __button(array(
-            'button_type' => 'custom',
-            'button_text' => 'Request Service',
+            'button_type'       => 'custom',
+            'button_text'       => 'Request Service',
             'button_url_custom' => '#hero',
-            'button_style' => $button_class,
+            'button_style'      => $button_class,
         ));
 
 
@@ -1490,12 +1526,12 @@ function __remote_support()
     $html = "<div class='remote-supports'>";
     $html .= __heading(array(
         'heading' => $remote_support_heading,
-        'class' => _attribute('class', array('text-center')),
-        'tag' => 'h2',
+        'class'   => _attribute('class', array('text-center')),
+        'tag'     => 'h2',
     ));
     $html .= __description(array(
         'description' => $remote_support_description,
-        'class' => _attribute('class', array('description-box text-center mb-4')),
+        'class'       => _attribute('class', array('description-box text-center mb-4')),
     ));
     $html .= "<div class='row g-4'>";
 
@@ -1509,7 +1545,7 @@ function __remote_support()
         $html .= "<div class='support-box rounded-corner h-100 px-4 pb-4 content-margin text-white text-center'>";
         $html .= "<div class='support-box-icon d-inline-flex align-items-center'>";
         $html .= __icon(array(
-            'id' => $icon,
+            'id'    => $icon,
             'class' => _attribute('class', array('me-3 text-accent'))
         ));
         $html .= "<span>$icon_text</span>";
@@ -1518,22 +1554,22 @@ function __remote_support()
 
         $html .= __heading(array(
             'heading' => $heading,
-            'class' => _attribute('class', array('mb-0 text-center')),
-            'tag' => 'h3',
+            'class'   => _attribute('class', array('mb-0 text-center')),
+            'tag'     => 'h3',
         ));
         $html .= __description(array(
             'description' => $description,
-            'class' => _attribute('class', array('description-box text-center')),
+            'class'       => _attribute('class', array('description-box text-center')),
         ));
 
         $html .= "<div class='price mb-3'>£$price <span>Excl. VAT</span></div>";
 
 
         $html .= __button(array(
-            'button_type' => 'custom',
-            'button_text' => 'Request Service',
+            'button_type'       => 'custom',
+            'button_text'       => 'Request Service',
             'button_url_custom' => '#hero',
-            'button_style' => 'button-primary',
+            'button_style'      => 'button-primary',
         ));
 
         $html .= "</div>";
@@ -1561,7 +1597,7 @@ remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30
 function woocommerce_disable_shop_page()
 {
     global $post;
-    if (is_shop()) :
+    if (is_shop()):
         global $wp_query;
         $wp_query->set_404();
         status_header(404);
