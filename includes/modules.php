@@ -11,7 +11,9 @@ function action_module_content()
             'guides',
             'casestudies',
             'product',
-            'industries'
+            'industries',
+            'producttaxonomypages',
+            'layouts'
         );
         if (in_array(get_post_type(), $post_types)) {
             $sections = ___sections();
