@@ -939,12 +939,6 @@ function ___sections($id = 'sections', $post_id = '')
                             $product_slider_args['include'] = $include;
                         }
                         else {
-                            if (is_product_taxonomy()) {
-                                $term_id = get_queried_object()->term_id;
-                            }
-                            else {
-                                $term_id = get__post_meta_by_id($_GET['post'], 'product_tax')[0];
-                            }
                             $product_slider_args['tax_query'][] = array(
                                 'taxonomy' => 'product_cat',
                                 'field'    => 'term_id',
