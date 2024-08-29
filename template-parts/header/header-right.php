@@ -6,12 +6,14 @@ $SVG = new SVG;
         <div class="col-auto d-flex align-items-center">
             <?= do_shortcode('[wpml_language_selector_widget]') ?>
         </div>
-        <div class="col-auto d-flex align-items-center">
-            <a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>"
-                class="header-icon account-icon text-white d-flex align-items-center">
-                <?= $SVG->user(); ?>
-            </a>
-        </div>
+        <?php if (get_post_type() != 'rentals') { ?>
+            <div class="col-auto d-flex align-items-center">
+                <a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>"
+                    class="header-icon account-icon text-white d-flex align-items-center">
+                    <?= $SVG->user(); ?>
+                </a>
+            </div>
+        <?php } ?>
         <div class="col-auto d-flex align-items-center mini-cart">
             <?php
             if (get_post_type() == 'rentals') {
