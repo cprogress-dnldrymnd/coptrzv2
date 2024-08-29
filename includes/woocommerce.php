@@ -11,7 +11,7 @@ function action_woocommerce_before_main_content()
         if ($product_category_page) {
             global $product_taxonomy_page;
             $product_taxonomy_page[] = $product_category_page;
-            echo do_shortcode(___sections('sections', $product_category_page));
+            echo do_shortcode(get_post_meta($product_category_page, '_sections_html', true));
         }
     }
     else if (is_product()) {
