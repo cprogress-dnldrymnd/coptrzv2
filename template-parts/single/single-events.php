@@ -1,3 +1,3 @@
 <?php
 echo ___hero_modules('text-center', '');
-the_content();
+echo do_shortcode(get_post_meta(get_the_ID(), '_sections_html', true));
