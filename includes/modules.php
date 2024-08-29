@@ -953,7 +953,6 @@ function ___sections($id = 'sections', $post_id = '')
                         $tabs = $items['tabs'];
                         $html .= ___tab_modules($tabs, $section_id_val);
                         break;
-
                     case 'accordion':
                         $accordion = $items['accordion'];
                         $accordion_source = $items['accordion_source'];

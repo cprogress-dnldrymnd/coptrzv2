@@ -12,6 +12,16 @@ function action_woocommerce_before_main_content()
             global $product_taxonomy_page;
             $product_taxonomy_page[] = $product_category_page;
             echo do_shortcode(get_post_meta($product_category_page, '_sections_html', true));
+
+            $term_id = get_queried_object()->term_id;
+            $product_slider_args['tax_query'][] = array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'term_id',
+                'terms'    => $term_id
+            );
+            $products = get_posts($product_slider_args);
+
+            echo __linked_products($products, false, false, 'swiper-series', 'Series Product Range', true, false);
         }
     }
     else if (is_product()) {
