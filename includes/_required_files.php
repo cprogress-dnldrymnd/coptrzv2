@@ -9,3 +9,4 @@ require_once('svg.php');
 require_once('menus.php');
 require_once('woocommerce.php');
 require_once('ajax.php');
+require_once('checkout.php');
