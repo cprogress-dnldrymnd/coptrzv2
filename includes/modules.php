@@ -10,6 +10,7 @@ function action_module_content()
             'page',
             'guides',
             'casestudies',
+            'industries'
         );
         if (in_array(get_post_type(), $post_types)) {
             if (_is_module()) {
@@ -18,16 +19,17 @@ function action_module_content()
 
                 $post_content .= ___sections();
 
-
                 $post_content .= '<!-- /wp:html -->';
 
                 $my_post = array(
                     'ID'           => get_the_ID(),
                     'post_content' => $post_content,
                 );
-
-                // Update the post into the database
+                $sections_after_main = ___sections('sections_after_main');
                 wp_update_post($my_post);
+                if($sections_after_main) {
+                    update_post_meta(get_the_ID(), '_sections_after_main_html', $sections_after_main);
+                }
             }
         }
 
@@ -428,7 +430,7 @@ function ___sections($id = 'sections', $post_id = '')
     $sections = get__post_meta_by_id($post_id, $id);
     $html = '';
     global $layouts_global;
-    
+
     foreach ($sections as $key => $section) {
         $disable_section = $section['disable_section'];
         if (!$disable_section) {

@@ -729,37 +729,7 @@ class Shortcodes
         return $html;
     }
 
-    function industries()
-    {
-        $related_guides_heading = get__post_meta('related_guides_heading');
-        $related_guides = get__post_meta('related_guides');
-        $related_casestudies_heading = get__post_meta('related_casestudies_heading');
-        $related_casestudies = get__post_meta('related_casestudies');
-        $html = '';
-        if ($related_guides) {
-            $data = array(
-                'col'         => false,
-                'featured'    => false,
-                'taxonomy'    => 'guides_category',
-                'style'       => 'style-1',
-                'button_text' => 'Read Guide',
-                'elements'    => array('image', 'category', 'title', 'excerpt', 'button'),
-            );
-            $html .= do_shortcode(__related_posts($related_guides, $data, $related_guides_heading, 'Case-Studies'));
-        }
-
-        if ($related_casestudies) {
-            $data = array(
-                'col'      => false,
-                'featured' => false,
-                'taxonomy' => 'casestudies_category',
-                'style'    => 'style-1',
-                'elements' => array('image', 'category', 'title', 'excerpt', 'button'),
-            );
-            $html .= do_shortcode(__related_posts($related_casestudies, $data, $related_casestudies_heading, 'Case-Studies'));
-        }
-        return $html;
-    }
+   
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
