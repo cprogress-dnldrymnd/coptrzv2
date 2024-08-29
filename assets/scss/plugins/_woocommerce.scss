@@ -359,7 +359,7 @@ section.product-main {
         width: 100%;
         float: none;
     }
-    /*
+    /*with add to cart*/
     > .container > .row {
         > div {
             flex:  0 0 auto;
@@ -401,7 +401,7 @@ section.product-main {
                 flex-direction: column;
             }
         }
-    }*/
+    }
 }
 @mixin upsell_style {
     .product-inner {
