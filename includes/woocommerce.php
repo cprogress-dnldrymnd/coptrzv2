@@ -403,7 +403,7 @@ function bbloomer_display_quantity_plus()
 function buy_now_button()
 {
     $product_id = get_the_ID();
-    $html = '<div class="button-box button-bordered buy-now-button">';
+    $html = '<div class="button-box button-bordered buy-now-button d-none">';
     $html .= "<button class='buy-now-trigger buy-now-trigger-main' data-target='$product_id'>";
     $html .= 'Buy Now';
     $html .= '</button>';
