@@ -283,6 +283,7 @@ class Shortcodes
                 $atts
             )
         );
+        $wpml_post_language_details = apply_filters('wpml_post_language_details', NULL, 297151);
         return do_shortcode(get_post_meta($id, '_sections_html', true));
     }
     function blog_meta()

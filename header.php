@@ -23,7 +23,9 @@
 	<pre>
 		<?php
 		$test = apply_filters( 'wpml_post_language_details', NULL, 297151 );
+		$my_current_lang = apply_filters('wpml_current_language', NULL);
 		var_dump($test);
+		var_dump($my_current_lang);
 		?>
 	</pre>
 	<?php if (!is_404()) { ?>
