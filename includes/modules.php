@@ -2259,6 +2259,9 @@ function ____columns_modules($items, $id, $html = '')
                 case 'heading':
                     $html .= ____heading_modules($item);
                     break;
+                case 'custom_html':
+                    $html .= $items['custom_html'];
+                    break;
                 case 'icon':
                     $html .= _____icon_modules($item);
                     break;
