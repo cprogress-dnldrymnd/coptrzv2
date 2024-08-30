@@ -2260,7 +2260,7 @@ function ____columns_modules($items, $id, $html = '')
                     $html .= ____heading_modules($item);
                     break;
                 case 'custom_html':
-                    $html .= $items['custom_html'];
+                    $html .= $item['custom_html'];
                     break;
                 case 'icon':
                     $html .= _____icon_modules($item);
