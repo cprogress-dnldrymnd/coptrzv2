@@ -13,7 +13,8 @@ function action_module_content()
             'product',
             'industries',
             'producttaxonomypages',
-            'layouts'
+            'layouts',
+            'capabilities'
         );
         if (in_array(get_post_type(), $post_types)) {
             $sections = ___sections();
