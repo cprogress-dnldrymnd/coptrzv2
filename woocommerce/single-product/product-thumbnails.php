@@ -41,41 +41,43 @@ foreach ($attachment_ids as $attachment_id) {
 }
 $images_ids_per_slides = array_chunk($image_ids, 6);
 ?>
-<div class="product-thumb-holder">
-	<div class="swiper product-thumb">
-		<div class="swiper-wrapper">
-			<?php
-			if ($image_ids) {
-				$key = 1;
+<?php if (count($image_ids) > 1) { ?>
+	<div class="product-thumb-holder">
+		<div class="swiper product-thumb">
+			<div class="swiper-wrapper">
+				<?php
+				if ($image_ids) {
+					$key = 1;
 
-				foreach ($images_ids_per_slides as  $images_ids_per_slide) {
-					if (count($image_ids) > 6) {
-						echo '<div class="swiper-slide">';
-					}
-					echo '<div class="row g-4 w-100">';
+					foreach ($images_ids_per_slides as  $images_ids_per_slide) {
+						if (count($image_ids) > 6) {
+							echo '<div class="swiper-slide">';
+						}
+						echo '<div class="row g-4 w-100">';
 
-					foreach ($images_ids_per_slide as $image) {
-						$key = $image['key'];
-						echo "<div class='col-6 thumb-nav' target='$key'>";
-						echo apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($image['id']), $post_thumbnail_id);
+						foreach ($images_ids_per_slide as $image) {
+							$key = $image['key'];
+							echo "<div class='col-6 thumb-nav' target='$key'>";
+							echo apply_filters('woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html($image['id']), $post_thumbnail_id);
+							echo '</div>';
+						}
+
+
 						echo '</div>';
-					}
-
-
-					echo '</div>';
-					if (count($image_ids) > 6) {
-						echo '</div>';
+						if (count($image_ids) > 6) {
+							echo '</div>';
+						}
 					}
 				}
-			}
-			?>
+				?>
 
-		</div>
-		<?php if (count($image_ids) > 6) { ?>
-			<div class="swiper-nav d-inline-flex">
-				<div class="swiper-button-prev swiper-button-prev-thumb"></div>
-				<div class="swiper-button-next swiper-button-next-thumb"></div>
 			</div>
-		<?php } ?>
+			<?php if (count($image_ids) > 6) { ?>
+				<div class="swiper-nav d-inline-flex">
+					<div class="swiper-button-prev swiper-button-prev-thumb"></div>
+					<div class="swiper-button-next swiper-button-next-thumb"></div>
+				</div>
+			<?php } ?>
+		</div>
 	</div>
-</div>
+<?php } ?>
