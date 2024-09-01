@@ -13277,6 +13277,9 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
     .remote-supports .support-box-icon svg {
       color: var(--bs-white); }
 
+.woocommerce-product-details__short-description {
+  margin-bottom: 2rem; }
+
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
   border: 1px solid;
