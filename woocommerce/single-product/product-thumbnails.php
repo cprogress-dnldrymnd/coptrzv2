@@ -50,10 +50,7 @@ $images_ids_per_slides = array_chunk($image_ids, 6);
 					$key = 1;
 
 					foreach ($images_ids_per_slides as  $images_ids_per_slide) {
-						if (count($image_ids) > 6) {
-							echo '<div class="swiper-slide">';
-						}
-						echo '<div class="row g-4 w-100">';
+						echo '<div class="swiper-slide">';
 
 						foreach ($images_ids_per_slide as $image) {
 							$key = $image['key'];
@@ -64,9 +61,6 @@ $images_ids_per_slides = array_chunk($image_ids, 6);
 
 
 						echo '</div>';
-						if (count($image_ids) > 6) {
-							echo '</div>';
-						}
 					}
 				}
 				?>
