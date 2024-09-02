@@ -52,6 +52,10 @@
 	if (!is_404()) {
 		$class = 'mt-20px';
 	}
+	
+	if (is_product()) {
+		$popups_id[] = 299743;
+	}
 	?>
 	<main class="<?= $class ?>">
 		<?php

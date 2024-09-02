@@ -24,12 +24,7 @@ function action_after_setup_theme()
 
 
 	global $popups_id, $layouts_global, $product_taxonomy_page;
-
 	$popups_id[] = 268179;
-
-	if (is_product()) {
-		$popups_id[] = 299743;
-	}
 }
 add_action('after_setup_theme', 'action_after_setup_theme');
 
