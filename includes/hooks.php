@@ -184,14 +184,21 @@ function action__wp_footer()
 
     global $popups_id;
     $popups = array_unique($popups_id);
+
+    $popups_ids = array();
+    foreach ($popups as $popup) {
+        $popups_ids = apply_filters('wpml_object_id', 299743, 'post');
+    }
+
+
     $args = array(
         'post_type' => 'popups',
-        'include' => $popups,
+        'include' => $popups_ids,
         'fields' => 'ids',
     );
     $posts = get_posts($args);
 
-    
+
 
     foreach ($posts as $post) {
         echo __popup($post);
