@@ -53,7 +53,7 @@ function archive_ajax()
 			if (get_post_type() == 'events') {
 				$data_val['additional_content'] = _events_additional_content(get_the_ID());
 			}
-			echo __post_box($data_val);
+			echo do_shortcode(__post_box($data_val));
 		}
 	} else {
 		echo '<div class="col-12 text-center -margin-top">';
