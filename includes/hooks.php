@@ -191,15 +191,14 @@ function action__wp_footer()
     );
     $posts = get_posts($args);
 
+    
+
     foreach ($posts as $post) {
         echo __popup($post);
     }
 
     if (current_user_can('administrator')) {
         global $layouts_global, $product_taxonomy_page, $popups_id;
-
-
-
         $layouts_global_val = "<div class='ab-sub-wrapper'>";
         $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
         if ($product_taxonomy_page) {

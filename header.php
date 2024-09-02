@@ -52,11 +52,16 @@
 	if (!is_404()) {
 		$class = 'mt-20px';
 	}
-	
+
 	if (is_product()) {
 		global $popups_id;
 		$popups_id[] = 299743;
 	}
+
+	$id = 268179;
+	$wpml_post_language_details = apply_filters('wpml_post_language_details', NULL, $id);
+	var_dump($wpml_post_language_details);
+	
 	?>
 	<main class="<?= $class ?>">
 		<?php
