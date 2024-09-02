@@ -127,8 +127,7 @@ class Shortcodes
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 $post_type = get_post_type();
                 if ($post_type != 'page') {
                     $link = get_post_type_archive_link($post_type);
@@ -138,8 +137,7 @@ class Shortcodes
                 }
             }
             $html .= "<li><span class='item text-white'  >$title</span></li>";
-        }
-        else if ($type == 'term') {
+        } else if ($type == 'term') {
             $term = get_term($id);
             $parent = (isset($term->parent)) ? get_term_by('id', $term->parent, $term->taxonomy) : false;
             if ($parent) {
@@ -148,8 +146,7 @@ class Shortcodes
                 $html .= "<li><a class='item text-white' href='$parent_link'>$parent_name</a></li>";
             }
             $html .= "<li><span class='item text-white'  >$term->name</span></li>";
-        }
-        else if ($type == 'archive') {
+        } else if ($type == 'archive') {
             if ($archive_title) {
                 $html .= "<li><span class='item text-white'  >$archive_title</span></li>";
             }
@@ -293,7 +290,7 @@ class Shortcodes
     function blog_meta()
     {
         ob_start();
-        ?>
+?>
         <div class="blog-meta small-text">
             <div class="row">
                 <div class="col-auto">
@@ -302,7 +299,7 @@ class Shortcodes
                 </div>
             </div>
         </div>
-        <?php
+    <?php
         return ob_get_clean();
     }
 
@@ -328,7 +325,7 @@ class Shortcodes
     function post_link()
     {
         ob_start();
-        ?>
+    ?>
         <button onclick="copy_link()" class="post-link-copy">
             <input class="d-none" id="copy-link" value="<?= get_permalink(get_the_ID()) ?>">
             <span>Copy Link</span>
@@ -348,7 +345,7 @@ class Shortcodes
                 jQuery('.post-link-copy span').text('Link Copied');
             }
         </script>
-        <?php
+<?php
         return ob_get_clean();
     }
 
@@ -414,16 +411,14 @@ class Shortcodes
 
                 if ($background == 'featured-image') {
                     $data['featured'] = true;
-                }
-                else {
+                } else {
                     $data['featured'] = false;
                     $data['background_class'] = $background;
                 }
                 if (get_post_type($id) == 'post') {
                     $data['elements'] = array('category', 'image', 'date', 'title', 'button');
                     $data['taxonomy'] = 'category';
-                }
-                else {
+                } else {
                     $data['elements'] = array('image', 'title', 'button');
                 }
                 if ($button_text) {
@@ -609,7 +604,6 @@ class Shortcodes
     function remote_support()
     {
         return __remote_support();
-
     }
 
     function brands_logo_slider()
@@ -706,7 +700,21 @@ class Shortcodes
         return get_the_permalink($id);
     }
 
+    function product_slider($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'args' => '',
+                ),
+                $atts
+            )
+        );
 
+        $args_decode = json_decode($args);
+
+        return var_dump($args_decode);
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -731,3 +739,4 @@ add_shortcode('three_year_servicing_plans', array($Shortcodes, 'three_year_servi
 add_shortcode('remote_support', array($Shortcodes, 'remote_support'));
 add_shortcode('post_title', array($Shortcodes, 'post_title'));
 add_shortcode('permalink', array($Shortcodes, 'permalink'));
+add_shortcode('product_slider', array($Shortcodes, 'product_slider'));
