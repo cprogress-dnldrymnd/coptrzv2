@@ -710,7 +710,7 @@ class Shortcodes
                 $atts
             )
         );
-        return $args;
+        return unserialize($args);
     }
 }
 $Shortcodes = new Shortcodes;
