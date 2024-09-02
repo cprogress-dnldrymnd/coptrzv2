@@ -13280,6 +13280,10 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 .woocommerce-product-details__short-description {
   margin-bottom: 2rem; }
 
+@media (max-width: 1599px) {
+  .request-info {
+    margin-top: 2rem; } }
+
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
   border: 1px solid;
