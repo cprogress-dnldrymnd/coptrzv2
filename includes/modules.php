@@ -929,7 +929,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $products = get_posts($product_slider_args);
                         $serialize = serialize($product_slider_args);
                         $html .= "[product_slider args='$serialize' button_text='$button_text' button_url='$button_url' section_id='swiper-$section_id_val' heading='$heading']";
-                       // $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
+                        // $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
                         break;
                     case 'tabs':
                         $tabs = $items['tabs'];
@@ -1919,7 +1919,13 @@ function ____columns_modules($items, $id, $html = '')
         }
         if ($align_items) {
             $row_class[] = $align_items;
+        } else {
+            if (!$same_image_height) {
+                $row_class[] = 'align-items-center';
+            }
         }
+
+
         if ($justify_content) {
             $row_class[] = $justify_content;
         }
