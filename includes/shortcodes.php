@@ -710,10 +710,9 @@ class Shortcodes
                 $atts
             )
         );
+        $product_slider_args_normal = product_slider_args_normal($args);
 
-        $args_decode = json_decode($args);
-
-        return $args;
+        return $product_slider_args_normal;
     }
 }
 $Shortcodes = new Shortcodes;
