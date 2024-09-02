@@ -403,17 +403,16 @@ function bbloomer_display_quantity_plus()
 }
 
 
-function buy_now_button()
+function request_info()
 {
-    $product_id = get_the_ID();
-    $html = '<div class="button-box button-bordered buy-now-button d-none">';
-    $html .= "<button class='buy-now-trigger buy-now-trigger-main' data-target='$product_id'>";
-    $html .= 'Buy Now';
+    $html = '<div class="button-box button-bordered buy-now-button ">';
+    $html .= "<button class='rounded-10px ' data-bs-toggle='modal' data-bs-target='#modal-299743' target='_self'>Enquire Now</button>";
+    $html .= 'Request Info';
     $html .= '</button>';
     $html .= '</div>';
     echo $html;
 }
-add_action('woocommerce_after_add_to_cart_button', 'buy_now_button', 20);
+add_action('woocommerce_after_add_to_cart_button', 'request_info', 20);
 
 function __product_compare($id)
 {
