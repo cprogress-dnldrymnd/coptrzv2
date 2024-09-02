@@ -46,3 +46,10 @@ if (! $short_description) {
 		</ul>
 	</div>
 </div>
+
+<?php 
+global $product;
+
+if(!$product->get_price()) {
+	request_info();
+}
