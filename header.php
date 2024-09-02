@@ -57,18 +57,17 @@
 
 		<?php
 
-		$args = htmlspecialchars('{"numberposts":-1,"post_type":"product","fields":"ids","post_status":"publish","tax_query":{"relation":"AND","0":{"taxonomy":"product_cat","field":"term_id","terms":["32"]}}}');
-		//$string = "[product_slider args='opensbquotenumberpostsquote:-1,quotepost_typequote:quoteproductquote,quotefieldsquote:quoteidsquote,quotepost_statusquote:quotepublishquote,quotetax_queryquote:opensbquoterelationquote:quoteANDquote,quote0quote:opensbquotetaxonomyquote:quoteproduct_catquote,quotefieldquote:quoteterm_idquote,quotetermsquote:openbquote32quoteclosebclosesbclosesbclosesb']";
+		$string = "[product_slider args='opensbquotenumberpostsquote:-1,quotepost_typequote:quoteproductquote,quotefieldsquote:quoteidsquote,quotepost_statusquote:quotepublishquote,quotetax_queryquote:opensbquoterelationquote:quoteANDquote,quote0quote:opensbquotetaxonomyquote:quoteproduct_catquote,quotefieldquote:quoteterm_idquote,quotetermsquote:openbquote32quoteclosebclosesbclosesbclosesb']";
 
-		echo $args;
-
-		$string = "[product_slider args='$args']";
 
 
 		$string = str_replace('openb', '[', $string);
 		$string = str_replace('closeb', ']', $string);
-		$string = str_replace('openb', '[', $string);
-
+		$string = str_replace('opensb', '{', $string);
+		$string = str_replace('closesb', '}', $string);
+		$string = str_replace('quote', '"', $string);
+		echo $string;
+		
 		echo do_shortcode($string);
 		?>
 
