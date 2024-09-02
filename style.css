@@ -13289,7 +13289,8 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   background-color: rgba(45, 161, 255, 0.32);
   padding: 10px 20px;
   border-radius: 5px;
-  border: 1px solid var(--bs-accent); }
+  border: 1px solid var(--bs-accent);
+  margin-bottom: 2rem; }
   .after-add-to-cart.after-add-to-cart .icon-list li svg {
     margin-right: 1rem; }
   .after-add-to-cart.after-add-to-cart .icon-list li a {
