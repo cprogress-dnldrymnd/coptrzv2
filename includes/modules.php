@@ -28,6 +28,11 @@ function action_module_content()
                 'post_content' => '',
             );
             wp_update_post($my_post);
+
+            if (get_post_type() == 'producttaxonomypages') {
+                $product_term_id = get__post_meta('product_tax')[0]['id'];
+                update_post_meta(get_the_ID(), '_product_term_id', $product_term_id);
+            }
         }
 
         /*
@@ -77,8 +82,7 @@ function modify_get_pagenum_link_defaults($result, $pagenum)
         }
 
         return $url . '?' . $posts_per_page . $s;
-    }
-    else {
+    } else {
         return $result;
     }
 }
@@ -93,7 +97,7 @@ function _pagination($has_pagination, $query, $data = false)
             $query = $GLOBALS['wp_query'];
         }
 
-        ?>
+?>
         <div class="pagination">
             <div class="container">
                 <div class="inner border-top-default sm-padding-top sm-margin-top">
@@ -139,8 +143,7 @@ function _pagination($has_pagination, $query, $data = false)
                                         if ($_GET['posts_per_page'] == $option) {
                                             $selected = 'selected';
                                         }
-                                    }
-                                    else {
+                                    } else {
                                         if (12 == $option) {
                                             $selected = 'selected';
                                         }
@@ -154,7 +157,7 @@ function _pagination($has_pagination, $query, $data = false)
                 </div>
             </div>
         </div>
-        <?php
+<?php
         return ob_get_clean();
     }
 }
@@ -167,8 +170,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     if (get_post_type() == '') {
         $hero_background = get_post_thumbnail_id();
         $hero_background_type = 'self-hosted';
-    }
-    else {
+    } else {
         $hero_background = get__post_meta('hero_background');
         $hero_background_youtube = get__post_meta('hero_background_youtube');
         $hero_background_type = get__post_meta('hero_background_type');
@@ -190,8 +192,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         if (!$hero_form_image) {
             $hero_form_image = get_post_thumbnail_id();
         }
-    }
-    else {
+    } else {
         $hero_form_image = get__post_meta('hero_form_image');
     }
 
@@ -209,12 +210,10 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
         if (!$hero_alignment) {
             $text_align = 'text-left';
-        }
-        else {
+        } else {
             $text_align = $hero_alignment ? $hero_alignment : 'text-center';
         }
-    }
-    else {
+    } else {
         $text_align = $hero_alignment ? $hero_alignment : 'text-center';
     }
 
@@ -229,8 +228,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $heading_class[] = 'large-heading';
     if (!$hero_description && !$buttons) {
         $heading_class[] = 'mb-0';
-    }
-    else {
+    } else {
         $heading_class[] = 'mb-3';
     }
 
@@ -246,8 +244,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $col_content_class = [];
     if ($hero_form_enable) {
         $col_content_class[] = 'text-white col-lg-7';
-    }
-    else {
+    } else {
         $hero_class[] = 'text-white';
     }
 
@@ -265,8 +262,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero = "<section $hero_class_attribute id='hero'>";
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
             $hero .= __background($hero_background_youtube, true);
-        }
-        else if ($hero_background) {
+        } else if ($hero_background) {
             $hero .= __background($hero_background);
         }
         $hero .= "<div class='container'>";
@@ -323,8 +319,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $hero .= "</div>";
         $hero .= "</section>";
         return $hero;
-    }
-    else {
+    } else {
         $html = "<div class='page-title-breadcrumbs'>";
         $html .= "<div class='header-spacer'></div>";
         $html .= "<div class='container md-margin-top'>";
@@ -363,8 +358,7 @@ function ___hero_product_taxonomy()
     $heading_class[] = 'large-heading';
     if (!$term_description_val) {
         $heading_class[] = 'mb-0';
-    }
-    else {
+    } else {
         $heading_class[] = 'mb-3';
     }
 
@@ -380,8 +374,7 @@ function ___hero_product_taxonomy()
         $hero = "<section class='hero pb-50px rounded-10px bg-primary overflow-hidden text-white d-flex align-items-end mx-20px position-relative $hero_height $text_align'>";
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
             $hero .= __background($hero_background_youtube, true);
-        }
-        else if ($hero_background) {
+        } else if ($hero_background) {
             $hero .= __background($hero_background);
         }
         $hero .= "<div class='container'>";
@@ -545,12 +538,10 @@ function ___sections($id = 'sections', $post_id = '')
                                 $styles_section[] = '--background-image-opacity: ' . $section_style['background_overlay_image_opacity'];
                             }
                             $background_image_class[] = 'no-overlay';
-                        }
-                        else if ($background_overlay_type == 'custom') {
+                        } else if ($background_overlay_type == 'custom') {
                             $styles_section[] = '--background-overlay-custom: ' . $section_style['background_overlay_custom'];
                             $background_image_class[] = 'custom-overlay';
-                        }
-                        else {
+                        } else {
                             $classes[] = "background-overlay $background_overlay_type";
                         }
 
@@ -559,8 +550,7 @@ function ___sections($id = 'sections', $post_id = '')
                         $background_gradient = $section_style['background_gradient'];
                         if ($background_gradient != 'custom') {
                             $classes[] = $background_gradient;
-                        }
-                        else {
+                        } else {
                             $background_gradient_type = $section_style['background_gradient_type'];
                             $background_gradient_color_1 = $section_style['background_gradient_color_1'];
                             $background_gradient_stop_1 = $section_style['background_gradient_stop_1'];
@@ -568,8 +558,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $background_gradient_stop_2 = $section_style['background_gradient_stop_2'];
                             if ($background_gradient_type == 'radial-gradient') {
                                 $background = "radial-gradient(circle, $background_gradient_color_1 $background_gradient_stop_1, $background_gradient_color_2 $background_gradient_stop_2)";
-                            }
-                            else {
+                            } else {
                                 $background_gradient_direction = $section_style['background_gradient_direction'];
                                 $background = "linear-gradient($background_gradient_direction, $background_gradient_color_1 $background_gradient_stop_1, $background_gradient_color_2 $background_gradient_stop_2)";
                             }
@@ -595,8 +584,7 @@ function ___sections($id = 'sections', $post_id = '')
                             if ($border_radius == 'custom') {
                                 $border_radius_custom = $section_style['border_radius_custom'];
                                 $styles_section[] = "border-radius: $border_radius_custom";
-                            }
-                            else {
+                            } else {
                                 $classes[] = $border_radius;
                             }
                         }
@@ -608,8 +596,7 @@ function ___sections($id = 'sections', $post_id = '')
                                 if ($border_color == 'border-custom-color') {
                                     $border_color_custom = $section_style['border_color_custom'];
                                     $styles_section[] = "border-color: $border_color_custom";
-                                }
-                                else {
+                                } else {
                                     $classes[] = $border_color;
                                 }
 
@@ -632,12 +619,10 @@ function ___sections($id = 'sections', $post_id = '')
                                     if ($border_width_left) {
                                         $styles_section[] = "border-left-width: $border_width_left";
                                     }
-                                }
-                                else {
+                                } else {
                                     $classes[] = 'border-default';
                                 }
-                            }
-                            else {
+                            } else {
                                 $classes[] = $border_style;
                             }
                         }
@@ -647,8 +632,7 @@ function ___sections($id = 'sections', $post_id = '')
                             if ($container_border_radius == 'custom') {
                                 $container_border_radius_custom = $section_style['container_border_radius_custom'];
                                 $container_styles[] = "border-radius: $container_border_radius_custom";
-                            }
-                            else {
+                            } else {
                                 $container_classes[] = $container_border_radius;
                             }
                         }
@@ -660,8 +644,7 @@ function ___sections($id = 'sections', $post_id = '')
                                 if ($container_border_color == 'border-custom-color') {
                                     $container_border_color_custom = $section_style['container_border_color_custom'];
                                     $container_styles[] = "border-color: $container_border_color_custom";
-                                }
-                                else {
+                                } else {
                                     $container_classes[] = $container_border_color;
                                 }
 
@@ -684,12 +667,10 @@ function ___sections($id = 'sections', $post_id = '')
                                     if ($container_border_width_left) {
                                         $container_styles[] = "border-left-width: $container_border_width_left";
                                     }
-                                }
-                                else {
+                                } else {
                                     $container_classes[] = 'border-default';
                                 }
-                            }
-                            else {
+                            } else {
                                 $container_classes[] = $container_border_style;
                             }
                         }
@@ -725,8 +706,7 @@ function ___sections($id = 'sections', $post_id = '')
             if (!$is_container_background) {
                 if ($background_type && $background_type == 'youtube') {
                     $html .= __background($background_youtube, true);
-                }
-                else if ($background) {
+                } else if ($background) {
                     $html .= __background($background);
                 }
             }
@@ -738,8 +718,7 @@ function ___sections($id = 'sections', $post_id = '')
             if ($is_container_background) {
                 if ($background_type && $background_type == 'youtube') {
                     $html .= __background($background_youtube, true);
-                }
-                else if ($background) {
+                } else if ($background) {
                     $html .= __background($background);
                 }
             }
@@ -929,19 +908,16 @@ function ___sections($id = 'sections', $post_id = '')
                                     'terms'    => $brand_ids
                                 );
                             }
-                        }
-                        else if ($source_type == 'manually') {
+                        } else if ($source_type == 'manually') {
                             $include = [];
                             foreach ($products as $product) {
                                 $include[] = $product['id'];
                             }
                             $product_slider_args['include'] = $include;
-                        }
-                        else {
+                        } else {
                             if (is_product_taxonomy()) {
                                 $term_id = get_queried_object()->term_id;
-                            }
-                            else {
+                            } else {
                                 $term_id = get__post_meta_by_id($_GET['post'], 'product_tax')[0];
                             }
                             $product_slider_args['tax_query'][] = array(
@@ -1024,8 +1000,7 @@ function ___sections($id = 'sections', $post_id = '')
                         if ($column_width_tablet) {
                             if (count($posts) == 3 && $column_width_tablet == 'col-md-6') {
                                 $global_col_class[] = 'col-md-12';
-                            }
-                            else {
+                            } else {
                                 $global_col_class[] = $column_width_tablet;
                             }
                         }
@@ -1056,8 +1031,7 @@ function ___sections($id = 'sections', $post_id = '')
                             foreach ($posts as $post) {
                                 $posts_list[]['id'] = $post;
                             }
-                        }
-                        else {
+                        } else {
                             $posts_list = $posts;
                         }
 
@@ -1073,8 +1047,7 @@ function ___sections($id = 'sections', $post_id = '')
                             );
                             if ($global_col_class) {
                                 $data['col'] = $global_col_class;
-                            }
-                            else {
+                            } else {
                                 $data['col'] = 'col-lg-4 col-md-6';
                             }
 
@@ -1117,12 +1090,10 @@ function ___sections($id = 'sections', $post_id = '')
                             }
                             if ($post_type != 'industries') {
                                 $taxonomy = $post_type . '_category';
-                            }
-                            else {
+                            } else {
                                 $taxonomy = false;
                             }
-                        }
-                        else {
+                        } else {
                             $args['post_type'] = get_post_type();
                             $args['exclude'] = get_the_ID();
                             $taxonomy = get_post_type() . '_category';
@@ -1165,14 +1136,12 @@ function ___sections($id = 'sections', $post_id = '')
 
                                 if (!$column_width && !$column_width_tablet && $column_width_mobile) {
                                     $data['col'] = true;
-                                }
-                                else {
+                                } else {
                                     $data['col'] = $column_width . ' ' . $column_width_tablet . ' ' . $column_width_mobile;
                                 }
                                 if ($style == 'info-above-image') {
                                     $data['featured'] = true;
-                                }
-                                else {
+                                } else {
                                     $data['featured'] = false;
                                 }
                                 $html .= __post_box($data);
@@ -1182,7 +1151,7 @@ function ___sections($id = 'sections', $post_id = '')
                         }
 
                         break;
-                    /*
+                        /*
                 case 'related_products':
                     $type = $items['category'][0]['_type'];
                     if ($type == 'related_drones') {
@@ -1308,8 +1277,7 @@ function ____post_grid_module($data)
                 'terms'    => $category_ids,
             )
         );
-    }
-    else if ($source == 'manually') {
+    } else if ($source == 'manually') {
         $posts = $data['post_type'][0]['post'];
         $posts_ids = array();
         foreach ($posts as $post) {
@@ -1375,8 +1343,7 @@ function ____post_grid_module($data)
                         if ($border_radius == 'custom') {
                             $border_radius_custom = $post_box_style['border_radius_custom'];
                             $styles_section[] = "border-radius: $border_radius_custom";
-                        }
-                        else {
+                        } else {
                             $classes[] = $border_radius;
                         }
                     }
@@ -1388,8 +1355,7 @@ function ____post_grid_module($data)
                             if ($border_color == 'border-custom-color') {
                                 $border_color_custom = $post_box_style['border_color_custom'];
                                 $styles_section[] = "border-color: $border_color_custom";
-                            }
-                            else {
+                            } else {
                                 $classes[] = $border_color;
                             }
 
@@ -1412,12 +1378,10 @@ function ____post_grid_module($data)
                                 if ($border_width_left) {
                                     $styles_section[] = "border-left-width: $border_width_left";
                                 }
-                            }
-                            else {
+                            } else {
                                 $classes[] = 'border-default';
                             }
-                        }
-                        else {
+                        } else {
                             $classes[] = $border_style;
                         }
                     }
@@ -1426,8 +1390,7 @@ function ____post_grid_module($data)
                     $column_classes[] = $post_box_style['column_width'];
                     if (count($posts_lists) == 3 && $post_box_style['column_width_tablet'] == 'col-md-6') {
                         $column_classes[] = 'col-md-12';
-                    }
-                    else {
+                    } else {
                         $column_classes[] = $post_box_style['column_width_tablet'];
                     }
                     $column_classes[] = $post_box_style['column_width_mobile'];
@@ -1472,8 +1435,7 @@ function ____post_grid_module($data)
         $html .= "<div class='swiper-holder post-grid'>"; //swiper-holder
         $html .= "<div class='swiper swiper-sliders' id='$swiper_id' $slides_attr>"; //swiper
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
-    }
-    else {
+    } else {
         $html .= "<div class='row g-4 g-xs-10px same-image-height'>"; //row
     }
     $post_title = '';
@@ -1526,8 +1488,7 @@ function ____post_grid_module($data)
                     $image_args['size'] = $item['size'];
                     if ($is_background_image) {
                         $image_args['class'] = _attribute('class', array('background-image', 'background-overlay'));
-                    }
-                    else {
+                    } else {
                         $image_args['class'] = _attribute('class', array('image-box'));
                     }
                     $html .= __image($image_args);
@@ -1616,8 +1577,7 @@ function ____post_grid_module($data)
         $html .= '</div>'; //end swipernav
         $html .= '<div class="swiper-pagination d-flex d-md-none"></div>';
         $html .= '</div>'; //end swiper-holder
-    }
-    else {
+    } else {
         $html .= "</div>"; //end-row
     }
 
@@ -1634,8 +1594,7 @@ function _custom_field($data, $html = '')
 
     if ($custom_field_type != 'img') {
         $html .= "<$custom_field_type class='$custom_field_class'>$val</$custom_field_type>";
-    }
-    else if ($custom_field_type == 'img') {
+    } else if ($custom_field_type == 'img') {
         $image_args['image_id'] = $val;
         $image_args['class'] = _attribute('class', $custom_field_class);
         $html .= __image($image_args);
@@ -1677,8 +1636,7 @@ function ____gallery_modules($data)
 
             $html .= "<div id='$id' class='swiper swiper-logo-slider'>";
             $html .= '<div class="swiper-wrapper align-items-center">';
-        }
-        else {
+        } else {
             $column_width = $data['column_width'] ? $data['column_width'] : 'col-auto';
             $column_width_tablet = $data['column_width_tablet'];
             $column_width_mobile = $data['column_width_mobile'];
@@ -1716,8 +1674,7 @@ function ____gallery_modules($data)
             $image_args['image_id'] = $image;
             if ($gallery_style == 'logo-slider') {
                 $html .= __image($image_args);
-            }
-            else {
+            } else {
                 $html .= "<div $column_grid_class>";
                 $html .= __image($image_args);
                 $html .= "</div>";
@@ -1733,8 +1690,7 @@ function ____gallery_modules($data)
         if ($gallery_style == 'logo-slider') {
             $html .= "</div>";
             $html .= "</div>";
-        }
-        else {
+        } else {
             $html .= "</div>";
         }
         $html .= "<div>";
@@ -1805,15 +1761,12 @@ function ____columns_modules($items, $id, $html = '')
                     if (!$text_align_tablet) {
                         if ($text_align == 'text-lg-start') {
                             $classes[] = 'text-md-start';
-                        }
-                        else if ($text_align == 'text-lg-center') {
+                        } else if ($text_align == 'text-lg-center') {
                             $classes[] = 'text-md-center';
-                        }
-                        else if ($text_align == 'text-lg-end') {
+                        } else if ($text_align == 'text-lg-end') {
                             $classes[] = 'text-md-end';
                         }
-                    }
-                    else {
+                    } else {
                         $classes[] = $text_align_tablet;
                     }
 
@@ -1822,27 +1775,21 @@ function ____columns_modules($items, $id, $html = '')
                         if ($text_align_tablet) {
                             if ($text_align_tablet == 'text-md-start') {
                                 $classes[] = 'text-start';
-                            }
-                            else if ($text_align_tablet == 'text-md-center') {
+                            } else if ($text_align_tablet == 'text-md-center') {
                                 $classes[] = 'text-center';
-                            }
-                            else if ($text_align_tablet == 'text-md-end') {
+                            } else if ($text_align_tablet == 'text-md-end') {
                                 $classes[] = 'text-end';
                             }
-                        }
-                        else {
+                        } else {
                             if ($text_align == 'text-lg-start') {
                                 $classes[] = 'text-start';
-                            }
-                            else if ($text_align == 'text-lg-center') {
+                            } else if ($text_align == 'text-lg-center') {
                                 $classes[] = 'text-center';
-                            }
-                            else if ($text_align == 'text-lg-end') {
+                            } else if ($text_align == 'text-lg-end') {
                                 $classes[] = 'text-end';
                             }
                         }
-                    }
-                    else {
+                    } else {
                         $classes[] = $text_align_mobile;
                     }
 
@@ -1880,8 +1827,7 @@ function ____columns_modules($items, $id, $html = '')
                         if ($border_radius == 'custom') {
                             $border_radius_custom = $column_style['border_radius_custom'];
                             $styles[] = "border-radius: $border_radius_custom";
-                        }
-                        else {
+                        } else {
                             $classes[] = $border_radius;
                         }
                     }
@@ -1893,8 +1839,7 @@ function ____columns_modules($items, $id, $html = '')
                             if ($border_color == 'border-custom-color') {
                                 $border_color_custom = $column_style['border_color_custom'];
                                 $styles[] = "border-color: $border_color_custom";
-                            }
-                            else {
+                            } else {
                                 $classes[] = $border_color;
                             }
 
@@ -1917,12 +1862,10 @@ function ____columns_modules($items, $id, $html = '')
                                 if ($border_width_left) {
                                     $styles[] = "border-left-width: $border_width_left";
                                 }
-                            }
-                            else {
+                            } else {
                                 $classes[] = 'border-default';
                             }
-                        }
-                        else {
+                        } else {
                             $classes[] = $border_style;
                         }
                     }
@@ -1966,8 +1909,7 @@ function ____columns_modules($items, $id, $html = '')
     if ($is_slider) {
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
-    }
-    else {
+    } else {
         $row_class[] = 'row';
 
         if (count($columns) > 2) {
@@ -2041,15 +1983,12 @@ function ____columns_modules($items, $id, $html = '')
                         if (!$text_align_tablet) {
                             if ($text_align == 'text-lg-start') {
                                 $classes[] = 'text-md-start';
-                            }
-                            else if ($text_align == 'text-lg-center') {
+                            } else if ($text_align == 'text-lg-center') {
                                 $classes[] = 'text-md-center';
-                            }
-                            else if ($text_align == 'text-lg-end') {
+                            } else if ($text_align == 'text-lg-end') {
                                 $classes[] = 'text-md-end';
                             }
-                        }
-                        else {
+                        } else {
                             $classes[] = $text_align_tablet;
                         }
 
@@ -2058,27 +1997,21 @@ function ____columns_modules($items, $id, $html = '')
                             if ($text_align_tablet) {
                                 if ($text_align_tablet == 'text-md-start') {
                                     $classes[] = 'text-start';
-                                }
-                                else if ($text_align_tablet == 'text-md-center') {
+                                } else if ($text_align_tablet == 'text-md-center') {
                                     $classes[] = 'text-center';
-                                }
-                                else if ($text_align_tablet == 'text-md-end') {
+                                } else if ($text_align_tablet == 'text-md-end') {
                                     $classes[] = 'text-end';
                                 }
-                            }
-                            else {
+                            } else {
                                 if ($text_align == 'text-lg-start') {
                                     $classes[] = 'text-start';
-                                }
-                                else if ($text_align == 'text-lg-center') {
+                                } else if ($text_align == 'text-lg-center') {
                                     $classes[] = 'text-center';
-                                }
-                                else if ($text_align == 'text-lg-end') {
+                                } else if ($text_align == 'text-lg-end') {
                                     $classes[] = 'text-end';
                                 }
                             }
-                        }
-                        else {
+                        } else {
                             $classes[] = $text_align_mobile;
                         }
 
@@ -2116,8 +2049,7 @@ function ____columns_modules($items, $id, $html = '')
                             if ($border_radius == 'custom') {
                                 $border_radius_custom = $column_style['border_radius_custom'];
                                 $styles[] = "border-radius: $border_radius_custom";
-                            }
-                            else {
+                            } else {
                                 $classes[] = $border_radius;
                             }
                         }
@@ -2129,8 +2061,7 @@ function ____columns_modules($items, $id, $html = '')
                                 if ($border_color == 'border-custom-color') {
                                     $border_color_custom = $column_style['border_color_custom'];
                                     $styles[] = "border-color: $border_color_custom";
-                                }
-                                else {
+                                } else {
                                     $classes[] = $border_color;
                                 }
 
@@ -2153,12 +2084,10 @@ function ____columns_modules($items, $id, $html = '')
                                     if ($border_width_left) {
                                         $styles[] = "border-left-width: $border_width_left";
                                     }
-                                }
-                                else {
+                                } else {
                                     $classes[] = 'border-default';
                                 }
-                            }
-                            else {
+                            } else {
                                 $classes[] = $border_style;
                             }
                         }
@@ -2221,8 +2150,7 @@ function ____columns_modules($items, $id, $html = '')
 
         if ($is_slider) {
             $html .= '<div class="swiper-slide">'; //swiper-slide
-        }
-        else {
+        } else {
             $html .= "<div $column_class_attr>"; //col
         }
         $html .= "<div $column_attributes>";
@@ -2473,8 +2401,7 @@ function __accordion_module($data, $class = '')
                 'description' => get_the_content(null, false, $faq['id']),
             );
         }
-    }
-    else if ($accordion_source == 'faqs_category') {
+    } else if ($accordion_source == 'faqs_category') {
         $faqs_cat_id = array();
         foreach ($faqs_category as $faqs_cat) {
             $faqs_cat_id[] = $faqs_cat['id'];
@@ -2499,8 +2426,7 @@ function __accordion_module($data, $class = '')
                 'description' => $faq->post_content
             );
         }
-    }
-    else {
+    } else {
         $accordion = $accordion;
     }
     $html = "<div class='accordion $class accordion-flush' id='accordion-$module_id'>"; //accordion
@@ -2550,8 +2476,7 @@ function _____icon_modules($items)
 
     if ($icon_color == 'text-custom') {
         $styles[] = 'color: ' . $icon_color_custom;
-    }
-    else {
+    } else {
         if ($icon_color) {
             $classes[] = $icon_color;
         }
@@ -2603,8 +2528,7 @@ function ____heading_modules($items)
 
         if ($text_color == 'text-custom') {
             $styles[] = 'color: ' . $text_color_custom;
-        }
-        else {
+        } else {
             if ($text_color) {
                 $classes[] = $text_color;
             }
@@ -2629,16 +2553,13 @@ function ____heading_modules($items)
     return __heading($heading_data);
 }
 
-function _styles()
-{
-}
+function _styles() {}
 function _attribute($name, $attributes, $separator = ' ')
 {
     $html = "$name='";
     if (is_array($attributes)) {
         $html .= implode($separator, array_unique($attributes));
-    }
-    else {
+    } else {
         $html .= $attributes;
     }
     $html .= "'";
@@ -2662,8 +2583,7 @@ function _is_module($post_id = false)
     $id = $post_id ? $post_id : get_the_ID();
     if (get_page_template_slug($id) == 'templates/page-modules.php') {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -2686,8 +2606,7 @@ function __product_specifications($for_product_summary = false)
             $row_class = 'g-5';
             $html = '<section class="products-specifications mt-20px bg-light rounded-corner py-3 mx-20px">';
             $html .= '<div class="container-fluid">';
-        }
-        else {
+        } else {
             $class = 'col-6';
             $row_class = 'g-10px';
             $html = '<div class="products-specifications products-specifications-v2">';
@@ -2704,8 +2623,7 @@ function __product_specifications($for_product_summary = false)
                     'id'    => $icon,
                     'class' => _attribute('class', array('me-3 text-accent'))
                 ));
-            }
-            else {
+            } else {
                 $html .= __image(array(
                     'image_id' => $icon,
                     'class'    => _attribute('class', array('me-3 text-accent'))
@@ -2723,8 +2641,7 @@ function __product_specifications($for_product_summary = false)
         if ($for_product_summary == false) {
             $html .= '</div>';
             $html .= '</section>';
-        }
-        else {
+        } else {
             $html .= '</div>';
         }
         return $html;
@@ -2763,8 +2680,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     $content_box_class[] = 'content-box content-margin ';
     if ($featured) {
         $class[] = 'featured-box text-white d-flex flex-column justify-content-between p-20px rounded-10px';
-    }
-    else {
+    } else {
         $class[] = 'content-margin';
     }
 
@@ -2787,8 +2703,7 @@ function __post_box($data, $class = [], $content_box_class = [])
     $html = '';
     if ($col == true && $col != false && is_bool($col)) {
         $html = "<div class='col-lg-4 col-sm-6'>"; //col
-    }
-    else {
+    } else {
         $col_class = _attribute('class', $col);
         $html = "<div $col_class>"; //col
     }
@@ -2801,13 +2716,11 @@ function __post_box($data, $class = [], $content_box_class = [])
         if ($taxonomy != false) {
             $html .= __post_category($id, $taxonomy, 'text-white');
         }
-    }
-    else {
+    } else {
         if ($bg_image) {
             $html .= __background($image);
             $content_box_class[] = "text-center xs-padding text-white";
-        }
-        else {
+        } else {
             $html .= __image(array(
                 'image_id'    => $image,
                 'placeholder' => true,
@@ -2888,8 +2801,7 @@ function ___hero_archive($key, $title, $taxonomy = false, $black_header = false)
         $term = get_queried_object();
         $hero_heading = $term->name;
         $hero_description = $term->description;
-    }
-    else {
+    } else {
         $hero_description = get__theme_option($key . 'archive_description');
         $hero_heading = get__theme_option($key . 'archive_title');
     }
@@ -2912,8 +2824,7 @@ function ___hero_archive($key, $title, $taxonomy = false, $black_header = false)
     if ($black_header == false) {
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
             $hero .= __background($hero_background_youtube, true);
-        }
-        else if ($hero_background) {
+        } else if ($hero_background) {
             $hero .= __background($hero_background);
         }
     }
@@ -3000,8 +2911,7 @@ function ___posts_header($key, $title, $taxonomy, $class = '')
             'class'   => _attribute('class', array('mb-0')),
         ));
         $html .= "</div>";
-    }
-    else {
+    } else {
         if ($title) {
             $html .= "<div class='col-auto'>";
             $html .= __heading(array(
@@ -3196,8 +3106,7 @@ function __form($args)
         $html .= "<div class='col-lg-3'>";
         $html .= __image($image_args);
         $html .= "</div>";
-    }
-    else {
+    } else {
         $class = 'col-12 text-center';
         $heading_class = 'mb-1';
     }
@@ -3265,8 +3174,7 @@ function __popup($id)
 
         $html .= "</div>"; //row
 
-    }
-    else {
+    } else {
         $html .= "<div class='popup-content-default p-5'>"; //popup-content-default
         $html .= do_shortcode(get_the_content(NULL, false, $id));
         $html .= "</div>"; //popup-content-default
