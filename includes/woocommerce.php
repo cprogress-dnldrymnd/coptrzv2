@@ -336,20 +336,19 @@ function custom_product_variation()
                 'tag'     => 'h5'
             ));
             $html .= $price;
-            $html .= '<div class="accordion-item">'; //accordion-item
-            $html .= "<div class='accordion-header' id='heading-variation-$child'> <button class='small-text fw-medium accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse-variation-$child' aria-expanded='false' aria-controls='collapse-variation-$child'> Package Contents </button> </div>";
+            if ($description) {
+                $html .= '<div class="accordion-item">'; //accordion-item
+                $html .= "<div class='accordion-header' id='heading-variation-$child'> <button class='small-text fw-medium accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse-variation-$child' aria-expanded='false' aria-controls='collapse-variation-$child'> Package Contents </button> </div>";
 
-            $html .= "<div id='collapse-variation-$child' class='accordion-collapse collapse' aria-labelledby='heading-variation-$child' data-bs-parent='#accordionVariation'>";
-            $html .= '<div class="accordion-body">';
-            $html .= __description(array(
-                'description' => $description
-            ));
-            $html .= '</div>';
-            $html .= '</div>';
-
-
-            $html .= '</div>'; //end-accordion-item
-
+                $html .= "<div id='collapse-variation-$child' class='accordion-collapse collapse' aria-labelledby='heading-variation-$child' data-bs-parent='#accordionVariation'>";
+                $html .= '<div class="accordion-body">';
+                $html .= __description(array(
+                    'description' => $description
+                ));
+                $html .= '</div>';
+                $html .= '</div>';
+                $html .= '</div>'; //end-accordion-item
+            }
             $html .= '</div>';
             $html .= '</div>';
 
