@@ -706,10 +706,10 @@ class Shortcodes
             shortcode_atts(
                 array(
                     'args' => '',
-                    'button_text' =>'',
-                    'button_url'=> '',
-                    'section_id'=> '',
-                    'heading'=> '',
+                    'button_text' => '',
+                    'button_url' => '',
+                    'section_id' => '',
+                    'heading' => '',
                 ),
                 $atts
             )
@@ -717,6 +717,20 @@ class Shortcodes
         $args_unserialize = unserialize($args);
         $products = get_posts($args_unserialize);
         return do_shortcode(__linked_products($products, $button_text, $button_url, $section_id, $heading, true, false));
+    }
+
+    function post_id($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'id' => '',
+                ),
+                $atts
+            )
+        );
+
+        return apply_filters('wpml_object_id', $id, 'post');
     }
 }
 $Shortcodes = new Shortcodes;
@@ -743,3 +757,4 @@ add_shortcode('remote_support', array($Shortcodes, 'remote_support'));
 add_shortcode('post_title', array($Shortcodes, 'post_title'));
 add_shortcode('permalink', array($Shortcodes, 'permalink'));
 add_shortcode('product_slider', array($Shortcodes, 'product_slider'));
+add_shortcode('post_id', array($Shortcodes, 'post_id'));
