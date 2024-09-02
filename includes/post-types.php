@@ -12,7 +12,7 @@ class newPostType
     public $show_in_admin_bar = true;
     public $has_archive = true;
     public $hierarchical = false;
-    public $text_domain = 'coptrz';
+    public $text_domain = 'coptrz-theme';
 
 
     function __construct()
