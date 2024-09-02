@@ -270,6 +270,7 @@ function __button($data)
     if ($button_type != 'popups' && $button_type != 'custom' && $button_type != 'buy-now') {
         $tag = 'a';
         $post_status = get_post_status($button_url);
+        
         $button_url = '[permalink id=' . $button_url . ']';
 
         $link = "href='$button_url'";
@@ -284,9 +285,11 @@ function __button($data)
     }
     else if ($button_type == 'popups') {
         global $popups_id;
-        $popups_id[] = $button_url;
+
+        $id = apply_filters('wpml_object_id', 299743, 'post');
+        $popups_id[] = $id;
         $tag = 'button';
-        $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $button_url . '"';
+        $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $id . '"';
     }
 
     if ($button_text && $link && $display == true) {
