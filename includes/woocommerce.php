@@ -406,8 +406,9 @@ function bbloomer_display_quantity_plus()
 
 function request_info()
 {
+    $id = apply_filters('wpml_object_id', 299743, 'post');
     $html = '<div class="button-box button-bordered request-info">';
-    $html .= "<a class='rounded-10px ' data-bs-toggle='modal' data-bs-target='#modal-299743' target='_self'>Request Info</button>";
+    $html .= "<a class='rounded-10px ' data-bs-toggle='modal' data-bs-target='#modal-$id' target='_self'>Request Info</button>";
     $html .= '</a>';
     $html .= '</div>';
     echo $html;

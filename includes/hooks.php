@@ -198,8 +198,6 @@ function action__wp_footer()
     );
     $posts = get_posts($args);
 
-
-
     foreach ($posts as $post) {
         echo __popup($post);
     }
