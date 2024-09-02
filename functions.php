@@ -15,17 +15,7 @@ function action_after_setup_theme()
 {
 	add_theme_support('post-thumbnails');
 	add_theme_support('woocommerce');
-	//add_theme_support('wc-product-gallery-zoom');
-	//add_theme_support('wc-product-gallery-lightbox');
-	//add_theme_support('wc-product-gallery-slider');
-
-	//require_once('vendor/autoload.php');
-	//\Carbon_Fields\Carbon_Fields::boot();
-
-
 	global $popups_id, $layouts_global, $product_taxonomy_page;
-	$id = apply_filters('wpml_object_id', 268179, 'post');
-	$popups_id[] = $id;
 }
 add_action('after_setup_theme', 'action_after_setup_theme');
 

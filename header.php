@@ -52,7 +52,7 @@
 	if (!is_404()) {
 		$class = 'mt-20px';
 	}
-	
+	$popups_id[] = 268179;
 	if (is_product()) {
 		global $popups_id;
 		$popups_id[] = 299743;
