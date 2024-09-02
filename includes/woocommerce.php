@@ -286,81 +286,84 @@ function custom_product_variation()
     $children = $product->get_children();
     $main_thumbnail = get_post_thumbnail_id($product->get_id());
 
-    $html = '<div class="product-custom-variation">';
-    $html .= '<div class="select-variant fw-medium mb-20px">Select a variant:</div>';
-    $html .= '<div class="accordion" id="accordionVariation">';
-    $html .= '<div class="row">';
+    if ($children) {
 
-    foreach ($children as $child) {
-        $variation = wc_get_product($child);
-        $product_attribute = $variation->get_attributes();
-        $variation_name = '';
-        $lastElement = end($product_attribute);
+        $html = '<div class="product-custom-variation">';
+        $html .= '<div class="select-variant fw-medium mb-20px">Select a variant:</div>';
+        $html .= '<div class="accordion" id="accordionVariation">';
+        $html .= '<div class="row">';
 
-        $product_attribute_array = array();
-        foreach ($product_attribute as $key => $attr) {
-            $variation_name .= $attr . ' ';
-            if ($attr != $lastElement) {
-                $variation_name .= ' | ';
+        foreach ($children as $child) {
+            $variation = wc_get_product($child);
+            $product_attribute = $variation->get_attributes();
+            $variation_name = '';
+            $lastElement = end($product_attribute);
+
+            $product_attribute_array = array();
+            foreach ($product_attribute as $key => $attr) {
+                $variation_name .= $attr . ' ';
+                if ($attr != $lastElement) {
+                    $variation_name .= ' | ';
+                }
+
+                $product_attribute_array[$key] = $attr;
             }
 
-            $product_attribute_array[$key] = $attr;
+            $json = json_encode($product_attribute_array);
+
+
+            $description = $variation->get_description();
+            $variation_thumbnail = get_post_thumbnail_id($child);
+            $thumbnail = $variation_thumbnail ? $variation_thumbnail : $main_thumbnail;
+            $stock_status_variation = $variation->get_stock_status();
+            $price = $variation->get_price_html();
+            $html .= '<div class="col-12">';
+            $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
+            $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100 $stock_status_variation'>";
+            $html .= "<div class='inner product-inner d-flex align-items-center w-100 p-20px rounded-corner'>";
+            $html .= "<div class='col-auto'>";
+            $html .= __image(array(
+                'image_id' => $thumbnail,
+                'class'    => _attribute('class', array('variation-image')),
+                'size'     => 'thumbnail'
+            ));
+            $html .= '</div>';
+
+            $html .= "<div class='col'>";
+            $html .= "<div class='info-box'>";
+            $html .= __heading(array(
+                'heading' => $variation_name,
+                'tag'     => 'h5'
+            ));
+            $html .= $price;
+            $html .= '<div class="accordion-item">'; //accordion-item
+            $html .= "<div class='accordion-header' id='heading-variation-$child'> <button class='small-text fw-medium accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse-variation-$child' aria-expanded='false' aria-controls='collapse-variation-$child'> Package Contents </button> </div>";
+
+            $html .= "<div id='collapse-variation-$child' class='accordion-collapse collapse' aria-labelledby='heading-variation-$child' data-bs-parent='#accordionVariation'>";
+            $html .= '<div class="accordion-body">';
+            $html .= __description(array(
+                'description' => $description
+            ));
+            $html .= '</div>';
+            $html .= '</div>';
+
+
+            $html .= '</div>'; //end-accordion-item
+
+            $html .= '</div>';
+            $html .= '</div>';
+
+            $html .= '</div>';
+            $html .= '</label>';
+            $html .= '</div>';
         }
-
-        $json = json_encode($product_attribute_array);
-
-
-        $description = $variation->get_description();
-        $variation_thumbnail = get_post_thumbnail_id($child);
-        $thumbnail = $variation_thumbnail ? $variation_thumbnail : $main_thumbnail;
-        $stock_status_variation = $variation->get_stock_status();
-        $price = $variation->get_price_html();
-        $html .= '<div class="col-12">';
-        $html .= "<input stock='$stock_status_variation' type='radio'  id='variation-$child' data_variations='$json' value='$child'  name='variation-radio'>";
-        $html .= "<label for='variation-$child' class='variation-label status-style-2 w-100 $stock_status_variation'>";
-        $html .= "<div class='inner product-inner d-flex align-items-center w-100 p-20px rounded-corner'>";
-        $html .= "<div class='col-auto'>";
-        $html .= __image(array(
-            'image_id' => $thumbnail,
-            'class'    => _attribute('class', array('variation-image')),
-            'size'     => 'thumbnail'
-        ));
         $html .= '</div>';
-
-        $html .= "<div class='col'>";
-        $html .= "<div class='info-box'>";
-        $html .= __heading(array(
-            'heading' => $variation_name,
-            'tag'     => 'h5'
-        ));
-        $html .= $price;
-        $html .= '<div class="accordion-item">'; //accordion-item
-        $html .= "<div class='accordion-header' id='heading-variation-$child'> <button class='small-text fw-medium accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse-variation-$child' aria-expanded='false' aria-controls='collapse-variation-$child'> Package Contents </button> </div>";
-
-        $html .= "<div id='collapse-variation-$child' class='accordion-collapse collapse' aria-labelledby='heading-variation-$child' data-bs-parent='#accordionVariation'>";
-        $html .= '<div class="accordion-body">';
-        $html .= __description(array(
-            'description' => $description
-        ));
         $html .= '</div>';
         $html .= '</div>';
 
 
-        $html .= '</div>'; //end-accordion-item
-
-        $html .= '</div>';
-        $html .= '</div>';
-
-        $html .= '</div>';
-        $html .= '</label>';
-        $html .= '</div>';
+        echo $html;
     }
-    $html .= '</div>';
-    $html .= '</div>';
-    $html .= '</div>';
-
-
-    echo $html;
 }
 
 
