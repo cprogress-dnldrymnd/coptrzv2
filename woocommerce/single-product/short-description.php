@@ -52,4 +52,5 @@ global $product;
 
 if(!$product->get_price()) {
 	request_info();
+	echo '<br>';
 }
