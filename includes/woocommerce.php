@@ -417,7 +417,7 @@ function call_us_now() {
     </div>';
 }
 
-add_action('woocommerce_before_add_to_cart_form', 'call_us_now', 20);
+add_action('woocommerce_before_add_to_cart_quantity', 'call_us_now', 20);
 
 function request_info()
 {
@@ -427,7 +427,7 @@ function request_info()
     $html .= '</div>';
     echo $html;
 }
-add_action('woocommerce_after_add_to_cart_form', 'request_info', 20);
+add_action('woocommerce_after_add_to_cart_button', 'request_info', 20);
 
 function __product_compare($id)
 {
