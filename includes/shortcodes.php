@@ -713,7 +713,7 @@ class Shortcodes
 
         $args_decode = json_decode($args);
 
-        return $args_decode;
+        return $args;
     }
 }
 $Shortcodes = new Shortcodes;
