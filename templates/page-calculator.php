@@ -10,7 +10,7 @@
     ?>
 
     <form id="calculator-form">
-        <section class="calculator medium-container lg-padding-top md-padding-bottom">
+        <section class="calculator medium-container md-padding-top md-padding-bottom">
             <div class="container content-margin">
                 <div class="inner px-5 content-margin">
                     <h1>Project Information</h1>
