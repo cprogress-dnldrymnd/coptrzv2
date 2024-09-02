@@ -13284,6 +13284,17 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   .request-info {
     margin-top: 2rem; } }
 
+.after-add-to-cart.after-add-to-cart .icon-list li {
+  font-size: 18px;
+  background-color: rgba(45, 161, 255, 0.32);
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid var(--bs-accent); }
+  .after-add-to-cart.after-add-to-cart .icon-list li svg {
+    margin-right: 1rem; }
+  .after-add-to-cart.after-add-to-cart .icon-list li a {
+    color: var(--bs-black); }
+
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
   border: 1px solid;
