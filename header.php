@@ -66,8 +66,7 @@
 		$string = str_replace('opensb', '{', $string);
 		$string = str_replace('closesb', '}', $string);
 		$string = str_replace('quote', '"', $string);
-		echo $string;
-		
+	
 		echo do_shortcode($string);
 		?>
 
