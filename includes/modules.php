@@ -2967,7 +2967,7 @@ function ___featured($key)
                 'col'      => true,
                 'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
             );
-            $html .= __post_box($data);
+            $html .= do_shortcode(__post_box($data));
         }
 
         $html .= "</div>";
