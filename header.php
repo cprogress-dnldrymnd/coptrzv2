@@ -54,17 +54,6 @@
 	}
 	?>
 	<main class="<?= $class ?>">
-
-		<?php
-
-		$string = "";
-		$args = "opensbquotenumberpostsquote:-1,quotepost_typequote:quoteproductquote,quotefieldsquote:quoteidsquote,quotepost_statusquote:quotepublishquote,quotetax_queryquote:opensbquoterelationquote:quoteANDquote,quote0quote:opensbquotetaxonomyquote:quoteproduct_catquote,quotefieldquote:quoteterm_idquote,quotetermsquote:openbquote32quoteclosebclosesbclosesbclosesb";
-		$product_slider_args_normal = product_slider_args_normal($args);
-		echo '<pre>';
-		var_dump(json_decode($product_slider_args_normal, true));
-		echo '</pre>';
-		?>
-
 		<?php
 		$copy_from = $_GET['copy_from'];
 		$copy_after = $_GET['copy_after'];

@@ -928,9 +928,7 @@ function ___sections($id = 'sections', $post_id = '')
                         }
                         $products = get_posts($product_slider_args);
                         $serialize = serialize($product_slider_args);
-                        $html .= "[product_slider args='$serialize']";
-
-
+                        $html .= "[product_slider args='$serialize' button_text='$button_text' button_url='$button_url' section_id_val='swiper-$section_id_val' heading='$heading']";
                         $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
                         break;
                     case 'tabs':
@@ -3189,23 +3187,4 @@ function __popup($id)
     $html .= "</div>"; //modal
 
     return $html;
-}
-function product_slider_args_custom_code($string)
-{
-    $string = str_replace('[', 'openb', $string);
-    $string = str_replace(']', 'closeb', $string);
-    $string = str_replace('{', 'opensb', $string);
-    $string = str_replace('}', '}', $string);
-    $string = str_replace('"', 'quote', $string);
-
-    return $string;
-}
-function product_slider_args_normal($string)
-{
-    $string = str_replace('openb', '[', $string);
-    $string = str_replace('closeb', ']', $string);
-    $string = str_replace('opensb', '{', $string);
-    $string = str_replace('closesb', '}', $string);
-    $string = str_replace('quote', '"', $string);
-    return $string;
 }
