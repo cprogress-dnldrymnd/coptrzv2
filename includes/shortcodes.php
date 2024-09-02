@@ -708,7 +708,7 @@ class Shortcodes
                     'args' => '',
                     'button_text' =>'',
                     'button_url'=> '',
-                    'section_id_val'=> '',
+                    'section_id'=> '',
                     'heading'=> '',
                 ),
                 $atts
@@ -716,7 +716,7 @@ class Shortcodes
         );
         $args_unserialize = unserialize($args);
         $products = get_posts($args_unserialize);
-        return __linked_products($products, $button_text, $button_url, $section_id_val, $heading, true, false);
+        return __linked_products($products, $button_text, $button_url, $section_id, $heading, true, false);
     }
 }
 $Shortcodes = new Shortcodes;
