@@ -57,7 +57,7 @@
 	if (is_product()) {
 		$popups_id[] = 299743;
 	}
-	var_dump($popups_id);
+
 	?>
 	<main class="<?= $class ?>">
 		<?php
