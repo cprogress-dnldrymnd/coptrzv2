@@ -275,10 +275,9 @@ function __button($data)
         $link = "href='$button_url_custom'";
     } else if ($button_type == 'popups') {
         global $popups_id;
-        $modal_id = apply_filters('wpml_object_id', $button_url, 'post');
-        $popups_id[] = $modal_id;
+        $popups_id[] = $button_url;
         $tag = 'button';
-        $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $modal_id . '"';
+        $link = 'data-bs-toggle="modal" data-bs-target="#modal-[post_id id=' . $button_url . ']"';
     }
 
     if ($button_text && $link && $display == true) {
