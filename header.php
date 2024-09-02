@@ -56,7 +56,7 @@
 	<main class="<?= $class ?>">
 
 	<?php
-$string = "[product_slider args='{&QUOTE;numberposts&QUOTE;:-1,&QUOTE;post_type&QUOTE;:&QUOTE;product&QUOTE;,&QUOTE;fields&QUOTE;:&QUOTE;ids&QUOTE;,&QUOTE;post_status&QUOTE;:&QUOTE;publish&QUOTE;,&QUOTE;tax_query&QUOTE;:{&QUOTE;relation&QUOTE;:&QUOTE;AND&QUOTE;,&QUOTE;0&QUOTE;:{&QUOTE;taxonomy&QUOTE;:&QUOTE;product_cat&QUOTE;,&QUOTE;field&QUOTE;:&QUOTE;term_id&QUOTE;,&QUOTE;terms&QUOTE;:[&QUOTE;32&QUOTE;]}}}']";
+$string = "[product_slider args='{quotenumberpostsquote:-1,quotepost_typequote:quoteproductquote,quotefieldsquote:quoteidsquote,quotepost_statusquote:quotepublishquote,quotetax_queryquote:{quoterelationquote:quoteANDquote,quote0quote:{quotetaxonomyquote:quoteproduct_catquote,quotefieldquote:quoteterm_idquote,quotetermsquote:[quote32quote]}}}']";
 
 echo do_shortcode($string);
 	?>
