@@ -286,7 +286,7 @@ function __button($data)
     else if ($button_type == 'popups') {
         global $popups_id;
 
-        $id = apply_filters('wpml_object_id', 299743, 'post');
+        $id = apply_filters('wpml_object_id', $button_url, 'post');
         $popups_id[] = $id;
         $tag = 'button';
         $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $id . '"';
