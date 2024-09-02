@@ -58,11 +58,11 @@
 		$popups_id[] = 299743;
 	}
 
-	$popups_ids = array();
+	$popups_wpml = array();
 	foreach ($popups_id as $popup) {
-		$popups_ids = apply_filters('wpml_object_id', $popup, 'post');
+		$popups_wpml = apply_filters('wpml_object_id', $popup, 'post');
 	}
-	var_dump($popups_id);
+	var_dump($popups_wpml);
 	?>
 	<main class="<?= $class ?>">
 		<?php
