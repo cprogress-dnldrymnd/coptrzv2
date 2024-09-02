@@ -739,4 +739,4 @@ add_shortcode('three_year_servicing_plans', array($Shortcodes, 'three_year_servi
 add_shortcode('remote_support', array($Shortcodes, 'remote_support'));
 add_shortcode('post_title', array($Shortcodes, 'post_title'));
 add_shortcode('permalink', array($Shortcodes, 'permalink'));
-add_shortcode('product_slider', array($Shortcodes, 'product_slider'));
+//add_shortcode('product_slider', array($Shortcodes, 'product_slider'));
