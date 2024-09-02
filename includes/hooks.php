@@ -187,9 +187,8 @@ function action__wp_footer()
 
     $popups_wpml = array();
     foreach ($popups as $popup) {
-        $popups_wpml = apply_filters('wpml_object_id', $popup, 'post');
+        $popups_wpml[] = apply_filters('wpml_object_id', $popup, 'post');
     }
-
 
     $args = array(
         'post_type' => 'popups',
