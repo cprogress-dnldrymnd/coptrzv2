@@ -23,11 +23,6 @@ function action_module_content()
                 update_post_meta(get_the_ID(), '_sections_html', $sections);
             }
             update_post_meta(get_the_ID(), '_sections_after_main_html', $sections_after_main);
-            $my_post = array(
-                'ID'           => get_the_ID(),
-                'post_content' => '',
-            );
-            wp_update_post($my_post);
 
             if (get_post_type() == 'producttaxonomypages') {
                 $product_term_id = get__post_meta('product_tax')[0]['id'];
