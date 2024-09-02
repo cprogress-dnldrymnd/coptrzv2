@@ -927,9 +927,8 @@ function ___sections($id = 'sections', $post_id = '')
                             );
                         }
                         $products = get_posts($product_slider_args);
-
-                        $product_slider_args_json = json_encode($product_slider_args);
-                        $html .= '[product_slider args="' . $product_slider_args_json . '"]';
+                        $string_version = implode(',', $product_slider_args);
+                        $html .= '[product_slider args="' . $string_version . '"]';
 
 
                         $html .= __linked_products($products, $button_text, $button_url, 'swiper-' . $section_id_val, $heading, true, false);
