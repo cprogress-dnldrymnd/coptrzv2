@@ -3199,6 +3199,8 @@ function product_slider_args_custom_code($string)
     $string = str_replace('{', 'opensb', $string);
     $string = str_replace('}', '}', $string);
     $string = str_replace('"', 'quote', $string);
+
+    return $string;
 }
 function product_slider_args_normal($string)
 {
@@ -3207,4 +3209,5 @@ function product_slider_args_normal($string)
     $string = str_replace('opensb', '{', $string);
     $string = str_replace('closesb', '}', $string);
     $string = str_replace('quote', '"', $string);
+    return $string;
 }
