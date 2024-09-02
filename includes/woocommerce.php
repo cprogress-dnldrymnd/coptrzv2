@@ -13,10 +13,15 @@ function action_woocommerce_before_main_content()
             $product_taxonomy_page[] = $product_category_page;
             echo do_shortcode(get_post_meta($product_category_page, '_sections_html', true));
         }
-    }
-    else if (is_product()) {
+    } else if (is_product()) {
         echo ___hero_modules();
         echo __product_specifications();
+
+
+        if (get_the_ID() != 271236 && has_term(32, 'product_cat')) {
+            echo do_shortcode('[layouts id=299719]');
+        }
+
         echo do_shortcode(get_post_meta(get_the_ID(), '_sections_html', true));
     }
 }
@@ -182,8 +187,7 @@ add_action('woocommerce_after_shop_loop_item', 'action_woocommerce_after_shop_lo
 function action_woocommerce_after_shop_loop_item()
 {
     echo "</div>";
-}
-;
+};
 //Add DIV start element before shop loop item
 add_action('woocommerce_before_shop_loop_item', 'action_woocommerce_before_shop_loop_item', 10, 0);
 function action_woocommerce_before_shop_loop_item()
@@ -200,8 +204,7 @@ function action_woocommerce_before_shop_loop_item()
     if (!$product_category_page) {
         echo "<div class='product-info'>";
     }
-}
-;
+};
 
 
 function brands_filter()
@@ -478,8 +481,7 @@ function __product_compare($id)
 
         if ($product_attribute == 'weight') {
             $heading = 'Weight';
-        }
-        else {
+        } else {
             $heading = $taxonomy_details->labels->singular_name;
         }
 
@@ -502,8 +504,7 @@ function __product_compare($id)
             if ($product_attribute == 'weight') {
                 $product = wc_get_product($product['id']);
                 $html .= $product->get_weight();
-            }
-            else {
+            } else {
 
                 foreach ($product_attribute_values as $product_attribute_value) {
                     $html .= $product_attribute_value->name;
@@ -569,8 +570,7 @@ function __product_compare_oldd($id)
                     'id'    => $icon,
                     'class' => _attribute('class', array('me-3 text-accent'))
                 ));
-            }
-            else {
+            } else {
                 $html .= __image(array(
                     'image_id' => $icon,
                     'class'    => _attribute('class', array('me-3 text-accent'))
@@ -599,8 +599,7 @@ function __product_compare_oldd($id)
                 $html .= "<div class='active'>";
                 $html .= $SVG->check();
                 $html .= "</div>";
-            }
-            else {
+            } else {
                 $html .= "<div class='not-active'>";
                 $html .= $SVG->xmark();
                 $html .= "</div>";
@@ -633,8 +632,7 @@ function __product_compare_oldd($id)
                 'id'    => $icon,
                 'class' => _attribute('class', array('me-3 text-accent'))
             ));
-        }
-        else {
+        } else {
             $html .= __image(array(
                 'image_id' => $icon,
                 'class'    => _attribute('class', array('me-3 text-accent'))
@@ -665,8 +663,7 @@ function __product_compare_oldd($id)
                 $html .= "<div class='active'>";
                 $html .= $SVG->check();
                 $html .= "</div>";
-            }
-            else {
+            } else {
                 $html .= "<div class='not-active'>";
                 $html .= $SVG->xmark();
                 $html .= "</div>";
@@ -749,8 +746,7 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 
     if ($include_section) {
         $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom' id='$section_id'>";
-    }
-    else {
+    } else {
         $html = "<div class='related-products-slider'>";
     }
 
@@ -761,8 +757,7 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
         $html .= "<div class='swiper-holder'>"; //swiper-holder
         $html .= "<div class='swiper swiper-linked-products' id='$id'>"; //swiper
         $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
-    }
-    else {
+    } else {
         $html .= "<div class='container'>"; //container
         $html .= "<div class='row g-4'>"; //row
     }
@@ -771,14 +766,12 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 
         if ($is_slider) {
             $html .= "<div class='swiper-slide'>"; //swiper-slide
-        }
-        else {
+        } else {
             $html .= "<div class='col-lg-3 col-md-6'>"; //col
         }
         if ($shorcode == false) {
             $html .= _product_grid_display($product_id);
-        }
-        else {
+        } else {
             $html .= "[product_grid_display id='$product_id']";
         }
         $html .= '</div>'; //end-swiper-slide // col
@@ -789,8 +782,7 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
         $html .= '</div>'; //end-swiper
         $html .= '</div>'; //end-swiper-holder
         $html .= '</div>'; //end-container
-    }
-    else {
+    } else {
         $html .= '</div>'; //end-row
         $html .= '</div>'; //end-container
     }
@@ -814,8 +806,7 @@ function __linked_products($field, $button_text, $button_link, $id, $title, $sho
 
     if ($include_section) {
         $html .= '</section>';
-    }
-    else {
+    } else {
         $html .= '</div>';
     }
 
@@ -904,8 +895,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
         $child_array_val = array_filter($child_array, function ($var) use ($location) {
             return ($var['location'] == $location);
         });
-    }
-    else {
+    } else {
         $child_array_val = $child_array;
     }
 
@@ -1005,8 +995,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
         $html .= '<div class="swiper-button-next"></div>';
         $html .= '</div>'; //end swipernav
         $html .= '</div>'; //end-swiper
-    }
-    else {
+    } else {
         $html .= '<h2 class="my-5">No training found.</h2>';
     }
     $html .= '</div>';
@@ -1052,12 +1041,10 @@ function __drone_servicing()
         if ($position == 0) {
             $class = 'bg-gray';
             $button_class = 'button-primary';
-        }
-        else if ($position == 1) {
+        } else if ($position == 1) {
             $class = 'bg-accent';
             $button_class = 'button-primary';
-        }
-        else if ($position == 2) {
+        } else if ($position == 2) {
             $class = 'bg-black';
             $button_class = 'button-accent';
         }
@@ -1107,13 +1094,11 @@ function __drone_servicing()
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
                         $html .= "<span class='fw-'medium'>$quantity</span>";
                         $html .= "</span>";
-                    }
-                    else {
+                    } else {
                         $html .= $SVG->check();
                     }
                     $html .= "</div>";
-                }
-                else {
+                } else {
                     $html .= "<div class='not-active d-flex align-items-center'>";
                     $html .= $SVG->xmark();
                     $html .= "</div>";
@@ -1180,13 +1165,11 @@ function __drone_servicing()
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
                         $html .= "<span class='fw-'medium'>$quantity</span>";
                         $html .= "</span>";
-                    }
-                    else {
+                    } else {
                         $html .= $SVG->check();
                     }
                     $html .= "</div>";
-                }
-                else {
+                } else {
                     $html .= "<div class='not-active d-flex align-items-center'>";
                     $html .= $SVG->xmark();
                     $html .= "</div>";
@@ -1211,12 +1194,10 @@ function __drone_servicing()
         if ($position == 0) {
             $class = 'bg-gray';
             $button_class = 'button-primary';
-        }
-        else if ($position == 1) {
+        } else if ($position == 1) {
             $class = 'bg-accent';
             $button_class = 'button-primary';
-        }
-        else if ($position == 2) {
+        } else if ($position == 2) {
             $class = 'bg-black';
             $button_class = 'button-accent';
         }
@@ -1290,12 +1271,10 @@ function __three_year_servicing_plans()
         if ($position == 0) {
             $class = 'bg-gray';
             $button_class = 'button-primary';
-        }
-        else if ($position == 1) {
+        } else if ($position == 1) {
             $class = 'bg-accent';
             $button_class = 'button-primary';
-        }
-        else if ($position == 2) {
+        } else if ($position == 2) {
             $class = 'bg-black';
             $button_class = 'button-accent';
         }
@@ -1309,8 +1288,7 @@ function __three_year_servicing_plans()
         $plan_features = $drone['plan_features'];
         if ($plan_features) {
             $class .= ' justify-content-between';
-        }
-        else {
+        } else {
             $class .= ' justify-content-start';
         }
         $html .= "<div class='col-lg-3'>";
@@ -1355,13 +1333,11 @@ function __three_year_servicing_plans()
                             $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
                             $html .= "<span class='fw-'medium'>$custom_text</span>";
                             $html .= "</span>";
-                        }
-                        else {
+                        } else {
                             $html .= $SVG->check();
                         }
                         $html .= "</div>";
-                    }
-                    else {
+                    } else {
                         $html .= "<div class='not-active d-flex align-items-center'>";
                         $html .= $SVG->xmark();
                         $html .= "</div>";
@@ -1445,13 +1421,11 @@ function __three_year_servicing_plans()
                         $html .= "<span class='qty ms-2 text-primary d-flex align-items-center'> ";
                         $html .= "<span class='fw-'medium'>$custom_text</span>";
                         $html .= "</span>";
-                    }
-                    else {
+                    } else {
                         $html .= $SVG->check();
                     }
                     $html .= "</div>";
-                }
-                else {
+                } else {
                     $html .= "<div class='not-active d-flex align-items-center'>";
                     $html .= $SVG->xmark();
                     $html .= "</div>";
@@ -1476,12 +1450,10 @@ function __three_year_servicing_plans()
         if ($position == 0) {
             $class = 'bg-gray';
             $button_class = 'button-primary';
-        }
-        else if ($position == 1) {
+        } else if ($position == 1) {
             $class = 'bg-accent';
             $button_class = 'button-primary';
-        }
-        else if ($position == 2) {
+        } else if ($position == 2) {
             $class = 'bg-black';
             $button_class = 'button-accent';
         }

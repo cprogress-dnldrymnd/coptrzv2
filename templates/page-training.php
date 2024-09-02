@@ -8,9 +8,6 @@
 <div class="modules">
     <?php
     echo ___hero_modules();
-    if (get_the_ID() != 271236) {
-        echo do_shortcode('[layouts id=299719]');
-    }
     echo do_shortcode(___sections('sections', get_the_ID()));
     ?>
 </div>
