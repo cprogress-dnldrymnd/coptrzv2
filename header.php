@@ -53,7 +53,6 @@
 		$class = 'mt-20px';
 	}
 	global $popups_id;
-
 	$popups_id[] = 268179;
 	if (is_product()) {
 		$popups_id[] = 299743;
