@@ -40,8 +40,7 @@ function __heading($data, $html = '')
             }
 
             $html .= "</div>";
-        }
-        else {
+        } else {
             if ($link && $post_status == 'publish') {
                 $html .= "<a class='text-inherit text-decoration-none' href='$link'>";
             }
@@ -72,8 +71,7 @@ function __description($data)
     if ($description) {
         if ($autop) {
             $description_val = wpautop($description);
-        }
-        else {
+        } else {
             $description_val = $description;
         }
         $attributes_args = [];
@@ -128,8 +126,7 @@ function __image($data)
     $attributes_args = [];
     if ($featured_image) {
         $image = get_the_post_thumbnail($featured_image, $size);
-    }
-    else {
+    } else {
         $image = wp_get_attachment_image($image_id, $size);
     }
     if ($image) {
@@ -150,8 +147,7 @@ function __image($data)
         }
         $html .= "</div>";
         return $html;
-    }
-    else {
+    } else {
         if ($placeholder) {
             $class = _attribute('class', array('is-placeholder image-box rounded-corner overflow-hidden bg-black'));
             $attributes_args[] = $class;
@@ -194,15 +190,13 @@ function __video($data)
         }
         $source = "https://www.youtube.com/embed/$youtube_video_id$parameters";
         return "<div $_attributes><iframe src='$source'></iframe></div>";
-    }
-    else {
+    } else {
         if ($video_url) {
 
             $parameters = '';
             if ($autoplay) {
                 $parameters = 'autoplay loop muted';
-            }
-            else {
+            } else {
                 $parameters = 'controls';
             }
 
@@ -221,16 +215,14 @@ function __background($background, $is_youtube = false)
                 'video_id' => $background,
                 'class'    => _attribute('class', array('background-image', 'background-overlay'))
             ));
-        }
-        else {
+        } else {
             return __image(array(
                 'image_id' => $background,
                 'class'    => _attribute('class', array('background-image', 'background-overlay')),
                 'size'     => 'full'
             ));
         }
-    }
-    else {
+    } else {
         return "<div class='background-image background-overlay'><div id='player' video_id='$background'></div></iframe></div>";
     }
 }
@@ -270,25 +262,23 @@ function __button($data)
     if ($button_type != 'popups' && $button_type != 'custom' && $button_type != 'buy-now') {
         $tag = 'a';
         $post_status = get_post_status($button_url);
-        
+
         $button_url = '[permalink id=' . $button_url . ']';
 
         $link = "href='$button_url'";
         if ($post_status != 'publish') {
             $display = false;
         }
-    }
-    else if ($button_type == 'custom') {
+    } else if ($button_type == 'custom') {
         $button_url = $button_url_custom;
         $tag = 'a';
         $link = "href='$button_url_custom'";
-    }
-    else if ($button_type == 'popups') {
+    } else if ($button_type == 'popups') {
         global $popups_id;
-        $id = apply_filters('wpml_object_id', $button_url, 'post');
-        $popups_id[] = $id;
+        $modal_id = apply_filters('wpml_object_id', $button_url, 'post');
+        $popups_id[] = $modal_id;
         $tag = 'button';
-        $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $id . '"';
+        $link = 'data-bs-toggle="modal" data-bs-target="#modal-' . $modal_id . '"';
     }
 
     if ($button_text && $link && $display == true) {

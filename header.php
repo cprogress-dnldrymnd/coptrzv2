@@ -57,8 +57,6 @@
 	if (is_product()) {
 		$popups_id[] = 299743;
 	}
-	$id = apply_filters('wpml_object_id', 268179, 'post');
-	echo $id;
 
 	?>
 	<main class="<?= $class ?>">
