@@ -27,7 +27,7 @@ function action_after_setup_theme()
 
 	$popups_id[] = 268179;
 
-	if (is_single()) {
+	if (is_product()) {
 		$popups_id[] = 299743;
 	}
 }
