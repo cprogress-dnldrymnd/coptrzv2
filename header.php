@@ -54,6 +54,7 @@
 	}
 	
 	if (is_product()) {
+		global $popups_id;
 		$popups_id[] = 299743;
 	}
 	?>
