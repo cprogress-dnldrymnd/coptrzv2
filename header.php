@@ -56,21 +56,6 @@
 	<main class="<?= $class ?>">
 
 		<?php
-
-		$string = "[product_slider args='opensbquotenumberpostsquote:-1,quotepost_typequote:quoteproductquote,quotefieldsquote:quoteidsquote,quotepost_statusquote:quotepublishquote,quotetax_queryquote:opensbquoterelationquote:quoteANDquote,quote0quote:opensbquotetaxonomyquote:quoteproduct_catquote,quotefieldquote:quoteterm_idquote,quotetermsquote:openbquote32quoteclosebclosesbclosesbclosesb']";
-
-
-
-		$string = str_replace('openb', '[', $string);
-		$string = str_replace('closeb', ']', $string);
-		$string = str_replace('opensb', '{', $string);
-		$string = str_replace('closesb', '}', $string);
-		$string = str_replace('quote', '"', $string);
-	
-		echo do_shortcode($string);
-		?>
-
-		<?php
 		$copy_from = $_GET['copy_from'];
 		$copy_after = $_GET['copy_after'];
 		$training = $_GET['training'];
