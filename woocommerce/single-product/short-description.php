@@ -50,6 +50,6 @@ if (! $short_description) {
 <?php 
 global $product;
 
-if(!$product->get_price()) {
+if(!$product->get_price() || $product->get_stock_status() == 'outofstock') {
 	request_info();
 }
