@@ -1919,10 +1919,6 @@ function ____columns_modules($items, $id, $html = '')
         }
         if ($align_items) {
             $row_class[] = $align_items;
-        } else {
-            if (!$same_image_height) {
-                $row_class[] = 'align-items-center';
-            }
         }
 
 
