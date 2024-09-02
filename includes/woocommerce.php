@@ -78,24 +78,24 @@ function action_woocommerce_after_single_product_summary()
     echo do_shortcode(get_post_meta(get_the_ID(), '_sections_after_main_html', true));
 
     if ($drones) {
-        echo __linked_products(__get_assoc_post_ids($drones), 'All Drones', get_term_link(27, 'product_cat'), 'swiper-drones', 'Drones');
+        echo __linked_products(__get_assoc_post_ids($drones), __('All Drones', 'coptrz-theme'), get_term_link(27, 'product_cat'), 'swiper-drones', __('Drones', 'coptrz-theme'));
     }
 
     if ($related_training) {
 
-        echo __linked_products(__get_assoc_post_ids($related_training), 'All Trainings', get_term_link(32, 'product_cat'), 'swiper-payloads', 'Related Training');
+        echo __linked_products(__get_assoc_post_ids($related_training), __('All Trainings', 'coptrz-theme'), get_term_link(32, 'product_cat'), 'swiper-payloads', __('Related Training', 'coptrz-theme'));
     }
 
     if ($softwares) {
-        echo __linked_products(__get_assoc_post_ids($softwares), 'All Softwares', get_term_link(776, 'product_cat'), 'swiper-softwares', 'Softwares');
+        echo __linked_products(__get_assoc_post_ids($softwares), __('All Softwares', 'coptrz-theme'), get_term_link(776, 'product_cat'), 'swiper-softwares', __('Softwares', 'coptrz-theme'));
     }
 
     if ($compatible_payloads) {
-        echo __linked_products(__get_assoc_post_ids($compatible_payloads), 'All Payloads', get_term_link(29, 'product_cat'), 'swiper-payloads', 'Compatible Payloads');
+        echo __linked_products(__get_assoc_post_ids($compatible_payloads), __('All Payloads', 'coptrz-theme'), get_term_link(29, 'product_cat'), 'swiper-payloads', __('Compatible Payloads', 'coptrz-theme'));
     }
 
     if ($accessories) {
-        echo __linked_products(__get_assoc_post_ids($accessories), 'All Accessories', get_term_link(30, 'product_cat'), 'swiper-accessories', 'Accessories');
+        echo __linked_products(__get_assoc_post_ids($accessories), __('All Accessories', 'coptrz-theme'), get_term_link(30, 'product_cat'), 'swiper-accessories', __('Accessories', 'coptrz-theme'));
     }
 }
 
