@@ -24,7 +24,8 @@ function action_after_setup_theme()
 
 
 	global $popups_id, $layouts_global, $product_taxonomy_page;
-	$popups_id[] = 268179;
+	$id = apply_filters('wpml_object_id', 268179, 'post');
+	$popups_id[] = $id;
 }
 add_action('after_setup_theme', 'action_after_setup_theme');
 
