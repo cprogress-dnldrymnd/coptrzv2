@@ -55,11 +55,20 @@
 	?>
 	<main class="<?= $class ?>">
 
-	<?php
-$string = "[product_slider args='opensbquotenumberpostsquote:-1,quotepost_typequote:quoteproductquote,quotefieldsquote:quoteidsquote,quotepost_statusquote:quotepublishquote,quotetax_queryquote:opensbquoterelationquote:quoteANDquote,quote0quote:opensbquotetaxonomyquote:quoteproduct_catquote,quotefieldquote:quoteterm_idquote,quotetermsquote:openbquote32quoteclosebclosesbclosesbclosesb']";
+		<?php
 
-echo do_shortcode($string);
-	?>
+		$args = htmlentities('{"numberposts":-1,"post_type":"product","fields":"ids","post_status":"publish","tax_query":{"relation":"AND","0":{"taxonomy":"product_cat","field":"term_id","terms":["32"]}}}');
+		//$string = "[product_slider args='opensbquotenumberpostsquote:-1,quotepost_typequote:quoteproductquote,quotefieldsquote:quoteidsquote,quotepost_statusquote:quotepublishquote,quotetax_queryquote:opensbquoterelationquote:quoteANDquote,quote0quote:opensbquotetaxonomyquote:quoteproduct_catquote,quotefieldquote:quoteterm_idquote,quotetermsquote:openbquote32quoteclosebclosesbclosesbclosesb']";
+
+		$string = "[product_slider args='$args']";
+
+
+		$string = str_replace('openb', '[', $string);
+		$string = str_replace('closeb', ']', $string);
+		$string = str_replace('openb', '[', $string);
+
+		echo do_shortcode($string);
+		?>
 
 		<?php
 		$copy_from = $_GET['copy_from'];
@@ -103,5 +112,4 @@ echo do_shortcode($string);
 				$related_casestudies = get__post_meta_by_id($copy_from, 'related_casestudies');
 				carbon_set_post_meta(get_the_ID(), 'related_casestudies', $related_casestudies);
 			}
-
 		}
