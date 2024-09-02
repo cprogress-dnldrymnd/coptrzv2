@@ -57,12 +57,6 @@
 	if (is_product()) {
 		$popups_id[] = 299743;
 	}
-
-	$popups_wpml = array();
-	foreach ($popups_id as $popup) {
-		$popups_wpml = apply_filters('wpml_object_id', $popup, 'post');
-	}
-	var_dump($popups_wpml);
 	?>
 	<main class="<?= $class ?>">
 		<?php
