@@ -406,9 +406,7 @@ function bbloomer_display_quantity_plus()
 function request_info()
 {
     $html = '<div class="button-box button-bordered buy-now-button ">';
-    $html .= "<button class='rounded-10px ' data-bs-toggle='modal' data-bs-target='#modal-299743' target='_self'>Enquire Now</button>";
-    $html .= 'Request Info';
-    $html .= '</button>';
+    $html .= "<button class='rounded-10px ' data-bs-toggle='modal' data-bs-target='#modal-299743' target='_self'>Request Info</button>";
     $html .= '</div>';
     echo $html;
 }
