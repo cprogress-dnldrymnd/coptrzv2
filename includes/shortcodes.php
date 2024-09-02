@@ -710,9 +710,7 @@ class Shortcodes
                 $atts
             )
         );
-        $product_slider_args_normal = product_slider_args_normal($args);
-        $args_val = json_decode($product_slider_args_normal);
-        return $args_val;
+        return $args;
     }
 }
 $Shortcodes = new Shortcodes;
@@ -738,4 +736,4 @@ add_shortcode('three_year_servicing_plans', array($Shortcodes, 'three_year_servi
 add_shortcode('remote_support', array($Shortcodes, 'remote_support'));
 add_shortcode('post_title', array($Shortcodes, 'post_title'));
 add_shortcode('permalink', array($Shortcodes, 'permalink'));
-//add_shortcode('product_slider', array($Shortcodes, 'product_slider'));
+add_shortcode('product_slider', array($Shortcodes, 'product_slider'));
