@@ -13283,6 +13283,8 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 @media (max-width: 1599px) {
   .request-info {
     margin-top: 2rem; } }
+.request-info + .ppcp-messages {
+  display: none !important; }
 
 .after-add-to-cart.after-add-to-cart .icon-list li {
   font-size: 18px;
