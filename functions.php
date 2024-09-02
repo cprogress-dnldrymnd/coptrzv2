@@ -26,6 +26,10 @@ function action_after_setup_theme()
 	global $popups_id, $layouts_global, $product_taxonomy_page;
 
 	$popups_id[] = 268179;
+
+	if (is_single()) {
+		$popups_id[] = 299743;
+	}
 }
 add_action('after_setup_theme', 'action_after_setup_theme');
 
@@ -129,7 +133,6 @@ function enqueue_scripts()
 		}
 	*/
 	wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
-
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn and allow Wordpress to call it automatcally in the header
@@ -146,20 +149,16 @@ function canonical()
 {
 	if (is_single() || is_page()) {
 		return get_the_permalink();
-	}
-	else if (is_tax() || is_category()) {
+	} else if (is_tax() || is_category()) {
 		$term_link = get_term_link(get_queried_object()->term_id);
 		return $term_link;
-	}
-	else if (is_post_type_archive()) {
+	} else if (is_post_type_archive()) {
 		$archive_link = get_post_type_archive_link(get_post_type());
 		return $archive_link;
-	}
-	else if (is_home()) {
+	} else if (is_home()) {
 		$blog_url = get_permalink(get_option('page_for_posts'));
 		return $blog_url;
-	}
-	else {
+	} else {
 		$term_link = get_term_link(get_queried_object()->term_id);
 		return $term_link;
 	}
