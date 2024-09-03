@@ -350,6 +350,17 @@ ul.products.products.products {
             object-fit: contain;
         }
     }
+    .onsale {
+        background-color: var(--bs-accent);
+        border-radius: 5px;
+        padding: 10px;
+        line-height: 1;
+        top: 1rem;
+        left: 2rem;
+        min-height: 0;
+        font-weight: 500;
+        font-size: 1.25rem;
+    }
 }
 
 section.product-main {

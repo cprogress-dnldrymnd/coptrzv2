@@ -37,7 +37,7 @@ if (post_password_required()) {
 		<div class="container">
 			<h2 class="text-center">Buy <?php the_title() ?></h2>
 			<div class="row g-4">
-				<div class="col-7">
+				<div class="col-7 position-relative">
 					<?php
 					/**
 					 * Hook: woocommerce_before_single_product_summary.

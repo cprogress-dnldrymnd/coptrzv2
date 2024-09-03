@@ -12672,6 +12672,16 @@ ul.products.products.products {
     width: 100%;
     height: 100%;
     object-fit: contain; }
+.product-main-image.product-main-image.product-main-image .onsale {
+  background-color: var(--bs-accent);
+  border-radius: 5px;
+  padding: 10px;
+  line-height: 1;
+  top: 1rem;
+  left: 2rem;
+  min-height: 0;
+  font-weight: 500;
+  font-size: 1.25rem; }
 
 section.product-main {
   /*with add to cart*/ }
