@@ -350,7 +350,17 @@ ul.products.products.products {
             object-fit: contain;
         }
     }
-    .onsale {
+  
+}
+
+section.product-main {
+    .images.images.images.images {
+        position: sticky;
+        top: 52px;
+        width: 100%;
+        float: none;
+    }
+    .onsale.onsale {
         background-color: var(--bs-accent);
         border-radius: 5px;
         padding: 10px;
@@ -360,15 +370,6 @@ ul.products.products.products {
         min-height: 0;
         font-weight: 500;
         font-size: 1.25rem;
-    }
-}
-
-section.product-main {
-    .images.images.images.images {
-        position: sticky;
-        top: 52px;
-        width: 100%;
-        float: none;
     }
     /*with add to cart*/
     > .container > .row {
