@@ -6797,3 +6797,26 @@ Container::make('post_meta', __('Rental Settings'))
     ->add_tab('General Settings', array(
         Field::make('text', 'shortcode', 'Shortcode')
     ));
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Product
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', 'Product Components')
+    ->set_priority('high')
+    ->where('post_type', '=', 'product')
+    ->where('post_template', '!=', 'templates/page-training.php')
+    ->add_tab(
+        'Product Options',
+        array(
+            Field::make('html', 'sep_2')->set_html('<label>OTHER OPTIONS</label>')->set_classes('seperator '),
+            Field::make('checkbox', 'finance_available', 'Finance Available?'),
+            Field::make('checkbox', 'business_invoicing', 'Business Invoicing?'),
+            Field::make('checkbox', 'cpd_maker', 'CPD Maker'),
+            Field::make('checkbox', 'tquk_logo', 'Show TQUK Logo'),
+            Field::make('checkbox', 'free_shipping', 'Free Shipping'),
+            Field::make('text', 'free_shipping_product_id', 'Free shipping only if this product id is found in cart'),
+            Field::make('checkbox', 'vat_inclusive', 'Price Inclusive VAT'),
+            Field::make('text', 'lead_time', 'Lead Time'),
+        )
+    );
