@@ -285,6 +285,25 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             'class'       => _attribute('class', array('description-box fw-light medium-text small-width mx-auto mb-4')),
         ));
 
+        if (is_product()) {
+            $cpd_maker = get__post_meta('cpd_maker');
+            $tquk_logo = get__post_meta('tquk_logo');
+
+            if ($cpd_maker || $tquk_logo) {
+                $hero .= "<div class='image-group-box d-flex align-items-center'>";
+            }
+            if ($cpd_maker) {
+                $hero .= "<div class='image-box cpd'> <img src='https://coptrz.com/wp-content/uploads/2023/08/full-logo-white-cd75d4a811.png' alt='CPD'> </div>";
+            }
+            if ($tquk_logo) {
+                $hero .= "<div class='image-box'> <img class='tquk' src='https://coptrz.com/wp-content/uploads/2023/10/tquk.png' alt='tquk'> </div>";
+            }
+            if ($cpd_maker || $tquk_logo) {
+                $hero .= "</div>";
+            }
+        }
+
+
         if ($buttons) {
             $hero .= "<div>";
             $hero .= ____button_modules($buttons);
