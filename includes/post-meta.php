@@ -6814,7 +6814,16 @@ Container::make('post_meta', 'Product Components')
             Field::make('checkbox', 'cpd_maker', 'CPD Maker'),
             Field::make('checkbox', 'tquk_logo', 'Show TQUK Logo'),
             Field::make('checkbox', 'free_shipping', 'Free Shipping'),
-            Field::make('text', 'free_shipping_product_id', 'Free shipping only if this product id is found in cart'),
+            Field::make('text', 'free_shipping_product_id', 'Free shipping only if this product id is found in cart')
+                ->set_conditional_logic(
+                    array(
+                        array(
+                            'field'   => 'free_shipping',
+                            'value'   => true,
+                            'compare' => '='
+                        )
+                    )
+                ),
             Field::make('checkbox', 'vat_inclusive', 'Price Inclusive VAT'),
             Field::make('text', 'lead_time', 'Lead Time'),
         )
