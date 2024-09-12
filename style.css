@@ -13312,6 +13312,12 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 .training-logos img {
   max-height: 150px; }
 
+.related.products ul.products.products.products li.product.product .product-inner {
+  justify-content: flex-start;
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  border-radius: 10px; }
+
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
   border: 1px solid;

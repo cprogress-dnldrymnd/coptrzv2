@@ -1184,3 +1184,12 @@ body {
         max-height: 150px;
     }
 }
+
+.related.products {
+    ul.products.products.products li.product.product .product-inner {
+        justify-content: flex-start;
+        border: 1px solid var(--border-color);
+        padding: 20px;
+        border-radius: 10px;
+    }
+}
