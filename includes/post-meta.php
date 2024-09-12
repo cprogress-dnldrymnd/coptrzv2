@@ -6809,9 +6809,8 @@ Container::make('post_meta', 'Product Components')
     ->add_tab(
         'Product Options',
         array(
-            Field::make('html', 'sep_2')->set_html('<label>OTHER OPTIONS</label>')->set_classes('seperator '),
-            Field::make('checkbox', 'finance_available', 'Finance Available?'),
-            Field::make('checkbox', 'business_invoicing', 'Business Invoicing?'),
+            //Field::make('checkbox', 'finance_available', 'Finance Available?'),
+            //Field::make('checkbox', 'business_invoicing', 'Business Invoicing?'),
             Field::make('checkbox', 'cpd_maker', 'CPD Maker'),
             Field::make('checkbox', 'tquk_logo', 'Show TQUK Logo'),
             Field::make('checkbox', 'free_shipping', 'Free Shipping'),
