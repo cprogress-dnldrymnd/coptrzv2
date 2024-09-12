@@ -298,7 +298,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             }
             if ($tquk_logo) {
                 $tquk = wp_get_attachment_image_url( 76218, 'medium' );
-                $hero .= "<div class='col-auto image-box'> <img class='tquk' src='https://coptrz.com/wp-content/uploads/2023/10/tquk.png' alt='tquk'> </div>";
+                $hero .= "<div class='col-auto image-box'> <img class='tquk' src='$tquk' alt='tquk'> </div>";
             }
             if ($cpd_maker || $tquk_logo) {
                 $hero .= "</div>";
