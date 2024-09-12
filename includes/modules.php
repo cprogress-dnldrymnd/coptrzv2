@@ -290,15 +290,15 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             $tquk_logo = get__post_meta('tquk_logo');
 
             if ($cpd_maker || $tquk_logo) {
-                $hero .= "<div class='image-group-box d-flex align-items-center training-logos'>";
+                $hero .= "<div class='row align-items-center training-logos'>";
             }
             if ($cpd_maker) {
                 $cpd_logo = wp_get_attachment_image_url( 73992, 'medium' );
-                $hero .= "<div class='image-box cpd'> <img src='$cpd_logo' alt='CPD'> </div>";
+                $hero .= "<div class='col-auto image-box cpd'> <img src='$cpd_logo' alt='CPD'> </div>";
             }
             if ($tquk_logo) {
                 $tquk = wp_get_attachment_image_url( 76218, 'medium' );
-                $hero .= "<div class='image-box'> <img class='tquk' src='https://coptrz.com/wp-content/uploads/2023/10/tquk.png' alt='tquk'> </div>";
+                $hero .= "<div class='col-auto image-box'> <img class='tquk' src='https://coptrz.com/wp-content/uploads/2023/10/tquk.png' alt='tquk'> </div>";
             }
             if ($cpd_maker || $tquk_logo) {
                 $hero .= "</div>";
