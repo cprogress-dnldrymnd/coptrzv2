@@ -6811,7 +6811,7 @@ Container::make('post_meta', 'Product Components')
         array(
             //Field::make('checkbox', 'finance_available', 'Finance Available?'),
             //Field::make('checkbox', 'business_invoicing', 'Business Invoicing?'),
-            Field::make('checkbox', 'cpd_maker', 'CPD Maker'),
+            Field::make('checkbox', 'cpd_maker', 'CPD Accredited'),
             Field::make('checkbox', 'tquk_logo', 'Show TQUK Logo'),
             Field::make('checkbox', 'free_shipping', 'Free Shipping'),
             Field::make('text', 'free_shipping_product_id', 'Free shipping only if this product id is found in cart')
