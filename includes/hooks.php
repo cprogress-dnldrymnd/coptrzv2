@@ -219,8 +219,9 @@ function action__wp_footer()
             $layouts = array_unique($layouts_global);
 
             foreach ($layouts as $layout) {
-                $title = get_the_title($layout) . ' [Layout]';
-                $link = get_edit_post_link($layout);
+                $layout_id = apply_filters('wpml_object_id', $layout, 'post');
+                $title = get_the_title($layout_id) . ' [Layout]';
+                $link = get_edit_post_link($layout_id);
 
                 $layouts_global_val .= "<li>";
                 $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
