@@ -1588,7 +1588,7 @@ function product_guides()
         $title = get_the_title();
         $pdf_url = wp_get_attachment_url($product_guide);
         $html = "<div class='download-guide bg-dark rounded-corner p-4'>";
-        $html .= "<h4>Download $title guide.</h4>";
+        $html .= "<h4 class='text-white mb-4'>Download $title guide.</h4>";
         $html .= "<div class='button-box button-accent request-info'><a class='rounded-10px'href='$pdf_url' target='_self'>Download</a></div>";
         $html .= "</div>";
         echo $html;
