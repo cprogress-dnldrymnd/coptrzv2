@@ -1591,7 +1591,9 @@ function product_guides()
         $html .= "<h4>Download $title guide.</h4>";
         $html .= "<div class='button-box button-accent request-info'><a class='rounded-10px'href='$pdf_url' target='_self'>Download</a></div>";
         $html .= "</div>";
+        echo $html;
     }
+    
 }
 
 add_action('woocommerce_single_product_summary', 'product_guides', 99);
