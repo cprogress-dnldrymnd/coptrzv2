@@ -1585,4 +1585,4 @@ function product_guides() {
     echo 'testing';
 }
 
-add_action('woocommerce_single_product_summary', 'product_guides', 10);
+add_action('woocommerce_single_product_summary', 'product_guides', 99);
