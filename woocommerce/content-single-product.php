@@ -84,7 +84,7 @@ if (post_password_required()) {
 				<div class="download-guide bg-dark rounded-corner p-4 pt-5">
 					<div class="row g-4 align-items-end justify-content-between">
 						<div class="col-auto">
-							<h3 class="text-white m-0">Download <?= $title ?><br> guide.</h3>
+							<h3 class="text-white m-0">Download guide for <br><?= $title ?></h3>
 						</div>
 						<div class="col-auto">
 							<div class="button-box button-accent request-info"><a class="rounded-10px" href="<?= $pdf_url ?>" target="_self">Download</a></div>
