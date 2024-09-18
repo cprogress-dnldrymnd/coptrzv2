@@ -738,7 +738,7 @@ function ___sections($id = 'sections', $post_id = '')
                     $html .= __background($background);
                 }
             }
-            $layouts_arr[] = get_post_meta($post_id, '_layouts', true);
+            $layouts_arr = [];
             foreach ($section_items as $key => $items) {
                 $type = $items['_type'];
                 switch ($type) {
@@ -748,8 +748,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $layout_id = $layout['id'];
                             $layouts_global[] = $layout['id'];
                             $html .= "[layouts id='$layout_id']";
-                            array_merge($layouts_arr, array($layout_id));
-                            update_post_meta($post_id, '_layouts', $layouts_arr);
+                            $layouts_arr[] = $layout_id;
                         }
                         break;
                     case 'heading':
@@ -1224,6 +1223,8 @@ function ___sections($id = 'sections', $post_id = '')
                         break;
                 }
             }
+            update_post_meta($post_id, '_layouts', $layouts_arr);
+
             if (count($container_classes) > 1) {
                 $html .= "</div>";
             }
