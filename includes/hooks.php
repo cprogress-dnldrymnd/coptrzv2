@@ -215,10 +215,12 @@ function action__wp_footer()
                 $layouts_global_val .= "</li>";
             }
         }
-        
-        if ($layouts_global) {
+
+        $_layouts = get_post_meta(get_the_ID(), '_layouts', true);
+        $layouts_global_arr = array_merge($layouts_global, $_layouts);
+        if ($layouts_global_arr) {
             $layouts = [];
-            foreach ($layouts_global as $layout) {
+            foreach ($layouts_global_arr as $layout) {
                 $layouts[] = apply_filters('wpml_object_id', $layout, 'post');
             }
 
