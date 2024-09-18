@@ -738,6 +738,7 @@ function ___sections($id = 'sections', $post_id = '')
                     $html .= __background($background);
                 }
             }
+            $layouts_arr = get_post_meta($post_id, '_layouts', true);
             foreach ($section_items as $key => $items) {
                 $type = $items['_type'];
                 switch ($type) {
@@ -747,12 +748,8 @@ function ___sections($id = 'sections', $post_id = '')
                             $layout_id = $layout['id'];
                             $layouts_global[] = $layout['id'];
                             $html .= "[layouts id='$layout_id']";
-
-                            $post_id_val = apply_filters('wpml_object_id', $post_id, 'post');
-
-                            $layouts_arr = get_post_meta($post_id_val, '_layouts', true);
                             array_push($layouts_arr, $layout_id);
-                            update_post_meta($post_id_val, '_layouts', $layouts_arr);
+                            update_post_meta($post_id, '_layouts', $layouts_arr);
                         }
                         break;
                     case 'heading':
