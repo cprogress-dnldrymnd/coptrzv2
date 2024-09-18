@@ -1579,3 +1579,10 @@ add_action('wp', 'woocommerce_disable_shop_page');
 add_filter('woocommerce_gallery_thumbnail_size', function ($size) {
     return 'medium';
 });
+
+
+function product_guides() {
+    echo 'testing';
+}
+
+add_action('woocommerce_single_product_summary', 'product_guides');
