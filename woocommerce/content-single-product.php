@@ -79,9 +79,9 @@ if (post_password_required()) {
 		$pdf_url = wp_get_attachment_url($product_guide)
 	?>
 
-		<section class="product-guide-section small-container md-padding-bottom">
+		<section class="product-guide-section small-container xs-padding bg-dark">
 			<div class="container">
-				<div class="download-guide bg-dark rounded-corner p-4 pt-5">
+				<div class="download-guide">
 					<div class="row g-4 align-items-end justify-content-between">
 						<div class="col-auto">
 							<h3 class="text-white m-0">Download spec sheet for <br><?= $title ?></h3>
