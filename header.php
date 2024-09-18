@@ -61,6 +61,10 @@
 	?>
 	<main class="<?= $class ?>">
 		<?php
+
+		$shortcodes_including_nested = all_shortcodes(get__post_meta('sections'));
+		var_dump($shortcodes_including_nested);
+		/*
 		$copy_from = $_GET['copy_from'];
 		$copy_after = $_GET['copy_after'];
 		$training = $_GET['training'];
@@ -103,3 +107,4 @@
 				carbon_set_post_meta(get_the_ID(), 'related_casestudies', $related_casestudies);
 			}
 		}
+*/
