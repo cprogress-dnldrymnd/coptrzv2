@@ -753,7 +753,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $layouts_arr[] = get_post_meta($post_id_val, '_layouts', true);
                             array_push($layouts_arr, $layout_id);
                             update_post_meta($post_id_val, '_layouts', '');
-                            delete_post_meta($post_id_val, '_layouts', $layouts_arr)
+                            delete_post_meta($post_id_val, '_layouts', $layouts_arr);
                         }
                         break;
                     case 'heading':
