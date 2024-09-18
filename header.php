@@ -61,8 +61,7 @@
 	?>
 	<main class="<?= $class ?>">
 		<?php
-
-		$shortcodes_including_nested = all_shortcodes(get__post_meta('sections'));
+		$shortcodes_including_nested = all_shortcodes(get__post_meta('_sections_html'));
 		var_dump($shortcodes_including_nested);
 		/*
 		$copy_from = $_GET['copy_from'];

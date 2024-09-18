@@ -153,21 +153,22 @@ function canonical()
 	}
 }
 
-function all_shortcodes($content) {
-    $return = array();
+function all_shortcodes($content)
+{
+	$return = array();
 
-    preg_match_all(
-        '/' . get_shortcode_regex() . '/',
-        $content,
-        $shortcodes,
-        PREG_SET_ORDER
-    );
+	preg_match_all(
+		'/' . get_shortcode_regex() . '/',
+		$content,
+		$shortcodes,
+		PREG_SET_ORDER
+	);
 
-    if (!empty($shortcodes)) {
-        foreach ($shortcodes as $shortcode) {
-            $return[] = $shortcode;
-            $return = array_merge($return, all_shortcodes($shortcode[5]));
-        }
-    }
-    return $return;
+	if (!empty($shortcodes)) {
+		foreach ($shortcodes as $shortcode) {
+			$return[] = $shortcode;
+			$return = array_merge($return, all_shortcodes($shortcode[5]));
+		}
+	}
+	return $return;
 }
