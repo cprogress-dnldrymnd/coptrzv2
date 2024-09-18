@@ -220,7 +220,7 @@ function action__wp_footer()
                 $layouts = apply_filters('wpml_object_id', $layout, 'post');
             }
 
-            $layouts = array_unique($layouts_global);
+            $layouts = array_unique($layouts);
 
             foreach ($layouts as $layout) {
                 $title = get_the_title($layout) . ' [Layout]';
