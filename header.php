@@ -60,11 +60,7 @@
 
 	?>
 	<main class="<?= $class ?>">
-		<pre>
-			<?php
-			var_dump(get_post_meta(get_the_ID(), '_layouts', true));
-			?>
-		</pre>
+		
 		<?php
 		
 		/*
