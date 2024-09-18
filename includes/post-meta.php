@@ -6826,5 +6826,10 @@ Container::make('post_meta', 'Product Components')
                 ),
             Field::make('checkbox', 'vat_inclusive', 'Price Inclusive VAT'),
             Field::make('text', 'lead_time', 'Lead Time'),
+        ),
+        'Product Guide',
+        array(
+            Field::make('file', 'product_guide', __('Product Guide'))->set_classes('inline-field')
+                ->set_type(array('application/pdf'))
         )
     );
