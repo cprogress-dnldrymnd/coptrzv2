@@ -293,11 +293,11 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
                 $hero .= "<div class='row g-5 align-items-center training-logos'>";
             }
             if ($cpd_maker) {
-                $cpd_logo = wp_get_attachment_image_url( 73992, 'medium' );
+                $cpd_logo = wp_get_attachment_image_url(73992, 'medium');
                 $hero .= "<div class='col-auto image-box cpd'> <img src='$cpd_logo' alt='CPD'> </div>";
             }
             if ($tquk_logo) {
-                $tquk = wp_get_attachment_image_url( 76218, 'medium' );
+                $tquk = wp_get_attachment_image_url(76218, 'medium');
                 $hero .= "<div class='col-auto image-box'> <img class='tquk' src='$tquk' alt='tquk'> </div>";
             }
             if ($cpd_maker || $tquk_logo) {
@@ -747,6 +747,9 @@ function ___sections($id = 'sections', $post_id = '')
                             $layout_id = $layout['id'];
                             $layouts_global[] = $layout['id'];
                             $html .= "[layouts id='$layout_id']";
+                            $layouts_arr[] = get_post_meta($post_id, '_layouts', true);
+                            array_push($layouts_arr, $layout_id);
+                            update_post_meta($post_id, '_layouts', $layouts_arr);
                         }
                         break;
                     case 'heading':
