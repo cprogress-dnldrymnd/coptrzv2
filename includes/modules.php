@@ -750,10 +750,9 @@ function ___sections($id = 'sections', $post_id = '')
 
                             $post_id_val = apply_filters('wpml_object_id', $post_id, 'post');
 
-                            $layouts_arr[] = get_post_meta($post_id_val, '_layouts', true);
+                            $layouts_arr = get_post_meta($post_id_val, '_layouts', true);
                             array_push($layouts_arr, $layout_id);
-                            update_post_meta($post_id_val, '_layouts', '');
-                            delete_post_meta($post_id_val, '_layouts', $layouts_arr);
+                            update_post_meta($post_id_val, '_layouts', $layouts_arr);
                         }
                         break;
                     case 'heading':
