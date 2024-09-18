@@ -749,7 +749,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $html .= "[layouts id='$layout_id']";
 
                          
-                            delete_post_meta($post_id_val, '_layouts', $layouts_arr)
+                            delete_post_meta($post_id_val, '_layouts', $layouts_arr);
                         }
                         break;
                     case 'heading':
