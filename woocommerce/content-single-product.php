@@ -72,6 +72,25 @@ if (post_password_required()) {
 	</section>
 
 	<?php
+
+	$product_guide = get__post_meta('product_guide');
+	if ($product_guide) {
+		$title = get_the_title();
+		$pdf_url = wp_get_attachment_url($product_guide)
+	?>
+
+		<section class="product-guide-section">
+			<div class="container small-container">
+				<div class="download-guide mt-5 bg-dark rounded-corner p-4">
+					<h4 class="text-white mb-4">Download <?= $title ?> guide.</h4>
+					<div class="button-box button-accent request-info"><a class="rounded-10px" href="<?= $pdf_url ?>" target="_self">Download</a></div>
+				</div>
+			</div>
+		</section>
+
+	<?php } ?>
+
+	<?php
 	/**
 	 * Hook: woocommerce_after_single_product_summary.
 	 *

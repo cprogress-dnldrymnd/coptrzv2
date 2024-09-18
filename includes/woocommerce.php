@@ -1595,5 +1595,3 @@ function product_guides()
     }
     
 }
-
-add_action('woocommerce_single_product_summary', 'product_guides', 99);
