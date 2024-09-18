@@ -217,7 +217,7 @@ function action__wp_footer()
         }
         if ($layouts_global) {
             foreach ($layouts_global as $layout) {
-                $layouts = apply_filters('wpml_object_id', $layout, 'post');
+                $layouts[] = apply_filters('wpml_object_id', $layout, 'post');
             }
 
             $layouts = array_unique($layouts);
