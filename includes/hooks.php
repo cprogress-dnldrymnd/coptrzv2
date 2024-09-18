@@ -216,6 +216,7 @@ function action__wp_footer()
             }
         }
         if ($layouts_global) {
+            $layouts = [];
             foreach ($layouts_global as $layout) {
                 $layouts[] = apply_filters('wpml_object_id', $layout, 'post');
             }
