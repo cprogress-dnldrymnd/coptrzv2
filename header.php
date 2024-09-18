@@ -61,6 +61,7 @@
 	?>
 	<main class="<?= $class ?>">
 		<?php
+		var_dump(get_post_meta(get_the_ID(), '_layouts', true));
 		/*
 		$copy_from = $_GET['copy_from'];
 		$copy_after = $_GET['copy_after'];
