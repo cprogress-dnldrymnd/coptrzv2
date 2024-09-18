@@ -81,7 +81,7 @@ if (post_password_required()) {
 
 		<section class="product-guide-section small-container md-padding-bottom">
 			<div class="container">
-				<div class="download-guide bg-dark rounded-corner p-4">
+				<div class="download-guide bg-dark rounded-corner p-4 pt-5">
 					<div class="row g-4 align-items-end justify-content-between">
 						<div class="col-auto">
 							<h3 class="text-white m-0">Download <?= $title ?><br> guide.</h3>
