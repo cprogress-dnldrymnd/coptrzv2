@@ -218,7 +218,7 @@ function action__wp_footer()
 
         $_layouts = get_post_meta(get_the_ID(), '_layouts', true);
         $_layouts_val = $_layouts ? $_layouts : array();
-        $layouts_global_arr = array_merge($layouts_global, $_layouts);
+        $layouts_global_arr = array_merge($layouts_global, $_layouts_val);
         if ($layouts_global_arr) {
             $layouts = [];
             foreach ($layouts_global_arr as $layout) {
