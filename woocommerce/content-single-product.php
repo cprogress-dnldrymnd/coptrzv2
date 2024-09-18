@@ -82,8 +82,15 @@ if (post_password_required()) {
 		<section class="product-guide-section small-container md-padding-bottom">
 			<div class="container">
 				<div class="download-guide bg-dark rounded-corner p-4">
-					<h4 class="text-white mb-4">Download <?= $title ?> guide.</h4>
-					<div class="button-box button-accent request-info"><a class="rounded-10px" href="<?= $pdf_url ?>" target="_self">Download</a></div>
+					<div class="row align-items-end justify-content-between">
+						<div class="col-auto">
+							<h4 class="text-white mb-4">Download <?= $title ?><br> guide.</h4>
+						</div>
+						<div class="col-auto">
+							<div class="button-box button-accent request-info"><a class="rounded-10px" href="<?= $pdf_url ?>" target="_self">Download</a></div>
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
