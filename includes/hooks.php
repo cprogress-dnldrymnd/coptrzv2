@@ -216,12 +216,15 @@ function action__wp_footer()
             }
         }
         if ($layouts_global) {
+            foreach ($layouts_global as $layout) {
+                $layouts = apply_filters('wpml_object_id', $layout, 'post');
+            }
+
             $layouts = array_unique($layouts_global);
 
             foreach ($layouts as $layout) {
-                $layout_id = apply_filters('wpml_object_id', $layout, 'post');
-                $title = get_the_title($layout_id) . ' [Layout]';
-                $link = get_edit_post_link($layout_id);
+                $title = get_the_title($layout) . ' [Layout]';
+                $link = get_edit_post_link($layout);
 
                 $layouts_global_val .= "<li>";
                 $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
