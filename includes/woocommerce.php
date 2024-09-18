@@ -1581,8 +1581,16 @@ add_filter('woocommerce_gallery_thumbnail_size', function ($size) {
 });
 
 
-function product_guides() {
-    echo 'testing';
+function product_guides()
+{
+    $product_guide = get__post_meta('product_guide');
+    if ($product_guide) {
+        $title = get_the_title();
+        $html = "<div class='download-guide bg-dark rounded-corner p-4'>";
+        $html .= "<h4>Download $title guide.</h4>";
+        $html .= "<div class='button-box button-accent request-info'><a class='rounded-10px ' data-bs-toggle='modal' data-bs-target='#modal-299743' target='_self'>Download</a></div>";
+        $html .= "</div>";
+    }
 }
 
 add_action('woocommerce_single_product_summary', 'product_guides', 99);
