@@ -428,8 +428,10 @@ function __product_compare($id)
 
     foreach ($products as $product) {
         $pa_specifications = get_the_terms($product['id'], 'pa_specifications');
-        foreach ($pa_specifications as $specification) {
-            $specs[$specification->term_id] = $specification->name;
+        if ($pa_specifications) {
+            foreach ($pa_specifications as $specification) {
+                $specs[$specification->term_id] = $specification->name;
+            }
         }
     }
 
@@ -1593,5 +1595,4 @@ function product_guides()
         $html .= "</div>";
         echo $html;
     }
-    
 }
