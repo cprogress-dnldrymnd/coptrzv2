@@ -345,7 +345,7 @@ class Shortcodes
                 jQuery('.post-link-copy span').text('Link Copied');
             }
         </script>
-<?php
+    <?php
         return ob_get_clean();
     }
 
@@ -732,6 +732,20 @@ class Shortcodes
 
         return apply_filters('wpml_object_id', $id, 'post');
     }
+
+    function rentals_script()
+    {
+        ob_start();
+    ?>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.bq-available').text('xsdsds');
+        });
+    </script>
+
+<?php
+        return ob_get_clean();
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
@@ -758,3 +772,4 @@ add_shortcode('post_title', array($Shortcodes, 'post_title'));
 add_shortcode('permalink', array($Shortcodes, 'permalink'));
 add_shortcode('product_slider', array($Shortcodes, 'product_slider'));
 add_shortcode('post_id', array($Shortcodes, 'post_id'));
+add_shortcode('rentals_script', array($Shortcodes, 'rentals_script'));
