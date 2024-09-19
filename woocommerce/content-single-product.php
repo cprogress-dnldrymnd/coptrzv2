@@ -79,7 +79,7 @@ if (post_password_required()) {
 		$pdf_url = wp_get_attachment_url($product_guide)
 	?>
 
-		<section class="product-guide-section small-container bg-dark ">
+		<section class="product-guide-section small-container sm-padding bg-dark ">
 			<div class="container">
 				<div class="download-guide rounded-corner">
 					<div class="row g-4 align-items-end justify-content-between">
