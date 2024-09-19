@@ -2164,7 +2164,7 @@ function ____columns_modules($items, $id, $html = '')
             $classes_val = _attribute('class', $classes, ' ');
         }
 
-
+        $column_id_val = '';
         if ($column_id) {
             $column_id_val = _attribute('id', $column_id, ' ');
         }
