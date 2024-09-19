@@ -13793,6 +13793,9 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   @media (max-width: 1399px) and (min-width: 992px) {
     .header .header-right {
       --bs-gutter-x: 10px; } }
+  @media screen and (max-width: 480px) {
+    .header .header-right {
+      --bs-gutter-x: 5px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .header .header-right .button-box a,
     .header .header-right .button-box button {
@@ -13991,6 +13994,9 @@ body {
 @media screen and (max-width: 1399px) {
   .mini-cart {
     margin-right: 1rem; } }
+@media screen and (max-width: 480px) {
+  .mini-cart {
+    margin-right: 0; } }
 
 #footer {
   font-weight: 300; }

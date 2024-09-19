@@ -203,6 +203,9 @@
         @media (max-width: 1399px) and (min-width: 992px) {
             --bs-gutter-x: 10px;
         }
+        @include responsive(xxs) {
+            --bs-gutter-x: 5px;
+        }
         .button-box {
             a,
             button {
@@ -452,5 +455,8 @@ body {
 .mini-cart {
     @include responsive(xs-lg) {
         margin-right: 1rem;
+    }
+    @include responsive(xxs) {
+        margin-right: 0;
     }
 }
