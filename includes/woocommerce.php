@@ -87,7 +87,7 @@ function action_woocommerce_after_single_product_summary()
     }
 
     if ($softwares) {
-        echo __linked_products(__get_assoc_post_ids($softwares), __('All Softwares', 'coptrz-theme'), get_term_link(776, 'product_cat'), 'swiper-softwares', __('Softwares', 'coptrz-theme'));
+        echo __linked_products(__get_assoc_post_ids($softwares), __('All Softwares', 'coptrz-theme'), get_term_link(776, 'product_cat'), 'swiper-softwares', __('Software', 'coptrz-theme'));
     }
 
     if ($compatible_payloads) {
