@@ -42,6 +42,18 @@ function archive_ajax()
 		$args['order'] = 'ASC';
 	}
 
+
+
+	if ($query_val['post_type'] == 'guides' || $query_val['post_type'] == 'industries') {
+		$args['meta_query'] = array(
+			array(
+				'key' => '_hide_on_list',
+				'value' => 'yes',
+				'compare' => 'NOT IN',
+			)
+		);
+	}
+
 	$the_query = new WP_Query($args);
 
 	echo '<div class="row g-4 same-image-height">';
