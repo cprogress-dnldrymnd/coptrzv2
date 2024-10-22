@@ -176,7 +176,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
     $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
     $buttons = get__post_meta('buttons');
-
+    $hide_on_list = get__post_meta('hide_on_list');
 
 
     $hero_form_enable = get__post_meta('hero_form_enable');
@@ -268,7 +268,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         }
         $hero .= "<div class='hero-left-content position-relative overflow-hidden hero-bg-mobile'>";
 
-        if (!$breadcrumbs_hidden) {
+        if (!$breadcrumbs_hidden && !$hide_on_list) {
             $hero .= do_shortcode("[breadcrumbs id='$id']");
         }
 
