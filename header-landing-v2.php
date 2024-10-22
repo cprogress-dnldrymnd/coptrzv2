@@ -20,7 +20,7 @@
 
 
 <body <?php body_class(); ?>>
-    <header class="header header-landing small-text">
+    <header class="header header-landing small-text mt-20px">
         <div class="container">
             <?php get_template_part('template-parts/header/header-left') ?>
         </div>
