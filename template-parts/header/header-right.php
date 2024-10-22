@@ -16,11 +16,10 @@ $SVG = new SVG;
         <?php } ?>
         <div class="col-auto d-flex align-items-center mini-cart">
             <?php
-            if (get_post_type() == 'rentals' || get_the_ID() == 292371) {
-                echo do_shortcode('[booqable_cart_button href="' . get_site_url() . '/basket"]');
-            }
-            else {
-                ?>
+            if (get_post_type() == 'rentals' || get_the_ID() == 292371 || get_the_ID() == 292384) {
+                echo do_shortcode('[booqable_cart_button href="' . get_site_url() . '/rental-basket"]');
+            } else {
+            ?>
                 <div class="mini-cart-wrapper">
                     <a href="#" id="mini-cart-button" class="header-icon cart-icon text-white d-flex align-items-center">
                         <?= $SVG->cart(); ?>
@@ -32,7 +31,7 @@ $SVG = new SVG;
                         <?php woocommerce_mini_cart() ?>
                     </div>
                 </div>
-                <?php
+            <?php
             }
             ?>
         </div>
