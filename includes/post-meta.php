@@ -6516,6 +6516,7 @@ Container::make('post_meta', 'Case Study Settings')
                 ->set_layout('tabbed-vertical')
                 ->set_header_template('Feature Text: <%- feature_text %>'),
             Field::make('image', 'logo', __('Logo'))
+            Field::make('checkbox', 'hide_on_list', 'Hide on List'),
 
         )
     );
@@ -6659,6 +6660,7 @@ Container::make('post_meta', 'Industry Settings')
         )
     );
 
+    
 /*-----------------------------------------------------------------------------------*/
 /* Popups
 /*-----------------------------------------------------------------------------------*/
