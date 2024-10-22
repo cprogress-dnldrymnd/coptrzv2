@@ -7,7 +7,7 @@
 <?php
 $hide_on_list = get__post_meta('hide_on_list');
 if ($hide_on_list) {
-    get_header('landing');
+    get_header('landing-v2');
 } else {
     get_header();
 }
