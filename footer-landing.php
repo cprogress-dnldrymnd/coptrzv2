@@ -1,5 +1,5 @@
 <?php
-echo do_shortcode('[layouts id=271331]');
+echo do_shortcode('[layouts id=300599]');
 ?>
 </main>
 <?php wp_footer(); ?>
