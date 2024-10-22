@@ -67,7 +67,7 @@
                     <h3>Who Should We Send Your Report To?</h3>
                     <div class="description-box fw-light small-text">
                         <p>
-                        We’ll send your results directly to your email. 
+                            We’ll send your results directly to your email.
                         </p>
                     </div>
                     <div class="row g-4 form-groups">
@@ -117,7 +117,7 @@
                         <div id="results-box">
                             <h2 class="mb-4">Your Results</h2>
                             <hr class="mb-4">
-                            <div class="description-box mb-5 fw-light small-text">
+                            <div class="description-box mb-5 fw-light small-text d-none">
                                 <p>
                                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
                                 </p>
@@ -170,8 +170,6 @@
                     ROI = (Total_Net_Profit_Over_3_Years / Initial_Investment) * 100;
 
 
-
-
                     jQuery('#Payback_Period').text(yearsToYearsMonthsDays(Payback_Period));
                     jQuery('#ROI').text(parseInt(ROI) + '%');
 
@@ -182,7 +180,6 @@
                         jQuery('#calculator').addClass('calculated');
                         jQuery('#calculator').removeClass('calculating');
                         jQuery('#generate_report').hide();
-
                     }, 3000);
 
                     e.preventDefault();
@@ -220,5 +217,5 @@
 
                 return years + months + days;
             }
-        });;
+        });
     </script>
