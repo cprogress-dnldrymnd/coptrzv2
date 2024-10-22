@@ -19,10 +19,4 @@ if ($hide_on_list) {
     ?>
 </div>
 
-<?php
-if ($hide_on_list) {
-    get_footer('landing');
-} else {
-    get_footer();
-}
-?>
+<?php get_footer(); ?>
