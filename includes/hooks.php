@@ -391,7 +391,7 @@ function action_pre_get_posts($query)
         $query->set('orderby', 'menu_order');
         $query->set('order', 'ASC');
 
-        if (is_post_type_archive('industries') || is_post_type_archive('guides')) {
+        if (is_post_type_archive('industries') || is_post_type_archive('guides') || is_post_type_archive('casestudies')) {
             $meta_query[] = [
                 'key' => '_hide_on_list',
                 'value' => 'yes',

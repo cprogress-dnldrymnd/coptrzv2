@@ -44,7 +44,7 @@ function archive_ajax()
 
 
 
-	if ($query_val['post_type'] == 'guides' || $query_val['post_type'] == 'industries') {
+	if ($query_val['post_type'] == 'guides' || $query_val['post_type'] == 'industries' || $query_val['post_type'] == 'casestudies') {
 		$args['meta_query'] = array(
 			array(
 				'key' => '_hide_on_list',
