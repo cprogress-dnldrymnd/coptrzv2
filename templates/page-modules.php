@@ -4,7 +4,14 @@
 /* Template Post Type: page, guides
 /*-----------------------------------------------------------------------------------*/
 ?>
-<?php get_header(); ?>
+<?php
+$hide_on_list = get__post_meta('hide_on_list');
+if ($hide_on_list) {
+    get_header('landing');
+} else {
+    get_header();
+}
+?>
 <div class="modules">
     <?php
     echo ___hero_modules();
