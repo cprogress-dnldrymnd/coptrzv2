@@ -256,10 +256,19 @@ function __social_fields()
 
     );
 }
+function __header_and_footer_fields() {
+    return 	array(
+        Field::make('header_scripts', 'header_scripts', __('Header Scripts')),
+        Field::make('textarea', 'body_scripts', __('Body Scripts')),
+        Field::make('footer_scripts', 'footer_scripts', __('Footer Scripts'))
+    );
+}
 Container::make('theme_options', __('Theme Settings'))
     ->add_tab('General Settings', __general_settings_fields())
     ->add_tab('Header', __header_fields())
-    ->add_tab('Socials', __social_fields());
+    ->add_tab('Socials', __social_fields())
+    ->add_tab('Header and Footer Scripts', __header_and_footer_fields());
+
 
 Container::make('theme_options', __('Global Widgets'))
     ->add_tab('Latest From Coptrz', __latest_from_coptrz_fields())
