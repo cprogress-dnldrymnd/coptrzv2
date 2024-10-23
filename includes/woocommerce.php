@@ -874,6 +874,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
     $SVG = new SVG;
     $product = wc_get_product($product_id);
     $children = $product->get_children();
+    $data_encode = _single_product_data($product_id);
 
     $child_array = [];
     foreach ($children as $child) {
@@ -941,7 +942,6 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
 
                 $json = json_encode($product_attribute_array);
 
-
                 $html .= '<div class="col-lg-6">';
 
 
@@ -986,7 +986,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 $html .= '</div>';
 
                 $html .= "<div class='button-box button-bordered mt-3'>";
-                $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'>Add to basket</a>";
+                $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='product-btn button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'><span class='product-data d-none'>$data_encode</span> Add to basket</a>";
                 $html .= '</div>';
 
                 $html .= '</div>'; //inner
