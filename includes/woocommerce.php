@@ -1598,3 +1598,105 @@ function product_guides()
         echo $html;
     }
 }
+
+
+/**
+ * @snippet       Disable Free Shipping if Cart has Shipping Class
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @testedwith    WooCommerce 6
+ * @donate $9     https://businessbloomer.com/bloomer-armada/
+ */
+
+ add_filter('woocommerce_package_rates', 'bbloomer_hide_free_shipping_for_shipping_class', 9999, 2);
+
+ function bbloomer_hide_free_shipping_for_shipping_class($rates, $package)
+ {
+     $in_cart = false;
+     $shipping_class_target = array(
+         1220,
+         1221,
+         1222,
+         761
+     );
+     $free_shipping = false;
+     $free_shipping_val = '';
+ 
+     $product_ids = array();
+ 
+     foreach (WC()->cart->get_cart_contents() as $key => $values) {
+ 
+         $type = $values['data']->get_type();
+ 
+         if ($type == 'variation') {
+             $id = $values['data']->get_parent_id();
+         } else {
+             $id = $values['data']->get_id();
+         }
+ 
+         $product_ids[] = $id;
+ 
+         if (has_term(array(32, 789, 776), 'product_cat', $id)) {
+             $free_shipping_val .= 'true';
+         } else {
+             $free_shipping_meta = get_post_meta($id, '_free_shipping', true);
+ 
+ 
+             if ($free_shipping_meta) {
+                 $free_shipping_val .= 'true';
+             } else {
+                 $free_shipping_val .= 'false';
+             }
+         }
+ 
+        
+     }
+ 
+     foreach (WC()->cart->get_cart_contents() as $key => $values) {
+         $type = $values['data']->get_type();
+         if ($type == 'variation') {
+             $id = $values['data']->get_parent_id();
+         } else {
+             $id = $values['data']->get_id();
+         }
+         $_free_shipping_product_id = get_post_meta($id, '_free_shipping_product_id', true);
+         if ($_free_shipping_product_id) {
+             if (in_array($_free_shipping_product_id, $product_ids)) {
+                 $free_shipping_val .= 'true';
+             } else {
+                 $free_shipping_val .= 'false';
+             }
+         }
+ 
+         if (in_array($values['data']->get_shipping_class_id(), $shipping_class_target)) {
+             $in_cart = true;
+             break;
+         }
+     }
+ 
+ 
+     if (str_contains($free_shipping_val, 'false')) {
+         $free_shipping = false;
+     } else {
+         $free_shipping = true;
+     }
+ 
+ 
+     if ($free_shipping == true) {
+         unset($rates['flat_rate:2']);
+     } else {
+         if ($in_cart) {
+             unset($rates['free_shipping:9']);
+         }
+     }
+     // Only unset rates if free_shipping is available
+     if (isset($rates['free_shipping:9']) && !isset($rates['flat_rate:2'])) {
+         unset($rates['local_pickup:3']);
+     }
+ 
+     if (isset($rates['flat_rate:2'])) {
+         unset($rates['free_shipping:9']);
+     }
+     return $rates;
+ }
+ 
