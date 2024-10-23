@@ -19,9 +19,6 @@ function codemirror() {
                 branding: false,
                 height: 300
             });
-
-
-
         } else {
             console.error('TinyMCE is not loaded.');
         }

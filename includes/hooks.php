@@ -28,73 +28,8 @@ add_action('wp_head', 'action_wp_head');
 function action_admin_enqueue_scripts($hook)
 {
 
-    $pages = get__posts('page');
-    $select_page = '<label style="display: block" class="cf-field__label" >Select Page</label><select class="select-page-selector">';
-    foreach ($pages as $key => $page) {
-        $select_page .= '<option value="' . $key . '"> ' . $page . ' </option>';
-    }
-    $select_page .= '</select>';
-    $selector['page'] = $select_page;
 
-
-    $posts = get__posts('post');
-    $select_post = '<label style="display: block" class="cf-field__label" >Select Post</label><select class="select-page-selector">';
-    foreach ($posts as $key => $post) {
-        $select_post .= '<option value="' . $key . '"> ' . $post . ' </option>';
-    }
-    $select_post .= '</select>';
-    $selector['post'] = $select_post;
-
-
-    $industries = get__posts('industries');
-    $select_solution = '<label style="display: block" class="cf-field__label">Select Solution</label><select class="select-page-selector">';
-    foreach ($industries as $key => $solution) {
-        $select_solution .= '<option value="' . $key . '"> ' . $solution . ' </option>';
-    }
-    $select_solution .= '</select>';
-    $selector['industries'] = $select_solution;
-
-
-    $popups = get__posts('popups');
-    $select_popup = '<label style="display: block" class="cf-field__label">Select Popup</label><select class="select-page-selector">';
-    foreach ($popups as $key => $popup) {
-        $select_popup .= '<option value="' . $key . '"> ' . $popup . ' </option>';
-    }
-    $select_popup .= '</select>';
-    $selector['popups'] = $select_popup;
-
-
-    $products = get__posts('product');
-    $select_product = '<label style="display: block" class="cf-field__label">Select product</label><select class="select-page-selector">';
-    foreach ($products as $key => $product) {
-        $select_product .= '<option value="' . $key . '"> ' . $product . ' </option>';
-    }
-    $select_product .= '</select>';
-    $selector['product'] = $select_product;
-
-
-    $guides = get__posts('guides');
-    $select_guide = '<label style="display: block" class="cf-field__label">Select guide</label><select class="select-page-selector">';
-    foreach ($guides as $key => $guide) {
-        $select_guide .= '<option value="' . $key . '"> ' . $guide . ' </option>';
-    }
-    $select_guide .= '</select>';
-    $selector['guides'] = $select_guide;
-
-
-    $casestudies = get__posts('casestudies');
-    $select_casestudies = '<label style="display: block" class="cf-field__label">Select casestudies</label><select class="select-page-selector">';
-    foreach ($casestudies as $key => $casestudies) {
-        $select_casestudies .= '<option value="' . $key . '"> ' . $casestudies . ' </option>';
-    }
-    $select_casestudies .= '</select>';
-    $selector['casestudies'] = $select_casestudies;
-
-
-    wp_enqueue_style('admin_js', get_template_directory_uri() . '/admin/css/admin.css');
-    wp_register_script('admin_js', get_template_directory_uri() . '/admin/js/admin.js');
-    wp_localize_script('admin_js', 'selector', $selector);
-    wp_enqueue_script('admin_js');
+    wp_enqueue_script('admin_js', get_template_directory_uri() . '/admin/js/admin-js.js', array(), '1.3');
 }
 add_action('admin_enqueue_scripts', 'action_admin_enqueue_scripts');
 /*-----------------------------------------------------------------------------------*/
