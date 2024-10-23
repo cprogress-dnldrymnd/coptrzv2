@@ -1752,7 +1752,7 @@ function rudr_custom_price_refresh($cart_object)
 
 function action_woocommerce_after_shop_loop_item_title()
 {
-    if (_is_shop_archive()) {
+    if (is_product_category()) {
         global $product;
         $pa_brands = $product->get_attribute('pa_brands');
         $category = get_the_terms($product->get_id(), 'product_cat');
