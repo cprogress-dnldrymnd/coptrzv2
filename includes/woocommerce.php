@@ -1847,6 +1847,7 @@ function ga4()
         <script>
             jQuery('body').on('added_to_cart', function() {
                 ga4_add_to_cart_single();
+                console.log('product-added-to-cart');
             });
 
             function ga4_add_to_cart_single() {
