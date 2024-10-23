@@ -737,7 +737,7 @@ function _product_grid_display($id)
 
         if ($status == 'publish') {
             $html .= "<div class='product-buttons'>";
-            $html .= "<div class='button-box button-bordered'><a product-data='$data_encode' href='$permalink'>View Product</a></div>";
+            $html .= "<div class='button-box button-bordered'><a product-data='' href='$permalink'>View Product</a></div>";
             $html .= "</div>";
         }
         $html .= "</div>";
@@ -1781,7 +1781,6 @@ function _single_product_data()
     return $data;
 }
 
-add_action('woocommerce_after_shop_loop_item_title', 'action_woocommerce_after_shop_loop_item_title');
 
 function ga4()
 {
