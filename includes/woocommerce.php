@@ -724,7 +724,7 @@ function _product_grid_display($id)
 
         if ($status == 'publish') {
             $html .= "<div class='product-buttons'>";
-            $html .= "<div class='button-box button-bordered'><a class='product-btn' href='$permalink'> <span clas='product-data d-none'>$data_encode</span> View Product</a></div>";
+            $html .= "<div class='button-box button-bordered'><a class='product-btn' href='$permalink'> <span class='product-data d-none'>$data_encode</span> View Product</a></div>";
             $html .= "</div>";
         }
         $html .= "</div>";
