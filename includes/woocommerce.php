@@ -1851,6 +1851,11 @@ function ga4()
 
             function ga4_add_to_cart_single() {
                 quantity = jQuery('input[name="quantity"]').val();
+                if(quantity) {
+                    quantity_val = quantity;
+                } else {
+                    quantity_val = 1;
+                }
                 $data = jQuery('.main-product-data.product-data').text();
                 productObj = JSON.parse($data);
                 window.dataLayer = window.dataLayer || [];
@@ -1865,7 +1870,7 @@ function ga4()
                             item_brand: productObj.brand, // Product Brand
                             item_category: productObj.category,
                             price: productObj.price,
-                            quantity: parseInt(quantity)
+                            quantity: parseInt(quantity_val)
                         }]
                     }
                 });
