@@ -1724,7 +1724,7 @@ add_action('woocommerce_before_calculate_totals', 'rudr_custom_price_refresh');
 function rudr_custom_price_refresh($cart_object)
 {
 
-    $check_id = 332610;
+    $check_id = 371549;
     $product_id_to_add = 61196;
     $product_ids = array();
     foreach ($cart_object->get_cart() as $item) {
