@@ -497,3 +497,15 @@ function remove_private_prefix($title)
     return $title;
 }
 add_filter('the_title', 'remove_private_prefix');
+
+
+function action_body_scripts()
+{
+    $body_scripts = get__theme_option('body_scripts');
+
+    if ($body_scripts) {
+        echo $body_scripts;
+    }
+}
+
+add_action('wp_body_open', 'action_body_scripts');
