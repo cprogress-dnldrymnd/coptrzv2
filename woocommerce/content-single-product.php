@@ -31,7 +31,6 @@ if (post_password_required()) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
-global $product;
 
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
