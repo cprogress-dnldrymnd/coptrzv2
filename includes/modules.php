@@ -984,22 +984,22 @@ function ___sections($id = 'sections', $post_id = '')
                                     $html .= "[case_study_slider_grid]";
                                     break;
                                 case 'reviews':
-                                    $html .= do_shortcode("[reviews]");
+                                    $html .= "[reviews]";
                                     break;
                                 case 'drone_servicing':
-                                    $html .= do_shortcode("[drone_servicing]");
+                                    $html .= "[drone_servicing]";
                                     break;
                                 case 'three_year_servicing_plans':
-                                    $html .= do_shortcode("[three_year_servicing_plans]");
+                                    $html .= "[three_year_servicing_plans]";
                                     break;
                                 case 'remote_support':
-                                    $html .= do_shortcode("[remote_support]");
+                                    $html .= "[remote_support]";
                                     break;
                                 case 'brands_logo_slider':
-                                    $html .= do_shortcode("[brands_logo_slider]");
+                                    $html .= "[brands_logo_slider]";
                                     break;
                                 case 'testimonials':
-                                    $html .= do_shortcode("[testimonials]");
+                                    $html .= "[testimonials]";
                                     break;
                             }
                         }
