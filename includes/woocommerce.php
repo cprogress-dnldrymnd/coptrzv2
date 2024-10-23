@@ -1750,6 +1750,31 @@ function rudr_custom_price_refresh($cart_object)
 
 
 
+function action_woocommerce_after_shop_loop_item_title()
+{
+    if (_is_shop_archive()) {
+        global $product;
+        $pa_brands = $product->get_attribute('pa_brands');
+        $category = get_the_terms($product->get_id(), 'product_cat');
+        $data = array(
+            'sku' => $product->get_sku(),
+            'name' => $product->get_name(),
+            'brand' => $pa_brands,
+            'category' => $category[0]->name,
+        );
+
+        if ($product->get_price()) {
+            $data['price'] = _price_format($product->get_price());
+        }
+    ?>
+        <div class="product-data d-none">
+            <?= json_encode($data) ?>
+        </div>
+    <?php
+    }
+}
+add_action('woocommerce_after_shop_loop_item_title', 'action_woocommerce_after_shop_loop_item_title');
+
 function ga4()
 {
     if (is_product_taxonomy() || is_shop()) {
