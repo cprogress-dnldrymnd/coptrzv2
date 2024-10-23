@@ -34,17 +34,6 @@ if (post_password_required()) {
 global $product;
 
 
-$pa_brands = $product->get_attribute('pa_brands');
-$category = get_the_terms($product_id, 'product_cat');
-
-
-$data['sku']      = $product->get_sku();
-if ($product->get_price()) {
-	$data['price']    = $product->get_price();
-}
-$data['name']     = $product->get_name();
-$data['brand']    = $pa_brands;
-$data['category'] = $category[0]->name;
 ?>
 
 <div class="product-data d-none">
