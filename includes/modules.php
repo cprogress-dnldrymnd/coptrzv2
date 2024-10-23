@@ -981,7 +981,7 @@ function ___sections($id = 'sections', $post_id = '')
                                     $html .= do_shortcode("[latest_from_coptrz]");
                                     break;
                                 case 'case_study_slider':
-                                    $html .= do_shortcode("[case_study_slider_grid]");
+                                    $html .= "[case_study_slider_grid]";
                                     break;
                                 case 'reviews':
                                     $html .= do_shortcode("[reviews]");
