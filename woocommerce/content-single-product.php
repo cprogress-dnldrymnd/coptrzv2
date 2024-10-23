@@ -35,7 +35,7 @@ if (post_password_required()) {
 ?>
 
 <div class="product-data d-none">
-	<?= json_encode(_single_product_data()) ?>
+	<?= _single_product_data(get_the_ID()) ?>
 </div>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow">

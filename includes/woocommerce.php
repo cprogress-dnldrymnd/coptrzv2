@@ -704,20 +704,7 @@ function _product_grid_display($id)
         $stock_status = $product->get_stock_status();
         $status = get_post_status($id);
 
-        $pa_brands = $product->get_attribute('pa_brands');
-        $category = get_the_terms($product->get_id(), 'product_cat');
-        $data = array(
-            'sku' => $product->get_sku(),
-            'name' => $product->get_name(),
-            'brand' => $pa_brands,
-            'category' => $category[0]->name,
-        );
-
-        $data_encode = json_encode($data);
-
-        if ($product->get_price()) {
-            $data['price'] = $product->get_price();
-        }
+        $data_encode = _single_product_data($id);
 
         $html = "<ul class='products h-100 custom-product-grid h-100 m-0 p-0'>";
         $html .= "<li class='product h-100 m-0 p-0 w-100 h-100 post-$id $stock_status'>";
@@ -1762,9 +1749,9 @@ function rudr_custom_price_refresh($cart_object)
 
 
 
-function _single_product_data()
+function _single_product_data($product_id)
 {
-    global $product;
+    $product = wc_get_product($product_id);
 
     $pa_brands = $product->get_attribute('pa_brands');
     $category = get_the_terms($product->get_id(), 'product_cat');
@@ -1778,7 +1765,7 @@ function _single_product_data()
     }
     $data['category'] = $category[0]->name;
 
-    return $data;
+    return json_encode($data);
 }
 
 
@@ -1792,7 +1779,7 @@ function ga4()
             $term_name = 'Shop';
             $term_id = 'Shop';
         }
-    ?>
+?>
         <script>
             jQuery('.woocommerce-loop-product__link').click(function(e) {
                 $data = jQuery(this).find('.product-data').text();
