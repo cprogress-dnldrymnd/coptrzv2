@@ -33,12 +33,7 @@ if (post_password_required()) {
 }
 global $product;
 
-
 ?>
-
-<div class="product-data d-none">
-	<?= json_encode($data) ?>
-</div>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow">
 		<div class="container">
