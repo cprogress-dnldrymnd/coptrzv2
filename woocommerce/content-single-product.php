@@ -35,7 +35,7 @@ global $product;
 
 
 $pa_brands = $product->get_attribute('pa_brands');
-$category = get_the_terms($product_id, 'product_cat');
+$category = get_the_terms($product->get_id(), 'product_cat');
 if ($product->get_price()) {
 	$data['price']    = $product->get_price();
 }
