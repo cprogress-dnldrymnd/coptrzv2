@@ -249,52 +249,50 @@ function __post_category($id, $category, $class = '')
 function __button($data)
 {
     $button_type = isset($data['button_type']) ? $data['button_type'] : false;
-    $button_text = isset($data['button_text']) ? $data['button_text'] : false;
-    $button_url = isset($data['button_url']) ? $data['button_url'] : false;
-    $button_url_custom = isset($data['button_url_custom']) ? $data['button_url_custom'] : false;
-    $button_style = isset($data['button_style']) ? $data['button_style'] : false;
-    $button_text = isset($data['button_text']) ? $data['button_text'] : false;
-    $button_target = isset($data['button_target']) ? $data['button_target'] : false;
-    $link = '';
-    $class = '';
-    $display = true;
+    if ($button_type) {
+        $button_text = isset($data['button_text']) ? $data['button_text'] : false;
+        $button_url = isset($data['button_url']) ? $data['button_url'] : false;
+        $button_url_custom = isset($data['button_url_custom']) ? $data['button_url_custom'] : false;
+        $button_style = isset($data['button_style']) ? $data['button_style'] : false;
+        $button_text = isset($data['button_text']) ? $data['button_text'] : false;
+        $button_target = isset($data['button_target']) ? $data['button_target'] : false;
+        $link = '';
+        $class = '';
+        $display = true;
 
-    if ($button_type != 'popups' && $button_type != 'custom' && $button_type != 'buy-now') {
-        $tag = 'a';
-        $post_status = get_post_status($button_url);
+        if ($button_type != 'popups' && $button_type != 'custom' && $button_type != 'buy-now') {
+            $tag = 'a';
+            $post_status = get_post_status($button_url);
 
-        $button_url = '[permalink id=' . $button_url . ']';
+            $button_url = '[permalink id=' . $button_url . ']';
 
-        $link = "href='$button_url'";
-        if ($post_status != 'publish') {
-            $display = false;
+            $link = "href='$button_url'";
+            if ($post_status != 'publish') {
+                $display = false;
+            }
+        } else if ($button_type == 'custom') {
+            $button_url = $button_url_custom;
+            $tag = 'a';
+            $link = "href='$button_url_custom'";
+        } else if ($button_type == 'popups') {
+            global $popups_id;
+            $popups_id[] = $button_url;
+            $tag = 'button';
+            $link = 'data-bs-toggle="modal" data-bs-target="#modal-[post_id id=' . $button_url . ']"';
         }
-    } else if ($button_type == 'custom') {
-        $button_url = $button_url_custom;
-        $tag = 'a';
-        $link = "href='$button_url_custom'";
-    } else if ($button_type == 'popups') {
-        global $popups_id;
-        $popups_id[] = $button_url;
-        $tag = 'button';
-        $link = 'data-bs-toggle="modal" data-bs-target="#modal-[post_id id=' . $button_url . ']"';
-    } else if ($button_type == 'buy-now') {
-        $tag = 'button';
-        $link = 'data-target="' . get_the_ID() . '"';
-        $class = 'buy-now-trigger';
-    }
 
-    if ($button_text && $link && $display == true) {
-        $attributes_args = [];
-        $attributes_args[] = _attribute('class', array($button_style, 'button-box'));
+        if ($button_text && $link && $display == true) {
+            $attributes_args = [];
+            $attributes_args[] = _attribute('class', array($button_style, 'button-box'));
 
-        $_attributes = _attributes($attributes_args);
-        $html = "<div $_attributes>";
-        $html .= "<$tag class='rounded-10px $class' $link $button_target>";
-        $html .= $button_text;
-        $html .= "</$tag>";
-        $html .= "</div>";
+            $_attributes = _attributes($attributes_args);
+            $html = "<div $_attributes>";
+            $html .= "<$tag class='rounded-10px $class' $link $button_target>";
+            $html .= $button_text;
+            $html .= "</$tag>";
+            $html .= "</div>";
 
-        return $html;
+            return $html;
+        }
     }
 }
