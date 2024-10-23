@@ -1781,7 +1781,7 @@ function ga4()
         }
 ?>
         <script>
-            jQuery('.woocommerce-loop-product__link').click(function(e) {
+            jQuery('.product-btn').click(function(e) {
                 $data = jQuery(this).find('.product-data').text();
                 productObj = JSON.parse($data);
                 ga4_select_item(productObj);
