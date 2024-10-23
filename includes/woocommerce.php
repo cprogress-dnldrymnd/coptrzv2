@@ -1759,7 +1759,9 @@ function _single_product_data()
     }
     $data['sku']      = $product->get_sku();
     $data['name']     = $product->get_name();
-    $data['brand']    = $pa_brands;
+    if ($pa_brands) {
+        $data['brand']    = $pa_brands;
+    }
     $data['category'] = $category[0]->name;
 
     return $data;
