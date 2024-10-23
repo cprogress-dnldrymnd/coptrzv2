@@ -1747,3 +1747,285 @@ function rudr_custom_price_refresh($cart_object)
         }
     }
 }
+
+
+
+function ga4()
+{
+    if (is_product_taxonomy() || is_shop()) {
+        if (is_product_taxonomy()) {
+            $term_name = get_queried_object()->name;
+            $term_id = get_queried_object()->term_id;
+        } else {
+            $term_name = 'Shop';
+            $term_id = 'Shop';
+        }
+    ?>
+        <script>
+            jQuery('.woocommerce-loop-product__link').click(function(e) {
+                $data = jQuery(this).find('.product-data').text();
+                productObj = JSON.parse($data);
+                ga4_select_item(productObj);
+            });
+
+            function ga4_select_item(productObj) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "select_item",
+                    ecommerce: {
+                        item_list_name: productObj.category,
+                        items: [{
+                            item_id: productObj.sku, // This should be a unique Identifier
+                            item_name: productObj.name,
+                            index: 0, // Item Index - index starts at 0, 1st product = 0
+                            item_brand: productObj.brand, // Product Brand
+                            item_category: productObj.category,
+                            price: productObj.price,
+                            quantity: 1
+                        }]
+                    }
+                });
+            }
+        </script>
+        <script>
+            jQuery(document).ready(function() {
+                ga4_view_item_list();
+            });
+
+            function ga4_view_item_list() {
+                $products = jQuery('.products .product');
+                items = [];
+                index = 0;
+                $products.each(function(index, element) {
+                    $data = jQuery(this).find('.product-data').text();
+                    productObjs = JSON.parse($data);
+                    items.push({
+                        item_id: productObjs.sku, // This should be a unique Identifier
+                        item_name: productObjs.name,
+                        index: index, // Item Index - index starts at 0, 1st product = 0
+                        item_brand: productObjs.brand, // Product Brand
+                        item_category: productObjs.category,
+                        price: productObjs.price,
+                        quantity: 1
+                    });
+                    index++;
+                });
+
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "view_item_list",
+                    ecommerce: {
+                        item_list_id: '<?= $term_id ?>',
+                        item_list_name: '<?= $term_name ?>',
+                        items: items
+                    }
+                });
+            }
+        </script>
+    <?php
+    } else if (is_product()) {
+    ?>
+        <script>
+            jQuery('body').on('added_to_cart', function() {
+                ga4_add_to_cart_single();
+            });
+            jQuery('.buy-now.simple').click(function(e) {
+                ga4_add_to_cart_single();
+            });
+
+            function ga4_add_to_cart_single() {
+                quantity = jQuery('input[name="quantity"]').val();
+                $data = jQuery('.product-data').text();
+                productObj = JSON.parse($data);
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "add_to_cart",
+                    ecommerce: {
+                        item_list_name: productObj.category,
+                        items: [{
+                            item_id: productObj.sku, // This should be a unique Identifier
+                            item_name: productObj.name,
+                            index: 0, // Item Index - index starts at 0, 1st product = 0
+                            item_brand: productObj.brand, // Product Brand
+                            item_category: productObj.category,
+                            price: productObj.price,
+                            quantity: parseInt(quantity)
+                        }]
+                    }
+                });
+            }
+        </script>
+        <script>
+            jQuery(document).ready(function() {
+                $data = jQuery('.product-data').text();
+                productObj = JSON.parse($data);
+                ga4_view_item(productObj);
+            });
+
+            function ga4_view_item(productObj) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "view_item",
+                    ecommerce: {
+                        item_list_name: productObj.category,
+                        items: [{
+                            item_id: productObj.sku, // This should be a unique Identifier
+                            item_name: productObj.name,
+                            index: 0, // Item Index - index starts at 0, 1st product = 0
+                            item_brand: productObj.brand, // Product Brand
+                            item_category: productObj.category,
+                            price: productObj.price,
+                            quantity: 1
+                        }]
+                    }
+                });
+            }
+        </script>
+
+    <?php
+    } else if (is_checkout()  && !(is_wc_endpoint_url('order-pay') || is_wc_endpoint_url('order-received'))) {
+    ?>
+        <script>
+            jQuery(document).ready(function() {
+                ga4_begin_checkout();
+            });
+
+            function ga4_begin_checkout() {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "begin_checkout",
+                    ecommerce: {
+                        items: <?= json_encode(_cart_data()) ?>
+                    }
+                });
+            }
+        </script>
+        <?php
+    } else if (is_wc_endpoint_url('order-received')) {
+        global $wp;
+
+        $order_id = absint($wp->query_vars['order-received']);
+
+        if (!get_post_meta($order_id, '_thankyou_action_done', true)) {
+            $order    = wc_get_order($order_id);
+            $key = 0;
+            $items = array();
+            $transaction_id = $order_id;
+            $value = round($order->get_total(), 2);
+            $tax = round($order->get_total_tax(), 2);
+            $coupons = $order->get_coupon_codes();
+
+            foreach ($order->get_items() as $item_id => $item) {
+                $product = $item->get_product();
+                $pa_brands = $product->get_attribute('pa_brands');
+                $get_category = get_the_terms($product->get_id(), 'product_cat');
+                $category = $get_category ? $get_category[0]->name : '';
+                $items_val = array();
+
+                $items_val['item_id']       = $product->get_sku();
+                $items_val['item_name']     = $product->get_name();
+                $items_val['index']         = $key;
+                $items_val['item_brand']    = $pa_brands;
+                $items_val['item_category'] = $category;
+                $items_val['price']         = round($item->get_subtotal(), 2);
+                $items_val['quantity']      = $product->get_sku();
+
+
+                if ($coupons) {
+                    if (count($coupons) == 1) {
+                        $items_val['coupon'] = $coupons[0];
+                    } else {
+                        $items_val['coupon'] = json_encode($coupons);
+                    }
+                }
+                $items[] = $items_val;
+                $key++;
+            }
+        ?>
+            <script>
+                console.log('<?= get_post_meta($order_id, '_thankyou_action_done', true)  ?>');
+                console.log('<?= $transaction_id ?>');
+                console.log('<?= $value ?>');
+                console.log('<?= $tax ?>');
+                console.log('<?= json_encode($items) ?>');
+
+                <?php if ($coupons) { ?>
+                    <?php if (count($coupons) == 1) { ?>
+                        var coupon = '<?= $coupons[0] ?>'
+                    <?php } else { ?>
+                        var coupon = <?= json_encode($coupons) ?>,
+                        <?php } ?>
+                    <?php } else { ?>
+                        var coupon = '';
+                    <?php } ?>
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        event: "purchase",
+                        ecommerce: {
+                            transaction_id: '<?= $transaction_id ?>', // This should be a unique ID and only should be used once with every purchase.
+                            value: <?= $value ?>, // Total value of product after +Tax, -Discount, +Shipping,
+                            tax: <?= $tax ?>,
+                            currency: "GBP",
+                            coupon: coupon,
+                            items: <?= json_encode($items) ?>
+                        }
+                    });
+            </script>
+            <script>
+                <?php if ($coupons) { ?>
+                    <?php if (count($coupons) == 1) { ?>
+                        var coupon = '<?= $coupons[0] ?>'
+                    <?php } else { ?>
+                        var coupon = <?= json_encode($coupons) ?>,
+                        <?php } ?>
+                    <?php } else { ?>
+                        var coupon = '';
+                    <?php } ?>
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        event: "add_payment_info",
+                        ecommerce: {
+                            currency: "GBP",
+                            value: <?= $value ?>, // Total value of product after +Tax, -Discount, +Shipping,
+                            coupon: coupon,
+                            payment_type: "<?= $order->get_payment_method_title() ?>",
+                            items: <?= json_encode($items) ?>
+
+                        }
+                    });
+            </script>
+<?php
+            update_post_meta($order_id, '_thankyou_action_done', true);
+        }
+    }
+}
+
+
+add_action('wp_footer', 'ga4');
+
+
+function _cart_data()
+{
+    $data = array();
+    $key = 0;
+    foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+        $_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
+
+        if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
+            $pa_brands = $_product->get_attribute('pa_brands');
+            $category = get_the_terms($_product->get_id(), 'product_cat');
+            $data[] = array(
+                'item_id' => $_product->get_sku(),
+                'item_name' => $_product->get_name(),
+                'index' => $key,
+                'item_brand' => $pa_brands,
+                'item_category' => $category[0]->name,
+                'price' => _price_format(WC()->cart->get_product_subtotal($_product, $cart_item['quantity'])),
+                'quantity' => intval($cart_item['quantity'])
+            );
+        }
+        $key++;
+    }
+
+    return $data;
+}
