@@ -34,5 +34,5 @@ if (is_product_taxonomy()) {
 $data_encode = _single_product_data(get_the_ID());
 ?>
 <div class="product-buttons">
-	<div class="button-box button-bordered"><a  class="product-btn" product-data="<?= $data_encode ?>" href="<?= get_the_permalink() ?>">Discover</a></div>
+	<div class="button-box button-bordered"><a class="product-btn" href="<?= get_the_permalink() ?>"> <span class="product-data d-none"><?= $data_encode ?></span> Discover</a></div>
 </div>
