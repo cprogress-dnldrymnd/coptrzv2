@@ -47,6 +47,26 @@ function codemirror() {
 
     }, 1000);
 
+
+    setTimeout(function () {
+  
+
+        if (jQuery('textarea[name="carbon_fields_compact_input[_header_scripts]"').length > 0) {
+            wp.codeEditor.initialize(jQuery('textarea[name="carbon_fields_compact_input[_header_scripts]"'), cm_settings.ce_html);
+        }
+
+        if (jQuery('textarea[name="carbon_fields_compact_input[_footer_scripts]"').length > 0) {
+            wp.codeEditor.initialize(jQuery('textarea[name="carbon_fields_compact_input[_footer_scripts]"'), cm_settings.ce_html);
+        }
+
+
+
+        if (jQuery('textarea[name="carbon_fields_compact_input[_body_scripts]"').length > 0) {
+            wp.codeEditor.initialize(jQuery('textarea[name="carbon_fields_compact_input[_body_scripts]"'), cm_settings.ce_html);
+        }
+
+    }, 500);
+
 }
 
 function button_selector() {
