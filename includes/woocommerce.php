@@ -704,6 +704,21 @@ function _product_grid_display($id)
         $stock_status = $product->get_stock_status();
         $status = get_post_status($id);
 
+        $pa_brands = $product->get_attribute('pa_brands');
+        $category = get_the_terms($product->get_id(), 'product_cat');
+        $data = array(
+            'sku' => $product->get_sku(),
+            'name' => $product->get_name(),
+            'brand' => $pa_brands,
+            'category' => $category[0]->name,
+        );
+
+        $data_encode = json_encode($data);
+
+        if ($product->get_price()) {
+            $data['price'] = $product->get_price();
+        }
+
         $html = "<ul class='products h-100 custom-product-grid h-100 m-0 p-0'>";
         $html .= "<li class='product h-100 m-0 p-0 w-100 h-100 post-$id $stock_status'>";
         $html .= "<div class='product-inner h-100 p-20px rounded-10px border-default h-100 bg-white'>";
@@ -722,6 +737,7 @@ function _product_grid_display($id)
 
         if ($status == 'publish') {
             $html .= "<div class='product-buttons'>";
+            $html .= "<div class='product-data d-none'>$data_encode</div>";
             $html .= "<div class='button-box button-bordered'><a href='$permalink'>View Product</a></div>";
             $html .= "</div>";
         }
@@ -732,7 +748,6 @@ function _product_grid_display($id)
         return $html;
     }
 }
-
 
 /**
  * Remove product page tabs
@@ -1767,29 +1782,6 @@ function _single_product_data()
     return $data;
 }
 
-function action_woocommerce_after_shop_loop_item_title()
-{
-    if (is_product_category()) {
-        global $product;
-        $pa_brands = $product->get_attribute('pa_brands');
-        $category = get_the_terms($product->get_id(), 'product_cat');
-        $data = array(
-            'sku' => $product->get_sku(),
-            'name' => $product->get_name(),
-            'brand' => $pa_brands,
-            'category' => $category[0]->name,
-        );
-
-        if ($product->get_price()) {
-            $data['price'] = $product->get_price();
-        }
-?>
-        <div class="product-data d-none">
-            <?= json_encode($data) ?>
-        </div>
-    <?php
-    }
-}
 add_action('woocommerce_after_shop_loop_item_title', 'action_woocommerce_after_shop_loop_item_title');
 
 function ga4()
