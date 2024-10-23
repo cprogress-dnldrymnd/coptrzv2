@@ -1812,7 +1812,7 @@ function ga4()
             });
 
             function ga4_view_item_list() {
-                $products = jQuery('.product');
+                $products = jQuery('li.product');
                 items = [];
                 index = 0;
                 $products.each(function(index, element) {
