@@ -1600,6 +1600,7 @@ function product_guides()
 }
 
 
+
 /**
  * @snippet       Disable Free Shipping if Cart has Shipping Class
  * @how-to        Get CustomizeWoo.com FREE
@@ -1683,19 +1684,19 @@ function product_guides()
  
  
      if ($free_shipping == true) {
-         unset($rates['flat_rate:2']);
+         unset($rates['flat_rate:12']);
      } else {
          if ($in_cart) {
-             unset($rates['free_shipping:9']);
+             unset($rates['free_shipping:10']);
          }
      }
      // Only unset rates if free_shipping is available
-     if (isset($rates['free_shipping:9']) && !isset($rates['flat_rate:2'])) {
-         unset($rates['local_pickup:3']);
+     if (isset($rates['free_shipping:10']) && !isset($rates['flat_rate:12'])) {
+         unset($rates['local_pickup:13']);
      }
  
-     if (isset($rates['flat_rate:2'])) {
-         unset($rates['free_shipping:9']);
+     if (isset($rates['flat_rate:12'])) {
+         unset($rates['free_shipping:10']);
      }
      return $rates;
  }
