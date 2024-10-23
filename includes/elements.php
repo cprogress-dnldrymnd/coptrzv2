@@ -278,6 +278,10 @@ function __button($data)
         $popups_id[] = $button_url;
         $tag = 'button';
         $link = 'data-bs-toggle="modal" data-bs-target="#modal-[post_id id=' . $button_url . ']"';
+    } else if ($button_type == 'buy-now') {
+        $tag = 'button';
+        $link = 'data-target="' . get_the_ID() . '"';
+        $class = 'buy-now-trigger';
     }
 
     if ($button_text && $link && $display == true) {
