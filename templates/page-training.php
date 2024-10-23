@@ -11,7 +11,9 @@
     echo do_shortcode(___sections('sections', get_the_ID()));
     ?>
 </div>
-
+<div class="product-data d-none">
+	<?= json_encode(_single_product_data()) ?>
+</div>
 <section class="training-product md-padding-top md-padding-bottom border-top-default" id="Book-Course">
     <input type="hidden" name="product_id" value="<?= get_the_ID() ?>">
     <div class="container">

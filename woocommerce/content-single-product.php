@@ -31,22 +31,11 @@ if (post_password_required()) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
-global $product;
 
-
-$pa_brands = $product->get_attribute('pa_brands');
-$category = get_the_terms($product->get_id(), 'product_cat');
-if ($product->get_price()) {
-	$data['price']    = $product->get_price();
-}
-$data['sku']      = $product->get_sku();
-$data['name']     = $product->get_name();
-$data['brand']    = $pa_brands;
-$data['category'] = $category[0]->name;
 ?>
 
 <div class="product-data d-none">
-	<?= json_encode($data) ?>
+	<?= json_encode(_single_product_data()) ?>
 </div>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow">

@@ -1609,100 +1609,98 @@ function product_guides()
  * @donate $9     https://businessbloomer.com/bloomer-armada/
  */
 
- add_filter('woocommerce_package_rates', 'bbloomer_hide_free_shipping_for_shipping_class', 9999, 2);
+add_filter('woocommerce_package_rates', 'bbloomer_hide_free_shipping_for_shipping_class', 9999, 2);
 
- function bbloomer_hide_free_shipping_for_shipping_class($rates, $package)
- {
-     $in_cart = false;
-     $shipping_class_target = array(
-         1220,
-         1221,
-         1222,
-         761
-     );
-     $free_shipping = false;
-     $free_shipping_val = '';
- 
-     $product_ids = array();
- 
-     foreach (WC()->cart->get_cart_contents() as $key => $values) {
- 
-         $type = $values['data']->get_type();
- 
-         if ($type == 'variation') {
-             $id = $values['data']->get_parent_id();
-         } else {
-             $id = $values['data']->get_id();
-         }
- 
-         $product_ids[] = $id;
- 
-         if (has_term(array(32, 789, 776), 'product_cat', $id)) {
-             $free_shipping_val .= 'true';
-         } else {
-             $free_shipping_meta = get_post_meta($id, '_free_shipping', true);
- 
- 
-             if ($free_shipping_meta) {
-                 $free_shipping_val .= 'true';
-             } else {
-                 $free_shipping_val .= 'false';
-             }
-         }
- 
-        
-     }
- 
-     foreach (WC()->cart->get_cart_contents() as $key => $values) {
-         $type = $values['data']->get_type();
-         if ($type == 'variation') {
-             $id = $values['data']->get_parent_id();
-         } else {
-             $id = $values['data']->get_id();
-         }
-         $_free_shipping_product_id = get_post_meta($id, '_free_shipping_product_id', true);
-         if ($_free_shipping_product_id) {
-             if (in_array($_free_shipping_product_id, $product_ids)) {
-                 $free_shipping_val .= 'true';
-             } else {
-                 $free_shipping_val .= 'false';
-             }
-         }
- 
-         if (in_array($values['data']->get_shipping_class_id(), $shipping_class_target)) {
-             $in_cart = true;
-             break;
-         }
-     }
- 
- 
-     if (str_contains($free_shipping_val, 'false')) {
-         $free_shipping = false;
-     } else {
-         $free_shipping = true;
-     }
- 
- 
-     if ($free_shipping == true) {
-         unset($rates['flat_rate:12']);
-     } else {
-         if ($in_cart) {
-             unset($rates['free_shipping:10']);
-         }
-     }
-     // Only unset rates if free_shipping is available
-     if (isset($rates['free_shipping:10']) && !isset($rates['flat_rate:12'])) {
-         unset($rates['local_pickup:13']);
-     }
- 
-     if (isset($rates['flat_rate:12'])) {
-         unset($rates['free_shipping:10']);
-     }
-     return $rates;
- }
- 
+function bbloomer_hide_free_shipping_for_shipping_class($rates, $package)
+{
+    $in_cart = false;
+    $shipping_class_target = array(
+        1220,
+        1221,
+        1222,
+        761
+    );
+    $free_shipping = false;
+    $free_shipping_val = '';
 
- 
+    $product_ids = array();
+
+    foreach (WC()->cart->get_cart_contents() as $key => $values) {
+
+        $type = $values['data']->get_type();
+
+        if ($type == 'variation') {
+            $id = $values['data']->get_parent_id();
+        } else {
+            $id = $values['data']->get_id();
+        }
+
+        $product_ids[] = $id;
+
+        if (has_term(array(32, 789, 776), 'product_cat', $id)) {
+            $free_shipping_val .= 'true';
+        } else {
+            $free_shipping_meta = get_post_meta($id, '_free_shipping', true);
+
+
+            if ($free_shipping_meta) {
+                $free_shipping_val .= 'true';
+            } else {
+                $free_shipping_val .= 'false';
+            }
+        }
+    }
+
+    foreach (WC()->cart->get_cart_contents() as $key => $values) {
+        $type = $values['data']->get_type();
+        if ($type == 'variation') {
+            $id = $values['data']->get_parent_id();
+        } else {
+            $id = $values['data']->get_id();
+        }
+        $_free_shipping_product_id = get_post_meta($id, '_free_shipping_product_id', true);
+        if ($_free_shipping_product_id) {
+            if (in_array($_free_shipping_product_id, $product_ids)) {
+                $free_shipping_val .= 'true';
+            } else {
+                $free_shipping_val .= 'false';
+            }
+        }
+
+        if (in_array($values['data']->get_shipping_class_id(), $shipping_class_target)) {
+            $in_cart = true;
+            break;
+        }
+    }
+
+
+    if (str_contains($free_shipping_val, 'false')) {
+        $free_shipping = false;
+    } else {
+        $free_shipping = true;
+    }
+
+
+    if ($free_shipping == true) {
+        unset($rates['flat_rate:12']);
+    } else {
+        if ($in_cart) {
+            unset($rates['free_shipping:10']);
+        }
+    }
+    // Only unset rates if free_shipping is available
+    if (isset($rates['free_shipping:10']) && !isset($rates['flat_rate:12'])) {
+        unset($rates['local_pickup:13']);
+    }
+
+    if (isset($rates['flat_rate:12'])) {
+        unset($rates['free_shipping:10']);
+    }
+    return $rates;
+}
+
+
+
 add_filter('woocommerce_get_price_suffix', 'custom_price_suffix', 999, 4);
 function custom_price_suffix($html, $product, $price, $qty)
 {
@@ -1750,6 +1748,23 @@ function rudr_custom_price_refresh($cart_object)
 
 
 
+function _single_product_data()
+{
+    global $product;
+
+    $pa_brands = $product->get_attribute('pa_brands');
+    $category = get_the_terms($product->get_id(), 'product_cat');
+    if ($product->get_price()) {
+        $data['price']    = $product->get_price();
+    }
+    $data['sku']      = $product->get_sku();
+    $data['name']     = $product->get_name();
+    $data['brand']    = $pa_brands;
+    $data['category'] = $category[0]->name;
+
+    return $data;
+}
+
 function action_woocommerce_after_shop_loop_item_title()
 {
     if (is_product_category()) {
@@ -1766,7 +1781,7 @@ function action_woocommerce_after_shop_loop_item_title()
         if ($product->get_price()) {
             $data['price'] = _price_format($product->get_price());
         }
-    ?>
+?>
         <div class="product-data d-none">
             <?= json_encode($data) ?>
         </div>
