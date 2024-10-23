@@ -11,7 +11,7 @@
     echo do_shortcode(___sections('sections', get_the_ID()));
     ?>
 </div>
-<div class="product-data d-none">
+<div class="main-product-data product-data d-none">
 	<?= _single_product_data(get_the_ID()) ?>
 </div>
 <section class="training-product md-padding-top md-padding-bottom border-top-default" id="Book-Course">

@@ -34,7 +34,7 @@ if (post_password_required()) {
 
 ?>
 
-<div class="product-data d-none">
+<div class="main-product-data product-data d-none">
 	<?= _single_product_data(get_the_ID()) ?>
 </div>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>

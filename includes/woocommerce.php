@@ -1848,13 +1848,10 @@ function ga4()
             jQuery('body').on('added_to_cart', function() {
                 ga4_add_to_cart_single();
             });
-            jQuery('.buy-now.simple').click(function(e) {
-                ga4_add_to_cart_single();
-            });
 
             function ga4_add_to_cart_single() {
                 quantity = jQuery('input[name="quantity"]').val();
-                $data = jQuery('.product-data').text();
+                $data = jQuery('.main-product-data.product-data').text();
                 productObj = JSON.parse($data);
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
