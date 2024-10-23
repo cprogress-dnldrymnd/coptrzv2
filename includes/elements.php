@@ -249,7 +249,7 @@ function __post_category($id, $category, $class = '')
 function __button($data)
 {
     $button_type = isset($data['button_type']) ? $data['button_type'] : false;
-    if ($button_type) {
+    if ($button_type && $button_type != 'buy-now') {
         $button_text = isset($data['button_text']) ? $data['button_text'] : false;
         $button_url = isset($data['button_url']) ? $data['button_url'] : false;
         $button_url_custom = isset($data['button_url_custom']) ? $data['button_url_custom'] : false;
