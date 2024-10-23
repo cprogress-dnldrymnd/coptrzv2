@@ -256,9 +256,8 @@ function __social_fields()
 
     );
 }
-function __header_and_footer_fields()
-{
-    return     array(
+function __header_and_footer_fields() {
+    return 	array(
         Field::make('header_scripts', 'header_scripts', __('Header Scripts')),
         Field::make('textarea', 'body_scripts', __('Body Scripts')),
         Field::make('footer_scripts', 'footer_scripts', __('Footer Scripts'))
@@ -270,8 +269,6 @@ Container::make('theme_options', __('Theme Settings'))
     ->add_tab('Socials', __social_fields())
     ->add_tab('Header and Footer Scripts', __header_and_footer_fields());
     
-Container::make('theme_options', __('Header and Footer Scripts'))
-    ->add_fields(__header_and_footer_fields());
 
 
 Container::make('theme_options', __('Global Widgets'))
@@ -6673,7 +6670,7 @@ Container::make('post_meta', 'Industry Settings')
         )
     );
 
-
+    
 /*-----------------------------------------------------------------------------------*/
 /* Popups
 /*-----------------------------------------------------------------------------------*/
