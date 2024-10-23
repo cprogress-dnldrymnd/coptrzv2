@@ -1701,3 +1701,49 @@ function product_guides()
      return $rates;
  }
  
+
+ 
+add_filter('woocommerce_get_price_suffix', 'custom_price_suffix', 999, 4);
+function custom_price_suffix($html, $product, $price, $qty)
+{
+    $type = $product->get_type();
+
+    if ($type == 'simple') {
+        $vat_inclusive = get__post_meta_by_id($product->get_id(), 'vat_inclusive');
+    } else {
+        $vat_inclusive = get__post_meta_by_id($product->get_parent_id(), 'vat_inclusive');
+    }
+
+    if ($vat_inclusive) {
+        return  ' ' .  __('Incl. VAT', 'woocommerce');
+    } else
+        return $html;
+}
+add_action('woocommerce_before_calculate_totals', 'rudr_custom_price_refresh');
+
+function rudr_custom_price_refresh($cart_object)
+{
+
+    $check_id = 332610;
+    $product_id_to_add = 61196;
+    $product_ids = array();
+    foreach ($cart_object->get_cart() as $item) {
+        $product_ids[] = $item['product_id'];
+    }
+    foreach ($cart_object->get_cart() as $item) {
+        if (in_array($check_id, $product_ids)) {
+            WC()->cart->add_to_cart(14, 1, 0, array());
+            if (array_key_exists('custom_price', $item)) {
+                $item['data']->set_price($item['custom_price']);
+            }
+            if (!in_array($product_id_to_add, $product_ids)) {
+                $product = wc_get_product($product_id_to_add);
+                WC()->cart->add_to_cart($product_id_to_add, 1, 0, array(), array('custom_price' => 0, 'original_price' => $product->get_price()));
+            }
+        } else {
+            if (array_key_exists('original_price', $item)) {
+                $item['data']->set_price($item['original_price']);
+            }
+        }
+    }
+}
