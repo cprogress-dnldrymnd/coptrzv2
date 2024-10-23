@@ -1781,7 +1781,7 @@ function action_woocommerce_after_shop_loop_item_title()
         );
 
         if ($product->get_price()) {
-            $data['price'] = _price_format($product->get_price());
+            $data['price'] = $product->get_price();
         }
 ?>
         <div class="product-data d-none">
