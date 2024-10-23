@@ -49,7 +49,6 @@ function codemirror() {
 
 
     setTimeout(function () {
-  
 
         if (jQuery('textarea[name="carbon_fields_compact_input[_header_scripts]"').length > 0) {
             wp.codeEditor.initialize(jQuery('textarea[name="carbon_fields_compact_input[_header_scripts]"'), cm_settings.ce_html);
