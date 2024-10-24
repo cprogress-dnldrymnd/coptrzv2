@@ -38,7 +38,7 @@ if (post_password_required()) {
 	<?= _single_product_data(get_the_ID()) ?>
 </div>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
-	<section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow">
+	<section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow" id="buy-now">
 		<div class="container">
 			<h2 class="text-center">Buy <?php the_title() ?></h2>
 			<div class="row g-4">
