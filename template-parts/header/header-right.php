@@ -7,7 +7,7 @@ $SVG = new SVG;
             <?= do_shortcode('[wpml_language_selector_widget]') ?>
         </div>
         <?php if (get_post_type() != 'rentals' && get_the_ID() != 292371) { ?>
-            <div class="col-auto d-flex align-items-center">
+            <div class="col-auto d-flex align-items-center account">
                 <a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>"
                     class="header-icon account-icon text-white d-flex align-items-center">
                     <?= $SVG->user(); ?>

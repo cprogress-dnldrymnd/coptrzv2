@@ -13994,9 +13994,9 @@ body {
 @media screen and (max-width: 1399px) {
   .mini-cart {
     margin-right: 1rem; } }
-@media screen and (max-width: 480px) {
-  .mini-cart {
-    margin-right: 0; } }
+
+.wpml-ls-legacy-dropdown a span {
+  margin-left: 5px; }
 
 #footer {
   font-weight: 300; }
