@@ -46,10 +46,3 @@ if (! $short_description) {
 		</ul>
 	</div>
 </div>
-
-<?php 
-global $product;
-
-if(!$product->get_price() || $product->get_stock_status() == 'outofstock') {
-	request_info();
-}
