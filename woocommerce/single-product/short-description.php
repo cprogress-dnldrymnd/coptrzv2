@@ -47,9 +47,9 @@ if (! $short_description) {
 	</div>
 </div>
 
-<?php 
-$product = wc_get_product( get_the_ID() );
+<?php
+global $product;
 
-if(!$product->get_price() || $product->get_stock_status() == 'outofstock') {
+if ((!$product->get_price() && $product->get_price() != 0 && $product->get_price() != 0.00) || $product->get_stock_status() == 'outofstock') {
 	request_info();
 }
