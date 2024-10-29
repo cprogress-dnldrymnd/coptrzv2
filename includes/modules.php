@@ -1223,7 +1223,7 @@ function ___sections($id = 'sections', $post_id = '')
                         }
                         break;
                     case 'product':
-                        $product = $items['product']['id'];
+                        $product = $items['product'][0]['id'];
                         $html .= "[product_add_to_cart id=$product]";
                         break;
                 }
