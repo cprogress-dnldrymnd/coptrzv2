@@ -3243,8 +3243,9 @@ function __product_add_to_cart($id, $description_args)
         'class' => _attribute('class', array('image-box text-center'))
     ));
     $html .= __description($description_args);
-
+    $html .= "<div class='price text-center'>";
     $html .= $product->get_price_html();
+    $html .= "</div>";
 
     $html .= "<div class='button-box button-accent text-center'>";
     $html .= "<a class='w-100' href='$basket_url?add-to-cart=$id'>Buy now</a>";
