@@ -13321,7 +13321,7 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 .product-add-to-cart.product-add-to-cart.product-add-to-cart .button-box a:hover, .product-add-to-cart.product-add-to-cart.product-add-to-cart .button-box a:active, .product-add-to-cart.product-add-to-cart.product-add-to-cart .button-box a:focus {
   border: 1px solid var(--bs-black) !important; }
 .product-add-to-cart.product-add-to-cart.product-add-to-cart .image-box img {
-  max-height: 250px;
+  max-height: 200px;
   width: auto; }
 .product-add-to-cart.product-add-to-cart.product-add-to-cart .description-box {
   width: 100%; }
