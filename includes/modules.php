@@ -1222,6 +1222,10 @@ function ___sections($id = 'sections', $post_id = '')
                             }
                         }
                         break;
+                    case 'product':
+                        $product = $items['product']['id'];
+                        $html .= do_shortcode("[product_add_to_cart id='$product']");
+                        break;
                 }
             }
             update_post_meta($post_id, '_layouts', $layouts_arr);
