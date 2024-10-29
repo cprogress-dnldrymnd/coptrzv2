@@ -1,5 +1,5 @@
 <?php
-get_header('landing');
+get_header('landing-v2');
 ?>
 <div class="modules">
     <?php
@@ -8,4 +8,4 @@ get_header('landing');
     ?>
 </div>
 <?php
-get_footer('landing');
+get_footer('landing-v2');
