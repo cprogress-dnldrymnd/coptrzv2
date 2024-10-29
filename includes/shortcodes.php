@@ -763,6 +763,7 @@ class Shortcodes
             'post_type' => 'product',
         ));
         global $product;
+        echo do_shortcode("[product_page id='$id']");
         while ($query->have_posts()) {
             $query->the_post();
         ?>
