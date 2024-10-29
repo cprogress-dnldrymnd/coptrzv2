@@ -1224,7 +1224,7 @@ function ___sections($id = 'sections', $post_id = '')
                         break;
                     case 'product':
                         $product = $items['product']['id'];
-                        $html .= "[product_add_to_cart id='$product']";
+                        $html .= "[product_add_to_cart id=$product]";
                         break;
                 }
             }
