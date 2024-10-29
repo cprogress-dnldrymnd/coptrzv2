@@ -1198,3 +1198,12 @@ body {
         display: none !important;
     }
 }
+.product-add-to-cart {
+    .button-box {
+        a {
+            @include on-event {
+                border: 2px solid var(--bs-black);
+            }
+        }
+    }
+}
