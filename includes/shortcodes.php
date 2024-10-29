@@ -821,6 +821,7 @@ class Shortcodes
             </div>
 <?php
         }
+        wp_reset_postdata();
         return ob_get_clean();
     }
 }
