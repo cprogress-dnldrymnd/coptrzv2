@@ -767,7 +767,7 @@ class Shortcodes
             $query->the_post();
         ?>
             <div class="main-product-data product-data d-none">
-                <?= _single_product_data($id) ?>
+                <?= _single_product_data(get_the_ID()) ?>
             </div>
             <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
                 <section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow" id="buy-now">
@@ -800,7 +800,6 @@ class Shortcodes
                                      * @hooked woocommerce_template_single_sharing - 50
                                      * @hooked WC_Structured_Data::generate_product_data() - 60
                                      */
-                                    do_action('woocommerce_single_product_summary');
                                     ?>
                                 </div>
                             </div>
