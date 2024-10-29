@@ -761,12 +761,12 @@ class Shortcodes
         $product = wc_get_product($id);
     ?>
         <div class="main-product-data product-data d-none">
-            <?= _single_product_data(get_the_ID()) ?>
+            <?= _single_product_data($id) ?>
         </div>
-        <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
+        <div id="product-<?= $id ?>" <?php wc_product_class('', $product); ?>>
             <section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow" id="buy-now">
                 <div class="container">
-                    <h2 class="text-center">Buy <?php the_title() ?></h2>
+                    <h2 class="text-center">Buy <?= get_the_title($id) ?></h2>
                     <div class="row g-4">
                         <div class="col-7 position-relative">
                             <?php
@@ -801,32 +801,6 @@ class Shortcodes
                     </div>
                 </div>
             </section>
-
-            <?php
-
-            $product_guide = get__post_meta('product_guide');
-            if ($product_guide) {
-                $title = get_the_title();
-                $pdf_url = wp_get_attachment_url($product_guide)
-            ?>
-
-                <section class="product-guide-section small-container sm-padding bg-dark ">
-                    <div class="container">
-                        <div class="download-guide rounded-corner">
-                            <div class="row g-4 align-items-end justify-content-between">
-                                <div class="col-auto">
-                                    <h3 class="text-white m-0">Download spec sheet for <br><?= $title ?></h3>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="button-box button-accent request-info"><a class="rounded-10px" href="<?= $pdf_url ?>" target="_blank">Download</a></div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            <?php } ?>
 
             <?php
             /**
