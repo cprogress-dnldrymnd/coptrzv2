@@ -325,14 +325,14 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
                 'form_description' => $hero_form_description,
                 'form_image'       => $hero_form_image,
                 'form_style'       => $hero_form_style,
+                'form_product' => $hero_form_product[0]['id'],
+                'form_type' => $hero_form_type
             );
             $hero .= "<div class='col-lg-5'>"; //col
 
-            if ($hero_form_type != 'product') {
-                $hero .= __form($form_args);
-            } else {
-                $hero .= __product_add_to_cart($hero_form_product[0]['id']);
-            }
+
+            $hero .= __form($form_args);
+
 
             $hero .= "</div>"; //end-col
 
@@ -3119,6 +3119,8 @@ function __related_posts($posts, $data, $heading = 'Related Guides', $section_id
 function __form($args)
 {
     $form = isset($args['form']) ? $args['form'] : false;
+    $form_type = isset($args['form_type']) ? $args['form_type'] : false;
+    $form_product = isset($args['form_product']) ? $args['form_product'] : false;
     $form_description = isset($args['form_description']) ? $args['form_description'] : false;
     $form_image = isset($args['form_image']) ? $args['form_image'] : false;
     $form_style = isset($args['form_style']) ? $args['form_style'] : false;
@@ -3163,7 +3165,12 @@ function __form($args)
 
     $html .= "<div class='form-box p-20px small-text fw-light $form_style'>";
     $html .= "<div class='inner mt-20px'>";
-    $html .= do_shortcode("[contact-form-7 id='$form_id']");
+
+    if ($form_type == 'product') {
+        $html .= __product_add_to_cart($form_product)
+    } else {
+        $html .= do_shortcode("[contact-form-7 id='$form_id']");
+    }
     $html .= "</div>";
     $html .= "</div>";
 
