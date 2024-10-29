@@ -3156,7 +3156,9 @@ function __form($args)
         'heading' => $form_heading,
         'class'   => _attribute('class', array($heading_class))
     ));
-    $html .= __description($description_args);
+    if ($form_type != 'product') {
+        $html .= __description($description_args);
+    }
     $html .= "</div>";
     $html .= "</div>";
 
@@ -3167,7 +3169,7 @@ function __form($args)
     $html .= "<div class='inner mt-20px'>";
 
     if ($form_type == 'product') {
-        $html .= __product_add_to_cart($form_product);
+        $html .= __product_add_to_cart($form_product, $description_args);
     } else {
         $html .= do_shortcode("[contact-form-7 id='$form_id']");
     }
@@ -3230,16 +3232,21 @@ function __popup($id)
     return $html;
 }
 
-function __product_add_to_cart($id)
+function __product_add_to_cart($id, $description_args)
 {
+    $product = wc_get_product($id);
     $basket_url =   wc_get_cart_url();
     $html = "<div class='product-add-to-cart'>";
 
     $html .=  __image(array(
         'featured_image' => $id
     ));
+    $html .= __description($description_args);
+
+    $html .= $product->get_price_html();
+
     $html .= "<div class='button-box button-accent text-center'>";
-    $html .= "<a class='w-100' href='$basket_url?add-to-cart=$id'>Add to basket</a>";
+    $html .= "<a class='w-100' href='$basket_url?add-to-cart=$id'>Buy now</a>";
     $html .= "</div>";
     $html .= "</div>";
 
