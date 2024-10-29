@@ -256,8 +256,9 @@ function __social_fields()
 
     );
 }
-function __header_and_footer_fields() {
-    return 	array(
+function __header_and_footer_fields()
+{
+    return     array(
         Field::make('header_scripts', 'header_scripts', __('Header Scripts')),
         Field::make('textarea', 'body_scripts', __('Body Scripts')),
         Field::make('footer_scripts', 'footer_scripts', __('Footer Scripts'))
@@ -268,7 +269,7 @@ Container::make('theme_options', __('Theme Settings'))
     ->add_tab('Header', __header_fields())
     ->add_tab('Socials', __social_fields())
     ->add_tab('Header and Footer Scripts', __header_and_footer_fields());
-    
+
 
 
 Container::make('theme_options', __('Global Widgets'))
@@ -5398,6 +5399,17 @@ function __section_fields($name = 'sections')
                                 Field::make('html', 'html')->set_html('<h3>This will display events countdown timer. </h3>'),
                             ))
                             ->set_layout('tabbed-vertical')
+                    ))
+                    ->add_fields('product', array(
+                        Field::make('association', 'product', 'Product')
+                            ->set_types(
+                                array(
+                                    array(
+                                        'type'      => 'post',
+                                        'post_type' => 'product',
+                                    )
+                                )
+                            )
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
@@ -6672,7 +6684,7 @@ Container::make('post_meta', 'Industry Settings')
         )
     );
 
-    
+
 /*-----------------------------------------------------------------------------------*/
 /* Popups
 /*-----------------------------------------------------------------------------------*/
