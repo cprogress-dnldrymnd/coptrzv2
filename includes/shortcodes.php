@@ -758,7 +758,10 @@ class Shortcodes
                 $atts
             )
         );
-        $query = new WP_Query(array('p' => $id));
+        $query = new WP_Query(array(
+            'p' => $id,
+            'post_type' => 'product',
+        ));
         global $product;
         while ($query->have_posts()) {
             $query->the_post();
