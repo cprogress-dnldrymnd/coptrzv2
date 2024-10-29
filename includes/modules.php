@@ -3238,8 +3238,9 @@ function __product_add_to_cart($id)
     $html .=  __image(array(
         'featured_image' => $id
     ));
-
-    $html .= "<a href='?add_to_cart=$id&redirect=$basket_url' name='add-to-cart'  class='single_add_to_cart_button button alt'>Add to basket</a>";
+    $html .= "<div class='button-box button-accent'>";
+    $html .= "<a href='?add_to_cart=$id&redirect=$basket_url'>Add to basket</a>";
+    $html .= "</div>";
     $html .= "</div>";
 
     return $html;
