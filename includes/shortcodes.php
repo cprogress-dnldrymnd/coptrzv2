@@ -743,7 +743,7 @@ class Shortcodes
             });
         </script>
 
-    <?php
+        <?php
         return ob_get_clean();
     }
 
@@ -758,62 +758,66 @@ class Shortcodes
                 $atts
             )
         );
-        $product = wc_get_product($id);
-    ?>
-        <div class="main-product-data product-data d-none">
-            <?= _single_product_data($id) ?>
-        </div>
-        <div id="product-<?= $id ?>" <?php wc_product_class('', $product); ?>>
-            <section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow" id="buy-now">
-                <div class="container">
-                    <h2 class="text-center">Buy <?= get_the_title($id) ?></h2>
-                    <div class="row g-4">
-                        <div class="col-7 position-relative">
-                            <?php
-                            /**
-                             * Hook: woocommerce_before_single_product_summary.
-                             *
-                             * @hooked woocommerce_show_product_sale_flash - 10
-                             * @hooked woocommerce_show_product_images - 20
-                             */
-                            do_action('woocommerce_before_single_product_summary');
-                            ?>
-                        </div>
-                        <div class="col-5">
-                            <div class="summary entry-summary">
+        $query = new WP_Query(array('p' => $id));
+        global $product;
+        while ($query->have_posts()) {
+            $query->the_post();
+        ?>
+            <div class="main-product-data product-data d-none">
+                <?= _single_product_data($id) ?>
+            </div>
+            <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
+                <section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow" id="buy-now">
+                    <div class="container">
+                        <h2 class="text-center">Buy <?php the_title() ?></h2>
+                        <div class="row g-4">
+                            <div class="col-7 position-relative">
                                 <?php
                                 /**
-                                 * Hook: woocommerce_single_product_summary.
+                                 * Hook: woocommerce_before_single_product_summary.
                                  *
-                                 * @hooked woocommerce_template_single_title - 5
-                                 * @hooked woocommerce_template_single_rating - 10
-                                 * @hooked woocommerce_template_single_price - 10
-                                 * @hooked woocommerce_template_single_excerpt - 20
-                                 * @hooked woocommerce_template_single_add_to_cart - 30
-                                 * @hooked woocommerce_template_single_meta - 40
-                                 * @hooked woocommerce_template_single_sharing - 50
-                                 * @hooked WC_Structured_Data::generate_product_data() - 60
+                                 * @hooked woocommerce_show_product_sale_flash - 10
+                                 * @hooked woocommerce_show_product_images - 20
                                  */
-                                do_action('woocommerce_single_product_summary');
+                                do_action('woocommerce_before_single_product_summary');
                                 ?>
+                            </div>
+                            <div class="col-5">
+                                <div class="summary entry-summary">
+                                    <?php
+                                    /**
+                                     * Hook: woocommerce_single_product_summary.
+                                     *
+                                     * @hooked woocommerce_template_single_title - 5
+                                     * @hooked woocommerce_template_single_rating - 10
+                                     * @hooked woocommerce_template_single_price - 10
+                                     * @hooked woocommerce_template_single_excerpt - 20
+                                     * @hooked woocommerce_template_single_add_to_cart - 30
+                                     * @hooked woocommerce_template_single_meta - 40
+                                     * @hooked woocommerce_template_single_sharing - 50
+                                     * @hooked WC_Structured_Data::generate_product_data() - 60
+                                     */
+                                    do_action('woocommerce_single_product_summary');
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <?php
-            /**
-             * Hook: woocommerce_after_single_product_summary.
-             *
-             * @hooked woocommerce_output_product_data_tabs - 10
-             * @hooked woocommerce_upsell_display - 15
-             * @hooked woocommerce_output_related_products - 20
-             */
-            do_action('woocommerce_after_single_product_summary');
-            ?>
-        </div>
+                <?php
+                /**
+                 * Hook: woocommerce_after_single_product_summary.
+                 *
+                 * @hooked woocommerce_output_product_data_tabs - 10
+                 * @hooked woocommerce_upsell_display - 15
+                 * @hooked woocommerce_output_related_products - 20
+                 */
+                do_action('woocommerce_after_single_product_summary');
+                ?>
+            </div>
 <?php
+        }
         return ob_get_clean();
     }
 }
