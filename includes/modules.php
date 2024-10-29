@@ -3240,6 +3240,7 @@ function __product_add_to_cart($id)
         'featured_image' => $id
     ));
 
+    $html .= do_shortcode("[add_to_cart id='$id']");
     $html .= "</div>";
 
     return $html;
