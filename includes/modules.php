@@ -3240,7 +3240,7 @@ function __product_add_to_cart($id, $description_args)
 
     $html .=  __image(array(
         'featured_image' => $id,
-        'class' => 'image-box text-center'
+        'class' => _attribute('class', array('image-box text-center'))
     ));
     $html .= __description($description_args);
 
