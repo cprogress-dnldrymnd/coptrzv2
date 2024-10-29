@@ -1160,6 +1160,13 @@ function __hero_form_fields()
                     'style-2' => 'Style 2',
                 )
             ),
+        Field::make('select', 'hero_form_type', 'Hero Form Type')->set_classes('inline-field')
+            ->set_options(
+                array(
+                    ''        => 'Default',
+                    'product' => 'Product',
+                )
+            ),
         Field::make('association', 'hero_form', 'Select Form')->set_classes('inline-field')
             ->set_types(
                 array(
@@ -1170,6 +1177,32 @@ function __hero_form_fields()
                 )
             )
             ->set_max(1)
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'hero_form_type',
+                        'value' => '',
+                    )
+                )
+            ),
+        Field::make('association', 'hero_form', 'Select Form')->set_classes('inline-field')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'product',
+                    )
+                )
+            )
+            ->set_max(1)
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'hero_form_type',
+                        'value' => 'product',
+                    )
+                )
+            ),
     );
 }
 add_filter('carbon_fields_association_field_options_hero_form_post_wpcf7_contact_form', function ($query_arguments) {
