@@ -1212,6 +1212,16 @@ body {
             width: auto;
         }
     }
+    ul {
+        li {
+            @include before {
+                width: 24px;
+                height: 24px;
+                flex: 0 0 24px;
+                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24.438" height="24.438" viewBox="0 0 24.438 24.438"><path id="Icon_awesome-check-circle" data-name="Icon awesome-check-circle" d="M25,12.781A12.219,12.219,0,1,1,12.781.563,12.219,12.219,0,0,1,25,12.781Zm-13.632,6.47,9.066-9.066a.788.788,0,0,0,0-1.115L19.319,7.956a.788.788,0,0,0-1.115,0L10.81,15.349,7.359,11.9a.788.788,0,0,0-1.115,0L5.129,13.012a.788.788,0,0,0,0,1.115l5.124,5.124a.788.788,0,0,0,1.115,0Z" transform="translate(-0.563 -0.563)"/></svg>');
+            }
+        }
+    }
 }
 
 .single-landingpages {
