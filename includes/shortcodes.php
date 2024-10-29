@@ -743,7 +743,7 @@ class Shortcodes
             });
         </script>
 
-        <?php
+<?php
         return ob_get_clean();
     }
 
@@ -758,60 +758,7 @@ class Shortcodes
                 $atts
             )
         );
-        $query = new WP_Query(array(
-            'p' => $id,
-            'post_type' => 'product',
-        ));
-        global $product;
         echo do_shortcode("[product_page id='$id']");
-        while ($query->have_posts()) {
-            $query->the_post();
-        ?>
-            <div class="main-product-data product-data d-none">
-                <?= _single_product_data(get_the_ID()) ?>
-            </div>
-            <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
-                <section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow" id="buy-now">
-                    <div class="container">
-                        <h2 class="text-center">Buy <?php the_title() ?></h2>
-                        <div class="row g-4">
-                            <div class="col-7 position-relative">
-                                <?php
-                                /**
-                                 * Hook: woocommerce_before_single_product_summary.
-                                 *
-                                 * @hooked woocommerce_show_product_sale_flash - 10
-                                 * @hooked woocommerce_show_product_images - 20
-                                 */
-                                do_action('woocommerce_before_single_product_summary');
-                                ?>
-                            </div>
-                            <div class="col-5">
-                                <div class="summary entry-summary">
-                                    <?php
-                                    /**
-                                     * Hook: woocommerce_single_product_summary.
-                                     *
-                                     * @hooked woocommerce_template_single_title - 5
-                                     * @hooked woocommerce_template_single_rating - 10
-                                     * @hooked woocommerce_template_single_price - 10
-                                     * @hooked woocommerce_template_single_excerpt - 20
-                                     * @hooked woocommerce_template_single_add_to_cart - 30
-                                     * @hooked woocommerce_template_single_meta - 40
-                                     * @hooked woocommerce_template_single_sharing - 50
-                                     * @hooked WC_Structured_Data::generate_product_data() - 60
-                                     */
-                                    
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-<?php
-        }
-        wp_reset_postdata();
         return ob_get_clean();
     }
 }
