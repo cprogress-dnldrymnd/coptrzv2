@@ -197,6 +197,8 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_form_description = get__post_meta('hero_form_description');
     $hero_form_style = get__post_meta('hero_form_style');
     $hero_form = get__post_meta('hero_form');
+    $hero_form_type = get__post_meta('hero_form_type');
+    $hero_form_product = get__post_meta('hero_form_product');
 
 
     if (!$hero_background && !$hero_background_youtube) {
@@ -325,7 +327,13 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
                 'form_style'       => $hero_form_style,
             );
             $hero .= "<div class='col-lg-5'>"; //col
-            $hero .= __form($form_args);
+
+            if ($hero_form_type != 'product') {
+                $hero .= __form($form_args);
+            } else {
+                $hero .= __product_add_to_cart($hero_form_product[0]['id']);
+            }
+
             $hero .= "</div>"; //end-col
 
             $hero .= "</div>"; //end-row
@@ -3211,6 +3219,21 @@ function __popup($id)
     $html .= "</div>"; //modal-content
     $html .= "</div>"; //modal-dialog
     $html .= "</div>"; //modal
+
+    return $html;
+}
+
+function __product_add_to_cart($id)
+{
+    $product = wc_get_product($id);
+
+    $html = "<div class='product-add-to-cart'>";
+
+    $html .=  __image(array(
+        'featured_image' = get_post_thumbnail_id($id)
+    ));
+
+    $html .= "</div>";
 
     return $html;
 }
