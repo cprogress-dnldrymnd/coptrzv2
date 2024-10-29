@@ -1185,7 +1185,7 @@ function __hero_form_fields()
                     )
                 )
             ),
-        Field::make('association', 'hero_form_product', 'Select Form')->set_classes('inline-field')
+        Field::make('association', 'hero_form_product', 'Select Product')->set_classes('inline-field')
             ->set_types(
                 array(
                     array(
