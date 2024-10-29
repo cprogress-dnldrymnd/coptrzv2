@@ -3239,7 +3239,7 @@ function __product_add_to_cart($id)
         'featured_image' => $id
     ));
     $html .= "<div class='button-box button-accent'>";
-    $html .= "<a href='$basket_url?add_to_cart=$id'>Add to basket</a>";
+    $html .= "<a href='$basket_url?add-to-cart=$id'>Add to basket</a>";
     $html .= "</div>";
     $html .= "</div>";
 

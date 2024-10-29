@@ -13319,7 +13319,7 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   display: none !important; }
 
 .product-add-to-cart .button-box a:hover, .product-add-to-cart .button-box a:active, .product-add-to-cart .button-box a:focus {
-  border: 1px solid var(--bs-black); }
+  border: 1px solid var(--bs-black) !important; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
