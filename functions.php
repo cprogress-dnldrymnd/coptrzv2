@@ -85,7 +85,7 @@ function enqueue_scripts()
 	);
 	wp_enqueue_script('main');
 
-	if (is_product() || get_post_type() == 'rentals') {
+	if (is_product() || get_post_type() == 'rentals' || get_post_type() == 'landingpages') {
 		wp_register_script('single-product', assets_dir . 'js/single-product.js', NULL, coptz_version);
 		wp_localize_script(
 			'single-product',
