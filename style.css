@@ -13318,18 +13318,29 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 .sold-individually .quantity {
   display: none !important; }
 
-.product-add-to-cart.product-add-to-cart .button-box a:hover, .product-add-to-cart.product-add-to-cart .button-box a:active, .product-add-to-cart.product-add-to-cart .button-box a:focus {
+.product-add-to-cart.product-add-to-cart.product-add-to-cart .button-box a:hover, .product-add-to-cart.product-add-to-cart.product-add-to-cart .button-box a:active, .product-add-to-cart.product-add-to-cart.product-add-to-cart .button-box a:focus {
   border: 1px solid var(--bs-black) !important; }
-.product-add-to-cart.product-add-to-cart .image-box img {
+.product-add-to-cart.product-add-to-cart.product-add-to-cart .image-box img {
   max-height: 250px;
   width: auto; }
-.product-add-to-cart.product-add-to-cart .description-box {
+.product-add-to-cart.product-add-to-cart.product-add-to-cart .description-box {
   width: 100%; }
-.product-add-to-cart.product-add-to-cart ul li:before {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24.438" height="24.438" viewBox="0 0 24.438 24.438"><path id="Icon_awesome-check-circle" data-name="Icon awesome-check-circle" d="M25,12.781A12.219,12.219,0,1,1,12.781.563,12.219,12.219,0,0,1,25,12.781Zm-13.632,6.47,9.066-9.066a.788.788,0,0,0,0-1.115L19.319,7.956a.788.788,0,0,0-1.115,0L10.81,15.349,7.359,11.9a.788.788,0,0,0-1.115,0L5.129,13.012a.788.788,0,0,0,0,1.115l5.124,5.124a.788.788,0,0,0,1.115,0Z" transform="translate(-0.563 -0.563)"/></svg>'); }
+.product-add-to-cart.product-add-to-cart.product-add-to-cart ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; }
+  .product-add-to-cart.product-add-to-cart.product-add-to-cart ul li {
+    width: 50%; }
+    .product-add-to-cart.product-add-to-cart.product-add-to-cart ul li:before {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24.438" height="24.438" viewBox="0 0 24.438 24.438"><path id="Icon_awesome-check-circle" data-name="Icon awesome-check-circle" d="M25,12.781A12.219,12.219,0,1,1,12.781.563,12.219,12.219,0,0,1,25,12.781Zm-13.632,6.47,9.066-9.066a.788.788,0,0,0,0-1.115L19.319,7.956a.788.788,0,0,0-1.115,0L10.81,15.349,7.359,11.9a.788.788,0,0,0-1.115,0L5.129,13.012a.788.788,0,0,0,0,1.115l5.124,5.124a.788.788,0,0,0,1.115,0Z" transform="translate(-0.563 -0.563)"/></svg>'); }
+.product-add-to-cart.product-add-to-cart.product-add-to-cart .price {
+  font-size: 35px;
+  margin-bottom: 1rem; }
+  .product-add-to-cart.product-add-to-cart.product-add-to-cart .price .woocommerce-price-suffix {
+    font-size: 24px; }
 
 .single-landingpages .product-main {
   display: none !important; }
