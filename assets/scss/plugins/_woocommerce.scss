@@ -1192,3 +1192,9 @@ body {
         border-radius: 10px;
     }
 }
+
+.sold-individually {
+    .quantity {
+        display: none !important;
+    }
+}
