@@ -1206,8 +1206,13 @@ body {
             }
         }
     }
+    .image-box {
+        img {
+            max-height: 250px;
+            width: auto;
+        }
+    }
 }
-
 
 .single-landingpages {
     .product-main {
