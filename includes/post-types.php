@@ -30,7 +30,8 @@ class newPostType
                 'labels'              => array(
                     'name'               => _x($this->name, 'post type general name', $this->text_domain),
                     'singular_name'      => _x($this->singular_name, 'post type singular name', $this->text_domain),
-                    'menu_name'          => _x($this->name, 'admin menu'), $this->text_domain,
+                    'menu_name'          => _x($this->name, 'admin menu'),
+                    $this->text_domain,
                     'name_admin_bar'     => _x($this->singular_name, 'add new on admin bar', $this->text_domain),
                     'add_new'            => _x('Add New', strtolower($this->name), $this->text_domain),
                     'add_new_item'       => __('Add New ' . $this->singular_name, $this->text_domain),
@@ -618,4 +619,16 @@ $Rentals->show_in_rest = true;
 $Rentals->rewrite = array(
     'with_front' => false,
     'slug' => 'rental'
+);
+
+
+$Landing_Page = new newPostType();
+$Landing_Page->name = 'Landing Pages';
+$Landing_Page->singular_name = 'Landing Page';
+$Landing_Page->icon = 'dashicons-portfolio';
+$Landing_Page->supports = array('title', 'revisions', 'editor', 'thumbnail', 'excerpt', 'author');
+$Landing_Page->show_in_rest = true;
+$Landing_Page->rewrite = array(
+    'with_front' => false,
+    'slug' => false
 );
