@@ -1202,7 +1202,7 @@ body {
     .button-box {
         a {
             @include on-event {
-                border: 1px solid var(--bs-black);
+                border: 1px solid var(--bs-black) !important;
             }
         }
     }
