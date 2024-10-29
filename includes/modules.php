@@ -3230,7 +3230,7 @@ function __product_add_to_cart($id)
     $html = "<div class='product-add-to-cart'>";
 
     $html .=  __image(array(
-        'image_id' => get_post_thumbnail_id($id)
+        'featured_image' => $id
     ));
 
     $html .= "</div>";
