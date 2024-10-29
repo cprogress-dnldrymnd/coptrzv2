@@ -6117,6 +6117,7 @@ Container::make('post_meta', __('Sections'))
     ->or_where('post_type', '=', 'industries')
     ->or_where('post_type', '=', 'events')
     ->or_where('post_type', '=', 'rentals')
+    ->or_where('post_type', '=', 'landingpages')
     ->add_fields(__section_fields());
 
 
