@@ -3232,15 +3232,14 @@ function __popup($id)
 
 function __product_add_to_cart($id)
 {
-    $product = wc_get_product($id);
-
+    $basket_url =   wc_get_cart_url();
     $html = "<div class='product-add-to-cart'>";
 
     $html .=  __image(array(
         'featured_image' => $id
     ));
 
-    $html .= "";
+    $html .= "<a href='?add_to_cart=$id&redirect=$basket_url' name='add-to-cart'  class='single_add_to_cart_button button alt'>Add to basket</a>";
     $html .= "</div>";
 
     return $html;
