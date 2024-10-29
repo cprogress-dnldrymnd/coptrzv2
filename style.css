@@ -13323,6 +13323,8 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 .product-add-to-cart .image-box img {
   max-height: 250px;
   width: auto; }
+.product-add-to-cart .description-box {
+  width: 100%; }
 .product-add-to-cart ul li:before {
   width: 24px;
   height: 24px;

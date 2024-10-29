@@ -1198,7 +1198,7 @@ body {
         display: none !important;
     }
 }
-.product-add-to-cart {
+.product-add-to-cart.product-add-to-cart {
     .button-box {
         a {
             @include on-event {
@@ -1211,6 +1211,9 @@ body {
             max-height: 250px;
             width: auto;
         }
+    }
+    .description-box {
+        width: 100%;
     }
     ul {
         li {
