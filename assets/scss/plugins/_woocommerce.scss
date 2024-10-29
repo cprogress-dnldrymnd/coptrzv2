@@ -1199,6 +1199,7 @@ body {
     }
 }
 .product-add-to-cart.product-add-to-cart.product-add-to-cart.product-add-to-cart {
+    margin-top: -20px;
     .button-box {
         a {
             @include on-event {
@@ -1207,6 +1208,7 @@ body {
         }
     }
     .image-box {
+        margin-bottom: 1rem;
         img {
             max-height: 200px;
             width: auto;
