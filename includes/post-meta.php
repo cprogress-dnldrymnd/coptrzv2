@@ -1125,7 +1125,7 @@ function __hero_form_fields()
         Field::make('checkbox', 'hero_form_enable', 'Enable Form Hero')->set_classes('inline-field'),
         Field::make('image', 'hero_form_image', 'Image')->set_classes('inline-field'),
         Field::make('text', 'hero_form_heading', 'Form Heading')->set_classes('inline-field'),
-        Field::make('text', 'hero_form_description', 'Form Description')->set_classes('inline-field'),
+        Field::make('textarea', 'hero_form_description', 'Form Description')->set_classes('inline-field'),
         Field::make('select', 'hero_form_redirect_type', 'Form Redirect Type')->set_classes('inline-field')
             ->set_options(
                 array(
@@ -6539,7 +6539,7 @@ Container::make('post_meta', __('Landing Page Settings'))
             )
             ->set_max(1),
         Field::make('text', 'form_heading', 'Form Heading')->set_classes('inline-field'),
-        Field::make('text', 'form_description', 'Form Description')->set_classes('inline-field'),
+        Field::make('textarea', 'form_description', 'Form Description')->set_classes('inline-field'),
         Field::make('image', 'form_image', 'Form Image')->set_classes('inline-field'),
     ));
 
