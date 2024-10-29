@@ -14,7 +14,8 @@ function action_module_content()
             'industries',
             'producttaxonomypages',
             'layouts',
-            'capabilities'
+            'capabilities',
+            'landingpages'
         );
         if (in_array(get_post_type(), $post_types)) {
             $sections = ___sections();
