@@ -759,6 +759,7 @@ class Shortcodes
                 $atts
             )
         );
+        echo $is_training;
         if ($is_training == 'true') {
             echo custom_product_variation_func($id);
         } 
