@@ -869,7 +869,7 @@ function date_compare_oldest($element1, $element2)
 
 
 
-function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $location = false, $post_type)
+function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $location = false, $post_type_key)
 {
     $SVG = new SVG;
     $product = wc_get_product($product_id);
@@ -987,9 +987,9 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
 
                 $html .= "<div class='button-box button-bordered mt-3'>";
 
-                echo $post_type;
+                echo $post_type_key;
 
-                if ($post_type == 'product') {
+                if ($post_type_key == 'product') {
 
                     $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='product-btn button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'><span class='product-data d-none'>$data_encode</span> Add to basket</a>";
                 } else {
