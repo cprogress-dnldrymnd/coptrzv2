@@ -5442,7 +5442,9 @@ function __section_fields($name = 'sections')
                                         'post_type' => 'product',
                                     )
                                 )
-                            )
+                            ),
+                        Field::make('checkbox', 'is_training_template', 'Is Training Template')
+
                     )),
                 Field::make('html', 'html_3')->set_html('<label>Section Styles</label>')->set_classes('cb-label'),
                 Field::make('complex', 'section_styles', __(''))
