@@ -760,7 +760,7 @@ class Shortcodes
             )
         );
         if ($is_training == 'true') {
-            custom_product_variation_func($id);
+            echo custom_product_variation_func($id);
         } 
         echo do_shortcode("[product_page id='$id']");
 
