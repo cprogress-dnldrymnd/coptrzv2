@@ -761,7 +761,7 @@ class Shortcodes
         );
         if ($is_training == 'true') {
             echo '<section id="add-to-cart">';
-            echo custom_product_variation_func($id);
+            echo training_template($id);
             echo '</section>';
         } 
         echo do_shortcode("[product_page id='$id']");

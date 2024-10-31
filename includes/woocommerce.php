@@ -1012,12 +1012,18 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
 }
 
 
-function training_template()
+function training_template($product_id = 'default')
 {
     ob_start();
+    if ($product_id == 'default') {
+        $id = get_the_ID();
+        global $product;
+    } else {
+        $product = wc_get_product($product_id);
+    }
 ?>
     <section class="training-product md-padding-top md-padding-bottom border-top-default" id="Book-Course">
-        <input type="hidden" name="product_id" value="<?= get_the_ID() ?>">
+        <input type="hidden" name="product_id" value="<?= $id ?>">
         <div class="container">
             <h2 class="text-center">Book a GVC <br> Training Course</h2>
             <div class="post-archive-header">
@@ -1045,7 +1051,6 @@ function training_template()
                                 <div class="row g-3 align-items-center">
                                     <div class="col-auto col-location d-none">
                                         <?php
-                                        global $product;
                                         $children = $product->get_children();
                                         $locations = [];
                                         foreach ($children as $child) {
