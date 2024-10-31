@@ -990,7 +990,6 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 echo $post_type_key;
 
                 if ($post_type_key == 'product') {
-
                     $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='product-btn button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'><span class='product-data d-none'>$data_encode</span> Add to basket</a>";
                 } else {
                     $basket_url =   wc_get_cart_url();
