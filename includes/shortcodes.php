@@ -758,7 +758,9 @@ class Shortcodes
                 $atts
             )
         );
-        echo do_shortcode("[product_page id='$id']");
+        echo do_shortcode(get_post_meta($id, '_sections_html', true));
+        echo do_shortcode(get_post_meta($id, '_sections_after_main_html', true));
+
         return ob_get_clean();
     }
 }
