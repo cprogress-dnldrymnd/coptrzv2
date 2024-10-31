@@ -1108,7 +1108,7 @@ function training_template($product_id = 'default')
                                 <circle id="Ellipse_10" data-name="Ellipse 10" cx="6.5" cy="6.5" r="6.5" transform="translate(80 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle>
                             </svg></div>
                         <div id="results">
-                            <?= custom_product_variation_training($id, 'online-self-paced', false, false) ?>
+                            <?= custom_product_variation_training($id, 'online-self-paced', false, get_post_type()) ?>
                         </div>
                     </div>
                     <div class="col-lg-6">
