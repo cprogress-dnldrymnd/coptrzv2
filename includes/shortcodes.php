@@ -754,11 +754,16 @@ class Shortcodes
             shortcode_atts(
                 array(
                     'id' => '',
+                    'is_training' => 'is_training',
                 ),
                 $atts
             )
         );
-        echo do_shortcode("[product_page id='$id']");
+        if ($is_training == 'true') {
+            custom_product_variation_func($id);
+        } else {
+            echo do_shortcode("[product_page id='$id']");
+        }
         return ob_get_clean();
     }
 }

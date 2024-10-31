@@ -281,7 +281,20 @@ function bbloomer_translate_may_also_like()
 
 function custom_product_variation()
 {
-    global $product;
+    echo custom_product_variation_func();
+}
+
+
+add_action('woocommerce_before_variations_form', 'custom_product_variation');
+
+function custom_product_variation_func($product_id = 'default')
+{
+
+    if ($product_id == 'default') {
+        global $product;
+    } else {
+        $product = wc_get_product($product_id);
+    }
 
     $children = $product->get_children();
     $main_thumbnail = get_post_thumbnail_id($product->get_id());
@@ -361,12 +374,9 @@ function custom_product_variation()
         $html .= '</div>';
 
 
-        echo $html;
+        return $html;
     }
 }
-
-
-add_action('woocommerce_before_variations_form', 'custom_product_variation');
 
 /**
  * Remove hooked actions from single product template to remove unwanted elements
@@ -978,7 +988,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                     'heading' => $product_attribute_array['course-type'],
                     'tag'     => 'h3'
                 ));
-              
+
                 $html .= '<div>';
                 $html .= $price;
                 $html .= '</div>';
@@ -1852,7 +1862,7 @@ function ga4()
 
             function ga4_add_to_cart_single() {
                 quantity = jQuery('input[name="quantity"]').val();
-                if(quantity) {
+                if (quantity) {
                     quantity_val = quantity;
                 } else {
                     quantity_val = 1;
