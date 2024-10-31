@@ -986,6 +986,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 $html .= '</div>';
 
                 $html .= "<div class='button-box button-bordered mt-3'>";
+
                 echo $post_type;
 
                 if ($post_type == 'product') {
@@ -1036,7 +1037,7 @@ function training_template($product_id = 'default')
 ?>
     <section class="training-product md-padding-top md-padding-bottom border-top-default" id="Book-Course">
         <input type="hidden" name="product_id" value="<?= $id ?>">
-        <input type="hidden" name="post_type" value="<?= get_post_type() ?>">
+        <input type="hidden" name="post_type_key" value="<?= get_post_type() ?>">
         <div class="container">
             <h2 class="text-center">Book a GVC <br> Training Course</h2>
             <div class="post-archive-header">
