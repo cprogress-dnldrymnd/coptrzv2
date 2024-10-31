@@ -1034,6 +1034,7 @@ function training_template($product_id = 'default')
 ?>
     <section class="training-product md-padding-top md-padding-bottom border-top-default" id="Book-Course">
         <input type="hidden" name="product_id" value="<?= $id ?>">
+        <input type="hidden" name="post_type" value="<?= get_post_type() ?>">
         <div class="container">
             <h2 class="text-center">Book a GVC <br> Training Course</h2>
             <div class="post-archive-header">

@@ -55,6 +55,7 @@ function __training_ajax($delivery_method = false) {
         }
         $location = jQuery('select[name="location"]').val();
 
+
         if ($delivery_method_val == 'classroom') {
             jQuery('.col-location').removeClass('d-none');
         } else {
