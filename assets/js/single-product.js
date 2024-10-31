@@ -47,7 +47,7 @@ function __training_ajax($delivery_method = false) {
     setTimeout(function () {
         $result_holder = jQuery('#results');
         $product_id = jQuery('input[name="product_id"]').val();
-        $post_type = jQuery('input[name="post_type_key"]').val();
+        $post_type_key = jQuery('input[name="post_type_key"]').val();
         if ($delivery_method) {
             $delivery_method_val = $delivery_method;
         } else {
@@ -78,7 +78,7 @@ function __training_ajax($delivery_method = false) {
                 product_id: $product_id,
                 delivery_method: $delivery_method_val,
                 location: $location,
-                post_type: $post_type
+                post_type_key: $post_type_key
             },
 
             success: function (response) {
