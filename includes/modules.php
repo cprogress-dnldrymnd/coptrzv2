@@ -1232,8 +1232,8 @@ function ___sections($id = 'sections', $post_id = '')
                         break;
                     case 'product':
                         $product = $items['product'][0]['id'];
-                        $is_training_template = $items['is_training_template'] ? 'true' : 'false';
-                        $html .= "[product_add_to_cart id=$product is_training='$is_training_template']";
+                        $is_training_template = ($items['is_training_template']) ? 'true' : 'false';
+                        $html .= "[product_add_to_cart id='$product' is_training='$is_training_template']";
                         break;
                 }
             }
