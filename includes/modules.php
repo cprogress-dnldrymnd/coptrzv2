@@ -3235,6 +3235,7 @@ function __popup($id)
 function __product_add_to_cart($id, $description_args)
 {
     $product = wc_get_product($id);
+    $type = $product->get_type();
     $basket_url =   wc_get_cart_url();
     $html = "<div class='product-add-to-cart'>";
 
@@ -3248,7 +3249,11 @@ function __product_add_to_cart($id, $description_args)
     $html .= "</div>";
 
     $html .= "<div class='button-box button-accent text-center'>";
-    $html .= "<a class='w-100' href='$basket_url?add-to-cart=$id'>Buy now</a>";
+    if ($type == 'simple') {
+        $html .= "<a class='w-100' href='$basket_url?add-to-cart=$id'>Buy now</a>";
+    } else {
+        $html .= "<a class='w-100' href='#buy-now'>Buy now</a>";
+    }
     $html .= "</div>";
     $html .= "</div>";
 
