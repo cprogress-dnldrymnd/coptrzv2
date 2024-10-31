@@ -754,7 +754,7 @@ class Shortcodes
             shortcode_atts(
                 array(
                     'id' => '',
-                    'is_training' => 'is_training',
+                    'is_training' => 'false',
                 ),
                 $atts
             )
