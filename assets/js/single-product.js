@@ -47,6 +47,7 @@ function __training_ajax($delivery_method = false) {
     setTimeout(function () {
         $result_holder = jQuery('#results');
         $product_id = jQuery('input[name="product_id"]').val();
+        $post_type = jQuery('input[name="post_type"]').val();
         if ($delivery_method) {
             $delivery_method_val = $delivery_method;
         } else {
@@ -77,6 +78,7 @@ function __training_ajax($delivery_method = false) {
                 product_id: $product_id,
                 delivery_method: $delivery_method_val,
                 location: $location,
+                post_type: $post_type
             },
 
             success: function (response) {
@@ -171,7 +173,7 @@ function __product_gallery() {
         },
     });
 
-} 
+}
 /*without add to cart
 function __product_variation() {
 
