@@ -869,7 +869,7 @@ function date_compare_oldest($element1, $element2)
 
 
 
-function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $location = false, $post_type)
+function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $location = false)
 {
     $SVG = new SVG;
     $product = wc_get_product($product_id);
@@ -987,7 +987,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
 
                 $html .= "<div class='button-box button-bordered mt-3'>";
 
-                if ($post_type == 'product') {
+                if (get_post_type() == 'product') {
                     $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='product-btn button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'><span class='product-data d-none'>$data_encode</span> Add to basket</a>";
                 } else {
                     $basket_url =   wc_get_cart_url();
@@ -1104,7 +1104,7 @@ function training_template($product_id = 'default')
                                 <circle id="Ellipse_10" data-name="Ellipse 10" cx="6.5" cy="6.5" r="6.5" transform="translate(80 55)" fill="none" stroke="#2DA1FF" stroke-width="3"></circle>
                             </svg></div>
                         <div id="results">
-                            <?= custom_product_variation_training($id, 'online-self-paced', false, false, get_post_type()) ?>
+                            <?= custom_product_variation_training($id, 'online-self-paced', false, false) ?>
                         </div>
                     </div>
                     <div class="col-lg-6">
