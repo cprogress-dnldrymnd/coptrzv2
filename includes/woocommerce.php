@@ -869,7 +869,7 @@ function date_compare_oldest($element1, $element2)
 
 
 
-function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $location = false, $post_type)
+function custom_product_variation_training($product_id, $delivery_method = 'online-self-paced', $location = false, $post_type = 'product')
 {
     $SVG = new SVG;
     $product = wc_get_product($product_id);
