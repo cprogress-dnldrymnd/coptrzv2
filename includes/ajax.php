@@ -95,7 +95,7 @@ function training_ajax()
 	$product_id = isset($_POST['product_id']) ? $_POST['product_id'] : 'online-self-paced';
 	$delivery_method = isset($_POST['delivery_method']) ? $_POST['delivery_method'] : 'online-self-paced';
 	$location = isset($_POST['location']) ? $_POST['location'] : false;
-	custom_product_variation_training($product_id, $delivery_method, $sortby, $location);
+	custom_product_variation_training($product_id, $delivery_method, $location);
 	die();
 }
 
