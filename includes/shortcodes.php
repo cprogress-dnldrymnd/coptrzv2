@@ -267,7 +267,7 @@ class Shortcodes
         $html .= "</div>"; //end-swiper-holder
         $html .= "</div>"; //end case-study-slider
 
-        return $html;
+        return do_shortcode($html);
     }
 
     function layouts($atts)
