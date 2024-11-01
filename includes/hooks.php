@@ -509,3 +509,14 @@ function action_body_scripts()
 }
 
 add_action('wp_body_open', 'action_body_scripts');
+
+
+function remove_canonical()
+{
+
+    // Disable for 'search' page
+    if (is_category()) {
+        add_filter('wpseo_canonical', '__return_false',  10, 1);
+    }
+}
+add_action('wp', 'remove_canonical');
