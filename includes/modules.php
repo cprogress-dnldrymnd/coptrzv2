@@ -20,9 +20,7 @@ function action_module_content()
         if (in_array(get_post_type(), $post_types)) {
             $sections = ___sections();
             $sections_after_main = ___sections('sections_after_main');
-            if ($sections) {
-                update_post_meta(get_the_ID(), '_sections_html', $sections);
-            }
+            update_post_meta(get_the_ID(), '_sections_html', $sections);
             update_post_meta(get_the_ID(), '_sections_after_main_html', $sections_after_main);
 
             if (get_post_type() == 'producttaxonomypages') {
