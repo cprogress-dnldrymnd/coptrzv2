@@ -117,7 +117,7 @@ function header_menu()
 
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
-							$status = get_post_status($submenu2_id);
+							$status = get_post_status($submenu2['ID']);
 							if ($status == 'publish') {
 								$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
 									return ($var['menu_item_parent'] == $submenu2_id);
