@@ -117,16 +117,16 @@ function header_menu()
 
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
-							$status = get_post_status($submenu2_id);
-							if ($status == 'publish') {
+							$post_id = url_to_postid($submenu2['url']);
+							$status = get_post_status($post_id);
+							if ($status == 'publish' || $post_id == 0) {
 								$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
 									return ($var['menu_item_parent'] == $submenu2_id);
 								});
 
-								$post_url = url_to_postid($submenu2['url']);
 
 
-								$html .= '<li>'.$post_url;
+								$html .= '<li>';
 								$html .= '<a id="anchor-submenu-' . $submenu2_id . '" class="nav-link text-black  ' . ($submenus3 ? 'has-children-tab' : '') . '"  url_target="#submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">';
 								$html .= $submenu2['title'];
 
