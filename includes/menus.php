@@ -117,22 +117,25 @@ function header_menu()
 
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
-							$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
-								return ($var['menu_item_parent'] == $submenu2_id);
-							});
+							$status = get_post_status($submenu2_id);
+							if ($status == 'publish') {
+								$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
+									return ($var['menu_item_parent'] == $submenu2_id);
+								});
 
 
 
-							$html .= '<li>';
-							$html .= '<a id="anchor-submenu-' . $submenu2_id . '" class="nav-link text-black  ' . ($submenus3 ? 'has-children-tab' : '') . '"  url_target="#submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">';
-							$html .= $submenu2['title'];
+								$html .= '<li>';
+								$html .= '<a id="anchor-submenu-' . $submenu2_id . '" class="nav-link text-black  ' . ($submenus3 ? 'has-children-tab' : '') . '"  url_target="#submenu-' . $submenu2_id . '" href="' . $submenu2['url'] . '">';
+								$html .= $submenu2['title'];
 
-							if ($submenus3) {
-								$html .= '<span class="icon"></span>';
+								if ($submenus3) {
+									$html .= '<span class="icon"></span>';
+								}
+								$html .= '</a>';
+
+								$html .= '</li>';
 							}
-							$html .= '</a>';
-
-							$html .= '</li>';
 						}
 						$html .= '</ul>';
 
