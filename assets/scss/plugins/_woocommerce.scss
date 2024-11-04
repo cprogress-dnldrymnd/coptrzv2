@@ -1244,4 +1244,37 @@ body {
     .product-main {
         display: none !important;
     }
+
+    .product-add-to-cart.product-add-to-cart.product-add-to-cart.product-add-to-cart .price {
+        margin-bottom: 2rem;
+        font-size: 45px;
+        font-weight: 500;
+    }
+    .product-add-to-cart.product-add-to-cart.product-add-to-cart.product-add-to-cart .price .woocommerce-price-suffix {
+        font-weight: 300;
+    }
+
+    .products .product-desc p strong:first-child {
+        display: none !important;
+    }
+    .training-list {
+        .swiper-button-next,
+        .swiper-button-prev {
+            display: none;
+        }
+        .swiper-wrapper {
+            flex-direction: column;
+            transform: none !important;
+        }
+        .swiper-slide {
+            margin-bottom: 24px;
+        }
+    }
+    .training-map-holder {
+        position: sticky !important;
+        top: 40px;
+    }
+    #buy-now, #buy-now section {
+        overflow: unset !important;
+    }
 }
