@@ -892,6 +892,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
             $month = $date[2];
             $year = $date[3];
             $date_format = $date_start . '-' . $month . '-' . $year;
+            $date_format_end = $date_end . '-' . $month . '-' . $year;
 
             $child_array[] = array(
                 'product_id'             => $child,
@@ -901,6 +902,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 'stock_status_variation' => $variation->get_stock_status(),
                 'location'               => $product_attribute_array['pa_location'],
                 'datetime'               => $date_format,
+                'datetime_end'               => $date_format_end,
                 'date_start'               => $date_start,
                 'date_end'               => $date_end,
                 'month'               => $month,
@@ -939,10 +941,8 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 $price = $child['price'];
                 $product_attributes = $child['product_attributes'];
                 $stock_status_variation = $child['stock_status_variation'];
-                $date_start = $child['date_start'];
-                $date_end = $child['date_end'];
-                $month = $child['month'];
-                $year = $child['year'];
+                $datetime = $child['datetime'];
+                $date_format_end = $child['date_format_end'];
 
                 $variation_name = '';
                 $lastElement = end($product_attributes);
@@ -974,7 +974,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                         if ($product_attribute_array['date'] != 'N/A') {
                             $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
                             if (current_user_can('administrator')) {
-                                $html .= $month;
+                                $html .= _date_format_v2($datetime, 'month');
                             } else {
                                 $html .= $product_attribute_array['date'];
                             }

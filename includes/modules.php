@@ -51,7 +51,6 @@ function _date_format($date_input, $include_year = false)
     $day = date('j', $date);
     $sup = date('S', $date);
     $month = date('F', $date);
-    $Y = date('y', $date);
     $newDate = " $day";
     $newDate .= "<sup>$sup</sup>";
     $newDate .= " $month";
@@ -65,11 +64,29 @@ function _date_format($date_input, $include_year = false)
     return $newDate;
 }
 
-function _date_format_v2($date_input, $format)
+function _date_format_v2($date_input, $include = 'day')
 {
     $date = strtotime($date_input);
+    $day = date('j', $date);
+    $sup = date('S', $date);
+    $month = date('F', $date);
+    if ($include == 'day') {
+        $newDate = " $day";
+        $newDate .= "<sup>$sup</sup>";
+    }
 
-    return date($format, $date);
+    if ($include == 'month') {
+        $newDate .= " $month";
+    }
+
+    if ($include == 'year') {
+        $current_year = date("Y");
+        $year = date('Y', $date);
+        if ($year != $current_year) {
+            $newDate .= " $year";
+        }
+    }
+    return $newDate;
 }
 function modify_get_pagenum_link_defaults($result, $pagenum)
 {
