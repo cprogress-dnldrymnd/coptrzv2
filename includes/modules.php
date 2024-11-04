@@ -67,7 +67,9 @@ function _date_format($date_input, $include_year = false)
 
 function _date_format_v2($date_input, $format)
 {
-    return date($format, $date_input);
+    $date = strtotime($date_input);
+
+    return date($format, $date);
 }
 function modify_get_pagenum_link_defaults($result, $pagenum)
 {
