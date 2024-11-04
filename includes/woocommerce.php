@@ -900,7 +900,11 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 'price'                  => $variation->get_price_html(),
                 'stock_status_variation' => $variation->get_stock_status(),
                 'location'               => $product_attribute_array['pa_location'],
-                'datetime'               => $date_format
+                'datetime'               => $date_format,
+                'date_start'               => $date_start,
+                'date_end'               => $date_end,
+                'month'               => $month,
+                'year'               => $year,
             );
         }
     }
@@ -935,7 +939,10 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 $price = $child['price'];
                 $product_attributes = $child['product_attributes'];
                 $stock_status_variation = $child['stock_status_variation'];
-                $datetime = $child['datetime'];
+                $date_start = $child['date_start'];
+                $date_end = $child['date_end'];
+                $month = $child['month'];
+                $year = $child['year'];
 
                 $variation_name = '';
                 $lastElement = end($product_attributes);
@@ -967,7 +974,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                         if ($product_attribute_array['date'] != 'N/A') {
                             $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
                             if (current_user_can('administrator')) {
-                                $html .= _date_format($datetime, true);
+                                $html .= _date_format_v2($month, 'F');
                             } else {
                                 $html .= $product_attribute_array['date'];
                             }
