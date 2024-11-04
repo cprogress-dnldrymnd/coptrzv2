@@ -935,6 +935,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 $price = $child['price'];
                 $product_attributes = $child['product_attributes'];
                 $stock_status_variation = $child['stock_status_variation'];
+                $datetime = $child['datetime'];
 
                 $variation_name = '';
                 $lastElement = end($product_attributes);
@@ -966,7 +967,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                         if ($product_attribute_array['date'] != 'N/A') {
                             $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
                             if (current_user_can('administrator')) {
-                                $html .= _date_format($product_attribute_array['date'], true);
+                                $html .= _date_format($datetime, true);
                             } else {
                                 $html .= $product_attribute_array['date'];
                             }
