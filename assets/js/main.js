@@ -36,7 +36,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 function __utm_parameters() {
     setTimeout(function () {
         utm_val('utm_source');
-    }, 1000);
+    }, 3000);
 
 }
 
