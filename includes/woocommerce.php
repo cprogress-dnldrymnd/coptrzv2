@@ -942,7 +942,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 $product_attributes = $child['product_attributes'];
                 $stock_status_variation = $child['stock_status_variation'];
                 $datetime = $child['datetime'];
-                $date_format_end = $child['date_format_end'];
+                $datetime_end = $child['datetime_end'];
 
                 $variation_name = '';
                 $lastElement = end($product_attributes);
