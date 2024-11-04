@@ -12,7 +12,46 @@ jQuery(document).ready(function () {
     __toggle_input();
     __blog_content();
     __hero();
+    //__utm_parameters();
 });
+
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+};
+
+
+function __utm_parameters() {
+    setTimeout(function () {
+        utm_val('utm_campaign');
+        utm_val('utm_source');
+        utm_val('utm_medium');
+        utm_val('utm_term');
+        utm_val('utm_content');
+        utm_val('gclid');
+        utm_val('dclid');
+    }, 3000);
+
+}
+
+function utm_val(name) {
+    var val = getUrlParameter(name);
+    if (val != false) {
+        jQuery('input[name="' + name + '"]').val(val);
+    }
+}
 
 
 function __ajax_brands() {
