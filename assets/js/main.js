@@ -35,15 +35,22 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 function __utm_parameters() {
     setTimeout(function () {
+        utm_val('utm_campaign');
         utm_val('utm_source');
+        utm_val('utm_medium');
+        utm_val('utm_term');
+        utm_val('utm_content');
+        utm_val('gclid');
+        utm_val('dclid');
     }, 3000);
 
 }
 
 function utm_val(name) {
     var val = getUrlParameter(name);
-    jQuery('input[name="' + name + '"]').val(val);
-    console.log(val);
+    if (val != false) {
+        jQuery('input[name="' + name + '"]').val(val);
+    }
 }
 
 

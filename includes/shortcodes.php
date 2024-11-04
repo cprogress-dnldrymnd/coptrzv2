@@ -763,10 +763,26 @@ class Shortcodes
             echo '<section id="add-to-cart">';
             echo training_template($id);
             echo '</section>';
-        } 
+        }
         echo do_shortcode("[product_page id='$id']");
 
         return ob_get_clean();
+    }
+
+    function get_url_param($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'val' => '',
+                ),
+                $atts
+            )
+        );
+        $val = isset($_GET['val']) ? $_GET['val'] : false;
+        if ($val) {
+            return $val;
+        }
     }
 }
 $Shortcodes = new Shortcodes;
@@ -796,3 +812,4 @@ add_shortcode('product_slider', array($Shortcodes, 'product_slider'));
 add_shortcode('post_id', array($Shortcodes, 'post_id'));
 add_shortcode('rentals_script', array($Shortcodes, 'rentals_script'));
 add_shortcode('product_add_to_cart', array($Shortcodes, 'product_add_to_cart'));
+add_shortcode('get_url_param', array($Shortcodes, 'get_url_param'));
