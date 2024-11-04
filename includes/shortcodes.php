@@ -779,7 +779,7 @@ class Shortcodes
                 $atts
             )
         );
-        $val = isset($_GET['val']) ? $_GET['val'] : false;
+        $val = isset($_GET[$val]) ? $_GET[$val] : false;
         if ($val) {
             return $val;
         }
