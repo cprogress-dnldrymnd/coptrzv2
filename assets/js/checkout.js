@@ -4,6 +4,7 @@ jQuery(document).ready(function () {
     apply_coupon_custom();
     input_fields_checkout();
     phone_input();
+    utm_parameters();
 });
 
 var getUrlParameter = function getUrlParameter(sParam) {
