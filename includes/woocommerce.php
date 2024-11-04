@@ -978,7 +978,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                                 $html .= "&nbsp";
                                 $html .= _date_format_v2($datetime, 'day');
                                 $html .= "-";
-                                $html .= _date_format_v2($date_format_end, 'day');
+                                $html .= _date_format_v2($datetime_end, 'day');
                                 $html .= "&nbsp";
                                 $html .= _date_format_v2($datetime, 'year');
                             } else {
