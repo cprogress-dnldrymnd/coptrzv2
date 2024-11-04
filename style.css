@@ -13348,6 +13348,27 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
 
 .single-landingpages .product-main {
   display: none !important; }
+.single-landingpages .product-add-to-cart.product-add-to-cart.product-add-to-cart.product-add-to-cart .price {
+  margin-bottom: 2rem;
+  font-size: 45px;
+  font-weight: 500; }
+.single-landingpages .product-add-to-cart.product-add-to-cart.product-add-to-cart.product-add-to-cart .price .woocommerce-price-suffix {
+  font-weight: 300; }
+.single-landingpages .products .product-desc p strong:first-child {
+  display: none !important; }
+.single-landingpages .training-list .swiper-button-next,
+.single-landingpages .training-list .swiper-button-prev {
+  display: none; }
+.single-landingpages .training-list .swiper-wrapper {
+  flex-direction: column;
+  transform: none !important; }
+.single-landingpages .training-list .swiper-slide {
+  margin-bottom: 24px; }
+.single-landingpages .training-map-holder {
+  position: sticky !important;
+  top: 40px; }
+.single-landingpages #buy-now, .single-landingpages #buy-now section {
+  overflow: unset !important; }
 
 .wpforms-submit.wpforms-submit.wpforms-submit {
   padding: 1.25rem 2.5rem;
