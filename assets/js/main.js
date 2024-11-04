@@ -38,10 +38,9 @@ function __utm_parameters() {
 }
 
 function utm_val(name) {
-    var val = GetURLParameter(name);
+    var val = getUrlParameter(name);
     jQuery('input[name="' + name + '"]').val(val);
     console.log(val);
-    return;
 }
 
 
