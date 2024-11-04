@@ -886,6 +886,13 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
         }
 
         if ($product_attribute_array['pa_delivery-methods'] == $delivery_method) {
+            $date = explode(':', $product_attribute_array['date']);
+            $date_start = $date[0];
+            $date_end = $date[1];
+            $month = $date[2];
+            $year = $date[3];
+            $date_format = $date_start . '-' . $month . '-' . $year;
+
             $child_array[] = array(
                 'product_id'             => $child,
                 'product_attributes'     => $variation->get_attributes(),
@@ -893,7 +900,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 'price'                  => $variation->get_price_html(),
                 'stock_status_variation' => $variation->get_stock_status(),
                 'location'               => $product_attribute_array['pa_location'],
-                'datetime'               => $product_attribute_array['date']
+                'datetime'               => $date_format
             );
         }
     }
