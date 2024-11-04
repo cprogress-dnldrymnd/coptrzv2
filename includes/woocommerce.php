@@ -975,6 +975,11 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                             $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
                             if (current_user_can('administrator')) {
                                 $html .= _date_format_v2($datetime, 'month');
+                                $html .= "&nbsp";
+                                $html .= _date_format_v2($datetime, 'day');
+                                $html .= "-";
+                                $html .= _date_format_v2($date_format_end, 'day');
+                                $html .= _date_format_v2($datetime, 'year');
                             } else {
                                 $html .= $product_attribute_array['date'];
                             }
