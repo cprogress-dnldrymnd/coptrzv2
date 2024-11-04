@@ -958,7 +958,11 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                         $html .= "<div class='col-auto'>";
                         if ($product_attribute_array['date'] != 'N/A') {
                             $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
-                            $html .= $product_attribute_array['date'];
+                            if (current_user_can('administrator')) {
+                                $html .= _date_format($product_attribute_array['date'], true);
+                            } else {
+                                $html .= $product_attribute_array['date'];
+                            }
                             $html .= '</span>';
                         }
                         $html .= '</div>';
