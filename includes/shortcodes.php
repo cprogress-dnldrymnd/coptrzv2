@@ -788,7 +788,7 @@ class Shortcodes
     function current_url()
     {
         global $wp;
-        return home_url($wp->request);
+        return 'test';
     }
 }
 $Shortcodes = new Shortcodes;
