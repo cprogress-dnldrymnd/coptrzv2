@@ -787,7 +787,7 @@ class Shortcodes
 
     function current_url()
     {
-        return basename($_SERVER['REQUEST_URI']);
+        return get_permalink() . basename($_SERVER['REQUEST_URI']);
     }
 }
 $Shortcodes = new Shortcodes;
