@@ -207,8 +207,6 @@ function __ajax_trigger() {
     });
 
 
-
-
     function doneTyping() {
         __ajax();
     }

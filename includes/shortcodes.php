@@ -784,8 +784,15 @@ class Shortcodes
             return $val;
         }
     }
+
+    function current_url()
+    {
+        global $wp;
+        return home_url($wp->request);
+    }
 }
 $Shortcodes = new Shortcodes;
+add_shortcode('current_url', array($Shortcodes, 'current_url'));
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
 add_shortcode('breadcrumbs', array($Shortcodes, 'breadcrumbs'));
 add_shortcode('product_grid_display', array($Shortcodes, 'product_grid_display'));
