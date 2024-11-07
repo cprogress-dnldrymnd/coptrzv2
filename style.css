@@ -12348,6 +12348,9 @@ hr {
   margin-bottom: 2rem;
   margin-top: 2rem; }
 
+.swiper-case-study-v2 .description-box {
+  font-size: 28px; }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }

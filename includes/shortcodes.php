@@ -219,7 +219,7 @@ class Shortcodes
 
                     foreach ($features as $feature) {
                         $feature_text = $feature['feature_text'];
-                        $html .= "<li class='col-lg-6'> $check $feature_text</li>";
+                        $html .= "<li class='col-lg-6'> <span class='d-flex align-items-center'>$check $feature_text</span> </li>";
                     }
 
                     $html .= "</ul>";
