@@ -2392,6 +2392,46 @@ function __section_fields($name = 'sections')
                                                         'col-1'  => '08.33%',
                                                     )
                                                 ),
+                                            Field::make('select', 'background_color', 'Background Color')
+                                                ->set_options(
+                                                    array(
+                                                        'bg-primary'    => 'Primary',
+                                                        'bg-secondary'  => 'Secondary',
+                                                        'bg-accent'     => 'Accent',
+                                                        'bg-white'      => 'White',
+                                                        'bg-light-gray' => 'Light Gray',
+                                                        'bg-custom'     => 'Custom',
+                                                    )
+                                                ),
+                                            Field::make('color', 'background_color_custom', __('Background Color'))
+                                                ->set_conditional_logic(
+                                                    array(
+                                                        array(
+                                                            'field' => 'background_color',
+                                                            'value' => 'bg-custom',
+                                                        )
+                                                    )
+                                                ),
+                                            Field::make('select', 'text_color', 'Text Color')
+                                                ->set_options(
+                                                    array(
+                                                        'text-primary'    => 'Primary',
+                                                        'text-secondary'  => 'Secondary',
+                                                        'text-accent'     => 'Accent',
+                                                        'text-white'      => 'White',
+                                                        'text-light-gray' => 'Light Gray',
+                                                        'text-custom'     => 'Custom',
+                                                    )
+                                                ),
+                                            Field::make('color', 'text_color_custom', __('Text Color'))
+                                                ->set_conditional_logic(
+                                                    array(
+                                                        array(
+                                                            'field' => 'text_color',
+                                                            'value' => 'text-custom',
+                                                        )
+                                                    )
+                                                ),
                                             Field::make('complex', 'items', __('Items'))
                                                 ->set_layout('tabbed-vertical')
                                                 ->add_fields(
