@@ -175,99 +175,111 @@ class Shortcodes
         }
     }
 
-    function case_study_slider_grid()
+    function case_study_slider_grid($atts)
     {
+        extract(
+            shortcode_atts(
+                array(
+                    'style' => '',
+                ),
+                $atts
+            )
+        );
 
         $casestudies_featured = get__theme_option('casestudies_featured');
-        $html = "<div class='case-study-slider text-white mx-20px'>"; //case-study-slider
-        $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
-        $html .= "<div class='swiper swiper-full-width'>"; //swiper
 
-        $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+        if ($style == 'style-2') {
+        } else {
+            $html = "<div class='case-study-slider text-white mx-20px'>"; //case-study-slider
+            $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
+            $html .= "<div class='swiper swiper-full-width'>"; //swiper
 
-        foreach ($casestudies_featured as $casestudies) {
-            $id = $casestudies['id'];
-            $post_excerpt = wpautop(get_the_excerpt($id));
-            $features = get__post_meta_by_id($id, 'feature');
-            $logo = get__post_meta_by_id($id, 'logo');
-            $html .= "<div class='swiper-slide bg-primary rounded-corner'>"; //swiper-slide
+            $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
-            $html .= "<div class='inner  md-padding-bottom md-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
+            foreach ($casestudies_featured as $casestudies) {
+                $id = $casestudies['id'];
+                $post_excerpt = wpautop(get_the_excerpt($id));
+                $features = get__post_meta_by_id($id, 'feature');
+                $logo = get__post_meta_by_id($id, 'logo');
+                $html .= "<div class='swiper-slide bg-primary rounded-corner'>"; //swiper-slide
 
-            $html .= "<div class='container'>"; //container
-            $html .= "<div class='row g-5'>"; //row
+                $html .= "<div class='inner  md-padding-bottom md-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
 
-            $html .= "<div class='col-lg-8 col-left text-center text-lg-start'>";
-            $html .= __description(array(
-                'description' => $post_excerpt,
-                'class'       => _attribute('class', array('description-box big-text mb-lg-5'))
-            ));
-            if ($logo) {
-                $html .= __image(array(
-                    'image_id'    => $logo,
-                    'placeholder' => true,
-                    'size'        => 'large',
-                    'class'       => _attribute('class', array('logo-box'))
+                $html .= "<div class='container'>"; //container
+                $html .= "<div class='row g-5'>"; //row
+
+                $html .= "<div class='col-lg-8 col-left text-center text-lg-start'>";
+                $html .= __description(array(
+                    'description' => $post_excerpt,
+                    'class'       => _attribute('class', array('description-box big-text mb-lg-5'))
                 ));
-            }
-            $html .= "</div>";
+                if ($logo) {
+                    $html .= __image(array(
+                        'image_id'    => $logo,
+                        'placeholder' => true,
+                        'size'        => 'large',
+                        'class'       => _attribute('class', array('logo-box'))
+                    ));
+                }
+                $html .= "</div>";
 
-            if ($features) {
-                $html .= "<div class='col-lg-4 col-right'>";
-                $html .= "<div class='meta-data text-center text-lg-end'>";
-                $html .= "<ul class='list-inline p-0'>";
+                if ($features) {
+                    $html .= "<div class='col-lg-4 col-right'>";
+                    $html .= "<div class='meta-data text-center text-lg-end'>";
+                    $html .= "<ul class='list-inline p-0'>";
 
-                foreach ($features as $feature) {
-                    $feature_text = $feature['feature_text'];
-                    $html .= "<li class='mb-3'>$feature_text</li>";
+                    foreach ($features as $feature) {
+                        $feature_text = $feature['feature_text'];
+                        $html .= "<li class='mb-3'>$feature_text</li>";
+                    }
+
+                    $html .= "</ul>";
+                    $html .= "</div>";
+                    $html .= "</div>";
                 }
 
-                $html .= "</ul>";
-                $html .= "</div>";
-                $html .= "</div>";
+                $html .= "</div>"; //end-row
+                $html .= "</div>"; //end-container
+                $html .= "</div>"; //end-inner
+                $html .= "</div>"; //end-swiper-slide
             }
 
-            $html .= "</div>"; //end-row
-            $html .= "</div>"; //end-container
-            $html .= "</div>"; //end-inner
-            $html .= "</div>"; //end-swiper-slide
+
+
+            $html .= "</div>"; //end-swiper-wrapper
+            $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-center justify-content-lg-between align-items-end'>";
+            $html .= "<div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div>";
+
+            $html .= "<div class='col-auto'>";
+            $html .= "<div class='row g-4 text-center button-group-box justify-content-center align-items-center d-inline-flex'>";
+            $html .= __button(array(
+                'button_type'  => get_post_type($id),
+                'button_text'  => 'Read Case Study',
+                'button_url'   => $id,
+                'button_style' => 'button-accent col-12 col-sm-auto',
+            ));
+
+            $html .= __button(array(
+                'button_type'       => 'custom',
+                'button_text'       => 'All Case Studies',
+                'button_url_custom' => get_post_type_archive_link('casestudies'),
+                'button_style'      => 'button-bordered col-12 col-sm-auto',
+            ));
+            $html .= "</div>";
+            $html .= "</div>";
+
+
+
+            $html .= "</div></div></div>";
+
+
+
+            $html .= "</div>"; //end-swiper
+            $html .= "</div>"; //end-swiper-holder
+            $html .= "</div>"; //end case-study-slider
+
+            return do_shortcode($html);
         }
-
-
-
-        $html .= "</div>"; //end-swiper-wrapper
-        $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-center justify-content-lg-between align-items-end'>";
-        $html .= "<div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div>";
-
-        $html .= "<div class='col-auto'>";
-        $html .= "<div class='row g-4 text-center button-group-box justify-content-center align-items-center d-inline-flex'>";
-        $html .= __button(array(
-            'button_type'  => get_post_type($id),
-            'button_text'  => 'Read Case Study',
-            'button_url'   => $id,
-            'button_style' => 'button-accent col-12 col-sm-auto',
-        ));
-
-        $html .= __button(array(
-            'button_type'       => 'custom',
-            'button_text'       => 'All Case Studies',
-            'button_url_custom' => get_post_type_archive_link('casestudies'),
-            'button_style'      => 'button-bordered col-12 col-sm-auto',
-        ));
-        $html .= "</div>";
-        $html .= "</div>";
-
-
-
-        $html .= "</div></div></div>";
-
-
-
-        $html .= "</div>"; //end-swiper
-        $html .= "</div>"; //end-swiper-holder
-        $html .= "</div>"; //end case-study-slider
-
-        return do_shortcode($html);
     }
 
     function layouts($atts)
