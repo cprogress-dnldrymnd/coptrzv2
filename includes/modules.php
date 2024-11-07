@@ -2007,7 +2007,7 @@ function ____columns_modules($items, $id, $html = '')
         if ($individual_column_settings) {
             $column_styles = $column['column_styles'];
             $classes = [];
-            $styles = [];
+            $styles_col = [];
             $column_class = [];
 
             foreach ($column_styles as $column_style) {
@@ -2082,14 +2082,14 @@ function ____columns_modules($items, $id, $html = '')
                         $text_color_custom = $column_style['text_color_custom'];
                         $classes[] = $column_style['text_color'];
                         if ($text_color_custom) {
-                            $styles[] = 'color: ' . $text_color_custom;
+                            $styles_col[] = 'color: ' . $text_color_custom;
                         }
                         break;
                     case 'background_color':
                         $background_color_custom = $column_style['background_color_custom'];
                         $classes[] = $column_style['background_color'];
                         if ($background_color_custom && $column_style['background_color'] == 'bg-custom') {
-                            $styles[] = 'background-color: ' . $background_color_custom;
+                            $styles_col[] = 'background-color: ' . $background_color_custom;
                         }
                         break;
                     case 'background_image':
@@ -2098,7 +2098,7 @@ function ____columns_modules($items, $id, $html = '')
                         $classes[] = $column_style['background_size'];
                         $classes[] = $column_style['background_repeat'];
                         if ($background_image) {
-                            $styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
+                            $styles_col[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
                         }
                         break;
 
@@ -2107,7 +2107,7 @@ function ____columns_modules($items, $id, $html = '')
                         if ($border_radius) {
                             if ($border_radius == 'custom') {
                                 $border_radius_custom = $column_style['border_radius_custom'];
-                                $styles[] = "border-radius: $border_radius_custom";
+                                $styles_col[] = "border-radius: $border_radius_custom";
                             } else {
                                 $classes[] = $border_radius;
                             }
@@ -2119,7 +2119,7 @@ function ____columns_modules($items, $id, $html = '')
                                 $border_width = $column_style['border_width'];
                                 if ($border_color == 'border-custom-color') {
                                     $border_color_custom = $column_style['border_color_custom'];
-                                    $styles[] = "border-color: $border_color_custom";
+                                    $styles_col[] = "border-color: $border_color_custom";
                                 } else {
                                     $classes[] = $border_color;
                                 }
@@ -2132,16 +2132,16 @@ function ____columns_modules($items, $id, $html = '')
                                     $classes[] = 'border-width-custom';
 
                                     if ($border_width_top) {
-                                        $styles[] = "border-top-width: $border_width_top";
+                                        $styles_col[] = "border-top-width: $border_width_top";
                                     }
                                     if ($border_width_right) {
-                                        $styles[] = "border-right-width: $border_width_right";
+                                        $styles_col[] = "border-right-width: $border_width_right";
                                     }
                                     if ($border_width_bottom) {
-                                        $styles[] = "border-bottom-width: $border_width_bottom";
+                                        $styles_col[] = "border-bottom-width: $border_width_bottom";
                                     }
                                     if ($border_width_left) {
-                                        $styles[] = "border-left-width: $border_width_left";
+                                        $styles_col[] = "border-left-width: $border_width_left";
                                     }
                                 } else {
                                     $classes[] = 'border-default';
