@@ -470,6 +470,7 @@ function __swipers() {
 
     });
 
+
     jQuery('.swiper-logo-slider').each(function (index, element) {
         $id = '#' + jQuery(this).attr('id');
         /*
@@ -570,6 +571,25 @@ function __swipers() {
         loop: true,
         autoplay: false,
         slidesPerView: 1,
+        navigation: {
+            nextEl: ".swiper-full-width .swiper-button-next",
+            prevEl: ".swiper-full-width .swiper-button-prev",
+        },
+    });
+
+
+    var swiper_case_study = new Swiper('.swiper-case-study-v2', {
+        loop: true,
+        autoplay: false,
+        spaceBetween: 25,
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
+            },
+            576: {
+                slidesPerView: 2
+            },
+        },
         navigation: {
             nextEl: ".swiper-full-width .swiper-button-next",
             prevEl: ".swiper-full-width .swiper-button-prev",

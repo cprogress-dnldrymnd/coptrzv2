@@ -215,7 +215,7 @@ class Shortcodes
                     $SVG = new SVG;
                     $check = $SVG->check_circle();
                     $html .= "<div class='meta-data'>";
-                    $html .= "<ul class='row list-inline'>";
+                    $html .= "<ul class='row g-4 list-inline'>";
 
                     foreach ($features as $feature) {
                         $feature_text = $feature['feature_text'];
