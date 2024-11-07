@@ -790,15 +790,28 @@ class Shortcodes
         return get_permalink() . basename($_SERVER['REQUEST_URI']);
     }
 
-    function stars()
+    function stars($atts)
     {
+        extract(
+            shortcode_atts(
+                array(
+                    'text' => '',
+                ),
+                $atts
+            )
+        );
         $SVG = new SVG;
-        $html = '<div class="stars d-flex">';
+        $html = '<div class="stars-holder d-flex">';
+        $html .= '<div class="stars">';
         $html .= $SVG->star();
         $html .= $SVG->star();
         $html .= $SVG->star();
         $html .= $SVG->star();
         $html .= $SVG->star();
+        $html .= "</div>";
+        if ($text) {
+            $html .= $text;
+        }
         $html .= "</div>";
         return $html;
     }
