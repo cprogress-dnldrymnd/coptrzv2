@@ -2242,6 +2242,9 @@ function ____columns_modules($items, $id, $html = '')
                         }
                     }
                     break;
+                case 'columns':
+                    $html .= ____columns_modules($item, $column_id_val . $key);
+                    break;
                 case 'heading':
                     $html .= ____heading_modules($item);
                     break;
