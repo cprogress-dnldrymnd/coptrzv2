@@ -20,7 +20,7 @@
 
 
 <body <?php body_class(); ?>>
-    <header class="header header-landing small-text mt-20px">
+    <header class="header header-landing small-text ">
         <div class="container text-center">
             <?= do_shortcode('[site_logo]') ?>
         </div>
