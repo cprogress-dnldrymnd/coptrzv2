@@ -11408,6 +11408,15 @@ section .container-inner > *:not(:last-child) {
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
 
+.cf7-button-primary .wpcf7-submit.wpcf7-submit.wpcf7-submit {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: var(--bs-white); }
+  .cf7-button-primary .wpcf7-submit.wpcf7-submit.wpcf7-submit:hover, .cf7-button-primary .wpcf7-submit.wpcf7-submit.wpcf7-submit:active, .cf7-button-primary .wpcf7-submit.wpcf7-submit.wpcf7-submit:focus {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--bs-white); }
+
 .button-box.button-box.button-box.button-accent a,
 .button-box.button-box.button-box.button-accent button {
   color: var(--bs-white);

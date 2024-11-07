@@ -343,6 +343,10 @@ section {
     @include button-accent;
 }
 
+.cf7-button-primary .wpcf7-submit.wpcf7-submit.wpcf7-submit {
+    @include button-primary;
+    
+}
 .button-box.button-box.button-box {
     &.button-accent {
 
