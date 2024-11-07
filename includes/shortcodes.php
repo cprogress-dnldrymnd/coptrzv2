@@ -801,7 +801,7 @@ class Shortcodes
             )
         );
         $SVG = new SVG;
-        $html = '<div class="stars-holder d-flex">';
+        $html = '<div class="stars-holder d-flex align-items-center">';
         $html .= '<div class="stars d-flex me-4">';
         $html .= $SVG->star();
         $html .= $SVG->star();
