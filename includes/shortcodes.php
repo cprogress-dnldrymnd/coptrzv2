@@ -207,27 +207,29 @@ class Shortcodes
 
                 $html .= __description(array(
                     'description' => $post_excerpt,
-                    'class'       => _attribute('class', array('description-box big-text mb-lg-5'))
+                    'class'       => _attribute('class', array('description-box'))
                 ));
 
 
                 if ($features) {
-                    $html .= "<div class='meta-data text-center text-lg-end'>";
-                    $html .= "<ul class='list-inline p-0'>";
+                    $SVG = new SVG;
+                    $check = $SVG->check();
+                    $html .= "<div class='meta-data'>";
+                    $html .= "<ul class='row list-inline'>";
 
                     foreach ($features as $feature) {
                         $feature_text = $feature['feature_text'];
-                        $html .= "<li class='mb-3'>$feature_text</li>";
+                        $html .= "<li class='col-lg-6'> $check $feature_text</li>";
                     }
 
                     $html .= "</ul>";
-                    $html .= "</div>"; 
+                    $html .= "</div>";
                 }
 
 
                 $html .= "<div class='case-study-title'>";
                 $html .= $title;
-                $html .= "</div>"; 
+                $html .= "</div>";
 
                 $html .= "</div>"; //end-inner
                 $html .= "</div>"; //end-swiper-slide
