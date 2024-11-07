@@ -1732,6 +1732,10 @@ hr {
     }
     .meta-data {
         margin-bottom: 50px;
+        svg {
+            color: var(--bs-accent);
+            margin-right: 1rem;
+        }
     }
     .case-study-title {
         display: flex;

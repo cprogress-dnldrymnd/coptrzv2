@@ -12353,6 +12353,9 @@ hr {
   margin-bottom: 50px; }
 .swiper-case-study-v2 .meta-data {
   margin-bottom: 50px; }
+  .swiper-case-study-v2 .meta-data svg {
+    color: var(--bs-accent);
+    margin-right: 1rem; }
 .swiper-case-study-v2 .case-study-title {
   display: flex;
   align-items: center;
