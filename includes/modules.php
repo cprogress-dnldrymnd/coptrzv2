@@ -2088,7 +2088,7 @@ function ____columns_modules($items, $id, $html = '')
                     case 'background_color':
                         $background_color_custom = $column_style['background_color_custom'];
                         $classes[] = $column_style['background_color'];
-                        if ($background_color_custom) {
+                        if ($background_color_custom && $column_style['background_color'] == 'bg-custom') {
                             $styles[] = 'background-color: ' . $background_color_custom;
                         }
                         break;
