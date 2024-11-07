@@ -465,7 +465,6 @@ function ___sections($id = 'sections', $post_id = '')
 {
     $post_id = $post_id ? $post_id : get_the_ID();
     $display_location = get__post_meta_by_id($post_id, 'display_location');
-
     $sections = get__post_meta_by_id($post_id, $id);
     $html = '';
     global $layouts_global;
