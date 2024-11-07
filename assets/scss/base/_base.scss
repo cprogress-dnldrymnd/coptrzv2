@@ -1761,3 +1761,17 @@ hr {
         }
     }
 }
+
+.icon-list.icon-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    li {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
