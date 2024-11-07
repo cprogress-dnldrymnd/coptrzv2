@@ -12369,6 +12369,10 @@ hr {
     margin-right: 1rem; }
 .swiper-case-study-v2 .swiper-wrapper .swiper-slide {
   height: auto; }
+  .swiper-case-study-v2 .swiper-wrapper .swiper-slide .inner {
+    max-width: 670px;
+    margin-left: auto;
+    margin-right: auto; }
 
 @keyframes spin {
   from {
