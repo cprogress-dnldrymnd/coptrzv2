@@ -12329,7 +12329,7 @@ hr {
     border: none;
     padding-top: 19px; }
     .wpml-ls-legacy-dropdown.wpml-ls-legacy-dropdown .wpml-ls-sub-menu.wpml-ls-sub-menu:before {
-      content: '';
+      content: "";
       width: 0;
       height: 0;
       border-left: 10px solid transparent;
@@ -12350,6 +12350,16 @@ hr {
 
 .swiper-case-study-v2 .description-box {
   font-size: 28px; }
+.swiper-case-study-v2 .case-study-title {
+  display: flex;
+  align-items: center;
+  font-size: 20px; }
+  .swiper-case-study-v2 .case-study-title:before {
+    content: '';
+    display: block;
+    width: 75px;
+    height: 5px;
+    background-color: var(--bs-white); }
 
 @keyframes spin {
   from {

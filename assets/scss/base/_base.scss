@@ -51,15 +51,15 @@ main {
         z-index: 1;
     }
 
-    &+* {
+    & + * {
         z-index: 2;
         position: relative;
 
-        &+* {
+        & + * {
             z-index: 2;
             position: relative;
 
-            &+* {
+            & + * {
                 z-index: 2;
                 position: relative;
             }
@@ -100,7 +100,7 @@ main {
         object-fit: cover;
     }
 
-    &+div {
+    & + div {
         position: relative;
         z-index: 2;
     }
@@ -147,7 +147,7 @@ main {
     }
 
     &:not(.flex-row) {
-        >* {
+        > * {
             @include not-last-child {
                 margin-bottom: 1.5rem;
             }
@@ -155,7 +155,7 @@ main {
     }
 
     &.flex-row {
-        >* {
+        > * {
             @include not-last-child {
                 margin-right: 1.5rem;
             }
@@ -196,7 +196,7 @@ main {
 }
 
 .full-width {
-    >.container {
+    > .container {
         max-width: 100%;
         --bs-gutter-x: 0;
     }
@@ -314,7 +314,7 @@ section {
     }
 
     .container {
-        >* {
+        > * {
             @include not-last-child {
                 margin-bottom: 3rem;
             }
@@ -322,7 +322,7 @@ section {
     }
 
     .container-inner {
-        >* {
+        > * {
             @include not-last-child {
                 margin-bottom: 3rem;
             }
@@ -345,11 +345,9 @@ section {
 
 .cf7-button-primary .wpcf7-submit.wpcf7-submit.wpcf7-submit {
     @include button-primary;
-    
 }
 .button-box.button-box.button-box {
     &.button-accent {
-
         a,
         button {
             @include button-accent;
@@ -357,7 +355,6 @@ section {
     }
 
     &.button-bordered {
-
         a,
         button {
             @include button-bordered;
@@ -365,7 +362,6 @@ section {
     }
 
     &.button-white {
-
         a,
         button {
             @include button-white;
@@ -373,7 +369,6 @@ section {
     }
 
     &.button-primary {
-
         a,
         button {
             @include button-primary;
@@ -381,7 +376,6 @@ section {
     }
 
     &.button-small {
-
         a,
         button {
             padding: 0.625rem 1.25rem;
@@ -413,7 +407,6 @@ input[type="checkbox"] {
 }
 
 .site-logo {
-
     svg,
     img {
         height: 21px;
@@ -428,7 +421,7 @@ input[type="checkbox"] {
         width: 40% !important;
 
         .column-holder {
-            >* {
+            > * {
                 &:not(.background-image) {
                     position: relative;
                 }
@@ -602,7 +595,6 @@ input[type="checkbox"] {
 }
 
 .same-image-height {
-
     .image-box,
     .video-box {
         position: relative;
@@ -639,8 +631,8 @@ input[type="checkbox"] {
 
 .section {
     .container {
-        >.row {
-            &+.row {
+        > .row {
+            & + .row {
                 &.gy-5 {
                     margin-top: 4rem;
 
@@ -918,7 +910,7 @@ small {
             display: none;
 
             &:checked {
-                &+label {
+                & + label {
                     color: var(--bs-white);
                     background-color: var(--bs-primary);
                 }
@@ -1000,7 +992,7 @@ small {
 #blog-single-sidebar {
     > {
         .widget-inner {
-            >p:first-child {
+            > p:first-child {
                 display: none;
             }
         }
@@ -1128,7 +1120,6 @@ small {
 
     &.lower-opacity {
         .accordion-item {
-
             .accordion-button.collapsed,
             .accordion-collapse:not(.show) {
                 opacity: 0.35;
@@ -1284,7 +1275,7 @@ hr {
         }
 
         .popup-content-default {
-            >*:last-child {
+            > *:last-child {
                 margin-bottom: 0 !important;
             }
         }
@@ -1356,7 +1347,6 @@ hr {
         }
 
         &.xs-padding-top {
-
             .icon-box,
             .image-box {
                 top: 1rem;
@@ -1364,7 +1354,6 @@ hr {
         }
 
         &.xs-padding-bottom {
-
             .icon-box,
             .image-box {
                 bottom: 1rem;
@@ -1372,7 +1361,6 @@ hr {
         }
 
         &.xs-padding-left {
-
             .icon-box,
             .image-box {
                 left: 1rem;
@@ -1589,7 +1577,6 @@ hr {
 .case-study-slider {
     .button-box.button-box.button-box {
         &.button-accent {
-
             a,
             button {
                 @include on-event {
@@ -1711,7 +1698,7 @@ hr {
         padding-top: 19px;
 
         @include before {
-            content: '';
+            content: "";
             width: 0;
             height: 0;
             border-left: 10px solid transparent;
@@ -1742,7 +1729,16 @@ hr {
     .description-box {
         font-size: 28px;
     }
-    .meta-data {
-        
+    .case-study-title {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        &:before {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 5px;
+            background-color: var(--bs-white);
+        }
     }
 }
