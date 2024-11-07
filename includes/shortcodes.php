@@ -550,6 +550,7 @@ class Shortcodes
             return $html;
         }
     }
+    
 
     function socials()
     {
