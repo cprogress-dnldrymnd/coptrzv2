@@ -189,6 +189,56 @@ class Shortcodes
         $casestudies_featured = get__theme_option('casestudies_featured');
 
         if ($style == 'style-2') {
+            $html = "<div class='case-study-slider-style-2 text-white mx-20px'>"; //case-study-slider
+            $html .= "<div class='case-study-swiper-holder'>"; //swiper-holder
+            $html .= "<div class='swiper swiper-case-study-v2'>"; //swiper
+
+            $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
+            foreach ($casestudies_featured as $casestudies) {
+                $id = $casestudies['id'];
+                $post_excerpt = wpautop(get_the_excerpt($id));
+                $title = wpautop(get_the_title($id));
+                $features = get__post_meta_by_id($id, 'feature');
+                $logo = get__post_meta_by_id($id, 'logo');
+                $html .= "<div class='swiper-slide bg-dark rounded-corner'>"; //swiper-slide
+
+                $html .= "<div class='inner sm-padding-bottom sm-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
+
+
+                $html .= __description(array(
+                    'description' => $post_excerpt,
+                    'class'       => _attribute('class', array('description-box big-text mb-lg-5'))
+                ));
+
+
+                if ($features) {
+                    $html .= "<div class='meta-data text-center text-lg-end'>";
+                    $html .= "<ul class='list-inline p-0'>";
+
+                    foreach ($features as $feature) {
+                        $feature_text = $feature['feature_text'];
+                        $html .= "<li class='mb-3'>$feature_text</li>";
+                    }
+
+                    $html .= "</ul>";
+                    $html .= "</div>"; 
+                }
+
+
+                $html .= "<div class='case-study-title'>";
+                $html .= $title;
+                $html .= "</div>"; 
+
+                $html .= "</div>"; //end-inner
+                $html .= "</div>"; //end-swiper-slide
+            }
+            $html .= "</div>"; //end-swiper-wrapper
+
+
+
+            $html .= "</div>"; //end-swiper
+            $html .= "</div>"; //end-swiper-holder
+            $html .= "</div>"; //end case-study-slider
         } else {
             $html = "<div class='case-study-slider text-white mx-20px'>"; //case-study-slider
             $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
@@ -246,7 +296,7 @@ class Shortcodes
 
 
 
-            $html .= "</div>"; //end-swiper-wrapper
+            $html .= "</div>"; //end-swiper-wrapperc
             $html .= "<div class='bottom-holder'> <div class='container position-relative'> <div class='row g-4 justify-content-center justify-content-lg-between align-items-end'>";
             $html .= "<div class='col-auto'> <div class='swiper-nav d-flex justify-content-start'> <div class='swiper-button-prev'></div> <div class='swiper-button-next'></div> </div> </div>";
 
