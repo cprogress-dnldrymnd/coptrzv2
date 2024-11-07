@@ -1012,7 +1012,8 @@ function ___sections($id = 'sections', $post_id = '')
                                     $html .= do_shortcode("[latest_from_coptrz]");
                                     break;
                                 case 'case_study_slider':
-                                    $html .= "[case_study_slider_grid]";
+                                    $cs_style = $global_widget['style'];
+                                    $html .= "[case_study_slider_grid style='$cs_style']";
                                     break;
                                 case 'reviews':
                                     $html .= "[reviews]";
