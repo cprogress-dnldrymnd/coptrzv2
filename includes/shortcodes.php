@@ -796,6 +796,7 @@ class Shortcodes
         $html = '<div class="stars d-flex">';
         $html .= $SVG->star();
         $html .= "</div>";
+        return $html;
     }
 }
 $Shortcodes = new Shortcodes;
