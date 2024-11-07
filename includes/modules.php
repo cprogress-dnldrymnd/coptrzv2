@@ -2217,6 +2217,15 @@ function ____columns_modules($items, $id, $html = '')
         foreach ($items as $item) {
             $type = $item['_type'];
             switch ($type) {
+                case 'layouts':
+                    $layouts = $items['layouts'];
+                    foreach ($layouts as $layout) {
+                        $layout_id = $layout['id'];
+                        $layouts_global[] = $layout['id'];
+                        $html .= "[layouts id='$layout_id']";
+                        $layouts_arr[] = $layout_id;
+                    }
+                    break;
                 case 'global_widgets':
                     $global_widgets = $item['global_widgets'];
                     foreach ($global_widgets as $global_widget) {
