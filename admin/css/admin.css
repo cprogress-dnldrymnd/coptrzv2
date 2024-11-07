@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 body,
-#wpadminbar *:not(.ab-icon), .carbon-box *:not(.dashicons-before):not(.dashicons) {
+#wpadminbar *:not(.ab-icon),
+.carbon-box *:not(.dashicons-before):not(.dashicons) {
   font-family: "Poppins", sans-serif !important; }
 
 .cb-label.cb-label.cb-label {
@@ -42,24 +43,35 @@ body,
 .cf-complex__inserter-menu.cf-complex__inserter-menu[hidden] {
   display: none !important; }
 
-.cf-complex__inserter-menu.cf-complex__inserter-menu {
+.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu {
   z-index: 999 !important;
   width: 800px;
   flex-wrap: wrap;
   display: flex;
   padding: 30px;
   border-radius: 5px;
-  background-color: #fff !important; }
-  .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item {
+  background-color: #fff !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+  .cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item {
     flex: 0 0 calc(33.33333333% - 40px);
     padding: 15px;
     margin: 5px;
     border-radius: 5px;
     background-color: #007cba;
     color: #fff; }
-    .cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item:hover {
+    .cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item:hover {
       background-color: #191e23;
       color: #fff; }
+  .cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu:before {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); }
 
 .admin-popup.admin-popup.admin-popup {
   position: fixed;
