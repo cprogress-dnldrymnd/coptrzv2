@@ -2007,7 +2007,7 @@ function ____columns_modules($items, $id, $html = '')
         if ($individual_column_settings) {
             $column_styles = $column['column_styles'];
             $classes = [];
-            $styles_individual = [];
+            $styles = [];
             $column_class = [];
 
             foreach ($column_styles as $column_style) {
@@ -2082,14 +2082,14 @@ function ____columns_modules($items, $id, $html = '')
                         $text_color_custom = $column_style['text_color_custom'];
                         $classes[] = $column_style['text_color'];
                         if ($text_color_custom) {
-                            $styles_individual[] = 'color: ' . $text_color_custom;
+                            $styles[] = 'color: ' . $text_color_custom;
                         }
                         break;
                     case 'background_color':
                         $background_color_custom = $column_style['background_color_custom'];
                         $classes[] = $column_style['background_color'];
                         if ($background_color_custom && $column_style['background_color'] == 'bg-custom') {
-                            $styles_individual[] = 'background-color: ' . $background_color_custom;
+                            $styles[] = 'background-color: ' . $background_color_custom;
                         }
                         break;
                     case 'background_image':
@@ -2098,7 +2098,7 @@ function ____columns_modules($items, $id, $html = '')
                         $classes[] = $column_style['background_size'];
                         $classes[] = $column_style['background_repeat'];
                         if ($background_image) {
-                            $styles_individual[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
+                            $styles[] = 'background-image: url(' . wp_get_attachment_image_url($background_image, 'full') . ')';
                         }
                         break;
 
@@ -2107,7 +2107,7 @@ function ____columns_modules($items, $id, $html = '')
                         if ($border_radius) {
                             if ($border_radius == 'custom') {
                                 $border_radius_custom = $column_style['border_radius_custom'];
-                                $styles_individual[] = "border-radius: $border_radius_custom";
+                                $styles[] = "border-radius: $border_radius_custom";
                             } else {
                                 $classes[] = $border_radius;
                             }
@@ -2119,7 +2119,7 @@ function ____columns_modules($items, $id, $html = '')
                                 $border_width = $column_style['border_width'];
                                 if ($border_color == 'border-custom-color') {
                                     $border_color_custom = $column_style['border_color_custom'];
-                                    $styles_individual[] = "border-color: $border_color_custom";
+                                    $styles[] = "border-color: $border_color_custom";
                                 } else {
                                     $classes[] = $border_color;
                                 }
@@ -2132,16 +2132,16 @@ function ____columns_modules($items, $id, $html = '')
                                     $classes[] = 'border-width-custom';
 
                                     if ($border_width_top) {
-                                        $styles_individual[] = "border-top-width: $border_width_top";
+                                        $styles[] = "border-top-width: $border_width_top";
                                     }
                                     if ($border_width_right) {
-                                        $styles_individual[] = "border-right-width: $border_width_right";
+                                        $styles[] = "border-right-width: $border_width_right";
                                     }
                                     if ($border_width_bottom) {
-                                        $styles_individual[] = "border-bottom-width: $border_width_bottom";
+                                        $styles[] = "border-bottom-width: $border_width_bottom";
                                     }
                                     if ($border_width_left) {
-                                        $styles_individual[] = "border-left-width: $border_width_left";
+                                        $styles[] = "border-left-width: $border_width_left";
                                     }
                                 } else {
                                     $classes[] = 'border-default';
@@ -2171,36 +2171,18 @@ function ____columns_modules($items, $id, $html = '')
                 }
             }
         }
-        if ($individual_column_settings) {
-            if ($same_image_height) {
-                $classes[] = 'same-image-height';
-                if ($image_fit) {
-                    $styles_individual[] = "--object-fit: $image_fit;";
-                }
-                if ($image_padding) {
-                    $styles_individual[] = "--image-padding: $image_padding;";
-                }
-            }
-            if ($styles_individual) {
-                $styles_val = _attribute('style', $styles_individual, ';');
-            }
-        } else {
-            if ($same_image_height) {
-                $classes[] = 'same-image-height';
-                if ($image_fit) {
-                    $styles[] = "--object-fit: $image_fit;";
-                }
-                if ($image_padding) {
-                    $styles[] = "--image-padding: $image_padding;";
-                }
-            }
-            if ($styles) {
-                $styles_val = _attribute('style', $styles, ';');
-            }
-        }
 
         $classes[] = 'column-holder content-margin overflow-hidden position-relative h-100';
 
+        if ($same_image_height) {
+            $classes[] = 'same-image-height';
+            if ($image_fit) {
+                $styles[] = "--object-fit: $image_fit;";
+            }
+            if ($image_padding) {
+                $styles[] = "--image-padding: $image_padding;";
+            }
+        }
 
 
 
@@ -2210,7 +2192,9 @@ function ____columns_modules($items, $id, $html = '')
 
         $column_class_val = _attribute('class', $column_class, ' ');
         $column_class_attr = _attributes(array($column_class_val));
-
+        if ($styles) {
+            $styles_val = _attribute('style', $styles, ';');
+        }
 
         if ($classes) {
             $classes_val = _attribute('class', $classes, ' ');
