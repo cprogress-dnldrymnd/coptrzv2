@@ -1907,6 +1907,17 @@ function __section_fields($name = 'sections')
                                         )
                                     )
                                     ->set_layout('tabbed-vertical')
+                                    ->add_fields('layouts', array(
+                                        Field::make('association', 'layouts', 'Select Layouts')
+                                            ->set_types(
+                                                array(
+                                                    array(
+                                                        'type'      => 'post',
+                                                        'post_type' => 'layouts',
+                                                    )
+                                                )
+                                            )
+                                    ))
                                     ->add_fields('global_widgets', array(
                                         Field::make('complex', 'global_widgets')
                                             ->add_fields('case_study_slider', array(
