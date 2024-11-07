@@ -14061,6 +14061,15 @@ body {
 .wpml-ls-legacy-dropdown a span {
   margin-left: 5px; }
 
+.guides-template-page-simple-header-footer .header {
+  margin-top: 62px; }
+.guides-template-page-simple-header-footer section.hero {
+  align-items: center !important; }
+  .guides-template-page-simple-header-footer section.hero .hero-left-content {
+    max-width: 1250px;
+    margin-left: auto;
+    margin-right: auto; }
+
 #footer {
   font-weight: 300; }
   #footer ul {

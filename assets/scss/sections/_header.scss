@@ -465,4 +465,12 @@ body {
     .header {
         margin-top: 62px;
     }
+    section.hero {
+        align-items: center !important;
+        .hero-left-content {
+            max-width: 1250px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 }
