@@ -1276,6 +1276,13 @@ function __section_fields($name = 'sections')
                     ->add_fields('global_widgets', array(
                         Field::make('complex', 'global_widgets')
                             ->add_fields('case_study_slider', array(
+                                Field::make('select', 'style', __('Style'))
+                                    ->set_options(
+                                        array(
+                                            ''                 => 'Default',
+                                            'style-2' => 'style-2',
+                                        )
+                                    ),
                                 Field::make('html', 'html')->set_html('<h3>This will display featured case study slider section </h3>'),
                             ))
                             ->add_fields('latest_from_coptrz', array(
