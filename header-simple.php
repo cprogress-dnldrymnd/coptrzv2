@@ -21,8 +21,8 @@
 
 <body <?php body_class(); ?>>
     <header class="header header-landing small-text mt-20px">
-        <div class="container">
-            <?php get_template_part('template-parts/header/header-left') ?>
+        <div class="container text-center">
+            <?= do_shortcode('[site_logo]') ?>
         </div>
     </header>
     <?php wp_body_open(); ?>
