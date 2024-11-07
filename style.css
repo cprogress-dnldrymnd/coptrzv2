@@ -11566,16 +11566,18 @@ input[type="checkbox"] {
       opacity: 1;
       background-color: var(--bs-primary); }
 
-.socials ul li a:hover, .socials ul li a:active, .socials ul li a:focus {
-  color: var(--bs-accent); }
-.socials ul li svg {
-  width: 21px;
-  height: 21px; }
-.socials ul li:not(:last-child) {
-  margin-right: 2rem; }
-  @media screen and (max-width: 767px) {
-    .socials ul li:not(:last-child) {
-      margin-right: 1rem; } }
+.socials ul {
+  list-style: none; }
+  .socials ul li a:hover, .socials ul li a:active, .socials ul li a:focus {
+    color: var(--bs-accent); }
+  .socials ul li svg {
+    width: 21px;
+    height: 21px; }
+  .socials ul li:not(:last-child) {
+    margin-right: 2rem; }
+    @media screen and (max-width: 767px) {
+      .socials ul li:not(:last-child) {
+        margin-right: 1rem; } }
 
 .case-study-slider .swiper-slide {
   height: auto !important; }

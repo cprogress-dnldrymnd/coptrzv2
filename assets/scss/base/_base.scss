@@ -502,6 +502,7 @@ input[type="checkbox"] {
 
 .socials {
     ul {
+        list-style: none;
         li {
             a {
                 @include on-event {
