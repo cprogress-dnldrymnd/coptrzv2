@@ -5,12 +5,8 @@
 /*-----------------------------------------------------------------------------------*/
 ?>
 <?php
-$hide_on_list = get__post_meta('hide_on_list');
-if ($hide_on_list) {
-    get_header('landing-v2');
-} else {
-    get_header();
-}
+get_header('simple');
+
 ?>
 <div class="modules">
     <?php
@@ -20,9 +16,5 @@ if ($hide_on_list) {
 </div>
 
 <?php
-if ($hide_on_list) {
-    get_footer('landing');
-} else {
-    get_footer();
-}
+get_footer('simple');
 ?>
