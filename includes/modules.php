@@ -464,7 +464,6 @@ function ___hero_product_taxonomy()
 function ___sections($id = 'sections', $post_id = '')
 {
     $post_id = $post_id ? $post_id : get_the_ID();
-    $display_location = get__post_meta_by_id($post_id, 'display_location');
     $sections = get__post_meta_by_id($post_id, $id);
     $html = '';
     global $layouts_global;
@@ -744,10 +743,9 @@ function ___sections($id = 'sections', $post_id = '')
 
             $section_attribute = _attributes(array($classes_attr, $id_val, $styles_val));
             $container_attribute = _attributes(array($container_styles_val, $container_classes_attr));
-            $html = '';
-            if ($display_location != ' row') {
-                $html .= "<section $section_attribute>";
-            }
+
+
+            $html .= "<section $section_attribute>";
 
             if ($background_image_overlay_args) {
                 $html .= __image($background_image_overlay_args);
@@ -760,9 +758,7 @@ function ___sections($id = 'sections', $post_id = '')
                 }
             }
 
-            if ($display_location != ' row') {
-                $html .= "<div class='container'>";
-            }
+            $html .= "<div class='container'>";
             if (count($container_classes) > 1) {
                 $html .= "<div $container_attribute>";
             }
@@ -1269,10 +1265,8 @@ function ___sections($id = 'sections', $post_id = '')
             if (count($container_classes) > 1) {
                 $html .= "</div>";
             }
-            if ($display_location != ' row') {
-                $html .= "</div>";
-                $html .= "</section>";
-            }
+            $html .= "</div>";
+            $html .= "</section>";
         }
     }
     return $html;

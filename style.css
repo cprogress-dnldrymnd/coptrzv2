@@ -12374,13 +12374,13 @@ hr {
     margin-left: auto;
     margin-right: auto; }
 
-.icon-list {
+.icon-list.icon-list {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   margin-left: -1rem;
-  margin-left: -1rem; }
-  .icon-list li {
+  margin-right: -1rem; }
+  .icon-list.icon-list li {
     padding-left: 1rem;
     padding-right: 1rem;
     flex: 0 0 auto;
