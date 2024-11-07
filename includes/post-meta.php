@@ -8641,6 +8641,7 @@ function __section_fields($name = 'sections')
 }
 Container::make('post_meta', __('Sections'))
     ->where('post_template', '=', 'templates/page-modules.php')
+    ->or_where('post_template', '=', 'templates/page-simple-header-footer.php')
     ->or_where('post_type', '=', 'product')
     ->or_where('post_type', '=', 'layouts')
     ->or_where('post_type', '=', 'capabilities')
