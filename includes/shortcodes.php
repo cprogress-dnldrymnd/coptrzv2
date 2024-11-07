@@ -213,7 +213,7 @@ class Shortcodes
 
                 if ($features) {
                     $SVG = new SVG;
-                    $check = $SVG->check();
+                    $check = $SVG->check_circle();
                     $html .= "<div class='meta-data'>";
                     $html .= "<ul class='row list-inline'>";
 
