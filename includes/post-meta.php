@@ -6426,7 +6426,6 @@ Container::make('post_meta', __('Conditional Display'))
                 'after_header'  => __('After Header'),
                 'before_footer' => __('Before Footer'),
                 '404'           => __('404'),
-                'row'           => __('Row'),
             )),
 
         Field::make('select', 'display_location_archive', __('Select Archive'))
