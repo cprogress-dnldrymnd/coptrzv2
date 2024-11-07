@@ -239,6 +239,8 @@ class Shortcodes
             $html .= "</div>"; //end-swiper
             $html .= "</div>"; //end-swiper-holder
             $html .= "</div>"; //end case-study-slider
+
+            return $html;
         } else {
             $html = "<div class='case-study-slider text-white mx-20px'>"; //case-study-slider
             $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
