@@ -196,7 +196,6 @@
             @include responsive(xxxs) {
                 height: 12px;
             }
-            
         }
     }
     .header-right {
@@ -471,6 +470,18 @@ body {
             max-width: 1250px;
             margin-left: auto;
             margin-right: auto;
+        }
+    }
+    section {
+        &.sm-padding-top {
+            @include responsive(md-lg) {
+                padding-top: 80px;
+            }
+        }
+        &.sm-padding-bottom {
+            @include responsive(md-lg) {
+                padding-bottom: 80px;
+            }
         }
     }
 }
