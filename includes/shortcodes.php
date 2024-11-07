@@ -789,8 +789,17 @@ class Shortcodes
     {
         return get_permalink() . basename($_SERVER['REQUEST_URI']);
     }
+
+    function stars()
+    {
+        $SVG = new SVG;
+        $html = '<div class="stars d-flex">';
+        $html .= $SVG->star();
+        $html .= "</div>";
+    }
 }
 $Shortcodes = new Shortcodes;
+add_shortcode('stars', array($Shortcodes, 'stars'));
 add_shortcode('current_url', array($Shortcodes, 'current_url'));
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
 add_shortcode('breadcrumbs', array($Shortcodes, 'breadcrumbs'));
