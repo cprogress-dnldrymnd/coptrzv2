@@ -2005,11 +2005,11 @@ function ____columns_modules($items, $id, $html = '')
         $items = $column['items'];
         $column_id = $column['column_id'];
         if ($individual_column_settings) {
-            $classes = array();
-            $styles = array();
-            $column_class = array();
-
             $column_styles = $column['column_styles'];
+            $classes = [];
+            $styles = [];
+            $column_class = [];
+
             foreach ($column_styles as $column_style) {
                 $type = $column_style['_type'];
                 switch ($type) {
