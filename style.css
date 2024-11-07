@@ -12384,7 +12384,17 @@ hr {
     padding-left: 1rem;
     padding-right: 1rem;
     flex: 0 0 auto;
-    width: 50%; }
+    width: 50%;
+    display: flex;
+    align-items: center; }
+    .icon-list.icon-list li:before {
+      content: '';
+      display: block;
+      margin-right: 1rem;
+      width: 17px;
+      height: 17px;
+      background-size: contain;
+      background-position: center; }
 
 @keyframes spin {
   from {
