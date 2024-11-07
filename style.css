@@ -12365,7 +12365,10 @@ hr {
     display: block;
     width: 75px;
     height: 5px;
-    background-color: var(--bs-white); }
+    background-color: var(--bs-white);
+    margin-right: 1rem; }
+.swiper-case-study-v2 .swiper-wrapper .swiper-slide {
+  height: auto; }
 
 @keyframes spin {
   from {
