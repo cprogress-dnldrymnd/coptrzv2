@@ -65,13 +65,6 @@ body,
     .cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu .cf-complex__inserter-item:hover {
       background-color: #191e23;
       color: #fff; }
-  .cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu.cf-complex__inserter-menu:before {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); }
 
 .admin-popup.admin-popup.admin-popup {
   position: fixed;
