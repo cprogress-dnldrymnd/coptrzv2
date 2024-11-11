@@ -205,6 +205,14 @@ class Shortcodes
                 $html .= "<div class='inner h-100 d-flex flex-column justify-content-between sm-padding-bottom sm-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
                 $html .= "<div class='top'>";
 
+                if ($logo) {
+                    $html .= __image(array(
+                        'image_id'    => $logo,
+                        'placeholder' => true,
+                        'size'        => 'large',
+                        'class'       => _attribute('class', array('logo-box'))
+                    ));
+                }
 
                 $html .= __description(array(
                     'description' => $post_excerpt,
