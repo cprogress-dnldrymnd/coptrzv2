@@ -12356,6 +12356,10 @@ hr {
   .swiper-case-study-v2 .meta-data svg {
     color: var(--bs-accent);
     margin-right: 1rem; }
+.swiper-case-study-v2 .logo-box img {
+  height: 100px;
+  width: auto;
+  margin-bottom: 1rem; }
 .swiper-case-study-v2 .case-study-title {
   display: flex;
   align-items: center;

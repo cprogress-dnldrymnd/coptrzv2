@@ -209,7 +209,7 @@ class Shortcodes
                     $html .= __image(array(
                         'image_id'    => $logo,
                         'placeholder' => true,
-                        'size'        => 'large',
+                        'size'        => 'medium',
                         'class'       => _attribute('class', array('logo-box'))
                     ));
                 }
