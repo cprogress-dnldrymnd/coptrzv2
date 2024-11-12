@@ -8,15 +8,16 @@ add_filter('upload_mimes', 'add_svg_support');
 
 function action_wp_head()
 {
+    $custom_css = get__post_meta('custom_css');
+    if (is_page() && $custom_css) {
 ?>
-    <style id="wp-head">
-        <?php
-        if (isset($_GET['prev'])) {
-            echo '#wpadminbar{ display: none !important }';
-        }
-        ?>
-    </style>
-<?php
+        <style id="wp-head">
+            <?php
+            echo $custom_css;
+            ?>
+        </style>
+    <?php
+    }
 }
 
 add_action('wp_head', 'action_wp_head');
@@ -158,7 +159,7 @@ add_action('admin_footer', 'my_custom_popup');
 
 function action_admin_head()
 {
-?>
+    ?>
     <style>
         <?php
         /*
