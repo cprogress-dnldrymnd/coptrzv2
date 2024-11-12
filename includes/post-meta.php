@@ -6916,3 +6916,15 @@ Container::make('post_meta', 'Product Components')
                 ->set_type(array('application/pdf'))
         )
     );
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Custom CSS
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', __('Custom CSS'))
+    ->where('post_type', '=', 'page')
+    ->add_fields(
+        array(
+            Field::make('textarea', 'custom_css', __('Custom CSS'))->set_classes('inline-field')
+        )
+    );
