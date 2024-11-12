@@ -6923,6 +6923,7 @@ Container::make('post_meta', 'Product Components')
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Custom CSS'))
     ->where('post_type', '=', 'page')
+    ->set_priority('low')
     ->add_fields(
         array(
             Field::make('textarea', 'custom_css', __('Custom CSS'))->set_classes('inline-field')
