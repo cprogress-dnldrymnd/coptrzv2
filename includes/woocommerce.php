@@ -973,17 +973,13 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                         $html .= "<div class='col-auto'>";
                         if ($product_attribute_array['date'] != 'N/A') {
                             $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
-                            if (current_user_can('administrator')) {
-                                $html .= _date_format_v2($datetime, 'month');
-                                $html .= "&nbsp";
-                                $html .= _date_format_v2($datetime, 'day');
-                                $html .= "-";
-                                $html .= _date_format_v2($datetime_end, 'day');
-                                $html .= "&nbsp";
-                                $html .= _date_format_v2($datetime, 'year');
-                            } else {
-                                $html .= $product_attribute_array['date'];
-                            }
+                            $html .= _date_format_v2($datetime, 'month');
+                            $html .= "&nbsp";
+                            $html .= _date_format_v2($datetime, 'day');
+                            $html .= "-";
+                            $html .= _date_format_v2($datetime_end, 'day');
+                            $html .= "&nbsp";
+                            $html .= _date_format_v2($datetime, 'year');
                             $html .= '</span>';
                         }
                         $html .= '</div>';
