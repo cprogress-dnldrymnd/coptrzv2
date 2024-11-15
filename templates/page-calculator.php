@@ -65,11 +65,7 @@
             <div class="container">
                 <div class="inner px-5 content-margin">
                     <h3>Fill in your details to get your instant calculation</h3>
-                    <div class="description-box fw-light small-text">
-                        <p>
-                            We’ll send your results directly to your email.
-                        </p>
-                    </div>
+                 
                     <div class="row g-4 form-groups">
                         <div class="col-lg-6">
                             <label for="" class="mb-2 fw-medium">First Name</label>
