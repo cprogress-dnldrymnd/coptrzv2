@@ -64,7 +64,7 @@
         <section class="background-gradient-default medium-container md-padding-top md-padding-bottom">
             <div class="container">
                 <div class="inner px-5 content-margin">
-                    <h3>Who Should We Send Your Report To?</h3>
+                    <h3>Fill in your details to get your instant calculation</h3>
                     <div class="description-box fw-light small-text">
                         <p>
                             We’ll send your results directly to your email.
