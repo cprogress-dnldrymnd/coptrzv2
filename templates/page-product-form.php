@@ -7,7 +7,7 @@
 <?php
 get_header();
 
-?>
+?>lorem
 <div class="modules">
     <?php
     echo do_shortcode(___hero_modules());
@@ -23,7 +23,7 @@ get_header();
                 </h2>
             </div>
             <div class="description-box mx-auto product-form-input-wrapper" style="max-width: 1000px;">
-                <textarea class="product-form-input" type="text" placeholder="Lorem Ipsum Dolor Sit Amet">
+                <textarea class="product-form-input" type="text" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit tempore earum, a dolore aliquam labore officiis. Atque ab aliquam corrupti omnis earum. Odit, accusantium cupiditate. Repellendus aspernatur possimus sunt. Pariatur.">
                 </textarea>
             </div>
             <div class="row g-xs-10px g-4">
