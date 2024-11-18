@@ -30,6 +30,7 @@ function __add_field($wp_customize, $section_id, $field_id, $field_name)
     $wp_customize->add_setting($field_id, array(
         'default'           => 'Lorem ipsum',
         'sanitize_callback' => 'sanitize_text_field',
+        'type' => 'option'
     ));
 
     $wp_customize->add_control($field_id, array(
