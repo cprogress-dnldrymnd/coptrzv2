@@ -1,6 +1,6 @@
 <section class="section section-1 md-padding-top md-padding-bottom  text-center" id="section-1">
     <div class="container">
-        <div class="text-center heading-box"><span>Lorem ipsum</span>
+        <div class="text-center heading-box"><span><?= get_theme_mod('heading_prefix'); ?></span>
             <h2>A Palm-Sized Drone for Vlogs</h2>
         </div>
         <div class="description-box mx-auto" style="max-width: 1000px;">
