@@ -52,8 +52,8 @@ function __add_image($wp_customize)
         [
             'mime_type' => 'image',
             'section' => 'section_1',
-            'label' => __('Label for control', 'domain'),
-            'description' => __('Description for control', 'domain')
+            'label' => __('Label for control', 'coptrz'),
+            'description' => __('Description for control', 'coptrz')
         ]
     );
     $wp_customize->add_control($media_control);
