@@ -3,12 +3,13 @@ function customizer_section_1($wp_customize)
 {
     // Add a new section to the Customizer
     $placeholder = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, asperiores! Et pariatur sunt animi. Hic, itaque eligendi explicabo eum aspernatur, numquam quidem facere eius debitis culpa veritatis? Odio, velit adipisci.';
+    $image_placeholder = 'https://coptrz.com/wp-content/uploads/2023/05/placeholder-image.webp';
     __add_section($wp_customize, 'section_1', 'Section 1');
     __add_field($wp_customize, 'section_1', 'section_1_heading_prefix', 'Heading Prefix', 'Lorem ipsum', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_description', 'Description', $placeholder, 'textarea');
 
-    __add_field($wp_customize, 'section_1', 'section_1_col_1_image', 'Image[Column 1]', false, 'image');
+    __add_field($wp_customize, 'section_1', 'section_1_col_1_image', 'Image[Column 1]', $image_placeholder, 'image');
     __add_field($wp_customize, 'section_1', 'section_1_col_1_heading', 'Heading[Column 1]', 'Lorem ipsum dolor ', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_col_1_description', 'Description[Column 1]', $placeholder, 'textarea');
 }
