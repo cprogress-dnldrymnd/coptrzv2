@@ -3,9 +3,7 @@ $section_1_heading_prefix = get_option('section_1_heading_prefix');
 $section_1_heading = get_option('section_1_heading');
 $section_1_description = get_option('section_1_description');
 
-$section_1_col_1_image = get_option('section_1_col_1_image');
-$section_1_col_1_heading = get_option('section_1_col_1_heading');
-$section_1_col_1_description = get_option('section_1_col_1_description');
+$col_num = 3;
 ?>
 <section class="section section-1 md-padding-top md-padding-bottom  text-center" id="section-1">
     <?php if (current_user_can('administrator')) { ?>
@@ -30,26 +28,37 @@ $section_1_col_1_description = get_option('section_1_col_1_description');
         <?php } ?>
 
         <div class="row g-xs-10px g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="column-holder content-margin overflow-hidden position-relative h-100">
+            <?php for ($col_num = 1; $col_num <= 3; $col_num++) { ?>
+                <?php
+                $section_1_col_image = get_option('section_1_col_' . $col_num . '_image');
+                $section_1_col_heading = get_option('section_1_col_' . $col_num . '_heading');
+                $section_1_col_description = get_option('section_1_col_' . $col_num . '_description');
+                ?>
+                <div class="col-lg-4 col-md-6">
+                    <div class="column-holder content-margin overflow-hidden position-relative h-100">
 
-                    <?php if ($section_1_description) { ?>
-                        <div class="image-box rounded-corner">
-                            <?php
-                            $attachment_id = attachment_url_to_postid($section_1_col_1_image);
-                            echo wp_get_attachment_image($attachment_id, 'large');
-                            ?>
-                        </div>
-                    <?php } ?>
+                        <?php if ($section_1_col_image) { ?>
+                            <div class="image-box rounded-corner">
+                                <?php
+                                $attachment_id = attachment_url_to_postid($section_1_col_image);
+                                echo wp_get_attachment_image($attachment_id, 'large');
+                                ?>
+                            </div>
+                        <?php } ?>
 
-                    <?php if ($section_1_col_1_heading) { ?>
-                        <h3 class="small-heading"><?= $section_1_col_1_heading ?></h3>
-                    <?php } ?>
-                    <div class="description-box">
-                        <p>DJI Neo gracefully takes off and lands from your palm. Simply press the mode button on Neo, select your desired shooting mode, and Neo automatically does the rest to capture impressive footage, all without a remote controller!</p>
+                        <?php if ($section_1_col_heading) { ?>
+                            <h3 class="small-heading"><?= $section_1_col_heading ?></h3>
+                        <?php } ?>
+
+                        <?php if ($section_1_col_description) { ?>
+                            <div class="description-box">
+                                <?= wpautop($section_1_col_description) ?>
+                            </div>
+                        <?php } ?>
+
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </section>
