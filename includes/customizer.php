@@ -4,7 +4,9 @@ function customizer_section_1($wp_customize)
     // Add a new section to the Customizer
 
     __add_section($wp_customize, 'section_1', 'Section 1');
-    __add_field($wp_customize, 'section_1', 'heading_prefix', 'Heading Prefix');
+    __add_field($wp_customize, 'section_1', 'section_1_heading_prefix', 'Heading Prefix', 'text');
+    __add_field($wp_customize, 'section_1', 'section_1_heading', 'Heading', 'text');
+    __add_field($wp_customize, 'section_1', 'section_1_description', 'Description', 'textarea');
 }
 add_action('customize_register', 'customizer_section_1');
 
@@ -24,7 +26,7 @@ function __add_section($wp_customize, $section_id, $section_name)
     ));
 }
 
-function __add_field($wp_customize, $section_id, $field_id, $field_name)
+function __add_field($wp_customize, $section_id, $field_id, $field_name, $field_type)
 {
     // Add a text control to the section
     $wp_customize->add_setting($field_id, array(
@@ -36,6 +38,6 @@ function __add_field($wp_customize, $section_id, $field_id, $field_name)
     $wp_customize->add_control($field_id, array(
         'label'    => __($field_name, 'coptrz'),
         'section'  => $section_id,
-        'type'     => 'text',
+        'type'     => $field_type,
     ));
 }
