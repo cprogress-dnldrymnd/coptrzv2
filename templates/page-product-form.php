@@ -14,8 +14,13 @@ get_header();
     ?>
     <section class="section section-1 md-padding-top md-padding-bottom  text-center" id="section-1">
         <div class="container">
-            <div class="text-center heading-box"><span><input class="product-form-input" type="text" placeholder="Lorem Ipsum"></span>
-                <h2>A Palm-Sized Drone for Vlogs</h2>
+            <div class="text-center heading-box">
+                <span class="product-form-input-wrapper">
+                    <input class="product-form-input" type="text" placeholder="Lorem Ipsum">
+                </span>
+                <h2 class="product-form-input-wrapper">
+                    <input class="product-form-input" type="text" placeholder="Lorem Ipsum Dolor Sit Amet">
+                </h2>
             </div>
             <div class="description-box mx-auto" style="max-width: 1000px;">
                 <p>Enjoy a fresh perspective on everyday life with DJI Neo. Soar through breathtaking scenery, indoors and out, and be sure to include everybody in a group photo.</p>
