@@ -27,7 +27,7 @@ $col_num = 3;
             </div>
         <?php } ?>
 
-        <div class="row g-xs-10px g-4">
+        <div class="row g-xs-10px g-4 same-image-height">
             <?php for ($col_num = 1; $col_num <= 3; $col_num++) { ?>
                 <?php
                 $section_1_col_image = get_option('section_1_col_' . $col_num . '_image');
