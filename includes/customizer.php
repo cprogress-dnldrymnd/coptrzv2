@@ -9,9 +9,13 @@ function customizer_section_1($wp_customize)
     __add_field($wp_customize, 'section_1', 'section_1_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_description', 'Description', $placeholder, 'textarea');
 
-    __add_field($wp_customize, 'section_1', 'section_1_col_1_image', 'Image[Column 1]', $image_placeholder, 'image');
-    __add_field($wp_customize, 'section_1', 'section_1_col_1_heading', 'Heading[Column 1]', 'Lorem ipsum dolor ', 'text');
-    __add_field($wp_customize, 'section_1', 'section_1_col_1_description', 'Description[Column 1]', $placeholder, 'textarea');
+    $x = 3;
+
+    for ($x = 1; $x <= 3; $x++) {
+        __add_field($wp_customize, 'section_1', 'section_1_col_' . $x . '_image', 'Image[Column ' . $x . ']', $image_placeholder, 'image');
+        __add_field($wp_customize, 'section_1', 'section_1_col_' . $x . '_heading', 'Heading[Column ' . $x . ']', 'Lorem ipsum dolor ', 'text');
+        __add_field($wp_customize, 'section_1', 'section_1_col_' . $x . '_description', 'Description[Column ' . $x . ']', $placeholder, 'textarea');
+    }
 }
 add_action('customize_register', 'customizer_section_1');
 
