@@ -22,7 +22,7 @@ function customizer_section_1($wp_customize)
 
     $wp_customize->add_control('my_page_text', array(
         'label'    => __('Page Text', 'coptrz'),
-        'section'  => 'my_page_section',
+        'section'  => 'section_1',
         'type'     => 'text',
     ));
 }
