@@ -26,11 +26,11 @@ function __add_section($wp_customize, $section_id, $section_name)
     ));
 }
 
-function __add_field($wp_customize, $section_id, $field_id, $field_name, $field_type)
+function __add_field($wp_customize, $section_id, $field_id, $field_name, $field_placeholder, $field_type)
 {
     // Add a text control to the section
     $wp_customize->add_setting($field_id, array(
-        'default'           => 'Lorem ipsum',
+        'default'           => $field_placeholder,
         'sanitize_callback' => 'sanitize_text_field',
         'type' => 'option'
     ));
