@@ -7,6 +7,7 @@ function customizer_section_1($wp_customize)
     __add_field($wp_customize, 'section_1', 'section_1_heading_prefix', 'Heading Prefix', 'Lorem ipsum', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_description', 'Description', $placeholder, 'textarea');
+    __add_image($wp_customize);
 }
 add_action('customize_register', 'customizer_section_1');
 
@@ -40,4 +41,20 @@ function __add_field($wp_customize, $section_id, $field_id, $field_name, $field_
         'section'  => $section_id,
         'type'     => $field_type,
     ));
+}
+
+
+function __add_image($wp_customize)
+{
+    $media_control = new WP_Customize_Media_Control(
+        $wp_customize,
+        'default_thumbnail', #setting/option_id
+        [
+            'mime_type' => 'image',
+            'section' => 'section_id',
+            'label' => __('Label for control', 'domain'),
+            'description' => __('Description for control', 'domain')
+        ]
+    );
+    $wp_customize->add_control($media_control);
 }
