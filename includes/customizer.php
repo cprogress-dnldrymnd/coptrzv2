@@ -22,8 +22,6 @@ function __add_section($wp_customize, $section_id, $section_name)
             }
         },
     ));
-
-    return;
 }
 
 function __add_field($wp_customize, $section_id, $field_id, $field_name)
@@ -39,6 +37,4 @@ function __add_field($wp_customize, $section_id, $field_id, $field_name)
         'section'  => $section_id,
         'type'     => 'text',
     ));
-
-    return;
 }
