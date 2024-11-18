@@ -7,7 +7,10 @@ function customizer_section_1($wp_customize)
     __add_field($wp_customize, 'section_1', 'section_1_heading_prefix', 'Heading Prefix', 'Lorem ipsum', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_description', 'Description', $placeholder, 'textarea');
-    __add_field($wp_customize, 'section_1', 'section_1_image', 'Image', false, 'image');
+
+    __add_field($wp_customize, 'section_1', 'section_1_col_1_image', 'Image[Column 1]', false, 'image');
+    __add_field($wp_customize, 'section_1', 'section_1_col_1_heading', 'Heading[Column 1]', 'Lorem ipsum dolor ', 'text');
+    __add_field($wp_customize, 'section_1', 'section_1_col_1_description', 'Description[Column 1]', $placeholder, 'textarea');
 }
 add_action('customize_register', 'customizer_section_1');
 
