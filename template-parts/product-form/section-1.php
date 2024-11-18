@@ -41,7 +41,10 @@ $section_1_col_1_description = get_option('section_1_col_1_description');
                             ?>
                         </div>
                     <?php } ?>
-                    <h3 class="small-heading">From Your Hand to the sky</h3>
+
+                    <?php if ($section_1_col_1_heading) { ?>
+                        <h3 class="small-heading"><?= $section_1_col_1_heading ?></h3>
+                    <?php } ?>
                     <div class="description-box">
                         <p>DJI Neo gracefully takes off and lands from your palm. Simply press the mode button on Neo, select your desired shooting mode, and Neo automatically does the rest to capture impressive footage, all without a remote controller!</p>
                     </div>
