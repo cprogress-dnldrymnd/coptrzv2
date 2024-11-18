@@ -32,7 +32,7 @@ function __add_field($wp_customize, $section_id, $field_id, $field_name)
         'sanitize_callback' => 'sanitize_text_field',
     ));
 
-    $wp_customize->add_control('my_page_text', array(
+    $wp_customize->add_control($field_id, array(
         'label'    => __($field_name, 'coptrz'),
         'section'  => $section_id,
         'type'     => 'text',
