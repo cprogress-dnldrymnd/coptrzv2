@@ -1,3 +1,9 @@
+<?php
+$section_1_heading_prefix = get_option('section_1_heading_prefix');
+$section_1_heading = get_option('section_1_heading');
+$section_1_description = get_option('section_1_description');
+
+?>
 <section class="section section-1 md-padding-top md-padding-bottom  text-center" id="section-1">
     <?php if (current_user_can('administrator')) { ?>
         <div class="section-label">
@@ -5,12 +11,20 @@
         </div>
     <?php } ?>
     <div class="container">
-        <div class="text-center heading-box"><span><?= get_option('heading_prefix'); ?></span>
-            <h2>A Palm-Sized Drone for Vlogs</h2>
+        <div class="text-center heading-box">
+            <?php if ($section_1_heading_prefix) { ?>
+                <span><?= get_option('section_1_heading_prefix'); ?></span>
+            <?php } ?>
+            <?php if ($section_1_heading) { ?>
+                <h2><?= $section_1_heading ?></h2>
+            <?php } ?>
         </div>
-        <div class="description-box mx-auto" style="max-width: 1000px;">
-            <p>Enjoy a fresh perspective on everyday life with DJI Neo. Soar through breathtaking scenery, indoors and out, and be sure to include everybody in a group photo.</p>
-        </div>
+        <?php if ($section_1_description) { ?>
+            <div class="description-box mx-auto" style="max-width: 1000px;">
+                <?= wpautop($section_1_description) ?>
+            </div>
+        <?php } ?>
+
         <div class="row g-xs-10px g-4">
             <div class="col-lg-4 col-md-6">
                 <div class="column-holder content-margin overflow-hidden position-relative h-100">
