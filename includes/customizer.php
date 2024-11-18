@@ -5,6 +5,9 @@ function my_theme_customize_register($wp_customize)
     $wp_customize->add_section('my_page_section', array(
         'title'    => __('My Page Settings', 'my-theme'),
         'priority' => 160, // Adjust the priority to control the section's position
+        'active_callback' => function () {
+            return get_page_template_slug() == 'templates/page-product-form.php';
+        },
     ));
 
     // Add a text control to the section
