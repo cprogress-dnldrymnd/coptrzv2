@@ -3,6 +3,9 @@ $section_1_heading_prefix = get_option('section_1_heading_prefix');
 $section_1_heading = get_option('section_1_heading');
 $section_1_description = get_option('section_1_description');
 
+$section_1_col_1_image = get_option('section_1_col_1_image');
+
+
 ?>
 <section class="section section-1 md-padding-top md-padding-bottom  text-center" id="section-1">
     <?php if (current_user_can('administrator')) { ?>
@@ -10,6 +13,7 @@ $section_1_description = get_option('section_1_description');
             Section 1
         </div>
     <?php } ?>
+    <?php var_dump($section_1_col_1_image) ?>
     <div class="container">
         <div class="text-center heading-box">
             <?php if ($section_1_heading_prefix) { ?>
