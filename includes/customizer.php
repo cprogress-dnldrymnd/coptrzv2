@@ -6,7 +6,11 @@ function my_theme_customize_register($wp_customize)
         'title'    => __('My Page Settings', 'my-theme'),
         'priority' => 160, // Adjust the priority to control the section's position
         'active_callback' => function () {
-            return get_page_template_slug() == 'templates/page-product-form.php';
+            if (get_page_template_slug() == 'templates/page-product-form.php') {
+                return true;
+            } else {
+                return false;
+            }
         },
     ));
 
