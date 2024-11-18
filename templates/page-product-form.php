@@ -6,6 +6,7 @@
 ?>
 <?php
 get_header();
+echo do_shortcode(___hero_modules());
 ?>
 <section class="section section-1 md-padding-top md-padding-bottom  text-center" id="section-1">
     <div class="container">
