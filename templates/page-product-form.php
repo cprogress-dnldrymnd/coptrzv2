@@ -22,8 +22,9 @@ get_header();
                     <input class="product-form-input" type="text" placeholder="Lorem Ipsum Dolor Sit Amet">
                 </h2>
             </div>
-            <div class="description-box mx-auto" style="max-width: 1000px;">
-                <p>Enjoy a fresh perspective on everyday life with DJI Neo. Soar through breathtaking scenery, indoors and out, and be sure to include everybody in a group photo.</p>
+            <div class="description-box mx-auto product-form-input-wrapper" style="max-width: 1000px;">
+                <textarea class="product-form-input" type="text" placeholder="Lorem Ipsum Dolor Sit Amet">
+                </textarea>
             </div>
             <div class="row g-xs-10px g-4">
                 <div class="col-lg-4 col-md-6">
