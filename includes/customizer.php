@@ -51,7 +51,7 @@ function __add_image($wp_customize)
         'default_thumbnail', #setting/option_id
         [
             'mime_type' => 'image',
-            'section' => 'section_id',
+            'section' => 'section_1',
             'label' => __('Label for control', 'domain'),
             'description' => __('Description for control', 'domain')
         ]
