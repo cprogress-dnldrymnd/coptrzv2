@@ -2103,12 +2103,6 @@ function ga4()
             }
         ?>
             <script>
-                console.log('<?= get_post_meta($order_id, '_thankyou_action_done', true)  ?>');
-                console.log('<?= $transaction_id ?>');
-                console.log('<?= $value ?>');
-                console.log('<?= $tax ?>');
-                console.log('<?= json_encode($items) ?>');
-
                 <?php if ($coupons) { ?>
                     <?php if (count($coupons) == 1) { ?>
                         var coupon = '<?= $coupons[0] ?>'
@@ -2180,7 +2174,7 @@ function _cart_data()
                 'index' => $key,
                 'item_brand' => $pa_brands,
                 'item_category' => $category[0]->name,
-                'price' => _price_format(WC()->cart->get_product_subtotal($_product, $cart_item['quantity'])),
+                'price' => WC()->cart->get_product_subtotal($_product, $cart_item['quantity']),
                 'quantity' => intval($cart_item['quantity'])
             );
         }

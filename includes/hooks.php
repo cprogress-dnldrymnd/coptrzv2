@@ -182,148 +182,150 @@ add_action('admin_head', 'action_admin_head');
 
 function action__wp_footer()
 {
+    if (!is_checkout()) {
 
-    global $popups_id;
-    $popups = array_unique($popups_id);
+        global $popups_id;
+        $popups = array_unique($popups_id);
 
-    $popups_wpml = array();
-    foreach ($popups as $popup) {
-        $popups_wpml[] = apply_filters('wpml_object_id', $popup, 'post');
-    }
-
-    $args = array(
-        'post_type' => 'popups',
-        'include' => $popups_wpml,
-        'fields' => 'ids',
-    );
-    $posts = get_posts($args);
-
-    foreach ($posts as $post) {
-        echo __popup($post);
-    }
-
-    if (current_user_can('administrator')) {
-        global $layouts_global, $product_taxonomy_page, $popups_id;
-        $layouts_global_val = "<div class='ab-sub-wrapper'>";
-        $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
-        if ($product_taxonomy_page) {
-            $product_tax_page = array_unique($product_taxonomy_page);
-            foreach ($product_tax_page as $tax_page) {
-                $title = get_the_title($tax_page) . ' [Term Page]';
-                $link = get_edit_post_link($tax_page);
-                $layouts_global_val .= "<li>";
-                $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
-                $layouts_global_val .= "</li>";
-            }
+        $popups_wpml = array();
+        foreach ($popups as $popup) {
+            $popups_wpml[] = apply_filters('wpml_object_id', $popup, 'post');
         }
 
-        $_layouts = get_post_meta(get_the_ID(), '_layouts', true);
-        $_layouts_val = $_layouts ? $_layouts : array();
-        $layouts_global_arr = array_merge($layouts_global, $_layouts_val);
-        if ($layouts_global_arr) {
-            $layouts = [];
-            foreach ($layouts_global_arr as $layout) {
-                $layouts[] = apply_filters('wpml_object_id', $layout, 'post');
-            }
+        $args = array(
+            'post_type' => 'popups',
+            'include' => $popups_wpml,
+            'fields' => 'ids',
+        );
+        $posts = get_posts($args);
 
-            $layouts = array_unique($layouts);
-
-            foreach ($layouts as $layout) {
-                $title = get_the_title($layout) . ' [Layout]';
-                $link = get_edit_post_link($layout);
-
-                $layouts_global_val .= "<li>";
-                $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
-                $layouts_global_val .= "</li>";
-            }
-        }
-        if ($popups_id) {
-            $popups = array_unique($popups_id);
-            foreach ($popups as $popup) {
-                $title = get_the_title($popup) . ' [Popup]';
-                $link = get_edit_post_link($popup);
-
-                $layouts_global_val .= "<li>";
-                $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
-                $layouts_global_val .= "</li>";
-            }
+        foreach ($posts as $post) {
+            echo __popup($post);
         }
 
-
-
-
-
-        $layouts_global_val .= "</ul>";
-        $layouts_global_val .= "</div>";
-    ?>
-        <script>
-            jQuery(document).ready(function() {
-                jQuery("<?= $layouts_global_val ?>").appendTo('#wp-admin-bar-layouts-menu');
-            });
-        </script>
-
-    <?php
-    }
-    ?>
-    <script>
-        jQuery(document).ready(function() {
-            jQuery('#download-gvc').appendTo('.the-content > *:nth-child(2)');
-        });
-    </script>
-    <script>
-        video_id = document.getElementById('player').getAttribute('video_id');
-        if (video_id) {
-            // 2. This code loads the IFrame Player API code asynchronously.
-            var tag = document.createElement('script');
-
-            tag.src = "https://www.youtube.com/iframe_api";
-            var firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-            // 3. This function creates an <iframe> (and YouTube player)
-            //    after the API code downloads.
-            var player;
-
-            function onYouTubeIframeAPIReady() {
-                player = new YT.Player('player', {
-                    height: '100%',
-                    width: '100%',
-                    videoId: video_id,
-                    playerVars: {
-                        controls: 1,
-                        showinfo: 0,
-                        rel: 0,
-                        autoplay: 1,
-                        mute: 1,
-                        playsinline: 1,
-                        playlist: video_id,
-                        loop: 1,
-                    },
-                    events: {
-                        'onReady': onPlayerReady,
-                        'onStateChange': function(event) {
-                            var YTP = event.target;
-                            if (event.data === 1) {
-                                var remains = YTP.getDuration() - YTP.getCurrentTime();
-                                if (this.rewindTO)
-                                    clearTimeout(this.rewindTO);
-                                this.rewindTO = setTimeout(function() {
-                                    YTP.seekTo(0);
-                                }, (remains - 1) * 1000);
-                            }
-                        }
-                    }
-                });
-
-                function onPlayerReady(event) {
-                    setTimeout(function() {
-                        jQuery('.background-image iframe').addClass('show');
-                    }, 500);
+        if (current_user_can('administrator')) {
+            global $layouts_global, $product_taxonomy_page, $popups_id;
+            $layouts_global_val = "<div class='ab-sub-wrapper'>";
+            $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
+            if ($product_taxonomy_page) {
+                $product_tax_page = array_unique($product_taxonomy_page);
+                foreach ($product_tax_page as $tax_page) {
+                    $title = get_the_title($tax_page) . ' [Term Page]';
+                    $link = get_edit_post_link($tax_page);
+                    $layouts_global_val .= "<li>";
+                    $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
+                    $layouts_global_val .= "</li>";
                 }
             }
+
+            $_layouts = get_post_meta(get_the_ID(), '_layouts', true);
+            $_layouts_val = $_layouts ? $_layouts : array();
+            $layouts_global_arr = array_merge($layouts_global, $_layouts_val);
+            if ($layouts_global_arr) {
+                $layouts = [];
+                foreach ($layouts_global_arr as $layout) {
+                    $layouts[] = apply_filters('wpml_object_id', $layout, 'post');
+                }
+
+                $layouts = array_unique($layouts);
+
+                foreach ($layouts as $layout) {
+                    $title = get_the_title($layout) . ' [Layout]';
+                    $link = get_edit_post_link($layout);
+
+                    $layouts_global_val .= "<li>";
+                    $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
+                    $layouts_global_val .= "</li>";
+                }
+            }
+            if ($popups_id) {
+                $popups = array_unique($popups_id);
+                foreach ($popups as $popup) {
+                    $title = get_the_title($popup) . ' [Popup]';
+                    $link = get_edit_post_link($popup);
+
+                    $layouts_global_val .= "<li>";
+                    $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
+                    $layouts_global_val .= "</li>";
+                }
+            }
+
+
+
+
+
+            $layouts_global_val .= "</ul>";
+            $layouts_global_val .= "</div>";
+    ?>
+            <script>
+                jQuery(document).ready(function() {
+                    jQuery("<?= $layouts_global_val ?>").appendTo('#wp-admin-bar-layouts-menu');
+                });
+            </script>
+
+        <?php
         }
-    </script>
+        ?>
+        <script>
+            jQuery(document).ready(function() {
+                jQuery('#download-gvc').appendTo('.the-content > *:nth-child(2)');
+            });
+        </script>
+        <script>
+            video_id = document.getElementById('player').getAttribute('video_id');
+            if (video_id) {
+                // 2. This code loads the IFrame Player API code asynchronously.
+                var tag = document.createElement('script');
+
+                tag.src = "https://www.youtube.com/iframe_api";
+                var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                // 3. This function creates an <iframe> (and YouTube player)
+                //    after the API code downloads.
+                var player;
+
+                function onYouTubeIframeAPIReady() {
+                    player = new YT.Player('player', {
+                        height: '100%',
+                        width: '100%',
+                        videoId: video_id,
+                        playerVars: {
+                            controls: 1,
+                            showinfo: 0,
+                            rel: 0,
+                            autoplay: 1,
+                            mute: 1,
+                            playsinline: 1,
+                            playlist: video_id,
+                            loop: 1,
+                        },
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': function(event) {
+                                var YTP = event.target;
+                                if (event.data === 1) {
+                                    var remains = YTP.getDuration() - YTP.getCurrentTime();
+                                    if (this.rewindTO)
+                                        clearTimeout(this.rewindTO);
+                                    this.rewindTO = setTimeout(function() {
+                                        YTP.seekTo(0);
+                                    }, (remains - 1) * 1000);
+                                }
+                            }
+                        }
+                    });
+
+                    function onPlayerReady(event) {
+                        setTimeout(function() {
+                            jQuery('.background-image iframe').addClass('show');
+                        }, 500);
+                    }
+                }
+            }
+        </script>
     <?php
+    }
 }
 
 add_action('wp_footer', 'action__wp_footer');
@@ -478,18 +480,6 @@ function action_body_class($classes)
 add_filter('body_class', 'action_body_class');
 
 
-add_filter('wpcf7_form_tag_data_option', function ($data, $options, $args) {
-    $data = [];
-    foreach ($options as $option) {
-        if ($option === 'checkbox_options') {
-            $data = array_merge($data, ['Checkbox Option A', 'Checkbox Option B']);
-        }
-    }
-    return $data;
-}, 10, 3);
-
-
-
 
 // remove "Private: " from titles
 function remove_private_prefix($title)
@@ -503,7 +493,6 @@ add_filter('the_title', 'remove_private_prefix');
 function action_body_scripts()
 {
     $body_scripts = get__theme_option('body_scripts');
-
     if ($body_scripts) {
         echo $body_scripts;
     }

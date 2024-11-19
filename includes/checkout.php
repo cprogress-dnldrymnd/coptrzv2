@@ -77,7 +77,7 @@ function checkout_checkbox_show_hide_order_notes($fields)
             display: none;
         }
     </style>
-    <script type="text/javascript">
+     type="text/javascript">
         jQuery(function($) {
             var a = 'input#checkbox_trigger',
                 b = '#<?php echo $target_id; ?>_field';
