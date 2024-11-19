@@ -567,6 +567,9 @@ function __swipers() {
 
     });
 
+    $link = jQuery('.swiper-slide[key="0"]').attr('link');
+    jQuery('.case-study-slider .button-accent a').attr('href',)
+
     var swiper_fullwidth = new Swiper('.swiper-full-width', {
         loop: true,
         autoplay: false,
@@ -578,7 +581,7 @@ function __swipers() {
         on: {
             slideChange: function () {
                 var index = this.realIndex;
-                $link = jQuery('.swiper-slide[key="' + index + ']"').attr('link');
+                $link = jQuery('.swiper-slide[key="' + index + '"]').attr('link');
                 jQuery('.case-study-slider .button-accent a').attr('href',)
             },
         }
