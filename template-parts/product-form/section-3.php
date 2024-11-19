@@ -14,7 +14,11 @@ $col_num = 4;
 
 ?>
 
-
+<?php if (current_user_can('administrator')) { ?>
+    <div class="section-label">
+        Section 3
+    </div>
+<?php } ?>
 <section class="section section-3 md-padding-top md-padding-bottom  text-center background-gradient-default" id="section-3">
     <div class="container">
         <?php if ($section_2_heading) { ?>
