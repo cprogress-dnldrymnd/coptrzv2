@@ -11,6 +11,7 @@ $section_4_col_2_heading = get_option('section_4_col_2_heading');
 $section_4_col_2_description = get_option('section_4_col_2_description');
 
 $col_num = 4;
+echo $_GET['customize_changeset_uuid'];
 ?>
 <section class="section section-4 md-padding-top md-padding-bottom  text-center background-gradient-default" id="section-4">
     <div class="container">
