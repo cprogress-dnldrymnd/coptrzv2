@@ -202,7 +202,6 @@ class Shortcodes
                 $logo = get__post_meta_by_id($id, 'logo');
                 $link = get_permalink($id);
                 $html .= "<div class='swiper-slide bg-dark rounded-corner' url='$link'>"; //swiper-slide
-
                 $html .= "<div class='inner h-100 d-flex flex-column justify-content-between sm-padding-bottom sm-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
                 $html .= "<div class='top'>";
 
