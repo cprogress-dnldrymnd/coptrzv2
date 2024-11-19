@@ -13,12 +13,12 @@ $section_video_description = get_option('section_video_description');
     <div class="background-image background-overlay"><video autoplay loop muted src="<?= $section_video_url ?>"></video></div>
     <div class="container">
         <div class="position-relative container-inner xs-padding-top xs-padding-bottom xs-padding-left xs-padding-right">
-            <?php if ($section_2_heading) { ?>
-                <h3><?= $section_2_heading ?></h3>
+            <?php if ($section_video_heading) { ?>
+                <h3><?= $section_video_heading ?></h3>
             <?php } ?>
-            <?php if ($section_2_description) { ?>
+            <?php if ($section_video_description) { ?>
                 <div class="description-box mx-auto" style="max-width: 1000px;">
-                    <?= wpautop($section_2_description) ?>
+                    <?= wpautop($section_video_description) ?>
                 </div>
             <?php } ?>
         </div>
