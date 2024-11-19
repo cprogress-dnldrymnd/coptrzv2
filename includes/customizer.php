@@ -20,7 +20,7 @@ function customizer_section_1($wp_customize)
     }
 
     /*Section 2*/
-    __add_section($wp_customize, 'section_2', 'Section 1');
+    __add_section($wp_customize, 'section_2', 'Section 2');
     __add_field($wp_customize, 'section_2', 'section_2_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
     __add_field($wp_customize, 'section_2', 'section_2_description', 'Description', $placeholder, 'textarea');
 }
