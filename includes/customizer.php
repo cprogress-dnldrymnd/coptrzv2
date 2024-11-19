@@ -6,7 +6,7 @@ function customizer_section_1($wp_customize)
     $image_placeholder = 'https://coptrz.com/wp-content/uploads/2023/05/placeholder-image.webp';
 
     /*Section Video */
-    __add_section($wp_customize, 'section_video', '--Section 1');
+    __add_section($wp_customize, 'section_video', '--Section Video');
     __add_field($wp_customize, 'section_video', 'section_video_url', 'Video URL', 'Lorem ipsum', 'text');
     __add_field($wp_customize, 'section_video', 'section_video_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
     __add_field($wp_customize, 'section_video', 'section_video_description', 'Description', $placeholder, 'textarea');
