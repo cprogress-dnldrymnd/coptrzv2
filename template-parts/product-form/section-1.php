@@ -20,7 +20,6 @@ $col_num = 3;
                 <h2><?= $section_1_heading ?></h2>
             <?php } ?>
         </div>
-
         <?php if ($section_1_description) { ?>
             <div class="description-box mx-auto" style="max-width: 1000px;">
                 <?= wpautop($section_1_description) ?>
