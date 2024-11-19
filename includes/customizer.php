@@ -6,12 +6,10 @@ function customizer_section_1($wp_customize)
     $image_placeholder = 'https://coptrz.com/wp-content/uploads/2023/05/placeholder-image.webp';
 
     /*Section 1*/
-    __add_section($wp_customize, 'section_1', 'Section 1');
+    __add_section($wp_customize, 'section_1', '--Section 1');
     __add_field($wp_customize, 'section_1', 'section_1_heading_prefix', 'Heading Prefix', 'Lorem ipsum', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_description', 'Description', $placeholder, 'textarea');
-
-    $section_1_col_num = 3;
 
     for ($section_1_col_num = 1; $section_1_col_num <= 3; $section_1_col_num++) {
         __add_field($wp_customize, 'section_1', 'section_1_col_' . $section_1_col_num . '_image', 'Image[Column ' . $section_1_col_num . ']', $image_placeholder, 'image');
@@ -20,13 +18,12 @@ function customizer_section_1($wp_customize)
     }
 
     /*Section 2*/
-    __add_section($wp_customize, 'section_2', 'Section 2');
+    __add_section($wp_customize, 'section_2', '--Section 2');
     __add_field($wp_customize, 'section_2', 'section_2_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
     __add_field($wp_customize, 'section_2', 'section_2_description', 'Description', $placeholder, 'textarea');
 
-    $section_2_col_num = 2;
 
-    for ($section_2_col_num = 1; $section_2_col_num <= 3; $section_2_col_num++) {
+    for ($section_2_col_num = 1; $section_2_col_num <= 2; $section_2_col_num++) {
         __add_field($wp_customize, 'section_2', 'section_2_col_' . $section_2_col_num . '_image', 'Image[Column ' . $section_2_col_num . ']', $image_placeholder, 'image');
         __add_field($wp_customize, 'section_2', 'section_2_col_' . $section_2_col_num . '_heading', 'Heading[Column ' . $section_2_col_num . ']', 'Lorem ipsum dolor ', 'text');
         __add_field($wp_customize, 'section_2', 'section_2_col_' . $section_2_col_num . '_description', 'Description[Column ' . $section_2_col_num . ']', $placeholder, 'textarea');
