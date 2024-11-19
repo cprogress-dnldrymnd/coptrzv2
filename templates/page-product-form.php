@@ -15,6 +15,7 @@ get_header();
     <?php get_template_part('template-parts/product-form/section-1') ?>
     <?php get_template_part('template-parts/product-form/section-2') ?>
     <?php get_template_part('template-parts/product-form/section-3') ?>
+    <?php get_template_part('template-parts/product-form/section-4') ?>
 </div>
 <?php
 get_footer();

@@ -11,7 +11,6 @@ $section_3_col_2_heading = get_option('section_3_col_2_heading');
 $section_3_col_2_description = get_option('section_3_col_2_description');
 
 $col_num = 4;
-
 ?>
 
 <?php if (current_user_can('administrator')) { ?>

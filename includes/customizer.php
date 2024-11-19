@@ -40,6 +40,18 @@ function customizer_section_1($wp_customize)
         __add_field($wp_customize, 'section_3', 'section_3_col_' . $section_3_col_num . '_heading', 'Heading[Column ' . $section_3_col_num . ']', 'Lorem ipsum dolor ', 'text');
         __add_field($wp_customize, 'section_3', 'section_3_col_' . $section_3_col_num . '_description', 'Description[Column ' . $section_3_col_num . ']', $placeholder, 'textarea');
     }
+
+    /*Section 4*/
+    __add_section($wp_customize, 'section_4', '--Section 4');
+    __add_field($wp_customize, 'section_4', 'section_4_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
+    __add_field($wp_customize, 'section_4', 'section_4_description', 'Description', $placeholder, 'textarea');
+
+
+    for ($section_4_col_num = 1; $section_4_col_num <= 4; $section_4_col_num++) {
+        __add_field($wp_customize, 'section_4', 'section_4_col_' . $section_4_col_num . '_image', 'Image[Column ' . $section_4_col_num . ']', $image_placeholder, 'image');
+        __add_field($wp_customize, 'section_4', 'section_4_col_' . $section_4_col_num . '_heading', 'Heading[Column ' . $section_4_col_num . ']', 'Lorem ipsum dolor ', 'text');
+        __add_field($wp_customize, 'section_4', 'section_4_col_' . $section_4_col_num . '_description', 'Description[Column ' . $section_4_col_num . ']', $placeholder, 'textarea');
+    }
 }
 add_action('customize_register', 'customizer_section_1');
 
