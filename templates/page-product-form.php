@@ -13,6 +13,7 @@ get_header();
     echo do_shortcode(___hero_modules());
     ?>
     <?php get_template_part('template-parts/product-form/section-1') ?>
+    <?php get_template_part('template-parts/product-form/section-2') ?>
 </div>
 <?php
 get_footer();
