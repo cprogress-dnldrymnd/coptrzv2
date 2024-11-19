@@ -12413,10 +12413,6 @@ hr {
   font-size: 2rem;
   font-weight: 500;
   color: var(--bs-white);
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
   line-height: 1; }
 
 @keyframes spin {
