@@ -1,4 +1,9 @@
 <section class="section section-2 background-gradient-default md-padding-top md-padding-bottom  text-center" id="section-2">
+<?php if (current_user_can('administrator')) { ?>
+        <div class="section-label">
+            Section 2
+        </div>
+    <?php } ?>
     <div class="container">
         <h2 class="text-center">A New Way To Fly</h2>
         <div class="description-box mx-auto" style="max-width: 1000px;">
