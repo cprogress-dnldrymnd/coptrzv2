@@ -21,12 +21,12 @@ $col_num = 4;
 <?php } ?>
 <section class="section section-3 md-padding-top md-padding-bottom  text-center background-gradient-default" id="section-3">
     <div class="container">
-        <?php if ($section_2_heading) { ?>
-            <h2 class="text-center"><?= $section_2_heading ?></h2>
+        <?php if ($section_3_heading) { ?>
+            <h2 class="text-center"><?= $section_3_heading ?></h2>
         <?php } ?>
-        <?php if ($section_2_description) { ?>
+        <?php if ($section_3_description) { ?>
             <div class="description-box mx-auto" style="max-width: 1000px;">
-                <?= wpautop($section_2_description) ?>
+                <?= wpautop($section_3_description) ?>
             </div>
         <?php } ?>
         <div class="row g-xs-10px gx-6 gy-6">
