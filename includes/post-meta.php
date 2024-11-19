@@ -6892,6 +6892,7 @@ Container::make('post_meta', 'Product Components')
         array(
             //Field::make('checkbox', 'finance_available', 'Finance Available?'),
             //Field::make('checkbox', 'business_invoicing', 'Business Invoicing?'),
+            Field::make('checkbox', 'enable_product_form', 'Enable Product Form'),
             Field::make('checkbox', 'cpd_maker', 'CPD Accredited'),
             Field::make('checkbox', 'tquk_logo', 'Show TQUK Logo'),
             Field::make('checkbox', 'free_shipping', 'Free Shipping'),
