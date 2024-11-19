@@ -2,8 +2,6 @@
 $section_2_heading = get_option('section_2_heading');
 $section_2_description = get_option('section_2_description');
 
-$col_num = 2;
-
 $section_2_col_1_image = get_option('section_2_col_1_image');
 $section_2_col_1_heading = get_option('section_2_col_1_heading');
 $section_2_col_1_description = get_option('section_2_col_1_description');
@@ -42,7 +40,7 @@ $section_2_col_2_description = get_option('section_2_col_2_description');
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6">z
                 <div class=" text-lg-start text-md-start text-start column-holder content-margin overflow-hidden position-relative h-100">
                     <?php if ($section_2_col_1_image) { ?>
                         <div class="image-box rounded-corner">
