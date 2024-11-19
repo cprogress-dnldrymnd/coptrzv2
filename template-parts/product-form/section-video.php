@@ -17,7 +17,7 @@ $section_video_description = get_option('section_video_description');
                 <h3><?= $section_video_heading ?></h3>
             <?php } ?>
             <?php if ($section_video_description) { ?>
-                <div class="description-box mx-auto" style="max-width: 1000px;">
+                <div class="description-box mx-auto">
                     <?= wpautop($section_video_description) ?>
                 </div>
             <?php } ?>
