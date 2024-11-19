@@ -11,8 +11,13 @@ $section_4_col_2_heading = get_option('section_4_col_2_heading');
 $section_4_col_2_description = get_option('section_4_col_2_description');
 
 $col_num = 4;
-echo $_GET['customize_changeset_uuid'];
+
 ?>
+<?php if (current_user_can('administrator') && isset($_GET['customize_changeset_uuid'])) { ?>
+    <div class="section-label">
+        Section 4
+    </div>
+<?php } ?>
 <section class="section section-4 md-padding-top md-padding-bottom  text-center background-gradient-default" id="section-4">
     <div class="container">
         <?php if ($section_4_heading) { ?>

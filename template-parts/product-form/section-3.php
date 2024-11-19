@@ -12,8 +12,7 @@ $section_3_col_2_description = get_option('section_3_col_2_description');
 
 $col_num = 4;
 ?>
-
-<?php if (current_user_can('administrator')) { ?>
+<?php if (current_user_can('administrator') && isset($_GET['customize_changeset_uuid'])) { ?>
     <div class="section-label">
         Section 3
     </div>

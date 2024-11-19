@@ -11,7 +11,7 @@ $section_2_col_2_heading = get_option('section_2_col_2_heading');
 $section_2_col_2_description = get_option('section_2_col_2_description');
 ?>
 
-<?php if (current_user_can('administrator')) { ?>
+<?php if (current_user_can('administrator') && isset($_GET['customize_changeset_uuid'])) { ?>
     <div class="section-label">
         Section 2
     </div>
