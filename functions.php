@@ -152,11 +152,3 @@ function canonical()
 		return $term_link;
 	}
 }
-
-add_filter(
-	'woocommerce_get_checkout_url',
-	function ($checkout_url) {
-		return '/checkout/';
-	},
-	300
-);
