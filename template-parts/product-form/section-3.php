@@ -30,7 +30,7 @@ $col_num = 4;
             </div>
         <?php } ?>
         <div class="row g-xs-10px gx-6 gy-6">
-            <?php for ($col_num = 1; $col_num <= 3; $col_num++) { ?>
+            <?php for ($col_num = 1; $col_num <= 4; $col_num++) { ?>
                 <?php
                 $section_3_col_image = get_option('section_3_col_' . $col_num . '_image');
                 $section_3_col_heading = get_option('section_3_col_' . $col_num . '_heading');
