@@ -578,7 +578,8 @@ function __swipers() {
         on: {
             slideChange: function () {
                 var index = this.realIndex;
-
+                $link = jQuery('.swiper-slide[key="' + index + ']"').attr('link');
+                jQuery('.case-study-slider .button-accent a').attr('href',)
             },
         }
     });
