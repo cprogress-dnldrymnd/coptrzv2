@@ -567,7 +567,7 @@ function __swipers() {
 
     });
 
-    $link = jQuery('.swiper-slide[key="0"]').attr('url');
+    $link = jQuery('.case-study-slider .swiper-slide[key="0"]').attr('url');
     jQuery('.case-study-slider .button-accent a').attr('href', $link)
 
     var swiper_fullwidth = new Swiper('.swiper-full-width', {
