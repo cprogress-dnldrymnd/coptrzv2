@@ -9,14 +9,14 @@ get_header();
 
 ?>
 <div class="modules">
-    <?php
-    echo do_shortcode(___hero_modules());
-    ?>
-    <?php get_template_part('template-parts/product-form/section-video') ?>
-    <?php get_template_part('template-parts/product-form/section-1') ?>
-    <?php get_template_part('template-parts/product-form/section-2') ?>
-    <?php get_template_part('template-parts/product-form/section-3') ?>
-    <?php get_template_part('template-parts/product-form/section-4') ?>
+	<?php
+	echo do_shortcode(___hero_modules());
+	?>
+	<?php get_template_part('template-parts/product-form/section-video') ?>
+	<?php get_template_part('template-parts/product-form/section-1') ?>
+	<?php get_template_part('template-parts/product-form/section-2') ?>
+	<?php get_template_part('template-parts/product-form/section-3') ?>
+	<?php get_template_part('template-parts/product-form/section-4') ?>
 </div>
 
 <div class="main-product-data product-data d-none">
@@ -87,16 +87,33 @@ get_header();
 
 	<?php } ?>
 
-	<?php
-	/**
-	 * Hook: woocommerce_after_single_product_summary.
-	 *
-	 * @hooked woocommerce_output_product_data_tabs - 10
-	 * @hooked woocommerce_upsell_display - 15
-	 * @hooked woocommerce_output_related_products - 20
-	 */
-	do_action('woocommerce_after_single_product_summary');
-	?>
+	<section class="related products">
+
+		<?php
+		$heading = apply_filters('woocommerce_product_related_products_heading', __('Related products', 'woocommerce'));
+
+		if ($heading) :
+		?>
+			<h2><?php echo esc_html($heading); ?></h2>
+		<?php endif; ?>
+
+		<?php woocommerce_product_loop_start(); ?>
+
+		<?php foreach ($related_products as $related_product) : ?>
+
+			<?php
+			$post_object = get_post($related_product->get_id());
+
+			setup_postdata($GLOBALS['post'] = &$post_object); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+
+			wc_get_template_part('content', 'product');
+			?>
+
+		<?php endforeach; ?>
+
+		<?php woocommerce_product_loop_end(); ?>
+
+	</section>
 </div>
 
 <?php
