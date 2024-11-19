@@ -486,7 +486,7 @@ function __swipers() {
             freeMode: true,
             slidesPerView: 'auto',
             spaceBetween: 0,
-            speed: 5000,
+            speed: 3000,
             autoplay: {
                 delay: 0,
                 disableOnInteraction: false
