@@ -12,6 +12,7 @@ get_header();
     <?php
     echo do_shortcode(___hero_modules());
     ?>
+    <?php get_template_part('template-parts/product-form/section-video') ?>
     <?php get_template_part('template-parts/product-form/section-1') ?>
     <?php get_template_part('template-parts/product-form/section-2') ?>
     <?php get_template_part('template-parts/product-form/section-3') ?>
