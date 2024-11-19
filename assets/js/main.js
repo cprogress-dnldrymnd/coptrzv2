@@ -575,7 +575,15 @@ function __swipers() {
             nextEl: ".swiper-full-width .swiper-button-next",
             prevEl: ".swiper-full-width .swiper-button-prev",
         },
+        on: {
+            slideChange: function () {
+                var index = this.realIndex;
+
+            },
+        }
     });
+
+
 
 
     var swiper_case_study = new Swiper('.swiper-case-study-v2', {
