@@ -2183,3 +2183,5 @@ function _cart_data()
 
     return $data;
 }
+
+add_action('custom_woocommerce_output_related_products', 'woocommerce_output_related_products', 9);
