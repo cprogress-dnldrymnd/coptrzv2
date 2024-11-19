@@ -5,12 +5,12 @@ $section_1_description = get_option('section_1_description');
 
 $col_num = 3;
 ?>
+<?php if (current_user_can('administrator')) { ?>
+    <div class="section-label">
+        Section 1
+    </div>
+<?php } ?>
 <section class="section section-1 md-padding-top md-padding-bottom  text-center" id="section-1">
-    <?php if (current_user_can('administrator')) { ?>
-        <div class="section-label">
-            Section 1
-        </div>
-    <?php } ?>
     <div class="container">
         <div class="text-center heading-box">
             <?php if ($section_1_heading_prefix) { ?>
