@@ -12413,7 +12413,8 @@ hr {
   font-size: 2rem;
   font-weight: 500;
   color: var(--bs-white);
-  line-height: 1; }
+  line-height: 1;
+  text-align: center; }
 
 @keyframes spin {
   from {
