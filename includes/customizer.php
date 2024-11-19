@@ -4,18 +4,25 @@ function customizer_section_1($wp_customize)
     // Add a new section to the Customizer
     $placeholder = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, asperiores! Et pariatur sunt animi. Hic, itaque eligendi explicabo eum aspernatur, numquam quidem facere eius debitis culpa veritatis? Odio, velit adipisci.';
     $image_placeholder = 'https://coptrz.com/wp-content/uploads/2023/05/placeholder-image.webp';
+
+    /*Section 1*/
     __add_section($wp_customize, 'section_1', 'Section 1');
     __add_field($wp_customize, 'section_1', 'section_1_heading_prefix', 'Heading Prefix', 'Lorem ipsum', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
     __add_field($wp_customize, 'section_1', 'section_1_description', 'Description', $placeholder, 'textarea');
 
-    $col_num = 3;
+    $section_1_col_num = 3;
 
-    for ($col_num = 1; $col_num <= 3; $col_num++) {
-        __add_field($wp_customize, 'section_1', 'section_1_col_' . $col_num . '_image', 'Image[Column ' . $col_num . ']', $image_placeholder, 'image');
-        __add_field($wp_customize, 'section_1', 'section_1_col_' . $col_num . '_heading', 'Heading[Column ' . $col_num . ']', 'Lorem ipsum dolor ', 'text');
-        __add_field($wp_customize, 'section_1', 'section_1_col_' . $col_num . '_description', 'Description[Column ' . $col_num . ']', $placeholder, 'textarea');
+    for ($section_1_col_num = 1; $section_1_col_num <= 3; $section_1_col_num++) {
+        __add_field($wp_customize, 'section_1', 'section_1_col_' . $section_1_col_num . '_image', 'Image[Column ' . $section_1_col_num . ']', $image_placeholder, 'image');
+        __add_field($wp_customize, 'section_1', 'section_1_col_' . $section_1_col_num . '_heading', 'Heading[Column ' . $section_1_col_num . ']', 'Lorem ipsum dolor ', 'text');
+        __add_field($wp_customize, 'section_1', 'section_1_col_' . $section_1_col_num . '_description', 'Description[Column ' . $section_1_col_num . ']', $placeholder, 'textarea');
     }
+
+    /*Section 2*/
+    __add_section($wp_customize, 'section_2', 'Section 1');
+    __add_field($wp_customize, 'section_2', 'section_2_heading', 'Heading', 'Lorem ipsum dolor sit amet', 'text');
+    __add_field($wp_customize, 'section_2', 'section_2_description', 'Description', $placeholder, 'textarea');
 }
 add_action('customize_register', 'customizer_section_1');
 
