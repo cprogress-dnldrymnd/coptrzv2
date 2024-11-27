@@ -1009,7 +1009,7 @@ function ___sections($id = 'sections', $post_id = '')
                             $type = $global_widget['_type'];
                             switch ($type) {
                                 case 'latest_from_coptrz':
-                                    $html .= do_shortcode("[latest_from_coptrz]");
+                                    $html .= '[latest_from_coptrz]';
                                     break;
                                 case 'case_study_slider':
                                     $cs_style = $global_widget['style'];
