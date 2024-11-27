@@ -2183,3 +2183,10 @@ function _cart_data()
 
     return $data;
 }
+
+add_filter('woocommerce_get_catalog_ordering_args', 'force_alphabetical_sorting');
+function force_alphabetical_sorting($args) {
+    $args['orderby'] = 'title';
+    $args['order'] = 'ASC';
+    return $args;
+}
