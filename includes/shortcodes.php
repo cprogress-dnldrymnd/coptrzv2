@@ -479,36 +479,7 @@ class Shortcodes
             $html = "<div class='latest-from-coptrz'>";
             $html .= "<div class='row g-4 g-xs-10px'>";
 
-            foreach ($posts as $p) {
-                $data = [];
-                $id = $p->ID;
-                $background = 'featured-image';
-                $button_text = 'Read more';
-                $is_new = false;
-
-                $data['id'] = $id;
-                $data['col'] = 'col-lg-3 col-md-6';
-                $data['is_new'] = $is_new;
-
-                if ($background == 'featured-image') {
-                    $data['featured'] = true;
-                } else {
-                    $data['featured'] = false;
-                    $data['background_class'] = $background;
-                }
-                if (get_post_type($id) == 'post') {
-                    $data['elements'] = array('category', 'image', 'date', 'title', 'button');
-                    $data['taxonomy'] = 'category';
-                } else {
-                    $data['elements'] = array('image', 'title', 'button');
-                }
-                if ($button_text) {
-                    $data['button_text'] = $button_text;
-                }
-
-                $html .= __post_box($data);
-            }
-
+           
             foreach ($latest_from_coptrz as $post) {
                 $data = [];
                 $id = $post['post'][0]['id'];
