@@ -2967,7 +2967,7 @@ function ___latest_articles()
 {
     $posts = get_posts(array(
         'post_type' => 'post',
-        'numbreposts' => 3,
+        'numberposts' => 3,
     ));
     if ($posts) {
         $html = "<section class='featured-posts md-padding-top md-padding-bottom'>";
