@@ -471,9 +471,43 @@ class Shortcodes
     function latest_from_coptrz()
     {
         $latest_from_coptrz = get__theme_option('latest_from_coptrz');
+        $posts = get_posts(array(
+            'post_type' => 'post',
+            'numberposts' => 2,
+        ));
         if ($latest_from_coptrz) {
             $html = "<div class='latest-from-coptrz'>";
             $html .= "<div class='row g-4 g-xs-10px'>";
+
+            foreach ($posts as $p) {
+                $data = [];
+                $id = $p->ID;
+                $background = 'featured-image';
+                $button_text = 'Read more';
+                $is_new = false;
+
+                $data['id'] = $id;
+                $data['col'] = 'col-lg-3 col-md-6';
+                $data['is_new'] = $is_new;
+
+                if ($background == 'featured-image') {
+                    $data['featured'] = true;
+                } else {
+                    $data['featured'] = false;
+                    $data['background_class'] = $background;
+                }
+                if (get_post_type($id) == 'post') {
+                    $data['elements'] = array('category', 'image', 'date', 'title', 'button');
+                    $data['taxonomy'] = 'category';
+                } else {
+                    $data['elements'] = array('image', 'title', 'button');
+                }
+                if ($button_text) {
+                    $data['button_text'] = $button_text;
+                }
+
+                $html .= __post_box($data);
+            }
 
             foreach ($latest_from_coptrz as $post) {
                 $data = [];
