@@ -2963,6 +2963,40 @@ function ___featured($key)
     }
 }
 
+function ___latest_articles()
+{
+    $posts = get_posts(array(
+        'post_type' => 'post',
+        'numbreposts' => 3,
+    ));
+    if ($posts) {
+        $html = "<section class='featured-posts md-padding-top md-padding-bottom'>";
+        $html .= "<div class='container'>";
+        $html .= __heading(array(
+            'heading' => 'Latest Articles',
+            'class'   => _attribute('class', array('text-center'))
+        ));
+        $html .= "<div class='row g-4'>";
+
+        foreach ($posts as $post) {
+            $data = array(
+                'id'       => $post->ID,
+                'featured' => true,
+                'col'      => true,
+                'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+            );
+            $html .= do_shortcode(__post_box($data));
+        }
+
+        $html .= "</div>";
+
+        $html .= "</div>";
+        $html .= "</section>";
+
+        return $html;
+    }
+}
+
 
 function ___posts_header($key, $title, $taxonomy, $class = '')
 {

@@ -163,7 +163,11 @@ if (is_home() || is_category()) {
 $data['has_pagination'] = $has_pagination;
 echo do_shortcode(___hero_archive($key, $archive_title, $category, $black_header));
 if ($has_featured &&  !is_paged()) {
-    echo ___featured($key);
+    if (is_home()) {
+        ___latest_articles();
+    } else {
+        echo ___featured($key);
+    }
 }
 
 
