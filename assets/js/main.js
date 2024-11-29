@@ -181,8 +181,6 @@ function __ajax() {
         }
     });
 
-
-
 }
 
 function __ajax_trigger() {
