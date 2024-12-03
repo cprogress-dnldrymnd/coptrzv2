@@ -66,9 +66,6 @@
         href="https://old.coptrz.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css?ver=5.15.3"
         type="text/css" media="all">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-
-        src="https://old.coptrz.com/wp-content/themes/coptrz/assets/coptrz_vendors/bootstrap/bootstrap.min.js?ver=6.7.1"
-        id="coptz-bootstrap-js-js"></script>
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/js/intlTelInput.min.js?ver=5.5"
         id="intl-tel-js"></script>
