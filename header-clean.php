@@ -51,12 +51,6 @@
         href="https://old.coptrz.com/wp-content/uploads/elementor/css/custom-widget-icon-list.min.css?ver=1733219349"
         type="text/css" media="all">
 
-    <link rel="stylesheet" id="eael-general-css"
-        href="https://old.coptrz.com/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/css/view/general.min.css?ver=5.9.22"
-        type="text/css" media="all">
-    <link rel="stylesheet" id="ecs-styles-css"
-        href="https://old.coptrz.com/wp-content/plugins/ele-custom-skin/assets/css/ecs-style.css?ver=3.1.9"
-        type="text/css" media="all">
     <link rel="stylesheet" id="coptz-style-css" href="https://old.coptrz.com/wp-content/themes/coptrz/style.css?ver=5.5"
         type="text/css" media="all">
     <link rel="stylesheet" id="intl-tel-css"
@@ -73,13 +67,6 @@
         type="text/css" media="all">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
 
-    <script type="text/javascript"
-        src="https://old.coptrz.com/wp-content/plugins/ele-custom-skin/assets/js/ecs_ajax_pagination.js?ver=3.1.9"
-        id="ecs_ajax_load-js"></script>
-    <script type="text/javascript"
-        src="https://old.coptrz.com/wp-content/plugins/ele-custom-skin/assets/js/ecs.js?ver=3.1.9"
-        id="ecs-script-js"></script>
-    <script type="text/javascript"
         src="https://old.coptrz.com/wp-content/themes/coptrz/assets/coptrz_vendors/bootstrap/bootstrap.min.js?ver=6.7.1"
         id="coptz-bootstrap-js-js"></script>
     <script type="text/javascript"
