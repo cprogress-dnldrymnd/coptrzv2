@@ -121,7 +121,11 @@ function enqueue_scripts()
 			wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
 		}
 	*/
-	wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
+	if (get_page_template_slug() != 'templates/page-old-landing.php') {
+		wp_enqueue_style('style', theme_dir . 'style.css', NULL, coptz_version);
+	} else {
+		wp_enqueue_style('landing-style', theme_dir . 'landing.css', NULL, coptz_version);
+	}
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn and allow Wordpress to call it automatcally in the header
