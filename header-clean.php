@@ -94,6 +94,8 @@
 </head>
 
 
-<body <?php body_class(); ?>>
+<body
+    class="guides-template guides-template-elementor_canvas single single-guides postid-255051 wp-custom-logo theme-coptrz woocommerce-js has-annoucement e-wc-error-notice e-wc-message-notice e-wc-info-notice elementor-default elementor-template-canvas elementor-kit-60957 elementor-page elementor-page-255051 e--ua-blink e--ua-chrome e--ua-webkit"
+    data-elementor-device-mode="desktop">
     <?php wp_body_open(); ?>
     <main class="mt-20px">
