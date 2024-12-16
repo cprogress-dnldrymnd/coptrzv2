@@ -541,7 +541,7 @@ class Shortcodes
             $html .= "</div>";
             $html .= "</div>";
 
-            return $html;
+            return do_shortcode($html);
         }
     }
     function reviews()
