@@ -16,7 +16,7 @@ function action_after_setup_theme()
 	add_theme_support('post-thumbnails');
 	add_theme_support('woocommerce');
 	global $popups_id, $layouts_global, $product_taxonomy_page;
-	$popups_id = [372752];
+	$popups_id = [];
 	$layouts_global = [];
 	$product_taxonomy_page = [];
 }
