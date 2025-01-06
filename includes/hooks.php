@@ -186,16 +186,9 @@ function action__wp_footer()
 
         global $popups_id;
         $popups = array_unique($popups_id);
-   
-        $args = array(
-            'post_type' => 'popups',
-            'include' => $popups,
-            'fields' => 'ids',
-        );
-        $posts = get_posts($args);
-
-        foreach ($posts as $post) {
-            echo __popup($post);
+      
+        foreach ($popups as $popup) {
+            echo __popup($popup);
         }
 
         if (current_user_can('administrator')) {
