@@ -17,9 +17,6 @@ if (false === get_template_part('template-parts/single/single', get_post_type())
 global $popups_id;
 $popups = array_unique($popups_id);
 var_dump($popups_id);
-foreach ($popups as $popup) {
-    echo __popup($popup);
-}
 
 if ($hide_on_list) {
     get_footer('landing');
