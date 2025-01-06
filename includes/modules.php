@@ -1663,10 +1663,16 @@ function _custom_field($data, $html = '')
 }
 function ____button_modules($buttons, $buttons_alignment = '')
 {
+
     if ($buttons) {
         $html = "<div class='button-group-box $buttons_alignment'>";
         $html .= "<div class='row g-3 justify-content-center d-inline-flex'>";
         foreach ($buttons as $button) {
+            if ($button['button_type'] == 'popup') {
+                global $popups_id;
+                $popups_id[] = $button['button_url'];
+            }
+
             $html .= __button(array(
                 'button_type'       => $button['button_type'],
                 'button_text'       => $button['button_text'],

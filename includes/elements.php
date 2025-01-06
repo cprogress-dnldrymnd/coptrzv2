@@ -275,8 +275,6 @@ function __button($data)
             $tag = 'a';
             $link = "href='$button_url_custom'";
         } else if ($button_type == 'popups') {
-            global $popups_id;
-            $popups_id[] = $button_url;
             $tag = 'button';
             $link = 'data-bs-toggle="modal" data-bs-target="#modal-[post_id id=' . $button_url . ']"';
         }
