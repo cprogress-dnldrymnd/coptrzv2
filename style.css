@@ -12191,6 +12191,15 @@ hr {
       font-size: 18px;
       --bs-gutter-x: 10px; } }
 
+.event-dates {
+  display: flex;
+  align-items: center;
+  gap: 20px; }
+  .event-dates > span {
+    display: flex;
+    gap: 10px;
+    align-items: center; }
+
 .header-spacer {
   height: 82.5px; }
 
