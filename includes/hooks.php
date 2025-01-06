@@ -195,6 +195,7 @@ function action__wp_footer()
             global $layouts_global, $product_taxonomy_page, $popups_id;
             $layouts_global_val = "<div class='ab-sub-wrapper'>";
             $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
+            $layouts_global_val .= count($popups_id);
             if ($product_taxonomy_page) {
                 $product_tax_page = array_unique($product_taxonomy_page);
                 foreach ($product_tax_page as $tax_page) {
