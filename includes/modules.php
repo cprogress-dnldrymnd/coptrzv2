@@ -12,6 +12,7 @@ function action_module_content()
             'casestudies',
             'product',
             'industries',
+            'events',
             'producttaxonomypages',
             'layouts',
             'capabilities',
