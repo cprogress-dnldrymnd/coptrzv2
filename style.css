@@ -12194,7 +12194,7 @@ hr {
 .event-dates {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
   font-size: 15px;
   font-weight: 500; }
   .event-dates > span {
