@@ -251,7 +251,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $SVG = new SVG;
         $event_start_datetime = get__post_meta_by_id($id, 'event_start_datetime');
         $event_end_datetime = get__post_meta_by_id($id, 'event_start_datetime');
-        $date_time = '<div class="event-dates"><span>' . $SVG->calendarv2() . _date_format($event_start_datetime) . '</span> <span>' . $SVG->clock_v2() . _time_format($event_end_datetime) . ' BST</span></div>';
+        $date_time = '<div class="event-dates"><span>' . $SVG->calendarv2() . _date_format($event_start_datetime) . '</span> <span>' . $SVG->clockv2() . _time_format($event_end_datetime) . ' BST</span></div>';
         $hero_description .= $hero_description . $date_time;
     }
 
