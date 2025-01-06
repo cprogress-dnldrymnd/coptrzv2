@@ -12152,6 +12152,9 @@ hr {
   text-align: center;
   font-size: 29px;
   font-weight: 600; }
+  @media screen and (max-width: 480px) {
+    .event-countdown-holder > div {
+      width: 50%; } }
   .event-countdown-holder .countdown-box {
     padding: 10px;
     font-size: 70px;
