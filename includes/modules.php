@@ -65,6 +65,14 @@ function _date_format($date_input, $include_year = false)
     return $newDate;
 }
 
+function _time_format($date_input)
+{
+    $date = strtotime($date_input);
+    $newDate = date('G:i', $date);
+
+    return $newDate;
+}
+
 function _date_format_v2($date_input, $include = 'day')
 {
     $date = strtotime($date_input);
@@ -242,7 +250,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     if (get_post_type($id) == 'events') {
         $event_start_datetime = get__post_meta_by_id($id, 'event_start_datetime');
         $event_end_datetime = get__post_meta_by_id($id, 'event_start_datetime');
-        $date_time = _date_format($event_start_datetime) . ' | ' ._date_format($event_end_datetime);
+        $date_time = _date_format($event_start_datetime) . ' | ' ._time_format($event_end_datetime);
         $hero_description .= $hero_description . $date_time;
     }
 
