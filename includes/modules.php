@@ -68,7 +68,7 @@ function _date_format($date_input, $include_year = false)
 function _time_format($date_input)
 {
     $date = strtotime($date_input);
-    $newDate = date('G:i', $date);
+    $newDate = date('g:i a', $date);
 
     return $newDate;
 }
