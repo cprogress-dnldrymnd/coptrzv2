@@ -241,7 +241,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
     if (get_post_type($id) == 'events') {
         $event_start_datetime = get__post_meta_by_id($id, 'event_start_datetime');
-        $event_end_datetime = get__post_meta_by_id($id, 'event_end_datetime');
+        $event_end_datetime = get__post_meta_by_id($id, 'event_start_datetime');
         $date_time = _date_format($event_start_datetime) . ' | ' . $event_end_datetime;
         $hero_description .= $hero_description . $date_time;
     }
