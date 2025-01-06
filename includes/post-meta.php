@@ -6847,6 +6847,7 @@ Container::make('post_meta', 'Hide Before Footer Layout')
     ->where('post_type', '=', 'page')
     ->or_where('post_type', '=', 'guides')
     ->or_where('post_type', '=', 'casestudies')
+    ->or_where('post_type', '=', 'events')
     ->set_context('side')
     ->add_fields(array(
         Field::make('set', 'hidden_layouts', __(''))
