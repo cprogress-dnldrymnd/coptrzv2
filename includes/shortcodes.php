@@ -958,3 +958,4 @@ add_shortcode('post_id', array($Shortcodes, 'post_id'));
 add_shortcode('rentals_script', array($Shortcodes, 'rentals_script'));
 add_shortcode('product_add_to_cart', array($Shortcodes, 'product_add_to_cart'));
 add_shortcode('get_url_param', array($Shortcodes, 'get_url_param'));
+add_shortcode('popup', array($Shortcodes, 'popup'));
