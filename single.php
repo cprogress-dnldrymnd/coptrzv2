@@ -14,10 +14,6 @@ if (false === get_template_part('template-parts/single/single', get_post_type())
 ?>
 
 <?php
-global $popups_id;
-$popups = array_unique($popups_id);
-var_dump($popups_id);
-
 if ($hide_on_list) {
     get_footer('landing');
 } else {
