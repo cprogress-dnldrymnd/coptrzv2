@@ -327,15 +327,14 @@ function hero_form_redirect()
     $hero_form_redirect_url = get__post_meta('hero_form_redirect_url');
     $hero_form = get__post_meta('hero_form');
     $form_id = isset($hero_form[0]['id']) ? $hero_form[0]['id'] : false;
-    if ($hero_form_redirect_type && $hero_form_redirect_type != '') {
-        if ($hero_form_redirect_type == 'pdf') {
-            $redirect = wp_get_attachment_url($hero_form_pdf_redirect);
-        } else {
-            $redirect = $hero_form_redirect_url;
-        }
+
+    if ($hero_form_redirect_type == 'pdf') {
+        $redirect = wp_get_attachment_url($hero_form_pdf_redirect);
+    } else {
+        $redirect = $hero_form_redirect_url;
     }
 
-    if ($hero_form_enable && $form_id) {
+    if ($hero_form_enable && $form_id && $hero_form_redirect_type) {
     ?>
         <script>
             document.addEventListener('wpcf7mailsent', function(event) {
