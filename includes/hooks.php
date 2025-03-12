@@ -261,54 +261,56 @@ function action__wp_footer()
             });
         </script>
         <script>
+            if(jQuery('#player').length > 0) { 
             video_id = document.getElementById('player').getAttribute('video_id');
-            if (video_id) {
-                // 2. This code loads the IFrame Player API code asynchronously.
-                var tag = document.createElement('script');
+                if (video_id) {
+                    // 2. This code loads the IFrame Player API code asynchronously.
+                    var tag = document.createElement('script');
 
-                tag.src = "https://www.youtube.com/iframe_api";
-                var firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-                // 3. This function creates an <iframe> (and YouTube player)
-                //    after the API code downloads.
-                var player;
+                    // 3. This function creates an <iframe> (and YouTube player)
+                    //    after the API code downloads.
+                    var player;
 
-                function onYouTubeIframeAPIReady() {
-                    player = new YT.Player('player', {
-                        height: '100%',
-                        width: '100%',
-                        videoId: video_id,
-                        playerVars: {
-                            controls: 1,
-                            showinfo: 0,
-                            rel: 0,
-                            autoplay: 1,
-                            mute: 1,
-                            playsinline: 1,
-                            playlist: video_id,
-                            loop: 1,
-                        },
-                        events: {
-                            'onReady': onPlayerReady,
-                            'onStateChange': function(event) {
-                                var YTP = event.target;
-                                if (event.data === 1) {
-                                    var remains = YTP.getDuration() - YTP.getCurrentTime();
-                                    if (this.rewindTO)
-                                        clearTimeout(this.rewindTO);
-                                    this.rewindTO = setTimeout(function() {
-                                        YTP.seekTo(0);
-                                    }, (remains - 1) * 1000);
+                    function onYouTubeIframeAPIReady() {
+                        player = new YT.Player('player', {
+                            height: '100%',
+                            width: '100%',
+                            videoId: video_id,
+                            playerVars: {
+                                controls: 1,
+                                showinfo: 0,
+                                rel: 0,
+                                autoplay: 1,
+                                mute: 1,
+                                playsinline: 1,
+                                playlist: video_id,
+                                loop: 1,
+                            },
+                            events: {
+                                'onReady': onPlayerReady,
+                                'onStateChange': function(event) {
+                                    var YTP = event.target;
+                                    if (event.data === 1) {
+                                        var remains = YTP.getDuration() - YTP.getCurrentTime();
+                                        if (this.rewindTO)
+                                            clearTimeout(this.rewindTO);
+                                        this.rewindTO = setTimeout(function() {
+                                            YTP.seekTo(0);
+                                        }, (remains - 1) * 1000);
+                                    }
                                 }
                             }
-                        }
-                    });
+                        });
 
-                    function onPlayerReady(event) {
-                        setTimeout(function() {
-                            jQuery('.background-image iframe').addClass('show');
-                        }, 500);
+                        function onPlayerReady(event) {
+                            setTimeout(function() {
+                                jQuery('.background-image iframe').addClass('show');
+                            }, 500);
+                        }
                     }
                 }
             }
