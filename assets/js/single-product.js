@@ -138,41 +138,41 @@ function __product_variation() {
 }
 
 function __product_gallery() {
+    if (jQuery('.product-thumb').length > 0) {
+        var product_thumb = new Swiper('.product-thumb', {
+            loop: true,
+            autoplay: false,
+            spaceBetween: 10,
+            breakpoints: {
+                0: {
+                    slidesPerView: 3,
+                },
 
-    var product_thumb = new Swiper('.product-thumb', {
-        loop: true,
-        autoplay: false,
-        spaceBetween: 10,
-        breakpoints: {
-            0: {
-                slidesPerView: 3,
+                768: {
+                    slidesPerView: 4,
+                },
+
+
+                992: {
+                    slidesPerView: 5,
+                },
+
+                1200: {
+                    slidesPerView: 6,
+                },
+
             },
+        });
 
-            768: {
-                slidesPerView: 4,
+        var product_main_image = new Swiper('.product-main-image', {
+            loop: true,
+            autoplay: false,
+            slidesPerView: 1,
+            thumbs: {
+                swiper: product_thumb,
             },
-
-
-            992: {
-                slidesPerView: 5,
-            },
-
-            1200: {
-                slidesPerView: 6,
-            },
-
-        },
-    });
-
-    var product_main_image = new Swiper('.product-main-image', {
-        loop: true,
-        autoplay: false,
-        slidesPerView: 1,
-        thumbs: {
-            swiper: product_thumb,
-        },
-    });
-
+        });
+    }
 }
 /*without add to cart
 function __product_variation() {
