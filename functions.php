@@ -253,7 +253,7 @@ function action_validate_email()
 			jQuery(document).ready(function() {
 				jQuery('input[name="email"]').on('input', function() {
 					$val = jQuery(this).val();
-					console.log($val);
+					jQuery('input[name="email_mod"]').val($val);
 				});
 			});
 		</script>
