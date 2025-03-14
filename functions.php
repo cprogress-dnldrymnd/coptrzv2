@@ -235,7 +235,7 @@ function wpcf7_validate_mod_gov_uk($result, $tag)
 {
 	if ($tag->name == 'email' && WPCF7_Submission::get_instance()->get_id() == 372961) { // Replace 'your-email' with your actual email field name
 		$value = isset($_POST[$tag->name]) ? trim($_POST[$tag->name]) : '';
-		if (! filter_var($email, FILTER_VALIDATE_EMAIL) || ! preg_match('/@mod\.gov\.uk$/', $value)) {
+		if (! filter_var($value, FILTER_VALIDATE_EMAIL) || ! preg_match('/@mod\.gov\.uk$/', $value)) {
 			$result->invalidate($tag, 'Please enter a valid email address with @mod.gov.uk domain.');
 		}
 	}
