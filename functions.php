@@ -233,10 +233,13 @@ add_filter('wpcf7_validate_email*', 'wpcf7_validate_mod_gov_uk', 20, 2);
 
 function wpcf7_validate_mod_gov_uk($result, $tag)
 {
-	if ($tag->name == 'email' && WPCF7_Submission::get_instance()->get_id() == 372961) { // Replace 'your-email' with your actual email field name
-		$value = isset($_POST[$tag->name]) ? trim($_POST[$tag->name]) : '';
-		$result->invalidate($tag, 'Please enter a valid email address with @mod.gov.uk domain.');
-
+	if (get_the_ID() == 372958) {
+		if ($tag->name == 'email') { // Replace 'your-email' with your actual email field name
+			$value = isset($_POST[$tag->name]) ? trim($_POST[$tag->name]) : '';
+			if (!empty($value) && substr(strtolower($value), -11) !== '@mod.gov.uk') {
+				$result->invalidate($tag, "Please use a @mod.gov.uk email address.");
+			}
+		}
 	}
 	return $result;
 }
