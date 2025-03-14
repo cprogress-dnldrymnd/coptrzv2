@@ -158,7 +158,7 @@ function canonical()
 }
 
 
-function action_validate_email($result, $tags)
+function action_validate_email()
 {
 	if (get_the_ID() == 372958) {
 ?>
