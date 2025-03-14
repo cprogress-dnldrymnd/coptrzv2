@@ -157,7 +157,7 @@ function canonical()
 	}
 }
 
-
+/*
 function action_validate_email()
 {
 	if (get_the_ID() == 372958) {
@@ -196,8 +196,49 @@ function action_validate_email()
 					}
 				}
 			}, false);
+
+			document.addEventListener('DOMContentLoaded', function() {
+				const emailInput = document.querySelector('.realtime-email-check');
+
+				if (emailInput) {
+					emailInput.addEventListener('input', function() {
+						const email = this.value;
+						const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+
+						if (emailRegex.test(email)) {
+							// Valid email: You can add visual feedback here (e.g., green border, checkmark)
+							this.classList.remove('invalid-email');
+							this.classList.add('valid-email');
+						} else if (email.length > 0) {
+							// Invalid email and not empty: Add visual feedback (e.g., red border, error message)
+							this.classList.remove('valid-email');
+							this.classList.add('invalid-email');
+
+						} else {
+							//Empty field reset feedback
+							this.classList.remove('invalid-email');
+							this.classList.remove('valid-email');
+						}
+					});
+				}
+			});
 		</script>
 <?php
 	}
 }
+
 add_action('wp_footer', 'action_validate_email');
+*/
+add_filter('wpcf7_validate_email', 'wpcf7_validate_mod_gov_uk', 20, 2);
+
+function wpcf7_validate_mod_gov_uk($result, $tag)
+{
+	if ($tag->name == 'email' && WPCF7_Submission::get_instance()->get_id() == 372961) { // Replace 'your-email' with your actual email field name
+		$value = isset($_POST[$tag->name]) ? trim($_POST[$tag->name]) : '';
+
+		if (!empty($value) && substr(strtolower($value), -11) !== '@mod.gov.uk') {
+			$result->invalidate($tag, "Please use a @mod.gov.uk email address.");
+		}
+	}
+	return $result;
+}
