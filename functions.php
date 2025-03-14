@@ -229,7 +229,7 @@ function action_validate_email()
 
 add_action('wp_footer', 'action_validate_email');
 */
-add_filter('wpcf7_validate_email', 'wpcf7_validate_mod_gov_uk', 20, 2);
+add_filter('wpcf7_validate_email*', 'wpcf7_validate_mod_gov_uk', 20, 2);
 
 function wpcf7_validate_mod_gov_uk($result, $tag)
 {
