@@ -170,4 +170,4 @@ function validate_mod_gov_email($result, $tags)
 	}
 	return $result;
 }
-add_filter('wpcf7_validate_email', 'validate_mod_gov_email', 10, 2);
+add_filter('wpcf7_validate_email*', 'validate_mod_gov_email', 10, 2);
