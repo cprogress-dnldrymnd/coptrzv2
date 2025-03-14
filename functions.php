@@ -231,7 +231,7 @@ add_action('wp_footer', 'action_validate_email');
 */
 
 
-	
+
 add_filter('wpcf7_validate_email*', 'wpcf7_validate_mod_gov_uk', 20, 2);
 
 function wpcf7_validate_mod_gov_uk($result, $tag)
@@ -244,3 +244,21 @@ function wpcf7_validate_mod_gov_uk($result, $tag)
 	}
 	return $result;
 }
+
+function action_validate_email()
+{
+	if (get_the_ID() == 372958) {
+?>
+		<script>
+			jQuery(document).ready(function() {
+				jQuery('input[name="email"]').on('input', function() {
+					$val = jQuery(this).val();
+					console.log($val);
+				});
+			});
+		</script>
+<?php
+	}
+}
+
+add_action('wp_footer', 'action_validate_email');
