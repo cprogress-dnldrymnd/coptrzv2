@@ -158,16 +158,47 @@ function canonical()
 }
 
 
-function validate_mod_gov_email($result, $tags)
+function action_validate_email($result, $tags)
 {
-	foreach ($tags as $tag) {
-		if ('email' == $tag->name) {
-			$email = isset($_POST[$tag->name]) ? trim($_POST[$tag->name]) : '';
-			if (! filter_var($email, FILTER_VALIDATE_EMAIL) || ! preg_match('/@mod\.gov\.uk$/', $email)) {
-				$result->invalidate($tag, 'Please enter a valid email address with @mod.gov.uk domain.');
-			}
-		}
+	if (get_the_ID() == 372958) {
+?>
+		<script>
+			document.addEventListener('wpcf7submit', function(event) {
+				if (event.detail.contactFormId === 372961) {
+					let emailField = event.detail.inputs.find(input => input.name === 'email'); // Replace 'email' with the actual name of your email field
+					if (emailField) {
+						let email = emailField.value;
+						if (!email.endsWith('@mod.gov.uk')) {
+							event.detail.valid = false;
+							let emailError = document.createElement('span');
+							emailError.className = 'wpcf7-not-valid-tip';
+							emailError.style.color = 'red';
+							emailError.textContent = 'Please use an @mod.gov.uk email address.';
+
+							let emailInput = document.querySelector('input[name="email"]'); // or the correct selector for your email input
+							if (emailInput) {
+								let existingError = emailInput.parentNode.querySelector('.wpcf7-not-valid-tip');
+								if (existingError) {
+									existingError.remove();
+								}
+								emailInput.parentNode.appendChild(emailError);
+							}
+
+						} else {
+							let emailInput = document.querySelector('input[name="email"]');
+							if (emailInput) {
+								let existingError = emailInput.parentNode.querySelector('.wpcf7-not-valid-tip');
+								if (existingError) {
+									existingError.remove();
+								}
+							}
+						}
+					}
+				}
+			}, false);
+		</script>
+<?php
 	}
 	return $result;
 }
-add_filter('wpcf7_validate_email*', 'validate_mod_gov_email', 10, 2);
+add_filter('wp_footer', 'action_validate_email', 10, 2);
