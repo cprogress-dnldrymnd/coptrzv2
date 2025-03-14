@@ -162,7 +162,7 @@ function validate_mod_gov_email($result, $tags)
 {
 	if (get_the_ID() == 372958) {
 		foreach ($tags as $tag) {
-			if ('your-email' == $tag->name) {
+			if ('email' == $tag->name) {
 				$email = isset($_POST[$tag->name]) ? trim($_POST[$tag->name]) : '';
 				if (! filter_var($email, FILTER_VALIDATE_EMAIL) || ! preg_match('/@mod\.gov\.uk$/', $email)) {
 					$result->invalidate($tag, 'Please enter a valid email address with @mod.gov.uk domain.');
