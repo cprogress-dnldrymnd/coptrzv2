@@ -200,4 +200,4 @@ function action_validate_email($result, $tags)
 <?php
 	}
 }
-add_action('wp_footer', 'action_validate_email', 10, 2);
+add_action('wp_footer', 'action_validate_email');
