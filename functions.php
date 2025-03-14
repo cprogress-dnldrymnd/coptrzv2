@@ -251,9 +251,9 @@ function action_validate_email()
 ?>
 		<script>
 			jQuery(document).ready(function() {
-				jQuery('input[name="email"]').on('input', function() {
+				jQuery('input[name="email_mod"]').on('input', function() {
 					$val = jQuery(this).val();
-					jQuery('input[name="email_mod"]').val($val);
+					jQuery('input[name="email"]').val($val);
 				});
 			});
 		</script>
