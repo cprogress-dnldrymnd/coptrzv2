@@ -199,6 +199,5 @@ function action_validate_email($result, $tags)
 		</script>
 <?php
 	}
-	return $result;
 }
 add_action('wp_footer', 'action_validate_email', 10, 2);
