@@ -201,4 +201,4 @@ function action_validate_email($result, $tags)
 	}
 	return $result;
 }
-add_filter('wp_footer', 'action_validate_email', 10, 2);
+add_action('wp_footer', 'action_validate_email', 10, 2);
