@@ -891,6 +891,19 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
             $date_end = $date[1];
             $month = $date[2];
             $year = $date[3];
+
+            if (isset($date[4])) {
+                $date_start_2 = $date[4];
+                $date_end_2 = $date[5];
+                $month_2 = $date[6];
+                $year_2 = $date[7];
+            } else {
+                $date_start_2 = false;
+                $date_end_2 = false;
+                $month_2 = false;
+                $year_2 =false;
+            }
+
             $date_format = $date_start . '-' . $month . '-' . $year;
             $date_format_end = $date_end . '-' . $month . '-' . $year;
 
@@ -907,6 +920,10 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 'date_end'               => $date_end,
                 'month'               => $month,
                 'year'               => $year,
+                'date_start_2'               => $date_start_2,
+                'date_end_2'               => $date_end_2,
+                'month_2'               => $month_2,
+                'year_2'               => $year_2,
             );
         }
     }
@@ -2185,7 +2202,8 @@ function _cart_data()
 }
 
 add_filter('woocommerce_get_catalog_ordering_args', 'force_alphabetical_sorting');
-function force_alphabetical_sorting($args) {
+function force_alphabetical_sorting($args)
+{
     $args['orderby'] = 'title';
     $args['order'] = 'ASC';
     return $args;
