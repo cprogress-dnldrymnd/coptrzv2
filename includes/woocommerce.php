@@ -1066,6 +1066,11 @@ function training_template($product_id = 'default')
                             <div class="col-auto">
                                 <div class="filter-style-1">
                                     <p class="fw-medium medium-text">Select delivery method:</p>
+                                    <?php
+                                    if (current_user_can('administrator')) {
+                                        echo strtotime('February 4-6');
+                                    }
+                                    ?>
                                     <div class="filter-box bg-light rounded-corner">
                                         <div class="row">
                                             <div class="col-auto">
@@ -2185,7 +2190,8 @@ function _cart_data()
 }
 
 add_filter('woocommerce_get_catalog_ordering_args', 'force_alphabetical_sorting');
-function force_alphabetical_sorting($args) {
+function force_alphabetical_sorting($args)
+{
     $args['orderby'] = 'title';
     $args['order'] = 'ASC';
     return $args;
