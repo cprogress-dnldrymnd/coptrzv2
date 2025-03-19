@@ -972,6 +972,10 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                     if ($product_attribute_array['date']) {
                         $html .= "<div class='col-auto'>";
                         if ($product_attribute_array['date'] != 'N/A') {
+
+                            if (str_contains($datetime, '-')) {
+                                $html .= '.';
+                            }
                             $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
                             $html .= _date_format_v2($datetime, 'month');
                             $html .= "&nbsp";
