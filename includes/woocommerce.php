@@ -1068,6 +1068,7 @@ function training_template($product_id = 'default')
                                     <p class="fw-medium medium-text">Select delivery method:</p>
                                     <?php
                                     if (current_user_can('administrator')) {
+                                        echo 'tes';
                                         echo strtotime('February 4-6');
                                     }
                                     ?>
