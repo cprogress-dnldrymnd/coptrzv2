@@ -1066,12 +1066,6 @@ function training_template($product_id = 'default')
                             <div class="col-auto">
                                 <div class="filter-style-1">
                                     <p class="fw-medium medium-text">Select delivery method:</p>
-                                    <?php
-                                    if (current_user_can('administrator')) {
-                                        echo 'tes';
-                                        echo strtotime('10 September 2000');
-                                    }
-                                    ?>
                                     <div class="filter-box bg-light rounded-corner">
                                         <div class="row">
                                             <div class="col-auto">
