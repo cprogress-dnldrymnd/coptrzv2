@@ -1069,7 +1069,7 @@ function training_template($product_id = 'default')
                                     <?php
                                     if (current_user_can('administrator')) {
                                         echo 'tes';
-                                        echo strtotime('February 4-6');
+                                        echo strtotime('10 September 2000');
                                     }
                                     ?>
                                     <div class="filter-box bg-light rounded-corner">
