@@ -886,25 +886,13 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
         }
 
         if ($product_attribute_array['pa_delivery-methods'] == $delivery_method) {
-
-            $date_attr = $product_attribute_array['date'];
-            if (str_contains($date_attr, '-')) {
-                $date_attr_final = explode('-', $date_attr);
-                $date_1 = explode(':', $date_attr_final[0]);
-                $date_2 = explode(':', $date_attr_final[1]);
-            } else {
-                $date_1 = explode(':', $date_attr);
-                $date_2 = false;
-            }
-
-            $date_start_1 = $date_1[0];
-            $date_end_1 = $date_1[1];
-            $month_1 = $date_1[2];
-            $year_1 = $date_1[3];
-
-
-            $date_format_1 = $date_start_1 . '-' . $month_1 . '-' . $year_1;
-            $date_format_end_1 = $date_end_1 . '-' . $month_1 . '-' . $year_1;
+            $date = explode(':', $product_attribute_array['date']);
+            $date_start = $date[0];
+            $date_end = $date[1];
+            $month = $date[2];
+            $year = $date[3];
+            $date_format = $date_start . '-' . $month . '-' . $year;
+            $date_format_end = $date_end . '-' . $month . '-' . $year;
 
             $child_array[] = array(
                 'product_id'             => $child,
@@ -913,29 +901,13 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 'price'                  => $variation->get_price_html(),
                 'stock_status_variation' => $variation->get_stock_status(),
                 'location'               => $product_attribute_array['pa_location'],
-                'datetime'               => $date_format_1,
-                'datetime_end'               => $date_format_end_1,
-                'date_start'               => $date_start_1,
-                'date_end'               => $date_end_1,
-                'month'               => $month_1,
-                'year'               => $year_1,
+                'datetime'               => $date_format,
+                'datetime_end'               => $date_format_end,
+                'date_start'               => $date_start,
+                'date_end'               => $date_end,
+                'month'               => $month,
+                'year'               => $year,
             );
-            if ($date_2 != false) {
-                $date_start_2 = $date_2[0];
-                $date_end_2 = $date_2[1];
-                $month_2 = $date_2[2];
-                $year_2 = $date_2[3];
-
-
-                $date_format_2 = $date_start_2 . '-' . $month_2 . '-' . $year_2;
-                $date_format_end_2 = $date_end_2 . '-' . $month_2 . '-' . $year_2;
-                $child_array[]['datetime_2'] = $date_format_2;
-                $child_array[]['datetime_end_2'] = $date_format_end_2;
-                $child_array[]['date_start_2'] = $date_start_2;
-                $child_array[]['date_end_2'] = $date_end_2;
-                $child_array[]['month_2'] = $month_2;
-                $child_array[]['year_2'] = $year_2;
-            }
         }
     }
 
@@ -1000,8 +972,6 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                     if ($product_attribute_array['date']) {
                         $html .= "<div class='col-auto'>";
                         if ($product_attribute_array['date'] != 'N/A') {
-
-
                             $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
                             $html .= _date_format_v2($datetime, 'month');
                             $html .= "&nbsp";
@@ -2215,8 +2185,7 @@ function _cart_data()
 }
 
 add_filter('woocommerce_get_catalog_ordering_args', 'force_alphabetical_sorting');
-function force_alphabetical_sorting($args)
-{
+function force_alphabetical_sorting($args) {
     $args['orderby'] = 'title';
     $args['order'] = 'ASC';
     return $args;
