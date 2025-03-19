@@ -897,16 +897,19 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 $date_end_2 = $date[5];
                 $month_2 = $date[6];
                 $year_2 = $date[7];
+                $date_format_2 = $date_start_2 . '-' . $month_2 . '-' . $year_2;
+                $date_format_end_2 = $date_end_2 . '-' . $month_2 . '-' . $year_2;
             } else {
                 $date_start_2 = false;
                 $date_end_2 = false;
                 $month_2 = false;
-                $year_2 =false;
+                $year_2 = false;
+                $date_format_2 = false;
+                $date_format_end_2 = false;
             }
 
             $date_format = $date_start . '-' . $month . '-' . $year;
             $date_format_end = $date_end . '-' . $month . '-' . $year;
-
             $child_array[] = array(
                 'product_id'             => $child,
                 'product_attributes'     => $variation->get_attributes(),
@@ -924,6 +927,8 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 'date_end_2'               => $date_end_2,
                 'month_2'               => $month_2,
                 'year_2'               => $year_2,
+                'datetime_2'               => $date_format_2,
+                'datetime_end_2'               => $date_format_end_2,
             );
         }
     }
@@ -960,6 +965,9 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 $stock_status_variation = $child['stock_status_variation'];
                 $datetime = $child['datetime'];
                 $datetime_end = $child['datetime_end'];
+                $datetime_2 = $child['datetime_2'];
+                $datetime_end_2 = $child['datetime_end_2'];
+
 
                 $variation_name = '';
                 $lastElement = end($product_attributes);
@@ -991,12 +999,22 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                         if ($product_attribute_array['date'] != 'N/A') {
                             $html .= "<span class='date smaller-text text-white bg-accent py-1 px-2'>";
                             $html .= _date_format_v2($datetime, 'month');
-                            $html .= "&nbsp";
+                            $html .= "&nbsp;";
                             $html .= _date_format_v2($datetime, 'day');
                             $html .= "-";
                             $html .= _date_format_v2($datetime_end, 'day');
-                            $html .= "&nbsp";
+                            $html .= "&nbsp;";
                             $html .= _date_format_v2($datetime, 'year');
+
+                            if ($datetime_2) {
+                                $html .= "&nbsp; &";
+                                $html .= _date_format_v2($datetime_2, 'month');
+                                $html .= "&nbsp;";
+                                $html .= _date_format_v2($datetime_2, 'day');
+                                $html .= "&nbsp;";
+                                $html .= _date_format_v2($datetime_2, 'year');
+                            }
+
                             $html .= '</span>';
                         }
                         $html .= '</div>';
