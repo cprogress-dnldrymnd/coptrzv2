@@ -942,7 +942,7 @@ class Shortcodes
     {
         $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
         if ($hero_form_pdf_redirect) {
-            return 'PDF URL: ' . wp_get_attachment_url($hero_form_pdf_redirect);
+            return wp_get_attachment_url($hero_form_pdf_redirect);
         }
     }
 }
