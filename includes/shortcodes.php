@@ -127,7 +127,8 @@ class Shortcodes
                         }
                     }
                 }
-            } else {
+            }
+            else {
                 $post_type = get_post_type();
                 if ($post_type != 'page') {
                     $link = get_post_type_archive_link($post_type);
@@ -137,7 +138,8 @@ class Shortcodes
                 }
             }
             $html .= "<li><span class='item text-white'  >$title</span></li>";
-        } else if ($type == 'term') {
+        }
+        else if ($type == 'term') {
             $term = get_term($id);
             $parent = (isset($term->parent)) ? get_term_by('id', $term->parent, $term->taxonomy) : false;
             if ($parent) {
@@ -146,7 +148,8 @@ class Shortcodes
                 $html .= "<li><a class='item text-white' href='$parent_link'>$parent_name</a></li>";
             }
             $html .= "<li><span class='item text-white'  >$term->name</span></li>";
-        } else if ($type == 'archive') {
+        }
+        else if ($type == 'archive') {
             if ($archive_title) {
                 $html .= "<li><span class='item text-white'  >$archive_title</span></li>";
             }
@@ -252,7 +255,8 @@ class Shortcodes
             $html .= "</div>"; //end case-study-slider
 
             return $html;
-        } else {
+        }
+        else {
             $html = "<div class='case-study-slider text-white mx-20px'>"; //case-study-slider
             $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
             $html .= "<div class='swiper swiper-full-width'>"; //swiper
@@ -367,7 +371,7 @@ class Shortcodes
     function blog_meta()
     {
         ob_start();
-?>
+        ?>
         <div class="blog-meta small-text">
             <div class="row">
                 <div class="col-auto">
@@ -376,7 +380,7 @@ class Shortcodes
                 </div>
             </div>
         </div>
-    <?php
+        <?php
         return ob_get_clean();
     }
 
@@ -402,7 +406,7 @@ class Shortcodes
     function post_link()
     {
         ob_start();
-    ?>
+        ?>
         <button onclick="copy_link()" class="post-link-copy">
             <input class="d-none" id="copy-link" value="<?= get_permalink(get_the_ID()) ?>">
             <span>Copy Link</span>
@@ -422,7 +426,7 @@ class Shortcodes
                 jQuery('.post-link-copy span').text('Link Copied');
             }
         </script>
-    <?php
+        <?php
         return ob_get_clean();
     }
 
@@ -472,7 +476,7 @@ class Shortcodes
     {
         $latest_from_coptrz = get__theme_option('latest_from_coptrz');
         $posts = get_posts(array(
-            'post_type' => 'post',
+            'post_type'   => 'post',
             'numberposts' => 2,
         ));
         if ($latest_from_coptrz) {
@@ -492,14 +496,16 @@ class Shortcodes
 
                 if ($background == 'featured-image') {
                     $data['featured'] = true;
-                } else {
+                }
+                else {
                     $data['featured'] = false;
                     $data['background_class'] = $background;
                 }
                 if (get_post_type($id) == 'post') {
                     $data['elements'] = array('category', 'image', 'date', 'title', 'button');
                     $data['taxonomy'] = 'category';
-                } else {
+                }
+                else {
                     $data['elements'] = array('image', 'title', 'button');
                 }
                 if ($button_text) {
@@ -522,14 +528,16 @@ class Shortcodes
 
                 if ($background == 'featured-image') {
                     $data['featured'] = true;
-                } else {
+                }
+                else {
                     $data['featured'] = false;
                     $data['background_class'] = $background;
                 }
                 if (get_post_type($id) == 'post') {
                     $data['elements'] = array('category', 'image', 'date', 'title', 'button');
                     $data['taxonomy'] = 'category';
-                } else {
+                }
+                else {
                     $data['elements'] = array('image', 'title', 'button');
                 }
                 if ($button_text) {
@@ -817,11 +825,11 @@ class Shortcodes
         extract(
             shortcode_atts(
                 array(
-                    'args' => '',
+                    'args'        => '',
                     'button_text' => '',
-                    'button_url' => '',
-                    'section_id' => '',
-                    'heading' => '',
+                    'button_url'  => '',
+                    'section_id'  => '',
+                    'heading'     => '',
                 ),
                 $atts
             )
@@ -848,14 +856,14 @@ class Shortcodes
     function rentals_script()
     {
         ob_start();
-    ?>
+        ?>
         <script>
-            jQuery(document).ready(function() {
+            jQuery(document).ready(function () {
                 jQuery('.bq-available').text('xsdsds');
             });
         </script>
 
-<?php
+        <?php
         return ob_get_clean();
     }
 
@@ -865,7 +873,7 @@ class Shortcodes
         extract(
             shortcode_atts(
                 array(
-                    'id' => '',
+                    'id'          => '',
                     'is_training' => 'false',
                 ),
                 $atts
@@ -902,7 +910,7 @@ class Shortcodes
         return get_permalink() . basename($_SERVER['REQUEST_URI']);
     }
 
-    
+
 
     function stars($atts)
     {
@@ -929,8 +937,17 @@ class Shortcodes
         $html .= "</div>";
         return $html;
     }
+
+    function pdf_url()
+    {
+        $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
+        if ($hero_form_pdf_redirect) {
+            return 'PDF URL: ' . wp_get_attachment_url($hero_form_pdf_redirect);
+        }
+    }
 }
 $Shortcodes = new Shortcodes;
+add_shortcode('pdf_url', array($Shortcodes, 'pdf_url'));
 add_shortcode('stars', array($Shortcodes, 'stars'));
 add_shortcode('current_url', array($Shortcodes, 'current_url'));
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
