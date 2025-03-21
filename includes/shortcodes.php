@@ -938,16 +938,8 @@ class Shortcodes
         return $html;
     }
 
-    function pdf_url()
-    {
-        $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
-        if ($hero_form_pdf_redirect) {
-            return 'PDF URL: ' . wp_get_attachment_url($hero_form_pdf_redirect);
-        }
-    }
 }
 $Shortcodes = new Shortcodes;
-add_shortcode('pdf_url', array($Shortcodes, 'pdf_url'));
 add_shortcode('stars', array($Shortcodes, 'stars'));
 add_shortcode('current_url', array($Shortcodes, 'current_url'));
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));
