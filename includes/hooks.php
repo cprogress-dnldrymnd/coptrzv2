@@ -502,30 +502,3 @@ function remove_canonical()
     add_filter('wpseo_canonical', '__return_false', 10, 1);
 }
 add_action('wp', 'remove_canonical');
-
-add_filter('wpcf7_form_elements', 'mycustom_wpcf7_form_elements');
-
-function mycustom_wpcf7_form_elements($form)
-{
-    $form = do_shortcode($form);
-    return $form;
-}
-
-wpcf7_add_form_tag('pdf_url', array(
-    'callback'   => 'pdf_url',
-    'attributes' => array(
-        'name' => 'pdf_url',
-    ),
-), array(
-    'name'     => 'pdf_url',
-    'basetype' => 'text',
-));
-
-function pdf_url($tag, $value, $atts)
-{
-    $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
-    if ($hero_form_pdf_redirect) {
-        return 'PDF URL: ' . wp_get_attachment_url($hero_form_pdf_redirect);
-    }
-    return '';
-}
