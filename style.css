@@ -13629,11 +13629,11 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   .input .input-label {
     text-transform: capitalize; }
 
-.form-box:not(.style-2) .input-tel .input-label {
+body:not(.single-guides):not(.single-landingpages) .form-box:not(.style-2) .input-tel .input-label {
   top: -13px !important; }
-.form-box:not(.style-2) .input .filled .input-label {
+body:not(.single-guides):not(.single-landingpages) .form-box:not(.style-2) .input .filled .input-label {
   top: -13px; }
-.form-box:not(.style-2) .input .input-label {
+body:not(.single-guides):not(.single-landingpages) .form-box:not(.style-2) .input .input-label {
   position: absolute;
   left: 10px;
   background-color: var(--bs-white);
