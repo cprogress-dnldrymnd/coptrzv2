@@ -1871,7 +1871,9 @@ hr {
 .single-landingpages {
     .wpcf7-submit.wpcf7-submit.wpcf7-submit,
     .button-accent.button-accent.button-accent a,
-    .button-white.button-white.button-white a {
+    .button-accent.button-accent.button-accent button,
+    .button-white.button-white.button-white a,
+    .button-white.button-white.button-white button {
         background-color: #f84a01 !important;
         border-color: #f84a01 !important;
         animation-duration: 2s;

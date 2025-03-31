@@ -12462,10 +12462,11 @@ hr {
   text-align: center; }
 
 .single-guides .wpcf7-submit.wpcf7-submit.wpcf7-submit,
-.single-guides .button-accent.button-accent.button-accent a,
+.single-guides .button-accent.button-accent.button-accent a, .single-guides .button-accent.button-accent.button-accent button,
 .single-guides .button-white.button-white.button-white a,
 .single-landingpages .wpcf7-submit.wpcf7-submit.wpcf7-submit,
 .single-landingpages .button-accent.button-accent.button-accent a,
+.single-landingpages .button-accent.button-accent.button-accent button,
 .single-landingpages .button-white.button-white.button-white a {
   background-color: #f84a01 !important;
   border-color: #f84a01 !important;
