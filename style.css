@@ -13629,8 +13629,6 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   .input .input-label {
     text-transform: capitalize; }
 
-.form-box [class*="col-"] .input {
-  margin-bottom: 0; }
 .form-box:not(.style-2) .input-tel .input-label {
   top: -13px !important; }
 .form-box:not(.style-2) .input .filled .input-label {
@@ -13652,6 +13650,9 @@ body.product-loop-style-1 .product-inner > .woocommerce-LoopProduct-link {
   -o-transition: 300ms;
   transition: 300ms;
   z-index: 1; }
+
+.form-box [class*="col-"] .input {
+  margin-bottom: 0; }
 .form-box.style-2 .wpcf7-response-output {
   margin-top: 2rem; }
 .form-box.style-2 .input-label {

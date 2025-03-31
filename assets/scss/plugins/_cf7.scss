@@ -8,6 +8,40 @@
         text-transform: capitalize;
     }
 }
+body {
+    &:not(.single-guides):not(.single-landingpages) {
+        .form-box {
+            &:not(.style-2) {
+                .input-tel {
+                    .input-label {
+                        top: -13px !important;
+                    }
+                }
+                .input {
+                    .filled {
+                        .input-label {
+                            top: -13px;
+                        }
+                    }
+                    .input-label {
+                        position: absolute;
+                        left: 10px;
+                        background-color: var(--bs-white);
+                        color: rgba(28, 28, 30, 0.75);
+                        padding: 5px;
+                        font-size: 15px;
+                        line-height: 1;
+                        top: 17px;
+                        font-weight: 300;
+                        cursor: text;
+                        @include transition(300ms);
+                        z-index: 1;
+                    }
+                }
+            }
+        }
+    }
+}
 
 .form-box {
     [class*="col-"] {
@@ -15,34 +49,7 @@
             margin-bottom: 0;
         }
     }
-    &:not(.style-2) {
-        .input-tel {
-            .input-label {
-                top: -13px !important;
-            }
-        }
-        .input {
-            .filled {
-                .input-label {
-                    top: -13px;
-                }
-            }
-            .input-label {
-                position: absolute;
-                left: 10px;
-                background-color: var(--bs-white);
-                color: rgba(28, 28, 30, 0.75);
-                padding: 5px;
-                font-size: 15px;
-                line-height: 1;
-                top: 17px;
-                font-weight: 300;
-                cursor: text;
-                @include transition(300ms);
-                z-index: 1;
-            }
-        }
-    }
+
     &.style-2 {
         .wpcf7-response-output {
             margin-top: 2rem;
