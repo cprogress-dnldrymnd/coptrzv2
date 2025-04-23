@@ -38,7 +38,7 @@ function __shop_coptrz_link() {
     jQuery('a').each(function () {
         var href = jQuery(this).attr('href');
         if (href && href.indexOf('shop.coptrz.com') !== -1) {
-            var newParams = 'utm_source=website&utm_medium=referral&utm_campaign=internal'; // Customize your parameters here
+            var newParams = 'utm_source=coptrz-main-site&utm_medium=referral'; // Customize your parameters here
             var separator = href.indexOf('?') !== -1 ? '&' : '?';
             jQuery(this).attr('href', href + separator + newParams);
         }
