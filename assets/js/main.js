@@ -12,8 +12,10 @@ jQuery(document).ready(function () {
     __toggle_input();
     __blog_content();
     __hero();
+    __shop_coptrz_link();
     //__utm_parameters();
 });
+
 
 
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -32,6 +34,16 @@ var getUrlParameter = function getUrlParameter(sParam) {
     return false;
 };
 
+function __shop_coptrz_link() {
+    jQuery('a').each(function () {
+        var href = jQuery(this).attr('href');
+        if (href && href.indexOf('shop.coptrz.com') !== -1) {
+            var newParams = 'utm_source=website&utm_medium=referral&utm_campaign=internal'; // Customize your parameters here
+            var separator = href.indexOf('?') !== -1 ? '&' : '?';
+            jQuery(this).attr('href', href + separator + newParams);
+        }
+    });
+}
 
 function __utm_parameters() {
     setTimeout(function () {
