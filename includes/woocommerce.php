@@ -1016,6 +1016,11 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                                 $html .= _date_format_v2($datetime_2, 'day');
                                 $html .= "&nbsp;";
                                 $html .= _date_format_v2($datetime_2, 'year');
+
+                                if ($datetime_2 != $datetime_end_2) {
+                                    $html .= "-";
+                                    $html .= _date_format_v2($datetime_end_2, 'day');
+                                }
                             }
 
                             $html .= '</span>';
