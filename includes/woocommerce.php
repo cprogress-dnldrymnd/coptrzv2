@@ -1001,8 +1001,8 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                             $html .= _date_format_v2($datetime, 'month');
                             $html .= "&nbsp;";
                             $html .= _date_format_v2($datetime, 'day');
-                            $html .= "-";
                             if ($datetime != $datetime_end) {
+                                $html .= "-";
                                 $html .= _date_format_v2($datetime_end, 'day');
                             }
                             $html .= "&nbsp;";
