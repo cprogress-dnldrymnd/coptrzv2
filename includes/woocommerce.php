@@ -1004,8 +1004,9 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                             $html .= "-";
                             if ($datetime != $datetime_end) {
                                 $html .= _date_format_v2($datetime_end, 'day');
-                                $html .= "&nbsp;";
                             }
+                            $html .= "&nbsp;";
+
                             $html .= _date_format_v2($datetime, 'year');
 
                             if ($datetime_2) {
