@@ -13,7 +13,7 @@ $SVG = new SVG;
             </div>
         <?php } ?>
         <div class="col-auto d-flex align-items-center account">
-            <a href="https://www.coptrzacademy-usp.io/login"
+            <a target="_blank" href="https://www.coptrzacademy-usp.io/login"
                 class="header-icon account-icon text-white d-flex align-items-center">
                 <?= $SVG->academy(); ?>
             </a>
