@@ -230,6 +230,8 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_form = get__post_meta('hero_form');
     $hero_form_type = get__post_meta('hero_form_type');
     $hero_form_product = get__post_meta('hero_form_product');
+    $hero_form_script = get__post_meta('hero_form_script');
+
 
 
     if (!$hero_background && !$hero_background_youtube) {
@@ -251,7 +253,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $SVG = new SVG;
         $event_start_datetime = get__post_meta_by_id($id, 'event_start_datetime');
         $event_end_datetime = get__post_meta_by_id($id, 'event_start_datetime');
-        $date_time = '<div class="event-dates"><span>' . $SVG->calendarv2() .'<span>'. _date_format($event_start_datetime) . '</span></span> <span>' . $SVG->clockv2() . _time_format($event_end_datetime) . ' GMT</span></div>';
+        $date_time = '<div class="event-dates"><span>' . $SVG->calendarv2() . '<span>' . _date_format($event_start_datetime) . '</span></span> <span>' . $SVG->clockv2() . _time_format($event_end_datetime) . ' GMT</span></div>';
         $hero_description .= $hero_description . $date_time;
     }
 
@@ -358,7 +360,8 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
                 'form_image'       => $hero_form_image,
                 'form_style'       => $hero_form_style,
                 'form_product' => $hero_form_product[0]['id'],
-                'form_type' => $hero_form_type
+                'form_type' => $hero_form_type,
+                'form_script' => $hero_form_script
             );
             $hero .= "<div class='col-lg-5'>"; //col
 
@@ -1213,7 +1216,7 @@ function ___sections($id = 'sections', $post_id = '')
                         }
 
                         break;
-                        /*
+                    /*
                 case 'related_products':
                     $type = $items['category'][0]['_type'];
                     if ($type == 'related_drones') {
@@ -3208,6 +3211,7 @@ function __form($args)
     $form = isset($args['form']) ? $args['form'] : false;
     $form_type = isset($args['form_type']) ? $args['form_type'] : false;
     $form_product = isset($args['form_product']) ? $args['form_product'] : false;
+    $form_script = isset($args['form_script']) ? $args['form_script'] : false;
     $form_description = isset($args['form_description']) ? $args['form_description'] : false;
     $form_image = isset($args['form_image']) ? $args['form_image'] : false;
     $form_style = isset($args['form_style']) ? $args['form_style'] : false;
@@ -3257,6 +3261,8 @@ function __form($args)
 
     if ($form_type == 'product') {
         $html .= __product_add_to_cart($form_product, $description_args);
+    } else  if ($form_type == 'script') {
+        $html .= $form_script;
     } else {
         $html .= do_shortcode("[contact-form-7 id='$form_id']");
     }

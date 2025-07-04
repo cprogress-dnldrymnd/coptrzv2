@@ -1166,6 +1166,16 @@ function __hero_form_fields()
                 array(
                     ''        => 'Default',
                     'product' => 'Product',
+                    'script' => 'Script',
+                )
+            ),
+        Field::make('textarea', 'hero_form_script', 'Script')->set_classes('inline-field')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'hero_form_type',
+                        'value' => 'script',
+                    )
                 )
             ),
         Field::make('association', 'hero_form', 'Select Form')->set_classes('inline-field')
