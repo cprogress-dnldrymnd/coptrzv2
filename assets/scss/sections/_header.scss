@@ -74,6 +74,14 @@
                 align-items: center;
                 padding: 10px 1vw;
                 border-radius: 10px;
+                @media (min-width: 992px) and (max-width: 1599px) {
+                    font-size: 14px;
+                }
+          
+                 @media (min-width: 992px) and (max-width: 1450px) {
+                    font-size: 14px;
+                    padding: 10px;
+                }
                 @include responsive(small-lg) {
                     font-size: 14px;
                     padding: 10px 8px;

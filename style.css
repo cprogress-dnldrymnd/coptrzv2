@@ -13908,6 +13908,16 @@ body:not(.single-guides):not(.single-landingpages) .form-box:not(.style-2) .inpu
     align-items: center;
     padding: 10px 1vw;
     border-radius: 10px; }
+    @media (min-width: 992px) and (max-width: 1599px) {
+      .header .navbar.navbar.navbar .nav-item .nav-link {
+        font-size: 14px; } }
+    @media (min-width: 992px) and (max-width: 1599px) {
+      .header .navbar.navbar.navbar .nav-item .nav-link {
+        font-size: 14px; } }
+    @media (min-width: 992px) and (max-width: 1450px) {
+      .header .navbar.navbar.navbar .nav-item .nav-link {
+        font-size: 14px;
+        padding: 10px; } }
     @media (min-width: 1200px) and (max-width: 1399px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 14px;
