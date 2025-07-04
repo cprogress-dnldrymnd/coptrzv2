@@ -12462,12 +12462,15 @@ hr {
   text-align: center; }
 
 .single-guides .wpcf7-submit.wpcf7-submit.wpcf7-submit,
-.single-guides .button-accent.button-accent.button-accent a, .single-guides .button-accent.button-accent.button-accent button,
+.single-guides .button-accent.button-accent.button-accent a,
+.single-guides .button-accent.button-accent.button-accent button,
 .single-guides .button-white.button-white.button-white a,
+.single-guides .button-white.button-white.button-white button,
 .single-landingpages .wpcf7-submit.wpcf7-submit.wpcf7-submit,
 .single-landingpages .button-accent.button-accent.button-accent a,
 .single-landingpages .button-accent.button-accent.button-accent button,
-.single-landingpages .button-white.button-white.button-white a {
+.single-landingpages .button-white.button-white.button-white a,
+.single-landingpages .button-white.button-white.button-white button {
   background-color: #f84a01 !important;
   border-color: #f84a01 !important;
   animation-duration: 2s;
@@ -13907,16 +13910,21 @@ body:not(.single-guides):not(.single-landingpages) .form-box:not(.style-2) .inpu
     border-radius: 10px; }
     @media (min-width: 1200px) and (max-width: 1399px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
-        font-size: 14px; } }
-    @media (min-width: 992px) and (max-width: 1199px) {
+        font-size: 14px;
+        padding: 10px 8px; } }
+    @media (min-width: 992px) and (max-width: 1250px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
         font-size: 13px; } }
-    @media (min-width: 1200px) and (max-width: 1399px) {
-      .header .navbar.navbar.navbar .nav-item .nav-link {
-        padding: 10px 8px; } }
     @media (min-width: 992px) and (max-width: 1199px) {
       .header .navbar.navbar.navbar .nav-item .nav-link {
+        font-size: 13px;
         padding: 10px 5px; } }
+    @media (min-width: 992px) and (max-width: 1120px) {
+      .header .navbar.navbar.navbar .nav-item .nav-link {
+        font-size: 12px; } }
+    @media (min-width: 992px) and (max-width: 1073px) {
+      .header .navbar.navbar.navbar .nav-item .nav-link {
+        font-size: 10px; } }
     .header .navbar.navbar.navbar .nav-item .nav-link:hover, .header .navbar.navbar.navbar .nav-item .nav-link:active, .header .navbar.navbar.navbar .nav-item .nav-link:focus {
       background-color: var(--bs-primary);
       color: var(--bs-white) !important; }
