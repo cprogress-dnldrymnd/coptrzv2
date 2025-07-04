@@ -76,15 +76,20 @@
                 border-radius: 10px;
                 @include responsive(small-lg) {
                     font-size: 14px;
+                    padding: 10px 8px;
+                }
+                @media (min-width: 992px) and (max-width: 1250px) {
+                    font-size: 13px;
                 }
                 @include responsive(md) {
                     font-size: 13px;
-                }
-                @include responsive(small-lg) {
-                    padding: 10px 8px;
-                }
-                @include responsive(md) {
                     padding: 10px 5px;
+                }
+                @media (min-width: 992px) and (max-width: 1120px) {
+                    font-size: 12px;
+                }
+                @media (min-width: 992px) and (max-width: 1073px) {
+                    font-size: 10px;
                 }
                 @include on-event {
                     background-color: var(--bs-primary);
