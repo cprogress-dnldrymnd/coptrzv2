@@ -13852,16 +13852,6 @@ body:not(.single-guides):not(.single-landingpages) .form-box:not(.style-2) .inpu
 /*-----------------------------------------------------------------------------------*/
 /* Sections,  Header & Footer
 /*-----------------------------------------------------------------------------------*/
-.elementor-widget-n-accordion .e-n-accordion-item-title > span {
-  width: 50px;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: var(--e-global-color-accent); }
-  .elementor-widget-n-accordion .e-n-accordion-item-title > span svg {
-    width: 14px; }
-
 #footer {
   font-weight: 300; }
   #footer ul {
