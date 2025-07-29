@@ -6906,7 +6906,6 @@ Container::make('post_meta', 'Product Components')
         array(
             //Field::make('checkbox', 'finance_available', 'Finance Available?'),
             //Field::make('checkbox', 'business_invoicing', 'Business Invoicing?'),
-            Field::make('checkbox', 'shopify_product_link', 'Shopify Product Link'),
 
             Field::make('checkbox', 'cpd_maker', 'CPD Accredited'),
             Field::make('checkbox', 'tquk_logo', 'Show TQUK Logo'),
@@ -6924,6 +6923,8 @@ Container::make('post_meta', 'Product Components')
             Field::make('checkbox', 'vat_inclusive', 'Price Inclusive VAT'),
             Field::make('text', 'lead_time', 'Lead Time'),
             Field::make('text', 'custom_phone_number', 'Custom Phone Number'),
+            Field::make('text', 'shopify_product_link', 'Shopify Product Link'),
+
         ),
     )
     ->add_tab(
