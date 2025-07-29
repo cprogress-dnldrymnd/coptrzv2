@@ -2234,3 +2234,9 @@ function force_alphabetical_sorting($args)
     $args['order'] = 'ASC';
     return $args;
 }
+
+function action_woocommerce_before_single_product_summary_shopify_link() {
+    echo 'test';
+}
+
+add_action('woocommerce_before_single_product_summary_shopify_link', 'action_woocommerce_before_single_product_summary_shopify_link');
