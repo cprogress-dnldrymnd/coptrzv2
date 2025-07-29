@@ -2191,7 +2191,7 @@ function ga4()
                         }
                     });
             </script>
-<?php
+    <?php
             update_post_meta($order_id, '_thankyou_action_done', true);
         }
     }
@@ -2235,8 +2235,21 @@ function force_alphabetical_sorting($args)
     return $args;
 }
 
-function action_woocommerce_before_single_product_summary_shopify_link() {
-    echo 'test';
+function action_woocommerce_before_single_product_summary_shopify_link()
+{
+    ?>
+    <div class="button-group-box ">
+        <div class="row g-3 justify-content-center d-inline-flex">
+
+            <div class="button-box button-bordered request-info"><a class="rounded-10px " data-bs-toggle="modal" data-bs-target="#modal-299743" target="_self">Enquire</a></div>
+
+            <div class="button-accent col-auto button-box"><a  target="_blank" class="rounded-10px " href="<?= get__post_meta('shopify_product_link') ?>">
+                    Buy Now
+                </a></div>
+
+        </div>
+    </div>
+<?php
 }
 
 add_action('woocommerce_before_single_product_summary_shopify_link', 'action_woocommerce_before_single_product_summary_shopify_link');
