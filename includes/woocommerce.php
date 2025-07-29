@@ -2241,7 +2241,7 @@ function action_woocommerce_before_single_product_summary_shopify_link()
     <div class="button-group-box ">
         <div class="row g-3  d-inline-flex">
 
-            <div class="button-box button-bordered request-info"><a class="rounded-10px " data-bs-toggle="modal" data-bs-target="#modal-299743" target="_self">Enquire</a></div>
+            <div class="button-box button-bordered  col-auto"><a class="rounded-10px " data-bs-toggle="modal" data-bs-target="#modal-299743" target="_self">Enquire</a></div>
 
             <div class="button-accent col-auto button-box"><a  target="_blank" class="rounded-10px " href="<?= get__post_meta('shopify_product_link') ?>">
                     Buy Now
