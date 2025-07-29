@@ -2239,7 +2239,7 @@ function action_woocommerce_before_single_product_shopify_link()
 {
     ?>
     <div class="button-group-box ">
-        <div class="row g-3  d-inline-flex">
+        <div class="row g-3 justify-content-center ">
 
             <div class="button-box button-bordered  col-auto"><a class="rounded-10px " data-bs-toggle="modal" data-bs-target="#modal-299743" target="_self">Enquire</a></div>
 
