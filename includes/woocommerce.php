@@ -2235,7 +2235,7 @@ function force_alphabetical_sorting($args)
     return $args;
 }
 
-function action_woocommerce_before_single_product_summary_shopify_link()
+function action_woocommerce_before_single_product_shopify_link()
 {
     ?>
     <div class="button-group-box ">
@@ -2252,4 +2252,4 @@ function action_woocommerce_before_single_product_summary_shopify_link()
 <?php
 }
 
-add_action('woocommerce_before_single_product_summary_shopify_link', 'action_woocommerce_before_single_product_summary_shopify_link');
+add_action('woocommerce_before_single_product_shopify_link', 'action_woocommerce_before_single_product_shopify_link');
