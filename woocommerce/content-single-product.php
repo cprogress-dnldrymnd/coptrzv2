@@ -50,7 +50,11 @@ if (post_password_required()) {
 					 * @hooked woocommerce_show_product_sale_flash - 10
 					 * @hooked woocommerce_show_product_images - 20
 					 */
-					do_action('woocommerce_before_single_product_summary');
+					if (get__post_meta('shopify_product_link')) {
+						do_action('woocommerce_before_single_product_summary_shopify_link');
+					} else {
+						do_action('woocommerce_before_single_product_summary');
+					}
 					?>
 				</div>
 				<div class="col-5">
