@@ -10,13 +10,13 @@ function action_wp_head()
 {
     $custom_css = get__post_meta('custom_css');
     if (is_page() && $custom_css) {
-        ?>
+?>
         <style id="wp-head">
             <?php
             echo $custom_css;
             ?>
         </style>
-        <?php
+    <?php
     }
 }
 
@@ -245,18 +245,18 @@ function action__wp_footer()
 
             $layouts_global_val .= "</ul>";
             $layouts_global_val .= "</div>";
-            ?>
+    ?>
             <script>
-                jQuery(document).ready(function () {
+                jQuery(document).ready(function() {
                     jQuery("<?= $layouts_global_val ?>").appendTo('#wp-admin-bar-layouts-menu');
                 });
             </script>
 
-            <?php
+        <?php
         }
         ?>
         <script>
-            jQuery(document).ready(function () {
+            jQuery(document).ready(function() {
                 jQuery('#download-gvc').appendTo('.the-content > *:nth-child(2)');
             });
         </script>
@@ -292,13 +292,13 @@ function action__wp_footer()
                             },
                             events: {
                                 'onReady': onPlayerReady,
-                                'onStateChange': function (event) {
+                                'onStateChange': function(event) {
                                     var YTP = event.target;
                                     if (event.data === 1) {
                                         var remains = YTP.getDuration() - YTP.getCurrentTime();
                                         if (this.rewindTO)
                                             clearTimeout(this.rewindTO);
-                                        this.rewindTO = setTimeout(function () {
+                                        this.rewindTO = setTimeout(function() {
                                             YTP.seekTo(0);
                                         }, (remains - 1) * 1000);
                                     }
@@ -307,7 +307,7 @@ function action__wp_footer()
                         });
 
                         function onPlayerReady(event) {
-                            setTimeout(function () {
+                            setTimeout(function() {
                                 jQuery('.background-image iframe').addClass('show');
                             }, 500);
                         }
@@ -315,7 +315,7 @@ function action__wp_footer()
                 }
             }
         </script>
-        <?php
+    <?php
     }
 }
 
@@ -332,23 +332,22 @@ function hero_form_redirect()
 
     if ($hero_form_redirect_type == 'pdf') {
         $redirect = wp_get_attachment_url($hero_form_pdf_redirect);
-    }
-    else {
+    } else {
         $redirect = $hero_form_redirect_url;
     }
 
     if ($hero_form_enable && $form_id && $hero_form_redirect_type) {
-        ?>
+    ?>
         <script>
-            document.addEventListener('wpcf7mailsent', function (event) {
-                setTimeout(function () {
+            document.addEventListener('wpcf7mailsent', function(event) {
+                setTimeout(function() {
                     if (<?= $form_id ?> == event.detail.contactFormId) {
                         window.open('<?= $redirect ?>', '_blank');
                     }
                 }, 3000);
             }, false);
         </script>
-        <?php
+<?php
     }
 }
 
@@ -398,8 +397,7 @@ function action_pre_get_posts($query)
 
         if (is_post_type_archive('industries') || is_post_type_archive('capabilities')) {
             $query->set('posts_per_page', -1);
-        }
-        else if (is_post_type_archive('events') || is_tax('events_category')) {
+        } else if (is_post_type_archive('events') || is_tax('events_category')) {
             $meta_query[] = [
                 'key'     => '_event_start_datetime',
                 'value'   => date('Y-m-d'),
@@ -409,8 +407,7 @@ function action_pre_get_posts($query)
             $query->set('meta_query', $meta_query);
             $query->set('orderby', 'meta_value');
             $query->set('order', 'ASC');
-        }
-        else if (is_home() || is_category()) {
+        } else if (is_home() || is_category()) {
             $query->set('orderby', 'date');
             $query->set('order', 'DESC');
         }
@@ -450,8 +447,7 @@ function action_body_class($classes)
 
         if ($hero_hidden) {
             $classes[] = 'hero-hidden';
-        }
-        else {
+        } else {
             $hero_background = get__post_meta('hero_background');
             $hero_background_youtube = get__post_meta('hero_background_youtube');
 
@@ -502,3 +498,15 @@ function remove_canonical()
     add_filter('wpseo_canonical', '__return_false', 10, 1);
 }
 add_action('wp', 'remove_canonical');
+
+add_filter('wpcf7_form_action_url', 'wpcf7_custom_form_action_url');
+
+function wpcf7_custom_form_action_url($url)
+{
+    $wpcf7 = WPCF7_ContactForm::get_current();
+
+    if ($wpcf7 && get_the_ID() == '213000') {
+        $url = 'http://go.coptrz.com/l/396132/2025-08-01/wpk38n';
+    }
+    return $url;
+}
