@@ -7,10 +7,14 @@
 <?php
 $SVG = new SVG;
 ?>
-<main id="main" class="page-components">
+<div class="modules">
   <?php
-  the_content();
+  echo ___hero_modules();
   ?>
-  </section>
-</main>
+</div>
+<?php
+the_content();
+?>
+</section>
+
 <?php get_footer(); ?>
