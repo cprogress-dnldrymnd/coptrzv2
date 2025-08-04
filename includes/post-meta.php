@@ -6949,4 +6949,19 @@ Container::make('post_meta', __('Custom CSS'))
     );
 
 
-    
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Custom CSS
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', __('Custom CSS'))
+    ->where('post_type', '=', 'quiz')
+    ->add_fields(
+        array(
+            Field::make('complex', 'quiz_questions', __('Quiz Questions'))
+                ->add_fields(array(
+                    Field::make('text', 'latest_from_coptrz')
+
+                ))
+        )
+    );

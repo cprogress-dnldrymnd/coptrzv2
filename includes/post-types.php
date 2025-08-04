@@ -634,12 +634,12 @@ $Landing_Page->rewrite = array(
 );
 
 
-$Drone_Quiz = new newPostType();
-$Drone_Quiz->name = 'Drone Quiz';
-$Drone_Quiz->singular_name = 'Drone Quiz';
-$Drone_Quiz->icon = 'dashicons-testimonial';
-$Drone_Quiz->supports = array('title', 'revisions');
-$Drone_Quiz->exclude_from_search = true;
-$Drone_Quiz->publicly_queryable = false;
-$Drone_Quiz->show_in_admin_bar = false;
-$Drone_Quiz->has_archive = false;
+$Quiz = new newPostType();
+$Quiz->name = 'Quiz';
+$Quiz->singular_name = 'Quiz';
+$Quiz->icon = 'dashicons-testimonial';
+$Quiz->supports = array('title', 'revisions');
+$Quiz->exclude_from_search = true;
+$Quiz->publicly_queryable = false;
+$Quiz->show_in_admin_bar = false;
+$Quiz->has_archive = false;
