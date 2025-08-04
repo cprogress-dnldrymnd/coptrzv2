@@ -22,6 +22,7 @@ $quiz_questions = get__post_meta('quiz_questions');
                     <?php foreach ($question_choices as $question_choice) { ?>
                         <div class="col-lg-4">
                             <input type="<?= $question_type ?>" name="<?= $question_key ?>" value="<?= $question_choice['choice'] ?>">
+                            <label><?= $question_choice['choice'] ?></label>
                         </div>
                     <?php } ?>
                 </div>
