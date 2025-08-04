@@ -6960,6 +6960,13 @@ Container::make('post_meta', __('Quiz Settings'))
         array(
             Field::make('complex', 'quiz_questions', __('Quiz Questions'))
                 ->add_fields(array(
+                    Field::make('select', 'question_type', __('Question Type'))
+                        ->set_options(
+                            array(
+                                'radio' => 'Radio',
+                                'checkbox'     => 'Checkbox',
+                            )
+                        ),
                     Field::make('text', 'question_text', __('Question Text'))
                         ->set_classes('inline-field inline-field-wide-label'),
                     Field::make('complex', 'question_choices', __('Question Choices'))
