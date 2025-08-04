@@ -498,3 +498,15 @@ function remove_canonical()
     add_filter('wpseo_canonical', '__return_false', 10, 1);
 }
 add_action('wp', 'remove_canonical');
+
+add_filter('wpcf7_form_action_url', 'wpcf7_custom_form_action_url');
+
+function wpcf7_custom_form_action_url($url)
+{
+    $wpcf7 = WPCF7_ContactForm::get_current();
+
+    if ($wpcf7 && get_the_ID() == '213000') {
+        $url = 'http://go.coptrz.com/l/396132/2025-08-01/wpk38n';
+    }
+    return $url;
+}

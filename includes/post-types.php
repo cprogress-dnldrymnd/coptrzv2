@@ -30,7 +30,8 @@ class newPostType
                 'labels'              => array(
                     'name'               => _x($this->name, 'post type general name', $this->text_domain),
                     'singular_name'      => _x($this->singular_name, 'post type singular name', $this->text_domain),
-                    'menu_name'          => _x($this->name, 'admin menu'), $this->text_domain,
+                    'menu_name'          => _x($this->name, 'admin menu'),
+                    $this->text_domain,
                     'name_admin_bar'     => _x($this->singular_name, 'add new on admin bar', $this->text_domain),
                     'add_new'            => _x('Add New', strtolower($this->name), $this->text_domain),
                     'add_new_item'       => __('Add New ' . $this->singular_name, $this->text_domain),
@@ -631,3 +632,14 @@ $Landing_Page->rewrite = array(
     'with_front' => false,
     'slug' => 'landing-page'
 );
+
+
+$Drone_Quiz = new newPostType();
+$Drone_Quiz->name = 'Drone Quiz';
+$Drone_Quiz->singular_name = 'Drone Quiz';
+$Drone_Quiz->icon = 'dashicons-testimonial';
+$Drone_Quiz->supports = array('title', 'revisions');
+$Drone_Quiz->exclude_from_search = true;
+$Drone_Quiz->publicly_queryable = false;
+$Drone_Quiz->show_in_admin_bar = false;
+$Drone_Quiz->has_archive = false;
