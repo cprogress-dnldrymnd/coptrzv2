@@ -6960,7 +6960,15 @@ Container::make('post_meta', __('Quiz Settings'))
         array(
             Field::make('complex', 'quiz_questions', __('Quiz Questions'))
                 ->add_fields(array(
-                    Field::make('text', 'latest_from_coptrz')
+                    Field::make('text', 'question_text', __('Question Text'))
+                        ->set_classes('inline-field inline-field-wide-label'),
+                    Field::make('complex', 'question_choices', __('Question Choices'))
+                        ->add_fields(array(
+                            Field::make('text', 'choice', __('Choice'))
+                                ->set_classes('inline-field inline-field-wide-label'),
+                        ))
+                        ->set_layout('tabbed-vertical')
+                        ->set_header_template('Choice: <%- choice %>'),
 
                 ))
         )
