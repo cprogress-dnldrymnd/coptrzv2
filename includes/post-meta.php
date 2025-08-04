@@ -6971,6 +6971,7 @@ Container::make('post_meta', __('Quiz Settings'))
                     Field::make('text', 'question_text', __('Question Text'))
                         ->set_classes('inline-field inline-field-wide-label'),
                     Field::make('complex', 'question_choices', __('Question Choices'))
+                        ->set_classes('inline-field inline-field-wide-label')
                         ->add_fields(array(
                             Field::make('text', 'choice', __('Choice'))
                                 ->set_classes('inline-field inline-field-wide-label'),
