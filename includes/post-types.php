@@ -643,3 +643,4 @@ $Quiz->exclude_from_search = true;
 $Quiz->publicly_queryable = false;
 $Quiz->show_in_admin_bar = false;
 $Quiz->has_archive = false;
+$Quiz->show_in_rest = true;
