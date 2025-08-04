@@ -6987,7 +6987,6 @@ Container::make('post_meta', __('Quiz Settings'))
                                         ),
                                     )
                                 )
-                                ->set_max(1)
                         ))
                         ->set_layout('tabbed-vertical')
                         ->set_header_template('Choice: <%- choice %>'),
