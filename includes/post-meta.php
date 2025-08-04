@@ -6952,8 +6952,9 @@ Container::make('post_meta', __('Custom CSS'))
 
 
 /*-----------------------------------------------------------------------------------*/
-/* Custom CSS
+/* Quiz CSS
 /*-----------------------------------------------------------------------------------*/
+/*
 Container::make('post_meta', __('Quiz Settings'))
     ->where('post_type', '=', 'quiz')
     ->add_fields(
@@ -7013,3 +7014,4 @@ Container::make('post_meta', __('Quiz Settings'))
 
         )
     );
+*/

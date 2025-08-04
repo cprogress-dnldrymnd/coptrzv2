@@ -633,7 +633,7 @@ $Landing_Page->rewrite = array(
     'slug' => 'landing-page'
 );
 
-
+/*
 $Quiz = new newPostType();
 $Quiz->name = 'Quiz';
 $Quiz->singular_name = 'Quiz';
@@ -644,3 +644,4 @@ $Quiz->publicly_queryable = true;
 $Quiz->show_in_admin_bar = true;
 $Quiz->has_archive = false;
 $Quiz->show_in_rest = true;
+*/
