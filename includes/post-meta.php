@@ -6961,6 +6961,7 @@ Container::make('post_meta', __('Quiz Settings'))
             Field::make('complex', 'quiz_questions', __('Quiz Questions'))
                 ->add_fields(array(
                     Field::make('select', 'question_type', __('Question Type'))
+                        ->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
                             array(
                                 'radio' => 'Radio',
