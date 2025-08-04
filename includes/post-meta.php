@@ -6960,6 +6960,8 @@ Container::make('post_meta', __('Quiz Settings'))
         array(
             Field::make('complex', 'quiz_questions', __('Quiz Questions'))
                 ->add_fields(array(
+                    Field::make('text', 'question_key', __('Question Key'))
+                        ->set_classes('inline-field inline-field-wide-label'),
                     Field::make('select', 'question_type', __('Question Type'))
                         ->set_classes('inline-field inline-field-wide-label')
                         ->set_options(
@@ -6975,9 +6977,36 @@ Container::make('post_meta', __('Quiz Settings'))
                         ->add_fields(array(
                             Field::make('text', 'choice', __('Choice'))
                                 ->set_classes('inline-field inline-field-wide-label'),
+                            Field::make('association', 'linked_products', 'Linked Products')->set_classes('inline-field inline-field-wide-label')
+                                ->set_types(
+                                    array(
+                                        array(
+                                            'type'      => 'post',
+                                            'post_type' => 'product',
+                                        ),
+                                    )
+                                )
+                                ->set_max(1)
                         ))
                         ->set_layout('tabbed-vertical')
                         ->set_header_template('Choice: <%- choice %>'),
+
+                    Field::make('complex', 'conditional_logic', __('Conditional Logic'))
+                        ->add_fields(array(
+                            Field::make('select', 'condition', __('Condition'))
+                                ->set_options(
+                                    array(
+                                        'hide_if' => 'Hide if',
+                                        'show_if'     => 'Show if',
+                                    )
+                                )
+                                ->set_classes('inline-field inline-field-wide-label'),
+                            Field::make('text', 'question_key', __('Question Key'))
+                                ->set_classes('inline-field inline-field-wide-label'),
+                            Field::make('text', 'question_key_vale', __('Question Key Value'))
+                                ->set_classes('inline-field inline-field-wide-label'),
+
+                        ))
 
                 ))
                 ->set_header_template('Question: <%- question_text %>'),
