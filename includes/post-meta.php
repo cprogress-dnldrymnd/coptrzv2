@@ -6978,5 +6978,7 @@ Container::make('post_meta', __('Quiz Settings'))
                         ->set_header_template('Choice: <%- choice %>'),
 
                 ))
+                ->set_header_template('Question: <%- question_text %>'),
+
         )
     );
