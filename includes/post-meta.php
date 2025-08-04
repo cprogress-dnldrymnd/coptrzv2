@@ -6959,6 +6959,7 @@ Container::make('post_meta', __('Quiz Settings'))
     ->add_fields(
         array(
             Field::make('complex', 'quiz_questions', __('Quiz Questions'))
+                ->set_collapsed(true)
                 ->add_fields(array(
                     Field::make('text', 'question_key', __('Question Key'))
                         ->set_classes('inline-field inline-field-wide-label'),
