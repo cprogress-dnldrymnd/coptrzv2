@@ -1179,7 +1179,7 @@ function training_template($product_id = 'default')
                             <?= $SVG->uk() ?>
                             <?php foreach ($locations as $location) { ?>
                                 <?php if ($location != 'online') { ?>
-                                    <span title="<?= $location ?>" class="trigger-location-change" id="<?= strtolower($location) ?>" value="<?= strtolower($location) ?>"><?= $SVG->location() ?>
+                                    <span title="<?= ucfirst($location) ?>" class="trigger-location-change" id="<?= strtolower($location) ?>" value="<?= strtolower($location) ?>"><?= $SVG->location() ?>
                                         <div class='pulse'></div>
                                     </span>
                                 <?php } ?>
