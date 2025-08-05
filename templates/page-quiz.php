@@ -12,5 +12,6 @@
         height: 100vh !important
     }
 </style>
-<?php
-the_content();
+<div class="rh-widget rh-inline">
+    <iframe src="https://admin.revenuehunt.com/public/quiz/6OH3geD" frameborder="0"></iframe>
+</div>
