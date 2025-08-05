@@ -1097,6 +1097,17 @@ function training_template($product_id = 'default')
         $product = wc_get_product($product_id);
     }
 ?>
+    <style>
+        .training-map-holder #hook {
+            top: 85%;
+            left: 75%;
+        }
+
+        .training-map-holder #darlington {
+            top: 48%;
+            left: 70%;
+        }
+    </style>
     <section class="training-product md-padding-top md-padding-bottom border-top-default" id="Book-Course">
         <input type="hidden" name="product_id" value="<?= $id ?>">
         <input type="hidden" name="post_type_key" value="<?= get_post_type() ?>">
