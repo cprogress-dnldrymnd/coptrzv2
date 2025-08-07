@@ -1127,7 +1127,7 @@ function training_template($product_id = 'default')
                                                 <label class="rounded-corner trigger-training-ajax" for="online">Online Self-paced</label>
                                             </div>
                                             <div class="col-auto">
-                                                <input name="delivery_method" value="classroom" type="radio" id="classroom">
+                                                <input name="delivery_method" value="classroom" type="radio" id="classroom" checked>
                                                 <label class="rounded-corner trigger-training-ajax" for="classroom">Classroom</label>
                                             </div>
                                         </div>
