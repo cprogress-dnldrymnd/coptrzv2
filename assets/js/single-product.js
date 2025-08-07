@@ -4,11 +4,13 @@ jQuery(document).ready(function () {
     __move_paypal();
     __quantity();
     __training();
+     __training_ajax();
+     console.log('xx');
 });
 
 function __training() {
     __training_swiper();
-    __training_ajax();
+   
     jQuery('.trigger-training-ajax').click(function (e) {
         __training_ajax();
     });
