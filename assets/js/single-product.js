@@ -8,7 +8,7 @@ jQuery(document).ready(function () {
 
 function __training() {
     __training_swiper();
-
+    __training_ajax();
     jQuery('.trigger-training-ajax').click(function (e) {
         __training_ajax();
     });
@@ -54,6 +54,7 @@ function __training_ajax($delivery_method = false) {
             $delivery_method_val = jQuery('input[name="delivery_method"]:checked').val();
 
         }
+        console.log($delivery_method_val);
         $location = jQuery('select[name="location"]').val();
 
 
