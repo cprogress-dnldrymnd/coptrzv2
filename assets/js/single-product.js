@@ -5,7 +5,6 @@ jQuery(document).ready(function () {
     __quantity();
     __training();
      __training_ajax();
-     console.log('xx');
 });
 
 function __training() {
@@ -56,7 +55,6 @@ function __training_ajax($delivery_method = false) {
             $delivery_method_val = jQuery('input[name="delivery_method"]:checked').val();
 
         }
-        console.log($delivery_method_val);
         $location = jQuery('select[name="location"]').val();
 
 
