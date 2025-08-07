@@ -1123,11 +1123,11 @@ function training_template($product_id = 'default')
                                     <div class="filter-box bg-light rounded-corner">
                                         <div class="row">
                                             <div class="col-auto">
-                                                <input name="delivery_method" value="online-self-paced" type="radio" id="online" checked>
+                                                <input name="delivery_method" value="online-self-paced" type="radio" id="online" <?= isset($_GET['delivery_method']) && $_GET['delivery_method'] == 'classroom'  ? '' : 'checked' ?>>
                                                 <label class="rounded-corner trigger-training-ajax" for="online">Online Self-paced</label>
                                             </div>
                                             <div class="col-auto">
-                                                <input name="delivery_method" value="classroom" type="radio" id="classroom">
+                                                <input name="delivery_method" value="classroom" type="radio" id="classroom" <?= isset($_GET['delivery_method']) && $_GET['delivery_method'] == 'classroom'  ? 'checked' : '' ?>>
                                                 <label class="rounded-corner trigger-training-ajax" for="classroom">Classroom</label>
                                             </div>
                                         </div>
