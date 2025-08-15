@@ -498,7 +498,7 @@ function __swipers() {
             spaceBetween: 0,
             speed: 3000,
             autoplay: {
-                delay: 0,
+                delay: 10000,
                 disableOnInteraction: false
             },
         });
