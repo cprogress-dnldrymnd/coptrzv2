@@ -343,17 +343,25 @@ function __header_menu() {
 
                         jQuery('.tab-links').addClass('d-none');
                         jQuery($target).addClass('d-none');
+                        jQuery('.submenu3').addClass('d-none');
+
                         e.preventDefault();
                     }
                 }
             );
 
-            jQuery('.submenu2 .nav-link').hover(
+            jQuery('.submenu3 .nav-link').hover(
                 function (e) {
                     $target = jQuery(this).attr('url_target');
                     jQuery($target).removeClass('d-none');
                     e.preventDefault();
 
+                }, function (e) {
+                    if (!jQuery(this).hasClass('has-children-tab')) {
+                        $target = jQuery(this).attr('url_target');
+                        jQuery($target).addClass('d-none');
+                        e.preventDefault();
+                    }
                 }
             );
         } else {
