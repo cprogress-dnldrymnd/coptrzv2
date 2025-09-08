@@ -351,8 +351,7 @@ function __header_menu() {
 
             jQuery('.submenu3 .nav-link').hover(
                 function (e) {
-                    jQuery('..has-children-tab.nav-link.active').removeClass('active');
-
+                    jQuery('.has-children-tab.nav-link.active').removeClass('active');
                     $target = jQuery(this).attr('url_target');
                     jQuery($target).removeClass('d-none');
                     jQuery(this).toggleClass('active');
