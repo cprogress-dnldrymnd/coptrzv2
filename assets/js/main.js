@@ -354,12 +354,14 @@ function __header_menu() {
                 function (e) {
                     $target = jQuery(this).attr('url_target');
                     jQuery($target).removeClass('d-none');
+                    jQuery('.submenu4:not(' + $target + ')').addClass('d-none');
+
                     e.preventDefault();
 
                 }, function (e) {
                     if (!jQuery(this).hasClass('has-children-tab')) {
                         $target = jQuery(this).attr('url_target');
-                        jQuery('.submenu4:not(' + $target + ')').addClass('d-none');
+                        jQuery($target).addClass('d-none');
                         e.preventDefault();
                     }
                 }
