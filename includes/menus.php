@@ -143,7 +143,7 @@ function header_menu()
 						$html .= '</div>';
 
 						$html .= '<div class="col-lg-7">';
-
+						$submenus4 = [];
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
 							$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
@@ -167,15 +167,6 @@ function header_menu()
 									$html .= '<li>';
 									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '">' . $submenu3['title'] . '</a>';
 
-									if ($submenus4) {
-										$html .= '<ul class="submenu4 list-inline d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu3_id . '">';
-										foreach ($submenus4 as $submenu4) {
-											$html .= '<li>';
-											$html .= '<a class="nav-link text-black"  href="' . $submenu4['url'] . '">' . $submenu4['title'] . '</a>';
-											$html .= '</li>';
-										}
-										$html .= '</ul>';
-									}
 
 									$html .= '</li>';
 								}
@@ -183,6 +174,19 @@ function header_menu()
 							}
 						}
 						$html .= '</div>';
+
+						$html .= '<div class="col-lg-4">';
+						if ($submenus4) {
+							$html .= '<ul class="submenu4 list-inline d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu3_id . '">';
+							foreach ($submenus4 as $submenu4) {
+								$html .= '<li>';
+								$html .= '<a class="nav-link text-black"  href="' . $submenu4['url'] . '">' . $submenu4['title'] . '</a>';
+								$html .= '</li>';
+							}
+							$html .= '</ul>';
+						}
+						$html .= '</div>';
+
 
 
 						$html .= '</div>';
