@@ -323,7 +323,7 @@ function __header_menu() {
             );
 
             jQuery('.submenu2 .col-lg-5 .nav-link').hover(
-                function () {
+                function (e) {
                     $target = jQuery(this).attr('url_target');
                     jQuery('.has-children-tab.nav-link.active').removeClass('active');
 
@@ -334,7 +334,7 @@ function __header_menu() {
                     jQuery($target).removeClass('d-none');
                     e.preventDefault();
 
-                }, function () {
+                }, function (e) {
                     if (!jQuery(this).hasClass('has-children-tab')) {
                         $target = jQuery(this).attr('url_target');
 
