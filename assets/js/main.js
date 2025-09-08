@@ -354,6 +354,8 @@ function __header_menu() {
                 function (e) {
                     $target = jQuery(this).attr('url_target');
                     jQuery($target).removeClass('d-none');
+                    jQuery(this).toggleClass('active');
+                    jQuery(this).next().toggleClass('active');
 
                     e.preventDefault();
 
