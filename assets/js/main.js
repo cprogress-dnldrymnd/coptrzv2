@@ -354,12 +354,6 @@ function __header_menu() {
                     jQuery($target).removeClass('d-none');
                     e.preventDefault();
 
-                }, function (e) {
-                    if (!jQuery(this).hasClass('has-children-tab')) {
-                        $target = jQuery(this).attr('url_target');
-                        jQuery($target).addClass('d-none');
-                        e.preventDefault();
-                    }
                 }
             );
         } else {
