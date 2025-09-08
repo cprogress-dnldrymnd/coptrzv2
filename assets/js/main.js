@@ -361,6 +361,7 @@ function __header_menu() {
                     if (!jQuery(this).hasClass('has-children-tab')) {
                         $target = jQuery(this).attr('url_target');
                         jQuery($target).addClass('d-none');
+                        jQuery(this).removeClass('has-children-tab')
                         e.preventDefault();
                     }
                 }
