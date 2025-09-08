@@ -84,6 +84,7 @@ function header_menu()
 				$html .= '<span class="icon"></span>';
 				$html .= "</a>";
 				$html .= '</li>';
+
 				foreach ($submenus1 as $submenu1) {
 					$submenu1_id = $submenu1['ID'];
 
@@ -113,8 +114,6 @@ function header_menu()
 						$html .= '<span class="icon"></span>';
 						$html .= "</a>";
 						$html .= '</li>';
-						
-						$submenu3_id = 0;
 
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
@@ -144,6 +143,7 @@ function header_menu()
 						$html .= '</div>';
 
 						$html .= '<div class="col-lg-7">';
+
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
 							$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
@@ -160,31 +160,30 @@ function header_menu()
 								$html .= '</li>';
 								foreach ($submenus3 as $submenu3) {
 									$submenu3_id = $submenu3['ID'];
-									$html .= '<li ' . $submenu3_id . '>';
+									$submenus4 = array_filter($menus_array, function ($var) use ($submenu3_id) {
+										return ($var['menu_item_parent'] == $submenu3_id);
+									});
+
+									$html .= '<li>';
 									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '">' . $submenu3['title'] . '</a>';
+
+									if ($submenus4) {
+										$html .= '<ul class="submenu4 list-inline d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu3_id . '">';
+										foreach ($submenus4 as $submenu4) {
+											$html .= '<li>';
+											$html .= '<a class="nav-link text-black"  href="' . $submenu4['url'] . '">' . $submenu4['title'] . '</a>';
+											$html .= '</li>';
+										}
+										$html .= '</ul>';
+									}
+
 									$html .= '</li>';
 								}
 								$html .= '</ul>';
 							}
 						}
 						$html .= '</div>';
-
-						$submenus4 = array_filter($menus_array, function ($var) use ($submenu3_id) {
-							return ($var['menu_item_parent'] == $submenu3_id);
-						});
-
-						$html .= '<div class="col-lg-4">' . $submenu3_id;
-						if ($submenus4) {
-							$html .= '<ul class="submenu4 list-inline d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu3_id . '">';
-							foreach ($submenus4 as $submenu4) {
-								$html .= '<li>';
-								$html .= '<a class="nav-link text-black"  href="' . $submenu4['url'] . '">' . $submenu4['title'] . '</a>';
-								$html .= '</li>';
-							}
-							$html .= '</ul>';
-						}
-						$html .= '</div>';
-
+						
 
 
 						$html .= '</div>';
