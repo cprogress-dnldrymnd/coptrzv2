@@ -367,6 +367,15 @@ function __header_menu() {
                     }
                 }
             );
+
+            jQuery('.submenu4 .nav-link').hover(
+                function (e) {
+                    jQuery(this).addClass('active');
+                    e.preventDefault();
+                }, function (e) {
+                    jQuery(this).removeClass('active');
+                }
+            );
         } else {
             jQuery('.has-children.main-nav, .has-children.sub-nav, .has-children-tab').click(function (e) {
                 var $this = jQuery(this);
