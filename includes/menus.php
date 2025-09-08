@@ -143,7 +143,6 @@ function header_menu()
 						$html .= '</div>';
 
 						$html .= '<div class="col-lg-7">';
-						$submenus4 = [];
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
 							$submenus3 = array_filter($menus_array, function ($var) use ($submenu2_id) {
