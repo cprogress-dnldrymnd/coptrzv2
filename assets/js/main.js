@@ -310,6 +310,15 @@ function __header_menu() {
     }, 500);
     if (jQuery('header').length > 0) {
         if (window.innerWidth > 991) {
+            if (jQuery('.submenu4').length > 0) {
+
+                jQuery('.submenu4').each(function (index, element) {
+                    $parent = jQuery(this).parents('.submenu2').find('>.row');
+                    $parent.find('>div:not(.submenu--4-parent)').attr('class', 'col-lg-4');
+                    jQuery(this).appendTo($parent.find('.submenu--4-parent'));
+
+                });
+            }
             jQuery(".has-submenu").hover(
                 function () {
                     jQuery(this).find(' > .nav-link').addClass('active');
@@ -457,17 +466,7 @@ function __header_menu() {
                 jQuery('body').removeClass('mobile-menu-active');
             });
         }
-        if (jQuery('.submenu4').length > 0) {
 
-            jQuery('.submenu4').each(function (index, element) {
-                $parent = jQuery(this).parents('.submenu2').find('>.row');
-                $parent.find('>div:not(.submenu--4-parent)').attr('class', 'col-lg-4');
-                jQuery(this).appendTo($parent.find('.submenu--4-parent'));
-
-            });
-            console.log('xx');
-            console.log('xx');
-        }
     }
 
 
