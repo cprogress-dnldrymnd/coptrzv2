@@ -354,6 +354,7 @@ function __header_menu() {
                 function (e) {
                     $target = jQuery(this).attr('url_target');
                     jQuery($target).removeClass('d-none');
+                    jQuery('.submenu4:not(' + $target + ')').addClass('d-none');
                     e.preventDefault();
 
                 }, function (e) {
