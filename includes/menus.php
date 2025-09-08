@@ -84,7 +84,6 @@ function header_menu()
 				$html .= '<span class="icon"></span>';
 				$html .= "</a>";
 				$html .= '</li>';
-				$submenu3_id = 0;
 				foreach ($submenus1 as $submenu1) {
 					$submenu1_id = $submenu1['ID'];
 
@@ -114,6 +113,8 @@ function header_menu()
 						$html .= '<span class="icon"></span>';
 						$html .= "</a>";
 						$html .= '</li>';
+						
+						$submenu3_id = 0;
 
 						foreach ($submenus2 as $submenu2) {
 							$submenu2_id = $submenu2['ID'];
@@ -159,7 +160,7 @@ function header_menu()
 								$html .= '</li>';
 								foreach ($submenus3 as $submenu3) {
 									$submenu3_id = $submenu3['ID'];
-									$html .= '<li '.$submenu3_id.'>';
+									$html .= '<li ' . $submenu3_id . '>';
 									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '">' . $submenu3['title'] . '</a>';
 									$html .= '</li>';
 								}
@@ -172,7 +173,7 @@ function header_menu()
 							return ($var['menu_item_parent'] == $submenu3_id);
 						});
 
-						$html .= '<div class="col-lg-4">'.$submenu3_id;
+						$html .= '<div class="col-lg-4">' . $submenu3_id;
 						if ($submenus4) {
 							$html .= '<ul class="submenu4 list-inline d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu3_id . '">';
 							foreach ($submenus4 as $submenu4) {
