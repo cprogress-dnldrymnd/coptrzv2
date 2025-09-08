@@ -84,7 +84,7 @@ function header_menu()
 				$html .= '<span class="icon"></span>';
 				$html .= "</a>";
 				$html .= '</li>';
-
+				$submenu3_id = 0;
 				foreach ($submenus1 as $submenu1) {
 					$submenu1_id = $submenu1['ID'];
 
@@ -159,9 +159,7 @@ function header_menu()
 								$html .= '</li>';
 								foreach ($submenus3 as $submenu3) {
 									$submenu3_id = $submenu3['ID'];
-									$submenus4 = array_filter($menus_array, function ($var) use ($submenu3_id) {
-										return ($var['menu_item_parent'] == $submenu3_id);
-									});
+
 
 									$html .= '<li>';
 									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '">' . $submenu3['title'] . '</a>';
@@ -173,6 +171,10 @@ function header_menu()
 							}
 						}
 						$html .= '</div>';
+
+						$submenus4 = array_filter($menus_array, function ($var) use ($submenu3_id) {
+							return ($var['menu_item_parent'] == $submenu3_id);
+						});
 
 						$html .= '<div class="col-lg-4">';
 						if ($submenus4) {
