@@ -159,12 +159,8 @@ function header_menu()
 								$html .= '</li>';
 								foreach ($submenus3 as $submenu3) {
 									$submenu3_id = $submenu3['ID'];
-
-
-									$html .= '<li>';
+									$html .= '<li '.$submenu3_id.'>';
 									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '">' . $submenu3['title'] . '</a>';
-
-
 									$html .= '</li>';
 								}
 								$html .= '</ul>';
