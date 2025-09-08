@@ -159,8 +159,24 @@ function header_menu()
 								$html .= "</a>";
 								$html .= '</li>';
 								foreach ($submenus3 as $submenu3) {
+									$submenu3_id = $submenu3['ID'];
+									$submenus4 = array_filter($menus_array, function ($var) use ($submenu3_id) {
+										return ($var['menu_item_parent'] == $submenu3_id);
+									});
+
 									$html .= '<li>';
 									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '">' . $submenu3['title'] . '</a>';
+
+									if ($submenus4) {
+										$html .= '<ul class="submenu3 list-inline left-menu d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu3_id . '">';
+										foreach ($submenus4 as $submenu4) {
+											$html .= '<li>';
+											$html .= '<a class="nav-link text-black"  href="' . $submenu4['url'] . '">' . $submenu4['title'] . '</a>';
+											$html .= '</li>';
+										}
+										$html .= '</ul>';
+									}
+
 									$html .= '</li>';
 								}
 								$html .= '</ul>';
