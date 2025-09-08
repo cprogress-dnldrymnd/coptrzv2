@@ -45,7 +45,7 @@ function __shop_coptrz_link() {
     });
 }
 
-function __utm_parameters() {   
+function __utm_parameters() {
     setTimeout(function () {
         utm_val('utm_campaign');
         utm_val('utm_source');
@@ -423,6 +423,10 @@ function __header_menu() {
             });
         }
 
+    }
+
+    if (jQuery('.submenu4').length > 0) {
+        console.log('xx');
     }
 }
 
