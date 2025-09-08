@@ -350,6 +350,7 @@ function __header_menu() {
             );
             jQuery('.submenu3  .nav-link-3').hover(
                 function (e) {
+                    jQuery('.submenu4').addClass('d-none');
                     $target = jQuery(this).attr('url_target');
                     jQuery('.submenu3 .has-children-tab.nav-link.active').removeClass('active');
 
