@@ -353,17 +353,14 @@ function __header_menu() {
             jQuery('.submenu3 .nav-link').hover(
                 function (e) {
                     $target = jQuery(this).attr('url_target');
-                    jQuery('.submenu4:not(' + $target + ')').addClass('d-none');
                     jQuery($target).removeClass('d-none');
 
                     e.preventDefault();
 
                 }, function (e) {
-                    if (!jQuery(this).hasClass('has-children-tab')) {
-                        $target = jQuery(this).attr('url_target');
-                        jQuery($target).addClass('d-none');
-                        e.preventDefault();
-                    }
+                    $target = jQuery(this).attr('url_target');
+                    jQuery($target).addClass('d-none');
+                    e.preventDefault();
                 }
             );
         } else {
