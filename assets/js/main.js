@@ -353,8 +353,8 @@ function __header_menu() {
             jQuery('.submenu3 .nav-link').hover(
                 function (e) {
                     $target = jQuery(this).attr('url_target');
-                    jQuery($target).removeClass('d-none');
                     jQuery('.submenu4:not(' + $target + ')').addClass('d-none');
+                    jQuery($target).removeClass('d-none');
 
                     e.preventDefault();
 
