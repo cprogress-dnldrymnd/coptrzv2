@@ -325,23 +325,12 @@ function __header_menu() {
             jQuery('.submenu2 .col-lg-5 .nav-link').hover(
                 function (e) {
                     $target = jQuery(this).attr('url_target');
-                    jQuery('.has-children-tab.nav-link.active').removeClass('active');
-
-                    jQuery(this).toggleClass('active');
-                    jQuery(this).next().toggleClass('active');
-
-                    jQuery('.tab-links').addClass('d-none');
                     jQuery($target).removeClass('d-none');
                     e.preventDefault();
 
                 }, function (e) {
                     if (!jQuery(this).hasClass('has-children-tab')) {
                         $target = jQuery(this).attr('url_target');
-
-                        jQuery(this).toggleClass('active');
-                        jQuery(this).next().toggleClass('active');
-
-                        jQuery('.tab-links').addClass('d-none');
                         jQuery($target).addClass('d-none');
                         e.preventDefault();
                     }
