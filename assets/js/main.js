@@ -354,6 +354,7 @@ function __header_menu() {
                 function (e) {
                     $target = jQuery(this).attr('url_target');
                     jQuery($target).removeClass('d-none');
+                    jQuery(this).addClass('has-children-tab')
                     e.preventDefault();
 
                 }, function (e) {
