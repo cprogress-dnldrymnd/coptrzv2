@@ -422,13 +422,13 @@ function __header_menu() {
                 jQuery('body').removeClass('mobile-menu-active');
             });
         }
-
+        if (jQuery('.submenu4').length > 0) {
+            console.log('xx');
+            console.log('xx');
+        }
     }
 
-    if (jQuery('.submenu4').length > 0) {
-        console.log('xx');
-        console.log('xx');
-    }
+
 }
 
 function __mini_cart() {
