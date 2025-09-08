@@ -427,6 +427,7 @@ function __header_menu() {
 
     if (jQuery('.submenu4').length > 0) {
         console.log('xx');
+        console.log('xx');
     }
 }
 
