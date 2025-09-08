@@ -153,7 +153,7 @@ function header_menu()
 
 								$html .= '<ul class="submenu3 list-inline left-menu d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu2_id . '">';
 								$html .= '<li class="close-submenu close-submenu-3 has-submenu d-block d-lg-none">';
-								$html .= '<a class="nav-link text-black">';
+								$html .= '<a class="nav-link text-black ">';
 								$html .= $submenu2['title'];
 								$html .= '<span class="icon"></span>';
 								$html .= "</a>";
@@ -165,7 +165,7 @@ function header_menu()
 									});
 
 									$html .= '<li>';
-									$html .= '<a class="nav-link text-black ' . ($submenus4 ? 'has-children-tab' : '') . '"  href="' . $submenu3['url'] . '"  url_target="#submenu-' . $submenu3_id . '">' . $submenu3['title'] . '</a>';
+									$html .= '<a class="nav-link text-black nav-link-3' . ($submenus4 ? 'has-children-tab' : '') . '"  href="' . $submenu3['url'] . '"  url_target="#submenu-' . $submenu3_id . '">' . $submenu3['title'] . '</a>';
 
 									if ($submenus4) {
 										$html .= '<ul class="submenu4 list-inline d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu3_id . '">';
