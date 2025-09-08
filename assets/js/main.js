@@ -425,6 +425,7 @@ function __header_menu() {
         if (jQuery('.submenu4').length > 0) {
             jQuery('.submenu4').each(function (index, element) {
                 $parent = jQuery(this).parents('.submenu2').find('>.row');
+                $parent.find('>div').attr('class', 'col-lg-4');
                 $menus = jQuery(this).parents('.submenu2').find('>.row');
                 $col = jQuery('<div class="col-lg-4"></div>');
                 jQuery(this).appendTo($col);
