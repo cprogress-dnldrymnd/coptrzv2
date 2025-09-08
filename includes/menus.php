@@ -165,7 +165,7 @@ function header_menu()
 									});
 
 									$html .= '<li>';
-									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '">' . $submenu3['title'] . '</a>';
+									$html .= '<a class="nav-link text-black"  href="' . $submenu3['url'] . '" url_target="#submenu-' . $submenu3_id . '">' . $submenu3['title'] . '</a>';
 
 									if ($submenus4) {
 										$html .= '<ul class="submenu4 list-inline d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu3_id . '">';
