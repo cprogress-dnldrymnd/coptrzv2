@@ -360,7 +360,7 @@ function __header_menu() {
                     e.preventDefault();
 
                 }, function (e) {
-                    if (!jQuery(this).hasClass('has-children-tab.active')) {
+                    if (!jQuery(this).hasClass('active')) {
                         $target = jQuery(this).attr('url_target');
 
                         jQuery(this).toggleClass('active');
