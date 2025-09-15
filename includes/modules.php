@@ -192,7 +192,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 {
     $id = get_the_ID();
     $hero_heading = get__post_meta('hero_heading');
-    $hero_description = get__post_meta('hero_description');
+    $hero_description = do_shortcode(get__post_meta('hero_description'));
     $hero_hidden = get__post_meta('hero_hidden');
     if (get_post_type() == '') {
         $hero_background = get_post_thumbnail_id();
