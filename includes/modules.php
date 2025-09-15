@@ -225,7 +225,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 
 
     $hero_form_heading = get__post_meta('hero_form_heading');
-    $hero_form_description = get__post_meta('hero_form_description');
+    $hero_form_description = do_shortcode(get__post_meta('hero_form_description'));
     $hero_form_style = get__post_meta('hero_form_style');
     $hero_form = get__post_meta('hero_form');
     $hero_form_type = get__post_meta('hero_form_type');
