@@ -81,6 +81,12 @@ if (post_password_required()) {
 							</div>
 						</div>
 					</div>
+				<?php } else {  ?>
+					<style>
+						.product-main {
+							display: none !important;
+						}
+					</style>
 				<?php } ?>
 			<?php } ?>
 		</div>
