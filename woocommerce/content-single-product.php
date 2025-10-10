@@ -40,8 +40,8 @@ if (post_password_required()) {
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow" id="buy-now">
 		<div class="container">
+			<h2 class="text-center">Buy <?php the_title() ?></h2>
 			<?php if (get__post_meta('shopify_product_link')) { ?>
-				<h2 class="text-center">Buy <?php the_title() ?></h2>
 				<?php do_action('woocommerce_before_single_product_shopify_link'); ?>
 			<?php } else { ?>
 
