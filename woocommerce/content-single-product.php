@@ -37,7 +37,7 @@ if (post_password_required()) {
 <div class="main-product-data product-data d-none">
 	<?= _single_product_data(get_the_ID()) ?>
 </div>
-<?php if (get__post_meta('shopify_product_link') == '' && !has_term('training', 'product_cat')) { ?>
+<?php if (get__post_meta('shopify_product_link') != '' && !has_term('training', 'product_cat')) { ?>
 	<div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 		<section class="product-main md-padding-top md-padding-bottom border-top-default no-overflow" id="buy-now">
 			<div class="container">
