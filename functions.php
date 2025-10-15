@@ -128,7 +128,7 @@ function enqueue_scripts()
 	}
 }
 
-add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); // Register this fxn and allow Wordpress to call it automatcally in the header
+add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); 
 
 
 
