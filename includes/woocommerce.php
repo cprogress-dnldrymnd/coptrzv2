@@ -2266,24 +2266,25 @@ function action_woocommerce_before_single_product_shopify_link()
 
 add_action('woocommerce_before_single_product_shopify_link', 'action_woocommerce_before_single_product_shopify_link');
 
-
 /**
- * @snippet      Disable Add to Cart Except for Specific Categories - WooCommerce
- * @author       Gemini
- * @testedwith   WooCommerce 8.0+
+ * @snippet       Disable Add to Cart Except for Specific Categories (Works with Variations)
+ * @author        Gemini & User
+ * @testedwith    WooCommerce 8.0+
  */
 
 // Part 1: Visually disable the add to cart button and functionality.
 // This handles the user interface on the product and shop pages.
 add_filter('woocommerce_is_purchasable', 'woocommerce_is_purchasable_except_specific_categories', 10, 2);
 
-function woocommerce_is_purchasable_except_specific_categories($is_purchasable, $product)
-{
+function woocommerce_is_purchasable_except_specific_categories($is_purchasable, $product) {
     // --- CONFIGURATION: SET YOUR ALLOWED CATEGORY SLUGS HERE ---
     $allowed_category_slugs = ['training', 'thermography-courses'];
 
-    // If the product is in any of the allowed categories, it remains purchasable.
-    if (has_term($allowed_category_slugs, 'product_cat', $product->get_id())) {
+    // For variable products, we need to check the parent product's category.
+    $product_id_to_check = $product->is_type('variation') ? $product->get_parent_id() : $product->get_id();
+
+    // If the product (or its parent) is in any of the allowed categories, it remains purchasable.
+    if (has_term($allowed_category_slugs, 'product_cat', $product_id_to_check)) {
         return true;
     }
 
@@ -2295,13 +2296,23 @@ function woocommerce_is_purchasable_except_specific_categories($is_purchasable, 
 // This is the essential security check.
 add_filter('woocommerce_add_to_cart_validation', 'block_add_to_cart_except_specific_categories', 10, 3);
 
-function block_add_to_cart_except_specific_categories($passed, $product_id, $quantity)
-{
+function block_add_to_cart_except_specific_categories($passed, $product_id, $quantity) {
     // --- CONFIGURATION: SET YOUR ALLOWED CATEGORY SLUGS HERE (must match above) ---
     $allowed_category_slugs = ['training', 'thermography-courses'];
 
-    // Check if the product is in any of the allowed categories. If it is, validation passes.
-    if (has_term($allowed_category_slugs, 'product_cat', $product_id)) {
+    // Get the product object from the ID.
+    $product = wc_get_product($product_id);
+
+    // If the product doesn't exist, let it pass to avoid unexpected errors.
+    if ( ! $product ) {
+        return $passed;
+    }
+
+    // For variable products, we need to check the parent product's category.
+    $product_id_to_check = $product->is_type('variation') ? $product->get_parent_id() : $product_id;
+
+    // Check if the product (or its parent) is in any of the allowed categories. If it is, validation passes.
+    if (has_term($allowed_category_slugs, 'product_cat', $product_id_to_check)) {
         return true; // true means validation passed
     } else {
         // If not in an allowed category, block it and show an error message.
