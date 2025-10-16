@@ -2265,3 +2265,47 @@ function action_woocommerce_before_single_product_shopify_link()
 }
 
 add_action('woocommerce_before_single_product_shopify_link', 'action_woocommerce_before_single_product_shopify_link');
+
+
+/**
+ * @snippet      Disable Add to Cart Except for Specific Categories - WooCommerce
+ * @author       Gemini
+ * @testedwith   WooCommerce 8.0+
+ */
+
+// Part 1: Visually disable the add to cart button and functionality.
+// This handles the user interface on the product and shop pages.
+add_filter('woocommerce_is_purchasable', 'woocommerce_is_purchasable_except_specific_categories', 10, 2);
+
+function woocommerce_is_purchasable_except_specific_categories($is_purchasable, $product)
+{
+    // --- CONFIGURATION: SET YOUR ALLOWED CATEGORY SLUGS HERE ---
+    $allowed_category_slugs = ['training', 'thermography-courses'];
+
+    // If the product is in any of the allowed categories, it remains purchasable.
+    if (has_term($allowed_category_slugs, 'product_cat', $product->get_id())) {
+        return true;
+    }
+
+    // For all other products, disable purchasing.
+    return false;
+}
+
+// Part 2: Securely validate and block direct URL "add to cart" attempts.
+// This is the essential security check.
+add_filter('woocommerce_add_to_cart_validation', 'block_add_to_cart_except_specific_categories', 10, 3);
+
+function block_add_to_cart_except_specific_categories($passed, $product_id, $quantity)
+{
+    // --- CONFIGURATION: SET YOUR ALLOWED CATEGORY SLUGS HERE (must match above) ---
+    $allowed_category_slugs = ['training', 'thermography-courses'];
+
+    // Check if the product is in any of the allowed categories. If it is, validation passes.
+    if (has_term($allowed_category_slugs, 'product_cat', $product_id)) {
+        return true; // true means validation passed
+    } else {
+        // If not in an allowed category, block it and show an error message.
+        wc_add_notice(__('This product is not available for online purchase. Please contact us for more information.', 'woocommerce'), 'error');
+        return false; // false means validation failed, blocking the add to cart
+    }
+}
