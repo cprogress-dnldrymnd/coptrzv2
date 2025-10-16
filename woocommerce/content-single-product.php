@@ -45,7 +45,7 @@ if (post_password_required()) {
 				<?php do_action('woocommerce_before_single_product_shopify_link'); ?>
 			<?php } else { ?>
 
-				<?php if (has_term('training', 'product_cat')) { ?>
+				<?php if (has_term('training', 'product_cat') || has_term('thermography-courses', 'product_cat')) { ?>
 
 					<div class="row g-4">
 						<div class="col-7 position-relative">
