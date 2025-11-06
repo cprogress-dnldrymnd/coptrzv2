@@ -384,7 +384,6 @@ function __header_menu() {
             );
         } else {
             jQuery('.has-children.main-nav, .has-children.sub-nav, .has-children-tab').click(function (e) {
-                console.log('xxxx');
                 var $this = jQuery(this);
                 $this.addClass('active');
                 $this.next().addClass('active');
