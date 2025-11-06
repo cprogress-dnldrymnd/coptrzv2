@@ -261,4 +261,4 @@ function action_validate_email()
 	}
 }
 
-add_action('wp_footer', 'action_validate_email');f
+add_action('wp_footer', 'action_validate_email');
