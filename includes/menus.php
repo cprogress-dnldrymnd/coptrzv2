@@ -169,6 +169,12 @@ function header_menu()
 
 									if ($submenus4) {
 										$html .= '<ul class="submenu4 list-inline d-flex flex-column p-0 d-none tab-links" id="submenu-' . $submenu3_id . '">';
+										$html .= '<li class="close-submenu close-submenu-3 has-submenu d-block d-lg-none">';
+										$html .= '<a class="nav-link text-black ">';
+										$html .= $submenu3['title'];
+										$html .= '<span class="icon"></span>';
+										$html .= "</a>";
+										$html .= '</li>';
 										foreach ($submenus4 as $submenu4) {
 											$html .= '<li>';
 											$html .= '<a class="nav-link text-black"  href="' . $submenu4['url'] . '">' . $submenu4['title'] . '</a>';
