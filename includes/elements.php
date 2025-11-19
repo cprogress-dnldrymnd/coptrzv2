@@ -260,6 +260,17 @@ function __button($data)
         $class = '';
         $display = true;
 
+
+
+        if ('event' == get_post_type($button_url)) {
+            // 2. Get the specific meta value
+            $event_url = get_post_meta($post->ID, '_event_url', true);
+
+            if (! empty($event_url)) {
+                $button_target = 'target="_blank"';
+            }
+        }
+
         if ($button_type != 'popups' && $button_type != 'custom' && $button_type != 'buy-now') {
             $tag = 'a';
             $post_status = get_post_status($button_url);
