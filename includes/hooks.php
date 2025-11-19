@@ -498,3 +498,33 @@ function remove_canonical()
     add_filter('wpseo_canonical', '__return_false', 10, 1);
 }
 add_action('wp', 'remove_canonical');
+
+/**
+ * Filter the permalink for the 'event' custom post type.
+ * * This ensures that whenever get_permalink() or the_permalink() is called
+ * (e.g., in loop titles or buttons), it returns the external 'event_url'
+ * if it exists.
+ *
+ * @param string  $url  The post's permalink.
+ * @param WP_Post $post The post in question.
+ * @return string
+ */
+function wpc_change_event_permalink( $url, $post ) {
+    // 1. Check if this is the correct post type
+    if ( 'event' !== $post->post_type ) {
+        return $url;
+    }
+
+    // 2. Get the specific meta value
+    $event_url = get_post_meta( $post->ID, '_event_url', true );
+
+    // 3. If the meta value is populated, use it as the permalink
+    if ( ! empty( $event_url ) ) {
+        return esc_url( $event_url );
+    }
+
+    // 4. Otherwise, return the default internal WordPress URL
+    return $url;
+}
+add_filter( 'post_type_link', 'wpc_change_event_permalink', 10, 2 );
+
