@@ -19,6 +19,17 @@ function __heading($data, $html = '')
     }
     $_attributes = _attributes($attributes_args);
 
+    $button_target = 'target="_self"';
+
+    if ('events' == get_post_type($data['link'])) {
+        // 2. Get the specific meta value
+        $event_url = get_post_meta($data['link'], '_event_url', true);
+
+        if ($event_url) {
+            $button_target = 'target="_blank"';
+        }
+    }
+
 
     if ($heading) {
 
@@ -42,7 +53,7 @@ function __heading($data, $html = '')
             $html .= "</div>";
         } else {
             if ($link && $post_status == 'publish') {
-                $html .= "<a class='text-inherit text-decoration-none' href='$link'>";
+                $html .= "<a class='text-inherit text-decoration-none' href='$link' $button_target>";
             }
             $html .= "<$tag $_attributes>$heading</$tag>";
             if ($link && $post_status == 'publish') {
