@@ -127,8 +127,7 @@ class Shortcodes
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 $post_type = get_post_type();
                 if ($post_type != 'page') {
                     $link = get_post_type_archive_link($post_type);
@@ -138,8 +137,7 @@ class Shortcodes
                 }
             }
             $html .= "<li><span class='item text-white'  >$title</span></li>";
-        }
-        else if ($type == 'term') {
+        } else if ($type == 'term') {
             $term = get_term($id);
             $parent = (isset($term->parent)) ? get_term_by('id', $term->parent, $term->taxonomy) : false;
             if ($parent) {
@@ -148,8 +146,7 @@ class Shortcodes
                 $html .= "<li><a class='item text-white' href='$parent_link'>$parent_name</a></li>";
             }
             $html .= "<li><span class='item text-white'  >$term->name</span></li>";
-        }
-        else if ($type == 'archive') {
+        } else if ($type == 'archive') {
             if ($archive_title) {
                 $html .= "<li><span class='item text-white'  >$archive_title</span></li>";
             }
@@ -255,8 +252,7 @@ class Shortcodes
             $html .= "</div>"; //end case-study-slider
 
             return $html;
-        }
-        else {
+        } else {
             $html = "<div class='case-study-slider text-white mx-20px'>"; //case-study-slider
             $html .= "<div class='swiper-holder style-2'>"; //swiper-holder
             $html .= "<div class='swiper swiper-full-width'>"; //swiper
@@ -371,7 +367,7 @@ class Shortcodes
     function blog_meta()
     {
         ob_start();
-        ?>
+?>
         <div class="blog-meta small-text">
             <div class="row">
                 <div class="col-auto">
@@ -380,7 +376,7 @@ class Shortcodes
                 </div>
             </div>
         </div>
-        <?php
+    <?php
         return ob_get_clean();
     }
 
@@ -406,7 +402,7 @@ class Shortcodes
     function post_link()
     {
         ob_start();
-        ?>
+    ?>
         <button onclick="copy_link()" class="post-link-copy">
             <input class="d-none" id="copy-link" value="<?= get_permalink(get_the_ID()) ?>">
             <span>Copy Link</span>
@@ -426,7 +422,7 @@ class Shortcodes
                 jQuery('.post-link-copy span').text('Link Copied');
             }
         </script>
-        <?php
+    <?php
         return ob_get_clean();
     }
 
@@ -496,16 +492,14 @@ class Shortcodes
 
                 if ($background == 'featured-image') {
                     $data['featured'] = true;
-                }
-                else {
+                } else {
                     $data['featured'] = false;
                     $data['background_class'] = $background;
                 }
                 if (get_post_type($id) == 'post') {
                     $data['elements'] = array('category', 'image', 'date', 'title', 'button');
                     $data['taxonomy'] = 'category';
-                }
-                else {
+                } else {
                     $data['elements'] = array('image', 'title', 'button');
                 }
                 if ($button_text) {
@@ -528,16 +522,14 @@ class Shortcodes
 
                 if ($background == 'featured-image') {
                     $data['featured'] = true;
-                }
-                else {
+                } else {
                     $data['featured'] = false;
                     $data['background_class'] = $background;
                 }
                 if (get_post_type($id) == 'post') {
                     $data['elements'] = array('category', 'image', 'date', 'title', 'button');
                     $data['taxonomy'] = 'category';
-                }
-                else {
+                } else {
                     $data['elements'] = array('image', 'title', 'button');
                 }
                 if ($button_text) {
@@ -817,6 +809,18 @@ class Shortcodes
                 $atts
             )
         );
+
+        if ('event' == get_post_type($id)) {
+
+            // 2. Get the specific meta value
+            $event_url = get_post_meta($post->ID, '_event_url', true);
+
+            // 3. If the meta value is populated, use it as the permalink
+            if (! empty($event_url)) {
+                return esc_url($event_url);
+            }
+        }
+
         return get_the_permalink($id);
     }
 
@@ -856,14 +860,14 @@ class Shortcodes
     function rentals_script()
     {
         ob_start();
-        ?>
+    ?>
         <script>
-            jQuery(document).ready(function () {
+            jQuery(document).ready(function() {
                 jQuery('.bq-available').text('xsdsds');
             });
         </script>
 
-        <?php
+<?php
         return ob_get_clean();
     }
 
