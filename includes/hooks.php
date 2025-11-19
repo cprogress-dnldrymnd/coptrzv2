@@ -511,7 +511,7 @@ add_action('wp', 'remove_canonical');
  */
 function wpc_change_event_permalink( $url, $post ) {
     // 1. Check if this is the correct post type
-    if ( 'event' !== $post->post_type ) {
+    if ( 'events' !== $post->post_type ) {
         return $url;
     }
 

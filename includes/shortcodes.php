@@ -810,16 +810,7 @@ class Shortcodes
             )
         );
 
-        if ('event' == get_post_type($id)) {
-
-            // 2. Get the specific meta value
-            $event_url = get_post_meta($post->ID, '_event_url', true);
-
-            // 3. If the meta value is populated, use it as the permalink
-            if (! empty($event_url)) {
-                return esc_url($event_url);
-            }
-        }
+       
 
         return get_the_permalink($id);
     }
