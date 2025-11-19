@@ -6587,7 +6587,8 @@ Container::make('post_meta', 'Event Settings')
     ->add_fields(
         array(
             Field::make('date_time', 'event_start_datetime', __('Event Start Datetime')),
-            Field::make('date_time', 'event_end_datetime', 'Event End Datetime')
+            Field::make('date_time', 'event_end_datetime', 'Event End Datetime'),
+            Field::make('text', 'event_url', 'Event URL'),
         )
     );
 
