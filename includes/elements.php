@@ -264,7 +264,7 @@ function __button($data)
 
         if ('event' == get_post_type($button_url)) {
             // 2. Get the specific meta value
-            $event_url = get_post_meta($post->ID, '_event_url', true);
+            $event_url = get_post_meta($button_url, '_event_url', true);
 
             if (! empty($event_url)) {
                 $button_target = 'target="_blank"';
