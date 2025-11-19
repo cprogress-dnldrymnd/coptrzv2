@@ -20,13 +20,15 @@ function __heading($data, $html = '')
     $_attributes = _attributes($attributes_args);
 
     $button_target = 'target="_self"';
+    if ($link != false) {
 
-    if ('events' == get_post_type($data['link'])) {
-        // 2. Get the specific meta value
-        $event_url = get_post_meta($data['link'], '_event_url', true);
+        if ('events' == get_post_type($data['link'])) {
+            // 2. Get the specific meta value
+            $event_url = get_post_meta($data['link'], '_event_url', true);
 
-        if ($event_url) {
-            $button_target = 'target="_blank"';
+            if ($event_url) {
+                $button_target = 'target="_blank"';
+            }
         }
     }
 
@@ -135,6 +137,21 @@ function __image($data)
     $link = isset($data['link']) ? get_permalink($data['link']) : false;
 
     $attributes_args = [];
+
+
+    $button_target = 'target="_self"';
+    if ($link != false) {
+        if ('events' == get_post_type($data['link'])) {
+            // 2. Get the specific meta value
+            $event_url = get_post_meta($data['link'], '_event_url', true);
+
+            if ($event_url) {
+                $button_target = 'target="_blank"';
+            }
+        }
+    }
+
+
     if ($featured_image) {
         $image = get_the_post_thumbnail($featured_image, $size);
     } else {
@@ -150,7 +167,7 @@ function __image($data)
         $_attributes = _attributes($attributes_args);
         $html = "<div $_attributes>";
         if ($link) {
-            $html .= "<a class='text-inherit text-decoration-none' href='$link'>";
+            $html .= "<a class='text-inherit text-decoration-none' href='$link' $button_target>";
         }
         $html .= $image;
         if ($link) {
@@ -272,13 +289,15 @@ function __button($data)
         $display = true;
 
 
+        if ($button_url != false) {
 
-        if ('events' == get_post_type($button_url)) {
-            // 2. Get the specific meta value
-            $event_url = get_post_meta($button_url, '_event_url', true);
+            if ('events' == get_post_type($button_url)) {
+                // 2. Get the specific meta value
+                $event_url = get_post_meta($button_url, '_event_url', true);
 
-            if ($event_url) {
-                $button_target = 'target="_blank"';
+                if ($event_url) {
+                    $button_target = 'target="_blank"';
+                }
             }
         }
 
