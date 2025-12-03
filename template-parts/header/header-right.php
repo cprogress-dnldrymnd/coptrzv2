@@ -2,7 +2,7 @@
 $SVG = new SVG;
 ?>
 <div class="col-auto d-flex align-items-center">
-    <div class="row g-4 header-right">
+    <div class="row g-2 header-right">
 
         <?php if (get_post_type() != 'rentals' && get_the_ID() != 292371) { ?>
             <div class="col-auto d-flex align-items-center account">
