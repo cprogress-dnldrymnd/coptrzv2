@@ -230,7 +230,7 @@ function __header_fields()
                     'target="_blank"' => 'New Tab',
                 )
             ),
-
+            
 
 
         Field::make('html', 'html_header_2_button')->set_html('<label>Header Button 2</label>')->set_classes('cb-label'),
@@ -259,7 +259,7 @@ function __header_fields()
                     )
                 )
             ),
-        Field::make('html', 'html')
+        Field::make('html__new', 'html')
             ->set_html('<div class="page-selector">  </div>'),
         Field::make('text', 'header_2_button_url_custom', __('Button URL'))->set_classes('inline-field inline-field-wide-label')
             ->set_conditional_logic(
