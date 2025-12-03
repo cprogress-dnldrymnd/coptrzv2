@@ -259,7 +259,7 @@ function __header_fields()
                     )
                 )
             ),
-        Field::make('html__new', 'html')
+        Field::make('html', 'html__new')
             ->set_html('<div class="page-selector">  </div>'),
         Field::make('text', 'header_2_button_url_custom', __('Button URL'))->set_classes('inline-field inline-field-wide-label')
             ->set_conditional_logic(
