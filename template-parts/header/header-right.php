@@ -18,7 +18,7 @@ $SVG = new SVG;
                 <?= $SVG->academy(); ?>
             </a>
         </div>
-        <div class="col-auto d-flex align-items-center mini-cart">
+        <div class="col-auto d-flex align-items-center mini-cart me-2">
             <?php
             if (get_post_type() == 'rentals' || get_the_ID() == 292371 || get_the_ID() == 292384) {
                 echo do_shortcode('[booqable_cart_button href="' . get_site_url() . '/rental-basket"]');
