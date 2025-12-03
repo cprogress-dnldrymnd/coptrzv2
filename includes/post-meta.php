@@ -231,8 +231,65 @@ function __header_fields()
                 )
             ),
 
+
+
+        Field::make('html', 'html_header_2_button')->set_html('<label>Header Button 2</label>')->set_classes('cb-label'),
+        Field::make('select', 'header_2_button_type', __('Button Type'))->set_classes('trigger-selector inline-field inline-field-wide-label')
+            ->set_options(
+                array(
+                    ''            => 'Select Button Type',
+                    'page'        => 'Page',
+                    'product'     => 'Product',
+                    'guides'      => 'Guides',
+                    'casestudies' => 'Case Studies',
+                    'post'        => 'Post',
+                    'industries'  => 'Industry',
+                    'popups'      => 'Popup',
+                    'custom'      => 'Custom',
+                )
+            ),
+        Field::make('text', 'header_2_button_text', __('Button Text'))->set_classes('inline-field inline-field-wide-label'),
+        Field::make('text', 'header_2_button_url', __('Button URL'))->set_classes('field-url-cb inline-field inline-field-wide-label')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field'   => 'header_2_button_type',
+                        'value'   => 'custom',
+                        'compare' => '!='
+                    )
+                )
+            ),
+        Field::make('html', 'html')
+            ->set_html('<div class="page-selector">  </div>'),
+        Field::make('text', 'header_2_button_url_custom', __('Button URL'))->set_classes('inline-field inline-field-wide-label')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'header_2_button_type',
+                        'value' => 'custom',
+                    )
+                )
+            ),
+        Field::make('select', 'header_2_button_style', __('Button Style'))->set_classes('inline-field inline-field-wide-label')
+            ->set_options(
+                array(
+                    'button-accent'    => 'Accent',
+                    'button-primary'   => 'Primary',
+                    'button-secondary' => 'Secondary',
+                    'button-white'     => 'White',
+                    'button-bordered'  => 'Bordered',
+                )
+            ),
+        Field::make('select', 'header_2_button_target', __('Button Target'))->set_classes('inline-field inline-field-wide-label')
+            ->set_options(
+                array(
+                    'target="_self"'  => 'Default',
+                    'target="_blank"' => 'New Tab',
+                )
+            ),
     );
 }
+
 function __social_fields()
 {
     return array(
