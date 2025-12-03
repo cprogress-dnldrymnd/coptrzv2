@@ -49,6 +49,22 @@ $SVG = new SVG;
         </div>
 
         <?php
+        $button_type = get__theme_option('header_2_button_type');
+        $button_text = get__theme_option('header_2_button_text');
+        $button_url = get__theme_option('header_2_button_url');
+        $button_url_custom = get__theme_option('header_2_button_url_custom');
+        $button_style = get__theme_option('header_2_button_style');
+        $button_target = get__theme_option('header_2_button_target');
+        echo do_shortcode(__button(array(
+            'button_type'       => $button_type,
+            'button_text'       => $button_text,
+            'button_url'        => $button_url,
+            'button_url_custom' => $button_url_custom,
+            'button_style'      => $button_style . ' col-auto button-accent button-small d-none d-lg-block',
+            'button_target'     => $button_target,
+        )));
+
+
         $button_type = get__theme_option('header_button_type');
         $button_text = get__theme_option('header_button_text');
         $button_url = get__theme_option('header_button_url');
@@ -64,7 +80,7 @@ $SVG = new SVG;
             'button_target'     => $button_target,
         )));
 
-        
+
         ?>
 
 
