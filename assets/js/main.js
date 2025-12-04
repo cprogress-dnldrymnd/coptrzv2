@@ -446,7 +446,7 @@ function __header_menu() {
             $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">  <div class="offcanvas-body"> <div id="menu-mobile"> <div class="menu-mobile-buttons"></div> </div> </div> </div>');
 
             $menu_offcanvas.insertAfter('.header');
-            $nav.appendTo('#menu-mobile');
+            $nav.prependTo('#menu-mobile');
             $button_mobile.appendTo('#menu-mobile .menu-mobile-buttons');
 
             var offCanvasMenu = document.getElementById('offCanvasMenu')
