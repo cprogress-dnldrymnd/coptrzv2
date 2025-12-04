@@ -442,7 +442,7 @@ function __header_menu() {
             });
 
             $nav = jQuery('#menu-desktop .navbar');
-            $button_mobile = jQuery('#menu-desktop .button-mobile');
+            $button_mobile = jQuery('.button-mobile');
             $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">  <div class="offcanvas-body"> <div id="menu-mobile"> <div class="menu-mobile-buttons"></div> </div> </div> </div>');
 
             $menu_offcanvas.insertAfter('.header');
