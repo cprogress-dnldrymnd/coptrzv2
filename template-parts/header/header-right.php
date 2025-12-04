@@ -60,7 +60,7 @@ $SVG = new SVG;
             'button_text'       => $button_text,
             'button_url'        => $button_url,
             'button_url_custom' => $button_url_custom,
-            'button_style'      => $button_style . ' col-auto button-accent button-small buttton-sore button-mobile',
+            'button_style'      => $button_style . ' col-auto button-accent button-small d-none d-lg-block buttton-sore button-mobile',
             'button_target'     => $button_target,
         )));
 
@@ -75,7 +75,7 @@ $SVG = new SVG;
             'button_text'       => $button_text,
             'button_url'        => $button_url,
             'button_url_custom' => $button_url_custom,
-            'button_style'      => $button_style . ' col-auto button-accent button-small button-mobile',
+            'button_style'      => $button_style . ' col-auto button-accent button-small d-none d-lg-block button-mobile',
             'button_target'     => $button_target,
         )));
         ?>
