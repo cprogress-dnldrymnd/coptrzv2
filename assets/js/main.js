@@ -442,11 +442,12 @@ function __header_menu() {
             });
 
             $nav = jQuery('#menu-desktop .navbar');
-            $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">  <div class="offcanvas-body"> <div id="menu-mobile"> </div> </div> </div>');
+            $button_mobile = jQuery('#menu-desktop .button-mobile');
+            $menu_offcanvas = jQuery('<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offcanvasLabel">  <div class="offcanvas-body"> <div id="menu-mobile"> <div class="menu-mobile-buttons"></div> </div> </div> </div>');
 
             $menu_offcanvas.insertAfter('.header');
             $nav.appendTo('#menu-mobile');
-
+            $button_mobile.appendTo('#menu-mobile .menu-mobile-buttons');
 
             var offCanvasMenu = document.getElementById('offCanvasMenu')
             offCanvasMenu.addEventListener('show.bs.offcanvas', function () {
