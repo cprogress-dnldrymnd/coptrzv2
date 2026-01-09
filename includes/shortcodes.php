@@ -954,8 +954,6 @@ class Shortcodes
         $document = get__post_meta_by_id($id, 'document');
         if ($document) {
             return wp_get_attachment_url($document);
-        } else {
-            return 'xx';
         }
     }
 }
