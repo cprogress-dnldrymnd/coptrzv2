@@ -645,3 +645,14 @@ $Quiz->show_in_admin_bar = true;
 $Quiz->has_archive = false;
 $Quiz->show_in_rest = true;
 */
+
+$Documents = new newPostType();
+$Documents->name = 'Documents';
+$Documents->singular_name = 'Document';
+$Documents->icon = 'dashicons-portfolio';
+$Documents->supports = array('title', 'revisions');
+$Documents->show_in_rest = true;
+$Documents->show_in_admin_bar = false;
+$Documents->publicly_queryable = false;
+$Documents->has_archive = false;
+$Documents->show_in_rest = false;
