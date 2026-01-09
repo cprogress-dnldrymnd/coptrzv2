@@ -1190,6 +1190,7 @@ function __hero_form_fields()
                     ''       => 'None',
                     'pdf'    => 'PDF File',
                     'custom' => 'Custom URL',
+                    'document' => 'Document',
                 )
             ),
         Field::make('file', 'hero_form_pdf_redirect', __('Hero Form PDF Redirect'))->set_classes('inline-field')
@@ -1199,6 +1200,24 @@ function __hero_form_fields()
                     array(
                         'field' => 'hero_form_redirect_type',
                         'value' => 'pdf',
+                    )
+                )
+            ),
+        Field::make('association', 'hero_form_document_redirect', 'Select Form')->set_classes('inline-field')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'documents',
+                    )
+                )
+            )
+            ->set_max(1)
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'hero_form_type',
+                        'value' => 'documents',
                     )
                 )
             ),
