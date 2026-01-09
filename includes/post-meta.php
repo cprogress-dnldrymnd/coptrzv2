@@ -1217,7 +1217,7 @@ function __hero_form_fields()
                 array(
                     array(
                         'field' => 'hero_form_type',
-                        'value' => 'documents',
+                        'value' => 'document',
                     )
                 )
             ),
