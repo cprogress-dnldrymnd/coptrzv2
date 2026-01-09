@@ -810,7 +810,7 @@ class Shortcodes
             )
         );
 
-       
+
 
         return get_the_permalink($id);
     }
@@ -940,9 +940,26 @@ class Shortcodes
             return wp_get_attachment_url($hero_form_pdf_redirect);
         }
     }
+
+    function document_url($atts)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'id' => '',
+                ),
+                $atts
+            )
+        );
+        $document = get__post_meta_by_id($id, 'document');
+        if ($document) {
+            return wp_get_attachment_url($document);
+        }
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('pdf_url', array($Shortcodes, 'pdf_url'));
+add_shortcode('document_url', array($Shortcodes, 'document_url'));
 add_shortcode('stars', array($Shortcodes, 'stars'));
 add_shortcode('current_url', array($Shortcodes, 'current_url'));
 add_shortcode('taxonomy_terms', array($Shortcodes, 'taxonomy_terms'));

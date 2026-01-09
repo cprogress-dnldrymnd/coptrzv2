@@ -3248,7 +3248,7 @@ function __form($args)
         'class'   => _attribute('class', array($heading_class))
     ));
     if ($form_type != 'product') {
-        $html .= __description($description_args);
+        $html .= do_shortcode(__description($description_args));
     }
     $html .= "</div>";
     $html .= "</div>";
