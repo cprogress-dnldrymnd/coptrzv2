@@ -7078,19 +7078,11 @@ Container::make('post_meta', __('Quiz Settings'))
 /*-----------------------------------------------------------------------------------*/
 /* Custom CSS
 /*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', __('Custom CSS'))
+Container::make('post_meta', __('Document Settings'))
     ->where('post_type', '=', 'documents')
     ->add_fields(
         array(
             Field::make('file', 'document', __('Document'))->set_classes('inline-field')
                 ->set_type(array('application/pdf'))
-                ->set_conditional_logic(
-                    array(
-                        array(
-                            'field' => 'hero_form_redirect_type',
-                            'value' => 'pdf',
-                        )
-                    )
-                ),
         )
     );
