@@ -230,7 +230,7 @@ function __header_fields()
                     'target="_blank"' => 'New Tab',
                 )
             ),
-            
+
 
 
         Field::make('html', 'html_header_2_button')->set_html('<label>Header Button 2</label>')->set_classes('cb-label'),
@@ -7073,3 +7073,24 @@ Container::make('post_meta', __('Quiz Settings'))
         )
     );
 */
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Custom CSS
+/*-----------------------------------------------------------------------------------*/
+Container::make('post_meta', __('Custom CSS'))
+    ->where('post_type', '=', 'documents')
+    ->add_fields(
+        array(
+            Field::make('file', 'document', __('Document'))->set_classes('inline-field')
+                ->set_type(array('application/pdf'))
+                ->set_conditional_logic(
+                    array(
+                        array(
+                            'field' => 'hero_form_redirect_type',
+                            'value' => 'pdf',
+                        )
+                    )
+                ),
+        )
+    );
