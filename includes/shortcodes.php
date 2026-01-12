@@ -937,9 +937,7 @@ class Shortcodes
     {
         $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
 
-        function hero_form_redirect()
-        {
-            $hero_form_enable = get__post_meta('hero_form_enable');
+       $hero_form_enable = get__post_meta('hero_form_enable');
             $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
             $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
             $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
@@ -958,7 +956,6 @@ class Shortcodes
             if ($hero_form_enable && $form_id && $hero_form_redirect_type) {
                 return $redirect;
             }
-        }
     }
 
     function document_url($atts)
