@@ -1203,7 +1203,7 @@ function __hero_form_fields()
                     )
                 )
             ),
-        Field::make('association', 'hero_form_document_redirect', 'Select Form')->set_classes('inline-field')
+        Field::make('association', 'hero_form_document_redirect', 'Select Document')->set_classes('inline-field')
             ->set_types(
                 array(
                     array(
