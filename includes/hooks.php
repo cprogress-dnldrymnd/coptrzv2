@@ -339,7 +339,7 @@ function hero_form_redirect()
         $redirect = $hero_form_redirect_url;
     }
 
-    if ($hero_form_enable && $form_id && $hero_form_redirect_type) {
+    if ($redirect) {
     ?>
         <script>
             document.addEventListener('wpcf7mailsent', function(event) {
