@@ -940,11 +940,12 @@ class Shortcodes
         $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
         $hero_form_redirect_url = get__post_meta('hero_form_redirect_url');
         $hero_form = get__post_meta('hero_form');
+        $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
         if ($hero_form_redirect_type == 'pdf') {
             $redirect = wp_get_attachment_url($hero_form_pdf_redirect);
         } else if ($hero_form_redirect_type == 'document') {
-            $redirect = do_shortcode('[document_url id=' . $hero_form_document_redirect . ']');
+            $redirect = do_shortcode('[document_url id=' . $hero_form_document_redirect_id . ']');
         } else {
             $redirect = $hero_form_redirect_url;
         }
@@ -952,7 +953,7 @@ class Shortcodes
         if ($redirect) {
             return $redirect;
         } else {
-            return $hero_form_document_redirect;
+            return 'test';
         }
     }
 
