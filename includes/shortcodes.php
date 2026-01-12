@@ -953,6 +953,8 @@ class Shortcodes
 
         if ($hero_form_enable && $form_id && $hero_form_redirect_type) {
             return $redirect;
+        } else {
+            return 'test';
         }
     }
 
@@ -969,8 +971,6 @@ class Shortcodes
         $document = get__post_meta_by_id($id, 'document');
         if ($document) {
             return wp_get_attachment_url($document);
-        } else {
-            return 'test';
         }
     }
 }
