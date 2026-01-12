@@ -1216,7 +1216,7 @@ function __hero_form_fields()
             ->set_conditional_logic(
                 array(
                     array(
-                        'field' => 'hero_form_type',
+                        'field' => 'hero_form_redirect_type',
                         'value' => 'document',
                     )
                 )
