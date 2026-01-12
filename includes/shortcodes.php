@@ -951,7 +951,7 @@ class Shortcodes
             $redirect = $hero_form_redirect_url;
         }
 
-        if ($hero_form_enable && $form_id && $hero_form_redirect_type) {
+        if ($redirect) {
             return $redirect;
         } else {
             return 'test';
