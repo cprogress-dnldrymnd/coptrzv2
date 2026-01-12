@@ -952,7 +952,7 @@ class Shortcodes
         if ($redirect) {
             return $redirect;
         } else {
-            return 'test';
+            return $hero_form_document_redirect;
         }
     }
 
