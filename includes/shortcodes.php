@@ -935,7 +935,6 @@ class Shortcodes
 
     function pdf_url()
     {
-
         $hero_form_enable = get__post_meta('hero_form_enable');
         $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
         $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
@@ -970,6 +969,8 @@ class Shortcodes
         $document = get__post_meta_by_id($id, 'document');
         if ($document) {
             return wp_get_attachment_url($document);
+        } else {
+            return 'test';
         }
     }
 }
