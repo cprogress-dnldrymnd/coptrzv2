@@ -326,12 +326,15 @@ function hero_form_redirect()
     $hero_form_enable = get__post_meta('hero_form_enable');
     $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
     $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
+    $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
     $hero_form_redirect_url = get__post_meta('hero_form_redirect_url');
     $hero_form = get__post_meta('hero_form');
     $form_id = isset($hero_form[0]['id']) ? $hero_form[0]['id'] : false;
 
     if ($hero_form_redirect_type == 'pdf') {
         $redirect = wp_get_attachment_url($hero_form_pdf_redirect);
+    } else if ($hero_form_redirect_type == 'document') {
+        $redirect = do_shortcode('[document_url id=' . $hero_form_document_redirect . ']');
     } else {
         $redirect = $hero_form_redirect_url;
     }
@@ -509,22 +512,22 @@ add_action('wp', 'remove_canonical');
  * @param WP_Post $post The post in question.
  * @return string
  */
-function wpc_change_event_permalink( $url, $post ) {
+function wpc_change_event_permalink($url, $post)
+{
     // 1. Check if this is the correct post type
-    if ( 'events' !== $post->post_type ) {
+    if ('events' !== $post->post_type) {
         return $url;
     }
 
     // 2. Get the specific meta value
-    $event_url = get_post_meta( $post->ID, '_event_url', true );
+    $event_url = get_post_meta($post->ID, '_event_url', true);
 
     // 3. If the meta value is populated, use it as the permalink
-    if ( ! empty( $event_url ) ) {
-        return esc_url( $event_url );
+    if (! empty($event_url)) {
+        return esc_url($event_url);
     }
 
     // 4. Otherwise, return the default internal WordPress URL
     return $url;
 }
-add_filter( 'post_type_link', 'wpc_change_event_permalink', 10, 2 );
-
+add_filter('post_type_link', 'wpc_change_event_permalink', 10, 2);
