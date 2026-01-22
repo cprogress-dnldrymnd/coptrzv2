@@ -1205,23 +1205,23 @@ function training_template($product_id = 'default')
     return ob_get_clean();
 }
 
-function __drone_servicing($servicing_heading_arg = 'theme_option', $servicing_description_arg = 'theme_option', $servicing_drones_arg = 'theme_option')
+function __drone_servicing($servicing_heading_arg = 'global', $servicing_description_arg = 'global', $servicing_drones_arg = 'global')
 {
     $SVG = new SVG;
 
-    if ($servicing_heading_arg == 'theme_option') {
+    if ($servicing_heading_arg == 'global') {
         $servicing_heading = get__theme_option('servicing_heading');
     } else {
         $servicing_heading = $servicing_heading_arg;
     }
 
-    if ($servicing_description_arg == 'theme_option') {
+    if ($servicing_description_arg == 'global') {
         $servicing_description = get__theme_option('servicing_description');
     } else {
         $servicing_description = $servicing_description_arg;
     }
 
-    if ($servicing_drones_arg == 'theme_option') {
+    if ($servicing_drones_arg == 'global') {
         $servicing_drones = get__theme_option('servicing_drones');
     } else {
         $servicing_drones = $servicing_drones_arg;
