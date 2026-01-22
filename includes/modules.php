@@ -1267,8 +1267,10 @@ function ___sections($id = 'sections', $post_id = '')
                         }
                         break;
                     case 'drone_servicing_grid':
-                        $drone_servicing_grid = $items['drone_servicing_grid'];
-                        $html .= do_shortcode('[event_countdown]');
+                        $servicing_heading = $items['servicing_heading'];
+                        $servicing_description = $items['servicing_description'];
+                        $servicing_drones = $items['servicing_drones'];
+                        $html .= __drone_servicing($servicing_heading, $servicing_description, $servicing_drones);
                         break;
                     case 'product':
                         $product = $items['product'][0]['id'];
