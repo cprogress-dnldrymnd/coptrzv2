@@ -5627,7 +5627,35 @@ function __section_fields($name = 'sections')
                             ))
                             ->set_layout('tabbed-vertical')
                     ))
-                    ->add_fields('drone_servicing_grid', __servicing_fields())
+                    ->add_fields('drone_servicing_grid', array(
+                        Field::make('html', 'servicing_html_1')->set_html('<label>Drone Service</label>')->set_classes('cb-label'),
+                        Field::make('text', 'servicing_heading', 'Heading')->set_classes('inline-field'),
+                        Field::make('textarea', 'servicing_description', 'Description')->set_classes('inline-field'),
+                        Field::make('complex', 'servicing_drones', 'Drone Services')->set_classes('inline-field')
+                            ->add_fields(array(
+                                Field::make('text', 'service_name', 'Service Name')->set_classes('inline-field'),
+                                Field::make('text', 'service_subheading', 'Service Subheading')->set_classes('inline-field'),
+                                Field::make('text', 'service_price', 'Service Price')->set_classes('inline-field'),
+                                Field::make('complex', 'service_features', 'Service Features')->set_classes('inline-field')
+                                    ->add_fields('drone', array(
+                                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
+                                    ))
+                                    ->add_fields('battery', array(
+                                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
+                                    ))
+                                    ->add_fields('controller', array(
+                                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
+                                    ))
+                                    ->add_fields('payload', array(
+                                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
+                                    ))
+                                    ->set_duplicate_groups_allowed(false)
+                                    ->set_collapsed(true)
+
+                            ))
+                            ->set_header_template('Drone Service: <%- service_name %>')
+                            ->set_collapsed(true)
+                    ))
 
                     ->add_fields('product', array(
                         Field::make('association', 'product', 'Product')
