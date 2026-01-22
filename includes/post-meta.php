@@ -161,7 +161,33 @@ function __servicing_fields()
             ))
             ->set_header_template('Remote Support : <%- remote_support_heading %>')
             ->set_collapsed(true),
+        Field::make('html', 'servicing_html_4')->set_html('<label>DJI Mini Series</label>')->set_classes('cb-label'),
+        Field::make('text', 'servicing_dji_mini_heading', 'Heading')->set_classes('inline-field'),
+        Field::make('textarea', 'servicing_dji_mini_description', 'Description')->set_classes('inline-field'),
+        Field::make('complex', 'servicing_dji_mini_drones', 'Drone Services')->set_classes('inline-field')
+            ->add_fields(array(
+                Field::make('text', 'dji_mini_service_type', 'Service Type')->set_classes('inline-field'),
+                Field::make('text', 'dji_mini_subheading', 'Subheading')->set_classes('inline-field'),
+                Field::make('text', 'dji_mini_price', 'Price')->set_classes('inline-field'),
+                Field::make('complex', 'dji_mini_features', 'Features')->set_classes('inline-field')
+                    ->add_fields('drone', array(
+                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
+                    ))
+                    ->add_fields('battery', array(
+                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
+                    ))
+                    ->add_fields('controller', array(
+                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
+                    ))
+                    ->add_fields('payload', array(
+                        Field::make('text', 'quantity', __('Custom Text'))->set_classes('inline-field'),
+                    ))
+                    ->set_duplicate_groups_allowed(false)
+                    ->set_collapsed(true)
 
+            ))
+            ->set_header_template('Drone Service: <%- dji_mini_service_type %>')
+            ->set_collapsed(true),
     );
 }
 function __general_settings_fields()
@@ -1381,6 +1407,39 @@ function __section_fields($name = 'sections')
                             ->add_fields('drone_servicing', array(
                                 Field::make('html', 'html')->set_html('<h3>This will display drone servicing blocks. </h3>'),
                             ))
+                            ->add_fields('dji_mini_series', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display DJI Mini Series servicing blocks. </h3>'),
+                            ))
+                            ->add_fields('dji_air_series', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display DJI Air Series servicing blocks. </h3>'),
+                            ))                                      
+                            ->add_fields('dji_mavic_series', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display DJI Mavic Series servicing blocks. </h3>'),
+                            ))
+                            ->add_fields('dji_m30_series', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display DJI M30 Series servicing blocks. </h3>'),
+                            ))
+                            ->add_fields('dji_matrice_series', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display DJI Matrice Series servicing blocks. </h3>'),
+                            ))
+                            ->add_fields('dji_m300_350_series', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display DJI M300/350 4 Series servicing blocks. </h3>'),
+                            ))
+                            ->add_fields('dji_m400_series', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display DJI M400 Series servicing blocks. </h3>'),
+                            ))
+                            ->add_fields('parrot_anafi_usa', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display Parrot Anafi USA servicing blocks. </h3>'),
+                            ))
+                            ->add_fields('parrot_anafi_ai', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display Parrot Anafi Ai servicing blocks. </h3>'),
+                            ))
+                            ->add_fields('parrot_anafi_ukr', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display Parrot Anafi UKR servicing blocks. </h3>'),
+                            ))
+                            ->add_fields('elios_3', array(
+                                Field::make('html', 'html')->set_html('<h3>This will display Elios 3 servicing blocks. </h3>'),
+                            ))
                             ->add_fields('three_year_servicing_plans', array(
                                 Field::make('html', 'html')->set_html('<h3>This will display three year servicing plans. </h3>'),
                             ))
@@ -2021,6 +2080,36 @@ function __section_fields($name = 'sections')
                                             ))
                                             ->add_fields('three_year_servicing_plans', array(
                                                 Field::make('html', 'html')->set_html('<h3>This will display three year servicing plans. </h3>'),
+                                        ))                                          ->add_fields('dji_mini_series', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display DJI Mini Series servicing blocks. </h3>'),
+                                            ))
+                                            ->add_fields('dji_air_series', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display DJI Air Series servicing blocks. </h3>'),
+                                            ))                                      ->add_fields('dji_mavic_series', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display DJI Mavic Series servicing blocks. </h3>'),
+                                            ))
+                                            ->add_fields('dji_m30_series', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display DJI M30 Series servicing blocks. </h3>'),
+                                            ))
+                                            ->add_fields('dji_matrice_series', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display DJI Matrice Series servicing blocks. </h3>'),
+                                            ))
+                                            ->add_fields('dji_m300_350_series', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display DJI M300/350 4 Series servicing blocks. </h3>'),
+                                            ))
+                                            ->add_fields('dji_m400_series', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display DJI M400 Series servicing blocks. </h3>'),
+                                            ))
+                                            ->add_fields('parrot_anafi_usa', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display Parrot Anafi USA servicing blocks. </h3>'),
+                                            ))
+                                            ->add_fields('parrot_anafi_ai', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display Parrot Anafi Ai servicing blocks. </h3>'),
+                                        ))                                          ->add_fields('parrot_anafi_ukr', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display Parrot Anafi UKR servicing blocks. </h3>'),
+                                            ))
+                                            ->add_fields('elios_3', array(
+                                                Field::make('html', 'html')->set_html('<h3>This will display Elios 3 servicing blocks. </h3>'),
                                             ))
                                             ->add_fields('remote_support', array(
                                                 Field::make('html', 'html')->set_html('<h3>This will display remote support. </h3>'),

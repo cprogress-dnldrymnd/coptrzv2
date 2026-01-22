@@ -330,8 +330,8 @@ function hero_form_redirect()
     $hero_form_redirect_url = get__post_meta('hero_form_redirect_url');
     $hero_form = get__post_meta('hero_form');
     $form_id = isset($hero_form[0]['id']) ? $hero_form[0]['id'] : false;
-        $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
-    
+    $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
+
 
     if ($hero_form_redirect_type == 'pdf') {
         $redirect = wp_get_attachment_url($hero_form_pdf_redirect);
@@ -347,7 +347,7 @@ function hero_form_redirect()
             document.addEventListener('wpcf7mailsent', function(event) {
                 setTimeout(function() {
                     if (<?= $form_id ?> == event.detail.contactFormId) {
-                        window.open('<?= $redirect ?>', '_blank');
+
                     }
                 }, 3000);
             }, false);
