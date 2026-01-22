@@ -1266,6 +1266,10 @@ function ___sections($id = 'sections', $post_id = '')
                             }
                         }
                         break;
+                    case 'drone_servicing_grid':
+                        $drone_servicing_grid = $items['drone_servicing_grid'];
+                        $html .= do_shortcode('[event_countdown]');
+                        break;
                     case 'product':
                         $product = $items['product'][0]['id'];
                         $is_training_template = ($items['is_training_template']) ? 'true' : 'false';

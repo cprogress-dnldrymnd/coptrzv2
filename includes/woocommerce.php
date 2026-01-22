@@ -1205,12 +1205,28 @@ function training_template($product_id = 'default')
     return ob_get_clean();
 }
 
-function __drone_servicing()
+function __drone_servicing($servicing_heading_arg = 'theme_option', $servicing_description_arg = 'theme_option', $servicing_drones_arg = 'theme_option')
 {
     $SVG = new SVG;
-    $servicing_heading = get__theme_option('servicing_heading');
-    $servicing_description = get__theme_option('servicing_description');
-    $servicing_drones = get__theme_option('servicing_drones');
+
+    if ($servicing_heading_arg == 'theme_option') {
+        $servicing_heading = get__theme_option('servicing_heading');
+    } else {
+        $servicing_heading = $servicing_heading_arg;
+    }
+
+    if ($servicing_description_arg == 'theme_option') {
+        $servicing_description = get__theme_option('servicing_description');
+    } else {
+        $servicing_description = $servicing_description_arg;
+    }
+
+    if ($servicing_drones_arg == 'theme_option') {
+        $servicing_drones = get__theme_option('servicing_drones');
+    } else {
+        $servicing_drones = $servicing_drones_arg;
+    }
+
 
     $specs = array();
 
@@ -2276,7 +2292,8 @@ add_action('woocommerce_before_single_product_shopify_link', 'action_woocommerce
 // This handles the user interface on the product and shop pages.
 add_filter('woocommerce_is_purchasable', 'woocommerce_is_purchasable_except_specific_categories', 10, 2);
 
-function woocommerce_is_purchasable_except_specific_categories($is_purchasable, $product) {
+function woocommerce_is_purchasable_except_specific_categories($is_purchasable, $product)
+{
     // --- CONFIGURATION: SET YOUR ALLOWED CATEGORY SLUGS HERE ---
     $allowed_category_slugs = ['training', 'thermography-courses'];
 
@@ -2296,7 +2313,8 @@ function woocommerce_is_purchasable_except_specific_categories($is_purchasable, 
 // This is the essential security check.
 add_filter('woocommerce_add_to_cart_validation', 'block_add_to_cart_except_specific_categories', 10, 3);
 
-function block_add_to_cart_except_specific_categories($passed, $product_id, $quantity) {
+function block_add_to_cart_except_specific_categories($passed, $product_id, $quantity)
+{
     // --- CONFIGURATION: SET YOUR ALLOWED CATEGORY SLUGS HERE (must match above) ---
     $allowed_category_slugs = ['training', 'thermography-courses'];
 
@@ -2304,7 +2322,7 @@ function block_add_to_cart_except_specific_categories($passed, $product_id, $qua
     $product = wc_get_product($product_id);
 
     // If the product doesn't exist, let it pass to avoid unexpected errors.
-    if ( ! $product ) {
+    if (! $product) {
         return $passed;
     }
 
