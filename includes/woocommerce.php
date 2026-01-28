@@ -1056,10 +1056,10 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                     $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='product-btn button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'><span class='product-data d-none'>$data_encode</span> Add to basket</a>";
                 } else {
                     $basket_url =   wc_get_cart_url();
-                    if (has_term('clothing', 'product_cat')) {
-                        $button_text = 'Buy Now';
-                    } else {
+                    if (has_term('training', 'product_cat')) {
                         $button_text = 'Book Now';
+                    } else {
+                        $button_text = 'Buy Now';
                     }
                     $html .= "<a class='w-100' href='$basket_url?add-to-cart=$product_id'>$button_text</a>";
                 }
