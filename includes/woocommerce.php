@@ -1056,12 +1056,7 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                     $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='product-btn button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'><span class='product-data d-none'>$data_encode</span> Add to basket</a>";
                 } else {
                     $basket_url =   wc_get_cart_url();
-                    if (has_term('training', 'product_cat', get_the_ID())) {
-                        $button_text = 'Book Now';
-                    } else {
-                        $button_text = 'Buy Now';
-                    }
-                    $html .= "<a class='w-100' href='$basket_url?add-to-cart=$product_id'>$button_text</a>";
+                    $html .= "<a class='w-100' href='$basket_url?add-to-cart=$product_id'>Buy now</a>";
                 }
 
 
@@ -2270,6 +2265,12 @@ function force_alphabetical_sorting($args)
 
 function action_woocommerce_before_single_product_shopify_link()
 {
+
+    if (has_term('training', 'product_cat', get_the_ID())) {
+        $button_text = 'Book Now';
+    } else {
+        $button_text = 'Buy Now';
+    }
     ?>
     <div class="button-group-box ">
         <div class="row g-3 justify-content-center ">
@@ -2277,7 +2278,7 @@ function action_woocommerce_before_single_product_shopify_link()
             <div class="button-box button-bordered  col-auto"><a class="rounded-10px " data-bs-toggle="modal" data-bs-target="#modal-299743" target="_self">Enquire</a></div>
 
             <div class="button-accent col-auto button-box"><a target="_blank" class="rounded-10px " href="<?= get__post_meta('shopify_product_link') ?>">
-                    Buy Now
+                    <?= $button_text ?>
                 </a></div>
 
         </div>
