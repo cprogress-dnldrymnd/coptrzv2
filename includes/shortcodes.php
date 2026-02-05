@@ -992,6 +992,7 @@ class Shortcodes
     }
 }
 $Shortcodes = new Shortcodes;
+add_shortcode('document_thumbnail', array($Shortcodes, 'document_thumbnail'));
 add_shortcode('pdf_url', array($Shortcodes, 'pdf_url'));
 add_shortcode('document_url', array($Shortcodes, 'document_url'));
 add_shortcode('stars', array($Shortcodes, 'stars'));
