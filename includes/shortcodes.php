@@ -977,13 +977,13 @@ class Shortcodes
         extract(
             shortcode_atts(
                 array(
-                    'id' => get_the_ID(),
+                    'document_id' => get_the_ID(),
                 ),
                 $atts
             )
         );
 
-        $hero_form_document_redirect = get__post_meta_by_id($id, 'hero_form_document_redirect');
+        $hero_form_document_redirect = get__post_meta_by_id($document_id, 'hero_form_document_redirect');
         $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
         if($hero_form_document_redirect) {
