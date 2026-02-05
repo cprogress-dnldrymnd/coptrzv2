@@ -3227,7 +3227,7 @@ function __form($args)
     $form_style = isset($args['form_style']) ? $args['form_style'] : false;
     $form_heading = isset($args['form_heading']) ? $args['form_heading'] : false;
     $hero_form_redirect_type = isset($args['hero_form_redirect_type']) ? $args['hero_form_redirect_type'] : false;
-    $hero_form_redirect_type = isset($args['hero_form_redirect_type']) ? $args['hero_form_redirect_type'] : false;
+    $hero_form_document_redirect_id = isset($args['hero_form_document_redirect_id']) ? $args['hero_form_document_redirect_id'] : false;
 
 
 
