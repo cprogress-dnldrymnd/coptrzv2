@@ -971,6 +971,25 @@ class Shortcodes
             return wp_get_attachment_url($document);
         }
     }
+
+    function document_thumbnail()
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'id' => get_the_ID(),
+                ),
+                $atts
+            )
+        );
+
+        $hero_form_document_redirect = get__post_meta_by_id($id, 'hero_form_document_redirect');
+        $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
+
+        $image = get_post_thumbnail($hero_form_document_redirect_id, 'large');
+
+        return '<div class="document-thumbnail image-box">' . $image . '</div>';
+    }
 }
 $Shortcodes = new Shortcodes;
 add_shortcode('pdf_url', array($Shortcodes, 'pdf_url'));
