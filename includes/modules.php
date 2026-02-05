@@ -3236,7 +3236,7 @@ function __form($args)
     if ($hero_form_redirect_type == 'pdf') {
         $image_args['image_id'] = $form_image;
     } else {
-        $image_args['image_id'] = $hero_form_document_redirect_id;
+        $image_args['image_id'] = get_post_thumbnail_id($hero_form_document_redirect_id);
     }
 
     $image_args['size'] = 'medium';
