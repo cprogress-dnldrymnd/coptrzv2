@@ -972,7 +972,7 @@ class Shortcodes
         }
     }
 
-    function document_thumbnail()
+    function document_thumbnail($atts)
     {
         extract(
             shortcode_atts(
