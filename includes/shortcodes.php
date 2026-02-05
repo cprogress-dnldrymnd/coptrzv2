@@ -983,7 +983,7 @@ class Shortcodes
             )
         );
 
-        if (get_post_type($document_id) == 'document') {
+        if (get_post_type($document_id) == 'documents') {
             $image = get_the_post_thumbnail($document_id, 'large');
             return '<div class="document-thumbnail image-box">' . $image . '</div>';
         } else {
