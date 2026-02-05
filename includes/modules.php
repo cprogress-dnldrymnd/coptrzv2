@@ -231,7 +231,9 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_form_type = get__post_meta('hero_form_type');
     $hero_form_product = get__post_meta('hero_form_product');
     $hero_form_script = get__post_meta('hero_form_script');
-
+    $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
+    $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
+    $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
 
     if (!$hero_background && !$hero_background_youtube) {
@@ -361,7 +363,9 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
                 'form_style'       => $hero_form_style,
                 'form_product' => $hero_form_product[0]['id'],
                 'form_type' => $hero_form_type,
-                'form_script' => $hero_form_script
+                'form_script' => $hero_form_script,
+                'hero_form_redirect_type' => $hero_form_redirect_type,
+                'hero_form_document_redirect_id' => $hero_form_document_redirect_id,
             );
             $hero .= "<div class='col-lg-5'>"; //col
 
@@ -3222,11 +3226,22 @@ function __form($args)
     $form_image = isset($args['form_image']) ? $args['form_image'] : false;
     $form_style = isset($args['form_style']) ? $args['form_style'] : false;
     $form_heading = isset($args['form_heading']) ? $args['form_heading'] : false;
+    $hero_form_redirect_type = isset($args['hero_form_redirect_type']) ? $args['hero_form_redirect_type'] : false;
+    $hero_form_redirect_type = isset($args['hero_form_redirect_type']) ? $args['hero_form_redirect_type'] : false;
+
+
 
     $form_id = $form[0]['id'];
-    $image_args['image_id'] = $form_image;
+
+    if ($hero_form_redirect_type == 'pdf') {
+        $image_args['image_id'] = $form_image;
+    } else {
+        $image_args['image_id'] = $hero_form_document_redirect_id;
+    }
+
     $image_args['size'] = 'medium';
     $image_args['class'] = _attribute('class', array('image-box'));
+
 
     $description_args['description'] = $form_description;
     $description_args['class'] = _attribute('class', array('description-box'));
