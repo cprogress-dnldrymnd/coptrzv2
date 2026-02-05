@@ -323,19 +323,16 @@ add_action('wp_footer', 'action__wp_footer');
 
 function hero_form_redirect()
 {
-    // Retrieve metadata using the custom wrapper function
     $hero_form_enable = get__post_meta('hero_form_enable');
     $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
     $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
     $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
     $hero_form_redirect_url = get__post_meta('hero_form_redirect_url');
     $hero_form = get__post_meta('hero_form');
-
-    // Extract IDs safely
     $form_id = isset($hero_form[0]['id']) ? $hero_form[0]['id'] : false;
     $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
-    // Determine the redirect URL based on type
+
     if ($hero_form_redirect_type == 'pdf') {
         $redirect = wp_get_attachment_url($hero_form_pdf_redirect);
     } else if ($hero_form_redirect_type == 'document') {
@@ -344,58 +341,16 @@ function hero_form_redirect()
         $redirect = $hero_form_redirect_url;
     }
 
-    // Only output script if a redirect URL exists
     if ($redirect) {
     ?>
         <script>
-            /**
-             * Handles the PDF redirection for Contact Form 7.
-             * Uses the "Window Proxy" pattern to bypass browser popup blockers.
-             */
-            (function() {
-                var targetFormId = '<?= $form_id ?>';
-                var redirectUrl = '<?= $redirect ?>';
-                var pdfWindow = null;
-
-                // 1. Listen for the SUBMIT click immediately (Synchronous)
-                // This is required to bypass popup blockers. The window must open during the click event.
-                document.addEventListener('click', function(e) {
-                    // Check if the clicked element is a CF7 submit button
-                    if (e.target.closest('.wpcf7-submit')) {
-                        var form = e.target.closest('form');
-                        
-                        // Verify this button belongs to our specific form ID
-                        // CF7 forms usually contain a hidden input named '_wpcf7' with the ID
-                        var formIdInput = form.querySelector('input[name="_wpcf7"]');
-                        
-                        if (formIdInput && formIdInput.value == targetFormId) {
-                            // Open a blank tab immediately and show a loading state
-                            pdfWindow = window.open('', '_blank');
-                            if (pdfWindow) {
-                                pdfWindow.document.write('<html><body style="font-family:sans-serif;text-align:center;padding-top:50px;">Processing your request...</body></html>');
-                            }
-                        }
+            document.addEventListener('wpcf7mailsent', function(event) {
+                setTimeout(function() {
+                    if (<?= $form_id ?> == event.detail.contactFormId) {
+                        window.open('<?= $redirect ?>', '_blank');
                     }
-                });
-
-                // 2. Handle SUCCESS: Redirect the already-open window
-                document.addEventListener('wpcf7mailsent', function(event) {
-                    if (targetFormId == event.detail.contactFormId && pdfWindow) {
-                        pdfWindow.location.href = redirectUrl;
-                    }
-                }, false);
-
-                // 3. Handle FAILURE: Close the window if validation fails
-                // We listen to invalid, spam, and failed events to clean up the empty tab
-                ['wpcf7invalid', 'wpcf7spam', 'wpcf7mailfailed'].forEach(function(evt) {
-                    document.addEventListener(evt, function(event) {
-                        if (targetFormId == event.detail.contactFormId && pdfWindow) {
-                            pdfWindow.close();
-                        }
-                    }, false);
-                });
-
-            })();
+                }, 3000);
+            }, false);
         </script>
 <?php
     }
