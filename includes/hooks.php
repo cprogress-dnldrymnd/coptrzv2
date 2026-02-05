@@ -347,7 +347,7 @@ function hero_form_redirect()
             document.addEventListener('wpcf7mailsent', function(event) {
                 setTimeout(function() {
                     if (<?= $form_id ?> == event.detail.contactFormId) {
-
+                        window.open('<?= $redirect ?>', '_blank');
                     }
                 }, 3000);
             }, false);
