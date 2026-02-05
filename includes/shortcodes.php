@@ -987,8 +987,7 @@ class Shortcodes
         $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
         if($hero_form_document_redirect) {
-        $image = get_post_thumbnail($hero_form_document_redirect_id, 'large');
-
+            $image = get_post_thumbnail($hero_form_document_redirect_id, 'large');
             return '<div class="document-thumbnail image-box">' . $image . '</div>';
         }
     }
