@@ -983,10 +983,8 @@ class Shortcodes
             )
         );
 
-        if($hero_form_document_redirect) {
-            $image = get_the_post_thumbnail($document_id, 'large');
-            return '<div class="document-thumbnail image-box">' . $image . '</div>';
-        } 
+        $image = get_the_post_thumbnail($document_id, 'large');
+        return '<div class="document-thumbnail image-box">' . $image . '</div>';
     }
 }
 $Shortcodes = new Shortcodes;
