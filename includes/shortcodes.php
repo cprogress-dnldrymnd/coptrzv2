@@ -985,12 +985,13 @@ class Shortcodes
 
         if (get_post_type($document_id) == 'documents') {
             $image = get_the_post_thumbnail($document_id, 'large');
-            return '<div class="document-thumbnail image-box '.get_post_type($document_id).'">' . $image . '</div>';
+            return '<div class="document-thumbnail image-box ' . get_post_type($document_id) . '">' . $image . '</div>';
         } else {
             $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
-            $hero_form_document_redirect_id = isset($hero_form_document_redirect) ? $hero_form_document_redirect: false;
+            $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
+
             $image = get_the_post_thumbnail($hero_form_document_redirect_id, 'large');
-            return '<div class="document-thumbnail image-box '.$hero_form_document_redirect_id.'">' . $image . '</div>';
+            return '<div class="document-thumbnail image-box ' . $hero_form_document_redirect_id . '">' . $image . '</div>';
         }
     }
 }
