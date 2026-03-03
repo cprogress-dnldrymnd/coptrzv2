@@ -2,7 +2,7 @@
 /**
  * Plugin Name: DD Perfect Logo Marquee
  * Description: A hardware-accelerated, responsive infinite logo marquee using a grouped Custom Post Type and native gallery selection.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Digitally Disruptive - Donald Raymundo
  * Author URI: https://digitallydisruptive.co.uk/
  * Text Domain: dd-logo-marquee
@@ -143,8 +143,9 @@ class DD_Logo_Marquee {
 
     /**
      * Enqueues the native WordPress media uploader and custom JS logic.
-     * * Loads the required scripts only on the 'dd_marquee_group' post edit screens
-     * to manage the custom gallery state and interact with wp.media.
+     * * Loads the required scripts only on the 'dd_marquee_group' post edit screens.
+     * Now includes state hydration on the 'open' event to pre-select existing images
+     * in the wp.media modal, preventing accidental gallery resets.
      * * @param string $hook The current admin page hook.
      * @return void
      */
@@ -161,28 +162,52 @@ class DD_Logo_Marquee {
             var frame;
             $('#dd_add_gallery_images').on('click', function(e) {
                 e.preventDefault();
+
                 if ( frame ) {
                     frame.open();
                     return;
                 }
+
                 frame = wp.media({
                     title: 'Select Logos for Marquee',
                     button: { text: 'Use these logos' },
                     multiple: true
                 });
+
+                // Hydrate the modal selection state based on existing saved IDs
+                frame.on('open', function() {
+                    var selection = frame.state().get('selection');
+                    var ids = $('#dd_marquee_image_ids').val();
+
+                    if (ids) {
+                        var idsArray = ids.split(',');
+                        idsArray.forEach(function(id) {
+                            var attachment = wp.media.attachment(id);
+                            attachment.fetch(); // Ensure attachment data is loaded
+                            selection.add(attachment ? [attachment] : []);
+                        });
+                    }
+                });
+
+                // Update the DOM and hidden input when new selections are confirmed
                 frame.on('select', function() {
                     var attachments = frame.state().get('selection').toJSON();
                     var ids = [];
                     $('#dd_gallery_preview').empty();
+
                     attachments.forEach(function(attachment) {
                         ids.push(attachment.id);
                         var imgUrl = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
                         $('#dd_gallery_preview').append('<img src=\"' + imgUrl + '\" style=\"max-width: 80px; height: auto; border: 1px solid #ccc; padding: 2px;\" />');
                     });
+
                     $('#dd_marquee_image_ids').val(ids.join(','));
                 });
+
                 frame.open();
             });
+
+            // Clear button functionality
             $('#dd_clear_gallery_images').on('click', function(e){
                 e.preventDefault();
                 $('#dd_marquee_image_ids').val('');
