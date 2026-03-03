@@ -316,7 +316,7 @@ class DD_Logo_Marquee {
         ?>
         <div class="dd-marquee-group">
             <?php foreach ( $image_ids as $attachment_id ) : ?>
-                <?php $img_html = wp_get_attachment_image( $attachment_id, 'full' ); ?>
+                <?php $img_html = wp_get_attachment_image( $attachment_id, 'medium' ); ?>
                 <?php if ( $img_html ) : ?>
                     <div class="dd-marquee-item">
                         <?php echo $img_html; ?>
