@@ -345,6 +345,7 @@ function hero_form_redirect()
     ?>
         <script>
             document.addEventListener('wpcf7mailsent', function(event) {
+                console.log(<?= $redirect ?>);
                 setTimeout(function() {
                     if (<?= $form_id ?> == event.detail.contactFormId) {
                         window.open('<?= $redirect ?>', '_blank');
