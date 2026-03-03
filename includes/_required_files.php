@@ -10,3 +10,4 @@ require_once('menus.php');
 require_once('woocommerce.php');
 require_once('ajax.php');
 require_once('customizer.php');
+require_once('marquee.php');
