@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: DD Perfect Logo Marquee
- * Description: A hardware-accelerated, responsive infinite logo marquee using a dedicated Custom Post Type. Features pause-on-hover and seamless pure CSS loops.
- * Version: 1.0.0
+ * Description: A hardware-accelerated, responsive infinite logo marquee using a grouped Custom Post Type and native gallery selection.
+ * Version: 1.1.0
  * Author: Digitally Disruptive - Donald Raymundo
  * Author URI: https://digitallydisruptive.co.uk/
  * Text Domain: dd-logo-marquee
@@ -16,36 +16,38 @@ class DD_Logo_Marquee {
 
     /**
      * Initializes the plugin by hooking into WordPress core actions.
-     * * Registers the Custom Post Type, enqueues the required styles, and
-     * registers the shortcode for front-end rendering.
+     * * Registers the Custom Post Type, meta boxes, admin scripts for the gallery,
+     * enqueues front-end styles, and registers the shortcode.
      * * @return void
      */
     public function __construct() {
         add_action( 'init', [ $this, 'register_post_type' ] );
+        add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
+        add_action( 'save_post_dd_marquee_group', [ $this, 'save_meta_box' ] );
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
         add_shortcode( 'dd_logo_marquee', [ $this, 'render_shortcode' ] );
     }
 
     /**
-     * Registers the 'dd_marquee_logo' Custom Post Type.
-     * * Configures a dedicated CPT for logo management. It supports 'title',
-     * 'thumbnail' (the logo image), and 'page-attributes' to allow for
-     * custom menu ordering. Excluded from front-end search for clean architecture.
+     * Registers the 'dd_marquee_group' Custom Post Type.
+     * * Configures a dedicated CPT for managing groups of logos. It supports 'title'
+     * only, as the images are handled via the custom gallery meta box.
      * * @return void
      */
     public function register_post_type() {
         $labels = [
-            'name'               => 'Marquee Logos',
-            'singular_name'      => 'Marquee Logo',
-            'menu_name'          => 'Marquee Logos',
-            'add_new'            => 'Add New Logo',
-            'add_new_item'       => 'Add New Marquee Logo',
-            'edit_item'          => 'Edit Logo',
-            'new_item'           => 'New Logo',
-            'view_item'          => 'View Logo',
-            'search_items'       => 'Search Logos',
-            'not_found'          => 'No logos found',
-            'not_found_in_trash' => 'No logos found in Trash',
+            'name'               => 'Marquee Groups',
+            'singular_name'      => 'Marquee Group',
+            'menu_name'          => 'Marquee Groups',
+            'add_new'            => 'Add New Group',
+            'add_new_item'       => 'Add New Marquee Group',
+            'edit_item'          => 'Edit Group',
+            'new_item'           => 'New Group',
+            'view_item'          => 'View Group',
+            'search_items'       => 'Search Groups',
+            'not_found'          => 'No groups found',
+            'not_found_in_trash' => 'No groups found in Trash',
         ];
 
         $args = [
@@ -54,13 +56,143 @@ class DD_Logo_Marquee {
             'show_ui'             => true,
             'show_in_menu'        => true,
             'menu_icon'           => 'dashicons-images-alt2',
-            'supports'            => [ 'title', 'thumbnail', 'page-attributes' ],
+            'supports'            => [ 'title' ],
             'exclude_from_search' => true,
             'publicly_queryable'  => false,
-            'show_in_rest'        => true,
+            'show_in_rest'        => false, // Disabled REST API to force classic meta box rendering
         ];
 
-        register_post_type( 'dd_marquee_logo', $args );
+        register_post_type( 'dd_marquee_group', $args );
+    }
+
+    /**
+     * Registers the custom meta box for the gallery selection.
+     * * @return void
+     */
+    public function add_meta_boxes() {
+        add_meta_box(
+            'dd_marquee_gallery_meta',
+            'Marquee Logos (Gallery)',
+            [ $this, 'render_gallery_meta_box' ],
+            'dd_marquee_group',
+            'normal',
+            'high'
+        );
+    }
+
+    /**
+     * Renders the HTML for the gallery selection meta box.
+     * * Retrieves existing saved image IDs, outputs a hidden input for data submission,
+     * and constructs the visual preview area with management buttons.
+     * * @param WP_Post $post The current post object.
+     * @return void
+     */
+    public function render_gallery_meta_box( $post ) {
+        wp_nonce_field( 'dd_save_marquee_gallery', 'dd_marquee_gallery_nonce' );
+        
+        $image_ids = get_post_meta( $post->ID, '_dd_marquee_image_ids', true );
+        
+        echo '<div id="dd_gallery_container">';
+        echo '<input type="hidden" id="dd_marquee_image_ids" name="dd_marquee_image_ids" value="' . esc_attr( $image_ids ) . '" />';
+        
+        echo '<div id="dd_gallery_preview" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">';
+        if ( ! empty( $image_ids ) ) {
+            $ids_array = explode( ',', $image_ids );
+            foreach ( $ids_array as $id ) {
+                $image_url = wp_get_attachment_image_url( $id, 'thumbnail' );
+                if ( $image_url ) {
+                    echo '<img src="' . esc_url( $image_url ) . '" style="max-width: 80px; height: auto; border: 1px solid #ccc; padding: 2px;" />';
+                }
+            }
+        }
+        echo '</div>';
+        
+        echo '<button class="button button-primary" id="dd_add_gallery_images">Select Logos</button> ';
+        echo '<button class="button" id="dd_clear_gallery_images">Clear Gallery</button>';
+        echo '<p class="description">Select multiple images to form your logo marquee group. Hold CTRL/CMD to select multiple.</p>';
+        echo '</div>';
+    }
+
+    /**
+     * Saves the gallery image IDs to the post meta.
+     * * Verifies nonces, checks user permissions, and sanitizes the comma-separated
+     * list of attachment IDs before saving to the database.
+     * * @param int $post_id The ID of the post being saved.
+     * @return void
+     */
+    public function save_meta_box( $post_id ) {
+        if ( ! isset( $_POST['dd_marquee_gallery_nonce'] ) || ! wp_verify_nonce( $_POST['dd_marquee_gallery_nonce'], 'dd_save_marquee_gallery' ) ) {
+            return;
+        }
+
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+            return;
+        }
+
+        if ( ! current_user_can( 'edit_post', $post_id ) ) {
+            return;
+        }
+
+        if ( isset( $_POST['dd_marquee_image_ids'] ) ) {
+            $sanitized_ids = sanitize_text_field( wp_unslash( $_POST['dd_marquee_image_ids'] ) );
+            update_post_meta( $post_id, '_dd_marquee_image_ids', $sanitized_ids );
+        } else {
+            delete_post_meta( $post_id, '_dd_marquee_image_ids' );
+        }
+    }
+
+    /**
+     * Enqueues the native WordPress media uploader and custom JS logic.
+     * * Loads the required scripts only on the 'dd_marquee_group' post edit screens
+     * to manage the custom gallery state and interact with wp.media.
+     * * @param string $hook The current admin page hook.
+     * @return void
+     */
+    public function enqueue_admin_scripts( $hook ) {
+        global $post_type;
+        if ( ( 'post.php' !== $hook && 'post-new.php' !== $hook ) || 'dd_marquee_group' !== $post_type ) {
+            return;
+        }
+
+        wp_enqueue_media();
+
+        $js = "
+        jQuery(document).ready(function($){
+            var frame;
+            $('#dd_add_gallery_images').on('click', function(e) {
+                e.preventDefault();
+                if ( frame ) {
+                    frame.open();
+                    return;
+                }
+                frame = wp.media({
+                    title: 'Select Logos for Marquee',
+                    button: { text: 'Use these logos' },
+                    multiple: true
+                });
+                frame.on('select', function() {
+                    var attachments = frame.state().get('selection').toJSON();
+                    var ids = [];
+                    $('#dd_gallery_preview').empty();
+                    attachments.forEach(function(attachment) {
+                        ids.push(attachment.id);
+                        var imgUrl = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
+                        $('#dd_gallery_preview').append('<img src=\"' + imgUrl + '\" style=\"max-width: 80px; height: auto; border: 1px solid #ccc; padding: 2px;\" />');
+                    });
+                    $('#dd_marquee_image_ids').val(ids.join(','));
+                });
+                frame.open();
+            });
+            $('#dd_clear_gallery_images').on('click', function(e){
+                e.preventDefault();
+                $('#dd_marquee_image_ids').val('');
+                $('#dd_gallery_preview').empty();
+            });
+        });";
+
+        wp_register_script( 'dd-marquee-admin-js', false );
+        wp_enqueue_script( 'dd-marquee-admin-js' );
+        wp_add_inline_script( 'dd-marquee-admin-js', $js );
     }
 
     /**
@@ -132,39 +264,43 @@ class DD_Logo_Marquee {
 
     /**
      * Generates the front-end HTML for the logo marquee via shortcode.
-     * * Queries the 'dd_marquee_logo' CPT, ordered by 'menu_order' for user control.
-     * Constructs a duplicated DOM group to achieve a seamless infinite CSS loop.
+     * * Requires an 'id' attribute to target a specific marquee group. Retrieves
+     * the attached gallery IDs and constructs a duplicated DOM group to achieve 
+     * a seamless infinite CSS loop.
      * * @param array $atts User-defined shortcode attributes.
      * @return string Compiled HTML output for the marquee.
      */
     public function render_shortcode( $atts ) {
-        $args = [
-            'post_type'      => 'dd_marquee_logo',
-            'posts_per_page' => -1,
-            'orderby'        => 'menu_order',
-            'order'          => 'ASC',
-        ];
+        $atts = shortcode_atts( [
+            'id' => '', // Post ID of the marquee group
+        ], $atts, 'dd_logo_marquee' );
 
-        $query = new WP_Query( $args );
-
-        if ( ! $query->have_posts() ) {
+        if ( empty( $atts['id'] ) ) {
             return '';
         }
+
+        $image_ids_string = get_post_meta( intval( $atts['id'] ), '_dd_marquee_image_ids', true );
+
+        if ( empty( $image_ids_string ) ) {
+            return '';
+        }
+
+        $image_ids = explode( ',', $image_ids_string );
 
         ob_start();
         ?>
         <div class="dd-marquee-group">
-            <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                <?php if ( has_post_thumbnail() ) : ?>
+            <?php foreach ( $image_ids as $attachment_id ) : ?>
+                <?php $img_html = wp_get_attachment_image( $attachment_id, 'full' ); ?>
+                <?php if ( $img_html ) : ?>
                     <div class="dd-marquee-item">
-                        <?php the_post_thumbnail( 'full' ); ?>
+                        <?php echo $img_html; ?>
                     </div>
                 <?php endif; ?>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </div>
         <?php
         $group_html = ob_get_clean();
-        wp_reset_postdata();
 
         // Duplicate the group natively in the DOM to act as the trailing loop for the CSS animation.
         $output  = '<div class="dd-marquee-container">';
