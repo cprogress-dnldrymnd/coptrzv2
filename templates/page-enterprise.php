@@ -294,6 +294,27 @@
         overflow: hidden;
     }
 
+
+
+
+    .swiper--style-v2 .swiper-pagination {
+        background-color: transparent;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    .swiper--style-v2 .swiper-pagination .swiper-pagination-bullet {
+        --swiper-pagination-bullet-width: 15px;
+        --swiper-pagination-bullet-height: 5px;
+        --swiper-pagination-bullet-border-radius: 0;
+        --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.5);
+        --swiper-pagination-bullet-inactive-opacity: 1;
+
+    }
+
+    .swiper--style-v2 .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+        background-color: rgba(255, 255, 255, 1);;
+    }
     /**end case-studies */
 </style>
 <?php
