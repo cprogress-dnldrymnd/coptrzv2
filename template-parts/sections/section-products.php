@@ -1,5 +1,5 @@
 <?php
-$post_ids = [];
+$post_ids = [372804,372813,372840,372842,373370];
 ?>
 
 <section class="products-section my-padding" id="Related-Products">
