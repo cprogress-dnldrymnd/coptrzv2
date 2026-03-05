@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 ?>
 <?php get_header(); ?>
-<section class="text-white hero pb-50px pt-50px rounded-10px bg-primary overflow-hidden d-flex align-items-end mx-20px position-relative" id="hero">
+<section class="text-white hero pb-50px pt-50px rounded-10px bg-primary overflow-hidden d-flex align-items-center mx-20px position-relative" id="hero">
     <div class="background-image background-overlay"><img width="1920" height="768" src="https://coptrz.com/wp-content/uploads/2026/03/NoPath-Copy-18.jpg" /></div>
     <div class="container">
         <div class="hero-left-content position-relative overflow-hidden hero-bg-mobile">
