@@ -2,7 +2,7 @@
     <div class="container">
         <div class="container-wrapper position-relative lg-padding-top lg-padding-bottom sm-padding-left sm-padding-right rounded overflow-hidden" style="--bs-border-radius: 20px">
             <div class="background-image no-overlay"><img src="https://coptrz.com/wp-content/uploads/2026/03/Group-1654.png" alt=""></div>
-            <div class="inner position-relative">
+            <div class="inner position-relative small-width">
                 <h2>
                     What Changes After Deployment
                 </h2>
