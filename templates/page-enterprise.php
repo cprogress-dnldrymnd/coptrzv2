@@ -73,6 +73,19 @@
         font-size: 22px;
     }
 
+    .image-animation-zoom .image-box {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .image-animation-zoom img {
+        transition: 400ms;
+    }
+
+    .image-animation-zoom:hover .image-box img {
+        transform: scale(1.1);
+    }
+
     .heading-style {
         display: inline-block;
         margin-bottom: 20px;
