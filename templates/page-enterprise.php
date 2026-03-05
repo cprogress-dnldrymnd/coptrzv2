@@ -160,10 +160,14 @@
         background: transparent linear-gradient(270deg, var(--accent-4) 0%, var(--accent-5) 100%) 0% 0% no-repeat padding-box;
     }
 
-    @media(min-width: 992px) {
-        h1.large-heading {
-            font-size: 60px;
+    @media (min-width: 1440px) {
+        .large-heading.large-heading {
+            font-size: 3.8rem;
         }
+    }
+
+    @media(min-width: 992px) {
+
 
         h2 {
             font-size: 38px;
