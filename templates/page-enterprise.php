@@ -176,7 +176,7 @@
     /**end checklist */
 
     /**guides */
-    .guides-wrapper .guide-name,
+
     .guides-wrapper .guide-link {
         opacity: 0.5;
         color: inherit;
