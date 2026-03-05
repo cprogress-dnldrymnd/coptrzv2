@@ -199,6 +199,15 @@
         opacity: 1;
     }
 
+    .guides-items>.guide-item-holder {
+        margin-top: 30px;
+    }
+
+    .guides-items>.guide-item-holder:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 30px;
+    }
+
     /**end guides */
 </style>
 <?php
