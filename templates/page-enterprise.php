@@ -206,12 +206,13 @@
         padding: 22px clamp(20px, 2vw, 40px);
         font-weight: 600;
         color: var(--accent-2);
+        --size: clamp(30px, 4vw, 64px);
+
     }
 
 
 
     .number-box .number {
-        --size: clamp(30px, 4vw, 64px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -221,6 +222,10 @@
         font-size: 22px;
         padding: 10px;
         background-color: var(--light-2);
+    }
+
+    .number-box .number+span {
+        width: calc(100% - var(--size) - 1rem);
     }
 
     @media(max-width: 991px) {
