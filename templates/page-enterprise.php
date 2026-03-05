@@ -347,7 +347,7 @@
     }
 
     .products-section ul.products.products.products li.product.product .product-inner .wc-img-wrapper {
-        padding: 50%;
+        padding: 40%;
         margin-top: -20px;
         margin-left: -20px;
         margin-right: -20px;
