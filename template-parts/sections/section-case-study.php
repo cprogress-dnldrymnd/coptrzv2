@@ -2,7 +2,7 @@
 $post_ids = [291423, 272246, 272244, 272242];
 ?>
 
-<section class="guides bg-accent-3 py-6 text-white">
+<section class="case-studies bg-accent-3 py-6 text-white">
     <div class="container">
         <div class="container-wrapper">
             <h2 class="heading-style mb-5">UK Enterprise Examples</h2>
@@ -17,10 +17,19 @@ $post_ids = [291423, 272246, 272244, 272242];
                                     <div class="image-box">
                                         <?= get_the_post_thumbnail($post, 'large') ?>
                                     </div>
-                                    <div class="content-box">
-                                        <h4><?= get_the_title($post) ?></h4>
+                                    <div class="content-box text-center p-4">
+                                        <h4 class="text-medium fw-medium"><?= get_the_title($post) ?></h4>
                                         <a href="<?= get_the_permalink($post) ?>">
-                                            View Case Study
+                                            <span>View Case Study</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
+                                                <g id="arrow" opacity="0.5">
+                                                    <g id="Dribbble-Light-Preview" transform="translate(-300 -6643)">
+                                                        <g id="icons" transform="translate(56 160)">
+                                                            <path id="arrow_right-_346_" data-name="arrow_right-[#346]" d="M264,6488.27l-5.657-5.27-1.414,1.22,3.243,3.01H244v1.95h16.172l-3.243,3.35,1.414,1.47Z" fill="currentColor" fill-rule="evenodd"></path>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </svg>
                                         </a>
                                     </div>
                                 </div>
@@ -30,6 +39,7 @@ $post_ids = [291423, 272246, 272244, 272242];
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
+            <div class="button-accent col-auto button-box text-center mt-5"><a class="rounded-10px " href="#Benefits" target="_self">View DJI Enterprise Case Studies</a></div>
         </div>
     </div>
 </section>

@@ -287,6 +287,14 @@
     }
 
     /**end chip */
+
+    /**case-studies */
+    .case-studies .swiper-slide-inner {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    /**end case-studies */
 </style>
 <?php
 get_template_part('template-parts/sections/section-hero');
