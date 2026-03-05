@@ -328,8 +328,8 @@
 
     /**chip */
     .chip .inner {
-        border: 1px solid #FF0E0E8F;
-        color: #FF0E0E;
+        border: 1px solid var(--border-color, #FF0E0E8F);
+        color: var(--text-color, #FF0E0E);
         padding: 24px;
         border-radius: 20px;
     }

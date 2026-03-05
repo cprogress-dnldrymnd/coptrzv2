@@ -1,4 +1,4 @@
-<section class="chip my-6">
+<section class="chip my-6" style="--border-color: #FF0E0E8F; --text-color: #FF0E0E">
     <div class="container">
         <div class="container-wrapper">
             <h2 class="heading-style text-accent-2">Common DJI Enterprise Mistakes We Help Organisations Avoid</h2>
