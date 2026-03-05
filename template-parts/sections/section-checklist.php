@@ -4,7 +4,7 @@
             <h2 class="heading-style">
                 Who This Page Is Designed For
             </h2>
-            <div class="desc-box mb-4">
+            <div class="desc-box mb-5">
                 <p>
                     This page is intended for organisations considering, adopting or already operating DJI Enterprise drones in operational, regulated or high-consequence environments, including:
                 </p>
