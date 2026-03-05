@@ -13,17 +13,18 @@ $post_ids = [372804, 372813, 372840, 372842, 373370];
             <div class="swiper-holder">
                 <div class="swiper swiper-linked-products" id="swiper---products">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
 
-                            <?php foreach ($post_ids as $post_id) {
-                                echo _product_grid_display($post_id);
-                            }
-                            ?>
+                        <?php foreach ($post_ids as $post_id) {
+                            echo '<div class="swiper-slide">';
+                            echo _product_grid_display($post_id);
+                            echo '</div>';
+                        }
+                        ?>
 
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
