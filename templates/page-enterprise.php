@@ -7,7 +7,7 @@
 <section class="text-white hero pb-50px pt-50px rounded-10px bg-primary overflow-hidden d-flex align-items-center mx-20px position-relative" id="hero">
     <div class="background-image background-overlay"><img width="1920" height="768" src="https://coptrz.com/wp-content/uploads/2026/03/NoPath-Copy-18.jpg" /></div>
     <div class="container">
-        <div class="hero-left-content position-relative overflow-hidden hero-bg-mobile">
+        <div class="hero-left-content position-relative overflow-hidden hero-bg-mobile small-width">
             <h1 class="large-heading mb-3">DJI Enterprise UK: Buy Mission-Ready</h1>
             <div class="description-box fw-light medium-text small-width mx-auto mb-4">
                 <p>Reduce operational risk, deployment friction and future regret. Buy DJI Enterprise drones that are configured, supported and defensible from day one, backed by Coptrz.</p>
