@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row g-3 justify-content-between align-items-center mt-5">
+            <div class="row g-3 justify-content-between align-items-center mt-4">
                 <div class="col-lg-7">
                     <div class="desc-box fw-semibold text-medium">
                         <p>Our role is to help teams avoid these issues before they become costly.</p>
