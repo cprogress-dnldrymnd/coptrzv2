@@ -3,7 +3,7 @@
         <div class="container-wrapper">
             <h2 class="heading-style text-accent-2">Common DJI Enterprise Mistakes We Help Organisations Avoid</h2>
             <div class="desc-box fw-semibold mb-5">
-                <h3 class="fs-24">Experience shows that most deployment issues are avoidable with the right guidance early on.</h3>
+                <p class="fs-24 fw-semibold">Experience shows that most deployment issues are avoidable with the right guidance early on.</p>
             </div>
             <div class="row g-3">
                 <div class="col-lg-6">
