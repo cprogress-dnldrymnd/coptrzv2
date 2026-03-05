@@ -1,6 +1,6 @@
 <section class="two-columns my-6">
     <div class="container">
-        <h2 class="heading-style">DJI Enterprise At Coptrz</h2>
+        <h2 class="heading-style text-accent-2">DJI Enterprise At Coptrz</h2>
         <div class="row g-3 g-lg-5">
             <div class="col-lg-6">
                 <div class="inner">

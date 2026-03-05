@@ -1,6 +1,6 @@
 <section class="number-box-section mb-5">
     <div class="container">
-        <h2 class="heading-style">How Coptrz Supports You End-To-End</h2>
+        <h2 class="heading-style text-accent-2">How Coptrz Supports You End-To-End</h2>
         <div class="number-box-wrapper">
             <div class="row gy-3 gy-lg-0 gx-3">
                 <div class="col-lg-3 col-md-6">
