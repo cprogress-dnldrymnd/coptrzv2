@@ -1,7 +1,7 @@
-<section class="two-columns">
+<section class="two-columns md-padding">
     <div class="container">
         <h2 class="heading-style">DJI Enterprise At Coptrz</h2>
-        <div class="row g-3">
+        <div class="row g-3 gap-lg-5">
             <div class="col-lg-6">
                 <div class="inner">
                     <div class="image-box">

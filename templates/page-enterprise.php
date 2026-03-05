@@ -40,10 +40,13 @@
         display: none;
     }
 
+    .heading-style {
+        display: inline-block;
+    }
     .heading-style:before {
         content: '';
         display: block;
-        width: 50px;
+        width: 80%;
         height: 4px;
         margin-bottom: 20px;
         background: transparent linear-gradient(270deg, var(--accent-4) 0%, var(--accent-5) 100%) 0% 0% no-repeat padding-box;
