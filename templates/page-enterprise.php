@@ -59,6 +59,7 @@
 
     .heading-style {
         display: inline-block;
+        margin-bottom: 20px;
     }
 
     .heading-style:before {
