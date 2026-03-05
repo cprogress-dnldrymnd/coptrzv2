@@ -20,8 +20,8 @@ $post_ids = [372804, 372813, 372840, 372842, 373370];
                             echo '</div>';
                         }
                         ?>
-
                     </div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </div>

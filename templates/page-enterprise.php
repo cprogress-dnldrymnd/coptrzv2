@@ -312,6 +312,7 @@
         --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.5);
         --swiper-pagination-bullet-inactive-opacity: 1;
         opacity: 1;
+        flex: unset;
 
     }
 
