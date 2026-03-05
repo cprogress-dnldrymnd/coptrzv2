@@ -36,6 +36,10 @@ $post_ids = [372804, 372813, 372840, 372842, 373370];
         autoplay: false,
         breakpoints: {
             0: {
+                slidesPerView: 1,
+            },
+
+            576: {
                 slidesPerView: 2,
             },
 
