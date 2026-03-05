@@ -344,6 +344,23 @@
         overflow: hidden;
     }
 
+    .case-studies .swiper-slide-inner .content-box {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .category,
+    .subtext-1 {
+        font-size: 12px;
+        font-weight: 500;
+        opacity: 0.5;
+    }
+
+    .subtext-2 {
+        font-size: 12px;
+    }
+
     /**end case-studies */
 
 
