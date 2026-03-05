@@ -1,4 +1,4 @@
-<section class="number-box-section number-box-section-v2 mb-5">
+<section class="number-box-section number-box-section-v2 my-6">
     <div class="container">
         <h2 class="heading-style text-accent-2">What Happens After You Get In Touch</h2>
         <div class="number-box-wrapper">
