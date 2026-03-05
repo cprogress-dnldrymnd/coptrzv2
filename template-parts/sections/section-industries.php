@@ -31,15 +31,15 @@
                     <div class="inner image-animation-zoom content-margin">
                         <div class="image-box rounded-corner overflow-hidden">
                             <a class="text-inherit text-decoration-none" href="#" target="_self">
-                                <img src="https://coptrz.com/wp-content/uploads/2026/03/Construction-surveying.png" alt="">
+                                <img src="https://coptrz.com/wp-content/uploads/2026/03/Asset-Integrity-Inspection.png" alt="">
                             </a>
                         </div>
                         <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
-                                <h4 class="fs-22 fw-semibold text-accent-2">Construction & Surveying</h4>
+                                <h4 class="fs-22 fw-semibold text-accent-2">Asset Integrity & Inspection</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
                                 <p>
-                                    Accelerate site capture, improve survey accuracy and create auditable progress records that reduce rework, disputes and downstream cost.
+                                    Inspect critical assets faster, reduce downtime exposure and improve safety through repeatable, governance-aligned inspection workflows.
                                 </p>
                             </div>
                         </div>
@@ -49,15 +49,15 @@
                     <div class="inner image-animation-zoom content-margin">
                         <div class="image-box rounded-corner overflow-hidden">
                             <a class="text-inherit text-decoration-none" href="#" target="_self">
-                                <img src="https://coptrz.com/wp-content/uploads/2026/03/Construction-surveying.png" alt="">
+                                <img src="https://coptrz.com/wp-content/uploads/2026/03/Public-Safety-and-Emergency-Services.png" alt="">
                             </a>
                         </div>
                         <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
-                                <h4 class="fs-22 fw-semibold text-accent-2">Construction & Surveying</h4>
+                                <h4 class="fs-22 fw-semibold text-accent-2">Public Safety and Emergency Services</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
                                 <p>
-                                    Accelerate site capture, improve survey accuracy and create auditable progress records that reduce rework, disputes and downstream cost.
+                                    Public Safety and Emergency Services
                                 </p>
                             </div>
                         </div>
