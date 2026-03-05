@@ -97,7 +97,7 @@
         position: relative;
     }
 
-    .number-box-section .row:before {
+    .number-box-section .number-box-wrapper:before {
         content: '';
         height: 1px;
         background-color: var(--accent-2);
