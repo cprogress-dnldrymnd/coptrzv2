@@ -5,7 +5,7 @@
 ?>
 <?php get_header(); ?>
 <style>
-    .top-bar + .header {
+    .top-bar+.header {
         margin: 0;
     }
 
@@ -14,6 +14,7 @@
         --accent-2: #0E1B35;
         --accent-3: #071020;
         --accent-4: #2DA1FF;
+        --accent-5: #175180;
     }
 
     /**helpers */
@@ -37,6 +38,21 @@
 
     .no-overlay:before {
         display: none;
+    }
+
+    .heading-style:before {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 4px;
+        margin-bottom: 20px;
+        background: transparent linear-gradient(270deg, var(--accent-4) 0%, var(--accent-5) 100%) 0% 0% no-repeat padding-box;
+    }
+
+    @media(min-width: 992px) {
+        .heading-style {
+            font-size: 38px;
+        }
     }
 
     /**end helpers */
