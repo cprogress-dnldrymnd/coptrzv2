@@ -1,7 +1,7 @@
 <section class="chip my-6">
     <div class="container">
         <div class="container-wrapper">
-            <div class="heading-style">Common DJI Enterprise Mistakes We Help Organisations Avoid</div>
+            <h2 class="heading-style text-accent-2">Common DJI Enterprise Mistakes We Help Organisations Avoid</h2>
             <div class="desc-box fw-semibold mb-5">
                 <h3 class="fs-24">Experience shows that most deployment issues are avoidable with the right guidance early on.</h3>
             </div>

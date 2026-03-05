@@ -1,7 +1,7 @@
 <section class="industries bg-light-3 py-6">
     <div class="container">
         <div class="container-wrapper">
-            <h2 class="heading-style">
+            <h2 class="heading-style text-accent-2">
                 Outcomes By Industry
             </h2>
             <div class="desc-box mb-5">
