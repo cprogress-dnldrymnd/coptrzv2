@@ -87,6 +87,7 @@
         border-radius: 20px;
         font-size: 28px;
         padding: 22px 40px;
+        font-weight: 600;
     }
 
     .number-box-section .number-box-wrapper {
@@ -116,7 +117,7 @@
         height: 64px;
         border-radius: 5px;
         font-size: 22px;
-        font-weight: 600;
+
         background-color: var(--light-2);
     }
 
