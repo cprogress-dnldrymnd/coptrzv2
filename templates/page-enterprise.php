@@ -229,7 +229,7 @@
     .number-box {
         background: var(--light-1);
         border-radius: 20px;
-        font-size: 28px;
+        font-size: clamp(20px, 1.5vw, 28px);
         padding: 22px clamp(20px, 2vw, 40px);
         font-weight: 600;
         color: var(--accent-2);
