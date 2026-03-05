@@ -1,4 +1,4 @@
-<section class="text-white hero pb-50px pt-50px bg-primary overflow-hidden d-flex align-items-center position-relative" id="hero">
+<section class="text-white hero pb-50px pt-50px m-0 bg-primary overflow-hidden d-flex align-items-center position-relative" id="hero">
     <div class="background-image background-overlay"><img width="1920" height="768" src="https://coptrz.com/wp-content/uploads/2026/03/NoPath-Copy-18.jpg" /></div>
     <div class="container">
         <div class="hero-left-content position-relative overflow-hidden hero-bg-mobile small-width">
@@ -9,8 +9,8 @@
             <div>
                 <div class="button-group-box ">
                     <div class="row g-3 justify-content-center d-inline-flex">
-                        <div class="button-accent col-auto button-box"><a class="rounded-10px " href="#Benefits" target="_self">Speak to Our Enterprise Team</a></div>
-                        <div class="button-bordered col-auto button-box"><a class="rounded-10px " href="#Use-Cases" target="_self">See Solutions by Industry</a></div>
+                        <div class="button-accent col-12 col-lg-auto button-box"><a class="rounded-10px w-100" href="#Benefits" target="_self">Speak to Our Enterprise Team</a></div>
+                        <div class="button-bordered col-12 col-lg-auto button-box"><a class="rounded-10px w-100" href="#Use-Cases" target="_self">See Solutions by Industry</a></div>
                     </div>
                 </div>
             </div>
