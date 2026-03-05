@@ -62,6 +62,7 @@ $post_ids = [291423, 272246, 272244, 272242];
         },
         pagination: {
             el: ".swiper-pagination",
+            clickable: true,
         },
     });
 </script>

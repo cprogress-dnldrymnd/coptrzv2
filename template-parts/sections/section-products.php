@@ -48,10 +48,11 @@ $post_ids = [372804, 372813, 372840, 372842, 373370];
                 slidesPerView: 4,
             },
 
-         
+
         },
         pagination: {
             el: ".swiper-pagination",
+            clickable: true,
         },
     });
 </script>
