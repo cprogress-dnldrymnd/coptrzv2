@@ -207,7 +207,7 @@
         font-weight: 600;
         color: var(--accent-2);
         --size: clamp(30px, 4vw, 64px);
-
+        height: 100%;
     }
 
 
@@ -224,7 +224,7 @@
         background-color: var(--light-2);
     }
 
-    .number-box .number + span {
+    .number-box .number+span {
         width: calc(100% - var(--size) - 1rem);
     }
 
