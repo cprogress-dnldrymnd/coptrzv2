@@ -9,7 +9,7 @@
     <div class="container">
         <div class="hero-left-content position-relative overflow-hidden hero-bg-mobile small-width">
             <h1 class="large-heading mb-3">DJI Enterprise UK: Buy Mission-Ready</h1>
-            <div class="description-box fw-light medium-text small-width mx-auto mb-4">
+            <div class="description-box fw-light  mx-auto mb-4">
                 <p>Reduce operational risk, deployment friction and future regret. Buy DJI Enterprise drones that are configured, supported and defensible from day one, backed by Coptrz.</p>
             </div>
             <div>
