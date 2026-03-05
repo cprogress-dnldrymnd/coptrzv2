@@ -49,8 +49,8 @@
     }
 
     .py-6 {
-        margin-top: 4rem;
-        margin-bottom: 4rem;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
     }
 
     .no-overlay:before {
@@ -81,8 +81,8 @@
         }
 
         .py-6 {
-            margin-top: 5rem;
-            margin-bottom: 5rem;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
         }
     }
 
