@@ -35,8 +35,13 @@
     }
 
     .my-6 {
-        margin-top: 3rem;
-        margin-bottom: 3rem;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .py-6 {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
     }
 
     .no-overlay:before {
@@ -62,6 +67,11 @@
         }
 
         .my-6 {
+            margin-top: 5rem;
+            margin-bottom: 5rem;
+        }
+
+        .py-6 {
             margin-top: 5rem;
             margin-bottom: 5rem;
         }
