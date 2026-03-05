@@ -89,6 +89,25 @@
         padding: 22px 40px;
     }
 
+    .number-box-section .row {
+        position: relative;
+    }
+
+    .number-box-section .row>div {
+        position: relative;
+    }
+
+    .number-box-section .row:before {
+        content: '';
+        height: 1px;
+        background-color: var(--accent-2);
+        width: 95%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
     .number-box .number {
         display: flex;
         align-items: center;
