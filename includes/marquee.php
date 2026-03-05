@@ -323,6 +323,14 @@ class DD_Logo_Marquee {
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
+            <?php foreach ( $image_ids as $attachment_id ) : ?>
+                <?php $img_html = wp_get_attachment_image( $attachment_id, 'medium' ); ?>
+                <?php if ( $img_html ) : ?>
+                    <div class="dd-marquee-item">
+                        <?php echo $img_html; ?>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </div>
         <?php
         $group_html = ob_get_clean();
