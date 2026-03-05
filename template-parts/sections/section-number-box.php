@@ -1,4 +1,4 @@
-<section class="number-box-section">
+<section class="number-box-section mb-5">
     <div class="container">
         <h2 class="heading-style">How Coptrz Supports You End-To-End</h2>
         <div class="row g-3">

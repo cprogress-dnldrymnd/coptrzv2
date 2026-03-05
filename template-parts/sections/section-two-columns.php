@@ -1,4 +1,4 @@
-<section class="two-columns md-padding">
+<section class="two-columns my-5">
     <div class="container">
         <h2 class="heading-style">DJI Enterprise At Coptrz</h2>
         <div class="row g-3 g-lg-5">
