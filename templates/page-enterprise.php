@@ -59,7 +59,7 @@
     }
 
     .text-accent-2 {
-        color: #0E1B35;
+        color: var(--accent-2);
     }
 
     .bg-accent-1 {
@@ -468,5 +468,6 @@ get_template_part('template-parts/sections/section-cta-simple');
 get_template_part('template-parts/sections/section-testimonials');
 get_template_part('template-parts/sections/section-logos');
 get_template_part('template-parts/sections/section-checklist-light');
+get_template_part('template-parts/sections/section-chip-v2');
 ?>
 <?php get_footer(); ?>
