@@ -1,7 +1,7 @@
 <section class="cta--section text-white my-6">
     <div class="container">
         <div class="container-wrapper position-relative lg-padding rounded overflow-hidden" style="--bs-border-radius: 20px">
-            <div class="background-image no-overlay"><img src="" alt=""></div>
+            <div class="background-image no-overlay"><img src="https://coptrz.com/wp-content/uploads/2026/03/Group-1654.png" alt=""></div>
             <h2>
                 What Changes After Deployment
             </h2>
