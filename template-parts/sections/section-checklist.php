@@ -1,6 +1,6 @@
 <section class="checklist text-white bg-accent-2 py-6">
     <div class="container">
-        <h2 class="heading-style">
+        <h2 class="heading-style mb-3">
             Who This Page Is Designed For
         </h2>
         <div class="desc-box mb-4">
