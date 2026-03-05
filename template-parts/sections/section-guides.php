@@ -9,15 +9,15 @@
         <div class="guides-wrapper">
             <h3 class="text-accent">Decision Resources</h3>
             <div class="guides-items">
-                <div class="guide-item d-flex align-items-center justify-content-between gap-4 flex-column flex-sm-row">
+                <a href="#" class="guide-item d-flex align-items-center justify-content-between gap-4 flex-column flex-sm-row">
                     <div class="guide-item-left d-flex align-items-center gap-4">
                         <div class="image-box">
                             <img src="https://coptrz.com/wp-content/uploads/2026/03/DJI-Matrice-400-UK-Buyers-Guide-Thumbnail.png" alt="">
                         </div>
                         <div class="guide-name">DJI Matrice 400 UK Buyer's Guide</div>
                     </div>
-                    <div class="guide-item-right">
-                        <a href="">
+                    <div class="guide-item-right d-flex align-items-center gap-2">
+                        <span class="guide-link">
                             <span>Access Guide</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
                                 <g id="arrow" opacity="0.5">
@@ -28,9 +28,9 @@
                                     </g>
                                 </g>
                             </svg>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>

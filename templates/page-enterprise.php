@@ -174,6 +174,27 @@
     }
 
     /**end checklist */
+
+    /**guides */
+    .guides-wrapper .guide-name,
+    .guides-wrapper .guide-link {
+        opacity: 0.5;
+    }
+
+    .guides-wrapper .guide-link {
+        color: inherit;
+    }
+
+    .guides-wrapper .guide-item:hover {
+        text-decoration: underline;
+    }
+
+    .guides-wrapper .guide-item:hover .guide-name,
+    .guides-wrapper .guide-item:hover .guide-link {
+        opacity: 1;
+    }
+
+    /**end guides */
 </style>
 <?php
 get_template_part('template-parts/sections/section-hero');
