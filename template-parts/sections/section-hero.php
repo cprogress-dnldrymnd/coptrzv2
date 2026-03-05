@@ -9,8 +9,8 @@
             <div>
                 <div class="button-group-box ">
                     <div class="row g-3 justify-content-center d-inline-flex">
-                        <div class="button-accent col-12 col-lg-auto button-box"><a class="rounded-10px w-100" href="#Benefits" target="_self">Speak to Our Enterprise Team</a></div>
-                        <div class="button-bordered col-12 col-lg-auto button-box"><a class="rounded-10px w-100" href="#Use-Cases" target="_self">See Solutions by Industry</a></div>
+                        <div class="button-accent col-12 col-sm-auto button-box"><a class="rounded-10px w-100" href="#Benefits" target="_self">Speak to Our Enterprise Team</a></div>
+                        <div class="button-bordered col-12 col-sm-auto button-box"><a class="rounded-10px w-100" href="#Use-Cases" target="_self">See Solutions by Industry</a></div>
                     </div>
                 </div>
             </div>
