@@ -217,6 +217,11 @@
             font-size: 14px;
         }
     }
+    @media(max-width: 575px) {
+        .usp-bar {
+            font-size: 13px;
+        }
+    }
 
     /**end usp bar */
 
