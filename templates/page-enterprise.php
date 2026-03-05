@@ -524,6 +524,8 @@
     }
 
     /**end number-box-section-v2 */
+    /**responsive */
+
     @media(max-width: 767px) {
         .py-6 {
             padding-top: 3rem;
@@ -546,8 +548,11 @@
         }
     }
 
-    /**responsive */
     /**end responsive */
+
+    .hero .background-image.background-image img {
+        object-position: right center;
+    }
 </style>
 <?php
 get_template_part('template-parts/sections/section-hero');
