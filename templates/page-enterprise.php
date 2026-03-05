@@ -5,6 +5,10 @@
 ?>
 <?php get_header(); ?>
 <style>
+    .top-bar + .header {
+        margin: 0;
+    }
+
     :root {
         --accent-1: #0E1729;
         --accent-2: #0E1B35;
@@ -52,5 +56,6 @@
 <?php
 get_template_part('template-parts/sections/section-hero');
 get_template_part('template-parts/sections/section-usp');
+get_template_part('template-parts/sections/section-two-columns');
 ?>
 <?php get_footer(); ?>
