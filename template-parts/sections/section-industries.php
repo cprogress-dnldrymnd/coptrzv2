@@ -8,7 +8,7 @@
                 <p>Enterprise outcomes differ by environment, accountability and risk profile. DJI Enterprise delivers the strongest results when deployed with sector-specific intent.</p>
             </div>
 
-            <div class="row g-4 same-image-height row-global-post" style="--image-padding: 35%">
+            <div class="row g-4 same-image-height justify-content-center row-global-post" style="--image-padding: 35%">
                 <div class="col-lg-4 col-md-6">
                     <div class="inner image-animation-zoom content-margin">
                         <div class="image-box rounded-corner overflow-hidden">

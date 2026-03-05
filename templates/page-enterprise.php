@@ -509,6 +509,18 @@
     }
 
     /**end number-box-section-v2 */
+    @media(max-width: 767px) {
+        .py-6 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+         .my-6 {
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+    }
+    /**responsive */
+    /**end responsive */
 </style>
 <?php
 get_template_part('template-parts/sections/section-hero');
