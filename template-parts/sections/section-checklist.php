@@ -1,4 +1,4 @@
-<section class="checklist text-white bg-accent-2">
+<section class="checklist text-white bg-accent-2 py-6">
     <div class="container">
         <h2 class="heading-style">
             Who This Page Is Designed For
