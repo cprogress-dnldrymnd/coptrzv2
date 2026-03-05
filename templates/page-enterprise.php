@@ -219,7 +219,6 @@
         flex: clamp(30px, 4vw, 64px);
         border-radius: 5px;
         font-size: 22px;
-        flex: 0 0 64px;
 
         background-color: var(--light-2);
     }
@@ -453,50 +452,35 @@
     /**end logos */
 
     /**number-box-section-v2 */
-    .number-box-section-v2 {
-        
-    }
-       .number-box {
-        background: var(--light-1);
-        border-radius: 20px;
-        font-size: 28px;
-        padding: 22px clamp(20px, 2vw, 40px);
-        font-weight: 600;
-        color: var(--accent-2);
+
+    .number-box-section-v2 .number-box {
+        border-radius: 10px;
+        font-size: 18px;
+        padding: 20px;
+        font-weight: 500;
     }
 
 
 
-    .number-box .number {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: clamp(30px, 4vw, 64px);
-        height: clamp(30px, 4vw, 64px);
-        flex: clamp(30px, 4vw, 64px);
-        border-radius: 5px;
-        font-size: 22px;
-        flex: 0 0 64px;
-
-        background-color: var(--light-2);
+    .number-box-section-v2 .number-box .number {
+        width: clamp(30px, 2vw, 37px);
+        height: clamp(30px, 2vw, 37px);
+        flex: clamp(30px, 2vw, 37px);
+        font-size: 14px;
     }
 
     @media(max-width: 991px) {
         .number-box {
-            padding: 22px 30px;
-            font-size: 24px;
+            font-size: 16px;
         }
 
         .number-box .number {
-            font-size: 20px;
-        }
-
-        .number-box .number {
-            width: 50px;
-            height: 50px;
-            flex: 0 0 50px;
+            width: 30px;
+            height: 30px;
+            flex: 0 0 30px;
         }
     }
+
     /**end number-box-section-v2 */
 </style>
 <?php
