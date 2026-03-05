@@ -17,7 +17,7 @@
                             </a>
                         </div>
                         <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
-                                <h4 class="small-heading">Construction & Surveying</h4>
+                                <h4 class="fs-22 text-accent-2">Construction & Surveying</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
                                 <p>
@@ -35,7 +35,7 @@
                             </a>
                         </div>
                         <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
-                                <h4 class="small-heading">Construction & Surveying</h4>
+                                <h4 class="fs-22 text-accent-2">Construction & Surveying</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
                                 <p>
@@ -53,7 +53,7 @@
                             </a>
                         </div>
                         <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
-                                <h4 class="small-heading">Construction & Surveying</h4>
+                                <h4 class="fs-22 text-accent-2">Construction & Surveying</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
                                 <p>

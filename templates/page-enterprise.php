@@ -18,6 +18,9 @@
     }
 
     /**helpers */
+    .text-accent-2 {
+        color: #0E1B35;
+    }
 
     .bg-accent-1 {
         background-color: var(--accent-1);
@@ -64,6 +67,10 @@
 
     .fs-24 {
         font-size: 24px;
+    }
+
+    .fs-22 {
+        font-size: 22px;
     }
 
     .heading-style {
