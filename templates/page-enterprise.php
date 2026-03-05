@@ -92,5 +92,6 @@
 get_template_part('template-parts/sections/section-hero');
 get_template_part('template-parts/sections/section-usp');
 get_template_part('template-parts/sections/section-two-columns');
+get_template_part('template-parts/sections/section-number-box');
 ?>
 <?php get_footer(); ?>
