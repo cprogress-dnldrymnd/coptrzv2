@@ -437,7 +437,9 @@
         flex-direction: column;
         justify-content: space-between;
     }
-
+    .testimonial-v2 .swiper-nav {
+        display: flex !important;
+    }
     /**end testimonial-v2 */
 
     /**logos */
