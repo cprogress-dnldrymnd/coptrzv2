@@ -177,7 +177,7 @@
 
     /**guides */
 
-    .guides-wrapper .guide-link {
+    .guides-wrapper .guide-item {
         opacity: 0.5;
         color: inherit;
         text-decoration: none;
