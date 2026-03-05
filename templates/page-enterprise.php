@@ -114,6 +114,7 @@
         .number-box .number {
             width: 50px;
             height: 50px;
+            flex: 0 0 50px;
         }
     }
 
