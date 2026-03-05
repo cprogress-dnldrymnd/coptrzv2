@@ -1,13 +1,13 @@
 <section class="cta--section cta-simple text-white my-6">
     <div class="container">
-        <div class="container-wrapper position-relative sm-padding background-primary rounded overflow-hidden" style="--bs-border-radius: 20px">
-            <div class="inner position-relative small-width">
+        <div class="container-wrapper position-relative sm-padding bg-primary rounded overflow-hidden" style="--bs-border-radius: 20px">
+            <div class="inner position-relative ">
                 <div class="row g-3 justify-content-between">
                     <div class="col-lg-7">
                         <h2 class="fs-24">
                             Coptrz DJI Learning Center
                         </h2>
-                        <div class="desc-box mb-4">
+                        <div class="desc-box">
                             <p>Enterprise adoption succeeds when teams are confident, consistent and supported early. Our Learning Center exists to reduce ramp-up time, align stakeholders and help DJI Enterprise systems deliver outcomes faster through practical guidance and real-world deployment insight.</p>
                         </div>
                     </div>
