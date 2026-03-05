@@ -20,6 +20,8 @@
     }
 
     /**helpers */
+
+
     .swiper--style-v2 .swiper-pagination {
         background-color: transparent;
         border-radius: 0;
@@ -159,6 +161,10 @@
     }
 
     @media(min-width: 992px) {
+        h1.large-heading {
+            font-size: 60px;
+        }
+
         h2 {
             font-size: 38px;
         }
