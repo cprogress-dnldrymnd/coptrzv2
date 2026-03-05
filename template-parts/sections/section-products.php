@@ -11,7 +11,7 @@ $post_ids = [372804, 372813, 372840, 372842, 373370];
             </div>
             <h3 class="text-accent mb-4">Featured DJI Enterprise Products</h3>
             <div class="swiper-holder">
-                <div class="swiper swiper-linked-products" id="swiper---products">
+                <div class="swiper swiper-linked-products swiper--style-v2" id="swiper---products">
                     <div class="swiper-wrapper">
 
                         <?php foreach ($post_ids as $post_id) {
