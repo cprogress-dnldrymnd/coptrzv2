@@ -316,9 +316,19 @@
 
     }
 
-    .swiper--style-v2 .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
-        background-color: rgba(255, 255, 255, 1);;
+    .swiper--style-v2-dark .swiper-pagination .swiper-pagination-bullet {
+        --swiper-pagination-bullet-inactive-color: rgba(0, 0, 0, 0.5);
     }
+
+    .swiper--style-v2 .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    .swiper--style-v2-dark .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background-color: rgba(0, 0, 0, 1);
+    }
+
+
     /**end case-studies */
 </style>
 <?php
