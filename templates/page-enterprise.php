@@ -31,6 +31,10 @@
         padding-bottom: 20px;
     }
 
+    .no-overlay:before {
+        display: none;
+    }
+
     /**end helpers */
 
     /**usp bar */
