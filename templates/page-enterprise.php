@@ -157,7 +157,7 @@
         max-width: 400px;
         height: 4px;
         margin-bottom: 20px;
-        background: transparent linear-gradient(270deg, var(--accent-4) 0%, var(--accent-5) 100%) 0% 0% no-repeat padding-box;
+        background: transparent linear-gradient(270deg, var(--accent-4) 0%, var(--accent-5) 100%) 0% 0%;
     }
 
     @media (min-width: 1440px) {
@@ -427,7 +427,7 @@
     }
 
     .testimonial-v2 .swiper-inner {
-        background: transparent linear-gradient(142deg, #132956 0%, #0E1B35 100%) 0% 0% no-repeat padding-box;
+        background: transparent linear-gradient(142deg, #132956 0%, #0E1B35 100%) 0% 0%;
         border-radius: 10px;
         padding: 30px;
     }
