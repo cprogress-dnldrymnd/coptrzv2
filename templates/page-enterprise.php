@@ -65,6 +65,7 @@
         content: '';
         display: block;
         width: 80%;
+        max-width: 400px;
         height: 4px;
         margin-bottom: 20px;
         background: transparent linear-gradient(270deg, var(--accent-4) 0%, var(--accent-5) 100%) 0% 0% no-repeat padding-box;
@@ -171,6 +172,7 @@
         height: 23px;
         flex: 0 0 23px;
     }
+
     /**end checklist */
 </style>
 <?php
