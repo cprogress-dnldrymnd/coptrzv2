@@ -86,7 +86,7 @@
         background: var(--light-1);
         border-radius: 20px;
         font-size: 28px;
-        padding: 22px clamp(20px, 2vw, 40px);;
+        padding: 22px clamp(20px, 2vw, 40px);
         font-weight: 600;
     }
 
@@ -104,6 +104,17 @@
         flex: 0 0 64px;
 
         background-color: var(--light-2);
+    }
+
+    @media(max-width: 991px) {
+        .number-box {
+            padding: 22px 30px;
+        }
+
+        .number-box .number {
+            width: 50px;
+            height: 50px;
+        }
     }
 
     @media(min-width: 992px) {
