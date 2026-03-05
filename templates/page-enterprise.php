@@ -220,7 +220,7 @@
 
     .guide-item-left .image-box {
         flex: 0 0 96px;
-        width: 0 0 96px;
+        width: 96px;
         border-radius: 10px;
         overflow: hidden;
     }
