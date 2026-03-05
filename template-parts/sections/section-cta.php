@@ -8,7 +8,7 @@
             <div class="desc-box mb-4">
                 <p>When DJI Enterprise is deployed correctly, operational outcomes improve quickly and measurably. These examples show how UK organisations have reduced risk, improved efficiency and delivered better results with Coptrz.</p>
             </div>
-            <div class="button-accent col-auto button-box text-center mt-5"><a class="rounded-10px " href="#Benefits" target="_self">Explore Solutions by Industry</a></div>
+            <div class="button-accent col-auto button-box  mt-5"><a class="rounded-10px " href="#Benefits" target="_self">Explore Solutions by Industry</a></div>
         </div>
     </div>
 </section>
