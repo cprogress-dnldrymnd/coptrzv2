@@ -16,7 +16,7 @@
                                 <img src="https://coptrz.com/wp-content/uploads/2026/03/Construction-surveying.png" alt="">
                             </a>
                         </div>
-                        <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
+                        <div class="content-box content-margin"><a class="text-inherit text-decoration-none" href="#" target="_self">
                                 <h4 class="fs-22 fw-semibold text-accent-2">Construction & Surveying</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
@@ -34,7 +34,7 @@
                                 <img src="https://coptrz.com/wp-content/uploads/2026/03/Asset-Integrity-Inspection.png" alt="">
                             </a>
                         </div>
-                        <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
+                        <div class="content-box content-margin"><a class="text-inherit text-decoration-none" href="#" target="_self">
                                 <h4 class="fs-22 fw-semibold text-accent-2">Asset Integrity & Inspection</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
@@ -52,7 +52,7 @@
                                 <img src="https://coptrz.com/wp-content/uploads/2026/03/Public-Safety-and-Emergency-Services.png" alt="">
                             </a>
                         </div>
-                        <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
+                        <div class="content-box content-margin"><a class="text-inherit text-decoration-none" href="#" target="_self">
                                 <h4 class="fs-22 fw-semibold text-accent-2">Public Safety and Emergency Services</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
