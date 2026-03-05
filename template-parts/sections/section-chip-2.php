@@ -65,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="button-accent col-auto button-box mt-5 d-block d-lg-none"><a class="rounded-10px " href="#Benefits" target="_self">Speak to Our Enterprise Team</a></div>
+            <div class="button-accent col-auto button-box mt-5 d-block d-lg-none text-center"><a class="rounded-10px " href="#Benefits" target="_self">Speak to Our Enterprise Team</a></div>
 
         </div>
     </div>
