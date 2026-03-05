@@ -86,7 +86,7 @@
         transform: scale(1.1);
     }
 
-    .heading-style {
+    h2 {
         display: inline-block;
         margin-bottom: 20px;
         font-weight: 600;
