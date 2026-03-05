@@ -57,7 +57,7 @@
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
                                 <p>
-                                    Public Safety and Emergency Services
+                                    Gain rapid situational awareness, trusted thermal intelligence and safer response workflows in time-critical environments.
                                 </p>
                             </div>
                         </div>
