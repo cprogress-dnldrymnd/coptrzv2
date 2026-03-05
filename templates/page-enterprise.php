@@ -402,6 +402,49 @@
     }
 
     /**end testimonial-v2 */
+
+    /**logos */
+    .logos {
+        background: #fff;
+        color: var(--accent-2);
+        padding: 18px 0 10px;
+    }
+
+    .logos .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: nowrap;
+    }
+
+    .logos .label {
+        font-weight: 800;
+        letter-spacing: -.01em;
+        white-space: nowrap;
+    }
+
+    .logo-row {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        flex-wrap: wrap;
+        opacity: .95
+    }
+
+    .logo-row .dd-marquee-container {
+        width: 800px;
+    }
+
+    .logo-row.logo-row.logo-row img {
+        height: 28px;
+        width: auto;
+        filter: grayscale(1);
+        opacity: .88;
+        border: none !important
+    }
+
+    /**end logos */
 </style>
 <?php
 get_template_part('template-parts/sections/section-hero');
