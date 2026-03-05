@@ -5,10 +5,7 @@
 ?>
 <?php get_header(); ?>
 <style>
-    .top-bar+.header {
-        margin: 0;
-    }
-
+  
     :root {
         --accent-1: #0E1729;
         --accent-2: #0E1B35;
