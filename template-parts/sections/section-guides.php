@@ -34,6 +34,78 @@
                             </div>
                         </a>
                     </div>
+                    <div class="guide-item-holder">
+                        <a href="#" class="guide-item d-flex align-items-center gap-4">
+                            <div class="guide-item-left d-flex align-items-center gap-4">
+                                <div class="image-box">
+                                    <img src="https://coptrz.com/wp-content/uploads/2026/03/DJI-Matrice-400-UK-Buyers-Guide-Thumbnail.png" alt="">
+                                </div>
+                            </div>
+                            <div class="guide-item-right gap-3 flex-column flex-lg-row flex-grow-1 d-flex justify-content-between align-items-start align-items-lg-center">
+                                <div class="guide-name">DJI Matrice 400 UK Buyer's Guide</div>
+                                <span class="guide-link d-inline-flex align-items-center gap-2">
+                                    <span>Access Guide</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
+                                        <g id="arrow" opacity="0.5">
+                                            <g id="Dribbble-Light-Preview" transform="translate(-300 -6643)">
+                                                <g id="icons" transform="translate(56 160)">
+                                                    <path id="arrow_right-_346_" data-name="arrow_right-[#346]" d="M264,6488.27l-5.657-5.27-1.414,1.22,3.243,3.01H244v1.95h16.172l-3.243,3.35,1.414,1.47Z" fill="currentColor" fill-rule="evenodd" />
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="guide-item-holder">
+                        <a href="#" class="guide-item d-flex align-items-center gap-4">
+                            <div class="guide-item-left d-flex align-items-center gap-4">
+                                <div class="image-box">
+                                    <img src="https://coptrz.com/wp-content/uploads/2026/03/DJI-Matrice-400-UK-Buyers-Guide-Thumbnail.png" alt="">
+                                </div>
+                            </div>
+                            <div class="guide-item-right gap-3 flex-column flex-lg-row flex-grow-1 d-flex justify-content-between align-items-start align-items-lg-center">
+                                <div class="guide-name">DJI Matrice 400 UK Buyer's Guide</div>
+                                <span class="guide-link d-inline-flex align-items-center gap-2">
+                                    <span>Access Guide</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
+                                        <g id="arrow" opacity="0.5">
+                                            <g id="Dribbble-Light-Preview" transform="translate(-300 -6643)">
+                                                <g id="icons" transform="translate(56 160)">
+                                                    <path id="arrow_right-_346_" data-name="arrow_right-[#346]" d="M264,6488.27l-5.657-5.27-1.414,1.22,3.243,3.01H244v1.95h16.172l-3.243,3.35,1.414,1.47Z" fill="currentColor" fill-rule="evenodd" />
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="guide-item-holder">
+                        <a href="#" class="guide-item d-flex align-items-center gap-4">
+                            <div class="guide-item-left d-flex align-items-center gap-4">
+                                <div class="image-box">
+                                    <img src="https://coptrz.com/wp-content/uploads/2026/03/DJI-Matrice-400-UK-Buyers-Guide-Thumbnail.png" alt="">
+                                </div>
+                            </div>
+                            <div class="guide-item-right gap-3 flex-column flex-lg-row flex-grow-1 d-flex justify-content-between align-items-start align-items-lg-center">
+                                <div class="guide-name">DJI Matrice 400 UK Buyer's Guide</div>
+                                <span class="guide-link d-inline-flex align-items-center gap-2">
+                                    <span>Access Guide</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
+                                        <g id="arrow" opacity="0.5">
+                                            <g id="Dribbble-Light-Preview" transform="translate(-300 -6643)">
+                                                <g id="icons" transform="translate(56 160)">
+                                                    <path id="arrow_right-_346_" data-name="arrow_right-[#346]" d="M264,6488.27l-5.657-5.27-1.414,1.22,3.243,3.01H244v1.95h16.172l-3.243,3.35,1.414,1.47Z" fill="currentColor" fill-rule="evenodd" />
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
