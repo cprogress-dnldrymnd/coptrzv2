@@ -12,11 +12,11 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="post-box column-holder position-relative overflow-hidden h-100 content-margin style-1">
                         <div class="image-box rounded-corner overflow-hidden">
-                            <a class="text-inherit text-decoration-none" href="https://coptrz.com/guides/surveying-construction-drone-guide-calculator-2/" target="_self">
+                            <a class="text-inherit text-decoration-none" href="#" target="_self">
                                 <img src="https://coptrz.com/wp-content/uploads/2026/03/Construction-surveying.png" alt="">
                             </a>
                         </div>
-                        <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="https://coptrz.com/guides/surveying-construction-drone-guide-calculator-2/" target="_self">
+                        <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
                                 <h4 class="small-heading">Construction & Surveying</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
@@ -30,11 +30,11 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="post-box column-holder position-relative overflow-hidden h-100 content-margin style-1">
                         <div class="image-box rounded-corner overflow-hidden">
-                            <a class="text-inherit text-decoration-none" href="https://coptrz.com/guides/surveying-construction-drone-guide-calculator-2/" target="_self">
+                            <a class="text-inherit text-decoration-none" href="#" target="_self">
                                 <img src="https://coptrz.com/wp-content/uploads/2026/03/Construction-surveying.png" alt="">
                             </a>
                         </div>
-                        <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="https://coptrz.com/guides/surveying-construction-drone-guide-calculator-2/" target="_self">
+                        <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
                                 <h4 class="small-heading">Construction & Surveying</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
@@ -48,11 +48,11 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="post-box column-holder position-relative overflow-hidden h-100 content-margin style-1">
                         <div class="image-box rounded-corner overflow-hidden">
-                            <a class="text-inherit text-decoration-none" href="https://coptrz.com/guides/surveying-construction-drone-guide-calculator-2/" target="_self">
+                            <a class="text-inherit text-decoration-none" href="#" target="_self">
                                 <img src="https://coptrz.com/wp-content/uploads/2026/03/Construction-surveying.png" alt="">
                             </a>
                         </div>
-                        <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="https://coptrz.com/guides/surveying-construction-drone-guide-calculator-2/" target="_self">
+                        <div class="content-box content-margin  px-20px pb-20px"><a class="text-inherit text-decoration-none" href="#" target="_self">
                                 <h4 class="small-heading">Construction & Surveying</h4>
                             </a>
                             <div class="description-box small-text excerpt-no-limit mb-0__related_posts">
