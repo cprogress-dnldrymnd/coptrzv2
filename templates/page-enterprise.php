@@ -34,6 +34,11 @@
         padding-bottom: 20px;
     }
 
+    .my-6 {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
     .no-overlay:before {
         display: none;
     }
@@ -54,6 +59,11 @@
     @media(min-width: 992px) {
         .heading-style {
             font-size: 38px;
+        }
+
+        .my-6 {
+            margin-top: 5rem;
+            margin-bottom: 5rem;
         }
     }
 
@@ -78,6 +88,7 @@
         font-size: 28px;
         padding: 22px 40px;
     }
+
     .number-box .number {
         display: flex;
         align-items: center;
@@ -89,6 +100,7 @@
         font-weight: 600;
         background-color: var(--light-2);
     }
+
     /**end number-box-section */
 </style>
 <?php
