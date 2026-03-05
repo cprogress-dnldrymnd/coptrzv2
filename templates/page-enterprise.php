@@ -86,7 +86,7 @@
         background: var(--light-1);
         border-radius: 20px;
         font-size: 28px;
-        padding: 22px 40px;
+        padding: 22px clamp(20px, 2vw, 40px);;
         font-weight: 600;
     }
 
@@ -96,10 +96,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 64px;
-        height: 64px;
+        width: clamp(30px, 4vw, 64px);
+        height: clamp(30px, 4vw, 64px);
+        flex: clamp(30px, 4vw, 64px);
         border-radius: 5px;
         font-size: 22px;
+        flex: 0 0 64px;
 
         background-color: var(--light-2);
     }
