@@ -401,8 +401,6 @@
         justify-content: space-between;
     }
 
-
-
     /**end testimonial-v2 */
 </style>
 <?php
@@ -419,5 +417,6 @@ get_template_part('template-parts/sections/section-case-study');
 get_template_part('template-parts/sections/section-products');
 get_template_part('template-parts/sections/section-cta-simple');
 get_template_part('template-parts/sections/section-testimonials');
+get_template_part('template-parts/sections/section-logos');
 ?>
 <?php get_footer(); ?>
