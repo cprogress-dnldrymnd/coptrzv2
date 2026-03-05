@@ -86,7 +86,8 @@
             padding-top: 5rem;
             padding-bottom: 5rem;
         }
-         .w-lg-auto {
+
+        .w-lg-auto {
             width: auto !important;
         }
     }
@@ -216,6 +217,16 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding-bottom: 30px;
     }
+
+    .guide-item-left .image-box {
+        flex: 0 0 96px;
+        width: 0 0 96px;
+    }
+
+    .guide-item-left .image-box img {
+        aspect-ratio: 1/1;
+    }
+
 
     @media(max-width: 767px) {
         .guide-item-right {
