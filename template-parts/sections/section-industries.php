@@ -1,4 +1,4 @@
-<section class="industries bg-light-3">
+<section class="industries bg-light-3 py-6">
     <div class="container">
         <div class="container-wrapper">
             <h2 class="heading-style">
