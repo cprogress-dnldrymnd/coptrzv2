@@ -406,7 +406,6 @@
     /**logos */
     .logos {
         background: #fff;
-        padding: 18px 0 10px;
     }
 
     .logos .wrap {
