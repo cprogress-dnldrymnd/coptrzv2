@@ -1,4 +1,4 @@
-<section class="testimonial-v2">
+<section class="testimonial-v2 my-6">
     <div class="container">
         <div class="container-wrapper">
             <div class="row g-3 justify-content-between mb-5">
