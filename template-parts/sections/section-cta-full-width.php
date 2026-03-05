@@ -1,4 +1,4 @@
-<section class="cta--section cta-simple bg-accent text-white py-6">
+<section class="cta--section cta-simple bg-accent text-white py-5">
     <div class="container">
         <div class="container-wrapper">
             <div class="inner">
