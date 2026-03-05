@@ -360,6 +360,9 @@
         font-size: 18px !important;
     }
 
+     .products-section.products-section .product-btn {
+        width: 100%;
+    }
 
     /**end products-section */
 </style>
