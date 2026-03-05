@@ -9,7 +9,7 @@
         <div class="guides-wrapper">
             <h3 class="text-accent">Decision Resources</h3>
             <div class="guides-items">
-                <div class="guide-item d-flex align-items-center justify-content-between gap-4">
+                <div class="guide-item d-flex align-items-center justify-content-between gap-4 flex-column flex-sm-row">
                     <div class="guide-item-left d-flex align-items-center gap-4">
                         <div class="image-box">
                             <img src="https://coptrz.com/wp-content/uploads/2026/03/DJI-Matrice-400-UK-Buyers-Guide-Thumbnail.png" alt="">
