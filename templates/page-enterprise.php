@@ -90,24 +90,7 @@
         font-weight: 600;
     }
 
-    .number-box-section .number-box-wrapper {
-        position: relative;
-    }
 
-    .number-box-section .number-box-wrapper>div {
-        position: relative;
-    }
-
-    .number-box-section .number-box-wrapper:before {
-        content: '';
-        height: 1px;
-        background-color: var(--accent-2);
-        width: 95%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 
     .number-box .number {
         display: flex;
@@ -119,6 +102,27 @@
         font-size: 22px;
 
         background-color: var(--light-2);
+    }
+
+    @media(min-width: 992px) {
+        .number-box-section .number-box-wrapper {
+            position: relative;
+        }
+
+        .number-box-section .number-box-wrapper>div {
+            position: relative;
+        }
+
+        .number-box-section .number-box-wrapper:before {
+            content: '';
+            height: 1px;
+            background-color: var(--accent-2);
+            width: 95%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 
     /**end number-box-section */
