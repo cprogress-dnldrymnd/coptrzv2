@@ -502,5 +502,6 @@ get_template_part('template-parts/sections/section-checklist-light');
 get_template_part('template-parts/sections/section-chip-2');
 get_template_part('template-parts/sections/section-number-box-2');
 get_template_part('template-parts/sections/section-chip-3');
+get_template_part('template-parts/sections/section-cta-full-width');
 ?>
 <?php get_footer(); ?>
