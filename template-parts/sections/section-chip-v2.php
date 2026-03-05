@@ -15,26 +15,49 @@
                     <div class="button-accent col-auto button-box"><a class="rounded-10px " href="#Benefits" target="_self">Speak to Our Enterprise Team</a></div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="chip">
+                    <div class="chip" style="--border-color: #2DA1FF; --text-color: #FFFFFF">
                         <div class="row g-3">
                             <div class="col-lg-6">
                                 <div class="inner medium-text">
-                                    <p>Selecting products without considering long-term support and servicing</p>
+                                    <p>Trusted by over <span class="fw-semibold">12,000 operators</span></p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="inner medium-text">
-                                    <p>Underestimating training, handover, and internal competence requirements</p>
+                                    <p><span class="fw-semibold">4.9 ★ average rating</span> at scale</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="inner medium-text">
+                                    <p>UK-based technical and operational experts</span></p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="inner medium-text">
-                                    <p>Treating remote operations as a hardware feature rather than a system</p>
+                                    <p><span class="fw-semibold">Established UK fulfilment and support infrastructure</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="inner medium-text">
+                                    <p><span class="fw-semibold">Coptrz Academy</span> ensuring operator competence and continuity</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="inner medium-text">
-                                    <p>Discovering governance or compliance gaps after deployment</p>
+                                    <p><span class="fw-semibold">DJI Certified Service Centre</span> </p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="inner medium-text">
+                                    <p>Proven delivery across critical national infrastructure, defence and public safety sectors</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="inner medium-text">
+                                    <p>Over a decade of commercial drone operations experience</p>
                                 </div>
                             </div>
                         </div>
