@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div class="col-auto">
-                        <div class="button-accent col-auto button-box  mt-5"><a class="rounded-10px " href="#Benefits" target="_self">Explore Solutions by Industry</a></div>
+                        <div class="button-accent col-auto button-box  mt-5"><a class="rounded-10px " href="#Benefits" target="_self">Visit Learning Centre</a></div>
                     </div>
                 </div>
             </div>

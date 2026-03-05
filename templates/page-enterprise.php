@@ -379,5 +379,6 @@ get_template_part('template-parts/sections/section-industries');
 get_template_part('template-parts/sections/section-cta');
 get_template_part('template-parts/sections/section-case-study');
 get_template_part('template-parts/sections/section-products');
+get_template_part('template-parts/sections/section-cta-simple');
 ?>
 <?php get_footer(); ?>
