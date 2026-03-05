@@ -5,22 +5,22 @@
            
             <div class="row g-3">
                 <div class="col-lg-6">
-                    <div class="inner medium-text">
+                    <div class="inner medium-text text-center">
                         <p>We don't recommend products that don't fit your operational risk</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="inner medium-text">
+                    <div class="inner medium-text text-center">
                         <p>We don't push hardware without deployment support</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="inner medium-text">
+                    <div class="inner medium-text text-center">
                         <p>We don't disappear after delivery</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="inner medium-text">
+                    <div class="inner medium-text text-center">
                         <p>We don’t oversell specifications without validating real-world performance</p>
                     </div>
                 </div>
