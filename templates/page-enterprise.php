@@ -216,10 +216,9 @@
         justify-content: center;
         width: clamp(30px, 4vw, 64px);
         height: clamp(30px, 4vw, 64px);
-        flex: clamp(30px, 4vw, 64px);
         border-radius: 5px;
         font-size: 22px;
-
+        padding: 10px;
         background-color: var(--light-2);
     }
 
@@ -465,8 +464,8 @@
     .number-box-section-v2 .number-box .number {
         width: clamp(30px, 2vw, 37px);
         height: clamp(30px, 2vw, 37px);
-        flex: clamp(30px, 2vw, 37px);
         font-size: 14px;
+        padding: 5px;;
     }
 
     @media(max-width: 991px) {
