@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                             <div class="guide-item-right gap-3 flex-column flex-lg-row flex-grow-1 d-flex justify-content-between align-items-start align-items-lg-center">
-                                <div class="guide-name">DJI Matrice 400 UK Buyer's Guide</div>
+                                <div class="guide-name text-left">DJI Matrice 400 UK Buyer's Guide</div>
                                 <span class="guide-link d-inline-flex align-items-center gap-2">
                                     <span>Access Guide</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="guide-item-right gap-3 flex-column flex-lg-row flex-grow-1 d-flex justify-content-between align-items-start align-items-lg-center">
-                                <div class="guide-name">DJI Matrice 400 UK Buyer's Guide</div>
+                                <div class="guide-name text-left">DJI Matrice 400 UK Buyer's Guide</div>
                                 <span class="guide-link d-inline-flex align-items-center gap-2">
                                     <span>Access Guide</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="guide-item-right gap-3 flex-column flex-lg-row flex-grow-1 d-flex justify-content-between align-items-start align-items-lg-center">
-                                <div class="guide-name">DJI Matrice 400 UK Buyer's Guide</div>
+                                <div class="guide-name text-left">DJI Matrice 400 UK Buyer's Guide</div>
                                 <span class="guide-link d-inline-flex align-items-center gap-2">
                                     <span>Access Guide</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                             <div class="guide-item-right gap-3 flex-column flex-lg-row flex-grow-1 d-flex justify-content-between align-items-start align-items-lg-center">
-                                <div class="guide-name">DJI Matrice 400 UK Buyer's Guide</div>
+                                <div class="guide-name text-left">DJI Matrice 400 UK Buyer's Guide</div>
                                 <span class="guide-link d-inline-flex align-items-center gap-2">
                                     <span>Access Guide</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
