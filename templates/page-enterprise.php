@@ -90,6 +90,14 @@
         background-color: var(--accent-7);
     }
 
+    .bg-light-1 {
+        background-color: var(--light-1);
+    }
+
+    .bg-light-2 {
+        background-color: var(--light-2);
+    }
+
     .bg-light-3 {
         background-color: var(--light-3);
     }
@@ -449,7 +457,7 @@ get_template_part('template-parts/sections/section-hero');
 get_template_part('template-parts/sections/section-usp');
 get_template_part('template-parts/sections/section-two-columns');
 get_template_part('template-parts/sections/section-number-box');
-get_template_part('template-parts/sections/section-checklist');
+get_template_part('template-parts/sections/section-checklist-dark');
 get_template_part('template-parts/sections/section-guides');
 get_template_part('template-parts/sections/section-chip');
 get_template_part('template-parts/sections/section-industries');
@@ -459,5 +467,6 @@ get_template_part('template-parts/sections/section-products');
 get_template_part('template-parts/sections/section-cta-simple');
 get_template_part('template-parts/sections/section-testimonials');
 get_template_part('template-parts/sections/section-logos');
+get_template_part('template-parts/sections/section-checklist-light');
 ?>
 <?php get_footer(); ?>
