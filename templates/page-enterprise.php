@@ -333,7 +333,7 @@
 
 
     /** products-section */
-    .products-section.products-section h2 {
+    .products-section.products-section .woocommerce-loop-product__title.woocommerce-loop-product__title {
         font-size: 38px;
         margin-top: 20px;
     }
