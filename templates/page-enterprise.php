@@ -433,7 +433,7 @@
     }
 
     .logo-row .dd-marquee-container {
-        width: 800px;
+        overflow: hidden;
     }
 
     .logo-row.logo-row.logo-row img {
