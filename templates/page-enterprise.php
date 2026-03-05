@@ -259,6 +259,13 @@
         }
     }
 
+    @media(max-width: 767px) {
+        .number-box {
+            font-size: 20px;
+
+        }
+    }
+
     @media(min-width: 992px) {
         .number-box-section .number-box-wrapper {
             position: relative;
@@ -443,9 +450,11 @@
         flex-direction: column;
         justify-content: space-between;
     }
+
     .testimonial-v2 .swiper-nav {
         display: flex !important;
     }
+
     /**end testimonial-v2 */
 
     /**logos */
@@ -522,11 +531,23 @@
             padding-top: 3rem;
             padding-bottom: 3rem;
         }
-         .my-6 {
+
+        .my-6 {
             margin-top: 3rem;
             margin-bottom: 3rem;
         }
+
+        h2 {
+            font-size: 30px;
+        }
     }
+
+    @media(max-width: 575px) {
+        h2 {
+            font-size: 28px;
+        }
+    }
+
     /**responsive */
     /**end responsive */
 </style>
