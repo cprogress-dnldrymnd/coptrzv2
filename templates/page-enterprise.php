@@ -303,6 +303,7 @@
         padding: 0;
         display: flex;
         gap: 10px;
+        justify-content: center;
     }
 
     .swiper--style-v2 .swiper-pagination .swiper-pagination-bullet {
@@ -313,6 +314,7 @@
         --swiper-pagination-bullet-inactive-opacity: 1;
         opacity: 1;
         flex: unset;
+        border-radius: 0;
 
     }
 
