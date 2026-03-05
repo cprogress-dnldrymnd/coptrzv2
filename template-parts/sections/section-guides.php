@@ -17,7 +17,7 @@
                                     <img src="https://coptrz.com/wp-content/uploads/2026/03/DJI-Matrice-400-UK-Buyers-Guide-Thumbnail.png" alt="">
                                 </div>
                             </div>
-                            <div class="guide-item-right flex-grow-1 d-flex justify-content-between align-items-center">
+                            <div class="guide-item-right gap-3 flex-column flex-lg-row flex-grow-1 d-flex justify-content-between align-items-start align-items-lg-center">
                                 <div class="guide-name">DJI Matrice 400 UK Buyer's Guide</div>
                                 <span class="guide-link d-inline-flex align-items-center gap-2">
                                     <span>Access Guide</span>
