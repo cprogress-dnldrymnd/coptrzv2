@@ -109,6 +109,11 @@
     @media(max-width: 991px) {
         .number-box {
             padding: 22px 30px;
+            font-size: 24px;
+        }
+
+        .number-box .number {
+            font-size: 20px;
         }
 
         .number-box .number {
