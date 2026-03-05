@@ -428,6 +428,7 @@
     .testimonial-v2 #testimonial-slider .icon-box svg {
         height: 18px;
         width: auto;
+        transform: none;
     }
 
     .testimonial-v2 #testimonial-slider .post-title {
