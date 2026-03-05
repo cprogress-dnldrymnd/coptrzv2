@@ -9,7 +9,7 @@
             </div>
 
             <div class="row g-4 same-image-height row-global-post" style="--image-padding: 35%">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="post-box column-holder position-relative overflow-hidden h-100 content-margin style-1">
                         <div class="image-box rounded-corner overflow-hidden">
                             <a class="text-inherit text-decoration-none" href="#" target="_self">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="post-box column-holder position-relative overflow-hidden h-100 content-margin style-1">
                         <div class="image-box rounded-corner overflow-hidden">
                             <a class="text-inherit text-decoration-none" href="#" target="_self">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="post-box column-holder position-relative overflow-hidden h-100 content-margin style-1">
                         <div class="image-box rounded-corner overflow-hidden">
                             <a class="text-inherit text-decoration-none" href="#" target="_self">
