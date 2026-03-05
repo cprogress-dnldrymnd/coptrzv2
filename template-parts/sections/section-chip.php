@@ -2,8 +2,8 @@
     <div class="container">
         <div class="container-wrapper">
             <div class="heading-style">Common DJI Enterprise Mistakes We Help Organisations Avoid</div>
-            <div class="desc-box fw-semibold fs-24">
-                <h3>Experience shows that most deployment issues are avoidable with the right guidance early on.</h3>
+            <div class="desc-box fw-semibold mb-5">
+                <h3 class="">Experience shows that most deployment issues are avoidable with the right guidance early on.</h3>
             </div>
             <div class="row g-3">
                 <div class="col-lg-6">
