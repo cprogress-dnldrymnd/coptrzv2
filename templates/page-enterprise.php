@@ -456,6 +456,47 @@
     .number-box-section-v2 {
         
     }
+       .number-box {
+        background: var(--light-1);
+        border-radius: 20px;
+        font-size: 28px;
+        padding: 22px clamp(20px, 2vw, 40px);
+        font-weight: 600;
+        color: var(--accent-2);
+    }
+
+
+
+    .number-box .number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(30px, 4vw, 64px);
+        height: clamp(30px, 4vw, 64px);
+        flex: clamp(30px, 4vw, 64px);
+        border-radius: 5px;
+        font-size: 22px;
+        flex: 0 0 64px;
+
+        background-color: var(--light-2);
+    }
+
+    @media(max-width: 991px) {
+        .number-box {
+            padding: 22px 30px;
+            font-size: 24px;
+        }
+
+        .number-box .number {
+            font-size: 20px;
+        }
+
+        .number-box .number {
+            width: 50px;
+            height: 50px;
+            flex: 0 0 50px;
+        }
+    }
     /**end number-box-section-v2 */
 </style>
 <?php
