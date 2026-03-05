@@ -9,7 +9,7 @@
             </p>
         </div>
         <div class="row fw-medium g-3">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="inner rounded p-3 bg-accent-5 d-flex gap-3 align-items-start medium-text">
                     <svg xmlns="http://www.w3.org/2000/svg" id="Tick" width="22.5" height="22.5" viewBox="0 0 22.5 22.5">
                         <circle id="Ellipse_39" data-name="Ellipse 39" cx="9" cy="9" r="9" transform="translate(2 2)" fill="#fff" />

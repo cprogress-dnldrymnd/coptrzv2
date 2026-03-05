@@ -164,6 +164,14 @@
     }
 
     /**end number-box-section */
+
+    /**checklist */
+    .checklist .inner svg {
+        width: 23px;
+        height: 23px;
+        flex: 0 0 23px;
+    }
+    /**end checklist */
 </style>
 <?php
 get_template_part('template-parts/sections/section-hero');
