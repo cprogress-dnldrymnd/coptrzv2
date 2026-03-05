@@ -179,10 +179,9 @@
     .guides-wrapper .guide-name,
     .guides-wrapper .guide-link {
         opacity: 0.5;
-    }
-
-    .guides-wrapper .guide-link {
         color: inherit;
+        text-decoration: none;
+
     }
 
     .guides-wrapper .guide-item:hover {
