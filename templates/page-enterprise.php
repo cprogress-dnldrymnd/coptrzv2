@@ -206,6 +206,12 @@
         color: var(--accent-4);
     }
 
+    @media(max-width: 767px) {
+        .usp-bar {
+            font-size: 14px;
+        }
+    }
+
     /**end usp bar */
 
     /**number-box-section */
