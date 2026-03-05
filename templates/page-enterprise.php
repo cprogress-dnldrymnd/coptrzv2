@@ -356,11 +356,10 @@
         object-fit: cover;
     }
 
-    @media(min-width: 992px) {
-        .products-section.products-section .woocommerce-loop-product__title.woocommerce-loop-product__title {
-            font-size: 38px !important;
-        }
+    .products-section.products-section .woocommerce-loop-product__title.woocommerce-loop-product__title {
+        font-size: 18px !important;
     }
+
 
     /**end products-section */
 </style>
