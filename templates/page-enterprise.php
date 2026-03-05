@@ -76,6 +76,7 @@
         background: var(--light-1);
         border-radius: 20px;
         font-size: 28px;
+        padding: 22px 40px;
     }
     .number-box .number {
         display: flex;
@@ -85,6 +86,8 @@
         height: 64px;
         border-radius: 5px;
         font-size: 22px;
+        font-weight: 600;
+        background-color: var(--light-2);
     }
     /**end number-box-section */
 </style>
