@@ -56,7 +56,9 @@
     .no-overlay:before {
         display: none;
     }
-
+    .fs-24 {
+        font-size: 24px;
+    }
     .heading-style {
         display: inline-block;
         margin-bottom: 20px;
