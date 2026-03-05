@@ -7,7 +7,14 @@ echo ____post_grid_module(array(
     'number_of_slides_mobile' => 1,
     'post_grid_id'            => 'testimonial-slider',
     'post_elements'           => array(
-      
+        array(
+            "_type"             => "icon",
+            "icon"              => "417802",
+            "icon_color"        => "text-accent",
+            "icon_color_custom" => "",
+            "icon_width"        => "",
+            "icon_height"       => ""
+        ),
         array(
             "_type"              => "custom_field_1",
             "custom_field_key"   => "_testimonial_content",
