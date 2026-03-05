@@ -86,6 +86,15 @@
             padding-top: 5rem;
             padding-bottom: 5rem;
         }
+         .w-lg-auto {
+            width: auto !important;
+        }
+    }
+
+    @media(min-width: 768px) {
+        .w-md-auto {
+            width: auto !important;
+        }
     }
 
     /**end helpers */
@@ -206,6 +215,13 @@
     .guides-items>.guide-item-holder:not(:last-child) {
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding-bottom: 30px;
+    }
+
+    @media(max-width: 767px) {
+        .guide-item-right {
+            text-align: right;
+            width: 100%;
+        }
     }
 
     /**end guides */
