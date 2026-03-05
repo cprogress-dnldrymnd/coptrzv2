@@ -289,5 +289,6 @@ get_template_part('template-parts/sections/section-guides');
 get_template_part('template-parts/sections/section-chip');
 get_template_part('template-parts/sections/section-industries');
 get_template_part('template-parts/sections/section-cta');
+get_template_part('template-parts/sections/section-case-study');
 ?>
 <?php get_footer(); ?>
