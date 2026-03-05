@@ -103,7 +103,7 @@
     }
 
     @media(min-width: 992px) {
-        .heading-style {
+        h2 {
             font-size: 38px;
         }
 
