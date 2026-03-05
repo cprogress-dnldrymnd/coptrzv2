@@ -5,13 +5,14 @@
 ?>
 <?php get_header(); ?>
 <style>
-  
     :root {
         --accent-1: #0E1729;
         --accent-2: #0E1B35;
         --accent-3: #071020;
         --accent-4: #2DA1FF;
         --accent-5: #175180;
+        --light-1: #EFEFEF;
+        --light-2: #D9D9D9;
     }
 
     /**helpers */
@@ -40,6 +41,7 @@
     .heading-style {
         display: inline-block;
     }
+
     .heading-style:before {
         content: '';
         display: block;
@@ -68,6 +70,23 @@
     }
 
     /**end usp bar */
+
+    /**number-box-section */
+    .number-box {
+        background: var(--light-1);
+        border-radius: 20px;
+        font-size: 28px;
+    }
+    .number-box .number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        border-radius: 5px;
+        font-size: 22px;
+    }
+    /**end number-box-section */
 </style>
 <?php
 get_template_part('template-parts/sections/section-hero');
