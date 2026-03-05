@@ -211,11 +211,12 @@
 
 
     .number-box .number {
+        --size: clamp(30px, 4vw, 64px);
         display: flex;
         align-items: center;
         justify-content: center;
-        width: clamp(30px, 4vw, 64px);
-        height: clamp(30px, 4vw, 64px);
+        width: var(--size);
+        height: var(--size);
         border-radius: 5px;
         font-size: 22px;
         padding: 10px;
@@ -233,9 +234,7 @@
         }
 
         .number-box .number {
-            width: 50px;
-            height: 50px;
-            flex: 0 0 50px;
+            --size: 50px;
         }
     }
 
@@ -465,7 +464,8 @@
         width: clamp(30px, 2vw, 37px);
         height: clamp(30px, 2vw, 37px);
         font-size: 14px;
-        padding: 5px;;
+        padding: 5px;
+        ;
     }
 
     @media(max-width: 991px) {
