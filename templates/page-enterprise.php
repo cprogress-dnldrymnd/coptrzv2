@@ -301,6 +301,8 @@
         background-color: transparent;
         border-radius: 0;
         padding: 0;
+        display: flex;
+        gap: 10px;
     }
 
     .swiper--style-v2 .swiper-pagination .swiper-pagination-bullet {
@@ -309,6 +311,7 @@
         --swiper-pagination-bullet-border-radius: 0;
         --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.5);
         --swiper-pagination-bullet-inactive-opacity: 1;
+        opacity: 1;
 
     }
 
