@@ -7,18 +7,17 @@
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <span class="usp-bar__icon usp-bar__icon--dot">•</span>
-
+                <span class="usp-bar__icon usp-bar__icon--dot">•&nbsp;</span> 
                 <span><strong>DJI Certified Service Centre</strong> for warranty-safe repairs</span>
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <span class="usp-bar__icon usp-bar__icon--dot">•</span>
+                <span class="usp-bar__icon usp-bar__icon--dot">•&nbsp;</span>
                 <span><strong>UK stock, fulfilment,</strong> and predictable dispatch</span>
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <span class="usp-bar__icon usp-bar__icon--dot">•</span>
+                <span class="usp-bar__icon usp-bar__icon--dot">•&nbsp;</span>
                 <span><strong>Trusted by enterprise</strong> and public sector organisations</span>
             </div>
         </div>
