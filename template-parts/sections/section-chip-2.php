@@ -12,7 +12,7 @@
             <div class="row g-3">
                 <div class="col-lg-4">
                     <h3>Our Enterprise Proof Points</h3>
-                    <div class="button-accent col-auto button-box"><a class="rounded-10px " href="#Benefits" target="_self">Speak to Our Enterprise Team</a></div>
+                    <div class="button-accent col-auto button-box d-none d-lg-block"><a class="rounded-10px " href="#Benefits" target="_self">Speak to Our Enterprise Team</a></div>
                 </div>
                 <div class="col-lg-8">
                     <div class="chip" style="--border-color: #2DA1FF; --text-color: #FFFFFF">
@@ -64,6 +64,9 @@
                     </div>
                 </div>
             </div>
+
+            <div class="button-accent col-auto button-box mt-5 d-block d-lg-none"><a class="rounded-10px " href="#Benefits" target="_self">Speak to Our Enterprise Team</a></div>
+
         </div>
     </div>
 </section>
