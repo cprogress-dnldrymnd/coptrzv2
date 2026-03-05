@@ -551,7 +551,7 @@
     /**end responsive */
 
     .hero .background-image.background-image img {
-        object-position: right center;
+        object-position: 90% center;
     }
 </style>
 <?php
