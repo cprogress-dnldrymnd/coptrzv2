@@ -16,8 +16,8 @@
                         </div>
                         <div class="guide-name">DJI Matrice 400 UK Buyer's Guide</div>
                     </div>
-                    <div class="guide-item-right d-flex align-items-center gap-2">
-                        <span class="guide-link">
+                    <div class="guide-item-right">
+                        <span class="guide-link d-flex align-items-center gap-2">
                             <span>Access Guide</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
                                 <g id="arrow" opacity="0.5">
