@@ -12,6 +12,7 @@
         --accent-4: #2DA1FF;
         --accent-5: #175180;
         --accent-6: #132446;
+        --accent-7: #0F192B;
         --light-1: #EFEFEF;
         --light-2: #D9D9D9;
         --light-3: #FAFAFA;
@@ -40,6 +41,14 @@
 
     .bg-accent-5 {
         background-color: var(--accent-5);
+    }
+
+    .bg-accent-6 {
+        background-color: var(--accent-6);
+    }
+
+    .bg-accent-7 {
+        background-color: var(--accent-7);
     }
 
     .bg-light-3 {

@@ -13,7 +13,7 @@ $post_ids = [291423, 272246, 272244, 272242];
                             <?php
                             ?>
                             <div class="swiper-slide">
-                                <div class="swiper-slide-inner">
+                                <div class="swiper-slide-inner bg-accent-7 h-100">
                                     <div class="image-box">
                                         <?= get_the_post_thumbnail($post, 'large') ?>
                                     </div>
