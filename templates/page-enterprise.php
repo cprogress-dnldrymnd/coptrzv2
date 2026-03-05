@@ -331,5 +331,6 @@ get_template_part('template-parts/sections/section-chip');
 get_template_part('template-parts/sections/section-industries');
 get_template_part('template-parts/sections/section-cta');
 get_template_part('template-parts/sections/section-case-study');
+get_template_part('template-parts/sections/section-products');
 ?>
 <?php get_footer(); ?>
