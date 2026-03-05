@@ -472,10 +472,11 @@
     }
 
     @media(max-width: 991px) {
-        .number-box {
+        .number-box-section-v2 .number-box {
             font-size: 16px;
         }
-        .number-box .number {
+
+        .number-box-section-v2 .number-box .number {
             --size: 30px;
         }
     }
