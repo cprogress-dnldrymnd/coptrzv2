@@ -2,11 +2,11 @@
     <div class="container">
         <div class="container-wrapper">
             <h2 class="heading-style">
-                Who This Page Is Designed For
+                Risk Reduction Built Into Every Deployment
             </h2>
             <div class="desc-box mb-5">
                 <p>
-                    This page is intended for organisations considering, adopting or already operating DJI Enterprise drones in operational, regulated or high-consequence environments, including:
+                    Enterprise buyers value certainty over speed alone. These safeguards reduce friction and protect outcomes over time.
                 </p>
             </div>
             <div class="row fw-medium g-3">
