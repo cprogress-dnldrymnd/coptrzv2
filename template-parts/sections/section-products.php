@@ -11,7 +11,7 @@ $post_ids = [372804, 372813, 372840, 372842, 373370];
             </div>
             <h3 class="text-accent mb-4">Featured DJI Enterprise Products</h3>
             <div class="swiper-holder">
-                <div class="swiper swiper-linked-products swiper--style-v2" id="swiper---products">
+                <div class="swiper swiper-linked-products-v2 swiper--style-v2" id="swiper---products">
                     <div class="swiper-wrapper">
 
                         <?php foreach ($post_ids as $post_id) {
@@ -28,3 +28,33 @@ $post_ids = [372804, 372813, 372840, 372842, 373370];
     </div>
     </div>
 </section>
+
+<script>
+    var swiper_linked_products = new Swiper('.swiper-linked-products-v2', {
+        loop: true,
+        spaceBetween: 20,
+        autoplay: false,
+        breakpoints: {
+            0: {
+                slidesPerView: 2,
+            },
+
+            768: {
+                slidesPerView: 3,
+            },
+
+
+            992: {
+                slidesPerView: 4,
+            },
+
+
+            1200: {
+                slidesPerView: 4.5
+            },
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+    });
+</script>
