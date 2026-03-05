@@ -419,9 +419,9 @@
     }
 
     .logos .label {
-        font-weight: 800;
-        letter-spacing: -.01em;
+        font-weight: 600;
         white-space: nowrap;
+        font-size: 28px;
     }
 
     .logo-row {
@@ -437,7 +437,7 @@
     }
 
     .logo-row.logo-row.logo-row img {
-        height: 28px;
+        height: 32px;
         width: auto;
         filter: grayscale(1);
         opacity: .88;
