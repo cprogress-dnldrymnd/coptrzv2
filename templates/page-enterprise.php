@@ -11,6 +11,7 @@
         --accent-3: #071020;
         --accent-4: #2DA1FF;
         --accent-5: #175180;
+        --accent-6: #132446;
         --light-1: #EFEFEF;
         --light-2: #D9D9D9;
     }
@@ -27,6 +28,14 @@
 
     .bg-accent-3 {
         background-color: var(--accent-3);
+    }
+
+    .bg-accent-4 {
+        background-color: var(--accent-4);
+    }
+
+    .bg-accent-5 {
+        background-color: var(--accent-5);
     }
 
     .py-20 {
