@@ -3,25 +3,25 @@
         <h2 class="heading-style">How Coptrz Supports You End-To-End</h2>
         <div class="number-box-wrapper">
             <div class="row gy-3 gy-lg-0 gx-3">
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <div class="number-box d-flex gap-3 align-items-center">
                         <span class="number">1</span>
                         <span>Select</span>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <div class="number-box d-flex gap-3 align-items-center">
                         <span class="number">2</span>
                         <span>Deploy</span>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <div class="number-box d-flex gap-3 align-items-center">
                         <span class="number">3</span>
                         <span>Operate</span>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <div class="number-box d-flex gap-3 align-items-center">
                         <span class="number">4</span>
                         <span>Support</span>
