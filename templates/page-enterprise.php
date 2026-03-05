@@ -99,7 +99,6 @@
         display: inline-block;
         margin-bottom: 20px;
         font-weight: 600;
-        color: var(--accent-2);
     }
 
     .heading-style:before {
