@@ -14,6 +14,7 @@
         --accent-6: #132446;
         --light-1: #EFEFEF;
         --light-2: #D9D9D9;
+        --light-3: #FAFAFA;
     }
 
     /**helpers */
@@ -38,6 +39,10 @@
         background-color: var(--accent-5);
     }
 
+    .bg-light-3 {
+        background-color: var(--light-3);
+    }
+
     .py-20 {
         padding-top: 20px;
         padding-bottom: 20px;
@@ -56,9 +61,11 @@
     .no-overlay:before {
         display: none;
     }
+
     .fs-24 {
         font-size: 24px;
     }
+
     .heading-style {
         display: inline-block;
         margin-bottom: 20px;
