@@ -56,10 +56,12 @@ $post_ids = [291423, 272246, 272244, 272242];
             0: {
                 slidesPerView: 1,
             },
-            576: {
+
+            768: {
                 slidesPerView: 2
             },
-            768: {
+
+            992: {
                 slidesPerView: 3
             },
         },
