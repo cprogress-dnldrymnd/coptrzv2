@@ -330,6 +330,15 @@
 
 
     /**end case-studies */
+
+
+    /** products-section */
+    .products-section.products-section h2 {
+        font-size: 38px;
+        margin-top: 20px;
+    }
+
+    /**end products-section */
 </style>
 <?php
 get_template_part('template-parts/sections/section-hero');
