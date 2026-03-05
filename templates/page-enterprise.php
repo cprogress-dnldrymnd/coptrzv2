@@ -461,27 +461,22 @@
         font-size: 18px;
         padding: 20px;
         font-weight: 500;
+        --size: clamp(30px, 2vw, 37px);
     }
 
 
 
     .number-box-section-v2 .number-box .number {
-        width: clamp(30px, 2vw, 37px);
-        height: clamp(30px, 2vw, 37px);
         font-size: 14px;
         padding: 5px;
-        ;
     }
 
     @media(max-width: 991px) {
         .number-box {
             font-size: 16px;
         }
-
         .number-box .number {
-            width: 30px;
-            height: 30px;
-            flex: 0 0 30px;
+            --size: 30px;
         }
     }
 
