@@ -89,11 +89,11 @@
         padding: 22px 40px;
     }
 
-    .number-box-section .row {
+    .number-box-section .number-box-wrapper {
         position: relative;
     }
 
-    .number-box-section .row>div {
+    .number-box-section .number-box-wrapper>div {
         position: relative;
     }
 
