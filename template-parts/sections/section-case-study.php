@@ -18,8 +18,8 @@ $post_ids = [291423, 272246, 272244, 272242];
                                         <?= get_the_post_thumbnail($post, 'large') ?>
                                     </div>
                                     <div class="content-box text-center p-4">
-                                        <h4 class="text-medium fw-medium"><?= get_the_title($post) ?></h4>
-                                        <a href="<?= get_the_permalink($post) ?>">
+                                        <h4 class="medium-text fw-medium"><?= get_the_title($post) ?></h4>
+                                        <a class="fw-medium" href="<?= get_the_permalink($post) ?>">
                                             <span>View Case Study</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="11" viewBox="0 0 20 11">
                                                 <g id="arrow" opacity="0.5">

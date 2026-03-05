@@ -7,29 +7,29 @@
             </div>
             <div class="row g-3">
                 <div class="col-lg-6">
-                    <div class="inner text-medium">
+                    <div class="inner medium-text">
                         <p>Selecting products without considering long-term support and servicing</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="inner text-medium">
+                    <div class="inner medium-text">
                         <p>Underestimating training, handover, and internal competence requirements</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="inner text-medium">
+                    <div class="inner medium-text">
                         <p>Treating remote operations as a hardware feature rather than a system</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="inner text-medium">
+                    <div class="inner medium-text">
                         <p>Discovering governance or compliance gaps after deployment</p>
                     </div>
                 </div>
             </div>
             <div class="row g-3 justify-content-between align-items-center mt-4">
                 <div class="col-lg-7">
-                    <div class="desc-box fw-semibold text-medium">
+                    <div class="desc-box fw-semibold medium-text">
                         <p>Our role is to help teams avoid these issues before they become costly.</p>
                     </div>
                 </div>
