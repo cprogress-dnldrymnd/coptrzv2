@@ -7,7 +7,7 @@ $post_ids = [291423, 272246, 272244, 272242];
         <div class="container-wrapper">
             <h2 class="heading-style mb-5">UK Enterprise Examples</h2>
             <div class="case-study-wrapper same-image-height">
-                <div class="swiper swiper-case-study">
+                <div class="swiper swiper--style-v2">
                     <div class="swiper-wrapper">
                         <?php foreach ($post_ids as $post) { ?>
                             <?php
@@ -45,7 +45,7 @@ $post_ids = [291423, 272246, 272244, 272242];
 </section>
 
 <script>
-    var swiper_case_study = new Swiper('.swiper-case-study', {
+    var swiper_case_study = new Swiper('.swiper--style-v2', {
         loop: true,
         autoplay: false,
         spaceBetween: 25,

@@ -649,7 +649,7 @@ function __swipers() {
 
 
 
-    var swiper_case_study = new Swiper('.swiper-case-study-v2', {
+    var swiper_case_study = new Swiper('.swiper--style-v2-v2', {
         loop: true,
         autoplay: false,
         spaceBetween: 25,
