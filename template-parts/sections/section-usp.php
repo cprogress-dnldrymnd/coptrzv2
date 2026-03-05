@@ -1,4 +1,4 @@
-<section class="usp-bar bg-accent-1 text-white text-center py-20" aria-label="Company Trust Signals">
+<section class="usp-bar bg-accent-1 text-white text-center py-20 px-3" aria-label="Company Trust Signals">
     <div class="container-fluid">
         <div class="row g-3 justify-content-between">
             <div class="col-lg-auto col-md-6">
