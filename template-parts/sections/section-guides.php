@@ -1,6 +1,6 @@
 <section class="guides bg-accent-3 py-6 text-white">
     <div class="container">
-        <div class="container-inner">
+        <div class="container-wrapper">
             <h2 class="heading-style">Make The Right DJI Decision The First Time</h2>
             <div class="desc-box">
                 <p>
