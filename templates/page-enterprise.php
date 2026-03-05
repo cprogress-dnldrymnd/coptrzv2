@@ -238,6 +238,16 @@
     }
 
     /**end guides */
+
+    /**chip */
+    .chip .inner {
+        border: 1px solid #FF0E0E8F;
+        color: #FF0E0E;
+        padding: 24px;
+        border-radius: 20px;
+    }
+
+    /**end chip */
 </style>
 <?php
 get_template_part('template-parts/sections/section-hero');
@@ -246,5 +256,6 @@ get_template_part('template-parts/sections/section-two-columns');
 get_template_part('template-parts/sections/section-number-box');
 get_template_part('template-parts/sections/section-checklist');
 get_template_part('template-parts/sections/section-guides');
+get_template_part('template-parts/sections/section-chip');
 ?>
 <?php get_footer(); ?>
