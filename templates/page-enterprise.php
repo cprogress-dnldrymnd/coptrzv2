@@ -267,5 +267,6 @@ get_template_part('template-parts/sections/section-number-box');
 get_template_part('template-parts/sections/section-checklist');
 get_template_part('template-parts/sections/section-guides');
 get_template_part('template-parts/sections/section-chip');
+get_template_part('template-parts/sections/section-industries');
 ?>
 <?php get_footer(); ?>
