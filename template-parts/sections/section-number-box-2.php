@@ -29,8 +29,8 @@
                 </div>
             </div>
         </div>
-        <div class="desc-box mt-4">
-            <p>From initial platform selection through to live operations and long-term support, Coptrz provides continuity at every stage so DJI Enterprise systems remain <strong>operationally robust, audit-ready and future-ready.</strong></p>
+        <div class="desc-box mt-4 fw-semibold text-center text-medium">
+            <p>No obligations. No pressure. Just clarity.</strong></p>
         </div>
     </div>
 </section>
