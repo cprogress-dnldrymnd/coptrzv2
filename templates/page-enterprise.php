@@ -451,6 +451,12 @@
     }
 
     /**end logos */
+
+    /**number-box-section-v2 */
+    .number-box-section-v2 {
+        
+    }
+    /**end number-box-section-v2 */
 </style>
 <?php
 get_template_part('template-parts/sections/section-hero');
@@ -469,5 +475,6 @@ get_template_part('template-parts/sections/section-testimonials');
 get_template_part('template-parts/sections/section-logos');
 get_template_part('template-parts/sections/section-checklist-light');
 get_template_part('template-parts/sections/section-chip-v2');
+get_template_part('template-parts/sections/section-number-box-2');
 ?>
 <?php get_footer(); ?>
