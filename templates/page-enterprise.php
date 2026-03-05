@@ -224,7 +224,7 @@
         background-color: var(--light-2);
     }
 
-    .number-box .number+span {
+    .number-box .number + span {
         width: calc(100% - var(--size) - 1rem);
     }
 
