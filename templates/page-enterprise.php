@@ -406,7 +406,6 @@
     /**logos */
     .logos {
         background: #fff;
-        color: var(--accent-2);
         padding: 18px 0 10px;
     }
 
