@@ -1,5 +1,5 @@
 <?
-$post_ids = [291423, 272246, 272244, 272242];
+$post_ids = [272246, 272244, 272242];
 ?>
 
 <section class="case-studies bg-accent-3 py-6 text-white">
