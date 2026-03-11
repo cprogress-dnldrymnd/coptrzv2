@@ -13,5 +13,5 @@ require_once('customizer.php');
 require_once('marquee.php');
 
 
-require_once('page-templates/style-1/fields.php');
+#require_once('page-templates/style-1/fields.php');
 
