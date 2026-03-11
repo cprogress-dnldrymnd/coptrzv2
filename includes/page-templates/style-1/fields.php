@@ -278,7 +278,7 @@ class Page_Template_Style_1_Fields {
         if ( ! in_array( $hook, [ 'post.php', 'post-new.php' ] ) ) return;
 
         $post_id = absint( $_GET['post'] ?? 0 );
-        if ( $post_id && get_page_template_slug( $post_id ) !== 'page-template-style-1.php' ) return;
+        if ( $post_id && get_page_template_slug( $post_id ) !== 'templates/page-template-style-1.php' ) return;
 
         wp_enqueue_media();
         wp_enqueue_script( 'jquery-ui-sortable' );
@@ -320,7 +320,7 @@ class Page_Template_Style_1_Fields {
     }
 
     public function render_meta_box( $post ) {
-        if ( get_page_template_slug( $post->ID ) !== 'page-template-style-1.php' ) {
+        if ( get_page_template_slug( $post->ID ) !== 'templates/page-template-style-1.php' ) {
             echo '<p style="color:#888;font-style:italic">This meta box is only active on the <strong>Page Enterprise</strong> template.</p>';
             return;
         }
