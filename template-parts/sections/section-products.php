@@ -1,5 +1,5 @@
 <?php
-$post_ids = [372804, 372813, 372840, 372842, 373370];
+$post_ids = [374321, 70720, 372842, 372840, 373354, 382583, 380888, 60988, 61238];
 ?>
 
 <section class="products-section my-6" id="Related-Products">
