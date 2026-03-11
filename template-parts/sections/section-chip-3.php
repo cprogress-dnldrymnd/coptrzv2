@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="inner medium-text text-center">
-                        <p>We don’t oversell specifications without validating real-world performance</p>
+                        <p>We prioritise real-world performance over specifications</p>
                     </div>
                 </div>
             </div>
