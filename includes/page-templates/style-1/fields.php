@@ -284,7 +284,7 @@ if (! class_exists('Page_Template_Style_1_Fields')) :
             if (! in_array($hook, ['post.php', 'post-new.php'])) return;
 
             $post_id = absint($_GET['post'] ?? 0);
-            if ($post_id && get_page_template_slug($post_id) !== 'page-template-style-1.php') return;
+            if ($post_id && get_page_template_slug($post_id) !== 'templates/page-template-style-1.php') return;
 
             wp_enqueue_media();
             wp_enqueue_script('jquery-ui-sortable');
