@@ -14,6 +14,12 @@ class Page_Template_Style_1_Fields {
 
     private static $instance = null;
 
+    /**
+     * Running counter to guarantee every wp_editor() call gets a unique ID.
+     * IDs must match [a-z0-9_] so we use a simple numeric suffix.
+     */
+    private static $editor_count = 0;
+
     public static function init() {
         if ( null === self::$instance ) {
             self::$instance = new self();
@@ -39,7 +45,7 @@ class Page_Template_Style_1_Fields {
                 'fields' => [
                     [ 'name' => 'bg_image_id',  'label' => 'Background Image', 'type' => 'image'    ],
                     [ 'name' => 'heading',       'label' => 'Heading',          'type' => 'text'     ],
-                    [ 'name' => 'description',   'label' => 'Description',      'type' => 'textarea' ],
+                    [ 'name' => 'description',   'label' => 'Description',      'type' => 'wysiwyg'  ],
                     [ 'name' => 'buttons', 'label' => 'Buttons', 'type' => 'repeater', 'sub_fields' => [
                         [ 'name' => 'text',  'label' => 'Button Text',  'type' => 'text'   ],
                         [ 'name' => 'url',   'label' => 'Button URL',   'type' => 'url'    ],
@@ -92,11 +98,11 @@ class Page_Template_Style_1_Fields {
                 'label' => '✅ Checklist (Dark)',
                 'fields' => [
                     [ 'name' => 'heading',  'label' => 'Heading',     'type' => 'text'     ],
-                    [ 'name' => 'intro',    'label' => 'Intro Text',  'type' => 'textarea' ],
+                    [ 'name' => 'intro',    'label' => 'Intro Text',  'type' => 'wysiwyg'  ],
                     [ 'name' => 'items', 'label' => 'Checklist Items', 'type' => 'repeater', 'sub_fields' => [
                         [ 'name' => 'text', 'label' => 'Item Text', 'type' => 'text' ],
                     ]],
-                    [ 'name' => 'outro',    'label' => 'Outro Text',  'type' => 'textarea' ],
+                    [ 'name' => 'outro',    'label' => 'Outro Text',  'type' => 'wysiwyg'  ],
                     [ 'name' => 'btn_text', 'label' => 'Button Text', 'type' => 'text'     ],
                     [ 'name' => 'btn_url',  'label' => 'Button URL',  'type' => 'url'      ],
                 ],
@@ -105,9 +111,9 @@ class Page_Template_Style_1_Fields {
             'guides' => [
                 'label' => '📚 Guides',
                 'fields' => [
-                    [ 'name' => 'heading',       'label' => 'Heading',       'type' => 'text'     ],
-                    [ 'name' => 'description',   'label' => 'Description',   'type' => 'textarea' ],
-                    [ 'name' => 'section_label', 'label' => 'Section Label', 'type' => 'text'     ],
+                    [ 'name' => 'heading',       'label' => 'Heading',       'type' => 'text'    ],
+                    [ 'name' => 'description',   'label' => 'Description',   'type' => 'wysiwyg' ],
+                    [ 'name' => 'section_label', 'label' => 'Section Label', 'type' => 'text'    ],
                     [ 'name' => 'items', 'label' => 'Guides', 'type' => 'repeater', 'sub_fields' => [
                         [ 'name' => 'image_id',   'label' => 'Thumbnail',   'type' => 'image' ],
                         [ 'name' => 'name',       'label' => 'Guide Name',  'type' => 'text'  ],
@@ -121,23 +127,23 @@ class Page_Template_Style_1_Fields {
                 'label' => '🔴 Chip Cards (Warning)',
                 'fields' => [
                     [ 'name' => 'heading',      'label' => 'Heading',       'type' => 'text'         ],
-                    [ 'name' => 'description',  'label' => 'Description',   'type' => 'text'         ],
+                    [ 'name' => 'description',  'label' => 'Description',   'type' => 'wysiwyg'      ],
                     [ 'name' => 'border_color', 'label' => 'Border Colour', 'type' => 'color_picker', 'default' => '#FF0E0E' ],
                     [ 'name' => 'text_color',   'label' => 'Text Colour',   'type' => 'color_picker', 'default' => '#FF0E0E' ],
                     [ 'name' => 'items', 'label' => 'Chip Items', 'type' => 'repeater', 'sub_fields' => [
                         [ 'name' => 'text', 'label' => 'Text', 'type' => 'text' ],
                     ]],
-                    [ 'name' => 'outro',    'label' => 'Outro Text',  'type' => 'text' ],
-                    [ 'name' => 'btn_text', 'label' => 'Button Text', 'type' => 'text' ],
-                    [ 'name' => 'btn_url',  'label' => 'Button URL',  'type' => 'url'  ],
+                    [ 'name' => 'outro',    'label' => 'Outro Text',  'type' => 'wysiwyg' ],
+                    [ 'name' => 'btn_text', 'label' => 'Button Text', 'type' => 'text'    ],
+                    [ 'name' => 'btn_url',  'label' => 'Button URL',  'type' => 'url'     ],
                 ],
             ],
 
             'industries' => [
                 'label' => '🏭 Industries',
                 'fields' => [
-                    [ 'name' => 'heading',     'label' => 'Heading',     'type' => 'text'     ],
-                    [ 'name' => 'description', 'label' => 'Description', 'type' => 'textarea' ],
+                    [ 'name' => 'heading',     'label' => 'Heading',     'type' => 'text'    ],
+                    [ 'name' => 'description', 'label' => 'Description', 'type' => 'wysiwyg' ],
                     [ 'name' => 'items', 'label' => 'Industry Cards', 'type' => 'repeater', 'sub_fields' => [
                         [ 'name' => 'image_id',    'label' => 'Image',       'type' => 'image'    ],
                         [ 'name' => 'title',       'label' => 'Title',       'type' => 'text'     ],
@@ -152,43 +158,43 @@ class Page_Template_Style_1_Fields {
             'cta' => [
                 'label' => '📣 CTA (with bg image)',
                 'fields' => [
-                    [ 'name' => 'bg_image_id',  'label' => 'Background Image', 'type' => 'image'    ],
-                    [ 'name' => 'heading',       'label' => 'Heading',          'type' => 'text'     ],
-                    [ 'name' => 'description',   'label' => 'Description',      'type' => 'textarea' ],
-                    [ 'name' => 'btn_text',      'label' => 'Button Text',      'type' => 'text'     ],
-                    [ 'name' => 'btn_url',       'label' => 'Button URL',       'type' => 'url'      ],
+                    [ 'name' => 'bg_image_id',  'label' => 'Background Image', 'type' => 'image'   ],
+                    [ 'name' => 'heading',       'label' => 'Heading',          'type' => 'text'    ],
+                    [ 'name' => 'description',   'label' => 'Description',      'type' => 'wysiwyg' ],
+                    [ 'name' => 'btn_text',      'label' => 'Button Text',      'type' => 'text'    ],
+                    [ 'name' => 'btn_url',       'label' => 'Button URL',       'type' => 'url'     ],
                 ],
             ],
 
             'case_study' => [
                 'label' => '📋 Case Studies',
                 'fields' => [
-                    [ 'name' => 'heading',  'label' => 'Heading',  'type' => 'text'     ],
-                    [ 'name' => 'post_ids', 'label' => 'Posts',    'type' => 'post_ids' ],
-                    [ 'name' => 'btn_text', 'label' => 'Button Text', 'type' => 'text' ],
-                    [ 'name' => 'btn_url',  'label' => 'Button URL',  'type' => 'url'  ],
+                    [ 'name' => 'heading',  'label' => 'Heading',     'type' => 'text'     ],
+                    [ 'name' => 'post_ids', 'label' => 'Posts',       'type' => 'post_ids' ],
+                    [ 'name' => 'btn_text', 'label' => 'Button Text', 'type' => 'text'     ],
+                    [ 'name' => 'btn_url',  'label' => 'Button URL',  'type' => 'url'      ],
                 ],
             ],
 
             'products' => [
                 'label' => '🛒 Products Slider',
                 'fields' => [
-                    [ 'name' => 'heading',     'label' => 'Heading',     'type' => 'text'     ],
-                    [ 'name' => 'description', 'label' => 'Description', 'type' => 'textarea' ],
-                    [ 'name' => 'sub_label',   'label' => 'Sub-label',   'type' => 'text'     ],
+                    [ 'name' => 'heading',     'label' => 'Heading',     'type' => 'text'    ],
+                    [ 'name' => 'description', 'label' => 'Description', 'type' => 'wysiwyg' ],
+                    [ 'name' => 'sub_label',   'label' => 'Sub-label',   'type' => 'text'    ],
                     [ 'name' => 'product_ids', 'label' => 'Products',    'type' => 'post_ids', 'post_type' => 'product' ],
-                    [ 'name' => 'btn_text',    'label' => 'Button Text', 'type' => 'text'     ],
-                    [ 'name' => 'btn_url',     'label' => 'Button URL',  'type' => 'url'      ],
+                    [ 'name' => 'btn_text',    'label' => 'Button Text', 'type' => 'text'    ],
+                    [ 'name' => 'btn_url',     'label' => 'Button URL',  'type' => 'url'     ],
                 ],
             ],
 
             'cta_simple' => [
                 'label' => '📣 CTA Simple',
                 'fields' => [
-                    [ 'name' => 'heading',     'label' => 'Heading',     'type' => 'text'     ],
-                    [ 'name' => 'description', 'label' => 'Description', 'type' => 'textarea' ],
-                    [ 'name' => 'btn_text',    'label' => 'Button Text', 'type' => 'text'     ],
-                    [ 'name' => 'btn_url',     'label' => 'Button URL',  'type' => 'url'      ],
+                    [ 'name' => 'heading',     'label' => 'Heading',     'type' => 'text'    ],
+                    [ 'name' => 'description', 'label' => 'Description', 'type' => 'wysiwyg' ],
+                    [ 'name' => 'btn_text',    'label' => 'Button Text', 'type' => 'text'    ],
+                    [ 'name' => 'btn_url',     'label' => 'Button URL',  'type' => 'url'     ],
                 ],
             ],
 
@@ -212,8 +218,8 @@ class Page_Template_Style_1_Fields {
             'checklist_light' => [
                 'label' => '✅ Checklist (Light)',
                 'fields' => [
-                    [ 'name' => 'heading',     'label' => 'Heading',     'type' => 'text'     ],
-                    [ 'name' => 'description', 'label' => 'Description', 'type' => 'textarea' ],
+                    [ 'name' => 'heading',     'label' => 'Heading',     'type' => 'text'    ],
+                    [ 'name' => 'description', 'label' => 'Description', 'type' => 'wysiwyg' ],
                     [ 'name' => 'items', 'label' => 'Checklist Items', 'type' => 'repeater', 'sub_fields' => [
                         [ 'name' => 'text', 'label' => 'Item Text', 'type' => 'text' ],
                     ]],
@@ -223,10 +229,10 @@ class Page_Template_Style_1_Fields {
             'chip_v2' => [
                 'label' => '🔵 Chip Cards V2 (Dark bg)',
                 'fields' => [
-                    [ 'name' => 'heading',    'label' => 'Heading',            'type' => 'text'     ],
-                    [ 'name' => 'subheading', 'label' => 'Subheading',         'type' => 'text'     ],
-                    [ 'name' => 'description','label' => 'Description',        'type' => 'textarea' ],
-                    [ 'name' => 'col_label',  'label' => 'Left Column Label',  'type' => 'text'     ],
+                    [ 'name' => 'heading',    'label' => 'Heading',            'type' => 'text'    ],
+                    [ 'name' => 'subheading', 'label' => 'Subheading',         'type' => 'text'    ],
+                    [ 'name' => 'description','label' => 'Description',        'type' => 'wysiwyg' ],
+                    [ 'name' => 'col_label',  'label' => 'Left Column Label',  'type' => 'text'    ],
                     [ 'name' => 'items', 'label' => 'Proof Points', 'type' => 'repeater', 'sub_fields' => [
                         [ 'name' => 'text', 'label' => 'Text (HTML allowed)', 'type' => 'text' ],
                     ]],
@@ -261,10 +267,10 @@ class Page_Template_Style_1_Fields {
             'cta_full_width' => [
                 'label' => '📣 CTA Full Width',
                 'fields' => [
-                    [ 'name' => 'heading',     'label' => 'Heading',     'type' => 'text'     ],
-                    [ 'name' => 'description', 'label' => 'Description', 'type' => 'textarea' ],
-                    [ 'name' => 'btn_text',    'label' => 'Button Text', 'type' => 'text'     ],
-                    [ 'name' => 'btn_url',     'label' => 'Button URL',  'type' => 'url'      ],
+                    [ 'name' => 'heading',     'label' => 'Heading',     'type' => 'text'    ],
+                    [ 'name' => 'description', 'label' => 'Description', 'type' => 'wysiwyg' ],
+                    [ 'name' => 'btn_text',    'label' => 'Button Text', 'type' => 'text'    ],
+                    [ 'name' => 'btn_url',     'label' => 'Button URL',  'type' => 'url'     ],
                 ],
             ],
         ];
@@ -283,6 +289,10 @@ class Page_Template_Style_1_Fields {
         wp_enqueue_media();
         wp_enqueue_script( 'jquery-ui-sortable' );
 
+        // Required so wp.editor.initialize() is available for dynamically-added
+        // wysiwyg fields (those cloned from the hidden JS template block).
+        wp_enqueue_editor();
+
         wp_enqueue_style(
             'pts1-admin',
             get_template_directory_uri() . '/includes/page-templates/style-1/admin/admin.css',
@@ -293,7 +303,7 @@ class Page_Template_Style_1_Fields {
         wp_enqueue_script(
             'pts1-admin',
             get_template_directory_uri() . '/includes/page-templates/style-1/admin/admin.js',
-            [ 'jquery', 'jquery-ui-sortable' ],
+            [ 'jquery', 'jquery-ui-sortable', 'wp-editor' ],
             '1.0',
             true
         );
@@ -358,7 +368,16 @@ class Page_Template_Style_1_Fields {
 
         </div><!-- #ep-flexible-content -->
 
-        <!-- JS Templates — hidden, cloned on demand -->
+        <!--
+            JS Templates — hidden, cloned on demand.
+
+            wysiwyg fields inside these templates are rendered as plain
+            <textarea class="ep-wysiwyg-deferred"> elements. wp_editor() output
+            cannot be safely cloned by JS, so admin.js calls
+            wp.editor.initialize() on each deferred textarea after the cloned
+            HTML is inserted into the live DOM, turning it into a real TinyMCE
+            editor at that point.
+        -->
         <div id="ep-layout-templates" style="display:none" aria-hidden="true">
             <?php foreach ( $layouts as $key => $layout ) : ?>
                 <div class="ep-tpl" id="ep-tpl-<?= esc_attr( $key ) ?>">
@@ -375,6 +394,11 @@ class Page_Template_Style_1_Fields {
 
     /**
      * Render one full section row (used both for saved data and JS templates).
+     *
+     * When $index === '__IDX__' the row is inside the hidden template block.
+     * In that context wysiwyg fields output a plain <textarea> instead of
+     * wp_editor(), because TinyMCE instances cannot be cloned by JS.
+     * admin.js upgrades them to real editors after the clone is in the DOM.
      */
     private function render_section_row( $layout_key, $index, $data ) {
         $layouts = $this->get_layouts();
@@ -441,9 +465,27 @@ class Page_Template_Style_1_Fields {
 
     /**
      * Render a single (non-repeater) field input.
+     *
+     * wysiwyg strategy
+     * ─────────────────
+     * • Real saved row (numeric $section_index):
+     *     wp_editor() renders a full TinyMCE instance with a unique ID
+     *     (pts1ed_N). The textarea_name is set to the correct sections[…]
+     *     key so WordPress POST data maps correctly on save.
+     *
+     * • JS template (__IDX__ / __RIDX__ in name_prefix):
+     *     wp_editor() cannot be cloned safely, so we render a plain
+     *     <textarea class="ep-wysiwyg-deferred"> instead.
+     *     data-field-name carries the intended form-field name.
+     *     admin.js replaces __IDX__ with the real index, then calls
+     *     wp.editor.initialize() to boot TinyMCE on the element.
      */
     private function render_single_field( $name_prefix, $field, $value ) {
-        $name = $name_prefix . '[' . $field['name'] . ']';
+        $name        = $name_prefix . '[' . $field['name'] . ']';
+        $is_template = (
+            strpos( $name_prefix, '__IDX__'  ) !== false ||
+            strpos( $name_prefix, '__RIDX__' ) !== false
+        );
 
         switch ( $field['type'] ) {
 
@@ -456,16 +498,45 @@ class Page_Template_Style_1_Fields {
                 );
                 break;
 
-            case 'textarea':
             case 'wysiwyg':
+                if ( $is_template ) {
+                    // Deferred — JS will upgrade this to a real TinyMCE editor
+                    // after the section clone is inserted into the DOM.
+                    printf(
+                        '<textarea class="widefat ep-wysiwyg-deferred" data-field-name="%s" rows="6"
+                            placeholder="Rich-text editor — initialises after section is added."
+                        ></textarea>',
+                        esc_attr( $name )
+                    );
+                } else {
+                    // Real saved section — use wp_editor() directly.
+                    self::$editor_count++;
+                    $editor_id = 'pts1ed_' . self::$editor_count; // must be [a-z0-9_]
+
+                    wp_editor(
+                        wp_kses_post( $value ?? '' ),
+                        $editor_id,
+                        [
+                            'textarea_name' => $name,
+                            'textarea_rows' => 8,
+                            'media_buttons' => true,
+                            'teeny'         => false,
+                            'tinymce'       => [
+                                'toolbar1' => 'bold italic underline strikethrough | bullist numlist | blockquote | alignleft aligncenter alignright | link unlink | undo redo | fullscreen',
+                                'toolbar2' => 'formatselect | forecolor | hr | removeformat | charmap | wp_help',
+                            ],
+                            'quicktags'     => true,
+                        ]
+                    );
+                }
+                break;
+
+            case 'textarea':
                 printf(
                     '<textarea name="%s" class="widefat ep-input" rows="4">%s</textarea>',
                     esc_attr( $name ),
                     esc_textarea( $value ?? '' )
                 );
-                if ( $field['type'] === 'wysiwyg' ) {
-                    echo '<p class="ep-field-desc">HTML is supported.</p>';
-                }
                 break;
 
             case 'select':
@@ -525,7 +596,6 @@ class Page_Template_Style_1_Fields {
             case 'post_ids':
                 $post_type = $field['post_type'] ?? 'any';
                 $ids_raw   = is_array( $value ) ? implode( ', ', $value ) : ( $value ?? '' );
-                // Build a preview of current titles
                 $id_arr    = array_filter( array_map( 'intval', explode( ',', $ids_raw ) ) );
                 ?>
                 <div class="ep-post-ids-field" data-post-type="<?= esc_attr( $post_type ) ?>">
