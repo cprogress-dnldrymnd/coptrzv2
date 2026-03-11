@@ -285,14 +285,14 @@ class Page_Template_Style_1_Fields {
 
         wp_enqueue_style(
             'pts1-admin',
-            get_template_directory_uri() . '/assets/css/page-admin.css',
+            get_template_directory_uri() . '/includes/page-templates/style-1/admin/admin.css',
             [],
             '1.0'
         );
 
         wp_enqueue_script(
             'pts1-admin',
-            get_template_directory_uri() . '/assets/js/page-admin.js',
+            get_template_directory_uri() . '/includes/page-templates/style-1/admin/admin.js',
             [ 'jquery', 'jquery-ui-sortable' ],
             '1.0',
             true
