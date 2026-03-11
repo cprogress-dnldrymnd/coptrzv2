@@ -328,7 +328,7 @@ if (! class_exists('Page_Template_Style_1_Fields')) :
 
         public function render_meta_box($post)
         {
-            if (get_page_template_slug($post->ID) !== 'page-template-style-1.php') {
+            if (get_page_template_slug($post->ID) !== 'templates/page-template-style-1.php') {
                 echo '<p style="color:#888;font-style:italic">This meta box is only active on the <strong>Page Enterprise</strong> template.</p>';
                 return;
             }
