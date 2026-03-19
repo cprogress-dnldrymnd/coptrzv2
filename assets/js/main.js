@@ -13,9 +13,89 @@ jQuery(document).ready(function () {
     __blog_content();
     __hero();
     __shop_coptrz_link();
+    pasturlparameters() ;
     //__utm_parameters();
 });
 
+
+function pasturlparameters() {
+    /**
+         * Retrieves the current URL's search parameters.
+         * * @returns {string} The query string starting with '?' or an empty string.
+         */
+    function getCurrentQueryParams() {
+        return window.location.search;
+    }
+
+    /**
+     * Validates if a given URL string points to the target domain 
+     * and strictly excludes the specified subdomain.
+     * * @param {string} url - The href attribute value to validate.
+     * @returns {boolean} True if the link matches the inclusion criteria and fails the exclusion criteria.
+     */
+    function isTargetLink(url) {
+        if (!url) return false;
+
+        const urlString = String(url).toLowerCase();
+        const hasTargetDomain = urlString.indexOf('coptrz.com') !== -1;
+        const hasExcludedDomain = urlString.indexOf('shop.coptrz.com') !== -1;
+
+        return hasTargetDomain && !hasExcludedDomain;
+    }
+
+    /**
+     * Safely appends a query string to an existing URL. 
+     * Detects existing parameters to use '&' or '?' appropriately, 
+     * and isolates hash fragments to ensure they remain at the end of the URL.
+     * * @param {string} url - The original href URL.
+     * @param {string} paramsToAppend - The query string to append (expected to start with '?').
+     * @returns {string} The newly constructed URL.
+     */
+    function appendParamsToUrl(url, paramsToAppend) {
+        if (!paramsToAppend || paramsToAppend.length <= 1) {
+            return url;
+        }
+
+        let finalUrl = url;
+        let hash = '';
+
+        // Isolate the hash fragment if it exists
+        const hashIndex = finalUrl.indexOf('#');
+        if (hashIndex !== -1) {
+            hash = finalUrl.substring(hashIndex);
+            finalUrl = finalUrl.substring(0, hashIndex);
+        }
+
+        // Strip the leading '?' from the current parameters for injection
+        const rawParams = paramsToAppend.substring(1);
+
+        // Determine if the target URL already contains query parameters
+        if (finalUrl.indexOf('?') !== -1) {
+            finalUrl += '&' + rawParams;
+        } else {
+            finalUrl += '?' + rawParams;
+        }
+
+        // Reconstruct the URL with the hash fragment at the end
+        return finalUrl + hash;
+    }
+
+    // Initialize execution sequence
+    const currentParams = getCurrentQueryParams();
+
+    // Execute DOM manipulation only if query parameters exist in the current window
+    if (currentParams && currentParams.length > 1) {
+        $('a').each(function () {
+            const $link = $(this);
+            const href = $link.attr('href');
+
+            if (isTargetLink(href)) {
+                const newHref = appendParamsToUrl(href, currentParams);
+                $link.attr('href', newHref);
+            }
+        });
+    }
+}
 
 
 var getUrlParameter = function getUrlParameter(sParam) {
