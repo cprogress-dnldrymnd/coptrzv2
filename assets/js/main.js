@@ -13,7 +13,7 @@ jQuery(document).ready(function () {
     __blog_content();
     __hero();
     __shop_coptrz_link();
-    __utm_parameters();
+    //__utm_parameters();
 });
 
 
