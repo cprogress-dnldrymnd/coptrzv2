@@ -962,13 +962,13 @@ class Shortcodes
         $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
         if ($hero_form_redirect_type == 'document') {
-            $url = do_shortcode('[document_url id=' . $hero_form_document_redirect_id . ']');
-        } else {
-            $url = 'https://calendly.com/coptrz-the-drone-experts/speak-to-an-inspection-drone-expert';
+            $url = get__post_meta_by_id($hero_form_document_redirect_id, 'speak_to_an_expert_url');
         }
 
-        if ($redirect) {
-            return $redirect;
+        if ($url) {
+            return $url;
+        } else {
+            $url = 'https://calendly.com/coptrz-the-drone-experts/speak-to-an-inspection-drone-expert';
         }
     }
 
