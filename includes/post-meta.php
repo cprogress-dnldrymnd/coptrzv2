@@ -6483,7 +6483,20 @@ Container::make('post_meta', __('Product Settings'))
                     ),
                 )
             )
+    ))
+    ->add_tab('Related Products', array(
+        Field::make('association', 'crb_related_products', 'Related Products')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'product',
+                    ),
+                )
+            )
+            ->set_help_text( 'If items are selected here, they will override the default "Related Products" loop.' )
     ));
+    
 
 add_filter('carbon_fields_association_field_options_related_training_post_product', function ($query_arguments) {
 
@@ -7180,8 +7193,10 @@ Container::make('post_meta', __('Quiz Settings'))
 */
 
 
+
+
 /*-----------------------------------------------------------------------------------*/
-/* Custom CSS
+/* Document Settings
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Document Settings'))
     ->where('post_type', '=', 'documents')
