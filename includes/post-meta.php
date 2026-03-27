@@ -7188,6 +7188,7 @@ Container::make('post_meta', __('Document Settings'))
     ->add_fields(
         array(
             Field::make('file', 'document', __('Document'))->set_classes('inline-field')
-                ->set_type(array('application/pdf'))
+                ->set_type(array('application/pdf')),
+            Field::make('text', 'speak_to_an_expert_url', __('Speak to an expert url'))->set_classes('inline-field')
         )
     );

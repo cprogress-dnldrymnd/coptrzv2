@@ -951,7 +951,25 @@ class Shortcodes
 
         if ($redirect) {
             return $redirect;
-        } 
+        }
+    }
+
+    function speak_to_an_expert_url()
+    {
+        $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
+        $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
+        $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
+        $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
+
+        if ($hero_form_redirect_type == 'document') {
+            $url = do_shortcode('[document_url id=' . $hero_form_document_redirect_id . ']');
+        } else {
+            $url = 'https://calendly.com/coptrz-the-drone-experts/speak-to-an-inspection-drone-expert';
+        }
+
+        if ($redirect) {
+            return $redirect;
+        }
     }
 
     function document_url($atts)
@@ -994,6 +1012,7 @@ class Shortcodes
     }
 }
 $Shortcodes = new Shortcodes;
+add_shortcode('speak_to_an_expert_url', array($Shortcodes, 'speak_to_an_expert_url'));
 add_shortcode('document_thumbnail', array($Shortcodes, 'document_thumbnail'));
 add_shortcode('pdf_url', array($Shortcodes, 'pdf_url'));
 add_shortcode('document_url', array($Shortcodes, 'document_url'));
