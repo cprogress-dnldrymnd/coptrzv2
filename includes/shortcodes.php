@@ -951,9 +951,7 @@ class Shortcodes
 
         if ($redirect) {
             return $redirect;
-        } else {
-            return 'test';
-        }
+        } 
     }
 
     function document_url($atts)
