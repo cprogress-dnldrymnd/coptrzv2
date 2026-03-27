@@ -751,7 +751,7 @@ class Shortcodes
 
         $html .= "</div>";
         $html .= "</div>";
-        $html .= "<div>";
+        $html .= "</div>";
         return $html;
     }
 
@@ -951,13 +951,13 @@ class Shortcodes
 
         if ($redirect) {
             return $redirect;
+        } else {
+            return 'test';
         }
     }
-
     function speak_to_an_expert_url()
     {
         $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
-        $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
         $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
         $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
