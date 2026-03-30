@@ -951,13 +951,11 @@ class Shortcodes
 
         if ($redirect) {
             return $redirect;
-        } else {
-            return 'test';
-        }
+        } 
     }
     function speak_to_an_expert_url()
     {
-        $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
+        $hero_form_redirect_type = get__post_meta('hero_form_redirect_type09');
         $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
         $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
@@ -968,7 +966,7 @@ class Shortcodes
         if ($url) {
             return $url;
         } else {
-            $url = 'https://calendly.com/coptrz-the-drone-experts/speak-to-an-inspection-drone-expert';
+            return 'https://calendly.com/coptrz-the-drone-experts/speak-to-an-inspection-drone-expert';
         }
     }
 
