@@ -7117,6 +7117,7 @@ Container::make('post_meta', 'Product Components')
 /*-----------------------------------------------------------------------------------*/
 Container::make('post_meta', __('Custom CSS'))
     ->where('post_type', '=', 'page')
+    ->or_where('post_type', '=', 'guides')
     ->set_priority('low')
     ->add_fields(
         array(
