@@ -387,7 +387,9 @@ section {
 .has-tertiary-color {
     color: var(--wp--preset--color--tertiary) !important;
 }
-
+.has-quaternary-color {
+    color: var(--wp--preset--color-quaternary) !important;
+}
 /**
  * Block Editor Background Color Classes
  * Dynamically applied by WordPress when a user selects a background color.
@@ -412,6 +414,9 @@ section {
 }
 .has-lightgray3-background-color {
     background-color: var(--wp--preset--color--lightgray3) !important;
+}
+.has-tertiary-background-color {
+    background-color: var(--wp--preset--color--tertiary) !important;
 }
 .has-tertiary-background-color {
     background-color: var(--wp--preset--color--tertiary) !important;

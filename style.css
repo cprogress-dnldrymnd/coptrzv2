@@ -9945,6 +9945,7 @@ button.swiper-pagination-bullet {
   --wp--preset--color--primary: #000000;
   --wp--preset--color--secondary: #132446;
   --wp--preset--color--tertiary: #0e1729;
+  --wp--preset--color-quaternary: #010817;
   --wp--preset--color--contrast-white: #ffffff;
   --wp--preset--color--accent: #2da1ff;
   --wp--preset--color--lightgray: #cbcbcb;
@@ -11178,6 +11179,9 @@ p:last-child {
 .has-tertiary-color {
   color: var(--wp--preset--color--tertiary) !important; }
 
+.has-quaternary-color {
+  color: var(--wp--preset--color-quaternary) !important; }
+
 /**
  * Block Editor Background Color Classes
  * Dynamically applied by WordPress when a user selects a background color.
@@ -11202,6 +11206,9 @@ p:last-child {
 
 .has-lightgray3-background-color {
   background-color: var(--wp--preset--color--lightgray3) !important; }
+
+.has-tertiary-background-color {
+  background-color: var(--wp--preset--color--tertiary) !important; }
 
 .has-tertiary-background-color {
   background-color: var(--wp--preset--color--tertiary) !important; }

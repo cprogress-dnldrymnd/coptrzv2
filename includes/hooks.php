@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Configures theme support capabilities for the WordPress block editor.
  *
@@ -8,80 +9,86 @@
  *
  * @return void
  */
-function custom_theme_block_editor_setup() {
+function custom_theme_block_editor_setup()
+{
 
     /**
      * Enable support for custom editor styles.
      * This allows the theme to load custom CSS into the block editor canvas.
      */
-    add_theme_support( 'editor-styles' );
+    add_theme_support('editor-styles');
 
     /**
      * Enqueue the primary stylesheet to the block editor.
      * WordPress handles wrapping these styles to prevent admin UI conflicts.
      * Assumes style.css is located in the theme root.
      */
-    add_editor_style( 'style.css' );
+    add_editor_style('style.css');
 
     /**
      * Register a custom color palette for the block editor.
      * Modifying this array updates the UI color swatches available to the user.
      * The 'slug' key dictates the dynamically generated CSS classes.
      */
-    add_theme_support( 'editor-color-palette', array(
+    add_theme_support('editor-color-palette', array(
         array(
-            'name'  => esc_html__( 'Primary', 'coptrz' ),
+            'name'  => esc_html__('Primary', 'coptrz'),
             'slug'  => 'primary',
             'color' => '#000000', // Normalized from #0000 for solid black
         ),
         array(
-            'name'  => esc_html__( 'Secondary', 'coptrz' ),
+            'name'  => esc_html__('Secondary', 'coptrz'),
             'slug'  => 'secondary',
             'color' => '#132446',
         ),
-          array(
-            'name'  => esc_html__( 'Tertiary', 'coptrz' ),
+        array(
+            'name'  => esc_html__('Tertiary', 'coptrz'),
             'slug'  => 'tertiary',
             'color' => '#0E1729',
         ),
         array(
-            'name'  => esc_html__( 'Contrast / White', 'coptrz' ),
+            'name'  => esc_html__('Quaternary', 'coptrz'),
+            'slug'  => 'quaternary',
+            'color' => '#010817',
+        ),
+        array(
+            'name'  => esc_html__('Contrast / White', 'coptrz'),
             'slug'  => 'contrast-white',
             'color' => '#ffffff', // Expanded from #fff
         ),
         array(
-            'name'  => esc_html__( 'Accent', 'coptrz' ),
+            'name'  => esc_html__('Accent', 'coptrz'),
             'slug'  => 'accent',
             'color' => '#2DA1FF',
         ),
         array(
-            'name'  => esc_html__( 'Light Gray', 'coptrz' ),
+            'name'  => esc_html__('Light Gray', 'coptrz'),
             'slug'  => 'lightgray',
             'color' => '#CBCBCB',
         ),
         array(
-            'name'  => esc_html__( 'Light Gray 2', 'coptrz' ),
+            'name'  => esc_html__('Light Gray 2', 'coptrz'),
             'slug'  => 'lightgray2',
             'color' => '#DBDBDB',
         ),
         array(
-            'name'  => esc_html__( 'Light Gray 3', 'coptrz' ),
+            'name'  => esc_html__('Light Gray 3', 'coptrz'),
             'slug'  => 'lightgray3',
             'color' => '#EFEFEF',
         ),
-    ) );
+    ));
 
     /**
      * Optional constraint: Disable the custom color picker completely.
      * Enforces strict adherence to the defined palette by preventing users
      * from inputting arbitrary hex codes.
      */
-    add_theme_support( 'appearance-tools' );
-    add_theme_support( 'custom-spacing' );
-    add_theme_support( 'disable-custom-colors' );
+    add_theme_support('appearance-tools');
+    add_theme_support('custom-spacing');
+    add_theme_support('disable-custom-colors');
 }
 
-add_action( 'after_setup_theme', 'custom_theme_block_editor_setup' );
+add_action('after_setup_theme', 'custom_theme_block_editor_setup');
 
 function add_svg_support($mimes)
 {
