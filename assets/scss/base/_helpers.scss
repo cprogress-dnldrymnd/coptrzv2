@@ -441,5 +441,5 @@ ul.checklist-ul {
 
 :root :where(.is-layout-flex).row {
     row-gap: var(--bs-gutter-y);
-    column-gap: var(--bs-gutter-x);
+    column-gap: unset;
 }

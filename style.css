@@ -11226,7 +11226,7 @@ ul.checklist-ul {
 
 :root :where(.is-layout-flex).row {
   row-gap: var(--bs-gutter-y);
-  column-gap: var(--bs-gutter-y); }
+  column-gap: unset; }
 
 body .wp-block {
   max-width: 100% !important; }
