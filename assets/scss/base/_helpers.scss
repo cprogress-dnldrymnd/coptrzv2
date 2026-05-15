@@ -443,6 +443,7 @@ ul.checklist-ul {
         }
     }
     &.checklist-ul-styled {
+        width: 100%;
         li {
             background-color: var(--wp--preset--color--lightgray3);
             padding: 20px;

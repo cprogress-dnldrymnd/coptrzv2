@@ -11230,10 +11230,12 @@ ul.checklist-ul {
       margin-right: 10px; }
     ul.checklist-ul li:not(:last-child) {
       margin-bottom: 14px; }
-  ul.checklist-ul.checklist-ul-styled li {
-    background-color: var(--wp--preset--color--lightgray3);
-    padding: 20px;
-    border-radius: 10px; }
+  ul.checklist-ul.checklist-ul-styled {
+    width: 100%; }
+    ul.checklist-ul.checklist-ul-styled li {
+      background-color: var(--wp--preset--color--lightgray3);
+      padding: 20px;
+      border-radius: 10px; }
 
 :root :where(.is-layout-flex).row {
   row-gap: var(--bs-gutter-y);
