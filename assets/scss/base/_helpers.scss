@@ -442,6 +442,13 @@ ul.checklist-ul {
             margin-bottom: 14px;
         }
     }
+    &.checklist-ul-styled {
+        li {
+            background-color: var(--wp--preset--color--lightgray3);
+            padding: 20px;
+            border-radius: 10px;
+        }
+    }
 }
 
 :root :where(.is-layout-flex).row {

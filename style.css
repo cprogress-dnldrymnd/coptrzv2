@@ -11230,6 +11230,8 @@ ul.checklist-ul {
       margin-right: 10px; }
     ul.checklist-ul li:not(:last-child) {
       margin-bottom: 14px; }
+  ul.checklist-ul.checklist-ul-styled li {
+    background-color: var(--wp--preset--color--lightgray3); }
 
 :root :where(.is-layout-flex).row {
   row-gap: var(--bs-gutter-y);
@@ -11266,6 +11268,9 @@ ul.checklist-ul {
 
 .plethoraplugins-tabs--content {
   margin-top: 50px; }
+
+.wp-block-accordion-panel {
+  margin-top: 0 !important; }
 
 body .wp-block {
   max-width: 100% !important; }
