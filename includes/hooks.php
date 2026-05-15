@@ -72,6 +72,7 @@ function custom_theme_block_editor_setup() {
      * from inputting arbitrary hex codes.
      */
     add_theme_support( 'appearance-tools' );
+    add_theme_support( 'custom-spacing' );
     add_theme_support( 'disable-custom-colors' );
 }
 
