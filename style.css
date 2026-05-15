@@ -11249,7 +11249,10 @@ ul.checklist-ul {
 .plethoraplugins-tabs {
   text-align: right;
   font-weight: 600;
-  color: var(--wp--preset--color--tertiary); }
+  color: var(--wp--preset--color--tertiary);
+  padding-top: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--wp--preset--color--lightgray); }
 
 .plethoraplugins-tabs--content {
   margin-top: 50px; }
