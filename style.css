@@ -11255,9 +11255,9 @@ ul.checklist-ul {
   padding-bottom: 22px;
   border-bottom: 1px solid var(--wp--preset--color--lightgray); }
   .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs a {
-    text-decoration: none;
+    text-decoration: none !important;
     font-weight: 600;
-    color: var(--wp--preset--color--tertiary); }
+    color: var(--wp--preset--color--tertiary) !important; }
   .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs:before {
     content: "Explore Surverying";
     color: var(--wp--preset--color--accent);
