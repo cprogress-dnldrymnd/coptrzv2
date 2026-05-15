@@ -11250,6 +11250,7 @@ ul.checklist-ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 1rem;
   padding-top: 22px;
   padding-bottom: 22px;
   border-bottom: 1px solid var(--wp--preset--color--lightgray); }
