@@ -11144,7 +11144,8 @@ p:last-child {
 .bg-light-gray {
   background-color: var(--light-gray-color); }
 
-.object-fit-cover, .object-fit-cover img {
+.object-fit-cover,
+.object-fit-cover img {
   object-fit: cover; }
 
 /**
@@ -11197,6 +11198,24 @@ p:last-child {
 
 .has-lightgray3-background-color {
   background-color: var(--wp--preset--color--lightgray3) !important; }
+
+ul.checklist-ul {
+  list-style: none;
+  padding: 0; }
+  ul.checklist-ul li {
+    display: flex;
+    align-items: center; }
+    ul.checklist-ul li:before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%232DA1FF" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>');
+      background-repeat: no-repeat;
+      background-size: contain;
+      flex: 0 0 16px;
+      margin-right: 10px; }
+    ul.checklist-ul li:not(:last-child) {
+      margin-bottom: 14px; }
 
 body .wp-block {
   max-width: 100% !important; }
