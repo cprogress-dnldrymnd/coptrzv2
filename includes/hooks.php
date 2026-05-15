@@ -1,4 +1,67 @@
 <?php
+
+/**
+ * Configures theme support capabilities for the WordPress block editor.
+ *
+ * This function is hooked to 'after_setup_theme' to initialize custom editor styles
+ * and register a restrictive or bespoke color palette for the Gutenberg UI, overriding
+ * the core default colors.
+ *
+ * @return void
+ */
+function custom_theme_block_editor_setup()
+{
+
+    /**
+     * Enable support for custom editor styles.
+     * This allows the theme to load custom CSS into the block editor canvas.
+     */
+    add_theme_support('editor-styles');
+
+    /**
+     * Enqueue the primary stylesheet to the block editor.
+     * WordPress handles wrapping these styles to prevent admin UI conflicts.
+     * Assumes style.css is located in the theme root.
+     */
+    add_editor_style('style.css');
+
+    /**
+     * Register a custom color palette for the block editor.
+     * * Modifying this array updates the UI color swatches available to the user.
+     * The 'slug' key is critical as it dictates the CSS class WordPress generates.
+     */
+    add_theme_support('editor-color-palette', array(
+        array(
+            'name'  => esc_html__('Brand Primary', 'custom-theme'),
+            'slug'  => 'brand-primary',
+            'color' => '#0052cc',
+        ),
+        array(
+            'name'  => esc_html__('Brand Secondary', 'custom-theme'),
+            'slug'  => 'brand-secondary',
+            'color' => '#172b4d',
+        ),
+        array(
+            'name'  => esc_html__('Base White', 'custom-theme'),
+            'slug'  => 'base-white',
+            'color' => '#ffffff',
+        ),
+        array(
+            'name'  => esc_html__('Base Dark', 'custom-theme'),
+            'slug'  => 'base-dark',
+            'color' => '#091e42',
+        ),
+    ));
+
+    /**
+     * Optional constraint: Disable the custom color picker completely.
+     * Enforces strict adherence to the defined palette by preventing users
+     * from inputting arbitrary hex codes.
+     */
+    add_theme_support('disable-custom-colors');
+}
+
+add_action('after_setup_theme', 'custom_theme_block_editor_setup');
 function add_svg_support($mimes)
 {
     $mimes['svg'] = 'image/svg+xml';
