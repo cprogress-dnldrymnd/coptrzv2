@@ -463,8 +463,10 @@ ul.checklist-ul {
 }
 
 .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs {
-    text-align: right;
-
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
     padding-top: 22px;
     padding-bottom: 22px;
     border-bottom: 1px solid var(--wp--preset--color--lightgray);
@@ -472,6 +474,12 @@ ul.checklist-ul {
         text-decoration: none;
         font-weight: 600;
         color: var(--wp--preset--color--tertiary);
+    }
+    &:before {
+        content: "Explore Surverying";
+        color: var(--wp--preset--color--accent);
+        font-size: 26px;
+        font-weight: 600;
     }
 }
 
