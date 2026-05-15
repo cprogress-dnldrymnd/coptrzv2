@@ -11235,6 +11235,9 @@ ul.checklist-ul {
   row-gap: var(--bs-gutter-y);
   column-gap: unset; }
 
+.rotate-img {
+  transform: rotate(180deg); }
+
 body .wp-block {
   max-width: 100% !important; }
 
