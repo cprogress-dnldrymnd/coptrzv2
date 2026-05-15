@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Configures theme support capabilities for the WordPress block editor.
  *
@@ -26,29 +25,44 @@ function custom_theme_block_editor_setup() {
 
     /**
      * Register a custom color palette for the block editor.
-     * * Modifying this array updates the UI color swatches available to the user.
-     * The 'slug' key is critical as it dictates the CSS class WordPress generates.
+     * Modifying this array updates the UI color swatches available to the user.
+     * The 'slug' key dictates the dynamically generated CSS classes.
      */
     add_theme_support( 'editor-color-palette', array(
         array(
-            'name'  => esc_html__( 'Brand Primary', 'custom-theme' ),
-            'slug'  => 'brand-primary',
-            'color' => '#0052cc',
+            'name'  => esc_html__( 'Primary', 'custom-theme' ),
+            'slug'  => 'primary',
+            'color' => '#000000', // Normalized from #0000 for solid black
         ),
         array(
-            'name'  => esc_html__( 'Brand Secondary', 'custom-theme' ),
-            'slug'  => 'brand-secondary',
-            'color' => '#172b4d',
+            'name'  => esc_html__( 'Secondary', 'custom-theme' ),
+            'slug'  => 'secondary',
+            'color' => '#132446',
         ),
         array(
-            'name'  => esc_html__( 'Base White', 'custom-theme' ),
-            'slug'  => 'base-white',
-            'color' => '#ffffff',
+            'name'  => esc_html__( 'Contrast / White', 'custom-theme' ),
+            'slug'  => 'contrast-white',
+            'color' => '#ffffff', // Expanded from #fff
         ),
         array(
-            'name'  => esc_html__( 'Base Dark', 'custom-theme' ),
-            'slug'  => 'base-dark',
-            'color' => '#091e42',
+            'name'  => esc_html__( 'Accent', 'custom-theme' ),
+            'slug'  => 'accent',
+            'color' => '#2DA1FF',
+        ),
+        array(
+            'name'  => esc_html__( 'Light Gray', 'custom-theme' ),
+            'slug'  => 'lightgray',
+            'color' => '#CBCBCB',
+        ),
+        array(
+            'name'  => esc_html__( 'Light Gray 2', 'custom-theme' ),
+            'slug'  => 'lightgray2',
+            'color' => '#DBDBDB',
+        ),
+        array(
+            'name'  => esc_html__( 'Light Gray 3', 'custom-theme' ),
+            'slug'  => 'lightgray3',
+            'color' => '#EFEFEF',
         ),
     ) );
 
