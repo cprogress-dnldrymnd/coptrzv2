@@ -11225,7 +11225,8 @@ ul.checklist-ul {
       margin-bottom: 14px; }
 
 :root :where(.is-layout-flex).row {
-  gap: unset; }
+  row-gap: var(--bs-gutter-y);
+  column-gap: var(--bs-gutter-y); }
 
 body .wp-block {
   max-width: 100% !important; }
