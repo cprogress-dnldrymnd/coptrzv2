@@ -1,7 +1,9 @@
 body .wp-block {
     max-width: 100% !important;
 }
-
+body{
+    color: var(--bs-primary);
+}
 /* Force the root layout container to expand fully while maintaining edge padding */
 .editor-styles-wrapper .block-editor-block-list__layout.is-root-container > .wp-block {
     max-width: 100% !important;
