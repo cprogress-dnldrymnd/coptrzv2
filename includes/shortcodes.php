@@ -139,6 +139,7 @@ class Shortcodes
             $html .= "<li><span class='item text-white'  >$title</span></li>";
         } else if ($type == 'term') {
             $term = get_term($id);
+            
             $parent = (isset($term->parent)) ? get_term_by('id', $term->parent, $term->taxonomy) : false;
             if ($parent) {
                 $parent_link = get_term_link($parent->term_id);
@@ -451,12 +452,13 @@ class Shortcodes
                 $query->the_post();
                 $html .= "<div class='col-12'>";
                 $data = array(
-                    'id'       => get_the_ID(),
-                    'featured' => false,
-                    'col'      => false,
-                    'style'    => 'style-1',
-                    'taxonomy' => 'category',
-                    'elements' => array('image', 'category', 'date', 'title', 'excerpt', 'button')
+                    'id'          => get_the_ID(),
+                    'featured'    => false,
+                    'col'         => false,
+                    'style'       => 'style-1',
+                    'taxonomy'    => 'category',
+                    'elements'    => array('image', 'category', 'date', 'title', 'excerpt', 'button'),
+                    'button_text' => 'Read the Article'
                 );
                 $html .= __post_box($data);
                 $html .= "</div>";
@@ -483,7 +485,7 @@ class Shortcodes
                 $data = [];
                 $id = $p->ID;
                 $background = 'featured-image';
-                $button_text = 'Read more';
+                $button_text = 'Read the Article';
                 $is_new = false;
 
                 $data['id'] = $id;
@@ -723,7 +725,7 @@ class Shortcodes
 
         $terms = get_terms(array(
             'taxonomy'   => 'pa_brands',
-            'hide_empty' => true,
+            'hide_empty' => false,
             'number'     => 100
         ));
         $image_args['class'] = _attribute('class', array('image-box'));
@@ -955,7 +957,7 @@ class Shortcodes
     }
     function speak_to_an_expert_url()
     {
-        $hero_form_redirect_type = get__post_meta('hero_form_redirect_type09');
+        $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
         $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
         $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
@@ -966,7 +968,15 @@ class Shortcodes
         if ($url) {
             return $url;
         } else {
-            return 'https://calendly.com/coptrz-the-drone-experts/speak-to-an-inspection-drone-expert';
+            return false;
+        }
+    }
+    
+    function speak_to_an_expert_style()
+    {
+        $speak_to_an_expert_url = do_shortcode('[speak_to_an_expert_url]');
+        if($speak_to_an_expert_url == false) {
+            return 'display: none !important;';
         }
     }
 
@@ -1010,6 +1020,7 @@ class Shortcodes
     }
 }
 $Shortcodes = new Shortcodes;
+add_shortcode('speak_to_an_expert_style', array($Shortcodes, 'speak_to_an_expert_style'));
 add_shortcode('speak_to_an_expert_url', array($Shortcodes, 'speak_to_an_expert_url'));
 add_shortcode('document_thumbnail', array($Shortcodes, 'document_thumbnail'));
 add_shortcode('pdf_url', array($Shortcodes, 'pdf_url'));
