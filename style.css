@@ -11505,15 +11505,20 @@ section .container-inner > *:not(:last-child) {
       font-size: 14px;
       padding: 1.25rem 2rem; } }
 
-.wp-element-button.wp-element-button.wp-element-button,
 .wpcf7-submit.wpcf7-submit.wpcf7-submit {
   color: var(--bs-white);
   border-color: var(--bs-accent);
   background-color: var(--bs-accent); }
-  .wp-element-button.wp-element-button.wp-element-button:hover, .wp-element-button.wp-element-button.wp-element-button:active, .wp-element-button.wp-element-button.wp-element-button:focus,
-  .wpcf7-submit.wpcf7-submit.wpcf7-submit:hover,
-  .wpcf7-submit.wpcf7-submit.wpcf7-submit:active,
-  .wpcf7-submit.wpcf7-submit.wpcf7-submit:focus {
+  .wpcf7-submit.wpcf7-submit.wpcf7-submit:hover, .wpcf7-submit.wpcf7-submit.wpcf7-submit:active, .wpcf7-submit.wpcf7-submit.wpcf7-submit:focus {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--bs-white); }
+
+.wp-block-button:not(.is-style-outline) .wp-element-button.wp-element-button.wp-element-button {
+  color: var(--bs-white);
+  border-color: var(--bs-accent);
+  background-color: var(--bs-accent); }
+  .wp-block-button:not(.is-style-outline) .wp-element-button.wp-element-button.wp-element-button:hover, .wp-block-button:not(.is-style-outline) .wp-element-button.wp-element-button.wp-element-button:active, .wp-block-button:not(.is-style-outline) .wp-element-button.wp-element-button.wp-element-button:focus {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
