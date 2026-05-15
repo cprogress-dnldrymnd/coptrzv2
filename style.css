@@ -11134,6 +11134,19 @@ p:last-child {
 .object-fit-cover, .object-fit-cover img {
   object-fit: cover; }
 
+body .wp-block {
+  max-width: 100% !important; }
+
+/* Force the root layout container to expand fully while maintaining edge padding */
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > .wp-block {
+  max-width: 100% !important; }
+
+/* Ensure wide and full-aligned blocks don't cause horizontal overflow */
+.editor-styles-wrapper .wp-block[data-align="wide"],
+.editor-styles-wrapper .wp-block[data-align="full"] {
+  max-width: 100% !important;
+  width: 100% !important; }
+
 @media screen and (max-width: 991px) {
   #wpadminbar {
     display: none; } }
