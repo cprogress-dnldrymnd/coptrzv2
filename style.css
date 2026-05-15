@@ -11204,7 +11204,8 @@ ul.checklist-ul {
   padding: 0; }
   ul.checklist-ul li {
     display: flex;
-    align-items: center; }
+    align-items: center;
+    flex-direction: column; }
     ul.checklist-ul li:before {
       content: "";
       width: 16px;
