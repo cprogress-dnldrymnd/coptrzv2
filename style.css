@@ -9935,7 +9935,13 @@ button.swiper-pagination-bullet {
   --border-color: #dbdbdb;
   --light-gray-color: #f2f2f2;
   --bs-accordion-color: inherit;
-  --bs-gray: #85898c;
+  --bs-gray: #85898c; }
+
+/**
+ * Block Editor Custom Color Variables
+ * Defines the core hex values mapped to the Gutenberg custom palette.
+ */
+:root {
   --wp--preset--color--primary: #000000;
   --wp--preset--color--secondary: #132446;
   --wp--preset--color--contrast-white: #ffffff;
@@ -9943,57 +9949,6 @@ button.swiper-pagination-bullet {
   --wp--preset--color--lightgray: #CBCBCB;
   --wp--preset--color--lightgray2: #DBDBDB;
   --wp--preset--color--lightgray3: #EFEFEF; }
-
-/**
- * Block Editor Text Color Classes
- * Dynamically applied by WordPress when a user selects a text color.
- * The !important flag overrides core block specificities.
- */
-.has-primary-color {
-  color: var(--wp--preset--color--primary) !important; }
-
-.has-secondary-color {
-  color: var(--wp--preset--color--secondary) !important; }
-
-.has-contrast-white-color {
-  color: var(--wp--preset--color--contrast-white) !important; }
-
-.has-accent-color {
-  color: var(--wp--preset--color--accent) !important; }
-
-.has-lightgray-color {
-  color: var(--wp--preset--color--lightgray) !important; }
-
-.has-lightgray2-color {
-  color: var(--wp--preset--color--lightgray2) !important; }
-
-.has-lightgray3-color {
-  color: var(--wp--preset--color--lightgray3) !important; }
-
-/**
- * Block Editor Background Color Classes
- * Dynamically applied by WordPress when a user selects a background color.
- */
-.has-primary-background-color {
-  background-color: var(--wp--preset--color--primary) !important; }
-
-.has-secondary-background-color {
-  background-color: var(--wp--preset--color--secondary) !important; }
-
-.has-contrast-white-background-color {
-  background-color: var(--wp--preset--color--contrast-white) !important; }
-
-.has-accent-background-color {
-  background-color: var(--wp--preset--color--accent) !important; }
-
-.has-lightgray-background-color {
-  background-color: var(--wp--preset--color--lightgray) !important; }
-
-.has-lightgray2-background-color {
-  background-color: var(--wp--preset--color--lightgray2) !important; }
-
-.has-lightgray3-background-color {
-  background-color: var(--wp--preset--color--lightgray3) !important; }
 
 @font-face {
   font-family: "Poppins";
@@ -11191,6 +11146,57 @@ p:last-child {
 
 .object-fit-cover, .object-fit-cover img {
   object-fit: cover; }
+
+/**
+ * Block Editor Text Color Classes
+ * Dynamically applied by WordPress when a user selects a text color.
+ * The !important flag overrides core block specificities.
+ */
+.has-primary-color {
+  color: var(--wp--preset--color--primary) !important; }
+
+.has-secondary-color {
+  color: var(--wp--preset--color--secondary) !important; }
+
+.has-contrast-white-color {
+  color: var(--wp--preset--color--contrast-white) !important; }
+
+.has-accent-color {
+  color: var(--wp--preset--color--accent) !important; }
+
+.has-lightgray-color {
+  color: var(--wp--preset--color--lightgray) !important; }
+
+.has-lightgray2-color {
+  color: var(--wp--preset--color--lightgray2) !important; }
+
+.has-lightgray3-color {
+  color: var(--wp--preset--color--lightgray3) !important; }
+
+/**
+ * Block Editor Background Color Classes
+ * Dynamically applied by WordPress when a user selects a background color.
+ */
+.has-primary-background-color {
+  background-color: var(--wp--preset--color--primary) !important; }
+
+.has-secondary-background-color {
+  background-color: var(--wp--preset--color--secondary) !important; }
+
+.has-contrast-white-background-color {
+  background-color: var(--wp--preset--color--contrast-white) !important; }
+
+.has-accent-background-color {
+  background-color: var(--wp--preset--color--accent) !important; }
+
+.has-lightgray-background-color {
+  background-color: var(--wp--preset--color--lightgray) !important; }
+
+.has-lightgray2-background-color {
+  background-color: var(--wp--preset--color--lightgray2) !important; }
+
+.has-lightgray3-background-color {
+  background-color: var(--wp--preset--color--lightgray3) !important; }
 
 body .wp-block {
   max-width: 100% !important; }
