@@ -357,3 +357,27 @@ section {
 .object-fit-cover, .object-fit-cover img {
     object-fit: cover;
 }
+/**
+ * Block Editor Text Color Classes
+ * Dynamically applied by WordPress when a user selects a text color.
+ * The !important flag overrides core block specificities.
+ */
+.has-primary-color { color: var(--wp--preset--color--primary) !important; }
+.has-secondary-color { color: var(--wp--preset--color--secondary) !important; }
+.has-contrast-white-color { color: var(--wp--preset--color--contrast-white) !important; }
+.has-accent-color { color: var(--wp--preset--color--accent) !important; }
+.has-lightgray-color { color: var(--wp--preset--color--lightgray) !important; }
+.has-lightgray2-color { color: var(--wp--preset--color--lightgray2) !important; }
+.has-lightgray3-color { color: var(--wp--preset--color--lightgray3) !important; }
+
+/**
+ * Block Editor Background Color Classes
+ * Dynamically applied by WordPress when a user selects a background color.
+ */
+.has-primary-background-color { background-color: var(--wp--preset--color--primary) !important; }
+.has-secondary-background-color { background-color: var(--wp--preset--color--secondary) !important; }
+.has-contrast-white-background-color { background-color: var(--wp--preset--color--contrast-white) !important; }
+.has-accent-background-color { background-color: var(--wp--preset--color--accent) !important; }
+.has-lightgray-background-color { background-color: var(--wp--preset--color--lightgray) !important; }
+.has-lightgray2-background-color { background-color: var(--wp--preset--color--lightgray2) !important; }
+.has-lightgray3-background-color { background-color: var(--wp--preset--color--lightgray3) !important; }

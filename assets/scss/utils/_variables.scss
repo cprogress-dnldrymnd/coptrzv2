@@ -36,3 +36,18 @@ $red-color: #d64550;
 	--bs-accordion-color: inherit;
 	--bs-gray: #85898c;
 }
+
+
+/**
+ * Block Editor Custom Color Variables
+ * Defines the core hex values mapped to the Gutenberg custom palette.
+ */
+:root {
+    --wp--preset--color--primary: #000000;
+    --wp--preset--color--secondary: #132446;
+    --wp--preset--color--contrast-white: #ffffff;
+    --wp--preset--color--accent: #2DA1FF;
+    --wp--preset--color--lightgray: #CBCBCB;
+    --wp--preset--color--lightgray2: #DBDBDB;
+    --wp--preset--color--lightgray3: #EFEFEF;
+}
