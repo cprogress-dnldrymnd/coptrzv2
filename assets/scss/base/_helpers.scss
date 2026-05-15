@@ -432,3 +432,7 @@ ul.checklist-ul {
         }
     }
 }
+
+:root :where(.is-layout-flex).row {
+    gap: unset;
+}

@@ -11217,6 +11217,9 @@ ul.checklist-ul {
     ul.checklist-ul li:not(:last-child) {
       margin-bottom: 14px; }
 
+:root :where(.is-layout-flex).row {
+  gap: unset; }
+
 body .wp-block {
   max-width: 100% !important; }
 
