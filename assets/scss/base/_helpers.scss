@@ -452,3 +452,12 @@ ul.checklist-ul {
 .rotate-img {
     transform: rotate(180deg);
 }
+
+.separator--style-1.separator--style-1 {
+    height: 4px;
+    background: transparent linear-gradient(270deg, #2da1ff 0%, #175180 100%) 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border: none;
+    border-radius: 20px;
+    max-width: 320px;
+}
