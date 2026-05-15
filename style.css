@@ -11246,6 +11246,14 @@ ul.checklist-ul {
   border-radius: 20px;
   max-width: 320px; }
 
+.plethoraplugins-tabs {
+  text-align: right;
+  font-weight: 600;
+  color: var(--wp--preset--color--tertiary); }
+
+.plethoraplugins-tabs--content {
+  margin-top: 50px; }
+
 body .wp-block {
   max-width: 100% !important; }
 
