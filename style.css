@@ -9944,11 +9944,12 @@ button.swiper-pagination-bullet {
 :root {
   --wp--preset--color--primary: #000000;
   --wp--preset--color--secondary: #132446;
+  --wp--preset--color--tertiary: #0e1729;
   --wp--preset--color--contrast-white: #ffffff;
-  --wp--preset--color--accent: #2DA1FF;
-  --wp--preset--color--lightgray: #CBCBCB;
-  --wp--preset--color--lightgray2: #DBDBDB;
-  --wp--preset--color--lightgray3: #EFEFEF; }
+  --wp--preset--color--accent: #2da1ff;
+  --wp--preset--color--lightgray: #cbcbcb;
+  --wp--preset--color--lightgray2: #dbdbdb;
+  --wp--preset--color--lightgray3: #efefef; }
 
 @font-face {
   font-family: "Poppins";
@@ -11174,6 +11175,9 @@ p:last-child {
 .has-lightgray3-color {
   color: var(--wp--preset--color--lightgray3) !important; }
 
+.has-tertiary-color {
+  color: var(--wp--preset--color--tertiary) !important; }
+
 /**
  * Block Editor Background Color Classes
  * Dynamically applied by WordPress when a user selects a background color.
@@ -11198,6 +11202,9 @@ p:last-child {
 
 .has-lightgray3-background-color {
   background-color: var(--wp--preset--color--lightgray3) !important; }
+
+.has-tertiary-background-color {
+  background-color: var(--wp--preset--color--tertiary) !important; }
 
 ul.checklist-ul {
   list-style: none;

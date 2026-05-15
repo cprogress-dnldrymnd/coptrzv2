@@ -30,37 +30,42 @@ function custom_theme_block_editor_setup() {
      */
     add_theme_support( 'editor-color-palette', array(
         array(
-            'name'  => esc_html__( 'Primary', 'custom-theme' ),
+            'name'  => esc_html__( 'Primary', 'coptrz' ),
             'slug'  => 'primary',
             'color' => '#000000', // Normalized from #0000 for solid black
         ),
         array(
-            'name'  => esc_html__( 'Secondary', 'custom-theme' ),
+            'name'  => esc_html__( 'Secondary', 'coptrz' ),
             'slug'  => 'secondary',
             'color' => '#132446',
         ),
+          array(
+            'name'  => esc_html__( 'Tertiary', 'coptrz' ),
+            'slug'  => 'tertiary',
+            'color' => '#0E1729',
+        ),
         array(
-            'name'  => esc_html__( 'Contrast / White', 'custom-theme' ),
+            'name'  => esc_html__( 'Contrast / White', 'coptrz' ),
             'slug'  => 'contrast-white',
             'color' => '#ffffff', // Expanded from #fff
         ),
         array(
-            'name'  => esc_html__( 'Accent', 'custom-theme' ),
+            'name'  => esc_html__( 'Accent', 'coptrz' ),
             'slug'  => 'accent',
             'color' => '#2DA1FF',
         ),
         array(
-            'name'  => esc_html__( 'Light Gray', 'custom-theme' ),
+            'name'  => esc_html__( 'Light Gray', 'coptrz' ),
             'slug'  => 'lightgray',
             'color' => '#CBCBCB',
         ),
         array(
-            'name'  => esc_html__( 'Light Gray 2', 'custom-theme' ),
+            'name'  => esc_html__( 'Light Gray 2', 'coptrz' ),
             'slug'  => 'lightgray2',
             'color' => '#DBDBDB',
         ),
         array(
-            'name'  => esc_html__( 'Light Gray 3', 'custom-theme' ),
+            'name'  => esc_html__( 'Light Gray 3', 'coptrz' ),
             'slug'  => 'lightgray3',
             'color' => '#EFEFEF',
         ),

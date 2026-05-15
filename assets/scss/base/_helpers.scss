@@ -384,6 +384,9 @@ section {
 .has-lightgray3-color {
     color: var(--wp--preset--color--lightgray3) !important;
 }
+.has-tertiary-color {
+    color: var(--wp--preset--color--tertiary) !important;
+}
 
 /**
  * Block Editor Background Color Classes
@@ -409,6 +412,9 @@ section {
 }
 .has-lightgray3-background-color {
     background-color: var(--wp--preset--color--lightgray3) !important;
+}
+.has-tertiary-background-color {
+    background-color: var(--wp--preset--color--tertiary) !important;
 }
 
 ul.checklist-ul {
