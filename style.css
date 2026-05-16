@@ -11579,6 +11579,9 @@ section .container-inner > *:not(:last-child) {
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
 
+.wp-block-read-more.wp-block-read-more.wp-block-read-more {
+  width: 100%; }
+
 .cf7-button-primary .wpcf7-submit.wpcf7-submit.wpcf7-submit {
   background-color: var(--bs-primary);
   border-color: var(--bs-primary);
