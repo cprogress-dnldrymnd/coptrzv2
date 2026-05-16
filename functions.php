@@ -136,9 +136,9 @@ add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999);
 function digitally_disruptive_enqueue_swiper_editor_assets() {
     wp_enqueue_script(
         'dd-query-swiper-editor',
-        get_template_directory_uri() . '/js/query-swiper-editor.js', // Adjust path
+        get_template_directory_uri() . '/assets/js/query-swiper-editor.js', // Adjust path
         array( 'wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor' ),
-        filemtime( get_template_directory() . '/js/query-swiper-editor.js' ),
+        filemtime( get_template_directory() . '/assets/js/query-swiper-editor.js' ),
         true
     );
 }
