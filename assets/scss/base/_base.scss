@@ -1,7 +1,7 @@
 body .wp-block {
     max-width: 100% !important;
 }
-body{
+body {
     color: var(--bs-primary);
 }
 /* Force the root layout container to expand fully while maintaining edge padding */
@@ -352,10 +352,10 @@ section {
 .button-box button,
 .button.button.button.button.button,
 .wp-element-button.wp-element-button.wp-element-button,
-.wpcf7-submit.wpcf7-submit.wpcf7-submit, .wp-block-read-more.wp-block-read-more.wp-block-read-more {
+.wpcf7-submit.wpcf7-submit.wpcf7-submit,
+.wp-block-read-more.wp-block-read-more.wp-block-read-more {
     @include button-style;
 }
-
 
 .wpcf7-submit.wpcf7-submit.wpcf7-submit {
     @include button-accent;
@@ -363,10 +363,8 @@ section {
 
 .wp-block-button:not(.is-style-outline) .wp-element-button.wp-element-button.wp-element-button {
     @include button-accent;
-
-} 
+}
 .wp-block-read-more.wp-block-read-more.wp-block-read-more {
-
 }
 .cf7-button-primary .wpcf7-submit.wpcf7-submit.wpcf7-submit {
     @include button-primary;

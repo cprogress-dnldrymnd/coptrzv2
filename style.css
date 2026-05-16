@@ -11539,7 +11539,8 @@ section .container-inner > *:not(:last-child) {
 .button-box button,
 .button.button.button.button.button,
 .wp-element-button.wp-element-button.wp-element-button,
-.wpcf7-submit.wpcf7-submit.wpcf7-submit, .wp-block-read-more.wp-block-read-more.wp-block-read-more {
+.wpcf7-submit.wpcf7-submit.wpcf7-submit,
+.wp-block-read-more.wp-block-read-more.wp-block-read-more {
   padding: 1.25rem 2.5rem;
   border: 1px solid;
   display: inline-block;
@@ -11555,7 +11556,8 @@ section .container-inner > *:not(:last-child) {
     .button-box button,
     .button.button.button.button.button,
     .wp-element-button.wp-element-button.wp-element-button,
-    .wpcf7-submit.wpcf7-submit.wpcf7-submit, .wp-block-read-more.wp-block-read-more.wp-block-read-more {
+    .wpcf7-submit.wpcf7-submit.wpcf7-submit,
+    .wp-block-read-more.wp-block-read-more.wp-block-read-more {
       font-size: 14px;
       padding: 1.25rem 2rem; } }
 
