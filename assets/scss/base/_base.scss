@@ -1969,8 +1969,10 @@ ul.query-loop-swiper-js,
             border-radius: 0;
             opacity: 0.5;
             width: 15px;
+            flex: 0 0 15px;
+            height: 5px;
             &.swiper-pagination-bullet-active {
-                opacity: 1;
+                opacity: 1 !important;
             }
         }
     }
