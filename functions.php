@@ -128,7 +128,7 @@ function enqueue_scripts()
 	}
 }
 
-add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999);
+add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); 
 
 /**
  * Enqueue the block extension script in the Gutenberg editor.
@@ -275,3 +275,72 @@ function action_validate_email()
 }
 
 add_action('wp_footer', 'action_validate_email');
+
+add_action('wp', function() {
+
+    if (!is_product()) return;
+
+    global $post;
+
+    $related = carbon_get_post_meta($post->ID, 'crb_related_products');
+
+    if (!empty($related)) {
+        remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
+    }
+
+});
+
+add_action('woocommerce_after_single_product_summary', function() {
+
+    if (!is_product()) return;
+
+    global $post;
+
+    $related = carbon_get_post_meta($post->ID, 'crb_related_products');
+
+    // ❌ If empty → let WooCommerce handle it
+    if (empty($related)) return;
+
+    // 🔥 Extract product IDs from Carbon Fields structure
+    $related_ids = array_map(function($item) {
+        return $item['id'];
+    }, $related);
+
+    $query = new WP_Query([
+        'post_type'      => 'product',
+        'post__in'       => $related_ids,
+        'orderby'        => 'post__in', // 👈 keeps manual order
+        'posts_per_page' => count($related_ids),
+    ]);
+
+    if ($query->have_posts()) {
+        echo '<section class="related products md-padding-top md-padding-bottom border-top-default">';
+        echo '<div class="container">';
+        echo '<h2 class="text-center">Related products</h2>';
+        echo '<ul class="products columns-4">';
+
+        while ($query->have_posts()) {
+            $query->the_post();
+
+            // ✅ Uses your existing product card layout
+            wc_get_template_part('content', 'product');
+        }
+
+        echo '</ul></div></section>';
+    }
+
+    wp_reset_postdata();
+
+}, 20);
+
+add_action( 'wp_footer', 'inject_popup_modal' );
+function inject_popup_modal() {
+    // Only show this on the relevant Brand Archive pages
+    if ( is_tax( 'pa_brands', 'skyshyld' ) ) {
+        echo do_shortcode('[popup id=419151]');
+    }
+    else if ( is_tax( 'pa_brands', 'avy' ) ) {
+        echo do_shortcode('[popup id=419411]');
+    }
+}
+
