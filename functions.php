@@ -131,19 +131,107 @@ function enqueue_scripts()
 add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999);
 
 /**
- * Enqueue the block extension script in the Gutenberg editor.
+ * Enqueue the block extension script in the editor.
  */
-function digitally_disruptive_enqueue_block_extensions()
-{
-	wp_enqueue_script(
-		'dd-extend-group-block',
-		get_template_directory_uri() . '/assets/js/extend-group-block.js', // Adjust path as needed
-		array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
-		filemtime(get_template_directory() . '/assets/js/extend-group-block.js'),
-		true
-	);
+function digitally_disruptive_enqueue_swiper_editor_assets() {
+    wp_enqueue_script(
+        'dd-query-swiper-editor',
+        get_template_directory_uri() . '/js/query-swiper-editor.js', // Adjust path
+        array( 'wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor' ),
+        filemtime( get_template_directory() . '/js/query-swiper-editor.js' ),
+        true
+    );
 }
-add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_block_extensions');
+add_action( 'enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_editor_assets' );
+
+/**
+ * Intercept the rendered HTML of blocks containing our target class and format them for Swiper.js.
+ *
+ * @param string $block_content The raw HTML content of the block.
+ * @param array  $block         The parsed block data array.
+ * @return string Modified block HTML.
+ */
+function digitally_disruptive_render_swiper_query( $block_content, $block ) {
+    
+    // Bail early if the block doesn't possess the required class
+    if ( empty( $block['attrs']['className'] ) || strpos( $block['attrs']['className'], 'query-loop-swiper-js' ) === false ) {
+        return $block_content;
+    }
+
+    $attrs = $block['attrs'];
+
+    // 1. Construct the Swiper Initialization Object
+    $swiper_config = array(
+        'spaceBetween'  => isset( $attrs['swiperSpaceBetween'] ) ? (int) $attrs['swiperSpaceBetween'] : 20,
+        'loop'          => isset( $attrs['swiperLoop'] ) ? (bool) $attrs['swiperLoop'] : true,
+        'breakpoints'   => array(
+            320  => array( 'slidesPerView' => isset( $attrs['swiperSlidesMobile'] ) ? (float) $attrs['swiperSlidesMobile'] : 1 ),
+            768  => array( 'slidesPerView' => isset( $attrs['swiperSlidesTablet'] ) ? (float) $attrs['swiperSlidesTablet'] : 2 ),
+            1024 => array( 'slidesPerView' => isset( $attrs['swiperSlidesDesktop'] ) ? (float) $attrs['swiperSlidesDesktop'] : 4 ),
+        ),
+    );
+
+    if ( ! empty( $attrs['swiperAutoplay'] ) ) {
+        $swiper_config['autoplay'] = array(
+            'delay'                => isset( $attrs['swiperDelay'] ) ? (int) $attrs['swiperDelay'] : 3000,
+            'disableOnInteraction' => false,
+        );
+    }
+    if ( ! empty( $attrs['swiperPagination'] ) ) {
+        $swiper_config['pagination'] = array( 'el' => '.swiper-pagination', 'clickable' => true );
+    }
+    if ( ! empty( $attrs['swiperNavigation'] ) ) {
+        $swiper_config['navigation'] = array( 'nextEl' => '.swiper-button-next', 'prevEl' => '.swiper-button-prev' );
+    }
+
+    // 2. Modify the DOM Structure using WP_HTML_Tag_Processor
+    $tags = new WP_HTML_Tag_Processor( $block_content );
+    
+    // Add main 'swiper' class and JSON payload to the root element
+    if ( $tags->next_tag() ) {
+        $tags->add_class( 'swiper' );
+        $tags->set_attribute( 'data-swiper-config', wp_json_encode( $swiper_config ) );
+    }
+
+    // Add 'swiper-wrapper' class to the internal <ul> container
+    while ( $tags->next_tag( array( 'tag_name' => 'ul' ) ) ) {
+        $class = $tags->get_attribute( 'class' );
+        if ( $class && strpos( $class, 'wp-block-post-template' ) !== false ) {
+            $tags->add_class( 'swiper-wrapper' );
+            break; 
+        }
+    }
+
+    // Process all <li> elements inside the loop and append 'swiper-slide'
+    $tags = new WP_HTML_Tag_Processor( $tags->get_updated_html() );
+    while ( $tags->next_tag( array( 'tag_name' => 'li' ) ) ) {
+        $class = $tags->get_attribute( 'class' );
+        if ( $class && strpos( $class, 'wp-block-post' ) !== false ) {
+            $tags->add_class( 'swiper-slide' );
+        }
+    }
+
+    $html = $tags->get_updated_html();
+
+    // 3. Inject Navigation / Pagination Elements before the final closing div
+    $controls_html = '';
+    if ( ! empty( $attrs['swiperPagination'] ) ) {
+        $controls_html .= '<div class="swiper-pagination"></div>';
+    }
+    if ( ! empty( $attrs['swiperNavigation'] ) ) {
+        $controls_html .= '<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>';
+    }
+
+    if ( ! empty( $controls_html ) ) {
+        $pos = strrpos( $html, '</div>' );
+        if ( $pos !== false ) {
+            $html = substr_replace( $html, $controls_html . '</div>', $pos, strlen( '</div>' ) );
+        }
+    }
+
+    return $html;
+}
+add_filter( 'render_block', 'digitally_disruptive_render_swiper_query', 10, 2 );
 
 /*-----------------------------------------------------------------------------------*/
 /* Require Files
