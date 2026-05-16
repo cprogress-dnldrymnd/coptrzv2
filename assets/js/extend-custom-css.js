@@ -3,6 +3,7 @@
  * @author    Digitally Disruptive - Donald Raymundo
  * @link      https://digitallydisruptive.co.uk/
  * * Injects a Custom CSS control with Live Editor Preview.
+ * * Encapsulated in an IIFE to prevent global window namespace collisions.
  */
 (function (wp) {
 
@@ -12,8 +13,14 @@
     const { InspectorControls } = wp.blockEditor;
     const { PanelBody, TextareaControl } = wp.components;
 
-    // Define the architectural whitelist for blocks supporting Custom CSS
-    const ALLOWED_BLOCKS = ['core/group', 'core/separator', 'core/image'];
+    // Architectural whitelist expanded for Group, Separator, Image, Heading, and Paragraph blocks
+    const ALLOWED_BLOCKS = [
+        'core/group', 
+        'core/separator', 
+        'core/image', 
+        'core/heading', 
+        'core/paragraph'
+    ];
 
     /**
      * 1. Register the custom CSS attribute

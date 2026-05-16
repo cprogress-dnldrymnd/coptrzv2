@@ -267,8 +267,14 @@ add_filter('render_block', 'digitally_disruptive_render_swiper_query', 10, 2);
  */
 function digitally_disruptive_render_custom_css( $block_content, $block ) {
     
-    // Define the whitelist of blocks permitted to process Custom CSS
-    $allowed_blocks = array( 'core/group', 'core/separator' );
+    // Define the expanded whitelist of blocks permitted to process Custom CSS
+    $allowed_blocks = array( 
+        'core/group', 
+        'core/separator', 
+        'core/image', 
+        'core/heading', 
+        'core/paragraph' 
+    );
 
     // Bail early if no CSS exists or if the block type is not whitelisted
     if ( empty( $block['attrs']['ddCustomCSS'] ) || ! in_array( $block['blockName'], $allowed_blocks, true ) ) {
@@ -286,7 +292,7 @@ function digitally_disruptive_render_custom_css( $block_content, $block ) {
     // Automatically wrap the user's raw CSS properties inside the unique class selector
     $scoped_css = sprintf( '.%s { %s }', $unique_id, $sanitized_css );
 
-    // Inject the unique class into the block's main HTML wrapper (<div class="wp-block-group"> or <hr>)
+    // Inject the unique class into the block's outermost HTML tag container
     $tags = new WP_HTML_Tag_Processor( $block_content );
     if ( $tags->next_tag() ) {
         $tags->add_class( $unique_id );
