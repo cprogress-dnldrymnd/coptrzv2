@@ -1978,3 +1978,7 @@ ul.query-loop-swiper-js,
         }
     }
 }
+
+.wp-block-group > .wp-block-group__inner-container {
+    display: contents !important;
+}

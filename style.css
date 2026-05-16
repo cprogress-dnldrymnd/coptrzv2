@@ -12723,6 +12723,9 @@ ul.query-loop-swiper-js,
     .query-loop-swiper-js .swiper-pagination.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
       opacity: 1 !important; }
 
+.wp-block-group > .wp-block-group__inner-container {
+  display: contents !important; }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }
