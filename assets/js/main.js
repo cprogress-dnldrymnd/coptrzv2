@@ -813,20 +813,36 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const config = JSON.parse( configData );
 
-            // Ensure pagination/navigation nodes correctly target elements *within* this specific slider instance
+            // Safely assign pagination ONLY if the DOM element exists
             if ( config.pagination ) {
-                config.pagination.el = container.querySelector('.swiper-pagination');
+                const pagEl = container.querySelector('.swiper-pagination');
+                if ( pagEl ) {
+                    config.pagination.el = pagEl;
+                } else {
+                    // If the HTML is missing, strip it from config to prevent crashes
+                    delete config.pagination; 
+                }
             }
+
+            // Safely assign navigation ONLY if the DOM elements exist
             if ( config.navigation ) {
-                config.navigation.nextEl = container.querySelector('.swiper-button-next');
-                config.navigation.prevEl = container.querySelector('.swiper-button-prev');
+                const nextEl = container.querySelector('.swiper-button-next');
+                const prevEl = container.querySelector('.swiper-button-prev');
+                
+                if ( nextEl && prevEl ) {
+                    config.navigation.nextEl = nextEl;
+                    config.navigation.prevEl = prevEl;
+                } else {
+                    // If the HTML is missing, strip it from config to prevent crashes
+                    delete config.navigation;
+                }
             }
 
             // Initialize the Swiper instance
             new Swiper( container, config );
 
         } catch ( error ) {
-            console.error( 'Digitally Disruptive: Swiper JSON parsing error.', error );
+            console.error( 'Digitally Disruptive: Swiper JSON parsing/init error.', error );
         }
     });
 
