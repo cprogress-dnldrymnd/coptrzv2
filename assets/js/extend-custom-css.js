@@ -13,7 +13,7 @@
     const { PanelBody, TextareaControl } = wp.components;
 
     // Define the architectural whitelist for blocks supporting Custom CSS
-    const ALLOWED_BLOCKS = ['core/group', 'core/separator', 'core/image','core/heading', 'core/paragraph'];
+    const ALLOWED_BLOCKS = ['core/group', 'core/separator', 'core/image'];
 
     /**
      * 1. Register the custom CSS attribute
