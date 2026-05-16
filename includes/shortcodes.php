@@ -1020,7 +1020,7 @@ class Shortcodes
     }
     function post_url() {
         global $post;
-        return get_the_permalink($post->ID);
+        return get_permalink($post->ID);
     }
 }
 $Shortcodes = new Shortcodes;
