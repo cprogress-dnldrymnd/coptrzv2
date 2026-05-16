@@ -52,6 +52,11 @@ function custom_theme_block_editor_setup()
             'color' => '#010817',
         ),
         array(
+            'name'  => esc_html__('Quinary', 'coptrz'),
+            'slug'  => 'quinary',
+            'color' => '#0E1B35',
+        ),
+        array(
             'name'  => esc_html__('Contrast / White', 'coptrz'),
             'slug'  => 'contrast-white',
             'color' => '#ffffff', // Expanded from #fff
