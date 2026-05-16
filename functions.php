@@ -133,16 +133,24 @@ add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999);
 /**
  * Enqueue the block extension script in the editor.
  */
-function digitally_disruptive_enqueue_swiper_editor_assets() {
-    wp_enqueue_script(
-        'dd-query-swiper-editor',
-        get_template_directory_uri() . '/assets/js/query-swiper-editor.js', // Adjust path
-        array( 'wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor' ),
-        filemtime( get_template_directory() . '/assets/js/query-swiper-editor.js' ),
-        true
-    );
+function digitally_disruptive_enqueue_swiper_editor_assets()
+{
+	wp_enqueue_script(
+		'dd-query-swiper-editor',
+		get_template_directory_uri() . '/assets/js/query-swiper-editor.js', // Adjust path
+		array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+		filemtime(get_template_directory() . '/assets/js/query-swiper-editor.js'),
+		true
+	);
+	wp_enqueue_script(
+		'dd-extend-custom-css',
+		get_template_directory_uri() . '/assets/js/extend-custom-css.js', // Adjust path
+		array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+		filemtime(get_template_directory() . '/assets/js/extend-custom-css.js'),
+		true
+	);
 }
-add_action( 'enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_editor_assets' );
+add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_editor_assets');
 
 /**
  * Intercept the rendered HTML of blocks containing our target class and format them for Swiper.js.
@@ -151,103 +159,151 @@ add_action( 'enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_
  * @param array  $block         The parsed block data array.
  * @return string Modified block HTML.
  */
-function digitally_disruptive_render_swiper_query( $block_content, $block ) {
-    
-    // Bail early if the block doesn't possess the required class
-    if ( empty( $block['attrs']['className'] ) || strpos( $block['attrs']['className'], 'query-loop-swiper-js' ) === false ) {
-        return $block_content;
-    }
+function digitally_disruptive_render_swiper_query($block_content, $block)
+{
 
-    $attrs = $block['attrs'];
+	// Bail early if the block doesn't possess the required class
+	if (empty($block['attrs']['className']) || strpos($block['attrs']['className'], 'query-loop-swiper-js') === false) {
+		return $block_content;
+	}
 
-    /**
-     * EXTRACT ATTRIBUTES WITH STRICT DEFAULTS
-     * Matches the default values registered in the JS block schema.
-     */
-    $slides_desktop = isset( $attrs['swiperSlidesDesktop'] ) ? (float) $attrs['swiperSlidesDesktop'] : 4;
-    $slides_tablet  = isset( $attrs['swiperSlidesTablet'] ) ? (float) $attrs['swiperSlidesTablet'] : 2;
-    $slides_mobile  = isset( $attrs['swiperSlidesMobile'] ) ? (float) $attrs['swiperSlidesMobile'] : 1;
-    $space_between  = isset( $attrs['swiperSpaceBetween'] ) ? (int) $attrs['swiperSpaceBetween'] : 20;
-    
-    $is_loop        = isset( $attrs['swiperLoop'] ) ? (bool) $attrs['swiperLoop'] : true;
-    $has_pagination = isset( $attrs['swiperPagination'] ) ? (bool) $attrs['swiperPagination'] : true;
-    $has_navigation = isset( $attrs['swiperNavigation'] ) ? (bool) $attrs['swiperNavigation'] : false;
-    $has_autoplay   = isset( $attrs['swiperAutoplay'] ) ? (bool) $attrs['swiperAutoplay'] : false;
-    $delay          = isset( $attrs['swiperDelay'] ) ? (int) $attrs['swiperDelay'] : 3000;
+	$attrs = $block['attrs'];
 
-    // 1. Construct the Swiper Initialization Object
-    $swiper_config = array(
-        'spaceBetween'  => $space_between,
-        'loop'          => $is_loop,
-        'breakpoints'   => array(
-            320  => array( 'slidesPerView' => $slides_mobile ),
-            768  => array( 'slidesPerView' => $slides_tablet ),
-            1024 => array( 'slidesPerView' => $slides_desktop ),
-        ),
-    );
+	/**
+	 * EXTRACT ATTRIBUTES WITH STRICT DEFAULTS
+	 * Matches the default values registered in the JS block schema.
+	 */
+	$slides_desktop = isset($attrs['swiperSlidesDesktop']) ? (float) $attrs['swiperSlidesDesktop'] : 4;
+	$slides_tablet  = isset($attrs['swiperSlidesTablet']) ? (float) $attrs['swiperSlidesTablet'] : 2;
+	$slides_mobile  = isset($attrs['swiperSlidesMobile']) ? (float) $attrs['swiperSlidesMobile'] : 1;
+	$space_between  = isset($attrs['swiperSpaceBetween']) ? (int) $attrs['swiperSpaceBetween'] : 20;
 
-    if ( $has_autoplay ) {
-        $swiper_config['autoplay'] = array(
-            'delay'                => $delay,
-            'disableOnInteraction' => false,
-        );
-    }
-    if ( $has_pagination ) {
-        $swiper_config['pagination'] = array( 'el' => '.swiper-pagination', 'clickable' => true );
-    }
-    if ( $has_navigation ) {
-        $swiper_config['navigation'] = array( 'nextEl' => '.swiper-button-next', 'prevEl' => '.swiper-button-prev' );
-    }
+	$is_loop        = isset($attrs['swiperLoop']) ? (bool) $attrs['swiperLoop'] : true;
+	$has_pagination = isset($attrs['swiperPagination']) ? (bool) $attrs['swiperPagination'] : true;
+	$has_navigation = isset($attrs['swiperNavigation']) ? (bool) $attrs['swiperNavigation'] : false;
+	$has_autoplay   = isset($attrs['swiperAutoplay']) ? (bool) $attrs['swiperAutoplay'] : false;
+	$delay          = isset($attrs['swiperDelay']) ? (int) $attrs['swiperDelay'] : 3000;
 
-    $tags = new WP_HTML_Tag_Processor( $block_content );
-    
-    // 2. Target the .wp-block-query div to become the main .swiper container
-    while ( $tags->next_tag() ) {
-        $class = $tags->get_attribute( 'class' );
-        if ( $class && preg_match( '/\bwp-block-query\b/', $class ) ) {
-            $tags->add_class( 'swiper' );
-            $tags->set_attribute( 'data-swiper-config', wp_json_encode( $swiper_config ) );
-            break; 
-        }
-    }
+	// 1. Construct the Swiper Initialization Object
+	$swiper_config = array(
+		'spaceBetween'  => $space_between,
+		'loop'          => $is_loop,
+		'breakpoints'   => array(
+			320  => array('slidesPerView' => $slides_mobile),
+			768  => array('slidesPerView' => $slides_tablet),
+			1024 => array('slidesPerView' => $slides_desktop),
+		),
+	);
 
-    // 3. Add 'swiper-wrapper' class to the internal <ul> container
-    $tags = new WP_HTML_Tag_Processor( $tags->get_updated_html() );
-    while ( $tags->next_tag( array( 'tag_name' => 'ul' ) ) ) {
-        $class = $tags->get_attribute( 'class' );
-        if ( $class && strpos( $class, 'wp-block-post-template' ) !== false ) {
-            $tags->add_class( 'swiper-wrapper' );
-            break; 
-        }
-    }
+	if ($has_autoplay) {
+		$swiper_config['autoplay'] = array(
+			'delay'                => $delay,
+			'disableOnInteraction' => false,
+		);
+	}
+	if ($has_pagination) {
+		$swiper_config['pagination'] = array('el' => '.swiper-pagination', 'clickable' => true);
+	}
+	if ($has_navigation) {
+		$swiper_config['navigation'] = array('nextEl' => '.swiper-button-next', 'prevEl' => '.swiper-button-prev');
+	}
 
-    // 4. Process all <li> elements inside the loop and append 'swiper-slide'
-    $tags = new WP_HTML_Tag_Processor( $tags->get_updated_html() );
-    while ( $tags->next_tag( array( 'tag_name' => 'li' ) ) ) {
-        $class = $tags->get_attribute( 'class' );
-        if ( $class && strpos( $class, 'wp-block-post' ) !== false ) {
-            $tags->add_class( 'swiper-slide' );
-        }
-    }
+	$tags = new WP_HTML_Tag_Processor($block_content);
 
-    $html = $tags->get_updated_html();
+	// 2. Target the .wp-block-query div to become the main .swiper container
+	while ($tags->next_tag()) {
+		$class = $tags->get_attribute('class');
+		if ($class && preg_match('/\bwp-block-query\b/', $class)) {
+			$tags->add_class('swiper');
+			$tags->set_attribute('data-swiper-config', wp_json_encode($swiper_config));
+			break;
+		}
+	}
 
-    // 5. Inject Navigation / Pagination Elements directly after the </ul>
-    $controls_html = '';
-    if ( $has_pagination ) {
-        $controls_html .= '<div class="swiper-pagination"></div>';
-    }
-    if ( $has_navigation ) {
-        $controls_html .= '<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>';
-    }
+	// 3. Add 'swiper-wrapper' class to the internal <ul> container
+	$tags = new WP_HTML_Tag_Processor($tags->get_updated_html());
+	while ($tags->next_tag(array('tag_name' => 'ul'))) {
+		$class = $tags->get_attribute('class');
+		if ($class && strpos($class, 'wp-block-post-template') !== false) {
+			$tags->add_class('swiper-wrapper');
+			break;
+		}
+	}
 
-    if ( ! empty( $controls_html ) ) {
-        $html = preg_replace( '/(<\/ul>)/i', '$1' . $controls_html, $html, 1 );
-    }
+	// 4. Process all <li> elements inside the loop and append 'swiper-slide'
+	$tags = new WP_HTML_Tag_Processor($tags->get_updated_html());
+	while ($tags->next_tag(array('tag_name' => 'li'))) {
+		$class = $tags->get_attribute('class');
+		if ($class && strpos($class, 'wp-block-post') !== false) {
+			$tags->add_class('swiper-slide');
+		}
+	}
 
-    return $html;
+	$html = $tags->get_updated_html();
+
+	// 5. Inject Navigation / Pagination Elements directly after the </ul>
+	$controls_html = '';
+	if ($has_pagination) {
+		$controls_html .= '<div class="swiper-pagination"></div>';
+	}
+	if ($has_navigation) {
+		$controls_html .= '<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>';
+	}
+
+	if (! empty($controls_html)) {
+		$html = preg_replace('/(<\/ul>)/i', '$1' . $controls_html, $html, 1);
+	}
+
+	return $html;
 }
-add_filter( 'render_block', 'digitally_disruptive_render_swiper_query', 10, 2 );
+add_filter('render_block', 'digitally_disruptive_render_swiper_query', 10, 2);
+
+/**
+ * Intercept the block, scope the custom CSS, and inject the style tag.
+ *
+ * @param string $block_content The raw HTML content of the block.
+ * @param array  $block         The parsed block data array.
+ * @return string Modified block HTML with inline scoped styles.
+ */
+function digitally_disruptive_render_custom_css($block_content, $block)
+{
+
+	// Bail early if no CSS exists or if it's not a Group block variation
+	if (empty($block['attrs']['ddCustomCSS']) || 'core/group' !== $block['blockName']) {
+		return $block_content;
+	}
+
+	$raw_css = $block['attrs']['ddCustomCSS'];
+
+	// Generate a secure, unique ID for this specific block instance
+	$unique_id = 'dd-css-' . substr(md5(uniqid(wp_rand(), true)), 0, 8);
+
+	// Strip HTML tags to prevent XSS injection via the CSS textarea
+	$sanitized_css = wp_strip_all_tags($raw_css);
+
+	// Scope the CSS: Replace 'SELECTOR' and '&' with our unique generated class
+	$scoped_css = str_replace('SELECTOR', '.' . $unique_id, $sanitized_css);
+	$scoped_css = str_replace('&', '.' . $unique_id, $scoped_css);
+
+	// Inject the unique class into the block's main HTML wrapper
+	$tags = new WP_HTML_Tag_Processor($block_content);
+	if ($tags->next_tag()) {
+		$tags->add_class($unique_id);
+	}
+	$updated_content = $tags->get_updated_html();
+
+	// Construct the scoped style block
+	// We add the style tag directly adjacent to the block to ensure proximity loading
+	$style_tag = sprintf(
+		'<style id="%s">%s</style>',
+		esc_attr($unique_id . '-style'),
+		$scoped_css
+	);
+
+	return $style_tag . $updated_content;
+}
+add_filter('render_block', 'digitally_disruptive_render_custom_css', 10, 2);
+
 /*-----------------------------------------------------------------------------------*/
 /* Require Files
 /*-----------------------------------------------------------------------------------*/
