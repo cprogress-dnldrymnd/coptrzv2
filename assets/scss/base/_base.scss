@@ -1953,8 +1953,25 @@ hr {
 }
 
 /* Reset WP margin/padding on the ul */
-ul.query-loop-swiper-js, 
+ul.query-loop-swiper-js,
 .query-loop-swiper-js ul.wp-block-post-template {
     margin: 0 !important;
     padding: 0 !important;
+}
+
+.query-loop-swiper-js {
+    .swiper-pagination.swiper-pagination {
+        background-color: transparent;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        .swiper-pagination-bullet {
+            border-radius: 0;
+            opacity: 0.5;
+            width: 15px;
+            &.swiper-pagination-bullet-active {
+                opacity: 1;
+            }
+        }
+    }
 }

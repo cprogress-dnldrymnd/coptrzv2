@@ -12698,6 +12698,16 @@ ul.query-loop-swiper-js,
   margin: 0 !important;
   padding: 0 !important; }
 
+.query-loop-swiper-js .swiper-pagination.swiper-pagination {
+  background-color: transparent;
+  display: flex;
+  gap: 10px;
+  justify-content: center; }
+  .query-loop-swiper-js .swiper-pagination.swiper-pagination .swiper-pagination-bullet {
+    border-radius: 0;
+    opacity: 0.5;
+    width: 15px; }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }
