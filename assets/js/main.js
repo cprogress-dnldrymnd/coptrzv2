@@ -860,35 +860,40 @@ function queryLoopSwipers() {
  */
 function purgeEmptyBlocks() {
     /**
-     * Define the CSS selectors for the blocks susceptible to being left empty.
-     * Expand this array based on your specific block architecture.
-     */
+      * Target Selectors:
+      * We bypass Gutenberg's class system for text nodes and target the raw HTML tags directly.
+      * We retain class targeting only for complex structural blocks (like Buttons or Images).
+      */
     const targetSelectors = [
+        'p',
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+        'blockquote',
         '.wp-block-button',
-        '.wp-block-paragraph',
-        '.wp-block-heading',
-        '.wp-block-quote',
         '.wp-block-image'
     ];
 
-    // Query the DOM once for all targeted elements
+    // Query the DOM for all instances of the targeted selectors
     const elements = document.querySelectorAll(targetSelectors.join(', '));
 
     elements.forEach(function (element) {
         /**
-         * Guard clause: Ensure we do not delete blocks that intentionally have no text
-         * but contain structural media like icons, SVGs, images, or iframes.
+         * Guard clause: Ensure we do not delete tags that are technically empty of text
+         * but are wrapping physical media (e.g., an image wrapped in a <p> tag).
          */
-        const hasMedia = element.querySelector('img, svg, iframe, video, canvas');
+        const hasMedia = element.querySelector('img, svg, iframe, video, canvas, audio, picture');
 
         /**
-         * Extract the text content and strip all whitespace (spaces, tabs, newlines).
+         * Text Extraction & Sanitization:
+         * 1. Extract the text content.
+         * 2. Replace all Unicode non-breaking spaces (\u00a0) with standard spaces.
+         * 3. Trim all leading/trailing whitespace.
          */
-        const textContent = element.textContent.trim();
+        const textContent = element.textContent.replace(/\u00a0/g, ' ').trim();
 
         /**
-         * If the block contains no media and the text content is strictly empty,
-         * execute node removal.
+         * Execution:
+         * If the node contains no physical media and the sanitized text evaluates to an empty string,
+         * purge the node from the document.
          */
         if (!hasMedia && textContent === '') {
             element.remove();
