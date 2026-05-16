@@ -160,27 +160,42 @@ function digitally_disruptive_render_swiper_query( $block_content, $block ) {
 
     $attrs = $block['attrs'];
 
+    /**
+     * EXTRACT ATTRIBUTES WITH STRICT DEFAULTS
+     * Matches the default values registered in the JS block schema.
+     */
+    $slides_desktop = isset( $attrs['swiperSlidesDesktop'] ) ? (float) $attrs['swiperSlidesDesktop'] : 4;
+    $slides_tablet  = isset( $attrs['swiperSlidesTablet'] ) ? (float) $attrs['swiperSlidesTablet'] : 2;
+    $slides_mobile  = isset( $attrs['swiperSlidesMobile'] ) ? (float) $attrs['swiperSlidesMobile'] : 1;
+    $space_between  = isset( $attrs['swiperSpaceBetween'] ) ? (int) $attrs['swiperSpaceBetween'] : 20;
+    
+    $is_loop        = isset( $attrs['swiperLoop'] ) ? (bool) $attrs['swiperLoop'] : true;
+    $has_pagination = isset( $attrs['swiperPagination'] ) ? (bool) $attrs['swiperPagination'] : true;
+    $has_navigation = isset( $attrs['swiperNavigation'] ) ? (bool) $attrs['swiperNavigation'] : false;
+    $has_autoplay   = isset( $attrs['swiperAutoplay'] ) ? (bool) $attrs['swiperAutoplay'] : false;
+    $delay          = isset( $attrs['swiperDelay'] ) ? (int) $attrs['swiperDelay'] : 3000;
+
     // 1. Construct the Swiper Initialization Object
     $swiper_config = array(
-        'spaceBetween'  => isset( $attrs['swiperSpaceBetween'] ) ? (int) $attrs['swiperSpaceBetween'] : 20,
-        'loop'          => isset( $attrs['swiperLoop'] ) ? (bool) $attrs['swiperLoop'] : true,
+        'spaceBetween'  => $space_between,
+        'loop'          => $is_loop,
         'breakpoints'   => array(
-            320  => array( 'slidesPerView' => isset( $attrs['swiperSlidesMobile'] ) ? (float) $attrs['swiperSlidesMobile'] : 1 ),
-            768  => array( 'slidesPerView' => isset( $attrs['swiperSlidesTablet'] ) ? (float) $attrs['swiperSlidesTablet'] : 2 ),
-            1024 => array( 'slidesPerView' => isset( $attrs['swiperSlidesDesktop'] ) ? (float) $attrs['swiperSlidesDesktop'] : 4 ),
+            320  => array( 'slidesPerView' => $slides_mobile ),
+            768  => array( 'slidesPerView' => $slides_tablet ),
+            1024 => array( 'slidesPerView' => $slides_desktop ),
         ),
     );
 
-    if ( ! empty( $attrs['swiperAutoplay'] ) ) {
+    if ( $has_autoplay ) {
         $swiper_config['autoplay'] = array(
-            'delay'                => isset( $attrs['swiperDelay'] ) ? (int) $attrs['swiperDelay'] : 3000,
+            'delay'                => $delay,
             'disableOnInteraction' => false,
         );
     }
-    if ( ! empty( $attrs['swiperPagination'] ) ) {
+    if ( $has_pagination ) {
         $swiper_config['pagination'] = array( 'el' => '.swiper-pagination', 'clickable' => true );
     }
-    if ( ! empty( $attrs['swiperNavigation'] ) ) {
+    if ( $has_navigation ) {
         $swiper_config['navigation'] = array( 'nextEl' => '.swiper-button-next', 'prevEl' => '.swiper-button-prev' );
     }
 
@@ -189,7 +204,6 @@ function digitally_disruptive_render_swiper_query( $block_content, $block ) {
     // 2. Target the .wp-block-query div to become the main .swiper container
     while ( $tags->next_tag() ) {
         $class = $tags->get_attribute( 'class' );
-        // Use word boundary \b to ensure we match 'wp-block-query' exactly, not variations like 'wp-block-query-is-layout'
         if ( $class && preg_match( '/\bwp-block-query\b/', $class ) ) {
             $tags->add_class( 'swiper' );
             $tags->set_attribute( 'data-swiper-config', wp_json_encode( $swiper_config ) );
@@ -218,24 +232,22 @@ function digitally_disruptive_render_swiper_query( $block_content, $block ) {
 
     $html = $tags->get_updated_html();
 
-    // 5. Inject Navigation / Pagination Elements directly after the </ul> (inside the .swiper container)
+    // 5. Inject Navigation / Pagination Elements directly after the </ul>
     $controls_html = '';
-    if ( ! empty( $attrs['swiperPagination'] ) ) {
+    if ( $has_pagination ) {
         $controls_html .= '<div class="swiper-pagination"></div>';
     }
-    if ( ! empty( $attrs['swiperNavigation'] ) ) {
+    if ( $has_navigation ) {
         $controls_html .= '<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>';
     }
 
     if ( ! empty( $controls_html ) ) {
-        // Regex replaces the closing </ul> tag with </ul> followed by our controls
         $html = preg_replace( '/(<\/ul>)/i', '$1' . $controls_html, $html, 1 );
     }
 
     return $html;
 }
 add_filter( 'render_block', 'digitally_disruptive_render_swiper_query', 10, 2 );
-
 /*-----------------------------------------------------------------------------------*/
 /* Require Files
 /*-----------------------------------------------------------------------------------*/
