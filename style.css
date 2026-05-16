@@ -11183,6 +11183,12 @@ p:last-child {
 .has-quaternary-color {
   color: var(--wp--preset--color-quaternary) !important; }
 
+.has-quaternary-color {
+  color: var(--wp--preset--color-quaternary) !important; }
+
+.has-quinary-color {
+  color: var(--wp--preset--color-quinary) !important; }
+
 /**
  * Block Editor Background Color Classes
  * Dynamically applied by WordPress when a user selects a background color.
