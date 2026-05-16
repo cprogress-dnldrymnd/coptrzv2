@@ -854,16 +854,16 @@ function queryLoopSwipers() {
 
 /**
  * Scans the DOM for specific WordPress block wrappers and removes them 
- * if they are devoid of meaningful content or media nodes.
+ * if they are devoid of meaningful content, media nodes, or form elements.
  *
  * @return {void}
  */
 function purgeEmptyBlocks() {
     /**
-      * Target Selectors:
-      * We bypass Gutenberg's class system for text nodes and target the raw HTML tags directly.
-      * We retain class targeting only for complex structural blocks (like Buttons or Images).
-      */
+     * Target Selectors:
+     * We bypass Gutenberg's class system for text nodes and target the raw HTML tags directly.
+     * We retain class targeting only for complex structural blocks (like Buttons or Images).
+     */
     const targetSelectors = [
         'p',
         'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
@@ -878,9 +878,9 @@ function purgeEmptyBlocks() {
     elements.forEach(function (element) {
         /**
          * Guard clause: Ensure we do not delete tags that are technically empty of text
-         * but are wrapping physical media (e.g., an image wrapped in a <p> tag).
+         * but are wrapping physical media or functional form elements (e.g., an input wrapped in a <p> tag).
          */
-        const hasMedia = element.querySelector('img, svg, iframe, video, canvas, audio, picture');
+        const hasProtectedNode = element.querySelector('img, svg, iframe, video, canvas, audio, picture, input, textarea, select, button');
 
         /**
          * Text Extraction & Sanitization:
@@ -892,10 +892,10 @@ function purgeEmptyBlocks() {
 
         /**
          * Execution:
-         * If the node contains no physical media and the sanitized text evaluates to an empty string,
+         * If the node contains no protected interactive nodes and the sanitized text evaluates to an empty string,
          * purge the node from the document.
          */
-        if (!hasMedia && textContent === '') {
+        if (!hasProtectedNode && textContent === '') {
             element.remove();
         }
     });
