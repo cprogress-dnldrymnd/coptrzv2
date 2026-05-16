@@ -803,7 +803,7 @@ function __post_navigation() {
 document.addEventListener('DOMContentLoaded', function() {
     
     // Select all blocks carrying our custom class and the injected 'swiper' class
-    const swiperContainers = document.querySelectorAll('.query-loop-swiper-js.swiper');
+    const swiperContainers = document.querySelectorAll('.query-loop-swiper-js .swiper');
 
     swiperContainers.forEach( function( container ) {
         // Parse the dynamic JSON configuration passed from PHP
