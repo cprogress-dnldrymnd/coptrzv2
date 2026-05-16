@@ -852,3 +852,60 @@ function queryLoopSwipers() {
     });
 }
 
+/**
+ * Scans the DOM for specific WordPress block wrappers and removes them 
+ * if they are devoid of meaningful content, media nodes, or form elements.
+ * Excludes all DOM branches belonging to Contact Form 7 (.wpcf7) containers.
+ *
+ * @return {void}
+ */
+function purgeEmptyBlocks() {
+    /**
+     * Target Selectors:
+     * We bypass Gutenberg's class system for text nodes and target the raw HTML tags directly.
+     * We retain class targeting only for complex structural blocks (like Buttons or Images).
+     */
+    const targetSelectors = [
+        'p',
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+        'blockquote',
+        '.wp-block-button',
+        '.wp-block-image'
+    ];
+
+    // Query the DOM for all instances of the targeted selectors
+    const elements = document.querySelectorAll(targetSelectors.join(', '));
+
+    elements.forEach(function (element) {
+        /**
+         * Guard clause: Safeguard Contact Form 7 lifecycle operations.
+         * If the node lives inside a CF7 form wrapper, bail out immediately.
+         */
+        if (element.closest('.wpcf7')) {
+            return;
+        }
+
+        /**
+         * Guard clause: Ensure we do not delete tags that are technically empty of text
+         * but are wrapping physical media or functional form elements (e.g., an input wrapped in a <p> tag).
+         */
+        const hasProtectedNode = element.querySelector('img, svg, iframe, video, canvas, audio, picture, input, textarea, select, button');
+
+        /**
+         * Text Extraction & Sanitization:
+         * 1. Extract the text content.
+         * 2. Replace all Unicode non-breaking spaces (\u00a0) with standard spaces.
+         * 3. Trim all leading/trailing whitespace.
+         */
+        const textContent = element.textContent.replace(/\u00a0/g, ' ').trim();
+
+        /**
+         * Execution:
+         * If the node contains no protected interactive nodes and the sanitized text evaluates to an empty string,
+         * purge the node from the document.
+         */
+        if (!hasProtectedNode && textContent === '') {
+            element.remove();
+        }
+    });
+}
