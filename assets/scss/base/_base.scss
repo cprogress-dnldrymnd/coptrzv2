@@ -352,7 +352,7 @@ section {
 .button-box button,
 .button.button.button.button.button,
 .wp-element-button.wp-element-button.wp-element-button,
-.wpcf7-submit.wpcf7-submit.wpcf7-submit {
+.wpcf7-submit.wpcf7-submit.wpcf7-submit, .wp-block-read-more.wp-block-read-more.wp-block-read-more {
     @include button-style;
 }
 
