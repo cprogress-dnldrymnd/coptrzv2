@@ -11279,6 +11279,9 @@ ul.checklist-ul {
 .w-100 img {
   width: 100% !important; }
 
+figure[style*="aspect-ratio:4/3"] img {
+  aspect-ratio: 4/3; }
+
 body .wp-block {
   max-width: 100% !important; }
 

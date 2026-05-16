@@ -504,3 +504,9 @@ ul.checklist-ul {
         width: 100% !important;
     }
 }
+
+figure[style*="aspect-ratio:4/3"] {
+    img {
+        aspect-ratio: 4/3;
+    }
+}
