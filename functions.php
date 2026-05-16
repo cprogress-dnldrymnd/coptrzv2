@@ -128,9 +128,22 @@ function enqueue_scripts()
 	}
 }
 
-add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999); 
+add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999);
 
-
+/**
+ * Enqueue the block extension script in the Gutenberg editor.
+ */
+function digitally_disruptive_enqueue_block_extensions()
+{
+	wp_enqueue_script(
+		'dd-extend-group-block',
+		get_template_directory_uri() . '/js/extend-group-block.js', // Adjust path as needed
+		array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+		filemtime(get_template_directory() . '/js/extend-group-block.js'),
+		true
+	);
+}
+add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_block_extensions');
 
 /*-----------------------------------------------------------------------------------*/
 /* Require Files
