@@ -259,51 +259,50 @@ function digitally_disruptive_render_swiper_query($block_content, $block)
 add_filter('render_block', 'digitally_disruptive_render_swiper_query', 10, 2);
 
 /**
- * Intercept the block, scope the custom CSS, and inject the style tag.
+ * Intercept the block, scope the custom CSS declarations, and inject the style tag.
  *
  * @param string $block_content The raw HTML content of the block.
  * @param array  $block         The parsed block data array.
  * @return string Modified block HTML with inline scoped styles.
  */
-function digitally_disruptive_render_custom_css($block_content, $block)
-{
+function digitally_disruptive_render_custom_css( $block_content, $block ) {
+    
+    // Bail early if no CSS exists or if it's not a Group block variation
+    if ( empty( $block['attrs']['ddCustomCSS'] ) || 'core/group' !== $block['blockName'] ) {
+        return $block_content;
+    }
 
-	// Bail early if no CSS exists or if it's not a Group block variation
-	if (empty($block['attrs']['ddCustomCSS']) || 'core/group' !== $block['blockName']) {
-		return $block_content;
-	}
+    $raw_css = $block['attrs']['ddCustomCSS'];
+    
+    // Generate a secure, unique ID for this specific block instance
+    $unique_id = 'dd-css-' . substr( md5( uniqid( wp_rand(), true ) ), 0, 8 );
 
-	$raw_css = $block['attrs']['ddCustomCSS'];
+    // Strip HTML tags to prevent XSS injection
+    $sanitized_css = wp_strip_all_tags( $raw_css );
 
-	// Generate a secure, unique ID for this specific block instance
-	$unique_id = 'dd-css-' . substr(md5(uniqid(wp_rand(), true)), 0, 8);
+    /**
+     * ARCHITECTURAL CHANGE: The Wrapping Model
+     * Automatically wrap the user's raw CSS properties inside the unique class selector.
+     */
+    $scoped_css = sprintf( '.%s { %s }', $unique_id, $sanitized_css );
 
-	// Strip HTML tags to prevent XSS injection via the CSS textarea
-	$sanitized_css = wp_strip_all_tags($raw_css);
+    // Inject the unique class into the block's main HTML wrapper
+    $tags = new WP_HTML_Tag_Processor( $block_content );
+    if ( $tags->next_tag() ) {
+        $tags->add_class( $unique_id );
+    }
+    $updated_content = $tags->get_updated_html();
 
-	// Scope the CSS: Replace 'SELECTOR' and '&' with our unique generated class
-	$scoped_css = str_replace('SELECTOR', '.' . $unique_id, $sanitized_css);
-	$scoped_css = str_replace('&', '.' . $unique_id, $scoped_css);
+    // Construct the scoped style block
+    $style_tag = sprintf( 
+        '<style id="%s">%s</style>', 
+        esc_attr( $unique_id . '-style' ), 
+        $scoped_css 
+    );
 
-	// Inject the unique class into the block's main HTML wrapper
-	$tags = new WP_HTML_Tag_Processor($block_content);
-	if ($tags->next_tag()) {
-		$tags->add_class($unique_id);
-	}
-	$updated_content = $tags->get_updated_html();
-
-	// Construct the scoped style block
-	// We add the style tag directly adjacent to the block to ensure proximity loading
-	$style_tag = sprintf(
-		'<style id="%s">%s</style>',
-		esc_attr($unique_id . '-style'),
-		$scoped_css
-	);
-
-	return $style_tag . $updated_content;
+    return $style_tag . $updated_content;
 }
-add_filter('render_block', 'digitally_disruptive_render_custom_css', 10, 2);
-
+add_filter( 'render_block', 'digitally_disruptive_render_custom_css', 10, 2 );
 /*-----------------------------------------------------------------------------------*/
 /* Require Files
 /*-----------------------------------------------------------------------------------*/
