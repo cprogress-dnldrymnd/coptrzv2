@@ -184,16 +184,21 @@ function digitally_disruptive_render_swiper_query( $block_content, $block ) {
         $swiper_config['navigation'] = array( 'nextEl' => '.swiper-button-next', 'prevEl' => '.swiper-button-prev' );
     }
 
-    // 2. Modify the DOM Structure using WP_HTML_Tag_Processor
     $tags = new WP_HTML_Tag_Processor( $block_content );
     
-    // Add main 'swiper' class and JSON payload to the root element
-    if ( $tags->next_tag() ) {
-        $tags->add_class( 'swiper' );
-        $tags->set_attribute( 'data-swiper-config', wp_json_encode( $swiper_config ) );
+    // 2. Target the .wp-block-query div to become the main .swiper container
+    while ( $tags->next_tag() ) {
+        $class = $tags->get_attribute( 'class' );
+        // Use word boundary \b to ensure we match 'wp-block-query' exactly, not variations like 'wp-block-query-is-layout'
+        if ( $class && preg_match( '/\bwp-block-query\b/', $class ) ) {
+            $tags->add_class( 'swiper' );
+            $tags->set_attribute( 'data-swiper-config', wp_json_encode( $swiper_config ) );
+            break; 
+        }
     }
 
-    // Add 'swiper-wrapper' class to the internal <ul> container
+    // 3. Add 'swiper-wrapper' class to the internal <ul> container
+    $tags = new WP_HTML_Tag_Processor( $tags->get_updated_html() );
     while ( $tags->next_tag( array( 'tag_name' => 'ul' ) ) ) {
         $class = $tags->get_attribute( 'class' );
         if ( $class && strpos( $class, 'wp-block-post-template' ) !== false ) {
@@ -202,7 +207,7 @@ function digitally_disruptive_render_swiper_query( $block_content, $block ) {
         }
     }
 
-    // Process all <li> elements inside the loop and append 'swiper-slide'
+    // 4. Process all <li> elements inside the loop and append 'swiper-slide'
     $tags = new WP_HTML_Tag_Processor( $tags->get_updated_html() );
     while ( $tags->next_tag( array( 'tag_name' => 'li' ) ) ) {
         $class = $tags->get_attribute( 'class' );
@@ -213,7 +218,7 @@ function digitally_disruptive_render_swiper_query( $block_content, $block ) {
 
     $html = $tags->get_updated_html();
 
-    // 3. Inject Navigation / Pagination Elements before the final closing div
+    // 5. Inject Navigation / Pagination Elements directly after the </ul> (inside the .swiper container)
     $controls_html = '';
     if ( ! empty( $attrs['swiperPagination'] ) ) {
         $controls_html .= '<div class="swiper-pagination"></div>';
@@ -223,10 +228,8 @@ function digitally_disruptive_render_swiper_query( $block_content, $block ) {
     }
 
     if ( ! empty( $controls_html ) ) {
-        $pos = strrpos( $html, '</div>' );
-        if ( $pos !== false ) {
-            $html = substr_replace( $html, $controls_html . '</div>', $pos, strlen( '</div>' ) );
-        }
+        // Regex replaces the closing </ul> tag with </ul> followed by our controls
+        $html = preg_replace( '/(<\/ul>)/i', '$1' . $controls_html, $html, 1 );
     }
 
     return $html;
