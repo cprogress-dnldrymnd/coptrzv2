@@ -1328,6 +1328,7 @@ add_filter('carbon_fields_association_field_options_hero_form_post_wpcf7_contact
 
 Container::make('post_meta', __('Hero'))
     ->where('post_type', '=', 'page')
+    ->where('post_template', '!=', 'templates/page-blocks-editor.php')
     ->or_where('post_type', '=', 'product')
     ->or_where('post_type', '=', 'post')
     ->or_where('post_type', '=', 'capabilities')
@@ -1337,6 +1338,7 @@ Container::make('post_meta', __('Hero'))
     ->or_where('post_type', '=', 'guides')
     ->or_where('post_type', '=', 'rentals')
     ->or_where('post_type', '=', 'landingpages')
+
     ->add_tab('Hero Settings', __hero_fields())
     ->add_tab('Hero Buttons', __hero_button_fields())
     ->add_tab('Hero Form', __hero_form_fields());
