@@ -477,6 +477,7 @@ ul.checklist-ul {
     border: none;
     border-radius: 20px;
     max-width: 320px !important;
+    margin-left: 0;
 }
 
 .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs {
@@ -509,7 +510,7 @@ ul.checklist-ul {
 }
 
 .w-100 {
-    img {
+    > img {
         width: 100% !important;
     }
 }

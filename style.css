@@ -11260,7 +11260,8 @@ ul.checklist-ul {
   opacity: 1;
   border: none;
   border-radius: 20px;
-  max-width: 320px !important; }
+  max-width: 320px !important;
+  margin-left: 0; }
 
 .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs {
   display: flex;
