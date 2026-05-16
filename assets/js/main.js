@@ -13,7 +13,7 @@ jQuery(document).ready(function () {
     __blog_content();
     __hero();
     __shop_coptrz_link();
-    pasturlparameters() ;
+    pasturlparameters();
     //__utm_parameters();
 });
 
@@ -800,36 +800,41 @@ function __post_navigation() {
  * @package   DigitallyDisruptive
  * Initializes all dynamic Gutenberg Query Loop Swipers.
  */
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+    queryLoopSwipers();
+    purgeEmptyBlocks();
+});
+
+
+function queryLoopSwipers() {
     // Select all blocks carrying our custom class and the injected 'swiper' class
     const swiperContainers = document.querySelectorAll('.query-loop-swiper-js .swiper');
 
-    swiperContainers.forEach( function( container ) {
+    swiperContainers.forEach(function (container) {
         // Parse the dynamic JSON configuration passed from PHP
         const configData = container.getAttribute('data-swiper-config');
-        if ( ! configData ) return;
+        if (!configData) return;
 
         try {
-            const config = JSON.parse( configData );
+            const config = JSON.parse(configData);
 
             // Safely assign pagination ONLY if the DOM element exists
-            if ( config.pagination ) {
+            if (config.pagination) {
                 const pagEl = container.querySelector('.swiper-pagination');
-                if ( pagEl ) {
+                if (pagEl) {
                     config.pagination.el = pagEl;
                 } else {
                     // If the HTML is missing, strip it from config to prevent crashes
-                    delete config.pagination; 
+                    delete config.pagination;
                 }
             }
 
             // Safely assign navigation ONLY if the DOM elements exist
-            if ( config.navigation ) {
+            if (config.navigation) {
                 const nextEl = container.querySelector('.swiper-button-next');
                 const prevEl = container.querySelector('.swiper-button-prev');
-                
-                if ( nextEl && prevEl ) {
+
+                if (nextEl && prevEl) {
                     config.navigation.nextEl = nextEl;
                     config.navigation.prevEl = prevEl;
                 } else {
@@ -839,11 +844,54 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Initialize the Swiper instance
-            new Swiper( container, config );
+            new Swiper(container, config);
 
-        } catch ( error ) {
-            console.error( 'Digitally Disruptive: Swiper JSON parsing/init error.', error );
+        } catch (error) {
+            console.error('Digitally Disruptive: Swiper JSON parsing/init error.', error);
         }
     });
+}
 
-});
+/**
+ * Scans the DOM for specific WordPress block wrappers and removes them 
+ * if they are devoid of meaningful content or media nodes.
+ *
+ * @return {void}
+ */
+function purgeEmptyBlocks() {
+    /**
+     * Define the CSS selectors for the blocks susceptible to being left empty.
+     * Expand this array based on your specific block architecture.
+     */
+    const targetSelectors = [
+        '.wp-block-button',
+        '.wp-block-paragraph',
+        '.wp-block-heading',
+        '.wp-block-quote',
+        '.wp-block-image'
+    ];
+
+    // Query the DOM once for all targeted elements
+    const elements = document.querySelectorAll(targetSelectors.join(', '));
+
+    elements.forEach(function (element) {
+        /**
+         * Guard clause: Ensure we do not delete blocks that intentionally have no text
+         * but contain structural media like icons, SVGs, images, or iframes.
+         */
+        const hasMedia = element.querySelector('img, svg, iframe, video, canvas');
+
+        /**
+         * Extract the text content and strip all whitespace (spaces, tabs, newlines).
+         */
+        const textContent = element.textContent.trim();
+
+        /**
+         * If the block contains no media and the text content is strictly empty,
+         * execute node removal.
+         */
+        if (!hasMedia && textContent === '') {
+            element.remove();
+        }
+    });
+}
