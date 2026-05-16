@@ -13,7 +13,7 @@ jQuery(document).ready(function () {
     __blog_content();
     __hero();
     __shop_coptrz_link();
-    pasturlparameters();
+    pasturlparameters() ;
     //__utm_parameters();
 });
 
@@ -576,7 +576,6 @@ function __mini_cart() {
 }
 function __swipers() {
 
-
     jQuery('.swiper-linked-products').each(function (index, element) {
         $id = jQuery(this).attr('id');
         var swiper_linked_products = new Swiper('#' + $id, {
@@ -626,10 +625,10 @@ function __swipers() {
             freeMode: true,
             slidesPerView: 'auto',
             spaceBetween: 0,
-            speed: 3000,
+            speed: 5000,
             autoplay: {
-                delay: 10000,
-                disableOnInteraction: false
+                delay: 0,
+                disableOnInteraction: false,
             },
         });
     });
@@ -796,40 +795,3 @@ function __post_navigation() {
         });
     }
 }
-
-
-/**
- * @package   DigitallyDisruptive
- * Initializes all dynamic Gutenberg Query Loop Swipers.
- */
-document.addEventListener('DOMContentLoaded', function () {
-
-    // Select all blocks carrying our custom class and the injected 'swiper' class
-    const swiperContainers = document.querySelectorAll('.query-loop-swiper-js.swiper');
-
-    swiperContainers.forEach(function (container) {
-        // Parse the dynamic JSON configuration passed from PHP
-        const configData = container.getAttribute('data-swiper-config');
-        if (!configData) return;
-
-        try {
-            const config = JSON.parse(configData);
-
-            // Ensure pagination/navigation nodes correctly target elements *within* this specific slider instance
-            if (config.pagination) {
-                config.pagination.el = container.querySelector('.swiper-pagination');
-            }
-            if (config.navigation) {
-                config.navigation.nextEl = container.querySelector('.swiper-button-next');
-                config.navigation.prevEl = container.querySelector('.swiper-button-prev');
-            }
-
-            // Initialize the Swiper instance
-            new Swiper(container, config);
-
-        } catch (error) {
-            console.error('Digitally Disruptive: Swiper JSON parsing error.', error);
-        }
-    });
-
-});
