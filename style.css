@@ -11287,7 +11287,7 @@ ul.checklist-ul {
 .wp-block-accordion-panel {
   margin-top: 0 !important; }
 
-.w-100 img {
+.w-100 > img {
   width: 100% !important; }
 
 figure[style*="aspect-ratio:4/3"] img {
