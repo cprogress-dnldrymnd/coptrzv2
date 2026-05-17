@@ -230,6 +230,7 @@ function digitally_disruptive_render_universal_swiper( $block_content, $block ) 
         $tags = new WP_HTML_Tag_Processor( $block_content );
         if ( $tags->next_tag() ) {
             $tags->add_class( 'swiper' );
+            $tags->add_class( 'is-swiper-slider' ); // Injects the requested global Swiper indicator class
             $tags->set_attribute( 'data-swiper-config', wp_json_encode( $swiper_config ) );
         }
         
@@ -238,6 +239,18 @@ function digitally_disruptive_render_universal_swiper( $block_content, $block ) 
             $class = $tags->get_attribute( 'class' );
             if ( $class && strpos( $class, 'wp-block-post-template' ) !== false ) {
                 $tags->add_class( 'swiper-wrapper' );
+
+                // Strip native Gutenberg layout classes that break Swiper's horizontal flex track
+                $tags->remove_class( 'is-layout-grid' );
+                $tags->remove_class( 'wp-block-post-template-is-layout-grid' );
+                $tags->remove_class( 'is-layout-flex' );
+                $tags->remove_class( 'wp-block-post-template-is-layout-flex' );
+
+                // Dynamically remove Gutenberg's native "columns-X" structural enforcers
+                for ( $i = 1; $i <= 6; $i++ ) {
+                    $tags->remove_class( 'columns-' . $i );
+                }
+
                 break; 
             }
         }
@@ -259,11 +272,14 @@ function digitally_disruptive_render_universal_swiper( $block_content, $block ) 
         $tags = new WP_HTML_Tag_Processor( $block_content );
         if ( $tags->next_tag() ) {
             $tags->add_class( 'swiper' );
+            $tags->add_class( 'is-swiper-slider' ); // Injects the requested global Swiper indicator class
             $tags->set_attribute( 'data-swiper-config', wp_json_encode( $swiper_config ) );
+            
             // Strip native WordPress flex/grid classes to prevent structural layout conflicts with Swiper
             $tags->remove_class( 'is-layout-grid' );
             $tags->remove_class( 'wp-block-group-is-layout-grid' );
             $tags->remove_class( 'is-layout-flex' );
+            $tags->remove_class( 'wp-block-group-is-layout-flex' );
         }
         $html = $tags->get_updated_html();
 
