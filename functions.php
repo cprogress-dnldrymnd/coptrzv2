@@ -309,21 +309,7 @@ function digitally_disruptive_render_universal_swiper( $block_content, $block ) 
 }
 add_filter( 'render_block', 'digitally_disruptive_render_universal_swiper', 10, 2 );
 
-<?php
-/**
- * Plugin Name: Gutenberg Query Loop Context Fixer
- * Plugin URI: https://digitallydisruptive.co.uk/
- * Description: Bypasses legacy shortcode context leaks by utilizing the render_block filter to dynamically output custom fields inside Query Loops.
- * Version: 1.1.0
- * Author: Digitally Disruptive - Donald Raymundo
- * Author URI: https://digitallydisruptive.co.uk/
- * License: GPL-2.0+
- */
 
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
 
 /**
  * Intercepts block rendering to dynamically inject custom field values.
