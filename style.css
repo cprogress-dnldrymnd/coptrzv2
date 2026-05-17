@@ -11321,7 +11321,10 @@ figure[style*="aspect-ratio:4/3"] img {
     font-weight: 600; }
 
   .pds-accordion__content.pds-accordion__content.pds-accordion__content {
-    padding-top: 50px; } }
+    padding-top: 50px; }
+
+  .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs {
+    flex-direction: column; } }
 body .wp-block {
   max-width: 100% !important; }
 
