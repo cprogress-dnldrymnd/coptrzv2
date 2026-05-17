@@ -341,7 +341,7 @@ function dd_render_query_loop_custom_field( $atts ) {
     }
 
     // Retrieve the meta value
-    $meta_value = get_post_meta( $post_id, sanitize_text_field( $attributes['key'] ), true );
+    $meta_value = get_post_meta( $post_id, $attributes['key'] );
 
     // Return the escaped output to prevent XSS
     return esc_html( $meta_value );
