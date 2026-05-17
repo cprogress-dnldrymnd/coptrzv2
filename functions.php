@@ -309,53 +309,75 @@ function digitally_disruptive_render_universal_swiper( $block_content, $block ) 
 }
 add_filter( 'render_block', 'digitally_disruptive_render_universal_swiper', 10, 2 );
 
+<?php
 /**
- * Retrieves and renders a specified custom field for the current post in the loop.
- * 
- * Usage inside the editor: [dd_custom_field key="your_meta_key"]
- *
- * @param array $atts An associative array of shortcode attributes. Expects 'key'.
- * @return string The sanitized meta value, or an empty string if the key is missing/empty.
+ * Plugin Name: Gutenberg Query Loop Context Fixer
+ * Plugin URI: https://digitallydisruptive.co.uk/
+ * Description: Bypasses legacy shortcode context leaks by utilizing the render_block filter to dynamically output custom fields inside Query Loops.
+ * Version: 1.1.0
+ * Author: Digitally Disruptive - Donald Raymundo
+ * Author URI: https://digitallydisruptive.co.uk/
+ * License: GPL-2.0+
  */
-function dd_render_query_loop_custom_field( $atts ) {
-    // Parse attributes with a default empty key
-    $attributes = shortcode_atts(
-        array(
-            'key' => '',
-        ),
-        $atts,
-        'dd_custom_field'
-    );
 
-    // Bail early if no key is provided
-    if ( empty( $attributes['key'] ) ) {
-        return '';
-    }
-
-    // The shortcode executes within the context of the Query Loop, 
-    // so get_the_ID() reliably fetches the looped post's ID.
-    $post_id = get_the_ID();
-
-    if ( ! $post_id ) {
-        return '';
-    }
-
-    // Retrieve the meta value
-    $meta_value = get_post_meta( $post_id, sanitize_text_field( $attributes['key'] ), true );
-
-    // Return the escaped output to prevent XSS
-    return $post_id;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
 }
 
 /**
- * Initializes the shortcode registration.
+ * Intercepts block rendering to dynamically inject custom field values.
+ * This method guarantees the correct Post ID by extracting it from the Gutenberg Block Context
+ * rather than relying on the global $post object, which frequently leaks the parent page ID.
  *
- * @return void
+ * @param string   $block_content The generated HTML content of the block.
+ * @param array    $block         The parsed block data structure.
+ * @param WP_Block $instance      The live block instance containing the block context.
+ * @return string Modified block HTML.
  */
-function dd_register_custom_field_shortcodes() {
-    add_shortcode( 'dd_custom_field', 'dd_render_query_loop_custom_field' );
+function dd_inject_query_loop_meta_via_class( $block_content, $block, $instance ) {
+    // Bail early if the block doesn't have a custom class assigned.
+    if ( empty( $block['attrs']['className'] ) ) {
+        return $block_content;
+    }
+
+    // Look for our specific trigger class pattern (e.g., 'dd-meta-price')
+    if ( preg_match( '/dd-meta-([\w-]+)/', $block['attrs']['className'], $matches ) ) {
+        $meta_key = $matches[1];
+
+        // CRITICAL FIX: Extract the Post ID directly from the nested Block Context.
+        // If we aren't inside a query loop context, fallback to the standard get_the_ID().
+        $post_id = isset( $instance->context['postId'] ) ? $instance->context['postId'] : get_the_ID();
+
+        if ( ! $post_id ) {
+            return $block_content;
+        }
+
+        // Retrieve the custom field value.
+        $meta_value = get_post_meta( $post_id, $meta_key, true );
+
+        // If the meta field is empty, return an empty string to remove the block from the DOM cleanly.
+        if ( empty( $meta_value ) ) {
+            return ''; 
+        }
+
+        // Isolate the block's outer HTML tags to preserve Gutenberg styling (colors, typography, margins).
+        // This ensures any design settings applied in the editor remain intact.
+        $first_close_bracket = strpos( $block_content, '>' );
+        $last_open_bracket   = strrpos( $block_content, '<' );
+
+        if ( $first_close_bracket !== false && $last_open_bracket !== false && $first_close_bracket < $last_open_bracket ) {
+            $opening_tag = substr( $block_content, 0, $first_close_bracket + 1 );
+            $closing_tag = substr( $block_content, $last_open_bracket );
+            
+            // Construct the final output: Opening Tag + Sanitized Meta Value + Closing Tag.
+            return $opening_tag . esc_html( $meta_value ) . $closing_tag;
+        }
+    }
+
+    return $block_content;
 }
-add_action( 'init', 'dd_register_custom_field_shortcodes' );
+add_filter( 'render_block', 'dd_inject_query_loop_meta_via_class', 10, 3 );
 
 /**
  * Intercept the block, scope the hybrid custom CSS declarations across breakpoints, and inject the style tag.
