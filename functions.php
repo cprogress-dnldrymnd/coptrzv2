@@ -258,10 +258,8 @@ function digitally_disruptive_render_swiper_query($block_content, $block)
 }
 add_filter('render_block', 'digitally_disruptive_render_swiper_query', 10, 2);
 
-
-
 /**
- * Intercept the block, scope the custom CSS declarations, and inject the style tag.
+ * Intercept the block, scope the hybrid custom CSS declarations, and inject the style tag.
  *
  * @param string $block_content The raw HTML content of the block.
  * @param array  $block         The parsed block data array.
@@ -269,7 +267,6 @@ add_filter('render_block', 'digitally_disruptive_render_swiper_query', 10, 2);
  */
 function digitally_disruptive_render_custom_css( $block_content, $block ) {
     
-    // Define the updated backend whitelist mirroring your JS implementation
     $allowed_blocks = array( 
         'core/group', 
         'core/separator', 
@@ -285,15 +282,29 @@ function digitally_disruptive_render_custom_css( $block_content, $block ) {
     }
 
     $raw_css = $block['attrs']['ddCustomCSS'];
-    
-    // Generate a secure, unique ID for this specific block instance
     $unique_id = 'dd-css-' . substr( md5( uniqid( wp_rand(), true ) ), 0, 8 );
-
-    // Strip HTML tags to prevent XSS injection
     $sanitized_css = wp_strip_all_tags( $raw_css );
 
-    // Automatically wrap the user's raw CSS properties inside the unique class selector
-    $scoped_css = sprintf( '.%s { %s }', $unique_id, $sanitized_css );
+    /**
+     * HYBRID PARSER ARCHITECTURE
+     */
+    // 1. Extract all advanced blocks (e.g., "SELECTOR img { border-radius: 50%; }")
+    preg_match_all( '/SELECTOR[^{]*{[^}]*}/', $sanitized_css, $matches );
+    $advanced_blocks = $matches[0];
+
+    // 2. Isolate base properties by stripping the advanced blocks out of the string
+    $base_properties = trim( preg_replace( '/SELECTOR[^{]*{[^}]*}/', '', $sanitized_css ) );
+
+    // 3. Compile the scoped CSS
+    $scoped_css = '';
+    
+    if ( ! empty( $base_properties ) ) {
+        $scoped_css .= sprintf( '.%s { %s } ', $unique_id, $base_properties );
+    }
+
+    foreach ( $advanced_blocks as $block_rule ) {
+        $scoped_css .= str_replace( 'SELECTOR', '.' . $unique_id, $block_rule ) . ' ';
+    }
 
     // Inject the unique class into the block's outermost container tag
     $tags = new WP_HTML_Tag_Processor( $block_content );
