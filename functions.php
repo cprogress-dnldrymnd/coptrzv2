@@ -160,154 +160,154 @@ add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_e
  * @param array  $block         The parsed block data array.
  * @return string Modified block HTML ready for Swiper initialization.
  */
-function digitally_disruptive_render_universal_swiper( $block_content, $block ) {
-    
-    $allowed_blocks = array( 'core/group', 'core/query' );
-    
-    // Bail early if it is not a targeted block type
-    if ( ! in_array( $block['blockName'], $allowed_blocks, true ) ) {
-        return $block_content;
-    }
+function digitally_disruptive_render_universal_swiper($block_content, $block)
+{
 
-    // Backward Compatibility: Check if the new toggle is checked OR if the legacy CSS class exists
-    $has_legacy_class  = ( ! empty( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'query-loop-swiper-js' ) !== false );
-    $is_swiper_enabled = ! empty( $block['attrs']['isSwiperSlider'] ) || $has_legacy_class;
+	$allowed_blocks = array('core/group', 'core/query');
 
-    if ( ! $is_swiper_enabled ) {
-        return $block_content;
-    }
+	// Bail early if it is not a targeted block type
+	if (! in_array($block['blockName'], $allowed_blocks, true)) {
+		return $block_content;
+	}
 
-    $attrs = $block['attrs'];
+	// Backward Compatibility: Check if the new toggle is checked OR if the legacy CSS class exists
+	$has_legacy_class  = (! empty($block['attrs']['className']) && strpos($block['attrs']['className'], 'query-loop-swiper-js') !== false);
+	$is_swiper_enabled = ! empty($block['attrs']['isSwiperSlider']) || $has_legacy_class;
 
-    /**
-     * 1. Extract Attributes with Strict Defaults
-     */
-    $slides_desktop = isset( $attrs['swiperSlidesDesktop'] ) ? (float) $attrs['swiperSlidesDesktop'] : 4;
-    $slides_tablet  = isset( $attrs['swiperSlidesTablet'] ) ? (float) $attrs['swiperSlidesTablet'] : 2;
-    $slides_mobile  = isset( $attrs['swiperSlidesMobile'] ) ? (float) $attrs['swiperSlidesMobile'] : 1;
-    $space_between  = isset( $attrs['swiperSpaceBetween'] ) ? (int) $attrs['swiperSpaceBetween'] : 20;
-    
-    $is_loop        = isset( $attrs['swiperLoop'] ) ? (bool) $attrs['swiperLoop'] : true;
-    $has_pagination = isset( $attrs['swiperPagination'] ) ? (bool) $attrs['swiperPagination'] : true;
-    $has_navigation = isset( $attrs['swiperNavigation'] ) ? (bool) $attrs['swiperNavigation'] : false;
-    $has_autoplay   = isset( $attrs['swiperAutoplay'] ) ? (bool) $attrs['swiperAutoplay'] : false;
-    $delay          = isset( $attrs['swiperDelay'] ) ? (int) $attrs['swiperDelay'] : 3000;
+	if (! $is_swiper_enabled) {
+		return $block_content;
+	}
 
-    // Construct the JSON Configuration Object
-    $swiper_config = array(
-        'spaceBetween'  => $space_between,
-        'loop'          => $is_loop,
-        'breakpoints'   => array(
-            320  => array( 'slidesPerView' => $slides_mobile ),
-            768  => array( 'slidesPerView' => $slides_tablet ),
-            1024 => array( 'slidesPerView' => $slides_desktop ),
-        ),
-    );
+	$attrs = $block['attrs'];
 
-    if ( $has_autoplay ) {
-        $swiper_config['autoplay'] = array( 'delay' => $delay, 'disableOnInteraction' => false );
-    }
-    if ( $has_pagination ) {
-        $swiper_config['pagination'] = array( 'el' => '.swiper-pagination', 'clickable' => true );
-    }
-    if ( $has_navigation ) {
-        $swiper_config['navigation'] = array( 'nextEl' => '.swiper-button-next', 'prevEl' => '.swiper-button-prev' );
-    }
+	/**
+	 * 1. Extract Attributes with Strict Defaults
+	 */
+	$slides_desktop = isset($attrs['swiperSlidesDesktop']) ? (float) $attrs['swiperSlidesDesktop'] : 4;
+	$slides_tablet  = isset($attrs['swiperSlidesTablet']) ? (float) $attrs['swiperSlidesTablet'] : 2;
+	$slides_mobile  = isset($attrs['swiperSlidesMobile']) ? (float) $attrs['swiperSlidesMobile'] : 1;
+	$space_between  = isset($attrs['swiperSpaceBetween']) ? (int) $attrs['swiperSpaceBetween'] : 20;
 
-    /**
-     * 2. Process the Controls
-     */
-    $controls_html = '';
-    if ( $has_pagination ) $controls_html .= '<div class="swiper-pagination"></div>';
-    if ( $has_navigation ) $controls_html .= '<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>';
+	$is_loop        = isset($attrs['swiperLoop']) ? (bool) $attrs['swiperLoop'] : true;
+	$has_pagination = isset($attrs['swiperPagination']) ? (bool) $attrs['swiperPagination'] : true;
+	$has_navigation = isset($attrs['swiperNavigation']) ? (bool) $attrs['swiperNavigation'] : false;
+	$has_autoplay   = isset($attrs['swiperAutoplay']) ? (bool) $attrs['swiperAutoplay'] : false;
+	$delay          = isset($attrs['swiperDelay']) ? (int) $attrs['swiperDelay'] : 3000;
 
-    /**
-     * 3. DOM Structural Manipulation based on Block Type
-     */
-    if ( $block['blockName'] === 'core/query' ) {
-        
-        // QUERY LOOP ARCHITECTURE (Uses native nested <ul> and <li>)
-        $tags = new WP_HTML_Tag_Processor( $block_content );
-        if ( $tags->next_tag() ) {
-            $tags->add_class( 'swiper' );
-            $tags->add_class( 'is-swiper-slider' ); // Injects the requested global Swiper indicator class
-            $tags->set_attribute( 'data-swiper-config', wp_json_encode( $swiper_config ) );
-        }
-        
-        $tags = new WP_HTML_Tag_Processor( $tags->get_updated_html() );
-        while ( $tags->next_tag( array( 'tag_name' => 'ul' ) ) ) {
-            $class = $tags->get_attribute( 'class' );
-            if ( $class && strpos( $class, 'wp-block-post-template' ) !== false ) {
-                $tags->add_class( 'swiper-wrapper' );
+	// Construct the JSON Configuration Object
+	$swiper_config = array(
+		'spaceBetween'  => $space_between,
+		'loop'          => $is_loop,
+		'breakpoints'   => array(
+			320  => array('slidesPerView' => $slides_mobile),
+			768  => array('slidesPerView' => $slides_tablet),
+			1024 => array('slidesPerView' => $slides_desktop),
+		),
+	);
 
-                // Strip native Gutenberg layout classes that break Swiper's horizontal flex track
-                $tags->remove_class( 'is-layout-grid' );
-                $tags->remove_class( 'wp-block-post-template-is-layout-grid' );
-                $tags->remove_class( 'is-layout-flex' );
-                $tags->remove_class( 'wp-block-post-template-is-layout-flex' );
+	if ($has_autoplay) {
+		$swiper_config['autoplay'] = array('delay' => $delay, 'disableOnInteraction' => false);
+	}
+	if ($has_pagination) {
+		$swiper_config['pagination'] = array('el' => '.swiper-pagination', 'clickable' => true);
+	}
+	if ($has_navigation) {
+		$swiper_config['navigation'] = array('nextEl' => '.swiper-button-next', 'prevEl' => '.swiper-button-prev');
+	}
 
-                // Dynamically remove Gutenberg's native "columns-X" structural enforcers
-                for ( $i = 1; $i <= 6; $i++ ) {
-                    $tags->remove_class( 'columns-' . $i );
-                }
+	/**
+	 * 2. Process the Controls
+	 */
+	$controls_html = '';
+	if ($has_pagination) $controls_html .= '<div class="swiper-pagination"></div>';
+	if ($has_navigation) $controls_html .= '<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>';
 
-                break; 
-            }
-        }
+	/**
+	 * 3. DOM Structural Manipulation based on Block Type
+	 */
+	if ($block['blockName'] === 'core/query') {
 
-        $tags = new WP_HTML_Tag_Processor( $tags->get_updated_html() );
-        while ( $tags->next_tag( array( 'tag_name' => 'li' ) ) ) {
-            $class = $tags->get_attribute( 'class' );
-            if ( $class && strpos( $class, 'wp-block-post' ) !== false ) {
-                $tags->add_class( 'swiper-slide' );
-            }
-        }
-        
-        $html = $tags->get_updated_html();
-        return preg_replace( '/(<\/ul>)/i', '$1' . $controls_html, $html, 1 );
+		// QUERY LOOP ARCHITECTURE (Uses native nested <ul> and <li>)
+		$tags = new WP_HTML_Tag_Processor($block_content);
+		if ($tags->next_tag()) {
+			$tags->add_class('swiper');
+			$tags->add_class('is-swiper-slider'); // Injects the requested global Swiper indicator class
+			$tags->set_attribute('data-swiper-config', wp_json_encode($swiper_config));
+		}
 
-    } else {
-        
-        // GROUP / GRID ARCHITECTURE (Requires dynamic DOM wrapping)
-        $tags = new WP_HTML_Tag_Processor( $block_content );
-        if ( $tags->next_tag() ) {
-            $tags->add_class( 'swiper' );
-            $tags->add_class( 'is-swiper-slider' ); // Injects the requested global Swiper indicator class
-            $tags->set_attribute( 'data-swiper-config', wp_json_encode( $swiper_config ) );
-            
-            // Strip native WordPress flex/grid classes to prevent structural layout conflicts with Swiper
-            $tags->remove_class( 'is-layout-grid' );
-            $tags->remove_class( 'wp-block-group-is-layout-grid' );
-            $tags->remove_class( 'is-layout-flex' );
-            $tags->remove_class( 'wp-block-group-is-layout-flex' );
-        }
-        $html = $tags->get_updated_html();
+		$tags = new WP_HTML_Tag_Processor($tags->get_updated_html());
+		while ($tags->next_tag(array('tag_name' => 'ul'))) {
+			$class = $tags->get_attribute('class');
+			if ($class && strpos($class, 'wp-block-post-template') !== false) {
+				$tags->add_class('swiper-wrapper');
 
-        // Physically split the HTML to wrap the inner child blocks
-        $first_tag_end = strpos( $html, '>' ) + 1;
-        $last_tag_start = strrpos( $html, '</' ); 
+				// Strip native Gutenberg layout classes that break Swiper's horizontal flex track
+				$tags->remove_class('is-layout-grid');
+				$tags->remove_class('wp-block-post-template-is-layout-grid');
+				$tags->remove_class('is-layout-flex');
+				$tags->remove_class('wp-block-post-template-is-layout-flex');
 
-        if ( $first_tag_end !== false && $last_tag_start !== false ) {
-            $opening = substr( $html, 0, $first_tag_end );
-            $inner   = substr( $html, $first_tag_end, $last_tag_start - $first_tag_end );
-            $closing = substr( $html, $last_tag_start );
+				// Dynamically remove Gutenberg's native "columns-X" structural enforcers
+				for ($i = 1; $i <= 6; $i++) {
+					$tags->remove_class('columns-' . $i);
+				}
 
-            /**
-             * Synchronous Execution Tag:
-             * This strictly maps `.swiper-slide` to all direct children of the dynamic wrapper instantaneously
-             * during browser HTML parsing, ensuring the DOM is pristine before Swiper initializes.
-             */
-            $slide_injector = '<script>Array.from(document.currentScript.previousElementSibling.children).forEach(function(el){ el.classList.add("swiper-slide"); });</script>';
-            
-            $wrapped_inner = '<div class="swiper-wrapper">' . $inner . '</div>' . $slide_injector;
+				break;
+			}
+		}
 
-            return $opening . $wrapped_inner . $controls_html . $closing;
-        }
+		$tags = new WP_HTML_Tag_Processor($tags->get_updated_html());
+		while ($tags->next_tag(array('tag_name' => 'li'))) {
+			$class = $tags->get_attribute('class');
+			if ($class && strpos($class, 'wp-block-post') !== false) {
+				$tags->add_class('swiper-slide');
+			}
+		}
 
-        return $html;
-    }
+		$html = $tags->get_updated_html();
+		return preg_replace('/(<\/ul>)/i', '$1' . $controls_html, $html, 1);
+	} else {
+
+		// GROUP / GRID ARCHITECTURE (Requires dynamic DOM wrapping)
+		$tags = new WP_HTML_Tag_Processor($block_content);
+		if ($tags->next_tag()) {
+			$tags->add_class('swiper');
+			$tags->add_class('is-swiper-slider'); // Injects the requested global Swiper indicator class
+			$tags->set_attribute('data-swiper-config', wp_json_encode($swiper_config));
+
+			// Strip native WordPress flex/grid classes to prevent structural layout conflicts with Swiper
+			$tags->remove_class('is-layout-grid');
+			$tags->remove_class('wp-block-group-is-layout-grid');
+			$tags->remove_class('is-layout-flex');
+			$tags->remove_class('wp-block-group-is-layout-flex');
+		}
+		$html = $tags->get_updated_html();
+
+		// Physically split the HTML to wrap the inner child blocks
+		$first_tag_end = strpos($html, '>') + 1;
+		$last_tag_start = strrpos($html, '</');
+
+		if ($first_tag_end !== false && $last_tag_start !== false) {
+			$opening = substr($html, 0, $first_tag_end);
+			$inner   = substr($html, $first_tag_end, $last_tag_start - $first_tag_end);
+			$closing = substr($html, $last_tag_start);
+
+			/**
+			 * Synchronous Execution Tag:
+			 * This strictly maps `.swiper-slide` to all direct children of the dynamic wrapper instantaneously
+			 * during browser HTML parsing, ensuring the DOM is pristine before Swiper initializes.
+			 */
+			$slide_injector = '<script>Array.from(document.currentScript.previousElementSibling.children).forEach(function(el){ el.classList.add("swiper-slide"); });</script>';
+
+			$wrapped_inner = '<div class="swiper-wrapper">' . $inner . '</div>' . $slide_injector;
+
+			return $opening . $wrapped_inner . $controls_html . $closing;
+		}
+
+		return $html;
+	}
 }
-add_filter( 'render_block', 'digitally_disruptive_render_universal_swiper', 10, 2 );
+add_filter('render_block', 'digitally_disruptive_render_universal_swiper', 10, 2);
 
 /**
  * Retrieves and renders a specified custom field for the current post in the loop.
@@ -317,34 +317,35 @@ add_filter( 'render_block', 'digitally_disruptive_render_universal_swiper', 10, 
  * @param array $atts An associative array of shortcode attributes. Expects 'key'.
  * @return string The sanitized meta value, or an empty string if the key is missing/empty.
  */
-function dd_render_query_loop_custom_field( $atts ) {
-    // Parse attributes with a default empty key
-    $attributes = shortcode_atts(
-        array(
-            'key' => '',
-        ),
-        $atts,
-        'dd_custom_field'
-    );
+function dd_render_query_loop_custom_field($atts)
+{
+	// Parse attributes with a default empty key
+	$attributes = shortcode_atts(
+		array(
+			'key' => '',
+		),
+		$atts,
+		'dd_custom_field'
+	);
 
-    // Bail early if no key is provided
-    if ( empty( $attributes['key'] ) ) {
-        return '';
-    }
+	// Bail early if no key is provided
+	if (empty($attributes['key'])) {
+		return '';
+	}
 
-    // The shortcode executes within the context of the Query Loop, 
-    // so get_the_ID() reliably fetches the looped post's ID.
-    $post_id = get_the_ID();
+	// The shortcode executes within the context of the Query Loop, 
+	// so get_the_ID() reliably fetches the looped post's ID.
+	$post_id = get_the_ID();
 
-    if ( ! $post_id ) {
-        return '';
-    }
+	if (! $post_id) {
+		return '';
+	}
 
-    // Retrieve the meta value
-    $meta_value = get_post_meta( $post_id, sanitize_text_field( $attributes['key'] ), true );
+	// Retrieve the meta value
+	$meta_value = get_post_meta($post_id, sanitize_text_field($attributes['key']), true);
 
-    // Return the escaped output to prevent XSS
-    return esc_html( $meta_value );
+	// Return the escaped output to prevent XSS
+	return var_dump($meta_value);
 }
 
 /**
@@ -352,10 +353,11 @@ function dd_render_query_loop_custom_field( $atts ) {
  *
  * @return void
  */
-function dd_register_custom_field_shortcodes() {
-    add_shortcode( 'dd_custom_field', 'dd_render_query_loop_custom_field' );
+function dd_register_custom_field_shortcodes()
+{
+	add_shortcode('dd_custom_field', 'dd_render_query_loop_custom_field');
 }
-add_action( 'init', 'dd_register_custom_field_shortcodes' );
+add_action('init', 'dd_register_custom_field_shortcodes');
 
 /**
  * Intercept the block, scope the hybrid custom CSS declarations across breakpoints, and inject the style tag.
@@ -364,97 +366,98 @@ add_action( 'init', 'dd_register_custom_field_shortcodes' );
  * @param array  $block         The parsed block data array.
  * @return string Modified block HTML with inline scoped styles.
  */
-function digitally_disruptive_render_custom_css( $block_content, $block ) {
-    
-    $allowed_blocks = array( 
-        'core/group', 
-        'core/separator', 
-        'core/image', 
-        'core/heading', 
-        'core/paragraph',
-        'core/button'
-    );
+function digitally_disruptive_render_custom_css($block_content, $block)
+{
 
-    // Bail early if the block type is not whitelisted
-    if ( ! in_array( $block['blockName'], $allowed_blocks, true ) ) {
-        return $block_content;
-    }
+	$allowed_blocks = array(
+		'core/group',
+		'core/separator',
+		'core/image',
+		'core/heading',
+		'core/paragraph',
+		'core/button'
+	);
 
-    $has_desktop = ! empty( $block['attrs']['ddCustomCSS'] );
-    $has_tablet  = ! empty( $block['attrs']['ddCustomCSSTablet'] );
-    $has_mobile  = ! empty( $block['attrs']['ddCustomCSSMobile'] );
+	// Bail early if the block type is not whitelisted
+	if (! in_array($block['blockName'], $allowed_blocks, true)) {
+		return $block_content;
+	}
 
-    // Bail if no custom CSS exists in any viewport
-    if ( ! $has_desktop && ! $has_tablet && ! $has_mobile ) {
-        return $block_content;
-    }
+	$has_desktop = ! empty($block['attrs']['ddCustomCSS']);
+	$has_tablet  = ! empty($block['attrs']['ddCustomCSSTablet']);
+	$has_mobile  = ! empty($block['attrs']['ddCustomCSSMobile']);
 
-    $unique_id = 'dd-css-' . substr( md5( uniqid( wp_rand(), true ) ), 0, 8 );
+	// Bail if no custom CSS exists in any viewport
+	if (! $has_desktop && ! $has_tablet && ! $has_mobile) {
+		return $block_content;
+	}
 
-    /**
-     * HYBRID PARSER CLOSURE
-     * Centralized logic to execute the hybrid parsing cleanly for any input string.
-     */
-    $compile_hybrid_css = function( $raw_css, $uid ) {
-        $sanitized_css = wp_strip_all_tags( $raw_css );
+	$unique_id = 'dd-css-' . substr(md5(uniqid(wp_rand(), true)), 0, 8);
 
-        // 1. Extract all advanced blocks (e.g., "SELECTOR img { border-radius: 50%; }")
-        preg_match_all( '/SELECTOR[^{]*{[^}]*}/', $sanitized_css, $matches );
-        $advanced_blocks = $matches[0];
+	/**
+	 * HYBRID PARSER CLOSURE
+	 * Centralized logic to execute the hybrid parsing cleanly for any input string.
+	 */
+	$compile_hybrid_css = function ($raw_css, $uid) {
+		$sanitized_css = wp_strip_all_tags($raw_css);
 
-        // 2. Isolate base properties by stripping the advanced blocks out of the string
-        $base_properties = trim( preg_replace( '/SELECTOR[^{]*{[^}]*}/', '', $sanitized_css ) );
+		// 1. Extract all advanced blocks (e.g., "SELECTOR img { border-radius: 50%; }")
+		preg_match_all('/SELECTOR[^{]*{[^}]*}/', $sanitized_css, $matches);
+		$advanced_blocks = $matches[0];
 
-        $scoped_css = '';
-        if ( ! empty( $base_properties ) ) {
-            $scoped_css .= sprintf( '.%s { %s } ', $uid, $base_properties );
-        }
+		// 2. Isolate base properties by stripping the advanced blocks out of the string
+		$base_properties = trim(preg_replace('/SELECTOR[^{]*{[^}]*}/', '', $sanitized_css));
 
-        foreach ( $advanced_blocks as $block_rule ) {
-            $scoped_css .= str_replace( 'SELECTOR', '.' . $uid, $block_rule ) . ' ';
-        }
+		$scoped_css = '';
+		if (! empty($base_properties)) {
+			$scoped_css .= sprintf('.%s { %s } ', $uid, $base_properties);
+		}
 
-        return $scoped_css;
-    };
+		foreach ($advanced_blocks as $block_rule) {
+			$scoped_css .= str_replace('SELECTOR', '.' . $uid, $block_rule) . ' ';
+		}
 
-    // Compile Final CSS
-    $final_css = '';
+		return $scoped_css;
+	};
 
-    if ( $has_desktop ) {
-        $final_css .= $compile_hybrid_css( $block['attrs']['ddCustomCSS'], $unique_id );
-    }
-    
-    if ( $has_tablet ) {
-        $final_css .= sprintf( 
-            '@media (max-width: 991px) { %s } ', 
-            $compile_hybrid_css( $block['attrs']['ddCustomCSSTablet'], $unique_id ) 
-        );
-    }
-    
-    if ( $has_mobile ) {
-        $final_css .= sprintf( 
-            '@media (max-width: 767px) { %s } ', 
-            $compile_hybrid_css( $block['attrs']['ddCustomCSSMobile'], $unique_id ) 
-        );
-    }
+	// Compile Final CSS
+	$final_css = '';
 
-    // Inject the unique class into the block's outermost container tag
-    $tags = new WP_HTML_Tag_Processor( $block_content );
-    if ( $tags->next_tag() ) {
-        $tags->add_class( $unique_id );
-    }
-    $updated_content = $tags->get_updated_html();
+	if ($has_desktop) {
+		$final_css .= $compile_hybrid_css($block['attrs']['ddCustomCSS'], $unique_id);
+	}
 
-    // Construct the scoped style block
-    $style_tag = sprintf( 
-        '<style id="%s">%s</style>', 
-        esc_attr( $unique_id . '-style' ), 
-        $final_css 
-    );
+	if ($has_tablet) {
+		$final_css .= sprintf(
+			'@media (max-width: 991px) { %s } ',
+			$compile_hybrid_css($block['attrs']['ddCustomCSSTablet'], $unique_id)
+		);
+	}
 
-    return $style_tag . $updated_content;
+	if ($has_mobile) {
+		$final_css .= sprintf(
+			'@media (max-width: 767px) { %s } ',
+			$compile_hybrid_css($block['attrs']['ddCustomCSSMobile'], $unique_id)
+		);
+	}
+
+	// Inject the unique class into the block's outermost container tag
+	$tags = new WP_HTML_Tag_Processor($block_content);
+	if ($tags->next_tag()) {
+		$tags->add_class($unique_id);
+	}
+	$updated_content = $tags->get_updated_html();
+
+	// Construct the scoped style block
+	$style_tag = sprintf(
+		'<style id="%s">%s</style>',
+		esc_attr($unique_id . '-style'),
+		$final_css
+	);
+
+	return $style_tag . $updated_content;
 }
-add_filter( 'render_block', 'digitally_disruptive_render_custom_css', 10, 2 );
+add_filter('render_block', 'digitally_disruptive_render_custom_css', 10, 2);
 /*-----------------------------------------------------------------------------------*/
 /* Require Files
 /*-----------------------------------------------------------------------------------*/
