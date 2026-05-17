@@ -57,6 +57,11 @@ function custom_theme_block_editor_setup()
             'color' => '#0E1B35',
         ),
         array(
+            'name'  => esc_html__('Senary', 'coptrz'),
+            'slug'  => 'senary',
+            'color' => '#071020',
+        ),
+        array(
             'name'  => esc_html__('Contrast / White', 'coptrz'),
             'slug'  => 'contrast-white',
             'color' => '#ffffff', // Expanded from #fff
@@ -86,11 +91,7 @@ function custom_theme_block_editor_setup()
             'slug'  => 'transparent',
             'color' => '#00000000',
         ),
-        array(
-            'name'  => esc_html__('Senary', 'coptrz'),
-            'slug'  => 'senary',
-            'color' => '#071020',
-        ),
+        
     ));
 
     /**
