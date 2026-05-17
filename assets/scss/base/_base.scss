@@ -1972,6 +1972,7 @@ ul.is-swiper-slider,
             width: 15px;
             flex: 0 0 15px;
             height: 5px;
+            background-color: currentColor;
             &.swiper-pagination-bullet-active {
                 opacity: 1 !important;
             }

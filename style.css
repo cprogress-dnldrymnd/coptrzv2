@@ -12731,7 +12731,8 @@ ul.is-swiper-slider,
     opacity: 0.5;
     width: 15px;
     flex: 0 0 15px;
-    height: 5px; }
+    height: 5px;
+    background-color: currentColor; }
     .is-swiper-slider .swiper-pagination.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
       opacity: 1 !important; }
 
