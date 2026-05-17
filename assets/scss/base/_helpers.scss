@@ -535,7 +535,6 @@ figure[style*="aspect-ratio:4/3"] {
     }
 }
 
-
 @media (max-width: 575px) {
     .columns-4.columns-4.columns-4 {
         grid-template-columns: repeat(1, minmax(0, 1fr));
