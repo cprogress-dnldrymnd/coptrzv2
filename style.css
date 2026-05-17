@@ -11324,7 +11324,8 @@ figure[style*="aspect-ratio:4/3"] img {
     padding-top: 50px; }
 
   .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs {
-    flex-direction: column; } }
+    flex-direction: column;
+    border-bottom: none !important; } }
 body .wp-block {
   max-width: 100% !important; }
 

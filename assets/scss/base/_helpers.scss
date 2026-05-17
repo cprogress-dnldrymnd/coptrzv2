@@ -557,5 +557,6 @@ figure[style*="aspect-ratio:4/3"] {
     }
     .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs {
         flex-direction: column;
+        border-bottom: none !important;
     }
 }
