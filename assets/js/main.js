@@ -801,14 +801,24 @@ function __post_navigation() {
  * Initializes all dynamic Gutenberg Query Loop Swipers.
  */
 document.addEventListener('DOMContentLoaded', function () {
-    queryLoopSwipers();
+    initSwipers();
     purgeEmptyBlocks();
 });
 
 
-function queryLoopSwipers() {
-    // Select all blocks carrying our custom class and the injected 'swiper' class
-    const swiperContainers = document.querySelectorAll('.query-loop-swiper-js .swiper');
+/**
+ * @package   DigitallyDisruptive
+ * @author    Digitally Disruptive - Donald Raymundo
+ * @link      https://digitallydisruptive.co.uk/
+ * Universal Swiper Frontend Initialization
+ */
+function initSwipers() {
+    /**
+     * Architectural Update: 
+     * Target the '.swiper' class directly, ensuring it possesses our config data attribute.
+     * This bypasses the need for the legacy '.query-loop-swiper-js' wrapper class.
+     */
+    const swiperContainers = document.querySelectorAll('.swiper[data-swiper-config]');
 
     swiperContainers.forEach(function (container) {
         // Parse the dynamic JSON configuration passed from PHP
