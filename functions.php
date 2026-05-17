@@ -310,6 +310,54 @@ function digitally_disruptive_render_universal_swiper( $block_content, $block ) 
 add_filter( 'render_block', 'digitally_disruptive_render_universal_swiper', 10, 2 );
 
 /**
+ * Retrieves and renders a specified custom field for the current post in the loop.
+ * 
+ * Usage inside the editor: [dd_custom_field key="your_meta_key"]
+ *
+ * @param array $atts An associative array of shortcode attributes. Expects 'key'.
+ * @return string The sanitized meta value, or an empty string if the key is missing/empty.
+ */
+function dd_render_query_loop_custom_field( $atts ) {
+    // Parse attributes with a default empty key
+    $attributes = shortcode_atts(
+        array(
+            'key' => '',
+        ),
+        $atts,
+        'dd_custom_field'
+    );
+
+    // Bail early if no key is provided
+    if ( empty( $attributes['key'] ) ) {
+        return '';
+    }
+
+    // The shortcode executes within the context of the Query Loop, 
+    // so get_the_ID() reliably fetches the looped post's ID.
+    $post_id = get_the_ID();
+
+    if ( ! $post_id ) {
+        return '';
+    }
+
+    // Retrieve the meta value
+    $meta_value = get_post_meta( $post_id, sanitize_text_field( $attributes['key'] ), true );
+
+    // Return the escaped output to prevent XSS
+    return esc_html( $meta_value );
+}
+
+/**
+ * Initializes the shortcode registration.
+ *
+ * @return void
+ */
+function dd_register_custom_field_shortcodes() {
+    add_shortcode( 'dd_custom_field', 'dd_render_query_loop_custom_field' );
+}
+add_action( 'init', 'dd_register_custom_field_shortcodes' );
+
+/**
  * Intercept the block, scope the hybrid custom CSS declarations across breakpoints, and inject the style tag.
  *
  * @param string $block_content The raw HTML content of the block.
