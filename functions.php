@@ -259,7 +259,13 @@ function digitally_disruptive_render_swiper_query($block_content, $block)
 add_filter('render_block', 'digitally_disruptive_render_swiper_query', 10, 2);
 
 /**
- * Intercept the block, scope the hybrid custom CSS declarations, and inject the style tag.
+ * @package   DigitallyDisruptive
+ * @author    Digitally Disruptive - Donald Raymundo
+ * @link      https://digitallydisruptive.co.uk/
+ */
+
+/**
+ * Intercept the block, scope the hybrid custom CSS declarations across breakpoints, and inject the style tag.
  *
  * @param string $block_content The raw HTML content of the block.
  * @param array  $block         The parsed block data array.
@@ -276,34 +282,67 @@ function digitally_disruptive_render_custom_css( $block_content, $block ) {
         'core/button'
     );
 
-    // Bail early if no CSS exists or if the block type is not whitelisted
-    if ( empty( $block['attrs']['ddCustomCSS'] ) || ! in_array( $block['blockName'], $allowed_blocks, true ) ) {
+    // Bail early if the block type is not whitelisted
+    if ( ! in_array( $block['blockName'], $allowed_blocks, true ) ) {
         return $block_content;
     }
 
-    $raw_css = $block['attrs']['ddCustomCSS'];
-    $unique_id = 'dd-css-' . substr( md5( uniqid( wp_rand(), true ) ), 0, 8 );
-    $sanitized_css = wp_strip_all_tags( $raw_css );
+    $has_desktop = ! empty( $block['attrs']['ddCustomCSS'] );
+    $has_tablet  = ! empty( $block['attrs']['ddCustomCSSTablet'] );
+    $has_mobile  = ! empty( $block['attrs']['ddCustomCSSMobile'] );
 
-    /**
-     * HYBRID PARSER ARCHITECTURE
-     */
-    // 1. Extract all advanced blocks (e.g., "SELECTOR img { border-radius: 50%; }")
-    preg_match_all( '/SELECTOR[^{]*{[^}]*}/', $sanitized_css, $matches );
-    $advanced_blocks = $matches[0];
-
-    // 2. Isolate base properties by stripping the advanced blocks out of the string
-    $base_properties = trim( preg_replace( '/SELECTOR[^{]*{[^}]*}/', '', $sanitized_css ) );
-
-    // 3. Compile the scoped CSS
-    $scoped_css = '';
-    
-    if ( ! empty( $base_properties ) ) {
-        $scoped_css .= sprintf( '.%s { %s } ', $unique_id, $base_properties );
+    // Bail if no custom CSS exists in any viewport
+    if ( ! $has_desktop && ! $has_tablet && ! $has_mobile ) {
+        return $block_content;
     }
 
-    foreach ( $advanced_blocks as $block_rule ) {
-        $scoped_css .= str_replace( 'SELECTOR', '.' . $unique_id, $block_rule ) . ' ';
+    $unique_id = 'dd-css-' . substr( md5( uniqid( wp_rand(), true ) ), 0, 8 );
+
+    /**
+     * HYBRID PARSER CLOSURE
+     * Centralized logic to execute the hybrid parsing cleanly for any input string.
+     */
+    $compile_hybrid_css = function( $raw_css, $uid ) {
+        $sanitized_css = wp_strip_all_tags( $raw_css );
+
+        // 1. Extract all advanced blocks (e.g., "SELECTOR img { border-radius: 50%; }")
+        preg_match_all( '/SELECTOR[^{]*{[^}]*}/', $sanitized_css, $matches );
+        $advanced_blocks = $matches[0];
+
+        // 2. Isolate base properties by stripping the advanced blocks out of the string
+        $base_properties = trim( preg_replace( '/SELECTOR[^{]*{[^}]*}/', '', $sanitized_css ) );
+
+        $scoped_css = '';
+        if ( ! empty( $base_properties ) ) {
+            $scoped_css .= sprintf( '.%s { %s } ', $uid, $base_properties );
+        }
+
+        foreach ( $advanced_blocks as $block_rule ) {
+            $scoped_css .= str_replace( 'SELECTOR', '.' . $uid, $block_rule ) . ' ';
+        }
+
+        return $scoped_css;
+    };
+
+    // Compile Final CSS
+    $final_css = '';
+
+    if ( $has_desktop ) {
+        $final_css .= $compile_hybrid_css( $block['attrs']['ddCustomCSS'], $unique_id );
+    }
+    
+    if ( $has_tablet ) {
+        $final_css .= sprintf( 
+            '@media (max-width: 991px) { %s } ', 
+            $compile_hybrid_css( $block['attrs']['ddCustomCSSTablet'], $unique_id ) 
+        );
+    }
+    
+    if ( $has_mobile ) {
+        $final_css .= sprintf( 
+            '@media (max-width: 767px) { %s } ', 
+            $compile_hybrid_css( $block['attrs']['ddCustomCSSMobile'], $unique_id ) 
+        );
     }
 
     // Inject the unique class into the block's outermost container tag
@@ -317,7 +356,7 @@ function digitally_disruptive_render_custom_css( $block_content, $block ) {
     $style_tag = sprintf( 
         '<style id="%s">%s</style>', 
         esc_attr( $unique_id . '-style' ), 
-        $scoped_css 
+        $final_css 
     );
 
     return $style_tag . $updated_content;
