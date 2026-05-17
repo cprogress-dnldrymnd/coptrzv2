@@ -11295,6 +11295,10 @@ ul.checklist-ul {
 .plethoraplugins-tabs--content {
   margin-top: 50px; }
 
+.plethoraplugins-accordion.plethoraplugins-accordion.plethoraplugins-theme__minimal .pds-accordion__icon svg {
+  width: 16px;
+  height: 16px; }
+
 .wp-block-accordion-panel {
   margin-top: 0 !important; }
 
@@ -11310,6 +11314,10 @@ figure[style*="aspect-ratio:4/3"] img {
 @media (max-width: 575px) {
   .columns-4.columns-4.columns-4 {
     grid-template-columns: repeat(1, minmax(0, 1fr)); } }
+@media (max-width: 501px) {
+  .plethoraplugins-accordion.plethoraplugins-theme__minimal .pds-accordion__title.pds-accordion__title {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4); } }
 body .wp-block {
   max-width: 100% !important; }
 
