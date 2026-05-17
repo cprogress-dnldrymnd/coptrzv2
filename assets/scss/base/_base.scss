@@ -1938,7 +1938,7 @@ hr {
  */
 
 /* Force the wrapper to act as a slider track, defeating WP's grid layout */
-.query-loop-swiper-js .swiper-wrapper {
+.is-swiper-slider .swiper-wrapper {
     display: flex !important;
     flex-wrap: nowrap !important;
     gap: 0 !important; /* Swiper uses JS for spaceBetween, disable WP gap */
@@ -1946,20 +1946,20 @@ hr {
 }
 
 /* Ensure slides allow Swiper to calculate widths dynamically */
-.query-loop-swiper-js .swiper-slide {
+.is-swiper-slider .swiper-slide {
     width: auto; /* Swiper JS sets inline widths based on slidesPerView */
     height: auto !important; /* Ensures slides stretch to match tallest item */
     min-width: 0; /* Prevents flex blowouts */
 }
 
 /* Reset WP margin/padding on the ul */
-ul.query-loop-swiper-js,
-.query-loop-swiper-js ul.wp-block-post-template {
+ul.is-swiper-slider,
+.is-swiper-slider ul.wp-block-post-template {
     margin: 0 !important;
     padding: 0 !important;
 }
 
-.query-loop-swiper-js {
+.is-swiper-slider {
     .swiper-pagination.swiper-pagination {
         background-color: transparent;
         display: flex;

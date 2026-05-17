@@ -9947,11 +9947,13 @@ button.swiper-pagination-bullet {
   --wp--preset--color--tertiary: #0e1729;
   --wp--preset--color-quaternary: #010817;
   --wp--preset--color-quinary: #0e1b35;
+  --wp--preset--color-senary: #071020;
   --wp--preset--color--contrast-white: #ffffff;
   --wp--preset--color--accent: #2da1ff;
   --wp--preset--color--lightgray: #cbcbcb;
   --wp--preset--color--lightgray2: #dbdbdb;
-  --wp--preset--color--lightgray3: #efefef; }
+  --wp--preset--color--lightgray3: #efefef;
+  --wp--preset--color--transparent: #00000000; }
 
 @font-face {
   font-family: "Poppins";
@@ -11183,11 +11185,14 @@ p:last-child {
 .has-quaternary-color {
   color: var(--wp--preset--color-quaternary) !important; }
 
-.has-quaternary-color {
-  color: var(--wp--preset--color-quaternary) !important; }
+.has-senary-color {
+  color: var(--wp--preset--color-senary) !important; }
 
 .has-quinary-color {
   color: var(--wp--preset--color-quinary) !important; }
+
+.has-transparent-color {
+  color: var(--wp--preset--color--transparent) !important; }
 
 /**
  * Block Editor Background Color Classes
@@ -11222,6 +11227,12 @@ p:last-child {
 
 .has-quinary-background-color {
   background-color: var(--wp--preset--color--quinary) !important; }
+
+.has-senary-background-color {
+  background-color: var(--wp--preset--color-senary) !important; }
+
+.has-transparent-background-color {
+  background-color: var(--wp--preset--color--transparent) !important; }
 
 ul.checklist-ul {
   list-style: none;
@@ -12687,7 +12698,7 @@ hr {
  * Defeats WP core grid/flex structural classes to allow Swiper.js to control the layout.
  */
 /* Force the wrapper to act as a slider track, defeating WP's grid layout */
-.query-loop-swiper-js .swiper-wrapper {
+.is-swiper-slider .swiper-wrapper {
   display: flex !important;
   flex-wrap: nowrap !important;
   gap: 0 !important;
@@ -12695,7 +12706,7 @@ hr {
   width: 100% !important; }
 
 /* Ensure slides allow Swiper to calculate widths dynamically */
-.query-loop-swiper-js .swiper-slide {
+.is-swiper-slider .swiper-slide {
   width: auto;
   /* Swiper JS sets inline widths based on slidesPerView */
   height: auto !important;
@@ -12704,24 +12715,24 @@ hr {
   /* Prevents flex blowouts */ }
 
 /* Reset WP margin/padding on the ul */
-ul.query-loop-swiper-js,
-.query-loop-swiper-js ul.wp-block-post-template {
+ul.is-swiper-slider,
+.is-swiper-slider ul.wp-block-post-template {
   margin: 0 !important;
   padding: 0 !important; }
 
-.query-loop-swiper-js .swiper-pagination.swiper-pagination {
+.is-swiper-slider .swiper-pagination.swiper-pagination {
   background-color: transparent;
   display: flex;
   gap: 10px;
   justify-content: center;
   margin-top: 40px; }
-  .query-loop-swiper-js .swiper-pagination.swiper-pagination .swiper-pagination-bullet {
+  .is-swiper-slider .swiper-pagination.swiper-pagination .swiper-pagination-bullet {
     border-radius: 0;
     opacity: 0.5;
     width: 15px;
     flex: 0 0 15px;
     height: 5px; }
-    .query-loop-swiper-js .swiper-pagination.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    .is-swiper-slider .swiper-pagination.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
       opacity: 1 !important; }
 
 .wp-block-group > .wp-block-group__inner-container {
