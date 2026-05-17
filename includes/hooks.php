@@ -81,10 +81,15 @@ function custom_theme_block_editor_setup()
             'slug'  => 'lightgray3',
             'color' => '#EFEFEF',
         ),
-          array(
+        array(
             'name'  => esc_html__('Transparent', 'coptrz'),
             'slug'  => 'transparent',
             'color' => '#00000000',
+        ),
+        array(
+            'name'  => esc_html__('Senary', 'coptrz'),
+            'slug'  => 'senary',
+            'color' => '#071020',
         ),
     ));
 

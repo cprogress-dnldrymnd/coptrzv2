@@ -42,7 +42,7 @@ $post_ids = [272246, 272244, 272242];
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
-            <div class="button-accent col-auto button-box text-center mt-5"><a class="rounded-10px " href="#Benefits" target="_self">View DJI Enterprise Case Studies</a></div>
+            <div class="button-accent col-auto button-box text-center mt-5"><a class="rounded-10px " href="/case-studies/" target="_self">View All Case Studies</a></div>
         </div>
     </div>
 </section>

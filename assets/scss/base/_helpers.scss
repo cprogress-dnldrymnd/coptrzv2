@@ -390,11 +390,14 @@ section {
 .has-quaternary-color {
     color: var(--wp--preset--color-quaternary) !important;
 }
-.has-quaternary-color {
-    color: var(--wp--preset--color-quaternary) !important;
+.has-senary-color {
+    color: var(--wp--preset--color-senary) !important;
 }
 .has-quinary-color {
     color: var(--wp--preset--color-quinary) !important;
+}
+.has-transparent-color {
+    color: var(--wp--preset--color--transparent) !important;
 }
 /**
  * Block Editor Background Color Classes
@@ -430,10 +433,12 @@ section {
 .has-quinary-background-color {
     background-color: var(--wp--preset--color--quinary) !important;
 }
+.has-senary-background-color {
+    background-color: var(--wp--preset--color-senary) !important;
+}
 .has-transparent-background-color {
     background-color: var(--wp--preset--color--transparent) !important;
 }
-
 ul.checklist-ul {
     list-style: none;
     padding: 0;
