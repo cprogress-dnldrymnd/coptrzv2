@@ -81,6 +81,11 @@ function custom_theme_block_editor_setup()
             'slug'  => 'lightgray3',
             'color' => '#EFEFEF',
         ),
+          array(
+            'name'  => esc_html__('Transparent', 'coptrz'),
+            'slug'  => 'transparent',
+            'color' => '#00000000',
+        ),
     ));
 
     /**
