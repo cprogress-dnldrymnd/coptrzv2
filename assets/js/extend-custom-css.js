@@ -13,13 +13,14 @@
     const { InspectorControls } = wp.blockEditor;
     const { PanelBody, TextareaControl } = wp.components;
 
-    // Architectural whitelist expanded for Group, Separator, Image, Heading, and Paragraph blocks
+    // Architectural whitelist updated to include Group, Separator, Image, Heading, Paragraph, and Button blocks
     const ALLOWED_BLOCKS = [
         'core/group', 
         'core/separator', 
         'core/image', 
         'core/heading', 
-        'core/paragraph'
+        'core/paragraph',
+        'core/button'
     ];
 
     /**
@@ -73,7 +74,7 @@
                     el(PanelBody, { title: 'Custom CSS', initialOpen: false },
                         el(TextareaControl, {
                             label: 'Scoped Block CSS',
-                            help: 'Enter CSS properties directly (e.g., border: 2px solid red; border-radius: 10px;). They will automatically be scoped and previewed live.',
+                            help: 'Enter CSS properties directly (e.g., transform: scale(1.05); margin-top: 20px;). They will automatically be scoped and previewed live.',
                             value: attributes.ddCustomCSS,
                             onChange: function (val) { setAttributes({ ddCustomCSS: val }); },
                             rows: 10,

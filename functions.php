@@ -258,6 +258,8 @@ function digitally_disruptive_render_swiper_query($block_content, $block)
 }
 add_filter('render_block', 'digitally_disruptive_render_swiper_query', 10, 2);
 
+
+
 /**
  * Intercept the block, scope the custom CSS declarations, and inject the style tag.
  *
@@ -267,13 +269,14 @@ add_filter('render_block', 'digitally_disruptive_render_swiper_query', 10, 2);
  */
 function digitally_disruptive_render_custom_css( $block_content, $block ) {
     
-    // Define the expanded whitelist of blocks permitted to process Custom CSS
+    // Define the updated backend whitelist mirroring your JS implementation
     $allowed_blocks = array( 
         'core/group', 
         'core/separator', 
         'core/image', 
         'core/heading', 
-        'core/paragraph' 
+        'core/paragraph',
+        'core/button'
     );
 
     // Bail early if no CSS exists or if the block type is not whitelisted
@@ -292,7 +295,7 @@ function digitally_disruptive_render_custom_css( $block_content, $block ) {
     // Automatically wrap the user's raw CSS properties inside the unique class selector
     $scoped_css = sprintf( '.%s { %s }', $unique_id, $sanitized_css );
 
-    // Inject the unique class into the block's outermost HTML tag container
+    // Inject the unique class into the block's outermost container tag
     $tags = new WP_HTML_Tag_Processor( $block_content );
     if ( $tags->next_tag() ) {
         $tags->add_class( $unique_id );
