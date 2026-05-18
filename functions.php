@@ -659,3 +659,19 @@ function inject_popup_modal()
 		echo do_shortcode('[popup id=419411]');
 	}
 }
+
+
+/**
+ * Throttles the WordPress Heartbeat API in the block editor.
+ * 
+ * By modifying the Heartbeat rate, we reduce the frequency of admin-ajax.php 
+ * requests, which frees up browser resources and prevents typing lag.
+ *
+ * @param array $settings The Heartbeat API settings array.
+ * @return array Modified settings with a slower interval.
+ */
+add_filter( 'heartbeat_settings', function( $settings ) {
+    // Set the heartbeat interval to 60 seconds (maximum allowed via this filter)
+    $settings['interval'] = 60;
+    return $settings;
+} );
