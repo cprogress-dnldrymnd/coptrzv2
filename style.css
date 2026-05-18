@@ -11338,6 +11338,23 @@ figure[style*="aspect-ratio:4/3"] img {
 .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle-icon {
   transform: rotate(45deg); }
 
+.fade-left-right {
+  /* Ensure the container clips any overflowing scrolling content */
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  /* * WebKit prefix for Safari/Chrome compatibility.
+   * The gradient goes from left to right:
+   * 0%   - transparent (fully faded)
+   * 10%  - black (fully visible start point)
+   * 90%  - black (fully visible end point)
+   * 100% - transparent (fully faded)
+   * Adjust the 10% and 90% values to increase or decrease the fade width.
+   */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  /* Standard syntax */
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); }
+
 @media (max-width: 991px) {
   .columns-4.columns-4.columns-4 {
     grid-template-columns: repeat(2, minmax(0, 1fr)); } }
