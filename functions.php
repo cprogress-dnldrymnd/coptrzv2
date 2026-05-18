@@ -660,7 +660,6 @@ function inject_popup_modal()
 	}
 }
 
-
 /**
  * Throttles the WordPress Heartbeat API in the block editor.
  * 
