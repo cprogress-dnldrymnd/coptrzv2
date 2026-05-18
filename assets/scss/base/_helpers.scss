@@ -533,7 +533,49 @@ figure[style*="aspect-ratio:4/3"] {
         aspect-ratio: 4/3;
     }
 }
+/*
+ * Smooth Accordion Animation via CSS Grid
+ * Bypasses the need for JS height calculations or max-height hacks.
+ */
 
+/* 1. Transform the panel into a grid container and set the initial closed state */
+.wp-block-accordion .wp-block-accordion-panel {
+    display: grid !important; 
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+
+
+
+    /* Utilize a cubic-bezier curve for a more natural acceleration/deceleration */
+    transition: 
+        grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        padding-top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        padding-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        border-top-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Direct children of the grid container must have min-height: 0 for the animation to work */
+.wp-block-accordion .wp-block-accordion-panel > * {
+    min-height: 0;
+}
+
+/* 3. Define the open state triggered by the WordPress '.is-open' class */
+.wp-block-accordion-item.is-open .wp-block-accordion-panel {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+/* 4. Optional UI Enhancement: Rotate the '+' icon into an 'x' when open */
+.wp-block-accordion-heading__toggle-icon {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle-icon {
+    transform: rotate(45deg);
+}
 @media (max-width: 991px) {
     .columns-4.columns-4.columns-4 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
