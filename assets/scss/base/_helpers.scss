@@ -554,7 +554,7 @@ figure[style*="aspect-ratio:4/3"] {
         opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.wp-block-accordion .wp-block-accordion-panel:not(.is-open) {
+.wp-block-accordion .wp-block-accordion-item:not(.is-open) .wp-block-accordion-panel {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
