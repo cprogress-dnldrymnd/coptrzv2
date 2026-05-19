@@ -825,6 +825,7 @@ function initSwipers() {
     swiperContainers.forEach(function (container) {
         // Parse the dynamic JSON configuration passed from PHP
         const configData = container.getAttribute('data-swiper-config');
+        console.log('Digitally Disruptive: Initializing Swiper with config:', configData);
         if (!configData) return;
 
         try {
