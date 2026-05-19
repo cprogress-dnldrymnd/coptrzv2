@@ -365,6 +365,13 @@ function dd_inject_query_loop_meta_via_class( $block_content, $block, $instance 
 }
 add_filter( 'render_block', 'dd_inject_query_loop_meta_via_class', 10, 3 );
 
+<?php
+/**
+ * @package   DigitallyDisruptive
+ * @author    Digitally Disruptive - Donald Raymundo
+ * @link      https://digitallydisruptive.co.uk/
+ */
+
 /**
  * Intercept the block, scope the hybrid custom CSS declarations across breakpoints, and inject the style tag.
  *
@@ -374,13 +381,16 @@ add_filter( 'render_block', 'dd_inject_query_loop_meta_via_class', 10, 3 );
  */
 function digitally_disruptive_render_custom_css( $block_content, $block ) {
     
+    // Expanded backend whitelist mirroring the JavaScript implementation
     $allowed_blocks = array( 
         'core/group', 
         'core/separator', 
         'core/image', 
         'core/heading', 
         'core/paragraph',
-        'core/button'
+        'core/button',
+        'core/columns',
+        'core/column'
     );
 
     // Bail early if the block type is not whitelisted
@@ -402,6 +412,9 @@ function digitally_disruptive_render_custom_css( $block_content, $block ) {
     /**
      * HYBRID PARSER CLOSURE
      * Centralized logic to execute the hybrid parsing cleanly for any input string.
+     * * @param string $raw_css The unparsed CSS string from the block attribute.
+     * @param string $uid     The unique class identifier for the current block.
+     * @return string         Compiled and scoped CSS string.
      */
     $compile_hybrid_css = function( $raw_css, $uid ) {
         $sanitized_css = wp_strip_all_tags( $raw_css );
@@ -425,7 +438,7 @@ function digitally_disruptive_render_custom_css( $block_content, $block ) {
         return $scoped_css;
     };
 
-    // Compile Final CSS
+    // Compile Final CSS Payload
     $final_css = '';
 
     if ( $has_desktop ) {
@@ -453,7 +466,7 @@ function digitally_disruptive_render_custom_css( $block_content, $block ) {
     }
     $updated_content = $tags->get_updated_html();
 
-    // Construct the scoped style block
+    // Construct the scoped style block to sit parallel to the DOM element
     $style_tag = sprintf( 
         '<style id="%s">%s</style>', 
         esc_attr( $unique_id . '-style' ), 

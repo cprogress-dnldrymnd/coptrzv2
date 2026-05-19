@@ -13,17 +13,23 @@
     const { InspectorControls } = wp.blockEditor;
     const { PanelBody, TextareaControl, TabPanel } = wp.components;
 
+    // Expanded architectural whitelist to include Columns and Column blocks
     const ALLOWED_BLOCKS = [
         'core/group', 
         'core/separator', 
         'core/image', 
         'core/heading', 
         'core/paragraph',
-        'core/button'
+        'core/button',
+        'core/columns',
+        'core/column'
     ];
 
     /**
-     * 1. Register the custom CSS attributes
+     * Registers the Custom CSS attributes for whitelisted blocks.
+     * * @param {Object} settings Block settings object.
+     * @param {string} name     Block name.
+     * @return {Object}         Modified block settings.
      */
     function addCustomCssAttribute(settings, name) {
         if (!ALLOWED_BLOCKS.includes(name)) {
@@ -41,7 +47,10 @@
     addFilter('blocks.registerBlockType', 'digitally-disruptive/custom-css-attr', addCustomCssAttribute);
 
     /**
-     * Helper: Reusable Hybrid Compiler for Live Preview
+     * Compiles the raw CSS string into a Live Preview format using the block's unique Client ID.
+     * * @param {string} rawCSS   The raw CSS input from the textarea.
+     * @param {string} clientId The unique React identifier for the current block.
+     * @return {string}         The compiled CSS string for live editor injection.
      */
     const compileHybridCSS = (rawCSS, clientId) => {
         if (!rawCSS) return '';
@@ -65,7 +74,7 @@
     };
 
     /**
-     * 2. Inject the Tabbed UI and Hybrid Live Preview Styles
+     * Injects the Tabbed UI controls and renders the Live Preview style block.
      */
     const addCustomCssUI = createHigherOrderComponent(function (BlockEdit) {
         return function (props) {
@@ -90,7 +99,7 @@
 
             return el(Fragment, {},
 
-                // Conditionally render the compiled style tag
+                // Conditionally render the compiled style tag into the editor canvas
                 livePreviewCSS ? el('style', null, livePreviewCSS) : null,
 
                 el(BlockEdit, props),
