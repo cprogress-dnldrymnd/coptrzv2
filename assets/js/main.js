@@ -820,11 +820,6 @@ window.addEventListener('resize', () => {
  * Universal Swiper Frontend Initialization
  */
 function initSwipers() {
-    /**
-     * Architectural Update: 
-     * Target the '.swiper' class directly, ensuring it possesses our config data attribute.
-     * This bypasses the need for the legacy '.query-loop-swiper-js' wrapper class.
-     */
     const swiperContainers = document.querySelectorAll('.swiper[data-swiper-config]');
 
     swiperContainers.forEach(function (container) {
@@ -834,6 +829,30 @@ function initSwipers() {
 
         try {
             const config = JSON.parse(configData);
+
+            /**
+             * ARCHITECTURAL FIX: Loop & Overflow Protection
+             * 1. Count actual slides present in the DOM.
+             * 2. Find the highest 'slidesPerView' across all defined breakpoints.
+             * 3. Disable loop if slide count is <= max viewable slides.
+             * 4. Enable watchOverflow to hide dots/arrows when scrolling isn't needed.
+             */
+            const slideCount = container.querySelectorAll('.swiper-slide').length;
+            let maxSlidesPerView = 1;
+
+            if (config.breakpoints) {
+                Object.values(config.breakpoints).forEach(bp => {
+                    if (bp.slidesPerView && bp.slidesPerView > maxSlidesPerView) {
+                        maxSlidesPerView = bp.slidesPerView;
+                    }
+                });
+            }
+
+            if (config.loop && slideCount <= maxSlidesPerView) {
+                config.loop = false;
+            }
+
+            config.watchOverflow = true;
 
             // Safely assign pagination ONLY if the DOM element exists
             if (config.pagination) {
