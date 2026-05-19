@@ -11318,10 +11318,12 @@ figure[style*="aspect-ratio:4/3"] img {
   grid-template-rows: 0fr;
   opacity: 0;
   overflow: hidden;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
   /* Utilize a cubic-bezier curve for a more natural acceleration/deceleration */
   transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding-top 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-top-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.wp-block-accordion .wp-block-accordion-panel:not(.is-open) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important; }
 
 /* 2. Direct children of the grid container must have min-height: 0 for the animation to work */
 .wp-block-accordion .wp-block-accordion-panel > * {
