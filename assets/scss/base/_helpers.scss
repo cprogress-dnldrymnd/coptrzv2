@@ -544,8 +544,7 @@ figure[style*="aspect-ratio:4/3"] {
     grid-template-rows: 0fr;
     opacity: 0;
     overflow: hidden;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+
     /* Utilize a cubic-bezier curve for a more natural acceleration/deceleration */
     transition:
         grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -553,6 +552,11 @@ figure[style*="aspect-ratio:4/3"] {
         padding-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1),
         border-top-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
         opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wp-block-accordion .wp-block-accordion-panel:not(.is-open) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 /* 2. Direct children of the grid container must have min-height: 0 for the animation to work */
@@ -564,8 +568,6 @@ figure[style*="aspect-ratio:4/3"] {
 .wp-block-accordion-item.is-open .wp-block-accordion-panel {
     grid-template-rows: 1fr;
     opacity: 1;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
 }
 
 /* 4. Optional UI Enhancement: Rotate the '+' icon into an 'x' when open */
