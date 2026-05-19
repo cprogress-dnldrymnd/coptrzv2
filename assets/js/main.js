@@ -803,6 +803,13 @@ function __post_navigation() {
 document.addEventListener('DOMContentLoaded', function () {
     initSwipers();
     purgeEmptyBlocks();
+    matchElementHeights('mh-parent', 'mh-child');
+});
+
+// Recalculate when the window is resized
+window.addEventListener('resize', () => {
+    // Optional: Wrap in a debounce function here for better performance on heavy pages
+    matchElementHeights('mh-parent', 'mh-child');
 });
 
 
@@ -917,5 +924,45 @@ function purgeEmptyBlocks() {
         if (!hasProtectedNode && textContent === '') {
             element.remove();
         }
+    });
+}
+
+/**
+ * Calculates and applies the maximum height among child elements 
+ * within their specific parent containers.
+ * 
+ * @param {string} parentClass - The CSS class name of the parent wrapper.
+ * @param {string} childClass - The CSS class name of the children to be matched.
+ */
+function matchElementHeights(parentClass = 'mh-parent', childClass = 'mh-child') {
+    // Select all parent containers on the page
+    const parents = document.querySelectorAll(`.${parentClass}`);
+
+    parents.forEach(parent => {
+        // Find all matching children within this specific parent
+        const children = parent.querySelectorAll(`.${childClass}`);
+
+        // Skip if no children exist to prevent errors
+        if (children.length === 0) return;
+
+        // Step 1: Reset heights to 'auto'
+        // This is critical for window resizing so elements can shrink back down naturally
+        children.forEach(child => {
+            child.style.height = 'auto';
+        });
+
+        // Step 2: Determine the maximum height among the children
+        let maxHeight = 0;
+        children.forEach(child => {
+            const childHeight = child.offsetHeight;
+            if (childHeight > maxHeight) {
+                maxHeight = childHeight;
+            }
+        });
+
+        // Step 3: Apply the calculated maximum height to all children in this parent
+        children.forEach(child => {
+            child.style.height = `${maxHeight}px`;
+        });
     });
 }
