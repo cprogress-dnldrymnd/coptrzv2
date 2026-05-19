@@ -11328,7 +11328,9 @@ figure[style*="aspect-ratio:4/3"] img {
 /* 3. Define the open state triggered by the WordPress '.is-open' class */
 .wp-block-accordion-item.is-open .wp-block-accordion-panel {
   grid-template-rows: 1fr;
-  opacity: 1; }
+  opacity: 1;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important; }
 
 /* 4. Optional UI Enhancement: Rotate the '+' icon into an 'x' when open */
 .wp-block-accordion-heading__toggle-icon {
