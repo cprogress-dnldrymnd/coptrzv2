@@ -365,12 +365,6 @@ function dd_inject_query_loop_meta_via_class( $block_content, $block, $instance 
 }
 add_filter( 'render_block', 'dd_inject_query_loop_meta_via_class', 10, 3 );
 
-<?php
-/**
- * @package   DigitallyDisruptive
- * @author    Digitally Disruptive - Donald Raymundo
- * @link      https://digitallydisruptive.co.uk/
- */
 
 /**
  * Intercept the block, scope the hybrid custom CSS declarations across breakpoints, and inject the style tag.
