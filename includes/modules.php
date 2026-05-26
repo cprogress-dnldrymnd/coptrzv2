@@ -6,41 +6,10 @@ function action_module_content()
         // Check if this is an autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
             return;
-        $post_types = array(
-            'page',
-            'guides',
-            'casestudies',
-            'product',
-            'industries',
-            'events',
-            'producttaxonomypages',
-            'layouts',
-            'capabilities',
-            'landingpages'
-        );
-        if (in_array(get_post_type(), $post_types)) {
-            $sections = ___sections();
-            $sections_after_main = ___sections('sections_after_main');
-            update_post_meta(get_the_ID(), '_sections_html', $sections);
-            update_post_meta(get_the_ID(), '_sections_after_main_html', $sections_after_main);
-
-            if (get_post_type() == 'producttaxonomypages') {
-                $product_term_id = get__post_meta('product_tax')[0]['id'];
-                update_post_meta(get_the_ID(), '_product_term_id', $product_term_id);
-            }
+        if (get_post_type() == 'producttaxonomypages') {
+            $product_term_id = get__post_meta('product_tax')[0]['id'];
+            update_post_meta(get_the_ID(), '_product_term_id', $product_term_id);
         }
-
-        /*
-        if (get_post_type() == 'product') {
-
-            $single_product_content = ___hero_modules();
-            $single_product_content .= __product_specifications();
-            $single_product_content .= ___sections();
-            $single_product_content_after = ___sections('sections_after_main');
-
-            update_post_meta(get_the_ID(), '_single_product_content', $single_product_content);
-            update_post_meta(get_the_ID(), '_single_product_content_after', $single_product_content_after);
-        }*/
     }
 }
 add_action('shutdown', 'action_module_content');
@@ -2488,20 +2457,20 @@ function __accordion_module($data, $class = '')
     $faqs = isset($data['faqs']) ? $data['faqs'] : false;
     $accordion_source = isset($data['accordion_source']) ? $data['accordion_source'] : false;
     $faqs_category = isset($data['faqs_category']) ? $data['faqs_category'] : false;
-    
+
     // Fixed: In your original code, this line was overwriting $faqs with the accordion_source.
     // $faqs = isset($data['accordion_source']) ? $data['accordion_source'] : false; 
-    
+
     $accordion = isset($data['accordion']) ? $data['accordion'] : false;
     $open_first_item = isset($data['open_first_item']) ? $data['open_first_item'] : false;
     $lower_opacity = isset($data['lower_opacity']) ? $data['lower_opacity'] : false;
     $with_border = isset($data['with_border']) ? $data['with_border'] : false;
     $class = $with_border ? 'with-border' : '';
-    
+
     if ($lower_opacity) {
         $class .= ' lower-opacity';
     }
-    
+
     if ($accordion_source == 'faqs') {
         $accordion = array();
         foreach ($faqs as $faq) {
@@ -2541,18 +2510,18 @@ function __accordion_module($data, $class = '')
 
     $html = "<div class='accordion $class accordion-flush' id='accordion-$module_id'>"; //accordion
     $index = 0;
-    
+
     // Initialize the array to hold our schema entities
     $schema_entities = array();
 
-    if ( is_array( $accordion ) && ! empty( $accordion ) ) {
+    if (is_array($accordion) && ! empty($accordion)) {
         foreach ($accordion as $key => $accordion_item) {
             $heading = $accordion_item['heading'];
             $description = $accordion_item['description'];
             $button_class = $index == 0 && $open_first_item ? '' : 'collapsed';
             $content_class = $index == 0 && $open_first_item ? 'show' : '';
             $aria_expanded = $index == 0 && $open_first_item ? 'true' : 'false';
-            
+
             $html .= "<div class='accordion-item position-relative mb-0'>"; //accordion-item
             $html .= "<h3 class='accordion-header' id='flush-heading-$key'>";
             $html .= "<button class='accordion-button justify-content-between px-0 py-3 $button_class' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse-$key' aria-expanded='$aria_expanded' aria-controls='flush-collapse-$key'>";
@@ -2570,14 +2539,14 @@ function __accordion_module($data, $class = '')
             ));
             $html .= "</div>";
             $html .= "</div>"; //end-accordion-item
-            
+
             // Build the schema entity natively from the PHP data
             $schema_entities[] = array(
                 '@type'          => 'Question',
-                'name'           => wp_strip_all_tags( $heading ),
+                'name'           => wp_strip_all_tags($heading),
                 'acceptedAnswer' => array(
                     '@type' => 'Answer',
-                    'text'  => wp_kses_post( $description ),
+                    'text'  => wp_kses_post($description),
                 ),
             );
 
@@ -2587,15 +2556,15 @@ function __accordion_module($data, $class = '')
     $html .= "</div>"; //end-accordion
 
     // Construct the FAQPage Schema and inject it inline with the HTML module
-    if ( ! empty( $schema_entities ) ) {
+    if (! empty($schema_entities)) {
         $faq_schema = array(
             '@context'   => 'https://schema.org',
             '@type'      => 'FAQPage',
             'mainEntity' => $schema_entities,
         );
-        
+
         $html .= "\n\n";
-        $html .= '<script type="application/ld+json">' . wp_json_encode( $faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
+        $html .= '<script type="application/ld+json">' . wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
     }
 
     return $html;

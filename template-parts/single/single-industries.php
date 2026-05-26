@@ -1,6 +1,6 @@
 <?php
 echo ___hero_modules();
-echo do_shortcode(get_post_meta(get_the_ID(), '_sections_html', true));
+echo do_shortcode(___sections());
 $related_guides_heading = get__post_meta('related_guides_heading');
 $related_guides = get__post_meta('related_guides');
 $related_casestudies_heading = get__post_meta('related_casestudies_heading');
@@ -28,4 +28,4 @@ if ($related_casestudies) {
   );
   echo do_shortcode(__related_posts($related_casestudies, $data, $related_casestudies_heading, 'Case-Studies'));
 }
-echo do_shortcode(get_post_meta(get_the_ID(), '_sections_after_main_html', true));
+echo do_shortcode(___sections('sections_after_main'));

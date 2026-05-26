@@ -22,7 +22,7 @@ function action_woocommerce_before_main_content()
             echo do_shortcode('[layouts id=299719]');
         }
 
-        echo do_shortcode(get_post_meta(get_the_ID(), '_sections_html', true));
+        echo do_shortcode(___sections());
     }
 }
 
@@ -75,7 +75,7 @@ function action_woocommerce_after_single_product_summary()
     $softwares = get__post_meta('softwares');
     $drones = get__post_meta('drones');
 
-    echo do_shortcode(get_post_meta(get_the_ID(), '_sections_after_main_html', true));
+    echo do_shortcode(___sections('sections_after_main'));
 
     if ($drones) {
         echo __linked_products(__get_assoc_post_ids($drones), __('All Drones', 'coptrz-theme'), get_term_link(27, 'product_cat'), 'swiper-drones', __('Drones', 'coptrz-theme'));
