@@ -2479,7 +2479,6 @@ function ____columns_modules($items, $id, $html = '')
     return $html;
 }
 
-<?php
 /**
  * FAQ Accordion Module Generator with integrated JSON-LD Schema Injection
  */
