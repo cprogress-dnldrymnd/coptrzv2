@@ -359,7 +359,7 @@ class Shortcodes
             )
         );
 
-        return do_shortcode(___sections($id));
+        return do_shortcode(___sections('sections', $id));
         /*
         $wpml_post_language_details = apply_filters('wpml_post_language_details', NULL, $id);
         $language_code = $wpml_post_language_details['language_code'];
