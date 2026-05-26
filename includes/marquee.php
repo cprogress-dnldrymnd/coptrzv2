@@ -2,7 +2,7 @@
 /**
  * Plugin Name: DD Perfect Logo Marquee
  * Description: A hardware-accelerated, responsive infinite logo marquee using a grouped Custom Post Type and native gallery selection.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: Digitally Disruptive - Donald Raymundo
  * Author URI: https://digitallydisruptive.co.uk/
  * Text Domain: dd-logo-marquee
@@ -16,7 +16,7 @@ class DD_Logo_Marquee {
 
     /**
      * Initializes the plugin by hooking into WordPress core actions.
-     * * Registers the Custom Post Type, meta boxes, admin scripts for the gallery,
+     * Registers the Custom Post Type, meta boxes, admin scripts for the gallery,
      * enqueues front-end styles, and registers the shortcode.
      * * @return void
      */
@@ -31,7 +31,7 @@ class DD_Logo_Marquee {
 
     /**
      * Registers the 'dd_marquee_group' Custom Post Type.
-     * * Configures a dedicated CPT for managing groups of logos. It supports 'title'
+     * Configures a dedicated CPT for managing groups of logos. It supports 'title'
      * only, as the images are handled via the custom gallery meta box.
      * * @return void
      */
@@ -82,7 +82,7 @@ class DD_Logo_Marquee {
 
     /**
      * Renders the HTML for the gallery selection meta box.
-     * * Retrieves existing saved image IDs, outputs a hidden input for data submission,
+     * Retrieves existing saved image IDs, outputs a hidden input for data submission,
      * and constructs the visual preview area with management buttons.
      * * @param WP_Post $post The current post object.
      * @return void
@@ -115,7 +115,7 @@ class DD_Logo_Marquee {
 
     /**
      * Saves the gallery image IDs to the post meta.
-     * * Verifies nonces, checks user permissions, and sanitizes the comma-separated
+     * Verifies nonces, checks user permissions, and sanitizes the comma-separated
      * list of attachment IDs before saving to the database.
      * * @param int $post_id The ID of the post being saved.
      * @return void
@@ -143,7 +143,7 @@ class DD_Logo_Marquee {
 
     /**
      * Enqueues the native WordPress media uploader and custom JS logic.
-     * * Loads the required scripts only on the 'dd_marquee_group' post edit screens.
+     * Loads the required scripts only on the 'dd_marquee_group' post edit screens.
      * Now includes state hydration on the 'open' event to pre-select existing images
      * in the wp.media modal, preventing accidental gallery resets.
      * * @param string $hook The current admin page hook.
@@ -222,9 +222,8 @@ class DD_Logo_Marquee {
 
     /**
      * Injects the required CSS styles into the front-end.
-     * * Utilizes hardware-accelerated CSS transforms (`translate3d`) to prevent
-     * sub-pixel rendering jitter. Registers an inline style block attached to
-     * a core dummy handle to keep the plugin entirely self-contained.
+     * Utilizes CSS variables (--marquee-speed) for dynamic control via shortcode attributes.
+     * Registers an inline style block attached to a core dummy handle to keep the plugin entirely self-contained.
      * * @return void
      */
     public function enqueue_styles() {
@@ -241,7 +240,8 @@ class DD_Logo_Marquee {
         .dd-marquee-track {
             display: flex;
             width: max-content;
-            animation: dd-marquee-scroll 30s linear infinite;
+            /* Leverages a CSS variable for speed injection, falling back to 30s if undefined */
+            animation: dd-marquee-scroll var(--marquee-speed, 30s) linear infinite;
         }
         .dd-marquee-track:hover {
             animation-play-state: paused;
@@ -261,10 +261,13 @@ class DD_Logo_Marquee {
             height: auto;
             display: block;
             object-fit: contain;
-            filter: grayscale(100%);
             transition: filter 0.3s ease;
         }
-        .dd-marquee-item img:hover {
+        /* Scoped grayscale toggle */
+        .dd-marquee-grayscale .dd-marquee-item img {
+            filter: grayscale(100%);
+        }
+        .dd-marquee-grayscale .dd-marquee-item img:hover {
             filter: grayscale(0%);
         }
         @keyframes dd-marquee-scroll {
@@ -289,15 +292,17 @@ class DD_Logo_Marquee {
 
     /**
      * Generates the front-end HTML for the logo marquee via shortcode.
-     * * Requires an 'id' attribute to target a specific marquee group. Retrieves
-     * the attached gallery IDs and constructs a duplicated DOM group to achieve 
+     * Processes new `speed` and `grayscale` attributes to allow configuration per shortcode instance.
+     * Retrieves the attached gallery IDs and constructs a duplicated DOM group to achieve 
      * a seamless infinite CSS loop.
      * * @param array $atts User-defined shortcode attributes.
      * @return string Compiled HTML output for the marquee.
      */
     public function render_shortcode( $atts ) {
         $atts = shortcode_atts( [
-            'id' => '', // Post ID of the marquee group
+            'id'        => '',
+            'speed'     => '30',   // CSS animation duration in seconds
+            'grayscale' => 'true', // Applies grayscale filter by default
         ], $atts, 'dd_logo_marquee' );
 
         if ( empty( $atts['id'] ) ) {
@@ -311,6 +316,15 @@ class DD_Logo_Marquee {
         }
 
         $image_ids = explode( ',', $image_ids_string );
+        
+        // Parse attributes
+        $speed = floatval( $atts['speed'] );
+        if ( $speed <= 0 ) {
+            $speed = 30; // Fallback if invalid negative or zero value parsed
+        }
+        
+        $is_grayscale = filter_var( $atts['grayscale'], FILTER_VALIDATE_BOOLEAN );
+        $grayscale_class = $is_grayscale ? ' dd-marquee-grayscale' : '';
 
         ob_start();
         ?>
@@ -335,8 +349,8 @@ class DD_Logo_Marquee {
         <?php
         $group_html = ob_get_clean();
 
-        // Duplicate the group natively in the DOM to act as the trailing loop for the CSS animation.
-        $output  = '<div class="dd-marquee-container">';
+        // Pass parsed attribute states to the front end utilizing CSS custom properties and scoped classes
+        $output  = sprintf( '<div class="dd-marquee-container%s" style="--marquee-speed: %ss;">', esc_attr( $grayscale_class ), esc_attr( $speed ) );
         $output .= '<div class="dd-marquee-track">';
         $output .= $group_html; 
         $output .= str_replace( 'class="dd-marquee-group"', 'class="dd-marquee-group" aria-hidden="true"', $group_html );
