@@ -141,17 +141,7 @@ function dd_generate_course_schema($post)
             ),
         );
 
-        // Append Real WooCommerce Ratings dynamically to the main schema root
-        $rating_count = $product->get_review_count();
-        if ($rating_count > 0) {
-            $schema['aggregateRating'] = array(
-                '@type'       => 'AggregateRating',
-                'ratingValue' => $product->get_average_rating(),
-                'reviewCount' => $rating_count,
-                'bestRating'  => '5',
-                'worstRating' => '1',
-            );
-        }
+        
     }
 
     // 7. Attach Course Instance to main schema and return
