@@ -7119,6 +7119,15 @@ Container::make('post_meta', 'Product Components')
             Field::make('file', 'product_guide', __('Product Guide'))->set_classes('inline-field')
                 ->set_type(array('application/pdf'))
         )
+    )
+    ->add_tab(
+        'Schemas',
+        array(
+            Field::make('text', 'educationalCredentialAwarded', __('Educational Credential Awarded'))->set_classes('inline-field'),
+            Field::make('text', 'competencyRequired', __('Competency Required'))->set_classes('inline-field'),
+            Field::make('text', 'courseMode', __('Course Mode'))->set_classes('inline-field'),
+            Field::make('text', 'teaches', __('Teaches'))->set_classes('inline-field'),
+        )
     );
 
 
