@@ -7121,7 +7121,7 @@ Container::make('post_meta', 'Product Components')
         )
     )
     ->add_tab(
-        'Schemas',
+        'Course Schemas',
         array(
             Field::make('text', 'educationalcredentialawarded', __('Educational Credential Awarded'))
                 ->set_help_text('Enter the official certification the student receives upon completion. Example: "A2 Certificate of Competency (A2 CofC)" or "RPC-L1 Part A". This tells Google exactly what qualification you are awarding.'),
@@ -7135,6 +7135,7 @@ Container::make('post_meta', 'Product Components')
                 ->set_help_text('List the specific skills or topics covered, separated by a pipe symbol (|). Example: "UK Air Law | Meteorology | Visual Line of Sight operations". This is highly critical for ranking on long-tail Google searches.'),
         )
     );
+
 
 
 /*-----------------------------------------------------------------------------------*/
