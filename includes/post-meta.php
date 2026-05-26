@@ -7123,10 +7123,20 @@ Container::make('post_meta', 'Product Components')
     ->add_tab(
         'Schemas',
         array(
-            Field::make('text', 'educationalCredentialAwarded', __('Educational Credential Awarded'))->set_classes('inline-field'),
-            Field::make('text', 'competencyRequired', __('Competency Required'))->set_classes('inline-field'),
-            Field::make('text', 'courseMode', __('Course Mode'))->set_classes('inline-field'),
-            Field::make('text', 'teaches', __('Teaches'))->set_classes('inline-field'),
+            Field::make('text', 'educationalCredentialAwarded', __('Educational Credential Awarded'))
+                ->set_classes('inline-field')
+                ->set_help_text('Enter the official certification the student receives upon completion. Example: "A2 Certificate of Competency (A2 CofC)" or "RPC-L1 Part A". This tells Google exactly what qualification you are awarding.'),
+            Field::make('text', 'competencyRequired', __('Competency Required'))
+                ->set_classes('inline-field')
+                ->set_help_text('List any mandatory prerequisites required before starting this course. Example: "UK CAA Flyer ID". If there are no prerequisites, leave this blank.'),
+
+            Field::make('text', 'courseMode', __('Course Mode'))
+                ->set_classes('inline-field')
+                ->set_help_text('Specify the delivery method of the course. You must use one of these exact terms: "online", "onsite", or "blended". This helps Google categorize the course format in search results.'),
+
+            Field::make('text', 'teaches', __('Teaches (Skills & Topics)'))
+                ->set_classes('inline-field')
+                ->set_help_text('List the specific skills or topics covered, separated by a pipe symbol (|). Example: "UK Air Law | Meteorology | Visual Line of Sight operations". This is highly critical for ranking on long-tail Google searches.'),
         )
     );
 
