@@ -7009,13 +7009,6 @@ Container::make('post_meta', 'Page Settings')
             ),
     ));
 
-Container::make('post_meta', 'Page Options')
-    ->where('post_type', '=', 'page')
-    ->set_context('side')
-    ->add_fields(array(
-        Field::make('checkbox', '_is_course_page', 'Is Course Page')
-    ));
-
 /*-----------------------------------------------------------------------------------*/
 /* Before Footer
 /*-----------------------------------------------------------------------------------*/
