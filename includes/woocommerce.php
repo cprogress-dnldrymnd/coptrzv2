@@ -11,7 +11,7 @@ function action_woocommerce_before_main_content()
         if ($product_category_page) {
             global $product_taxonomy_page;
             $product_taxonomy_page[] = $product_category_page;
-            echo do_shortcode(get_post_meta($product_category_page, '_sections_html', true));
+            echo do_shortcode(___sections($product_category_page));
         }
     } else if (is_product()) {
         echo ___hero_modules();
@@ -751,6 +751,10 @@ function my_remove_all_product_tabs($tabs)
 
 function __linked_products($field, $button_text, $button_link, $id, $title, $shorcode = false, $include_section = true, $is_slider = true, $section_id = 'Related-Products')
 {
+
+    if (is_tax('pa_brands', 'skyshield')) {
+        $title = "SkyShield Products";
+    }
 
     if ($include_section) {
         $html = "<section class='related-products-slider border-top-default md-padding-top md-padding-bottom' id='$section_id'>";

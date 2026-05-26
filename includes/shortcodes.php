@@ -139,7 +139,7 @@ class Shortcodes
             $html .= "<li><span class='item text-white'  >$title</span></li>";
         } else if ($type == 'term') {
             $term = get_term($id);
-            
+
             $parent = (isset($term->parent)) ? get_term_by('id', $term->parent, $term->taxonomy) : false;
             if ($parent) {
                 $parent_link = get_term_link($parent->term_id);
@@ -358,12 +358,15 @@ class Shortcodes
                 $atts
             )
         );
+
+        return do_shortcode(___sections($id));
+        /*
         $wpml_post_language_details = apply_filters('wpml_post_language_details', NULL, $id);
         $language_code = $wpml_post_language_details['language_code'];
         $my_current_lang = apply_filters('wpml_current_language', NULL);
         if ($language_code == $my_current_lang) {
             return do_shortcode(get_post_meta($id, '_sections_html', true));
-        }
+        }*/
     }
     function blog_meta()
     {
@@ -953,7 +956,7 @@ class Shortcodes
 
         if ($redirect) {
             return $redirect;
-        } 
+        }
     }
     function speak_to_an_expert_url()
     {
@@ -971,11 +974,11 @@ class Shortcodes
             return false;
         }
     }
-    
+
     function speak_to_an_expert_style()
     {
         $speak_to_an_expert_url = do_shortcode('[speak_to_an_expert_url]');
-        if($speak_to_an_expert_url == false) {
+        if ($speak_to_an_expert_url == false) {
             return 'display: none !important;';
         }
     }
@@ -1018,7 +1021,8 @@ class Shortcodes
             return '<div class="document-thumbnail image-box">' . $image . '</div>';
         }
     }
-    function post_url() {
+    function post_url()
+    {
         return get_permalink(get_the_ID());
     }
 }
