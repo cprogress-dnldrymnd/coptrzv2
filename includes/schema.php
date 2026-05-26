@@ -183,7 +183,7 @@ function dd_render_course_schema_meta_box( $post ) {
 	$is_course_page = get_post_meta( $post->ID, '_is_course_page', true );
 	$credential     = get_post_meta( $post->ID, '_course_credential', true );
 	$competency     = get_post_meta( $post->ID, '_course_competency', true );
-	$mode           = get_post_meta( $post->ID, '_course_mode', true ) ?: 'online';
+	$mode     = get_post_meta( $post->ID, '_course_mode', true );
 	$teaches        = get_post_meta( $post->ID, '_course_teaches', true );
 
 	// Inline CSS for clean rendering
