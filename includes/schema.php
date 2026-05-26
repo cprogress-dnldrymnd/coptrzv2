@@ -27,7 +27,7 @@ function dd_inject_dynamic_schema() {
 		$final_json = count( $schema_payloads ) === 1 ? $schema_payloads[0] : $schema_payloads;
 		
 		echo "\n";
-		echo '<script type="application/ld+json">' . wp_json_encode( $final_json, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+		echo '<script test="test-type" type="application/ld+json">' . wp_json_encode( $final_json, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 	}
 }
 add_action( 'wp_head', 'dd_inject_dynamic_schema', 99 );
