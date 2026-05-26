@@ -68,7 +68,7 @@ function dd_generate_course_schema($post)
     // 3. Custom Meta Extraction
     $credential  = get_post_meta($post->ID, '_course_credential', true);
     $competency  = get_post_meta($post->ID, '_course_competency', true);
-    $mode        = get_post_meta($post->ID, '_course_mode', true) ?: 'online';
+    $competency  = get_post_meta($post->ID, '_course_mode', true);
 
     $teaches_raw = get_post_meta($post->ID, '_course_teaches', true);
     $teaches_arr = ! empty($teaches_raw) ? array_map('trim', explode('|', $teaches_raw)) : array();
