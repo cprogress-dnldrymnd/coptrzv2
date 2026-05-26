@@ -107,7 +107,6 @@ function dd_generate_course_schema($post)
                         'valueAddedTaxIncluded' => true,
                     ),
                     'url'                => $course_url,
-                    'availability'       => $in_stock,
                     'seller'             => array(
                         '@type' => 'Organization',
                         'name'  => $provider_name,
