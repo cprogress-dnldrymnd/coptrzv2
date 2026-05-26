@@ -57,7 +57,11 @@ function dd_generate_course_schema($post)
     // 1. Core Data Extraction
     $course_description = has_excerpt($post->ID) ? get_the_excerpt($post->ID) : wp_trim_words($post->post_content, 25);
     $provider_name      = get_bloginfo('name');
+    $shopify_product_link = get_post_meta($post->ID, '_shopify_product_link', true);
     $course_url         = get_permalink($post->ID);
+    if($shopify_product_link) {
+        $course_url = $shopify_product_link; // Override with Shopify link if provided
+    }
     $thumbnail_url      = get_the_post_thumbnail_url($post->ID, 'full');
 
     // 2. Custom Meta Extraction (Mapped via standard WP Custom Fields or ACF)
