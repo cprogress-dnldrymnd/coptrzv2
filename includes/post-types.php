@@ -139,9 +139,6 @@ class newTaxonomy
     }
 }
 
-
-
-
 $Testimonials = new newPostType();
 $Testimonials->name = 'Testimonials';
 $Testimonials->singular_name = 'Testimonial';

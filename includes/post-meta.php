@@ -6496,9 +6496,9 @@ Container::make('post_meta', __('Product Settings'))
                     ),
                 )
             )
-            ->set_help_text( 'If items are selected here, they will override the default "Related Products" loop.' )
+            ->set_help_text('If items are selected here, they will override the default "Related Products" loop.')
     ));
-    
+
 
 add_filter('carbon_fields_association_field_options_related_training_post_product', function ($query_arguments) {
 
@@ -7007,6 +7007,13 @@ Container::make('post_meta', 'Page Settings')
                     'bg-white' => 'White',
                 )
             ),
+    ));
+
+Container::make('post_meta', 'Page Options')
+    ->where('post_type', '=', 'page')
+    ->set_context('side')
+    ->add_fields(array(
+        Field::make('checkbox', '_is_course_page', 'Is Course Page')
     ));
 
 /*-----------------------------------------------------------------------------------*/
