@@ -7119,7 +7119,7 @@ Container::make('post_meta', 'Product Components')
             Field::make('file', 'product_guide', __('Product Guide'))->set_classes('inline-field')
                 ->set_type(array('application/pdf'))
         )
-    )
+    );
    
 
 
