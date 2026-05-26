@@ -1,18 +1,41 @@
 <?php
-function action_module_content()
-{
-    // Check if a post was updated (add your specific conditions here)
-    if (did_action('post_updated')) {
-        // Check if this is an autosave
-        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
-            return;
-        if (get_post_type() == 'producttaxonomypages') {
-            $product_term_id = get__post_meta('product_tax')[0]['id'];
-            update_post_meta(get_the_ID(), '_product_term_id', $product_term_id);
-        }
+/**
+ * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
+ * Author URI: https://digitallydisruptive.co.uk/
+ */
+
+/**
+ * Updates the custom product term ID meta when a 'producttaxonomypages' post is saved.
+ *
+ * @param int     $post_id Post ID.
+ * @param WP_Post $post    Post object.
+ * @param bool    $update  Whether this is an existing post being updated.
+ */
+function action_module_content_optimized( $post_id, $post, $update ) {
+    // Check if this is an autosave to prevent execution during background saves.
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+
+    // Check if it's a revision to prevent duplicate meta updates.
+    if ( wp_is_post_revision( $post_id ) ) {
+        return;
+    }
+
+    // Retrieve the product tax meta.
+    // Note: Preserving the 'get__post_meta' call as originally provided.
+    $product_tax_data = get__post_meta( 'product_tax' );
+
+    // Validate the array structure to prevent undefined offset/key PHP warnings.
+    if ( is_array( $product_tax_data ) && isset( $product_tax_data[0]['id'] ) ) {
+        $product_term_id = $product_tax_data[0]['id'];
+        
+        // Update the post meta using the hook's $post_id rather than get_the_ID().
+        update_post_meta( $post_id, '_product_term_id', $product_term_id );
     }
 }
-add_action('shutdown', 'action_module_content');
+// Use the post-type-specific save hook for exact timing and optimal performance.
+add_action( 'save_post_producttaxonomypages', 'action_module_content_optimized', 10, 3 );
 
 
 function _date_format($date_input, $include_year = false)
