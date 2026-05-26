@@ -2479,22 +2479,30 @@ function ____columns_modules($items, $id, $html = '')
     return $html;
 }
 
+<?php
+/**
+ * FAQ Accordion Module Generator with integrated JSON-LD Schema Injection
+ */
 function __accordion_module($data, $class = '')
 {
-
     $module_id = isset($data['module_id']) ? $data['module_id'] : 'accordion';
     $faqs = isset($data['faqs']) ? $data['faqs'] : false;
     $accordion_source = isset($data['accordion_source']) ? $data['accordion_source'] : false;
     $faqs_category = isset($data['faqs_category']) ? $data['faqs_category'] : false;
-    $faqs = isset($data['accordion_source']) ? $data['accordion_source'] : false;
+    
+    // Fixed: In your original code, this line was overwriting $faqs with the accordion_source.
+    // $faqs = isset($data['accordion_source']) ? $data['accordion_source'] : false; 
+    
     $accordion = isset($data['accordion']) ? $data['accordion'] : false;
     $open_first_item = isset($data['open_first_item']) ? $data['open_first_item'] : false;
     $lower_opacity = isset($data['lower_opacity']) ? $data['lower_opacity'] : false;
     $with_border = isset($data['with_border']) ? $data['with_border'] : false;
     $class = $with_border ? 'with-border' : '';
+    
     if ($lower_opacity) {
         $class .= ' lower-opacity';
     }
+    
     if ($accordion_source == 'faqs') {
         $accordion = array();
         foreach ($faqs as $faq) {
@@ -2531,34 +2539,65 @@ function __accordion_module($data, $class = '')
     } else {
         $accordion = $accordion;
     }
+
     $html = "<div class='accordion $class accordion-flush' id='accordion-$module_id'>"; //accordion
     $index = 0;
-    foreach ($accordion as $key => $accordion_item) {
-        $heading = $accordion_item['heading'];
-        $description = $accordion_item['description'];
-        $button_class = $index == 0 && $open_first_item ? '' : 'collapsed';
-        $content_class = $index == 0 && $open_first_item ? 'show' : '';
-        $aria_expanded = $index == 0 && $open_first_item ? 'true' : 'false';
-        $html .= "<div class='accordion-item position-relative mb-0'>"; //accordion-item
-        $html .= "<h3 class='accordion-header' id='flush-heading-$key'>";
-        $html .= "<button class='accordion-button justify-content-between px-0 py-3 $button_class' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse-$key' aria-expanded='$aria_expanded' aria-controls='flush-collapse-$key'>";
-        $html .= "<span> ";
-        $html .= $heading;
-        $html .= "</span> ";
-        $html .= "<span class='plus-minus'></span>";
-        $html .= "</button>";
-        $html .= "</h3>";
+    
+    // Initialize the array to hold our schema entities
+    $schema_entities = array();
 
-        $html .= "<div id='flush-collapse-$key' class='accordion-collapse collapse $content_class' aria-labelledby='flush-heading-$key' data-bs-parent='#accordion-$module_id'>";
-        $html .= __description(array(
-            'description' => $description,
-            'class'       => _attribute('class', array('description-box small-text pb-3')),
-        ));
-        $html .= "</div>";
-        $html .= "</div>"; //end-accordion-item
-        $index++;
+    if ( is_array( $accordion ) && ! empty( $accordion ) ) {
+        foreach ($accordion as $key => $accordion_item) {
+            $heading = $accordion_item['heading'];
+            $description = $accordion_item['description'];
+            $button_class = $index == 0 && $open_first_item ? '' : 'collapsed';
+            $content_class = $index == 0 && $open_first_item ? 'show' : '';
+            $aria_expanded = $index == 0 && $open_first_item ? 'true' : 'false';
+            
+            $html .= "<div class='accordion-item position-relative mb-0'>"; //accordion-item
+            $html .= "<h3 class='accordion-header' id='flush-heading-$key'>";
+            $html .= "<button class='accordion-button justify-content-between px-0 py-3 $button_class' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse-$key' aria-expanded='$aria_expanded' aria-controls='flush-collapse-$key'>";
+            $html .= "<span> ";
+            $html .= $heading;
+            $html .= "</span> ";
+            $html .= "<span class='plus-minus'></span>";
+            $html .= "</button>";
+            $html .= "</h3>";
+
+            $html .= "<div id='flush-collapse-$key' class='accordion-collapse collapse $content_class' aria-labelledby='flush-heading-$key' data-bs-parent='#accordion-$module_id'>";
+            $html .= __description(array(
+                'description' => $description,
+                'class'       => _attribute('class', array('description-box small-text pb-3')),
+            ));
+            $html .= "</div>";
+            $html .= "</div>"; //end-accordion-item
+            
+            // Build the schema entity natively from the PHP data
+            $schema_entities[] = array(
+                '@type'          => 'Question',
+                'name'           => wp_strip_all_tags( $heading ),
+                'acceptedAnswer' => array(
+                    '@type' => 'Answer',
+                    'text'  => wp_kses_post( $description ),
+                ),
+            );
+
+            $index++;
+        }
     }
     $html .= "</div>"; //end-accordion
+
+    // Construct the FAQPage Schema and inject it inline with the HTML module
+    if ( ! empty( $schema_entities ) ) {
+        $faq_schema = array(
+            '@context'   => 'https://schema.org',
+            '@type'      => 'FAQPage',
+            'mainEntity' => $schema_entities,
+        );
+        
+        $html .= "\n\n";
+        $html .= '<script type="application/ld+json">' . wp_json_encode( $faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
+    }
 
     return $html;
 }
