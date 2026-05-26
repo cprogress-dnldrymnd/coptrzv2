@@ -83,12 +83,12 @@ function dd_generate_course_schema($post)
         'url'                          => $course_url,
         'provider'                     => array(
             '@type' => 'Organization',
-            '@id'   => home_url('/#organization'), // Explicitly uses the root URL, bypassing any /de/ ghost data
+            '@id'   => home_url('/#organization'), 
             'name'  => $provider_name,
             'url'   => home_url('/'),
         ),
-        'inLanguage'                   => 'en-GB', // Hardcoded locale enforcement
-        'availableLanguage'            => 'en-GB', // Hardcoded locale enforcement
+        'inLanguage'                   => 'en-GB', 
+        'availableLanguage'            => 'en-GB',
         'courseMode'                   => $mode,
         'hasCourseInstance'            => array(
             array(
