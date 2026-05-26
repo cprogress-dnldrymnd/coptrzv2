@@ -65,12 +65,12 @@ function dd_generate_course_schema($post)
     $thumbnail_url      = get_the_post_thumbnail_url($post->ID, 'full');
 
     // 2. Custom Meta Extraction (Mapped via standard WP Custom Fields or ACF)
-    $credential = get_post_meta($post->ID, '_educationalcredentialawarded', true);
-    $competency = get_post_meta($post->ID, '_competencyrequired', true);
-    $mode       = get_post_meta($post->ID, '_coursemode', true) ?: 'online';
+    $credential = get_post_meta($post->ID, '_course_credential', true);
+    $competency = get_post_meta($post->ID, '_course_competency', true);
+    $mode       = get_post_meta($post->ID, '_course_mode', true) ?: 'online';
 
     // Handle the 'teaches' array. In the WP backend, enter items separated by a pipe '|' character.
-    $teaches_raw = get_post_meta($post->ID, '_teaches', true);
+    $teaches_raw = get_post_meta($post->ID, '_course_teaches', true);
     $teaches_arr = ! empty($teaches_raw) ? array_map('trim', explode('|', $teaches_raw)) : array();
 
     // 3. Live WooCommerce Pricing & Inventory Data
