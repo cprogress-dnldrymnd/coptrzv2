@@ -11286,7 +11286,7 @@ ul.checklist-ul {
     text-decoration: none !important;
     font-weight: 600;
     color: var(--wp--preset--color--tertiary) !important; }
-    .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs a:hover {
+    .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs a:hover, .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs a:focus, .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs a:active, .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs a.active {
       color: var(--wp--preset--color--accent) !important; }
   .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs:before {
     content: "Explore Surverying";
