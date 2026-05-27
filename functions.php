@@ -486,7 +486,7 @@ add_filter('render_block', 'digitally_disruptive_render_custom_css', 10, 2);
 
 /**
  * Intercepts block rendering to dynamically inject FAQPage schema if the toggle is enabled.
- * Utilizes native Gutenberg block array traversal instead of DOM parsing for strict accuracy and high performance.
+ * Includes explicit HTML diagnostic comments for debugging.
  * Author: Digitally Disruptive - Donald Raymundo
  * Author URI: https://digitallydisruptive.co.uk/
  *
@@ -495,69 +495,76 @@ add_filter('render_block', 'digitally_disruptive_render_custom_css', 10, 2);
  * @return string               The modified block content with injected JSON-LD schema.
  */
 function dd_render_accordion_with_schema( $block_content, $block ) {
-	// 1. Verify block type and custom attribute flag
-	if ( 'core/accordion' !== $block['blockName'] || empty( $block['attrs']['enableFaqSchema'] ) ) {
+	// 1. Isolate our target block. If it's not the accordion, ignore it silently.
+	if ( 'core/accordion' !== $block['blockName'] ) {
 		return $block_content;
+	}
+
+	// DIAGNOSTIC CHECK 1: Did the attribute save to the database?
+	if ( empty( $block['attrs']['enableFaqSchema'] ) ) {
+		return $block_content . "\n\n";
+	}
+
+	// DIAGNOSTIC CHECK 2: Are there inner blocks to parse?
+	if ( empty( $block['innerBlocks'] ) ) {
+		return $block_content . "\n\n";
 	}
 
 	$faq_entities = array();
 
-	// 2. Traverse the parsed inner blocks structure natively
-	if ( ! empty( $block['innerBlocks'] ) ) {
-		foreach ( $block['innerBlocks'] as $panel ) {
-			
-			// Target the individual accordion wrappers
-			if ( 'core/accordion-panel' === $panel['blockName'] ) {
-				$question_text = '';
-				$answer_html   = '';
+	// 2. Traverse the parsed inner blocks
+	foreach ( $block['innerBlocks'] as $panel ) {
+		
+		if ( 'core/accordion-panel' === $panel['blockName'] ) {
+			$question_text = '';
+			$answer_html   = '';
 
-				// Traverse the contents inside the panel
-				if ( ! empty( $panel['innerBlocks'] ) ) {
-					foreach ( $panel['innerBlocks'] as $inner_element ) {
-						
-						// Identify and extract the Question node
-						if ( 'core/accordion-heading' === $inner_element['blockName'] ) {
-							// render_block() compiles it to raw HTML; wp_strip_all_tags() cleans it for the schema 'name' string
-							$question_text = trim( wp_strip_all_tags( render_block( $inner_element ) ) );
-						} 
-						// Identify the Answer (Everything else inside the panel serves as the content body)
-						else {
-							// We append the natively compiled HTML to preserve rich text (paragraphs, lists, etc.)
-							$answer_html .= render_block( $inner_element );
-						}
+			if ( ! empty( $panel['innerBlocks'] ) ) {
+				foreach ( $panel['innerBlocks'] as $inner_element ) {
+					
+					// Extract Question
+					if ( 'core/accordion-heading' === $inner_element['blockName'] ) {
+						// Extract raw text from the block's innerHTML safely
+						$question_text = trim( wp_strip_all_tags( $inner_element['innerHTML'] ) );
+					} 
+					// Extract Answer
+					else {
+						// To avoid infinite loops, we compile the inner blocks directly
+						$answer_html .= render_block( $inner_element );
 					}
 				}
+			}
 
-				// 3. Construct the FAQ entity if both a question and answer exist
-				if ( ! empty( $question_text ) && ! empty( trim( $answer_html ) ) ) {
-					$faq_entities[] = array(
-						'@type'          => 'Question',
-						'name'           => $question_text,
-						'acceptedAnswer' => array(
-							'@type' => 'Answer',
-							'text'  => wp_kses_post( trim( $answer_html ) ), // Ensure the output is safely encoded
-						),
-					);
-				}
+			// 3. Construct the FAQ entity
+			if ( ! empty( $question_text ) && ! empty( trim( $answer_html ) ) ) {
+				$faq_entities[] = array(
+					'@type'          => 'Question',
+					'name'           => $question_text,
+					'acceptedAnswer' => array(
+						'@type' => 'Answer',
+						'text'  => wp_kses_post( trim( $answer_html ) ),
+					),
+				);
 			}
 		}
 	}
 
-	// 4. Inject Schema into the payload directly beneath the block
-	if ( ! empty( $faq_entities ) ) {
-		$schema = array(
-			'@context'   => 'https://schema.org',
-			'@type'      => 'FAQPage',
-			'mainEntity' => $faq_entities,
-		);
-
-		$schema_script  = "\n\n";
-		$schema_script .= '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
-
-		return $block_content . $schema_script;
+	// DIAGNOSTIC CHECK 3: Did the data extraction succeed?
+	if ( empty( $faq_entities ) ) {
+		return $block_content . "\n\n";
 	}
 
-	return $block_content;
+	// 4. Success - Inject Schema
+	$schema = array(
+		'@context'   => 'https://schema.org',
+		'@type'      => 'FAQPage',
+		'mainEntity' => $faq_entities,
+	);
+
+	$schema_script  = "\n\n";
+	$schema_script .= '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
+
+	return $block_content . $schema_script;
 }
 add_filter( 'render_block', 'dd_render_accordion_with_schema', 10, 2 );
 /*-----------------------------------------------------------------------------------*/
