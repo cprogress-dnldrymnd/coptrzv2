@@ -12804,6 +12804,20 @@ ul.is-swiper-slider,
 .wp-block-group > .wp-block-group__inner-container {
   display: contents !important; }
 
+.form-style-v3.form-style-v3 input[type="text"],
+.form-style-v3.form-style-v3 input[type="number"],
+.form-style-v3.form-style-v3 input[type="tel"],
+.form-style-v3.form-style-v3 input[type="submit"],
+.form-style-v3.form-style-v3 input[type="email"],
+.form-style-v3.form-style-v3 input[type="password"],
+.form-style-v3.form-style-v3 select,
+.form-style-v3.form-style-v3 textarea {
+  background-color: rgba(255, 255, 255, 0.09);
+  border: none;
+  color: #fff; }
+.form-style-v3.form-style-v3 .cf7-button-primary .wpcf7-submit.wpcf7-submit.wpcf7-submit {
+  background-color: var(--bs-accent); }
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }

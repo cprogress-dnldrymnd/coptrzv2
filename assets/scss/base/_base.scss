@@ -1983,3 +1983,21 @@ ul.is-swiper-slider,
 .wp-block-group > .wp-block-group__inner-container {
     display: contents !important;
 }
+
+.form-style-v3.form-style-v3 {
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="submit"],
+    input[type="email"],
+    input[type="password"],
+    select,
+    textarea {
+        background-color: rgba(255, 255, 255, 0.09);
+        border: none;
+        color: #fff;
+    }
+    .cf7-button-primary .wpcf7-submit.wpcf7-submit.wpcf7-submit {
+        background-color: var(--bs-accent);
+    }
+}
