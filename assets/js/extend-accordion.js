@@ -1,5 +1,4 @@
 (function(wp) {
-    console.log('✅ Digitally Disruptive: FAQ Schema script has successfully loaded.');
 
     const { addFilter } = wp.hooks;
     const { createHigherOrderComponent } = wp.compose;
