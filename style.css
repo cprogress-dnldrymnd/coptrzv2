@@ -11286,6 +11286,8 @@ ul.checklist-ul {
     text-decoration: none !important;
     font-weight: 600;
     color: var(--wp--preset--color--tertiary) !important; }
+    .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs a:hover {
+      color: var(--wp--preset--color--accent) !important; }
   .plethoraplugins-tabs.plethoraplugins-tabs.plethoraplugins-tabs:before {
     content: "Explore Surverying";
     color: var(--wp--preset--color--accent);

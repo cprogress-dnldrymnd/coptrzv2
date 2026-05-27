@@ -500,6 +500,12 @@ ul.checklist-ul {
         text-decoration: none !important;
         font-weight: 600;
         color: var(--wp--preset--color--tertiary) !important;
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            color: var(--wp--preset--color--accent) !important;
+        }
     }
     &:before {
         content: "Explore Surverying";
