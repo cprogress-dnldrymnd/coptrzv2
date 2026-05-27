@@ -1,17 +1,14 @@
 (function(wp) {
-    // Destructure native WordPress dependencies
+    console.log('✅ Digitally Disruptive: FAQ Schema script has successfully loaded.');
+
     const { addFilter } = wp.hooks;
     const { createHigherOrderComponent } = wp.compose;
     const { InspectorControls } = wp.blockEditor;
     const { PanelBody, ToggleControl } = wp.components;
     const { createElement, Fragment } = wp.element;
 
-    // UPDATE THIS to match the exact output from your console check!
-    const TARGET_BLOCK = 'core/details'; 
+    const TARGET_BLOCK = 'core/accordion'; 
 
-    /**
-     * Registers the 'enableFaqSchema' attribute
-     */
     const addFaqSchemaAttribute = (settings, name) => {
         if (name !== TARGET_BLOCK) return settings;
         
@@ -23,9 +20,6 @@
     };
     addFilter('blocks.registerBlockType', 'dd/add-faq-schema-attr', addFaqSchemaAttribute);
 
-    /**
-     * Injects the toggle control into the Inspector sidebar
-     */
     const withFaqSchemaControl = createHigherOrderComponent((BlockEdit) => {
         return (props) => {
             if (props.name !== TARGET_BLOCK) {
@@ -35,7 +29,6 @@
             const { attributes, setAttributes } = props;
             const { enableFaqSchema } = attributes;
 
-            // Build the React elements natively
             return createElement(
                 Fragment,
                 null,
