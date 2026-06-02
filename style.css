@@ -12825,6 +12825,11 @@ ul.is-swiper-slider,
 .styled-ul {
   /* Ensure the list has a defined style so markers exist */
   list-style-type: disc; }
+  .styled-ul ul {
+    list-style: none;
+    padding-left: 1rem; }
+  .styled-ul li:not(:last-child) {
+    margin-bottom: 10px; }
   .styled-ul li::marker {
     color: var(--bs-accent); }
 
