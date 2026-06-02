@@ -12832,8 +12832,15 @@ ul.is-swiper-slider,
     margin-bottom: 1rem; }
   .styled-ul li::marker {
     color: var(--bs-accent); }
-  .styled-ul b, .styled-ul strong {
+  .styled-ul b,
+  .styled-ul strong {
     font-weight: 600; }
+
+.styled-cheklist {
+  list-style: none;
+  padding: 0; }
+  .styled-cheklist li {
+    margin-bottom: 1rem; }
 
 @keyframes spin {
   from {
