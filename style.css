@@ -12826,8 +12826,7 @@ ul.is-swiper-slider,
   /* Ensure the list has a defined style so markers exist */
   list-style-type: disc; }
   .styled-ul li::marker {
-    color: var(--bs-accent);
-    /* You can also manipulate font-weight, font-size, and content */ }
+    color: var(--bs-accent); }
 
 @keyframes spin {
   from {
