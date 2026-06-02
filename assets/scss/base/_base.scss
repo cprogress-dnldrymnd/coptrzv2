@@ -2007,7 +2007,8 @@ ul.is-swiper-slider,
     /* Ensure the list has a defined style so markers exist */
     list-style-type: disc;
 
-    color: var(--bs-accent);
-    /* You can also manipulate font-weight, font-size, and content */
-    font-size: 1.2em;
+    li::marker {
+        color: var(--bs-accent);
+        /* You can also manipulate font-weight, font-size, and content */
+    }
 }
