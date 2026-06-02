@@ -12828,8 +12828,8 @@ ul.is-swiper-slider,
   .styled-ul ul {
     list-style: none;
     padding-left: 1rem; }
-  .styled-ul li:not(:last-child) {
-    margin-bottom: 10px; }
+  .styled-ul li {
+    margin-bottom: 1rem; }
   .styled-ul li::marker {
     color: var(--bs-accent); }
 

@@ -2011,9 +2011,7 @@ ul.is-swiper-slider,
         padding-left: 1rem;
     }
     li {
-        &:not(:last-child) {
-            margin-bottom: 1rem;
-        }
+        margin-bottom: 1rem;
     }
     li::marker {
         color: var(--bs-accent);
