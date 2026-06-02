@@ -10111,11 +10111,6 @@ p:last-child {
 .section .h2 {
   margin-bottom: 1rem; }
 
-/*Page: blocks editor default css*/
-.page-template-page-blocks-editor h1, .page-template-page-blocks-editor .h1, .page-template-page-blocks-editor h2, .page-template-page-blocks-editor .h2, .page-template-page-blocks-editor h3, .page-template-page-blocks-editor .h3, .page-template-page-blocks-editor h4, .page-template-page-blocks-editor .h4, .page-template-page-blocks-editor h5, .page-template-page-blocks-editor .h5, .page-template-page-blocks-editor h6, .page-template-page-blocks-editor .h6 {
-  font-weight: 600; }
-
-/*end of Page: blocks editor default css*/
 .rounded-10px {
   border-radius: 10px; }
 
