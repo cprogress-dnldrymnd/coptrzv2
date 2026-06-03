@@ -2104,6 +2104,8 @@ ul.is-swiper-slider,
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s ease;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .dd-accordion-button:hover {
@@ -2125,7 +2127,11 @@ ul.is-swiper-slider,
 .dd-accordion-button.active .dd-accordion-icon::before {
     content: "-";
 }
-
+.dd-tab-panel {
+    @media(max-width: 991px) {
+        border-radius: 10px;
+    }
+}
 /* -----------------------------------------
    1. Default State (Desktop View)
 ----------------------------------------- */

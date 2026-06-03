@@ -12924,7 +12924,9 @@ ul.is-swiper-slider,
   margin-bottom: 0;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s ease; }
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+  margin-bottom: 10px; }
 
 .dd-accordion-button:hover {
   background-color: #f0f0f0; }
@@ -13059,7 +13061,7 @@ ul.is-swiper-slider,
   /* * Transform each table row into an individual "Grid Box/Card".
    */
   .responsive--table tr {
-    border: 1px solid #e2e8f0 !important;
+    border: 1px solid var(--wp--preset--color--lightgray) !important;
     border-radius: 8px;
     margin-bottom: 1.5rem;
     padding: 1rem;
