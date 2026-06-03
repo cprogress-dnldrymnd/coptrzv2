@@ -2229,12 +2229,12 @@ ul.is-swiper-slider,
     /* * Force table elements into a block-level display 
      * to break them out of standard tabular rendering.
      */
-    table.responsive-table,
-    .responsive-table thead,
-    .responsive-table tbody,
-    .responsive-table th,
-    .responsive-table td,
-    .responsive-table tr {
+    table.responsive--table,
+    .responsive--table thead,
+    .responsive--table tbody,
+    .responsive--table th,
+    .responsive--table td,
+    .responsive--table tr {
         display: block;
         width: 100%;
     }
@@ -2242,7 +2242,7 @@ ul.is-swiper-slider,
     /* * Visually hide the header row to save space, but use absolute 
      * positioning rather than `display: none` to maintain screen-reader accessibility.
      */
-    .responsive-table thead tr {
+    .responsive--table thead tr {
         position: absolute;
         top: -9999px;
         left: -9999px;
@@ -2250,7 +2250,7 @@ ul.is-swiper-slider,
 
     /* * Transform each table row into an individual "Grid Box/Card".
      */
-    .responsive-table tr {
+    .responsive--table tr {
         border: 1px solid #e2e8f0;
         border-radius: 8px;
         margin-bottom: 1.5rem;
@@ -2261,7 +2261,7 @@ ul.is-swiper-slider,
 
     /* * Configure table cells to act as flex rows for label/value pairing.
      */
-    .responsive-table td {
+    .responsive--table td {
         display: flex;
         align-items: flex-start; /* Ensures labels align with the top of multi-line text */
         text-align: left;
@@ -2272,7 +2272,7 @@ ul.is-swiper-slider,
 
     /* * Remove the bottom border from the final cell to keep the card visually clean.
      */
-    .responsive-table td:last-child {
+    .responsive--table td:last-child {
         border-bottom: none;
         padding-bottom: 0;
         justify-content: center; /* Center the action button */
@@ -2280,7 +2280,7 @@ ul.is-swiper-slider,
 
     /* * Setup pseudo-elements to act as the prepended labels.
      */
-    .responsive-table td::before {
+    .responsive--table td::before {
         font-weight: 600;
         color: #0ea5e9; /* Light blue accent color to match your UI header */
         flex: 0 0 35%; /* Fixed width to align all labels vertically */
@@ -2295,7 +2295,7 @@ ul.is-swiper-slider,
  */
 
     /* Setup pseudo-elements to act as the prepended labels */
-    .responsive-table td::before {
+    .responsive--table td::before {
         content: attr(data-label); /* Dynamically pulls the header string from the DOM */
         font-weight: 600;
         color: #0ea5e9;
@@ -2305,8 +2305,8 @@ ul.is-swiper-slider,
     }
 
     /* Hide the pseudo-element entirely if there is no data-label (e.g., action button columns) */
-    .responsive-table td:not([data-label])::before,
-    .responsive-table td[data-label=""]::before {
+    .responsive--table td:not([data-label])::before,
+    .responsive--table td[data-label=""]::before {
         display: none;
     }
 }
