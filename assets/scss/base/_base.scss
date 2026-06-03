@@ -2241,6 +2241,10 @@ ul.is-swiper-slider,
         display: block;
         width: 100%;
     }
+    .responsive--table thead,
+    .responsive--table tbody {
+        border: none !important;
+    }
 
     /* * Visually hide the header row to save space, but use absolute 
      * positioning rather than `display: none` to maintain screen-reader accessibility.
@@ -2259,7 +2263,6 @@ ul.is-swiper-slider,
         margin-bottom: 1.5rem;
         padding: 1rem;
         background-color: #ffffff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Subtle depth for UI separation */
     }
 
     /* * Configure table cells to act as flex rows for label/value pairing.

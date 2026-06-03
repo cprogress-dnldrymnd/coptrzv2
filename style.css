@@ -13030,6 +13030,9 @@ ul.is-swiper-slider,
   /* * Force table elements into a block-level display 
    * to break them out of standard tabular rendering.
    */
+  .responsive--table {
+    margin: 0 !important; }
+
   .responsive--table,
   .responsive--table thead,
   .responsive--table tbody,
@@ -13054,9 +13057,7 @@ ul.is-swiper-slider,
     border-radius: 8px;
     margin-bottom: 1.5rem;
     padding: 1rem;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-    /* Subtle depth for UI separation */ }
+    background-color: #ffffff; }
 
   /* * Configure table cells to act as flex rows for label/value pairing.
    */
