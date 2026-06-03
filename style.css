@@ -11668,6 +11668,15 @@ section .container-inner > *:not(:last-child) {
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
 
+.wp-element-button-accent.wp-element-button-accent.wp-element-button-accent {
+  color: var(--bs-white);
+  border-color: var(--bs-accent);
+  background-color: var(--bs-accent); }
+  .wp-element-button-accent.wp-element-button-accent.wp-element-button-accent:hover, .wp-element-button-accent.wp-element-button-accent.wp-element-button-accent:active, .wp-element-button-accent.wp-element-button-accent.wp-element-button-accent:focus {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--bs-white); }
+
 .wp-block-read-more.wp-block-read-more.wp-block-read-more {
   width: 100%; }
 
@@ -12860,7 +12869,7 @@ ul.is-swiper-slider,
   gap: 5px; }
 
 .dd-tab-button {
-  background-color: #1A3357;
+  background-color: #1a3357;
   border: none;
   border-bottom: 2px solid transparent;
   padding: 10px 20px;

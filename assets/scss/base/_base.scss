@@ -364,6 +364,9 @@ section {
 .wp-block-button:not(.is-style-outline) .wp-element-button.wp-element-button.wp-element-button {
     @include button-accent;
 }
+.wp-element-button-accent.wp-element-button-accent.wp-element-button-accent {
+    @include button-accent;
+}
 .wp-block-read-more.wp-block-read-more.wp-block-read-more {
     width: 100%;
 }
@@ -2051,7 +2054,7 @@ ul.is-swiper-slider,
 }
 
 .dd-tab-button {
-    background-color: #1A3357;
+    background-color: #1a3357;
     border: none;
     border-bottom: 2px solid transparent;
     padding: 10px 20px;
