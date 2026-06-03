@@ -9,7 +9,8 @@
     const { registerBlockType } = wp.blocks;
     const { createElement: el, Fragment } = wp.element;
     const { InnerBlocks, InspectorControls, useBlockProps } = wp.blockEditor;
-    const { TextControl, PanelBody, ToggleControl } = wp.components;
+    // Added ColorPalette and BaseControl to the components destructing
+    const { TextControl, PanelBody, ToggleControl, ColorPalette, BaseControl } = wp.components;
 
     /**
      * Registers the Child Block: Tab Panel
@@ -23,7 +24,6 @@
         supports: {
             color: { background: true, text: true },
             spacing: { padding: true, margin: true },
-            // Expanded styling supports to include border properties
             border: { color: true, radius: true, style: true, width: true }
         },
         attributes: {
@@ -56,7 +56,6 @@
                         })
                     )
                 ),
-                // Root element binds the layout controls natively.
                 el('div', blockProps,
                     el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } }, 
                         'Tab Content: ' + attributes.tabTitle
@@ -76,7 +75,6 @@
          * @return {Object}      The HTML markup saved to the database.
          */
         save: function (props) {
-            // useBlockProps.save() correctly maps all styles to the primary structural wrapper.
             const blockProps = useBlockProps.save({
                 className: 'dd-tab-panel',
                 'data-tab-title': props.attributes.tabTitle
@@ -92,7 +90,7 @@
 
     /**
      * Registers the Parent Block: Tabs Container
-     * * Includes the Mobile Accordion toggle to alter frontend logic.
+     * * Includes styling attributes passed down via CSS variables to target dynamically generated JS buttons.
      */
     registerBlockType('dd/tabs', {
         title: 'Advanced Tabs',
@@ -102,7 +100,12 @@
             mobileAccordion: {
                 type: 'boolean',
                 default: true
-            }
+            },
+            // New attributes for dynamic button styling
+            btnBgColor: { type: 'string' },
+            btnTextColor: { type: 'string' },
+            btnActiveBgColor: { type: 'string' },
+            btnActiveTextColor: { type: 'string' }
         },
         
         /**
@@ -112,9 +115,21 @@
          */
         edit: function (props) {
             const { attributes, setAttributes } = props;
+            
+            // Construct CSS variables based on selected attributes
+            const cssVariables = {
+                '--dd-btn-bg': attributes.btnBgColor || 'transparent',
+                '--dd-btn-color': attributes.btnTextColor || 'inherit',
+                '--dd-btn-active-bg': attributes.btnActiveBgColor || '#000000',
+                '--dd-btn-active-color': attributes.btnActiveTextColor || '#ffffff',
+                border: '2px solid #007cba', 
+                padding: '2px', 
+                backgroundColor: '#f0f6fc'
+            };
+
             const blockProps = useBlockProps({
                 className: 'dd-tabs-wrapper-edit',
-                style: { border: '2px solid #007cba', padding: '2px', backgroundColor: '#f0f6fc' }
+                style: cssVariables
             });
 
             return el(Fragment, {},
@@ -125,6 +140,33 @@
                             checked: attributes.mobileAccordion,
                             onChange: function (val) { setAttributes({ mobileAccordion: val }); }
                         })
+                    ),
+                    // New PanelBody for Button Styling
+                    el(PanelBody, { title: 'Tab Button Styling', initialOpen: false },
+                        el(BaseControl, { label: 'Default Background Color' },
+                            el(ColorPalette, {
+                                value: attributes.btnBgColor,
+                                onChange: function (val) { setAttributes({ btnBgColor: val }); }
+                            })
+                        ),
+                        el(BaseControl, { label: 'Default Text Color' },
+                            el(ColorPalette, {
+                                value: attributes.btnTextColor,
+                                onChange: function (val) { setAttributes({ btnTextColor: val }); }
+                            })
+                        ),
+                        el(BaseControl, { label: 'Active Background Color' },
+                            el(ColorPalette, {
+                                value: attributes.btnActiveBgColor,
+                                onChange: function (val) { setAttributes({ btnActiveBgColor: val }); }
+                            })
+                        ),
+                        el(BaseControl, { label: 'Active Text Color' },
+                            el(ColorPalette, {
+                                value: attributes.btnActiveTextColor,
+                                onChange: function (val) { setAttributes({ btnActiveTextColor: val }); }
+                            })
+                        )
                     )
                 ),
                 el('div', blockProps,
@@ -146,9 +188,18 @@
          * @return {Object}      The HTML markup saved to the database.
          */
         save: function (props) {
+            // Apply CSS variables to the saved root element wrapper
+            const cssVariables = {
+                '--dd-btn-bg': props.attributes.btnBgColor,
+                '--dd-btn-color': props.attributes.btnTextColor,
+                '--dd-btn-active-bg': props.attributes.btnActiveBgColor,
+                '--dd-btn-active-color': props.attributes.btnActiveTextColor,
+            };
+
             const blockProps = useBlockProps.save({
                 className: 'dd-tabs-wrapper',
-                'data-mobile-accordion': props.attributes.mobileAccordion ? 'true' : 'false'
+                'data-mobile-accordion': props.attributes.mobileAccordion ? 'true' : 'false',
+                style: cssVariables
             });
 
             return el('div', blockProps,
