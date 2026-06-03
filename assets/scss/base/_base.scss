@@ -2261,7 +2261,7 @@ ul.is-swiper-slider,
     /* * Transform each table row into an individual "Grid Box/Card".
      */
     .responsive--table tr {
-        border: 1px solid #e2e8f0;
+        border: 1px solid #e2e8f0 !important;
         border-radius: 8px;
         margin-bottom: 1.5rem;
         padding: 1rem;
