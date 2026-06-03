@@ -14,6 +14,13 @@ if (!$is_blocks_editor) {
     require_once('modules.php');
     require_once('ajax.php');
     require_once('svg.php');
+} else {
+    if(!is_admin()) {
+        require_once('elements.php');
+        require_once('modules.php');
+        require_once('ajax.php');
+        require_once('svg.php');
+    }
 }
 
 require_once('shortcodes.php');
