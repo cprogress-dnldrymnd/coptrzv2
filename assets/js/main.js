@@ -1017,8 +1017,15 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
      * Safely scrolls the horizontal navigation menu to align the active link
      * to the far-left (first position) of the scrollable container.
+     * Execution is strictly restricted to viewports of 991px and below.
+     * * @param {HTMLElement} link - The anchor element that is currently active.
      */
     const scrollNavToLink = (link) => {
+        // Evaluate the viewport width; abort execution if wider than 991px
+        if (!window.matchMedia('(max-width: 991px)').matches) {
+            return;
+        }
+
         // Dynamically retrieve the container's left padding to preserve visual breathing room
         const computedStyle = window.getComputedStyle(navContainer);
         const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
