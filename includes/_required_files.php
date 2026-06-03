@@ -1,7 +1,7 @@
 <?php
 require_once('schema.php');
 require_once('post-types.php');
-    require_once('elements.php');
+require_once('elements.php');
 
 /**
  * Conditional File Loading Execution
