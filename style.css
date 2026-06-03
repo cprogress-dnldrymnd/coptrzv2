@@ -12884,9 +12884,6 @@ ul.is-swiper-slider,
 .dd-tab-button.active {
   color: #007cba; }
 
-.dd-tab-button.active {
-  border-bottom: 2px solid #007cba; }
-
 /* --- Mobile Accordion Navigation --- */
 .dd-accordion-button {
   display: none;
@@ -12955,14 +12952,16 @@ ul.is-swiper-slider,
     margin-top: 0 !important;
     border-top: none !important;
     border-radius: 0; } }
-.border-left-styed:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 5px;
-  background: transparent linear-gradient(270deg, #2da1ff 0%, #175180 100%) 0% 0% no-repeat padding-box; }
+.border-left-styed {
+  position: relative; }
+  .border-left-styed:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: transparent linear-gradient(270deg, #2da1ff 0%, #175180 100%) 0% 0% no-repeat padding-box; }
 
 @keyframes spin {
   from {

@@ -2071,7 +2071,7 @@ ul.is-swiper-slider,
 }
 
 .dd-tab-button.active {
-    border-bottom: 2px solid #007cba;
+  
 }
 
 /* --- Mobile Accordion Navigation --- */
@@ -2154,6 +2154,7 @@ ul.is-swiper-slider,
 }
 
 .border-left-styed {
+    position: relative;
     &:before {
         content: "";
         position: absolute;
