@@ -11677,6 +11677,9 @@ section .container-inner > *:not(:last-child) {
     border-color: var(--bs-secondary);
     color: var(--bs-white); }
 
+.wp-element-button-disabled.wp-element-button-disabled.wp-element-button-disabled {
+  background-color: var(--wp--preset--color--lightgray) !important; }
+
 .wp-block-read-more.wp-block-read-more.wp-block-read-more {
   width: 100%; }
 

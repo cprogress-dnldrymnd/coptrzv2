@@ -367,6 +367,10 @@ section {
 .wp-element-button-accent.wp-element-button-accent.wp-element-button-accent {
     @include button-accent;
 }
+.wp-element-button-disabled.wp-element-button-disabled.wp-element-button-disabled {
+    background-color: var(--wp--preset--color--lightgray) !important;
+    color: var(--wp--preset--color--contrast-white);
+}
 .wp-block-read-more.wp-block-read-more.wp-block-read-more {
     width: 100%;
 }
