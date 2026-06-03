@@ -9,41 +9,28 @@
     const { registerBlockType } = wp.blocks;
     const { createElement: el, Fragment } = wp.element;
     const { InnerBlocks, InspectorControls, useBlockProps } = wp.blockEditor;
-    const { TextControl, PanelBody, ToggleControl, ColorPalette, BaseControl } = wp.components;
+    const { TextControl, PanelBody, ToggleControl, ColorPalette, BaseControl, SelectControl, RangeControl } = wp.components;
 
     /**
      * Registers the Child Block: Tab Panel
-     * * Added native 'supports' to allow users to modify backgrounds, padding, margins, and borders.
      */
     registerBlockType('dd/tab-panel', {
         title: 'Tab Panel',
         icon: 'feedback',
         category: 'design',
-        parent: ['dd/tabs'], // Strict Parent-Child relationship
+        parent: ['dd/tabs'],
         supports: {
             color: { background: true, text: true },
             spacing: { padding: true, margin: true },
             border: { color: true, radius: true, style: true, width: true }
         },
         attributes: {
-            tabTitle: { 
-                type: 'string', 
-                default: 'New Tab' 
-            }
+            tabTitle: { type: 'string', default: 'New Tab' }
         },
-        
-        /**
-         * Renders the editor UI for the individual Tab Panel.
-         * * @param {Object} props The block properties provided by Gutenberg.
-         * @return {Object}      The functional React component for the editor.
-         */
+
         edit: function (props) {
             const { attributes, setAttributes } = props;
-
-            // useBlockProps MUST remain on the root element to prevent Gutenberg from double-injecting styles.
-            const blockProps = useBlockProps({
-                className: 'dd-tab-panel-edit',
-            });
+            const blockProps = useBlockProps({ className: 'dd-tab-panel-edit' });
 
             return el(Fragment, {},
                 el(InspectorControls, {},
@@ -56,23 +43,16 @@
                     )
                 ),
                 el('div', blockProps,
-                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } }, 
+                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } },
                         'Tab Content: ' + attributes.tabTitle
                     ),
                     el('div', { className: 'dd-tab-panel-inner' },
-                        el(InnerBlocks, {
-                            template: [['core/paragraph', { placeholder: 'Enter tab content here...' }]]
-                        })
+                        el(InnerBlocks, { template: [['core/paragraph', { placeholder: 'Enter tab content here...' }]] })
                     )
                 )
             );
         },
 
-        /**
-         * Serializes the Tab Panel block to the database.
-         * * @param {Object} props The block properties.
-         * @return {Object}      The HTML markup saved to the database.
-         */
         save: function (props) {
             const blockProps = useBlockProps.save({
                 className: 'dd-tab-panel',
@@ -89,50 +69,43 @@
 
     /**
      * Registers the Parent Block: Tabs Container
-     * * Includes styling attributes passed down via CSS variables to target dynamically generated JS buttons.
-     * * Added native layout supports for the parent container (colors, spacing, borders).
      */
     registerBlockType('dd/tabs', {
         title: 'Advanced Tabs',
         icon: 'index-card',
         category: 'design',
-        // Enable standard Gutenberg styling panel for the parent wrapper
         supports: {
             color: { background: true, text: true },
             spacing: { padding: true, margin: true, blockGap: true },
             border: { color: true, radius: true, style: true, width: true }
         },
         attributes: {
-            mobileAccordion: {
-                type: 'boolean',
-                default: true
-            },
+            mobileAccordion: { type: 'boolean', default: true },
             btnBgColor: { type: 'string' },
             btnTextColor: { type: 'string' },
             btnActiveBgColor: { type: 'string' },
-            btnActiveTextColor: { type: 'string' }
+            btnActiveTextColor: { type: 'string' },
+            navAlignment: { type: 'string', default: 'flex-start' },
+            btnPadding: { type: 'string', default: '10px 20px' },
+            btnBorderRadius: { type: 'number', default: 4 }
         },
-        
-        /**
-         * Renders the editor UI for the Parent Tabs block.
-         * * @param {Object} props The block properties provided by Gutenberg.
-         * @return {Object}      The functional React component for the editor.
-         */
+
         edit: function (props) {
             const { attributes, setAttributes } = props;
-            
-            // Construct CSS variables based on selected attributes
+
             const cssVariables = {
                 '--dd-btn-bg': attributes.btnBgColor || 'transparent',
                 '--dd-btn-color': attributes.btnTextColor || 'inherit',
                 '--dd-btn-active-bg': attributes.btnActiveBgColor || '#000000',
                 '--dd-btn-active-color': attributes.btnActiveTextColor || '#ffffff',
-                border: '2px solid #007cba', 
-                padding: '2px', 
+                '--dd-nav-align': attributes.navAlignment,
+                '--dd-btn-padding': attributes.btnPadding,
+                '--dd-btn-radius': `${attributes.btnBorderRadius}px`,
+                border: '2px solid #007cba',
+                padding: '2px',
                 backgroundColor: '#f0f6fc'
             };
 
-            // Gutenberg automatically maps selected native supports (padding, borders) onto this object
             const blockProps = useBlockProps({
                 className: 'dd-tabs-wrapper-edit',
                 style: cssVariables
@@ -147,30 +120,41 @@
                             onChange: function (val) { setAttributes({ mobileAccordion: val }); }
                         })
                     ),
-                    el(PanelBody, { title: 'Tab Button Styling', initialOpen: false },
+                    el(PanelBody, { title: 'Tab Navigation Styling', initialOpen: false },
+                        el(SelectControl, {
+                            label: 'Navigation Alignment',
+                            value: attributes.navAlignment,
+                            options: [
+                                { label: 'Left', value: 'flex-start' },
+                                { label: 'Center', value: 'center' },
+                                { label: 'Right', value: 'flex-end' }
+                            ],
+                            onChange: function (val) { setAttributes({ navAlignment: val }); }
+                        }),
+                        el(TextControl, {
+                            label: 'Button Padding',
+                            value: attributes.btnPadding,
+                            help: 'Standard CSS padding (e.g., 10px 20px)',
+                            onChange: function (val) { setAttributes({ btnPadding: val }); }
+                        }),
+                        el(RangeControl, {
+                            label: 'Button Border Radius',
+                            value: attributes.btnBorderRadius,
+                            min: 0,
+                            max: 50,
+                            onChange: function (val) { setAttributes({ btnBorderRadius: val }); }
+                        }),
                         el(BaseControl, { label: 'Default Background Color' },
-                            el(ColorPalette, {
-                                value: attributes.btnBgColor,
-                                onChange: function (val) { setAttributes({ btnBgColor: val }); }
-                            })
+                            el(ColorPalette, { value: attributes.btnBgColor, onChange: function (val) { setAttributes({ btnBgColor: val }); } })
                         ),
                         el(BaseControl, { label: 'Default Text Color' },
-                            el(ColorPalette, {
-                                value: attributes.btnTextColor,
-                                onChange: function (val) { setAttributes({ btnTextColor: val }); }
-                            })
+                            el(ColorPalette, { value: attributes.btnTextColor, onChange: function (val) { setAttributes({ btnTextColor: val }); } })
                         ),
                         el(BaseControl, { label: 'Active Background Color' },
-                            el(ColorPalette, {
-                                value: attributes.btnActiveBgColor,
-                                onChange: function (val) { setAttributes({ btnActiveBgColor: val }); }
-                            })
+                            el(ColorPalette, { value: attributes.btnActiveBgColor, onChange: function (val) { setAttributes({ btnActiveBgColor: val }); } })
                         ),
                         el(BaseControl, { label: 'Active Text Color' },
-                            el(ColorPalette, {
-                                value: attributes.btnActiveTextColor,
-                                onChange: function (val) { setAttributes({ btnActiveTextColor: val }); }
-                            })
+                            el(ColorPalette, { value: attributes.btnActiveTextColor, onChange: function (val) { setAttributes({ btnActiveTextColor: val }); } })
                         )
                     )
                 ),
@@ -178,27 +162,21 @@
                     el('div', { style: { padding: '10px', textTransform: 'uppercase', fontSize: '11px', color: '#007cba', fontWeight: 'bold' } }, 'Tabs Container (Navigation renders above dynamically on frontend)'),
                     el(InnerBlocks, {
                         allowedBlocks: ['dd/tab-panel'],
-                        template: [
-                            ['dd/tab-panel', { tabTitle: 'Tab 1' }],
-                            ['dd/tab-panel', { tabTitle: 'Tab 2' }]
-                        ]
+                        template: [['dd/tab-panel', { tabTitle: 'Tab 1' }], ['dd/tab-panel', { tabTitle: 'Tab 2' }]]
                     })
                 )
             );
         },
 
-        /**
-         * Serializes the Parent Tabs block to the database.
-         * * @param {Object} props The block properties.
-         * @return {Object}      The HTML markup saved to the database.
-         */
         save: function (props) {
-            // Apply CSS variables alongside any native supports the user configures in the sidebar
             const cssVariables = {
                 '--dd-btn-bg': props.attributes.btnBgColor,
                 '--dd-btn-color': props.attributes.btnTextColor,
                 '--dd-btn-active-bg': props.attributes.btnActiveBgColor,
                 '--dd-btn-active-color': props.attributes.btnActiveTextColor,
+                '--dd-nav-align': props.attributes.navAlignment,
+                '--dd-btn-padding': props.attributes.btnPadding,
+                '--dd-btn-radius': `${props.attributes.btnBorderRadius}px`
             };
 
             const blockProps = useBlockProps.save({
@@ -207,9 +185,7 @@
                 style: cssVariables
             });
 
-            return el('div', blockProps,
-                el(InnerBlocks.Content, null)
-            );
+            return el('div', blockProps, el(InnerBlocks.Content, null));
         }
     });
 
