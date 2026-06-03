@@ -12932,9 +12932,9 @@ ul.is-swiper-slider,
   background-color: #f0f0f0; }
 
 .dd-accordion-button.active {
-  background-color: #007cba;
+  background-color: var(--wp--preset--color--accent);
   color: #fff;
-  border-color: #007cba;
+  border-color: var(--wp--preset--color--accent);
   border-radius: 10px 10px 0 0; }
 
 .dd-accordion-icon::before {
