@@ -1,18 +1,4 @@
 <?php
-function _attribute($name, $attributes, $separator = ' ')
-{
-    $html = "$name='";
-    if (is_array($attributes)) {
-        $html .= implode($separator, array_unique($attributes));
-    } else {
-        $html .= $attributes;
-    }
-    $html .= "'";
-    return $html;
-}
-
-
-
 function __heading($data, $html = '')
 {
     $heading = isset($data['heading']) ? $data['heading'] : false;
@@ -349,3 +335,25 @@ function __button($data)
     }
 }
 
+
+function _attribute($name, $attributes, $separator = ' ')
+{
+    $html = "$name='";
+    if (is_array($attributes)) {
+        $html .= implode($separator, array_unique($attributes));
+    } else {
+        $html .= $attributes;
+    }
+    $html .= "'";
+    return $html;
+}
+
+function _attributes($attributes)
+{
+    $html = '';
+    foreach ($attributes as $attribute) {
+        $html .= $attribute;
+    }
+
+    return $html;
+}

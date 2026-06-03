@@ -2686,20 +2686,6 @@ function ____heading_modules($items)
 }
 
 
-function _attribute($name, $attributes, $separator = ' ')
-{
-    $html = "$name='";
-    if (is_array($attributes)) {
-        $html .= implode($separator, array_unique($attributes));
-    } else {
-        $html .= $attributes;
-    }
-    $html .= "'";
-    return $html;
-}
-
-
-
 
 function _is_module($post_id = false)
 {
