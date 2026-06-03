@@ -12957,9 +12957,9 @@ ul.is-swiper-slider,
     margin-top: 0 !important;
     border-top: none !important;
     border-radius: 0; } }
-.border-left-styed {
+.border-left-styled {
   position: relative; }
-  .border-left-styed:before {
+  .border-left-styled:before {
     content: "";
     position: absolute;
     left: 0;
