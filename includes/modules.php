@@ -2698,15 +2698,6 @@ function _attribute($name, $attributes, $separator = ' ')
     return $html;
 }
 
-function _attributes($attributes)
-{
-    $html = '';
-    foreach ($attributes as $attribute) {
-        $html .= $attribute;
-    }
-
-    return $html;
-}
 
 
 

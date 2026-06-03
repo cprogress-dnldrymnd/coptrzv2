@@ -335,3 +335,14 @@ function __button($data)
         }
     }
 }
+
+
+function _attributes($attributes)
+{
+    $html = '';
+    foreach ($attributes as $attribute) {
+        $html .= $attribute;
+    }
+
+    return $html;
+}
