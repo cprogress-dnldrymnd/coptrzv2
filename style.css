@@ -12876,16 +12876,19 @@ ul.is-swiper-slider,
   justify-content: var(--dd-nav-align, flex-start);
   gap: 10px; }
 
-/* Button Structural Styling */
+/* Button Structural & Typography Styling */
 .dd-tabs-wrapper .dd-tab-button {
   background-color: var(--dd-btn-bg, transparent);
   color: var(--dd-btn-color, inherit);
   padding: var(--dd-btn-padding, 10px 20px);
-  /* New Border & Radius Variables */
+  /* Borders */
   border-radius: var(--dd-btn-radius, 4px);
   border-width: var(--dd-btn-border-width, 0px);
   border-color: var(--dd-btn-border-color, transparent);
-  border-style: solid;
+  border-style: var(--dd-btn-border-style, solid);
+  /* Typography */
+  font-size: var(--dd-btn-font-size, 16px);
+  font-weight: var(--dd-btn-font-weight, normal);
   cursor: pointer;
   transition: all 0.3s ease; }
 
