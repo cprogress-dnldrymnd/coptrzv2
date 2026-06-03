@@ -19,6 +19,7 @@ if (!$is_blocks_editor) {
         require_once('elements.php');
         require_once('modules.php');
         require_once('ajax.php');
+        require_once('svg.php');
     }
 }
 
