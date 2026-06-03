@@ -22,12 +22,15 @@
         supports: {
             color: { background: true, text: true },
             spacing: { padding: true, margin: true },
-            border: { color: true, radius: true, style: true, width: true }
+            // Standard modern WordPress border support
+            border: { color: true, radius: true, style: true, width: true },
+            // Fallback flag to force border UI rendering in restrictive themes or older WP versions
+            __experimentalBorder: { color: true, radius: true, style: true, width: true }
         },
         attributes: {
             tabTitle: { type: 'string', default: 'New Tab' }
         },
-
+        
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const blockProps = useBlockProps({ className: 'dd-tab-panel-edit' });
@@ -43,7 +46,7 @@
                     )
                 ),
                 el('div', blockProps,
-                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } },
+                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } }, 
                         'Tab Content: ' + attributes.tabTitle
                     ),
                     el('div', { className: 'dd-tab-panel-inner' },
@@ -77,7 +80,8 @@
         supports: {
             color: { background: true, text: true },
             spacing: { padding: true, margin: true, blockGap: true },
-            border: { color: true, radius: true, style: true, width: true }
+            border: { color: true, radius: true, style: true, width: true },
+            __experimentalBorder: { color: true, radius: true, style: true, width: true }
         },
         attributes: {
             mobileAccordion: { type: 'boolean', default: true },
@@ -87,12 +91,14 @@
             btnActiveTextColor: { type: 'string' },
             navAlignment: { type: 'string', default: 'flex-start' },
             btnPadding: { type: 'string', default: '10px 20px' },
-            btnBorderRadius: { type: 'number', default: 4 }
+            btnBorderRadius: { type: 'number', default: 4 },
+            btnBorderWidth: { type: 'number', default: 0 },
+            btnBorderColor: { type: 'string', default: 'transparent' }
         },
-
+        
         edit: function (props) {
             const { attributes, setAttributes } = props;
-
+            
             const cssVariables = {
                 '--dd-btn-bg': attributes.btnBgColor || 'transparent',
                 '--dd-btn-color': attributes.btnTextColor || 'inherit',
@@ -101,8 +107,10 @@
                 '--dd-nav-align': attributes.navAlignment,
                 '--dd-btn-padding': attributes.btnPadding,
                 '--dd-btn-radius': `${attributes.btnBorderRadius}px`,
-                border: '2px solid #007cba',
-                padding: '2px',
+                '--dd-btn-border-width': `${attributes.btnBorderWidth}px`,
+                '--dd-btn-border-color': attributes.btnBorderColor,
+                border: '2px solid #007cba', 
+                padding: '2px', 
                 backgroundColor: '#f0f6fc'
             };
 
@@ -120,7 +128,7 @@
                             onChange: function (val) { setAttributes({ mobileAccordion: val }); }
                         })
                     ),
-                    el(PanelBody, { title: 'Tab Navigation Styling', initialOpen: false },
+                    el(PanelBody, { title: 'Tab Button Layout & Borders', initialOpen: false },
                         el(SelectControl, {
                             label: 'Navigation Alignment',
                             value: attributes.navAlignment,
@@ -138,12 +146,24 @@
                             onChange: function (val) { setAttributes({ btnPadding: val }); }
                         }),
                         el(RangeControl, {
-                            label: 'Button Border Radius',
+                            label: 'Button Border Radius (px)',
                             value: attributes.btnBorderRadius,
                             min: 0,
                             max: 50,
                             onChange: function (val) { setAttributes({ btnBorderRadius: val }); }
                         }),
+                        el(RangeControl, {
+                            label: 'Button Border Width (px)',
+                            value: attributes.btnBorderWidth,
+                            min: 0,
+                            max: 10,
+                            onChange: function (val) { setAttributes({ btnBorderWidth: val }); }
+                        }),
+                        el(BaseControl, { label: 'Button Border Color' },
+                            el(ColorPalette, { value: attributes.btnBorderColor, onChange: function (val) { setAttributes({ btnBorderColor: val }); } })
+                        )
+                    ),
+                    el(PanelBody, { title: 'Tab Button Colors', initialOpen: false },
                         el(BaseControl, { label: 'Default Background Color' },
                             el(ColorPalette, { value: attributes.btnBgColor, onChange: function (val) { setAttributes({ btnBgColor: val }); } })
                         ),
@@ -176,7 +196,9 @@
                 '--dd-btn-active-color': props.attributes.btnActiveTextColor,
                 '--dd-nav-align': props.attributes.navAlignment,
                 '--dd-btn-padding': props.attributes.btnPadding,
-                '--dd-btn-radius': `${props.attributes.btnBorderRadius}px`
+                '--dd-btn-radius': `${props.attributes.btnBorderRadius}px`,
+                '--dd-btn-border-width': `${props.attributes.btnBorderWidth}px`,
+                '--dd-btn-border-color': props.attributes.btnBorderColor,
             };
 
             const blockProps = useBlockProps.save({

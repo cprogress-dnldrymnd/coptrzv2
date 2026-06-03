@@ -2051,25 +2051,30 @@ ul.is-swiper-slider,
     position: relative;
 }
 
-/* --- Desktop Navigation (Renders Above) --- */
-.dd-tabs-nav-desktop {
+/* Container Alignment */
+.dd-tabs-wrapper .dd-tabs-nav-desktop {
     display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+    justify-content: var(--dd-nav-align, flex-start);
+    gap: 10px;
 }
 
-/* Apply default styles utilizing injected CSS variables */
+/* Button Structural Styling */
 .dd-tabs-wrapper .dd-tab-button {
     background-color: var(--dd-btn-bg, transparent);
     color: var(--dd-btn-color, inherit);
-    /* Add structural button styles below (padding, border-radius, etc.) */
-    padding: 10px 20px;
-    border: none;
+    padding: var(--dd-btn-padding, 10px 20px);
+    
+    /* New Border & Radius Variables */
+    border-radius: var(--dd-btn-radius, 4px);
+    border-width: var(--dd-btn-border-width, 0px);
+    border-color: var(--dd-btn-border-color, transparent);
+    border-style: solid;
+    
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-/* Apply active state styles utilizing injected CSS variables */
+/* Active Button State */
 .dd-tabs-wrapper .dd-tab-button.active {
     background-color: var(--dd-btn-active-bg, #000000);
     color: var(--dd-btn-active-color, #ffffff);
