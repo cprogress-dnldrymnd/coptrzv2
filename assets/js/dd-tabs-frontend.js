@@ -29,6 +29,34 @@ document.addEventListener('DOMContentLoaded', function () {
             const desktopButtons = [];
             const accordionButtons = [];
 
+            /**
+             * Centralized logic to activate a specific tab index.
+             * * Defined outside the loop so it has access to the fully populated arrays.
+             * * @param {number} targetIndex The index of the tab to activate.
+             */
+            const activateTab = function(targetIndex) {
+                panels.forEach((p, i) => {
+                    if (i === targetIndex) {
+                        // Activate
+                        p.classList.add('active');
+                        p.style.display = 'block';
+                        desktopButtons[i].classList.add('active');
+                        desktopButtons[i].setAttribute('aria-selected', 'true');
+                        accordionButtons[i].classList.add('active');
+                        accordionButtons[i].setAttribute('aria-expanded', 'true');
+                    } else {
+                        // Deactivate
+                        p.classList.remove('active');
+                        p.style.display = 'none';
+                        desktopButtons[i].classList.remove('active');
+                        desktopButtons[i].setAttribute('aria-selected', 'false');
+                        accordionButtons[i].classList.remove('active');
+                        accordionButtons[i].setAttribute('aria-expanded', 'false');
+                    }
+                });
+            };
+
+            // 2. Loop through panels to create buttons and bind events
             panels.forEach(function (panel, index) {
                 const title = panel.getAttribute('data-tab-title') || 'Tab';
                 
@@ -48,32 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 panel.parentNode.insertBefore(aBtn, panel);
                 accordionButtons.push(aBtn);
 
-                /**
-                 * Centralized logic to activate a specific tab index.
-                 * * @param {number} targetIndex The index of the tab to activate.
-                 */
-                const activateTab = function(targetIndex) {
-                    panels.forEach((p, i) => {
-                        if (i === targetIndex) {
-                            // Activate
-                            p.classList.add('active');
-                            p.style.display = 'block';
-                            desktopButtons[i].classList.add('active');
-                            desktopButtons[i].setAttribute('aria-selected', 'true');
-                            accordionButtons[i].classList.add('active');
-                            accordionButtons[i].setAttribute('aria-expanded', 'true');
-                        } else {
-                            // Deactivate
-                            p.classList.remove('active');
-                            p.style.display = 'none';
-                            desktopButtons[i].classList.remove('active');
-                            desktopButtons[i].setAttribute('aria-selected', 'false');
-                            accordionButtons[i].classList.remove('active');
-                            accordionButtons[i].setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                };
-
                 // Bind Event Listeners
                 dBtn.addEventListener('click', function () { activateTab(index); });
                 aBtn.addEventListener('click', function () { 
@@ -89,12 +91,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         activateTab(index); 
                     }
                 });
-
-                // Set Initial State (Open first tab by default)
-                if (index === 0) {
-                    activateTab(0);
-                }
             });
+
+            // 3. Set Initial State (Open first tab by default)
+            // Fire this ONLY after the loop has finished and all arrays are populated.
+            activateTab(0);
         });
     }
 
