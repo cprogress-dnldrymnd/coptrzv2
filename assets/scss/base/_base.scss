@@ -2219,4 +2219,94 @@ ul.is-swiper-slider,
     }
 }
 
+/**
+ * Responsive Table Grid Implementation
+ * Description: Converts standard table structures into stacked card grids 
+ * below the 991px breakpoint using Flexbox and pseudo-elements.
+ */
 
+@media (max-width: 991px) {
+    /* * Force table elements into a block-level display 
+     * to break them out of standard tabular rendering.
+     */
+    table.responsive-table,
+    .responsive-table thead,
+    .responsive-table tbody,
+    .responsive-table th,
+    .responsive-table td,
+    .responsive-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    /* * Visually hide the header row to save space, but use absolute 
+     * positioning rather than `display: none` to maintain screen-reader accessibility.
+     */
+    .responsive-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    /* * Transform each table row into an individual "Grid Box/Card".
+     */
+    .responsive-table tr {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Subtle depth for UI separation */
+    }
+
+    /* * Configure table cells to act as flex rows for label/value pairing.
+     */
+    .responsive-table td {
+        display: flex;
+        align-items: flex-start; /* Ensures labels align with the top of multi-line text */
+        text-align: left;
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    /* * Remove the bottom border from the final cell to keep the card visually clean.
+     */
+    .responsive-table td:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+        justify-content: center; /* Center the action button */
+    }
+
+    /* * Setup pseudo-elements to act as the prepended labels.
+     */
+    .responsive-table td::before {
+        font-weight: 600;
+        color: #0ea5e9; /* Light blue accent color to match your UI header */
+        flex: 0 0 35%; /* Fixed width to align all labels vertically */
+        max-width: 35%;
+        word-wrap: break-word;
+    }
+    /**
+ * Dynamic Label Injection
+ * Author: Digitally Disruptive - Donald Raymundo
+ * Author URI: https://digitallydisruptive.co.uk/
+ * Description: Pulls the data-label attribute injected by JS to act as the mobile header.
+ */
+
+    /* Setup pseudo-elements to act as the prepended labels */
+    .responsive-table td::before {
+        content: attr(data-label); /* Dynamically pulls the header string from the DOM */
+        font-weight: 600;
+        color: #0ea5e9;
+        flex: 0 0 35%;
+        max-width: 35%;
+        word-wrap: break-word;
+    }
+
+    /* Hide the pseudo-element entirely if there is no data-label (e.g., action button columns) */
+    .responsive-table td:not([data-label])::before,
+    .responsive-table td[data-label=""]::before {
+        display: none;
+    }
+}

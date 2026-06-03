@@ -1131,3 +1131,34 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollSpy();
     initSmoothScrolling();
 });
+
+/**
+ * Responsive Table Header Mapper
+ * Author: Digitally Disruptive - Donald Raymundo
+ * Author URI: https://digitallydisruptive.co.uk/
+ * Description: Dynamically maps table headers to data-label attributes 
+ * on table cells to allow CSS pseudo-elements to display them on mobile breakpoints.
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Select all instances of responsive tables on the page
+    const tables = document.querySelectorAll('table.responsive-table');
+    
+    tables.forEach(table => {
+        // Extract header text strings into an array
+        const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+        
+        // Target all data rows in the table body
+        const rows = table.querySelectorAll('tbody tr');
+        
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            cells.forEach((cell, index) => {
+                // If a matching header exists and isn't empty, inject it as a data attribute
+                if (headers[index]) {
+                    cell.setAttribute('data-label', headers[index] + ':');
+                }
+            });
+        });
+    });
+});

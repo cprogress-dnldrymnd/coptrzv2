@@ -13021,6 +13021,97 @@ ul.is-swiper-slider,
     width: 5px;
     background: transparent linear-gradient(270deg, #2da1ff 0%, #175180 100%) 0% 0% no-repeat padding-box; }
 
+/**
+ * Responsive Table Grid Implementation
+ * Description: Converts standard table structures into stacked card grids 
+ * below the 991px breakpoint using Flexbox and pseudo-elements.
+ */
+@media (max-width: 991px) {
+  /* * Force table elements into a block-level display 
+   * to break them out of standard tabular rendering.
+   */
+  table.responsive-table,
+  .responsive-table thead,
+  .responsive-table tbody,
+  .responsive-table th,
+  .responsive-table td,
+  .responsive-table tr {
+    display: block;
+    width: 100%; }
+
+  /* * Visually hide the header row to save space, but use absolute 
+   * positioning rather than `display: none` to maintain screen-reader accessibility.
+   */
+  .responsive-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px; }
+
+  /* * Transform each table row into an individual "Grid Box/Card".
+   */
+  .responsive-table tr {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    /* Subtle depth for UI separation */ }
+
+  /* * Configure table cells to act as flex rows for label/value pairing.
+   */
+  .responsive-table td {
+    display: flex;
+    align-items: flex-start;
+    /* Ensures labels align with the top of multi-line text */
+    text-align: left;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f1f5f9; }
+
+  /* * Remove the bottom border from the final cell to keep the card visually clean.
+   */
+  .responsive-table td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    justify-content: center;
+    /* Center the action button */ }
+
+  /* * Setup pseudo-elements to act as the prepended labels.
+   */
+  .responsive-table td::before {
+    font-weight: 600;
+    color: #0ea5e9;
+    /* Light blue accent color to match your UI header */
+    flex: 0 0 35%;
+    /* Fixed width to align all labels vertically */
+    max-width: 35%;
+    word-wrap: break-word; }
+
+  /* * Dynamically inject the header content based on column index.
+   * Maps perfectly to the 6 data columns.
+   */
+  .responsive-table td:nth-of-type(1)::before {
+    content: "Qualification:"; }
+
+  .responsive-table td:nth-of-type(2)::before {
+    content: "Training Required:"; }
+
+  .responsive-table td:nth-of-type(3)::before {
+    content: "Category:"; }
+
+  .responsive-table td:nth-of-type(4)::before {
+    content: "Op. Auth Needed:"; }
+
+  .responsive-table td:nth-of-type(5)::before {
+    content: "Validity:"; }
+
+  .responsive-table td:nth-of-type(6)::before {
+    content: "Best For:"; }
+
+  /* Ensure the 7th column (button) does not render an empty label space */
+  .responsive-table td:nth-of-type(7)::before {
+    display: none; } }
 @keyframes spin {
   from {
     transform: rotate(0deg); }
