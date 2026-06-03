@@ -2685,7 +2685,19 @@ function ____heading_modules($items)
     return __heading($heading_data);
 }
 
-function _styles() {}
+
+function _attribute($name, $attributes, $separator = ' ')
+{
+    $html = "$name='";
+    if (is_array($attributes)) {
+        $html .= implode($separator, array_unique($attributes));
+    } else {
+        $html .= $attributes;
+    }
+    $html .= "'";
+    return $html;
+}
+
 
 
 
