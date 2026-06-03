@@ -29,7 +29,7 @@ add_action('carbon_fields_register_fields', 'tissue_paper_register_custom_fields
 function tissue_paper_register_custom_fields()
 {
     $is_blocks_editor = function_exists('dd_is_blocks_editor_template_active') && dd_is_blocks_editor_template_active();
-    if ($is_blocks_editor) {
+    if (!$is_blocks_editor) {
         require_once('includes/post-meta.php');
     }
 }
