@@ -160,15 +160,35 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
 
 
     wp_enqueue_script(
-        'dd-custom-block-attributes',
-        get_template_directory_uri() . '/assets/js/extend-blocks-attribute.js', // Adjust path
+        'dd-tabs-block-js',
+        get_template_directory_uri() . '/assets/js/dd-tabs-block.js', // Adjust path
         array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
-        filemtime(get_template_directory() . '/assets/js/extend-blocks-attribute.js'),
+        filemtime(get_template_directory() . '/assets/js/dd-tabs-block-js'),
         true
     );
-
 }
 add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_editor_assets');
+
+/**
+ * Enqueues the frontend scripts and styles (Frontend only).
+ * * @return void
+ */
+function dd_enqueue_tabs_frontend_assets(): void
+{
+    // Only load on the frontend, not in the block editor iframe.
+    if (! is_admin()) {
+
+        wp_enqueue_script(
+            'dd-tabs-frontend-js',
+            get_template_directory_uri() . '/assets/js/dd-tabs-frontend.js', // Adjust path
+            array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+            filemtime(get_template_directory() . '/assets/js/dd-tabs-frontend.js'),
+            true
+        );
+
+    }
+}
+add_action('wp_enqueue_scripts', 'dd_enqueue_tabs_frontend_assets');
 
 /**
  * Universal Swiper Rendering Engine.
