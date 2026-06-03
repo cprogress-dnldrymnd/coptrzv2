@@ -12881,6 +12881,8 @@ ul.is-swiper-slider,
   background-color: var(--dd-btn-bg, transparent);
   color: var(--dd-btn-color, inherit);
   padding: var(--dd-btn-padding, 10px 20px);
+  width: 100%;
+  max-width: 226px;
   /* Borders */
   border-radius: var(--dd-btn-radius, 4px);
   border-width: var(--dd-btn-border-width, 0px);
