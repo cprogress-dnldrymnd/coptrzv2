@@ -12873,21 +12873,20 @@ ul.is-swiper-slider,
   flex-wrap: wrap;
   gap: 5px; }
 
-.dd-tab-button {
-  background-color: #1a3357;
-  border: none;
-  border-bottom: 2px solid transparent;
+/* Apply default styles utilizing injected CSS variables */
+.dd-tabs-wrapper .dd-tab-button {
+  background-color: var(--dd-btn-bg, transparent);
+  color: var(--dd-btn-color, inherit);
+  /* Add structural button styles below (padding, border-radius, etc.) */
   padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 600;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: -2px;
-  /* Pull down to overlap the container border */ }
+  transition: all 0.3s ease; }
 
-.dd-tab-button:hover,
-.dd-tab-button.active {
-  color: #007cba; }
+/* Apply active state styles utilizing injected CSS variables */
+.dd-tabs-wrapper .dd-tab-button.active {
+  background-color: var(--dd-btn-active-bg, #000000);
+  color: var(--dd-btn-active-color, #ffffff); }
 
 /* --- Mobile Accordion Navigation --- */
 .dd-accordion-button {
