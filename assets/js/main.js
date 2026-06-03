@@ -1021,10 +1021,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateActiveState = (activeId) => {
         navLinks.forEach(link => {
             link.classList.remove('active');
-            
+
             if (link.getAttribute('href') === `#${activeId}`) {
                 link.classList.add('active');
-                
+
                 link.scrollIntoView({
                     behavior: 'smooth',
                     block: 'nearest',
@@ -1041,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initScrollSpy = () => {
         const observerOptions = {
             root: null,
-            rootMargin: '-20% 0px -80% 0px', 
+            rootMargin: '-20% 0px -80% 0px',
             threshold: 0
         };
 
@@ -1057,19 +1057,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
-     * Overrides the default anchor click behavior to account for the sticky 
-     * navigation's height, ensuring the scroll target is not occluded by the menu.
-     */
-    /**
-     * Overrides the default anchor click behavior to account for the sticky 
-     * navigation's height and adds a visual buffer, ensuring the scroll 
-     * target is clearly visible below the menu.
-     */
+        * Overrides the default anchor click behavior to account for the sticky 
+        * navigation's height, a visual buffer, and dynamically calculates the 
+        * WordPress Admin Bar height if the user is logged in.
+        */
     const initSmoothScrolling = () => {
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href');
-                
+
                 // Proceed only if it's an internal hash link
                 if (!targetId || !targetId.startsWith('#') || targetId.length <= 1) return;
 
@@ -1077,17 +1073,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (targetSection) {
                     e.preventDefault();
-                    
+
                     const navHeight = navContainer.offsetHeight;
-                    
+
+                    // Check for the WP Admin bar and get its dynamic height
+                    const adminBar = document.getElementById('wpadminbar');
+                    const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
+
                     // The visual breathing room between the sticky nav and the section heading.
-                    // Adjust this value (in pixels) depending on your design preferences.
-                    const scrollBuffer = 40; 
-                    
+                    const scrollBuffer = 40;
+
                     const elementPosition = targetSection.getBoundingClientRect().top;
-                    
-                    // Subtract both the physical nav height and the extra buffer
-                    const offsetPosition = elementPosition + window.scrollY - navHeight - scrollBuffer;
+
+                    // Subtract the nav height, the extra buffer, AND the admin bar height
+                    const offsetPosition = elementPosition + window.scrollY - navHeight - scrollBuffer - adminBarHeight;
 
                     window.scrollTo({
                         top: offsetPosition,
