@@ -13,7 +13,7 @@
 
     /**
      * Registers the Child Block: Tab Panel
-     * * Replaced native border supports with explicit custom attributes to bypass theme.json restrictions.
+     * * Reverted to native Gutenberg Border supports using '__experimentalDefaultControls' to force UI visibility.
      */
     registerBlockType('dd/tab-panel', {
         title: 'Tab Panel',
@@ -22,15 +22,23 @@
         parent: ['dd/tabs'],
         supports: {
             color: { background: true, text: true },
-            spacing: { padding: true, margin: true }
+            spacing: { padding: true, margin: true },
+            // Force the native Border UI to display by default without needing to click the 3 dots
+            __experimentalBorder: {
+                color: true,
+                radius: true,
+                style: true,
+                width: true,
+                __experimentalDefaultControls: {
+                    color: true,
+                    radius: true,
+                    style: true,
+                    width: true
+                }
+            }
         },
         attributes: {
-            tabTitle: { type: 'string', default: 'New Tab' },
-            // Custom Panel Border Attributes
-            panelBorderRadius: { type: 'number', default: 0 },
-            panelBorderWidth: { type: 'number', default: 0 },
-            panelBorderColor: { type: 'string', default: 'transparent' },
-            panelBorderStyle: { type: 'string', default: 'solid' }
+            tabTitle: { type: 'string', default: 'New Tab' }
         },
         
         /**
@@ -40,57 +48,25 @@
          */
         edit: function (props) {
             const { attributes, setAttributes } = props;
+            
+            // Native UI automatically maps padding, background, and border selections onto blockProps
             const blockProps = useBlockProps({ className: 'dd-tab-panel-edit' });
-
-            const innerPanelStyles = {
-                borderWidth: `${attributes.panelBorderWidth}px`,
-                borderColor: attributes.panelBorderColor,
-                borderStyle: attributes.panelBorderStyle,
-                borderRadius: `${attributes.panelBorderRadius}px`
-            };
 
             return el(Fragment, {},
                 el(InspectorControls, {},
-                    el(PanelBody, { title: 'Tab Panel Settings & Borders', initialOpen: true },
+                    el(PanelBody, { title: 'Tab Settings', initialOpen: true },
                         el(TextControl, {
                             label: 'Tab Navigation Title',
                             value: attributes.tabTitle,
                             onChange: function (val) { setAttributes({ tabTitle: val }); }
-                        }),
-                        el(RangeControl, {
-                            label: 'Panel Border Radius (px)',
-                            value: attributes.panelBorderRadius,
-                            min: 0,
-                            max: 100,
-                            onChange: function (val) { setAttributes({ panelBorderRadius: val }); }
-                        }),
-                        el(RangeControl, {
-                            label: 'Panel Border Width (px)',
-                            value: attributes.panelBorderWidth,
-                            min: 0,
-                            max: 20,
-                            onChange: function (val) { setAttributes({ panelBorderWidth: val }); }
-                        }),
-                        el(SelectControl, {
-                            label: 'Panel Border Style',
-                            value: attributes.panelBorderStyle,
-                            options: [
-                                { label: 'Solid', value: 'solid' },
-                                { label: 'Dashed', value: 'dashed' },
-                                { label: 'Dotted', value: 'dotted' }
-                            ],
-                            onChange: function (val) { setAttributes({ panelBorderStyle: val }); }
-                        }),
-                        el(BaseControl, { label: 'Panel Border Color' },
-                            el(ColorPalette, { value: attributes.panelBorderColor, onChange: function (val) { setAttributes({ panelBorderColor: val }); } })
-                        )
+                        })
                     )
                 ),
                 el('div', blockProps,
                     el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } }, 
                         'Tab Content: ' + attributes.tabTitle
                     ),
-                    el('div', { className: 'dd-tab-panel-inner', style: innerPanelStyles },
+                    el('div', { className: 'dd-tab-panel-inner' },
                         el(InnerBlocks, { template: [['core/paragraph', { placeholder: 'Enter tab content here...' }]] })
                     )
                 )
@@ -108,15 +84,8 @@
                 'data-tab-title': props.attributes.tabTitle
             });
 
-            const innerPanelStyles = {
-                borderWidth: `${props.attributes.panelBorderWidth}px`,
-                borderColor: props.attributes.panelBorderColor,
-                borderStyle: props.attributes.panelBorderStyle,
-                borderRadius: `${props.attributes.panelBorderRadius}px`
-            };
-
             return el('div', blockProps,
-                el('div', { className: 'dd-tab-panel-inner', style: innerPanelStyles },
+                el('div', { className: 'dd-tab-panel-inner' },
                     el(InnerBlocks.Content, null)
                 )
             );
@@ -125,7 +94,7 @@
 
     /**
      * Registers the Parent Block: Tabs Container
-     * * Added comprehensive custom border controls mapped to CSS variables for dynamic frontend buttons.
+     * * Retains custom styling parameters for the JS-generated buttons, while enabling native supports for the parent wrapper.
      */
     registerBlockType('dd/tabs', {
         title: 'Advanced Tabs',
@@ -133,7 +102,19 @@
         category: 'design',
         supports: {
             color: { background: true, text: true },
-            spacing: { padding: true, margin: true, blockGap: true }
+            spacing: { padding: true, margin: true, blockGap: true },
+            __experimentalBorder: {
+                color: true,
+                radius: true,
+                style: true,
+                width: true,
+                __experimentalDefaultControls: {
+                    color: true,
+                    radius: true,
+                    style: true,
+                    width: true
+                }
+            }
         },
         attributes: {
             mobileAccordion: { type: 'boolean', default: true },
@@ -187,7 +168,8 @@
                             onChange: function (val) { setAttributes({ mobileAccordion: val }); }
                         })
                     ),
-                    el(PanelBody, { title: 'Tab Button Styling', initialOpen: false },
+                    el(PanelBody, { title: 'Tab Button Styling (Dynamic)', initialOpen: false },
+                        el('p', { style: { fontSize: '12px', fontStyle: 'italic', color: '#666' } }, 'These styles specifically target the dynamic buttons generated by JS. To style the parent wrapper, use the native Styles tab (half-moon icon).'),
                         el(SelectControl, {
                             label: 'Navigation Alignment',
                             value: attributes.navAlignment,
