@@ -1021,9 +1021,6 @@ document.addEventListener('DOMContentLoaded', () => {
      * * @param {HTMLElement} link - The anchor element that is currently active.
      */
     const scrollNavToLink = (link) => {
-        // Execute only on viewports 991px and below
-        if (!window.matchMedia('(max-width: 991px)').matches) return;
-
         // Target the parent <li> if available to account for WP block margins/padding
         const targetElement = link.closest('li') || link;
 
