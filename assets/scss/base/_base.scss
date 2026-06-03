@@ -2101,13 +2101,13 @@ ul.is-swiper-slider,
 }
 
 .dd-accordion-icon::before {
-    content: '+';
+    content: "+";
     font-size: 20px;
     font-weight: normal;
 }
 
 .dd-accordion-button.active .dd-accordion-icon::before {
-    content: '-';
+    content: "-";
 }
 
 /* --- Panel Animations --- */
@@ -2118,8 +2118,14 @@ ul.is-swiper-slider,
 }
 
 @keyframes ddTabFadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .dd-tab-panel.active {
@@ -2143,5 +2149,17 @@ ul.is-swiper-slider,
         margin-top: 0 !important;
         border-top: none !important;
         border-radius: 0;
+    }
+}
+
+.border-left-styed {
+    &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 5px;
+        background: transparent linear-gradient(270deg, #2da1ff 0%, #175180 100%) 0% 0% no-repeat padding-box;
     }
 }
