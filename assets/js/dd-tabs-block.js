@@ -34,6 +34,11 @@
             tabTitle: { type: 'string', default: 'New Tab' }
         },
         
+        /**
+         * Renders the editor UI for the individual Tab Panel.
+         * * @param {Object} props The block properties provided by Gutenberg.
+         * @return {Object}      The functional React component for the editor.
+         */
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const blockProps = useBlockProps({ className: 'dd-tab-panel-edit' });
@@ -59,6 +64,11 @@
             );
         },
 
+        /**
+         * Serializes the Tab Panel block to the database.
+         * * @param {Object} props The block properties.
+         * @return {Object}      The HTML markup saved to the database.
+         */
         save: function (props) {
             const blockProps = useBlockProps.save({
                 className: 'dd-tab-panel',
@@ -75,6 +85,7 @@
 
     /**
      * Registers the Parent Block: Tabs Container
+     * * Added conditional breakpoint attribute mapping.
      */
     registerBlockType('dd/tabs', {
         title: 'Advanced Tabs',
@@ -93,6 +104,7 @@
         },
         attributes: {
             mobileAccordion: { type: 'boolean', default: true },
+            accordionBreakpoint: { type: 'string', default: '767' }, // New attribute for user-selected breakpoint
             navAlignment: { type: 'string', default: 'flex-start' },
             btnPadding: { type: 'string', default: '10px 20px' },
             btnBorderRadius: { type: 'string', default: '4px' },
@@ -103,11 +115,15 @@
             btnTextColor: { type: 'string' },
             btnActiveBgColor: { type: 'string' },
             btnActiveTextColor: { type: 'string' },
-            // New Typography Attributes
             btnFontSize: { type: 'string', default: '16px' },
             btnFontWeight: { type: 'string', default: 'normal' }
         },
         
+        /**
+         * Renders the editor UI for the Parent Tabs block.
+         * * @param {Object} props The block properties provided by Gutenberg.
+         * @return {Object}      The functional React component for the editor.
+         */
         edit: function (props) {
             const { attributes, setAttributes } = props;
             
@@ -141,9 +157,19 @@
                 el(InspectorControls, {},
                     el(PanelBody, { title: 'Responsive Settings', initialOpen: true },
                         el(ToggleControl, {
-                            label: 'Convert to Accordion on Mobile (≤ 767px)',
+                            label: 'Enable Accordion Conversion',
                             checked: attributes.mobileAccordion,
                             onChange: function (val) { setAttributes({ mobileAccordion: val }); }
+                        }),
+                        // Conditionally render the breakpoint selector only if the accordion is enabled
+                        attributes.mobileAccordion && el(SelectControl, {
+                            label: 'Trigger Breakpoint',
+                            value: attributes.accordionBreakpoint,
+                            options: [
+                                { label: 'Mobile (≤ 767px)', value: '767' },
+                                { label: 'Tablet (≤ 991px)', value: '991' }
+                            ],
+                            onChange: function (val) { setAttributes({ accordionBreakpoint: val }); }
                         })
                     ),
                     el(PanelBody, { title: 'Tab Button Styling (Dynamic)', initialOpen: false },
@@ -230,6 +256,11 @@
             );
         },
 
+        /**
+         * Serializes the Parent Tabs block to the database.
+         * * @param {Object} props The block properties.
+         * @return {Object}      The HTML markup saved to the database.
+         */
         save: function (props) {
             const safeRadius = String(props.attributes.btnBorderRadius).includes('px') || String(props.attributes.btnBorderRadius).includes(' ') ? props.attributes.btnBorderRadius : `${props.attributes.btnBorderRadius}px`;
             const safeWidth = String(props.attributes.btnBorderWidth).includes('px') || String(props.attributes.btnBorderWidth).includes(' ') ? props.attributes.btnBorderWidth : `${props.attributes.btnBorderWidth}px`;
@@ -252,6 +283,7 @@
             const blockProps = useBlockProps.save({
                 className: 'dd-tabs-wrapper',
                 'data-mobile-accordion': props.attributes.mobileAccordion ? 'true' : 'false',
+                'data-accordion-breakpoint': props.attributes.mobileAccordion ? props.attributes.accordionBreakpoint : 'none',
                 style: cssVariables
             });
 
