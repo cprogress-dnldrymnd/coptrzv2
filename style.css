@@ -12868,13 +12868,13 @@ ul.is-swiper-slider,
   position: relative; }
 
 /* Container Alignment */
-.dd-tabs-wrapper {
+.dd-tabs-wrapper.dd-tabs-wrapper {
   border: none !important; }
 
 .dd-tabs-wrapper .dd-tabs-nav-desktop {
   display: flex;
   justify-content: var(--dd-nav-align, flex-start);
-  gap: 10px; }
+  gap: 1.25rem; }
 
 /* Button Structural & Typography Styling */
 .dd-tabs-wrapper .dd-tab-button {
