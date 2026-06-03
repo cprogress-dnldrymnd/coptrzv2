@@ -998,7 +998,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!navContainer || navLinks.length === 0) return;
 
-    // Dynamically generate the array of section elements based on the link hrefs
+    // Dynamically map links to DOM sections
     const sections = Array.from(navLinks)
         .map(link => {
             const targetId = link.getAttribute('href');
@@ -1011,31 +1011,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (sections.length === 0) return;
 
+    // State lock to prevent IntersectionObserver from fighting the click scroll
+    let isClickScrolling = false;
+
     /**
-     * Updates the UI to reflect the active navigation item.
-     * Highlights the link and smoothly scrolls the horizontal nav container
-     * to ensure the active item remains visible on mobile devices.
-     * * @param {string} activeId - The ID of the currently active HTML section.
+     * Safely scrolls the horizontal navigation menu to center the active link
+     * without triggering window-level layout shifts.
+     */
+    const scrollNavToLink = (link) => {
+        const containerWidth = navContainer.clientWidth;
+        const linkRect = link.getBoundingClientRect();
+        
+        // Calculate the exact horizontal center offset
+        const scrollLeft = link.offsetLeft - (containerWidth / 2) + (linkRect.width / 2);
+        
+        navContainer.scrollTo({
+            left: scrollLeft,
+            behavior: 'smooth'
+        });
+    };
+
+    /**
+     * Syncs the visual UI state.
      */
     const updateActiveState = (activeId) => {
         navLinks.forEach(link => {
             link.classList.remove('active');
-            
             if (link.getAttribute('href') === `#${activeId}`) {
                 link.classList.add('active');
-                
-                link.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center'
-                });
+                scrollNavToLink(link);
             }
         });
     };
 
     /**
-     * Initializes the Intersection Observer to watch target sections.
-     * Triggers active state updates when a section enters the top 20% of the viewport.
+     * Observer to handle scroll-spy functionality when the user manually scrolls the page.
      */
     const initScrollSpy = () => {
         const observerOptions = {
@@ -1045,6 +1055,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const observer = new IntersectionObserver((entries) => {
+            // Abort if the user is currently scrolling via a click event
+            if (isClickScrolling) return;
+
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     updateActiveState(entry.target.id);
@@ -1056,15 +1069,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
-     * Handles manual clicks on navigation links.
-     * Calculates the exact absolute offset position of the target element,
-     * deducting both the sticky navigation height and the dynamic WP admin bar height.
+     * Click handler utilizing relative bottom-bounds math for bulletproof offsets.
      */
     const initSmoothScrolling = () => {
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href');
-                
                 if (!targetId || !targetId.startsWith('#') || targetId.length <= 1) return;
 
                 const targetSection = document.querySelector(targetId);
@@ -1072,24 +1082,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (targetSection) {
                     e.preventDefault();
                     
-                    // 1. Get the physical height of the sticky nav
-                    const navHeight = navContainer.getBoundingClientRect().height;
+                    // Lock the observer state to prevent scroll-snapping bugs
+                    isClickScrolling = true;
                     
-                    // 2. Determine if the WP Admin Bar is present and get its height
-                    const adminBar = document.getElementById('wpadminbar');
-                    const adminBarHeight = adminBar ? adminBar.getBoundingClientRect().height : 0;
+                    // Instantly update the UI state
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    scrollNavToLink(link);
+
+                    // Dynamic Math Offset:
+                    // Get the exact physical bottom edge of the sticky nav in the viewport
+                    const navBottomEdge = navContainer.getBoundingClientRect().bottom;
+                    const elementTopEdge = targetSection.getBoundingClientRect().top;
                     
-                    // 3. Calculate the absolute Y position of the target element relative to the document
-                    const absoluteElementTop = targetSection.getBoundingClientRect().top + window.scrollY;
+                    // Visual breathing room between the section and the sticky nav
+                    const buffer = 40; 
                     
-                    // 4. Subtract both heights to ensure the heading clears the UI blocks
-                    // Optional: Add an integer here (e.g., - 20) if you want extra white space above the heading
-                    const finalScrollPosition = absoluteElementTop - navHeight - adminBarHeight;
+                    // Calculate distance to move by subtracting the nav's bottom edge
+                    // from the element's top edge. This guarantees pixel-perfect placement
+                    // regardless of the admin bar, mobile view, or layout shifts.
+                    const travelDistance = elementTopEdge - navBottomEdge - buffer;
+                    const finalScrollPosition = window.scrollY + travelDistance;
 
                     window.scrollTo({
                         top: finalScrollPosition,
                         behavior: 'smooth'
                     });
+
+                    // Release the observer lock after the smooth scroll completes
+                    // 800ms covers standard browser smooth scroll durations safely
+                    setTimeout(() => {
+                        isClickScrolling = false;
+                    }, 800);
                 }
             });
         });
