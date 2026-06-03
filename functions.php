@@ -586,6 +586,87 @@ function dd_render_accordion_with_schema($block_content, $block)
     return $block_content;
 }
 add_filter('render_block', 'dd_render_accordion_with_schema', 10, 2);
+
+/*-----------------------------------------------------------------------------------*/
+/* Environment & Template Detection Engine
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * Resolves the current Post ID early in the WordPress load cycle.
+ * Functions reliably across Frontend, Admin, and REST API (Gutenberg) contexts.
+ *
+ * @return int|false Returns the Post ID if successfully resolved, otherwise false.
+ */
+function dd_get_early_post_id() {
+    // 1. Admin Context (Classic Editor or Standard WP Admin)
+    if ( is_admin() ) {
+        if ( isset( $_GET['post'] ) ) {
+            return absint( $_GET['post'] );
+        }
+        if ( isset( $_POST['post_ID'] ) ) {
+            return absint( $_POST['post_ID'] );
+        }
+    }
+
+    // 2. REST API Context (Gutenberg Block Editor Architecture)
+    if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], '/wp-json/wp/v2/' ) !== false ) {
+        if ( isset( $_GET['post_id'] ) ) {
+            return absint( $_GET['post_id'] );
+        }
+        // Extract ID from the REST endpoint route
+        if ( preg_match( '/\/wp\/v2\/(?:pages|posts)\/(\d+)/', $_SERVER['REQUEST_URI'], $matches ) ) {
+            return absint( $matches[1] );
+        }
+    }
+
+    // 3. Frontend Context (Early Execution before $wp_query is populated)
+    if ( ! is_admin() && isset( $_SERVER['HTTP_HOST'] ) && isset( $_SERVER['REQUEST_URI'] ) ) {
+        if ( isset( $_GET['page_id'] ) ) {
+            return absint( $_GET['page_id'] );
+        }
+        if ( isset( $_GET['p'] ) ) {
+            return absint( $_GET['p'] );
+        }
+
+        global $wpdb;
+        $request_path = trim( parse_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), PHP_URL_PATH ), '/' );
+
+        if ( empty( $request_path ) ) {
+            return absint( get_option( 'page_on_front' ) );
+        }
+
+        $slug    = basename( $request_path );
+        $post_id = $wpdb->get_var( $wpdb->prepare(
+            "SELECT ID FROM $wpdb->posts WHERE post_name = %s AND post_type IN ('page', 'post') AND post_status IN ('publish', 'private') LIMIT 1",
+            $slug
+        ) );
+
+        if ( $post_id ) {
+            return absint( $post_id );
+        }
+    }
+
+    return false;
+}
+
+/**
+ * Determines if the current execution context is assigned the 'templates/page-blocks-editor.php' template.
+ *
+ * @return bool True if the template is active, false otherwise.
+ */
+function dd_is_blocks_editor_template_active() {
+    $post_id = dd_get_early_post_id();
+
+    if ( $post_id ) {
+        $template = get_post_meta( $post_id, '_wp_page_template', true );
+        
+        // Ensure this exactly matches the relative path stored by WordPress
+        return ( 'templates/page-blocks-editor.php' === $template );
+    }
+
+    return false;
+}
+
 /*-----------------------------------------------------------------------------------*/
 /* Require Files
 /*-----------------------------------------------------------------------------------*/
