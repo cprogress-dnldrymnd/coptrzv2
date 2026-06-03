@@ -1142,7 +1142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Select all instances of responsive tables on the page
-    const tables = document.querySelectorAll('table.responsive-table');
+    const tables = document.querySelectorAll('.responsive-table');
     
     tables.forEach(table => {
         // Extract header text strings into an array
