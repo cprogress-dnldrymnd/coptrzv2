@@ -2,13 +2,13 @@
  * @package   DigitallyDisruptive
  * @author    Digitally Disruptive - Donald Raymundo
  * @link      https://digitallydisruptive.co.uk/
- * * Handles the frontend interactivity for the Advanced Tabs block.
+ * * Handles frontend interactivity, including Desktop Tabs and Mobile Accordion conversions.
  */
 document.addEventListener('DOMContentLoaded', function () {
     
     /**
-     * Initializes all Tab blocks present on the page.
-     * * Iterates through each wrapper, extracts panel data, and constructs the navigation UI.
+     * Initializes all Tab blocks on the DOM.
+     * * Evaluates the mobile accordion dataset and builds responsive navigation elements.
      * * @return {void}
      */
     function initDDTabs() {
@@ -18,52 +18,82 @@ document.addEventListener('DOMContentLoaded', function () {
             const panels = wrapper.querySelectorAll('.dd-tab-panel');
             if (panels.length === 0) return;
 
-            // Construct the navigation container
-            const nav = document.createElement('div');
-            nav.className = 'dd-tabs-nav';
-            wrapper.insertBefore(nav, wrapper.firstChild);
+            const isAccordionOnMobile = wrapper.getAttribute('data-mobile-accordion') === 'true';
+
+            // 1. Construct the Desktop Navigation Container (Renders Above)
+            const desktopNav = document.createElement('div');
+            desktopNav.className = 'dd-tabs-nav-desktop';
+            wrapper.insertBefore(desktopNav, wrapper.firstChild);
+
+            // Arrays to keep track of generated buttons to sync their active states easily
+            const desktopButtons = [];
+            const accordionButtons = [];
 
             panels.forEach(function (panel, index) {
                 const title = panel.getAttribute('data-tab-title') || 'Tab';
                 
-                // Construct individual tab buttons
-                const btn = document.createElement('button');
-                btn.className = 'dd-tab-button';
-                btn.innerText = title;
-                btn.setAttribute('role', 'tab');
-                
-                // Set initial active state
-                if (index === 0) {
-                    btn.classList.add('active');
-                    btn.setAttribute('aria-selected', 'true');
-                    panel.classList.add('active');
-                } else {
-                    btn.setAttribute('aria-selected', 'false');
-                    panel.style.display = 'none';
-                }
+                // --- Desktop Tab Button ---
+                const dBtn = document.createElement('button');
+                dBtn.className = 'dd-tab-button';
+                dBtn.innerText = title;
+                dBtn.setAttribute('role', 'tab');
+                desktopNav.appendChild(dBtn);
+                desktopButtons.push(dBtn);
+
+                // --- Mobile Accordion Button ---
+                const aBtn = document.createElement('button');
+                aBtn.className = 'dd-accordion-button';
+                aBtn.innerHTML = `<span>${title}</span><span class="dd-accordion-icon"></span>`;
+                // Insert the accordion button directly before the panel in the DOM tree
+                panel.parentNode.insertBefore(aBtn, panel);
+                accordionButtons.push(aBtn);
 
                 /**
-                 * Click event listener to handle tab switching logic.
+                 * Centralized logic to activate a specific tab index.
+                 * * @param {number} targetIndex The index of the tab to activate.
                  */
-                btn.addEventListener('click', function () {
-                    // Reset all buttons and panels in this specific wrapper
-                    wrapper.querySelectorAll('.dd-tab-button').forEach(b => {
-                        b.classList.remove('active');
-                        b.setAttribute('aria-selected', 'false');
+                const activateTab = function(targetIndex) {
+                    panels.forEach((p, i) => {
+                        if (i === targetIndex) {
+                            // Activate
+                            p.classList.add('active');
+                            p.style.display = 'block';
+                            desktopButtons[i].classList.add('active');
+                            desktopButtons[i].setAttribute('aria-selected', 'true');
+                            accordionButtons[i].classList.add('active');
+                            accordionButtons[i].setAttribute('aria-expanded', 'true');
+                        } else {
+                            // Deactivate
+                            p.classList.remove('active');
+                            p.style.display = 'none';
+                            desktopButtons[i].classList.remove('active');
+                            desktopButtons[i].setAttribute('aria-selected', 'false');
+                            accordionButtons[i].classList.remove('active');
+                            accordionButtons[i].setAttribute('aria-expanded', 'false');
+                        }
                     });
-                    wrapper.querySelectorAll('.dd-tab-panel').forEach(p => {
-                        p.classList.remove('active');
-                        p.style.display = 'none';
-                    });
-                    
-                    // Activate the clicked target
-                    btn.classList.add('active');
-                    btn.setAttribute('aria-selected', 'true');
-                    panel.classList.add('active');
-                    panel.style.display = 'block';
+                };
+
+                // Bind Event Listeners
+                dBtn.addEventListener('click', function () { activateTab(index); });
+                aBtn.addEventListener('click', function () { 
+                    // Accordion toggle logic: If clicking the active accordion, close it. Otherwise, open it.
+                    if (aBtn.classList.contains('active')) {
+                        panel.classList.remove('active');
+                        panel.style.display = 'none';
+                        aBtn.classList.remove('active');
+                        aBtn.setAttribute('aria-expanded', 'false');
+                        dBtn.classList.remove('active');
+                        dBtn.setAttribute('aria-selected', 'false');
+                    } else {
+                        activateTab(index); 
+                    }
                 });
 
-                nav.appendChild(btn);
+                // Set Initial State (Open first tab by default)
+                if (index === 0) {
+                    activateTab(0);
+                }
             });
         });
     }
