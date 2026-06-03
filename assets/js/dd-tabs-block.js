@@ -2,7 +2,8 @@
  * @package   DigitallyDisruptive
  * @author    Digitally Disruptive - Donald Raymundo
  * @link      https://digitallydisruptive.co.uk/
- * * Registers the Parent Tabs block and Child Tab Panel block.
+ * * Registers the Parent Tabs block and Child Tab Panel block with Advanced Layout Supports.
+ * * Encapsulated in an IIFE to prevent global window namespace collisions.
  */
 (function (wp) {
     const { registerBlockType } = wp.blocks;
@@ -11,33 +12,37 @@
     const { TextControl, PanelBody, ToggleControl } = wp.components;
 
     /**
-     * Child Block: Tab Panel
+     * Registers the Child Block: Tab Panel
+     * * Added native 'supports' to allow users to modify backgrounds, padding, and margins natively.
      */
     registerBlockType('dd/tab-panel', {
         title: 'Tab Panel',
         icon: 'feedback',
         category: 'design',
-        parent: ['dd/tabs'],
+        parent: ['dd/tabs'], // Strict Parent-Child relationship
         supports: {
             color: { background: true, text: true },
             spacing: { padding: true, margin: true }
         },
         attributes: {
-            tabTitle: { type: 'string', default: 'New Tab' }
+            tabTitle: { 
+                type: 'string', 
+                default: 'New Tab' 
+            }
         },
-
+        
+        /**
+         * Renders the editor UI for the individual Tab Panel.
+         * * @param {Object} props The block properties provided by Gutenberg.
+         * @return {Object}      The functional React component for the editor.
+         */
         edit: function (props) {
             const { attributes, setAttributes } = props;
 
-            // Editor UI Box - Styling applies directly here
+            // useBlockProps binds the native Gutenberg layout controls (padding, colors) to this wrapper element.
             const blockProps = useBlockProps({
                 className: 'dd-tab-panel-edit',
-                style: {
-                    position: 'relative',
-                    border: '1px solid #ddd',
-                    padding: '35px 15px 15px', // Top padding reserves space for the UI badge 
-                    marginBottom: '15px'
-                }
+                style: { border: '1px dashed #ccc', marginBottom: '10px' }
             });
 
             return el(Fragment, {},
@@ -51,57 +56,63 @@
                     )
                 ),
                 el('div', blockProps,
-                    // Floating Badge UI - Keeps the editor clean without breaking block props
-                    el('span', {
-                        style: {
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            background: '#f0f0f0',
-                            color: '#333',
-                            padding: '4px 12px',
-                            fontSize: '11px',
-                            fontWeight: '600',
-                            borderBottomRightRadius: '4px',
-                            borderRight: '1px solid #ddd',
-                            borderBottom: '1px solid #ddd',
-                            userSelect: 'none'
-                        }
-                    }, attributes.tabTitle),
-
-                    el(InnerBlocks, {
-                        template: [['core/paragraph', { placeholder: 'Enter tab content here...' }]]
-                    })
+                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9' } }, 
+                        'Tab Content: ' + attributes.tabTitle
+                    ),
+                    el('div', { style: { padding: '15px' } },
+                        el(InnerBlocks, {
+                            template: [['core/paragraph', { placeholder: 'Enter tab content here...' }]]
+                        })
+                    )
                 )
             );
         },
 
+        /**
+         * Serializes the Tab Panel block to the database.
+         * * @param {Object} props The block properties.
+         * @return {Object}      The HTML markup saved to the database.
+         */
         save: function (props) {
+            // useBlockProps.save() ensures all custom styles (padding, background) are exported to the frontend HTML.
             const blockProps = useBlockProps.save({
                 className: 'dd-tab-panel',
                 'data-tab-title': props.attributes.tabTitle
             });
-            // Direct rendering of InnerBlocks.Content prevents frontend DOM invalidation
-            return el('div', blockProps, el(InnerBlocks.Content));
+
+            return el('div', blockProps,
+                el('div', { className: 'dd-tab-panel-inner' },
+                    el(InnerBlocks.Content, null)
+                )
+            );
         }
     });
 
     /**
-     * Parent Block: Tabs Container
+     * Registers the Parent Block: Tabs Container
+     * * Includes the Mobile Accordion toggle to alter frontend logic.
      */
     registerBlockType('dd/tabs', {
         title: 'Advanced Tabs',
         icon: 'index-card',
         category: 'design',
         attributes: {
-            mobileAccordion: { type: 'boolean', default: true }
+            mobileAccordion: {
+                type: 'boolean',
+                default: true
+            }
         },
-
+        
+        /**
+         * Renders the editor UI for the Parent Tabs block.
+         * * @param {Object} props The block properties provided by Gutenberg.
+         * @return {Object}      The functional React component for the editor.
+         */
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const blockProps = useBlockProps({
                 className: 'dd-tabs-wrapper-edit',
-                style: { border: '2px dashed #bbb', padding: '15px' }
+                style: { border: '2px solid #007cba', padding: '2px', backgroundColor: '#f0f6fc' }
             });
 
             return el(Fragment, {},
@@ -115,7 +126,7 @@
                     )
                 ),
                 el('div', blockProps,
-                    el('div', { style: { marginBottom: '15px', fontSize: '11px', fontWeight: 'bold', color: '#666', textTransform: 'uppercase', letterSpacing: '0.5px' } }, 'Advanced Tabs Container'),
+                    el('div', { style: { padding: '10px', textTransform: 'uppercase', fontSize: '11px', color: '#007cba', fontWeight: 'bold' } }, 'Tabs Container (Navigation renders above dynamically on frontend)'),
                     el(InnerBlocks, {
                         allowedBlocks: ['dd/tab-panel'],
                         template: [
@@ -127,12 +138,20 @@
             );
         },
 
+        /**
+         * Serializes the Parent Tabs block to the database.
+         * * @param {Object} props The block properties.
+         * @return {Object}      The HTML markup saved to the database.
+         */
         save: function (props) {
             const blockProps = useBlockProps.save({
                 className: 'dd-tabs-wrapper',
                 'data-mobile-accordion': props.attributes.mobileAccordion ? 'true' : 'false'
             });
-            return el('div', blockProps, el(InnerBlocks.Content));
+
+            return el('div', blockProps,
+                el(InnerBlocks.Content, null)
+            );
         }
     });
 
