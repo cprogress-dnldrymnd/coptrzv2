@@ -1014,16 +1014,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // State lock to prevent IntersectionObserver from fighting the click scroll
     let isClickScrolling = false;
 
-    /**
-     * Safely scrolls the horizontal navigation menu to center the active link
-     * without triggering window-level layout shifts.
+  /**
+     * Safely scrolls the horizontal navigation menu to align the active link
+     * to the far-left (first position) of the scrollable container.
      */
     const scrollNavToLink = (link) => {
-        const containerWidth = navContainer.clientWidth;
-        const linkRect = link.getBoundingClientRect();
+        // Dynamically retrieve the container's left padding to preserve visual breathing room
+        const computedStyle = window.getComputedStyle(navContainer);
+        const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
         
-        // Calculate the exact horizontal center offset
-        const scrollLeft = link.offsetLeft - (containerWidth / 2) + (linkRect.width / 2);
+        // Align the item's offset to the container's start, accounting for padding
+        const scrollLeft = link.offsetLeft - paddingLeft;
         
         navContainer.scrollTo({
             left: scrollLeft,
