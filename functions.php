@@ -150,14 +150,23 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         true
     );
 
-     wp_enqueue_script(
+    wp_enqueue_script(
         'dd-faq-schema-extension',
         get_template_directory_uri() . '/assets/js/extend-accordion.js', // Adjust path
         array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
         filemtime(get_template_directory() . '/assets/js/extend-accordion.js'),
         true
     );
-   
+
+
+    wp_enqueue_script(
+        'dd-custom-block-attributes',
+        get_template_directory_uri() . '/assets/js/extend-blocks-attribute.js', // Adjust path
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+        filemtime(get_template_directory() . '/assets/js/extend-blocks-attribute.js'),
+        true
+    );
+
 }
 add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_editor_assets');
 
@@ -490,72 +499,73 @@ add_filter('render_block', 'digitally_disruptive_render_custom_css', 10, 2);
  * @param array  $block         The parsed block array including attributes.
  * @return string               The modified block content with injected JSON-LD schema.
  */
-function dd_render_accordion_with_schema( $block_content, $block ) {
-	// 1. Isolate the target block and check the custom attribute flag
-	if ( 'core/accordion' !== $block['blockName'] || empty( $block['attrs']['enableFaqSchema'] ) ) {
-		return $block_content;
-	}
+function dd_render_accordion_with_schema($block_content, $block)
+{
+    // 1. Isolate the target block and check the custom attribute flag
+    if ('core/accordion' !== $block['blockName'] || empty($block['attrs']['enableFaqSchema'])) {
+        return $block_content;
+    }
 
-	if ( empty( $block['innerBlocks'] ) ) {
-		return $block_content;
-	}
+    if (empty($block['innerBlocks'])) {
+        return $block_content;
+    }
 
-	$faq_entities = array();
+    $faq_entities = array();
 
-	// 2. Loop through the 'core/accordion-item' wrappers
-	foreach ( $block['innerBlocks'] as $item ) {
-		
-		if ( 'core/accordion-item' === $item['blockName'] && ! empty( $item['innerBlocks'] ) ) {
-			$question_text = '';
-			$answer_html   = '';
+    // 2. Loop through the 'core/accordion-item' wrappers
+    foreach ($block['innerBlocks'] as $item) {
 
-			// 3. Look inside the Item for the Heading and the Panel
-			foreach ( $item['innerBlocks'] as $inner_element ) {
-				
-				// Extract the Question
-				if ( 'core/accordion-heading' === $inner_element['blockName'] ) {
-					// We use innerHTML and strip tags to get the pure text string
-					$question_text = trim( wp_strip_all_tags( $inner_element['innerHTML'] ) );
-				} 
-				
-				// Extract the Answer
-				if ( 'core/accordion-panel' === $inner_element['blockName'] ) {
-					// We compile the panel natively to capture all paragraphs, lists, and formatting
-					$answer_html = render_block( $inner_element );
-				}
-			}
+        if ('core/accordion-item' === $item['blockName'] && ! empty($item['innerBlocks'])) {
+            $question_text = '';
+            $answer_html   = '';
 
-			// 4. Construct the FAQ entity if both pieces of data exist
-			if ( ! empty( $question_text ) && ! empty( trim( $answer_html ) ) ) {
-				$faq_entities[] = array(
-					'@type'          => 'Question',
-					'name'           => $question_text,
-					'acceptedAnswer' => array(
-						'@type' => 'Answer',
-						'text'  => wp_kses_post( trim( $answer_html ) ), // Sanitize the compiled HTML
-					),
-				);
-			}
-		}
-	}
+            // 3. Look inside the Item for the Heading and the Panel
+            foreach ($item['innerBlocks'] as $inner_element) {
 
-	// 5. Inject Schema into the DOM
-	if ( ! empty( $faq_entities ) ) {
-		$schema = array(
-			'@context'   => 'https://schema.org',
-			'@type'      => 'FAQPage',
-			'mainEntity' => $faq_entities,
-		);
+                // Extract the Question
+                if ('core/accordion-heading' === $inner_element['blockName']) {
+                    // We use innerHTML and strip tags to get the pure text string
+                    $question_text = trim(wp_strip_all_tags($inner_element['innerHTML']));
+                }
 
-		$schema_script  = "\n\n";
-		$schema_script .= '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
+                // Extract the Answer
+                if ('core/accordion-panel' === $inner_element['blockName']) {
+                    // We compile the panel natively to capture all paragraphs, lists, and formatting
+                    $answer_html = render_block($inner_element);
+                }
+            }
 
-		return $block_content . $schema_script;
-	}
+            // 4. Construct the FAQ entity if both pieces of data exist
+            if (! empty($question_text) && ! empty(trim($answer_html))) {
+                $faq_entities[] = array(
+                    '@type'          => 'Question',
+                    'name'           => $question_text,
+                    'acceptedAnswer' => array(
+                        '@type' => 'Answer',
+                        'text'  => wp_kses_post(trim($answer_html)), // Sanitize the compiled HTML
+                    ),
+                );
+            }
+        }
+    }
 
-	return $block_content;
+    // 5. Inject Schema into the DOM
+    if (! empty($faq_entities)) {
+        $schema = array(
+            '@context'   => 'https://schema.org',
+            '@type'      => 'FAQPage',
+            'mainEntity' => $faq_entities,
+        );
+
+        $schema_script  = "\n\n";
+        $schema_script .= '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
+
+        return $block_content . $schema_script;
+    }
+
+    return $block_content;
 }
-add_filter( 'render_block', 'dd_render_accordion_with_schema', 10, 2 );
+add_filter('render_block', 'dd_render_accordion_with_schema', 10, 2);
 /*-----------------------------------------------------------------------------------*/
 /* Require Files
 /*-----------------------------------------------------------------------------------*/
