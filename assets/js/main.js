@@ -988,83 +988,15 @@ function matchElementHeights(parentClass = 'mh-parent', childClass = 'mh-child')
 }
 
 /**
- * WordPress Block Navigation Scroll & Click Sync
- * Author: Digitally Disruptive - Donald Raymundo
- * Author URI: https://digitallydisruptive.co.uk/
- */
-document.addEventListener('DOMContentLoaded', () => {
-    const navContainer = document.querySelector('ul.page-navigation');
-    const navLinks = document.querySelectorAll('.page-navigation .wp-block-navigation-item__content');
-
-    if (!navContainer || navLinks.length === 0) return;
-
-    // Dynamically generate the array of section elements based on the link hrefs
-    const sections = Array.from(navLinks)
-        .map(link => {
-            const targetId = link.getAttribute('href');
-            // Ensure href is a valid hash link before querying the DOM
-            if (targetId && targetId.startsWith('#') && targetId.length > 1) {
-                return document.querySelector(targetId);
-            }
-            return null;
-        })
-        .filter(section => section !== null);
-
-    if (sections.length === 0) return;
-
-    /**
-     * Iterates through navigation links to apply the active class and automatically
-     * scrolls the horizontal navigation container to keep the active item in view.
-     * 
-     * @param {string} activeId - The ID attribute of the section currently intersecting the viewport.
-     */
-    const updateActiveState = (activeId) => {
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-
-            if (link.getAttribute('href') === `#${activeId}`) {
-                link.classList.add('active');
-
-                link.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center'
-                });
-            }
-        });
-    };
-
-    /**
-     * Instantiates an Intersection Observer to detect when targeted DOM sections
-     * enter the defined viewport threshold.
-     */
-    const initScrollSpy = () => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '-20% 0px -80% 0px',
-            threshold: 0
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    updateActiveState(entry.target.id);
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => observer.observe(section));
-    };
-
-    /**
      * Overrides the default anchor click behavior to account for the sticky 
-     * navigation's height, ensuring the scroll target is not occluded by the menu.
+     * navigation's height and adds a visual buffer, ensuring the scroll 
+     * target is clearly visible below the menu.
      */
     const initSmoothScrolling = () => {
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href');
-
+                
                 // Proceed only if it's an internal hash link
                 if (!targetId || !targetId.startsWith('#') || targetId.length <= 1) return;
 
@@ -1072,10 +1004,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (targetSection) {
                     e.preventDefault();
-
+                    
                     const navHeight = navContainer.offsetHeight;
+                    
+                    // The visual breathing room between the sticky nav and the section heading.
+                    // Adjust this value (in pixels) depending on your design preferences.
+                    const scrollBuffer = 40; 
+                    
                     const elementPosition = targetSection.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.scrollY - navHeight;
+                    
+                    // Subtract both the physical nav height and the extra buffer
+                    const offsetPosition = elementPosition + window.scrollY - navHeight - scrollBuffer;
 
                     window.scrollTo({
                         top: offsetPosition,
@@ -1085,7 +1024,3 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     };
-
-    initScrollSpy();
-    initSmoothScrolling();
-});
