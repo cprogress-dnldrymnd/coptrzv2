@@ -1002,7 +1002,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = Array.from(navLinks)
         .map(link => {
             const targetId = link.getAttribute('href');
-            // Ensure href is a valid hash link before querying the DOM
             if (targetId && targetId.startsWith('#') && targetId.length > 1) {
                 return document.querySelector(targetId);
             }
@@ -1013,18 +1012,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sections.length === 0) return;
 
     /**
-     * Iterates through navigation links to apply the active class and automatically
-     * scrolls the horizontal navigation container to keep the active item in view.
-     * 
-     * @param {string} activeId - The ID attribute of the section currently intersecting the viewport.
+     * Updates the UI to reflect the active navigation item.
+     * Highlights the link and smoothly scrolls the horizontal nav container
+     * to ensure the active item remains visible on mobile devices.
+     * * @param {string} activeId - The ID of the currently active HTML section.
      */
     const updateActiveState = (activeId) => {
         navLinks.forEach(link => {
             link.classList.remove('active');
-
+            
             if (link.getAttribute('href') === `#${activeId}`) {
                 link.classList.add('active');
-
+                
                 link.scrollIntoView({
                     behavior: 'smooth',
                     block: 'nearest',
@@ -1035,13 +1034,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
-     * Instantiates an Intersection Observer to detect when targeted DOM sections
-     * enter the defined viewport threshold.
+     * Initializes the Intersection Observer to watch target sections.
+     * Triggers active state updates when a section enters the top 20% of the viewport.
      */
     const initScrollSpy = () => {
         const observerOptions = {
             root: null,
-            rootMargin: '-20% 0px -80% 0px',
+            rootMargin: '-20% 0px -80% 0px', 
             threshold: 0
         };
 
@@ -1057,39 +1056,38 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
-        * Overrides the default anchor click behavior to account for the sticky 
-        * navigation's height, a visual buffer, and dynamically calculates the 
-        * WordPress Admin Bar height if the user is logged in.
-        */
+     * Handles manual clicks on navigation links.
+     * Calculates the exact absolute offset position of the target element,
+     * deducting both the sticky navigation height and the dynamic WP admin bar height.
+     */
     const initSmoothScrolling = () => {
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href');
-
-                // Proceed only if it's an internal hash link
+                
                 if (!targetId || !targetId.startsWith('#') || targetId.length <= 1) return;
 
                 const targetSection = document.querySelector(targetId);
 
                 if (targetSection) {
                     e.preventDefault();
-
-                    const navHeight = navContainer.offsetHeight;
-
-                    // Check for the WP Admin bar and get its dynamic height
+                    
+                    // 1. Get the physical height of the sticky nav
+                    const navHeight = navContainer.getBoundingClientRect().height;
+                    
+                    // 2. Determine if the WP Admin Bar is present and get its height
                     const adminBar = document.getElementById('wpadminbar');
-                    const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
-
-                    // The visual breathing room between the sticky nav and the section heading.
-                    const scrollBuffer = 40;
-
-                    const elementPosition = targetSection.getBoundingClientRect().top;
-
-                    // Subtract the nav height, the extra buffer, AND the admin bar height
-                    const offsetPosition = elementPosition + window.scrollY - navHeight - scrollBuffer - adminBarHeight;
+                    const adminBarHeight = adminBar ? adminBar.getBoundingClientRect().height : 0;
+                    
+                    // 3. Calculate the absolute Y position of the target element relative to the document
+                    const absoluteElementTop = targetSection.getBoundingClientRect().top + window.scrollY;
+                    
+                    // 4. Subtract both heights to ensure the heading clears the UI blocks
+                    // Optional: Add an integer here (e.g., - 20) if you want extra white space above the heading
+                    const finalScrollPosition = absoluteElementTop - navHeight - adminBarHeight;
 
                     window.scrollTo({
-                        top: offsetPosition,
+                        top: finalScrollPosition,
                         behavior: 'smooth'
                     });
                 }
