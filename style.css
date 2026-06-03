@@ -13031,8 +13031,9 @@ ul.is-swiper-slider,
    * to break them out of standard tabular rendering.
    */
   .responsive--table {
-    margin: 0 !important;
-    border: none !important; }
+    margin: 0 !important; }
+    .responsive--table table {
+      border: none !important; }
 
   .responsive--table,
   .responsive--table thead,
@@ -13073,7 +13074,7 @@ ul.is-swiper-slider,
     text-align: left;
     gap: 1rem;
     padding: 0.75rem 0;
-    border-bottom: 1px solid #f1f5f9; }
+    border: none !important; }
 
   /* * Remove the bottom border from the final cell to keep the card visually clean.
    */
