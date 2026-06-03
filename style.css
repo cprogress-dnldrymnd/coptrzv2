@@ -13011,6 +13011,14 @@ ul.is-swiper-slider,
     width: 5px;
     background: transparent linear-gradient(270deg, #2da1ff 0%, #175180 100%) 0% 0% no-repeat padding-box; }
 
+body.admin-bar ul.page-navigation {
+  top: 32px;
+  /* Standard Desktop WP Admin Bar */ }
+
+@media screen and (max-width: 782px) {
+  body.admin-bar ul.page-navigation {
+    top: 46px;
+    /* Standard Mobile WP Admin Bar */ } }
 @keyframes spin {
   from {
     transform: rotate(0deg); }
