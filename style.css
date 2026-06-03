@@ -13042,6 +13042,10 @@ ul.is-swiper-slider,
     display: block;
     width: 100%; }
 
+  .responsive--table thead,
+  .responsive--table tbody {
+    border: none !important; }
+
   /* * Visually hide the header row to save space, but use absolute 
    * positioning rather than `display: none` to maintain screen-reader accessibility.
    */
