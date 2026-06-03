@@ -12850,9 +12850,11 @@ ul.is-swiper-slider,
 
 .dd-tabs-wrapper {
   width: 100%;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  position: relative; }
 
-.dd-tabs-nav {
+/* --- Desktop Navigation (Renders Above) --- */
+.dd-tabs-nav-desktop {
   display: flex;
   flex-wrap: wrap;
   border-bottom: 2px solid #eaeaea;
@@ -12871,15 +12873,50 @@ ul.is-swiper-slider,
   margin-bottom: -2px;
   /* Pull down to overlap the container border */ }
 
-.dd-tab-button:hover {
+.dd-tab-button:hover,
+.dd-tab-button.active {
   color: #007cba; }
 
 .dd-tab-button.active {
-  color: #007cba;
   border-bottom: 2px solid #007cba; }
 
+/* --- Mobile Accordion Navigation --- */
+.dd-accordion-button {
+  display: none;
+  /* Hidden on Desktop by default */
+  width: 100%;
+  text-align: left;
+  background-color: #f7f7f7;
+  border: 1px solid #eaeaea;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 0;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease; }
+
+.dd-accordion-button:hover {
+  background-color: #f0f0f0; }
+
+.dd-accordion-button.active {
+  background-color: #007cba;
+  color: #fff;
+  border-color: #007cba; }
+
+.dd-accordion-icon::before {
+  content: '+';
+  font-size: 20px;
+  font-weight: normal; }
+
+.dd-accordion-button.active .dd-accordion-icon::before {
+  content: '-'; }
+
+/* --- Panel Animations --- */
 .dd-tab-panel {
-  animation: ddTabFadeIn 0.4s ease-in-out; }
+  animation: ddTabFadeIn 0.4s ease-in-out;
+  /* User customizations (Padding, Margin, Background) will be injected here automatically by Gutenberg via useBlockProps */ }
 
 @keyframes ddTabFadeIn {
   from {
@@ -12888,6 +12925,23 @@ ul.is-swiper-slider,
   to {
     opacity: 1;
     transform: translateY(0); } }
+/* -----------------------------------------
+   Responsive Breakpoints
+----------------------------------------- */
+/* Target mobile devices ONLY if the Wrapper has the accordion attribute enabled */
+@media (max-width: 767px) {
+  .dd-tabs-wrapper[data-mobile-accordion="true"] .dd-tabs-nav-desktop {
+    display: none;
+    /* Hide top navigation */ }
+
+  .dd-tabs-wrapper[data-mobile-accordion="true"] .dd-accordion-button {
+    display: flex;
+    /* Show accordion buttons directly above panels */ }
+
+  .dd-tabs-wrapper[data-mobile-accordion="true"] .dd-tab-panel {
+    margin-top: 0 !important;
+    border-top: none !important;
+    border-radius: 0; } }
 @keyframes spin {
   from {
     transform: rotate(0deg); }
