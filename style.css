@@ -13030,7 +13030,7 @@ ul.is-swiper-slider,
   /* * Force table elements into a block-level display 
    * to break them out of standard tabular rendering.
    */
-  table.responsive--table,
+  .responsive--table,
   .responsive--table thead,
   .responsive--table tbody,
   .responsive--table th,
