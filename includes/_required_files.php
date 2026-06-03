@@ -1,7 +1,6 @@
 <?php
 require_once('schema.php');
 require_once('post-types.php');
-require_once('svg.php');
 
 /**
  * Conditional File Loading Execution
@@ -14,6 +13,7 @@ if (!$is_blocks_editor) {
     require_once('elements.php');
     require_once('modules.php');
     require_once('ajax.php');
+    require_once('svg.php');
 } else {
     if (!is_admin()) {
         require_once('elements.php');

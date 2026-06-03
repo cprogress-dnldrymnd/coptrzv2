@@ -31,6 +31,10 @@ function tissue_paper_register_custom_fields()
     $is_blocks_editor = function_exists('dd_is_blocks_editor_template_active') && dd_is_blocks_editor_template_active();
     if (!$is_blocks_editor) {
         require_once('includes/post-meta.php');
+    } else {
+        if (!is_admin()) {
+            require_once('includes/post-meta.php');
+        }
     }
 }
 function get__post_meta($value)
@@ -874,13 +878,14 @@ function inject_popup_modal()
  *
  * @return void
  */
-function dd_optimize_autosave_interval() {
-	if ( ! defined( 'AUTOSAVE_INTERVAL' ) ) {
-		// Set autosave to 2 minutes instead of the default 60 seconds
-		define( 'AUTOSAVE_INTERVAL', 120 ); 
-	}
+function dd_optimize_autosave_interval()
+{
+    if (! defined('AUTOSAVE_INTERVAL')) {
+        // Set autosave to 2 minutes instead of the default 60 seconds
+        define('AUTOSAVE_INTERVAL', 120);
+    }
 }
-add_action( 'init', 'dd_optimize_autosave_interval' );
+add_action('init', 'dd_optimize_autosave_interval');
 /**
  * Throttles the WordPress Heartbeat API in the block editor.
  * 
@@ -901,7 +906,8 @@ add_filter('heartbeat_settings', function ($settings) {
  *
  * @return void
  */
-function dd_disable_block_directory_search() {
-	remove_action( 'enqueue_block_editor_assets', 'wp_enqueue_editor_block_directory_assets' );
+function dd_disable_block_directory_search()
+{
+    remove_action('enqueue_block_editor_assets', 'wp_enqueue_editor_block_directory_assets');
 }
-add_action( 'admin_init', 'dd_disable_block_directory_search' );
+add_action('admin_init', 'dd_disable_block_directory_search');
