@@ -9,12 +9,10 @@ require_once('post-types.php');
  */
 $is_blocks_editor = function_exists('dd_is_blocks_editor_template_active') && dd_is_blocks_editor_template_active();
 
-if ($is_blocks_editor && !is_admin()) {
-    require_once('elements.php');
-    require_once('modules.php');
-    require_once('ajax.php');
-    require_once('svg.php');
-}
+require_once('elements.php');
+require_once('modules.php');
+require_once('ajax.php');
+require_once('svg.php');
 
 require_once('shortcodes.php');
 require_once('hooks.php');
