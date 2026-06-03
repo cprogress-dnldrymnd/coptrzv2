@@ -13,7 +13,7 @@
 
     /**
      * Registers the Child Block: Tab Panel
-     * * Added native 'supports' to allow users to modify backgrounds, padding, margins, and borders natively.
+     * * Added native 'supports' to allow users to modify backgrounds, padding, margins, and borders.
      */
     registerBlockType('dd/tab-panel', {
         title: 'Tab Panel',
@@ -41,10 +41,9 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
 
-            // useBlockProps shifted to apply native Gutenberg layout controls exclusively to the InnerBlocks container.
-            const innerBlockProps = useBlockProps({
-                className: 'dd-tab-panel-inner',
-                style: { padding: '15px' }
+            // useBlockProps MUST remain on the root element to prevent Gutenberg from double-injecting styles.
+            const blockProps = useBlockProps({
+                className: 'dd-tab-panel-edit',
             });
 
             return el(Fragment, {},
@@ -57,13 +56,12 @@
                         })
                     )
                 ),
-                // Outer wrapper kept clean for editor structure, untethered from styling attributes.
-                el('div', { className: 'dd-tab-panel-edit', style: { border: '1px dashed #ccc', marginBottom: '10px' } },
-                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9' } }, 
+                // Root element binds the layout controls natively.
+                el('div', blockProps,
+                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } }, 
                         'Tab Content: ' + attributes.tabTitle
                     ),
-                    // Styling classes and inline styles are now applied directly here on the inner blocks.
-                    el('div', innerBlockProps,
+                    el('div', { className: 'dd-tab-panel-inner' },
                         el(InnerBlocks, {
                             template: [['core/paragraph', { placeholder: 'Enter tab content here...' }]]
                         })
@@ -78,14 +76,14 @@
          * @return {Object}      The HTML markup saved to the database.
          */
         save: function (props) {
-            // Ensures all custom styles (padding, background, borders) are exported to the inner container on the frontend.
-            const innerBlockProps = useBlockProps.save({
-                className: 'dd-tab-panel-inner'
+            // useBlockProps.save() correctly maps all styles to the primary structural wrapper.
+            const blockProps = useBlockProps.save({
+                className: 'dd-tab-panel',
+                'data-tab-title': props.attributes.tabTitle
             });
 
-            // The outer wrapper remains strictly functional for the frontend JS interaction script.
-            return el('div', { className: 'dd-tab-panel', 'data-tab-title': props.attributes.tabTitle },
-                el('div', innerBlockProps,
+            return el('div', blockProps,
+                el('div', { className: 'dd-tab-panel-inner' },
                     el(InnerBlocks.Content, null)
                 )
             );
