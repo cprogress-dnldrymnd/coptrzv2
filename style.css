@@ -12868,6 +12868,9 @@ ul.is-swiper-slider,
   position: relative; }
 
 /* Container Alignment */
+.dd-tabs-wrapper {
+  border: none !important; }
+
 .dd-tabs-wrapper .dd-tabs-nav-desktop {
   display: flex;
   justify-content: var(--dd-nav-align, flex-start);

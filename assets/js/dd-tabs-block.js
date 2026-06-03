@@ -33,7 +33,7 @@
         attributes: {
             tabTitle: { type: 'string', default: 'New Tab' }
         },
-
+        
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const blockProps = useBlockProps({ className: 'dd-tab-panel-edit' });
@@ -49,7 +49,7 @@
                     )
                 ),
                 el('div', blockProps,
-                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } },
+                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } }, 
                         'Tab Content: ' + attributes.tabTitle
                     ),
                     el('div', { className: 'dd-tab-panel-inner' },
@@ -95,7 +95,6 @@
             mobileAccordion: { type: 'boolean', default: true },
             navAlignment: { type: 'string', default: 'flex-start' },
             btnPadding: { type: 'string', default: '10px 20px' },
-            // Converted to strings to support CSS shorthand
             btnBorderRadius: { type: 'string', default: '4px' },
             btnBorderWidth: { type: 'string', default: '0px' },
             btnBorderColor: { type: 'string', default: 'transparent' },
@@ -103,13 +102,15 @@
             btnBgColor: { type: 'string' },
             btnTextColor: { type: 'string' },
             btnActiveBgColor: { type: 'string' },
-            btnActiveTextColor: { type: 'string' }
+            btnActiveTextColor: { type: 'string' },
+            // New Typography Attributes
+            btnFontSize: { type: 'string', default: '16px' },
+            btnFontWeight: { type: 'string', default: 'normal' }
         },
-
+        
         edit: function (props) {
             const { attributes, setAttributes } = props;
-
-            // Format variables to ensure backwards compatibility with older saved blocks that used integers
+            
             const safeRadius = String(attributes.btnBorderRadius).includes('px') || String(attributes.btnBorderRadius).includes(' ') ? attributes.btnBorderRadius : `${attributes.btnBorderRadius}px`;
             const safeWidth = String(attributes.btnBorderWidth).includes('px') || String(attributes.btnBorderWidth).includes(' ') ? attributes.btnBorderWidth : `${attributes.btnBorderWidth}px`;
 
@@ -124,8 +125,10 @@
                 '--dd-btn-border-width': safeWidth,
                 '--dd-btn-border-color': attributes.btnBorderColor,
                 '--dd-btn-border-style': attributes.btnBorderStyle,
-                border: '2px solid #007cba',
-                padding: '2px',
+                '--dd-btn-font-size': attributes.btnFontSize,
+                '--dd-btn-font-weight': attributes.btnFontWeight,
+                border: '2px solid #007cba', 
+                padding: '2px', 
                 backgroundColor: '#f0f6fc'
             };
 
@@ -153,6 +156,24 @@
                                 { label: 'Right', value: 'flex-end' }
                             ],
                             onChange: function (val) { setAttributes({ navAlignment: val }); }
+                        }),
+                        el(TextControl, {
+                            label: 'Font Size',
+                            value: attributes.btnFontSize,
+                            help: 'e.g., 16px, 1.2rem, 1em',
+                            onChange: function (val) { setAttributes({ btnFontSize: val }); }
+                        }),
+                        el(SelectControl, {
+                            label: 'Font Weight',
+                            value: attributes.btnFontWeight,
+                            options: [
+                                { label: 'Normal (400)', value: 'normal' },
+                                { label: 'Medium (500)', value: '500' },
+                                { label: 'Semi-Bold (600)', value: '600' },
+                                { label: 'Bold (700)', value: 'bold' },
+                                { label: 'Extra Bold (800)', value: '800' }
+                            ],
+                            onChange: function (val) { setAttributes({ btnFontWeight: val }); }
                         }),
                         el(TextControl, {
                             label: 'Button Padding',
@@ -223,7 +244,9 @@
                 '--dd-btn-radius': safeRadius,
                 '--dd-btn-border-width': safeWidth,
                 '--dd-btn-border-color': props.attributes.btnBorderColor,
-                '--dd-btn-border-style': props.attributes.btnBorderStyle
+                '--dd-btn-border-style': props.attributes.btnBorderStyle,
+                '--dd-btn-font-size': props.attributes.btnFontSize,
+                '--dd-btn-font-weight': props.attributes.btnFontWeight
             };
 
             const blockProps = useBlockProps.save({

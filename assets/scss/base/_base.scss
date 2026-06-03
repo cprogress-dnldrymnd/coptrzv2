@@ -2052,6 +2052,9 @@ ul.is-swiper-slider,
 }
 
 /* Container Alignment */
+.dd-tabs-wrapper {
+    border: none !important;
+}
 .dd-tabs-wrapper .dd-tabs-nav-desktop {
     display: flex;
     justify-content: var(--dd-nav-align, flex-start);
@@ -2063,13 +2066,13 @@ ul.is-swiper-slider,
     background-color: var(--dd-btn-bg, transparent);
     color: var(--dd-btn-color, inherit);
     padding: var(--dd-btn-padding, 10px 20px);
-    
+
     /* New Border & Radius Variables */
     border-radius: var(--dd-btn-radius, 4px);
     border-width: var(--dd-btn-border-width, 0px);
     border-color: var(--dd-btn-border-color, transparent);
     border-style: solid;
-    
+
     cursor: pointer;
     transition: all 0.3s ease;
 }
