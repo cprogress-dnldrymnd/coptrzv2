@@ -1014,27 +1014,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // State lock to prevent IntersectionObserver from fighting the click scroll
     let isClickScrolling = false;
 
-  /**
+    /**
      * Safely scrolls the horizontal navigation menu to align the active link
      * to the far-left (first position) of the scrollable container.
-     * Execution is strictly restricted to viewports of 991px and below.
+     * Utilizes getBoundingClientRect() to bypass nested flexbox offset issues.
      * * @param {HTMLElement} link - The anchor element that is currently active.
      */
     const scrollNavToLink = (link) => {
-        // Evaluate the viewport width; abort execution if wider than 991px
-        if (!window.matchMedia('(max-width: 991px)').matches) {
-            return;
-        }
+        // Execute only on viewports 991px and below
+        if (!window.matchMedia('(max-width: 991px)').matches) return;
 
-        // Dynamically retrieve the container's left padding to preserve visual breathing room
+        // Target the parent <li> if available to account for WP block margins/padding
+        const targetElement = link.closest('li') || link;
+
+        // Get viewport-relative positions
+        const containerRect = navContainer.getBoundingClientRect();
+        const targetRect = targetElement.getBoundingClientRect();
+
+        // Dynamically retrieve the container's left padding
         const computedStyle = window.getComputedStyle(navContainer);
         const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
-        
-        // Align the item's offset to the container's start, accounting for padding
-        const scrollLeft = link.offsetLeft - paddingLeft;
-        
+
+        // Calculate the absolute scroll position needed by adding the container's current scrollLeft
+        // to the delta between the target's left edge and the container's left edge.
+        const targetScrollLeft = navContainer.scrollLeft + (targetRect.left - containerRect.left) - paddingLeft;
+
         navContainer.scrollTo({
-            left: scrollLeft,
+            left: targetScrollLeft,
             behavior: 'smooth'
         });
     };
@@ -1107,8 +1113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const buffer = 40; 
                     
                     // Calculate distance to move by subtracting the nav's bottom edge
-                    // from the element's top edge. This guarantees pixel-perfect placement
-                    // regardless of the admin bar, mobile view, or layout shifts.
+                    // from the element's top edge. This guarantees pixel-perfect placement.
                     const travelDistance = elementTopEdge - navBottomEdge - buffer;
                     const finalScrollPosition = window.scrollY + travelDistance;
 
@@ -1118,7 +1123,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     // Release the observer lock after the smooth scroll completes
-                    // 800ms covers standard browser smooth scroll durations safely
                     setTimeout(() => {
                         isClickScrolling = false;
                     }, 800);
