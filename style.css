@@ -9955,6 +9955,16 @@ button.swiper-pagination-bullet {
   --wp--preset--color--lightgray3: #efefef;
   --wp--preset--color--transparent: #00000000; }
 
+@media (max-width: 991px) {
+  :root {
+    --wp--preset--spacing--60: 2rem;
+    --wp--preset--spacing--70: 3rem;
+    --wp--preset--spacing--80: 4rem; } }
+@media (max-width: 767px) {
+  :root {
+    --wp--preset--spacing--60: 2rem;
+    --wp--preset--spacing--70: 3rem;
+    --wp--preset--spacing--80: 4rem; } }
 @font-face {
   font-family: "Poppins";
   src: url("./assets/fonts/poppins/Poppins-Light.eot");

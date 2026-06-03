@@ -55,3 +55,19 @@ $red-color: #d64550;
 	--wp--preset--color--lightgray3: #efefef;
 	--wp--preset--color--transparent: #00000000;
 }
+
+@media (max-width: 991px) {
+	:root {
+		--wp--preset--spacing--60: 2rem;
+		--wp--preset--spacing--70: 3rem;
+		--wp--preset--spacing--80: 4rem;
+	}
+}
+
+@media (max-width: 767px) {
+	:root {
+		--wp--preset--spacing--60: 1.75rem;
+		--wp--preset--spacing--70: 2.5rem;
+		--wp--preset--spacing--80: 3rem;
+	}
+}
