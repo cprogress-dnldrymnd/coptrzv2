@@ -9962,9 +9962,9 @@ button.swiper-pagination-bullet {
     --wp--preset--spacing--80: 4rem; } }
 @media (max-width: 767px) {
   :root {
-    --wp--preset--spacing--60: 2rem;
-    --wp--preset--spacing--70: 3rem;
-    --wp--preset--spacing--80: 4rem; } }
+    --wp--preset--spacing--60: 1.75rem;
+    --wp--preset--spacing--70: 2.5rem;
+    --wp--preset--spacing--80: 3rem; } }
 @font-face {
   font-family: "Poppins";
   src: url("./assets/fonts/poppins/Poppins-Light.eot");
