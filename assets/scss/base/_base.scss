@@ -2112,6 +2112,7 @@ ul.is-swiper-slider,
 
 /* --- Panel Animations --- */
 .dd-tab-panel {
+    display: none; /* Hidden by default to prevent layout shift */
     animation: ddTabFadeIn 0.4s ease-in-out;
     /* User customizations (Padding, Margin, Background) will be injected here automatically by Gutenberg via useBlockProps */
 }
@@ -2119,6 +2120,10 @@ ul.is-swiper-slider,
 @keyframes ddTabFadeIn {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.dd-tab-panel.active {
+    display: block; /* Fallback. JS will remove 'display: none' so flex/grid blocks act normally */
 }
 
 /* -----------------------------------------
