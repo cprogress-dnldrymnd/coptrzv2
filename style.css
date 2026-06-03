@@ -13088,29 +13088,25 @@ ul.is-swiper-slider,
     max-width: 35%;
     word-wrap: break-word; }
 
-  /* * Dynamically inject the header content based on column index.
-   * Maps perfectly to the 6 data columns.
-   */
-  .responsive-table td:nth-of-type(1)::before {
-    content: "Qualification:"; }
+   /**
+* Dynamic Label Injection
+* Author: Digitally Disruptive - Donald Raymundo
+* Author URI: https://digitallydisruptive.co.uk/
+* Description: Pulls the data-label attribute injected by JS to act as the mobile header.
+*/
+  /* Setup pseudo-elements to act as the prepended labels */
+  .responsive-table td::before {
+    content: attr(data-label);
+    /* Dynamically pulls the header string from the DOM */
+    font-weight: 600;
+    color: #0ea5e9;
+    flex: 0 0 35%;
+    max-width: 35%;
+    word-wrap: break-word; }
 
-  .responsive-table td:nth-of-type(2)::before {
-    content: "Training Required:"; }
-
-  .responsive-table td:nth-of-type(3)::before {
-    content: "Category:"; }
-
-  .responsive-table td:nth-of-type(4)::before {
-    content: "Op. Auth Needed:"; }
-
-  .responsive-table td:nth-of-type(5)::before {
-    content: "Validity:"; }
-
-  .responsive-table td:nth-of-type(6)::before {
-    content: "Best For:"; }
-
-  /* Ensure the 7th column (button) does not render an empty label space */
-  .responsive-table td:nth-of-type(7)::before {
+  /* Hide the pseudo-element entirely if there is no data-label (e.g., action button columns) */
+  .responsive-table td:not([data-label])::before,
+  .responsive-table td[data-label=""]::before {
     display: none; } }
 @keyframes spin {
   from {
