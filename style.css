@@ -12932,6 +12932,39 @@ ul.is-swiper-slider,
 .dd-accordion-button.active .dd-accordion-icon::before {
   content: "-"; }
 
+/* -----------------------------------------
+   1. Default State (Desktop View)
+----------------------------------------- */
+/* Always hide the accordion buttons by default */
+.dd-tabs-wrapper .dd-accordion-button {
+  display: none; }
+
+/* Show the desktop nav by default */
+.dd-tabs-wrapper .dd-tabs-nav-desktop {
+  display: flex; }
+
+/* -----------------------------------------
+   2. Tablet Breakpoint Activation (991px)
+----------------------------------------- */
+@media (max-width: 991px) {
+  /* If breakpoint is set to 991, hide desktop tabs & show accordion */
+  .dd-tabs-wrapper[data-accordion-breakpoint="991"] .dd-tabs-nav-desktop {
+    display: none !important; }
+
+  .dd-tabs-wrapper[data-accordion-breakpoint="991"] .dd-accordion-button {
+    display: block;
+    /* Update display value to match your specific layout needs */ } }
+/* -----------------------------------------
+   3. Mobile Breakpoint Activation (767px)
+----------------------------------------- */
+@media (max-width: 767px) {
+  /* If breakpoint is set to 767, hide desktop tabs & show accordion */
+  .dd-tabs-wrapper[data-accordion-breakpoint="767"] .dd-tabs-nav-desktop {
+    display: none !important; }
+
+  .dd-tabs-wrapper[data-accordion-breakpoint="767"] .dd-accordion-button {
+    display: block;
+    /* Update display value to match your specific layout needs */ } }
 /* --- Panel Animations --- */
 .dd-tab-panel {
   display: none;
