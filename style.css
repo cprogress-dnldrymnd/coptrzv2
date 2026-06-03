@@ -13031,7 +13031,8 @@ ul.is-swiper-slider,
    * to break them out of standard tabular rendering.
    */
   .responsive--table {
-    margin: 0 !important; }
+    margin: 0 !important;
+    border: none !important; }
 
   .responsive--table,
   .responsive--table thead,
