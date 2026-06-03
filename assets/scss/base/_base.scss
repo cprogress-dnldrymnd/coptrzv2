@@ -2147,7 +2147,7 @@ ul.is-swiper-slider,
         display: none !important;
     }
     .dd-tabs-wrapper[data-accordion-breakpoint="991"] .dd-accordion-button {
-        display: block; /* Update display value to match your specific layout needs */
+        display: flex; /* Update display value to match your specific layout needs */
     }
 }
 
@@ -2160,7 +2160,7 @@ ul.is-swiper-slider,
         display: none !important;
     }
     .dd-tabs-wrapper[data-accordion-breakpoint="767"] .dd-accordion-button {
-        display: block; /* Update display value to match your specific layout needs */
+        display: flex; /* Update display value to match your specific layout needs */
     }
 }
 

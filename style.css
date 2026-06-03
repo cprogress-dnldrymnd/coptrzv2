@@ -12952,7 +12952,7 @@ ul.is-swiper-slider,
     display: none !important; }
 
   .dd-tabs-wrapper[data-accordion-breakpoint="991"] .dd-accordion-button {
-    display: block;
+    display: flex;
     /* Update display value to match your specific layout needs */ } }
 /* -----------------------------------------
    3. Mobile Breakpoint Activation (767px)
@@ -12963,7 +12963,7 @@ ul.is-swiper-slider,
     display: none !important; }
 
   .dd-tabs-wrapper[data-accordion-breakpoint="767"] .dd-accordion-button {
-    display: block;
+    display: flex;
     /* Update display value to match your specific layout needs */ } }
 /* --- Panel Animations --- */
 .dd-tab-panel {
