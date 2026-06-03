@@ -868,6 +868,19 @@ function inject_popup_modal()
     }
 }
 
+
+/**
+ * Increases the autosave interval to reduce database writes and AJAX requests during editing.
+ *
+ * @return void
+ */
+function dd_optimize_autosave_interval() {
+	if ( ! defined( 'AUTOSAVE_INTERVAL' ) ) {
+		// Set autosave to 2 minutes instead of the default 60 seconds
+		define( 'AUTOSAVE_INTERVAL', 120 ); 
+	}
+}
+add_action( 'init', 'dd_optimize_autosave_interval' );
 /**
  * Throttles the WordPress Heartbeat API in the block editor.
  * 
@@ -882,3 +895,13 @@ add_filter('heartbeat_settings', function ($settings) {
     $settings['interval'] = 60;
     return $settings;
 });
+
+/**
+ * Disables the block directory search to prevent external API calls when typing in the block inserter.
+ *
+ * @return void
+ */
+function dd_disable_block_directory_search() {
+	remove_action( 'enqueue_block_editor_assets', 'wp_enqueue_editor_block_directory_assets' );
+}
+add_action( 'admin_init', 'dd_disable_block_directory_search' );
