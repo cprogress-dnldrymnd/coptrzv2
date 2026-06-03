@@ -305,16 +305,15 @@ function __button($data)
             $tag = 'a';
             $post_status = get_post_status($button_url);
 
-            $button_url = '[permalink id=' . $button_url . ']';
-
-            $link = "href='$button_url'";
+            $button_url = get_permalink($button_url);
+            $link = $button_url ? "href='$button_url'" : '';
             if ($post_status != 'publish') {
                 $display = false;
             }
         } else if ($button_type == 'custom') {
             $button_url = $button_url_custom;
             $tag = 'a';
-            $link = "href='$button_url_custom'";
+            $link = $button_url_custom ? "href='$button_url_custom'" : '';
         } else if ($button_type == 'popups') {
             $tag = 'button';
             $link = 'data-bs-toggle="modal" data-bs-target="#modal-[post_id id=' . $button_url . ']"';
@@ -336,13 +335,15 @@ function __button($data)
     }
 }
 
-
-function _attributes($attributes)
+function _attribute($name, $attributes, $separator = ' ')
 {
-    $html = '';
-    foreach ($attributes as $attribute) {
-        $html .= $attribute;
+    $html = "$name='";
+    if (is_array($attributes)) {
+        $html .= implode($separator, array_unique($attributes));
+    } else {
+        $html .= $attributes;
     }
-
+    $html .= "'";
     return $html;
 }
+
