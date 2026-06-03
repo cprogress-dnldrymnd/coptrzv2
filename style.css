@@ -12944,6 +12944,10 @@ ul.is-swiper-slider,
 .dd-accordion-button.active .dd-accordion-icon::before {
   content: "-"; }
 
+@media (max-width: 991px) {
+  .dd-tab-panel {
+    border-radius: 10px; } }
+
 /* -----------------------------------------
    1. Default State (Desktop View)
 ----------------------------------------- */
