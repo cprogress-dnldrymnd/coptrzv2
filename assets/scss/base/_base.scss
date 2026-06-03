@@ -2116,6 +2116,7 @@ ul.is-swiper-slider,
     background-color: #007cba;
     color: #fff;
     border-color: #007cba;
+    border-radius: 10px 10px 0 0;
 }
 
 .dd-accordion-icon::before {
@@ -2127,10 +2128,11 @@ ul.is-swiper-slider,
 .dd-accordion-button.active .dd-accordion-icon::before {
     content: "-";
 }
-.dd-tab-panel {
-    @media(max-width: 991px) {
-        border-radius: 10px;
+.dd-tab-panel.dd-tab-panel.dd-tab-panel {
+    @media (max-width: 991px) {
+        border-radius: 0 0 10px 10px !important;
         margin-bottom: 10px;
+        margin-top: -10px;
     }
 }
 /* -----------------------------------------

@@ -12945,8 +12945,10 @@ ul.is-swiper-slider,
   content: "-"; }
 
 @media (max-width: 991px) {
-  .dd-tab-panel {
-    border-radius: 10px; } }
+  .dd-tab-panel.dd-tab-panel.dd-tab-panel {
+    border-radius: 0 0 10px 10px !important;
+    margin-bottom: 10px;
+    margin-top: -10px; } }
 
 /* -----------------------------------------
    1. Default State (Desktop View)
