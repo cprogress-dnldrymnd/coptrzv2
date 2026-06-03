@@ -9,7 +9,6 @@
     const { registerBlockType } = wp.blocks;
     const { createElement: el, Fragment } = wp.element;
     const { InnerBlocks, InspectorControls, useBlockProps } = wp.blockEditor;
-    // Added ColorPalette and BaseControl to the components destructing
     const { TextControl, PanelBody, ToggleControl, ColorPalette, BaseControl } = wp.components;
 
     /**
@@ -91,17 +90,23 @@
     /**
      * Registers the Parent Block: Tabs Container
      * * Includes styling attributes passed down via CSS variables to target dynamically generated JS buttons.
+     * * Added native layout supports for the parent container (colors, spacing, borders).
      */
     registerBlockType('dd/tabs', {
         title: 'Advanced Tabs',
         icon: 'index-card',
         category: 'design',
+        // Enable standard Gutenberg styling panel for the parent wrapper
+        supports: {
+            color: { background: true, text: true },
+            spacing: { padding: true, margin: true, blockGap: true },
+            border: { color: true, radius: true, style: true, width: true }
+        },
         attributes: {
             mobileAccordion: {
                 type: 'boolean',
                 default: true
             },
-            // New attributes for dynamic button styling
             btnBgColor: { type: 'string' },
             btnTextColor: { type: 'string' },
             btnActiveBgColor: { type: 'string' },
@@ -127,6 +132,7 @@
                 backgroundColor: '#f0f6fc'
             };
 
+            // Gutenberg automatically maps selected native supports (padding, borders) onto this object
             const blockProps = useBlockProps({
                 className: 'dd-tabs-wrapper-edit',
                 style: cssVariables
@@ -141,7 +147,6 @@
                             onChange: function (val) { setAttributes({ mobileAccordion: val }); }
                         })
                     ),
-                    // New PanelBody for Button Styling
                     el(PanelBody, { title: 'Tab Button Styling', initialOpen: false },
                         el(BaseControl, { label: 'Default Background Color' },
                             el(ColorPalette, {
@@ -188,7 +193,7 @@
          * @return {Object}      The HTML markup saved to the database.
          */
         save: function (props) {
-            // Apply CSS variables to the saved root element wrapper
+            // Apply CSS variables alongside any native supports the user configures in the sidebar
             const cssVariables = {
                 '--dd-btn-bg': props.attributes.btnBgColor,
                 '--dd-btn-color': props.attributes.btnTextColor,
