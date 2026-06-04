@@ -353,7 +353,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
                 'form_description' => $hero_form_description,
                 'form_image'       => $hero_form_image,
                 'form_style'       => $hero_form_style,
-                'form_product' => $hero_form_product[0]['id'],
+                'form_product' => isset($hero_form_product[0]['id']) ? $hero_form_product[0]['id'] : false,
                 'form_type' => $hero_form_type,
                 'form_script' => $hero_form_script,
                 'hero_form_redirect_type' => $hero_form_redirect_type,

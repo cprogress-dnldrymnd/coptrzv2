@@ -966,13 +966,11 @@ class Shortcodes
 
         if ($hero_form_redirect_type == 'document') {
             $url = get__post_meta_by_id($hero_form_document_redirect_id, 'speak_to_an_expert_url');
+        } else {
+            $url = false;
         }
 
-        if ($url) {
-            return $url;
-        } else {
-            return false;
-        }
+        return $url;
     }
 
     function speak_to_an_expert_style()
