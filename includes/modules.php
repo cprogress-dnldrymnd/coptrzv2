@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
  * Author URI: https://digitallydisruptive.co.uk/
@@ -11,31 +12,32 @@
  * @param WP_Post $post    Post object.
  * @param bool    $update  Whether this is an existing post being updated.
  */
-function action_module_content_optimized( $post_id, $post, $update ) {
+function action_module_content_optimized($post_id, $post, $update)
+{
     // Check if this is an autosave to prevent execution during background saves.
-    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return;
     }
 
     // Check if it's a revision to prevent duplicate meta updates.
-    if ( wp_is_post_revision( $post_id ) ) {
+    if (wp_is_post_revision($post_id)) {
         return;
     }
 
     // Retrieve the product tax meta.
     // Note: Preserving the 'get__post_meta' call as originally provided.
-    $product_tax_data = get__post_meta( 'product_tax' );
+    $product_tax_data = get__post_meta('product_tax');
 
     // Validate the array structure to prevent undefined offset/key PHP warnings.
-    if ( is_array( $product_tax_data ) && isset( $product_tax_data[0]['id'] ) ) {
+    if (is_array($product_tax_data) && isset($product_tax_data[0]['id'])) {
         $product_term_id = $product_tax_data[0]['id'];
-        
+
         // Update the post meta using the hook's $post_id rather than get_the_ID().
-        update_post_meta( $post_id, '_product_term_id', $product_term_id );
+        update_post_meta($post_id, '_product_term_id', $product_term_id);
     }
 }
 // Use the post-type-specific save hook for exact timing and optimal performance.
-add_action( 'save_post_producttaxonomypages', 'action_module_content_optimized', 10, 3 );
+add_action('save_post_producttaxonomypages', 'action_module_content_optimized', 10, 3);
 
 
 function _date_format($date_input, $include_year = false)
@@ -976,13 +978,19 @@ function ___sections($id = 'sections', $post_id = '')
                             if (is_product_taxonomy()) {
                                 $term_id = get_queried_object()->term_id;
                             } else {
-                                $term_id = get__post_meta_by_id($_GET['post'], 'product_tax')[0];
+                                if (isset($_GET['post'])) {
+                                    $term_id = get_post_meta($_GET['post'], 'product_tax', true);
+                                } else {
+                                    $term_id = false;
+                                }
                             }
-                            $product_slider_args['tax_query'][] = array(
-                                'taxonomy' => 'product_cat',
-                                'field'    => 'term_id',
-                                'terms'    => $term_id
-                            );
+                            if ($term_id) {
+                                $product_slider_args['tax_query'][] = array(
+                                    'taxonomy' => 'product_cat',
+                                    'field'    => 'term_id',
+                                    'terms'    => $term_id
+                                );
+                            }
                         }
                         $products = get_posts($product_slider_args);
                         $serialize = serialize($product_slider_args);
