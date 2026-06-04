@@ -24,7 +24,7 @@
 		<div
 			class="top-bar rounded-corner bg-primary mx-20px mt-20px d-flex align-items-center justify-content-center text-center">
 			<div class="container" style="color: #ffffff; text-transform: uppercase;">
-				Free training course with every drone purchase
+				Call now - <a href="tel:03301117177">0330 111 7177</a>
 			</div>
 		</div>
 	<?php } ?>
@@ -42,6 +42,7 @@
 	<?php wp_body_open(); ?>
 	<?php
 	$class = '';
+
 	if (!is_404()) {
 		$class = 'mt-20px';
 	}
