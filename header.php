@@ -41,6 +41,7 @@
 	</header>
 	<?php wp_body_open(); ?>
 	<?php
+	$class = '';
 	if (!is_404()) {
 		$class = 'mt-20px';
 	}
