@@ -641,3 +641,26 @@ function wpc_change_event_permalink($url, $post)
     return $url;
 }
 add_filter('post_type_link', 'wpc_change_event_permalink', 10, 2);
+
+
+/**
+ * Injects the current timestamp into the Contact Form 7 posted data array.
+ * By modifying the core CF7 payload, webhook add-ons (e.g. CF7 to Webhook)
+ * will automatically include this parameter in their outbound requests to Zapier.
+ *
+ * @param array $posted_data The associative array of submitted form data.
+ * @return array Modified array containing the new 'submission_date' key.
+ */
+add_filter('wpcf7_posted_data', 'dd_append_date_to_cf7_webhook_payload');
+
+function dd_append_date_to_cf7_webhook_payload($posted_data)
+{
+    // Check if the data array is valid before mutating
+    if (is_array($posted_data)) {
+        // Append the current time in ISO 8601 format (e.g. 2026-06-12T18:06:25+00:00)
+        // using the active WordPress timezone configuration.
+        $posted_data['submission_date'] = wp_date('c');
+    }
+
+    return $posted_data;
+}
