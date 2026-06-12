@@ -644,23 +644,19 @@ add_filter('post_type_link', 'wpc_change_event_permalink', 10, 2);
 
 
 /**
- * Injects the current timestamp into the Contact Form 7 posted data array.
- * By modifying the core CF7 payload, webhook add-ons (e.g. CF7 to Webhook)
- * will automatically include this parameter in their outbound requests to Zapier.
- *
- * @param array $posted_data The associative array of submitted form data.
- * @return array Modified array containing the new 'submission_date' key.
+ * Adds a submission_date field to the data sent to Zapier by the
+ * "Contact Form 7 to Zapier" plugin (cf7-to-zapier). That plugin builds
+ * its payload from the form's own fields, so wpcf7_posted_data has no
+ * effect on it - this filter runs on the data array right before it's
+ * sent to the configured Zapier hook.
  */
-add_filter('wpcf7_posted_data', 'dd_append_date_to_cf7_webhook_payload');
+add_filter('ctz_get_data_from_contact_form', 'dd_append_date_to_cf7_zapier_payload', 10, 2);
 
-function dd_append_date_to_cf7_webhook_payload($posted_data)
+function dd_append_date_to_cf7_zapier_payload($data, $contact_form)
 {
-    // Check if the data array is valid before mutating
-    if (is_array($posted_data)) {
-        // Append the current time in ISO 8601 format (e.g. 2026-06-12T18:06:25+00:00)
-        // using the active WordPress timezone configuration.
-        $posted_data['submission_date'] = wp_date('c');
+    if (is_array($data)) {
+        $data['submission_date'] = wp_date('c');
     }
 
-    return $posted_data;
+    return $data;
 }
