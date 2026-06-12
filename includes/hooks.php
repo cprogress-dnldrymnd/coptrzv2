@@ -644,8 +644,8 @@ add_filter('post_type_link', 'wpc_change_event_permalink', 10, 2);
 
 
 /**
- * Adds a submission_date field to the data sent to Zapier by the
- * "Contact Form 7 to Zapier" plugin (cf7-to-zapier). That plugin builds
+ * Adds submission_date and form_name fields to the data sent to Zapier by
+ * the "Contact Form 7 to Zapier" plugin (cf7-to-zapier). That plugin builds
  * its payload from the form's own fields, so wpcf7_posted_data has no
  * effect on it - this filter runs on the data array right before it's
  * sent to the configured Zapier hook.
@@ -656,6 +656,7 @@ function dd_append_date_to_cf7_zapier_payload($data, $contact_form)
 {
     if (is_array($data)) {
         $data['submission_date'] = wp_date('c');
+        $data['form_name'] = $contact_form->title();
     }
 
     return $data;
