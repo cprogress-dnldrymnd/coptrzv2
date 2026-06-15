@@ -976,6 +976,22 @@ function rpc_get_shopify_course_dates() {
 add_shortcode('rpc_course_dates', 'rpc_get_shopify_course_dates');
 
 /**
+ * Registers the 'Lorem Finder' submenu page under the 'Tools' admin menu.
+ *
+ * @return void
+ */
+function dd_register_lorem_finder_menu() {
+    add_management_page(
+        'Lorem Finder',
+        'Lorem Finder',
+        'manage_options',
+        'dd-lorem-finder',
+        'dd_render_lorem_finder_page'
+    );
+}
+add_action( 'admin_menu', 'dd_register_lorem_finder_menu' );
+
+/**
  * Executes the complex $wpdb search query and renders the results in a copy-pasteable table format.
  * * Includes clickable hyperlinks for URLs that open in new tabs and translate properly into spreadsheet cells.
  *
