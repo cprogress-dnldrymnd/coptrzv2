@@ -976,23 +976,8 @@ function rpc_get_shopify_course_dates() {
 add_shortcode('rpc_course_dates', 'rpc_get_shopify_course_dates');
 
 /**
- * Registers the 'Lorem Finder' submenu page under the 'Tools' admin menu.
- *
- * @return void
- */
-function dd_register_lorem_finder_menu() {
-    add_management_page(
-        'Lorem Finder',
-        'Lorem Finder',
-        'manage_options',
-        'dd-lorem-finder',
-        'dd_render_lorem_finder_page'
-    );
-}
-add_action( 'admin_menu', 'dd_register_lorem_finder_menu' );
-
-/**
  * Executes the complex $wpdb search query and renders the results in a copy-pasteable table format.
+ * * Includes clickable hyperlinks for URLs that open in new tabs and translate properly into spreadsheet cells.
  *
  * @return void
  */
@@ -1006,7 +991,6 @@ function dd_render_lorem_finder_page() {
 
     echo '<div class="wrap">';
     echo '<h1>Lorem Ipsum Finder</h1>';
-    echo '<p>Select the table below, copy (Ctrl+C / Cmd+C), and paste directly into Google Sheets.</p>';
 
     // Retrieve all public post types dynamically
     $post_types = get_post_types( array( 'public' => true ), 'names' );
@@ -1074,8 +1058,8 @@ function dd_render_lorem_finder_page() {
             echo '<td style="padding: 8px;">' . esc_html( $post->post_type ) . '</td>';
             echo '<td style="padding: 8px;">' . esc_html( $post->ID ) . '</td>';
             echo '<td style="padding: 8px;">' . esc_html( $post->post_title ) . '</td>';
-            echo '<td style="padding: 8px;">' . esc_url( $post_url ) . '</td>';
-            echo '<td style="padding: 8px;">' . esc_url( $post_edit_url ) . '</td>';
+            echo '<td style="padding: 8px;"><a href="' . esc_url( $post_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_url( $post_url ) . '</a></td>';
+            echo '<td style="padding: 8px;"><a href="' . esc_url( $post_edit_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_url( $post_edit_url ) . '</a></td>';
             echo '</tr>';
         }
 
