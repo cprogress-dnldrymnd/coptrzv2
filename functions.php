@@ -869,6 +869,10 @@ function inject_popup_modal()
         echo do_shortcode('[popup id=419151]');
     } else if (is_tax('pa_brands', 'avy')) {
         echo do_shortcode('[popup id=419411]');
+    } else if (is_page(421860)) {
+        echo do_shortcode('[popup id=421954]');
+    } else if (is_page(420090)) {
+        echo do_shortcode('[popup id=422026]');
     }
 }
 
@@ -912,6 +916,64 @@ function dd_disable_block_directory_search()
 }
 add_action('admin_init', 'dd_disable_block_directory_search');
 
+/**
+ * Shortcode: [rpc_course_dates]
+ * Fetches and caches Shopify course dates.
+ */
+function rpc_get_shopify_course_dates() {
+
+    // Check cache (1 hour)
+    $dates = get_transient('rpc_shopify_course_dates');
+
+    if ($dates === false) {
+        $response = wp_remote_get(
+            'https://shop.coptrz.com/products/rpc-l1-drone-training-course-in-person-classroom.js',
+            array(
+                'timeout' => 15,
+                'headers' => array(
+                    'Accept' => 'application/json',
+                ),
+            )
+        );
+
+        if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+            $body = wp_remote_retrieve_body($response);
+            $product = json_decode($body, true);
+
+            $dates = array();
+
+            if (!empty($product['variants'])) {
+                foreach ($product['variants'] as $variant) {
+                    if (!empty($variant['available'])) {
+                        $dates[] = sanitize_text_field($variant['title']);
+                    }
+                }
+            }
+
+            // Cache for 1 hour.
+            set_transient('rpc_shopify_course_dates', $dates, HOUR_IN_SECONDS);
+        } else {
+            $dates = array();
+        }
+    }
+
+    if (empty($dates)) {
+        return '<p>No upcoming classroom dates are currently available.</p>';
+    }
+
+    ob_start();
+    ?>
+    <div class="rpc-course-dates">
+        <ul>
+            <?php foreach ($dates as $date) : ?>
+                <li><?php echo esc_html($date); ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('rpc_course_dates', 'rpc_get_shopify_course_dates');
 
 /**
  * Registers the 'Lorem Finder' submenu page under the 'Tools' admin menu.
