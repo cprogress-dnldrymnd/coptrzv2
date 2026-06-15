@@ -17,10 +17,10 @@ function action_woocommerce_before_main_content()
         echo ___hero_modules();
         echo __product_specifications();
 
-
+    /*
         if (get_the_ID() != 271236 && has_term(32, 'product_cat')) {
             echo do_shortcode('[layouts id=299719]');
-        }
+        }*/
 
         echo do_shortcode(___sections());
     }
