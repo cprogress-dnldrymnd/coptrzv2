@@ -974,3 +974,101 @@ function rpc_get_shopify_course_dates() {
     return ob_get_clean();
 }
 add_shortcode('rpc_course_dates', 'rpc_get_shopify_course_dates');
+
+/**
+ * Registers the bulk meta remover administrative page under the 'Tools' menu.
+ *
+ * @return void
+ */
+function ddr_add_meta_remover_tool_page() {
+    add_management_page(
+        __( 'Bulk Meta Remover', 'bulk-meta-remover' ),
+        __( 'Bulk Meta Remover', 'bulk-meta-remover' ),
+        'manage_options',
+        'ddr-bulk-meta-remover',
+        'ddr_render_meta_remover_page'
+    );
+}
+add_action( 'admin_menu', 'ddr_add_meta_remover_tool_page' );
+
+/**
+ * Renders the admin page UI and processes the database deletion request upon form submission.
+ *
+ * @return void
+ */
+function ddr_render_meta_remover_page() {
+    // Restrict access to administrators
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    $message = '';
+
+    // Verify nonce and process the form submission
+    if ( isset( $_POST['ddr_remove_meta'] ) && check_admin_referer( 'ddr_remove_meta_action', 'ddr_remove_meta_nonce' ) ) {
+        $message = ddr_execute_meta_deletion();
+    }
+
+    // Output the user interface
+    ?>
+    <div class="wrap">
+        <h1><?php esc_html_e( 'Bulk Meta Key Remover', 'bulk-meta-remover' ); ?></h1>
+        
+        <?php if ( ! empty( $message ) ) : ?>
+            <div class="notice notice-info is-dismissible">
+                <p><strong><?php echo esc_html( $message ); ?></strong></p>
+            </div>
+        <?php endif; ?>
+
+        <p><?php esc_html_e( 'Click the button below to permanently drop the following meta keys from the wp_postmeta table:', 'bulk-meta-remover' ); ?></p>
+        <ul style="list-style-type: disc; margin-left: 20px;">
+            <li><code>_sections_html</code></li>
+            <li><code>_single_product_content</code></li>
+            <li><code>_single_product_content_after</code></li>
+        </ul>
+        <p style="color: #d63638;"><strong><?php esc_html_e( 'Warning: This action executes a direct DELETE query and cannot be undone. Verify your database backups before proceeding.', 'bulk-meta-remover' ); ?></strong></p>
+
+        <form method="post" action="">
+            <?php wp_nonce_field( 'ddr_remove_meta_action', 'ddr_remove_meta_nonce' ); ?>
+            <?php submit_button( __( 'Remove Meta Keys Now', 'bulk-meta-remover' ), 'primary', 'ddr_remove_meta' ); ?>
+        </form>
+    </div>
+    <?php
+}
+
+/**
+ * Executes the direct database query to remove the specified meta keys from wp_postmeta.
+ *
+ * @return string Status message detailing the number of rows affected or any errors.
+ */
+function ddr_execute_meta_deletion() {
+    global $wpdb;
+
+    // Define the exact meta keys targeted for deletion
+    $meta_keys = array(
+        '_sections_html',
+        '_single_product_content',
+        '_single_product_content_after'
+    );
+
+    // Prepare placeholders for the SQL IN clause dynamically based on array count
+    $placeholders = implode( ', ', array_fill( 0, count( $meta_keys ), '%s' ) );
+
+    // Construct the parameterized query to safely delete matching rows
+    $query = $wpdb->prepare(
+        "DELETE FROM {$wpdb->postmeta} WHERE meta_key IN ($placeholders)",
+        $meta_keys
+    );
+
+    // Execute the deletion
+    $deleted_rows = $wpdb->query( $query );
+
+    // Evaluate response and return appropriate UI feedback
+    if ( $deleted_rows === false ) {
+        return __( 'A database error occurred while attempting to delete the meta keys.', 'bulk-meta-remover' );
+    } elseif ( $deleted_rows === 0 ) {
+        return __( 'No matching meta keys were found. The database is already clean.', 'bulk-meta-remover' );
+    } else {
+        return sprintf( __( 'Success: Dropped %d orphaned meta rows from the database.', 'bulk-meta-remover' ), $deleted_rows );
+    }
+}

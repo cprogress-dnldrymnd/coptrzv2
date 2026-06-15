@@ -360,13 +360,6 @@ class Shortcodes
         );
 
         return do_shortcode(___sections('sections', $id));
-        /*
-        $wpml_post_language_details = apply_filters('wpml_post_language_details', NULL, $id);
-        $language_code = $wpml_post_language_details['language_code'];
-        $my_current_lang = apply_filters('wpml_current_language', NULL);
-        if ($language_code == $my_current_lang) {
-            return do_shortcode(get_post_meta($id, '_sections_html', true));
-        }*/
     }
     function blog_meta()
     {
@@ -1061,3 +1054,5 @@ add_shortcode('product_add_to_cart', array($Shortcodes, 'product_add_to_cart'));
 add_shortcode('get_url_param', array($Shortcodes, 'get_url_param'));
 add_shortcode('popup', array($Shortcodes, 'popup'));
 add_shortcode('post_url', array($Shortcodes, 'post_url'));
+
+
