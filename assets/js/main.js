@@ -14,7 +14,9 @@ jQuery(document).ready(function () {
     __hero();
     __shop_coptrz_link();
     pasturlparameters();
-    initResponsiveTableCards(jQuery('.responsive--table-2>table'));
+    if (window.innerWidth < 768) {
+        initResponsiveTableCards(jQuery('.responsive--table-2>table'));
+    }
     //__utm_parameters();
 });
 
