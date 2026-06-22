@@ -14,7 +14,7 @@ jQuery(document).ready(function () {
     __hero();
     __shop_coptrz_link();
     pasturlparameters();
-   initResponsiveTableCards(jQuery('.responsive--table-2'));
+    initResponsiveTableCards(jQuery('.responsive--table-2>table'));
     //__utm_parameters();
 });
 
@@ -1121,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initScrollSpy = () => {
         const observerOptions = {
             root: null,
-            rootMargin: '-20% 0px -80% 0px', 
+            rootMargin: '-20% 0px -80% 0px',
             threshold: 0
         };
 
@@ -1152,10 +1152,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (targetSection) {
                     e.preventDefault();
-                    
+
                     // Lock the observer state to prevent scroll-snapping bugs
                     isClickScrolling = true;
-                    
+
                     // Instantly update the UI state
                     navLinks.forEach(l => l.classList.remove('active'));
                     link.classList.add('active');
@@ -1165,10 +1165,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Get the exact physical bottom edge of the sticky nav in the viewport
                     const navBottomEdge = navContainer.getBoundingClientRect().bottom;
                     const elementTopEdge = targetSection.getBoundingClientRect().top;
-                    
+
                     // Visual breathing room between the section and the sticky nav
-                    const buffer = 40; 
-                    
+                    const buffer = 40;
+
                     // Calculate distance to move by subtracting the nav's bottom edge
                     // from the element's top edge. This guarantees pixel-perfect placement.
                     const travelDistance = elementTopEdge - navBottomEdge - buffer;
@@ -1200,17 +1200,17 @@ document.addEventListener('DOMContentLoaded', () => {
  * on table cells to allow CSS pseudo-elements to display them on mobile breakpoints.
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Select all instances of responsive tables on the page
     const tables = document.querySelectorAll('.responsive--table');
-    
+
     tables.forEach(table => {
         // Extract header text strings into an array
         const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
-        
+
         // Target all data rows in the table body
         const rows = table.querySelectorAll('tbody tr');
-        
+
         rows.forEach(row => {
             const cells = row.querySelectorAll('td');
             cells.forEach((cell, index) => {
