@@ -14,9 +14,64 @@ jQuery(document).ready(function () {
     __hero();
     __shop_coptrz_link();
     pasturlparameters();
+    initResponsiveTableCards(jQuery('.responsive--table-2'));
     //__utm_parameters();
 });
 
+/**
+     * Transforms a standard row-based HTML comparison table into a column-based 
+     * card layout optimized for mobile devices. Generates the mobile DOM structure 
+     * and appends it directly after the target table.
+     * * @param {jQuery} $table - The target jQuery table object (.responsive--table-2).
+     */
+function initResponsiveTableCards($table) {
+    if ($table.length === 0) return;
+
+    // Check if mobile wrapper already exists to prevent duplicate generation
+    if ($table.next('.rt2-mobile-wrapper').length > 0) return;
+
+    var $mobileWrapper = jQuery('<div class="rt2-mobile-wrapper"></div>');
+    var $rows = $table.find('tr');
+    var headers = [];
+
+    // 1. Extract the column headers (Drone Models & Badges) from the first row
+    $rows.first().find('th, td').each(function () {
+        headers.push(jQuery(this).html());
+    });
+
+    // 2. Iterate through each column (starting at index 1 to skip the "FEATURE" column)
+    for (var colIndex = 1; colIndex < headers.length; colIndex++) {
+        var $card = jQuery('<div class="rt2-mobile-card"></div>');
+
+        // Build the card header utilizing the extracted drone model data
+        var $cardHeader = jQuery('<div class="rt2-card-title"></div>').html(headers[colIndex]);
+        $card.append($cardHeader);
+
+        // 3. Iterate through subsequent rows to extract the features for this specific column
+        for (var rowIndex = 1; rowIndex < $rows.length; rowIndex++) {
+            var $currentRow = $rows.eq(rowIndex);
+
+            // Extract feature label (Column 0) and the specific feature value (Current Column)
+            var featureLabel = $currentRow.find('th, td').first().text().trim();
+            var featureValue = $currentRow.find('td, th').eq(colIndex).html();
+
+            // Ensure data exists before appending to avoid empty nodes
+            if (featureLabel && featureValue !== undefined) {
+                var $rowDiv = jQuery('<div class="rt2-card-row"></div>');
+                $rowDiv.append('<span class="rt2-label">' + featureLabel + ':</span>');
+                $rowDiv.append('<span class="rt2-value">' + featureValue + '</span>');
+                $card.append($rowDiv);
+            }
+        }
+
+        $mobileWrapper.append($card);
+    }
+
+    // 4. Inject the generated mobile layout into the DOM
+    $table.after($mobileWrapper);
+}
+
+// Initialize the function on your specific target class
 
 function pasturlparameters() {
     /**
@@ -1061,7 +1116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initScrollSpy = () => {
         const observerOptions = {
             root: null,
-            rootMargin: '-20% 0px -80% 0px', 
+            rootMargin: '-20% 0px -80% 0px',
             threshold: 0
         };
 
@@ -1092,10 +1147,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (targetSection) {
                     e.preventDefault();
-                    
+
                     // Lock the observer state to prevent scroll-snapping bugs
                     isClickScrolling = true;
-                    
+
                     // Instantly update the UI state
                     navLinks.forEach(l => l.classList.remove('active'));
                     link.classList.add('active');
@@ -1105,10 +1160,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Get the exact physical bottom edge of the sticky nav in the viewport
                     const navBottomEdge = navContainer.getBoundingClientRect().bottom;
                     const elementTopEdge = targetSection.getBoundingClientRect().top;
-                    
+
                     // Visual breathing room between the section and the sticky nav
-                    const buffer = 40; 
-                    
+                    const buffer = 40;
+
                     // Calculate distance to move by subtracting the nav's bottom edge
                     // from the element's top edge. This guarantees pixel-perfect placement.
                     const travelDistance = elementTopEdge - navBottomEdge - buffer;
@@ -1132,25 +1187,26 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScrolling();
 });
 
+
+
 /**
- * Responsive Table Header Mapper
  * Author: Digitally Disruptive - Donald Raymundo
  * Author URI: https://digitallydisruptive.co.uk/
  * Description: Dynamically maps table headers to data-label attributes 
  * on table cells to allow CSS pseudo-elements to display them on mobile breakpoints.
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Select all instances of responsive tables on the page
     const tables = document.querySelectorAll('.responsive--table');
-    
+
     tables.forEach(table => {
         // Extract header text strings into an array
         const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
-        
+
         // Target all data rows in the table body
         const rows = table.querySelectorAll('tbody tr');
-        
+
         rows.forEach(row => {
             const cells = row.querySelectorAll('td');
             cells.forEach((cell, index) => {
