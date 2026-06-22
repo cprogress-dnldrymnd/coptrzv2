@@ -14,7 +14,7 @@ jQuery(document).ready(function () {
     __hero();
     __shop_coptrz_link();
     pasturlparameters();
-    initResponsiveTableCards(jQuery('.responsive--table-2'));
+   initResponsiveTableCards(jQuery('.responsive--table-2'));
     //__utm_parameters();
 });
 
@@ -70,8 +70,6 @@ function initResponsiveTableCards($table) {
     // 4. Inject the generated mobile layout into the DOM
     $table.after($mobileWrapper);
 }
-
-// Initialize the function on your specific target class
 
 function pasturlparameters() {
     /**
@@ -761,8 +759,17 @@ function __swipers() {
 
     });
 
-    $link = jQuery('.case-study-slider .swiper-slide[key="0"]').attr('url');
-    jQuery('.case-study-slider .button-accent a').attr('href', $link)
+    function updateCaseStudySliderLink(index) {
+        var $slide = jQuery('.case-study-slider .swiper-slide[key="' + index + '"]');
+        var $btn = jQuery('.case-study-slider .button-accent a');
+        $btn.attr('href', $slide.attr('url'));
+        var title = $slide.attr('data-title');
+        if (title) {
+            $btn.attr('aria-label', 'Read Case Study: ' + title);
+        }
+    }
+
+    updateCaseStudySliderLink(0);
 
     var swiper_fullwidth = new Swiper('.swiper-full-width', {
         loop: true,
@@ -774,9 +781,7 @@ function __swipers() {
         },
         on: {
             slideChange: function () {
-                var index = this.realIndex;
-                $link = jQuery('.case-study-slider .swiper-slide[key="' + index + '"]').attr('url');
-                jQuery('.case-study-slider .button-accent a').attr('href', $link)
+                updateCaseStudySliderLink(this.realIndex);
             },
         }
     });
@@ -830,7 +835,7 @@ function __post_navigation() {
                 } else {
                     $class = 'h2-nav';
                 }
-                $heading_val = '<li class="' + $class + '"> <a href="#' + $id + '">' + $text + '</a> </li>';
+                $heading_val = '<li class="' + $class + '"> <a href="#' + $id + '" aria-label="Jump to section: ' + $text.replace(/"/g, '&quot;') + '">' + $text + '</a> </li>';
                 $post_navigation = $post_navigation + $heading_val;
                 $key++;
 
@@ -1116,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initScrollSpy = () => {
         const observerOptions = {
             root: null,
-            rootMargin: '-20% 0px -80% 0px',
+            rootMargin: '-20% 0px -80% 0px', 
             threshold: 0
         };
 
@@ -1147,10 +1152,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (targetSection) {
                     e.preventDefault();
-
+                    
                     // Lock the observer state to prevent scroll-snapping bugs
                     isClickScrolling = true;
-
+                    
                     // Instantly update the UI state
                     navLinks.forEach(l => l.classList.remove('active'));
                     link.classList.add('active');
@@ -1160,10 +1165,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Get the exact physical bottom edge of the sticky nav in the viewport
                     const navBottomEdge = navContainer.getBoundingClientRect().bottom;
                     const elementTopEdge = targetSection.getBoundingClientRect().top;
-
+                    
                     // Visual breathing room between the section and the sticky nav
-                    const buffer = 40;
-
+                    const buffer = 40; 
+                    
                     // Calculate distance to move by subtracting the nav's bottom edge
                     // from the element's top edge. This guarantees pixel-perfect placement.
                     const travelDistance = elementTopEdge - navBottomEdge - buffer;
@@ -1187,26 +1192,25 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScrolling();
 });
 
-
-
 /**
+ * Responsive Table Header Mapper
  * Author: Digitally Disruptive - Donald Raymundo
  * Author URI: https://digitallydisruptive.co.uk/
  * Description: Dynamically maps table headers to data-label attributes 
  * on table cells to allow CSS pseudo-elements to display them on mobile breakpoints.
  */
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     // Select all instances of responsive tables on the page
     const tables = document.querySelectorAll('.responsive--table');
-
+    
     tables.forEach(table => {
         // Extract header text strings into an array
         const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
-
+        
         // Target all data rows in the table body
         const rows = table.querySelectorAll('tbody tr');
-
+        
         rows.forEach(row => {
             const cells = row.querySelectorAll('td');
             cells.forEach((cell, index) => {
