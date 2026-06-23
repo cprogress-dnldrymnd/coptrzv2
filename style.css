@@ -12343,7 +12343,10 @@ hr {
   .modal.popup-form.popup-large .modal-dialog {
     max-width: 1200px; }
   .modal.popup-form .modal-content {
-    border: none; }
+    border: none;
+    color: var(--bs-black); }
+    .modal.popup-form .modal-content a {
+      color: inherit; }
     .modal.popup-form .modal-content.background-primary a {
       color: var(--bs-white) !important; }
   .modal.popup-form .popup-content-default > *:last-child {

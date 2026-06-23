@@ -1298,7 +1298,11 @@ hr {
 
         .modal-content {
             border: none;
-
+            color: var(--bs-black);
+            a {
+                color: inherit;
+            }
+            
             &.background-primary {
                 a {
                     color: var(--bs-white) !important;
