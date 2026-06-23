@@ -1690,7 +1690,7 @@ function ____button_modules($buttons, $buttons_alignment = '')
         $html = "<div class='button-group-box $buttons_alignment'>";
         $html .= "<div class='row g-3 justify-content-center d-inline-flex'>";
         foreach ($buttons as $button) {
-            if ($button['button_type'] == 'popups') {
+            if ($button['button_type'] == 'popup') {
                 global $popups_id;
                 $popups_id[] = $button['button_url'];
             }
@@ -2869,7 +2869,6 @@ function __post_box($data, $class = [], $content_box_class = [])
             'heading' => get_the_title($id),
             'tag'     => $tag,
             'class'   => _attribute('class', 'small-heading'),
-            'link'    => $link
         ));
     }
     /*
@@ -3377,11 +3376,14 @@ function __product_add_to_cart($id, $description_args)
     $html .= $product->get_price_html();
     $html .= "</div>";
 
+    $title = $product->get_name();
+    $buy_label = esc_attr(_coptrz_link_aria_label('Buy now', $title));
+
     $html .= "<div class='button-box button-accent text-center'>";
     if ($type == 'simple') {
-        $html .= "<a class='w-100' href='$basket_url?add-to-cart=$id'>Buy now</a>";
+        $html .= "<a class='w-100' href='" . esc_url($basket_url) . "?add-to-cart=$id' aria-label='$buy_label'>Buy now</a>";
     } else {
-        $html .= "<a class='w-100' href='#buy-now'>Buy now</a>";
+        $html .= "<a class='w-100' href='#buy-now' aria-label='$buy_label'>Buy now</a>";
     }
     $html .= "</div>";
     $html .= "</div>";
