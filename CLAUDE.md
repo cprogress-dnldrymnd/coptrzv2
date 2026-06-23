@@ -32,8 +32,11 @@ case studies, rentals, landing pages, etc).
   `get___term_meta`, `get__post_meta_by_id`, `get__theme_option`). Always use
   these wrappers rather than calling the meta-shim directly. Also registers
   `dd_button_popup_render` (`render_block_core/button` filter) which injects
-  Bootstrap modal attributes into core/button blocks that have `ddPopupId` set
-  and pushes the ID into `$popups_id` for footer rendering.
+  Bootstrap modal-trigger attributes into `core/button` blocks that have
+  `ddPopupId` set, then appends the modal HTML inline via
+  `do_shortcode('[popup id="..."]')`; a static `$rendered_popups` array ensures
+  the modal HTML is emitted only once per popup even when multiple buttons
+  target the same popup.
 - `assets/js/main.js` — main frontend JS, runs on `jQuery(document).ready`.
   Initialises all frontend behaviors: mini-cart, header menu, accordions,
   Swiper carousels, phone inputs, AJAX, hero, post navigation, URL param
@@ -46,7 +49,8 @@ case studies, rentals, landing pages, etc).
   Works in tandem with `dd_button_popup_render` in `functions.php`.
   **Gotcha:** `core/button` omits `href` entirely when no URL is set in the
   editor; `dd_button_popup_render` uses `preg_replace_callback` to strip any
-  existing href and always inject `href="#"` + modal trigger attrs.
+  existing href and always inject `href="#"` + modal trigger attrs. The popup
+  modal HTML is rendered inline (not in the footer) via the `[popup]` shortcode.
 - Carbon Fields has been replaced by a bespoke shim (`includes/meta-shim/` +
   `includes/meta-reader.php`). The shim implements the same `Container::make()`
   / `Field::make()` chainable API as CF3 and reads/writes data in CF3's
@@ -100,7 +104,9 @@ case studies, rentals, landing pages, etc).
   `customizer.php`, `marquee.php`, `ajax.php`, `schema.php`, `checkout.php` —
   one concern per file, named accordingly. `__button()` in `elements.php`
   resolves popup post IDs via `apply_filters('wpml_object_id', ...)` for WPML
-  compatibility.
+  compatibility. `_coptrz_link_aria_label($visible_text, $context_title)` in
+  `elements.php` generates accessible aria-label strings for linked elements
+  (returns empty string when context is already conveyed by the visible text).
 - `woocommerce.php` (2350 lines) — WooCommerce template/hook overrides; pairs
   with the `woocommerce/` directory which overrides core WooCommerce templates
   (`archive-product.php`, `cart/`, `checkoutx/`, `loop/`, `single-product/`,
@@ -151,4 +157,7 @@ case studies, rentals, landing pages, etc).
   kept for reference only.
 - `$popups_id`, `$layouts_global`, `$product_taxonomy_page` are theme-wide
   globals initialized in `action_after_setup_theme()` and appended to in
-  templates (e.g. `header.php` pushes popup post IDs based on context).
+  templates (e.g. `header.php` pushes hardcoded popup post IDs; `modules.php`
+  pushes meta-shim button popup IDs). Gutenberg `core/button` blocks with
+  `ddPopupId` do NOT use `$popups_id` — their modal HTML is rendered inline by
+  `dd_button_popup_render`.

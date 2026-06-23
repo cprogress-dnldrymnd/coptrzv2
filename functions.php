@@ -197,14 +197,12 @@ function dd_button_popup_render($block_content, $block)
     $popup_id = isset($block['attrs']['ddPopupId']) ? (int) $block['attrs']['ddPopupId'] : 0;
     if (!$popup_id) return $block_content;
 
-    // Inject Bootstrap modal-trigger attributes onto the <a> element.
-    // Works whether or not the button has a URL set in the editor (core/button
-    // omits href entirely when the URL field is empty).
+    // Replace the <a> with a <button> (strips href, adds modal trigger attrs).
     $block_content = preg_replace_callback(
-        '/<a\b([^>]*)>/',
+        '/<a\b([^>]*)>(.*?)<\/a>/s',
         function ($m) use ($popup_id) {
             $attrs = preg_replace('/\s*href=["\'][^"\']*["\']/', '', $m[1]);
-            return '<a' . $attrs . ' href="#" data-bs-toggle="modal" data-bs-target="#modal-' . $popup_id . '">';
+            return '<button type="button"' . $attrs . ' data-bs-toggle="modal" data-bs-target="#modal-' . $popup_id . '">' . $m[2] . '</button>';
         },
         $block_content,
         1
