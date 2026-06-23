@@ -339,7 +339,8 @@ function __button($data)
             $link = $button_url_custom ? "href='$button_url_custom'" : '';
         } else if ($button_type == 'popups') {
             $tag = 'button';
-            $link = 'type="button" data-bs-toggle="modal" data-bs-target="#modal-[post_id id=' . $button_url . ']"';
+            $modal_id = (int) apply_filters('wpml_object_id', $button_url, 'post', true);
+            $link = 'type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $modal_id . '"';
             if ($aria_label === '' && is_numeric($button_url)) {
                 $aria_label = _coptrz_link_aria_label($button_text, get_the_title((int) $button_url));
             }

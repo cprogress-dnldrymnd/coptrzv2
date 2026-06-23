@@ -1690,7 +1690,7 @@ function ____button_modules($buttons, $buttons_alignment = '')
         $html = "<div class='button-group-box $buttons_alignment'>";
         $html .= "<div class='row g-3 justify-content-center d-inline-flex'>";
         foreach ($buttons as $button) {
-            if ($button['button_type'] == 'popup') {
+            if ($button['button_type'] == 'popups') {
                 global $popups_id;
                 $popups_id[] = $button['button_url'];
             }

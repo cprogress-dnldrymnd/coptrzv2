@@ -173,8 +173,42 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         filemtime(get_template_directory() . '/assets/js/dd-tabs-block-js'),
         true
     );
+
+    wp_enqueue_script(
+        'dd-button-popup-extension',
+        get_template_directory_uri() . '/assets/js/extend-button-popup.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch'),
+        filemtime(get_template_directory() . '/assets/js/extend-button-popup.js'),
+        true
+    );
 }
 add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_editor_assets');
+
+/**
+ * Render filter: injects Bootstrap modal-trigger attributes into core/button
+ * blocks that have a ddPopupId set, and registers the popup for footer rendering.
+ */
+function dd_button_popup_render($block_content, $block)
+{
+    $popup_id = isset($block['attrs']['ddPopupId']) ? (int) $block['attrs']['ddPopupId'] : 0;
+    if (!$popup_id) return $block_content;
+
+    global $popups_id;
+    $popups_id[] = $popup_id;
+
+    // Replace the href on the <a> element with # and add Bootstrap modal attributes.
+    // Multiple buttons may target the same popup; array_unique() in the footer
+    // ensures only one modal instance is rendered per popup.
+    $block_content = preg_replace(
+        '/(<a\b[^>]*?)href="[^"]*"/',
+        '$1href="#" data-bs-toggle="modal" data-bs-target="#modal-' . $popup_id . '"',
+        $block_content,
+        1
+    );
+
+    return $block_content;
+}
+add_filter('render_block_core/button', 'dd_button_popup_render', 10, 2);
 
 /**
  * Enqueues the frontend scripts and styles (Frontend only).
