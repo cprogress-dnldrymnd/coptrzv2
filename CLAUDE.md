@@ -145,10 +145,10 @@ case studies, rentals, landing pages, etc).
   since that plugin builds its own payload and ignores `wpcf7_posted_data`.
 - Also in `hooks.php`: a `wpcf7mailsent` JS listener for post-submit redirects.
 - `register_cf7_pdf_url_attribute` (`shortcode_atts_wpcf7` filter) whitelists
-  `pdf_url` and `pdf_type` on CF7 shortcodes. `pdf_type='custom'` (default)
-  passes `pdf_url` through as a literal URL; `pdf_type='document'` treats
-  `pdf_url` as a `documents` post ID and resolves it to a URL via
-  `get__post_meta_by_id($id, 'document')` → `wp_get_attachment_url()`.
+  `pdf_url` on CF7 shortcodes. If the value is numeric it is treated as a
+  `documents` post ID and resolved to a URL via
+  `get__post_meta_by_id($id, 'document')` → `wp_get_attachment_url()`;
+  otherwise it is passed through as a literal URL.
 
 ## Conventions / gotchas
 
