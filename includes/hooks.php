@@ -698,4 +698,3 @@ function register_cf7_pdf_url_attribute($out, $pairs, $atts)
     return $out;
 }
 
-
