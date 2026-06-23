@@ -196,12 +196,17 @@ function dd_button_popup_render($block_content, $block)
     global $popups_id;
     $popups_id[] = $popup_id;
 
-    // Replace the href on the <a> element with # and add Bootstrap modal attributes.
+    // Inject Bootstrap modal-trigger attributes onto the <a> element.
+    // Works whether or not the button has a URL set in the editor (core/button
+    // omits href entirely when the URL field is empty).
     // Multiple buttons may target the same popup; array_unique() in the footer
     // ensures only one modal instance is rendered per popup.
-    $block_content = preg_replace(
-        '/(<a\b[^>]*?)href="[^"]*"/',
-        '$1href="#" data-bs-toggle="modal" data-bs-target="#modal-' . $popup_id . '"',
+    $block_content = preg_replace_callback(
+        '/<a\b([^>]*)>/',
+        function ($m) use ($popup_id) {
+            $attrs = preg_replace('/\s*href=["\'][^"\']*["\']/', '', $m[1]);
+            return '<a' . $attrs . ' href="#" data-bs-toggle="modal" data-bs-target="#modal-' . $popup_id . '">';
+        },
         $block_content,
         1
     );
