@@ -209,7 +209,8 @@ function dd_button_popup_render($block_content, $block)
     );
 
     // Render the popup modal HTML once per unique popup ID, appended after the button.
-    if (!in_array($popup_id, $rendered_popups)) {
+    // Guard against admin/REST context where modules.php (and __popup) is not loaded.
+    if (function_exists('__popup') && !in_array($popup_id, $rendered_popups)) {
         $rendered_popups[] = $popup_id;
         $block_content .= do_shortcode('[popup id="' . $popup_id . '"]');
     }

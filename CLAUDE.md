@@ -31,9 +31,10 @@ case studies, rentals, landing pages, etc).
   meta-shim helper wrappers (`get__post_meta`, `get__term_meta`,
   `get___term_meta`, `get__post_meta_by_id`, `get__theme_option`). Always use
   these wrappers rather than calling the meta-shim directly. Also registers
-  `dd_button_popup_render` (`render_block_core/button` filter) which injects
-  Bootstrap modal-trigger attributes into `core/button` blocks that have
-  `ddPopupId` set, then appends the modal HTML inline via
+  `dd_button_popup_render` (`render_block_core/button` filter) which replaces
+  the rendered `<a>` element with a `<button type="button">` carrying
+  `data-bs-toggle="modal"` / `data-bs-target="#modal-{id}"` for `core/button`
+  blocks that have `ddPopupId` set, then appends the modal HTML inline via
   `do_shortcode('[popup id="..."]')`; a static `$rendered_popups` array ensures
   the modal HTML is emitted only once per popup even when multiple buttons
   target the same popup.
@@ -47,10 +48,10 @@ case studies, rentals, landing pages, etc).
   InspectorControls panel to `core/button` blocks. Stores the selection as a
   `ddPopupId` attribute; fetches published `popups` posts via the WP REST API.
   Works in tandem with `dd_button_popup_render` in `functions.php`.
-  **Gotcha:** `core/button` omits `href` entirely when no URL is set in the
-  editor; `dd_button_popup_render` uses `preg_replace_callback` to strip any
-  existing href and always inject `href="#"` + modal trigger attrs. The popup
-  modal HTML is rendered inline (not in the footer) via the `[popup]` shortcode.
+  **Gotcha:** `core/button` renders an `<a>` element; `dd_button_popup_render`
+  uses `preg_replace_callback` to swap it for a `<button type="button">` (strips
+  `href`, adds Bootstrap modal attrs). The popup modal HTML is rendered inline
+  (not in the footer) via the `[popup]` shortcode.
 - Carbon Fields has been replaced by a bespoke shim (`includes/meta-shim/` +
   `includes/meta-reader.php`). The shim implements the same `Container::make()`
   / `Field::make()` chainable API as CF3 and reads/writes data in CF3's
