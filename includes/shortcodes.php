@@ -62,7 +62,7 @@ class Shortcodes
 
                 $html .= "<div class='col-lg-3'>";
                 $html .= "<div class='inner text-center h-100 border-default rounded-corner xs-padding'>";
-                $html .= "<a href='$link' class='text-primary'>";
+                $html .= "<a href='" . esc_url($link) . "' class='text-primary' aria-label='" . esc_attr(sprintf('View %s products', $term->name)) . "'>";
 
                 $html .= __image($image_args);
                 $html .= __heading(array(
@@ -101,7 +101,7 @@ class Shortcodes
         $html = "<div class='breadcrumbs mb-3 medium-text fw-light'>";
         $html .= "<ul class='list-inline m-0 p-0 t'>";
 
-        $html .= "<li><a class='item text-white' href='$home'>Home</a></li>";
+        $html .= "<li><a class='item text-white' href='" . esc_url($home) . "' aria-label='Coptrz home'>Home</a></li>";
 
         if ($type == 'page') {
             $title = get_the_title($id);
@@ -114,7 +114,7 @@ class Shortcodes
                         $parent = $cat->parent;
                         $cat_link = get_term_link($cat->term_id);
                         if (!$parent) {
-                            $html .= "<li><a class='item text-white' href='$cat_link'>$cat_name</a></li>";
+                            $html .= "<li><a class='item text-white' href='" . esc_url($cat_link) . "'>" . esc_html($cat_name) . "</a></li>";
                         }
                     }
 
@@ -123,7 +123,7 @@ class Shortcodes
                         $parent = $cat->parent;
                         $cat_link = get_term_link($cat->term_id);
                         if ($parent) {
-                            $html .= "<li><a class='item text-white' href='$cat_link'>$cat_name</a></li>";
+                            $html .= "<li><a class='item text-white' href='" . esc_url($cat_link) . "'>" . esc_html($cat_name) . "</a></li>";
                         }
                     }
                 }
@@ -133,7 +133,7 @@ class Shortcodes
                     $link = get_post_type_archive_link($post_type);
                     $post_type_obj = get_post_type_object($post_type);
                     $name = $post_type_obj->labels->name;
-                    $html .= "<li><a class='item text-white' href='$link'>$name</a></li>";
+                    $html .= "<li><a class='item text-white' href='" . esc_url($link) . "'>" . esc_html($name) . "</a></li>";
                 }
             }
             $html .= "<li><span class='item text-white'  >$title</span></li>";
@@ -144,7 +144,7 @@ class Shortcodes
             if ($parent) {
                 $parent_link = get_term_link($parent->term_id);
                 $parent_name = $parent->name;
-                $html .= "<li><a class='item text-white' href='$parent_link'>$parent_name</a></li>";
+                $html .= "<li><a class='item text-white' href='" . esc_url($parent_link) . "'>" . esc_html($parent_name) . "</a></li>";
             }
             $html .= "<li><span class='item text-white'  >$term->name</span></li>";
         } else if ($type == 'archive') {
@@ -260,14 +260,17 @@ class Shortcodes
 
             $html .= "<div class='swiper-wrapper'>"; //swiper-wrapper
 
+            $first_case_study_id = !empty($casestudies_featured) ? (int) $casestudies_featured[0]['id'] : 0;
+
             foreach ($casestudies_featured as $key => $casestudies) {
                 $id = $casestudies['id'];
                 $post_excerpt = wpautop(get_the_excerpt($id));
                 $features = get__post_meta_by_id($id, 'feature');
                 $logo = get__post_meta_by_id($id, 'logo');
                 $link = get_permalink($id);
+                $slide_title = get_the_title($id);
 
-                $html .= "<div class='swiper-slide bg-primary rounded-corner'  url='$link' key='$key'>"; //swiper-slide
+                $html .= "<div class='swiper-slide bg-primary rounded-corner' url='" . esc_url($link) . "' data-title='" . esc_attr($slide_title) . "' key='$key'>"; //swiper-slide
 
                 $html .= "<div class='inner  md-padding-bottom md-padding-top mx-20px  overflow-hidden position-relative'>"; //inner
 
@@ -319,9 +322,9 @@ class Shortcodes
             $html .= "<div class='col-auto'>";
             $html .= "<div class='row g-4 text-center button-group-box justify-content-center align-items-center d-inline-flex'>";
             $html .= __button(array(
-                'button_type'  => get_post_type($id),
+                'button_type'  => get_post_type($first_case_study_id),
                 'button_text'  => 'Read Case Study',
-                'button_url'   => $id,
+                'button_url'   => $first_case_study_id,
                 'button_style' => 'button-accent col-12 col-sm-auto',
             ));
 
@@ -386,11 +389,12 @@ class Shortcodes
 
         $social_buttons = '';
         $social_buttons .= '<div class="social-share-buttons">';
+        $post_title = get_the_title($post->ID);
 
-        $social_buttons .= '<a href="#" onclick="window.open(\'https://www.facebook.com/sharer.php?u=' . $url . '&t=' . $title . '\', \'_blank\', \'width=600,height=400\'); return false;">' . $SVG->facebook() . '</a>';
+        $social_buttons .= '<a href="' . esc_url('https://www.facebook.com/sharer.php?u=' . urlencode($url) . '&t=' . urlencode($post_title)) . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__('Share this article on Facebook', 'coptrz') . '" onclick="window.open(this.href, \'_blank\', \'width=600,height=400\'); return false;">' . $SVG->facebook() . '</a>';
 
-        $social_buttons .= '<a href="#" onclick="window.open(\'https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl=' . $url . '\', \'_blank\', \'width=600,height=400\'); return false;">' . $SVG->linkedin() . '</a>';
-        $social_buttons .= '<a href="#" onclick="window.open(\'https://x.com/share?url=' . $url . '&text=' . $title . '\', \'_blank\', \'width=600,height=400\'); return false;">' . $SVG->x() . '</a>';
+        $social_buttons .= '<a href="' . esc_url('https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl=' . urlencode($url)) . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__('Share this article on LinkedIn', 'coptrz') . '" onclick="window.open(this.href, \'_blank\', \'width=600,height=400\'); return false;">' . $SVG->linkedin() . '</a>';
+        $social_buttons .= '<a href="' . esc_url('https://x.com/share?url=' . urlencode($url) . '&text=' . urlencode($post_title)) . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__('Share this article on X', 'coptrz') . '" onclick="window.open(this.href, \'_blank\', \'width=600,height=400\'); return false;">' . $SVG->x() . '</a>';
         $social_buttons .= '</div>';
         return $social_buttons;
     }
@@ -557,7 +561,10 @@ class Shortcodes
                 $html .= "<div class='col-lg-4'>";
                 $html .= "<div class='column-holder bg-secondary xs-padding rounded-10px'>";
                 if ($review_url) {
-                    $html .= "<a class='text-decoration-none text-white' target='_blank' href='$review_url'>";
+                    $review_label = $review_text
+                        ? sprintf('Read %s review', $review_text)
+                        : 'Read customer review';
+                    $html .= "<a class='text-decoration-none text-white' target='_blank' rel='noopener noreferrer' href='" . esc_url($review_url) . "' aria-label='" . esc_attr($review_label) . "'>";
                 }
                 $html .= "<div class='review-box d-flex justify-content-lg-between'>";
                 $html .= "<div class='review-text '> $review_score </div>";
@@ -603,8 +610,17 @@ class Shortcodes
             foreach ($socials as $social) {
                 $url = $social['url'];
                 $icon = $social['_type'];
+                $social_labels = array(
+                    'facebook'  => 'Coptrz on Facebook',
+                    'linkedin'  => 'Coptrz on LinkedIn',
+                    'x'         => 'Coptrz on X',
+                    'twitter'   => 'Coptrz on X',
+                    'youtube'   => 'Coptrz on YouTube',
+                    'instagram' => 'Coptrz on Instagram',
+                );
+                $label = isset($social_labels[$icon]) ? $social_labels[$icon] : 'Coptrz social profile';
                 $html .= "<li>";
-                $html .= "<a href='$url' target='_blank'>";
+                $html .= "<a href='" . esc_url($url) . "' target='_blank' rel='noopener noreferrer' aria-label='" . esc_attr($label) . "'>";
                 $html .= $SVG->$icon();
                 $html .= "</a>";
                 $html .= "</li>";
@@ -622,7 +638,7 @@ class Shortcodes
         $site_url = get_site_url();
 
         $html = "<div class='site-logo'>";
-        $html .= "<a href='$site_url'>";
+        $html .= "<a href='" . esc_url($site_url) . "' aria-label='Coptrz home'>";
         $html .= __icon(array(
             'id' => $logo
         ));
@@ -740,7 +756,7 @@ class Shortcodes
             if ($logo && !$hide_on_slider) {
                 $link = get_term_link($term->term_id);
                 $html .= "<div class='swiper-slide'>";
-                $html .= "<a href='$link'>";
+                $html .= "<a href='" . esc_url($link) . "' aria-label='" . esc_attr(sprintf('View %s products', $term->name)) . "'>";
                 $html .= __image($image_args);
                 $html .= "</a>";
                 $html .= "</div>";

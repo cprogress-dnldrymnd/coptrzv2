@@ -222,8 +222,8 @@ function brands_filter()
         $logo_url = wp_get_attachment_image_url($logo, 'medium');
         if ($logo_url) {
             $html .= "<div class='col-auto'>";
-            $html .= "<a class='border-default d-flex rounded-corner overflow-hidden position-relative' href='$link'>";
-            $html .= "<img src='$logo_url'>";
+            $html .= "<a class='border-default d-flex rounded-corner overflow-hidden position-relative' href='" . esc_url($link) . "' aria-label='" . esc_attr(sprintf('View %s products', $brand->name)) . "'>";
+            $html .= "<img src='" . esc_url($logo_url) . "' alt='" . esc_attr($brand->name) . "'>";
             $html .= "</a>";
             $html .= "</div>";
         }
@@ -392,7 +392,7 @@ function bbloomer_display_quantity_minus()
 {
     if (!is_product())
         return;
-    echo '<button type="button" class="minus" >-</button>';
+    echo '<button type="button" class="minus" aria-label="' . esc_attr__('Decrease quantity', 'coptrz') . '">-</button>';
 }
 
 add_action('woocommerce_after_quantity_input_field', 'bbloomer_display_quantity_plus');
@@ -401,7 +401,7 @@ function bbloomer_display_quantity_plus()
 {
     if (!is_product())
         return;
-    echo '<button type="button" class="plus" >+</button>';
+    echo '<button type="button" class="plus" aria-label="' . esc_attr__('Increase quantity', 'coptrz') . '">+</button>';
 }
 
 
@@ -409,10 +409,14 @@ function bbloomer_display_quantity_plus()
 function request_info()
 {
     $id = apply_filters('wpml_object_id', 299743, 'post');
+    $product_title = is_product() ? get_the_title() : '';
+    $request_label = $product_title
+        ? sprintf(__('Request info about %s', 'coptrz-theme'), $product_title)
+        : __('Request product information', 'coptrz-theme');
     $html = '<div class="button-box button-bordered request-info">';
-    $html .= "<a class='rounded-10px ' data-bs-toggle='modal' data-bs-target='#modal-$id' target='_self'>";
-    $html .= __('Request Info', 'coptrz-theme');
-    $html .= '</a>';
+    $html .= '<button type="button" class="rounded-10px border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#modal-' . esc_attr($id) . '" aria-label="' . esc_attr($request_label) . '">';
+    $html .= esc_html__('Request Info', 'coptrz-theme');
+    $html .= '</button>';
     $html .= '</div>';
     echo $html;
 }
@@ -724,7 +728,7 @@ function _product_grid_display($id)
 
         if ($status == 'publish') {
             $html .= "<div class='product-buttons'>";
-            $html .= "<div class='button-box button-bordered'><a class='product-btn' href='$permalink'> <span class='product-data d-none'>$data_encode</span> View Product</a></div>";
+            $html .= "<div class='button-box button-bordered'><a class='product-btn' href='" . esc_url($permalink) . "' aria-label='" . esc_attr(_coptrz_link_aria_label('View Product', $title)) . "'> <span class='product-data d-none'>$data_encode</span> View Product</a></div>";
             $html .= "</div>";
         }
         $html .= "</div>";
@@ -1053,14 +1057,19 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
 
                 $html .= '</div>';
 
+                $variation_product = wc_get_product($product_id);
+                $variation_title = $variation_product ? $variation_product->get_name() : '';
+
                 $html .= "<div class='button-box button-bordered mt-3'>";
 
 
                 if ($post_type_key == 'product') {
-                    $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='product-btn button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow'><span class='product-data d-none'>$data_encode</span> Add to basket</a>";
+                    $add_label = esc_attr(_coptrz_link_aria_label('Add to basket', $variation_title));
+                    $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='product-btn button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow' aria-label='$add_label'><span class='product-data d-none'>$data_encode</span> Add to basket</a>";
                 } else {
                     $basket_url =   wc_get_cart_url();
-                    $html .= "<a class='w-100' href='$basket_url?add-to-cart=$product_id'>Buy now</a>";
+                    $buy_label = esc_attr(_coptrz_link_aria_label('Buy now', $variation_title));
+                    $html .= "<a class='w-100' href='$basket_url?add-to-cart=$product_id' aria-label='$buy_label'>Buy now</a>";
                 }
 
 
@@ -1807,7 +1816,8 @@ function product_guides()
         $pdf_url = wp_get_attachment_url($product_guide);
         $html = "<div class='download-guide mt-5 bg-dark rounded-corner p-4'>";
         $html .= "<h4 class='text-white mb-4'>Download $title guide.</h4>";
-        $html .= "<div class='button-box button-accent request-info'><a class='rounded-10px'href='$pdf_url' target='_blank'>Download</a></div>";
+        $download_label = esc_attr(sprintf('Download guide for %s', $title));
+        $html .= "<div class='button-box button-accent request-info'><a class='rounded-10px' href='" . esc_url($pdf_url) . "' target='_blank' rel='noopener noreferrer' aria-label='$download_label'>Download</a></div>";
         $html .= "</div>";
         echo $html;
     }
@@ -2279,9 +2289,9 @@ function action_woocommerce_before_single_product_shopify_link()
     <div class="button-group-box ">
         <div class="row g-3 justify-content-center ">
 
-            <div class="button-box button-bordered  col-auto"><a class="rounded-10px " data-bs-toggle="modal" data-bs-target="#modal-299743" target="_self">Enquire</a></div>
+            <div class="button-box button-bordered col-auto"><button type="button" class="rounded-10px border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#modal-299743" aria-label="<?= esc_attr(sprintf('Enquire about %s', get_the_title())) ?>">Enquire</button></div>
 
-            <div class="button-accent col-auto button-box"><a target="_blank" class="rounded-10px " href="<?= get__post_meta('shopify_product_link') ?>">
+            <div class="button-accent col-auto button-box"><a target="_blank" rel="noopener noreferrer" class="rounded-10px" href="<?= esc_url(get__post_meta('shopify_product_link')) ?>" aria-label="<?= esc_attr(sprintf('%s: %s', $button_text, get_the_title())) ?>">
                     <?= $button_text ?>
                 </a></div>
 

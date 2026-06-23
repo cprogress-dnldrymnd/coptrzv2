@@ -1,4 +1,17 @@
 <?php
+function _coptrz_link_aria_label($visible_text, $context_title)
+{
+    $visible_text = trim((string) $visible_text);
+    $context_title = trim((string) $context_title);
+    if ($visible_text === '' || $context_title === '') {
+        return '';
+    }
+    if (stripos($visible_text, $context_title) !== false) {
+        return '';
+    }
+    return $visible_text . ': ' . $context_title;
+}
+
 function __heading($data, $html = '')
 {
     $heading = isset($data['heading']) ? $data['heading'] : false;
@@ -167,7 +180,15 @@ function __image($data)
         $_attributes = _attributes($attributes_args);
         $html = "<div $_attributes>";
         if ($link) {
-            $html .= "<a class='text-inherit text-decoration-none' href='$link' $button_target>";
+            $aria_label = '';
+            if (!empty($data['link']) && is_numeric($data['link'])) {
+                $alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
+                if (trim((string) $alt) === '') {
+                    $aria_label = _coptrz_link_aria_label('View', get_the_title($data['link']));
+                }
+            }
+            $aria_attr = $aria_label ? " aria-label='" . esc_attr($aria_label) . "'" : '';
+            $html .= "<a class='text-inherit text-decoration-none' href='" . esc_url($link) . "' $button_target$aria_attr>";
         }
         $html .= $image;
         if ($link) {
@@ -284,6 +305,8 @@ function __button($data)
         $button_style = isset($data['button_style']) ? $data['button_style'] : false;
         $button_text = isset($data['button_text']) ? $data['button_text'] : false;
         $button_target = isset($data['button_target']) ? $data['button_target'] : false;
+        $aria_label = isset($data['aria_label']) ? $data['aria_label'] : '';
+        $button_post_id = is_numeric($button_url) ? (int) $button_url : 0;
         $link = '';
         $class = '';
         $display = true;
@@ -316,16 +339,23 @@ function __button($data)
             $link = $button_url_custom ? "href='$button_url_custom'" : '';
         } else if ($button_type == 'popups') {
             $tag = 'button';
-            $link = 'data-bs-toggle="modal" data-bs-target="#modal-[post_id id=' . $button_url . ']"';
+            $link = 'type="button" data-bs-toggle="modal" data-bs-target="#modal-[post_id id=' . $button_url . ']"';
+            if ($aria_label === '' && is_numeric($button_url)) {
+                $aria_label = _coptrz_link_aria_label($button_text, get_the_title((int) $button_url));
+            }
         }
 
         if ($button_text && $link && $display == true) {
+            if ($aria_label === '' && $tag === 'a' && $button_post_id) {
+                $aria_label = _coptrz_link_aria_label($button_text, get_the_title($button_post_id));
+            }
+            $aria_attr = $aria_label ? " aria-label='" . esc_attr($aria_label) . "'" : '';
             $attributes_args = [];
             $attributes_args[] = _attribute('class', array($button_style, 'button-box'));
 
             $_attributes = _attributes($attributes_args);
             $html = "<div $_attributes>";
-            $html .= "<$tag class='rounded-10px $class' $link $button_target>";
+            $html .= "<$tag class='rounded-10px $class' $link $button_target$aria_attr>";
             $html .= $button_text;
             $html .= "</$tag>";
             $html .= "</div>";

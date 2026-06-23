@@ -122,7 +122,7 @@ function brands_ajax()
 
 			$html .= "<div class='col-lg-3'>";
 			$html .= "<div class='inner text-center h-100 border-default rounded-corner xs-padding'>";
-			$html .= "<a href='$link' class='text-primary'>";
+			$html .= "<a href='" . esc_url($link) . "' class='text-primary' aria-label='" . esc_attr(sprintf('View %s products', $term->name)) . "'>";
 
 			$html .= __image($image_args);
 			$html .= __heading(array(
