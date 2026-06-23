@@ -186,21 +186,20 @@ add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_e
 
 /**
  * Render filter: injects Bootstrap modal-trigger attributes into core/button
- * blocks that have a ddPopupId set, and registers the popup for footer rendering.
+ * blocks that have a ddPopupId set, and renders the popup modal HTML inline.
+ * Uses a static array so the modal is output only once even when multiple
+ * buttons on the same page target the same popup.
  */
 function dd_button_popup_render($block_content, $block)
 {
+    static $rendered_popups = [];
+
     $popup_id = isset($block['attrs']['ddPopupId']) ? (int) $block['attrs']['ddPopupId'] : 0;
     if (!$popup_id) return $block_content;
-
-    global $popups_id;
-    $popups_id[] = $popup_id;
 
     // Inject Bootstrap modal-trigger attributes onto the <a> element.
     // Works whether or not the button has a URL set in the editor (core/button
     // omits href entirely when the URL field is empty).
-    // Multiple buttons may target the same popup; array_unique() in the footer
-    // ensures only one modal instance is rendered per popup.
     $block_content = preg_replace_callback(
         '/<a\b([^>]*)>/',
         function ($m) use ($popup_id) {
@@ -210,6 +209,12 @@ function dd_button_popup_render($block_content, $block)
         $block_content,
         1
     );
+
+    // Render the popup modal HTML once per unique popup ID, appended after the button.
+    if (!in_array($popup_id, $rendered_popups)) {
+        $rendered_popups[] = $popup_id;
+        $block_content .= do_shortcode('[popup id="' . $popup_id . '"]');
+    }
 
     return $block_content;
 }

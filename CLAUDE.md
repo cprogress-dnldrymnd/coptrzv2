@@ -34,11 +34,19 @@ case studies, rentals, landing pages, etc).
   `dd_button_popup_render` (`render_block_core/button` filter) which injects
   Bootstrap modal attributes into core/button blocks that have `ddPopupId` set
   and pushes the ID into `$popups_id` for footer rendering.
+- `assets/js/main.js` — main frontend JS, runs on `jQuery(document).ready`.
+  Initialises all frontend behaviors: mini-cart, header menu, accordions,
+  Swiper carousels, phone inputs, AJAX, hero, post navigation, URL param
+  passthrough, and `initResponsiveTableCards` (converts `.responsive--table-2`
+  comparison tables to column-card layout on mobile).
 - `assets/js/extend-button-popup.js` — Gutenberg block editor extension
   (enqueued on `enqueue_block_editor_assets`) that adds an "Open Popup"
   InspectorControls panel to `core/button` blocks. Stores the selection as a
   `ddPopupId` attribute; fetches published `popups` posts via the WP REST API.
   Works in tandem with `dd_button_popup_render` in `functions.php`.
+  **Gotcha:** `core/button` omits `href` entirely when no URL is set in the
+  editor; `dd_button_popup_render` uses `preg_replace_callback` to strip any
+  existing href and always inject `href="#"` + modal trigger attrs.
 - Carbon Fields has been replaced by a bespoke shim (`includes/meta-shim/` +
   `includes/meta-reader.php`). The shim implements the same `Container::make()`
   / `Field::make()` chainable API as CF3 and reads/writes data in CF3's
