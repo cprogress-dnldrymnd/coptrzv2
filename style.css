@@ -11783,8 +11783,9 @@ option {
   text-transform: capitalize; }
 
 input[type="checkbox"] {
-  width: 26px;
-  height: 26px; }
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px; }
 
 .site-logo svg,
 .site-logo img {
@@ -12346,7 +12347,7 @@ hr {
     border: none;
     color: var(--bs-black); }
     .modal.popup-form .modal-content a {
-      color: inherit; }
+      color: var(--bs-accent); }
     .modal.popup-form .modal-content.background-primary a {
       color: var(--bs-white) !important; }
   .modal.popup-form .popup-content-default > *:last-child {
