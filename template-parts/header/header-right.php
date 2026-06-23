@@ -6,15 +6,17 @@ $SVG = new SVG;
 
         <?php if (get_post_type() != 'rentals' && get_the_ID() != 292371) { ?>
             <div class="col-auto d-flex align-items-center account">
-                <a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')); ?>"
-                    class="header-icon account-icon text-white d-flex align-items-center">
+                <a href="<?= esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>"
+                    class="header-icon account-icon text-white d-flex align-items-center"
+                    aria-label="My account">
                     <?= $SVG->user(); ?>
                 </a>
             </div>
         <?php } ?>
         <div class="col-auto d-flex align-items-center account">
-            <a target="_blank" href="https://www.coptrzacademy-usp.io/login"
-                class="header-icon account-icon text-white d-flex align-items-center">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.coptrzacademy-usp.io/login"
+                class="header-icon account-icon text-white d-flex align-items-center"
+                aria-label="Coptrz Academy login">
                 <?= $SVG->academy(); ?>
             </a>
         </div>
@@ -25,7 +27,7 @@ $SVG = new SVG;
             } else {
             ?>
                 <div class="mini-cart-wrapper">
-                    <a href="#" id="mini-cart-button" class="header-icon cart-icon text-white d-flex align-items-center">
+                    <a href="<?= esc_url(function_exists('wc_get_cart_url') ? wc_get_cart_url() : '#'); ?>" id="mini-cart-button" class="header-icon cart-icon text-white d-flex align-items-center" aria-label="View shopping cart (<?= (int) WC()->cart->get_cart_contents_count(); ?> items)">
                         <?= $SVG->cart(); ?>
                         <div class="cart-number">
                             <?= WC()->cart->get_cart_contents_count(); ?>
