@@ -91,7 +91,7 @@ function custom_theme_block_editor_setup()
             'slug'  => 'transparent',
             'color' => '#00000000',
         ),
-        
+
     ));
 
     /**
@@ -660,4 +660,32 @@ function dd_append_date_to_cf7_zapier_payload($data, $contact_form)
     }
 
     return $data;
+}
+
+
+/**
+ * Registers a custom shortcode attribute ('pdf_url') for Contact Form 7.
+ * * WordPress shortcodes only accept predefined attributes by default. This filter
+ * intercepts the CF7 shortcode processing and explicitly allows 'pdf_url' to be 
+ * passed through to the form's rendering context so it can populate default values.
+ *
+ * @param array $out   The array of supported attributes and their processed values.
+ * @param array $pairs The array of supported attributes and their default values.
+ * @param array $atts  The array of user-defined attributes passed into the shortcode.
+ * @return array The filtered array containing the authorized custom attribute.
+ */
+add_filter('shortcode_atts_wpcf7', 'register_cf7_pdf_url_attribute', 10, 3);
+
+function register_cf7_pdf_url_attribute($out, $pairs, $atts)
+{
+    // Define the custom attribute targeted in the shortcode
+    $custom_attribute = 'pdf_url';
+
+    // Verify if the custom attribute exists in the user-provided shortcode execution
+    if (isset($atts[$custom_attribute])) {
+        // Append the attribute to the authorized output array
+        $out[$custom_attribute] = $atts[$custom_attribute];
+    }
+
+    return $out;
 }
