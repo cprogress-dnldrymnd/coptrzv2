@@ -664,28 +664,40 @@ function dd_append_date_to_cf7_zapier_payload($data, $contact_form)
 
 
 /**
- * Registers a custom shortcode attribute ('pdf_url') for Contact Form 7.
- * * WordPress shortcodes only accept predefined attributes by default. This filter
- * intercepts the CF7 shortcode processing and explicitly allows 'pdf_url' to be 
+ * Registers custom shortcode attributes ('pdf_url', 'pdf_type') for Contact Form 7.
+ * WordPress shortcodes only accept predefined attributes by default. This filter
+ * intercepts the CF7 shortcode processing and explicitly allows 'pdf_url' to be
  * passed through to the form's rendering context so it can populate default values.
+ *
+ * pdf_type='custom' (default) — pdf_url is a literal URL.
+ * pdf_type='document' — pdf_url is a 'documents' post ID; the '_document' attachment
+ *   meta field is resolved to a URL so downstream code always receives a URL.
  *
  * @param array $out   The array of supported attributes and their processed values.
  * @param array $pairs The array of supported attributes and their default values.
  * @param array $atts  The array of user-defined attributes passed into the shortcode.
- * @return array The filtered array containing the authorized custom attribute.
+ * @return array The filtered array containing the authorized custom attributes.
  */
 add_filter('shortcode_atts_wpcf7', 'register_cf7_pdf_url_attribute', 10, 3);
 
 function register_cf7_pdf_url_attribute($out, $pairs, $atts)
 {
-    // Define the custom attribute targeted in the shortcode
-    $custom_attribute = 'pdf_url';
-
-    // Verify if the custom attribute exists in the user-provided shortcode execution
-    if (isset($atts[$custom_attribute])) {
-        // Append the attribute to the authorized output array
-        $out[$custom_attribute] = $atts[$custom_attribute];
+    if (!isset($atts['pdf_url'])) {
+        return $out;
     }
+
+    $pdf_type = isset($atts['pdf_type']) ? $atts['pdf_type'] : 'custom';
+
+    if ($pdf_type === 'document') {
+        $attachment_id = get__post_meta_by_id($atts['pdf_url'], 'document');
+        if ($attachment_id) {
+            $out['pdf_url'] = wp_get_attachment_url($attachment_id);
+        }
+    } else {
+        $out['pdf_url'] = $atts['pdf_url'];
+    }
+
+    $out['pdf_type'] = $pdf_type;
 
     return $out;
 }
