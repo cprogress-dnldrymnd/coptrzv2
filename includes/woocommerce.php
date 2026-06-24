@@ -218,7 +218,7 @@ function brands_filter()
     $html .= "<div class='row'>";
     foreach ($brands as $brand) {
         $link = get_term_link($brand->term_id);
-        $logo = carbon_get_term_meta($brand->term_id, 'image');
+        $logo = coptrz_get_term_meta($brand->term_id, 'image');
         $logo_url = wp_get_attachment_image_url($logo, 'medium');
         if ($logo_url) {
             $html .= "<div class='col-auto'>";

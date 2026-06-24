@@ -23,9 +23,36 @@ function action_after_setup_theme()
 add_action('after_setup_theme', 'action_after_setup_theme');
 
 /*-----------------------------------------------------------------------------------*/
-/* Register Carbofields
+/* Meta Shim — native replacement for Carbon Fields (read/write + admin UI)
+/*
+/* Loads the standalone shim (includes/meta-shim/), registers every field
+/* definition (includes/post-meta.php now builds CoptrzTheme\MetaShim\Container /
+/* Field) and boots the native meta boxes. This supersedes the old
+/* carbon_fields_register_fields bootstrap; Carbon Fields can be deactivated once
+/* verified. See includes/meta-shim/ and the self-test in
+/* includes/meta-shim/self-test.php.
 /*-----------------------------------------------------------------------------------*/
-add_action('carbon_fields_register_fields', 'tissue_paper_register_custom_fields');
+require_once __DIR__ . '/includes/meta-shim/Key_Formatter.php';
+require_once __DIR__ . '/includes/meta-shim/Field.php';
+require_once __DIR__ . '/includes/meta-shim/Container.php';
+require_once __DIR__ . '/includes/meta-shim/View.php';
+require_once __DIR__ . '/includes/meta-shim/Writer.php';
+require_once __DIR__ . '/includes/meta-shim/Container_Admin.php';
+require_once __DIR__ . '/includes/meta-reader.php';
+if (is_admin()) {
+    // Transitional parity checker (inert unless ?coptrz_meta_selftest=<id>).
+    require_once __DIR__ . '/includes/meta-shim/self-test.php';
+}
+
+/**
+ * Register all custom field definitions through the meta shim, then wire up the
+ * native admin UI. Runs early on every request so the field-definition index is
+ * available to both front-end reads (the Reader) and the admin renderer/saver.
+ *
+ * The blocks-editor exclusion preserves the previous behaviour: when the
+ * page-blocks-editor template is active, field definitions are only loaded on
+ * the front end (never in wp-admin).
+ */
 function tissue_paper_register_custom_fields()
 {
     $is_blocks_editor = function_exists('dd_is_blocks_editor_template_active') && dd_is_blocks_editor_template_active();
@@ -36,37 +63,35 @@ function tissue_paper_register_custom_fields()
             require_once('includes/post-meta.php');
         }
     }
+    \CoptrzTheme\MetaShim\Container_Admin::boot();
 }
+add_action('after_setup_theme', 'tissue_paper_register_custom_fields', 20);
+// NOTE: these wrappers now delegate to the native meta shim (coptrz_get_*),
+// which reconstructs the identical nested arrays Carbon Fields returned. Keep
+// using these wrappers throughout the theme rather than calling the shim direct.
 function get__post_meta($value)
 {
-    if (function_exists('carbon_get_the_post_meta')) {
-        return carbon_get_the_post_meta($value);
-    }
+    return coptrz_get_the_post_meta($value);
 }
 
 function get__term_meta($term_id, $value)
 {
-    if (function_exists('get_term_meta')) {
-        return get_term_meta($term_id, '_' . $value, true);
-    }
+    // Unchanged: native single read for simple (scalar) term fields.
+    return get_term_meta($term_id, '_' . $value, true);
 }
 
 function get___term_meta($term_id, $value)
 {
-    if (function_exists('carbon_get_term_meta')) {
-        return carbon_get_term_meta($term_id, $value);
-    }
+    return coptrz_get_term_meta($term_id, $value);
 }
 
 function get__post_meta_by_id($id, $value)
 {
-    if (function_exists('carbon_get_post_meta')) {
-        return carbon_get_post_meta($id, $value);
-    }
+    return coptrz_get_post_meta($id, $value);
 }
 function get__theme_option($value)
 {
-    return carbon_get_theme_option($value);
+    return coptrz_get_theme_option($value);
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -855,7 +880,7 @@ add_action('wp', function () {
 
     global $post;
 
-    $related = carbon_get_post_meta($post->ID, 'crb_related_products');
+    $related = coptrz_get_post_meta($post->ID, 'crb_related_products');
 
     if (!empty($related)) {
         remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
@@ -868,7 +893,7 @@ add_action('woocommerce_after_single_product_summary', function () {
 
     global $post;
 
-    $related = carbon_get_post_meta($post->ID, 'crb_related_products');
+    $related = coptrz_get_post_meta($post->ID, 'crb_related_products');
 
     // ❌ If empty → let WooCommerce handle it
     if (empty($related)) return;

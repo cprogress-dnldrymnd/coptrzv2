@@ -45,8 +45,8 @@ function header_menu()
 		$ID = $menu['ID'];
 		$menu_item_parent = $menu['menu_item_parent'];
 		if ($menu_item_parent == 0) {
-			$is_mega_menu = carbon_get_nav_menu_item_meta($ID, 'is_mega_menu');
-			$is_two_column = carbon_get_nav_menu_item_meta($ID, 'is_two_column');
+			$is_mega_menu = coptrz_get_nav_menu_item_meta($ID, 'is_mega_menu');
+			$is_two_column = coptrz_get_nav_menu_item_meta($ID, 'is_two_column');
 			$class = $is_mega_menu ? 'is-mega-menu' : 'is-not-mega-menu';
 			$class_col = $is_two_column ? 'is-two-column' : '';
 			if (!$is_mega_menu) {

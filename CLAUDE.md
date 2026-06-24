@@ -57,24 +57,55 @@ case studies, rentals, landing pages, etc).
 - Carbon Fields has been replaced by a bespoke shim (`includes/meta-shim/` +
   `includes/meta-reader.php`). The shim implements the same `Container::make()`
   / `Field::make()` chainable API as CF3 and reads/writes data in CF3's
-  pipe-delimited meta-key format — so existing DB rows are untouched.
-  - `includes/meta-shim/Key_Formatter.php` — encodes/decodes the CF3 key
-    format (`_root|hierarchy|hierarchy_index|value_index|property`) and
-    provides static `read_post/read_term/read_option` and
-    `write_simple_*/write_complex_*` helpers that do the actual DB work.
-  - `includes/meta-shim/Field.php` — pure descriptor with chainable setters
-    matching CF3's API (`set_options`, `add_options`, `set_attribute`,
-    `set_alpha_enabled`, etc.).
-  - `includes/meta-shim/Container.php` — registers meta boxes / options pages,
-    renders admin UI, and saves via `Key_Formatter`.
-  - `includes/meta-reader.php` — standalone read functions wrapping
-    `Key_Formatter::read_*`; drop-in replacements for `carbon_get_*` calls.
-  The shim is booted via `CoptrzTheme\MetaShim\Container::boot()` on
-  `after_setup_theme` (priority 5), then `post-meta.php` is loaded on `init`
-  (priority 0). `post-meta.php` uses `CoptrzTheme\MetaShim\Container` and
-  `CoptrzTheme\MetaShim\Field` in place of the old Carbon Fields namespaces.
-  `post-meta.php` is skipped only when both `is_admin()` and the blocks-editor
-  template are active simultaneously.
+  pipe-delimited meta-key format — so existing DB rows are untouched. All files
+  live in the `CoptrzTheme\MetaShim` namespace.
+  - `includes/meta-shim/Key_Formatter.php` — pure codec for the CF3 key format
+    (`_root|field:chain|group:indexes|value_index|property`, a port of CF's
+    `Key_Toolset`): `build_key()` / `parse_key()`, plus cache-backed data access
+    (`load_root_map()` reads post/term meta via WP's object cache and theme
+    options via a single targeted query; `persist_root()` / `delete_root()` do
+    the delete-then-insert writes).
+  - `includes/meta-shim/Field.php` — pure descriptor with the CF3 chainable
+    setters (`set_options`, `set_conditional_logic`, `set_types`, `add_fields`
+    for named complex groups, etc.) plus `storage_kind()` introspection
+    (scalar / multi / association / complex / none). Unmodelled setters no-op via
+    `__call`.
+  - `includes/meta-shim/Container.php` — `make()/where()/or_where()/add_tab()/
+    add_fields()`; builds the global field-tree INDEX
+    (`object_type → field_name → Field`) that the reader and renderer query.
+  - `includes/meta-shim/Container_Admin.php` — `boot()` wires the WP admin
+    lifecycle: post meta boxes + `save_post`, theme-options pages + save, term
+    fields + save, nav-menu-item fields + save, and the association AJAX search.
+    Display conditions (`where`) are evaluated for `post_type`/`post_template`/
+    `term_taxonomy`.
+  - `includes/meta-shim/View.php` — server-side HTML renderer for every field
+    type + nested repeaters; emits a flat markup contract enhanced by the JS.
+  - `includes/meta-shim/Writer.php` — `build_flat()` (exact inverse of the
+    reader) shared by the admin save and the programmatic `coptrz_set_post_meta`
+    / `coptrz_set_term_meta` / `coptrz_set_theme_option` API; `serialize()`
+    normalises a Carbon-format value tree (reader output) back into posted shape.
+  - `includes/meta-reader.php` — `Reader::read()` tree-aware reconstruction +
+    the drop-in functions `coptrz_get_post_meta` / `coptrz_get_the_post_meta` /
+    `coptrz_get_term_meta` / `coptrz_get_theme_option` /
+    `coptrz_get_nav_menu_item_meta`. NOTE: both `meta-reader.php` and `Writer.php`
+    use **braced** namespace syntax because they declare a named namespace *and*
+    a global (`namespace {}`) block in one file — do not convert to unbracketed.
+  - `includes/meta-shim/self-test.php` — transitional parity checker (admin-only,
+    `?coptrz_meta_selftest=<post_id>`), compares `carbon_get_post_meta` vs the
+    shim while CF is still active. Remove after sign-off.
+  The shim is required at the top of `functions.php`; `tissue_paper_register_custom_fields()`
+  (hooked on `after_setup_theme`, priority 20) loads `post-meta.php` (which now
+  `use`s `CoptrzTheme\MetaShim\Container` / `Field`) then calls
+  `Container_Admin::boot()`. `post-meta.php` is skipped only when both
+  `is_admin()` and the blocks-editor template are active simultaneously. The
+  theme's meta wrappers (`get__post_meta`, `get___term_meta`,
+  `get__post_meta_by_id`, `get__theme_option`) now delegate to the `coptrz_get_*`
+  readers. **All `carbon_*` call sites in the theme have been replaced with
+  `coptrz_*` shim equivalents — the code migration is complete.** Carbon Fields
+  can be deactivated once the self-test (`?coptrz_meta_selftest=<id>`) confirms
+  parity. Note: `get__term_meta` (two underscores) still delegates to raw
+  `get_term_meta()` for simple scalar term fields; use `get___term_meta` (three
+  underscores) for complex/nested term fields.
 - `includes/_required_files.php` loads the rest of `includes/` in order:
   `schema.php`, `post-types.php`, then (skipped on the block-editor template /
   admin) `elements.php`, `modules.php`, `ajax.php`, `svg.php`, then
@@ -132,6 +163,11 @@ case studies, rentals, landing pages, etc).
   `industries`, `events`, plus generic `single-post.php`.
 - `template-parts/product-form/` — multi-section product configurator form
   (`section-1`..`section-4`, `section-video`).
+- `single-producttaxonomypages.php` — single template for the `producttaxonomypages`
+  post type. Supports a `?copy_from=<post_id>` URL param that reads meta fields
+  from another post and writes them to the current post via `coptrz_set_post_meta`;
+  individual field groups (`copy_after`, `training`, `software`, `drones`,
+  `accessories`) are each gated by their own URL param.
 - Multiple header/footer variants exist for different layouts: `header.php`,
   `header-clean.php`, `header-simple.php`, `header-landing.php`,
   `header-landing-v2.php`; `footer.php`, `footer-clean.php`,
