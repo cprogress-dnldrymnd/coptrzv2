@@ -874,9 +874,7 @@ window.addEventListener('resize', () => {
     // Optional: Wrap in a debounce function here for better performance on heavy pages
     matchElementHeights('mh-parent', 'mh-child');
     matchElementHeights('mh-parent', 'mh-child-2');
-
 });
-
 
 /**
  * @package   DigitallyDisruptive
