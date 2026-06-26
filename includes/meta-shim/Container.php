@@ -37,6 +37,9 @@ class Container
     /** @var Container[] All registered containers (for the admin layer to iterate). */
     public static $containers = array();
 
+    /** @var array<string,bool> Used container ids, to keep generated ids unique + stable. */
+    protected static $used_ids = array();
+
     /**
      * Global field index used by the reader & renderer.
      *
@@ -84,7 +87,23 @@ class Container
         $container->type        = $type;
         $container->object_type = isset(self::OBJECT_TYPE_MAP[$type]) ? self::OBJECT_TYPE_MAP[$type] : 'post';
         $container->title       = $title;
-        $container->id          = sanitize_title($type . '-' . $title . '-' . wp_rand(1000, 9999));
+        // Deterministic, collision-free id. MUST be stable across requests
+        // because theme-options menu slugs (admin.php?page=coptrz-<id>) are built
+        // from it — a random id would 404 / "not allowed" when the page loads and
+        // re-registers under a different slug. Containers register in a fixed
+        // order each request, so a sequential suffix stays stable.
+        $base = sanitize_title($type . '-' . $title);
+        if ($base === '') {
+            $base = sanitize_title($type) . '-container';
+        }
+        $id = $base;
+        $n  = 1;
+        while (isset(self::$used_ids[$id])) {
+            $n++;
+            $id = $base . '-' . $n;
+        }
+        self::$used_ids[$id] = true;
+        $container->id = $id;
 
         // Seed a first OR-set so the first where() AND-chains correctly.
         $container->condition_sets[] = array();

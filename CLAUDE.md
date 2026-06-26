@@ -73,6 +73,10 @@ case studies, rentals, landing pages, etc).
   - `includes/meta-shim/Container.php` — `make()/where()/or_where()/add_tab()/
     add_fields()`; builds the global field-tree INDEX
     (`object_type → field_name → Field`) that the reader and renderer query.
+    Container IDs are deterministic (`sanitize_title(type-title)` + sequential
+    suffix via `$used_ids`) — never random — because theme-options menu slugs
+    (`admin.php?page=coptrz-<id>`) are derived from the ID and must be stable
+    across requests.
   - `includes/meta-shim/Container_Admin.php` — `boot()` wires the WP admin
     lifecycle: post meta boxes + `save_post`, theme-options pages + save, term
     fields + save, nav-menu-item fields + save, and the association AJAX search.
