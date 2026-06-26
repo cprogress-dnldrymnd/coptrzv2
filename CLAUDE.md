@@ -77,7 +77,10 @@ case studies, rentals, landing pages, etc).
     lifecycle: post meta boxes + `save_post`, theme-options pages + save, term
     fields + save, nav-menu-item fields + save, and the association AJAX search.
     Display conditions (`where`) are evaluated for `post_type`/`post_template`/
-    `term_taxonomy`.
+    `term_taxonomy`. Also exposes `Container_Admin::hide_fields($names)` /
+    `$render_blocklist` to suppress a field's meta box from the admin UI without
+    removing it from the reader's field-tree index (used to retire the legacy
+    page-builder UI while keeping the data readable).
   - `includes/meta-shim/View.php` — server-side HTML renderer for every field
     type + nested repeaters; emits a flat markup contract enhanced by the JS.
   - `includes/meta-shim/Writer.php` — `build_flat()` (exact inverse of the
@@ -95,8 +98,10 @@ case studies, rentals, landing pages, etc).
     shim while CF is still active. Remove after sign-off.
   The shim is required at the top of `functions.php`; `tissue_paper_register_custom_fields()`
   (hooked on `after_setup_theme`, priority 20) loads `post-meta.php` (which now
-  `use`s `CoptrzTheme\MetaShim\Container` / `Field`) then calls
-  `Container_Admin::boot()`. `post-meta.php` is skipped only when both
+  `use`s `CoptrzTheme\MetaShim\Container` / `Field`), then calls
+  `coptrz_register_html_sections_fields()` (defined in `section-converter.php`,
+  registers the product HTML repeater fields and hides the legacy builder meta boxes),
+  then calls `Container_Admin::boot()`. `post-meta.php` is skipped only when both
   `is_admin()` and the blocks-editor template are active simultaneously. The
   theme's meta wrappers (`get__post_meta`, `get___term_meta`,
   `get__post_meta_by_id`, `get__theme_option`) now delegate to the `coptrz_get_*`
@@ -131,7 +136,11 @@ case studies, rentals, landing pages, etc).
   post type name when adding/editing fields.
 - `modules.php` — misc snippet-style hooks (save-post handlers, date
   formatting helpers like `_date_format`, etc). Each function is a standalone
-  "module" with a doc comment.
+  "module" with a doc comment. `___sections($id, $post_id, $only_key)` renders
+  the "sections" page-builder output; it routes through
+  `coptrz_sections_should_route()` (see `section-converter.php`) so converted
+  posts render their frozen HTML instead of the live builder. Pass `$only_key`
+  to render a single section by index (used by the converter during snapshot).
 - `hooks.php` — general action/filter hooks, including CF7 integrations (see
   Forms below).
 - `elements.php`, `shortcodes.php`, `theme-widgets.php`, `menus.php`,
@@ -141,6 +150,17 @@ case studies, rentals, landing pages, etc).
   compatibility. `_coptrz_link_aria_label($visible_text, $context_title)` in
   `elements.php` generates accessible aria-label strings for linked elements
   (returns empty string when context is already conveyed by the visible text).
+- `section-converter.php` — retires the dynamic "sections" / `sections_after_main`
+  page-builder by freezing each post's sections into static HTML. Non-product posts
+  get Gutenberg "Custom HTML" blocks appended to `post_content`; `product` posts get
+  a sortable `sections_html` / `sections_after_main_html` complex repeater (label +
+  raw HTML rows). Original `_sections` meta is preserved (conversion is reversible).
+  Provides: `coptrz_sections_is_converted($post_id)`, `coptrz_sections_should_route()`,
+  `coptrz_render_converted_sections()`, `coptrz_convert_post_sections($post_id, $dry_run)`,
+  `coptrz_register_html_sections_fields()`. Admin tools: a per-post "Convert Sections
+  to HTML" meta box (side, with dry-run) and a bulk runner at Tools > Convert Sections.
+  Caveat: conversion is a snapshot — dynamic widgets still render by class but no longer
+  auto-update; nonce-dependent forms/popups become static.
 - `woocommerce.php` (2350 lines) — WooCommerce template/hook overrides; pairs
   with the `woocommerce/` directory which overrides core WooCommerce templates
   (`archive-product.php`, `cart/`, `checkoutx/`, `loop/`, `single-product/`,

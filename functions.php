@@ -39,6 +39,7 @@ require_once __DIR__ . '/includes/meta-shim/View.php';
 require_once __DIR__ . '/includes/meta-shim/Writer.php';
 require_once __DIR__ . '/includes/meta-shim/Container_Admin.php';
 require_once __DIR__ . '/includes/meta-reader.php';
+require_once __DIR__ . '/includes/section-converter.php';
 if (is_admin()) {
     // Transitional parity checker (inert unless ?coptrz_meta_selftest=<id>).
     require_once __DIR__ . '/includes/meta-shim/self-test.php';
@@ -62,6 +63,11 @@ function tissue_paper_register_custom_fields()
         if (!is_admin()) {
             require_once('includes/post-meta.php');
         }
+    }
+    // Register the product HTML-sections repeater + retire the legacy builder UI,
+    // then boot the admin lifecycle.
+    if (function_exists('coptrz_register_html_sections_fields')) {
+        coptrz_register_html_sections_fields();
     }
     \CoptrzTheme\MetaShim\Container_Admin::boot();
 }

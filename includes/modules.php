@@ -472,14 +472,29 @@ function ___hero_product_taxonomy()
 }
 
 
-function ___sections($id = 'sections', $post_id = '')
+function ___sections($id = 'sections', $post_id = '', $only_key = null)
 {
     $post_id = $post_id ? $post_id : get_the_ID();
+
+    // Converted posts no longer render the dynamic page-builder: route to the
+    // frozen HTML (product -> sortable HTML repeater, others -> Gutenberg
+    // content). Bypassed when $only_key is set (the converter renders one live
+    // section at a time, before the post is flagged as converted).
+    if ($only_key === null
+        && function_exists('coptrz_sections_should_route')
+        && coptrz_sections_should_route($post_id, $id)
+    ) {
+        return coptrz_render_converted_sections($id, $post_id);
+    }
+
     $sections = get__post_meta_by_id($post_id, $id);
     $html = '';
     global $layouts_global;
 
     foreach ($sections as $key => $section) {
+        if ($only_key !== null && $key != $only_key) {
+            continue; // Render only the requested section (used by the converter).
+        }
         $disable_section = $section['disable_section'];
         if (!$disable_section) {
             $classes = array();

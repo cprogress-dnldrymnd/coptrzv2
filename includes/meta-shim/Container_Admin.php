@@ -40,6 +40,55 @@ class Container_Admin
     /** $_POST key for nav-menu-item fields (namespaced by menu item id). */
     const NAV_INPUT_ROOT = 'menu_item_cms';
 
+    /**
+     * Field names whose meta box should NOT be rendered in the editor even though
+     * the field stays registered (and therefore readable). Used to retire the
+     * legacy page-builder UI without losing the data or the reader's field tree.
+     *
+     * @var array<string,bool>
+     */
+    public static $render_blocklist = array();
+
+    /**
+     * Hide one or more registered fields from the admin UI.
+     *
+     * @param string|string[] $names
+     * @return void
+     */
+    public static function hide_fields($names)
+    {
+        foreach ((array) $names as $name) {
+            self::$render_blocklist[$name] = true;
+        }
+    }
+
+    /**
+     * A container is render-hidden when every non-display field it owns is on the
+     * block-list (so its meta box would be empty / unwanted).
+     *
+     * @param Container $container
+     * @return bool
+     */
+    protected static function is_container_render_hidden($container)
+    {
+        if (empty(self::$render_blocklist)) {
+            return false;
+        }
+        $blocked = 0;
+        $visible = 0;
+        foreach ($container->fields as $field) {
+            if (!($field instanceof Field) || $field->is_display_only()) {
+                continue;
+            }
+            if (!empty(self::$render_blocklist[$field->name])) {
+                $blocked++;
+            } else {
+                $visible++;
+            }
+        }
+        return ($blocked > 0 && $visible === 0);
+    }
+
     /** Nonce action/name. */
     const NONCE_ACTION = 'coptrz_meta_shim_save';
     const NONCE_NAME   = 'coptrz_meta_shim_nonce';
@@ -127,6 +176,9 @@ class Container_Admin
             }
             if (!self::post_conditions_match($container, $post_type)) {
                 continue;
+            }
+            if (self::is_container_render_hidden($container)) {
+                continue; // UI removed (e.g. legacy page builder) but still indexed.
             }
 
             add_meta_box(
