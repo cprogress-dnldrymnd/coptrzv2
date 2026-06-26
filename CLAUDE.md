@@ -154,6 +154,9 @@ case studies, rentals, landing pages, etc).
   compatibility. `_coptrz_link_aria_label($visible_text, $context_title)` in
   `elements.php` generates accessible aria-label strings for linked elements
   (returns empty string when context is already conveyed by the visible text).
+  `product_add_to_cart` shortcode in `shortcodes.php` returns `''` early when
+  `$id` is empty or non-numeric — prevents an invalid WooCommerce product context
+  that could error or redirect (common on converted pages with unset product items).
 - `section-converter.php` — retires the dynamic "sections" / `sections_after_main`
   page-builder by freezing each post's sections into static HTML. Non-product posts
   get Gutenberg "Custom HTML" blocks appended to `post_content`; `product` posts get
@@ -161,12 +164,28 @@ case studies, rentals, landing pages, etc).
   raw HTML rows). Original `_sections` meta is preserved (conversion is reversible).
   Provides: `coptrz_sections_is_converted($post_id)`, `coptrz_sections_should_route()`,
   `coptrz_render_converted_sections()`, `coptrz_convert_post_sections($post_id, $dry_run)`,
-  `coptrz_register_html_sections_fields()`. Admin tools: a per-post "Convert Sections
-  to HTML" meta box (side, with dry-run) and a bulk runner at Tools > Convert Sections.
-  The bulk runner accepts an optional comma/space-separated list of specific post IDs
-  to convert, bypassing the post-type filter (useful for one-off or cross-type runs).
-  Caveat: conversion is a snapshot — dynamic widgets still render by class but no longer
-  auto-update; nonce-dependent forms/popups become static.
+  `coptrz_register_html_sections_fields()`, `coptrz_expand_layouts($html, $depth)`.
+  Admin tools: a per-post "Convert Sections to HTML" meta box (side, with dry-run) and a
+  bulk runner at Tools > Convert Sections. The bulk runner accepts an optional
+  comma/space-separated list of specific post IDs to convert, bypassing the post-type
+  filter (useful for one-off or cross-type runs).
+  `coptrz_render_converted_sections()` has a static re-entrancy guard (`$rendering`)
+  to prevent infinite recursion when frozen content routes back into `___sections()`
+  for the same post (e.g. a self-referential `[layouts]` embed that hit the depth
+  limit). Rendering path: products concatenate `{$id}_html` repeater rows then pass
+  through `do_shortcode()`; non-products call `do_shortcode(do_blocks($content))`
+  — deliberately NOT `apply_filters('the_content')`, which would run `wpautop`
+  (mangles frozen markup) and third-party `the_content` filters.
+  Shortcodes are preserved literally during conversion (NOT expanded via `do_shortcode()`),
+  so widgets like `[brands_logo_slider]` / `[case_study_slider_grid]` remain dynamic —
+  resolved at render time by `do_shortcode()` in the render path above.
+  Exception: `[layouts id='N']` embeds ARE inlined by `coptrz_expand_layouts()` so the
+  frozen page no longer dynamically loads the reusable layout post; nested layouts are
+  expanded recursively (depth-guarded at 6). Other shortcodes inside layouts also stay
+  literal. During conversion, empty `[product_add_to_cart id='']` tags are stripped
+  (they would render as literal text where `do_shortcode` is not applied).
+  Caveat: non-shortcode dynamic content (class-driven widgets) is still a snapshot and
+  won't auto-update.
 - `woocommerce.php` (2350 lines) — WooCommerce template/hook overrides; pairs
   with the `woocommerce/` directory which overrides core WooCommerce templates
   (`archive-product.php`, `cart/`, `checkoutx/`, `loop/`, `single-product/`,

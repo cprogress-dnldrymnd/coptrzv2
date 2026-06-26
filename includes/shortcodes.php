@@ -878,7 +878,6 @@ class Shortcodes
 
     function product_add_to_cart($atts)
     {
-        ob_start();
         extract(
             shortcode_atts(
                 array(
@@ -888,6 +887,14 @@ class Shortcodes
                 $atts
             )
         );
+        // Bail when there is no valid product id. An empty [product_page id='']
+        // sets up an invalid WooCommerce product/query context that can error or
+        // redirect the page (e.g. on a converted page or a layout with an unset
+        // product item).
+        if (empty($id) || !is_numeric($id)) {
+            return '';
+        }
+        ob_start();
         if ($is_training == 'true') {
             echo '<section id="add-to-cart">';
             echo training_template($id);

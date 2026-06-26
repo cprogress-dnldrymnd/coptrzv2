@@ -97,26 +97,41 @@ function coptrz_sections_should_route($post_id, $id)
  */
 function coptrz_render_converted_sections($id, $post_id)
 {
+    // Re-entrancy guard: a converted post whose frozen content executes a
+    // shortcode that routes back into ___sections() for the SAME post (e.g. a
+    // self-referential [layouts] embed that hit the flatten depth limit) would
+    // otherwise recurse forever — most visible on the front page. Bail on re-entry.
+    static $rendering = array();
+    $guard = $id . ':' . (int) $post_id;
+    if (!empty($rendering[$guard])) {
+        return '';
+    }
+    $rendering[$guard] = true;
+
+    $out = '';
+
     if (get_post_type($post_id) === 'product') {
         $rows = get__post_meta_by_id($post_id, $id . '_html');
-        if (!is_array($rows)) {
-            return '';
-        }
-        $out = '';
-        foreach ($rows as $row) {
-            if (!empty($row['html'])) {
-                $out .= $row['html'];
+        if (is_array($rows)) {
+            foreach ($rows as $row) {
+                if (!empty($row['html'])) {
+                    $out .= $row['html'];
+                }
             }
         }
-        return $out;
-    }
-
-    if ($id === 'sections') {
+        $out = do_shortcode($out);
+    } elseif ($id === 'sections') {
+        // The body lives in post_content as Custom HTML blocks. Render ONLY
+        // blocks + shortcodes — deliberately NOT apply_filters('the_content'),
+        // which runs wpautop (mangles frozen markup) and every third-party
+        // the_content filter (some redirect/misbehave on the front page).
         $content = get_post_field('post_content', $post_id);
-        return apply_filters('the_content', $content);
+        $out     = do_shortcode(do_blocks($content));
     }
+    // sections_after_main for non-products returns '' (merged into post_content).
 
-    return ''; // sections_after_main already merged into post_content.
+    unset($rendering[$guard]);
+    return $out;
 }
 
 /* ========================================================================= */
@@ -164,6 +179,41 @@ function coptrz_register_html_sections_fields()
 
     // Retire the legacy page-builder UI (data + index are retained).
     $Admin::hide_fields(coptrz_section_source_fields());
+}
+
+/**
+ * Flatten [layouts id='N'] embeds into their rendered HTML, recursively, while
+ * leaving every other shortcode (global widgets etc.) literal.
+ *
+ * A `layouts` section renders as the shortcode [layouts id='N'], which simply
+ * re-invokes the page builder on a reusable layout post. If left literal, a
+ * converted page would keep dynamically loading that layout post instead of
+ * being frozen — so we inline the layout's rendered sections here. The layout is
+ * rendered RAW (no do_shortcode) so its own global widgets also stay as
+ * shortcodes, and nested layout embeds are expanded by the recursion.
+ *
+ * @param string $html
+ * @param int    $depth Recursion guard against circular layout references.
+ * @return string
+ */
+function coptrz_expand_layouts($html, $depth = 0)
+{
+    if (!is_string($html) || $depth > 6 || strpos($html, '[layouts') === false) {
+        return $html;
+    }
+
+    return preg_replace_callback(
+        '/\[layouts\s+id=([\'"]?)(\d+)\1\s*\]/',
+        function ($m) use ($depth) {
+            $layout_id = (int) $m[2];
+            if (!$layout_id) {
+                return '';
+            }
+            $layout_html = ___sections('sections', $layout_id);
+            return coptrz_expand_layouts($layout_html, $depth + 1);
+        },
+        $html
+    );
 }
 
 /* ========================================================================= */
@@ -225,8 +275,20 @@ function coptrz_convert_post_sections($post_id, $dry_run = false)
             if (!empty($section['disable_section'])) {
                 continue;
             }
-            // Render this single section live, then freeze (resolve shortcodes).
-            $html = trim(do_shortcode(___sections($field, $post_id, $key)));
+            // Freeze the section markup but DO NOT expand shortcodes: global
+            // widgets (e.g. [brands_logo_slider], [case_study_slider_grid]) and
+            // any other shortcode stay literal so they remain dynamic. They are
+            // resolved at render time — products via the template's
+            // do_shortcode(___sections()), non-products via the_content's
+            // do_shortcode pass over the Custom HTML block.
+            $html = trim(___sections($field, $post_id, $key));
+            // Flatten [layouts] embeds so the page stops dynamically loading the
+            // reusable layout post; global widgets / other shortcodes stay literal.
+            $html = coptrz_expand_layouts($html);
+            // Drop product widgets with no product selected: an empty
+            // [product_add_to_cart id=''] renders nothing and would otherwise show
+            // as literal text where do_shortcode is not applied.
+            $html = preg_replace('/\[product_add_to_cart\s+id=([\'"])\1[^\]]*\]/', '', $html);
             if ($html === '') {
                 continue;
             }

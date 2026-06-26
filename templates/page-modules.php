@@ -12,6 +12,7 @@ if ($hide_on_list) {
     get_header();
 }
 ?>
+
 <div class="modules">
     <?php
     echo ___hero_modules();
