@@ -424,10 +424,18 @@ function coptrz_render_bulk_converter_page()
 
     $post_type = isset($_REQUEST['ptype']) ? sanitize_key($_REQUEST['ptype']) : '';
     $action    = isset($_POST['coptrz_bulk_action']) ? sanitize_key($_POST['coptrz_bulk_action']) : '';
+    $ids_raw   = isset($_POST['coptrz_ids']) ? sanitize_text_field(wp_unslash($_POST['coptrz_ids'])) : '';
     $did       = array();
 
     if ($action && check_admin_referer('coptrz_bulk_convert')) {
-        $ids = coptrz_get_posts_with_sections($post_type);
+        if ($ids_raw !== '') {
+            // Explicit IDs: convert those exact posts regardless of post type or
+            // the has-sections / unconverted filters used by the bulk query.
+            preg_match_all('/\d+/', $ids_raw, $m);
+            $ids = array_values(array_unique(array_map('intval', $m[0])));
+        } else {
+            $ids = coptrz_get_posts_with_sections($post_type);
+        }
         $limit = 50; // safety cap per run
         foreach (array_slice($ids, 0, $limit) as $pid) {
             $did[] = coptrz_convert_post_sections($pid, ($action === 'dry'));
@@ -460,6 +468,16 @@ function coptrz_render_bulk_converter_page()
             <p>
                 <strong><?php echo (int) count($candidates); ?></strong>
                 <?php esc_html_e('unconverted post(s) with sections match (max 50 processed per run).', 'coptrz-theme'); ?>
+            </p>
+            <p>
+                <label><?php esc_html_e('…or convert specific post ID(s):', 'coptrz-theme'); ?>
+                    <input type="text" name="coptrz_ids" value="<?php echo isset($ids_raw) ? esc_attr($ids_raw) : ''; ?>"
+                           placeholder="e.g. 123, 456 789" class="regular-text" />
+                </label>
+                <br />
+                <span class="description">
+                    <?php esc_html_e('Comma- or space-separated. Converts those exact posts regardless of post type, ignoring the post-type filter above. Already-converted posts are still skipped to avoid duplicates.', 'coptrz-theme'); ?>
+                </span>
             </p>
             <p>
                 <button class="button" name="coptrz_bulk_action" value="dry"><?php esc_html_e('Dry run', 'coptrz-theme'); ?></button>

@@ -159,6 +159,8 @@ case studies, rentals, landing pages, etc).
   `coptrz_render_converted_sections()`, `coptrz_convert_post_sections($post_id, $dry_run)`,
   `coptrz_register_html_sections_fields()`. Admin tools: a per-post "Convert Sections
   to HTML" meta box (side, with dry-run) and a bulk runner at Tools > Convert Sections.
+  The bulk runner accepts an optional comma/space-separated list of specific post IDs
+  to convert, bypassing the post-type filter (useful for one-off or cross-type runs).
   Caveat: conversion is a snapshot — dynamic widgets still render by class but no longer
   auto-update; nonce-dependent forms/popups become static.
 - `woocommerce.php` (2350 lines) — WooCommerce template/hook overrides; pairs
@@ -171,7 +173,8 @@ case studies, rentals, landing pages, etc).
 - `templates/` — full page templates selectable in the editor (e.g.
   `page-landing.php`, `page-modules.php`, `page-product-form.php`,
   `page-quiz.php`, `page-calculator.php`, `page-blocks-editor.php`,
-  `page-gutenberg.php`, etc).
+  `page-gutenberg.php`, `page-html.php` (standalone full-page template for
+  `page`/`guides`, used for section-converter output), etc).
 - `template-parts/header/` — header pieces (`header-left`, `header-menu`,
   `header-right`, `header-right-landing`), pulled into `header.php` via
   `get_template_part()`.
