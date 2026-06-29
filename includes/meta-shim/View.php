@@ -327,10 +327,11 @@ class View
         $max = $field->max ? (int) $field->max : 0;
 
         printf(
-            '<div class="cms-assoc" data-cms-assoc data-cms-types="%s" data-cms-max="%d" data-cms-name="%s">',
+            '<div class="cms-assoc" data-cms-assoc data-cms-types="%s" data-cms-max="%d" data-cms-name="%s" data-cms-field="%s">',
             esc_attr(wp_json_encode($field->association_types)),
             $max,
-            esc_attr($name)
+            esc_attr($name),
+            esc_attr($field->name)
         );
 
         echo '<ul class="cms-assoc__selected">';

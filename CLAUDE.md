@@ -84,7 +84,17 @@ case studies, rentals, landing pages, etc).
     `term_taxonomy`. Also exposes `Container_Admin::hide_fields($names)` /
     `$render_blocklist` to suppress a field's meta box from the admin UI without
     removing it from the reader's field-tree index (used to retire the legacy
-    page-builder UI while keeping the data readable).
+    page-builder UI while keeping the data readable). The association AJAX search
+    (`ajax_search()`) restricts a picker's options with the field's
+    `Field::set_options_query()` args — the native replacement for Carbon Fields'
+    `carbon_fields_association_field_options_*` filters (all removed). The args are
+    resolved server-side from the root field index by field name (sent as
+    `data-cms-field` → the `field` request param), so they never travel via the
+    browser; this applies to ROOT association fields only (the index does not hold
+    fields nested inside a complex). See the product association fields
+    (`drones`, `accessories`, `softwares`, `compatible_payloads`, `related_training`,
+    `related_industries`) in `post-meta.php` for usage (e.g. restrict to a
+    `product_cat` term and include `private` posts).
   - `includes/meta-shim/View.php` — server-side HTML renderer for every field
     type + nested repeaters; emits a flat markup contract enhanced by the JS.
   - `includes/meta-shim/Writer.php` — `build_flat()` (exact inverse of the
@@ -119,7 +129,7 @@ case studies, rentals, landing pages, etc).
   `schema.php`, `post-types.php`, then (skipped on the block-editor template /
   admin) `elements.php`, `modules.php`, `ajax.php`, `svg.php`, then
   `shortcodes.php`, `hooks.php`, `theme-widgets.php`, `menus.php`,
-  `woocommerce.php`, `customizer.php`, `marquee.php`.
+  `woocommerce.php`, `customizer.php`, `marquee.php`, `wpml-eraser.php`.
 - `vendor/` is the Composer vendor dir (Bootstrap + legacy `htmlburger/carbon-fields`
   source still present but not a runtime dependency — the bespoke shim replaces it).
 - `assets/js/admin-meta-boxes.js` + `assets/css/admin-meta-boxes.css` — admin
@@ -164,25 +174,24 @@ case studies, rentals, landing pages, etc).
   raw HTML rows). Original `_sections` meta is preserved (conversion is reversible).
   Provides: `coptrz_sections_is_converted($post_id)`, `coptrz_sections_should_route()`,
   `coptrz_render_converted_sections()`, `coptrz_convert_post_sections($post_id, $dry_run)`,
-  `coptrz_register_html_sections_fields()`, `coptrz_expand_layouts($html, $depth)`.
+  `coptrz_register_html_sections_fields()`.
   Admin tools: a per-post "Convert Sections to HTML" meta box (side, with dry-run) and a
   bulk runner at Tools > Convert Sections. The bulk runner accepts an optional
   comma/space-separated list of specific post IDs to convert, bypassing the post-type
   filter (useful for one-off or cross-type runs).
   `coptrz_render_converted_sections()` has a static re-entrancy guard (`$rendering`)
   to prevent infinite recursion when frozen content routes back into `___sections()`
-  for the same post (e.g. a self-referential `[layouts]` embed that hit the depth
-  limit). Rendering path: products concatenate `{$id}_html` repeater rows then pass
+  for the same post (e.g. a `[layouts]` embed that resolves to the same post).
+  Rendering path: products concatenate `{$id}_html` repeater rows then pass
   through `do_shortcode()`; non-products call `do_shortcode(do_blocks($content))`
   — deliberately NOT `apply_filters('the_content')`, which would run `wpautop`
   (mangles frozen markup) and third-party `the_content` filters.
-  Shortcodes are preserved literally during conversion (NOT expanded via `do_shortcode()`),
-  so widgets like `[brands_logo_slider]` / `[case_study_slider_grid]` remain dynamic —
-  resolved at render time by `do_shortcode()` in the render path above.
-  Exception: `[layouts id='N']` embeds ARE inlined by `coptrz_expand_layouts()` so the
-  frozen page no longer dynamically loads the reusable layout post; nested layouts are
-  expanded recursively (depth-guarded at 6). Other shortcodes inside layouts also stay
-  literal. During conversion, empty `[product_add_to_cart id='']` tags are stripped
+  ALL shortcodes are preserved literally during conversion (NOT expanded via
+  `do_shortcode()`), so widgets like `[brands_logo_slider]` / `[case_study_slider_grid]`
+  AND reusable `[layouts id='N']` embeds remain dynamic — resolved at render time by
+  `do_shortcode()` in the render path above. (Keeping `[layouts]` as a shortcode means
+  editing a reusable layout post still updates every converted page that embeds it.)
+  During conversion, empty `[product_add_to_cart id='']` tags are stripped
   (they would render as literal text where `do_shortcode` is not applied).
   Caveat: non-shortcode dynamic content (class-driven widgets) is still a snapshot and
   won't auto-update.

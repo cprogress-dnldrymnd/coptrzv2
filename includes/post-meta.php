@@ -1316,13 +1316,6 @@ function __hero_form_fields()
             ),
     );
 }
-add_filter('carbon_fields_association_field_options_hero_form_post_wpcf7_contact_form', function ($query_arguments) {
-    $query_arguments = array(
-        'post_type' => 'wpcf7_contact_form',
-    );
-
-    return $query_arguments;
-});
 
 Container::make('post_meta', __('Hero'))
     ->where('post_type', '=', 'page')
@@ -6406,6 +6399,9 @@ Container::make('post_meta', __('Product Settings'))
                     )
                 )
             )
+            ->set_options_query(array(
+                'post_status' => array('publish', 'private'),
+            ))
     ))
     ->add_tab('Related Guides', array(
         Field::make('association', 'related_guides', 'Related Guides')
@@ -6439,6 +6435,12 @@ Container::make('post_meta', __('Product Settings'))
                     )
                 )
             )
+            ->set_options_query(array(
+                'tax_query'   => array(
+                    array('taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => array(32, 789)),
+                ),
+                'post_status' => array('publish', 'private'),
+            ))
     ))
     ->add_tab('Related Drones', array(
         Field::make('association', 'drones', 'Related Drones')
@@ -6450,6 +6452,12 @@ Container::make('post_meta', __('Product Settings'))
                     )
                 )
             )
+            ->set_options_query(array(
+                'tax_query'   => array(
+                    array('taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => 27),
+                ),
+                'post_status' => 'publish',
+            ))
     ))
     ->add_tab('Compatible Payloads', array(
         Field::make('association', 'compatible_payloads', 'Compatible Payloads')
@@ -6461,6 +6469,12 @@ Container::make('post_meta', __('Product Settings'))
                     )
                 )
             )
+            ->set_options_query(array(
+                'tax_query'   => array(
+                    array('taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => 29),
+                ),
+                'post_status' => array('publish', 'private'),
+            ))
     ))
     ->add_tab('Accessories', array(
         Field::make('association', 'accessories', 'Accesories')
@@ -6472,6 +6486,12 @@ Container::make('post_meta', __('Product Settings'))
                     ),
                 )
             )
+            ->set_options_query(array(
+                'tax_query'   => array(
+                    array('taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => 30),
+                ),
+                'post_status' => array('publish', 'private'),
+            ))
     ))
     ->add_tab('Softwares', array(
         Field::make('association', 'softwares', 'Softwares')
@@ -6483,6 +6503,12 @@ Container::make('post_meta', __('Product Settings'))
                     ),
                 )
             )
+            ->set_options_query(array(
+                'tax_query'   => array(
+                    array('taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => 776),
+                ),
+                'post_status' => array('publish', 'private'),
+            ))
     ))
     ->add_tab('Related Products', array(
         Field::make('association', 'crb_related_products', 'Related Products')
@@ -6496,84 +6522,6 @@ Container::make('post_meta', __('Product Settings'))
             )
             ->set_help_text('If items are selected here, they will override the default "Related Products" loop.')
     ));
-
-
-add_filter('carbon_fields_association_field_options_related_training_post_product', function ($query_arguments) {
-
-    $tax_query[] = array(
-        'taxonomy' => 'product_cat',
-        'field'    => 'term_id',
-        'terms'    => array(32, 789)
-    );
-
-    $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = array('publish', 'private');
-
-    return $query_arguments;
-});
-
-add_filter('carbon_fields_association_field_options_compatible_payloads_post_product', function ($query_arguments) {
-
-    $tax_query[] = array(
-        'taxonomy' => 'product_cat',
-        'field'    => 'term_id',
-        'terms'    => 29
-    );
-
-    $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = array('publish', 'private');
-
-    return $query_arguments;
-});
-
-add_filter('carbon_fields_association_field_options_accessories_post_product', function ($query_arguments) {
-
-    $tax_query[] = array(
-        'taxonomy' => 'product_cat',
-        'field'    => 'term_id',
-        'terms'    => 30
-    );
-
-    $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = array('publish', 'private');
-
-    return $query_arguments;
-});
-
-add_filter('carbon_fields_association_field_options_softwares_post_product', function ($query_arguments) {
-
-    $tax_query[] = array(
-        'taxonomy' => 'product_cat',
-        'field'    => 'term_id',
-        'terms'    => 776
-    );
-
-    $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = array('publish', 'private');
-
-    return $query_arguments;
-});
-
-add_filter('carbon_fields_association_field_options_drones_post_product', function ($query_arguments) {
-
-    $tax_query[] = array(
-        'taxonomy' => 'product_cat',
-        'field'    => 'term_id',
-        'terms'    => 27
-    );
-
-    $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = array('publish', 'private');
-
-    return $query_arguments;
-});
-
-add_filter('carbon_fields_association_field_options_related_industries_post_industries', function ($query_arguments) {
-    $query_arguments['post_status'] = array('publish', 'private');
-    return $query_arguments;
-});
-
-
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -6881,37 +6829,6 @@ Container::make('post_meta', 'Industry Settings')
                 )
         )
     );
-
-
-
-add_filter('carbon_fields_association_field_options_drones_post_product', function ($query_arguments) {
-
-    $tax_query[] = array(
-        'taxonomy' => 'product_cat',
-        'field'    => 'term_id',
-        'terms'    => 27
-    );
-
-    $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = 'publish';
-
-    return $query_arguments;
-});
-
-
-add_filter('carbon_fields_association_field_options_payloads_post_product', function ($query_arguments) {
-
-    $tax_query[] = array(
-        'taxonomy' => 'product_cat',
-        'field'    => 'term_id',
-        'terms'    => 29
-    );
-
-    $query_arguments['tax_query'] = $tax_query;
-    $query_arguments['post_status'] = 'publish';
-
-    return $query_arguments;
-});
 
 
 

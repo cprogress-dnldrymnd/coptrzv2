@@ -99,8 +99,8 @@ function coptrz_render_converted_sections($id, $post_id)
 {
     // Re-entrancy guard: a converted post whose frozen content executes a
     // shortcode that routes back into ___sections() for the SAME post (e.g. a
-    // self-referential [layouts] embed that hit the flatten depth limit) would
-    // otherwise recurse forever — most visible on the front page. Bail on re-entry.
+    // [layouts] embed that resolves to this same post) would otherwise recurse
+    // forever — most visible on the front page. Bail on re-entry.
     static $rendering = array();
     $guard = $id . ':' . (int) $post_id;
     if (!empty($rendering[$guard])) {
@@ -181,41 +181,6 @@ function coptrz_register_html_sections_fields()
     $Admin::hide_fields(coptrz_section_source_fields());
 }
 
-/**
- * Flatten [layouts id='N'] embeds into their rendered HTML, recursively, while
- * leaving every other shortcode (global widgets etc.) literal.
- *
- * A `layouts` section renders as the shortcode [layouts id='N'], which simply
- * re-invokes the page builder on a reusable layout post. If left literal, a
- * converted page would keep dynamically loading that layout post instead of
- * being frozen — so we inline the layout's rendered sections here. The layout is
- * rendered RAW (no do_shortcode) so its own global widgets also stay as
- * shortcodes, and nested layout embeds are expanded by the recursion.
- *
- * @param string $html
- * @param int    $depth Recursion guard against circular layout references.
- * @return string
- */
-function coptrz_expand_layouts($html, $depth = 0)
-{
-    if (!is_string($html) || $depth > 6 || strpos($html, '[layouts') === false) {
-        return $html;
-    }
-
-    return preg_replace_callback(
-        '/\[layouts\s+id=([\'"]?)(\d+)\1\s*\]/',
-        function ($m) use ($depth) {
-            $layout_id = (int) $m[2];
-            if (!$layout_id) {
-                return '';
-            }
-            $layout_html = ___sections('sections', $layout_id);
-            return coptrz_expand_layouts($layout_html, $depth + 1);
-        },
-        $html
-    );
-}
-
 /* ========================================================================= */
 /*  Conversion engine                                                         */
 /* ========================================================================= */
@@ -276,15 +241,12 @@ function coptrz_convert_post_sections($post_id, $dry_run = false)
                 continue;
             }
             // Freeze the section markup but DO NOT expand shortcodes: global
-            // widgets (e.g. [brands_logo_slider], [case_study_slider_grid]) and
-            // any other shortcode stay literal so they remain dynamic. They are
-            // resolved at render time — products via the template's
-            // do_shortcode(___sections()), non-products via the_content's
-            // do_shortcode pass over the Custom HTML block.
+            // widgets (e.g. [brands_logo_slider], [case_study_slider_grid]),
+            // reusable [layouts id='N'] embeds, and any other shortcode stay
+            // literal so they remain dynamic. They are resolved at render time —
+            // products via the template's do_shortcode(___sections()),
+            // non-products via the do_shortcode pass over the Custom HTML block.
             $html = trim(___sections($field, $post_id, $key));
-            // Flatten [layouts] embeds so the page stops dynamically loading the
-            // reusable layout post; global widgets / other shortcodes stay literal.
-            $html = coptrz_expand_layouts($html);
             // Drop product widgets with no product selected: an empty
             // [product_add_to_cart id=''] renders nothing and would otherwise show
             // as literal text where do_shortcode is not applied.

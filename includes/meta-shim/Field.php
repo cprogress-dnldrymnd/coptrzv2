@@ -74,6 +74,9 @@ class Field
     /** @var array Association source definition (post/term types). */
     public $association_types = array();
 
+    /** @var array Extra WP_Query/get_terms args merged into this association's options query. */
+    public $options_query = array();
+
     /** @var string Underscore.js header template for complex rows. */
     public $header_template = '';
 
@@ -198,6 +201,24 @@ class Field
     public function set_types($types)
     {
         $this->association_types = (array) $types;
+        return $this;
+    }
+
+    /**
+     * Restrict an association field's picker options with extra query args
+     * (e.g. tax_query / post_status), the native replacement for Carbon Fields'
+     * carbon_fields_association_field_options_* filters. The args are merged into
+     * the options WP_Query (posts) / get_terms (terms) by Container_Admin::ajax_search().
+     *
+     * NOTE: resolved server-side via the root field index, so this applies to ROOT
+     * association fields only (the index does not hold fields nested in a complex).
+     *
+     * @param array $args WP_Query / get_terms argument overrides.
+     * @return self
+     */
+    public function set_options_query(array $args)
+    {
+        $this->options_query = $args;
         return $this;
     }
 

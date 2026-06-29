@@ -252,7 +252,8 @@
             action: 'coptrz_meta_search',
             nonce: CoptrzMetaShim.nonce,
             q: q,
-            types: wrap.getAttribute('data-cms-types')
+            types: wrap.getAttribute('data-cms-types'),
+            field: wrap.getAttribute('data-cms-field')
         }, function (items) {
             results.innerHTML = '';
             items.forEach(function (it) {

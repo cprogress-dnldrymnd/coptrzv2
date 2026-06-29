@@ -30,5 +30,6 @@ require_once('menus.php');
 require_once('woocommerce.php');
 require_once('customizer.php');
 require_once('marquee.php');
+require_once('wpml-eraser.php');
 
 #require_once('page-templates/style-1/fields.php');

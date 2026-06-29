@@ -600,18 +600,34 @@ class Container_Admin
         $types  = isset($_GET['types']) ? json_decode(wp_unslash($_GET['types']), true) : array();
         $results = array();
 
+        // Native replacement for Carbon Fields' carbon_fields_association_field_options_*
+        // filters: resolve the field's set_options_query() args from the root index and
+        // merge them into the options query below. Server-resolved by name (so the args
+        // never travel via the browser); applies to ROOT association fields only.
+        $field_name = isset($_GET['field']) ? sanitize_key($_GET['field']) : '';
+        $opts = array();
+        if ($field_name !== '') {
+            foreach (Container::get_index() as $bucket) {
+                if (!empty($bucket[$field_name]) && !empty($bucket[$field_name]->options_query)) {
+                    $opts = $bucket[$field_name]->options_query;
+                    break;
+                }
+            }
+        }
+
         foreach ((array) $types as $type) {
             if (!isset($type['type'])) {
                 continue;
             }
             if ($type['type'] === 'post' && !empty($type['post_type'])) {
-                $query = new \WP_Query(array(
+                $args = array_merge(array(
                     'post_type'      => $type['post_type'],
                     's'              => $search,
                     'posts_per_page' => 20,
                     'post_status'    => 'publish',
-                    'fields'         => 'ids',
-                ));
+                ), $opts);
+                $args['fields'] = 'ids'; // never let an override break id extraction
+                $query = new \WP_Query($args);
                 foreach ($query->posts as $pid) {
                     $results[] = array(
                         'value' => 'post:' . $type['post_type'] . ':' . $pid,
@@ -619,12 +635,12 @@ class Container_Admin
                     );
                 }
             } elseif ($type['type'] === 'term' && !empty($type['taxonomy'])) {
-                $terms = get_terms(array(
+                $terms = get_terms(array_merge(array(
                     'taxonomy'   => $type['taxonomy'],
                     'search'     => $search,
                     'number'     => 20,
                     'hide_empty' => false,
-                ));
+                ), $opts));
                 foreach ((array) $terms as $term) {
                     if (is_wp_error($term)) {
                         continue;
