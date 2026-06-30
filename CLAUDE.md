@@ -82,9 +82,11 @@ case studies, rentals, landing pages, etc).
     fields + save, nav-menu-item fields + save, and the association AJAX search.
     Display conditions (`where`) are evaluated for `post_type`/`post_template`/
     `term_taxonomy`. Also exposes `Container_Admin::hide_fields($names)` /
-    `$render_blocklist` to suppress a field's meta box from the admin UI without
-    removing it from the reader's field-tree index (used to retire the legacy
-    page-builder UI while keeping the data readable). The association AJAX search
+    `$render_blocklist` to suppress fields from the admin UI without removing
+    them from the reader's field-tree index; `is_container_render_hidden()` extends
+    this to suppress an entire container's meta box when all its non-display fields
+    are blocklisted (used to retire the legacy page-builder UI while keeping data
+    readable). The association AJAX search
     (`ajax_search()`) restricts a picker's options with the field's
     `Field::set_options_query()` args — the native replacement for Carbon Fields'
     `carbon_fields_association_field_options_*` filters (all removed). The args are
@@ -96,11 +98,16 @@ case studies, rentals, landing pages, etc).
     `related_industries`) in `post-meta.php` for usage (e.g. restrict to a
     `product_cat` term and include `private` posts).
   - `includes/meta-shim/View.php` — server-side HTML renderer for every field
-    type + nested repeaters; emits a flat markup contract enhanced by the JS.
+    type + nested repeaters. Field markup: label + `<div class="cms-field__control">` wrapper
+    (two-column layout; CSS stacks it in narrow containers). Media fields wrap
+    Select/Remove buttons in `<div class="cms-media__actions">`.
   - `includes/meta-shim/Writer.php` — `build_flat()` (exact inverse of the
     reader) shared by the admin save and the programmatic `coptrz_set_post_meta`
     / `coptrz_set_term_meta` / `coptrz_set_theme_option` API; `serialize()`
     normalises a Carbon-format value tree (reader output) back into posted shape.
+    NOTE: complex `build_flat()` drops the row keyed by `View::TEMPLATE_INDEX`
+    (`__CMSIDX__`) — the JS clone template lives in a `hidden` div but its inputs
+    still POST, so without this every save would append a phantom empty repeater row.
   - `includes/meta-reader.php` — `Reader::read()` tree-aware reconstruction +
     the drop-in functions `coptrz_get_post_meta` / `coptrz_get_the_post_meta` /
     `coptrz_get_term_meta` / `coptrz_get_theme_option` /
@@ -134,7 +141,10 @@ case studies, rentals, landing pages, etc).
   source still present but not a runtime dependency — the bespoke shim replaces it).
 - `assets/js/admin-meta-boxes.js` + `assets/css/admin-meta-boxes.css` — admin
   UI for the meta shim (tab nav, repeater add/remove, conditional logic, media
-  uploader, association AJAX search). Enqueued separately for the admin.
+  uploader, association AJAX search). Fields render as two-column flex rows:
+  180px label (`cms-label`) + `cms-field__control` (flex-grow control column);
+  stacks automatically in narrow containers (side meta boxes, term screens).
+  Enqueued separately for the admin.
 
 ### Key `includes/` files
 
@@ -172,13 +182,21 @@ case studies, rentals, landing pages, etc).
   get Gutenberg "Custom HTML" blocks appended to `post_content`; `product` posts get
   a sortable `sections_html` / `sections_after_main_html` complex repeater (label +
   raw HTML rows). Original `_sections` meta is preserved (conversion is reversible).
+  Converting a `page` also sets its `_wp_page_template` to `templates/page-gutenberg.php`;
+  that template renders converted posts via `coptrz_render_converted_sections()` (the same
+  wpautop-free path the Modules template uses) and falls back to `the_content()` for
+  non-converted pages. CPTs are left on their bespoke single templates, which already
+  route frozen content through `___sections()`.
   Provides: `coptrz_sections_is_converted($post_id)`, `coptrz_sections_should_route()`,
   `coptrz_render_converted_sections()`, `coptrz_convert_post_sections($post_id, $dry_run)`,
   `coptrz_register_html_sections_fields()`.
   Admin tools: a per-post "Convert Sections to HTML" meta box (side, with dry-run) and a
-  bulk runner at Tools > Convert Sections. The bulk runner accepts an optional
-  comma/space-separated list of specific post IDs to convert, bypassing the post-type
-  filter (useful for one-off or cross-type runs).
+  convert-by-search runner at Tools > Convert Sections. The runner has no
+  "convert everything" path — you search posts by name across every section post type
+  (via the `wp_ajax_coptrz_search_sections_posts` endpoint, results show each post's
+  type), pick an explicit selection, then dry-run or convert just those (50/run cap).
+  The search only returns posts that still NEED converting (have a `_sections` /
+  `_sections_after_main` row and are not already flagged converted).
   `coptrz_render_converted_sections()` has a static re-entrancy guard (`$rendering`)
   to prevent infinite recursion when frozen content routes back into `___sections()`
   for the same post (e.g. a `[layouts]` embed that resolves to the same post).
@@ -199,14 +217,23 @@ case studies, rentals, landing pages, etc).
   with the `woocommerce/` directory which overrides core WooCommerce templates
   (`archive-product.php`, `cart/`, `checkoutx/`, `loop/`, `single-product/`,
   `global/`, `content-single-product.php`).
+- `wpml-eraser.php` — one-time admin utility (Tools > WPML Eraser). AJAX-powered
+  step-by-step tool that drops all `{prefix}icl_*` tables and deletes WPML-related
+  entries from options, postmeta, usermeta, and termmeta. Table drops are validated
+  against the prefix + `icl_` pattern server-side before execution. Requires
+  `manage_options`; nonce-protected. Loaded unconditionally; remove once WPML
+  cleanup is complete.
 
 ### Templates & template parts
 
 - `templates/` — full page templates selectable in the editor (e.g.
   `page-landing.php`, `page-modules.php`, `page-product-form.php`,
   `page-quiz.php`, `page-calculator.php`, `page-blocks-editor.php`,
-  `page-gutenberg.php`, `page-html.php` (standalone full-page template for
-  `page`/`guides`, used for section-converter output), etc).
+  `page-gutenberg.php` (section-converter output for `page` posts; routes
+  converted posts through `coptrz_render_converted_sections()`, falls back to
+  `the_content()` for unconverted pages), `page-html.php` (standalone full-page
+  template for `page`/`guides` — emits a raw `<html>` document without the
+  standard header/footer, used for fully self-contained HTML pages), etc).
 - `template-parts/header/` — header pieces (`header-left`, `header-menu`,
   `header-right`, `header-right-landing`), pulled into `header.php` via
   `get_template_part()`.

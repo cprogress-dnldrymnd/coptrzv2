@@ -86,68 +86,6 @@ body,
 
 }
 
-.admin-popup.admin-popup.admin-popup {
-    position: fixed;
-    z-index: 9999;
-    background: rgba(0, 0, 0, 0.8);
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:not(.active) {
-        display: none;
-    }
-    .inner {
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-        background-color: #fff;
-        width: 100%;
-        position: relative;
-        .buttons {
-            margin: 1rem;
-            .button {
-                padding: 15px 30px;
-                line-height: 1;
-                font-size: 15px;
-                margin-right: 1rem !important;
-            }
-        }
-    }
-}
-
-.close-admin-popup {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.wysiwyg-editor-trigger.wysiwyg-editor-trigger {
-    padding: 15px 30px;
-    line-height: 1;
-    font-size: 15px;
-}
-
-.field-url-cb {
-    display: none !important;
-}
-.page-selector {
-    display: flex;
-    label {
-        flex: 0 0 170px;
-    }
-    select {
-        flex: 0 0 calc(100% - 170px);
-    }
-}
-.d-none {
-    display: none !important;
-}
 
 .cf-complex__tabs-item.cf-complex__tabs-item {
     span {

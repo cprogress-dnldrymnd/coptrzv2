@@ -9,7 +9,10 @@
  */
 
 /* Layout ------------------------------------------------------------------ */
-.cms-container { margin: -6px -12px -12px; }
+.cms-container { max-width: 920px; }
+/* Bleed to the box edges only inside a real post-meta box; on theme-options /
+   term screens the container sits naturally within the page padding. */
+.postbox .cms-container { margin: -6px -12px -12px; }
 .cms-panel { padding: 16px; }
 .cms-panel.is-hidden { display: none; }
 
@@ -42,40 +45,91 @@
 }
 
 /* Field wrapper ----------------------------------------------------------- */
+/* Panels/row bodies stack their fields; inline-field places two per line. */
+.cms-panel,
+.cms-row__body {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 4px 16px;
+}
+
+/* Each field is a two-column row: label on the LEFT, control on the RIGHT.
+   flex-wrap + the control's flex-basis make it fall back to a stacked layout
+   automatically in narrow containers (side meta boxes, term cells). */
 .cms-field {
-    display: inline-block;
-    vertical-align: top;
     box-sizing: border-box;
     width: 100%;
-    padding: 0 10px 16px 0;
+    margin: 0;
+    padding: 0 0 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 16px;
 }
-.cms-field.inline-field { width: 50%; }
 .cms-field.inline-field-wide-label { width: 100%; }
 .cms-field.cms-hidden { display: none !important; }
+
 .cms-label {
-    display: block;
+    flex: 0 0 180px;
+    max-width: 180px;
+    margin: 0;
     font-weight: 600;
-    margin-bottom: 4px;
+    font-size: 13px;
+    line-height: 1.4;
     color: #1d2327;
+    text-align: left;
 }
-.cms-input { width: 100%; }
+.cms-field__control { flex: 1 1 260px; min-width: 0; }
+
+/* Tall controls read better with the label pinned to their top line. */
+.cms-field--textarea,
+.cms-field--header_scripts,
+.cms-field--footer_scripts,
+.cms-field--complex,
+.cms-field--association,
+.cms-field--media_gallery,
+.cms-field--multiselect,
+.cms-field--set,
+.cms-field--image,
+.cms-field--file { align-items: flex-start; }
+.cms-field--textarea > .cms-label,
+.cms-field--header_scripts > .cms-label,
+.cms-field--footer_scripts > .cms-label,
+.cms-field--complex > .cms-label,
+.cms-field--association > .cms-label,
+.cms-field--media_gallery > .cms-label,
+.cms-field--multiselect > .cms-label,
+.cms-field--set > .cms-label,
+.cms-field--image > .cms-label,
+.cms-field--file > .cms-label { padding-top: 6px; }
+
+/* Separators span the full width as a header bar (not a label↔control row). */
+.cms-field--html { display: block; width: 100%; padding: 0 0 16px; }
+
+.cms-input { width: 100%; box-sizing: border-box; }
+select.cms-input { max-width: 100%; }
 textarea.cms-input { min-height: 90px; }
-.cms-help { margin: 4px 0 0; color: #646970; font-style: italic; }
-.cms-check { display: inline-flex; align-items: center; gap: 6px; margin-right: 14px; }
+.cms-help { margin: 6px 0 0; color: #646970; font-style: italic; font-size: 12px; }
+.cms-check { display: inline-flex; align-items: center; gap: 6px; margin: 0 14px 4px 0; }
 .cms-set { display: flex; flex-wrap: wrap; gap: 6px 16px; }
 
 /* html separator labels (re-using existing cb-label convention) ----------- */
+/* Rendered as a clear section-header bar so grouped fields read as a block. */
+.cms-field--html.cb-label { padding-bottom: 10px; }
 .cms-field--html.cb-label label,
 .cms-field--html.cb-label > label {
     display: block;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: .03em;
-    color: #2271b1;
-    margin: 8px 0;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #e0e0e0;
+    letter-spacing: .04em;
+    color: #1d2327;
+    margin: 4px 0 0;
+    padding: 9px 12px;
+    background: #f0f0f1;
+    border-left: 3px solid #2271b1;
+    border-radius: 3px;
 }
 
 /* Repeater ---------------------------------------------------------------- */
@@ -152,8 +206,18 @@ textarea.cms-input { min-height: 90px; }
 .cms-assoc__results li:hover { background: #2271b1; color: #fff; }
 
 /* Media + gallery --------------------------------------------------------- */
-.cms-media__preview { margin: 6px 0; }
-.cms-media__preview img { max-width: 150px; height: auto; border: 1px solid #dcdcde; }
+.cms-media__preview { margin: 0 0 8px; }
+.cms-media__preview:empty { display: none; } /* no empty gap before the buttons */
+.cms-media__preview img {
+    display: block;
+    max-width: 160px;
+    height: auto;
+    padding: 3px;
+    background: #fff;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+}
+.cms-media__actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .cms-gallery__items { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
 .cms-gallery__item { position: relative; }
 .cms-gallery__item img { width: 80px; height: 80px; object-fit: cover; border: 1px solid #dcdcde; border-radius: 3px; }

@@ -111,6 +111,10 @@ class View
             printf('<label class="cms-label">%s</label>', esc_html($field->label));
         }
 
+        // Control column (sits to the right of the label; CSS makes the field a
+        // two-column row and stacks it in narrow containers).
+        echo '<div class="cms-field__control">';
+
         switch ($field->storage_kind()) {
             case 'complex':
                 self::complex($field, is_array($value) ? $value : array(), $name);
@@ -129,6 +133,8 @@ class View
         if ($field->help_text !== '') {
             printf('<p class="cms-help">%s</p>', wp_kses_post($field->help_text));
         }
+
+        echo '</div>'; // .cms-field__control
 
         echo '</div>';
     }
@@ -210,8 +216,10 @@ class View
                 echo '<div class="cms-media" data-cms-media="' . ($is_image ? 'image' : 'file') . '">';
                 printf('<input type="hidden" class="cms-media__id" name="%s" value="%s" />', esc_attr($name), esc_attr((string) $value));
                 echo '<div class="cms-media__preview">' . $preview . '</div>';
-                echo '<button type="button" class="button cms-media__select">' . esc_html__('Select', 'coptrz-theme') . '</button> ';
+                echo '<div class="cms-media__actions">';
+                echo '<button type="button" class="button cms-media__select">' . esc_html__('Select', 'coptrz-theme') . '</button>';
                 echo '<button type="button" class="button cms-media__remove">' . esc_html__('Remove', 'coptrz-theme') . '</button>';
+                echo '</div>';
                 echo '</div>';
                 break;
 

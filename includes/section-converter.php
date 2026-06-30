@@ -301,6 +301,19 @@ function coptrz_convert_post_sections($post_id, $dry_run = false)
         if (!$dry_run) {
             wp_update_post(array('ID' => $post_id, 'post_content' => $new_content));
         }
+
+        // Converted pages switch to the Gutenberg page template so their frozen
+        // blocks render via the standard the_content() path (hero + content),
+        // retiring the legacy Modules/sections builder template. Scoped to the
+        // `page` type — page-gutenberg.php is a page template, and CPTs keep
+        // their bespoke single templates (which already render the frozen content
+        // through ___sections()).
+        if ($src->post_type === 'page') {
+            $report['template'] = 'templates/page-gutenberg.php';
+            if (!$dry_run) {
+                update_post_meta($post_id, '_wp_page_template', 'templates/page-gutenberg.php');
+            }
+        }
     }
 
     // Restore loop context.
@@ -316,29 +329,6 @@ function coptrz_convert_post_sections($post_id, $dry_run = false)
     }
 
     return $report;
-}
-
-/**
- * IDs of posts that still have unconverted sections (for the bulk runner).
- *
- * @param string $post_type '' = all section-bearing types.
- * @return int[]
- */
-function coptrz_get_posts_with_sections($post_type = '')
-{
-    $query = new WP_Query(array(
-        'post_type'      => $post_type ? $post_type : coptrz_section_post_types(),
-        'post_status'    => 'any',
-        'posts_per_page' => -1,
-        'fields'         => 'ids',
-        'no_found_rows'  => true,
-        'meta_query'     => array(
-            'relation' => 'AND',
-            array('key' => '_sections|||0|value', 'compare' => 'EXISTS'),
-            array('key' => COPTRZ_SECTIONS_CONVERTED_FLAG, 'compare' => 'NOT EXISTS'),
-        ),
-    ));
-    return array_map('intval', $query->posts);
 }
 
 /* ========================================================================= */
@@ -436,7 +426,64 @@ add_action('admin_menu', function () {
 });
 
 /**
- * Bulk runner page: pick a post type, dry-run to list candidates, then convert.
+ * AJAX: search section-bearing posts by name, returning id/title/post-type so the
+ * runner page can build an explicit selection (replaces the old convert-everything
+ * bulk query and the raw post-ID box).
+ *
+ * Only posts that actually NEED converting are returned: they must hold section
+ * data (a `_sections` or `_sections_after_main` row exists, in CF's
+ * `_<field>|||0|value` row-marker format) AND not already be flagged converted.
+ *
+ * @return void
+ */
+add_action('wp_ajax_coptrz_search_sections_posts', function () {
+    check_ajax_referer('coptrz_search_sections', 'nonce');
+    if (!current_user_can('manage_options')) {
+        wp_send_json_error('Permission denied.');
+    }
+    $q = isset($_GET['q']) ? sanitize_text_field(wp_unslash($_GET['q'])) : '';
+    if (function_exists('mb_strlen') ? mb_strlen($q) < 2 : strlen($q) < 2) {
+        wp_send_json_success(array());
+    }
+
+    $query = new WP_Query(array(
+        'post_type'           => coptrz_section_post_types(),
+        'post_status'         => array('publish', 'private', 'draft', 'pending', 'future'),
+        's'                   => $q,
+        'posts_per_page'      => 20,
+        'no_found_rows'       => true,
+        'ignore_sticky_posts' => true,
+        'orderby'             => 'title',
+        'order'               => 'ASC',
+        'meta_query'          => array(
+            'relation' => 'AND',
+            // Has at least one section to freeze (either source field).
+            array(
+                'relation' => 'OR',
+                array('key' => '_sections|||0|value', 'compare' => 'EXISTS'),
+                array('key' => '_sections_after_main|||0|value', 'compare' => 'EXISTS'),
+            ),
+            // Not already converted.
+            array('key' => COPTRZ_SECTIONS_CONVERTED_FLAG, 'compare' => 'NOT EXISTS'),
+        ),
+    ));
+
+    $out = array();
+    foreach ($query->posts as $p) {
+        $obj = get_post_type_object($p->post_type);
+        $out[] = array(
+            'id'         => (int) $p->ID,
+            'title'      => $p->post_title !== '' ? $p->post_title : ('#' . $p->ID),
+            'type_label' => $obj ? $obj->labels->singular_name : $p->post_type,
+        );
+    }
+    wp_send_json_success($out);
+});
+
+/**
+ * Convert-by-search runner page: search posts by name (across every section post
+ * type), pick the exact ones to freeze, then dry-run or convert just those. There
+ * is no "convert everything" path — conversions are always an explicit selection.
  *
  * @return void
  */
@@ -446,27 +493,21 @@ function coptrz_render_bulk_converter_page()
         return;
     }
 
-    $post_type = isset($_REQUEST['ptype']) ? sanitize_key($_REQUEST['ptype']) : '';
-    $action    = isset($_POST['coptrz_bulk_action']) ? sanitize_key($_POST['coptrz_bulk_action']) : '';
-    $ids_raw   = isset($_POST['coptrz_ids']) ? sanitize_text_field(wp_unslash($_POST['coptrz_ids'])) : '';
-    $did       = array();
+    $action  = isset($_POST['coptrz_bulk_action']) ? sanitize_key($_POST['coptrz_bulk_action']) : '';
+    $ids_raw = isset($_POST['coptrz_ids']) ? sanitize_text_field(wp_unslash($_POST['coptrz_ids'])) : '';
+    $did     = array();
 
     if ($action && check_admin_referer('coptrz_bulk_convert')) {
-        if ($ids_raw !== '') {
-            // Explicit IDs: convert those exact posts regardless of post type or
-            // the has-sections / unconverted filters used by the bulk query.
-            preg_match_all('/\d+/', $ids_raw, $m);
-            $ids = array_values(array_unique(array_map('intval', $m[0])));
-        } else {
-            $ids = coptrz_get_posts_with_sections($post_type);
-        }
+        // Always an explicit selection of post IDs (gathered via the name search).
+        preg_match_all('/\d+/', $ids_raw, $m);
+        $ids   = array_values(array_unique(array_map('intval', $m[0])));
         $limit = 50; // safety cap per run
         foreach (array_slice($ids, 0, $limit) as $pid) {
             $did[] = coptrz_convert_post_sections($pid, ($action === 'dry'));
         }
     }
 
-    $candidates = coptrz_get_posts_with_sections($post_type);
+    $search_nonce = wp_create_nonce('coptrz_search_sections');
     ?>
     <div class="wrap">
         <h1><?php esc_html_e('Convert Sections to HTML', 'coptrz-theme'); ?></h1>
@@ -474,40 +515,28 @@ function coptrz_render_bulk_converter_page()
             <?php esc_html_e('Freezes the legacy page-builder sections into static HTML. Non-product posts receive Gutenberg Custom HTML blocks; products receive a sortable HTML repeater. Original data is preserved.', 'coptrz-theme'); ?>
         </p>
 
-        <form method="post">
+        <form method="post" class="coptrz-bulk" data-nonce="<?php echo esc_attr($search_nonce); ?>">
             <?php wp_nonce_field('coptrz_bulk_convert'); ?>
-            <p>
-                <label><?php esc_html_e('Post type', 'coptrz-theme'); ?>
-                    <select name="ptype">
-                        <option value=""><?php esc_html_e('All section types', 'coptrz-theme'); ?></option>
-                        <?php foreach (coptrz_section_post_types() as $pt) :
-                            $obj = get_post_type_object($pt); if (!$obj) { continue; } ?>
-                            <option value="<?php echo esc_attr($pt); ?>" <?php selected($post_type, $pt); ?>>
-                                <?php echo esc_html($obj->labels->name); ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </label>
+
+            <p style="margin-bottom:.3em;">
+                <label for="coptrz-bulk-search"><strong><?php esc_html_e('Search posts by name', 'coptrz-theme'); ?></strong></label>
             </p>
-            <p>
-                <strong><?php echo (int) count($candidates); ?></strong>
-                <?php esc_html_e('unconverted post(s) with sections match (max 50 processed per run).', 'coptrz-theme'); ?>
+            <p style="position:relative;max-width:40em;">
+                <input type="search" id="coptrz-bulk-search" class="regular-text" autocomplete="off" style="width:100%;"
+                       placeholder="<?php esc_attr_e('Start typing a title…', 'coptrz-theme'); ?>" />
+                <span class="spinner coptrz-bulk__spin" style="float:none;margin:0;position:absolute;right:6px;top:6px;"></span>
             </p>
-            <p>
-                <label><?php esc_html_e('…or convert specific post ID(s):', 'coptrz-theme'); ?>
-                    <input type="text" name="coptrz_ids" value="<?php echo isset($ids_raw) ? esc_attr($ids_raw) : ''; ?>"
-                           placeholder="e.g. 123, 456 789" class="regular-text" />
-                </label>
-                <br />
-                <span class="description">
-                    <?php esc_html_e('Comma- or space-separated. Converts those exact posts regardless of post type, ignoring the post-type filter above. Already-converted posts are still skipped to avoid duplicates.', 'coptrz-theme'); ?>
-                </span>
-            </p>
+            <ul class="coptrz-bulk__results" style="margin:0 0 1em;max-width:40em;"></ul>
+
+            <h2 style="margin-bottom:.3em;"><?php esc_html_e('Selected posts', 'coptrz-theme'); ?></h2>
+            <ul class="coptrz-bulk__selected" style="margin:0 0 1em;max-width:40em;"></ul>
+            <input type="hidden" name="coptrz_ids" class="coptrz-bulk__ids" value="<?php echo esc_attr($ids_raw); ?>" />
+
             <p>
                 <button class="button" name="coptrz_bulk_action" value="dry"><?php esc_html_e('Dry run', 'coptrz-theme'); ?></button>
                 <button class="button button-primary" name="coptrz_bulk_action" value="convert"
-                        onclick="return confirm('<?php echo esc_js(__('Convert all matching posts? Original data is kept.', 'coptrz-theme')); ?>');">
-                    <?php esc_html_e('Convert matching posts', 'coptrz-theme'); ?>
+                        onclick="return confirm('<?php echo esc_js(__('Convert the selected posts? Original data is kept.', 'coptrz-theme')); ?>');">
+                    <?php esc_html_e('Convert selected posts', 'coptrz-theme'); ?>
                 </button>
             </p>
         </form>
@@ -528,7 +557,12 @@ function coptrz_render_bulk_converter_page()
                     <tr>
                         <td><a href="<?php echo esc_url(get_edit_post_link($r['post_id'])); ?>"><?php echo esc_html($r['title'] ?: ('#' . $r['post_id'])); ?></a></td>
                         <td><?php echo esc_html($r['type']); ?></td>
-                        <td><?php echo esc_html($r['target']); ?></td>
+                        <td>
+                            <?php echo esc_html($r['target']); ?>
+                            <?php if (!empty($r['template'])) : ?>
+                                <br /><span class="description"><?php echo esc_html__('Template →', 'coptrz-theme') . ' ' . esc_html($r['template']); ?></span>
+                            <?php endif; ?>
+                        </td>
                         <td><?php echo (int) $total; ?></td>
                         <td><?php echo esc_html(implode(' ', $r['warnings'])); ?></td>
                     </tr>
@@ -537,5 +571,119 @@ function coptrz_render_bulk_converter_page()
             </table>
         <?php endif; ?>
     </div>
+    <script>
+    (function () {
+        var form = document.querySelector('form.coptrz-bulk');
+        if (!form) { return; }
+        var nonce    = form.getAttribute('data-nonce');
+        var input    = form.querySelector('#coptrz-bulk-search');
+        var results  = form.querySelector('.coptrz-bulk__results');
+        var selList  = form.querySelector('.coptrz-bulk__selected');
+        var idsField = form.querySelector('.coptrz-bulk__ids');
+        var spin     = form.querySelector('.coptrz-bulk__spin');
+        var selected = {}; // id -> label (label rendered via textContent, never HTML)
+
+        function syncIds() { idsField.value = Object.keys(selected).join(','); }
+
+        function renderSelected() {
+            selList.innerHTML = '';
+            var ids = Object.keys(selected);
+            if (!ids.length) {
+                var empty = document.createElement('li');
+                empty.className = 'description';
+                empty.textContent = '<?php echo esc_js(__('No posts selected yet.', 'coptrz-theme')); ?>';
+                selList.appendChild(empty);
+                return;
+            }
+            ids.forEach(function (id) {
+                var li = document.createElement('li');
+                li.style.margin = '.2em 0';
+                var rm = document.createElement('button');
+                rm.type = 'button';
+                rm.className = 'button-link coptrz-bulk__rm';
+                rm.setAttribute('data-id', id);
+                rm.style.cssText = 'color:#b32d2e;text-decoration:none;margin-right:.5em;';
+                rm.textContent = '×';
+                var label = document.createElement('span');
+                label.textContent = selected[id];
+                li.appendChild(rm);
+                li.appendChild(label);
+                selList.appendChild(li);
+            });
+        }
+
+        function add(id, label) {
+            id = String(parseInt(id, 10));
+            if (id === 'NaN' || selected[id]) { return; }
+            selected[id] = label || ('#' + id);
+            syncIds();
+            renderSelected();
+        }
+        function remove(id) { delete selected[id]; syncIds(); renderSelected(); }
+
+        // Re-seed from any IDs preserved across a submit.
+        (idsField.value || '').split(/[^0-9]+/).forEach(function (id) { if (id) { add(id, '#' + id); } });
+        renderSelected();
+
+        var timer = null;
+        input.addEventListener('input', function () {
+            clearTimeout(timer);
+            var q = input.value.trim();
+            if (q.length < 2) { results.innerHTML = ''; return; }
+            timer = setTimeout(function () { runSearch(q); }, 300);
+        });
+
+        function runSearch(q) {
+            spin.classList.add('is-active');
+            var url = ajaxurl + '?action=coptrz_search_sections_posts&nonce=' + encodeURIComponent(nonce) + '&q=' + encodeURIComponent(q);
+            fetch(url, { credentials: 'same-origin' })
+                .then(function (r) { return r.json(); })
+                .then(function (res) {
+                    spin.classList.remove('is-active');
+                    results.innerHTML = '';
+                    var items = (res && res.data) ? res.data : [];
+                    if (!items.length) {
+                        var none = document.createElement('li');
+                        none.className = 'description';
+                        none.textContent = '<?php echo esc_js(__('No matches.', 'coptrz-theme')); ?>';
+                        results.appendChild(none);
+                        return;
+                    }
+                    items.forEach(function (it) {
+                        var li = document.createElement('li');
+                        li.style.margin = '.2em 0';
+                        var btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = 'button button-small';
+                        btn.style.marginRight = '.5em';
+                        btn.textContent = '<?php echo esc_js(__('Add', 'coptrz-theme')); ?>';
+                        btn.addEventListener('click', function () { add(it.id, it.title + ' (' + it.type_label + ')'); });
+                        var title = document.createElement('strong');
+                        title.textContent = it.title;
+                        var type = document.createElement('span');
+                        type.style.color = '#646970';
+                        type.textContent = ' (' + it.type_label + ')';
+                        li.appendChild(btn);
+                        li.appendChild(title);
+                        li.appendChild(type);
+                        results.appendChild(li);
+                    });
+                })
+                .catch(function () {
+                    spin.classList.remove('is-active');
+                    results.innerHTML = '';
+                    var err = document.createElement('li');
+                    err.className = 'description';
+                    err.textContent = '<?php echo esc_js(__('Search failed.', 'coptrz-theme')); ?>';
+                    results.appendChild(err);
+                });
+        }
+
+        selList.addEventListener('click', function (e) {
+            var b = e.target.closest('.coptrz-bulk__rm');
+            if (b) { remove(b.getAttribute('data-id')); }
+        });
+    })();
+    </script>
     <?php
 }

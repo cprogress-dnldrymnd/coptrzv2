@@ -181,7 +181,14 @@ class Writer
                 return $flat;
 
             case 'complex':
-                $rows = is_array($posted) ? array_values($posted) : array();
+                $rows_in = is_array($posted) ? $posted : array();
+                // Drop the JS clone-template row (keyed by the placeholder index).
+                // Its inputs live in a hidden div but a form still POSTs them, so
+                // without this every save would append a phantom empty row. This
+                // recurses, so nested repeater templates are dropped too. Harmless
+                // no-op for programmatic serialize() input (never has this key).
+                unset($rows_in[View::TEMPLATE_INDEX]);
+                $rows = array_values($rows_in);
                 $real = 0;
                 foreach ($rows as $row) {
                     if (!is_array($row)) {
