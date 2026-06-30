@@ -947,6 +947,15 @@ class Shortcodes
         return $html;
     }
 
+    /**
+     * Retrieves the absolute file path or URL for form redirection/attachment.
+     * * Extracts meta values from the current post or queried object to determine 
+     * the redirect type. If the type is 'pdf', it retrieves the absolute server 
+     * path using get_attached_file() for compatibility with Contact Form 7 attachments.
+     * * @author Digitally Disruptive - Donald Raymundo
+     * @link https://digitallydisruptive.co.uk/
+     * * @return string|void The absolute file path, generated shortcode URL, or fallback URL.
+     */
     function pdf_url()
     {
         // Resolve the post explicitly: when CF7 renders the form outside the
@@ -969,7 +978,8 @@ class Shortcodes
         $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
         if ($hero_form_redirect_type == 'pdf') {
-            $redirect = wp_get_attachment_url($hero_form_pdf_redirect);
+            // Fetch the absolute server path required by CF7 file attachments
+            $redirect = get_attached_file($hero_form_pdf_redirect);
         } else if ($hero_form_redirect_type == 'document') {
             $redirect = do_shortcode('[document_url id=' . $hero_form_document_redirect_id . ']');
         } else {
@@ -1015,7 +1025,7 @@ class Shortcodes
         );
         $document = get__post_meta_by_id($id, 'document');
         if ($document) {
-            return wp_get_attachment_url($document);
+            return get_attached_file($document);
         }
     }
 
@@ -1083,5 +1093,3 @@ add_shortcode('product_add_to_cart', array($Shortcodes, 'product_add_to_cart'));
 add_shortcode('get_url_param', array($Shortcodes, 'get_url_param'));
 add_shortcode('popup', array($Shortcodes, 'popup'));
 add_shortcode('post_url', array($Shortcodes, 'post_url'));
-
-

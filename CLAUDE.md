@@ -193,6 +193,10 @@ case studies, rentals, landing pages, etc).
   `product_add_to_cart` shortcode in `shortcodes.php` returns `''` early when
   `$id` is empty or non-numeric — prevents an invalid WooCommerce product context
   that could error or redirect (common on converted pages with unset product items).
+  `pdf_url` shortcode in `shortcodes.php` resolves the post ID explicitly: it falls
+  back from `get_the_ID()` to `get_queried_object_id()` because CF7 can render forms
+  outside the main loop (e.g. via Dynamic Text Extension `[dynamic_hidden pdf_url "pdf_url"]`),
+  at which point `get_the_ID()` returns 0 and `get__post_meta()` returns nothing.
 - `section-converter.php` — retires the dynamic "sections" / `sections_after_main`
   page-builder by freezing each post's sections into static HTML. Non-product posts
   get Gutenberg "Custom HTML" blocks appended to `post_content`; `product` posts get
