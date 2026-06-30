@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * @return {void}
      */
     function buildVerticalTabs(wrapper, panels) {
-        // Left column: holds the panel content.
+        // Left column: holds the panel content (+ accordion headers on mobile).
         const contentArea = document.createElement('div');
         contentArea.className = 'dd-tabs-content-area';
 
@@ -29,21 +29,26 @@ document.addEventListener('DOMContentLoaded', function () {
         navVertical.className = 'dd-tabs-nav-vertical';
 
         const navButtons = [];
+        const accordionButtons = [];
+
+        const setActive = function (i, isActive) {
+            panels[i].classList.toggle('active', isActive);
+            panels[i].style.display = isActive ? 'block' : 'none';
+            navButtons[i].classList.toggle('active', isActive);
+            navButtons[i].setAttribute('aria-selected', isActive ? 'true' : 'false');
+            accordionButtons[i].classList.toggle('active', isActive);
+            accordionButtons[i].setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        };
 
         const activate = function (targetIndex) {
-            panels.forEach(function (p, i) {
-                const isActive = i === targetIndex;
-                p.classList.toggle('active', isActive);
-                p.style.display = isActive ? 'block' : 'none';
-                navButtons[i].classList.toggle('active', isActive);
-                navButtons[i].setAttribute('aria-selected', isActive ? 'true' : 'false');
-            });
+            panels.forEach(function (p, i) { setActive(i, i === targetIndex); });
         };
 
         panels.forEach(function (panel, index) {
             const title = panel.getAttribute('data-tab-title') || 'Tab';
             const desc = panel.getAttribute('data-tab-description') || '';
 
+            // --- Right-column nav tab (desktop) ---
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'dd-vtab-button';
@@ -59,15 +64,38 @@ document.addEventListener('DOMContentLoaded', function () {
                 descEl.className = 'dd-vtab-desc';
                 descEl.textContent = desc;
                 btn.appendChild(descEl);
+
+                // Mirror the description inside the panel for the accordion view
+                // (the right-hand nav is hidden once collapsed).
+                const panelDesc = document.createElement('div');
+                panelDesc.className = 'dd-tab-panel-desc';
+                panelDesc.textContent = desc;
+                panel.insertBefore(panelDesc, panel.firstChild);
             }
 
             navVertical.appendChild(btn);
             navButtons.push(btn);
-
             btn.addEventListener('click', function () { activate(index); });
 
-            // Move the panel into the left content column.
+            // --- Accordion header (mobile) ---
+            const aBtn = document.createElement('button');
+            aBtn.type = 'button';
+            aBtn.className = 'dd-accordion-button';
+            aBtn.innerHTML = '<span>' + title + '</span><span class="dd-accordion-icon"></span>';
+            accordionButtons.push(aBtn);
+
+            // Header sits directly above its panel in the content column.
+            contentArea.appendChild(aBtn);
             contentArea.appendChild(panel);
+
+            aBtn.addEventListener('click', function () {
+                // Accordion toggle: re-clicking the open header collapses it.
+                if (aBtn.classList.contains('active')) {
+                    setActive(index, false);
+                } else {
+                    activate(index);
+                }
+            });
         });
 
         // Left first, nav second; CSS arranges them as two columns.

@@ -332,14 +332,12 @@
             };
 
             // Only emit the stacked-specific markup when opted-in, so existing
-            // (horizontal) blocks serialize identically and stay valid.
+            // (horizontal) blocks serialize identically and stay valid. The
+            // accordion-conversion attributes pass through unchanged so the
+            // "Enable Accordion Conversion" toggle works in this layout too.
             if (isStacked) {
                 cssVariables['--dd-stacked-accent'] = props.attributes.stackedAccentColor || '#6c47ff';
                 wrapAttrs['data-layout'] = 'stacked';
-                // Stacked always renders inline at every width — bypass the
-                // breakpoint-driven accordion conversion rules entirely.
-                wrapAttrs['data-mobile-accordion'] = 'false';
-                wrapAttrs['data-accordion-breakpoint'] = 'none';
             }
 
             const blockProps = useBlockProps.save(wrapAttrs);

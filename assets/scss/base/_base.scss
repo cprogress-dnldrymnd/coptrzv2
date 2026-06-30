@@ -2236,10 +2236,16 @@ ul.is-swiper-slider,
     align-items: flex-start;
     gap: 2rem;
 
-    /* These belong to the horizontal/accordion layout — never shown here. */
-    .dd-tabs-nav-desktop,
-    .dd-accordion-button {
+    /* The horizontal nav is never used in this layout. */
+    .dd-tabs-nav-desktop {
         display: none !important;
+    }
+
+    /* Accordion header + in-panel description are revealed only by the
+       accordion-conversion media queries below. */
+    .dd-accordion-button,
+    .dd-tab-panel-desc {
+        display: none;
     }
 }
 
@@ -2310,16 +2316,76 @@ ul.is-swiper-slider,
     display: block;
 }
 
-/* Stack the two columns on small screens */
+/* In-panel description: shown only inside the accordion (mobile) view */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tab-panel-desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #4b5563;
+    margin-bottom: 1rem;
+}
+
+/* -----------------------------------------
+   Stacked → Accordion conversion
+   Mirrors the horizontal layout: when "Enable Accordion Conversion" is on, the
+   chosen breakpoint collapses the two columns into a single-column accordion.
+   The two-attribute selectors out-specify the desktop stacked rules above.
+----------------------------------------- */
+@media (max-width: 991px) {
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="991"] {
+        display: block;
+
+        .dd-tabs-nav-vertical {
+            display: none; /* Right-hand nav gives way to the accordion headers */
+        }
+
+        .dd-tabs-content-area {
+            flex-basis: 100%;
+            width: 100%;
+        }
+
+        .dd-accordion-button,
+        .dd-tab-panel-desc {
+            display: block;
+        }
+
+        .dd-accordion-button {
+            display: flex;
+        }
+    }
+}
+
 @media (max-width: 767px) {
-    .dd-tabs-wrapper[data-layout="stacked"] {
-        flex-direction: column;
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] {
+        display: block;
+
+        .dd-tabs-nav-vertical {
+            display: none;
+        }
+
+        .dd-tabs-content-area {
+            flex-basis: 100%;
+            width: 100%;
+        }
+
+        .dd-accordion-button,
+        .dd-tab-panel-desc {
+            display: block;
+        }
+
+        .dd-accordion-button {
+            display: flex;
+        }
     }
 
-    .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area,
-    .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-nav-vertical {
-        flex-basis: 100%;
-        min-width: 0;
+    /* Accordion disabled: simply stack the two columns vertically */
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] {
+        flex-direction: column;
+
+        .dd-tabs-content-area,
+        .dd-tabs-nav-vertical {
+            flex-basis: 100%;
+            min-width: 0;
+        }
     }
 }
 

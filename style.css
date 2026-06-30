@@ -13039,10 +13039,14 @@ ul.is-swiper-slider,
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 2rem;
-  /* These belong to the horizontal/accordion layout — never shown here. */ }
-  .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-nav-desktop,
-  .dd-tabs-wrapper[data-layout="stacked"] .dd-accordion-button {
+  /* The horizontal nav is never used in this layout. */
+  /* Accordion header + in-panel description are revealed only by the
+     accordion-conversion media queries below. */ }
+  .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-nav-desktop {
     display: none !important; }
+  .dd-tabs-wrapper[data-layout="stacked"] .dd-accordion-button,
+  .dd-tabs-wrapper[data-layout="stacked"] .dd-tab-panel-desc {
+    display: none; }
 
 /* Left column: the active tab's content */
 .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area {
@@ -13070,7 +13074,7 @@ ul.is-swiper-slider,
   background: transparent;
   /* Transparent placeholder so the active bar doesn't shift the layout */
   border: none;
-  border-left: 3px solid transparent;
+  border-left: 1px solid transparent;
   padding: 1rem 1.25rem;
   cursor: pointer;
   color: #6b7280;
@@ -13101,15 +13105,54 @@ ul.is-swiper-slider,
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-desc {
   display: block; }
 
-/* Stack the two columns on small screens */
-@media (max-width: 767px) {
-  .dd-tabs-wrapper[data-layout="stacked"] {
-    flex-direction: column; }
+/* In-panel description: shown only inside the accordion (mobile) view */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tab-panel-desc {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #4b5563;
+  margin-bottom: 1rem; }
 
-  .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area,
-  .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-nav-vertical {
-    flex-basis: 100%;
-    min-width: 0; } }
+/* -----------------------------------------
+   Stacked → Accordion conversion
+   Mirrors the horizontal layout: when "Enable Accordion Conversion" is on, the
+   chosen breakpoint collapses the two columns into a single-column accordion.
+   The two-attribute selectors out-specify the desktop stacked rules above.
+----------------------------------------- */
+@media (max-width: 991px) {
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="991"] {
+    display: block; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="991"] .dd-tabs-nav-vertical {
+      display: none;
+      /* Right-hand nav gives way to the accordion headers */ }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="991"] .dd-tabs-content-area {
+      flex-basis: 100%;
+      width: 100%; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="991"] .dd-accordion-button,
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="991"] .dd-tab-panel-desc {
+      display: block; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="991"] .dd-accordion-button {
+      display: flex; } }
+@media (max-width: 767px) {
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] {
+    display: block; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] .dd-tabs-nav-vertical {
+      display: none; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] .dd-tabs-content-area {
+      flex-basis: 100%;
+      width: 100%; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] .dd-accordion-button,
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] .dd-tab-panel-desc {
+      display: block; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] .dd-accordion-button {
+      display: flex; }
+
+  /* Accordion disabled: simply stack the two columns vertically */
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] {
+    flex-direction: column; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-content-area,
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-nav-vertical {
+      flex-basis: 100%;
+      min-width: 0; } }
 .border-left-styled {
   position: relative; }
   .border-left-styled:before {
