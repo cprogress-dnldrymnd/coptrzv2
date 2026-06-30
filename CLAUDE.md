@@ -75,7 +75,10 @@ case studies, rentals, landing pages, etc).
   layout — tab panel content in a `.dd-tabs-content-area` div on the left,
   a `.dd-tabs-nav-vertical` button list on the right; each `.dd-vtab-button`
   shows the title (`.dd-vtab-title`) and, when set, a `.dd-vtab-desc` span
-  sourced from `data-tab-description`; standard accordion allows collapse.
+  sourced from `data-tab-description` (hidden by default, shown only on the
+  active tab); active state is indicated by a left border spanning the full
+  button (title + description) using `var(--dd-stacked-accent, #6c47ff)`;
+  standard accordion allows collapse.
   SCSS for the stacked variant lives in `assets/scss/base/_base.scss` scoped
   to `[data-layout="stacked"]`.
 - Carbon Fields has been replaced by a bespoke shim (`includes/meta-shim/` +
