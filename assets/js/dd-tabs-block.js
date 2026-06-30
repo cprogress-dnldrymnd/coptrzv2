@@ -9,7 +9,7 @@
     const { registerBlockType } = wp.blocks;
     const { createElement: el, Fragment } = wp.element;
     const { InnerBlocks, InspectorControls, useBlockProps } = wp.blockEditor;
-    const { TextControl, PanelBody, ToggleControl, ColorPalette, BaseControl, SelectControl } = wp.components;
+    const { TextControl, TextareaControl, PanelBody, ToggleControl, ColorPalette, BaseControl, SelectControl } = wp.components;
 
     /**
      * Registers the Child Block: Tab Panel
@@ -31,7 +31,11 @@
             }
         },
         attributes: {
-            tabTitle: { type: 'string', default: 'New Tab' }
+            tabTitle: { type: 'string', default: 'New Tab' },
+            // Shown under the title in the Vertical Stacked layout when this tab
+            // is active. Optional — omitted from saved markup when empty so
+            // existing tab panels stay valid.
+            tabDescription: { type: 'string', default: '' }
         },
         
         /**
@@ -50,18 +54,24 @@
                             label: 'Tab Navigation Title',
                             value: attributes.tabTitle,
                             onChange: function (val) { setAttributes({ tabTitle: val }); }
+                        }),
+                        el(TextareaControl, {
+                            label: 'Active Tab Description',
+                            value: attributes.tabDescription,
+                            help: 'Vertical Stacked layout only: text shown beneath the title (in the highlight box) when this tab is active.',
+                            onChange: function (val) { setAttributes({ tabDescription: val }); }
                         })
                     )
                 ),
                 el('div', blockProps,
                     el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '6px' } },
-                        'Title: ' + attributes.tabTitle
+                        'Tab: ' + attributes.tabTitle
                     ),
                     el('div', { style: { padding: '0 10px 8px', fontSize: '11px', color: '#757575' } },
-                        'The content below is this tab’s body. In the Vertical Stacked layout it appears inside the purple highlight box when this tab is active.'
+                        'The content below is this tab’s main content (left column on the frontend — e.g. an image). The title + the optional “Active Tab Description” (Tab Settings) appear in the right-hand nav when active.'
                     ),
                     el('div', { className: 'dd-tab-panel-inner' },
-                        el(InnerBlocks, { template: [['core/paragraph', { placeholder: 'Enter this tab’s content / description here…' }]] })
+                        el(InnerBlocks, { template: [['core/paragraph', { placeholder: 'Enter this tab’s main content here…' }]] })
                     )
                 )
             );
@@ -73,10 +83,18 @@
          * @return {Object}      The HTML markup saved to the database.
          */
         save: function (props) {
-            const blockProps = useBlockProps.save({
+            const panelAttrs = {
                 className: 'dd-tab-panel',
                 'data-tab-title': props.attributes.tabTitle
-            });
+            };
+
+            // Only emit the description attribute when set, so existing panels
+            // (no description) serialize identically and remain valid.
+            if (props.attributes.tabDescription) {
+                panelAttrs['data-tab-description'] = props.attributes.tabDescription;
+            }
+
+            const blockProps = useBlockProps.save(panelAttrs);
 
             return el('div', blockProps,
                 el('div', { className: 'dd-tab-panel-inner' },

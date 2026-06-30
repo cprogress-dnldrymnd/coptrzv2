@@ -2225,51 +2225,102 @@ ul.is-swiper-slider,
 }
 
 /* -----------------------------------------
-   Stacked (Vertical Inline) Layout
-   Opt-in via data-layout="stacked". Scoped entirely to that attribute so the
-   default horizontal tabs are untouched.
+   Vertical Stacked Layout (two columns)
+   Opt-in via data-layout="stacked": content on the left, a vertical list of
+   nav tabs on the right. The active nav tab reveals its description text.
+   Scoped entirely to the attribute so default horizontal tabs are untouched.
 ----------------------------------------- */
-/* Hide the horizontal nav row — titles render inline above each panel instead */
-.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-nav-desktop {
-    display: none;
+.dd-tabs-wrapper[data-layout="stacked"] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2rem;
+
+    /* These belong to the horizontal/accordion layout — never shown here. */
+    .dd-tabs-nav-desktop,
+    .dd-accordion-button {
+        display: none !important;
+    }
 }
 
-/* Title rows: plain text, visible at every breakpoint */
-.dd-tabs-wrapper[data-layout="stacked"] .dd-accordion-button {
+/* Left column: the active tab's content */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area {
+    flex: 1 1 55%;
+    min-width: 0;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area .dd-tab-panel {
+    display: none;
+    margin: 0;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area .dd-tab-panel.active {
+    display: block;
+}
+
+/* Right column: the vertical nav tabs */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-nav-vertical {
+    flex: 1 1 35%;
+    min-width: 260px;
     display: flex;
+    flex-direction: column;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button {
+    display: block;
+    width: 100%;
+    text-align: left;
     background: transparent;
     border: none;
-    border-radius: 0;
-    padding: 0.75rem 0;
-    margin-bottom: 0;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
     color: #6b7280;
-    font-weight: 600;
     transition: color 0.3s ease;
-
-    &:hover {
-        background: transparent;
-        color: #111827;
-    }
-
-    &.active {
-        background: transparent;
-        border: none;
-        color: #111827;
-    }
 }
 
-/* No +/- toggle glyph in the stacked layout */
-.dd-tabs-wrapper[data-layout="stacked"] .dd-accordion-icon {
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-title {
+    display: block;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active {
+    color: #111827;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-title {
+    font-weight: 700;
+}
+
+/* Description: hidden until the tab is active, then shown in the highlight box */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-desc {
     display: none;
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color: #4b5563;
 }
 
-/* Active panel sits inline under its title inside the highlight box */
-.dd-tabs-wrapper[data-layout="stacked"] .dd-tab-panel.dd-tab-panel.dd-tab-panel.active {
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-desc {
     display: block;
     border: 2px solid var(--dd-stacked-accent, #6c47ff);
-    border-radius: 8px !important;
-    padding: 1rem 1.25rem;
-    margin: 0 0 0.5rem;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+}
+
+/* Stack the two columns on small screens */
+@media (max-width: 767px) {
+    .dd-tabs-wrapper[data-layout="stacked"] {
+        flex-direction: column;
+    }
+
+    .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area,
+    .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-nav-vertical {
+        flex-basis: 100%;
+        min-width: 0;
+    }
 }
 
 .border-left-styled {
