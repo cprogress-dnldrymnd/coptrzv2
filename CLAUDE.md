@@ -65,7 +65,8 @@ case studies, rentals, landing pages, etc).
   shown beneath the title in the right-hand nav when that tab is active; omitted
   from saved markup when empty so existing panels remain valid). Saved markup
   emits `data-mobile-accordion`, `data-accordion-breakpoint`, and `data-layout`
-  on `.dd-tabs-wrapper`; stacked blocks always set `data-mobile-accordion="false"`.
+  on `.dd-tabs-wrapper`; stacked blocks pass these attributes through unchanged
+  (the "Enable Accordion Conversion" toggle works for stacked layouts too).
   Existing horizontal blocks (no `layoutStyle` attribute) serialize identically
   so they remain valid — opt-in only.
 - `assets/js/dd-tabs-frontend.js` — DOM-ready script that initialises all
@@ -77,8 +78,13 @@ case studies, rentals, landing pages, etc).
   shows the title (`.dd-vtab-title`) and, when set, a `.dd-vtab-desc` span
   sourced from `data-tab-description` (hidden by default, shown only on the
   active tab); active state is indicated by a left border spanning the full
-  button (title + description) using `var(--dd-stacked-accent, #6c47ff)`;
-  standard accordion allows collapse.
+  button (title + description) using `var(--dd-stacked-accent, #6c47ff)`.
+  On mobile (when accordion conversion is enabled), the right-hand nav is hidden
+  and `.dd-accordion-button` headers injected above each panel inside
+  `.dd-tabs-content-area` take over; clicking an open accordion header collapses
+  it. When a `tabDescription` is set, a `.dd-tab-panel-desc` div is prepended to
+  the panel so the description is visible in the accordion (mobile) view where the
+  right-hand nav is not shown.
   SCSS for the stacked variant lives in `assets/scss/base/_base.scss` scoped
   to `[data-layout="stacked"]`.
 - Carbon Fields has been replaced by a bespoke shim (`includes/meta-shim/` +
