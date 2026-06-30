@@ -13068,20 +13068,23 @@ ul.is-swiper-slider,
   width: 100%;
   text-align: left;
   background: transparent;
+  /* Transparent placeholder so the active bar doesn't shift the layout */
   border: none;
-  border-radius: 8px;
+  border-left: 3px solid transparent;
   padding: 1rem 1.25rem;
   cursor: pointer;
   color: #6b7280;
-  transition: color 0.3s ease; }
+  transition: border-color 0.3s ease, color 0.3s ease; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-title {
   display: block;
   font-size: 1.125rem;
   font-weight: 600; }
 
+/* Active tab: a left bar spanning the full button (title + description) */
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active {
-  color: #111827; }
+  color: #111827;
+  border-left-color: var(--dd-stacked-accent, #6c47ff); }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-title {
   font-weight: 700; }
@@ -13096,10 +13099,7 @@ ul.is-swiper-slider,
   color: #4b5563; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-desc {
-  display: block;
-  border: 2px solid var(--dd-stacked-accent, #6c47ff);
-  border-radius: 8px;
-  padding: 0.85rem 1rem; }
+  display: block; }
 
 /* Stack the two columns on small screens */
 @media (max-width: 767px) {

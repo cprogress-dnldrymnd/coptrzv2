@@ -59,17 +59,25 @@ case studies, rentals, landing pages, etc).
   `digitally_disruptive_enqueue_swiper_editor_assets()` in `functions.php`.
   Key attributes on `dd/tabs`: `layoutStyle` (`horizontal` default | `stacked`),
   `mobileAccordion` (bool), `accordionBreakpoint` (`767` | `991` px),
-  `stackedAccentColor` (CSS var `--dd-stacked-accent`). Saved markup emits
-  `data-mobile-accordion`, `data-accordion-breakpoint`, and `data-layout` on
-  `.dd-tabs-wrapper`; stacked blocks always set `data-mobile-accordion="false"`.
+  `stackedAccentColor` (CSS var `--dd-stacked-accent`). Key attributes on
+  `dd/tab-panel`: `tabTitle` (string), `tabDescription` (string, optional —
+  stacked layout only; emitted as `data-tab-description` on the panel element,
+  shown beneath the title in the right-hand nav when that tab is active; omitted
+  from saved markup when empty so existing panels remain valid). Saved markup
+  emits `data-mobile-accordion`, `data-accordion-breakpoint`, and `data-layout`
+  on `.dd-tabs-wrapper`; stacked blocks always set `data-mobile-accordion="false"`.
   Existing horizontal blocks (no `layoutStyle` attribute) serialize identically
   so they remain valid — opt-in only.
 - `assets/js/dd-tabs-frontend.js` — DOM-ready script that initialises all
   `.dd-tabs-wrapper` elements. Builds `.dd-tabs-nav-desktop` (horizontal nav)
-  and `.dd-accordion-button` elements dynamically. Reads `data-layout`: stacked
-  layout keeps exactly one panel open (no toggle-to-close); standard accordion
-  allows collapse. SCSS for the stacked variant lives in
-  `assets/scss/base/_base.scss` scoped to `[data-layout="stacked"]`.
+  and `.dd-accordion-button` elements dynamically. Reads `data-layout`: for
+  `stacked`, delegates to `buildVerticalTabs()` which produces a two-column
+  layout — tab panel content in a `.dd-tabs-content-area` div on the left,
+  a `.dd-tabs-nav-vertical` button list on the right; each `.dd-vtab-button`
+  shows the title (`.dd-vtab-title`) and, when set, a `.dd-vtab-desc` span
+  sourced from `data-tab-description`; standard accordion allows collapse.
+  SCSS for the stacked variant lives in `assets/scss/base/_base.scss` scoped
+  to `[data-layout="stacked"]`.
 - Carbon Fields has been replaced by a bespoke shim (`includes/meta-shim/` +
   `includes/meta-reader.php`). The shim implements the same `Container::make()`
   / `Field::make()` chainable API as CF3 and reads/writes data in CF3's
