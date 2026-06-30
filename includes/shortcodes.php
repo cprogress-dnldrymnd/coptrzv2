@@ -979,7 +979,7 @@ class Shortcodes
 
         if ($hero_form_redirect_type == 'pdf') {
             // Fetch the absolute server path required by CF7 file attachments
-            $redirect = get_attached_file($hero_form_pdf_redirect);
+            $redirect = wp_get_attachment_url($hero_form_pdf_redirect);
         } else if ($hero_form_redirect_type == 'document') {
             $redirect = do_shortcode('[document_url id=' . $hero_form_document_redirect_id . ']');
         } else {
@@ -1025,7 +1025,7 @@ class Shortcodes
         );
         $document = get__post_meta_by_id($id, 'document');
         if ($document) {
-            return get_attached_file($document);
+            return wp_get_attachment_url($document);
         }
     }
 
