@@ -12955,6 +12955,10 @@ ul.is-swiper-slider,
     margin-bottom: 10px;
     margin-top: -10px; } }
 
+.gradient-text {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
+
 /* -----------------------------------------
    1. Default State (Desktop View)
 ----------------------------------------- */
