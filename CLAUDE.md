@@ -226,6 +226,7 @@ case studies, rentals, landing pages, etc).
   route frozen content through `___sections()`.
   Provides: `coptrz_sections_is_converted($post_id)`, `coptrz_sections_should_route()`,
   `coptrz_render_converted_sections()`, `coptrz_convert_post_sections($post_id, $dry_run)`,
+  `coptrz_convert_post_sections_to_blocks($post_id, $dry_run)`,
   `coptrz_register_html_sections_fields()`.
   Admin tools: a per-post "Convert Sections to HTML" meta box (side, with dry-run) and a
   convert-by-search runner at Tools > Convert Sections. The runner has no
@@ -234,6 +235,19 @@ case studies, rentals, landing pages, etc).
   type), pick an explicit selection, then dry-run or convert just those (50/run cap).
   The search only returns posts that still NEED converting (have a `_sections` /
   `_sections_after_main` row and are not already flagged converted).
+  Two conversion modes (chosen per-post box / bulk `mode` select): **Custom HTML**
+  (`coptrz_convert_post_sections()`, the default — one frozen Custom HTML block per
+  section) and **native blocks** (`coptrz_convert_post_sections_to_blocks()`,
+  non-product only). Native mode walks each section's elements through a mapping
+  registry `coptrz_block_item_mappers()` (`_type` → callable returning a parsed-block
+  array built by `coptrz_block()`, serialized via core `serialize_blocks()`); a section
+  whose items ALL map is wrapped in a `core/group` (`coptrz_block_group()`, carries the
+  section's utility classes), otherwise the whole section falls back to a Custom HTML
+  snapshot. The registry is seeded with the lossless leaf mappers (`custom_html`→
+  `core/html`, `shortcode`→`core/shortcode`) and is `apply_filters`-extensible; further
+  element→block mappers (heading, description, image, buttons, columns, …) are added
+  from the project's element→block guide. Both modes set the same converted flag (so
+  rendering routes identically) plus `_coptrz_sections_mode` = `html|blocks`.
   `coptrz_render_converted_sections()` has a static re-entrancy guard (`$rendering`)
   to prevent infinite recursion when frozen content routes back into `___sections()`
   for the same post (e.g. a `[layouts]` embed that resolves to the same post).

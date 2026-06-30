@@ -332,6 +332,588 @@ function coptrz_convert_post_sections($post_id, $dry_run = false)
 }
 
 /* ========================================================================= */
+/*  Native Gutenberg block conversion (mode: "blocks")                        */
+/* ========================================================================= */
+/*
+ * Converts each section ELEMENT into the matching native block instead of a
+ * single frozen Custom HTML block. Built around a per-element mapping registry
+ * (coptrz_block_item_mappers) that is filled in from the project's element→block
+ * guide. Any section whose items are not ALL natively mapped falls back to the
+ * same whole-section Custom HTML snapshot the HTML converter produces (so output
+ * is always valid and shortcodes/[layouts] stay literal & dynamic).
+ *
+ * Non-product only (native blocks need the block editor); products keep the HTML
+ * repeater. Rendering is unchanged: a converted non-product renders its
+ * post_content via do_blocks()+do_shortcode() (coptrz_render_converted_sections),
+ * which handles native blocks and the core/shortcode fallbacks alike.
+ */
+
+/**
+ * Build a leaf parsed-block array for serialize_block()/serialize_blocks().
+ *
+ * @param string $name       e.g. 'core/heading'
+ * @param array  $attrs      block attributes (serialized to the JSON comment)
+ * @param string $inner_html the block's save markup
+ * @return array
+ */
+function coptrz_block($name, $attrs = array(), $inner_html = '')
+{
+    $inner_html = (string) $inner_html;
+    return array(
+        'blockName'    => $name,
+        'attrs'        => is_array($attrs) ? $attrs : array(),
+        'innerBlocks'  => array(),
+        'innerHTML'    => $inner_html,
+        'innerContent' => $inner_html === '' ? array() : array($inner_html),
+    );
+}
+
+/**
+ * Block with inner blocks (core/buttons, core/columns, core/column, core/group, …).
+ * innerContent alternates static wrapper strings and null placeholders (one per
+ * inner block), which is what serialize_block() / serialize_blocks() expect.
+ *
+ * @param string $name        e.g. 'core/columns'
+ * @param array  $attrs       block attributes
+ * @param string $wrap_open   opening HTML (e.g. '<div class="wp-block-columns">')
+ * @param string $wrap_close  closing HTML (e.g. '</div>')
+ * @param array  $inner_blocks array of parsed-block arrays
+ * @return array
+ */
+function coptrz_block_container($name, $attrs, $wrap_open, $wrap_close, array $inner_blocks)
+{
+    $inner_content = array($wrap_open);
+    foreach ($inner_blocks as $unused) {
+        $inner_content[] = null;
+    }
+    $inner_content[] = $wrap_close;
+    return array(
+        'blockName'    => $name,
+        'attrs'        => is_array($attrs) ? $attrs : array(),
+        'innerBlocks'  => array_values($inner_blocks),
+        'innerHTML'    => $wrap_open . $wrap_close,
+        'innerContent' => $inner_content,
+    );
+}
+
+/**
+ * Wrap already-serialized child block markup in a core/group that carries the
+ * section's existing utility classes, so the theme CSS reproduces the look
+ * (the user-chosen "Group with existing classes" strategy).
+ *
+ * @param string $class            space-separated utility classes (may be '')
+ * @param string $inner_serialized serialized inner blocks
+ * @return string
+ */
+function coptrz_block_group($class, $inner_serialized)
+{
+    $class = trim((string) $class);
+    $attrs = array('tagName' => 'section', 'layout' => array('type' => 'constrained'));
+    if ($class !== '') {
+        $attrs['className'] = $class;
+    }
+    $div_class = trim('wp-block-group ' . $class);
+    return '<!-- wp:group ' . wp_json_encode($attrs) . " -->\n"
+        . '<section class="' . esc_attr($div_class) . '">' . "\n"
+        . $inner_serialized . "\n"
+        . "</section>\n<!-- /wp:group -->";
+}
+
+/**
+ * Best-effort section utility classes for the group wrapper. INCOMPLETE on
+ * purpose: only the author-set custom class is carried for now; the full
+ * section_styles → class mapping (padding/background/container width) comes from
+ * the conversion guide. (Most sections are not fully-native yet, so they snapshot
+ * with their real wrapper intact regardless.)
+ *
+ * @param array $section
+ * @return string
+ */
+function coptrz_section_classes($section)
+{
+    return isset($section['section_class']) ? trim((string) $section['section_class']) : '';
+}
+
+/**
+ * Element-type → mapper registry.
+ *
+ * Each mapper is callable($item): array[]|null
+ *   - Returns an array of parsed-block arrays (each via coptrz_block /
+ *     coptrz_block_container), or null when this item type cannot be mapped
+ *     (which causes the enclosing section to snapshot to Custom HTML).
+ *   - Dynamic elements (layouts, global_widgets, product_compare, etc.) map to
+ *     core/shortcode blocks so they stay live.
+ *   - Elements with no native block equivalent and no shortcode form (post_grid,
+ *     tabs, accordion) are intentionally absent → section snapshots as HTML.
+ *
+ * Filterable via 'coptrz_block_item_mappers' so additional mappings can be added
+ * from the element→block guide without editing this file.
+ *
+ * @return array<string,callable>
+ */
+function coptrz_block_item_mappers()
+{
+    static $map = null;
+    if ($map !== null) {
+        return apply_filters('coptrz_block_item_mappers', $map);
+    }
+
+    /* ------------------------------------------------------------------ */
+    /*  Leaf mappers                                                        */
+    /* ------------------------------------------------------------------ */
+
+    // Raw HTML → core/html (lossless).
+    $map['custom_html'] = function ($item) {
+        $html = isset($item['custom_html']) ? (string) $item['custom_html'] : '';
+        return $html === '' ? null : array(coptrz_block('core/html', array(), $html));
+    };
+
+    // Shortcode element → core/shortcode (stays dynamic).
+    $map['shortcode'] = function ($item) {
+        $sc = isset($item['shortcode']) ? trim((string) $item['shortcode']) : '';
+        return $sc === '' ? null : array(coptrz_block('core/shortcode', array(), $sc));
+    };
+
+    // Heading → core/heading.
+    $map['heading'] = function ($item) {
+        $tag   = strtolower(isset($item['tag']) ? (string) $item['tag'] : 'h2');
+        $level = (int) filter_var($tag, FILTER_SANITIZE_NUMBER_INT) ?: 2;
+        $text  = isset($item['heading']) ? (string) $item['heading'] : '';
+        if ($text === '') {
+            return null;
+        }
+        $extra = array();
+        if (!empty($item['text_align'])) {
+            $extra[] = $item['text_align'];
+        }
+        if (!empty($item['size'])) {
+            $extra[] = $item['size'];
+        }
+        if (!empty($item['text_color'])) {
+            $extra[] = $item['text_color'];
+        }
+        $attrs     = array('level' => $level);
+        $cls       = trim('wp-block-heading ' . implode(' ', $extra));
+        if ($extra) {
+            $attrs['className'] = implode(' ', $extra);
+        }
+        $html = '<h' . $level . ' class="' . esc_attr($cls) . '">' . wp_kses_post($text) . '</h' . $level . '>';
+        return array(coptrz_block('core/heading', $attrs, $html));
+    };
+
+    // Description → core/paragraph.
+    $map['description'] = function ($item) {
+        $text = isset($item['description']) ? (string) $item['description'] : '';
+        if ($text === '') {
+            return null;
+        }
+        $classes = array('description-box');
+        if (!empty($item['description_alignment'])) {
+            $classes[] = $item['description_alignment'];
+        }
+        if (!empty($item['description_size'])) {
+            $classes[] = $item['description_size'];
+        }
+        $style = !empty($item['description_width'])
+            ? ' style="max-width:' . esc_attr($item['description_width']) . '"'
+            : '';
+        $cls   = implode(' ', $classes);
+        $attrs = array('className' => $cls);
+        $html  = '<p class="' . esc_attr($cls) . '"' . $style . '>' . wp_kses_post($text) . '</p>';
+        return array(coptrz_block('core/paragraph', $attrs, $html));
+    };
+
+    // Image → core/image.
+    $map['image'] = function ($item) {
+        $att_id = (int) (isset($item['image']) ? $item['image'] : 0);
+        if (!$att_id) {
+            return null;
+        }
+        $size = isset($item['size']) && $item['size'] !== '' ? (string) $item['size'] : 'large';
+        $src  = wp_get_attachment_image_src($att_id, $size);
+        if (!$src) {
+            return null;
+        }
+        $url = (string) $src[0];
+        $alt = (string) get_post_meta($att_id, '_wp_attachment_image_alt', true);
+
+        $extra = array();
+        if (!empty($item['rounded_corners'])) {
+            $extra[] = 'rounded-corner';
+        }
+        if (!empty($item['is_background_image'])) {
+            $extra[] = 'background-image';
+        }
+        $attrs    = array('id' => $att_id, 'sizeSlug' => $size);
+        if ($extra) {
+            $attrs['className'] = implode(' ', $extra);
+        }
+        $fig_cls  = trim('wp-block-image size-' . sanitize_html_class($size) . ' ' . implode(' ', $extra));
+        $img_sty  = '';
+        if (!empty($item['custom_size'])) {
+            $s = array();
+            if (!empty($item['image_height'])) {
+                $s[] = '--height:' . esc_attr($item['image_height']);
+            }
+            if (!empty($item['image_width'])) {
+                $s[] = '--width:' . esc_attr($item['image_width']);
+            }
+            if ($s) {
+                $img_sty = ' style="' . implode(';', $s) . '"';
+            }
+        }
+        $html = '<figure class="' . esc_attr($fig_cls) . '">'
+            . '<img src="' . esc_url($url) . '" alt="' . esc_attr($alt) . '"'
+            . ' class="wp-image-' . $att_id . '"' . $img_sty . '/>'
+            . '</figure>';
+        return array(coptrz_block('core/image', $attrs, $html));
+    };
+
+    /* ------------------------------------------------------------------ */
+    /*  Dynamic elements → core/shortcode (stay live after conversion)    */
+    /* ------------------------------------------------------------------ */
+
+    // [layouts id='N'] — reusable layout post; stays dynamic.
+    $map['layouts'] = function ($item) {
+        $layouts = isset($item['layouts']) && is_array($item['layouts']) ? $item['layouts'] : array();
+        $blocks  = array();
+        foreach ($layouts as $layout) {
+            $id = isset($layout['id']) ? (int) $layout['id'] : 0;
+            if ($id) {
+                $blocks[] = coptrz_block('core/shortcode', array(), "[layouts id='{$id}']");
+            }
+        }
+        return empty($blocks) ? null : $blocks;
+    };
+
+    // Global widgets — each sub-widget maps to its registered shortcode.
+    $map['global_widgets'] = function ($item) {
+        $widgets = isset($item['global_widgets']) && is_array($item['global_widgets']) ? $item['global_widgets'] : array();
+        $sc_map  = array(
+            'brands_logo_slider'       => '[brands_logo_slider]',
+            'reviews'                  => '[reviews]',
+            'drone_servicing'          => '[drone_servicing]',
+            'three_year_servicing_plans' => '[three_year_servicing_plans]',
+            'remote_support'           => '[remote_support]',
+            'testimonials'             => '[testimonials]',
+            'latest_from_coptrz'       => '[latest_from_coptrz]',
+        );
+        $blocks = array();
+        foreach ($widgets as $w) {
+            $type = isset($w['_type']) ? $w['_type'] : '';
+            if ($type === 'case_study_slider') {
+                $style    = isset($w['style']) ? (string) $w['style'] : '';
+                $sc       = $style ? "[case_study_slider_grid style='{$style}']" : '[case_study_slider_grid]';
+            } elseif (isset($sc_map[$type])) {
+                $sc = $sc_map[$type];
+            } else {
+                continue; // unknown widget; skip silently
+            }
+            $blocks[] = coptrz_block('core/shortcode', array(), $sc);
+        }
+        return empty($blocks) ? null : $blocks;
+    };
+
+    // Product compare → [product_compare id='N'].
+    $map['product_compare'] = function ($item) {
+        $cp  = isset($item['compareproducts']) && is_array($item['compareproducts']) ? $item['compareproducts'] : array();
+        $id  = !empty($cp[0]['id']) ? (int) $cp[0]['id'] : 0;
+        return $id ? array(coptrz_block('core/shortcode', array(), "[product_compare id='{$id}']")) : null;
+    };
+
+    /* ------------------------------------------------------------------ */
+    /*  Composite: buttons                                                 */
+    /* ------------------------------------------------------------------ */
+
+    // Buttons → core/buttons (wrapper) + core/button (per item).
+    // Popup buttons are skipped (they need Bootstrap modal JS, not a link).
+    $map['buttons'] = function ($item) {
+        $raw_btns = isset($item['buttons']) && is_array($item['buttons']) ? $item['buttons'] : array();
+        if (empty($raw_btns)) {
+            return null;
+        }
+        $btn_blocks = array();
+        foreach ($raw_btns as $btn) {
+            $type  = isset($btn['button_type']) ? (string) $btn['button_type'] : 'custom';
+            $text  = isset($btn['button_text']) ? (string) $btn['button_text'] : '';
+            $style = isset($btn['button_style']) ? (string) $btn['button_style'] : '';
+            if ($type === 'popups' || $text === '') {
+                continue; // popup triggers need Bootstrap JS; skip
+            }
+            if ($type === 'page') {
+                $pid = (int) (isset($btn['button_url']) ? $btn['button_url'] : 0);
+                $url = $pid ? (string) get_permalink($pid) : '';
+            } else {
+                $url = isset($btn['button_url_custom']) ? (string) $btn['button_url_custom'] : '';
+            }
+            $blank     = isset($btn['button_target']) && strpos((string) $btn['button_target'], '_blank') !== false;
+            $btn_attrs = array();
+            if ($url !== '') {
+                $btn_attrs['url'] = $url;
+            }
+            if ($style !== '') {
+                $btn_attrs['className'] = $style;
+            }
+            if ($blank) {
+                $btn_attrs['linkTarget'] = '_blank';
+                $btn_attrs['rel']        = 'noreferrer noopener';
+            }
+            $link_cls  = trim('wp-block-button__link wp-element-button ' . $style);
+            $link_attr = ($url !== '' ? ' href="' . esc_url($url) . '"' : '')
+                . ($blank ? ' target="_blank" rel="noreferrer noopener"' : '');
+            $btn_html  = '<div class="wp-block-button">'
+                . '<a class="' . esc_attr($link_cls) . '"' . $link_attr . '>'
+                . wp_kses_post($text) . '</a></div>';
+            $btn_blocks[] = coptrz_block('core/button', $btn_attrs, $btn_html);
+        }
+        if (empty($btn_blocks)) {
+            return null;
+        }
+        $align     = isset($item['buttons_alignment']) ? (string) $item['buttons_alignment'] : '';
+        $attrs     = $align ? array('className' => $align) : array();
+        $wrap_cls  = trim('wp-block-buttons ' . $align);
+        return array(coptrz_block_container(
+            'core/buttons',
+            $attrs,
+            '<div class="' . esc_attr($wrap_cls) . '">',
+            '</div>',
+            $btn_blocks
+        ));
+    };
+
+    /* ------------------------------------------------------------------ */
+    /*  Composite: columns (recursive through the item registry)          */
+    /* ------------------------------------------------------------------ */
+
+    // Columns → core/columns + core/column[]. Each column's items recurse through
+    // this same registry; if any sub-item can't be mapped the whole section
+    // falls back to a Custom HTML snapshot.
+    $map['columns'] = function ($item) {
+        $raw_cols = isset($item['columns']) && is_array($item['columns']) ? $item['columns'] : array();
+        if (empty($raw_cols)) {
+            return null;
+        }
+        $mappers   = coptrz_block_item_mappers(); // safe: static already populated
+        $col_blocks = array();
+
+        foreach ($raw_cols as $col) {
+            $col_items = isset($col['items']) && is_array($col['items']) ? $col['items'] : array();
+            $inner     = array();
+            foreach ($col_items as $sub) {
+                $sub_type = isset($sub['_type']) ? $sub['_type'] : '';
+                if (!isset($mappers[$sub_type])) {
+                    return null; // unmapped sub-item → whole section snapshots
+                }
+                $result = call_user_func($mappers[$sub_type], $sub);
+                if ($result === null) {
+                    return null;
+                }
+                foreach ((array) $result as $b) {
+                    $inner[] = $b;
+                }
+            }
+
+            // Extract column_width from column_styles complex.
+            $col_width = '';
+            if (!empty($col['column_styles']) && is_array($col['column_styles'])) {
+                foreach ($col['column_styles'] as $cs) {
+                    if (isset($cs['_type']) && $cs['_type'] === 'column_width' && !empty($cs['column_width'])) {
+                        $col_width = (string) $cs['column_width'];
+                        break;
+                    }
+                }
+            }
+            $col_attrs   = $col_width ? array('className' => $col_width) : array();
+            $col_wrap_cls = trim('wp-block-column ' . $col_width);
+            $col_blocks[] = coptrz_block_container(
+                'core/column',
+                $col_attrs,
+                '<div class="' . esc_attr($col_wrap_cls) . '">',
+                '</div>',
+                $inner
+            );
+        }
+
+        if (empty($col_blocks)) {
+            return null;
+        }
+        $align      = isset($item['align_items']) ? (string) $item['align_items'] : '';
+        $cols_attrs = $align ? array('className' => $align) : array();
+        $wrap_cls   = trim('wp-block-columns ' . $align);
+        return array(coptrz_block_container(
+            'core/columns',
+            $cols_attrs,
+            '<div class="' . esc_attr($wrap_cls) . '">',
+            '</div>',
+            $col_blocks
+        ));
+    };
+
+    return apply_filters('coptrz_block_item_mappers', $map);
+}
+
+/**
+ * Convert one section to block markup.
+ *  - Every item natively mapped → its blocks wrapped in a section core/group.
+ *  - Otherwise → a single Custom HTML snapshot of the whole section (identical to
+ *    the HTML converter; keeps shortcodes/[layouts] literal & dynamic).
+ *
+ * @return array{0:string,1:bool} [markup, was_native]
+ */
+function coptrz_section_to_blocks($section, $post_id, $field, $key)
+{
+    $items   = (isset($section['section_items']) && is_array($section['section_items'])) ? $section['section_items'] : array();
+    $mappers = coptrz_block_item_mappers();
+
+    $blocks     = array();
+    $all_native = !empty($items);
+    foreach ($items as $item) {
+        $type = isset($item['_type']) ? $item['_type'] : '';
+        if (!isset($mappers[$type])) {
+            $all_native = false;
+            break;
+        }
+        // Mappers return array[] (list of parsed-block arrays) or null.
+        $result = call_user_func($mappers[$type], $item);
+        if ($result === null) {
+            $all_native = false;
+            break;
+        }
+        foreach ((array) $result as $b) {
+            $blocks[] = $b;
+        }
+    }
+
+    if ($all_native && !empty($blocks)) {
+        $inner = serialize_blocks($blocks);
+        return array(coptrz_block_group(coptrz_section_classes($section), $inner), true);
+    }
+
+    // Fallback: freeze the whole section as a Custom HTML block.
+    $html = trim(___sections($field, $post_id, $key));
+    $html = preg_replace('/\[product_add_to_cart\s+id=([\'"])\1[^\]]*\]/', '', $html);
+    if ($html === '') {
+        return array('', false);
+    }
+    return array("<!-- wp:html -->\n" . $html . "\n<!-- /wp:html -->", false);
+}
+
+/**
+ * Convert one non-product post's sections into native blocks (mode "blocks").
+ * Mirrors coptrz_convert_post_sections() but emits per-element blocks. Sets the
+ * same converted flag (so rendering routes identically) plus `_coptrz_sections_mode`
+ * = 'blocks' for reporting, preserves `_sections`, and switches `page` posts to
+ * the Gutenberg template.
+ *
+ * @param int  $post_id
+ * @param bool $dry_run
+ * @return array
+ */
+function coptrz_convert_post_sections_to_blocks($post_id, $dry_run = false)
+{
+    $src = get_post($post_id);
+    $report = array(
+        'post_id'  => (int) $post_id,
+        'title'    => $src ? $src->post_title : '',
+        'type'     => $src ? $src->post_type : '',
+        'mode'     => 'blocks',
+        'counts'   => array(),
+        'native'   => array(),
+        'snapshot' => array(),
+        'target'   => 'Native Gutenberg blocks',
+        'warnings' => array(),
+        'skipped'  => false,
+    );
+
+    if (!$src) {
+        $report['warnings'][] = 'Post not found.';
+        return $report;
+    }
+    if ($src->post_type === 'product') {
+        $report['warnings'][] = 'Native-block conversion is non-product only (products use the HTML repeater).';
+        return $report;
+    }
+    if (!$dry_run && coptrz_sections_is_converted($post_id)) {
+        $report['skipped'] = true;
+        $report['warnings'][] = 'Already converted — skipped to avoid duplicating content.';
+        return $report;
+    }
+
+    global $post;
+    $prev_post = $post;
+    $post = $src;
+    setup_postdata($post);
+
+    $blocks_by_field = array();
+
+    foreach (coptrz_section_source_fields() as $field) {
+        $sections = get__post_meta_by_id($post_id, $field);
+        if (empty($sections) || !is_array($sections)) {
+            continue;
+        }
+        $chunks = array();
+        $native = 0;
+        $snap   = 0;
+        foreach ($sections as $key => $section) {
+            if (!empty($section['disable_section'])) {
+                continue;
+            }
+            list($markup, $was_native) = coptrz_section_to_blocks($section, $post_id, $field, $key);
+            if ($markup === '') {
+                continue;
+            }
+            $chunks[] = $markup;
+            $was_native ? $native++ : $snap++;
+        }
+        if (empty($chunks)) {
+            continue;
+        }
+        $report['counts'][$field]   = count($chunks);
+        $report['native'][$field]   = $native;
+        $report['snapshot'][$field] = $snap;
+        $blocks_by_field[$field]    = implode("\n\n", $chunks);
+        if ($dry_run) {
+            $report['html'][$field] = $chunks;
+        }
+    }
+
+    if (!empty($blocks_by_field)) {
+        $existing = (string) $src->post_content;
+        if (trim($existing) !== '') {
+            $report['warnings'][] = 'post_content was not empty — section blocks appended after existing content.';
+        }
+        $new_content = $existing;
+        foreach (coptrz_section_source_fields() as $field) {
+            if (!empty($blocks_by_field[$field])) {
+                $new_content .= ($new_content !== '' ? "\n\n" : '') . $blocks_by_field[$field];
+            }
+        }
+        if (!$dry_run) {
+            wp_update_post(array('ID' => $post_id, 'post_content' => $new_content));
+        }
+        if ($src->post_type === 'page') {
+            $report['template'] = 'templates/page-gutenberg.php';
+            if (!$dry_run) {
+                update_post_meta($post_id, '_wp_page_template', 'templates/page-gutenberg.php');
+            }
+        }
+    }
+
+    wp_reset_postdata();
+    $post = $prev_post;
+
+    if (!$dry_run && !empty($report['counts'])) {
+        update_post_meta($post_id, COPTRZ_SECTIONS_CONVERTED_FLAG, 'yes');
+        update_post_meta($post_id, '_coptrz_sections_mode', 'blocks');
+    }
+    if (empty($report['counts'])) {
+        $report['warnings'][] = 'No active sections found to convert.';
+    }
+
+    return $report;
+}
+
+/* ========================================================================= */
 /*  Admin UI — per-post meta box                                              */
 /* ========================================================================= */
 
@@ -365,11 +947,19 @@ function coptrz_render_section_converter_box($post)
             <p style="color:#1a7f37;font-weight:600;margin-top:0;">✓ <?php esc_html_e('Already converted.', 'coptrz-theme'); ?></p>
             <p class="description"><?php esc_html_e('The original section data is preserved. Edit the content via the block editor (or the HTML repeater for products).', 'coptrz-theme'); ?></p>
         <?php else : ?>
-            <p class="description" style="margin-top:0;"><?php esc_html_e('Freeze this post’s sections into static HTML. Original data is kept.', 'coptrz-theme'); ?></p>
-            <p>
-                <button type="button" class="button coptrz-conv__dry"><?php esc_html_e('Dry run', 'coptrz-theme'); ?></button>
-                <button type="button" class="button button-primary coptrz-conv__go"><?php esc_html_e('Convert', 'coptrz-theme'); ?></button>
+            <p class="description" style="margin-top:0;"><?php esc_html_e('Freeze this post’s sections. Original data is kept (reversible).', 'coptrz-theme'); ?></p>
+            <p style="margin-bottom:6px;">
+                <strong style="display:block;"><?php esc_html_e('Custom HTML', 'coptrz-theme'); ?></strong>
+                <button type="button" class="button coptrz-conv__dry" data-mode="html"><?php esc_html_e('Dry run', 'coptrz-theme'); ?></button>
+                <button type="button" class="button button-primary coptrz-conv__go" data-mode="html"><?php esc_html_e('Convert', 'coptrz-theme'); ?></button>
             </p>
+            <?php if ($post->post_type !== 'product') : ?>
+            <p style="margin-bottom:6px;">
+                <strong style="display:block;"><?php esc_html_e('Native blocks', 'coptrz-theme'); ?></strong>
+                <button type="button" class="button coptrz-conv__dry" data-mode="blocks"><?php esc_html_e('Dry run', 'coptrz-theme'); ?></button>
+                <button type="button" class="button button-primary coptrz-conv__go" data-mode="blocks"><?php esc_html_e('Convert', 'coptrz-theme'); ?></button>
+            </p>
+            <?php endif; ?>
             <div class="coptrz-conv__out" style="font:12px/1.5 monospace;max-height:220px;overflow:auto;"></div>
         <?php endif; ?>
     </div>
@@ -377,14 +967,15 @@ function coptrz_render_section_converter_box($post)
     (function () {
         var box = document.currentScript.previousElementSibling;
         if (!box || !box.classList.contains('coptrz-conv')) { return; }
-        function run(dry) {
+        function run(dry, mode) {
             var out = box.querySelector('.coptrz-conv__out');
             out.textContent = '…';
             var body = new URLSearchParams({
                 action: 'coptrz_convert_sections',
                 nonce: box.dataset.nonce,
                 post: box.dataset.post,
-                dry: dry ? '1' : '0'
+                dry: dry ? '1' : '0',
+                mode: mode || 'html'
             });
             fetch(ajaxurl, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body })
                 .then(function (r) { return r.json(); })
@@ -394,8 +985,16 @@ function coptrz_render_section_converter_box($post)
                 })
                 .catch(function (e) { out.textContent = 'Error: ' + e; });
         }
-        var d = box.querySelector('.coptrz-conv__dry'); if (d) { d.addEventListener('click', function () { run(true); }); }
-        var g = box.querySelector('.coptrz-conv__go'); if (g) { g.addEventListener('click', function () { if (confirm('Convert this post’s sections to HTML?')) { run(false); } }); }
+        box.querySelectorAll('.coptrz-conv__dry').forEach(function (b) {
+            b.addEventListener('click', function () { run(true, this.dataset.mode); });
+        });
+        box.querySelectorAll('.coptrz-conv__go').forEach(function (b) {
+            b.addEventListener('click', function () {
+                var mode = this.dataset.mode;
+                var msg = mode === 'blocks' ? 'Convert this post’s sections to native blocks?' : 'Convert this post’s sections to HTML?';
+                if (confirm(msg)) { run(false, mode); }
+            });
+        });
     })();
     </script>
     <?php
@@ -407,8 +1006,12 @@ add_action('wp_ajax_coptrz_convert_sections', function () {
     if (!$post_id || !current_user_can('edit_post', $post_id)) {
         wp_send_json_error('Permission denied.');
     }
-    $dry = !empty($_POST['dry']) && $_POST['dry'] === '1';
-    wp_send_json_success(coptrz_convert_post_sections($post_id, $dry));
+    $dry  = !empty($_POST['dry']) && $_POST['dry'] === '1';
+    $mode = (isset($_POST['mode']) && $_POST['mode'] === 'blocks') ? 'blocks' : 'html';
+    $report = ($mode === 'blocks')
+        ? coptrz_convert_post_sections_to_blocks($post_id, $dry)
+        : coptrz_convert_post_sections($post_id, $dry);
+    wp_send_json_success($report);
 });
 
 /* ========================================================================= */
@@ -495,6 +1098,7 @@ function coptrz_render_bulk_converter_page()
 
     $action  = isset($_POST['coptrz_bulk_action']) ? sanitize_key($_POST['coptrz_bulk_action']) : '';
     $ids_raw = isset($_POST['coptrz_ids']) ? sanitize_text_field(wp_unslash($_POST['coptrz_ids'])) : '';
+    $mode    = (isset($_POST['coptrz_mode']) && $_POST['coptrz_mode'] === 'blocks') ? 'blocks' : 'html';
     $did     = array();
 
     if ($action && check_admin_referer('coptrz_bulk_convert')) {
@@ -503,7 +1107,9 @@ function coptrz_render_bulk_converter_page()
         $ids   = array_values(array_unique(array_map('intval', $m[0])));
         $limit = 50; // safety cap per run
         foreach (array_slice($ids, 0, $limit) as $pid) {
-            $did[] = coptrz_convert_post_sections($pid, ($action === 'dry'));
+            $did[] = ($mode === 'blocks')
+                ? coptrz_convert_post_sections_to_blocks($pid, ($action === 'dry'))
+                : coptrz_convert_post_sections($pid, ($action === 'dry'));
         }
     }
 
@@ -531,6 +1137,16 @@ function coptrz_render_bulk_converter_page()
             <h2 style="margin-bottom:.3em;"><?php esc_html_e('Selected posts', 'coptrz-theme'); ?></h2>
             <ul class="coptrz-bulk__selected" style="margin:0 0 1em;max-width:40em;"></ul>
             <input type="hidden" name="coptrz_ids" class="coptrz-bulk__ids" value="<?php echo esc_attr($ids_raw); ?>" />
+
+            <p>
+                <label><strong><?php esc_html_e('Convert to:', 'coptrz-theme'); ?></strong>
+                    <select name="coptrz_mode">
+                        <option value="html" <?php selected($mode, 'html'); ?>><?php esc_html_e('Custom HTML blocks', 'coptrz-theme'); ?></option>
+                        <option value="blocks" <?php selected($mode, 'blocks'); ?>><?php esc_html_e('Native Gutenberg blocks (non-product)', 'coptrz-theme'); ?></option>
+                    </select>
+                </label>
+                <span class="description"><?php esc_html_e('Native blocks map each element to a core block where available, snapshotting the rest.', 'coptrz-theme'); ?></span>
+            </p>
 
             <p>
                 <button class="button" name="coptrz_bulk_action" value="dry"><?php esc_html_e('Dry run', 'coptrz-theme'); ?></button>
