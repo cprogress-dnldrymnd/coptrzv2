@@ -866,14 +866,15 @@ document.addEventListener('DOMContentLoaded', function () {
     initSwipers();
     purgeEmptyBlocks();
     matchElementHeights('mh-parent', 'mh-child');
+    matchElementHeights('mh-parent', 'mh-child-2');
 });
 
 // Recalculate when the window is resized
 window.addEventListener('resize', () => {
     // Optional: Wrap in a debounce function here for better performance on heavy pages
     matchElementHeights('mh-parent', 'mh-child');
+    matchElementHeights('mh-parent', 'mh-child-2');
 });
-
 
 /**
  * @package   DigitallyDisruptive

@@ -2140,6 +2140,10 @@ ul.is-swiper-slider,
         margin-top: -10px;
     }
 }
+.gradient-text {
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
 /* -----------------------------------------
    1. Default State (Desktop View)
 ----------------------------------------- */
@@ -2217,6 +2221,171 @@ ul.is-swiper-slider,
         margin-top: 0 !important;
         border-top: none !important;
         border-radius: 0;
+    }
+}
+
+/* -----------------------------------------
+   Vertical Stacked Layout (two columns)
+   Opt-in via data-layout="stacked": content on the left, a vertical list of
+   nav tabs on the right. The active nav tab reveals its description text.
+   Scoped entirely to the attribute so default horizontal tabs are untouched.
+----------------------------------------- */
+.dd-tabs-wrapper[data-layout="stacked"] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2rem;
+
+    /* The horizontal nav is never used in this layout. */
+    .dd-tabs-nav-desktop {
+        display: none !important;
+    }
+
+    /* Accordion header + in-panel description are revealed only by the
+       accordion-conversion media queries below. */
+    .dd-accordion-button,
+    .dd-tab-panel-desc {
+        display: none;
+    }
+}
+
+/* Left column: the active tab's content */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area {
+    flex: 1 1 55%;
+    min-width: 0;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area .dd-tab-panel {
+    display: none;
+    margin: 0;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area .dd-tab-panel.active {
+    display: block;
+}
+
+/* Right column: the vertical nav tabs */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-nav-vertical {
+    flex: 1 1 35%;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    /* Transparent placeholder so the active bar doesn't shift the layout */
+    border: none;
+    border-left: 1px solid transparent;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    color: #6b7280;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-title {
+    display: block;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+/* Active tab: a left bar spanning the full button (title + description) */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active {
+    color: #111827;
+    border-left-color: var(--dd-stacked-accent, #6c47ff);
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-title {
+    font-weight: 700;
+}
+
+/* Description: hidden until the tab is active, then shown in the highlight box */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-desc {
+    display: none;
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color: #4b5563;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-desc {
+    display: block;
+}
+
+/* In-panel description: shown only inside the accordion (mobile) view */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tab-panel-desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #4b5563;
+    margin-bottom: 1rem;
+}
+
+/* -----------------------------------------
+   Stacked → Accordion conversion
+   Mirrors the horizontal layout: when "Enable Accordion Conversion" is on, the
+   chosen breakpoint collapses the two columns into a single-column accordion.
+   The two-attribute selectors out-specify the desktop stacked rules above.
+----------------------------------------- */
+@media (max-width: 991px) {
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="991"] {
+        display: block;
+
+        .dd-tabs-nav-vertical {
+            display: none; /* Right-hand nav gives way to the accordion headers */
+        }
+
+        .dd-tabs-content-area {
+            flex-basis: 100%;
+            width: 100%;
+        }
+
+        .dd-accordion-button,
+        .dd-tab-panel-desc {
+            display: block;
+        }
+
+        .dd-accordion-button {
+            display: flex;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] {
+        display: block;
+
+        .dd-tabs-nav-vertical {
+            display: none;
+        }
+
+        .dd-tabs-content-area {
+            flex-basis: 100%;
+            width: 100%;
+        }
+
+        .dd-accordion-button,
+        .dd-tab-panel-desc {
+            display: block;
+        }
+
+        .dd-accordion-button {
+            display: flex;
+        }
+    }
+
+    /* Accordion disabled: simply stack the two columns vertically */
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] {
+        flex-direction: column;
+
+        .dd-tabs-content-area,
+        .dd-tabs-nav-vertical {
+            flex-basis: 100%;
+            min-width: 0;
+        }
     }
 }
 

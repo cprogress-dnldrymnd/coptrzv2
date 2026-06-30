@@ -954,15 +954,38 @@ class Shortcodes
         return $html;
     }
 
+    /**
+     * Retrieves the absolute file path or URL for form redirection/attachment.
+     * * Extracts meta values from the current post or queried object to determine 
+     * the redirect type. If the type is 'pdf', it retrieves the absolute server 
+     * path using get_attached_file() for compatibility with Contact Form 7 attachments.
+     * * @author Digitally Disruptive - Donald Raymundo
+     * @link https://digitallydisruptive.co.uk/
+     * * @return string|void The absolute file path, generated shortcode URL, or fallback URL.
+     */
     function pdf_url()
     {
-        $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
-        $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
-        $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
-        $hero_form_redirect_url = get__post_meta('hero_form_redirect_url');
+        // Resolve the post explicitly: when CF7 renders the form outside the
+        // main loop (e.g. a Dynamic Text Extension [dynamic_hidden pdf_url "pdf_url"]
+        // field), get_the_ID() is 0, so get__post_meta() (which relies on it)
+        // returns nothing. Fall back to the queried object so the redirect meta
+        // is read from the page the form lives on.
+        $post_id = get_the_ID();
+        if (!$post_id) {
+            $post_id = get_queried_object_id();
+        }
+        if (!$post_id) {
+            return;
+        }
+
+        $hero_form_redirect_type = get__post_meta_by_id($post_id, 'hero_form_redirect_type');
+        $hero_form_pdf_redirect = get__post_meta_by_id($post_id, 'hero_form_pdf_redirect');
+        $hero_form_document_redirect = get__post_meta_by_id($post_id, 'hero_form_document_redirect');
+        $hero_form_redirect_url = get__post_meta_by_id($post_id, 'hero_form_redirect_url');
         $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
 
         if ($hero_form_redirect_type == 'pdf') {
+            // Fetch the absolute server path required by CF7 file attachments
             $redirect = wp_get_attachment_url($hero_form_pdf_redirect);
         } else if ($hero_form_redirect_type == 'document') {
             $redirect = do_shortcode('[document_url id=' . $hero_form_document_redirect_id . ']');
@@ -1077,5 +1100,3 @@ add_shortcode('product_add_to_cart', array($Shortcodes, 'product_add_to_cart'));
 add_shortcode('get_url_param', array($Shortcodes, 'get_url_param'));
 add_shortcode('popup', array($Shortcodes, 'popup'));
 add_shortcode('post_url', array($Shortcodes, 'post_url'));
-
-

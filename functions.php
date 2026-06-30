@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 4.4);
+define('coptz_version', 4.7);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -201,7 +201,7 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         'dd-tabs-block-js',
         get_template_directory_uri() . '/assets/js/dd-tabs-block.js', // Adjust path
         array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
-        filemtime(get_template_directory() . '/assets/js/dd-tabs-block-js'),
+        filemtime(get_template_directory() . '/assets/js/dd-tabs-block.js'),
         true
     );
 

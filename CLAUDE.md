@@ -54,6 +54,39 @@ case studies, rentals, landing pages, etc).
   uses `preg_replace_callback` to swap it for a `<button type="button">` (strips
   `href`, adds Bootstrap modal attrs). The popup modal HTML is rendered inline
   (not in the footer) via the `[popup]` shortcode.
+- `assets/js/dd-tabs-block.js` — registers two custom Gutenberg blocks:
+  `dd/tab-panel` (child) and `dd/tabs` (parent). Enqueued via
+  `digitally_disruptive_enqueue_swiper_editor_assets()` in `functions.php`.
+  Key attributes on `dd/tabs`: `layoutStyle` (`horizontal` default | `stacked`),
+  `mobileAccordion` (bool), `accordionBreakpoint` (`767` | `991` px),
+  `stackedAccentColor` (CSS var `--dd-stacked-accent`). Key attributes on
+  `dd/tab-panel`: `tabTitle` (string), `tabDescription` (string, optional —
+  stacked layout only; emitted as `data-tab-description` on the panel element,
+  shown beneath the title in the right-hand nav when that tab is active; omitted
+  from saved markup when empty so existing panels remain valid). Saved markup
+  emits `data-mobile-accordion`, `data-accordion-breakpoint`, and `data-layout`
+  on `.dd-tabs-wrapper`; stacked blocks pass these attributes through unchanged
+  (the "Enable Accordion Conversion" toggle works for stacked layouts too).
+  Existing horizontal blocks (no `layoutStyle` attribute) serialize identically
+  so they remain valid — opt-in only.
+- `assets/js/dd-tabs-frontend.js` — DOM-ready script that initialises all
+  `.dd-tabs-wrapper` elements. Builds `.dd-tabs-nav-desktop` (horizontal nav)
+  and `.dd-accordion-button` elements dynamically. Reads `data-layout`: for
+  `stacked`, delegates to `buildVerticalTabs()` which produces a two-column
+  layout — tab panel content in a `.dd-tabs-content-area` div on the left,
+  a `.dd-tabs-nav-vertical` button list on the right; each `.dd-vtab-button`
+  shows the title (`.dd-vtab-title`) and, when set, a `.dd-vtab-desc` span
+  sourced from `data-tab-description` (hidden by default, shown only on the
+  active tab); active state is indicated by a left border spanning the full
+  button (title + description) using `var(--dd-stacked-accent, #6c47ff)`.
+  On mobile (when accordion conversion is enabled), the right-hand nav is hidden
+  and `.dd-accordion-button` headers injected above each panel inside
+  `.dd-tabs-content-area` take over; clicking an open accordion header collapses
+  it. When a `tabDescription` is set, a `.dd-tab-panel-desc` div is prepended to
+  the panel so the description is visible in the accordion (mobile) view where the
+  right-hand nav is not shown.
+  SCSS for the stacked variant lives in `assets/scss/base/_base.scss` scoped
+  to `[data-layout="stacked"]`.
 - Carbon Fields has been replaced by a bespoke shim (`includes/meta-shim/` +
   `includes/meta-reader.php`). The shim implements the same `Container::make()`
   / `Field::make()` chainable API as CF3 and reads/writes data in CF3's
@@ -177,6 +210,10 @@ case studies, rentals, landing pages, etc).
   `product_add_to_cart` shortcode in `shortcodes.php` returns `''` early when
   `$id` is empty or non-numeric — prevents an invalid WooCommerce product context
   that could error or redirect (common on converted pages with unset product items).
+  `pdf_url` shortcode in `shortcodes.php` resolves the post ID explicitly: it falls
+  back from `get_the_ID()` to `get_queried_object_id()` because CF7 can render forms
+  outside the main loop (e.g. via Dynamic Text Extension `[dynamic_hidden pdf_url "pdf_url"]`),
+  at which point `get_the_ID()` returns 0 and `get__post_meta()` returns nothing.
 - `section-converter.php` — retires the dynamic "sections" / `sections_after_main`
   page-builder by freezing each post's sections into static HTML. Non-product posts
   get Gutenberg "Custom HTML" blocks appended to `post_content`; `product` posts get
@@ -267,6 +304,20 @@ case studies, rentals, landing pages, etc).
   `documents` post ID and resolved to a URL via
   `get__post_meta_by_id($id, 'document')` → `wp_get_attachment_url()`;
   otherwise it is passed through as a literal URL.
+- `dd_attach_cf7_pdf_url_to_email` (`wpcf7_mail_components` filter, priority 20)
+  attaches the form's PDF to the outgoing CF7 email. **Opt-in required**: the
+  active mail template's "File attachments" box must reference `pdf_url` with the
+  `absolute_path` flag — e.g. `[pdf_url absolute_path="true"]` — otherwise the
+  filter returns early. Once opted in, the submitted `pdf_url` value (a literal
+  PDF URL or a numeric `documents` post ID — same convention as
+  `register_cf7_pdf_url_attribute`) is resolved to an absolute file path and
+  appended to `$components['attachments']` (deduped). URL-to-path resolution is
+  handled by `dd_resolve_pdf_url_to_path()`: numeric values resolve via the
+  `documents` post's `_document` attachment (`get__post_meta_by_id` →
+  `get_attached_file`); URLs resolve via `attachment_url_to_postid()` with a
+  fallback that maps uploads-dir URLs to their local path (scheme-insensitive
+  comparison so http/https/protocol-relative all match). Arbitrary server paths
+  outside `wp_get_upload_dir()` are rejected to prevent path-traversal abuse.
 
 ## Conventions / gotchas
 

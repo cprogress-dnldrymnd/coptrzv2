@@ -9,7 +9,7 @@
     const { registerBlockType } = wp.blocks;
     const { createElement: el, Fragment } = wp.element;
     const { InnerBlocks, InspectorControls, useBlockProps } = wp.blockEditor;
-    const { TextControl, PanelBody, ToggleControl, ColorPalette, BaseControl, SelectControl } = wp.components;
+    const { TextControl, TextareaControl, PanelBody, ToggleControl, ColorPalette, BaseControl, SelectControl } = wp.components;
 
     /**
      * Registers the Child Block: Tab Panel
@@ -31,7 +31,11 @@
             }
         },
         attributes: {
-            tabTitle: { type: 'string', default: 'New Tab' }
+            tabTitle: { type: 'string', default: 'New Tab' },
+            // Shown under the title in the Vertical Stacked layout when this tab
+            // is active. Optional — omitted from saved markup when empty so
+            // existing tab panels stay valid.
+            tabDescription: { type: 'string', default: '' }
         },
         
         /**
@@ -50,15 +54,24 @@
                             label: 'Tab Navigation Title',
                             value: attributes.tabTitle,
                             onChange: function (val) { setAttributes({ tabTitle: val }); }
+                        }),
+                        el(TextareaControl, {
+                            label: 'Active Tab Description',
+                            value: attributes.tabDescription,
+                            help: 'Vertical Stacked layout only: text shown beneath the title (in the highlight box) when this tab is active.',
+                            onChange: function (val) { setAttributes({ tabDescription: val }); }
                         })
                     )
                 ),
                 el('div', blockProps,
-                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } }, 
-                        'Tab Content: ' + attributes.tabTitle
+                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '6px' } },
+                        'Tab: ' + attributes.tabTitle
+                    ),
+                    el('div', { style: { padding: '0 10px 8px', fontSize: '11px', color: '#757575' } },
+                        'The content below is this tab’s main content (left column on the frontend — e.g. an image). The title + the optional “Active Tab Description” (Tab Settings) appear in the right-hand nav when active.'
                     ),
                     el('div', { className: 'dd-tab-panel-inner' },
-                        el(InnerBlocks, { template: [['core/paragraph', { placeholder: 'Enter tab content here...' }]] })
+                        el(InnerBlocks, { template: [['core/paragraph', { placeholder: 'Enter this tab’s main content here…' }]] })
                     )
                 )
             );
@@ -70,10 +83,18 @@
          * @return {Object}      The HTML markup saved to the database.
          */
         save: function (props) {
-            const blockProps = useBlockProps.save({
+            const panelAttrs = {
                 className: 'dd-tab-panel',
                 'data-tab-title': props.attributes.tabTitle
-            });
+            };
+
+            // Only emit the description attribute when set, so existing panels
+            // (no description) serialize identically and remain valid.
+            if (props.attributes.tabDescription) {
+                panelAttrs['data-tab-description'] = props.attributes.tabDescription;
+            }
+
+            const blockProps = useBlockProps.save(panelAttrs);
 
             return el('div', blockProps,
                 el('div', { className: 'dd-tab-panel-inner' },
@@ -116,7 +137,12 @@
             btnActiveBgColor: { type: 'string' },
             btnActiveTextColor: { type: 'string' },
             btnFontSize: { type: 'string', default: '16px' },
-            btnFontWeight: { type: 'string', default: 'normal' }
+            btnFontWeight: { type: 'string', default: 'normal' },
+            // Opt-in layout switch. 'horizontal' preserves the original tabs behaviour
+            // so existing blocks (which lack this attribute) are unaffected.
+            layoutStyle: { type: 'string', default: 'horizontal' },
+            // Highlight colour for the active panel in the stacked layout.
+            stackedAccentColor: { type: 'string', default: '#6c47ff' }
         },
         
         /**
@@ -143,7 +169,8 @@
                 '--dd-btn-border-style': attributes.btnBorderStyle,
                 '--dd-btn-font-size': attributes.btnFontSize,
                 '--dd-btn-font-weight': attributes.btnFontWeight,
-                border: '2px solid #007cba', 
+                '--dd-stacked-accent': attributes.stackedAccentColor || '#6c47ff',
+                border: '2px solid #007cba',
                 padding: '2px', 
                 backgroundColor: '#f0f6fc'
             };
@@ -155,7 +182,22 @@
 
             return el(Fragment, {},
                 el(InspectorControls, {},
-                    el(PanelBody, { title: 'Responsive Settings', initialOpen: true },
+                    el(PanelBody, { title: 'Layout', initialOpen: true },
+                        el(SelectControl, {
+                            label: 'Layout Style',
+                            value: attributes.layoutStyle,
+                            options: [
+                                { label: 'Horizontal Tabs (Default)', value: 'horizontal' },
+                                { label: 'Vertical Stacked (Inline Content)', value: 'stacked' }
+                            ],
+                            help: 'Stacked: titles list vertically and the active title reveals its content inline beneath it.',
+                            onChange: function (val) { setAttributes({ layoutStyle: val }); }
+                        }),
+                        attributes.layoutStyle === 'stacked' && el(BaseControl, { label: 'Active Highlight Color' },
+                            el(ColorPalette, { value: attributes.stackedAccentColor, onChange: function (val) { setAttributes({ stackedAccentColor: val }); } })
+                        )
+                    ),
+                    el(PanelBody, { title: 'Responsive Settings', initialOpen: false },
                         el(ToggleControl, {
                             label: 'Enable Accordion Conversion',
                             checked: attributes.mobileAccordion,
@@ -247,7 +289,7 @@
                     )
                 ),
                 el('div', blockProps,
-                    el('div', { style: { padding: '10px', textTransform: 'uppercase', fontSize: '11px', color: '#007cba', fontWeight: 'bold' } }, 'Tabs Container (Navigation renders above dynamically on frontend)'),
+                    el('div', { style: { padding: '10px', textTransform: 'uppercase', fontSize: '11px', color: '#007cba', fontWeight: 'bold' } }, attributes.layoutStyle === 'stacked' ? 'Tabs Container — Vertical Stacked layout (titles + inline content render dynamically on frontend)' : 'Tabs Container (Navigation renders above dynamically on frontend)'),
                     el(InnerBlocks, {
                         allowedBlocks: ['dd/tab-panel'],
                         template: [['dd/tab-panel', { tabTitle: 'Tab 1' }], ['dd/tab-panel', { tabTitle: 'Tab 2' }]]
@@ -280,12 +322,25 @@
                 '--dd-btn-font-weight': props.attributes.btnFontWeight
             };
 
-            const blockProps = useBlockProps.save({
+            const isStacked = props.attributes.layoutStyle === 'stacked';
+
+            const wrapAttrs = {
                 className: 'dd-tabs-wrapper',
                 'data-mobile-accordion': props.attributes.mobileAccordion ? 'true' : 'false',
                 'data-accordion-breakpoint': props.attributes.mobileAccordion ? props.attributes.accordionBreakpoint : 'none',
                 style: cssVariables
-            });
+            };
+
+            // Only emit the stacked-specific markup when opted-in, so existing
+            // (horizontal) blocks serialize identically and stay valid. The
+            // accordion-conversion attributes pass through unchanged so the
+            // "Enable Accordion Conversion" toggle works in this layout too.
+            if (isStacked) {
+                cssVariables['--dd-stacked-accent'] = props.attributes.stackedAccentColor || '#6c47ff';
+                wrapAttrs['data-layout'] = 'stacked';
+            }
+
+            const blockProps = useBlockProps.save(wrapAttrs);
 
             return el('div', blockProps, el(InnerBlocks.Content, null));
         }
