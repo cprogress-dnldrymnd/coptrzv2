@@ -1,7 +1,7 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
 /* Template Name: Blocks Editor
-/* Template Post Type: page, industries
+/* Template Post Type: page, industries, guides
 /*-----------------------------------------------------------------------------------*/
 ?>
 <?php get_header(); ?>
