@@ -283,15 +283,20 @@ case studies, rentals, landing pages, etc).
   `documents` post ID and resolved to a URL via
   `get__post_meta_by_id($id, 'document')` → `wp_get_attachment_url()`;
   otherwise it is passed through as a literal URL.
-- `dd_attach_cf7_pdf_url_to_email` (`wpcf7_mail_components` filter) attaches the
-  PDF referenced by `pdf_url` in the posted data to the outgoing CF7 email. Reads
-  the same numeric-ID-or-URL convention as `register_cf7_pdf_url_attribute`.
-  URL-to-path resolution is handled by `dd_resolve_pdf_url_to_path()`: numeric
-  values resolve via the `documents` post's `_document` attachment
-  (`get__post_meta_by_id` → `get_attached_file`); URLs resolve via
-  `attachment_url_to_postid()` with a fallback that maps uploads-dir URLs to
-  their local path. Arbitrary server paths outside `wp_get_upload_dir()` are
-  rejected to prevent path-traversal abuse.
+- `dd_attach_cf7_pdf_url_to_email` (`wpcf7_mail_components` filter, priority 20)
+  attaches the form's PDF to the outgoing CF7 email. **Opt-in required**: the
+  active mail template's "File attachments" box must reference `pdf_url` with the
+  `absolute_path` flag — e.g. `[pdf_url absolute_path="true"]` — otherwise the
+  filter returns early. Once opted in, the submitted `pdf_url` value (a literal
+  PDF URL or a numeric `documents` post ID — same convention as
+  `register_cf7_pdf_url_attribute`) is resolved to an absolute file path and
+  appended to `$components['attachments']` (deduped). URL-to-path resolution is
+  handled by `dd_resolve_pdf_url_to_path()`: numeric values resolve via the
+  `documents` post's `_document` attachment (`get__post_meta_by_id` →
+  `get_attached_file`); URLs resolve via `attachment_url_to_postid()` with a
+  fallback that maps uploads-dir URLs to their local path (scheme-insensitive
+  comparison so http/https/protocol-relative all match). Arbitrary server paths
+  outside `wp_get_upload_dir()` are rejected to prevent path-traversal abuse.
 
 ## Conventions / gotchas
 

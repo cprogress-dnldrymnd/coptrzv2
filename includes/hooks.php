@@ -702,30 +702,55 @@ function register_cf7_pdf_url_attribute($out, $pairs, $atts)
 /**
  * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
  *
- * Attaches the PDF referenced by a Contact Form 7 form's `pdf_url` field to the
- * outgoing email. The form must submit a `pdf_url` value (e.g. a hidden /
- * dynamic field) holding either a literal PDF URL or a numeric `documents` post
- * ID — the same convention used by register_cf7_pdf_url_attribute().
+ * Attaches the form's PDF to a Contact Form 7 email, driven by the Mail panel's
+ * "File attachments" box. CF7 processes that box as mail-tags, so `[pdf_url]`
+ * there resolves to the submitted PDF *URL* — which CF7 cannot attach (it only
+ * attaches local file paths). This filter bridges that gap: when the active
+ * mail's attachments box opts in with the `absolute_path` flag, e.g.
  *
- * CF7 attachments must be local, readable file paths (not URLs), so the value
- * is resolved to a path on this server: numeric IDs via the `documents` post's
- * `_document` attachment, URLs via the media library (or, as a fallback, the
- * uploads dir). Only files inside wp_get_upload_dir() are attached — posted
- * data is untrusted, so arbitrary server paths are rejected.
+ *     [pdf_url absolute_path="true"]
+ *
+ * the submitted `pdf_url` value (a literal PDF URL, or a numeric `documents`
+ * post ID — same convention as register_cf7_pdf_url_attribute()) is resolved to
+ * an absolute, readable file PATH and attached.
+ *
+ * Only files inside wp_get_upload_dir() are attached — posted data is untrusted,
+ * so arbitrary server paths are rejected.
  *
  * @param array             $components    Mail components (subject, body, attachments, ...).
  * @param WPCF7_ContactForm $contact_form  The form being sent.
- * @param WPCF7_Mail        $mail          The mail template being composed.
+ * @param WPCF7_Mail        $mail          The mail template being composed (CF7 5.x+).
  * @return array The components with the resolved PDF appended to `attachments`.
  */
-add_filter('wpcf7_mail_components', 'dd_attach_cf7_pdf_url_to_email', 10, 3);
+add_filter('wpcf7_mail_components', 'dd_attach_cf7_pdf_url_to_email', 20, 3);
 
 function dd_attach_cf7_pdf_url_to_email($components, $contact_form = null, $mail = null)
 {
-    if (!class_exists('WPCF7_Submission')) {
+    if (!$contact_form || !method_exists($contact_form, 'prop')) {
         return $components;
     }
 
+    // Opt-in: the active mail's "File attachments" box must reference pdf_url
+    // with the absolute_path flag. Fall back to scanning both mail templates on
+    // older CF7 where the $mail object is not passed.
+    $names = ($mail && method_exists($mail, 'name')) ? array($mail->name()) : array('mail', 'mail_2');
+
+    $opted_in = false;
+    foreach ($names as $name) {
+        $props = $contact_form->prop($name);
+        $box   = isset($props['attachments']) ? (string) $props['attachments'] : '';
+        if (strpos($box, 'pdf_url') !== false && strpos($box, 'absolute_path') !== false) {
+            $opted_in = true;
+            break;
+        }
+    }
+    if (!$opted_in) {
+        return $components;
+    }
+
+    if (!class_exists('WPCF7_Submission')) {
+        return $components;
+    }
     $submission = WPCF7_Submission::get_instance();
     if (!$submission) {
         return $components;
@@ -744,11 +769,13 @@ function dd_attach_cf7_pdf_url_to_email($components, $contact_form = null, $mail
     }
 
     $path = dd_resolve_pdf_url_to_path($pdf_value);
-    if ($path && is_readable($path)) {
+    if ($path && is_file($path) && is_readable($path)) {
         if (empty($components['attachments'])) {
             $components['attachments'] = array();
         }
-        $components['attachments'][] = $path;
+        if (!in_array($path, (array) $components['attachments'], true)) {
+            $components['attachments'][] = $path;
+        }
     }
 
     return $components;
@@ -775,17 +802,25 @@ function dd_resolve_pdf_url_to_path($value)
     // Prefer resolving to a real media-library attachment.
     $attachment_id = attachment_url_to_postid($url);
     if ($attachment_id) {
-        return get_attached_file($attachment_id);
+        $path = get_attached_file($attachment_id);
+        if ($path) {
+            return $path;
+        }
     }
 
-    // Fallback: map an uploads URL straight to its path. Reject anything that
-    // does not live under the uploads dir, and guard against path traversal.
+    // Fallback: map an uploads URL straight to its path. Compare host-relative
+    // and scheme-insensitively so http/https (or protocol-relative) URLs still
+    // match. Reject anything outside the uploads dir; guard path traversal.
     $uploads = wp_get_upload_dir();
-    if (!empty($uploads['baseurl']) && strpos($url, $uploads['baseurl']) === 0) {
-        $relative = ltrim(substr($url, strlen($uploads['baseurl'])), '/');
-        $path = $uploads['basedir'] . '/' . $relative;
-        if (strpos($relative, '..') === false && file_exists($path)) {
-            return $path;
+    if (!empty($uploads['baseurl'])) {
+        $url_rel  = preg_replace('#^https?:#i', '', $url);
+        $base_rel = preg_replace('#^https?:#i', '', $uploads['baseurl']);
+        if ($base_rel !== '' && strpos($url_rel, $base_rel) === 0) {
+            $relative = ltrim(substr($url_rel, strlen($base_rel)), '/');
+            $path     = $uploads['basedir'] . '/' . $relative;
+            if (strpos($relative, '..') === false && file_exists($path)) {
+                return $path;
+            }
         }
     }
 
