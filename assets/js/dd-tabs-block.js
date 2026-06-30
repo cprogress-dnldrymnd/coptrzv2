@@ -54,11 +54,14 @@
                     )
                 ),
                 el('div', blockProps,
-                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '15px' } }, 
-                        'Tab Content: ' + attributes.tabTitle
+                    el('div', { className: 'dd-tab-panel-header', style: { fontWeight: 'bold', borderBottom: '1px solid #eee', padding: '10px', backgroundColor: '#f9f9f9', marginBottom: '6px' } },
+                        'Title: ' + attributes.tabTitle
+                    ),
+                    el('div', { style: { padding: '0 10px 8px', fontSize: '11px', color: '#757575' } },
+                        'The content below is this tab’s body. In the Vertical Stacked layout it appears inside the purple highlight box when this tab is active.'
                     ),
                     el('div', { className: 'dd-tab-panel-inner' },
-                        el(InnerBlocks, { template: [['core/paragraph', { placeholder: 'Enter tab content here...' }]] })
+                        el(InnerBlocks, { template: [['core/paragraph', { placeholder: 'Enter this tab’s content / description here…' }]] })
                     )
                 )
             );
