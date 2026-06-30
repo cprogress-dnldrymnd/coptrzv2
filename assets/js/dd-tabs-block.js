@@ -116,7 +116,12 @@
             btnActiveBgColor: { type: 'string' },
             btnActiveTextColor: { type: 'string' },
             btnFontSize: { type: 'string', default: '16px' },
-            btnFontWeight: { type: 'string', default: 'normal' }
+            btnFontWeight: { type: 'string', default: 'normal' },
+            // Opt-in layout switch. 'horizontal' preserves the original tabs behaviour
+            // so existing blocks (which lack this attribute) are unaffected.
+            layoutStyle: { type: 'string', default: 'horizontal' },
+            // Highlight colour for the active panel in the stacked layout.
+            stackedAccentColor: { type: 'string', default: '#6c47ff' }
         },
         
         /**
@@ -143,7 +148,8 @@
                 '--dd-btn-border-style': attributes.btnBorderStyle,
                 '--dd-btn-font-size': attributes.btnFontSize,
                 '--dd-btn-font-weight': attributes.btnFontWeight,
-                border: '2px solid #007cba', 
+                '--dd-stacked-accent': attributes.stackedAccentColor || '#6c47ff',
+                border: '2px solid #007cba',
                 padding: '2px', 
                 backgroundColor: '#f0f6fc'
             };
@@ -155,7 +161,22 @@
 
             return el(Fragment, {},
                 el(InspectorControls, {},
-                    el(PanelBody, { title: 'Responsive Settings', initialOpen: true },
+                    el(PanelBody, { title: 'Layout', initialOpen: true },
+                        el(SelectControl, {
+                            label: 'Layout Style',
+                            value: attributes.layoutStyle,
+                            options: [
+                                { label: 'Horizontal Tabs (Default)', value: 'horizontal' },
+                                { label: 'Vertical Stacked (Inline Content)', value: 'stacked' }
+                            ],
+                            help: 'Stacked: titles list vertically and the active title reveals its content inline beneath it.',
+                            onChange: function (val) { setAttributes({ layoutStyle: val }); }
+                        }),
+                        attributes.layoutStyle === 'stacked' && el(BaseControl, { label: 'Active Highlight Color' },
+                            el(ColorPalette, { value: attributes.stackedAccentColor, onChange: function (val) { setAttributes({ stackedAccentColor: val }); } })
+                        )
+                    ),
+                    el(PanelBody, { title: 'Responsive Settings', initialOpen: false },
                         el(ToggleControl, {
                             label: 'Enable Accordion Conversion',
                             checked: attributes.mobileAccordion,
@@ -247,7 +268,7 @@
                     )
                 ),
                 el('div', blockProps,
-                    el('div', { style: { padding: '10px', textTransform: 'uppercase', fontSize: '11px', color: '#007cba', fontWeight: 'bold' } }, 'Tabs Container (Navigation renders above dynamically on frontend)'),
+                    el('div', { style: { padding: '10px', textTransform: 'uppercase', fontSize: '11px', color: '#007cba', fontWeight: 'bold' } }, attributes.layoutStyle === 'stacked' ? 'Tabs Container — Vertical Stacked layout (titles + inline content render dynamically on frontend)' : 'Tabs Container (Navigation renders above dynamically on frontend)'),
                     el(InnerBlocks, {
                         allowedBlocks: ['dd/tab-panel'],
                         template: [['dd/tab-panel', { tabTitle: 'Tab 1' }], ['dd/tab-panel', { tabTitle: 'Tab 2' }]]
@@ -280,12 +301,27 @@
                 '--dd-btn-font-weight': props.attributes.btnFontWeight
             };
 
-            const blockProps = useBlockProps.save({
+            const isStacked = props.attributes.layoutStyle === 'stacked';
+
+            const wrapAttrs = {
                 className: 'dd-tabs-wrapper',
                 'data-mobile-accordion': props.attributes.mobileAccordion ? 'true' : 'false',
                 'data-accordion-breakpoint': props.attributes.mobileAccordion ? props.attributes.accordionBreakpoint : 'none',
                 style: cssVariables
-            });
+            };
+
+            // Only emit the stacked-specific markup when opted-in, so existing
+            // (horizontal) blocks serialize identically and stay valid.
+            if (isStacked) {
+                cssVariables['--dd-stacked-accent'] = props.attributes.stackedAccentColor || '#6c47ff';
+                wrapAttrs['data-layout'] = 'stacked';
+                // Stacked always renders inline at every width — bypass the
+                // breakpoint-driven accordion conversion rules entirely.
+                wrapAttrs['data-mobile-accordion'] = 'false';
+                wrapAttrs['data-accordion-breakpoint'] = 'none';
+            }
+
+            const blockProps = useBlockProps.save(wrapAttrs);
 
             return el('div', blockProps, el(InnerBlocks.Content, null));
         }

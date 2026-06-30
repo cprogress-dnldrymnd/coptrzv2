@@ -170,7 +170,7 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         'dd-tabs-block-js',
         get_template_directory_uri() . '/assets/js/dd-tabs-block.js', // Adjust path
         array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
-        filemtime(get_template_directory() . '/assets/js/dd-tabs-block-js'),
+        filemtime(get_template_directory() . '/assets/js/dd-tabs-block.js'),
         true
     );
 

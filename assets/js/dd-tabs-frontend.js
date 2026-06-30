@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (panels.length === 0) return;
 
             const isAccordionOnMobile = wrapper.getAttribute('data-mobile-accordion') === 'true';
+            const layout = wrapper.getAttribute('data-layout') || 'horizontal';
 
             // 1. Construct the Desktop Navigation Container (Renders Above)
             const desktopNav = document.createElement('div');
@@ -78,7 +79,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Bind Event Listeners
                 dBtn.addEventListener('click', function () { activateTab(index); });
-                aBtn.addEventListener('click', function () { 
+                aBtn.addEventListener('click', function () {
+                    // Stacked layout behaves as tabs: exactly one panel stays open,
+                    // so re-clicking the active title does not collapse it.
+                    if (layout === 'stacked') {
+                        activateTab(index);
+                        return;
+                    }
                     // Accordion toggle logic: If clicking the active accordion, close it. Otherwise, open it.
                     if (aBtn.classList.contains('active')) {
                         panel.classList.remove('active');

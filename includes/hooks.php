@@ -698,3 +698,97 @@ function register_cf7_pdf_url_attribute($out, $pairs, $atts)
     return $out;
 }
 
+
+/**
+ * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
+ *
+ * Attaches the PDF referenced by a Contact Form 7 form's `pdf_url` field to the
+ * outgoing email. The form must submit a `pdf_url` value (e.g. a hidden /
+ * dynamic field) holding either a literal PDF URL or a numeric `documents` post
+ * ID — the same convention used by register_cf7_pdf_url_attribute().
+ *
+ * CF7 attachments must be local, readable file paths (not URLs), so the value
+ * is resolved to a path on this server: numeric IDs via the `documents` post's
+ * `_document` attachment, URLs via the media library (or, as a fallback, the
+ * uploads dir). Only files inside wp_get_upload_dir() are attached — posted
+ * data is untrusted, so arbitrary server paths are rejected.
+ *
+ * @param array             $components    Mail components (subject, body, attachments, ...).
+ * @param WPCF7_ContactForm $contact_form  The form being sent.
+ * @param WPCF7_Mail        $mail          The mail template being composed.
+ * @return array The components with the resolved PDF appended to `attachments`.
+ */
+add_filter('wpcf7_mail_components', 'dd_attach_cf7_pdf_url_to_email', 10, 3);
+
+function dd_attach_cf7_pdf_url_to_email($components, $contact_form = null, $mail = null)
+{
+    if (!class_exists('WPCF7_Submission')) {
+        return $components;
+    }
+
+    $submission = WPCF7_Submission::get_instance();
+    if (!$submission) {
+        return $components;
+    }
+
+    $posted = $submission->get_posted_data();
+    if (empty($posted['pdf_url'])) {
+        return $components;
+    }
+
+    // CF7 fields can post as an array; take the first value.
+    $pdf_value = is_array($posted['pdf_url']) ? reset($posted['pdf_url']) : $posted['pdf_url'];
+    $pdf_value = trim((string) $pdf_value);
+    if ($pdf_value === '') {
+        return $components;
+    }
+
+    $path = dd_resolve_pdf_url_to_path($pdf_value);
+    if ($path && is_readable($path)) {
+        if (empty($components['attachments'])) {
+            $components['attachments'] = array();
+        }
+        $components['attachments'][] = $path;
+    }
+
+    return $components;
+}
+
+/**
+ * Resolves a `pdf_url` field value (numeric `documents` post ID or a URL) to a
+ * local, readable file path constrained to the WordPress uploads directory.
+ *
+ * @param string $value Numeric `documents` post ID, or a literal URL.
+ * @return string|false Absolute file path inside the uploads dir, or false.
+ */
+function dd_resolve_pdf_url_to_path($value)
+{
+    // Numeric: treat as a `documents` post ID -> its `_document` attachment.
+    if (is_numeric($value)) {
+        $attachment_id = get__post_meta_by_id((int) $value, 'document');
+        return $attachment_id ? get_attached_file($attachment_id) : false;
+    }
+
+    // Drop any query string / fragment before mapping a URL to a path.
+    $url = strtok($value, '?#');
+
+    // Prefer resolving to a real media-library attachment.
+    $attachment_id = attachment_url_to_postid($url);
+    if ($attachment_id) {
+        return get_attached_file($attachment_id);
+    }
+
+    // Fallback: map an uploads URL straight to its path. Reject anything that
+    // does not live under the uploads dir, and guard against path traversal.
+    $uploads = wp_get_upload_dir();
+    if (!empty($uploads['baseurl']) && strpos($url, $uploads['baseurl']) === 0) {
+        $relative = ltrim(substr($url, strlen($uploads['baseurl'])), '/');
+        $path = $uploads['basedir'] . '/' . $relative;
+        if (strpos($relative, '..') === false && file_exists($path)) {
+            return $path;
+        }
+    }
+
+    return false;
+}
+

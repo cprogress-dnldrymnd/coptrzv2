@@ -2224,6 +2224,54 @@ ul.is-swiper-slider,
     }
 }
 
+/* -----------------------------------------
+   Stacked (Vertical Inline) Layout
+   Opt-in via data-layout="stacked". Scoped entirely to that attribute so the
+   default horizontal tabs are untouched.
+----------------------------------------- */
+/* Hide the horizontal nav row — titles render inline above each panel instead */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-nav-desktop {
+    display: none;
+}
+
+/* Title rows: plain text, visible at every breakpoint */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-accordion-button {
+    display: flex;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0.75rem 0;
+    margin-bottom: 0;
+    color: #6b7280;
+    font-weight: 600;
+    transition: color 0.3s ease;
+
+    &:hover {
+        background: transparent;
+        color: #111827;
+    }
+
+    &.active {
+        background: transparent;
+        border: none;
+        color: #111827;
+    }
+}
+
+/* No +/- toggle glyph in the stacked layout */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-accordion-icon {
+    display: none;
+}
+
+/* Active panel sits inline under its title inside the highlight box */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tab-panel.dd-tab-panel.dd-tab-panel.active {
+    display: block;
+    border: 2px solid var(--dd-stacked-accent, #6c47ff);
+    border-radius: 8px !important;
+    padding: 1rem 1.25rem;
+    margin: 0 0 0.5rem;
+}
+
 .border-left-styled {
     position: relative;
     &:before {
