@@ -69,7 +69,12 @@ case studies, rentals, landing pages, etc).
   `digitally_disruptive_enqueue_swiper_editor_assets()` in `functions.php`.
   Key attributes on `dd/tabs`: `layoutStyle` (`horizontal` default | `stacked`),
   `mobileAccordion` (bool), `accordionBreakpoint` (`767` | `991` px),
-  `stackedAccentColor` (CSS var `--dd-stacked-accent`). Key attributes on
+  `stackedAccentColor` (CSS var `--dd-stacked-accent`), `stackedNavPosition`
+  (`right` default | `left` — which side the vertical nav sits on in the
+  stacked layout; only `left` is emitted as `data-nav-position` on
+  `.dd-tabs-wrapper`, so existing right-aligned stacked blocks serialize
+  unchanged; purely CSS-driven via `flex-direction: row-reverse` in
+  `_base.scss`, no frontend JS changes needed). Key attributes on
   `dd/tab-panel`: `tabTitle` (string), `tabDescription` (string, optional —
   stacked layout only; emitted as `data-tab-description` on the panel element,
   shown beneath the title in the right-hand nav when that tab is active; omitted

@@ -2317,6 +2317,21 @@ ul.is-swiper-slider,
     height: 100%;
 }
 
+/* Nav on the left: mirror the alignment, accent bar and active padding to the right */
+.dd-tabs-wrapper[data-layout="stacked"][data-nav-position="left"] .dd-vtab-button {
+    text-align: right;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"][data-nav-position="left"] .dd-vtab-button:before {
+    left: auto;
+    right: 0;
+}
+
+.dd-tabs-wrapper[data-layout="stacked"][data-nav-position="left"] .dd-vtab-button.active {
+    padding-left: 0;
+    padding-right: 23px;
+}
+
 /* Description: hidden until the tab is active, then shown in the highlight box */
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-desc {
     display: none;
