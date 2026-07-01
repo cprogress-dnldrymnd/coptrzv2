@@ -13095,7 +13095,7 @@ ul.is-swiper-slider,
   font-size: 1.125rem; }
 
 /* Active tab: a left bar spanning the full button (title + description) */
-.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.dd-accordion-button:hover {
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active {
   padding-left: 23px; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active:before {
