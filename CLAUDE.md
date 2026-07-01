@@ -78,7 +78,11 @@ case studies, rentals, landing pages, etc).
   on `.dd-tabs-wrapper`; stacked blocks pass these attributes through unchanged
   (the "Enable Accordion Conversion" toggle works for stacked layouts too).
   Existing horizontal blocks (no `layoutStyle` attribute) serialize identically
-  so they remain valid — opt-in only.
+  so they remain valid — opt-in only. `dd/tabs` also carries a `deprecated`
+  entry (v1) whose `save()` reproduces the earlier stacked markup (accordion
+  forced off: `data-mobile-accordion="false"`, `data-accordion-breakpoint="none"`)
+  so pre-accordion stacked blocks still validate in Gutenberg and get silently
+  migrated to the current format on next save, instead of being flagged invalid.
 - `assets/js/dd-tabs-frontend.js` — DOM-ready script that initialises all
   `.dd-tabs-wrapper` elements. Builds `.dd-tabs-nav-desktop` (horizontal nav)
   and `.dd-accordion-button` elements dynamically. Reads `data-layout`: for
