@@ -146,7 +146,11 @@
             // Which side the vertical nav sits on in the stacked layout.
             // 'right' is the default; only 'left' is written to markup, so
             // existing stacked blocks serialize unchanged.
-            stackedNavPosition: { type: 'string', default: 'right' }
+            stackedNavPosition: { type: 'string', default: 'right' },
+            // Horizontal layout: whether the tab nav row sits above or below the
+            // panels. 'top' is the default; only 'bottom' is written to markup,
+            // so existing horizontal blocks serialize unchanged.
+            navPlacement: { type: 'string', default: 'top' }
         },
 
         /**
@@ -250,6 +254,16 @@
                             ],
                             help: 'Stacked: titles list vertically and the active title reveals its content inline beneath it.',
                             onChange: function (val) { setAttributes({ layoutStyle: val }); }
+                        }),
+                        attributes.layoutStyle !== 'stacked' && el(SelectControl, {
+                            label: 'Navigation Placement',
+                            value: attributes.navPlacement,
+                            options: [
+                                { label: 'Above panels (Default)', value: 'top' },
+                                { label: 'Below panels', value: 'bottom' }
+                            ],
+                            help: 'Where the horizontal tab navigation row sits relative to the content.',
+                            onChange: function (val) { setAttributes({ navPlacement: val }); }
                         }),
                         attributes.layoutStyle === 'stacked' && el(SelectControl, {
                             label: 'Navigation Position',
@@ -411,6 +425,11 @@
                 if (props.attributes.stackedNavPosition === 'left') {
                     wrapAttrs['data-nav-position'] = 'left';
                 }
+            } else if (props.attributes.navPlacement === 'bottom') {
+                // Horizontal layout with the nav row below the panels. Only the
+                // non-default 'bottom' is emitted, so existing horizontal blocks
+                // serialize identically to before.
+                wrapAttrs['data-nav-placement'] = 'bottom';
             }
 
             const blockProps = useBlockProps.save(wrapAttrs);

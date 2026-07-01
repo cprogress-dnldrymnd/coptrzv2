@@ -2067,6 +2067,11 @@ ul.is-swiper-slider,
     gap: 1.25rem;
 }
 
+/* Horizontal layout with the nav row placed below the panels */
+.dd-tabs-wrapper[data-nav-placement="bottom"] .dd-tabs-nav-desktop {
+    margin-top: 1.25rem;
+}
+
 /* Button Structural & Typography Styling */
 .dd-tabs-wrapper .dd-tab-button {
     background-color: var(--dd-btn-bg, transparent);

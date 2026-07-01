@@ -121,10 +121,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // 1. Construct the Desktop Navigation Container (Renders Above)
+            // 1. Construct the Desktop Navigation Container. It renders above the
+            //    panels by default, or below when data-nav-placement="bottom".
             const desktopNav = document.createElement('div');
             desktopNav.className = 'dd-tabs-nav-desktop';
-            wrapper.insertBefore(desktopNav, wrapper.firstChild);
+            if (wrapper.getAttribute('data-nav-placement') === 'bottom') {
+                wrapper.appendChild(desktopNav);
+            } else {
+                wrapper.insertBefore(desktopNav, wrapper.firstChild);
+            }
 
             // Arrays to keep track of generated buttons to sync their active states easily
             const desktopButtons = [];
