@@ -13084,10 +13084,9 @@ ul.is-swiper-slider,
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0;
+  height: 0;
   width: 1px;
   background-color: var(--wp--preset--color-quinary);
-  opacity: 0;
   transition: 300ms; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-title {
@@ -13099,7 +13098,7 @@ ul.is-swiper-slider,
   padding-left: 23px; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active:before {
-  opacity: 1; }
+  height: 100%; }
 
 /* Description: hidden until the tab is active, then shown in the highlight box */
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-desc {
