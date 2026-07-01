@@ -13037,7 +13037,7 @@ ul.is-swiper-slider,
 .dd-tabs-wrapper[data-layout="stacked"] {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   gap: 2rem;
   /* The horizontal nav is never used in this layout. */
   /* Accordion header + in-panel description are revealed only by the
