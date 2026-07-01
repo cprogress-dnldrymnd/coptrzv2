@@ -13076,17 +13076,27 @@ ul.is-swiper-slider,
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #6b7280;
-  transition: border-color 0.3s ease, color 0.3s ease; }
+  transition: border-color 0.3s ease, color 0.3s ease;
+  position: relative; }
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--wp--preset--color-quinary);
+  opacity: 0;
+  transition: 300ms; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-title {
   display: block;
   font-size: 1.125rem; }
 
 /* Active tab: a left bar spanning the full button (title + description) */
-.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active {
-  color: #111827;
-  border-left-color: var(--dd-stacked-accent, #6c47ff); }
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active:before {
+  padding-left: 23px; }
 
 /* Description: hidden until the tab is active, then shown in the highlight box */
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-desc {
@@ -13094,8 +13104,7 @@ ul.is-swiper-slider,
   margin-top: 0.75rem;
   font-size: 0.95rem;
   font-weight: 400;
-  line-height: 1.55;
-  color: #4b5563; }
+  line-height: 1.55; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-desc {
   display: block; }
