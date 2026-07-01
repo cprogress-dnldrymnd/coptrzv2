@@ -2249,6 +2249,13 @@ ul.is-swiper-slider,
     }
 }
 
+/* Nav on the left (content on the right). Default markup has no attribute, so
+   the nav stays on the right. Overridden by the single-column accordion/mobile
+   rules further down (they set display:block / flex-direction:column). */
+.dd-tabs-wrapper[data-layout="stacked"][data-nav-position="left"] {
+    flex-direction: row-reverse;
+}
+
 /* Left column: the active tab's content */
 .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area {
     flex: 1 1 55%;

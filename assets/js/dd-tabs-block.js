@@ -142,7 +142,11 @@
             // so existing blocks (which lack this attribute) are unaffected.
             layoutStyle: { type: 'string', default: 'horizontal' },
             // Highlight colour for the active panel in the stacked layout.
-            stackedAccentColor: { type: 'string', default: '#6c47ff' }
+            stackedAccentColor: { type: 'string', default: '#6c47ff' },
+            // Which side the vertical nav sits on in the stacked layout.
+            // 'right' is the default; only 'left' is written to markup, so
+            // existing stacked blocks serialize unchanged.
+            stackedNavPosition: { type: 'string', default: 'right' }
         },
 
         /**
@@ -246,6 +250,16 @@
                             ],
                             help: 'Stacked: titles list vertically and the active title reveals its content inline beneath it.',
                             onChange: function (val) { setAttributes({ layoutStyle: val }); }
+                        }),
+                        attributes.layoutStyle === 'stacked' && el(SelectControl, {
+                            label: 'Navigation Position',
+                            value: attributes.stackedNavPosition,
+                            options: [
+                                { label: 'Right', value: 'right' },
+                                { label: 'Left', value: 'left' }
+                            ],
+                            help: 'Which side the vertical tab list sits on (content takes the other side).',
+                            onChange: function (val) { setAttributes({ stackedNavPosition: val }); }
                         }),
                         attributes.layoutStyle === 'stacked' && el(BaseControl, { label: 'Active Highlight Color' },
                             el(ColorPalette, { value: attributes.stackedAccentColor, onChange: function (val) { setAttributes({ stackedAccentColor: val }); } })
@@ -392,6 +406,11 @@
             if (isStacked) {
                 cssVariables['--dd-stacked-accent'] = props.attributes.stackedAccentColor || '#6c47ff';
                 wrapAttrs['data-layout'] = 'stacked';
+                // Only the non-default 'left' is emitted, so right-aligned
+                // stacked blocks serialize identically to before.
+                if (props.attributes.stackedNavPosition === 'left') {
+                    wrapAttrs['data-nav-position'] = 'left';
+                }
             }
 
             const blockProps = useBlockProps.save(wrapAttrs);
