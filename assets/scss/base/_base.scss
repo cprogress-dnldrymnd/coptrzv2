@@ -2270,6 +2270,7 @@ ul.is-swiper-slider,
     min-width: 260px;
     display: flex;
     flex-direction: column;
+    gap: 40px;
 }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button {
@@ -2277,29 +2278,24 @@ ul.is-swiper-slider,
     width: 100%;
     text-align: left;
     background: transparent;
-    /* Transparent placeholder so the active bar doesn't shift the layout */
     border: none;
-    border-left: 1px solid transparent;
-    padding: 1rem 1.25rem;
+    padding: 0;
     cursor: pointer;
     color: #6b7280;
-    transition: border-color 0.3s ease, color 0.3s ease;
+    transition:
+        border-color 0.3s ease,
+        color 0.3s ease;
 }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-title {
     display: block;
     font-size: 1.125rem;
-    font-weight: 600;
 }
 
 /* Active tab: a left bar spanning the full button (title + description) */
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active {
     color: #111827;
     border-left-color: var(--dd-stacked-accent, #6c47ff);
-}
-
-.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-title {
-    font-weight: 700;
 }
 
 /* Description: hidden until the tab is active, then shown in the highlight box */
