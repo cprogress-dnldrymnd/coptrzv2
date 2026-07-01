@@ -13076,7 +13076,7 @@ ul.is-swiper-slider,
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: border-color 0.3s ease, color 0.3s ease;
+  transition: 300ms;
   position: relative; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button:before {
