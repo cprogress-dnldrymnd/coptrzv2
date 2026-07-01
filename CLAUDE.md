@@ -24,6 +24,12 @@ case studies, rentals, landing pages, etc).
 - SCSS partials live under `assets/scss/`. There is no separate build step
   documented — edit the `.scss` and re-export `.css`/`.map`.
 - `landing.css` is a separate standalone stylesheet for landing pages.
+- `style.css`/`style.css.map` are checked in compiled output, not hand-edited.
+- **Gotcha:** `wp_enqueue_style('style', ...)` and most other asset enqueues use
+  `coptz_version` as the cache-busting query param. Editing `style.scss`/`_base.scss`
+  and recompiling `style.css` is not enough for changes to show up for returning
+  visitors — bump `coptz_version` in `functions.php` too, or the browser/CDN may
+  keep serving the previously cached `style.css`.
 
 ## PHP architecture
 

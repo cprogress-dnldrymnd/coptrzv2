@@ -144,7 +144,61 @@
             // Highlight colour for the active panel in the stacked layout.
             stackedAccentColor: { type: 'string', default: '#6c47ff' }
         },
-        
+
+        /**
+         * Backwards-compatible markup migrations.
+         *
+         * v1: earlier stacked blocks were serialized with accordion conversion
+         * forced OFF (data-mobile-accordion="false", data-accordion-breakpoint="none").
+         * Once accordion support was added for the stacked layout the save output
+         * changed, which would otherwise flag those posts as "invalid". This
+         * deprecation reproduces the old markup so Gutenberg validates and then
+         * silently migrates them to the current format on the next save.
+         */
+        deprecated: [
+            {
+                save: function (props) {
+                    const safeRadius = String(props.attributes.btnBorderRadius).includes('px') || String(props.attributes.btnBorderRadius).includes(' ') ? props.attributes.btnBorderRadius : `${props.attributes.btnBorderRadius}px`;
+                    const safeWidth = String(props.attributes.btnBorderWidth).includes('px') || String(props.attributes.btnBorderWidth).includes(' ') ? props.attributes.btnBorderWidth : `${props.attributes.btnBorderWidth}px`;
+
+                    const cssVariables = {
+                        '--dd-btn-bg': props.attributes.btnBgColor,
+                        '--dd-btn-color': props.attributes.btnTextColor,
+                        '--dd-btn-active-bg': props.attributes.btnActiveBgColor,
+                        '--dd-btn-active-color': props.attributes.btnActiveTextColor,
+                        '--dd-nav-align': props.attributes.navAlignment,
+                        '--dd-btn-padding': props.attributes.btnPadding,
+                        '--dd-btn-radius': safeRadius,
+                        '--dd-btn-border-width': safeWidth,
+                        '--dd-btn-border-color': props.attributes.btnBorderColor,
+                        '--dd-btn-border-style': props.attributes.btnBorderStyle,
+                        '--dd-btn-font-size': props.attributes.btnFontSize,
+                        '--dd-btn-font-weight': props.attributes.btnFontWeight
+                    };
+
+                    const isStacked = props.attributes.layoutStyle === 'stacked';
+
+                    const wrapAttrs = {
+                        className: 'dd-tabs-wrapper',
+                        'data-mobile-accordion': props.attributes.mobileAccordion ? 'true' : 'false',
+                        'data-accordion-breakpoint': props.attributes.mobileAccordion ? props.attributes.accordionBreakpoint : 'none',
+                        style: cssVariables
+                    };
+
+                    if (isStacked) {
+                        cssVariables['--dd-stacked-accent'] = props.attributes.stackedAccentColor || '#6c47ff';
+                        wrapAttrs['data-layout'] = 'stacked';
+                        wrapAttrs['data-mobile-accordion'] = 'false';
+                        wrapAttrs['data-accordion-breakpoint'] = 'none';
+                    }
+
+                    const blockProps = useBlockProps.save(wrapAttrs);
+
+                    return el('div', blockProps, el(InnerBlocks.Content, null));
+                }
+            }
+        ],
+
         /**
          * Renders the editor UI for the Parent Tabs block.
          * * @param {Object} props The block properties provided by Gutenberg.
