@@ -73,8 +73,10 @@ case studies, rentals, landing pages, etc).
   (`right` default | `left` — which side the vertical nav sits on in the
   stacked layout; only `left` is emitted as `data-nav-position` on
   `.dd-tabs-wrapper`, so existing right-aligned stacked blocks serialize
-  unchanged; purely CSS-driven via `flex-direction: row-reverse` in
-  `_base.scss`, no frontend JS changes needed). Key attributes on
+  unchanged; purely CSS-driven, no frontend JS changes needed — in
+  `_base.scss`, `[data-nav-position="left"]` sets `flex-direction: row-reverse`
+  on the wrapper and mirrors `.dd-vtab-button` text-align, the `:before` accent
+  bar side, and the active-state padding side to match). Key attributes on
   `dd/tab-panel`: `tabTitle` (string), `tabDescription` (string, optional —
   stacked layout only; emitted as `data-tab-description` on the panel element,
   shown beneath the title in the right-hand nav when that tab is active; omitted
