@@ -124,6 +124,7 @@
                         el(SelectControl, {
                             label:   'Contact form',
                             value:   formId,
+                            help:    'The form must contain a [hidden pdf_url default:shortcode_attr] field for the PDF to attach.',
                             options: formsLoading
                                 ? [{ label: 'Loading…', value: '' }]
                                 : forms.map(function (o) { return { label: o.label, value: o.value }; }),
@@ -214,7 +215,31 @@
                         el('div', { style: { marginTop: '6px', fontSize: '13px', color: '#1e1e1e' } },
                             formTitle ? 'Form: ' + formTitle : 'No form selected'),
                         el('div', { style: { marginTop: '2px', fontSize: '13px', color: '#1e1e1e' } },
-                            pdfSummary())
+                            pdfSummary()),
+                        el('div', {
+                            style: {
+                                marginTop: '12px',
+                                paddingTop: '10px',
+                                borderTop: '1px solid #e0e0e0',
+                                fontSize: '12px',
+                                color: '#757575'
+                            }
+                        },
+                            'For the PDF to attach, the selected Contact Form 7 form must include this hidden field:',
+                            el('code', {
+                                style: {
+                                    display: 'block',
+                                    marginTop: '6px',
+                                    padding: '6px 8px',
+                                    background: '#fff',
+                                    border: '1px solid #e0e0e0',
+                                    borderRadius: '3px',
+                                    color: '#1e1e1e',
+                                    fontFamily: 'monospace',
+                                    userSelect: 'all'
+                                }
+                            }, '[hidden pdf_url default:shortcode_attr]')
+                        )
                     )
                 )
             );

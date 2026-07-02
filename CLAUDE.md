@@ -136,10 +136,15 @@ case studies, rentals, landing pages, etc).
   always stored as a **literal URL** in the `pdfUrl` attribute (a `documents`
   selection is resolved to its file URL at pick-time via the `/dd/v1/documents`
   `url`); `pdfSource`/`pdfDocumentId` are editor UI state only. The emitted
-  shortcode is byte-identical to a hand-typed one, so the Dynamic Text Extension
-  `pdf_url` field reads it from the live form's shortcode attributes via
-  `register_cf7_pdf_url_attribute` (and `dd_attach_cf7_pdf_url_to_email`, see Forms
-  below) exactly as for a hand-typed shortcode. **History:** the block went through
+  shortcode is byte-identical to a hand-typed one. **Form requirement (surfaced as
+  a note in the block's editor UI — both the canvas placeholder and the "Contact
+  form" control's `help` text):** the selected CF7 form must contain a
+  `[hidden pdf_url default:shortcode_attr]` field. That is CF7's native
+  "populate from the shortcode attribute" default, and it only works because
+  `register_cf7_pdf_url_attribute` whitelists `pdf_url` on the CF7 shortcode (WP's
+  `shortcode_atts` would otherwise strip the unknown attr); the same value then
+  drives `dd_attach_cf7_pdf_url_to_email` (see Forms below). If the form lacks that
+  field the PDF silently won't attach. **History:** the block went through
   a dynamic (`render_callback`) then a static (`RawHTML` save) form before settling
   on `save: null` + `render_block`; a single `deprecated` entry reproducing the
   static `RawHTML` save lets those interim instances validate and migrate. (The
