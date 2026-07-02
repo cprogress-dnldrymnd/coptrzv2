@@ -664,35 +664,40 @@ function dd_append_date_to_cf7_zapier_payload($data, $contact_form)
 
 
 /**
- * Registers the custom 'pdf_url' shortcode attribute for Contact Form 7.
+ * Registers custom shortcode attributes for Contact Form 7.
  * WordPress shortcodes only accept predefined attributes by default. This filter
- * intercepts CF7 shortcode processing and explicitly allows 'pdf_url' to be
- * passed through to the form's rendering context.
+ * intercepts CF7 shortcode processing and explicitly allows extra attributes to
+ * be passed through to the form's rendering context (where a
+ * `[hidden NAME default:shortcode_attr]` field can read them).
  *
- * If the value is an integer it is treated as a 'documents' post ID: the
- * '_document' attachment meta field is resolved to a URL via wp_get_attachment_url().
- * Otherwise the value is passed through as a literal URL.
+ * - `pdf_url`: if the value is an integer it is treated as a 'documents' post ID
+ *   (the '_document' attachment meta is resolved to a URL via
+ *   wp_get_attachment_url()); otherwise it is passed through as a literal URL.
+ * - `speak_to_an_expert_url`: always a literal custom URL, passed through as-is.
  *
  * @param array $out   The array of supported attributes and their processed values.
  * @param array $pairs The array of supported attributes and their default values.
  * @param array $atts  The array of user-defined attributes passed into the shortcode.
- * @return array The filtered array containing the authorized custom attribute.
+ * @return array The filtered array containing the authorized custom attributes.
  */
 add_filter('shortcode_atts_wpcf7', 'register_cf7_pdf_url_attribute', 10, 3);
 
 function register_cf7_pdf_url_attribute($out, $pairs, $atts)
 {
-    if (!isset($atts['pdf_url'])) {
-        return $out;
+    if (isset($atts['pdf_url'])) {
+        if (is_numeric($atts['pdf_url'])) {
+            $attachment_id = get__post_meta_by_id((int) $atts['pdf_url'], 'document');
+            if ($attachment_id) {
+                $out['pdf_url'] = wp_get_attachment_url($attachment_id);
+            }
+        } else {
+            $out['pdf_url'] = $atts['pdf_url'];
+        }
     }
 
-    if (is_numeric($atts['pdf_url'])) {
-        $attachment_id = get__post_meta_by_id((int) $atts['pdf_url'], 'document');
-        if ($attachment_id) {
-            $out['pdf_url'] = wp_get_attachment_url($attachment_id);
-        }
-    } else {
-        $out['pdf_url'] = $atts['pdf_url'];
+    // Always a literal custom URL — pass through unchanged.
+    if (isset($atts['speak_to_an_expert_url'])) {
+        $out['speak_to_an_expert_url'] = $atts['speak_to_an_expert_url'];
     }
 
     return $out;
@@ -884,10 +889,11 @@ function dd_rest_list_cf7_forms()
 }
 
 /**
- * Lists published `documents` posts as [{ id, title, url }] for the block's
- * Document source dropdown. The `url` is the resolved PDF URL (from the CPT's
- * `document` file field) so the block can store a literal URL — matching the
- * hand-typed shortcode format. Avoids flipping show_in_rest on the CPT.
+ * Lists published `documents` posts as [{ id, title, url, speak_url }] for the
+ * block's Document source dropdown. `url` is the resolved PDF URL (from the CPT's
+ * `document` file field) and `speak_url` is the CPT's `speak_to_an_expert_url`
+ * field, so the block can store literal URLs — matching the hand-typed shortcode
+ * format. Avoids flipping show_in_rest on the CPT.
  */
 function dd_rest_list_documents()
 {
@@ -912,10 +918,18 @@ function dd_rest_list_documents()
         $url = (!empty($attachment_id) && is_numeric($attachment_id))
             ? wp_get_attachment_url((int) $attachment_id)
             : '';
+
+        // Same Carbon-then-raw fallback for the `speak_to_an_expert_url` text field.
+        $speak_url = get__post_meta_by_id($post->ID, 'speak_to_an_expert_url');
+        if (empty($speak_url)) {
+            $speak_url = get_post_meta($post->ID, '_speak_to_an_expert_url', true);
+        }
+
         $out[] = array(
-            'id'    => $post->ID,
-            'title' => get_the_title($post),
-            'url'   => $url ? $url : '',
+            'id'        => $post->ID,
+            'title'     => get_the_title($post),
+            'url'       => $url ? $url : '',
+            'speak_url' => $speak_url ? (string) $speak_url : '',
         );
     }
 

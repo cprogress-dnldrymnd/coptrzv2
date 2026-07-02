@@ -130,21 +130,27 @@ case studies, rentals, landing pages, etc).
   `save()` returns `null`; the block is **rendered server-side by the
   `dd_render_cf7_pdf_block()` `render_block` filter in `functions.php`**, which
   rebuilds the shortcode from the block's *attributes* (`formId`/`formTitle`/
-  `pdfUrl`, stored in the block-comment JSON) and runs `do_shortcode()`. Building
-  from attributes (single source of truth) means an instance renders correctly
-  regardless of its saved markup, so no manual re-save is needed. The chosen PDF is
-  always stored as a **literal URL** in the `pdfUrl` attribute (a `documents`
-  selection is resolved to its file URL at pick-time via the `/dd/v1/documents`
-  `url`); `pdfSource`/`pdfDocumentId` are editor UI state only. The emitted
-  shortcode is byte-identical to a hand-typed one. **Form requirement (surfaced as
-  a note in the block's editor UI — both the canvas placeholder and the "Contact
-  form" control's `help` text):** the selected CF7 form must contain a
-  `[hidden pdf_url default:shortcode_attr]` field. That is CF7's native
+  `pdfUrl`/`speakUrl`, stored in the block-comment JSON) and runs `do_shortcode()`.
+  Building from attributes (single source of truth) means an instance renders
+  correctly regardless of its saved markup, so no manual re-save is needed. The
+  chosen PDF is always stored as a **literal URL** in the `pdfUrl` attribute (a
+  `documents` selection is resolved to its file URL at pick-time via the
+  `/dd/v1/documents` `url`); `speakUrl` likewise holds a **literal URL** for the
+  `speak_to_an_expert_url` shortcode attribute — for a **Media** source it's a
+  custom URL typed directly, for a **Document** source it's resolved at pick-time
+  from that document's `speak_to_an_expert_url` field (via `/dd/v1/documents`
+  `speak_url`, same Carbon-then-raw `_speak_to_an_expert_url` fallback as the PDF).
+  `pdfSource`/`pdfDocumentId` are editor UI state only. The emitted shortcode is
+  byte-identical to a hand-typed one. **Form requirement (surfaced as notes in the
+  block's editor UI — the canvas placeholder and the relevant controls' `help`
+  text):** the selected CF7 form must contain the matching hidden field(s):
+  `[hidden pdf_url default:shortcode_attr]` and/or
+  `[hidden speak_to_an_expert_url default:shortcode_attr]`. That is CF7's native
   "populate from the shortcode attribute" default, and it only works because
-  `register_cf7_pdf_url_attribute` whitelists `pdf_url` on the CF7 shortcode (WP's
-  `shortcode_atts` would otherwise strip the unknown attr); the same value then
-  drives `dd_attach_cf7_pdf_url_to_email` (see Forms below). If the form lacks that
-  field the PDF silently won't attach. **History:** the block went through
+  `register_cf7_pdf_url_attribute` whitelists those attrs on the CF7 shortcode (WP's
+  `shortcode_atts` would otherwise strip unknown attrs); the `pdf_url` value then
+  also drives `dd_attach_cf7_pdf_url_to_email` (see Forms below). If the form lacks
+  a field, that value silently won't reach it. **History:** the block went through
   a dynamic (`render_callback`) then a static (`RawHTML` save) form before settling
   on `save: null` + `render_block`; a single `deprecated` entry reproducing the
   static `RawHTML` save lets those interim instances validate and migrate. (The
@@ -241,10 +247,11 @@ case studies, rentals, landing pages, etc).
   since that plugin builds its own payload and ignores `wpcf7_posted_data`.
 - Also in `hooks.php`: a `wpcf7mailsent` JS listener for post-submit redirects.
 - `register_cf7_pdf_url_attribute` (`shortcode_atts_wpcf7` filter) whitelists
-  `pdf_url` on CF7 shortcodes. If the value is numeric it is treated as a
-  `documents` post ID and resolved to a URL via
-  `get__post_meta_by_id($id, 'document')` → `wp_get_attachment_url()`;
-  otherwise it is passed through as a literal URL.
+  extra attrs on CF7 shortcodes so a `[hidden NAME default:shortcode_attr]` field
+  can read them. `pdf_url`: if the value is numeric it is treated as a `documents`
+  post ID and resolved to a URL via `get__post_meta_by_id($id, 'document')` →
+  `wp_get_attachment_url()`; otherwise it is passed through as a literal URL.
+  `speak_to_an_expert_url`: always passed through as a literal custom URL.
 - `dd_attach_cf7_pdf_url_to_email` (`wpcf7_mail_components` filter, priority 20)
   attaches the form's PDF to the outgoing CF7 email. **Opt-in required**: the
   active mail template's "File attachments" box must reference `pdf_url` with the

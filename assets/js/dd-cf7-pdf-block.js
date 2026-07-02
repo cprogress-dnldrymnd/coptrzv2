@@ -19,13 +19,14 @@
     const { registerBlockType }                                = wp.blocks;
     const { createElement: el, useState, useEffect, Fragment, RawHTML } = wp.element;
     const { InspectorControls, useBlockProps, MediaUpload, MediaUploadCheck } = wp.blockEditor;
-    const { PanelBody, SelectControl, Button, BaseControl }    = wp.components;
+    const { PanelBody, SelectControl, Button, BaseControl, TextControl } = wp.components;
 
     function buildShortcode(a) {
         if (!a.formId) { return ''; }
         var sc = '[contact-form-7 id="' + a.formId + '"';
         if (a.formTitle) { sc += ' title="' + a.formTitle + '"'; }
         if (a.pdfUrl)    { sc += ' pdf_url="' + a.pdfUrl + '"'; }
+        if (a.speakUrl)  { sc += ' speak_to_an_expert_url="' + a.speakUrl + '"'; }
         sc += ']';
         return sc;
     }
@@ -39,7 +40,8 @@
             formTitle:     { type: 'string', default: '' },
             pdfSource:     { type: 'string', default: 'media' },
             pdfUrl:        { type: 'string', default: '' },
-            pdfDocumentId: { type: 'number', default: 0 }
+            pdfDocumentId: { type: 'number', default: 0 },
+            speakUrl:      { type: 'string', default: '' }
         },
 
         // Migrate instances saved under the earlier *static* version, whose
@@ -66,7 +68,7 @@
 
         edit: function (props) {
             const { attributes, setAttributes } = props;
-            const { formId, formTitle, pdfSource, pdfUrl, pdfDocumentId } = attributes;
+            const { formId, formTitle, pdfSource, pdfUrl, pdfDocumentId, speakUrl } = attributes;
 
             const [forms,        setForms]        = useState([]);
             const [formsLoading, setFormsLoading] = useState(true);
@@ -88,13 +90,14 @@
                     .catch(function () { setFormsLoading(false); });
             }, []);
 
-            // Fetch Documents once (each carries its resolved PDF url).
+            // Fetch Documents once (each carries its resolved PDF url and the
+            // document's own speak-to-an-expert url).
             useEffect(function () {
                 wp.apiFetch({ path: '/dd/v1/documents' })
                     .then(function (items) {
-                        var options = [{ label: '— Select a document —', value: 0, url: '' }].concat(
+                        var options = [{ label: '— Select a document —', value: 0, url: '', speakUrl: '' }].concat(
                             (items || []).map(function (d) {
-                                return { label: d.title, value: d.id, url: d.url || '' };
+                                return { label: d.title, value: d.id, url: d.url || '', speakUrl: d.speak_url || '' };
                             })
                         );
                         setDocs(options);
@@ -111,6 +114,18 @@
                 }
                 return pdfUrl ? 'PDF: ' + pdfUrl.split('/').pop() : 'No PDF selected';
             }
+
+            var codeBoxStyle = {
+                display: 'block',
+                marginTop: '6px',
+                padding: '6px 8px',
+                background: '#fff',
+                border: '1px solid #e0e0e0',
+                borderRadius: '3px',
+                color: '#1e1e1e',
+                fontFamily: 'monospace',
+                userSelect: 'all'
+            };
 
             return el(
                 Fragment,
@@ -145,9 +160,9 @@
                                 { label: 'Document (post type)', value: 'document' }
                             ],
                             onChange: function (val) {
-                                // Clear the resolved URL so a stale value from the
+                                // Clear resolved values so a stale one from the
                                 // other source can't leak into the shortcode.
-                                setAttributes({ pdfSource: val, pdfUrl: '', pdfDocumentId: 0 });
+                                setAttributes({ pdfSource: val, pdfUrl: '', pdfDocumentId: 0, speakUrl: '' });
                             }
                         }),
                         pdfSource === 'media'
@@ -193,11 +208,43 @@
                                 onChange: function (val) {
                                     var id    = parseInt(val, 10) || 0;
                                     var match = docs.filter(function (o) { return o.value === id; })[0];
-                                    // Store the document's resolved URL so save()
-                                    // always emits a literal pdf_url.
-                                    setAttributes({ pdfDocumentId: id, pdfUrl: match ? match.url : '' });
+                                    // Store the document's resolved PDF url and its
+                                    // speak-to-an-expert url so save() emits literals.
+                                    setAttributes({
+                                        pdfDocumentId: id,
+                                        pdfUrl:        match ? match.url : '',
+                                        speakUrl:      match ? match.speakUrl : ''
+                                    });
                                 }
                             })
+                    ),
+                    el(
+                        PanelBody,
+                        { title: 'Speak to an Expert', initialOpen: false },
+                        pdfSource === 'media'
+                            ? el(TextControl, {
+                                label:       'Speak to an expert URL',
+                                type:        'url',
+                                value:       speakUrl,
+                                placeholder: 'https://…',
+                                help:        'Optional custom URL. Requires a [hidden speak_to_an_expert_url default:shortcode_attr] field in the form.',
+                                onChange:    function (val) { setAttributes({ speakUrl: val }); }
+                            })
+                            : el(
+                                BaseControl,
+                                {
+                                    label: 'Speak to an expert URL',
+                                    help:  'Taken from the selected document’s “Speak to an expert url” field. Requires a [hidden speak_to_an_expert_url default:shortcode_attr] field in the form.'
+                                },
+                                el('div', {
+                                    style: {
+                                        fontSize: '12px',
+                                        color: speakUrl ? '#1e1e1e' : '#757575',
+                                        wordBreak: 'break-all',
+                                        padding: '6px 0'
+                                    }
+                                }, speakUrl ? speakUrl : 'This document has no “Speak to an expert url” set.')
+                            )
                     )
                 ),
                 el(
@@ -216,6 +263,8 @@
                             formTitle ? 'Form: ' + formTitle : 'No form selected'),
                         el('div', { style: { marginTop: '2px', fontSize: '13px', color: '#1e1e1e' } },
                             pdfSummary()),
+                        el('div', { style: { marginTop: '2px', fontSize: '13px', color: '#1e1e1e' } },
+                            speakUrl ? 'Speak to an expert: ' + speakUrl : 'No speak-to-an-expert URL'),
                         el('div', {
                             style: {
                                 marginTop: '12px',
@@ -225,20 +274,9 @@
                                 color: '#757575'
                             }
                         },
-                            'For the PDF to attach, the selected Contact Form 7 form must include this hidden field:',
-                            el('code', {
-                                style: {
-                                    display: 'block',
-                                    marginTop: '6px',
-                                    padding: '6px 8px',
-                                    background: '#fff',
-                                    border: '1px solid #e0e0e0',
-                                    borderRadius: '3px',
-                                    color: '#1e1e1e',
-                                    fontFamily: 'monospace',
-                                    userSelect: 'all'
-                                }
-                            }, '[hidden pdf_url default:shortcode_attr]')
+                            'For these values to reach the form, the selected Contact Form 7 form must include the matching hidden field(s):',
+                            el('code', { style: codeBoxStyle }, '[hidden pdf_url default:shortcode_attr]'),
+                            el('code', { style: codeBoxStyle }, '[hidden speak_to_an_expert_url default:shortcode_attr]')
                         )
                     )
                 )

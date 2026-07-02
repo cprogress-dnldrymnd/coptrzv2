@@ -256,6 +256,7 @@ function dd_render_cf7_pdf_block($block_content, $block)
 
     $title = isset($attrs['formTitle']) ? (string) $attrs['formTitle'] : '';
     $pdf   = isset($attrs['pdfUrl']) ? (string) $attrs['pdfUrl'] : '';
+    $speak = isset($attrs['speakUrl']) ? (string) $attrs['speakUrl'] : '';
 
     $shortcode = '[contact-form-7 id="' . esc_attr($form_id) . '"';
     if ($title !== '') {
@@ -263,6 +264,9 @@ function dd_render_cf7_pdf_block($block_content, $block)
     }
     if ($pdf !== '') {
         $shortcode .= ' pdf_url="' . esc_attr($pdf) . '"';
+    }
+    if ($speak !== '') {
+        $shortcode .= ' speak_to_an_expert_url="' . esc_attr($speak) . '"';
     }
     $shortcode .= ']';
 
