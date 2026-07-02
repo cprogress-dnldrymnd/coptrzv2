@@ -123,6 +123,10 @@ case studies, rentals, landing pages, etc).
   route, which returns each document's resolved PDF `url`). Both REST routes are
   registered in `hooks.php` (`dd_register_cf7_pdf_block_rest_routes`), gated to
   `edit_posts` capability since CF7/`documents` aren't exposed via public REST.
+  `/dd/v1/documents` resolves each document's attachment ID via
+  `get__post_meta_by_id($post->ID, 'document')` (Carbon) first, falling back to
+  the raw `_document` post meta key if Carbon isn't fully booted in that REST
+  context, so the returned `url` doesn't silently come back empty.
   **`save()` emits the literal `[contact-form-7 … pdf_url="…"]` shortcode**
   (via `wp.element.RawHTML`, exactly like a native Shortcode block) so the stored
   post content — and therefore the Dynamic Text Extension `pdf_url` field that
