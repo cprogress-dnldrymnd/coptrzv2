@@ -902,8 +902,16 @@ function dd_rest_list_documents()
 
     $out = array();
     foreach ($posts as $post) {
+        // Prefer Carbon; fall back to the raw `_document` meta key (Carbon's
+        // storage for the file field) so resolution still works if Carbon isn't
+        // fully booted in this REST context.
         $attachment_id = get__post_meta_by_id($post->ID, 'document');
-        $url           = $attachment_id ? wp_get_attachment_url($attachment_id) : '';
+        if (empty($attachment_id)) {
+            $attachment_id = get_post_meta($post->ID, '_document', true);
+        }
+        $url = (!empty($attachment_id) && is_numeric($attachment_id))
+            ? wp_get_attachment_url((int) $attachment_id)
+            : '';
         $out[] = array(
             'id'    => $post->ID,
             'title' => get_the_title($post),
