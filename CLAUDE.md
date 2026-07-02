@@ -127,27 +127,24 @@ case studies, rentals, landing pages, etc).
   `get__post_meta_by_id($post->ID, 'document')` (Carbon) first, falling back to
   the raw `_document` post meta key if Carbon isn't fully booted in that REST
   context, so the returned `url` doesn't silently come back empty.
-  `save()` emits the literal `[contact-form-7 … pdf_url="…"]` shortcode (via
-  `wp.element.RawHTML`, like a native Shortcode block), but the **authoritative
-  renderer is the `dd_render_cf7_pdf_block()` `render_block` filter in
-  `functions.php`**: it rebuilds the shortcode from the block's *attributes*
-  (`formId`/`formTitle`/`pdfUrl`, reliably stored in the block-comment JSON) and
-  runs `do_shortcode()`. Reconstructing from attributes — rather than trusting the
-  saved inner markup — means an instance still renders correctly even if it was
-  created under an earlier version of the block (whose saved markup was empty),
-  with no manual re-save; the block's `deprecated` entry (`save: () => null`) also
-  lets those older instances validate/migrate in the editor. The chosen PDF is
+  `save()` returns `null`; the block is **rendered server-side by the
+  `dd_render_cf7_pdf_block()` `render_block` filter in `functions.php`**, which
+  rebuilds the shortcode from the block's *attributes* (`formId`/`formTitle`/
+  `pdfUrl`, stored in the block-comment JSON) and runs `do_shortcode()`. Building
+  from attributes (single source of truth) means an instance renders correctly
+  regardless of its saved markup, so no manual re-save is needed. The chosen PDF is
   always stored as a **literal URL** in the `pdfUrl` attribute (a `documents`
   selection is resolved to its file URL at pick-time via the `/dd/v1/documents`
   `url`); `pdfSource`/`pdfDocumentId` are editor UI state only. The emitted
   shortcode is byte-identical to a hand-typed one, so the Dynamic Text Extension
-  `pdf_url` field and the existing `register_cf7_pdf_url_attribute` /
-  `dd_attach_cf7_pdf_url_to_email` logic (see Forms below) behave identically.
-  **Gotcha:** the block was briefly a pure dynamic (`render_callback`, `save: null`)
-  block; that stored only a block comment, so the DTX `pdf_url` field found no
-  shortcode to read. The current design keeps the shortcode in `save()` output for
-  raw-content readers *and* reconstructs it server-side via the `render_block`
-  filter for robustness.
+  `pdf_url` field reads it from the live form's shortcode attributes via
+  `register_cf7_pdf_url_attribute` (and `dd_attach_cf7_pdf_url_to_email`, see Forms
+  below) exactly as for a hand-typed shortcode. **History:** the block went through
+  a dynamic (`render_callback`) then a static (`RawHTML` save) form before settling
+  on `save: null` + `render_block`; a single `deprecated` entry reproducing the
+  static `RawHTML` save lets those interim instances validate and migrate. (The
+  original symptom that drove all this churn — an empty `pdf_url` field — turned out
+  to be an unrelated wrong-form selection, not the block.)
 - Custom fields are registered on the `carbon_fields_register_fields` hook
   (`tissue_paper_register_custom_fields()` in `functions.php`), which requires
   `includes/post-meta.php` — a Carbon Fields 3 `Container::make()` /

@@ -7,12 +7,12 @@
  * picks a CF7 form from a dropdown and chooses a PDF either from the media
  * library or from the Documents post type.
  *
- * This is a STATIC block: save() emits the literal shortcode into the post
- * content, exactly like a native Shortcode block. That way the stored markup —
- * and therefore the Dynamic Text Extension `pdf_url` field and the theme's
- * existing pdf_url resolution — sees the same input as a hand-typed shortcode.
- * The chosen PDF is always stored as a literal URL (a Document is resolved to
- * its file URL at selection time via the /dd/v1/documents endpoint).
+ * save() returns null — the block is rendered server-side by the
+ * dd_render_cf7_pdf_block() `render_block` filter in functions.php, which rebuilds
+ * the shortcode from the stored attributes and runs do_shortcode(). Building from
+ * attributes (single source of truth) is why the chosen PDF is always stored as a
+ * literal URL in `pdfUrl` (a Document is resolved to its file URL at selection time
+ * via /dd/v1/documents), so the emitted shortcode matches a hand-typed one.
  */
 (function (wp) {
 
@@ -42,9 +42,12 @@
             pdfDocumentId: { type: 'number', default: 0 }
         },
 
-        // Migrate instances created under the earlier dynamic version (which
-        // saved an empty block comment). Without this they'd be flagged invalid
-        // and keep their empty markup — so no shortcode would ever be output.
+        // Migrate instances saved under the earlier *static* version, whose
+        // save() wrote the literal shortcode into the block markup. Matching that
+        // here lets Gutenberg validate them and re-serialize to the current
+        // (empty) markup instead of flagging them invalid. (Instances from the
+        // very first dynamic version were already empty, so they match the current
+        // null save() directly and need no deprecation.)
         deprecated: [
             {
                 attributes: {
@@ -54,7 +57,10 @@
                     pdfUrl:        { type: 'string', default: '' },
                     pdfDocumentId: { type: 'number', default: 0 }
                 },
-                save: function () { return null; }
+                save: function (props) {
+                    var sc = buildShortcode(props.attributes);
+                    return sc ? el(RawHTML, null, sc) : null;
+                }
             }
         ],
 
@@ -214,12 +220,10 @@
             );
         },
 
-        // Static block: emit the literal CF7 shortcode into the post content,
-        // exactly like a native Shortcode block.
-        save: function (props) {
-            var sc = buildShortcode(props.attributes);
-            return sc ? el(RawHTML, null, sc) : null;
-        }
+        // Rendered server-side: the dd_render_cf7_pdf_block() `render_block` filter
+        // in functions.php rebuilds the shortcode from the attributes and runs it
+        // through do_shortcode(). Nothing needs to be written to the block markup.
+        save: function () { return null; }
     });
 
 })(window.wp);
