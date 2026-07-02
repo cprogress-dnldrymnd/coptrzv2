@@ -869,9 +869,13 @@ function dd_rest_list_cf7_forms()
     $forms = WPCF7_ContactForm::find(array('posts_per_page' => -1));
     $out   = array();
     foreach ($forms as $form) {
+        // Prefer the hash id (matches hand-typed `id="0b54b62"`); fall back to
+        // the numeric post ID on older CF7 builds without hash() — the CF7
+        // shortcode accepts either.
+        $hash = method_exists($form, 'hash') ? $form->hash() : '';
         $out[] = array(
             'id'    => $form->id(),
-            'hash'  => $form->hash(),
+            'hash'  => $hash ? $hash : (string) $form->id(),
             'title' => $form->title(),
         );
     }
@@ -880,8 +884,10 @@ function dd_rest_list_cf7_forms()
 }
 
 /**
- * Lists published `documents` posts as [{ id, title }] for the block's Document
- * source dropdown. Avoids flipping show_in_rest on the CPT.
+ * Lists published `documents` posts as [{ id, title, url }] for the block's
+ * Document source dropdown. The `url` is the resolved PDF URL (from the CPT's
+ * `document` file field) so the block can store a literal URL — matching the
+ * hand-typed shortcode format. Avoids flipping show_in_rest on the CPT.
  */
 function dd_rest_list_documents()
 {
@@ -896,9 +902,12 @@ function dd_rest_list_documents()
 
     $out = array();
     foreach ($posts as $post) {
+        $attachment_id = get__post_meta_by_id($post->ID, 'document');
+        $url           = $attachment_id ? wp_get_attachment_url($attachment_id) : '';
         $out[] = array(
             'id'    => $post->ID,
             'title' => get_the_title($post),
+            'url'   => $url ? $url : '',
         );
     }
 

@@ -228,69 +228,16 @@ function dd_button_popup_render($block_content, $block)
 add_filter('render_block_core/button', 'dd_button_popup_render', 10, 2);
 
 /**
- * Registers the dynamic `dd/cf7-pdf-form` block — a native editor equivalent of
- * hand-typing `[contact-form-7 id="…" pdf_url="…"]` in a Shortcode block. The
- * block stores only attributes; dd_render_cf7_pdf_block() emits the shortcode so
- * the theme's existing pdf_url resolution (register_cf7_pdf_url_attribute) and
- * email-attachment (dd_attach_cf7_pdf_url_to_email) logic is reused unchanged.
+ * The `dd/cf7-pdf-form` block is a *static* block (registered client-side in
+ * assets/js/dd-cf7-pdf-block.js). Its save() emits the literal
+ * `[contact-form-7 id="…" pdf_url="…"]` shortcode into the post content — exactly
+ * like a native Shortcode block — so the stored markup, and therefore the Dynamic
+ * Text Extension `pdf_url` field and the theme's existing pdf_url resolution
+ * (register_cf7_pdf_url_attribute) / email-attachment (dd_attach_cf7_pdf_url_to_email)
+ * logic, all see the same input as a hand-typed shortcode. No server-side
+ * render_callback is needed; the two /dd/v1 REST endpoints in includes/hooks.php
+ * only back the editor dropdowns.
  */
-function dd_register_cf7_pdf_block()
-{
-    if (!function_exists('register_block_type')) {
-        return;
-    }
-
-    register_block_type('dd/cf7-pdf-form', array(
-        'attributes' => array(
-            'formId'        => array('type' => 'string',  'default' => ''),
-            'formTitle'     => array('type' => 'string',  'default' => ''),
-            'pdfSource'     => array('type' => 'string',  'default' => 'media'),
-            'pdfUrl'        => array('type' => 'string',  'default' => ''),
-            'pdfDocumentId' => array('type' => 'integer', 'default' => 0),
-        ),
-        'render_callback' => 'dd_render_cf7_pdf_block',
-    ));
-}
-add_action('init', 'dd_register_cf7_pdf_block');
-
-/**
- * Render callback for the `dd/cf7-pdf-form` block. Builds and runs the CF7
- * shortcode, passing the chosen PDF as the `pdf_url` attribute — either a media
- * URL (literal) or a `documents` post ID (numeric). Both are understood by
- * register_cf7_pdf_url_attribute(), so no separate resolution is needed here.
- */
-function dd_render_cf7_pdf_block($attributes)
-{
-    $form_id = isset($attributes['formId']) ? trim((string) $attributes['formId']) : '';
-    if ($form_id === '') {
-        return '';
-    }
-
-    // Resolve the pdf_url value from the selected source.
-    $pdf    = '';
-    $source = isset($attributes['pdfSource']) ? $attributes['pdfSource'] : 'media';
-    if ($source === 'document') {
-        $doc_id = isset($attributes['pdfDocumentId']) ? (int) $attributes['pdfDocumentId'] : 0;
-        if ($doc_id > 0) {
-            $pdf = (string) $doc_id;
-        }
-    } else {
-        $pdf = isset($attributes['pdfUrl']) ? esc_url_raw((string) $attributes['pdfUrl']) : '';
-    }
-
-    $title = isset($attributes['formTitle']) ? (string) $attributes['formTitle'] : '';
-
-    $shortcode = '[contact-form-7 id="' . esc_attr($form_id) . '"';
-    if ($title !== '') {
-        $shortcode .= ' title="' . esc_attr($title) . '"';
-    }
-    if ($pdf !== '') {
-        $shortcode .= ' pdf_url="' . esc_attr($pdf) . '"';
-    }
-    $shortcode .= ']';
-
-    return do_shortcode($shortcode);
-}
 
 /**
  * Enqueues the frontend scripts and styles (Frontend only).

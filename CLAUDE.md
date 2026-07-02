@@ -114,6 +114,30 @@ case studies, rentals, landing pages, etc).
   right-hand nav is not shown.
   SCSS for the stacked variant lives in `assets/scss/base/_base.scss` scoped
   to `[data-layout="stacked"]`.
+- `assets/js/dd-cf7-pdf-block.js` — registers the **static** `dd/cf7-pdf-form`
+  block (native editor equivalent of hand-typing
+  `[contact-form-7 id="…" pdf_url="…"]` in a Shortcode block). Editor UI lets
+  the user pick a CF7 form from a dropdown (populated from the `/dd/v1/cf7-forms`
+  REST route, values are the CF7 hash) and a PDF either from the media library
+  (`MediaUpload`) or from the `documents` post type (`/dd/v1/documents` REST
+  route, which returns each document's resolved PDF `url`). Both REST routes are
+  registered in `hooks.php` (`dd_register_cf7_pdf_block_rest_routes`), gated to
+  `edit_posts` capability since CF7/`documents` aren't exposed via public REST.
+  **`save()` emits the literal `[contact-form-7 … pdf_url="…"]` shortcode**
+  (via `wp.element.RawHTML`, exactly like a native Shortcode block) so the stored
+  post content — and therefore the Dynamic Text Extension `pdf_url` field that
+  reads it — is byte-identical to a hand-typed shortcode. The chosen PDF is always
+  stored as a **literal URL** in the `pdfUrl` attribute (a `documents` selection is
+  resolved to its file URL at pick-time via the `/dd/v1/documents` `url`); the
+  `pdfSource`/`pdfDocumentId` attributes are editor UI state only and don't affect
+  the saved shortcode. There is **no server-side render_callback**; the existing
+  `register_cf7_pdf_url_attribute` / `dd_attach_cf7_pdf_url_to_email` logic (see
+  Forms below) applies to the emitted shortcode just as it does to a hand-typed one.
+  **Gotcha:** this block was briefly a dynamic (`render_callback`, `save: null`)
+  block; it was changed to static because a dynamic block stores only a block
+  comment, so the DTX `pdf_url` field found no shortcode text to read and rendered
+  empty. Any block instance saved under the old dynamic version will be flagged
+  invalid in Gutenberg and must be re-inserted.
 - Custom fields are registered on the `carbon_fields_register_fields` hook
   (`tissue_paper_register_custom_fields()` in `functions.php`), which requires
   `includes/post-meta.php` — a Carbon Fields 3 `Container::make()` /
@@ -223,6 +247,10 @@ case studies, rentals, landing pages, etc).
   fallback that maps uploads-dir URLs to their local path (scheme-insensitive
   comparison so http/https/protocol-relative all match). Arbitrary server paths
   outside `wp_get_upload_dir()` are rejected to prevent path-traversal abuse.
+- The `dd/cf7-pdf-form` Gutenberg block (`assets/js/dd-cf7-pdf-block.js`,
+  documented above) is the editor-friendly way to wire up a CF7 form + PDF —
+  it emits the same shortcode shape by hand and reuses this section's
+  resolution/attachment logic unchanged.
 
 ## Conventions / gotchas
 

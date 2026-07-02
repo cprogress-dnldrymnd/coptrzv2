@@ -5,16 +5,30 @@
  * Registers the `dd/cf7-pdf-form` block: a native Gutenberg equivalent of hand
  * typing `[contact-form-7 id="…" pdf_url="…"]` in a Shortcode block. The editor
  * picks a CF7 form from a dropdown and chooses a PDF either from the media
- * library or from the Documents post type. This is a dynamic block — `save`
- * returns null and the PHP render_callback (dd_render_cf7_pdf_block) emits the
- * shortcode, reusing the theme's existing pdf_url resolution/attachment logic.
+ * library or from the Documents post type.
+ *
+ * This is a STATIC block: save() emits the literal shortcode into the post
+ * content, exactly like a native Shortcode block. That way the stored markup —
+ * and therefore the Dynamic Text Extension `pdf_url` field and the theme's
+ * existing pdf_url resolution — sees the same input as a hand-typed shortcode.
+ * The chosen PDF is always stored as a literal URL (a Document is resolved to
+ * its file URL at selection time via the /dd/v1/documents endpoint).
  */
 (function (wp) {
 
     const { registerBlockType }                                = wp.blocks;
-    const { createElement: el, useState, useEffect, Fragment } = wp.element;
+    const { createElement: el, useState, useEffect, Fragment, RawHTML } = wp.element;
     const { InspectorControls, useBlockProps, MediaUpload, MediaUploadCheck } = wp.blockEditor;
     const { PanelBody, SelectControl, Button, BaseControl }    = wp.components;
+
+    function buildShortcode(a) {
+        if (!a.formId) { return ''; }
+        var sc = '[contact-form-7 id="' + a.formId + '"';
+        if (a.formTitle) { sc += ' title="' + a.formTitle + '"'; }
+        if (a.pdfUrl)    { sc += ' pdf_url="' + a.pdfUrl + '"'; }
+        sc += ']';
+        return sc;
+    }
 
     registerBlockType('dd/cf7-pdf-form', {
         title:    'Contact Form + PDF',
@@ -52,13 +66,13 @@
                     .catch(function () { setFormsLoading(false); });
             }, []);
 
-            // Fetch Documents once.
+            // Fetch Documents once (each carries its resolved PDF url).
             useEffect(function () {
                 wp.apiFetch({ path: '/dd/v1/documents' })
                     .then(function (items) {
-                        var options = [{ label: '— Select a document —', value: 0 }].concat(
+                        var options = [{ label: '— Select a document —', value: 0, url: '' }].concat(
                             (items || []).map(function (d) {
-                                return { label: d.title, value: d.id };
+                                return { label: d.title, value: d.id, url: d.url || '' };
                             })
                         );
                         setDocs(options);
@@ -107,7 +121,11 @@
                                 { label: 'Media library', value: 'media' },
                                 { label: 'Document (post type)', value: 'document' }
                             ],
-                            onChange: function (val) { setAttributes({ pdfSource: val }); }
+                            onChange: function (val) {
+                                // Clear the resolved URL so a stale value from the
+                                // other source can't leak into the shortcode.
+                                setAttributes({ pdfSource: val, pdfUrl: '', pdfDocumentId: 0 });
+                            }
                         }),
                         pdfSource === 'media'
                             ? el(
@@ -145,11 +163,16 @@
                             : el(SelectControl, {
                                 label:   'Document',
                                 value:   pdfDocumentId,
+                                help:    (pdfDocumentId && !pdfUrl) ? 'This document has no PDF file attached.' : undefined,
                                 options: docsLoading
                                     ? [{ label: 'Loading…', value: 0 }]
-                                    : docs,
+                                    : docs.map(function (o) { return { label: o.label, value: o.value }; }),
                                 onChange: function (val) {
-                                    setAttributes({ pdfDocumentId: parseInt(val, 10) || 0 });
+                                    var id    = parseInt(val, 10) || 0;
+                                    var match = docs.filter(function (o) { return o.value === id; })[0];
+                                    // Store the document's resolved URL so save()
+                                    // always emits a literal pdf_url.
+                                    setAttributes({ pdfDocumentId: id, pdfUrl: match ? match.url : '' });
                                 }
                             })
                     )
@@ -175,8 +198,12 @@
             );
         },
 
-        // Dynamic block: rendered server-side by dd_render_cf7_pdf_block().
-        save: function () { return null; }
+        // Static block: emit the literal CF7 shortcode into the post content,
+        // exactly like a native Shortcode block.
+        save: function (props) {
+            var sc = buildShortcode(props.attributes);
+            return sc ? el(RawHTML, null, sc) : null;
+        }
     });
 
 })(window.wp);
