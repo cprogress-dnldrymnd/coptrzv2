@@ -827,3 +827,81 @@ function dd_resolve_pdf_url_to_path($value)
     return false;
 }
 
+
+/**
+ * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
+ *
+ * REST endpoints backing the `dd/cf7-pdf-form` block editor dropdowns. Both are
+ * gated to users who can edit posts (the block editor's apiFetch sends the
+ * nonce), so the non-public CF7 and Documents post types are not exposed via
+ * public core REST. Returns lightweight id/title (+ CF7 hash) lists only.
+ */
+function dd_register_cf7_pdf_block_rest_routes()
+{
+    $can_edit = function () {
+        return current_user_can('edit_posts');
+    };
+
+    register_rest_route('dd/v1', '/cf7-forms', array(
+        'methods'             => 'GET',
+        'permission_callback' => $can_edit,
+        'callback'            => 'dd_rest_list_cf7_forms',
+    ));
+
+    register_rest_route('dd/v1', '/documents', array(
+        'methods'             => 'GET',
+        'permission_callback' => $can_edit,
+        'callback'            => 'dd_rest_list_documents',
+    ));
+}
+add_action('rest_api_init', 'dd_register_cf7_pdf_block_rest_routes');
+
+/**
+ * Lists Contact Form 7 forms as [{ id, hash, title }]. The hash is used as the
+ * shortcode `id` (matching hand-typed `[contact-form-7 id="0b54b62" …]`).
+ */
+function dd_rest_list_cf7_forms()
+{
+    if (!class_exists('WPCF7_ContactForm')) {
+        return array();
+    }
+
+    $forms = WPCF7_ContactForm::find(array('posts_per_page' => -1));
+    $out   = array();
+    foreach ($forms as $form) {
+        $out[] = array(
+            'id'    => $form->id(),
+            'hash'  => $form->hash(),
+            'title' => $form->title(),
+        );
+    }
+
+    return $out;
+}
+
+/**
+ * Lists published `documents` posts as [{ id, title }] for the block's Document
+ * source dropdown. Avoids flipping show_in_rest on the CPT.
+ */
+function dd_rest_list_documents()
+{
+    $posts = get_posts(array(
+        'post_type'      => 'documents',
+        'post_status'    => 'publish',
+        'numberposts'    => -1,
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+        'suppress_filters' => false,
+    ));
+
+    $out = array();
+    foreach ($posts as $post) {
+        $out[] = array(
+            'id'    => $post->ID,
+            'title' => get_the_title($post),
+        );
+    }
+
+    return $out;
+}
+
