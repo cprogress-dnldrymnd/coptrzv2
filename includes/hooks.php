@@ -889,11 +889,48 @@ function dd_rest_list_cf7_forms()
 }
 
 /**
+ * Resolves a `documents` post's PDF file URL from its `document` field. Reads the
+ * raw Carbon meta key (`_document`) directly — reliable in any context — and only
+ * falls back to the Carbon API if that is empty.
+ *
+ * @param int $doc_id Documents post ID.
+ * @return string Attachment URL, or '' when none.
+ */
+function dd_document_file_url($doc_id)
+{
+    $attachment_id = get_post_meta($doc_id, '_document', true);
+    if (empty($attachment_id)) {
+        $attachment_id = get__post_meta_by_id($doc_id, 'document');
+    }
+
+    return (!empty($attachment_id) && is_numeric($attachment_id))
+        ? (string) wp_get_attachment_url((int) $attachment_id)
+        : '';
+}
+
+/**
+ * Resolves a `documents` post's "Speak to an expert url" from the raw
+ * `_speak_to_an_expert_url` meta key (Carbon's storage for that text field),
+ * falling back to the Carbon API only if the raw value is empty.
+ *
+ * @param int $doc_id Documents post ID.
+ * @return string The URL, or '' when none.
+ */
+function dd_document_speak_url($doc_id)
+{
+    $speak = get_post_meta($doc_id, '_speak_to_an_expert_url', true);
+    if ($speak === '' || $speak === false || $speak === null) {
+        $speak = get__post_meta_by_id($doc_id, 'speak_to_an_expert_url');
+    }
+
+    return $speak ? (string) $speak : '';
+}
+
+/**
  * Lists published `documents` posts as [{ id, title, url, speak_url }] for the
- * block's Document source dropdown. `url` is the resolved PDF URL (from the CPT's
- * `document` file field) and `speak_url` is the CPT's `speak_to_an_expert_url`
- * field, so the block can store literal URLs — matching the hand-typed shortcode
- * format. Avoids flipping show_in_rest on the CPT.
+ * block's Document source dropdown, using the resolvers above so `url` (PDF) and
+ * `speak_url` come straight from the CPT's meta. Avoids flipping show_in_rest on
+ * the CPT.
  */
 function dd_rest_list_documents()
 {
@@ -908,28 +945,11 @@ function dd_rest_list_documents()
 
     $out = array();
     foreach ($posts as $post) {
-        // Prefer Carbon; fall back to the raw `_document` meta key (Carbon's
-        // storage for the file field) so resolution still works if Carbon isn't
-        // fully booted in this REST context.
-        $attachment_id = get__post_meta_by_id($post->ID, 'document');
-        if (empty($attachment_id)) {
-            $attachment_id = get_post_meta($post->ID, '_document', true);
-        }
-        $url = (!empty($attachment_id) && is_numeric($attachment_id))
-            ? wp_get_attachment_url((int) $attachment_id)
-            : '';
-
-        // Same Carbon-then-raw fallback for the `speak_to_an_expert_url` text field.
-        $speak_url = get__post_meta_by_id($post->ID, 'speak_to_an_expert_url');
-        if (empty($speak_url)) {
-            $speak_url = get_post_meta($post->ID, '_speak_to_an_expert_url', true);
-        }
-
         $out[] = array(
             'id'        => $post->ID,
             'title'     => get_the_title($post),
-            'url'       => $url ? $url : '',
-            'speak_url' => $speak_url ? (string) $speak_url : '',
+            'url'       => dd_document_file_url($post->ID),
+            'speak_url' => dd_document_speak_url($post->ID),
         );
     }
 

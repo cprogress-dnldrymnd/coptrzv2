@@ -258,6 +258,27 @@ function dd_render_cf7_pdf_block($block_content, $block)
     $pdf   = isset($attrs['pdfUrl']) ? (string) $attrs['pdfUrl'] : '';
     $speak = isset($attrs['speakUrl']) ? (string) $attrs['speakUrl'] : '';
 
+    // For the Document source, resolve the PDF and speak-to-an-expert URLs fresh
+    // from the document so they're always current (and correct even if the block
+    // was configured before these values existed). Only override when a value is
+    // found, so a stored value is never clobbered with an empty one.
+    $source = isset($attrs['pdfSource']) ? $attrs['pdfSource'] : 'media';
+    $doc_id = isset($attrs['pdfDocumentId']) ? (int) $attrs['pdfDocumentId'] : 0;
+    if ($source === 'document' && $doc_id > 0) {
+        if (function_exists('dd_document_file_url')) {
+            $doc_pdf = dd_document_file_url($doc_id);
+            if ($doc_pdf !== '') {
+                $pdf = $doc_pdf;
+            }
+        }
+        if (function_exists('dd_document_speak_url')) {
+            $doc_speak = dd_document_speak_url($doc_id);
+            if ($doc_speak !== '') {
+                $speak = $doc_speak;
+            }
+        }
+    }
+
     $shortcode = '[contact-form-7 id="' . esc_attr($form_id) . '"';
     if ($title !== '') {
         $shortcode .= ' title="' . esc_attr($title) . '"';

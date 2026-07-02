@@ -127,6 +127,14 @@
                 userSelect: 'all'
             };
 
+            // For a Document source, show the document's *live* speak url (from the
+            // fetched list) so it stays accurate even for a block configured before
+            // this field existed; for Media it's the manually-entered custom URL.
+            var selectedDoc = docs.filter(function (o) { return o.value === pdfDocumentId; })[0];
+            var effectiveSpeakUrl = (pdfSource === 'document')
+                ? (selectedDoc ? selectedDoc.speakUrl : speakUrl)
+                : speakUrl;
+
             return el(
                 Fragment,
                 null,
@@ -239,11 +247,11 @@
                                 el('div', {
                                     style: {
                                         fontSize: '12px',
-                                        color: speakUrl ? '#1e1e1e' : '#757575',
+                                        color: effectiveSpeakUrl ? '#1e1e1e' : '#757575',
                                         wordBreak: 'break-all',
                                         padding: '6px 0'
                                     }
-                                }, speakUrl ? speakUrl : 'This document has no “Speak to an expert url” set.')
+                                }, effectiveSpeakUrl ? effectiveSpeakUrl : 'This document has no “Speak to an expert url” set.')
                             )
                     )
                 ),
@@ -264,7 +272,7 @@
                         el('div', { style: { marginTop: '2px', fontSize: '13px', color: '#1e1e1e' } },
                             pdfSummary()),
                         el('div', { style: { marginTop: '2px', fontSize: '13px', color: '#1e1e1e' } },
-                            speakUrl ? 'Speak to an expert: ' + speakUrl : 'No speak-to-an-expert URL'),
+                            effectiveSpeakUrl ? 'Speak to an expert: ' + effectiveSpeakUrl : 'No speak-to-an-expert URL'),
                         el('div', {
                             style: {
                                 marginTop: '12px',

@@ -123,24 +123,25 @@ case studies, rentals, landing pages, etc).
   route, which returns each document's resolved PDF `url`). Both REST routes are
   registered in `hooks.php` (`dd_register_cf7_pdf_block_rest_routes`), gated to
   `edit_posts` capability since CF7/`documents` aren't exposed via public REST.
-  `/dd/v1/documents` resolves each document's attachment ID via
-  `get__post_meta_by_id($post->ID, 'document')` (Carbon) first, falling back to
-  the raw `_document` post meta key if Carbon isn't fully booted in that REST
-  context, so the returned `url` doesn't silently come back empty.
+  `/dd/v1/documents` resolves each document's PDF `url` and `speak_url` through the
+  `dd_document_file_url()` / `dd_document_speak_url()` helpers (also in `hooks.php`),
+  which read the **raw Carbon meta keys `_document` / `_speak_to_an_expert_url`
+  directly** (reliable in any context) and only fall back to the Carbon API if that
+  is empty — Carbon's `carbon_get_*` had been returning empty in the REST request,
+  so reading the raw key first is what makes these resolve.
   `save()` returns `null`; the block is **rendered server-side by the
   `dd_render_cf7_pdf_block()` `render_block` filter in `functions.php`**, which
   rebuilds the shortcode from the block's *attributes* (`formId`/`formTitle`/
   `pdfUrl`/`speakUrl`, stored in the block-comment JSON) and runs `do_shortcode()`.
   Building from attributes (single source of truth) means an instance renders
-  correctly regardless of its saved markup, so no manual re-save is needed. The
-  chosen PDF is always stored as a **literal URL** in the `pdfUrl` attribute (a
-  `documents` selection is resolved to its file URL at pick-time via the
-  `/dd/v1/documents` `url`); `speakUrl` likewise holds a **literal URL** for the
-  `speak_to_an_expert_url` shortcode attribute — for a **Media** source it's a
-  custom URL typed directly, for a **Document** source it's resolved at pick-time
-  from that document's `speak_to_an_expert_url` field (via `/dd/v1/documents`
-  `speak_url`, same Carbon-then-raw `_speak_to_an_expert_url` fallback as the PDF).
-  `pdfSource`/`pdfDocumentId` are editor UI state only. The emitted shortcode is
+  correctly regardless of its saved markup, so no manual re-save is needed. For a
+  **Media** source the `pdfUrl`/`speakUrl` attributes hold literal URLs entered/
+  picked in the editor (PDF from `MediaUpload`, speak URL typed directly). For a
+  **Document** source the render filter **re-resolves the PDF and speak URLs fresh
+  from the document** (`pdfDocumentId`) via the same helpers, so they're always
+  current and correct even for a block configured before those values existed (the
+  stored attributes are only a fallback, and the editor likewise shows the document's
+  *live* `speak_url` from the fetched list). The emitted shortcode is
   byte-identical to a hand-typed one. **Form requirement (surfaced as notes in the
   block's editor UI — the canvas placeholder and the relevant controls' `help`
   text):** the selected CF7 form must contain the matching hidden field(s):
