@@ -76,7 +76,13 @@ case studies, rentals, landing pages, etc).
   unchanged; purely CSS-driven, no frontend JS changes needed — in
   `_base.scss`, `[data-nav-position="left"]` sets `flex-direction: row-reverse`
   on the wrapper and mirrors `.dd-vtab-button` text-align, the `:before` accent
-  bar side, and the active-state padding side to match). Key attributes on
+  bar side, and the active-state padding side to match), `navPlacement`
+  (`top` default | `bottom` — horizontal layout only; whether the tab nav row
+  sits above or below the panels; only `bottom` is emitted as
+  `data-nav-placement` on `.dd-tabs-wrapper`, so existing horizontal blocks
+  serialize unchanged; `dd-tabs-frontend.js` appends `.dd-tabs-nav-desktop` to
+  the end of the wrapper instead of inserting it first when this is set).
+  Key attributes on
   `dd/tab-panel`: `tabTitle` (string), `tabDescription` (string, optional —
   stacked layout only; emitted as `data-tab-description` on the panel element,
   shown beneath the title in the right-hand nav when that tab is active; omitted
