@@ -228,16 +228,47 @@ function dd_button_popup_render($block_content, $block)
 add_filter('render_block_core/button', 'dd_button_popup_render', 10, 2);
 
 /**
- * The `dd/cf7-pdf-form` block is a *static* block (registered client-side in
+ * The `dd/cf7-pdf-form` block (registered client-side in
  * assets/js/dd-cf7-pdf-block.js). Its save() emits the literal
- * `[contact-form-7 id="…" pdf_url="…"]` shortcode into the post content — exactly
- * like a native Shortcode block — so the stored markup, and therefore the Dynamic
- * Text Extension `pdf_url` field and the theme's existing pdf_url resolution
- * (register_cf7_pdf_url_attribute) / email-attachment (dd_attach_cf7_pdf_url_to_email)
- * logic, all see the same input as a hand-typed shortcode. No server-side
- * render_callback is needed; the two /dd/v1 REST endpoints in includes/hooks.php
- * only back the editor dropdowns.
+ * `[contact-form-7 id="…" pdf_url="…"]` shortcode into the post content, but this
+ * `render_block` filter is the authoritative renderer: it rebuilds the shortcode
+ * from the block's *attributes* (reliably stored in the block-comment JSON) and
+ * runs it through do_shortcode(). Reconstructing from attributes — rather than
+ * trusting the saved inner markup — means an instance still renders correctly even
+ * if it was created under an earlier version of the block (whose saved markup was
+ * empty), without needing a manual re-save. The emitted shortcode is byte-for-byte
+ * what a hand-typed one is, so the Dynamic Text Extension `pdf_url` field and the
+ * existing register_cf7_pdf_url_attribute / dd_attach_cf7_pdf_url_to_email logic
+ * all behave identically. The two /dd/v1 REST endpoints in includes/hooks.php only
+ * back the editor dropdowns.
  */
+function dd_render_cf7_pdf_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'dd/cf7-pdf-form') {
+        return $block_content;
+    }
+
+    $attrs   = isset($block['attrs']) ? $block['attrs'] : array();
+    $form_id = isset($attrs['formId']) ? trim((string) $attrs['formId']) : '';
+    if ($form_id === '') {
+        return $block_content;
+    }
+
+    $title = isset($attrs['formTitle']) ? (string) $attrs['formTitle'] : '';
+    $pdf   = isset($attrs['pdfUrl']) ? (string) $attrs['pdfUrl'] : '';
+
+    $shortcode = '[contact-form-7 id="' . esc_attr($form_id) . '"';
+    if ($title !== '') {
+        $shortcode .= ' title="' . esc_attr($title) . '"';
+    }
+    if ($pdf !== '') {
+        $shortcode .= ' pdf_url="' . esc_attr($pdf) . '"';
+    }
+    $shortcode .= ']';
+
+    return do_shortcode($shortcode);
+}
+add_filter('render_block', 'dd_render_cf7_pdf_block', 10, 2);
 
 /**
  * Enqueues the frontend scripts and styles (Frontend only).

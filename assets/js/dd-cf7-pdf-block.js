@@ -42,6 +42,22 @@
             pdfDocumentId: { type: 'number', default: 0 }
         },
 
+        // Migrate instances created under the earlier dynamic version (which
+        // saved an empty block comment). Without this they'd be flagged invalid
+        // and keep their empty markup — so no shortcode would ever be output.
+        deprecated: [
+            {
+                attributes: {
+                    formId:        { type: 'string', default: '' },
+                    formTitle:     { type: 'string', default: '' },
+                    pdfSource:     { type: 'string', default: 'media' },
+                    pdfUrl:        { type: 'string', default: '' },
+                    pdfDocumentId: { type: 'number', default: 0 }
+                },
+                save: function () { return null; }
+            }
+        ],
+
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const { formId, formTitle, pdfSource, pdfUrl, pdfDocumentId } = attributes;
