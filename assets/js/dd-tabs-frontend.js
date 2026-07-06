@@ -113,6 +113,16 @@ document.addEventListener('DOMContentLoaded', function () {
         wrapper.appendChild(navVertical);
         wrapper.appendChild(mobileDesc);
 
+        // On the ≤991px horizontal strip, let a vertical mouse wheel scroll the
+        // nav sideways (desktop has no other way to reach overflowed tabs; touch
+        // swipes natively). No-op while the nav isn't horizontally overflowing.
+        navVertical.addEventListener('wheel', function (e) {
+            if (navVertical.scrollWidth <= navVertical.clientWidth) return;
+            if (e.deltaY === 0) return;
+            e.preventDefault();
+            navVertical.scrollLeft += e.deltaY;
+        }, { passive: false });
+
         activate(0);
     }
 

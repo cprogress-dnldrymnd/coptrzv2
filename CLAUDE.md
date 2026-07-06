@@ -111,7 +111,13 @@ case studies, rentals, landing pages, etc).
   `.dd-tabs-content-area` take over; clicking an open accordion header collapses
   it. When a `tabDescription` is set, a `.dd-tab-panel-desc` div is prepended to
   the panel so the description is visible in the accordion (mobile) view where the
-  right-hand nav is not shown.
+  right-hand nav is not shown. When accordion conversion is **off**
+  (`data-accordion-breakpoint="none"`), `buildVerticalTabs()` also appends a
+  shared `.dd-tabs-mobile-desc` div after the nav; at ≤991px CSS turns
+  `.dd-tabs-nav-vertical` into a horizontal scrollable strip of tab titles
+  (underline on the active title instead of the side bar, per-button
+  `.dd-vtab-desc` hidden) and `.dd-tabs-mobile-desc` shows the active tab's
+  description below it — `activate()` keeps that div's text in sync on click.
   SCSS for the stacked variant lives in `assets/scss/base/_base.scss` scoped
   to `[data-layout="stacked"]`.
 - `assets/js/dd-cf7-pdf-block.js` — registers the **static** `dd/cf7-pdf-form`
