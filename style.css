@@ -13141,6 +13141,13 @@ ul.is-swiper-slider,
   color: #4b5563;
   margin-bottom: 1rem; }
 
+/* Shared active-tab description: only used on the ≤991px horizontal strip */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-mobile-desc {
+  display: none;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.55; }
+
 /* -----------------------------------------
    Stacked → Accordion conversion
    Mirrors the horizontal layout: when "Enable Accordion Conversion" is on, the
@@ -13173,15 +13180,63 @@ ul.is-swiper-slider,
     .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] .dd-tab-panel-desc {
       display: block; }
     .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] .dd-accordion-button {
-      display: flex; }
-
-  /* Accordion disabled: simply stack the two columns vertically */
+      display: flex; } }
+/* -----------------------------------------
+   Stacked, accordion OFF, ≤991px:
+   content on top, a horizontal scrollable strip of tab titles below it (active
+   title underlined), then the active tab's description underneath.
+----------------------------------------- */
+@media (max-width: 991px) {
   .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] {
-    flex-direction: column; }
-    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-content-area,
-    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-nav-vertical {
+    flex-direction: column;
+    align-items: stretch;
+    /* 1. Content */
+    /* 2. Horizontal, swipeable nav strip */
+    /* Active indicator becomes an underline instead of a side bar */
+    /* The per-button description is hidden; the shared one shows below */
+    /* 3. Active description under the strip */ }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-content-area {
+      order: 1;
       flex-basis: 100%;
-      min-width: 0; } }
+      width: 100%;
+      min-width: 0; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-nav-vertical {
+      order: 2;
+      flex-basis: 100%;
+      min-width: 0;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      /* hide scrollbar (Firefox) */ }
+      .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-nav-vertical::-webkit-scrollbar {
+        display: none;
+        /* hide scrollbar (WebKit) */ }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-vtab-button {
+      width: auto;
+      flex: 0 0 auto;
+      white-space: nowrap;
+      padding: 0 0 0.5rem;
+      /* room for the underline */ }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-vtab-button:before {
+      top: auto;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-vtab-button.active {
+      padding-left: 0;
+      padding-right: 0; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-vtab-button.active:before {
+      width: 100%;
+      height: 2px; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-vtab-desc {
+      display: none !important; }
+    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-mobile-desc {
+      order: 3;
+      flex-basis: 100%;
+      display: block; } }
 .border-left-styled {
   position: relative; }
   .border-left-styled:before {

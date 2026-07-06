@@ -28,8 +28,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const navVertical = document.createElement('div');
         navVertical.className = 'dd-tabs-nav-vertical';
 
+        // Shared description shown below the nav on the ≤991px horizontal strip
+        // (accordion off) — the per-button descriptions can't be lifted out of
+        // the scrolling nav via CSS alone.
+        const mobileDesc = document.createElement('div');
+        mobileDesc.className = 'dd-tabs-mobile-desc';
+
         const navButtons = [];
         const accordionButtons = [];
+        const descriptions = [];
 
         const setActive = function (i, isActive) {
             panels[i].classList.toggle('active', isActive);
@@ -42,11 +49,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const activate = function (targetIndex) {
             panels.forEach(function (p, i) { setActive(i, i === targetIndex); });
+            mobileDesc.textContent = descriptions[targetIndex] || '';
         };
 
         panels.forEach(function (panel, index) {
             const title = panel.getAttribute('data-tab-title') || 'Tab';
             const desc = panel.getAttribute('data-tab-description') || '';
+            descriptions.push(desc);
 
             // --- Right-column nav tab (desktop) ---
             const btn = document.createElement('button');
@@ -99,8 +108,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Left first, nav second; CSS arranges them as two columns.
+        // mobileDesc is only shown on the ≤991px horizontal strip.
         wrapper.appendChild(contentArea);
         wrapper.appendChild(navVertical);
+        wrapper.appendChild(mobileDesc);
 
         activate(0);
     }
