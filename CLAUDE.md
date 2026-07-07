@@ -118,6 +118,11 @@ case studies, rentals, landing pages, etc).
   (underline on the active title instead of the side bar, per-button
   `.dd-vtab-desc` hidden) and `.dd-tabs-mobile-desc` shows the active tab's
   description below it — `activate()` keeps that div's text in sync on click.
+  The wrapper is `display: block` (not flex) at this breakpoint so the strip
+  can't be clipped by a flex sibling, and `navVertical` gets a `wheel` listener
+  that redirects vertical wheel deltas into `scrollLeft` (no-op unless the strip
+  is actually overflowing) since desktop mice have no other way to reach
+  overflowed tabs there — touch swipes work natively.
   SCSS for the stacked variant lives in `assets/scss/base/_base.scss` scoped
   to `[data-layout="stacked"]`.
 - `assets/js/dd-cf7-pdf-block.js` — registers the **static** `dd/cf7-pdf-form`
@@ -277,6 +282,28 @@ case studies, rentals, landing pages, etc).
   documented above) is the editor-friendly way to wire up a CF7 form + PDF —
   it emits the same shortcode shape by hand and reuses this section's
   resolution/attachment logic unchanged.
+
+### OpenAI Ads conversion tracking
+
+- Two-tier opt-in, both in `includes/hooks.php` (`dd_inject_openai_ads_base_pixel`
+  on `wp_head`, `dd_inject_openai_ads_cf7_listener` on `wp_footer`) driven by
+  Carbon Fields defined in `post-meta.php`:
+  - Site-wide base pixel: `__openai_ads_fields()`, a "OpenAI Ads" tab on
+    `theme_options` (`openai_ads_enable` + `openai_ads_pixel_id`). Once enabled,
+    loads the `oaiq` measurement pixel (`window.oaiq` queue shim +
+    `bzrcdn.openai.com/sdk/oaiq.min.js`) on every page.
+  - Per-page conversion reporting: `__openai_ads_conversion_fields()`, an
+    "OpenAI Ads Conversion" tab on the same `post_meta` "Hero" container used by
+    `page`/`product`/`post`/`capabilities`/`casestudies`/`industries`/`events`/
+    `guides`/`rentals`/`landingpages` (`openai_ads_conversion_enable`, an
+    `association` field picking a single `wpcf7_contact_form` post, plus
+    `openai_ads_conversion_type` (default `lead`) and
+    `openai_ads_conversion_content_name` (defaults to the page title)).
+- On the frontend, listens for the native `wpcf7mailsent` event (not
+  onclick/onsubmit — CF7 submits via AJAX, and the event fires after a
+  validated submission even from a form inside a modal/popup) and, if
+  `event.detail.contactFormId` matches the configured form, calls
+  `window.oaiq("measure", "lead", { type, content_name }, { event_id })`.
 
 ## Conventions / gotchas
 

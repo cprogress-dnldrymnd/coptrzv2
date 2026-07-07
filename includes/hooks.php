@@ -466,6 +466,82 @@ function hero_form_redirect()
 
 add_action('wp_footer', 'hero_form_redirect');
 
+/**
+ * OpenAI Ads Conversion Tracking
+ *
+ * Injects the OpenAI Ads base measurement pixel site-wide once enabled under
+ * Theme Settings > OpenAI Ads, and, on any page opting in via the "OpenAI Ads
+ * Conversion" tab (see __openai_ads_conversion_fields() in post-meta.php),
+ * listens for a successful Contact Form 7 submission matching the configured
+ * form and reports it as a conversion. Since CF7 submits over AJAX, onclick/
+ * onsubmit handlers are unreliable, so we listen for the native
+ * `wpcf7mailsent` event instead (fires only after a validated submission,
+ * regardless of the form being inside a modal).
+ */
+function dd_inject_openai_ads_base_pixel()
+{
+    if (!get__theme_option('openai_ads_enable')) {
+        return;
+    }
+
+    $pixel_id = get__theme_option('openai_ads_pixel_id');
+
+    if (!$pixel_id) {
+        return;
+    }
+?>
+    <!-- OpenAI Ads Measurement Pixel -->
+    <script>
+        window.oaiq = window.oaiq || function() {
+            (window.oaiq.q = window.oaiq.q || []).push(arguments);
+        };
+        oaiq("init", { pixelId: <?= wp_json_encode($pixel_id) ?> });
+    </script>
+    <script async src="https://bzrcdn.openai.com/sdk/oaiq.min.js"></script>
+    <!-- End OpenAI Ads Measurement Pixel -->
+<?php
+}
+add_action('wp_head', 'dd_inject_openai_ads_base_pixel', 10);
+
+function dd_inject_openai_ads_cf7_listener()
+{
+    if (!get__theme_option('openai_ads_enable') || !get__post_meta('openai_ads_conversion_enable')) {
+        return;
+    }
+
+    $form = get__post_meta('openai_ads_conversion_form');
+    $form_id = isset($form[0]['id']) ? (int) $form[0]['id'] : 0;
+
+    if (!$form_id) {
+        return;
+    }
+
+    $conversion_type = get__post_meta('openai_ads_conversion_type') ?: 'lead';
+    $content_name = get__post_meta('openai_ads_conversion_content_name') ?: get_the_title();
+?>
+    <script>
+        document.addEventListener('wpcf7mailsent', function(event) {
+            if (<?= $form_id ?> !== event.detail.contactFormId) {
+                return;
+            }
+
+            if (typeof window.oaiq !== 'function') {
+                console.error('OpenAI Ads tracking: window.oaiq is undefined. Ensure the base pixel is enabled under Theme Settings > OpenAI Ads.');
+                return;
+            }
+
+            window.oaiq("measure", "lead", {
+                type: <?= wp_json_encode($conversion_type) ?>,
+                content_name: <?= wp_json_encode($content_name) ?>,
+            }, {
+                event_id: 'lead_' + Date.now(),
+            });
+        }, false);
+    </script>
+<?php
+}
+add_action('wp_footer', 'dd_inject_openai_ads_cf7_listener', 20);
+
 
 /**
  * Add a new admin bar menu item.
