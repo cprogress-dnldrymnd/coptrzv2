@@ -289,7 +289,10 @@ case studies, rentals, landing pages, etc).
   on `wp_head`, `dd_inject_openai_ads_cf7_listener` on `wp_footer`), driven by
   Carbon Fields defined in `post-meta.php`:
   - Pixel ID / global enable: `__openai_ads_fields()`, an "OpenAI Ads" tab on
-    `theme_options` (`openai_ads_enable` + `openai_ads_pixel_id`).
+    `theme_options` (`openai_ads_enable` + `openai_ads_pixel_id` +
+    `openai_ads_debug` — passed as `debug` in the `oaiq("init", ...)` call to
+    log pixel SDK activity to the browser console; both `pixel_id` and `debug`
+    fields are gated behind `openai_ads_enable` via conditional logic).
   - Per-page conversion opt-in: `__openai_ads_conversion_fields()`, an
     "OpenAI Ads Conversion" tab on the same `post_meta` "Hero" container used by
     `page`/`product`/`post`/`capabilities`/`casestudies`/`industries`/`events`/
