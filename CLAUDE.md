@@ -294,9 +294,11 @@ case studies, rentals, landing pages, etc).
     "OpenAI Ads Conversion" tab on the same `post_meta` "Hero" container used by
     `page`/`product`/`post`/`capabilities`/`casestudies`/`industries`/`events`/
     `guides`/`rentals`/`landingpages` (`openai_ads_conversion_enable`, an
-    `association` field picking a single `wpcf7_contact_form` post, plus
-    `openai_ads_conversion_type` (default `lead`) and
-    `openai_ads_conversion_content_name` (defaults to the page title)).
+    `association` field picking a single `wpcf7_contact_form` post, plus a
+    `openai_ads_conversion_event` select — `lead_created` (default),
+    `registration_completed`, `appointment_scheduled`, or `custom` — and
+    `openai_ads_conversion_custom_event_name` (text, shown only when
+    `custom` is selected)).
 - `dd_inject_openai_ads_base_pixel` requires **both** `openai_ads_enable`
   (theme-wide) and `openai_ads_conversion_enable` (per-page) to be true — the
   base pixel (`window.oaiq` queue shim + `bzrcdn.openai.com/sdk/oaiq.min.js`)
@@ -306,7 +308,13 @@ case studies, rentals, landing pages, etc).
   onclick/onsubmit — CF7 submits via AJAX, and the event fires after a
   validated submission even from a form inside a modal/popup) and, if
   `event.detail.contactFormId` matches the configured form, calls
-  `window.oaiq("measure", "lead", { type, content_name }, { event_id })`.
+  `window.oaiq("measure", eventName, { type }, { event_id, custom_event_name? })`.
+  `eventName` is the raw `openai_ads_conversion_event` value; `type` is derived
+  server-side in `dd_inject_openai_ads_cf7_listener()` via an `$event_shapes` map
+  (`lead_created`/`registration_completed`/`appointment_scheduled` →
+  `customer_action`, `custom` → `custom`). `custom_event_name` is only added to
+  the options object when the event is `custom` and a name was set — matches
+  OpenAI Ads' measurement pixel event shapes (developers.openai.com/ads/measurement-pixel).
 
 ## Conventions / gotchas
 

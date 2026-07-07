@@ -516,8 +516,15 @@ function dd_inject_openai_ads_cf7_listener()
         return;
     }
 
-    $conversion_type = get__post_meta('openai_ads_conversion_type') ?: 'lead';
-    $content_name = get__post_meta('openai_ads_conversion_content_name') ?: get_the_title();
+    $event_name = get__post_meta('openai_ads_conversion_event') ?: 'lead_created';
+    $event_shapes = array(
+        'lead_created'           => 'customer_action',
+        'registration_completed' => 'customer_action',
+        'appointment_scheduled'  => 'customer_action',
+        'custom'                 => 'custom',
+    );
+    $event_type = isset($event_shapes[$event_name]) ? $event_shapes[$event_name] : 'customer_action';
+    $custom_event_name = get__post_meta('openai_ads_conversion_custom_event_name');
 ?>
     <script>
         document.addEventListener('wpcf7mailsent', function(event) {
@@ -530,12 +537,14 @@ function dd_inject_openai_ads_cf7_listener()
                 return;
             }
 
-            window.oaiq("measure", "lead", {
-                type: <?= wp_json_encode($conversion_type) ?>,
-                content_name: <?= wp_json_encode($content_name) ?>,
-            }, {
-                event_id: 'lead_' + Date.now(),
-            });
+            var options = { event_id: 'evt_' + Date.now() };
+            <?php if ($event_name === 'custom' && $custom_event_name) : ?>
+            options.custom_event_name = <?= wp_json_encode($custom_event_name) ?>;
+            <?php endif; ?>
+
+            window.oaiq("measure", <?= wp_json_encode($event_name) ?>, {
+                type: <?= wp_json_encode($event_type) ?>,
+            }, options);
         }, false);
     </script>
 <?php

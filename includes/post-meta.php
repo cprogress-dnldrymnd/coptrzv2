@@ -1367,9 +1367,17 @@ function __openai_ads_conversion_fields()
                     )
                 )
             ),
-        Field::make('text', 'openai_ads_conversion_type', __('Conversion Type'))->set_classes('inline-field')
-            ->set_default_value('lead')
-            ->set_help_text('Sent as the "type" property on the conversion event, e.g. lead, guide_download.')
+        Field::make('select', 'openai_ads_conversion_event', __('Conversion Event'))->set_classes('inline-field')
+            ->set_options(
+                array(
+                    'lead_created'           => 'Lead Created',
+                    'registration_completed' => 'Registration Completed',
+                    'appointment_scheduled'  => 'Appointment Scheduled',
+                    'custom'                 => 'Custom Event',
+                )
+            )
+            ->set_default_value('lead_created')
+            ->set_help_text('The event name/shape sent to OpenAI Ads (see developers.openai.com/ads/measurement-pixel).')
             ->set_conditional_logic(
                 array(
                     array(
@@ -1378,13 +1386,17 @@ function __openai_ads_conversion_fields()
                     )
                 )
             ),
-        Field::make('text', 'openai_ads_conversion_content_name', __('Content Name'))->set_classes('inline-field')
-            ->set_help_text('Sent as the "content_name" property on the conversion event. Defaults to the page title if left blank.')
+        Field::make('text', 'openai_ads_conversion_custom_event_name', __('Custom Event Name'))->set_classes('inline-field')
+            ->set_help_text('Required when Conversion Event is "Custom Event" — sent as the "custom_event_name" option.')
             ->set_conditional_logic(
                 array(
                     array(
                         'field' => 'openai_ads_conversion_enable',
                         'value' => true,
+                    ),
+                    array(
+                        'field' => 'openai_ads_conversion_event',
+                        'value' => 'custom',
                     )
                 )
             ),
