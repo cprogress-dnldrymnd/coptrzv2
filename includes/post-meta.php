@@ -353,7 +353,17 @@ function __openai_ads_fields()
     return array(
         Field::make('checkbox', 'openai_ads_enable', __('Enable OpenAI Ads Conversion Tracking'))->set_classes('inline-field'),
         Field::make('text', 'openai_ads_pixel_id', __('Pixel ID'))->set_classes('inline-field')
-            ->set_help_text('The OpenAI Ads Measurement Pixel ID for this account. Loaded site-wide once enabled; individual pages/forms opt in to reporting conversions via the "OpenAI Ads Conversion" tab on that page.')
+            ->set_help_text('The OpenAI Ads Measurement Pixel ID for this account. Loaded on pages that opt in via the "OpenAI Ads Conversion" tab on that page.')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'openai_ads_enable',
+                        'value' => true,
+                    )
+                )
+            ),
+        Field::make('checkbox', 'openai_ads_debug', __('Debug Mode'))->set_classes('inline-field')
+            ->set_help_text('Logs pixel SDK activity to the browser console. Turn off once you\'ve confirmed conversions are firing correctly.')
             ->set_conditional_logic(
                 array(
                     array(

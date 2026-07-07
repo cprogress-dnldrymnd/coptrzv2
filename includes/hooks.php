@@ -489,13 +489,15 @@ function dd_inject_openai_ads_base_pixel()
     if (!$pixel_id) {
         return;
     }
+
+    $debug = (bool) get__theme_option('openai_ads_debug');
 ?>
     <!-- OpenAI Ads Measurement Pixel -->
     <script>
         window.oaiq = window.oaiq || function() {
             (window.oaiq.q = window.oaiq.q || []).push(arguments);
         };
-        oaiq("init", { pixelId: <?= wp_json_encode($pixel_id) ?> });
+        oaiq("init", { pixelId: <?= wp_json_encode($pixel_id) ?>, debug: <?= $debug ? 'true' : 'false' ?> });
     </script>
     <script async src="https://bzrcdn.openai.com/sdk/oaiq.min.js"></script>
     <!-- End OpenAI Ads Measurement Pixel -->
