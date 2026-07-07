@@ -469,18 +469,19 @@ add_action('wp_footer', 'hero_form_redirect');
 /**
  * OpenAI Ads Conversion Tracking
  *
- * Injects the OpenAI Ads base measurement pixel site-wide once enabled under
- * Theme Settings > OpenAI Ads, and, on any page opting in via the "OpenAI Ads
- * Conversion" tab (see __openai_ads_conversion_fields() in post-meta.php),
- * listens for a successful Contact Form 7 submission matching the configured
- * form and reports it as a conversion. Since CF7 submits over AJAX, onclick/
- * onsubmit handlers are unreliable, so we listen for the native
+ * The Pixel ID lives globally under Theme Settings > OpenAI Ads, but the base
+ * pixel itself only renders on pages that opt in via the "OpenAI Ads
+ * Conversion" tab (see __openai_ads_conversion_fields() in post-meta.php) —
+ * keeps the script off pages with no conversion configured. On those pages we
+ * also listen for a successful Contact Form 7 submission matching the
+ * configured form and report it as a conversion. Since CF7 submits over AJAX,
+ * onclick/onsubmit handlers are unreliable, so we listen for the native
  * `wpcf7mailsent` event instead (fires only after a validated submission,
  * regardless of the form being inside a modal).
  */
 function dd_inject_openai_ads_base_pixel()
 {
-    if (!get__theme_option('openai_ads_enable')) {
+    if (!get__theme_option('openai_ads_enable') || !get__post_meta('openai_ads_conversion_enable')) {
         return;
     }
 

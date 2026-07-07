@@ -285,20 +285,23 @@ case studies, rentals, landing pages, etc).
 
 ### OpenAI Ads conversion tracking
 
-- Two-tier opt-in, both in `includes/hooks.php` (`dd_inject_openai_ads_base_pixel`
-  on `wp_head`, `dd_inject_openai_ads_cf7_listener` on `wp_footer`) driven by
+- Both pieces live in `includes/hooks.php` (`dd_inject_openai_ads_base_pixel`
+  on `wp_head`, `dd_inject_openai_ads_cf7_listener` on `wp_footer`), driven by
   Carbon Fields defined in `post-meta.php`:
-  - Site-wide base pixel: `__openai_ads_fields()`, a "OpenAI Ads" tab on
-    `theme_options` (`openai_ads_enable` + `openai_ads_pixel_id`). Once enabled,
-    loads the `oaiq` measurement pixel (`window.oaiq` queue shim +
-    `bzrcdn.openai.com/sdk/oaiq.min.js`) on every page.
-  - Per-page conversion reporting: `__openai_ads_conversion_fields()`, an
+  - Pixel ID / global enable: `__openai_ads_fields()`, an "OpenAI Ads" tab on
+    `theme_options` (`openai_ads_enable` + `openai_ads_pixel_id`).
+  - Per-page conversion opt-in: `__openai_ads_conversion_fields()`, an
     "OpenAI Ads Conversion" tab on the same `post_meta` "Hero" container used by
     `page`/`product`/`post`/`capabilities`/`casestudies`/`industries`/`events`/
     `guides`/`rentals`/`landingpages` (`openai_ads_conversion_enable`, an
     `association` field picking a single `wpcf7_contact_form` post, plus
     `openai_ads_conversion_type` (default `lead`) and
     `openai_ads_conversion_content_name` (defaults to the page title)).
+- `dd_inject_openai_ads_base_pixel` requires **both** `openai_ads_enable`
+  (theme-wide) and `openai_ads_conversion_enable` (per-page) to be true — the
+  base pixel (`window.oaiq` queue shim + `bzrcdn.openai.com/sdk/oaiq.min.js`)
+  only loads on pages that have opted into conversion tracking, not site-wide,
+  so pages with no conversion configured stay script-free.
 - On the frontend, listens for the native `wpcf7mailsent` event (not
   onclick/onsubmit — CF7 submits via AJAX, and the event fires after a
   validated submission even from a form inside a modal/popup) and, if
