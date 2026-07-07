@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 4.7);
+define('coptz_version', 5.3);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -212,6 +212,14 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         filemtime(get_template_directory() . '/assets/js/extend-button-popup.js'),
         true
     );
+
+    wp_enqueue_script(
+        'dd-cf7-pdf-block',
+        get_template_directory_uri() . '/assets/js/dd-cf7-pdf-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch'),
+        filemtime(get_template_directory() . '/assets/js/dd-cf7-pdf-block.js'),
+        true
+    );
 }
 add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_editor_assets');
 
@@ -249,6 +257,74 @@ function dd_button_popup_render($block_content, $block)
     return $block_content;
 }
 add_filter('render_block_core/button', 'dd_button_popup_render', 10, 2);
+
+/**
+ * The `dd/cf7-pdf-form` block (registered client-side in
+ * assets/js/dd-cf7-pdf-block.js). Its save() emits the literal
+ * `[contact-form-7 id="…" pdf_url="…"]` shortcode into the post content, but this
+ * `render_block` filter is the authoritative renderer: it rebuilds the shortcode
+ * from the block's *attributes* (reliably stored in the block-comment JSON) and
+ * runs it through do_shortcode(). Reconstructing from attributes — rather than
+ * trusting the saved inner markup — means an instance still renders correctly even
+ * if it was created under an earlier version of the block (whose saved markup was
+ * empty), without needing a manual re-save. The emitted shortcode is byte-for-byte
+ * what a hand-typed one is, so the Dynamic Text Extension `pdf_url` field and the
+ * existing register_cf7_pdf_url_attribute / dd_attach_cf7_pdf_url_to_email logic
+ * all behave identically. The two /dd/v1 REST endpoints in includes/hooks.php only
+ * back the editor dropdowns.
+ */
+function dd_render_cf7_pdf_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'dd/cf7-pdf-form') {
+        return $block_content;
+    }
+
+    $attrs   = isset($block['attrs']) ? $block['attrs'] : array();
+    $form_id = isset($attrs['formId']) ? trim((string) $attrs['formId']) : '';
+    if ($form_id === '') {
+        return $block_content;
+    }
+
+    $title = isset($attrs['formTitle']) ? (string) $attrs['formTitle'] : '';
+    $pdf   = isset($attrs['pdfUrl']) ? (string) $attrs['pdfUrl'] : '';
+    $speak = isset($attrs['speakUrl']) ? (string) $attrs['speakUrl'] : '';
+
+    // For the Document source, resolve the PDF and speak-to-an-expert URLs fresh
+    // from the document so they're always current (and correct even if the block
+    // was configured before these values existed). Only override when a value is
+    // found, so a stored value is never clobbered with an empty one.
+    $source = isset($attrs['pdfSource']) ? $attrs['pdfSource'] : 'media';
+    $doc_id = isset($attrs['pdfDocumentId']) ? (int) $attrs['pdfDocumentId'] : 0;
+    if ($source === 'document' && $doc_id > 0) {
+        if (function_exists('dd_document_file_url')) {
+            $doc_pdf = dd_document_file_url($doc_id);
+            if ($doc_pdf !== '') {
+                $pdf = $doc_pdf;
+            }
+        }
+        if (function_exists('dd_document_speak_url')) {
+            $doc_speak = dd_document_speak_url($doc_id);
+            if ($doc_speak !== '') {
+                $speak = $doc_speak;
+            }
+        }
+    }
+
+    $shortcode = '[contact-form-7 id="' . esc_attr($form_id) . '"';
+    if ($title !== '') {
+        $shortcode .= ' title="' . esc_attr($title) . '"';
+    }
+    if ($pdf !== '') {
+        $shortcode .= ' pdf_url="' . esc_attr($pdf) . '"';
+    }
+    if ($speak !== '') {
+        $shortcode .= ' speak_to_an_expert_url="' . esc_attr($speak) . '"';
+    }
+    $shortcode .= ']';
+
+    return do_shortcode($shortcode);
+}
+add_filter('render_block', 'dd_render_cf7_pdf_block', 10, 2);
 
 /**
  * Enqueues the frontend scripts and styles (Frontend only).

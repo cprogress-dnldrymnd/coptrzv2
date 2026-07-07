@@ -12891,6 +12891,10 @@ ul.is-swiper-slider,
   justify-content: var(--dd-nav-align, flex-start);
   gap: 1.25rem; }
 
+/* Horizontal layout with the nav row placed below the panels */
+.dd-tabs-wrapper[data-nav-placement="bottom"] .dd-tabs-nav-desktop {
+  margin-top: 1.25rem; }
+
 /* Button Structural & Typography Styling */
 .dd-tabs-wrapper .dd-tab-button {
   background-color: var(--dd-btn-bg, transparent);
@@ -13037,7 +13041,7 @@ ul.is-swiper-slider,
 .dd-tabs-wrapper[data-layout="stacked"] {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   gap: 2rem;
   /* The horizontal nav is never used in this layout. */
   /* Accordion header + in-panel description are revealed only by the
@@ -13047,6 +13051,12 @@ ul.is-swiper-slider,
   .dd-tabs-wrapper[data-layout="stacked"] .dd-accordion-button,
   .dd-tabs-wrapper[data-layout="stacked"] .dd-tab-panel-desc {
     display: none; }
+
+/* Nav on the left (content on the right). Default markup has no attribute, so
+   the nav stays on the right. Overridden by the single-column accordion/mobile
+   rules further down (they set display:block / flex-direction:column). */
+.dd-tabs-wrapper[data-layout="stacked"][data-nav-position="left"] {
+  flex-direction: row-reverse; }
 
 /* Left column: the active tab's content */
 .dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-content-area {
@@ -13065,33 +13075,53 @@ ul.is-swiper-slider,
   flex: 1 1 35%;
   min-width: 260px;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  gap: 40px; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button {
   display: block;
   width: 100%;
   text-align: left;
   background: transparent;
-  /* Transparent placeholder so the active bar doesn't shift the layout */
   border: none;
-  border-left: 1px solid transparent;
-  padding: 1rem 1.25rem;
+  padding: 0;
   cursor: pointer;
-  color: #6b7280;
-  transition: border-color 0.3s ease, color 0.3s ease; }
+  transition: 300ms;
+  position: relative; }
+
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 0;
+  width: 1px;
+  background-color: var(--wp--preset--color-quinary);
+  transition: 300ms; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-title {
   display: block;
   font-size: 1.125rem;
-  font-weight: 600; }
+  font-weight: 500; }
 
 /* Active tab: a left bar spanning the full button (title + description) */
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active {
-  color: #111827;
-  border-left-color: var(--dd-stacked-accent, #6c47ff); }
+  padding-left: 23px; }
 
-.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-title {
-  font-weight: 700; }
+.dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active:before {
+  height: 100%; }
+
+/* Nav on the left: mirror the alignment, accent bar and active padding to the right */
+.dd-tabs-wrapper[data-layout="stacked"][data-nav-position="left"] .dd-vtab-button {
+  text-align: right; }
+
+.dd-tabs-wrapper[data-layout="stacked"][data-nav-position="left"] .dd-vtab-button:before {
+  left: auto;
+  right: 0; }
+
+.dd-tabs-wrapper[data-layout="stacked"][data-nav-position="left"] .dd-vtab-button.active {
+  padding-left: 0;
+  padding-right: 23px; }
 
 /* Description: hidden until the tab is active, then shown in the highlight box */
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-desc {
@@ -13099,8 +13129,7 @@ ul.is-swiper-slider,
   margin-top: 0.75rem;
   font-size: 0.95rem;
   font-weight: 400;
-  line-height: 1.55;
-  color: #4b5563; }
+  line-height: 1.55; }
 
 .dd-tabs-wrapper[data-layout="stacked"] .dd-vtab-button.active .dd-vtab-desc {
   display: block; }
@@ -13111,6 +13140,13 @@ ul.is-swiper-slider,
   line-height: 1.55;
   color: #4b5563;
   margin-bottom: 1rem; }
+
+/* Shared active-tab description: only used on the ≤991px horizontal strip */
+.dd-tabs-wrapper[data-layout="stacked"] .dd-tabs-mobile-desc {
+  display: none;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.55; }
 
 /* -----------------------------------------
    Stacked → Accordion conversion
@@ -13144,15 +13180,70 @@ ul.is-swiper-slider,
     .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] .dd-tab-panel-desc {
       display: block; }
     .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="767"] .dd-accordion-button {
-      display: flex; }
-
-  /* Accordion disabled: simply stack the two columns vertically */
+      display: flex; } }
+/* -----------------------------------------
+   Stacked, accordion OFF, ≤991px:
+   content on top, a horizontal scrollable strip of tab titles below it (active
+   title underlined), then the active tab's description underneath.
+----------------------------------------- */
+@media (max-width: 991px) {
+  /* Block layout: the children (content, nav, description) already sit in the
+     right DOM order, and this makes the nav a full-width horizontal scroll
+     container instead of a flex item that can grow wide and get clipped. */
   .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] {
-    flex-direction: column; }
-    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-content-area,
-    .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-nav-vertical {
-      flex-basis: 100%;
-      min-width: 0; } }
+    display: block; }
+
+  /* 1. Content */
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-content-area {
+    width: 100%; }
+
+  /* 2. Horizontal, swipeable nav strip */
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-nav-vertical {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* hide scrollbar (Firefox) */ }
+
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-nav-vertical::-webkit-scrollbar {
+    display: none;
+    /* hide scrollbar (WebKit) */ }
+
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-vtab-button {
+    width: auto;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 0 0 0.5rem;
+    /* room for the underline */ }
+
+  /* Active indicator becomes an underline instead of a side bar */
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-vtab-button:before {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px; }
+
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-vtab-button.active {
+    padding-left: 0;
+    padding-right: 0; }
+
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-vtab-button.active:before {
+    width: 100%;
+    height: 2px; }
+
+  /* The per-button description is hidden; the shared one shows below */
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-vtab-desc {
+    display: none !important; }
+
+  /* 3. Active description under the strip */
+  .dd-tabs-wrapper[data-layout="stacked"][data-accordion-breakpoint="none"] .dd-tabs-mobile-desc {
+    display: block;
+    margin-top: 1.5rem; } }
 .border-left-styled {
   position: relative; }
   .border-left-styled:before {

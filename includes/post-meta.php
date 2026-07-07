@@ -346,11 +346,38 @@ function __header_and_footer_fields()
         Field::make('footer_scripts', 'footer_scripts', __('Footer Scripts'))
     );
 }
+function __openai_ads_fields()
+{
+    return array(
+        Field::make('checkbox', 'openai_ads_enable', __('Enable OpenAI Ads Conversion Tracking'))->set_classes('inline-field'),
+        Field::make('text', 'openai_ads_pixel_id', __('Pixel ID'))->set_classes('inline-field')
+            ->set_help_text('The OpenAI Ads Measurement Pixel ID for this account. Loaded on pages that opt in via the "OpenAI Ads Conversion" tab on that page.')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'openai_ads_enable',
+                        'value' => true,
+                    )
+                )
+            ),
+        Field::make('checkbox', 'openai_ads_debug', __('Debug Mode'))->set_classes('inline-field')
+            ->set_help_text('Logs pixel SDK activity to the browser console. Turn off once you\'ve confirmed conversions are firing correctly.')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'openai_ads_enable',
+                        'value' => true,
+                    )
+                )
+            ),
+    );
+}
 Container::make('theme_options', __('Theme Settings'))
     ->add_tab('General Settings', __general_settings_fields())
     ->add_tab('Header', __header_fields())
     ->add_tab('Socials', __social_fields())
-    ->add_tab('Header and Footer Scripts', __header_and_footer_fields());
+    ->add_tab('Header and Footer Scripts', __header_and_footer_fields())
+    ->add_tab('OpenAI Ads', __openai_ads_fields());
 
 
 
@@ -1317,6 +1344,73 @@ function __hero_form_fields()
     );
 }
 
+function __openai_ads_conversion_fields()
+{
+    return array(
+        Field::make('checkbox', 'openai_ads_conversion_enable', __('Report Conversions to OpenAI Ads'))->set_classes('inline-field')
+            ->set_help_text('Requires "OpenAI Ads" to be enabled under Theme Settings.'),
+        Field::make('association', 'openai_ads_conversion_form', __('Select Form'))->set_classes('inline-field')
+            ->set_types(
+                array(
+                    array(
+                        'type'      => 'post',
+                        'post_type' => 'wpcf7_contact_form',
+                    )
+                )
+            )
+            ->set_max(1)
+            ->set_help_text('The CF7 form (e.g. inside a modal/popup on this page) whose successful submission should be reported as a conversion.')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'openai_ads_conversion_enable',
+                        'value' => true,
+                    )
+                )
+            ),
+        Field::make('select', 'openai_ads_conversion_event', __('Conversion Event'))->set_classes('inline-field')
+            ->set_options(
+                array(
+                    'lead_created'           => 'Lead Created',
+                    'registration_completed' => 'Registration Completed',
+                    'appointment_scheduled'  => 'Appointment Scheduled',
+                    'custom'                 => 'Custom Event',
+                )
+            )
+            ->set_default_value('lead_created')
+            ->set_help_text('The event name/shape sent to OpenAI Ads (see developers.openai.com/ads/measurement-pixel).')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'openai_ads_conversion_enable',
+                        'value' => true,
+                    )
+                )
+            ),
+        Field::make('text', 'openai_ads_conversion_custom_event_name', __('Custom Event Name'))->set_classes('inline-field')
+            ->set_help_text('Required when Conversion Event is "Custom Event" — sent as the "custom_event_name" option.')
+            ->set_conditional_logic(
+                array(
+                    array(
+                        'field' => 'openai_ads_conversion_enable',
+                        'value' => true,
+                    ),
+                    array(
+                        'field' => 'openai_ads_conversion_event',
+                        'value' => 'custom',
+                    )
+                )
+            ),
+    );
+}
+add_filter('carbon_fields_association_field_options_openai_ads_conversion_form_post_wpcf7_contact_form', function ($query_arguments) {
+    $query_arguments = array(
+        'post_type' => 'wpcf7_contact_form',
+    );
+
+    return $query_arguments;
+});
+
 Container::make('post_meta', __('Hero'))
     ->where('post_type', '=', 'page')
     ->where('post_template', '!=', 'templates/page-blocks-editor.php')
@@ -1332,7 +1426,8 @@ Container::make('post_meta', __('Hero'))
 
     ->add_tab('Hero Settings', __hero_fields())
     ->add_tab('Hero Buttons', __hero_button_fields())
-    ->add_tab('Hero Form', __hero_form_fields());
+    ->add_tab('Hero Form', __hero_form_fields())
+    ->add_tab('OpenAI Ads Conversion', __openai_ads_conversion_fields());
 
 Container::make('term_meta', __('Hero'))
     ->where('term_taxonomy', '=', 'product_cat')

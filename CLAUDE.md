@@ -8,8 +8,9 @@ case studies, rentals, landing pages, etc).
 - Version constant: `coptz_version` in `functions.php`
 - No JS package manager / bundler — vendor JS/CSS (Bootstrap 5.3.3, Swiper,
   intl-tel-input) is pulled in via `composer.json` or CDN links in
-  `enqueue_scripts()` (`functions.php`). Carbon Fields is no longer a runtime
-  dependency.
+  `enqueue_scripts()` (`functions.php`). Carbon Fields (`htmlburger/carbon-fields`
+  ^3.6) is a live runtime dependency on this branch, loaded via the Composer
+  autoloader (see `vendor/htmlburger/carbon-fields`).
 
 ## Build / styles
 
@@ -23,14 +24,23 @@ case studies, rentals, landing pages, etc).
 - SCSS partials live under `assets/scss/`. There is no separate build step
   documented — edit the `.scss` and re-export `.css`/`.map`.
 - `landing.css` is a separate standalone stylesheet for landing pages.
+- `style.css`/`style.css.map` are checked in compiled output, not hand-edited.
+- **Gotcha:** `wp_enqueue_style('style', ...)` and most other asset enqueues use
+  `coptz_version` as the cache-busting query param. Editing `style.scss`/`_base.scss`
+  and recompiling `style.css` is not enough for changes to show up for returning
+  visitors — bump `coptz_version` in `functions.php` too, or the browser/CDN may
+  keep serving the previously cached `style.css`.
 
 ## PHP architecture
 
 - `functions.php` is the entry point: defines constants (`theme_dir`,
   `assets_dir`, `image_dir`, `vendor_dir`), theme setup, enqueue logic, and
-  meta-shim helper wrappers (`get__post_meta`, `get__term_meta`,
-  `get___term_meta`, `get__post_meta_by_id`, `get__theme_option`). Always use
-  these wrappers rather than calling the meta-shim directly. Also registers
+  Carbon Fields meta wrappers (`get__post_meta`, `get__term_meta`,
+  `get___term_meta`, `get__post_meta_by_id`, `get__theme_option` — thin
+  wrappers around `carbon_get_the_post_meta` / `carbon_get_term_meta` /
+  `carbon_get_post_meta` / `carbon_get_theme_option`, except `get__term_meta`
+  which calls plain `get_term_meta()` for simple scalar term fields). Always
+  use these wrappers rather than calling `carbon_get_*` directly. Also registers
   `dd_button_popup_render` (`render_block_core/button` filter) which replaces
   the rendered `<a>` element with a `<button type="button">` carrying
   `data-bs-toggle="modal"` / `data-bs-target="#modal-{id}"` for `core/button`
@@ -59,7 +69,20 @@ case studies, rentals, landing pages, etc).
   `digitally_disruptive_enqueue_swiper_editor_assets()` in `functions.php`.
   Key attributes on `dd/tabs`: `layoutStyle` (`horizontal` default | `stacked`),
   `mobileAccordion` (bool), `accordionBreakpoint` (`767` | `991` px),
-  `stackedAccentColor` (CSS var `--dd-stacked-accent`). Key attributes on
+  `stackedAccentColor` (CSS var `--dd-stacked-accent`), `stackedNavPosition`
+  (`right` default | `left` — which side the vertical nav sits on in the
+  stacked layout; only `left` is emitted as `data-nav-position` on
+  `.dd-tabs-wrapper`, so existing right-aligned stacked blocks serialize
+  unchanged; purely CSS-driven, no frontend JS changes needed — in
+  `_base.scss`, `[data-nav-position="left"]` sets `flex-direction: row-reverse`
+  on the wrapper and mirrors `.dd-vtab-button` text-align, the `:before` accent
+  bar side, and the active-state padding side to match), `navPlacement`
+  (`top` default | `bottom` — horizontal layout only; whether the tab nav row
+  sits above or below the panels; only `bottom` is emitted as
+  `data-nav-placement` on `.dd-tabs-wrapper`, so existing horizontal blocks
+  serialize unchanged; `dd-tabs-frontend.js` appends `.dd-tabs-nav-desktop` to
+  the end of the wrapper instead of inserting it first when this is set).
+  Key attributes on
   `dd/tab-panel`: `tabTitle` (string), `tabDescription` (string, optional —
   stacked layout only; emitted as `data-tab-description` on the panel element,
   shown beneath the title in the right-hand nav when that tab is active; omitted
@@ -68,7 +91,11 @@ case studies, rentals, landing pages, etc).
   on `.dd-tabs-wrapper`; stacked blocks pass these attributes through unchanged
   (the "Enable Accordion Conversion" toggle works for stacked layouts too).
   Existing horizontal blocks (no `layoutStyle` attribute) serialize identically
-  so they remain valid — opt-in only.
+  so they remain valid — opt-in only. `dd/tabs` also carries a `deprecated`
+  entry (v1) whose `save()` reproduces the earlier stacked markup (accordion
+  forced off: `data-mobile-accordion="false"`, `data-accordion-breakpoint="none"`)
+  so pre-accordion stacked blocks still validate in Gutenberg and get silently
+  migrated to the current format on next save, instead of being flagged invalid.
 - `assets/js/dd-tabs-frontend.js` — DOM-ready script that initialises all
   `.dd-tabs-wrapper` elements. Builds `.dd-tabs-nav-desktop` (horizontal nav)
   and `.dd-accordion-button` elements dynamically. Reads `data-layout`: for
@@ -84,100 +111,78 @@ case studies, rentals, landing pages, etc).
   `.dd-tabs-content-area` take over; clicking an open accordion header collapses
   it. When a `tabDescription` is set, a `.dd-tab-panel-desc` div is prepended to
   the panel so the description is visible in the accordion (mobile) view where the
-  right-hand nav is not shown.
+  right-hand nav is not shown. When accordion conversion is **off**
+  (`data-accordion-breakpoint="none"`), `buildVerticalTabs()` also appends a
+  shared `.dd-tabs-mobile-desc` div after the nav; at ≤991px CSS turns
+  `.dd-tabs-nav-vertical` into a horizontal scrollable strip of tab titles
+  (underline on the active title instead of the side bar, per-button
+  `.dd-vtab-desc` hidden) and `.dd-tabs-mobile-desc` shows the active tab's
+  description below it — `activate()` keeps that div's text in sync on click.
+  The wrapper is `display: block` (not flex) at this breakpoint so the strip
+  can't be clipped by a flex sibling, and `navVertical` gets a `wheel` listener
+  that redirects vertical wheel deltas into `scrollLeft` (no-op unless the strip
+  is actually overflowing) since desktop mice have no other way to reach
+  overflowed tabs there — touch swipes work natively.
   SCSS for the stacked variant lives in `assets/scss/base/_base.scss` scoped
   to `[data-layout="stacked"]`.
-- Carbon Fields has been replaced by a bespoke shim (`includes/meta-shim/` +
-  `includes/meta-reader.php`). The shim implements the same `Container::make()`
-  / `Field::make()` chainable API as CF3 and reads/writes data in CF3's
-  pipe-delimited meta-key format — so existing DB rows are untouched. All files
-  live in the `CoptrzTheme\MetaShim` namespace.
-  - `includes/meta-shim/Key_Formatter.php` — pure codec for the CF3 key format
-    (`_root|field:chain|group:indexes|value_index|property`, a port of CF's
-    `Key_Toolset`): `build_key()` / `parse_key()`, plus cache-backed data access
-    (`load_root_map()` reads post/term meta via WP's object cache and theme
-    options via a single targeted query; `persist_root()` / `delete_root()` do
-    the delete-then-insert writes).
-  - `includes/meta-shim/Field.php` — pure descriptor with the CF3 chainable
-    setters (`set_options`, `set_conditional_logic`, `set_types`, `add_fields`
-    for named complex groups, etc.) plus `storage_kind()` introspection
-    (scalar / multi / association / complex / none). Unmodelled setters no-op via
-    `__call`.
-  - `includes/meta-shim/Container.php` — `make()/where()/or_where()/add_tab()/
-    add_fields()`; builds the global field-tree INDEX
-    (`object_type → field_name → Field`) that the reader and renderer query.
-    Container IDs are deterministic (`sanitize_title(type-title)` + sequential
-    suffix via `$used_ids`) — never random — because theme-options menu slugs
-    (`admin.php?page=coptrz-<id>`) are derived from the ID and must be stable
-    across requests.
-  - `includes/meta-shim/Container_Admin.php` — `boot()` wires the WP admin
-    lifecycle: post meta boxes + `save_post`, theme-options pages + save, term
-    fields + save, nav-menu-item fields + save, and the association AJAX search.
-    Display conditions (`where`) are evaluated for `post_type`/`post_template`/
-    `term_taxonomy`. Also exposes `Container_Admin::hide_fields($names)` /
-    `$render_blocklist` to suppress fields from the admin UI without removing
-    them from the reader's field-tree index; `is_container_render_hidden()` extends
-    this to suppress an entire container's meta box when all its non-display fields
-    are blocklisted (used to retire the legacy page-builder UI while keeping data
-    readable). The association AJAX search
-    (`ajax_search()`) restricts a picker's options with the field's
-    `Field::set_options_query()` args — the native replacement for Carbon Fields'
-    `carbon_fields_association_field_options_*` filters (all removed). The args are
-    resolved server-side from the root field index by field name (sent as
-    `data-cms-field` → the `field` request param), so they never travel via the
-    browser; this applies to ROOT association fields only (the index does not hold
-    fields nested inside a complex). See the product association fields
-    (`drones`, `accessories`, `softwares`, `compatible_payloads`, `related_training`,
-    `related_industries`) in `post-meta.php` for usage (e.g. restrict to a
-    `product_cat` term and include `private` posts).
-  - `includes/meta-shim/View.php` — server-side HTML renderer for every field
-    type + nested repeaters. Field markup: label + `<div class="cms-field__control">` wrapper
-    (two-column layout; CSS stacks it in narrow containers). Media fields wrap
-    Select/Remove buttons in `<div class="cms-media__actions">`.
-  - `includes/meta-shim/Writer.php` — `build_flat()` (exact inverse of the
-    reader) shared by the admin save and the programmatic `coptrz_set_post_meta`
-    / `coptrz_set_term_meta` / `coptrz_set_theme_option` API; `serialize()`
-    normalises a Carbon-format value tree (reader output) back into posted shape.
-    NOTE: complex `build_flat()` drops the row keyed by `View::TEMPLATE_INDEX`
-    (`__CMSIDX__`) — the JS clone template lives in a `hidden` div but its inputs
-    still POST, so without this every save would append a phantom empty repeater row.
-  - `includes/meta-reader.php` — `Reader::read()` tree-aware reconstruction +
-    the drop-in functions `coptrz_get_post_meta` / `coptrz_get_the_post_meta` /
-    `coptrz_get_term_meta` / `coptrz_get_theme_option` /
-    `coptrz_get_nav_menu_item_meta`. NOTE: both `meta-reader.php` and `Writer.php`
-    use **braced** namespace syntax because they declare a named namespace *and*
-    a global (`namespace {}`) block in one file — do not convert to unbracketed.
-  - `includes/meta-shim/self-test.php` — transitional parity checker (admin-only,
-    `?coptrz_meta_selftest=<post_id>`), compares `carbon_get_post_meta` vs the
-    shim while CF is still active. Remove after sign-off.
-  The shim is required at the top of `functions.php`; `tissue_paper_register_custom_fields()`
-  (hooked on `after_setup_theme`, priority 20) loads `post-meta.php` (which now
-  `use`s `CoptrzTheme\MetaShim\Container` / `Field`), then calls
-  `coptrz_register_html_sections_fields()` (defined in `section-converter.php`,
-  registers the product HTML repeater fields and hides the legacy builder meta boxes),
-  then calls `Container_Admin::boot()`. `post-meta.php` is skipped only when both
-  `is_admin()` and the blocks-editor template are active simultaneously. The
-  theme's meta wrappers (`get__post_meta`, `get___term_meta`,
-  `get__post_meta_by_id`, `get__theme_option`) now delegate to the `coptrz_get_*`
-  readers. **All `carbon_*` call sites in the theme have been replaced with
-  `coptrz_*` shim equivalents — the code migration is complete.** Carbon Fields
-  can be deactivated once the self-test (`?coptrz_meta_selftest=<id>`) confirms
-  parity. Note: `get__term_meta` (two underscores) still delegates to raw
-  `get_term_meta()` for simple scalar term fields; use `get___term_meta` (three
-  underscores) for complex/nested term fields.
+- `assets/js/dd-cf7-pdf-block.js` — registers the **static** `dd/cf7-pdf-form`
+  block (native editor equivalent of hand-typing
+  `[contact-form-7 id="…" pdf_url="…"]` in a Shortcode block). Editor UI lets
+  the user pick a CF7 form from a dropdown (populated from the `/dd/v1/cf7-forms`
+  REST route, values are the CF7 hash) and a PDF either from the media library
+  (`MediaUpload`) or from the `documents` post type (`/dd/v1/documents` REST
+  route, which returns each document's resolved PDF `url`). Both REST routes are
+  registered in `hooks.php` (`dd_register_cf7_pdf_block_rest_routes`), gated to
+  `edit_posts` capability since CF7/`documents` aren't exposed via public REST.
+  `/dd/v1/documents` resolves each document's PDF `url` and `speak_url` through the
+  `dd_document_file_url()` / `dd_document_speak_url()` helpers (also in `hooks.php`),
+  which read the **raw Carbon meta keys `_document` / `_speak_to_an_expert_url`
+  directly** (reliable in any context) and only fall back to the Carbon API if that
+  is empty — Carbon's `carbon_get_*` had been returning empty in the REST request,
+  so reading the raw key first is what makes these resolve.
+  `save()` returns `null`; the block is **rendered server-side by the
+  `dd_render_cf7_pdf_block()` `render_block` filter in `functions.php`**, which
+  rebuilds the shortcode from the block's *attributes* (`formId`/`formTitle`/
+  `pdfUrl`/`speakUrl`, stored in the block-comment JSON) and runs `do_shortcode()`.
+  Building from attributes (single source of truth) means an instance renders
+  correctly regardless of its saved markup, so no manual re-save is needed. For a
+  **Media** source the `pdfUrl`/`speakUrl` attributes hold literal URLs entered/
+  picked in the editor (PDF from `MediaUpload`, speak URL typed directly). For a
+  **Document** source the render filter **re-resolves the PDF and speak URLs fresh
+  from the document** (`pdfDocumentId`) via the same helpers, so they're always
+  current and correct even for a block configured before those values existed (the
+  stored attributes are only a fallback, and the editor likewise shows the document's
+  *live* `speak_url` from the fetched list). The emitted shortcode is
+  byte-identical to a hand-typed one. **Form requirement (surfaced as notes in the
+  block's editor UI — the canvas placeholder and the relevant controls' `help`
+  text):** the selected CF7 form must contain the matching hidden field(s):
+  `[hidden pdf_url default:shortcode_attr]` and/or
+  `[hidden speak_to_an_expert_url default:shortcode_attr]`. That is CF7's native
+  "populate from the shortcode attribute" default, and it only works because
+  `register_cf7_pdf_url_attribute` whitelists those attrs on the CF7 shortcode (WP's
+  `shortcode_atts` would otherwise strip unknown attrs); the `pdf_url` value then
+  also drives `dd_attach_cf7_pdf_url_to_email` (see Forms below). If the form lacks
+  a field, that value silently won't reach it. **History:** the block went through
+  a dynamic (`render_callback`) then a static (`RawHTML` save) form before settling
+  on `save: null` + `render_block`; a single `deprecated` entry reproducing the
+  static `RawHTML` save lets those interim instances validate and migrate. (The
+  original symptom that drove all this churn — an empty `pdf_url` field — turned out
+  to be an unrelated wrong-form selection, not the block.)
+- Custom fields are registered on the `carbon_fields_register_fields` hook
+  (`tissue_paper_register_custom_fields()` in `functions.php`), which requires
+  `includes/post-meta.php` — a Carbon Fields 3 `Container::make()` /
+  `Field::make()` definition file (`use Carbon_Fields\{Block,Container,
+  Complex_Container,Field}`) for all custom post types, terms, nav-menu items,
+  and theme options. `post-meta.php` is skipped only when both `is_admin()`
+  and the blocks-editor template are active simultaneously (see
+  `dd_is_blocks_editor_template_active()`).
 - `includes/_required_files.php` loads the rest of `includes/` in order:
   `schema.php`, `post-types.php`, then (skipped on the block-editor template /
   admin) `elements.php`, `modules.php`, `ajax.php`, `svg.php`, then
   `shortcodes.php`, `hooks.php`, `theme-widgets.php`, `menus.php`,
-  `woocommerce.php`, `customizer.php`, `marquee.php`, `wpml-eraser.php`.
-- `vendor/` is the Composer vendor dir (Bootstrap + legacy `htmlburger/carbon-fields`
-  source still present but not a runtime dependency — the bespoke shim replaces it).
-- `assets/js/admin-meta-boxes.js` + `assets/css/admin-meta-boxes.css` — admin
-  UI for the meta shim (tab nav, repeater add/remove, conditional logic, media
-  uploader, association AJAX search). Fields render as two-column flex rows:
-  180px label (`cms-label`) + `cms-field__control` (flex-grow control column);
-  stacks automatically in narrow containers (side meta boxes, term screens).
-  Enqueued separately for the admin.
+  `woocommerce.php`, `customizer.php`, `marquee.php`.
+- `vendor/` is the Composer vendor dir: `htmlburger/carbon-fields` (^3.6) and
+  Bootstrap.
 
 ### Key `includes/` files
 
@@ -188,16 +193,15 @@ case studies, rentals, landing pages, etc).
   `producttaxonomypages`, `globalpostboxes`, `rentals`, `landingpages`, `quiz`,
   `documents`.
 - `post-meta.php` (~7200 lines) — meta box/field definitions for all the above
-  post types, using the `CoptrzTheme\MetaShim\Container` / `Field` API (same
-  chainable style as Carbon Fields 3). Largest file in the theme; search by
-  post type name when adding/editing fields.
+  post types, using the Carbon Fields 3 `Container::make()` / `Field::make()`
+  API. Largest file in the theme; search by post type name when adding/editing
+  fields.
 - `modules.php` — misc snippet-style hooks (save-post handlers, date
   formatting helpers like `_date_format`, etc). Each function is a standalone
-  "module" with a doc comment. `___sections($id, $post_id, $only_key)` renders
-  the "sections" page-builder output; it routes through
-  `coptrz_sections_should_route()` (see `section-converter.php`) so converted
-  posts render their frozen HTML instead of the live builder. Pass `$only_key`
-  to render a single section by index (used by the converter during snapshot).
+  "module" with a doc comment. `___sections($id = 'sections', $post_id = '')`
+  renders the "sections" page-builder output (drives most page-builder-style
+  templates via the `sections`/`section_items` complex repeater fields in
+  `post-meta.php`).
 - `hooks.php` — general action/filter hooks, including CF7 integrations (see
   Forms below).
 - `elements.php`, `shortcodes.php`, `theme-widgets.php`, `menus.php`,
@@ -207,9 +211,6 @@ case studies, rentals, landing pages, etc).
   compatibility. `_coptrz_link_aria_label($visible_text, $context_title)` in
   `elements.php` generates accessible aria-label strings for linked elements
   (returns empty string when context is already conveyed by the visible text).
-  `product_add_to_cart` shortcode in `shortcodes.php` returns `''` early when
-  `$id` is empty or non-numeric — prevents an invalid WooCommerce product context
-  that could error or redirect (common on converted pages with unset product items).
   `pdf_url` shortcode in `shortcodes.php` resolves the post ID explicitly: it falls
   back from `get_the_ID()` to `get_queried_object_id()` because CF7 can render forms
   outside the main loop (e.g. via Dynamic Text Extension `[dynamic_hidden pdf_url "pdf_url"]`),
@@ -264,41 +265,35 @@ case studies, rentals, landing pages, etc).
   (they would render as literal text where `do_shortcode` is not applied).
   Caveat: non-shortcode dynamic content (class-driven widgets) is still a snapshot and
   won't auto-update.
-- `woocommerce.php` (2350 lines) — WooCommerce template/hook overrides; pairs
+- `woocommerce.php` (~2360 lines) — WooCommerce template/hook overrides; pairs
   with the `woocommerce/` directory which overrides core WooCommerce templates
   (`archive-product.php`, `cart/`, `checkoutx/`, `loop/`, `single-product/`,
   `global/`, `content-single-product.php`).
-- `wpml-eraser.php` — one-time admin utility (Tools > WPML Eraser). AJAX-powered
-  step-by-step tool that drops all `{prefix}icl_*` tables and deletes WPML-related
-  entries from options, postmeta, usermeta, and termmeta. Table drops are validated
-  against the prefix + `icl_` pattern server-side before execution. Requires
-  `manage_options`; nonce-protected. Loaded unconditionally; remove once WPML
-  cleanup is complete.
 
 ### Templates & template parts
 
-- `templates/` — full page templates selectable in the editor (e.g.
-  `page-landing.php`, `page-modules.php`, `page-product-form.php`,
-  `page-quiz.php`, `page-calculator.php`, `page-blocks-editor.php`,
-  `page-gutenberg.php` (section-converter output for `page` posts; routes
-  converted posts through `coptrz_render_converted_sections()`, falls back to
-  `the_content()` for unconverted pages), `page-html.php` (standalone full-page
-  template for `page`/`guides` — emits a raw `<html>` document without the
-  standard header/footer, used for fully self-contained HTML pages), etc).
+- `templates/` — full page templates selectable in the editor: `page-landing.php`
+  (+ `page-old-landing.php`), `page-modules.php`, `page-product-form.php`,
+  `page-quiz.php`, `page-calculator.php`, `page-enterprise.php`,
+  `page-training.php`, `page-blocks-editor.php`, `page-simple-header-footer.php`,
+  `page-gutenberg.php` (renders standard header + hero + `the_content()` — for
+  plain Gutenberg-edited pages), `page-html.php` (standalone full-page template
+  for `page`/`guides` — emits a raw `<html>` document without the standard
+  header/footer, used for fully self-contained HTML pages).
 - `template-parts/header/` — header pieces (`header-left`, `header-menu`,
   `header-right`, `header-right-landing`), pulled into `header.php` via
   `get_template_part()`.
 - `template-parts/sections/` — reusable content sections (hero, CTA, USP,
   testimonials, industries, products, guides, checklists, chips, etc.) used
-  by the "modules"/page-builder style templates and driven by meta-shim data
-  from `post-meta.php`.
+  by the "modules"/page-builder style templates and driven by Carbon Fields
+  data from `post-meta.php`.
 - `template-parts/single/` — single-post templates for `capabilities`,
   `industries`, `events`, plus generic `single-post.php`.
 - `template-parts/product-form/` — multi-section product configurator form
   (`section-1`..`section-4`, `section-video`).
 - `single-producttaxonomypages.php` — single template for the `producttaxonomypages`
   post type. Supports a `?copy_from=<post_id>` URL param that reads meta fields
-  from another post and writes them to the current post via `coptrz_set_post_meta`;
+  from another post and writes them to the current post via `carbon_set_post_meta`;
   individual field groups (`copy_after`, `training`, `software`, `drones`,
   `accessories`) are each gated by their own URL param.
 - Multiple header/footer variants exist for different layouts: `header.php`,
@@ -314,10 +309,11 @@ case studies, rentals, landing pages, etc).
   since that plugin builds its own payload and ignores `wpcf7_posted_data`.
 - Also in `hooks.php`: a `wpcf7mailsent` JS listener for post-submit redirects.
 - `register_cf7_pdf_url_attribute` (`shortcode_atts_wpcf7` filter) whitelists
-  `pdf_url` on CF7 shortcodes. If the value is numeric it is treated as a
-  `documents` post ID and resolved to a URL via
-  `get__post_meta_by_id($id, 'document')` → `wp_get_attachment_url()`;
-  otherwise it is passed through as a literal URL.
+  extra attrs on CF7 shortcodes so a `[hidden NAME default:shortcode_attr]` field
+  can read them. `pdf_url`: if the value is numeric it is treated as a `documents`
+  post ID and resolved to a URL via `get__post_meta_by_id($id, 'document')` →
+  `wp_get_attachment_url()`; otherwise it is passed through as a literal URL.
+  `speak_to_an_expert_url`: always passed through as a literal custom URL.
 - `dd_attach_cf7_pdf_url_to_email` (`wpcf7_mail_components` filter, priority 20)
   attaches the form's PDF to the outgoing CF7 email. **Opt-in required**: the
   active mail template's "File attachments" box must reference `pdf_url` with the
@@ -332,6 +328,43 @@ case studies, rentals, landing pages, etc).
   fallback that maps uploads-dir URLs to their local path (scheme-insensitive
   comparison so http/https/protocol-relative all match). Arbitrary server paths
   outside `wp_get_upload_dir()` are rejected to prevent path-traversal abuse.
+- The `dd/cf7-pdf-form` Gutenberg block (`assets/js/dd-cf7-pdf-block.js`,
+  documented above) is the editor-friendly way to wire up a CF7 form + PDF —
+  it emits the same shortcode shape by hand and reuses this section's
+  resolution/attachment logic unchanged.
+
+### OpenAI Ads conversion tracking
+
+- Both pieces live in `includes/hooks.php` (`dd_inject_openai_ads_base_pixel`
+  on `wp_head`, `dd_inject_openai_ads_cf7_listener` on `wp_footer`), driven by
+  Carbon Fields defined in `post-meta.php`:
+  - Pixel ID / global enable: `__openai_ads_fields()`, an "OpenAI Ads" tab on
+    `theme_options` (`openai_ads_enable` + `openai_ads_pixel_id`).
+  - Per-page conversion opt-in: `__openai_ads_conversion_fields()`, an
+    "OpenAI Ads Conversion" tab on the same `post_meta` "Hero" container used by
+    `page`/`product`/`post`/`capabilities`/`casestudies`/`industries`/`events`/
+    `guides`/`rentals`/`landingpages` (`openai_ads_conversion_enable`, an
+    `association` field picking a single `wpcf7_contact_form` post, plus a
+    `openai_ads_conversion_event` select — `lead_created` (default),
+    `registration_completed`, `appointment_scheduled`, or `custom` — and
+    `openai_ads_conversion_custom_event_name` (text, shown only when
+    `custom` is selected)).
+- `dd_inject_openai_ads_base_pixel` requires **both** `openai_ads_enable`
+  (theme-wide) and `openai_ads_conversion_enable` (per-page) to be true — the
+  base pixel (`window.oaiq` queue shim + `bzrcdn.openai.com/sdk/oaiq.min.js`)
+  only loads on pages that have opted into conversion tracking, not site-wide,
+  so pages with no conversion configured stay script-free.
+- On the frontend, listens for the native `wpcf7mailsent` event (not
+  onclick/onsubmit — CF7 submits via AJAX, and the event fires after a
+  validated submission even from a form inside a modal/popup) and, if
+  `event.detail.contactFormId` matches the configured form, calls
+  `window.oaiq("measure", eventName, { type }, { event_id, custom_event_name? })`.
+  `eventName` is the raw `openai_ads_conversion_event` value; `type` is derived
+  server-side in `dd_inject_openai_ads_cf7_listener()` via an `$event_shapes` map
+  (`lead_created`/`registration_completed`/`appointment_scheduled` →
+  `customer_action`, `custom` → `custom`). `custom_event_name` is only added to
+  the options object when the event is `custom` and a name was set — matches
+  OpenAI Ads' measurement pixel event shapes (developers.openai.com/ads/measurement-pixel).
 
 ## Conventions / gotchas
 
@@ -349,6 +382,6 @@ case studies, rentals, landing pages, etc).
 - `$popups_id`, `$layouts_global`, `$product_taxonomy_page` are theme-wide
   globals initialized in `action_after_setup_theme()` and appended to in
   templates (e.g. `header.php` pushes hardcoded popup post IDs; `modules.php`
-  pushes meta-shim button popup IDs). Gutenberg `core/button` blocks with
-  `ddPopupId` do NOT use `$popups_id` — their modal HTML is rendered inline by
-  `dd_button_popup_render`.
+  pushes popup IDs from Carbon Fields button fields). Gutenberg `core/button`
+  blocks with `ddPopupId` do NOT use `$popups_id` — their modal HTML is
+  rendered inline by `dd_button_popup_render`.

@@ -452,7 +452,6 @@ function hero_form_redirect()
     ?>
         <script>
             document.addEventListener('wpcf7mailsent', function(event) {
-                console.log(<?= $redirect ?>);
                 setTimeout(function() {
                     if (<?= $form_id ?> == event.detail.contactFormId) {
                         window.open('<?= $redirect ?>', '_blank');
@@ -465,6 +464,94 @@ function hero_form_redirect()
 }
 
 add_action('wp_footer', 'hero_form_redirect');
+
+/**
+ * OpenAI Ads Conversion Tracking
+ *
+ * The Pixel ID lives globally under Theme Settings > OpenAI Ads, but the base
+ * pixel itself only renders on pages that opt in via the "OpenAI Ads
+ * Conversion" tab (see __openai_ads_conversion_fields() in post-meta.php) —
+ * keeps the script off pages with no conversion configured. On those pages we
+ * also listen for a successful Contact Form 7 submission matching the
+ * configured form and report it as a conversion. Since CF7 submits over AJAX,
+ * onclick/onsubmit handlers are unreliable, so we listen for the native
+ * `wpcf7mailsent` event instead (fires only after a validated submission,
+ * regardless of the form being inside a modal).
+ */
+function dd_inject_openai_ads_base_pixel()
+{
+    if (!get__theme_option('openai_ads_enable') || !get__post_meta('openai_ads_conversion_enable')) {
+        return;
+    }
+
+    $pixel_id = get__theme_option('openai_ads_pixel_id');
+
+    if (!$pixel_id) {
+        return;
+    }
+
+    $debug = (bool) get__theme_option('openai_ads_debug');
+?>
+    <!-- OpenAI Ads Measurement Pixel -->
+    <script>
+        window.oaiq = window.oaiq || function() {
+            (window.oaiq.q = window.oaiq.q || []).push(arguments);
+        };
+        oaiq("init", { pixelId: <?= wp_json_encode($pixel_id) ?>, debug: <?= $debug ? 'true' : 'false' ?> });
+    </script>
+    <script async src="https://bzrcdn.openai.com/sdk/oaiq.min.js"></script>
+    <!-- End OpenAI Ads Measurement Pixel -->
+<?php
+}
+add_action('wp_head', 'dd_inject_openai_ads_base_pixel', 10);
+
+function dd_inject_openai_ads_cf7_listener()
+{
+    if (!get__theme_option('openai_ads_enable') || !get__post_meta('openai_ads_conversion_enable')) {
+        return;
+    }
+
+    $form = get__post_meta('openai_ads_conversion_form');
+    $form_id = isset($form[0]['id']) ? (int) $form[0]['id'] : 0;
+
+    if (!$form_id) {
+        return;
+    }
+
+    $event_name = get__post_meta('openai_ads_conversion_event') ?: 'lead_created';
+    $event_shapes = array(
+        'lead_created'           => 'customer_action',
+        'registration_completed' => 'customer_action',
+        'appointment_scheduled'  => 'customer_action',
+        'custom'                 => 'custom',
+    );
+    $event_type = isset($event_shapes[$event_name]) ? $event_shapes[$event_name] : 'customer_action';
+    $custom_event_name = get__post_meta('openai_ads_conversion_custom_event_name');
+?>
+    <script>
+        document.addEventListener('wpcf7mailsent', function(event) {
+            if (<?= $form_id ?> !== event.detail.contactFormId) {
+                return;
+            }
+
+            if (typeof window.oaiq !== 'function') {
+                console.error('OpenAI Ads tracking: window.oaiq is undefined. Ensure the base pixel is enabled under Theme Settings > OpenAI Ads.');
+                return;
+            }
+
+            var options = { event_id: 'evt_' + Date.now() };
+            <?php if ($event_name === 'custom' && $custom_event_name) : ?>
+            options.custom_event_name = <?= wp_json_encode($custom_event_name) ?>;
+            <?php endif; ?>
+
+            window.oaiq("measure", <?= wp_json_encode($event_name) ?>, {
+                type: <?= wp_json_encode($event_type) ?>,
+            }, options);
+        }, false);
+    </script>
+<?php
+}
+add_action('wp_footer', 'dd_inject_openai_ads_cf7_listener', 20);
 
 
 /**
@@ -664,35 +751,40 @@ function dd_append_date_to_cf7_zapier_payload($data, $contact_form)
 
 
 /**
- * Registers the custom 'pdf_url' shortcode attribute for Contact Form 7.
+ * Registers custom shortcode attributes for Contact Form 7.
  * WordPress shortcodes only accept predefined attributes by default. This filter
- * intercepts CF7 shortcode processing and explicitly allows 'pdf_url' to be
- * passed through to the form's rendering context.
+ * intercepts CF7 shortcode processing and explicitly allows extra attributes to
+ * be passed through to the form's rendering context (where a
+ * `[hidden NAME default:shortcode_attr]` field can read them).
  *
- * If the value is an integer it is treated as a 'documents' post ID: the
- * '_document' attachment meta field is resolved to a URL via wp_get_attachment_url().
- * Otherwise the value is passed through as a literal URL.
+ * - `pdf_url`: if the value is an integer it is treated as a 'documents' post ID
+ *   (the '_document' attachment meta is resolved to a URL via
+ *   wp_get_attachment_url()); otherwise it is passed through as a literal URL.
+ * - `speak_to_an_expert_url`: always a literal custom URL, passed through as-is.
  *
  * @param array $out   The array of supported attributes and their processed values.
  * @param array $pairs The array of supported attributes and their default values.
  * @param array $atts  The array of user-defined attributes passed into the shortcode.
- * @return array The filtered array containing the authorized custom attribute.
+ * @return array The filtered array containing the authorized custom attributes.
  */
 add_filter('shortcode_atts_wpcf7', 'register_cf7_pdf_url_attribute', 10, 3);
 
 function register_cf7_pdf_url_attribute($out, $pairs, $atts)
 {
-    if (!isset($atts['pdf_url'])) {
-        return $out;
+    if (isset($atts['pdf_url'])) {
+        if (is_numeric($atts['pdf_url'])) {
+            $attachment_id = get__post_meta_by_id((int) $atts['pdf_url'], 'document');
+            if ($attachment_id) {
+                $out['pdf_url'] = wp_get_attachment_url($attachment_id);
+            }
+        } else {
+            $out['pdf_url'] = $atts['pdf_url'];
+        }
     }
 
-    if (is_numeric($atts['pdf_url'])) {
-        $attachment_id = get__post_meta_by_id((int) $atts['pdf_url'], 'document');
-        if ($attachment_id) {
-            $out['pdf_url'] = wp_get_attachment_url($attachment_id);
-        }
-    } else {
-        $out['pdf_url'] = $atts['pdf_url'];
+    // Always a literal custom URL — pass through unchanged.
+    if (isset($atts['speak_to_an_expert_url'])) {
+        $out['speak_to_an_expert_url'] = $atts['speak_to_an_expert_url'];
     }
 
     return $out;
@@ -825,5 +917,129 @@ function dd_resolve_pdf_url_to_path($value)
     }
 
     return false;
+}
+
+
+/**
+ * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
+ *
+ * REST endpoints backing the `dd/cf7-pdf-form` block editor dropdowns. Both are
+ * gated to users who can edit posts (the block editor's apiFetch sends the
+ * nonce), so the non-public CF7 and Documents post types are not exposed via
+ * public core REST. Returns lightweight id/title (+ CF7 hash) lists only.
+ */
+function dd_register_cf7_pdf_block_rest_routes()
+{
+    $can_edit = function () {
+        return current_user_can('edit_posts');
+    };
+
+    register_rest_route('dd/v1', '/cf7-forms', array(
+        'methods'             => 'GET',
+        'permission_callback' => $can_edit,
+        'callback'            => 'dd_rest_list_cf7_forms',
+    ));
+
+    register_rest_route('dd/v1', '/documents', array(
+        'methods'             => 'GET',
+        'permission_callback' => $can_edit,
+        'callback'            => 'dd_rest_list_documents',
+    ));
+}
+add_action('rest_api_init', 'dd_register_cf7_pdf_block_rest_routes');
+
+/**
+ * Lists Contact Form 7 forms as [{ id, hash, title }]. The hash is used as the
+ * shortcode `id` (matching hand-typed `[contact-form-7 id="0b54b62" …]`).
+ */
+function dd_rest_list_cf7_forms()
+{
+    if (!class_exists('WPCF7_ContactForm')) {
+        return array();
+    }
+
+    $forms = WPCF7_ContactForm::find(array('posts_per_page' => -1));
+    $out   = array();
+    foreach ($forms as $form) {
+        // Prefer the hash id (matches hand-typed `id="0b54b62"`); fall back to
+        // the numeric post ID on older CF7 builds without hash() — the CF7
+        // shortcode accepts either.
+        $hash = method_exists($form, 'hash') ? $form->hash() : '';
+        $out[] = array(
+            'id'    => $form->id(),
+            'hash'  => $hash ? $hash : (string) $form->id(),
+            'title' => $form->title(),
+        );
+    }
+
+    return $out;
+}
+
+/**
+ * Resolves a `documents` post's PDF file URL from its `document` field. Reads the
+ * raw Carbon meta key (`_document`) directly — reliable in any context — and only
+ * falls back to the Carbon API if that is empty.
+ *
+ * @param int $doc_id Documents post ID.
+ * @return string Attachment URL, or '' when none.
+ */
+function dd_document_file_url($doc_id)
+{
+    $attachment_id = get_post_meta($doc_id, '_document', true);
+    if (empty($attachment_id)) {
+        $attachment_id = get__post_meta_by_id($doc_id, 'document');
+    }
+
+    return (!empty($attachment_id) && is_numeric($attachment_id))
+        ? (string) wp_get_attachment_url((int) $attachment_id)
+        : '';
+}
+
+/**
+ * Resolves a `documents` post's "Speak to an expert url" from the raw
+ * `_speak_to_an_expert_url` meta key (Carbon's storage for that text field),
+ * falling back to the Carbon API only if the raw value is empty.
+ *
+ * @param int $doc_id Documents post ID.
+ * @return string The URL, or '' when none.
+ */
+function dd_document_speak_url($doc_id)
+{
+    $speak = get_post_meta($doc_id, '_speak_to_an_expert_url', true);
+    if ($speak === '' || $speak === false || $speak === null) {
+        $speak = get__post_meta_by_id($doc_id, 'speak_to_an_expert_url');
+    }
+
+    return $speak ? (string) $speak : '';
+}
+
+/**
+ * Lists published `documents` posts as [{ id, title, url, speak_url }] for the
+ * block's Document source dropdown, using the resolvers above so `url` (PDF) and
+ * `speak_url` come straight from the CPT's meta. Avoids flipping show_in_rest on
+ * the CPT.
+ */
+function dd_rest_list_documents()
+{
+    $posts = get_posts(array(
+        'post_type'      => 'documents',
+        'post_status'    => 'publish',
+        'numberposts'    => -1,
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+        'suppress_filters' => false,
+    ));
+
+    $out = array();
+    foreach ($posts as $post) {
+        $out[] = array(
+            'id'        => $post->ID,
+            'title'     => get_the_title($post),
+            'url'       => dd_document_file_url($post->ID),
+            'speak_url' => dd_document_speak_url($post->ID),
+        );
+    }
+
+    return $out;
 }
 

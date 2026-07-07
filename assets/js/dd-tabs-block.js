@@ -142,9 +142,71 @@
             // so existing blocks (which lack this attribute) are unaffected.
             layoutStyle: { type: 'string', default: 'horizontal' },
             // Highlight colour for the active panel in the stacked layout.
-            stackedAccentColor: { type: 'string', default: '#6c47ff' }
+            stackedAccentColor: { type: 'string', default: '#6c47ff' },
+            // Which side the vertical nav sits on in the stacked layout.
+            // 'right' is the default; only 'left' is written to markup, so
+            // existing stacked blocks serialize unchanged.
+            stackedNavPosition: { type: 'string', default: 'right' },
+            // Horizontal layout: whether the tab nav row sits above or below the
+            // panels. 'top' is the default; only 'bottom' is written to markup,
+            // so existing horizontal blocks serialize unchanged.
+            navPlacement: { type: 'string', default: 'top' }
         },
-        
+
+        /**
+         * Backwards-compatible markup migrations.
+         *
+         * v1: earlier stacked blocks were serialized with accordion conversion
+         * forced OFF (data-mobile-accordion="false", data-accordion-breakpoint="none").
+         * Once accordion support was added for the stacked layout the save output
+         * changed, which would otherwise flag those posts as "invalid". This
+         * deprecation reproduces the old markup so Gutenberg validates and then
+         * silently migrates them to the current format on the next save.
+         */
+        deprecated: [
+            {
+                save: function (props) {
+                    const safeRadius = String(props.attributes.btnBorderRadius).includes('px') || String(props.attributes.btnBorderRadius).includes(' ') ? props.attributes.btnBorderRadius : `${props.attributes.btnBorderRadius}px`;
+                    const safeWidth = String(props.attributes.btnBorderWidth).includes('px') || String(props.attributes.btnBorderWidth).includes(' ') ? props.attributes.btnBorderWidth : `${props.attributes.btnBorderWidth}px`;
+
+                    const cssVariables = {
+                        '--dd-btn-bg': props.attributes.btnBgColor,
+                        '--dd-btn-color': props.attributes.btnTextColor,
+                        '--dd-btn-active-bg': props.attributes.btnActiveBgColor,
+                        '--dd-btn-active-color': props.attributes.btnActiveTextColor,
+                        '--dd-nav-align': props.attributes.navAlignment,
+                        '--dd-btn-padding': props.attributes.btnPadding,
+                        '--dd-btn-radius': safeRadius,
+                        '--dd-btn-border-width': safeWidth,
+                        '--dd-btn-border-color': props.attributes.btnBorderColor,
+                        '--dd-btn-border-style': props.attributes.btnBorderStyle,
+                        '--dd-btn-font-size': props.attributes.btnFontSize,
+                        '--dd-btn-font-weight': props.attributes.btnFontWeight
+                    };
+
+                    const isStacked = props.attributes.layoutStyle === 'stacked';
+
+                    const wrapAttrs = {
+                        className: 'dd-tabs-wrapper',
+                        'data-mobile-accordion': props.attributes.mobileAccordion ? 'true' : 'false',
+                        'data-accordion-breakpoint': props.attributes.mobileAccordion ? props.attributes.accordionBreakpoint : 'none',
+                        style: cssVariables
+                    };
+
+                    if (isStacked) {
+                        cssVariables['--dd-stacked-accent'] = props.attributes.stackedAccentColor || '#6c47ff';
+                        wrapAttrs['data-layout'] = 'stacked';
+                        wrapAttrs['data-mobile-accordion'] = 'false';
+                        wrapAttrs['data-accordion-breakpoint'] = 'none';
+                    }
+
+                    const blockProps = useBlockProps.save(wrapAttrs);
+
+                    return el('div', blockProps, el(InnerBlocks.Content, null));
+                }
+            }
+        ],
+
         /**
          * Renders the editor UI for the Parent Tabs block.
          * * @param {Object} props The block properties provided by Gutenberg.
@@ -192,6 +254,26 @@
                             ],
                             help: 'Stacked: titles list vertically and the active title reveals its content inline beneath it.',
                             onChange: function (val) { setAttributes({ layoutStyle: val }); }
+                        }),
+                        attributes.layoutStyle !== 'stacked' && el(SelectControl, {
+                            label: 'Navigation Placement',
+                            value: attributes.navPlacement,
+                            options: [
+                                { label: 'Above panels (Default)', value: 'top' },
+                                { label: 'Below panels', value: 'bottom' }
+                            ],
+                            help: 'Where the horizontal tab navigation row sits relative to the content.',
+                            onChange: function (val) { setAttributes({ navPlacement: val }); }
+                        }),
+                        attributes.layoutStyle === 'stacked' && el(SelectControl, {
+                            label: 'Navigation Position',
+                            value: attributes.stackedNavPosition,
+                            options: [
+                                { label: 'Right', value: 'right' },
+                                { label: 'Left', value: 'left' }
+                            ],
+                            help: 'Which side the vertical tab list sits on (content takes the other side).',
+                            onChange: function (val) { setAttributes({ stackedNavPosition: val }); }
                         }),
                         attributes.layoutStyle === 'stacked' && el(BaseControl, { label: 'Active Highlight Color' },
                             el(ColorPalette, { value: attributes.stackedAccentColor, onChange: function (val) { setAttributes({ stackedAccentColor: val }); } })
@@ -338,6 +420,16 @@
             if (isStacked) {
                 cssVariables['--dd-stacked-accent'] = props.attributes.stackedAccentColor || '#6c47ff';
                 wrapAttrs['data-layout'] = 'stacked';
+                // Only the non-default 'left' is emitted, so right-aligned
+                // stacked blocks serialize identically to before.
+                if (props.attributes.stackedNavPosition === 'left') {
+                    wrapAttrs['data-nav-position'] = 'left';
+                }
+            } else if (props.attributes.navPlacement === 'bottom') {
+                // Horizontal layout with the nav row below the panels. Only the
+                // non-default 'bottom' is emitted, so existing horizontal blocks
+                // serialize identically to before.
+                wrapAttrs['data-nav-placement'] = 'bottom';
             }
 
             const blockProps = useBlockProps.save(wrapAttrs);

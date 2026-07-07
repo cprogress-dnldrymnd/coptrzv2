@@ -28,8 +28,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const navVertical = document.createElement('div');
         navVertical.className = 'dd-tabs-nav-vertical';
 
+        // Shared description shown below the nav on the ≤991px horizontal strip
+        // (accordion off) — the per-button descriptions can't be lifted out of
+        // the scrolling nav via CSS alone.
+        const mobileDesc = document.createElement('div');
+        mobileDesc.className = 'dd-tabs-mobile-desc';
+
         const navButtons = [];
         const accordionButtons = [];
+        const descriptions = [];
 
         const setActive = function (i, isActive) {
             panels[i].classList.toggle('active', isActive);
@@ -42,11 +49,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const activate = function (targetIndex) {
             panels.forEach(function (p, i) { setActive(i, i === targetIndex); });
+            mobileDesc.textContent = descriptions[targetIndex] || '';
         };
 
         panels.forEach(function (panel, index) {
             const title = panel.getAttribute('data-tab-title') || 'Tab';
             const desc = panel.getAttribute('data-tab-description') || '';
+            descriptions.push(desc);
 
             // --- Right-column nav tab (desktop) ---
             const btn = document.createElement('button');
@@ -99,8 +108,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Left first, nav second; CSS arranges them as two columns.
+        // mobileDesc is only shown on the ≤991px horizontal strip.
         wrapper.appendChild(contentArea);
         wrapper.appendChild(navVertical);
+        wrapper.appendChild(mobileDesc);
+
+        // On the ≤991px horizontal strip, let a vertical mouse wheel scroll the
+        // nav sideways (desktop has no other way to reach overflowed tabs; touch
+        // swipes natively). No-op while the nav isn't horizontally overflowing.
+        navVertical.addEventListener('wheel', function (e) {
+            if (navVertical.scrollWidth <= navVertical.clientWidth) return;
+            if (e.deltaY === 0) return;
+            e.preventDefault();
+            navVertical.scrollLeft += e.deltaY;
+        }, { passive: false });
 
         activate(0);
     }
@@ -121,10 +142,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // 1. Construct the Desktop Navigation Container (Renders Above)
+            // 1. Construct the Desktop Navigation Container. It renders above the
+            //    panels by default, or below when data-nav-placement="bottom".
             const desktopNav = document.createElement('div');
             desktopNav.className = 'dd-tabs-nav-desktop';
-            wrapper.insertBefore(desktopNav, wrapper.firstChild);
+            if (wrapper.getAttribute('data-nav-placement') === 'bottom') {
+                wrapper.appendChild(desktopNav);
+            } else {
+                wrapper.insertBefore(desktopNav, wrapper.firstChild);
+            }
 
             // Arrays to keep track of generated buttons to sync their active states easily
             const desktopButtons = [];
