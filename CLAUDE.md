@@ -49,7 +49,12 @@ case studies, rentals, landing pages, etc).
   the modal HTML is emitted only once per popup even when multiple buttons
   target the same popup. The shortcode call is guarded with
   `function_exists('__popup')` so the filter is safe in admin/REST contexts
-  where `modules.php` (and therefore `__popup`) is not loaded.
+  where `modules.php` (and therefore `__popup`) is not loaded. `__popup($id)`
+  (in `modules.php`) renders a `popups` post's content through
+  `do_shortcode(do_blocks(get_the_content(NULL, false, $id)))` — the
+  `do_blocks()` pass is required so Gutenberg block markup in the popup body
+  renders correctly (plain `do_shortcode()` alone left block comments/markup
+  unprocessed).
 - `assets/js/main.js` — main frontend JS, runs on `jQuery(document).ready`.
   Initialises all frontend behaviors: mini-cart, header menu, accordions,
   Swiper carousels, phone inputs, AJAX, hero, post navigation, URL param
