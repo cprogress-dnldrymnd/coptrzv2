@@ -551,6 +551,9 @@ class Shortcodes
     }
     function reviews()
     {
+        if (is_admin()) {
+            return '';
+        }
         $SVG = new SVG;
         $reviews = get__theme_option('reviews');
         if ($reviews) {
