@@ -37,6 +37,42 @@ function tissue_paper_register_custom_fields()
         }
     }
 }
+
+/**
+ * Register the per-page "Hide Header" side box unconditionally.
+ *
+ * Lives here rather than in includes/post-meta.php because that file is not
+ * loaded in admin when the page-blocks-editor.php template is active (see
+ * dd_is_blocks_editor_template_active), which would hide this control on those
+ * pages. Registering on the carbon_fields_register_fields hook directly means
+ * the container exists on every template and on the frontend (so header.php can
+ * read the hide_header meta). Keep the field defined ONLY here to avoid a
+ * duplicate-container fatal.
+ */
+add_action('carbon_fields_register_fields', 'dd_register_hide_header_field');
+function dd_register_hide_header_field()
+{
+    if (!class_exists('\Carbon_Fields\Container')) {
+        return;
+    }
+
+    \Carbon_Fields\Container::make('post_meta', 'Header')
+        ->where('post_type', '=', 'page')
+        ->or_where('post_type', '=', 'post')
+        ->or_where('post_type', '=', 'product')
+        ->or_where('post_type', '=', 'guides')
+        ->or_where('post_type', '=', 'casestudies')
+        ->or_where('post_type', '=', 'industries')
+        ->or_where('post_type', '=', 'capabilities')
+        ->or_where('post_type', '=', 'events')
+        ->or_where('post_type', '=', 'rentals')
+        ->or_where('post_type', '=', 'landingpages')
+        ->set_context('side')
+        ->add_fields(array(
+            \Carbon_Fields\Field::make('checkbox', 'hide_header', __('Hide Header'))
+                ->set_help_text('Hide the site header on this page.')
+        ));
+}
 function get__post_meta($value)
 {
     if (function_exists('carbon_get_the_post_meta')) {

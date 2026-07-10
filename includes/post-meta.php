@@ -7142,27 +7142,6 @@ Container::make('post_meta', 'Hide Before Footer Layout')
 
 
 /*-----------------------------------------------------------------------------------*/
-/* Hide Header
-/*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', 'Header')
-    ->where('post_type', '=', 'page')
-    ->or_where('post_type', '=', 'post')
-    ->or_where('post_type', '=', 'product')
-    ->or_where('post_type', '=', 'guides')
-    ->or_where('post_type', '=', 'casestudies')
-    ->or_where('post_type', '=', 'industries')
-    ->or_where('post_type', '=', 'capabilities')
-    ->or_where('post_type', '=', 'events')
-    ->or_where('post_type', '=', 'rentals')
-    ->or_where('post_type', '=', 'landingpages')
-    ->set_context('side')
-    ->add_fields(array(
-        Field::make('checkbox', 'hide_header', __('Hide Header'))
-            ->set_help_text('Hide the site header on this page.')
-    ));
-
-
-/*-----------------------------------------------------------------------------------*/
 /* Menu Settings
 /*-----------------------------------------------------------------------------------*/
 Container::make('nav_menu_item', __('Menu Settings'))
