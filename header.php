@@ -39,6 +39,15 @@
             </a>
 		</div>
 	<?php } ?>
+	<?php
+	$hide_header = false;
+	if (is_singular()) {
+		$header_post_id = get_the_ID() ?: get_queried_object_id();
+		if ($header_post_id) {
+			$hide_header = get__post_meta_by_id($header_post_id, 'hide_header');
+		}
+	}
+	if (!$hide_header) { ?>
 	<header class="header small-text overflow-hidden">
 		<div class="container">
 			<div class="header-inner mt-20px rounded-10px">
@@ -50,6 +59,7 @@
 			</div>
 		</div>
 	</header>
+	<?php } ?>
 	<?php wp_body_open(); ?>
 	<?php
 	$class = '';
