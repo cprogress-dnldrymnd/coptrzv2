@@ -274,6 +274,13 @@ case studies, rentals, landing pages, etc).
   so it is available on **every post type** (no `where` clause) and on every
   template, including `page-blocks-editor.php`. Defined only there; don't re-add
   it to `post-meta.php`.
+- The **Hide Before Footer Layout** box (`hidden_layouts` set field — a list of
+  published `layouts` posts flagged `before_footer`, whose ids `footer.php`
+  excludes via `get__post_meta('hidden_layouts')`) is registered the same way —
+  `dd_register_hide_before_footer_field()` in `functions.php`, on the
+  `carbon_fields_register_fields` hook directly — so it shows on
+  `page-blocks-editor.php` too. Same post types as before (`page`, `guides`,
+  `casestudies`, `events`, `landingpages`; side context). Defined only there.
 
 ### Forms — CF7 → Zapier
 

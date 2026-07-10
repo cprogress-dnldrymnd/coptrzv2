@@ -102,6 +102,56 @@ function dd_register_custom_css_field()
                 ->set_classes('inline-field')
         ));
 }
+
+/**
+ * Register the "Hide Before Footer Layout" side box unconditionally.
+ *
+ * Same rationale as dd_register_hide_header_field / dd_register_custom_css_field:
+ * includes/post-meta.php is not loaded in admin on the page-blocks-editor.php
+ * template, which would hide this box there. Registering on the
+ * carbon_fields_register_fields hook directly keeps it on every template. The
+ * options list is built from published `layouts` posts flagged for the
+ * before_footer display location; footer.php reads the chosen ids via
+ * get__post_meta('hidden_layouts') to exclude them. Keep the field defined ONLY
+ * here to avoid a duplicate-container fatal.
+ */
+add_action('carbon_fields_register_fields', 'dd_register_hide_before_footer_field');
+function dd_register_hide_before_footer_field()
+{
+    if (!class_exists('\Carbon_Fields\Container')) {
+        return;
+    }
+
+    $before_footer_options = array();
+    $layouts = get_posts(array(
+        'numberposts' => -1,
+        'post_type'   => 'layouts',
+        'fields'      => 'ids',
+        'orderby'     => 'menu_order',
+        'order'       => 'ASC',
+        'meta_query'  => array(
+            array(
+                'key'   => '_display_location',
+                'value' => 'before_footer',
+            ),
+        ),
+    ));
+    foreach ($layouts as $layout) {
+        $before_footer_options[$layout] = get_the_title($layout);
+    }
+
+    \Carbon_Fields\Container::make('post_meta', 'Hide Before Footer Layout')
+        ->where('post_type', '=', 'page')
+        ->or_where('post_type', '=', 'guides')
+        ->or_where('post_type', '=', 'casestudies')
+        ->or_where('post_type', '=', 'events')
+        ->or_where('post_type', '=', 'landingpages')
+        ->set_context('side')
+        ->add_fields(array(
+            \Carbon_Fields\Field::make('set', 'hidden_layouts', __(''))
+                ->set_options($before_footer_options)
+        ));
+}
 function get__post_meta($value)
 {
     if (function_exists('carbon_get_the_post_meta')) {
