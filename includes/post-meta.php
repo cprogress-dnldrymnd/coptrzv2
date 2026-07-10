@@ -7210,18 +7210,10 @@ Container::make('post_meta', 'Product Components')
     );
 
 
-/*-----------------------------------------------------------------------------------*/
-/* Custom CSS
-/*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', __('Custom CSS'))
-    ->where('post_type', '=', 'page')
-    ->or_where('post_type', '=', 'guides')
-    ->set_priority('low')
-    ->add_fields(
-        array(
-            Field::make('textarea', 'custom_css', __('Custom CSS'))->set_classes('inline-field')
-        )
-    );
+/* Custom CSS is registered in functions.php (dd_register_custom_css_field), on
+   the carbon_fields_register_fields hook directly, so it is available on all
+   post types and on every template — including page-blocks-editor.php, on which
+   this file is skipped in admin. Do not re-add it here (duplicate container). */
 
 
 

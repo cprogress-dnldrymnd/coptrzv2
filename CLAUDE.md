@@ -263,6 +263,13 @@ case studies, rentals, landing pages, etc).
   hook keeps it available on every template and on the frontend. Applies to
   `page`, `post`, `product`, `guides`, `casestudies`, `industries`,
   `capabilities`, `events`, `rentals`, and `landingpages` (side context).
+- The **Custom CSS** `post_meta` box (`custom_css` textarea, output in
+  `<style id="wp-head">` by `action_wp_head()` in `hooks.php`) is registered the
+  same way — `dd_register_custom_css_field()` in `functions.php`, on the
+  `carbon_fields_register_fields` hook directly rather than in `post-meta.php` —
+  so it is available on **every post type** (no `where` clause) and on every
+  template, including `page-blocks-editor.php`. Defined only there; don't re-add
+  it to `post-meta.php`.
 
 ### Forms — CF7 → Zapier
 

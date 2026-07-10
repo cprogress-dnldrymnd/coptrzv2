@@ -73,6 +73,32 @@ function dd_register_hide_header_field()
                 ->set_help_text('Hide the site header on this page.')
         ));
 }
+
+/**
+ * Register the "Custom CSS" post_meta box for every post type, unconditionally.
+ *
+ * Registered here (rather than in includes/post-meta.php) for the same reason as
+ * dd_register_hide_header_field: post-meta.php is not loaded in admin on the
+ * page-blocks-editor.php template, which would hide this box there. Hooking the
+ * carbon_fields_register_fields event directly makes the field available on all
+ * post types and on every template, and on the frontend so action_wp_head() can
+ * output the custom_css meta. Keep the field defined ONLY here to avoid a
+ * duplicate-container fatal.
+ */
+add_action('carbon_fields_register_fields', 'dd_register_custom_css_field');
+function dd_register_custom_css_field()
+{
+    if (!class_exists('\Carbon_Fields\Container')) {
+        return;
+    }
+
+    \Carbon_Fields\Container::make('post_meta', __('Custom CSS'))
+        ->set_priority('low')
+        ->add_fields(array(
+            \Carbon_Fields\Field::make('textarea', 'custom_css', __('Custom CSS'))
+                ->set_classes('inline-field')
+        ));
+}
 function get__post_meta($value)
 {
     if (function_exists('carbon_get_the_post_meta')) {
