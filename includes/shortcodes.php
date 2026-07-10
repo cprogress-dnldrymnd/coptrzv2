@@ -353,6 +353,9 @@ class Shortcodes
 
     function layouts($atts)
     {
+        if (!function_exists('layouts')) {
+            return '';
+        }
         extract(
             shortcode_atts(
                 array(
@@ -771,7 +774,7 @@ class Shortcodes
 
     function testimonials()
     {
-        if(!function_exists('____post_grid_module')) {
+        if (!function_exists('____post_grid_module')) {
             return '';
         }
         return ____post_grid_module(array(
