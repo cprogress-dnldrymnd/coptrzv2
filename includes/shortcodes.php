@@ -771,6 +771,9 @@ class Shortcodes
 
     function testimonials()
     {
+        if(!function_exists('____post_grid_module')) {
+            return '';
+        }
         return ____post_grid_module(array(
             'id'                      => 'testimonial-slider',
             'is_slider'               => true,
@@ -1080,7 +1083,7 @@ add_shortcode('site_logo', array($Shortcodes, 'site_logo'));
 add_shortcode('event_countdown', array($Shortcodes, 'event_countdown'));
 add_shortcode('product_compare', array($Shortcodes, 'product_compare'));
 add_shortcode('brands_logo_slider', array($Shortcodes, 'brands_logo_slider'));
-#add_shortcode('testimonials', array($Shortcodes, 'testimonials'));
+add_shortcode('testimonials', array($Shortcodes, 'testimonials'));
 add_shortcode('drone_servicing', array($Shortcodes, 'drone_servicing'));
 add_shortcode('three_year_servicing_plans', array($Shortcodes, 'three_year_servicing_plans'));
 add_shortcode('remote_support', array($Shortcodes, 'remote_support'));
