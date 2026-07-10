@@ -250,17 +250,21 @@ case studies, rentals, landing pages, etc).
   `header-clean.php`, `header-simple.php`, `header-landing.php`,
   `header-landing-v2.php`; `footer.php`, `footer-clean.php`,
   `footer-simple.php`, `footer-landing.php`.
-- `header.php` reads a per-post `hide_header` checkbox meta field (via
+- A **Layout** side box carries two per-post checkboxes, `hide_header` and
+  `hide_footer`. `header.php` reads `hide_header` (via
   `get__post_meta_by_id($id, 'hide_header')`, resolved from `get_the_ID()` or
   `get_queried_object_id()` for `is_singular()` requests) and, when set, skips
   both the `<header>` element and the promo/announcement banner above it (the
-  banner lives inside the same `if (!$hide_header)` block). The field is
+  banner lives inside the same `if (!$hide_header)` block). `footer.php` reads
+  `hide_footer` (via `get__post_meta('hide_footer')`) and, when set, skips the
+  `<footer>` element (the `if (!$hide_footer)` gate already existed in
+  `footer.php` — only the field registration was added). Both fields are
   registered in **`functions.php`** (`dd_register_hide_header_field()`, on the
   `carbon_fields_register_fields` hook directly) rather than in `post-meta.php`,
   because `post-meta.php` is skipped in admin when the `page-blocks-editor.php`
   template is active (see `dd_is_blocks_editor_template_active()`), which would
-  otherwise hide the control on those pages — registering it directly on the
-  hook keeps it available on every template and on the frontend. Applies to
+  otherwise hide the controls on those pages — registering directly on the
+  hook keeps them available on every template and on the frontend. Applies to
   `page`, `post`, `product`, `guides`, `casestudies`, `industries`,
   `capabilities`, `events`, `rentals`, and `landingpages` (side context).
 - The **Custom CSS** `post_meta` box (`custom_css` textarea, output in
