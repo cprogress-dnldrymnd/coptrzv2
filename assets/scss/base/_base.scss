@@ -1910,7 +1910,7 @@ hr {
     .button-accent.button-accent.button-accent a,
     .button-accent.button-accent.button-accent button,
     .button-white.button-white.button-white a,
-    .button-white.button-white.button-white button {
+    .button-white.button-white.button-white button, .button--animate .wp-element-button.wp-element-button{
         background-color: #f84a01 !important;
         border-color: #f84a01 !important;
         animation-duration: 2s;
