@@ -353,7 +353,7 @@ class Shortcodes
 
     function layouts($atts)
     {
-        if (!function_exists('layouts')) {
+        if (!function_exists('___sections')) {
             return '';
         }
         extract(

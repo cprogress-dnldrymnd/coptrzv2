@@ -19,7 +19,6 @@ $args = array(
 );
 
 $layouts = get_posts($args);
-echo '<div class="layouts-before-footer">';
 foreach ($layouts as $layout) {
     $do_not_display_on = get__post_meta_by_id($layout, 'do_not_display_on');
     if (is_404()) {
@@ -37,13 +36,6 @@ foreach ($layouts as $layout) {
         echo do_shortcode("[layouts id='$layout']");
         $layouts_global[] = $layout;
     }
-}
-echo '</div>';
-
-if (current_user_can('administrator')) {
-    echo '<pre>';
-    var_dump($layouts_global);
-    echo '</pre>';
 }
 $hide_footer = get__post_meta('hide_footer');
 $footer_drone_experts = get__theme_option('footer_drone_experts');
