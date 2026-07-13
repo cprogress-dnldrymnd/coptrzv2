@@ -49,7 +49,12 @@ case studies, rentals, landing pages, etc).
   the modal HTML is emitted only once per popup even when multiple buttons
   target the same popup. The shortcode call is guarded with
   `function_exists('__popup')` so the filter is safe in admin/REST contexts
-  where `modules.php` (and therefore `__popup`) is not loaded.
+  where `modules.php` (and therefore `__popup`) is not loaded. `__popup($id)`
+  (in `modules.php`) renders a `popups` post's content through
+  `do_shortcode(do_blocks(get_the_content(NULL, false, $id)))` — the
+  `do_blocks()` pass is required so Gutenberg block markup in the popup body
+  renders correctly (plain `do_shortcode()` alone left block comments/markup
+  unprocessed).
 - `assets/js/main.js` — main frontend JS, runs on `jQuery(document).ready`.
   Initialises all frontend behaviors: mini-cart, header menu, accordions,
   Swiper carousels, phone inputs, AJAX, hero, post navigation, URL param
@@ -300,6 +305,39 @@ case studies, rentals, landing pages, etc).
   `header-clean.php`, `header-simple.php`, `header-landing.php`,
   `header-landing-v2.php`; `footer.php`, `footer-clean.php`,
   `footer-simple.php`, `footer-landing.php`.
+- A **Layout** side box carries two per-post checkboxes, `hide_header` and
+  `hide_footer`. `header.php` reads `hide_header` (via
+  `get__post_meta_by_id($id, 'hide_header')`, resolved from `get_the_ID()` or
+  `get_queried_object_id()` for `is_singular()` requests) and, when set, skips
+  both the `<header>` element and the promo/announcement banner above it (the
+  banner lives inside the same `if (!$hide_header)` block). `footer.php` reads
+  `hide_footer` (via `get__post_meta('hide_footer')`) and, when set, skips the
+  `<footer>` element (the `if (!$hide_footer)` gate already existed in
+  `footer.php` — only the field registration was added). Both fields are
+  registered through the **meta shim** in `functions.php`
+  (`coptrz_register_global_layout_fields()`) rather than in `post-meta.php`,
+  because `post-meta.php` is skipped in admin when the `page-blocks-editor.php`
+  template is active (see `dd_is_blocks_editor_template_active()`), which would
+  otherwise hide the controls on those pages. `coptrz_register_global_layout_fields()`
+  is called unconditionally from `tissue_paper_register_custom_fields()` (before
+  `Container_Admin::boot()`), on both the blocks-editor and normal branches, so the
+  containers are indexed on every template and on the frontend. Applies to `page`,
+  `post`, `product`, `guides`, `casestudies`, `industries`, `capabilities`,
+  `events`, `rentals`, and `landingpages` (side context).
+- The **Custom CSS** `post_meta` box (`custom_css` textarea, output in
+  `<style id="wp-head">` by `action_wp_head()` in `hooks.php`) is registered the
+  same way — in `coptrz_register_global_layout_fields()` (`functions.php`) via the
+  meta shim rather than in `post-meta.php` — so it is available on **every post
+  type** (no `where` clause; the shim treats an empty condition set as "all") and
+  on every template, including `page-blocks-editor.php`. Defined only there; don't
+  re-add it to `post-meta.php`.
+- The **Hide Before Footer Layout** box (`hidden_layouts` set field — a list of
+  published `layouts` posts flagged `before_footer`, whose ids `footer.php`
+  excludes via `get__post_meta('hidden_layouts')`) is registered the same way —
+  in `coptrz_register_global_layout_fields()` (`functions.php`) via the meta shim —
+  so it shows on `page-blocks-editor.php` too. Same post types as before (`page`,
+  `guides`, `casestudies`, `events`, `landingpages`; side context). Defined only
+  there.
 
 ### Forms — CF7 → Zapier
 
@@ -339,7 +377,10 @@ case studies, rentals, landing pages, etc).
   on `wp_head`, `dd_inject_openai_ads_cf7_listener` on `wp_footer`), driven by
   Carbon Fields defined in `post-meta.php`:
   - Pixel ID / global enable: `__openai_ads_fields()`, an "OpenAI Ads" tab on
-    `theme_options` (`openai_ads_enable` + `openai_ads_pixel_id`).
+    `theme_options` (`openai_ads_enable` + `openai_ads_pixel_id` +
+    `openai_ads_debug` — passed as `debug` in the `oaiq("init", ...)` call to
+    log pixel SDK activity to the browser console; both `pixel_id` and `debug`
+    fields are gated behind `openai_ads_enable` via conditional logic).
   - Per-page conversion opt-in: `__openai_ads_conversion_fields()`, an
     "OpenAI Ads Conversion" tab on the same `post_meta` "Hero" container used by
     `page`/`product`/`post`/`capabilities`/`casestudies`/`industries`/`events`/

@@ -353,6 +353,9 @@ class Shortcodes
 
     function layouts($atts)
     {
+        if (!function_exists('layouts')) {
+            return '';
+        }
         extract(
             shortcode_atts(
                 array(
@@ -548,6 +551,9 @@ class Shortcodes
     }
     function reviews()
     {
+        if (is_admin()) {
+            return '';
+        }
         $SVG = new SVG;
         $reviews = get__theme_option('reviews');
         if ($reviews) {
@@ -771,6 +777,9 @@ class Shortcodes
 
     function testimonials()
     {
+        if (!function_exists('____post_grid_module')) {
+            return '';
+        }
         return ____post_grid_module(array(
             'id'                      => 'testimonial-slider',
             'is_slider'               => true,

@@ -12757,12 +12757,13 @@ hr {
 .single-guides .button-accent.button-accent.button-accent a,
 .single-guides .button-accent.button-accent.button-accent button,
 .single-guides .button-white.button-white.button-white a,
-.single-guides .button-white.button-white.button-white button,
+.single-guides .button-white.button-white.button-white button, .single-guides .button--animate .wp-element-button.wp-element-button,
 .single-landingpages .wpcf7-submit.wpcf7-submit.wpcf7-submit,
 .single-landingpages .button-accent.button-accent.button-accent a,
 .single-landingpages .button-accent.button-accent.button-accent button,
 .single-landingpages .button-white.button-white.button-white a,
-.single-landingpages .button-white.button-white.button-white button {
+.single-landingpages .button-white.button-white.button-white button,
+.single-landingpages .button--animate .wp-element-button.wp-element-button {
   background-color: #f84a01 !important;
   border-color: #f84a01 !important;
   animation-duration: 2s;

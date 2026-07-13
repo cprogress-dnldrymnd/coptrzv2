@@ -3345,8 +3345,8 @@ function __popup($id)
         $html .= "<div class='row g-0'>"; //row
         $html .= "<div class='$col_class'>"; //col
         $html .= "<div class='form-box p-4  h-100 d-flex align-items-center'>"; //form-holder
-        $html .= "<div class='form-inner w-100'>"; //form-inner 
-        $html .= do_shortcode(get_the_content(NULL, false, $id));
+        $html .= "<div class='form-inner w-100'>"; //form-inner
+        $html .= do_shortcode(do_blocks(get_the_content(NULL, false, $id)));
         $html .= "</div>"; //form-inner
         $html .= "</div>"; //form-holder
         $html .= "</div>"; //col
@@ -3364,7 +3364,7 @@ function __popup($id)
 
     } else {
         $html .= "<div class='popup-content-default p-5'>"; //popup-content-default
-        $html .= do_shortcode(get_the_content(NULL, false, $id));
+        $html .= do_shortcode(do_blocks(get_the_content(NULL, false, $id)));
         $html .= "</div>"; //popup-content-default
     }
     $html .= "</div>"; //modal-body

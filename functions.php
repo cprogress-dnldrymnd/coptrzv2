@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 5.3);
+define('coptz_version', 5.4);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -69,9 +69,97 @@ function tissue_paper_register_custom_fields()
     if (function_exists('coptrz_register_html_sections_fields')) {
         coptrz_register_html_sections_fields();
     }
+    // Register the always-on Layout / Custom CSS / Hide Before Footer boxes
+    // regardless of the blocks-editor branch above, so they appear on every
+    // template (including page-blocks-editor.php, on which post-meta.php is
+    // skipped in admin). MUST run before boot() so the containers are indexed.
+    coptrz_register_global_layout_fields();
     \CoptrzTheme\MetaShim\Container_Admin::boot();
 }
 add_action('after_setup_theme', 'tissue_paper_register_custom_fields', 20);
+
+/**
+ * Register the per-page "Layout" side box (Hide Header / Hide Footer), the
+ * site-wide "Custom CSS" box, and the "Hide Before Footer Layout" side box
+ * through the native meta shim — unconditionally, on every request.
+ *
+ * These live here rather than in includes/post-meta.php because that file is not
+ * loaded in admin when the page-blocks-editor.php template is active (see
+ * dd_is_blocks_editor_template_active), which would hide these controls on those
+ * pages. Registering them from tissue_paper_register_custom_fields (which always
+ * runs, on both branches) keeps the containers indexed on every template and on
+ * the frontend, so header.php / footer.php / action_wp_head() can read the
+ * hide_header / hide_footer / hidden_layouts / custom_css meta. Keep the fields
+ * defined ONLY here to avoid a duplicate container (they were removed from
+ * includes/post-meta.php for this reason).
+ */
+function coptrz_register_global_layout_fields()
+{
+    if (!class_exists('\CoptrzTheme\MetaShim\Container')) {
+        return;
+    }
+
+    // Per-page Hide Header / Hide Footer.
+    \CoptrzTheme\MetaShim\Container::make('post_meta', 'Layout')
+        ->where('post_type', '=', 'page')
+        ->or_where('post_type', '=', 'post')
+        ->or_where('post_type', '=', 'product')
+        ->or_where('post_type', '=', 'guides')
+        ->or_where('post_type', '=', 'casestudies')
+        ->or_where('post_type', '=', 'industries')
+        ->or_where('post_type', '=', 'capabilities')
+        ->or_where('post_type', '=', 'events')
+        ->or_where('post_type', '=', 'rentals')
+        ->or_where('post_type', '=', 'landingpages')
+        ->set_context('side')
+        ->add_fields(array(
+            \CoptrzTheme\MetaShim\Field::make('checkbox', 'hide_header', __('Hide Header'))
+                ->set_help_text('Hide the site header on this page.'),
+            \CoptrzTheme\MetaShim\Field::make('checkbox', 'hide_footer', __('Hide Footer'))
+                ->set_help_text('Hide the site footer on this page.')
+        ));
+
+    // Site-wide Custom CSS (every post type).
+    \CoptrzTheme\MetaShim\Container::make('post_meta', __('Custom CSS'))
+        ->set_priority('low')
+        ->add_fields(array(
+            \CoptrzTheme\MetaShim\Field::make('textarea', 'custom_css', __('Custom CSS'))
+                ->set_classes('inline-field')
+        ));
+
+    // Hide Before Footer Layout — options are published `layouts` posts flagged
+    // for the before_footer display location; footer.php excludes the chosen ids
+    // via get__post_meta('hidden_layouts').
+    $before_footer_options = array();
+    $layouts = get_posts(array(
+        'numberposts' => -1,
+        'post_type'   => 'layouts',
+        'fields'      => 'ids',
+        'orderby'     => 'menu_order',
+        'order'       => 'ASC',
+        'meta_query'  => array(
+            array(
+                'key'   => '_display_location',
+                'value' => 'before_footer',
+            ),
+        ),
+    ));
+    foreach ($layouts as $layout) {
+        $before_footer_options[$layout] = get_the_title($layout);
+    }
+
+    \CoptrzTheme\MetaShim\Container::make('post_meta', 'Hide Before Footer Layout')
+        ->where('post_type', '=', 'page')
+        ->or_where('post_type', '=', 'guides')
+        ->or_where('post_type', '=', 'casestudies')
+        ->or_where('post_type', '=', 'events')
+        ->or_where('post_type', '=', 'landingpages')
+        ->set_context('side')
+        ->add_fields(array(
+            \CoptrzTheme\MetaShim\Field::make('set', 'hidden_layouts', __(''))
+                ->set_options($before_footer_options)
+        ));
+}
 // NOTE: these wrappers now delegate to the native meta shim (coptrz_get_*),
 // which reconstructs the identical nested arrays Carbon Fields returned. Keep
 // using these wrappers throughout the theme rather than calling the shim direct.
