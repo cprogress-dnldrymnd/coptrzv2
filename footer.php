@@ -19,7 +19,7 @@ $args = array(
 );
 
 $layouts = get_posts($args);
-
+echo '<div class="layouts-before-footer">';
 foreach ($layouts as $layout) {
     $do_not_display_on = get__post_meta_by_id($layout, 'do_not_display_on');
     if (is_404()) {
@@ -38,6 +38,7 @@ foreach ($layouts as $layout) {
         $layouts_global[] = $layout;
     }
 }
+echo '</div>';
 
 if (current_user_can('administrator')) {
     echo '<pre>';
