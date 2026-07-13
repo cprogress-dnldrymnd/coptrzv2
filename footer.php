@@ -19,6 +19,12 @@ $args = array(
 );
 
 $layouts = get_posts($args);
+
+if (current_user_can('administrator')) {
+    echo '<pre>';
+    var_dump($layouts);
+    echo '</pre>';
+}
 foreach ($layouts as $layout) {
     $do_not_display_on = get__post_meta_by_id($layout, 'do_not_display_on');
     if (is_404()) {
