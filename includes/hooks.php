@@ -138,14 +138,14 @@ add_action('wp_head', 'action_wp_head');
  *
  * Coverage:
  *   - X-Content-Type-Options: nosniff            (stops MIME sniffing)
- *   - X-Frame-Options: SAMEORIGIN                (clickjacking, legacy header)
- *   - Content-Security-Policy: frame-ancestors   (clickjacking, modern header;
- *                                                  script-src intentionally NOT
- *                                                  restricted to avoid breaking
- *                                                  inline scripts / Bootstrap /
- *                                                  Swiper / Woo / CDNs)
+ *   - X-Frame-Options: SAMEORIGIN                (clickjacking protection)
  *   - Referrer-Policy: strict-origin-when-cross-origin
  *   - Strict-Transport-Security                  (HTTPS only)
+ *
+ * No Content-Security-Policy is sent: a frame-ancestors-only policy gets graded
+ * "unsafe" by scanners (no script-src/object-src), and a real script-restricting
+ * CSP would break inline theme/Woo/CF7/analytics scripts without a nonce-based
+ * rollout. X-Frame-Options above covers the clickjacking case in the meantime.
  *
  * NOTE: On a LiteSpeed full-page-cache HIT these PHP headers may be bypassed.
  * For guaranteed coverage mirror them in .htaccess / server config too.
@@ -158,7 +158,6 @@ function dd_send_security_headers()
 
     header('X-Content-Type-Options: nosniff');
     header('X-Frame-Options: SAMEORIGIN');
-    header("Content-Security-Policy: frame-ancestors 'self'");
     header('Referrer-Policy: strict-origin-when-cross-origin');
 
     // HSTS only over HTTPS. Conservative rollout per hstspreload.org guidance:
