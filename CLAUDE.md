@@ -211,16 +211,19 @@ case studies, rentals, landing pages, etc).
   Forms below). `dd_send_security_headers()` (on `send_headers`, so it applies
   to every WP-served response, not just `<head>`) emits baseline security
   headers flagged by securityheaders.com / Mozilla Observatory scans:
-  `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`,
+  `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, a
+  `Content-Security-Policy` limited to `frame-ancestors 'self'`,
   `Referrer-Policy: strict-origin-when-cross-origin`, and (HTTPS only) a
   conservative `Strict-Transport-Security` (`max-age=15768000`, no
-  `includeSubDomains`/`preload` yet). No `Content-Security-Policy` is sent — a
-  `frame-ancestors`-only policy still gets graded "unsafe" by scanners (no
-  `script-src`/`object-src`), and a real script-restricting CSP would break
-  inline theme/Woo/CF7/analytics scripts without a nonce-based rollout;
-  `X-Frame-Options` covers clickjacking in the meantime. **Gotcha:** on a
-  LiteSpeed full-page-cache HIT these PHP-emitted headers may be bypassed —
-  mirror them in `.htaccess`/server config for guaranteed coverage.
+  `includeSubDomains`/`preload` yet). The CSP is intentionally
+  frame-ancestors-only (governs framing, doesn't restrict `script-src`/
+  `object-src`) so it can't break inline theme/Woo/CF7/analytics scripts;
+  scanners still grade a frame-ancestors-only policy "unsafe" for lacking
+  `script-src`, which is accepted here as defense-in-depth alongside
+  `X-Frame-Options` (a real script-restricting CSP would need a
+  nonce-based rollout). **Gotcha:** on a LiteSpeed full-page-cache HIT
+  these PHP-emitted headers may be bypassed — mirror them in
+  `.htaccess`/server config for guaranteed coverage.
 - `elements.php`, `shortcodes.php`, `theme-widgets.php`, `menus.php`,
   `customizer.php`, `marquee.php`, `ajax.php`, `schema.php`, `checkout.php` —
   one concern per file, named accordingly. `__button()` in `elements.php`

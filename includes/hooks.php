@@ -163,11 +163,12 @@ function dd_send_security_headers()
     header("Content-Security-Policy: frame-ancestors 'self'");
     header('Referrer-Policy: strict-origin-when-cross-origin');
 
-    // HSTS only over HTTPS. Conservative rollout per hstspreload.org guidance:
-    // 6-month max-age, no includeSubDomains/preload yet — add those once every
-    // subdomain is confirmed HTTPS-only, then submit to the preload list.
+    // HSTS only over HTTPS. 1-year max-age. includeSubDomains/preload are left
+    // off deliberately: enabling them makes EVERY subdomain HTTPS-only and is
+    // near-irreversible once submitted to hstspreload.org — only add them once
+    // every subdomain is confirmed HTTPS-only, then submit to the preload list.
     if (is_ssl()) {
-        header('Strict-Transport-Security: max-age=15768000');
+        header('Strict-Transport-Security: max-age=31536000');
     }
 }
 add_action('send_headers', 'dd_send_security_headers');
