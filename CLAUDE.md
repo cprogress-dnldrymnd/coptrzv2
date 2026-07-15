@@ -211,11 +211,14 @@ case studies, rentals, landing pages, etc).
   Forms below). `dd_send_security_headers()` (on `send_headers`, so it applies
   to every WP-served response, not just `<head>`) emits baseline security
   headers flagged by securityheaders.com / Mozilla Observatory scans:
-  `X-Content-Type-Options`, `X-Frame-Options`, a `Content-Security-Policy`
-  limited to `frame-ancestors 'self'` (deliberately not restricting
-  `script-src`, to avoid breaking inline scripts/Bootstrap/Swiper/Woo/CDNs),
-  `Referrer-Policy`, and (HTTPS only) a conservative `Strict-Transport-Security`
-  (`max-age=15768000`, no `includeSubDomains`/`preload` yet). **Gotcha:** on a
+  `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`,
+  `Referrer-Policy: strict-origin-when-cross-origin`, and (HTTPS only) a
+  conservative `Strict-Transport-Security` (`max-age=15768000`, no
+  `includeSubDomains`/`preload` yet). No `Content-Security-Policy` is sent — a
+  `frame-ancestors`-only policy still gets graded "unsafe" by scanners (no
+  `script-src`/`object-src`), and a real script-restricting CSP would break
+  inline theme/Woo/CF7/analytics scripts without a nonce-based rollout;
+  `X-Frame-Options` covers clickjacking in the meantime. **Gotcha:** on a
   LiteSpeed full-page-cache HIT these PHP-emitted headers may be bypassed —
   mirror them in `.htaccess`/server config for guaranteed coverage.
 - `elements.php`, `shortcodes.php`, `theme-widgets.php`, `menus.php`,
