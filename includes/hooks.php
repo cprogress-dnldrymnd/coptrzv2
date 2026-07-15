@@ -129,6 +129,47 @@ function action_wp_head()
 
 add_action('wp_head', 'action_wp_head');
 
+/*
+ * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
+ *
+ * Emit baseline security-response headers flagged by securityheaders.com /
+ * Mozilla Observatory scans. Hooked on `send_headers` so they apply to every
+ * WordPress-served response (front end + admin), not just the <head>.
+ *
+ * Coverage:
+ *   - X-Content-Type-Options: nosniff            (stops MIME sniffing)
+ *   - X-Frame-Options: SAMEORIGIN                (clickjacking, legacy header)
+ *   - Content-Security-Policy: frame-ancestors   (clickjacking, modern header;
+ *                                                  script-src intentionally NOT
+ *                                                  restricted to avoid breaking
+ *                                                  inline scripts / Bootstrap /
+ *                                                  Swiper / Woo / CDNs)
+ *   - Referrer-Policy: strict-origin-when-cross-origin
+ *   - Strict-Transport-Security                  (HTTPS only)
+ *
+ * NOTE: On a LiteSpeed full-page-cache HIT these PHP headers may be bypassed.
+ * For guaranteed coverage mirror them in .htaccess / server config too.
+ */
+function dd_send_security_headers()
+{
+    if (headers_sent()) {
+        return;
+    }
+
+    header('X-Content-Type-Options: nosniff');
+    header('X-Frame-Options: SAMEORIGIN');
+    header("Content-Security-Policy: frame-ancestors 'self'");
+    header('Referrer-Policy: strict-origin-when-cross-origin');
+
+    // HSTS only over HTTPS. Conservative rollout per hstspreload.org guidance:
+    // 6-month max-age, no includeSubDomains/preload yet — add those once every
+    // subdomain is confirmed HTTPS-only, then submit to the preload list.
+    if (is_ssl()) {
+        header('Strict-Transport-Security: max-age=15768000');
+    }
+}
+add_action('send_headers', 'dd_send_security_headers');
+
 /*-----------------------------------------------------------------------------------*/
 /* Admin Settings
 /*-----------------------------------------------------------------------------------*/

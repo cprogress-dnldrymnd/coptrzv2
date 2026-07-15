@@ -220,6 +220,11 @@ case studies, rentals, landing pages, etc).
   back from `get_the_ID()` to `get_queried_object_id()` because CF7 can render forms
   outside the main loop (e.g. via Dynamic Text Extension `[dynamic_hidden pdf_url "pdf_url"]`),
   at which point `get_the_ID()` returns 0 and `get__post_meta()` returns nothing.
+  `[layouts id="..."]` shortcode in `shortcodes.php` renders a `layouts` post's
+  `sections`/`section_items` fields via `___sections('sections', $id)`; it's
+  guarded with `function_exists('___sections')` (not a `layouts()` function,
+  which doesn't exist) since `___sections` lives in `modules.php`, which is
+  skipped in admin/REST on the blocks-editor template.
 - `woocommerce.php` (~2360 lines) — WooCommerce template/hook overrides; pairs
   with the `woocommerce/` directory which overrides core WooCommerce templates
   (`archive-product.php`, `cart/`, `checkoutx/`, `loop/`, `single-product/`,
