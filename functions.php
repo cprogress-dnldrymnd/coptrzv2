@@ -304,6 +304,14 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         filemtime(get_template_directory() . '/assets/js/dd-cf7-pdf-block.js'),
         true
     );
+
+    wp_enqueue_script(
+        'dd-cover-responsive',
+        get_template_directory_uri() . '/assets/js/extend-cover-responsive.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+        filemtime(get_template_directory() . '/assets/js/extend-cover-responsive.js'),
+        true
+    );
 }
 add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_editor_assets');
 
@@ -341,6 +349,89 @@ function dd_button_popup_render($block_content, $block)
     return $block_content;
 }
 add_filter('render_block_core/button', 'dd_button_popup_render', 10, 2);
+
+/**
+ * Render filter: gives the core Cover block per-breakpoint background images.
+ * Reads the ddMobileImageUrl / ddTabletImageUrl attributes set by the
+ * "Responsive Background" editor panel (assets/js/extend-cover-responsive.js).
+ *
+ * Two rendering forms of core/cover are handled:
+ *  1. Default: the media is an <img class="wp-block-cover__image-background">.
+ *     We wrap it in a <picture> and prepend <source media> elements so the
+ *     browser natively swaps the image per viewport. The original <img> (with
+ *     its focal-point object-position + srcset) stays as the desktop fallback.
+ *  2. Fixed/Repeated background: the media is a
+ *     <span class="wp-block-cover__image-background ..." style="background-image:url(...)">
+ *     with no <img>. We tag the wrapper with a unique class and inject scoped
+ *     <style> @media rules that override background-image at each breakpoint.
+ *
+ * Breakpoints follow the theme's SCSS responsive() mixin:
+ *   mobile <=767px, tablet 768-991px, desktop >=992px (the block's own image).
+ */
+function dd_cover_responsive_render($block_content, $block)
+{
+    $attrs      = isset($block['attrs']) ? $block['attrs'] : array();
+    $mobile_url = isset($attrs['ddMobileImageUrl']) ? trim((string) $attrs['ddMobileImageUrl']) : '';
+    $tablet_url = isset($attrs['ddTabletImageUrl']) ? trim((string) $attrs['ddTabletImageUrl']) : '';
+
+    if ($mobile_url === '' && $tablet_url === '') {
+        return $block_content;
+    }
+
+    // Build the <source> list (mobile first — first matching source wins).
+    $build_sources = function ($esc) use ($mobile_url, $tablet_url) {
+        $sources = '';
+        if ($mobile_url !== '') {
+            $sources .= '<source media="(max-width: 767px)" srcset="' . $esc($mobile_url) . '">';
+        }
+        if ($tablet_url !== '') {
+            $sources .= '<source media="(min-width: 768px) and (max-width: 991px)" srcset="' . $esc($tablet_url) . '">';
+        }
+        return $sources;
+    };
+
+    // Case 1: <img> background — wrap it in <picture> with <source> overrides.
+    if (preg_match('/<img\b[^>]*\bwp-block-cover__image-background\b[^>]*>/', $block_content)) {
+        $block_content = preg_replace_callback(
+            '/<img\b[^>]*\bwp-block-cover__image-background\b[^>]*>/',
+            function ($m) use ($build_sources) {
+                return '<picture>' . $build_sources('esc_url') . $m[0] . '</picture>';
+            },
+            $block_content,
+            1
+        );
+        return $block_content;
+    }
+
+    // Case 2: inline background-image (fixed/repeated/parallax) — scoped <style>.
+    static $counter = 0;
+    $counter++;
+    $scope = 'dd-cover-resp-' . $counter;
+
+    // Add the scope class to the first wp-block-cover element's class attribute.
+    $tagged = preg_replace(
+        '/(<div\b[^>]*\bclass=")([^"]*\bwp-block-cover\b[^"]*)(")/',
+        '$1$2 ' . $scope . '$3',
+        $block_content,
+        1,
+        $count
+    );
+    if (!$count) {
+        return $block_content; // Unexpected markup — leave untouched.
+    }
+    $block_content = $tagged;
+
+    $css = '';
+    if ($mobile_url !== '') {
+        $css .= '@media (max-width:767px){.' . $scope . ' .wp-block-cover__image-background{background-image:url(' . esc_url($mobile_url) . ')!important}}';
+    }
+    if ($tablet_url !== '') {
+        $css .= '@media (min-width:768px) and (max-width:991px){.' . $scope . ' .wp-block-cover__image-background{background-image:url(' . esc_url($tablet_url) . ')!important}}';
+    }
+
+    return $block_content . '<style>' . $css . '</style>';
+}
+add_filter('render_block_core/cover', 'dd_cover_responsive_render', 10, 2);
 
 /**
  * The `dd/cf7-pdf-form` block (registered client-side in

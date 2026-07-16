@@ -214,8 +214,11 @@ case studies, rentals, landing pages, etc).
   `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, a
   `Content-Security-Policy` limited to `frame-ancestors 'self'`,
   `Referrer-Policy: strict-origin-when-cross-origin`, and (HTTPS only) a
-  conservative `Strict-Transport-Security` (`max-age=15768000`, no
-  `includeSubDomains`/`preload` yet). The CSP is intentionally
+  `Strict-Transport-Security` header (`max-age=31536000`, 1 year).
+  `includeSubDomains`/`preload` are left off deliberately: enabling them makes
+  every subdomain HTTPS-only and is near-irreversible once submitted to
+  hstspreload.org — add them only once every subdomain is confirmed
+  HTTPS-only. The CSP is intentionally
   frame-ancestors-only (governs framing, doesn't restrict `script-src`/
   `object-src`) so it can't break inline theme/Woo/CF7/analytics scripts;
   scanners still grade a frame-ancestors-only policy "unsafe" for lacking
