@@ -11365,10 +11365,10 @@ figure[style*="aspect-ratio:4/3"] img {
   .columns-4.columns-4.columns-4 {
     grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 768px) and (max-width: 991px) {
-  .wp-block-columns.dd-stack-tablet {
+  .wp-block-columns.dd-stack-tablet.dd-stack-tablet {
     flex-wrap: wrap !important; }
 
-  .wp-block-columns.dd-stack-tablet > .wp-block-column {
+  .wp-block-columns.dd-stack-tablet.dd-stack-tablet > .wp-block-column {
     flex-basis: 100% !important; } }
 @media (max-width: 575px) {
   .columns-4.columns-4.columns-4 {

@@ -221,6 +221,19 @@ case studies, rentals, landing pages, etc).
   (same live-preview trick as `extend-custom-css.js`) so the effect is visible
   in the editor canvas immediately, without waiting for the server-rendered
   class/style to exist.
+  **Gotcha (applies to any new `render_block_core/*` filter):** WordPress fires
+  the generic `render_block` filter *before* the block-specific
+  `render_block_{$name}` one, and `digitally_disruptive_render_custom_css()`
+  (on `render_block`) *prepends* a `<style>` tag to the block content. So by the
+  time a `render_block_core/*` filter runs, the first tag in `$block_content` may
+  be that `<style>`, not the block's own element — a bare
+  `WP_HTML_Tag_Processor::next_tag()` will silently add the class to the `<style>`
+  tag instead (symptom: the feature works on blocks without Custom CSS and
+  silently fails on blocks that have it). Both filters here therefore qualify the
+  query — `next_tag(array('class_name' => 'wp-block-columns'))` /
+  `'wp-block-group'` — and bail if no match. The older `render_block`-based
+  filters (`digitally_disruptive_render_universal_swiper()`, etc.) are unaffected
+  because they run before the `<style>` is prepended.
 - Custom fields are registered on the `carbon_fields_register_fields` hook
   (`tissue_paper_register_custom_fields()` in `functions.php`), which requires
   `includes/post-meta.php` — a Carbon Fields 3 `Container::make()` /

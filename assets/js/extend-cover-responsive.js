@@ -8,13 +8,16 @@
  * render time via a native <picture>/<source media> wrapper (see
  * dd_cover_responsive_render in functions.php) — this file only stores the
  * chosen image ids/urls as block attributes.
+ * Each breakpoint also has a "Hide background image" toggle (ddHideImageMobile /
+ * ddHideImageTablet) that removes the image (and overlay) entirely instead of
+ * swapping it; the toggle and its image slot are mutually exclusive in the UI.
  */
 (function (wp) {
 
     const { addFilter }                             = wp.hooks;
     const { createHigherOrderComponent }            = wp.compose;
     const { InspectorControls, MediaUpload, MediaUploadCheck } = wp.blockEditor;
-    const { PanelBody, Button }                     = wp.components;
+    const { PanelBody, Button, ToggleControl }       = wp.components;
     const { createElement: el, Fragment }           = wp.element;
 
     const TARGET_BLOCK = 'core/cover';
@@ -23,10 +26,12 @@
     function addResponsiveBgAttributes(settings, name) {
         if (name !== TARGET_BLOCK) return settings;
         settings.attributes = Object.assign(settings.attributes || {}, {
-            ddMobileImageId:  { type: 'number', default: 0 },
-            ddMobileImageUrl: { type: 'string', default: '' },
-            ddTabletImageId:  { type: 'number', default: 0 },
-            ddTabletImageUrl: { type: 'string', default: '' }
+            ddMobileImageId:   { type: 'number', default: 0 },
+            ddMobileImageUrl:  { type: 'string', default: '' },
+            ddTabletImageId:   { type: 'number', default: 0 },
+            ddTabletImageUrl:  { type: 'string', default: '' },
+            ddHideImageMobile: { type: 'boolean', default: false },
+            ddHideImageTablet: { type: 'boolean', default: false }
         });
         return settings;
     }
@@ -89,7 +94,9 @@
             const { attributes, setAttributes } = props;
             const {
                 ddMobileImageUrl,
-                ddTabletImageUrl
+                ddTabletImageUrl,
+                ddHideImageMobile,
+                ddHideImageTablet
             } = attributes;
 
             return el(
@@ -104,36 +111,57 @@
                         { title: 'Responsive Background', initialOpen: false },
                         el('p', {
                             style: { fontSize: '12px', color: '#757575', marginTop: 0 }
-                        }, 'Optionally show a different background image on smaller screens. ' +
+                        }, 'Optionally show a different background image on smaller screens, ' +
+                           'or hide the background image entirely at a given breakpoint. ' +
                            'The block’s own image is used on desktop (≥992px).'),
-                        imageSlot(
-                            'Mobile image',
-                            'Shown at ≤767px.',
-                            ddMobileImageUrl,
-                            function (media) {
-                                setAttributes({
-                                    ddMobileImageId:  media.id || 0,
-                                    ddMobileImageUrl: media.url || ''
-                                });
-                            },
-                            function () {
-                                setAttributes({ ddMobileImageId: 0, ddMobileImageUrl: '' });
+                        el(ToggleControl, {
+                            label:    'Hide background image on mobile',
+                            help:     'Hides the image and the overlay at ≤767px.',
+                            checked:  !!ddHideImageMobile,
+                            onChange: function (value) {
+                                setAttributes({ ddHideImageMobile: value });
                             }
-                        ),
-                        imageSlot(
-                            'Tablet image',
-                            'Shown at 768–991px.',
-                            ddTabletImageUrl,
-                            function (media) {
-                                setAttributes({
-                                    ddTabletImageId:  media.id || 0,
-                                    ddTabletImageUrl: media.url || ''
-                                });
-                            },
-                            function () {
-                                setAttributes({ ddTabletImageId: 0, ddTabletImageUrl: '' });
+                        }),
+                        !ddHideImageMobile
+                            ? imageSlot(
+                                'Mobile image',
+                                'Shown at ≤767px.',
+                                ddMobileImageUrl,
+                                function (media) {
+                                    setAttributes({
+                                        ddMobileImageId:  media.id || 0,
+                                        ddMobileImageUrl: media.url || ''
+                                    });
+                                },
+                                function () {
+                                    setAttributes({ ddMobileImageId: 0, ddMobileImageUrl: '' });
+                                }
+                            )
+                            : null,
+                        el(ToggleControl, {
+                            label:    'Hide background image on tablet',
+                            help:     'Hides the image and the overlay at 768–991px.',
+                            checked:  !!ddHideImageTablet,
+                            onChange: function (value) {
+                                setAttributes({ ddHideImageTablet: value });
                             }
-                        )
+                        }),
+                        !ddHideImageTablet
+                            ? imageSlot(
+                                'Tablet image',
+                                'Shown at 768–991px.',
+                                ddTabletImageUrl,
+                                function (media) {
+                                    setAttributes({
+                                        ddTabletImageId:  media.id || 0,
+                                        ddTabletImageUrl: media.url || ''
+                                    });
+                                },
+                                function () {
+                                    setAttributes({ ddTabletImageId: 0, ddTabletImageUrl: '' });
+                                }
+                            )
+                            : null
                     )
                 )
             );

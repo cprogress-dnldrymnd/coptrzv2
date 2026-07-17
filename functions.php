@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 5.4);
+define('coptz_version', 5.5);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -455,10 +455,15 @@ function dd_columns_stack_tablet_render($block_content, $block)
         return $block_content;
     }
 
+    // Match the columns element by class, not position: the generic `render_block`
+    // filter runs before this block-specific one, so a block that also has Custom CSS
+    // arrives here with `digitally_disruptive_render_custom_css()`'s <style> tag
+    // already prepended — an unqualified next_tag() would land the class on that.
     $tags = new WP_HTML_Tag_Processor($block_content);
-    if ($tags->next_tag()) {
-        $tags->add_class('dd-stack-tablet');
+    if (! $tags->next_tag(array('class_name' => 'wp-block-columns'))) {
+        return $block_content;
     }
+    $tags->add_class('dd-stack-tablet');
     return $tags->get_updated_html();
 }
 add_filter('render_block_core/columns', 'dd_columns_stack_tablet_render', 10, 2);
@@ -514,10 +519,14 @@ function dd_group_grid_responsive_render($block_content, $block)
         );
     }
 
+    // Match by class rather than position — see the note in
+    // dd_columns_stack_tablet_render() above: a leading <style> tag from
+    // `digitally_disruptive_render_custom_css()` may already be prepended here.
     $tags = new WP_HTML_Tag_Processor($block_content);
-    if ($tags->next_tag()) {
-        $tags->add_class($unique_id);
+    if (! $tags->next_tag(array('class_name' => 'wp-block-group'))) {
+        return $block_content;
     }
+    $tags->add_class($unique_id);
     $updated_content = $tags->get_updated_html();
 
     $style_tag = sprintf('<style id="%s">%s</style>', esc_attr($unique_id . '-style'), $css);

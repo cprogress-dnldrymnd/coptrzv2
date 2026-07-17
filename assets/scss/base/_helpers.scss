@@ -598,11 +598,14 @@ figure[style*="aspect-ratio:4/3"] {
     }
 }
 
+// Doubled class for specificity: core ships
+// `.wp-block-columns.is-not-stacked-on-mobile { flex-wrap: nowrap !important }`
+// outside any media query, which would otherwise tie at (0,2,0) and win on load order.
 @media (min-width: 768px) and (max-width: 991px) {
-    .wp-block-columns.dd-stack-tablet {
+    .wp-block-columns.dd-stack-tablet.dd-stack-tablet {
         flex-wrap: wrap !important;
     }
-    .wp-block-columns.dd-stack-tablet > .wp-block-column {
+    .wp-block-columns.dd-stack-tablet.dd-stack-tablet > .wp-block-column {
         flex-basis: 100% !important;
     }
 }
