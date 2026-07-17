@@ -179,17 +179,25 @@ case studies, rentals, landing pages, etc).
   Background" InspectorControls panel to the **core** `core/cover` block, with
   optional Mobile (`ddMobileImageId`/`ddMobileImageUrl`, ≤767px) and Tablet
   (`ddTabletImageId`/`ddTabletImageUrl`, 768–991px) image slots; the block's
-  own image remains the desktop (≥992px) background. Rendering is handled
-  server-side by `dd_cover_responsive_render()` (`render_block_core/cover`
-  filter in `functions.php`), which no-ops when both attributes are empty.
+  own image remains the desktop (≥992px) background. Each breakpoint also has
+  a "Hide background image" toggle (`ddHideImageMobile`/`ddHideImageTablet`)
+  that removes the image (and the cover's dim/overlay) entirely at that
+  breakpoint instead of swapping it; hiding takes precedence over an image
+  set for the same breakpoint. Rendering is handled server-side by
+  `dd_cover_responsive_render()` (`render_block_core/cover` filter in
+  `functions.php`), which no-ops when none of the four attributes are set.
   It handles two markup shapes core/cover can emit: (1) an `<img
   class="wp-block-cover__image-background">` — wrapped in a `<picture>` with
   `<source media>` elements prepended (mobile first) so the browser swaps the
-  image natively, original `<img>` kept as the desktop fallback; (2) a
-  fixed/repeated background rendered as a `<span>`/`<div>` with an inline
-  `background-image` style and no `<img>` — tagged with a unique
-  `dd-cover-resp-N` scope class and followed by an injected `<style>` block of
-  `@media` rules overriding `background-image` per breakpoint.
+  image natively, original `<img>` kept as the desktop fallback (skipped
+  entirely if both breakpoints resolve to hidden/empty); (2) a fixed/repeated
+  background rendered as a `<span>`/`<div>` with an inline `background-image`
+  style and no `<img>`. Both shapes share one scoped-`<style>` code path: the
+  wrapper is tagged with a unique `dd-cover-resp-N` class and a `<style>`
+  block is appended with `@media` rules — `background-image` overrides
+  per breakpoint for shape (2), and `display:none!important` on
+  `> picture, .wp-block-cover__image-background, .wp-block-cover__background`
+  for any hidden breakpoint (either shape).
 - `assets/js/extend-responsive-layout.js` — Gutenberg block editor extension
   (enqueued via `digitally_disruptive_enqueue_swiper_editor_assets()`, same
   hook as the extensions above) adding two per-breakpoint responsive controls
