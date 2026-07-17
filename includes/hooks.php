@@ -129,6 +129,50 @@ function action_wp_head()
 
 add_action('wp_head', 'action_wp_head');
 
+/*
+ * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
+ *
+ * Emit baseline security-response headers flagged by securityheaders.com /
+ * Mozilla Observatory scans. Hooked on `send_headers` so they apply to every
+ * WordPress-served response (front end + admin), not just the <head>.
+ *
+ * Coverage:
+ *   - X-Content-Type-Options: nosniff            (stops MIME sniffing)
+ *   - X-Frame-Options: SAMEORIGIN                (clickjacking, legacy header)
+ *   - Content-Security-Policy: frame-ancestors   (clickjacking, modern header)
+ *   - Referrer-Policy: strict-origin-when-cross-origin
+ *   - Strict-Transport-Security                  (HTTPS only)
+ *
+ * The CSP is intentionally frame-ancestors-only: it governs framing but does NOT
+ * restrict script-src/object-src, so it can't break inline theme/Woo/CF7/analytics
+ * scripts. Scanners grade a frame-ancestors-only policy "unsafe" (no script-src),
+ * which is accepted here in exchange for defense-in-depth alongside X-Frame-Options;
+ * a real script-restricting CSP would need a nonce-based rollout.
+ *
+ * NOTE: On a LiteSpeed full-page-cache HIT these PHP headers may be bypassed.
+ * For guaranteed coverage mirror them in .htaccess / server config too.
+ */
+function dd_send_security_headers()
+{
+    if (headers_sent()) {
+        return;
+    }
+
+    header('X-Content-Type-Options: nosniff');
+    header('X-Frame-Options: SAMEORIGIN');
+    header("Content-Security-Policy: frame-ancestors 'self'");
+    header('Referrer-Policy: strict-origin-when-cross-origin');
+
+    // HSTS only over HTTPS. 1-year max-age. includeSubDomains/preload are left
+    // off deliberately: enabling them makes EVERY subdomain HTTPS-only and is
+    // near-irreversible once submitted to hstspreload.org — only add them once
+    // every subdomain is confirmed HTTPS-only, then submit to the preload list.
+    if (is_ssl()) {
+        header('Strict-Transport-Security: max-age=31536000');
+    }
+}
+add_action('send_headers', 'dd_send_security_headers');
+
 /*-----------------------------------------------------------------------------------*/
 /* Admin Settings
 /*-----------------------------------------------------------------------------------*/
