@@ -190,6 +190,37 @@ case studies, rentals, landing pages, etc).
   `background-image` style and no `<img>` — tagged with a unique
   `dd-cover-resp-N` scope class and followed by an injected `<style>` block of
   `@media` rules overriding `background-image` per breakpoint.
+- `assets/js/extend-responsive-layout.js` — Gutenberg block editor extension
+  (enqueued via `digitally_disruptive_enqueue_swiper_editor_assets()`, same
+  hook as the extensions above) adding two per-breakpoint responsive controls
+  to core blocks, both using the theme's standard tablet ≤991px / mobile
+  ≤767px breakpoint pair (matching Custom CSS and Cover Responsive above):
+  (1) a "Stack on tablet" toggle (`ddStackOnTablet`, boolean) in a
+  "Responsive Layout" panel on **core** `core/columns`, rendered server-side
+  by `dd_columns_stack_tablet_render()` (`render_block_core/columns` filter
+  in `functions.php`), which adds a `dd-stack-tablet` class picked up by a
+  static SCSS rule in `assets/scss/base/_helpers.scss` scoped to
+  `(min-width: 768px) and (max-width: 991px)` — the `768px` lower bound is
+  deliberate so it doesn't also override core's own "Stack on mobile"
+  toggle (`isStackedOnMobile`, core's built-in attribute, breaks at 781px)
+  below that; (2) "Max columns (Tablet)" / "Max columns (Mobile)" number
+  fields (`ddGridColumnsTablet` / `ddGridColumnsMobile`, strings) in a
+  "Responsive Grid Columns" panel shown only when a **core** `core/group`
+  block's `layout.type === 'grid'` (the Grid layout variation; plain
+  Group/Row/Stack never show it), rendered server-side by
+  `dd_group_grid_responsive_render()` (`render_block_core/group` filter),
+  which follows the same scoped-`<style>`-injection strategy as
+  `digitally_disruptive_render_custom_css()` (unique `dd-grid-N` class +
+  `@media` rules forcing `grid-template-columns` with `!important`, since
+  core prints its own `grid-template-columns` in a `<head>` stylesheet at
+  equal specificity) rather than a fixed class, because the column count is
+  an arbitrary per-instance value. `dd_group_grid_responsive_render()` bails
+  when `isSwiperSlider` is set, since `digitally_disruptive_render_universal_swiper()`
+  strips the grid layout entirely to build a carousel — the two are mutually
+  exclusive. Both editor panels also inject a `clientId`-scoped `<style>` tag
+  (same live-preview trick as `extend-custom-css.js`) so the effect is visible
+  in the editor canvas immediately, without waiting for the server-rendered
+  class/style to exist.
 - Custom fields are registered on the `carbon_fields_register_fields` hook
   (`tissue_paper_register_custom_fields()` in `functions.php`), which requires
   `includes/post-meta.php` — a Carbon Fields 3 `Container::make()` /

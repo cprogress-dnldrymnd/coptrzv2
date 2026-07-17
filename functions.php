@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 5.3);
+define('coptz_version', 5.4);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -312,6 +312,14 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         filemtime(get_template_directory() . '/assets/js/extend-cover-responsive.js'),
         true
     );
+
+    wp_enqueue_script(
+        'dd-responsive-layout',
+        get_template_directory_uri() . '/assets/js/extend-responsive-layout.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+        filemtime(get_template_directory() . '/assets/js/extend-responsive-layout.js'),
+        true
+    );
 }
 add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_editor_assets');
 
@@ -432,6 +440,91 @@ function dd_cover_responsive_render($block_content, $block)
     return $block_content . '<style>' . $css . '</style>';
 }
 add_filter('render_block_core/cover', 'dd_cover_responsive_render', 10, 2);
+
+/**
+ * `ddStackOnTablet` (registered client-side in
+ * assets/js/extend-responsive-layout.js) stacks a core/columns block to full
+ * width between 768px and 991px. Core's own "Stack on mobile" toggle already
+ * covers <=767px (core actually breaks at 781px), so this only needs to add
+ * a class the SCSS at assets/scss/base/_helpers.scss keys off of; no inline
+ * style survives to fight, unlike the Cover/Grid overrides above/below.
+ */
+function dd_columns_stack_tablet_render($block_content, $block)
+{
+    if (empty($block['attrs']['ddStackOnTablet'])) {
+        return $block_content;
+    }
+
+    $tags = new WP_HTML_Tag_Processor($block_content);
+    if ($tags->next_tag()) {
+        $tags->add_class('dd-stack-tablet');
+    }
+    return $tags->get_updated_html();
+}
+add_filter('render_block_core/columns', 'dd_columns_stack_tablet_render', 10, 2);
+
+/**
+ * `ddGridColumnsTablet` / `ddGridColumnsMobile` (registered client-side in
+ * assets/js/extend-responsive-layout.js) let editors override the column
+ * count of a core/group block set to the Grid layout variation at tablet
+ * (<=991px) and mobile (<=767px). Only fires for `layout.type === 'grid'`,
+ * and bails when `isSwiperSlider` is enabled since
+ * `digitally_disruptive_render_universal_swiper()` (below) strips the grid
+ * layout entirely to build a carousel — the two are mutually exclusive.
+ * Follows the same scoped-<style> strategy as
+ * `digitally_disruptive_render_custom_css()`, since the column count is an
+ * arbitrary value rather than a fixed class: core prints its own
+ * `grid-template-columns` in a <head> stylesheet at equal specificity, so
+ * `!important` is required to win regardless of source order.
+ */
+function dd_group_grid_responsive_render($block_content, $block)
+{
+    $attrs = isset($block['attrs']) ? $block['attrs'] : array();
+
+    if (! isset($attrs['layout']['type']) || $attrs['layout']['type'] !== 'grid') {
+        return $block_content;
+    }
+
+    if (! empty($attrs['isSwiperSlider'])) {
+        return $block_content;
+    }
+
+    $tablet_cols = ! empty($attrs['ddGridColumnsTablet']) ? (int) $attrs['ddGridColumnsTablet'] : 0;
+    $mobile_cols = ! empty($attrs['ddGridColumnsMobile']) ? (int) $attrs['ddGridColumnsMobile'] : 0;
+
+    if ($tablet_cols < 1 && $mobile_cols < 1) {
+        return $block_content;
+    }
+
+    $unique_id = 'dd-grid-' . substr(md5(uniqid(wp_rand(), true)), 0, 8);
+
+    $css = '';
+    if ($tablet_cols >= 1) {
+        $css .= sprintf(
+            '@media (max-width: 991px) { .%1$s { grid-template-columns: repeat(%2$d, minmax(0, 1fr)) !important; } } ',
+            $unique_id,
+            $tablet_cols
+        );
+    }
+    if ($mobile_cols >= 1) {
+        $css .= sprintf(
+            '@media (max-width: 767px) { .%1$s { grid-template-columns: repeat(%2$d, minmax(0, 1fr)) !important; } } ',
+            $unique_id,
+            $mobile_cols
+        );
+    }
+
+    $tags = new WP_HTML_Tag_Processor($block_content);
+    if ($tags->next_tag()) {
+        $tags->add_class($unique_id);
+    }
+    $updated_content = $tags->get_updated_html();
+
+    $style_tag = sprintf('<style id="%s">%s</style>', esc_attr($unique_id . '-style'), $css);
+
+    return $style_tag . $updated_content;
+}
+add_filter('render_block_core/group', 'dd_group_grid_responsive_render', 10, 2);
 
 /**
  * The `dd/cf7-pdf-form` block (registered client-side in
