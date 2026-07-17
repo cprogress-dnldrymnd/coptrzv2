@@ -359,9 +359,12 @@ function dd_button_popup_render($block_content, $block)
 add_filter('render_block_core/button', 'dd_button_popup_render', 10, 2);
 
 /**
- * Render filter: gives the core Cover block per-breakpoint background images.
- * Reads the ddMobileImageUrl / ddTabletImageUrl attributes set by the
- * "Responsive Background" editor panel (assets/js/extend-cover-responsive.js).
+ * Render filter: gives the core Cover block per-breakpoint background images,
+ * and an option to hide the background image (and overlay) entirely at a
+ * breakpoint. Reads the ddMobileImageUrl/ddTabletImageUrl and
+ * ddHideImageMobile/ddHideImageTablet attributes set by the "Responsive
+ * Background" editor panel (assets/js/extend-cover-responsive.js). Hiding a
+ * breakpoint takes precedence over an image set for that same breakpoint.
  *
  * Two rendering forms of core/cover are handled:
  *  1. Default: the media is an <img class="wp-block-cover__image-background">.
@@ -372,34 +375,47 @@ add_filter('render_block_core/button', 'dd_button_popup_render', 10, 2);
  *     <span class="wp-block-cover__image-background ..." style="background-image:url(...)">
  *     with no <img>. We tag the wrapper with a unique class and inject scoped
  *     <style> @media rules that override background-image at each breakpoint.
+ * When a breakpoint is hidden, a scoped <style> rule additionally hides the
+ * <picture>/image element and the block's dim/overlay span
+ * (.wp-block-cover__background) at that breakpoint, regardless of which of
+ * the two forms above is in play.
  *
  * Breakpoints follow the theme's SCSS responsive() mixin:
  *   mobile <=767px, tablet 768-991px, desktop >=992px (the block's own image).
  */
 function dd_cover_responsive_render($block_content, $block)
 {
-    $attrs      = isset($block['attrs']) ? $block['attrs'] : array();
-    $mobile_url = isset($attrs['ddMobileImageUrl']) ? trim((string) $attrs['ddMobileImageUrl']) : '';
-    $tablet_url = isset($attrs['ddTabletImageUrl']) ? trim((string) $attrs['ddTabletImageUrl']) : '';
+    $attrs       = isset($block['attrs']) ? $block['attrs'] : array();
+    $mobile_url  = isset($attrs['ddMobileImageUrl']) ? trim((string) $attrs['ddMobileImageUrl']) : '';
+    $tablet_url  = isset($attrs['ddTabletImageUrl']) ? trim((string) $attrs['ddTabletImageUrl']) : '';
+    $hide_mobile = !empty($attrs['ddHideImageMobile']);
+    $hide_tablet = !empty($attrs['ddHideImageTablet']);
 
-    if ($mobile_url === '' && $tablet_url === '') {
+    if ($hide_mobile) {
+        $mobile_url = '';
+    }
+    if ($hide_tablet) {
+        $tablet_url = '';
+    }
+
+    if ($mobile_url === '' && $tablet_url === '' && !$hide_mobile && !$hide_tablet) {
         return $block_content;
     }
 
-    // Build the <source> list (mobile first — first matching source wins).
-    $build_sources = function ($esc) use ($mobile_url, $tablet_url) {
-        $sources = '';
-        if ($mobile_url !== '') {
-            $sources .= '<source media="(max-width: 767px)" srcset="' . $esc($mobile_url) . '">';
-        }
-        if ($tablet_url !== '') {
-            $sources .= '<source media="(min-width: 768px) and (max-width: 991px)" srcset="' . $esc($tablet_url) . '">';
-        }
-        return $sources;
-    };
+    $has_img = (bool) preg_match('/<img\b[^>]*\bwp-block-cover__image-background\b[^>]*>/', $block_content);
 
-    // Case 1: <img> background — wrap it in <picture> with <source> overrides.
-    if (preg_match('/<img\b[^>]*\bwp-block-cover__image-background\b[^>]*>/', $block_content)) {
+    // Case 1: <img> background — wrap it in <picture> with <source> overrides for any surviving images.
+    if ($has_img && ($mobile_url !== '' || $tablet_url !== '')) {
+        $build_sources = function ($esc) use ($mobile_url, $tablet_url) {
+            $sources = '';
+            if ($mobile_url !== '') {
+                $sources .= '<source media="(max-width: 767px)" srcset="' . $esc($mobile_url) . '">';
+            }
+            if ($tablet_url !== '') {
+                $sources .= '<source media="(min-width: 768px) and (max-width: 991px)" srcset="' . $esc($tablet_url) . '">';
+            }
+            return $sources;
+        };
         $block_content = preg_replace_callback(
             '/<img\b[^>]*\bwp-block-cover__image-background\b[^>]*>/',
             function ($m) use ($build_sources) {
@@ -408,15 +424,38 @@ function dd_cover_responsive_render($block_content, $block)
             $block_content,
             1
         );
+    }
+
+    // Build scoped CSS: Case-2 background-image overrides, plus hide-breakpoint rules.
+    $css = '';
+
+    if (!$has_img) {
+        // Fixed/repeated background (inline background-image, no <img>) — scoped overrides.
+        if ($mobile_url !== '') {
+            $css .= '@media (max-width:767px){SCOPE .wp-block-cover__image-background{background-image:url(' . esc_url($mobile_url) . ')!important}}';
+        }
+        if ($tablet_url !== '') {
+            $css .= '@media (min-width:768px) and (max-width:991px){SCOPE .wp-block-cover__image-background{background-image:url(' . esc_url($tablet_url) . ')!important}}';
+        }
+    }
+
+    $hide_selectors = 'SCOPE > picture,SCOPE .wp-block-cover__image-background,SCOPE .wp-block-cover__background';
+    if ($hide_mobile) {
+        $css .= '@media (max-width:767px){' . $hide_selectors . '{display:none!important}}';
+    }
+    if ($hide_tablet) {
+        $css .= '@media (min-width:768px) and (max-width:991px){' . $hide_selectors . '{display:none!important}}';
+    }
+
+    if ($css === '') {
         return $block_content;
     }
 
-    // Case 2: inline background-image (fixed/repeated/parallax) — scoped <style>.
+    // Tag the wrapper with a unique scope class so the CSS above only applies to this instance.
     static $counter = 0;
     $counter++;
     $scope = 'dd-cover-resp-' . $counter;
 
-    // Add the scope class to the first wp-block-cover element's class attribute.
     $tagged = preg_replace(
         '/(<div\b[^>]*\bclass=")([^"]*\bwp-block-cover\b[^"]*)(")/',
         '$1$2 ' . $scope . '$3',
@@ -429,13 +468,7 @@ function dd_cover_responsive_render($block_content, $block)
     }
     $block_content = $tagged;
 
-    $css = '';
-    if ($mobile_url !== '') {
-        $css .= '@media (max-width:767px){.' . $scope . ' .wp-block-cover__image-background{background-image:url(' . esc_url($mobile_url) . ')!important}}';
-    }
-    if ($tablet_url !== '') {
-        $css .= '@media (min-width:768px) and (max-width:991px){.' . $scope . ' .wp-block-cover__image-background{background-image:url(' . esc_url($tablet_url) . ')!important}}';
-    }
+    $css = str_replace('SCOPE', '.' . $scope, $css);
 
     return $block_content . '<style>' . $css . '</style>';
 }
