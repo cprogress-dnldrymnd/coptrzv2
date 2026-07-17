@@ -1060,19 +1060,16 @@ function custom_product_variation_training($product_id, $delivery_method = 'onli
                 $variation_product = wc_get_product($product_id);
                 $variation_title = $variation_product ? $variation_product->get_name() : '';
 
+                // Catalog mode: these anchors are hand-built and never pass through
+                // `woocommerce_is_purchasable`, so they have to be suppressed here or
+                // they render a live "Add to basket" that only errors on click.
                 $html .= "<div class='button-box button-bordered mt-3'>";
 
-
-                if ($post_type_key == 'product') {
-                    $add_label = esc_attr(_coptrz_link_aria_label('Add to basket', $variation_title));
-                    $html .= "<a href='?add-to-cart=$product_id' data-quantity='1' class='product-btn button product_type_simple add_to_cart_button ajax_add_to_cart' data-product_id='$product_id' data-product_sku='$sku' rel='nofollow' aria-label='$add_label'><span class='product-data d-none'>$data_encode</span> Add to basket</a>";
-                } else {
-                    $basket_url =   wc_get_cart_url();
-                    $buy_label = esc_attr(_coptrz_link_aria_label('Buy now', $variation_title));
-                    $html .= "<a class='w-100' href='$basket_url?add-to-cart=$product_id' aria-label='$buy_label'>Buy now</a>";
-                }
-
-
+                // `get_permalink()` on a variation post ID returns a broken URL -
+                // the product object resolves to the parent + attribute args.
+                $compare_permalink = $variation_product ? $variation_product->get_permalink() : get_the_permalink($product_id);
+                $discover_label = esc_attr(_coptrz_link_aria_label('Discover', $variation_title));
+                $html .= "<a class='product-btn' href='" . esc_url($compare_permalink) . "' aria-label='$discover_label'><span class='product-data d-none'>$data_encode</span> Discover</a>";
 
                 $html .= '</div>';
 
@@ -2303,58 +2300,112 @@ function action_woocommerce_before_single_product_shopify_link()
 add_action('woocommerce_before_single_product_shopify_link', 'action_woocommerce_before_single_product_shopify_link');
 
 /**
- * @snippet       Disable Add to Cart Except for Specific Categories (Works with Variations)
- * @author        Gemini & User
- * @testedwith    WooCommerce 8.0+
+ * @snippet          Catalog Mode - Disable Add to Cart & Checkout Site-Wide
+ * @plugin/snippet   Author: Digitally Disruptive - Donald Raymundo
+ * @testedwith       WooCommerce 8.0+
+ *
+ * Turns the store into a browse-only catalog. Replaces the previous
+ * category-scoped block (training / thermography-courses are no longer
+ * exempt).
+ *
+ * Reverting is a single step: delete this whole block.
  */
 
-// Part 1: Visually disable the add to cart button and functionality.
-// This handles the user interface on the product and shop pages.
-add_filter('woocommerce_is_purchasable', 'woocommerce_is_purchasable_except_specific_categories', 10, 2);
+/**
+ * Nothing in the store is purchasable.
+ *
+ * This alone removes the add to cart button from the loop and the single
+ * product page, and makes WooCommerce (incl. the Store API used by the
+ * block cart/checkout) reject any add to cart call.
+ */
+add_filter('woocommerce_is_purchasable', '__return_false');
 
-function woocommerce_is_purchasable_except_specific_categories($is_purchasable, $product)
+/**
+ * Keep the "Request Info" button on single product pages.
+ *
+ * `request_info()` normally hangs off `woocommerce_after_add_to_cart_button`,
+ * but WooCommerce's own add-to-cart templates bail out early for a product
+ * that isn't purchasable - so that hook never fires once catalog mode is on
+ * and the enquiry CTA disappears with the cart button. Re-hook it to the
+ * summary at the priority the add-to-cart form used to occupy.
+ */
+add_action('woocommerce_single_product_summary', 'request_info', 30);
+
+/**
+ * Belt and braces: reject direct `?add-to-cart=123` URL hits.
+ *
+ * `woocommerce_is_purchasable` already covers this, but the validation
+ * filter is what surfaces a readable notice instead of a silent no-op.
+ */
+add_filter('woocommerce_add_to_cart_validation', 'dd_catalog_mode_block_add_to_cart', 10, 3);
+
+function dd_catalog_mode_block_add_to_cart($passed, $product_id, $quantity)
 {
-    // --- CONFIGURATION: SET YOUR ALLOWED CATEGORY SLUGS HERE ---
-    $allowed_category_slugs = ['training', 'thermography-courses'];
+    wc_add_notice(
+        __('This product is not available for online purchase. Please contact us for more information.', 'coptrz-theme'),
+        'error'
+    );
 
-    // For variable products, we need to check the parent product's category.
-    $product_id_to_check = $product->is_type('variation') ? $product->get_parent_id() : $product->get_id();
-
-    // If the product (or its parent) is in any of the allowed categories, it remains purchasable.
-    if (has_term($allowed_category_slugs, 'product_cat', $product_id_to_check)) {
-        return true;
-    }
-
-    // For all other products, disable purchasing.
     return false;
 }
 
-// Part 2: Securely validate and block direct URL "add to cart" attempts.
-// This is the essential security check.
-add_filter('woocommerce_add_to_cart_validation', 'block_add_to_cart_except_specific_categories', 10, 3);
+/**
+ * Send anyone landing on the cart or checkout back to the shop.
+ *
+ * Covers stale bookmarks, old emails and any lingering internal links.
+ */
+add_action('template_redirect', 'dd_catalog_mode_redirect_cart_checkout');
 
-function block_add_to_cart_except_specific_categories($passed, $product_id, $quantity)
+function dd_catalog_mode_redirect_cart_checkout()
 {
-    // --- CONFIGURATION: SET YOUR ALLOWED CATEGORY SLUGS HERE (must match above) ---
-    $allowed_category_slugs = ['training', 'thermography-courses'];
-
-    // Get the product object from the ID.
-    $product = wc_get_product($product_id);
-
-    // If the product doesn't exist, let it pass to avoid unexpected errors.
-    if (! $product) {
-        return $passed;
+    if (is_admin() || wp_doing_ajax()) {
+        return;
     }
 
-    // For variable products, we need to check the parent product's category.
-    $product_id_to_check = $product->is_type('variation') ? $product->get_parent_id() : $product_id;
-
-    // Check if the product (or its parent) is in any of the allowed categories. If it is, validation passes.
-    if (has_term($allowed_category_slugs, 'product_cat', $product_id_to_check)) {
-        return true; // true means validation passed
-    } else {
-        // If not in an allowed category, block it and show an error message.
-        wc_add_notice(__('This product is not available for online purchase. Please contact us for more information.', 'woocommerce'), 'error');
-        return false; // false means validation failed, blocking the add to cart
+    if (!function_exists('is_cart') || !function_exists('is_checkout')) {
+        return;
     }
+
+    if (!is_cart() && !is_checkout()) {
+        return;
+    }
+
+    // Don't trap customers inside the order-received / order-pay endpoints -
+    // those are checkout pages, but they belong to orders that already exist.
+    if (is_wc_endpoint_url('order-received') || is_wc_endpoint_url('order-pay')) {
+        return;
+    }
+
+    $shop_url = wc_get_page_permalink('shop');
+
+    if (!$shop_url) {
+        $shop_url = home_url('/');
+    }
+
+    wc_add_notice(
+        __('Online ordering is currently unavailable. Please get in touch to enquire about a product.', 'coptrz-theme'),
+        'notice'
+    );
+
+    wp_safe_redirect($shop_url);
+    exit;
+}
+
+/**
+ * Empty any cart a customer still has from before catalog mode was enabled,
+ * so mini-cart counts and "you have items waiting" prompts don't linger.
+ */
+add_action('wp_loaded', 'dd_catalog_mode_empty_existing_cart', 20);
+
+function dd_catalog_mode_empty_existing_cart()
+{
+    if (is_admin() || wp_doing_ajax() || wp_doing_cron()) {
+        return;
+    }
+
+    if (!function_exists('WC') || !WC()->cart || WC()->cart->is_empty()) {
+        return;
+    }
+
+    WC()->cart->empty_cart();
 }
