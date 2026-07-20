@@ -1392,7 +1392,7 @@ function ___tab_modules($tabs, $id)
             $heading = $tab['heading'];
             
             // Mobile Accordion Trigger with flex layout and bulletproof inline SVGs
-            $html .= "<div class='d-md-none mt-2'>";
+            $html .= "<div class='d-md-none mt-3'>";
             $html .= "<button class='mobile-accordion-trigger {$isOpen} btn btn-light w-100 d-flex justify-content-between align-items-center border rounded-0 fw-bold' type='button' data-target='#tab-{$id}-{$key}-content' data-desktop-tab='#tab-{$id}-{$key}'>";
             $html .= "<span>{$heading}</span>";
             $html .= "<span class='icon-wrapper  position-relative'>";
