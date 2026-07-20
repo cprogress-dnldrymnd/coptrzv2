@@ -1395,7 +1395,7 @@ function ___tab_modules($tabs, $id)
             $html .= "<div class='d-md-none mt-2'>";
             $html .= "<button class='mobile-accordion-trigger {$isOpen} btn btn-light w-100 d-flex justify-content-between align-items-center border rounded-0 fw-bold' type='button' data-target='#tab-{$id}-{$key}-content' data-desktop-tab='#tab-{$id}-{$key}'>";
             $html .= "<span>{$heading}</span>";
-            $html .= "<span class='icon-wrapper text-danger position-relative'>";
+            $html .= "<span class='icon-wrapper  position-relative'>";
             // Inline SVG Plus
             $html .= "<svg class='svg-plus' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><line x1='12' y1='5' x2='12' y2='19'></line><line x1='5' y1='12' x2='19' y2='12'></line></svg>";
             // Inline SVG Minus
