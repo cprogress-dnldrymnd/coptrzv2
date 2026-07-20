@@ -11544,6 +11544,10 @@ hr {
   max-width: 100%;
   --bs-gutter-x: 0; }
 
+.full-width .wp-block-group.container {
+  max-width: 100%;
+  --bs-gutter-x: 0; }
+
 .extend-right .container:not(.no-extend),
 .extend-right.container {
   margin-right: 0;
