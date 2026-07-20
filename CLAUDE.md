@@ -65,8 +65,9 @@ case studies, rentals, landing pages, etc).
   mode below) — `#mini-cart-button` now only exists (if at all) via the
   `[booqable_cart_button]` shortcode output on rentals pages, so `__mini_cart()`
   is a no-op elsewhere. `__hero_video_column()`
-  moves a `.hero--video-section-style-1` cover block's
-  `.wp-block-cover__video-background` video into the first column of that
+  moves a `.hero--video-section-style-1` cover block's background media —
+  `.wp-block-cover__video-background` video **or**
+  `.wp-block-cover__image-background` image — into the first column of that
   hero's `core/columns` block at ≤991px (and back to its original position via
   a left-behind placeholder `<span>` above that breakpoint), driven by a
   `matchMedia('(max-width: 991px)')` listener so it re-runs on resize/rotate

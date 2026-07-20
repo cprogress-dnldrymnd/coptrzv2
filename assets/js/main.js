@@ -863,41 +863,41 @@ function __post_navigation() {
  * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
  * @package   DigitallyDisruptive
  *
- * Moves the hero cover video background into the first column of the hero's
- * columns block at 991px and below, and returns it to its original position
- * above that breakpoint.
+ * Moves the hero cover video/image background into the first column of the
+ * hero's columns block at 991px and below, and returns it to its original
+ * position above that breakpoint.
  */
 function __hero_video_column() {
-    var $videos = jQuery('.hero--video-section-style-1 .wp-block-cover__video-background');
+    var $medias = jQuery('.hero--video-section-style-1 .wp-block-cover__video-background, .hero--video-section-style-1 .wp-block-cover__image-background');
 
-    if (!$videos.length) return;
+    if (!$medias.length) return;
 
-    // Remember where each video started so it can be put back on desktop.
-    $videos.each(function () {
-        var $video = jQuery(this);
+    // Remember where each media element started so it can be put back on desktop.
+    $medias.each(function () {
+        var $media = jQuery(this);
 
-        if ($video.data('hero-video-placeholder')) return;
+        if ($media.data('hero-video-placeholder')) return;
 
         var $placeholder = jQuery('<span class="hero--video-placeholder d-none"></span>');
-        $placeholder.insertBefore($video);
-        $video.data('hero-video-placeholder', $placeholder);
+        $placeholder.insertBefore($media);
+        $media.data('hero-video-placeholder', $placeholder);
     });
 
     var mq = window.matchMedia('(max-width: 991px)');
 
     function moveVideos(matches) {
-        $videos.each(function () {
-            var $video = jQuery(this);
-            var $section = $video.closest('.hero--video-section-style-1');
+        $medias.each(function () {
+            var $media = jQuery(this);
+            var $section = $media.closest('.hero--video-section-style-1');
             var $column = $section.find('.wp-block-columns > .wp-block-column:first-child').first();
-            var $placeholder = $video.data('hero-video-placeholder');
+            var $placeholder = $media.data('hero-video-placeholder');
 
             if (matches) {
-                if ($column.length && !$video.parent().is($column)) {
-                    $column.append($video);
+                if ($column.length && !$media.parent().is($column)) {
+                    $column.append($media);
                 }
-            } else if ($placeholder && $placeholder.length && !$video.prev().is($placeholder)) {
-                $video.insertAfter($placeholder);
+            } else if ($placeholder && $placeholder.length && !$media.prev().is($placeholder)) {
+                $media.insertAfter($placeholder);
             }
         });
     }
