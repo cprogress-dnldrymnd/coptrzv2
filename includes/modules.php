@@ -1295,31 +1295,36 @@ function ___sections($id = 'sections', $post_id = '')
     return $html;
 }
 
+The reason the previous approach failed is that Bootstrap’s native `tab.js` engine strictly expects a specific DOM structure (`ul > li > button`) and doesn't handle multiple triggers for the same target smoothly. When we interleaved the mobile triggers above the content panes, Bootstrap's event listeners either ignored them or failed to calculate the correct active states, breaking the functionality.
+
+To make this work flawlessly, we need to detach the mobile triggers from Bootstrap's native tab JavaScript and handle the mobile state switching via a custom event delegation script.
+
+Here is the updated function. I removed the `data-bs-toggle` attributes from the mobile buttons to prevent script collision and appended a vanilla JavaScript block utilizing event delegation. This ensures the accordion functions correctly even if the module is loaded dynamically via AJAX (common in WordPress and Elementor environments).
+
+```php
 /**
  * Generates a responsive Bootstrap tab module that converts to an accordion on mobile viewports.
  *
- * Utilizes a unified DOM strategy to avoid duplicating potentially heavy or ID-dependent
- * content inside the description block. Mobile accordion triggers are interleaved
- * within the tab content loop and leverage Bootstrap's native Tab JavaScript.
- * This ensures seamless state transitions across both breakpoints without JS conflicts.
+ * Utilizes a unified DOM strategy to prevent duplicate content. Custom vanilla JavaScript 
+ * is appended using event delegation to handle the mobile accordion state without 
+ * conflicting with Bootstrap's native tab.js engine.
  *
  * @param array  $tabs An array of tabs, each containing 'heading' and 'description'.
  * @param string $id   A unique identifier for the tab module block.
- * @return string      The formatted HTML string.
+ * @return string      The formatted HTML string including the script.
  */
 function ___tab_modules($tabs, $id)
 {
     if ($tabs) {
         $html = "<div class='tabs-holder'>";
 
-        // 1. Desktop Tab Navigation (Hidden on screens smaller than 'md')
+        // 1. Desktop Tab Navigation (Native Bootstrap JS handles this on md+ screens)
         $html .= "<ul class='nav nav-tabs d-none d-md-flex' id='tab-{$id}' role='tablist'>";
         foreach ($tabs as $key => $tab) {
             $class = $key == 0 ? 'active' : '';
             $selected = $key == 0 ? 'true' : 'false';
             $heading = $tab['heading'];
             $html .= "<li class='nav-item' role='presentation'>";
-            // Target IDs updated to include $id to prevent cross-module collisions
             $html .= "<button class='nav-link {$class}' id='tab-{$id}-{$key}' data-bs-toggle='tab' data-bs-target='#tab-{$id}-{$key}-content' type='button' role='tab' aria-controls='tab-{$id}-{$key}-content' aria-selected='{$selected}'>{$heading}</button>";
             $html .= "</li>";
         }
@@ -1331,31 +1336,80 @@ function ___tab_modules($tabs, $id)
             $class = $key == 0 ? 'show active' : '';
             $heading = $tab['heading'];
 
-            // Mobile Accordion Trigger (Visible only on screens smaller than 'md')
-            // Formatted as a full-width block to mimic an accordion header, using tab toggle logic.
+            // Mobile Accordion Trigger 
+            // Note: data-bs-toggle='tab' is intentionally removed to prevent Bootstrap JS conflict.
+            // Custom data attributes added for the custom JS to map targets.
             $html .= "<div class='d-md-none mt-2'>";
-            $html .= "<button class='btn btn-light w-100 text-start border rounded-0 fw-bold' type='button' data-bs-toggle='tab' data-bs-target='#tab-{$id}-{$key}-content' role='tab' aria-controls='tab-{$id}-{$key}-content'>";
+            $html .= "<button class='mobile-accordion-trigger btn btn-light w-100 text-start border rounded-0 fw-bold' type='button' data-target='#tab-{$id}-{$key}-content' data-desktop-tab='#tab-{$id}-{$key}'>";
             $html .= $heading;
             $html .= "</button>";
             $html .= "</div>";
 
-            // Content Pane (Shared by both Desktop Tabs and Mobile Triggers)
+            // Content Pane
             $description_args['description'] = $tab['description'];
             $description_args['class'] = _attribute('class', array('description-box'));
 
-            // Added responsive top padding (pt-2 pt-md-3) for structural breathing room
             $html .= "<div class='tab-pane fade {$class} pt-2 pt-md-3' id='tab-{$id}-{$key}-content' role='tabpanel' aria-labelledby='tab-{$id}-{$key}'>";
             $html .= __description($description_args);
             $html .= "</div>";
         }
-        $html .= "</div>";
+        $html .= "</div>"; // End .tab-content
+        $html .= "</div>"; // End .tabs-holder
 
-        $html .= "</div>";
+        // 3. Custom JS Logic for Mobile Accordion
+        // Placed inside the function to guarantee execution when the shortcode/module is rendered.
+        // Uses a global variable check to ensure the event listener is only attached once per page load.
+        $html .= "
+        <script>
+        if (typeof window.initTabAccordionJS === 'undefined') {
+            window.initTabAccordionJS = true;
+            
+            document.addEventListener('click', function(e) {
+                // Event delegation ensures this works even if DOM mutates (e.g., Elementor preview)
+                const trigger = e.target.closest('.mobile-accordion-trigger');
+                if (!trigger) return;
+
+                e.preventDefault();
+
+                const targetSelector = trigger.getAttribute('data-target');
+                const desktopTabSelector = trigger.getAttribute('data-desktop-tab');
+                const targetPane = document.querySelector(targetSelector);
+                const desktopTab = document.querySelector(desktopTabSelector);
+                const tabsHolder = trigger.closest('.tabs-holder');
+
+                if (!targetPane || !tabsHolder) return;
+
+                // Check if the clicked accordion is already open
+                const isOpen = targetPane.classList.contains('active');
+
+                // Close all panes and reset triggers in this specific module instance
+                tabsHolder.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('show', 'active'));
+                tabsHolder.querySelectorAll('.nav-link').forEach(tab => {
+                    tab.classList.remove('active');
+                    tab.setAttribute('aria-selected', 'false');
+                });
+                
+                // If it wasn't open, open it (standard accordion toggle behavior)
+                if (!isOpen) {
+                    targetPane.classList.add('show', 'active');
+                    // Sync the hidden desktop tab so state is maintained if window is resized
+                    if (desktopTab) {
+                        desktopTab.classList.add('active');
+                        desktopTab.setAttribute('aria-selected', 'true');
+                    }
+                }
+            });
+        }
+        </script>
+        ";
+
         return $html;
     }
     
     return '';
 }
+
+```
 function ____post_grid_module($data)
 {
     $is_slider = $data['is_slider'];
