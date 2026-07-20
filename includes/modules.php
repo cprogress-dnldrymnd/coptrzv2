@@ -1299,7 +1299,11 @@ function ___sections($id = 'sections', $post_id = '')
  * Generates a responsive Bootstrap tab module that converts to an accordion on mobile viewports.
  *
  * Implements a unified DOM strategy and custom vanilla JavaScript for state management.
- * Includes dynamic plus/minus UI indicators utilizing Bootstrap flexbox utilities.
+ * Utilizes purely CSS-drawn, hardware-accelerated animated icons to bypass font dependencies 
+ * and ensure cross-device visibility. 
+ *
+ * @author Digitally Disruptive - Donald Raymundo
+ * @link   https://digitallydisruptive.co.uk/
  *
  * @param array  $tabs An array of tabs, each containing 'heading' and 'description'.
  * @param string $id   A unique identifier for the tab module block.
@@ -1309,6 +1313,42 @@ function ___tab_modules($tabs, $id)
 {
     if ($tabs) {
         $html = "<div class='tabs-holder'>";
+
+        // CSS injected to guarantee icon rendering and hardware-accelerated animations 
+        // without relying on external icon libraries (e.g., FontAwesome) or HTML entities.
+        $html .= "
+        <style>
+        .mobile-accordion-trigger .icon-wrapper {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .mobile-accordion-trigger .icon-line {
+            position: absolute;
+            background-color: currentColor;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+        .mobile-accordion-trigger .icon-line.horizontal {
+            width: 16px;
+            height: 3px;
+        }
+        .mobile-accordion-trigger .icon-line.vertical {
+            width: 3px;
+            height: 16px;
+        }
+        /* Open state animations */
+        .mobile-accordion-trigger.is-open .icon-line.vertical {
+            transform: rotate(90deg) scale(0);
+        }
+        .mobile-accordion-trigger.is-open .icon-line.horizontal {
+            transform: rotate(180deg);
+        }
+        </style>";
 
         // 1. Desktop Tab Navigation
         $html .= "<ul class='nav nav-tabs d-none d-md-flex' id='tab-{$id}' role='tablist'>";
@@ -1326,18 +1366,17 @@ function ___tab_modules($tabs, $id)
         $html .= "<div class='tab-content' id='tab-{$id}-content'>";
         foreach ($tabs as $key => $tab) {
             $class = $key == 0 ? 'show active' : '';
+            $isOpen = $key == 0 ? 'is-open' : '';
             $heading = $tab['heading'];
             
-            // Determine initial icon state (first item is open by default)
-            $icon = $key == 0 ? '&minus;' : '&#43;';
-
-            // Mobile Accordion Trigger 
-            // Flexbox utilities added to separate text and icon to opposite ends.
+            // Mobile Accordion Trigger with flex layout and pure CSS icon payload
             $html .= "<div class='d-md-none mt-2'>";
-            $html .= "<button class='mobile-accordion-trigger btn btn-light w-100 d-flex justify-content-between align-items-center border rounded-0 fw-bold' type='button' data-target='#tab-{$id}-{$key}-content' data-desktop-tab='#tab-{$id}-{$key}'>";
+            $html .= "<button class='mobile-accordion-trigger {$isOpen} btn btn-light w-100 d-flex justify-content-between align-items-center border rounded-0 fw-bold' type='button' data-target='#tab-{$id}-{$key}-content' data-desktop-tab='#tab-{$id}-{$key}'>";
             $html .= "<span>{$heading}</span>";
-            // Icon container with red text utility to match image_3cf581.png
-            $html .= "<span class='accordion-icon fs-4 text-danger lh-1'>{$icon}</span>";
+            $html .= "<span class='icon-wrapper text-danger'>";
+            $html .= "<span class='icon-line horizontal'></span>";
+            $html .= "<span class='icon-line vertical'></span>";
+            $html .= "</span>";
             $html .= "</button>";
             $html .= "</div>";
 
@@ -1352,7 +1391,7 @@ function ___tab_modules($tabs, $id)
         $html .= "</div>"; // End .tab-content
         $html .= "</div>"; // End .tabs-holder
 
-        // 3. Custom JS Logic for Mobile Accordion and Icon Toggling
+        // 3. Custom JS Logic for State Mapping
         $html .= "
         <script>
         if (typeof window.initTabAccordionJS === 'undefined') {
@@ -1372,26 +1411,23 @@ function ___tab_modules($tabs, $id)
 
                 if (!targetPane || !tabsHolder) return;
 
-                const isOpen = targetPane.classList.contains('active');
+                const isAlreadyOpen = targetPane.classList.contains('active');
 
-                // Close all panes and reset triggers
+                // Flush active states from panes, desktop tabs, and mobile triggers
                 tabsHolder.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('show', 'active'));
                 tabsHolder.querySelectorAll('.nav-link').forEach(tab => {
                     tab.classList.remove('active');
                     tab.setAttribute('aria-selected', 'false');
                 });
-                
-                // Reset all icons to plus
-                tabsHolder.querySelectorAll('.accordion-icon').forEach(icon => {
-                    icon.innerHTML = '&#43;';
+                tabsHolder.querySelectorAll('.mobile-accordion-trigger').forEach(btn => {
+                    btn.classList.remove('is-open');
                 });
                 
-                // If it wasn't open, open it and change icon to minus
-                if (!isOpen) {
+                // Toggle target states
+                if (!isAlreadyOpen) {
                     targetPane.classList.add('show', 'active');
-                    trigger.querySelector('.accordion-icon').innerHTML = '&minus;';
+                    trigger.classList.add('is-open');
                     
-                    // Sync the hidden desktop tab
                     if (desktopTab) {
                         desktopTab.classList.add('active');
                         desktopTab.setAttribute('aria-selected', 'true');
