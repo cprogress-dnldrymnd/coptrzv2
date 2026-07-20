@@ -59,7 +59,12 @@ case studies, rentals, landing pages, etc).
   Initialises all frontend behaviors: mini-cart, header menu, accordions,
   Swiper carousels, phone inputs, AJAX, hero, post navigation, URL param
   passthrough, and `initResponsiveTableCards` (converts `.responsive--table-2`
-  comparison tables to column-card layout on mobile). `__hero_video_column()`
+  comparison tables to column-card layout on mobile). `__mini_cart()` still
+  wires up `#mini-cart-button`/`.mini-cart-holder`, but `header-right.php` no
+  longer renders that markup for regular WooCommerce products (see Catalog
+  mode below) — `#mini-cart-button` now only exists (if at all) via the
+  `[booqable_cart_button]` shortcode output on rentals pages, so `__mini_cart()`
+  is a no-op elsewhere. `__hero_video_column()`
   moves a `.hero--video-section-style-1` cover block's background media —
   `.wp-block-cover__video-background` video **or**
   `.wp-block-cover__image-background` image — into the first column of that
@@ -383,7 +388,8 @@ case studies, rentals, landing pages, etc).
 - `woocommerce.php` (~2360 lines) — WooCommerce template/hook overrides; pairs
   with the `woocommerce/` directory which overrides core WooCommerce templates
   (`archive-product.php`, `cart/`, `checkoutx/`, `loop/`, `single-product/`,
-  `global/`, `content-single-product.php`).
+  `global/`, `content-single-product.php`). See Catalog mode below — the store
+  is currently browse-only.
 
 ### Templates & template parts
 
@@ -448,6 +454,42 @@ case studies, rentals, landing pages, etc).
   so it shows on `page-blocks-editor.php` too. Same post types as before (`page`,
   `guides`, `casestudies`, `events`, `landingpages`; side context). Defined only
   there.
+
+### WooCommerce catalog mode
+
+- The store is currently browse-only site-wide (`includes/woocommerce.php`,
+  "Catalog Mode" block, near the end of the file). To fully revert, delete
+  that block — it's self-contained and doesn't depend on the older
+  category-scoped version it replaced.
+- `add_filter('woocommerce_is_purchasable', '__return_false')` — nothing is
+  purchasable. This alone removes the add-to-cart button from loops/single
+  product pages and makes WooCommerce (incl. the Store API) reject add-to-cart
+  calls.
+- `woocommerce_single_product_summary` is re-hooked to `request_info` at
+  priority 30 — core's add-to-cart template (which normally fires
+  `woocommerce_after_add_to_cart_button`, where `request_info()` used to hang)
+  bails out early for a non-purchasable product, so the "Request Info" CTA has
+  to be re-attached directly or it disappears along with the cart button.
+- `dd_catalog_mode_block_add_to_cart()` (`woocommerce_add_to_cart_validation`)
+  rejects direct `?add-to-cart=123` URL hits with a readable notice, as a
+  belt-and-braces layer on top of `woocommerce_is_purchasable`.
+- `dd_catalog_mode_redirect_cart_checkout()` (`template_redirect`) sends any
+  hit on the cart/checkout pages back to the shop URL with a notice —
+  excludes `order-received`/`order-pay` endpoints so existing order links
+  still work. Covers stale bookmarks/emails/internal links.
+- `dd_catalog_mode_empty_existing_cart()` (`wp_loaded`, priority 20) empties
+  any cart left over from before catalog mode, so mini-cart counts don't
+  linger.
+- The header mini-cart icon/dropdown was removed from
+  `template-parts/header/header-right.php` (only the Booqable rentals cart
+  button remains, for `rentals` posts / specific landing page IDs) — see the
+  `main.js` note above.
+- `custom_product_variation_training()`'s per-variation button in the
+  comparison/training table was swapped from "Add to basket"/"Buy now" links
+  to a single "Discover" link to the variation's own permalink
+  (`$variation_product->get_permalink()` — `get_permalink()` on a variation
+  post ID resolves incorrectly, it must be called on the variation product
+  object).
 
 ### Forms — CF7 → Zapier
 
