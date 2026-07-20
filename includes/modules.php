@@ -1295,13 +1295,11 @@ function ___sections($id = 'sections', $post_id = '')
     return $html;
 }
 
-
 /**
  * Generates a responsive Bootstrap tab module that converts to an accordion on mobile viewports.
  *
- * Utilizes a unified DOM strategy to prevent duplicate content. Custom vanilla JavaScript 
- * is appended using event delegation to handle the mobile accordion state without 
- * conflicting with Bootstrap's native tab.js engine.
+ * Implements a unified DOM strategy and custom vanilla JavaScript for state management.
+ * Includes dynamic plus/minus UI indicators utilizing Bootstrap flexbox utilities.
  *
  * @param array  $tabs An array of tabs, each containing 'heading' and 'description'.
  * @param string $id   A unique identifier for the tab module block.
@@ -1312,7 +1310,7 @@ function ___tab_modules($tabs, $id)
     if ($tabs) {
         $html = "<div class='tabs-holder'>";
 
-        // 1. Desktop Tab Navigation (Native Bootstrap JS handles this on md+ screens)
+        // 1. Desktop Tab Navigation
         $html .= "<ul class='nav nav-tabs d-none d-md-flex' id='tab-{$id}' role='tablist'>";
         foreach ($tabs as $key => $tab) {
             $class = $key == 0 ? 'active' : '';
@@ -1329,13 +1327,17 @@ function ___tab_modules($tabs, $id)
         foreach ($tabs as $key => $tab) {
             $class = $key == 0 ? 'show active' : '';
             $heading = $tab['heading'];
+            
+            // Determine initial icon state (first item is open by default)
+            $icon = $key == 0 ? '&minus;' : '&#43;';
 
             // Mobile Accordion Trigger 
-            // Note: data-bs-toggle='tab' is intentionally removed to prevent Bootstrap JS conflict.
-            // Custom data attributes added for the custom JS to map targets.
+            // Flexbox utilities added to separate text and icon to opposite ends.
             $html .= "<div class='d-md-none mt-2'>";
-            $html .= "<button class='mobile-accordion-trigger btn btn-light w-100 text-start border rounded-0 fw-bold' type='button' data-target='#tab-{$id}-{$key}-content' data-desktop-tab='#tab-{$id}-{$key}'>";
-            $html .= $heading;
+            $html .= "<button class='mobile-accordion-trigger btn btn-light w-100 d-flex justify-content-between align-items-center border rounded-0 fw-bold' type='button' data-target='#tab-{$id}-{$key}-content' data-desktop-tab='#tab-{$id}-{$key}'>";
+            $html .= "<span>{$heading}</span>";
+            // Icon container with red text utility to match image_3cf581.png
+            $html .= "<span class='accordion-icon fs-4 text-danger lh-1'>{$icon}</span>";
             $html .= "</button>";
             $html .= "</div>";
 
@@ -1350,16 +1352,13 @@ function ___tab_modules($tabs, $id)
         $html .= "</div>"; // End .tab-content
         $html .= "</div>"; // End .tabs-holder
 
-        // 3. Custom JS Logic for Mobile Accordion
-        // Placed inside the function to guarantee execution when the shortcode/module is rendered.
-        // Uses a global variable check to ensure the event listener is only attached once per page load.
+        // 3. Custom JS Logic for Mobile Accordion and Icon Toggling
         $html .= "
         <script>
         if (typeof window.initTabAccordionJS === 'undefined') {
             window.initTabAccordionJS = true;
             
             document.addEventListener('click', function(e) {
-                // Event delegation ensures this works even if DOM mutates (e.g., Elementor preview)
                 const trigger = e.target.closest('.mobile-accordion-trigger');
                 if (!trigger) return;
 
@@ -1373,20 +1372,26 @@ function ___tab_modules($tabs, $id)
 
                 if (!targetPane || !tabsHolder) return;
 
-                // Check if the clicked accordion is already open
                 const isOpen = targetPane.classList.contains('active');
 
-                // Close all panes and reset triggers in this specific module instance
+                // Close all panes and reset triggers
                 tabsHolder.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('show', 'active'));
                 tabsHolder.querySelectorAll('.nav-link').forEach(tab => {
                     tab.classList.remove('active');
                     tab.setAttribute('aria-selected', 'false');
                 });
                 
-                // If it wasn't open, open it (standard accordion toggle behavior)
+                // Reset all icons to plus
+                tabsHolder.querySelectorAll('.accordion-icon').forEach(icon => {
+                    icon.innerHTML = '&#43;';
+                });
+                
+                // If it wasn't open, open it and change icon to minus
                 if (!isOpen) {
                     targetPane.classList.add('show', 'active');
-                    // Sync the hidden desktop tab so state is maintained if window is resized
+                    trigger.querySelector('.accordion-icon').innerHTML = '&minus;';
+                    
+                    // Sync the hidden desktop tab
                     if (desktopTab) {
                         desktopTab.classList.add('active');
                         desktopTab.setAttribute('aria-selected', 'true');
@@ -1402,7 +1407,6 @@ function ___tab_modules($tabs, $id)
     
     return '';
 }
-
 
 function ____post_grid_module($data)
 {
