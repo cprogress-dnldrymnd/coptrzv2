@@ -190,6 +190,26 @@ case studies, rentals, landing pages, etc).
   `background-image` style and no `<img>` — tagged with a unique
   `dd-cover-resp-N` scope class and followed by an injected `<style>` block of
   `@media` rules overriding `background-image` per breakpoint.
+- **Consolidated block CSS** (`functions.php`): `digitally_disruptive_render_custom_css()`
+  (the `render_block` filter backing the per-block "Custom CSS" panel —
+  `ddCustomCSS`/`ddCustomCSSTablet`/`ddCustomCSSMobile` attributes, whitelisted
+  to `core/group`, `core/separator`, `core/image`, `core/heading`,
+  `core/paragraph`, `core/button`, `core/columns`, `core/column`),
+  `dd_cover_responsive_render()`, and `dd_group_grid_responsive_render()` no
+  longer print their own inline `<style>` tag next to each block. All three
+  push their compiled CSS string into a shared buffer via
+  `dd_custom_css_collector($css)` (a static-array accumulator; calling it with
+  no args reads the buffer back). `dd_consolidated_css_placeholder()` (`wp_head`,
+  priority 999, so it lands after core's own block-support styles) echoes a
+  `<!--DD_CONSOLIDATED_CSS-->` marker comment. `dd_start_css_buffer()`
+  (`template_redirect`, skipped for admin/REST/AJAX/cron/feed requests) opens
+  a full-page `ob_start('dd_flush_consolidated_css')` buffer so CSS collected
+  later in the request (blocks render after `<head>` is already sent) can
+  still be spliced in; `dd_flush_consolidated_css()` swaps the marker for a
+  single `<style id="dd-consolidated-custom-css">` containing everything
+  collected (falls back to appending before `</head>`, or to the very end of
+  the HTML, if the marker is somehow missing). Net effect: one `<style>` tag
+  per page instead of one per styled block instance.
 - Custom fields are registered on the `carbon_fields_register_fields` hook
   (`tissue_paper_register_custom_fields()` in `functions.php`), which requires
   `includes/post-meta.php` — a Carbon Fields 3 `Container::make()` /

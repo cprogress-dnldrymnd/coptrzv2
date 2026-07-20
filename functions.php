@@ -741,6 +741,89 @@ add_filter('render_block', 'dd_inject_query_loop_meta_via_class', 10, 3);
 
 
 /**
+ * Shared collector for CSS compiled by the per-block Custom CSS panel and the
+ * Cover/Grid responsive-override render filters below (see
+ * digitally_disruptive_render_custom_css(), dd_group_grid_responsive_render(),
+ * dd_cover_responsive_render()). Each pushes its scoped CSS here instead of
+ * printing its own inline <style> tag next to the block; dd_flush_consolidated_css()
+ * later drops the combined result into <head> as one
+ * <style id="dd-consolidated-custom-css"> block.
+ *
+ * @param string|null $css CSS to append, or null to read back the buffer.
+ * @return string[] The accumulated CSS strings.
+ */
+function dd_custom_css_collector($css = null)
+{
+    static $buffer = array();
+    if ($css !== null && $css !== '') {
+        $buffer[] = $css;
+    }
+    return $buffer;
+}
+
+/**
+ * Reserves the spot in <head> where the consolidated CSS will land. Runs late
+ * (priority 999) so it sits after core's own block-support styles, giving our
+ * rules a source-order edge in addition to the !important they already carry
+ * where needed.
+ */
+function dd_consolidated_css_placeholder()
+{
+    echo '<!--DD_CONSOLIDATED_CSS-->';
+}
+add_action('wp_head', 'dd_consolidated_css_placeholder', 999);
+
+/**
+ * Starts a full-page output buffer so CSS collected while blocks render
+ * (after <head> has already been sent) can still be spliced into <head>
+ * before the response reaches the browser/cache. Skipped for admin/REST/AJAX/
+ * cron/feed requests, which never render the front-end blocks that populate
+ * dd_custom_css_collector() and don't need the placeholder rewritten.
+ */
+function dd_start_css_buffer()
+{
+    if (
+        is_admin() || is_feed() || wp_doing_ajax()
+        || (defined('REST_REQUEST') && REST_REQUEST)
+        || (defined('DOING_CRON') && DOING_CRON)
+        || (function_exists('wp_is_json_request') && wp_is_json_request())
+    ) {
+        return;
+    }
+    ob_start('dd_flush_consolidated_css');
+}
+add_action('template_redirect', 'dd_start_css_buffer');
+
+/**
+ * Output buffer callback: swaps the <!--DD_CONSOLIDATED_CSS--> marker left by
+ * dd_consolidated_css_placeholder() for a single <style> containing everything
+ * collected by dd_custom_css_collector() during this request's block rendering.
+ *
+ * @param string $html The fully rendered page HTML.
+ * @return string HTML with the consolidated <style> in <head>.
+ */
+function dd_flush_consolidated_css($html)
+{
+    $parts = dd_custom_css_collector();
+
+    if (empty($parts)) {
+        return str_replace('<!--DD_CONSOLIDATED_CSS-->', '', $html);
+    }
+
+    $style = '<style id="dd-consolidated-custom-css">' . implode('', $parts) . '</style>';
+
+    if (strpos($html, '<!--DD_CONSOLIDATED_CSS-->') !== false) {
+        return str_replace('<!--DD_CONSOLIDATED_CSS-->', $style, $html);
+    }
+
+    if (strpos($html, '</head>') !== false) {
+        return str_replace('</head>', $style . '</head>', $html);
+    }
+
+    return $html . $style;
+}
+
+/**
  * Intercept the block, scope the hybrid custom CSS declarations across breakpoints, and inject the style tag.
  *
  * @param string $block_content The raw HTML content of the block.
@@ -835,14 +918,11 @@ function digitally_disruptive_render_custom_css($block_content, $block)
     }
     $updated_content = $tags->get_updated_html();
 
-    // Construct the scoped style block to sit parallel to the DOM element
-    $style_tag = sprintf(
-        '<style id="%s">%s</style>',
-        esc_attr($unique_id . '-style'),
-        $final_css
-    );
+    // Push into the shared collector instead of printing an inline <style> here —
+    // dd_flush_consolidated_css() emits it in <head> alongside every other block's CSS.
+    dd_custom_css_collector($final_css);
 
-    return $style_tag . $updated_content;
+    return $updated_content;
 }
 add_filter('render_block', 'digitally_disruptive_render_custom_css', 10, 2);
 
