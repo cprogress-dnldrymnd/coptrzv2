@@ -59,7 +59,14 @@ case studies, rentals, landing pages, etc).
   Initialises all frontend behaviors: mini-cart, header menu, accordions,
   Swiper carousels, phone inputs, AJAX, hero, post navigation, URL param
   passthrough, and `initResponsiveTableCards` (converts `.responsive--table-2`
-  comparison tables to column-card layout on mobile).
+  comparison tables to column-card layout on mobile). `__hero_video_column()`
+  moves a `.hero--video-section-style-1` cover block's background media —
+  `.wp-block-cover__video-background` video **or**
+  `.wp-block-cover__image-background` image — into the first column of that
+  hero's `core/columns` block at ≤991px (and back to its original position via
+  a left-behind placeholder `<span>` above that breakpoint), driven by a
+  `matchMedia('(max-width: 991px)')` listener so it re-runs on resize/rotate
+  without a page reload.
 - `assets/js/extend-button-popup.js` — Gutenberg block editor extension
   (enqueued on `enqueue_block_editor_assets`) that adds an "Open Popup"
   InspectorControls panel to `core/button` blocks. Stores the selection as a

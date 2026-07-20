@@ -13,6 +13,7 @@ jQuery(document).ready(function () {
     __blog_content();
     __hero();
     __shop_coptrz_link();
+    __hero_video_column();
     pasturlparameters();
     if (window.innerWidth < 768) {
         initResponsiveTableCards(jQuery('.responsive--table-2>table'));
@@ -854,6 +855,63 @@ function __post_navigation() {
             jQuery('html, body').animate({
                 scrollTop: jQuery($href).offset().top - 200
             }, 1000);
+        });
+    }
+}
+
+/**
+ * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
+ * @package   DigitallyDisruptive
+ *
+ * Moves the hero cover video/image background into the first column of the
+ * hero's columns block at 991px and below, and returns it to its original
+ * position above that breakpoint.
+ */
+function __hero_video_column() {
+    var $medias = jQuery('.hero--video-section-style-1 .wp-block-cover__video-background, .hero--video-section-style-1 .wp-block-cover__image-background');
+
+    if (!$medias.length) return;
+
+    // Remember where each media element started so it can be put back on desktop.
+    $medias.each(function () {
+        var $media = jQuery(this);
+
+        if ($media.data('hero-video-placeholder')) return;
+
+        var $placeholder = jQuery('<span class="hero--video-placeholder d-none"></span>');
+        $placeholder.insertBefore($media);
+        $media.data('hero-video-placeholder', $placeholder);
+    });
+
+    var mq = window.matchMedia('(max-width: 991px)');
+
+    function moveVideos(matches) {
+        $medias.each(function () {
+            var $media = jQuery(this);
+            var $section = $media.closest('.hero--video-section-style-1');
+            var $column = $section.find('.wp-block-columns > .wp-block-column:first-child').first();
+            var $placeholder = $media.data('hero-video-placeholder');
+
+            if (matches) {
+                if ($column.length && !$media.parent().is($column)) {
+                    $column.append($media);
+                }
+            } else if ($placeholder && $placeholder.length && !$media.prev().is($placeholder)) {
+                $media.insertAfter($placeholder);
+            }
+        });
+    }
+
+    moveVideos(mq.matches);
+
+    if (typeof mq.addEventListener === 'function') {
+        mq.addEventListener('change', function (event) {
+            moveVideos(event.matches);
+        });
+    } else if (typeof mq.addListener === 'function') {
+        // Safari < 14
+        mq.addListener(function (event) {
+            moveVideos(event.matches);
         });
     }
 }
