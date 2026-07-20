@@ -1295,13 +1295,7 @@ function ___sections($id = 'sections', $post_id = '')
     return $html;
 }
 
-The reason the previous approach failed is that Bootstrap’s native `tab.js` engine strictly expects a specific DOM structure (`ul > li > button`) and doesn't handle multiple triggers for the same target smoothly. When we interleaved the mobile triggers above the content panes, Bootstrap's event listeners either ignored them or failed to calculate the correct active states, breaking the functionality.
 
-To make this work flawlessly, we need to detach the mobile triggers from Bootstrap's native tab JavaScript and handle the mobile state switching via a custom event delegation script.
-
-Here is the updated function. I removed the `data-bs-toggle` attributes from the mobile buttons to prevent script collision and appended a vanilla JavaScript block utilizing event delegation. This ensures the accordion functions correctly even if the module is loaded dynamically via AJAX (common in WordPress and Elementor environments).
-
-```php
 /**
  * Generates a responsive Bootstrap tab module that converts to an accordion on mobile viewports.
  *
