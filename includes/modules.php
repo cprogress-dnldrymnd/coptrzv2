@@ -1296,57 +1296,79 @@ function ___sections($id = 'sections', $post_id = '')
 }
 
 /**
- * Generates a responsive Bootstrap tab module that converts to an accordion on mobile viewports.
+ * Generates a responsive Bootstrap tab module that converts to an animated accordion on mobile viewports.
  *
- * Implements a unified DOM strategy and custom vanilla JavaScript for state management.
- * Utilizes purely CSS-drawn, hardware-accelerated animated icons to bypass font dependencies 
- * and ensure cross-device visibility. 
+ * Implements a unified DOM strategy with advanced CSS Grid transitions for a smooth 
+ * mobile accordion slide effect without conflicting with Bootstrap's desktop tab states.
+ * Utilizes inline SVGs to guarantee icon rendering across all environments, bypassing
+ * font-loading or CSS entity blockages observed in standard implementations.
  *
  * @author Digitally Disruptive - Donald Raymundo
  * @link   https://digitallydisruptive.co.uk/
  *
  * @param array  $tabs An array of tabs, each containing 'heading' and 'description'.
  * @param string $id   A unique identifier for the tab module block.
- * @return string      The formatted HTML string including the script.
+ * @return string      The formatted HTML string including scoped styles and the script.
  */
 function ___tab_modules($tabs, $id)
 {
     if ($tabs) {
         $html = "<div class='tabs-holder'>";
 
-        // CSS injected to guarantee icon rendering and hardware-accelerated animations 
-        // without relying on external icon libraries (e.g., FontAwesome) or HTML entities.
+        // CSS injected to guarantee SVG icon morphing and smooth CSS Grid accordion animation.
+        // Scoped specifically to mobile viewports to prevent desktop tab disruption.
         $html .= "
         <style>
         .mobile-accordion-trigger .icon-wrapper {
             width: 24px;
             height: 24px;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
-        .mobile-accordion-trigger .icon-line {
+        .mobile-accordion-trigger svg {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
             position: absolute;
-            background-color: currentColor;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 2px;
         }
-        .mobile-accordion-trigger .icon-line.horizontal {
-            width: 16px;
-            height: 3px;
+        .mobile-accordion-trigger .svg-minus {
+            opacity: 0;
+            transform: rotate(-90deg) scale(0.5);
         }
-        .mobile-accordion-trigger .icon-line.vertical {
-            width: 3px;
-            height: 16px;
+        .mobile-accordion-trigger.is-open .svg-plus {
+            opacity: 0;
+            transform: rotate(90deg) scale(0.5);
         }
-        /* Open state animations */
-        .mobile-accordion-trigger.is-open .icon-line.vertical {
-            transform: rotate(90deg) scale(0);
+        .mobile-accordion-trigger.is-open .svg-minus {
+            opacity: 1;
+            transform: rotate(0) scale(1);
         }
-        .mobile-accordion-trigger.is-open .icon-line.horizontal {
-            transform: rotate(180deg);
+        
+        /* CSS Grid approach for smooth slideDown/slideUp animation on mobile */
+        @media (max-width: 767.98px) {
+            .tabs-holder .tab-content {
+                display: flex;
+                flex-direction: column;
+            }
+            .tabs-holder .tab-pane {
+                display: grid !important;
+                grid-template-rows: 0fr;
+                transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+                opacity: 0;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                visibility: hidden;
+            }
+            .tabs-holder .tab-pane.active {
+                grid-template-rows: 1fr;
+                opacity: 1;
+                visibility: visible;
+                padding-top: 0.5rem !important; /* pt-2 equivalent */
+            }
+            /* Inner wrapper required for CSS Grid template-rows animation to function */
+            .tabs-holder .tab-pane-inner {
+                overflow: hidden;
+            }
         }
         </style>";
 
@@ -1369,13 +1391,15 @@ function ___tab_modules($tabs, $id)
             $isOpen = $key == 0 ? 'is-open' : '';
             $heading = $tab['heading'];
             
-            // Mobile Accordion Trigger with flex layout and pure CSS icon payload
+            // Mobile Accordion Trigger with flex layout and bulletproof inline SVGs
             $html .= "<div class='d-md-none mt-2'>";
             $html .= "<button class='mobile-accordion-trigger {$isOpen} btn btn-light w-100 d-flex justify-content-between align-items-center border rounded-0 fw-bold' type='button' data-target='#tab-{$id}-{$key}-content' data-desktop-tab='#tab-{$id}-{$key}'>";
             $html .= "<span>{$heading}</span>";
-            $html .= "<span class='icon-wrapper text-danger'>";
-            $html .= "<span class='icon-line horizontal'></span>";
-            $html .= "<span class='icon-line vertical'></span>";
+            $html .= "<span class='icon-wrapper text-danger position-relative'>";
+            // Inline SVG Plus
+            $html .= "<svg class='svg-plus' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><line x1='12' y1='5' x2='12' y2='19'></line><line x1='5' y1='12' x2='19' y2='12'></line></svg>";
+            // Inline SVG Minus
+            $html .= "<svg class='svg-minus' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><line x1='5' y1='12' x2='19' y2='12'></line></svg>";
             $html .= "</span>";
             $html .= "</button>";
             $html .= "</div>";
@@ -1384,8 +1408,11 @@ function ___tab_modules($tabs, $id)
             $description_args['description'] = $tab['description'];
             $description_args['class'] = _attribute('class', array('description-box'));
 
-            $html .= "<div class='tab-pane fade {$class} pt-2 pt-md-3' id='tab-{$id}-{$key}-content' role='tabpanel' aria-labelledby='tab-{$id}-{$key}'>";
+            $html .= "<div class='tab-pane fade {$class} pt-md-3' id='tab-{$id}-{$key}-content' role='tabpanel' aria-labelledby='tab-{$id}-{$key}'>";
+            // Added .tab-pane-inner wrapper -> This is strictly required for the CSS Grid animation to calculate height.
+            $html .= "<div class='tab-pane-inner'>";
             $html .= __description($description_args);
+            $html .= "</div>";
             $html .= "</div>";
         }
         $html .= "</div>"; // End .tab-content
@@ -1425,8 +1452,11 @@ function ___tab_modules($tabs, $id)
                 
                 // Toggle target states
                 if (!isAlreadyOpen) {
-                    targetPane.classList.add('show', 'active');
-                    trigger.classList.add('is-open');
+                    // requestAnimationFrame ensures the DOM recognizes the class removal before adding it back, triggering the CSS transition natively.
+                    requestAnimationFrame(() => {
+                        targetPane.classList.add('show', 'active');
+                        trigger.classList.add('is-open');
+                    });
                     
                     if (desktopTab) {
                         desktopTab.classList.add('active');
