@@ -59,7 +59,12 @@ case studies, rentals, landing pages, etc).
   Initialises all frontend behaviors: mini-cart, header menu, accordions,
   Swiper carousels, phone inputs, AJAX, hero, post navigation, URL param
   passthrough, and `initResponsiveTableCards` (converts `.responsive--table-2`
-  comparison tables to column-card layout on mobile). `__hero_video_column()`
+  comparison tables to column-card layout on mobile). `__mini_cart()` still
+  wires up `#mini-cart-button`/`.mini-cart-holder`, but `header-right.php` no
+  longer renders that markup for regular WooCommerce products (see Catalog
+  mode below) — `#mini-cart-button` now only exists (if at all) via the
+  `[booqable_cart_button]` shortcode output on rentals pages, so `__mini_cart()`
+  is a no-op elsewhere. `__hero_video_column()`
   moves a `.hero--video-section-style-1` cover block's
   `.wp-block-cover__video-background` video into the first column of that
   hero's `core/columns` block at ≤991px (and back to its original position via
@@ -198,12 +203,14 @@ case studies, rentals, landing pages, etc).
   image natively, original `<img>` kept as the desktop fallback (skipped
   entirely if both breakpoints resolve to hidden/empty); (2) a fixed/repeated
   background rendered as a `<span>`/`<div>` with an inline `background-image`
-  style and no `<img>`. Both shapes share one scoped-`<style>` code path: the
-  wrapper is tagged with a unique `dd-cover-resp-N` class and a `<style>`
-  block is appended with `@media` rules — `background-image` overrides
-  per breakpoint for shape (2), and `display:none!important` on
+  style and no `<img>`. Both shapes share one scoped-CSS code path: the
+  wrapper is tagged with a unique `dd-cover-resp-N` class and `@media` rules
+  are built — `background-image` overrides per breakpoint for shape (2), and
+  `display:none!important` on
   `> picture, .wp-block-cover__image-background, .wp-block-cover__background`
-  for any hidden breakpoint (either shape).
+  for any hidden breakpoint (either shape) — then pushed to the consolidated
+  CSS collector (see `dd_custom_css_collector()` below) instead of an inline
+  `<style>` tag.
 - `assets/js/extend-responsive-layout.js` — Gutenberg block editor extension
   (enqueued via `digitally_disruptive_enqueue_swiper_editor_assets()`, same
   hook as the extensions above) adding two per-breakpoint responsive controls
@@ -223,31 +230,46 @@ case studies, rentals, landing pages, etc).
   block's `layout.type === 'grid'` (the Grid layout variation; plain
   Group/Row/Stack never show it), rendered server-side by
   `dd_group_grid_responsive_render()` (`render_block_core/group` filter),
-  which follows the same scoped-`<style>`-injection strategy as
-  `digitally_disruptive_render_custom_css()` (unique `dd-grid-N` class +
-  `@media` rules forcing `grid-template-columns` with `!important`, since
-  core prints its own `grid-template-columns` in a `<head>` stylesheet at
-  equal specificity) rather than a fixed class, because the column count is
-  an arbitrary per-instance value. `dd_group_grid_responsive_render()` bails
-  when `isSwiperSlider` is set, since `digitally_disruptive_render_universal_swiper()`
-  strips the grid layout entirely to build a carousel — the two are mutually
-  exclusive. Both editor panels also inject a `clientId`-scoped `<style>` tag
-  (same live-preview trick as `extend-custom-css.js`) so the effect is visible
-  in the editor canvas immediately, without waiting for the server-rendered
-  class/style to exist.
-  **Gotcha (applies to any new `render_block_core/*` filter):** WordPress fires
-  the generic `render_block` filter *before* the block-specific
-  `render_block_{$name}` one, and `digitally_disruptive_render_custom_css()`
-  (on `render_block`) *prepends* a `<style>` tag to the block content. So by the
-  time a `render_block_core/*` filter runs, the first tag in `$block_content` may
-  be that `<style>`, not the block's own element — a bare
-  `WP_HTML_Tag_Processor::next_tag()` will silently add the class to the `<style>`
-  tag instead (symptom: the feature works on blocks without Custom CSS and
-  silently fails on blocks that have it). Both filters here therefore qualify the
-  query — `next_tag(array('class_name' => 'wp-block-columns'))` /
-  `'wp-block-group'` — and bail if no match. The older `render_block`-based
-  filters (`digitally_disruptive_render_universal_swiper()`, etc.) are unaffected
-  because they run before the `<style>` is prepended.
+  which builds scoped CSS the same way as `digitally_disruptive_render_custom_css()`
+  (unique `dd-grid-N` class + `@media` rules forcing `grid-template-columns`
+  with `!important`, since core prints its own `grid-template-columns` in a
+  `<head>` stylesheet at equal specificity) rather than a fixed class, because
+  the column count is an arbitrary per-instance value, and likewise pushes it
+  to the consolidated CSS collector instead of an inline `<style>` tag.
+  `dd_group_grid_responsive_render()` bails when `isSwiperSlider` is set, since
+  `digitally_disruptive_render_universal_swiper()` strips the grid layout
+  entirely to build a carousel — the two are mutually exclusive. Both editor
+  panels also inject a `clientId`-scoped `<style>` tag (same live-preview trick
+  as `extend-custom-css.js`) so the effect is visible in the editor canvas
+  immediately, without waiting for the server-rendered class/consolidated CSS
+  to exist.
+  `dd_columns_stack_tablet_render()`/`dd_group_grid_responsive_render()` locate
+  their target element with `next_tag(array('class_name' => 'wp-block-columns'
+  /'wp-block-group'))` rather than a bare `next_tag()`, a holdover from when
+  `digitally_disruptive_render_custom_css()` used to prepend an inline `<style>`
+  tag to `$block_content` (which would have been the first tag otherwise) —
+  see the consolidated-CSS mechanism below, which removed that prepend, but
+  the qualified lookup is harmless and remains in place.
+- **Consolidated block CSS** (`functions.php`): `digitally_disruptive_render_custom_css()`
+  (the `render_block` filter backing the per-block "Custom CSS" panel —
+  `ddCustomCSS`/`ddCustomCSSTablet`/`ddCustomCSSMobile` attributes, whitelisted
+  to `core/group`, `core/separator`, `core/image`, `core/heading`,
+  `core/paragraph`, `core/button`, `core/columns`, `core/column`),
+  `dd_cover_responsive_render()`, and `dd_group_grid_responsive_render()` no
+  longer print their own inline `<style>` tag next to each block. All three
+  push their compiled CSS string into a shared buffer via
+  `dd_custom_css_collector($css)` (a static-array accumulator; calling it with
+  no args reads the buffer back). `dd_consolidated_css_placeholder()` (`wp_head`,
+  priority 999, so it lands after core's own block-support styles) echoes a
+  `<!--DD_CONSOLIDATED_CSS-->` marker comment. `dd_start_css_buffer()`
+  (`template_redirect`, skipped for admin/REST/AJAX/cron/feed requests) opens
+  a full-page `ob_start('dd_flush_consolidated_css')` buffer so CSS collected
+  later in the request (blocks render after `<head>` is already sent) can
+  still be spliced in; `dd_flush_consolidated_css()` swaps the marker for a
+  single `<style id="dd-consolidated-custom-css">` containing everything
+  collected (falls back to appending before `</head>`, or to the very end of
+  the HTML, if the marker is somehow missing). Net effect: one `<style>` tag
+  per page instead of one per styled block instance.
 - Custom fields are registered on the `carbon_fields_register_fields` hook
   (`tissue_paper_register_custom_fields()` in `functions.php`), which requires
   `includes/post-meta.php` — a Carbon Fields 3 `Container::make()` /
@@ -318,10 +340,11 @@ case studies, rentals, landing pages, etc).
   guarded with `function_exists('___sections')` (not a `layouts()` function,
   which doesn't exist) since `___sections` lives in `modules.php`, which is
   skipped in admin/REST on the blocks-editor template.
-- `woocommerce.php` (~2360 lines) — WooCommerce template/hook overrides; pairs
+- `woocommerce.php` (~2400 lines) — WooCommerce template/hook overrides; pairs
   with the `woocommerce/` directory which overrides core WooCommerce templates
   (`archive-product.php`, `cart/`, `checkoutx/`, `loop/`, `single-product/`,
-  `global/`, `content-single-product.php`).
+  `global/`, `content-single-product.php`). See Catalog mode below — the store
+  is currently browse-only.
 
 ### Templates & template parts
 
@@ -384,6 +407,42 @@ case studies, rentals, landing pages, etc).
   `carbon_fields_register_fields` hook directly — so it shows on
   `page-blocks-editor.php` too. Same post types as before (`page`, `guides`,
   `casestudies`, `events`, `landingpages`; side context). Defined only there.
+
+### WooCommerce catalog mode
+
+- The store is currently browse-only site-wide (`includes/woocommerce.php`,
+  "Catalog Mode" block, near the end of the file). To fully revert, delete
+  that block — it's self-contained and doesn't depend on the older
+  category-scoped version it replaced.
+- `add_filter('woocommerce_is_purchasable', '__return_false')` — nothing is
+  purchasable. This alone removes the add-to-cart button from loops/single
+  product pages and makes WooCommerce (incl. the Store API) reject add-to-cart
+  calls.
+- `woocommerce_single_product_summary` is re-hooked to `request_info` at
+  priority 30 — core's add-to-cart template (which normally fires
+  `woocommerce_after_add_to_cart_button`, where `request_info()` used to hang)
+  bails out early for a non-purchasable product, so the "Request Info" CTA has
+  to be re-attached directly or it disappears along with the cart button.
+- `dd_catalog_mode_block_add_to_cart()` (`woocommerce_add_to_cart_validation`)
+  rejects direct `?add-to-cart=123` URL hits with a readable notice, as a
+  belt-and-braces layer on top of `woocommerce_is_purchasable`.
+- `dd_catalog_mode_redirect_cart_checkout()` (`template_redirect`) sends any
+  hit on the cart/checkout pages back to the shop URL with a notice —
+  excludes `order-received`/`order-pay` endpoints so existing order links
+  still work. Covers stale bookmarks/emails/internal links.
+- `dd_catalog_mode_empty_existing_cart()` (`wp_loaded`, priority 20) empties
+  any cart left over from before catalog mode, so mini-cart counts don't
+  linger.
+- The header mini-cart icon/dropdown was removed from
+  `template-parts/header/header-right.php` (only the Booqable rentals cart
+  button remains, for `rentals` posts / specific landing page IDs) — see the
+  `main.js` note above.
+- `custom_product_variation_training()`'s per-variation button in the
+  comparison/training table was swapped from "Add to basket"/"Buy now" links
+  to a single "Discover" link to the variation's own permalink
+  (`$variation_product->get_permalink()` — `get_permalink()` on a variation
+  post ID resolves incorrectly, it must be called on the variation product
+  object).
 
 ### Forms — CF7 → Zapier
 
