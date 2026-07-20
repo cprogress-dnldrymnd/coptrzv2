@@ -1409,7 +1409,7 @@ function ___tab_modules($tabs, $id)
     return '';
 }
 
-```
+
 function ____post_grid_module($data)
 {
     $is_slider = $data['is_slider'];
