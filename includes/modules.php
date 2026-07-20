@@ -1295,28 +1295,56 @@ function ___sections($id = 'sections', $post_id = '')
     return $html;
 }
 
+/**
+ * Generates a responsive Bootstrap tab module that converts to an accordion on mobile viewports.
+ *
+ * Utilizes a unified DOM strategy to avoid duplicating potentially heavy or ID-dependent
+ * content inside the description block. Mobile accordion triggers are interleaved
+ * within the tab content loop and leverage Bootstrap's native Tab JavaScript.
+ * This ensures seamless state transitions across both breakpoints without JS conflicts.
+ *
+ * @param array  $tabs An array of tabs, each containing 'heading' and 'description'.
+ * @param string $id   A unique identifier for the tab module block.
+ * @return string      The formatted HTML string.
+ */
 function ___tab_modules($tabs, $id)
 {
     if ($tabs) {
         $html = "<div class='tabs-holder'>";
-        $html .= "<ul class='nav nav-tabs' id='tab-$id' role='tablist'>";
+
+        // 1. Desktop Tab Navigation (Hidden on screens smaller than 'md')
+        $html .= "<ul class='nav nav-tabs d-none d-md-flex' id='tab-{$id}' role='tablist'>";
         foreach ($tabs as $key => $tab) {
             $class = $key == 0 ? 'active' : '';
             $selected = $key == 0 ? 'true' : 'false';
             $heading = $tab['heading'];
             $html .= "<li class='nav-item' role='presentation'>";
-            $html .= "<button class='nav-link $class' id='tab-$key' data-bs-toggle='tab' data-bs-target='#tab-$key-content' type='button' role='tab' aria-controls='tab-$key-content' aria-selected='$selected'>$heading</button>";
+            // Target IDs updated to include $id to prevent cross-module collisions
+            $html .= "<button class='nav-link {$class}' id='tab-{$id}-{$key}' data-bs-toggle='tab' data-bs-target='#tab-{$id}-{$key}-content' type='button' role='tab' aria-controls='tab-{$id}-{$key}-content' aria-selected='{$selected}'>{$heading}</button>";
             $html .= "</li>";
         }
         $html .= "</ul>";
 
-        $html .= "<div class='tab-content' id='tab-$id-content'>";
+        // 2. Tab Content Wrapper
+        $html .= "<div class='tab-content' id='tab-{$id}-content'>";
         foreach ($tabs as $key => $tab) {
             $class = $key == 0 ? 'show active' : '';
+            $heading = $tab['heading'];
 
+            // Mobile Accordion Trigger (Visible only on screens smaller than 'md')
+            // Formatted as a full-width block to mimic an accordion header, using tab toggle logic.
+            $html .= "<div class='d-md-none mt-2'>";
+            $html .= "<button class='btn btn-light w-100 text-start border rounded-0 fw-bold' type='button' data-bs-toggle='tab' data-bs-target='#tab-{$id}-{$key}-content' role='tab' aria-controls='tab-{$id}-{$key}-content'>";
+            $html .= $heading;
+            $html .= "</button>";
+            $html .= "</div>";
+
+            // Content Pane (Shared by both Desktop Tabs and Mobile Triggers)
             $description_args['description'] = $tab['description'];
             $description_args['class'] = _attribute('class', array('description-box'));
-            $html .= "<div class='tab-pane fade $class' id='tab-$key-content' role='tabpanel' aria-labelledby='tab-$key'>";
+
+            // Added responsive top padding (pt-2 pt-md-3) for structural breathing room
+            $html .= "<div class='tab-pane fade {$class} pt-2 pt-md-3' id='tab-{$id}-{$key}-content' role='tabpanel' aria-labelledby='tab-{$id}-{$key}'>";
             $html .= __description($description_args);
             $html .= "</div>";
         }
@@ -1325,6 +1353,8 @@ function ___tab_modules($tabs, $id)
         $html .= "</div>";
         return $html;
     }
+    
+    return '';
 }
 function ____post_grid_module($data)
 {
