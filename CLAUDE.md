@@ -185,6 +185,86 @@ case studies, rentals, landing pages, etc).
   static `RawHTML` save lets those interim instances validate and migrate. (The
   original symptom that drove all this churn — an empty `pdf_url` field — turned out
   to be an unrelated wrong-form selection, not the block.)
+- `assets/js/coptrz-layouts-block.js` — registers the `coptrz/layouts` block, a
+  native editor equivalent of `[layouts id="…"]`. Same shape as `dd/cf7-pdf-form`
+  above (`save: null`, rendered server-side by `coptrz_render_layouts_block()` in
+  functions.php) but simpler: only one attribute (`layoutId`, plus `layoutTitle` for
+  the editor label) and no custom REST route — the editor dropdown fetches core
+  `/wp/v2/layouts` directly since that CPT is already `show_in_rest`. See
+  section-converter.php notes below for how the converter's `layouts` item mapper
+  emits this block.
+- `assets/js/coptrz-global-widget-block.js` — registers the `coptrz/global-widget`
+  block, a native editor equivalent of hand-typing one of the "Global Widgets"
+  shortcodes (`[brands_logo_slider]`, `[case_study_slider_grid]`, `[testimonials]`,
+  `[reviews]`, `[drone_servicing]`, `[three_year_servicing_plans]`,
+  `[remote_support]`, `[latest_from_coptrz]`). Same shape as `dd/cf7-pdf-form` and
+  `coptrz/layouts` (`save: null`, rendered server-side), but the widget list is
+  `wp_localize_script()`-ed as `coptrzGlobalWidgets` rather than fetched over REST —
+  it's static PHP data (`coptrz_global_widgets()` in functions.php), so localizing
+  avoids a round-trip while keeping one source of truth shared with the
+  section-converter's `global_widgets` mapper. Two attributes: `widget` (the
+  registry slug) and `style` (Case Study Slider only — the sole widget in the
+  family that takes a parameter; its registry entry's `shortcode` key
+  deliberately doesn't match its slug: `case_study_slider` → `[case_study_slider_grid]`).
+  These widgets take no content of their own — brand logos live in `pa_brands`
+  term meta, featured case studies in a theme option — so the block is a pure
+  placeholder naming the selected widget; content is edited at its usual location,
+  not in the block.
+- `assets/js/coptrz-post-grid-block.js` — registers the `coptrz/post-grid` block,
+  a native editor equivalent of the legacy section builder's "Post Grid" item
+  (`post_grid` inside `section_items`, includes/post-meta.php). Unlike the other
+  `coptrz/*` blocks this one has real configurable content across three
+  independent axes, matching the legacy field 1:1 rather than simplifying it:
+  **Post Type** — one of exactly 4 hard-coded types (`industries`, `casestudies`,
+  `testimonials`, `capabilities` — not a generic CPT picker, matching the legacy
+  field), each with a `source` of `all` / `manually` (a `FormTokenField`-based
+  multi-post search picker, component `IdTokenPicker`) / `category` (same
+  component, term search — only offered for the two types with a taxonomy).
+  **Post Box Styles** — the per-card wrapper's styling, stored as a flat
+  `boxStyles` object attribute; a category (background/text color, padding,
+  margin, alignment, column width, border, custom class) is only turned into a
+  row server-side when the block author actually touched one of its fields,
+  mirroring the legacy Carbon Fields row simply not existing until added —
+  leaving everything blank in the block produces zero row-derived styling,
+  same as the legacy default. **Post Elements** — an ordered, reorderable
+  (`PostElementsRepeater` component, up/down buttons) list of up to 10 items:
+  `post_title`/`featured_image`/`post_excerpt`/`permalink`/`icon` (each at most
+  once) and `custom_field` (up to 5 — the legacy field's `custom_field_1..5` are
+  five near-identical Carbon Fields groups working around "duplicate groups not
+  allowed"; the block simplifies this to one repeatable `custom_field` type,
+  capped at 5 in the "Add element" control since `____post_grid_module()` only
+  recognises those 5 literal `_type` values).
+
+  The full field taxonomy — which post types exist and what sources/taxonomy
+  each supports, and every select's option list (option VALUES, i.e. the literal
+  CSS utility classes, not just labels) — is `wp_localize_script()`-ed as
+  `coptrzPostGrid` from `coptrz_post_grid_post_types()` /
+  `coptrz_post_grid_field_options()` (functions.php), so editor and legacy admin
+  field can't drift apart.
+
+  There's no shortcode to delegate to (unlike `dd/cf7-pdf-form` or
+  `coptrz/layouts`), so `coptrz_render_post_grid_block()` (functions.php) calls
+  `____post_grid_module()` (includes/modules.php — the same function both legacy
+  `case 'post_grid':` call sites and the `[testimonials]` shortcode use) directly,
+  after converting attributes back into its expected row-array shape via
+  `coptrz_post_grid_attrs_to_data()` + `coptrz_post_grid_box_styles_rows()` +
+  `coptrz_post_grid_elements_rows()`. Guarded with `function_exists()` since
+  modules.php is skipped in admin under the blocks-editor template. Each render
+  gets a fresh `wp_unique_id()`-based id (fixing a latent bug: the legacy call
+  sites share one id across every item in a section/column, which only becomes
+  visible now that a sliding grid can be placed — and duplicated — anywhere).
+  The section-converter's `post_grid` item mapper
+  (includes/section-converter.php, `coptrz_post_grid_legacy_item_to_attrs()`) is
+  the inverse transform, so existing legacy Post Grid sections convert straight
+  into this block instead of snapshotting to Custom HTML.
+
+  **Bug fixed while building this** (affects the legacy path too, not just the
+  block): the `permalink` element's invisible "stretched card link" used to read
+  its accessible text from a `$post_title` variable shared across the whole
+  per-post loop and only set by the `post_title` element — if `permalink` was
+  ordered before `post_title` (or `post_title` wasn't included at all), the link
+  text was stale or empty. `____post_grid_module()`'s `permalink` case
+  (modules.php) now calls `get_the_title($post->ID)` directly instead.
 - `assets/js/extend-cover-responsive.js` — Gutenberg block editor extension
   (enqueued via `digitally_disruptive_enqueue_swiper_editor_assets()`, same
   hook as `dd-tabs-block.js`/`dd-cf7-pdf-block.js`) that adds a "Responsive
@@ -336,10 +416,18 @@ case studies, rentals, landing pages, etc).
   outside the main loop (e.g. via Dynamic Text Extension `[dynamic_hidden pdf_url "pdf_url"]`),
   at which point `get_the_ID()` returns 0 and `get__post_meta()` returns nothing.
 - `section-converter.php` — retires the dynamic "sections" / `sections_after_main`
-  page-builder by freezing each post's sections into static HTML. Non-product posts
-  get Gutenberg "Custom HTML" blocks appended to `post_content`; `product` posts get
-  a sortable `sections_html` / `sections_after_main_html` complex repeater (label +
-  raw HTML rows). Original `_sections` meta is preserved (conversion is reversible).
+  page-builder by freezing each post's sections into static HTML/blocks. All post
+  types — including `product`, since `coptrz_enable_product_block_editor()`
+  (woocommerce.php) gave products the block editor too — convert to native
+  Gutenberg blocks appended to `post_content` (sections that can't map natively
+  fall back to a Custom HTML block, per-section — see below), via
+  `coptrz_convert_post_sections_to_blocks()`. The older raw-HTML `sections_html` /
+  `sections_after_main_html` repeater path (`coptrz_convert_post_sections()`,
+  label + raw HTML rows, for the pre-block-editor product flow) is no longer
+  reachable from either UI (per-post box or bulk runner) — both call
+  `coptrz_convert_post_sections_to_blocks()` unconditionally regardless of post
+  type — and is kept only as legacy/reference code, not partially gutted.
+  Original `_sections` meta is preserved (conversion is reversible).
   Converting a `page` also sets its `_wp_page_template` to `templates/page-gutenberg.php`;
   that template renders converted posts via `coptrz_render_converted_sections()` (the same
   wpautop-free path the Modules template uses) and falls back to `the_content()` for
@@ -349,26 +437,158 @@ case studies, rentals, landing pages, etc).
   `coptrz_render_converted_sections()`, `coptrz_convert_post_sections($post_id, $dry_run)`,
   `coptrz_convert_post_sections_to_blocks($post_id, $dry_run)`,
   `coptrz_register_html_sections_fields()`.
-  Admin tools: a per-post "Convert Sections to HTML" meta box (side, with dry-run) and a
+  Admin tools: a per-post "Convert Sections" meta box (side, with dry-run) and a
   convert-by-search runner at Tools > Convert Sections. The runner has no
   "convert everything" path — you search posts by name across every section post type
   (via the `wp_ajax_coptrz_search_sections_posts` endpoint, results show each post's
   type), pick an explicit selection, then dry-run or convert just those (50/run cap).
   The search only returns posts that still NEED converting (have a `_sections` /
   `_sections_after_main` row and are not already flagged converted).
-  Two conversion modes (chosen per-post box / bulk `mode` select): **Custom HTML**
-  (`coptrz_convert_post_sections()`, the default — one frozen Custom HTML block per
-  section) and **native blocks** (`coptrz_convert_post_sections_to_blocks()`,
-  non-product only). Native mode walks each section's elements through a mapping
+  There is no mode choice or post-type branch in either UI — the per-post box's
+  `wp_ajax_coptrz_convert_sections` handler and the bulk runner's per-ID loop both
+  call `coptrz_convert_post_sections_to_blocks()` (**native blocks**) unconditionally.
+  `product` posts still need special handling internally (no `before`/`after`-main
+  content split the way other post types have), which
+  `coptrz_convert_post_sections_to_blocks()` handles itself via
+  `coptrz_product_content_split()` rather than by routing to a different function.
+  Native-block conversion walks each section's elements through a mapping
   registry `coptrz_block_item_mappers()` (`_type` → callable returning a parsed-block
-  array built by `coptrz_block()`, serialized via core `serialize_blocks()`); a section
-  whose items ALL map is wrapped in a `core/group` (`coptrz_block_group()`, carries the
-  section's utility classes), otherwise the whole section falls back to a Custom HTML
-  snapshot. The registry is seeded with the lossless leaf mappers (`custom_html`→
-  `core/html`, `shortcode`→`core/shortcode`) and is `apply_filters`-extensible; further
-  element→block mappers (heading, description, image, buttons, columns, …) are added
-  from the project's element→block guide. Both modes set the same converted flag (so
-  rendering routes identically) plus `_coptrz_sections_mode` = `html|blocks`.
+  array built by `coptrz_block()`/`coptrz_block_container()`) via
+  `coptrz_section_to_blocks()`, serialized once with core `serialize_blocks()`.
+  A section only goes native when EVERY item maps AND its styling is fully
+  representable (see below) — otherwise **that section** (not the whole post) falls
+  back to a Custom HTML snapshot: this is the only way Custom HTML output still
+  happens for a non-product post, as a per-section fallback rather than a chosen
+  mode (`coptrz_section_to_blocks()` returns `[markup, was_native, snapshot_reason]`;
+  the reason is surfaced in the dry-run/convert report so it's clear per-section why
+  it didn't go native). The registry is seeded with the lossless leaf mappers
+  (`custom_html`→`core/html`, `shortcode`→`core/shortcode`, `layouts`→`coptrz/layouts`,
+  `global_widgets`→`coptrz/global-widget` — both driven by the same registry the
+  block editor uses, `coptrz_global_widgets()` in functions.php, so an unknown/
+  unregistered widget slug — e.g. the `dji_*`/`parrot_*`/`elios_3` rows declared in
+  post-meta.php's second `global_widgets` definition but never given a shortcode —
+  is skipped the same way for both; see below) plus `heading`/`description`/`image`/
+  `buttons`/`columns`/`product_compare`/`post_grid`→`coptrz/post-grid` (see the
+  `coptrz-post-grid-block.js` entry above), and is `apply_filters`-extensible.
+  Elements with no native block equivalent and no shortcode form (`tabs`,
+  `accordion`) are intentionally absent from the registry → section snapshots.
+  Both functions set the same converted flag (so rendering routes identically) plus
+  `_coptrz_sections_mode` = `html|blocks` (reflecting which one actually ran, not a
+  user choice).
+
+  **Native section wrapper** — `coptrz_block_group()` nests two (occasionally three)
+  `core/group` blocks to reproduce the wrapper `___sections()` emits at
+  modules.php:774-790: `<section class="…">` → `<div class="wp-block-group container">`
+  → an inner `.container-inner` group only when there's more than the seeded
+  `position-relative container-inner` container class (matching
+  `count($container_classes) > 1` at modules.php:788). Both groups use
+  `layout:{"type":"default"}`, not `constrained` — the theme's SCSS targets Bootstrap's
+  `.container` directly, so `constrained` would double up with theme.json content width.
+  `coptrz_section_wrapper_data($section)` derives the outer/`container-inner` class
+  lists AND CSS declaration lists from `section_styles` by mirroring the same
+  `switch ($type)` modules.php uses (padding, margin, alignment, background/text
+  color, container width, border radius/style/color/width — including the
+  section+container border pair's shared radius→style→(color, then possibly
+  per-side width) branching, factored into one `$border_pair` closure since
+  modules.php:654-751 implements it identically twice) — this used to only carry
+  the author's `section_class`, which is why early native conversions (e.g. a
+  "Future-Proof Your Drone Operations" style section with only margin utilities
+  and no custom class) lost all their styling.
+
+  Anything modules.php would otherwise render as a raw inline `style=""` (custom
+  hex colors, background image/gradient, min-height, custom border radius/color/
+  width, custom container max-width) is collected into `section_css` /
+  `container_css` (plain `"prop: value"` strings) instead of being dropped.
+  `coptrz_block_group()` joins each into a single string and sets it on the
+  matching group's **`ddCustomCSS`** attribute — the theme's existing per-block
+  Custom CSS mechanism (`digitally_disruptive_render_custom_css()` in
+  functions.php, already whitelisted for `core/group`; see the "Consolidated
+  block CSS" note above) — rather than hand-serializing core/group's native
+  `style` attribute, which would risk a save()-mismatch showing as "invalid
+  block content" the next time an editor opens the page. Being a plain string
+  attribute, `ddCustomCSS` carries none of that risk, and stays user-editable
+  afterwards in the block's own Custom CSS panel. `container_css` only ever
+  reaches the page when the `.container-inner` div itself is emitted (the same
+  `count($container_classes) > 1` gate above) — matching how `___sections()`
+  only ever applies `$container_styles` there too (modules.php:788-790), so e.g.
+  a lone custom container width with nothing else on the container is silently
+  dropped in both the legacy render and the converter, not "fixed" by the latter.
+
+  **Column styling** — the `columns` item mapper originally only read a column's
+  `column_width` and dropped every other `column_styles` row (background image/
+  color, padding, margin, border, alignment, text color, custom class) silently —
+  no `unmappable`, no dry-run warning, just a bare `wp-block-column` with the
+  styling gone (this is what broke background images on converted product/section
+  columns, e.g. the drones shop pages). `coptrz_column_wrapper_data($col,
+  $shared_styles, $individual_column_settings, $mobile_styling, $same_image_height,
+  $image_fit, $image_padding)` fixes this the same way `coptrz_section_wrapper_data()`
+  fixed section styling — mirroring `____columns_modules()`'s per-column switch
+  (modules.php:2065-2224 for `individual_column_settings`, or the shared
+  `column_styles` complex applied to every column at modules.php:1841-1931 when that
+  flag is off) case-for-case, including two legacy quirks preserved deliberately
+  rather than "fixed": (1) `background_color_custom` is gated on
+  `background_color === 'bg-custom'` in the individual branch but ungated in the
+  shared branch (modules.php:2143 vs :1919); (2) `mobile_styling` only actually
+  reaches a column in the shared branch — in the individual branch legacy resets
+  its class accumulator per-column, discarding it before it can apply
+  (modules.php:1836-1838 vs :2061). The legacy renderer nests each column's content
+  in an inner `.column-holder` div carrying this styling, separate from the outer
+  `.col` width div — `_base.scss` has descendant selectors (e.g. `.col-6
+  .column-holder`) that stop matching if the two collapse onto one element, so the
+  `columns` mapper reproduces `.column-holder` as an **inner `core/group`**, but
+  only when a column actually has holder-level classes or CSS; an unstyled column
+  stays a flat `wp-block-column` rather than gaining a pointless nesting level. The
+  holder group's derived CSS (background image URL, custom colors, custom border
+  radius/color/width) goes on its `ddCustomCSS` attribute, same mechanism as
+  `coptrz_block_group()` above — `core/group` is already whitelisted for it. A
+  `column_id` becomes the holder group's native `anchor` attribute (renders as
+  `id="…"`, no hand-serialized `style`/custom attribute risk). Row-level settings
+  with no block equivalent now correctly force a snapshot instead of quietly
+  rendering wrong: `is_slider` (modules.php's swiper markup has nothing to map to)
+  returns `null` from the mapper so the whole section falls back to Custom HTML,
+  the same fallback used elsewhere in the registry.
+
+  `unmappable` (which forces the whole section to snapshot as Custom HTML,
+  dragging every item in it down regardless of how well those items map) is now
+  reserved for the two `section_styles` cases that emit actual MARKUP
+  `coptrz_block_group()` has nowhere to put — `background_video`/YouTube
+  (`__background()`) and an `image`-type `background_overlay` (`__image()`).
+  Everything else that used to trip `unmappable` (e.g. a single `border-custom`
+  row with a custom top-width) now routes through `section_css`/`container_css`
+  above instead, so a section is no longer punished for one inline declaration
+  when the rest of it — including e.g. a `layouts` item — maps natively.
+
+  `section-N` index classes and the `id="section-N"` anchor are deliberately NOT
+  carried over (they're only meaningful for the legacy per-index CSS, not needed
+  on a block).
+
+  **Naming** — `coptrz_block_group()` takes the section's `title` and, when
+  non-empty, sets it as the outer group's `attributes.metadata.name` — the same
+  mechanism the editor's own block "Rename" context-menu action writes, so
+  converted sections show their Section Title in List View instead of a wall of
+  identical "Group" entries. `renaming` isn't disabled in `core/group`'s (or
+  `core/html`'s) `supports`, so it defaults to available; no editor-side
+  registration needed; `metadata` is core block-serialization plumbing, not
+  something individual blocks declare in their JS attributes schema.
+  `coptrz_section_to_blocks()` sets the same `metadata.name` on the Custom HTML
+  snapshot fallback too (via `coptrz_block('core/html', …)` + `serialize_blocks()`,
+  rather than hand-writing the `<!-- wp:html -->` comment, matching how the
+  `custom_html` item mapper already builds `core/html` blocks) — snapshots are
+  otherwise the hardest converted block to identify in List View.
+
+  **`coptrz/layouts` block** (`assets/js/coptrz-layouts-block.js`) — native editor
+  equivalent of `[layouts id="N"]`, same shape as `dd/cf7-pdf-form`: `save: null`,
+  rendered server-side by the `coptrz_render_layouts_block()` `render_block` filter
+  (functions.php) which rebuilds the shortcode from the `layoutId` attribute and runs
+  `do_shortcode()` — inherits the `layouts` shortcode's own `function_exists('___sections')`
+  guard (includes/shortcodes.php), so it's safe in admin/REST contexts. The editor
+  dropdown fetches core `/wp/v2/layouts` directly (the `layouts` CPT is already
+  `show_in_rest`, post-types.php:413-423) — no custom REST route needed, unlike the
+  CF7-forms/Documents dropdowns in `dd/cf7-pdf-form`. The `layouts` item mapper emits
+  this block instead of `core/shortcode` so converted `[layouts]` embeds are editable
+  in the block inspector; the embed itself stays dynamic either way (only the shortcode
+  reference is stored, not its expanded output), so editing the referenced Layout post
+  still updates every page/converted-section that embeds it.
   `coptrz_render_converted_sections()` has a static re-entrancy guard (`$rendering`)
   to prevent infinite recursion when frozen content routes back into `___sections()`
   for the same post (e.g. a `[layouts]` embed that resolves to the same post).
@@ -385,6 +605,71 @@ case studies, rentals, landing pages, etc).
   (they would render as literal text where `do_shortcode` is not applied).
   Caveat: non-shortcode dynamic content (class-driven widgets) is still a snapshot and
   won't auto-update.
+
+  **Revert** — `coptrz_revert_post_sections($post_id, $dry_run)` undoes a conversion.
+  `product` posts just clear the `sections_html`/`sections_after_main_html` repeater
+  (post_content/template were never touched by conversion). Other post types restore
+  `post_content` from a backup taken at conversion time (`_coptrz_pre_convert_content`,
+  `_coptrz_pre_convert_template` — `page` only, `_coptrz_converted_blocks` — all
+  written in `coptrz_convert_post_sections_to_blocks()` just before the corresponding
+  live write) and, for `page`, restore `_wp_page_template` (falling back to
+  `templates/page-modules.php` when no template backup exists — e.g. the page never
+  had a non-default template before conversion). Posts converted before this backup
+  existed have none: revert instead re-runs `coptrz_convert_post_sections_to_blocks()`
+  as a dry run to regenerate the exact block markup and subtracts it as a suffix of the
+  current `post_content` — tried both with and without a leading `\n\n`, since that
+  depends on whether the ORIGINAL content was empty (the very thing being recovered).
+  If neither matches, it aborts rather than guessing, so content that predated the
+  converter is never silently mangled. Every path finishes by deleting the converted
+  flag, `_coptrz_sections_mode`, and the three backup keys — `_sections` /
+  `_sections_after_main` are never touched by conversion, so the legacy builder resumes
+  rendering the moment the flag is gone (`coptrz_sections_should_route()`).
+
+  Reverting alone doesn't make the legacy builder *editable* again:
+  `coptrz_register_html_sections_fields()` hides its meta boxes globally via
+  `Container_Admin::hide_fields()`. `Container_Admin::is_container_render_hidden()`
+  (meta-shim/Container_Admin.php) now takes the post id being edited (resolved in
+  `register_post_meta_boxes()` from `$_GET['post']`/`$_POST['post_ID']`, same pattern
+  `post_conditions_match()` already used) and, for a blocklisted field, consults a
+  `coptrz_meta_shim_field_visible` filter (default `false`) before treating it as
+  hidden. section-converter.php hooks that filter to un-hide `sections`/
+  `sections_after_main` specifically for posts that are NOT currently converted, so a
+  reverted post's builder box reappears without un-hiding it globally for every other
+  (still converted) post.
+
+  **Preview original / public legacy fallback** — two request-scoped ways to see the
+  legacy render of an otherwise-converted post, neither of which touches the converted
+  flag or can re-trigger a conversion. `coptrz_sections_legacy_override($post_id)`
+  returns true, frontend only, either for an editor hitting `?coptrz_preview=original`
+  on the post's permalink (checked via `current_user_can('edit_post', …)`), or for a
+  logged-out visitor when the post has opted in via `_coptrz_serve_legacy_public`
+  (checkbox in the "Convert Sections" box; logged-in users always see the converted
+  version regardless of that checkbox). It's saved by its own plain `save_post`
+  handler rather than routed through the meta shim, since it's one checkbox living
+  alongside the revert controls, not a Carbon-shaped field. A `wp_body_open` banner
+  ("Previewing ORIGINAL…", linking back to the live URL) renders whenever the override
+  is active, so neither mode can be mistaken for the real page.
+  `coptrz_sections_render_converted($post_id)` (`is_converted && !legacy_override`) is
+  what render sites actually call — `coptrz_sections_should_route()`, and
+  `page-gutenberg.php`'s choice between `coptrz_render_converted_sections()` and
+  `the_content()`. A `template_include` filter additionally forces
+  `templates/page-modules.php` for a `page` while the override is active, since the
+  page's real (post-conversion) template is `page-gutenberg.php`, whose `the_content()`
+  branch would otherwise render the converted `post_content` regardless of what
+  `should_route()` says. Deliberately NOT consulted by `coptrz_sections_is_converted()`,
+  which stays the pure write-path guard against double-conversion (the skip checks in
+  both convert functions) — an overridable version there could let a preview/
+  public-fallback request re-trigger a conversion and duplicate content.
+
+  Admin tools, extended: the per-post box now also shows a "Preview original" link,
+  the public-fallback checkbox, and Dry run revert / Revert buttons (converted posts
+  only) — same inline-`<script>`/admin-ajax pattern as convert, hitting a new
+  `wp_ajax_coptrz_revert_sections` handler. The bulk runner (Tools > Convert Sections)
+  gained a Convert/Revert mode radio above the search box: it swaps which button pair
+  is shown and is passed as `mode` to `wp_ajax_coptrz_search_sections_posts` (default
+  `convert` = flag NOT EXISTS, as before; `revert` = flag EXISTS), so the same
+  search-and-select UI finds already-converted posts to revert. Switching modes clears
+  the current selection (converting vs reverting are disjoint candidate sets).
 - `woocommerce.php` (~2360 lines) — WooCommerce template/hook overrides; pairs
   with the `woocommerce/` directory which overrides core WooCommerce templates
   (`archive-product.php`, `cart/`, `checkoutx/`, `loop/`, `single-product/`,

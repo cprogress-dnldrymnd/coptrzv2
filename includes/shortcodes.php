@@ -740,6 +740,11 @@ class Shortcodes
 
     function brands_logo_slider()
     {
+        // Unique per instance: main.js binds the Swiper to the element itself
+        // (not this id), but the id must still be unique to be valid HTML —
+        // and `.brands-slider` (not the id) is what carries the CSS.
+        static $instance = 0;
+        $instance++;
 
         $terms = get_terms(array(
             'taxonomy'   => 'pa_brands',
@@ -752,7 +757,7 @@ class Shortcodes
 
         $html = "<div class='gallery logo-slider'>";
 
-        $html .= "<div id='brands-slider' class='swiper swiper-logo-slider'>";
+        $html .= "<div id='brands-slider-{$instance}' class='swiper swiper-logo-slider brands-slider'>";
         $html .= '<div class="swiper-wrapper align-items-center">';
         foreach ($terms as $term) {
             $logo = get___term_meta($term->term_id, 'image');

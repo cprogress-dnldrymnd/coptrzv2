@@ -14,7 +14,7 @@ $SVG = new SVG;
   ?>
 </div>
 <?php
-if (function_exists('coptrz_sections_is_converted') && coptrz_sections_is_converted(get_the_ID())) {
+if (function_exists('coptrz_sections_render_converted') && coptrz_sections_render_converted(get_the_ID())) {
   // Section-converter output: render the frozen blocks WITHOUT the_content's
   // wpautop (which mangles the frozen markup) — the same path the Modules
   // template routes through, so a converted page renders identically here.

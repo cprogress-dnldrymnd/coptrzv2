@@ -66,10 +66,17 @@ class Container_Admin
      * A container is render-hidden when every non-display field it owns is on the
      * block-list (so its meta box would be empty / unwanted).
      *
+     * A blocklisted field can still be shown for one specific post via the
+     * `coptrz_meta_shim_field_visible` filter (default false, i.e. stays
+     * hidden) — used to bring the legacy "sections" builder UI back for a post
+     * that's been reverted out of its converted state, without un-hiding it
+     * globally for every other (still converted) post.
+     *
      * @param Container $container
+     * @param int       $post_id  0 when there's no post context (e.g. options pages).
      * @return bool
      */
-    protected static function is_container_render_hidden($container)
+    protected static function is_container_render_hidden($container, $post_id = 0)
     {
         if (empty(self::$render_blocklist)) {
             return false;
@@ -80,7 +87,11 @@ class Container_Admin
             if (!($field instanceof Field) || $field->is_display_only()) {
                 continue;
             }
-            if (!empty(self::$render_blocklist[$field->name])) {
+            $is_blocked = !empty(self::$render_blocklist[$field->name]);
+            if ($is_blocked && $post_id && apply_filters('coptrz_meta_shim_field_visible', false, $field->name, $post_id)) {
+                $is_blocked = false;
+            }
+            if ($is_blocked) {
                 $blocked++;
             } else {
                 $visible++;
@@ -170,6 +181,13 @@ class Container_Admin
      */
     public static function register_post_meta_boxes($post_type)
     {
+        $post_id = 0;
+        if (isset($_GET['post'])) {
+            $post_id = (int) $_GET['post'];
+        } elseif (isset($_POST['post_ID'])) {
+            $post_id = (int) $_POST['post_ID']; // present during a meta-box save
+        }
+
         foreach (Container::$containers as $container) {
             if ($container->type !== 'post_meta') {
                 continue; // nav_menu_item etc. are not standard post edit screens.
@@ -177,7 +195,7 @@ class Container_Admin
             if (!self::post_conditions_match($container, $post_type)) {
                 continue;
             }
-            if (self::is_container_render_hidden($container)) {
+            if (self::is_container_render_hidden($container, $post_id)) {
                 continue; // UI removed (e.g. legacy page builder) but still indexed.
             }
 

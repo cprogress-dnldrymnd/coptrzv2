@@ -667,7 +667,6 @@ function __swipers() {
 
 
     jQuery('.swiper-logo-slider').each(function (index, element) {
-        $id = '#' + jQuery(this).attr('id');
         /*
 
         $swiper_slides = jQuery(this).find('.swiper-slide');
@@ -676,7 +675,10 @@ function __swipers() {
             jQuery(this).css('width', $width + 'px');
         });
 */
-        var logoSwiper = new Swiper($id, {
+        // Bind by element, not id: multiple Global Widget blocks on one page
+        // produce multiple .swiper-logo-slider instances, and a selector string
+        // (even a unique one) would only ever resolve Swiper to the first match.
+        var logoSwiper = new Swiper(element, {
             loop: true,
             freeMode: true,
             slidesPerView: 'auto',

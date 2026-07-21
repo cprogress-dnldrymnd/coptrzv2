@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 5.5);
+define('coptz_version', 5.6);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -257,6 +257,367 @@ function enqueue_scripts()
 add_action('wp_enqueue_scripts', 'enqueue_scripts', 99999);
 
 /**
+ * Single source of truth for the "Global Widgets" family: the zero-argument
+ * (mostly) widgets offered by the legacy section builder's `global_widgets`
+ * repeater element (includes/post-meta.php, `__section_fields()`) and by the
+ * `coptrz/global-widget` block. Keyed by the same Carbon Fields row `_type` the
+ * section builder stores, so the section-converter mapper and the block editor
+ * dropdown both read one list instead of maintaining parallel copies.
+ *
+ * `case_study_slider` is the only entry with a parameter: its `styles` key
+ * drives an extra Style select, and its shortcode name doesn't match its slug
+ * (`[case_study_slider_grid]`, not `[case_study_slider]`).
+ *
+ * @return array<string,array{label:string,shortcode:string,styles?:array<string,string>}>
+ */
+function coptrz_global_widgets()
+{
+    return array(
+        'brands_logo_slider'         => array('label' => 'Brands Logo Slider', 'shortcode' => '[brands_logo_slider]'),
+        'case_study_slider'          => array(
+            'label'     => 'Case Study Slider',
+            'shortcode' => '[case_study_slider_grid]',
+            'styles'    => array('' => 'Default', 'style-2' => 'Style 2'),
+        ),
+        'testimonials'               => array('label' => 'Testimonials', 'shortcode' => '[testimonials]'),
+        'reviews'                    => array('label' => 'Reviews', 'shortcode' => '[reviews]'),
+        'drone_servicing'            => array('label' => 'Drone Servicing', 'shortcode' => '[drone_servicing]'),
+        'three_year_servicing_plans' => array('label' => '3-Year Servicing Plans', 'shortcode' => '[three_year_servicing_plans]'),
+        'remote_support'             => array('label' => 'Remote Support', 'shortcode' => '[remote_support]'),
+        'latest_from_coptrz'         => array('label' => 'Latest From Coptrz', 'shortcode' => '[latest_from_coptrz]'),
+    );
+}
+
+/**
+ * The 4 post types selectable by the legacy "Post Grid" section-item field
+ * (includes/post-meta.php, `post_type` group inside `post_grid`) — hard-coded
+ * groups, not a generic CPT picker, so the `coptrz/post-grid` block mirrors that
+ * exactly rather than offering every queryable post type. `sources` lists which
+ * of `all` / `manually` / `category` each type supports (Industries/Capabilities
+ * have no taxonomy, so they only ever offer `all`/`manually`); `taxonomy` is the
+ * REST base for the category picker, only present where `category` is a source.
+ * `restBase` doubles as both the REST base and the raw post_type value
+ * `____post_grid_module()` passes to get_posts().
+ *
+ * @return array<string,array{label:string,restBase:string,sources:string[],taxonomy?:string}>
+ */
+function coptrz_post_grid_post_types()
+{
+    return array(
+        'industries'   => array('label' => 'Industries', 'restBase' => 'industries', 'sources' => array('all', 'manually')),
+        'casestudies'  => array('label' => 'Case Studies', 'restBase' => 'casestudies', 'sources' => array('all', 'manually', 'category'), 'taxonomy' => 'casestudies_category'),
+        'testimonials' => array('label' => 'Testimonials', 'restBase' => 'testimonials', 'sources' => array('all', 'manually', 'category'), 'taxonomy' => 'testimonial_category'),
+        'capabilities' => array('label' => 'Capabilities', 'restBase' => 'capabilities', 'sources' => array('all', 'manually')),
+    );
+}
+
+/**
+ * Select-field option lists for the "Post Box Styles" and "Post Elements"
+ * groups of the legacy "Post Grid" section-item field (includes/post-meta.php,
+ * `post_box_styles` / `post_elements` inside `post_grid`), transcribed verbatim
+ * (option VALUES, not just labels — these become literal CSS utility classes) so
+ * the `coptrz/post-grid` block's Inspector controls and the legacy admin field
+ * offer identical choices. Localized to the editor as part of `coptrzPostGrid`;
+ * see coptrz_post_grid_box_styles_rows() / coptrz_post_grid_elements_rows() for
+ * where these values get turned into the row-array shape
+ * `____post_grid_module()` (includes/modules.php) expects.
+ *
+ * @return array<string,array<string,string>>
+ */
+function coptrz_post_grid_field_options()
+{
+    $color_options = array(
+        '' => 'Default',
+        'text-primary' => 'Primary',
+        'text-secondary' => 'Secondary',
+        'text-accent' => 'Accent',
+        'text-white' => 'White',
+        'text-light-gray' => 'Light Gray',
+        'text-custom' => 'Custom',
+    );
+    $side = function ($prefix, $noneLabel) {
+        return array(
+            '' => $noneLabel,
+            "xl-{$prefix}" => 'Extra Large',
+            "lg-{$prefix}" => 'Large',
+            "md-{$prefix}" => 'Medium',
+            "sm-{$prefix}" => 'Small',
+            "xs-{$prefix}" => 'Extra Small',
+        );
+    };
+    $column_width = function ($unitPrefix, $noneValue, $noneLabel) {
+        $opts = array($noneValue => $noneLabel);
+        $pct = array('100.00%', '91.67%', '83.33%', '75.00%', '67.00%', '58.33%', '50.00%', '41.67%', '33.33%', '25.00%', '16.67%', '08.33%');
+        for ($i = 0; $i < 12; $i++) {
+            $n = 12 - $i;
+            $opts[$n === 12 ? "col-12" : "{$unitPrefix}-{$n}"] = $pct[$i];
+        }
+        return $opts;
+    };
+
+    return array(
+        'backgroundColor' => array(
+            'bg-primary' => 'Primary', 'bg-secondary' => 'Secondary', 'bg-accent' => 'Accent',
+            'bg-white' => 'White', 'bg-light-gray' => 'Light Gray', 'bg-custom' => 'Custom',
+        ),
+        'textColor' => array(
+            'text-primary' => 'Primary', 'text-secondary' => 'Secondary', 'text-accent' => 'Accent',
+            'text-white' => 'White', 'text-light-gray' => 'Light Gray', 'text-custom' => 'Custom',
+        ),
+        'paddingTop'    => $side('padding-top', 'No Padding'),
+        'paddingBottom' => $side('padding-bottom', 'No Padding'),
+        'paddingLeft'   => $side('padding-left', 'No Padding'),
+        'paddingRight'  => $side('padding-right', 'No Padding'),
+        'marginTop'     => $side('margin-top', 'No margin'),
+        'marginBottom'  => $side('margin-bottom', 'No margin'),
+        'marginLeft'    => $side('margin-left', 'No margin'),
+        'marginRight'   => $side('margin-right', 'No margin'),
+        'alignItems' => array('' => 'Default', 'align-items-start' => 'Start', 'align-items-center' => 'Center', 'align-items-end' => 'End'),
+        'justifyContent' => array('' => 'Default', 'justify-content-start' => 'Start', 'justify-content-center' => 'Center', 'justify-content-end' => 'End', 'justify-content-between' => 'Between'),
+        'textAlign' => array('' => 'Default', 'text-start' => 'Left', 'text-center' => 'Center', 'text-end' => 'Right'),
+        'columnWidth'       => $column_width('col-lg', 'col-lg', 'Default'),
+        'columnWidthTablet' => $column_width('col-md', '', 'Default'),
+        'columnWidthMobile' => $column_width('col', '', 'Default'),
+        'borderRadius' => array('' => 'None', 'rounded-corner' => 'Default [10px]', 'custom' => 'Custom'),
+        'borderStyle'  => array('' => 'None', 'border-default' => 'Default', 'border-custom' => 'Custom'),
+        'borderColor'  => array(
+            'border-default' => 'Default', 'border-primary' => 'Primary', 'border-secondary' => 'Secondary',
+            'border-accent' => 'Accent', 'border-white' => 'White', 'border-light-gray' => 'Light Gray', 'border-custom-color' => 'Custom',
+        ),
+        'borderWidth' => array('default' => 'Default [1px]', 'custom' => 'Custom'),
+        // Post Elements fields.
+        'postTitleTag'   => array('' => 'Default', 'h2' => 'h2', 'h3' => 'h3', 'h4' => 'h4', 'h5' => 'h5', 'h6' => 'h6', 'p' => 'p'),
+        'postTitleColor' => array(
+            '' => 'Default', 'text-primary' => 'Primary', 'text-secondary' => 'Secondary', 'text-accent' => 'Accent',
+            'text-white' => 'White', 'text-light-gray' => 'Light Gray', 'text-body-color' => 'Body', 'text-custom' => 'Custom',
+        ),
+        'imageSize' => array('' => 'Default', 'full' => 'Full', 'large' => 'Large', 'medium' => 'Medium', 'thumbnail' => 'Thumbnail'),
+        'buttonStyle' => array(
+            'button-accent' => 'Accent', 'button-primary' => 'Primary', 'button-secondary' => 'Secondary',
+            'button-white' => 'White', 'button-bordered' => 'Bordered',
+        ),
+        'iconColor' => $color_options,
+        'customFieldType' => array('p' => 'p', 'h2' => 'h2', 'h3' => 'h3', 'h4' => 'h4', 'h5' => 'h5', 'h6' => 'h6', 'img' => 'img'),
+    );
+}
+
+/**
+ * Flat `boxStyles` block attribute → the `post_box_styles` row-array shape
+ * `____post_grid_module()` expects (one row per category, `_type` = category
+ * key). A category is included only when the block author actually engaged
+ * with it (mirrors the legacy Carbon Fields field: the row simply doesn't exist
+ * until an admin adds it) — an all-blank `boxStyles` object produces zero rows,
+ * matching `____post_grid_module()`'s no-styling default (modules.php:1393-1395:
+ * `$classes`/`$column_classes` start empty and are ONLY populated by rows that
+ * exist). `column_width` defaults its own desktop value to `col-lg` when the
+ * category IS engaged, since that mirrors Carbon's per-field default (the field
+ * itself defaults to `col-lg`, even if only tablet/mobile were touched).
+ *
+ * @param array $s the `boxStyles` block attribute
+ * @return array
+ */
+function coptrz_post_grid_box_styles_rows($s)
+{
+    $s = is_array($s) ? $s : array();
+    $get = function ($key, $default = '') use ($s) {
+        return (isset($s[$key]) && $s[$key] !== '') ? $s[$key] : $default;
+    };
+    $rows = array();
+
+    if ($get('backgroundColor') !== '') {
+        $rows[] = array('_type' => 'background_color', 'background_color' => $get('backgroundColor'), 'background_color_custom' => $get('backgroundColorCustom'));
+    }
+    if ($get('textColor') !== '') {
+        $rows[] = array('_type' => 'text_color', 'text_color' => $get('textColor'), 'text_color_custom' => $get('textColorCustom'));
+    }
+    if ($get('paddingTop') !== '' || $get('paddingBottom') !== '' || $get('paddingLeft') !== '' || $get('paddingRight') !== '') {
+        $rows[] = array('_type' => 'padding', 'padding_top' => $get('paddingTop'), 'padding_bottom' => $get('paddingBottom'), 'padding_left' => $get('paddingLeft'), 'padding_right' => $get('paddingRight'));
+    }
+    if ($get('marginTop') !== '' || $get('marginBottom') !== '' || $get('marginLeft') !== '' || $get('marginRight') !== '') {
+        $rows[] = array('_type' => 'margin', 'margin_top' => $get('marginTop'), 'margin_bottom' => $get('marginBottom'), 'margin_left' => $get('marginLeft'), 'margin_right' => $get('marginRight'));
+    }
+    if ($get('alignItems') !== '' || $get('justifyContent') !== '' || $get('textAlign') !== '') {
+        $rows[] = array('_type' => 'alignment', 'align_items' => $get('alignItems'), 'justify_content' => $get('justifyContent'), 'text_align' => $get('textAlign'));
+    }
+    if ($get('columnWidth') !== '' || $get('columnWidthTablet') !== '' || $get('columnWidthMobile') !== '') {
+        $rows[] = array('_type' => 'column_width', 'column_width' => $get('columnWidth', 'col-lg'), 'column_width_tablet' => $get('columnWidthTablet'), 'column_width_mobile' => $get('columnWidthMobile'));
+    }
+    if ($get('borderRadius') !== '' || $get('borderStyle') !== '') {
+        $rows[] = array(
+            '_type' => 'border',
+            'border_radius' => $get('borderRadius'), 'border_radius_custom' => $get('borderRadiusCustom'),
+            'border_style' => $get('borderStyle'), 'border_color' => $get('borderColor', 'border-default'), 'border_color_custom' => $get('borderColorCustom'),
+            'border_width' => $get('borderWidth'),
+            'border_width_top' => $get('borderWidthTop', 0), 'border_width_right' => $get('borderWidthRight', 0),
+            'border_width_bottom' => $get('borderWidthBottom', 0), 'border_width_left' => $get('borderWidthLeft', 0),
+        );
+    }
+    if ($get('customClass') !== '') {
+        $rows[] = array('_type' => 'custom_class', 'custom_class' => $get('customClass'));
+    }
+
+    return $rows;
+}
+
+/**
+ * `elements` block attribute (array of `{type, ...fields}`, editor display
+ * order = render order) → the `post_elements` row-array shape
+ * `____post_grid_module()` expects. `custom_field` entries are assigned
+ * `custom_field_1`..`custom_field_5` sequentially — the legacy field only
+ * recognises those 5 literal `_type` values (modules.php:1604-1658, five
+ * duplicated case blocks, not a loop), so a 6th+ custom field is dropped; the
+ * editor UI caps "Add element" at 5 custom fields so this never happens in
+ * practice.
+ *
+ * @param array $elements the `elements` block attribute
+ * @return array
+ */
+function coptrz_post_grid_elements_rows($elements)
+{
+    $rows = array();
+    $custom_field_n = 0;
+    foreach ((array) $elements as $el) {
+        $type = isset($el['type']) ? (string) $el['type'] : '';
+        switch ($type) {
+            case 'post_title':
+                $rows[] = array(
+                    '_type' => 'post_title',
+                    'text_before' => isset($el['textBefore']) ? $el['textBefore'] : '',
+                    'text_after'  => isset($el['textAfter']) ? $el['textAfter'] : '',
+                    'tag'         => isset($el['tag']) ? $el['tag'] : '',
+                    'text_color'  => isset($el['textColor']) ? $el['textColor'] : '',
+                    'text_color_custom' => isset($el['textColorCustom']) ? $el['textColorCustom'] : '',
+                );
+                break;
+            case 'featured_image':
+                $rows[] = array(
+                    '_type' => 'featured_image',
+                    'size' => isset($el['size']) ? $el['size'] : '',
+                    'is_background_image' => !empty($el['isBackgroundImage']),
+                );
+                break;
+            case 'post_excerpt':
+                $rows[] = array('_type' => 'post_excerpt');
+                break;
+            case 'permalink':
+                $rows[] = array(
+                    '_type' => 'permalink',
+                    'hide_button_on_mobile' => !empty($el['hideButtonOnMobile']),
+                    'button_text' => isset($el['buttonText']) ? $el['buttonText'] : '',
+                    'button_style' => (isset($el['buttonStyle']) && $el['buttonStyle'] !== '') ? $el['buttonStyle'] : 'button-accent',
+                );
+                break;
+            case 'icon':
+                $rows[] = array(
+                    '_type' => 'icon',
+                    'icon' => isset($el['iconId']) ? (int) $el['iconId'] : 0,
+                    'icon_color' => isset($el['iconColor']) ? $el['iconColor'] : '',
+                    'icon_color_custom' => isset($el['iconColorCustom']) ? $el['iconColorCustom'] : '',
+                    'icon_width' => isset($el['iconWidth']) ? $el['iconWidth'] : '',
+                    'icon_height' => isset($el['iconHeight']) ? $el['iconHeight'] : '',
+                );
+                break;
+            case 'custom_field':
+                $custom_field_n++;
+                if ($custom_field_n > 5) {
+                    break;
+                }
+                $rows[] = array(
+                    '_type' => 'custom_field_' . $custom_field_n,
+                    'custom_field_key' => isset($el['key']) ? $el['key'] : '',
+                    'custom_field_type' => (isset($el['fieldType']) && $el['fieldType'] !== '') ? $el['fieldType'] : 'p',
+                    'custom_field_class' => isset($el['wrapperClass']) ? $el['wrapperClass'] : '',
+                );
+                break;
+        }
+    }
+    return $rows;
+}
+
+/**
+ * `coptrz/post-grid` block attributes → the `$data` array
+ * `____post_grid_module()` (includes/modules.php) expects. Mirrors what the two
+ * legacy `case 'post_grid':` call sites build (modules.php:922-933 / 2451-2463),
+ * so a converted grid renders identically to its section-builder original.
+ *
+ * @param array $attrs
+ * @return array
+ */
+function coptrz_post_grid_attrs_to_data($attrs)
+{
+    $post_type = isset($attrs['postType']) ? (string) $attrs['postType'] : '';
+    $source    = isset($attrs['source']) ? (string) $attrs['source'] : 'all';
+    $types     = coptrz_post_grid_post_types();
+
+    $post_type_row = array('_type' => $post_type, 'source' => $source);
+    if ($source === 'manually') {
+        $ids = array();
+        foreach ((isset($attrs['manualPosts']) && is_array($attrs['manualPosts'])) ? $attrs['manualPosts'] : array() as $p) {
+            if (!empty($p['id'])) {
+                $ids[] = array('id' => (int) $p['id']);
+            }
+        }
+        $post_type_row['post'] = $ids;
+    } elseif ($source === 'category' && isset($types[$post_type]['taxonomy'])) {
+        $post_type_row['taxonomy_key'] = $types[$post_type]['taxonomy'];
+        $cats = array();
+        foreach ((isset($attrs['categoryTerms']) && is_array($attrs['categoryTerms'])) ? $attrs['categoryTerms'] : array() as $t) {
+            if (!empty($t['id'])) {
+                $cats[] = array('id' => (int) $t['id']);
+            }
+        }
+        $post_type_row['category'] = $cats;
+    }
+
+    return array(
+        'id'                      => wp_unique_id('coptrz-post-grid-'),
+        'is_slider'               => !empty($attrs['isSlider']),
+        'number_of_slides'        => (isset($attrs['slidesDesktop']) && $attrs['slidesDesktop'] !== '') ? $attrs['slidesDesktop'] : 6,
+        'number_of_slides_tablet' => isset($attrs['slidesTablet']) ? $attrs['slidesTablet'] : '',
+        'number_of_slides_mobile' => isset($attrs['slidesMobile']) ? $attrs['slidesMobile'] : '',
+        'post_box_styles'         => coptrz_post_grid_box_styles_rows(isset($attrs['boxStyles']) ? $attrs['boxStyles'] : array()),
+        'post_elements'           => coptrz_post_grid_elements_rows(isset($attrs['elements']) ? $attrs['elements'] : array()),
+        'post_type'               => $post_type !== '' ? array($post_type_row) : array(),
+    );
+}
+
+/**
+ * The `coptrz/post-grid` block (registered client-side in
+ * assets/js/coptrz-post-grid-block.js) — a native editor equivalent of the
+ * legacy section builder's "Post Grid" item, covering the same three
+ * configuration axes (Post Type, Post Box Styles, Post Elements). Unlike the
+ * simpler `coptrz/layouts` / `coptrz/global-widget` blocks, there is no
+ * shortcode to delegate to, so this calls `____post_grid_module()` directly —
+ * the same function both legacy call sites (modules.php:922-933, 2451-2463)
+ * and the `[testimonials]` shortcode use — guarded with function_exists()
+ * since modules.php is skipped in admin under the blocks-editor template (see
+ * dd_is_blocks_editor_template_active()). Each render generates a fresh unique
+ * `id` (`wp_unique_id()`) rather than reusing a shared section id, so multiple
+ * sliding grids on one page don't collide on the same `#…-swiper` id — the
+ * legacy call sites share one id across every item in a section/column, which
+ * is harmless there (post_grid was rarely duplicated within one section) but
+ * would break here now that the block can be placed anywhere, any number of
+ * times.
+ */
+function coptrz_render_post_grid_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/post-grid') {
+        return $block_content;
+    }
+    if (!function_exists('____post_grid_module')) {
+        return $block_content;
+    }
+
+    $attrs = isset($block['attrs']) ? $block['attrs'] : array();
+    if (empty($attrs['postType'])) {
+        return $block_content;
+    }
+
+    return ____post_grid_module(coptrz_post_grid_attrs_to_data($attrs));
+}
+add_filter('render_block', 'coptrz_render_post_grid_block', 10, 2);
+
+/**
  * Enqueue the block extension script in the editor.
  */
 function digitally_disruptive_enqueue_swiper_editor_assets()
@@ -324,6 +685,67 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         filemtime(get_template_directory() . '/assets/js/extend-responsive-layout.js'),
         true
     );
+
+    wp_enqueue_script(
+        'coptrz-layouts-block',
+        get_template_directory_uri() . '/assets/js/coptrz-layouts-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-layouts-block.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'coptrz-global-widget-block',
+        get_template_directory_uri() . '/assets/js/coptrz-global-widget-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-global-widget-block.js'),
+        true
+    );
+    wp_localize_script('coptrz-global-widget-block', 'coptrzGlobalWidgets', coptrz_global_widgets());
+
+    wp_enqueue_script(
+        'coptrz-post-grid-block',
+        get_template_directory_uri() . '/assets/js/coptrz-post-grid-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-post-grid-block.js'),
+        true
+    );
+    wp_localize_script('coptrz-post-grid-block', 'coptrzPostGrid', array(
+        'postTypes'    => coptrz_post_grid_post_types(),
+        'fieldOptions' => coptrz_post_grid_field_options(),
+    ));
+
+    wp_enqueue_script(
+        'coptrz-section-split-block',
+        get_template_directory_uri() . '/assets/js/coptrz-section-split-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-data'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-section-split-block.js'),
+        true
+    );
+
+    // Legacy wrapper blocks (Gallery, Product Slider, Tabs, Accordion, Drone
+    // Servicing Grid, Events Widget, Product, Product Compare, Global Post Box).
+    // Each is `save: null` and rendered server-side — see includes/legacy-blocks.php.
+    $legacy_block_scripts = array(
+        'coptrz-gallery-block'             => 'coptrz-gallery-block.js',
+        'coptrz-product-slider-block'      => 'coptrz-product-slider-block.js',
+        'coptrz-tabs-legacy-block'         => 'coptrz-tabs-legacy-block.js',
+        'coptrz-accordion-legacy-block'    => 'coptrz-accordion-legacy-block.js',
+        'coptrz-drone-servicing-grid-block' => 'coptrz-drone-servicing-grid-block.js',
+        'coptrz-events-widget-block'       => 'coptrz-events-widget-block.js',
+        'coptrz-product-block'             => 'coptrz-product-block.js',
+        'coptrz-product-compare-block'     => 'coptrz-product-compare-block.js',
+        'coptrz-global-post-box-block'     => 'coptrz-global-post-box-block.js',
+    );
+    foreach ($legacy_block_scripts as $handle => $file) {
+        wp_enqueue_script(
+            $handle,
+            get_template_directory_uri() . '/assets/js/' . $file,
+            array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+            filemtime(get_template_directory() . '/assets/js/' . $file),
+            true
+        );
+    }
 }
 add_action('enqueue_block_editor_assets', 'digitally_disruptive_enqueue_swiper_editor_assets');
 
@@ -626,6 +1048,86 @@ function dd_render_cf7_pdf_block($block_content, $block)
     return do_shortcode($shortcode);
 }
 add_filter('render_block', 'dd_render_cf7_pdf_block', 10, 2);
+
+/**
+ * The `coptrz/section-split` block (registered client-side in
+ * assets/js/coptrz-section-split-block.js) is a structural marker only, used to
+ * divide a converted product's post_content into the two slots the product
+ * template renders separately (see coptrz_product_content_split(),
+ * includes/section-converter.php). It carries no content of its own and must
+ * never print anything on the front end.
+ */
+function coptrz_render_section_split_block($block_content, $block)
+{
+    if (!empty($block['blockName']) && $block['blockName'] === 'coptrz/section-split') {
+        return '';
+    }
+
+    return $block_content;
+}
+add_filter('render_block', 'coptrz_render_section_split_block', 10, 2);
+
+/**
+ * The `coptrz/layouts` block (registered client-side in
+ * assets/js/coptrz-layouts-block.js) — a native editor equivalent of hand-typing
+ * `[layouts id="…"]` in a Shortcode block. save() returns null; this render_block
+ * filter rebuilds the shortcode from the block's `layoutId` attribute and runs it
+ * through do_shortcode(), so it renders identically to a hand-typed shortcode and
+ * inherits the existing `layouts()` shortcode's function_exists('___sections')
+ * guard (includes/shortcodes.php) — safe in admin/REST contexts where modules.php
+ * isn't loaded. Editing the referenced `layouts` post still updates every page
+ * that embeds it, since the shortcode (not its expanded output) is what's stored.
+ */
+function coptrz_render_layouts_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/layouts') {
+        return $block_content;
+    }
+
+    $attrs     = isset($block['attrs']) ? $block['attrs'] : array();
+    $layout_id = isset($attrs['layoutId']) ? (int) $attrs['layoutId'] : 0;
+    if (!$layout_id) {
+        return $block_content;
+    }
+
+    return do_shortcode('[layouts id="' . $layout_id . '"]');
+}
+add_filter('render_block', 'coptrz_render_layouts_block', 10, 2);
+
+/**
+ * The `coptrz/global-widget` block (registered client-side in
+ * assets/js/coptrz-global-widget-block.js) — a native editor equivalent of
+ * hand-typing one of the "Global Widgets" shortcodes in a Shortcode block.
+ * save() returns null; this render_block filter rebuilds the shortcode from the
+ * block's `widget` attribute (and `style`, for the Case Study Slider only) using
+ * the shared coptrz_global_widgets() registry, and runs it through
+ * do_shortcode() — so it renders identically to a hand-typed shortcode. An
+ * unrecognised `widget` value (e.g. a stale attribute from a removed registry
+ * entry) falls through to the block's own (empty) saved content rather than
+ * emitting nothing silently.
+ */
+function coptrz_render_global_widget_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/global-widget') {
+        return $block_content;
+    }
+
+    $attrs   = isset($block['attrs']) ? $block['attrs'] : array();
+    $widget  = isset($attrs['widget']) ? (string) $attrs['widget'] : '';
+    $widgets = coptrz_global_widgets();
+    if ($widget === '' || !isset($widgets[$widget])) {
+        return $block_content;
+    }
+
+    $shortcode = $widgets[$widget]['shortcode'];
+    $style     = isset($attrs['style']) ? (string) $attrs['style'] : '';
+    if ($style !== '' && !empty($widgets[$widget]['styles']) && isset($widgets[$widget]['styles'][$style])) {
+        $shortcode = rtrim($shortcode, ']') . " style='" . esc_attr($style) . "']";
+    }
+
+    return do_shortcode($shortcode);
+}
+add_filter('render_block', 'coptrz_render_global_widget_block', 10, 2);
 
 /**
  * Enqueues the frontend scripts and styles (Frontend only).

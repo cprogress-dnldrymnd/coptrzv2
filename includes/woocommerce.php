@@ -2409,3 +2409,51 @@ function dd_catalog_mode_empty_existing_cart()
 
     WC()->cart->empty_cart();
 }
+
+/**
+ * Enable the block editor for products.
+ *
+ * WooCommerce forces the classic editor for `product` via its own
+ * `use_block_editor_for_post_type` filter (WC_Post_Types::gutenberg_can_edit_post_type(),
+ * priority 10). Override it here at a later priority so products get the same
+ * block editor every other post type already uses — the section-converter
+ * (includes/section-converter.php) can then convert products into native
+ * Gutenberg blocks instead of the raw-HTML `sections_html` repeater.
+ */
+add_filter('use_block_editor_for_post_type', 'coptrz_enable_product_block_editor', 20, 2);
+add_filter('gutenberg_can_edit_post_type', 'coptrz_enable_product_block_editor', 20, 2);
+
+function coptrz_enable_product_block_editor($can_edit, $post_type)
+{
+    return $post_type === 'product' ? true : $can_edit;
+}
+
+/**
+ * Product-editor-only compatibility fixes needed now that products use the
+ * block editor (see coptrz_enable_product_block_editor() above). Both issues
+ * and the fix are documented in full in assets/js/admin-product-editor.js:
+ *
+ *  1. Variable-product variation edits are silently lost on Update — the
+ *     variations metabox has no way to save into the block editor's post
+ *     save, so we lock saving while a variation is dirty instead.
+ *  2. Gutenberg's own Excerpt panel and WooCommerce's "Product short
+ *     description" box both write post_excerpt; the panel is removed so
+ *     WooCommerce's box is the only writer.
+ */
+add_action('admin_enqueue_scripts', 'coptrz_enqueue_product_editor_assets');
+
+function coptrz_enqueue_product_editor_assets()
+{
+    $screen = get_current_screen();
+    if (!$screen || $screen->id !== 'product' || $screen->base !== 'post') {
+        return;
+    }
+
+    wp_enqueue_script(
+        'coptrz-admin-product-editor',
+        get_template_directory_uri() . '/assets/js/admin-product-editor.js',
+        array('wp-data', 'wp-i18n', 'jquery'),
+        filemtime(get_template_directory() . '/assets/js/admin-product-editor.js'),
+        true
+    );
+}

@@ -1320,7 +1320,7 @@ function ___tab_modules($tabs, $id)
             $selected = $key == 0 ? 'true' : 'false';
             $heading = $tab['heading'];
             $html .= "<li class='nav-item' role='presentation'>";
-            $html .= "<button class='nav-link $class' id='tab-$key' data-bs-toggle='tab' data-bs-target='#tab-$key-content' type='button' role='tab' aria-controls='tab-$key-content' aria-selected='$selected'>$heading</button>";
+            $html .= "<button class='nav-link $class' id='tab-$id-$key' data-bs-toggle='tab' data-bs-target='#tab-$id-$key-content' type='button' role='tab' aria-controls='tab-$id-$key-content' aria-selected='$selected'>$heading</button>";
             $html .= "</li>";
         }
         $html .= "</ul>";
@@ -1331,7 +1331,7 @@ function ___tab_modules($tabs, $id)
 
             $description_args['description'] = $tab['description'];
             $description_args['class'] = _attribute('class', array('description-box'));
-            $html .= "<div class='tab-pane fade $class' id='tab-$key-content' role='tabpanel' aria-labelledby='tab-$key'>";
+            $html .= "<div class='tab-pane fade $class' id='tab-$id-$key-content' role='tabpanel' aria-labelledby='tab-$id-$key'>";
             $html .= __description($description_args);
             $html .= "</div>";
         }
@@ -1568,7 +1568,14 @@ function ____post_grid_module($data)
                     $button_class = $hide_button_on_mobile ? ' d-none d-md-block' : '';
                     $html .= __button(array(
                         'button_type'  => get_post_type($post->ID),
-                        'button_text'  => $post_title,
+                        // The accessible text for the invisible stretched-card
+                        // link must always be this post's own title — reading
+                        // $post_title here instead used whatever the 'post_title'
+                        // element last set it to, which is empty/stale when
+                        // 'permalink' is ordered before 'post_title' in Post
+                        // Elements (or on the very first post, before it's set
+                        // at all).
+                        'button_text'  => get_the_title($post->ID),
                         'button_url'   => $post->ID,
                         'button_style' => 'position-absolute',
                     ));
@@ -1796,7 +1803,7 @@ function ____gallery_modules($data)
         } else {
             $html .= "</div>";
         }
-        $html .= "<div>";
+        $html .= "</div>";
     }
 
     return $html;
@@ -2569,8 +2576,8 @@ function __accordion_module($data, $class = '')
             $aria_expanded = $index == 0 && $open_first_item ? 'true' : 'false';
 
             $html .= "<div class='accordion-item position-relative mb-0'>"; //accordion-item
-            $html .= "<h3 class='accordion-header' id='flush-heading-$key'>";
-            $html .= "<button class='accordion-button justify-content-between px-0 py-3 $button_class' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse-$key' aria-expanded='$aria_expanded' aria-controls='flush-collapse-$key'>";
+            $html .= "<h3 class='accordion-header' id='flush-heading-$module_id-$key'>";
+            $html .= "<button class='accordion-button justify-content-between px-0 py-3 $button_class' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse-$module_id-$key' aria-expanded='$aria_expanded' aria-controls='flush-collapse-$module_id-$key'>";
             $html .= "<span> ";
             $html .= $heading;
             $html .= "</span> ";
@@ -2578,7 +2585,7 @@ function __accordion_module($data, $class = '')
             $html .= "</button>";
             $html .= "</h3>";
 
-            $html .= "<div id='flush-collapse-$key' class='accordion-collapse collapse $content_class' aria-labelledby='flush-heading-$key' data-bs-parent='#accordion-$module_id'>";
+            $html .= "<div id='flush-collapse-$module_id-$key' class='accordion-collapse collapse $content_class' aria-labelledby='flush-heading-$module_id-$key' data-bs-parent='#accordion-$module_id'>";
             $html .= __description(array(
                 'description' => $description,
                 'class'       => _attribute('class', array('description-box small-text pb-3')),
