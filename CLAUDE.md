@@ -670,7 +670,12 @@ case studies, rentals, landing pages, etc).
   `convert` = flag NOT EXISTS, as before; `revert` = flag EXISTS), so the same
   search-and-select UI finds already-converted posts to revert. Switching modes clears
   the current selection (converting vs reverting are disjoint candidate sets).
-- `woocommerce.php` (~2360 lines) — WooCommerce template/hook overrides; pairs
+- `[layouts id="..."]` shortcode in `shortcodes.php` renders a `layouts` post's
+  `sections`/`section_items` fields via `___sections('sections', $id)`; it's
+  guarded with `function_exists('___sections')` (not a `layouts()` function,
+  which doesn't exist) since `___sections` lives in `modules.php`, which is
+  skipped in admin/REST on the blocks-editor template.
+- `woocommerce.php` (~2460 lines) — WooCommerce template/hook overrides; pairs
   with the `woocommerce/` directory which overrides core WooCommerce templates
   (`archive-product.php`, `cart/`, `checkoutx/`, `loop/`, `single-product/`,
   `global/`, `content-single-product.php`). See Catalog mode below — the store

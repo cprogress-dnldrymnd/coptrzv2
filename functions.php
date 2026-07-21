@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 5.6);
+define('coptz_version', 5.7);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -785,9 +785,12 @@ function dd_button_popup_render($block_content, $block)
 add_filter('render_block_core/button', 'dd_button_popup_render', 10, 2);
 
 /**
- * Render filter: gives the core Cover block per-breakpoint background images.
- * Reads the ddMobileImageUrl / ddTabletImageUrl attributes set by the
- * "Responsive Background" editor panel (assets/js/extend-cover-responsive.js).
+ * Render filter: gives the core Cover block per-breakpoint background images,
+ * and an option to hide the background image (and overlay) entirely at a
+ * breakpoint. Reads the ddMobileImageUrl/ddTabletImageUrl and
+ * ddHideImageMobile/ddHideImageTablet attributes set by the "Responsive
+ * Background" editor panel (assets/js/extend-cover-responsive.js). Hiding a
+ * breakpoint takes precedence over an image set for that same breakpoint.
  *
  * Two rendering forms of core/cover are handled:
  *  1. Default: the media is an <img class="wp-block-cover__image-background">.
@@ -798,6 +801,10 @@ add_filter('render_block_core/button', 'dd_button_popup_render', 10, 2);
  *     <span class="wp-block-cover__image-background ..." style="background-image:url(...)">
  *     with no <img>. We tag the wrapper with a unique class and inject scoped
  *     <style> @media rules that override background-image at each breakpoint.
+ * When a breakpoint is hidden, a scoped <style> rule additionally hides the
+ * <picture>/image element and the block's dim/overlay span
+ * (.wp-block-cover__background) at that breakpoint, regardless of which of
+ * the two forms above is in play.
  *
  * Breakpoints follow the theme's SCSS responsive() mixin:
  *   mobile <=767px, tablet 768-991px, desktop >=992px (the block's own image).
@@ -895,6 +902,14 @@ function dd_cover_responsive_render($block_content, $block)
 }
 add_filter('render_block_core/cover', 'dd_cover_responsive_render', 10, 2);
 
+/**
+ * `ddStackOnTablet` (registered client-side in
+ * assets/js/extend-responsive-layout.js) stacks a core/columns block to full
+ * width between 768px and 991px. Core's own "Stack on mobile" toggle already
+ * covers <=767px (core actually breaks at 781px), so this only needs to add
+ * a class the SCSS at assets/scss/base/_helpers.scss keys off of; no inline
+ * style survives to fight, unlike the Cover/Grid overrides above/below.
+ */
 function dd_columns_stack_tablet_render($block_content, $block)
 {
     if (empty($block['attrs']['ddStackOnTablet'])) {
