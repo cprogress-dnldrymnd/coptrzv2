@@ -610,7 +610,7 @@ case studies, rentals, landing pages, etc).
   .column-holder`) that stop matching if the two collapse onto one element, so the
   `columns` mapper reproduces `.column-holder` as an **inner `core/group`**, but
   only when a column actually has holder-level classes or CSS; an unstyled column
-  stays a flat `wp-block-column` rather than gaining a pointless nesting level. The
+  stays a flat column `core/group` rather than gaining a pointless nesting level. The
   holder group's derived CSS (background image URL, custom colors, custom border
   radius/color/width) goes on its `ddCustomCSS` attribute, same mechanism as
   `coptrz_block_group()` above — `core/group` is already whitelisted for it. A
@@ -620,6 +620,33 @@ case studies, rentals, landing pages, etc).
   rendering wrong: `is_slider` (modules.php's swiper markup has nothing to map to)
   returns `null` from the mapper so the whole section falls back to Custom HTML,
   the same fallback used elsewhere in the registry.
+
+  **Grid conversion (not `core/columns`)** — the `columns` mapper emits a
+  12-track CSS Grid instead of `core/columns`/`core/column`: the outer wrapper
+  is a `core/group` with `layout: {type: 'grid', columnCount: 12}`, and each
+  column is a plain `core/group` (the row-level `align_items`/`justify_content`/
+  `horizontal_spacing`/`vertical_spacing` classes still land on this outer
+  group's `className`, as they did on `core/columns` before). No Bootstrap
+  `col-*` class is carried onto the column group; instead each column's
+  `column_width`/`column_width_tablet`/`column_width_mobile` (captured as
+  `column_widths` by `coptrz_column_wrapper_data()`, replacing the old
+  `column_classes` return key) is converted by `coptrz_bootstrap_col_span($class,
+  $col_count)` into an integer 1-12 span — a numbered class (`col-lg-6`, `col-6`)
+  maps straight to its number; an un-numbered/auto class (`col`, `col-lg`,
+  `col-auto`, or unset) falls back to an even share of the row
+  (`round(12 / $col_count)`) so N auto columns still fill it evenly. The span is
+  written as a `grid-column: span N;` declaration on the column group's
+  `ddCustomCSS` (desktop), and — only when the legacy row actually set a
+  tablet/mobile width — `ddCustomCSSTablet`/`ddCustomCSSMobile`, reusing
+  `digitally_disruptive_render_custom_css()`'s existing per-breakpoint
+  `@media`-wrapped, single-class cascade (functions.php) rather than a native
+  `style.layout.columnSpan`, which would be an inline style that wins over
+  those `@media` overrides regardless of source order. This is a different
+  attribute than the `.column-holder` group's own `ddCustomCSS` (background/
+  border/etc, described below) — they're always different block instances (an
+  outer column group and, when present, its inner holder group), so the two
+  never collide on the same element. Section content unaffected by this
+  change — only the `columns` element's own wrapper/column blocks.
 
   `unmappable` (which forces the whole section to snapshot as Custom HTML,
   dragging every item in it down regardless of how well those items map) is now
