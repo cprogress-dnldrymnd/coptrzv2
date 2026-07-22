@@ -1426,8 +1426,24 @@ Container::make('post_meta', __('Hero'))
 
     ->add_tab('Hero Settings', __hero_fields())
     ->add_tab('Hero Buttons', __hero_button_fields())
-    ->add_tab('Hero Form', __hero_form_fields())
-    ->add_tab('OpenAI Ads Conversion', __openai_ads_conversion_fields());
+    ->add_tab('Hero Form', __hero_form_fields());
+
+// Split out from the Hero container above so it survives independently of the
+// hero -> coptrz/hero block migration (the Hero container is slated for removal
+// once every post is converted; conversion tracking is unrelated to hero display).
+Container::make('post_meta', __('OpenAI Ads Conversion'))
+    ->where('post_type', '=', 'page')
+    ->where('post_template', '!=', 'templates/page-blocks-editor.php')
+    ->or_where('post_type', '=', 'product')
+    ->or_where('post_type', '=', 'post')
+    ->or_where('post_type', '=', 'capabilities')
+    ->or_where('post_type', '=', 'casestudies')
+    ->or_where('post_type', '=', 'industries')
+    ->or_where('post_type', '=', 'events')
+    ->or_where('post_type', '=', 'guides')
+    ->or_where('post_type', '=', 'rentals')
+    ->or_where('post_type', '=', 'landingpages')
+    ->add_fields(__openai_ads_conversion_fields());
 
 Container::make('term_meta', __('Hero'))
     ->where('term_taxonomy', '=', 'product_cat')

@@ -25,6 +25,7 @@ if (!$is_blocks_editor) {
 
 require_once('shortcodes.php');
 require_once('legacy-blocks.php');
+require_once('hero-block.php');
 require_once('hooks.php');
 require_once('theme-widgets.php');
 require_once('menus.php');

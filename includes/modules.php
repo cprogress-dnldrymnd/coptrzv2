@@ -182,53 +182,65 @@ function _pagination($has_pagination, $query, $data = false)
         return ob_get_clean();
     }
 }
-function ___hero_modules($hero_alignment_args = false, $hero_height_args = false)
+/**
+ * The `events` CPT's own start/end datetime fields (unrelated to the Hero
+ * container) get appended to the hero description for that post type. Shared
+ * by both ___hero_args_from_meta() and coptrz_hero_args_from_block() (in
+ * includes/hero-block.php) since events keep their date fields on meta either
+ * way. Preserves two pre-existing quirks deliberately, not fixed here:
+ * $event_end_datetime is read from the *start* datetime meta key, and the
+ * whole existing description is duplicated before the date block is appended.
+ */
+function ___hero_append_event_datetime($post_id, $hero_description)
 {
-    $id = get_the_ID();
-    $hero_heading = do_shortcode(get__post_meta('hero_heading'));
-    $hero_description = do_shortcode(get__post_meta('hero_description'));
-    $hero_hidden = get__post_meta('hero_hidden');
-    if (get_post_type() == '') {
-        $hero_background = get_post_thumbnail_id();
-        $hero_background_type = 'self-hosted';
-    } else {
-        $hero_background = get__post_meta('hero_background');
-        $hero_background_youtube = get__post_meta('hero_background_youtube');
-        $hero_background_type = get__post_meta('hero_background_type');
+    if (get_post_type($post_id) == 'events') {
+        $SVG = new SVG;
+        $event_start_datetime = get__post_meta_by_id($post_id, 'event_start_datetime');
+        $event_end_datetime = get__post_meta_by_id($post_id, 'event_start_datetime');
+        $date_time = '<div class="event-dates"><span>' . $SVG->calendarv2() . '<span>' . _date_format($event_start_datetime) . '</span></span> <span>' . $SVG->clockv2() . _time_format($event_end_datetime) . ' GMT</span></div>';
+        $hero_description .= $hero_description . $date_time;
     }
+    return $hero_description;
+}
 
-    $hero_height = get__post_meta('hero_height') ? get__post_meta('hero_height') : $hero_height_args;
-    $hero_alignment = get__post_meta('hero_alignment') ? get__post_meta('hero_alignment') : $hero_alignment_args;
-
-    $breadcrumbs_hidden = get__post_meta('breadcrumbs_hidden');
-    $buttons = get__post_meta('buttons');
-    $hide_on_list = get__post_meta('hide_on_list');
-
-
-    $hero_form_enable = get__post_meta('hero_form_enable');
-
-
-    if (get_post_type() == 'guides') {
-        $hero_form_image = get__post_meta('hero_form_image');
-        if (!$hero_form_image) {
-            $hero_form_image = get_post_thumbnail_id();
-        }
-    } else {
-        $hero_form_image = get__post_meta('hero_form_image');
-    }
-
-
-    $hero_form_heading = get__post_meta('hero_form_heading');
-    $hero_form_description = do_shortcode(get__post_meta('hero_form_description'));
-    $hero_form_style = get__post_meta('hero_form_style');
-    $hero_form = get__post_meta('hero_form');
-    $hero_form_type = get__post_meta('hero_form_type');
-    $hero_form_product = get__post_meta('hero_form_product');
-    $hero_form_script = get__post_meta('hero_form_script');
-    $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
-    $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
-    $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
-
+/**
+ * Pure hero renderer — reads no meta and no post-meta helpers; every value
+ * comes pre-resolved from $args. Exists so both the legacy meta path
+ * (___hero_args_from_meta()) and the coptrz/hero block path
+ * (coptrz_hero_args_from_block(), includes/hero-block.php) produce identical
+ * markup from equivalent input. See $args keys below; every legacy quirk
+ * (hero_hidden's breadcrumbs+title fallback, the no-background small-hero/
+ * text-left default, mb-0/mb-3 heading class, the col-lg-7/col-lg-5 form
+ * layout, CPD/TQUK logos) is preserved verbatim from the pre-split function.
+ */
+function ___hero_render($args)
+{
+    $id                              = $args['id'];
+    $hero_heading                    = $args['hero_heading'];
+    $hero_description                = $args['hero_description'];
+    $hero_hidden                     = $args['hero_hidden'];
+    $hero_background                 = $args['hero_background'];
+    $hero_background_youtube         = $args['hero_background_youtube'];
+    $hero_background_type            = $args['hero_background_type'];
+    $hero_height                     = $args['hero_height'];
+    $hero_alignment                  = $args['hero_alignment'];
+    $breadcrumbs_hidden              = $args['breadcrumbs_hidden'];
+    $buttons                         = $args['buttons'];
+    $hide_on_list                    = $args['hide_on_list'];
+    $hero_form_enable                = $args['hero_form_enable'];
+    $hero_form_image                 = $args['hero_form_image'];
+    $hero_form_heading               = $args['hero_form_heading'];
+    $hero_form_description           = $args['hero_form_description'];
+    $hero_form_style                 = $args['hero_form_style'];
+    $hero_form                       = $args['hero_form'];
+    $hero_form_type                  = $args['hero_form_type'];
+    $hero_form_product               = $args['hero_form_product'];
+    $hero_form_script                = $args['hero_form_script'];
+    $hero_form_redirect_type         = $args['hero_form_redirect_type'];
+    $hero_form_document_redirect_id  = $args['hero_form_document_redirect_id'];
+    $is_product                      = $args['is_product'];
+    $cpd_maker                       = $args['cpd_maker'];
+    $tquk_logo                       = $args['tquk_logo'];
 
     if (!$hero_background && !$hero_background_youtube) {
         if (!$hero_height) {
@@ -242,15 +254,6 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         }
     } else {
         $text_align = $hero_alignment ? $hero_alignment : 'text-center';
-    }
-
-
-    if (get_post_type($id) == 'events') {
-        $SVG = new SVG;
-        $event_start_datetime = get__post_meta_by_id($id, 'event_start_datetime');
-        $event_end_datetime = get__post_meta_by_id($id, 'event_start_datetime');
-        $date_time = '<div class="event-dates"><span>' . $SVG->calendarv2() . '<span>' . _date_format($event_start_datetime) . '</span></span> <span>' . $SVG->clockv2() . _time_format($event_end_datetime) . ' GMT</span></div>';
-        $hero_description .= $hero_description . $date_time;
     }
 
     $heading_class[] = 'large-heading';
@@ -285,7 +288,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
     $hero_class_attribute = _attribute('class', $hero_class);
     $col_content_class_attribute = _attribute('class', $col_content_class);
 
-    $hero_heading_val = $hero_heading ? $hero_heading : get_the_title();
+    $hero_heading_val = $hero_heading ? $hero_heading : get_the_title($id);
     if (!$hero_hidden) {
         $hero = "<section $hero_class_attribute id='hero'>";
         if ($hero_background_youtube && $hero_background_type == 'youtube') {
@@ -318,10 +321,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
             'class'       => _attribute('class', array('description-box fw-light medium-text small-width mx-auto mb-4')),
         ));
 
-        if (is_product()) {
-            $cpd_maker = get__post_meta('cpd_maker');
-            $tquk_logo = get__post_meta('tquk_logo');
-
+        if ($is_product) {
             if ($cpd_maker || $tquk_logo) {
                 $hero .= "<div class='row g-5 align-items-center training-logos'>";
             }
@@ -383,7 +383,7 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $html .= "<div class='container md-margin-top'>";
         $html .= do_shortcode("[breadcrumbs id='$id']");
         $html .= __heading(array(
-            'heading' => get_the_title(),
+            'heading' => get_the_title($id),
             'tag'     => 'h1',
             'class'   => _attribute('class', $heading_class),
             ''
@@ -393,6 +393,123 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
         $html .= "</div>";
         return $html;
     }
+}
+
+/**
+ * Legacy Hero post-meta -> the ___hero_render() args shape. Faithful port of
+ * the pre-split ___hero_modules()'s meta-reading logic (byte-for-byte,
+ * including its quirks — see ___hero_append_event_datetime() above). This is
+ * the fallback path for any post with no coptrz/hero block; once every post
+ * of the applicable types is converted, this function stays in the tree as
+ * the emergency fallback (see the hero migration plan, phase 7c).
+ */
+function ___hero_args_from_meta($post_id, $hero_alignment_args = false, $hero_height_args = false)
+{
+    $hero_heading = do_shortcode(get__post_meta_by_id($post_id, 'hero_heading'));
+    $hero_description = do_shortcode(get__post_meta_by_id($post_id, 'hero_description'));
+    $hero_hidden = get__post_meta_by_id($post_id, 'hero_hidden');
+
+    $hero_background_youtube = false;
+    if (!get_post_type($post_id)) {
+        $hero_background = get_post_thumbnail_id($post_id);
+        $hero_background_type = 'self-hosted';
+    } else {
+        $hero_background = get__post_meta_by_id($post_id, 'hero_background');
+        $hero_background_youtube = get__post_meta_by_id($post_id, 'hero_background_youtube');
+        $hero_background_type = get__post_meta_by_id($post_id, 'hero_background_type');
+    }
+
+    $hero_height = get__post_meta_by_id($post_id, 'hero_height') ? get__post_meta_by_id($post_id, 'hero_height') : $hero_height_args;
+    $hero_alignment = get__post_meta_by_id($post_id, 'hero_alignment') ? get__post_meta_by_id($post_id, 'hero_alignment') : $hero_alignment_args;
+
+    $breadcrumbs_hidden = get__post_meta_by_id($post_id, 'breadcrumbs_hidden');
+    $buttons = get__post_meta_by_id($post_id, 'buttons');
+    $hide_on_list = get__post_meta_by_id($post_id, 'hide_on_list');
+
+    $hero_form_enable = get__post_meta_by_id($post_id, 'hero_form_enable');
+
+    if (get_post_type($post_id) == 'guides') {
+        $hero_form_image = get__post_meta_by_id($post_id, 'hero_form_image');
+        if (!$hero_form_image) {
+            $hero_form_image = get_post_thumbnail_id($post_id);
+        }
+    } else {
+        $hero_form_image = get__post_meta_by_id($post_id, 'hero_form_image');
+    }
+
+    $hero_form_heading = get__post_meta_by_id($post_id, 'hero_form_heading');
+    $hero_form_description = do_shortcode(get__post_meta_by_id($post_id, 'hero_form_description'));
+    $hero_form_style = get__post_meta_by_id($post_id, 'hero_form_style');
+    $hero_form = get__post_meta_by_id($post_id, 'hero_form');
+    $hero_form_type = get__post_meta_by_id($post_id, 'hero_form_type');
+    $hero_form_product = get__post_meta_by_id($post_id, 'hero_form_product');
+    $hero_form_script = get__post_meta_by_id($post_id, 'hero_form_script');
+    $hero_form_redirect_type = get__post_meta_by_id($post_id, 'hero_form_redirect_type');
+    $hero_form_document_redirect = get__post_meta_by_id($post_id, 'hero_form_document_redirect');
+    $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
+
+    $hero_description = ___hero_append_event_datetime($post_id, $hero_description);
+
+    return array(
+        'id'                             => $post_id,
+        'hero_heading'                   => $hero_heading,
+        'hero_description'               => $hero_description,
+        'hero_hidden'                    => $hero_hidden,
+        'hero_background'                => $hero_background,
+        'hero_background_youtube'        => $hero_background_youtube,
+        'hero_background_type'           => $hero_background_type,
+        'hero_height'                    => $hero_height,
+        'hero_alignment'                 => $hero_alignment,
+        'breadcrumbs_hidden'             => $breadcrumbs_hidden,
+        'buttons'                        => $buttons,
+        'hide_on_list'                   => $hide_on_list,
+        'hero_form_enable'               => $hero_form_enable,
+        'hero_form_image'                => $hero_form_image,
+        'hero_form_heading'              => $hero_form_heading,
+        'hero_form_description'          => $hero_form_description,
+        'hero_form_style'                => $hero_form_style,
+        'hero_form'                      => $hero_form,
+        'hero_form_type'                 => $hero_form_type,
+        'hero_form_product'              => $hero_form_product,
+        'hero_form_script'               => $hero_form_script,
+        'hero_form_redirect_type'        => $hero_form_redirect_type,
+        'hero_form_document_redirect_id' => $hero_form_document_redirect_id,
+        'is_product'                     => is_product(),
+        'cpd_maker'                      => get__post_meta_by_id($post_id, 'cpd_maker'),
+        'tquk_logo'                      => get__post_meta_by_id($post_id, 'tquk_logo'),
+    );
+}
+
+/**
+ * Template-facing dispatcher — every existing call site keeps calling this
+ * unchanged. Reads the coptrz/hero block's attributes when the post has one
+ * (coptrz_hero_block_attrs(), includes/hero-block.php), falling back to the
+ * legacy Hero post-meta otherwise, so converted and unconverted posts coexist
+ * indefinitely.
+ *
+ * Render position depends on post type (see includes/hero-block.php's
+ * docblock): for most types the hero now renders INLINE, at the block's
+ * position in post_content — coptrz_render_hero_block() does that, so THIS
+ * function must emit nothing at the template position or the hero would
+ * render twice. For the hoisted types (coptrz_hero_hoisted_post_types(),
+ * currently just `post`) the block stays storage-only and this function still
+ * renders at the template's existing hero position, exactly as before.
+ */
+function ___hero_modules($hero_alignment_args = false, $hero_height_args = false)
+{
+    $post_id = get_the_ID();
+
+    if (function_exists('coptrz_hero_renders_inline') && coptrz_hero_renders_inline($post_id)) {
+        return '';
+    }
+
+    $attrs = function_exists('coptrz_hero_block_attrs') ? coptrz_hero_block_attrs($post_id) : null;
+
+    $args = ($attrs === null)
+        ? ___hero_args_from_meta($post_id, $hero_alignment_args, $hero_height_args)
+        : coptrz_hero_args_from_block($attrs, $post_id, $hero_alignment_args, $hero_height_args);
+
+    return ___hero_render($args);
 }
 function ___hero_product_taxonomy()
 {
@@ -1325,7 +1442,7 @@ function ___sections($id = 'sections', $post_id = '', $only_key = null)
  * @param string $id   A unique identifier for the tab module block.
  * @return string      The formatted HTML string including scoped styles and the script.
  */
-function ___tab_modules($tabs, $id)
+function ___tab_modules($tabs, $id, $autop = true)
 {
     if ($tabs) {
         $html = "<div class='tabs-holder'>";
@@ -1422,6 +1539,7 @@ function ___tab_modules($tabs, $id)
             // Content Pane
             $description_args['description'] = $tab['description'];
             $description_args['class'] = _attribute('class', array('description-box'));
+            $description_args['autop'] = $autop;
 
             $html .= "<div class='tab-pane fade {$class} pt-md-3' id='tab-{$id}-{$key}-content' role='tabpanel' aria-labelledby='tab-{$id}-{$key}'>";
             // Added .tab-pane-inner wrapper -> This is strictly required for the CSS Grid animation to calculate height.
@@ -2668,6 +2786,12 @@ function __accordion_module($data, $class = '')
     $with_border = isset($data['with_border']) ? $data['with_border'] : false;
     $class = $with_border ? 'with-border' : '';
 
+    // Custom (author-typed) descriptions may come from a block-editor RichText
+    // field, whose stored markup is already <p>-wrapped — wpautop over that
+    // mangles mixed content. FAQ-sourced descriptions are raw post_content and
+    // always need wpautop regardless of the caller's $autop flag.
+    $custom_autop = isset($data['autop']) ? $data['autop'] : true;
+
     if ($lower_opacity) {
         $class .= ' lower-opacity';
     }
@@ -2708,6 +2832,7 @@ function __accordion_module($data, $class = '')
     } else {
         $accordion = $accordion;
     }
+    $is_custom_source = !$accordion_source; // '' or false — author-typed rows.
 
     $html = "<div class='accordion $class accordion-flush' id='accordion-$module_id'>"; //accordion
     $index = 0;
@@ -2737,6 +2862,7 @@ function __accordion_module($data, $class = '')
             $html .= __description(array(
                 'description' => $description,
                 'class'       => _attribute('class', array('description-box small-text pb-3')),
+                'autop'       => $is_custom_source ? $custom_autop : true,
             ));
             $html .= "</div>";
             $html .= "</div>"; //end-accordion-item

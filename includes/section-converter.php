@@ -1,26 +1,50 @@
 <?php
 /**
- * Plugin/Snippet Name: Section -> HTML Converter
- * Description: Retires the dynamic "sections" page-builder (the `sections` /
- *              `sections_after_main` complex meta) by freezing each section into
- *              static HTML:
- *                - NON-product posts  -> Gutenberg "Custom HTML" blocks appended
- *                  to post_content (edited thereafter in the block editor).
- *                - product posts      -> a lightweight, sortable HTML repeater
- *                  meta field (`sections_html` / `sections_after_main_html`),
- *                  since products have no block editor.
+ * Plugin/Snippet Name: Convert to Blocks (Sections + Hero)
+ * Description: Retires two legacy Carbon-Fields-shaped editing surfaces by
+ *              freezing them into native Gutenberg blocks in one action:
+ *                - the "sections" page-builder (`sections` / `sections_after_main`
+ *                  complex meta) -> Gutenberg blocks appended to post_content
+ *                  (Custom HTML for anything that can't map natively); products
+ *                  get a lightweight sortable HTML repeater instead, since they
+ *                  have no rendered use of post_content directly.
+ *                - the "Hero" post-meta box (includes/post-meta.php,
+ *                  __hero_fields() etc, see includes/hero-converter.php) ->
+ *                  a `coptrz/hero` block PREPENDED as the first block, but only
+ *                  when it's verified to render identically to the current
+ *                  meta-driven hero (coptrz_hero_dry_run_check(),
+ *                  includes/hero-converter.php) — otherwise that part is
+ *                  skipped and the post keeps rendering its hero from meta,
+ *                  which stays a permanent, correct fallback either way.
+ *              A post converts whichever of the two parts actually apply to it
+ *              — sections and hero are independent per-post, so `post`/`guides`
+ *              (hero only) and `layouts`/`producttaxonomypages` (sections only)
+ *              are all still covered by the SAME single action, alongside the
+ *              post types that have both.
  *
- *              The original `_sections` data is KEPT (conversion is reversible)
- *              and the legacy builder meta box is hidden. Rendering is routed by
- *              `___sections()` (see modules.php) via coptrz_sections_is_converted().
+ *              Both original data sources are KEPT (conversion is reversible)
+ *              and the legacy builder meta box is hidden. Sections-rendering is
+ *              routed by `___sections()` (see modules.php) via
+ *              coptrz_sections_is_converted() — that flag's meaning is
+ *              unchanged by the hero merge; a hero-only conversion never sets
+ *              it. Hero-rendering is routed by ___hero_modules() (modules.php)
+ *              via coptrz_hero_block_attrs() (includes/hero-block.php), keyed
+ *              off the block's presence in post_content, not a flag —
+ *              `_coptrz_hero_converted` (includes/hero-converter.php) is
+ *              bookkeeping only, read by nothing at render time.
  *
- *              Tools provided: a per-post "Convert" meta box (with dry-run) and a
- *              bulk runner under Tools > Convert Sections.
+ *              Tools provided: a per-post "Convert to Blocks" meta box (with
+ *              dry-run) and a bulk runner under Tools > Convert to Blocks,
+ *              including a per-post-type "convert all remaining" batch action
+ *              — every post of a hero-applicable type has a hero (empty meta
+ *              still falls back to the page title), so hand-picking posts one
+ *              at a time doesn't cover that case at scale.
  *
- *              Caveat: freezing is a SNAPSHOT. Dynamic widgets (post grids,
- *              sliders) keep working visually (main.js re-inits by class) but no
- *              longer auto-update; embedded forms/popups that rely on per-request
- *              nonces become static. Review dynamic sections before converting.
+ *              Caveat: freezing sections is a SNAPSHOT. Dynamic widgets (post
+ *              grids, sliders) keep working visually (main.js re-inits by
+ *              class) but no longer auto-update; embedded forms/popups that
+ *              rely on per-request nonces become static. Review dynamic
+ *              sections before converting.
  *
  * Author: Digitally Disruptive - Donald Raymundo
  * Author URI: https://digitallydisruptive.co.uk/
@@ -51,13 +75,200 @@ function coptrz_section_source_fields()
     return array('sections', 'sections_after_main');
 }
 
-/** Post types that can carry sections (drives the bulk tool + per-post box). */
+/** Post types that can carry sections. Still used on its own where the check
+ * is specifically about legacy `_sections` data (the admin_notices legacy-edit
+ * hatch below); the combined admin surface uses coptrz_convertible_post_types(). */
 function coptrz_section_post_types()
 {
     return array(
         'page', 'product', 'layouts', 'capabilities', 'casestudies',
         'producttaxonomypages', 'industries', 'events', 'rentals', 'landingpages',
     );
+}
+
+/**
+ * The union of coptrz_section_post_types() and coptrz_hero_post_types()
+ * (includes/hero-converter.php) — drives the single "Convert to Blocks" admin
+ * surface (meta box registration + bulk search post types). Sections and hero
+ * are independent per post: `post`/`guides` only ever have a hero to convert,
+ * `layouts`/`producttaxonomypages` only ever have sections, and everything
+ * else may have either or both — coptrz_convert_post_to_blocks() decides per
+ * post which parts actually apply.
+ *
+ * @return string[]
+ */
+function coptrz_convertible_post_types()
+{
+    $hero = function_exists('coptrz_hero_post_types') ? coptrz_hero_post_types() : array();
+    return array_values(array_unique(array_merge(coptrz_section_post_types(), $hero)));
+}
+
+/**
+ * What's pending for a post: a subset of `['hero', 'sections']`, empty when
+ * there's nothing left to convert (or nothing applicable). Used by the bulk
+ * search (to filter + label results) and mirrors — but doesn't replace — the
+ * per-part skip checks inside coptrz_convert_post_to_blocks() itself, which
+ * re-verify at conversion time (e.g. the hero identical-render check) rather
+ * than trusting this cheap estimate.
+ *
+ * @param int $post_id
+ * @return string[]
+ */
+function coptrz_post_conversion_state($post_id)
+{
+    $post = get_post($post_id);
+    if (!$post) {
+        return array();
+    }
+
+    $pending = array();
+
+    if (function_exists('coptrz_hero_is_converted')
+        && in_array($post->post_type, coptrz_hero_post_types(), true)
+        && !coptrz_hero_is_converted($post_id)
+    ) {
+        $pending[] = 'hero';
+    }
+
+    if (in_array($post->post_type, coptrz_section_post_types(), true) && !coptrz_sections_is_converted($post_id)) {
+        $has_sections = metadata_exists('post', $post_id, '_sections') || metadata_exists('post', $post_id, '_sections_after_main');
+        if ($has_sections) {
+            $pending[] = 'sections';
+        }
+    }
+
+    return $pending;
+}
+
+/**
+ * The `meta_query` clause selecting posts of ONE given post type that still
+ * have something pending — used per-type (never across a mixed post_type
+ * list, where "hero not converted" would wrongly match a hero-inapplicable
+ * type) by coptrz_conversion_remaining_counts() and the bulk "convert
+ * remaining" batch action. Cheaper than coptrz_post_conversion_state() at
+ * scale since it's one indexed query instead of a per-post PHP loop, at the
+ * cost of not re-verifying the hero identical-render check (same estimate
+ * caveat as coptrz_post_conversion_state()).
+ *
+ * @param string $post_type
+ * @return array meta_query clause array, or [] if nothing is applicable.
+ */
+function coptrz_conversion_pending_meta_query($post_type)
+{
+    $hero_applicable    = function_exists('coptrz_hero_post_types') && in_array($post_type, coptrz_hero_post_types(), true);
+    $section_applicable = in_array($post_type, coptrz_section_post_types(), true);
+
+    $clauses = array();
+    if ($hero_applicable && defined('COPTRZ_HERO_CONVERTED_FLAG')) {
+        $clauses[] = array('key' => COPTRZ_HERO_CONVERTED_FLAG, 'compare' => 'NOT EXISTS');
+    }
+    if ($section_applicable) {
+        $clauses[] = array(
+            'relation' => 'AND',
+            array(
+                'relation' => 'OR',
+                array('key' => '_sections|||0|value', 'compare' => 'EXISTS'),
+                array('key' => '_sections_after_main|||0|value', 'compare' => 'EXISTS'),
+            ),
+            array('key' => COPTRZ_SECTIONS_CONVERTED_FLAG, 'compare' => 'NOT EXISTS'),
+        );
+    }
+
+    if (empty($clauses)) {
+        return array();
+    }
+    if (count($clauses) === 1) {
+        return array($clauses[0]);
+    }
+    return array_merge(array('relation' => 'OR'), $clauses);
+}
+
+/**
+ * How many posts of each convertible post type still have something pending.
+ * Backs the "Convert all remaining" per-type batch table on the bulk page.
+ * An estimate — see coptrz_conversion_pending_meta_query()'s docblock.
+ *
+ * @return array<string,int> post_type => remaining count
+ */
+function coptrz_conversion_remaining_counts()
+{
+    $out = array();
+    foreach (coptrz_convertible_post_types() as $post_type) {
+        $mq = coptrz_conversion_pending_meta_query($post_type);
+        if (empty($mq)) {
+            $out[$post_type] = 0;
+            continue;
+        }
+        $query = new WP_Query(array(
+            'post_type'           => $post_type,
+            'post_status'         => array('publish', 'private', 'draft', 'pending', 'future'),
+            'posts_per_page'      => 1,
+            'fields'              => 'ids',
+            'no_found_rows'       => false,
+            'ignore_sticky_posts' => true,
+            'meta_query'          => $mq,
+        ));
+        $out[$post_type] = (int) $query->found_posts;
+    }
+    return $out;
+}
+
+/**
+ * Finds posts whose stored post_content contains the signature of the
+ * wp_update_post()/wp_slash() bug (fixed in coptrz_convert_post_to_blocks()
+ * and coptrz_revert_post_to_blocks()): wp_update_post()/update_post_meta() both
+ * call wp_unslash() on their input internally, and prior to the fix, block
+ * comment JSON (which contains literal backslash-escapes like <, produced by
+ * wp-includes/blocks.php serialize_block_attributes()) was being written
+ * without wp_slash() first, so every escaped character was silently stripped —
+ * `<p>` became the literal text `u003cpu003e` on the frontend, instead of `<p>`.
+ *
+ * A post matches if any of the six escape signatures (u003c, u003e, u0026,
+ * u002du002d, u005c, u0022 — the stripped forms of <, >, &, --, \, and \")
+ * appears anywhere in post_content. These are not naturally-occurring English
+ * substrings, so a false positive here is effectively impossible; this is a
+ * diagnostic listing, not a strict parser, so no attempt is made to bound the
+ * match to inside a specific block comment.
+ *
+ * Only posts already fixed writes can occur for are checked. Repair is:
+ * Tools > Convert to Blocks > Revert, then Convert, on each listed post — NOT
+ * an in-place text patch (a stripped \n is ambiguous with a literal trailing
+ * "n", so recovery from the corrupted string alone can't be exact; the
+ * untouched `_sections`/Hero meta this theme keeps around lets a fresh
+ * conversion regenerate the correct content instead).
+ *
+ * @return array<array{id:int,title:string,type:string}>
+ */
+function coptrz_find_corrupted_conversions()
+{
+    global $wpdb;
+    $post_types = coptrz_convertible_post_types();
+    if (empty($post_types)) {
+        return array();
+    }
+
+    $type_placeholders = implode(',', array_fill(0, count($post_types), '%s'));
+    $sql = "SELECT ID, post_title, post_type FROM {$wpdb->posts}
+            WHERE post_type IN ({$type_placeholders})
+              AND post_status IN ('publish', 'private', 'draft', 'pending', 'future')
+              AND post_content LIKE %s";
+    $rows = $wpdb->get_results($wpdb->prepare($sql, array_merge($post_types, array('%u00%'))));
+
+    $signatures = array('u003c', 'u003e', 'u0026', 'u002du002d', 'u005c', 'u0022');
+    $found = array();
+    foreach ((array) $rows as $row) {
+        foreach ($signatures as $sig) {
+            if (strpos($row->post_content, $sig) !== false) {
+                $found[] = array(
+                    'id'    => (int) $row->ID,
+                    'title' => $row->post_title,
+                    'type'  => $row->post_type,
+                );
+                break;
+            }
+        }
+    }
+    return $found;
 }
 
 /**
@@ -78,7 +289,7 @@ function coptrz_sections_is_converted($post_id)
  *
  * Deliberately NOT consulted by coptrz_sections_is_converted() — that flag is
  * the write-path guard against double-conversion (see the skip checks in
- * coptrz_convert_post_sections() / coptrz_convert_post_sections_to_blocks())
+ * coptrz_convert_post_sections() / coptrz_convert_post_to_blocks())
  * and must stay pure, or a preview/public-fallback request could re-trigger a
  * conversion and duplicate content.
  *
@@ -99,6 +310,26 @@ function coptrz_sections_legacy_override($post_id)
         return true;
     }
     return false;
+}
+
+/**
+ * Whether the CURRENT admin request should be shown the legacy Sections
+ * builder meta box, which is otherwise retired as an editing surface (see
+ * coptrz_register_html_sections_fields() / the coptrz_meta_shim_field_visible
+ * filter below). Request-scoped only, never persisted — mirrors the frontend
+ * ?coptrz_preview=original hatch (coptrz_sections_legacy_override()) so a
+ * reverted post, or one with bad legacy data that needs fixing before
+ * conversion, can still be edited.
+ *
+ * @param int $post_id
+ * @return bool
+ */
+function coptrz_sections_legacy_edit_override($post_id)
+{
+    return isset($_GET['coptrz_edit'])
+        && $_GET['coptrz_edit'] === 'legacy'
+        && $post_id
+        && current_user_can('edit_post', $post_id);
 }
 
 /**
@@ -146,13 +377,15 @@ function coptrz_sections_should_route($post_id, $id)
 /* ========================================================================= */
 
 /**
- * A converted `page` still carries the Gutenberg page template
- * (templates/page-gutenberg.php), whose else-branch would render the
- * converted post_content via the_content() even once should_route() says
- * "legacy". Force the Modules template for the duration of the override so
- * ___hero_modules() + ___sections() (the legacy path) render instead. Other
- * post types keep their bespoke single templates, which already route through
- * ___sections() — should_route() alone is sufficient for them.
+ * A converted `page` still carries the Blocks Editor page template
+ * (templates/page-blocks-editor.php), which would render the converted
+ * post_content via the_content() even once should_route() says "legacy" —
+ * and that template has no ___hero_modules() call at all (the hero renders
+ * inline from its block there). Force the Modules template for the duration
+ * of the override so ___hero_modules() + ___sections() (the legacy path)
+ * render instead. Other post types keep their bespoke single templates, which
+ * already route through ___sections() — should_route() alone is sufficient
+ * for them.
  */
 add_filter('template_include', function ($template) {
     if (is_admin() || !is_singular('page')) {
@@ -375,13 +608,21 @@ function coptrz_html_sections_field_names()
 /**
  * Bring the legacy "sections" builder meta box, or the product HTML repeater,
  * back into view for a single post where it's still the active editing
- * surface — hide_fields() above blocklists both globally, since most posts
- * using these field names have moved past them (to the legacy builder for a
- * converted post, or to native blocks for a block-mode product).
+ * surface — hide_fields() above blocklists both globally.
+ *
+ * The legacy `sections` builder is retired as an editing surface entirely: all
+ * future content changes go through the converted surface (native blocks, or
+ * the HTML repeater for products), so it stays hidden even on unconverted
+ * posts. It's only brought back per-post via the ?coptrz_edit=legacy admin
+ * hatch (coptrz_sections_legacy_edit_override()) — e.g. after a revert, or to
+ * fix bad legacy data before converting.
+ *
+ * The product HTML repeater is a converted editing surface (not legacy), so it
+ * keeps reappearing for any product not yet on blocks mode.
  */
 add_filter('coptrz_meta_shim_field_visible', function ($visible, $field_name, $post_id) {
-    if (in_array($field_name, coptrz_section_source_fields(), true) && !coptrz_sections_is_converted($post_id)) {
-        return true;
+    if (in_array($field_name, coptrz_section_source_fields(), true)) {
+        return coptrz_sections_legacy_edit_override($post_id);
     }
     if (in_array($field_name, coptrz_html_sections_field_names(), true)
         && get_post_meta($post_id, '_coptrz_sections_mode', true) !== 'blocks'
@@ -391,6 +632,54 @@ add_filter('coptrz_meta_shim_field_visible', function ($visible, $field_name, $p
     return $visible;
 }, 10, 3);
 
+/**
+ * Surface the ?coptrz_edit=legacy hatch on the edit screen of any post still
+ * carrying legacy `_sections` data, since the meta box it unlocks is otherwise
+ * invisible with no indication it can be reached. Shows a plain notice with a
+ * link to enable it, or — while the hatch is active — a warning that edits
+ * made there won't reach the front end once the post is converted.
+ */
+add_action('admin_notices', function () {
+    global $post;
+    if (!($post instanceof WP_Post) || !in_array($post->post_type, coptrz_section_post_types(), true)) {
+        return;
+    }
+    if (!current_user_can('edit_post', $post->ID)) {
+        return;
+    }
+
+    $has_legacy_data = false;
+    foreach (coptrz_section_source_fields() as $field_name) {
+        $rows = \CoptrzTheme\MetaShim\Key_Formatter::load_root_map('post', $post->ID, $field_name);
+        if (!empty($rows)) {
+            $has_legacy_data = true;
+            break;
+        }
+    }
+    if (!$has_legacy_data) {
+        return;
+    }
+
+    if (coptrz_sections_legacy_edit_override($post->ID)) {
+        ?>
+        <div class="notice notice-warning">
+            <p><?php esc_html_e('Editing the legacy Sections builder — this data is only used as a fallback for unconverted posts and will not appear once this post is converted.', 'coptrz-theme'); ?></p>
+        </div>
+        <?php
+        return;
+    }
+
+    $edit_url = add_query_arg('coptrz_edit', 'legacy', get_edit_post_link($post->ID, 'raw'));
+    ?>
+    <div class="notice notice-info">
+        <p>
+            <?php esc_html_e('This post has legacy Sections builder data. The builder is hidden by default — content changes should use the converted editing surface.', 'coptrz-theme'); ?>
+            <a href="<?php echo esc_url($edit_url); ?>"><?php esc_html_e('Edit legacy Sections anyway', 'coptrz-theme'); ?></a>
+        </p>
+    </div>
+    <?php
+});
+
 /* ========================================================================= */
 /*  Conversion engine                                                         */
 /* ========================================================================= */
@@ -398,10 +687,10 @@ add_filter('coptrz_meta_shim_field_visible', function ($visible, $field_name, $p
 /**
  * Convert one post's sections into frozen HTML.
  *
- * Both admin UIs (the per-post meta box and the Tools > Convert Sections bulk
+ * Both admin UIs (the per-post meta box and the Tools > Convert to Blocks bulk
  * runner) now route to this ONLY for `product` posts, which have no block editor
  * and so use the `{$field}_html` repeater below. Every other post type routes to
- * coptrz_convert_post_sections_to_blocks() instead — this function's non-product
+ * coptrz_convert_post_to_blocks() instead — this function's non-product
  * branch (Gutenberg Custom HTML blocks appended to post_content) is unreachable
  * from the UI but left in place rather than partially gutted.
  *
@@ -516,7 +805,15 @@ function coptrz_convert_post_sections($post_id, $dry_run = false)
             }
         }
         if (!$dry_run) {
-            wp_update_post(array('ID' => $post_id, 'post_content' => $new_content));
+            // wp_update_post() -> wp_insert_post() calls wp_unslash() on the
+            // postarr internally (it expects SLASHED input, matching how
+            // $_POST arrives) — block comment JSON produced by
+            // serialize_blocks() contains literal backslash-escapes (<
+            // etc, see wp-includes/blocks.php serialize_block_attributes())
+            // that wp_unslash() would otherwise strip, corrupting every
+            // escaped character in every block attribute. wp_slash() here
+            // cancels that out.
+            wp_update_post(array('ID' => $post_id, 'post_content' => wp_slash($new_content)));
         }
 
         // Converted pages switch to the Gutenberg page template so their frozen
@@ -643,6 +940,239 @@ function coptrz_block_container($name, $attrs, $wrap_open, $wrap_close, array $i
         'innerHTML'    => $wrap_open . $wrap_close,
         'innerContent' => $inner_content,
     );
+}
+
+/* ========================================================================= */
+/*  Rich-text HTML → native blocks (DOMDocument-based)                       */
+/* ========================================================================= */
+/*
+ * Backs the `description` mapper (and, via coptrz_inline_html(), the `heading`
+ * mapper). Carbon Fields rich-text values routinely already contain
+ * block-level HTML (<p>, <ul>, headings) — the bug this fixes was hand-wrapping
+ * that raw HTML in a SECOND <p class="description-box"> for core/paragraph,
+ * producing invalid nested markup (<p><p>…</p></p>, or worse <p><ul>…</ul></p>)
+ * that fails Gutenberg's save()-vs-stored-markup validation the next time the
+ * post is opened in the editor. Using DOMDocument's HTML parser to split the
+ * source into one native block PER top-level node sidesteps this at the root:
+ * whatever a browser would do to "recover" stray nesting in the source (e.g.
+ * auto-close an inner <p>, making it a sibling) is exactly what libxml's HTML
+ * parser does too, so the blocks this emits are always well-formed by
+ * construction — never a hand-maintained validity assumption.
+ */
+
+/**
+ * Parse an HTML fragment into a DOMDocument, wrapped in a `#coptrz-root`
+ * container so top-level bare text nodes are reachable the same way as
+ * top-level elements. Returns null if the DOM extension is unavailable or the
+ * fragment fails to parse into anything.
+ *
+ * @param string $html
+ * @return array{0:DOMDocument,1:DOMElement}|null
+ */
+function coptrz_parse_html_fragment($html)
+{
+    if (!class_exists('DOMDocument')) {
+        return null;
+    }
+    $doc = new DOMDocument();
+    $prev_setting = libxml_use_internal_errors(true);
+    // The `<?xml encoding="UTF-8">` prefix is the standard idiom that makes
+    // DOMDocument::loadHTML() treat the fragment as UTF-8 instead of mangling
+    // multibyte characters (em dashes, degree signs, curly quotes — all
+    // present in this theme's real content) into mojibake.
+    $doc->loadHTML(
+        '<?xml encoding="UTF-8"><div id="coptrz-root">' . $html . '</div>',
+        LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+    );
+    libxml_clear_errors();
+    libxml_use_internal_errors($prev_setting);
+
+    $root = $doc->getElementById('coptrz-root');
+    return $root ? array($doc, $root) : null;
+}
+
+/**
+ * Serialize a DOM node's CHILDREN (not the node itself) back to an HTML string.
+ *
+ * @param DOMDocument $doc
+ * @param DOMNode     $node
+ * @return string
+ */
+function coptrz_dom_inner_html($doc, $node)
+{
+    $html = '';
+    foreach ($node->childNodes as $child) {
+        $html .= $doc->saveHTML($child);
+    }
+    return $html;
+}
+
+/**
+ * Reduce arbitrary rich-text HTML to INLINE markup only (no <p>/<div>/<ul>/
+ * <h*>/etc) — for contexts whose save() only ever wraps RichText content in a
+ * single tag, so a stray block-level element in the source can't nest inside
+ * it the same way the description bug above did. Block-level/unrecognised
+ * elements are unwrapped (their inline content is kept, the wrapping tag is
+ * dropped); recognised inline formatting tags are preserved verbatim.
+ *
+ * @param string $html
+ * @return string
+ */
+function coptrz_inline_html($html)
+{
+    $html = trim((string) $html);
+    if ($html === '') {
+        return '';
+    }
+
+    $parsed = coptrz_parse_html_fragment($html);
+    if ($parsed === null) {
+        return wp_strip_all_tags($html);
+    }
+    list($doc, $root) = $parsed;
+
+    static $inline_tags = array('a', 'strong', 'b', 'em', 'i', 'span', 'sub', 'sup', 'u', 's', 'mark', 'code', 'abbr');
+
+    $flatten = function ($node) use (&$flatten, $doc, $inline_tags) {
+        $out = '';
+        foreach ($node->childNodes as $child) {
+            if ($child instanceof DOMText) {
+                $out .= $doc->saveHTML($child);
+                continue;
+            }
+            if (!($child instanceof DOMElement)) {
+                continue;
+            }
+            $tag = strtolower($child->tagName);
+            if ($tag === 'br') {
+                $out .= '<br>';
+                continue;
+            }
+            if (in_array($tag, $inline_tags, true)) {
+                $out .= $doc->saveHTML($child);
+                continue;
+            }
+            // Block-level (or unrecognised) element → unwrap, keep its content.
+            $out .= $flatten($child);
+        }
+        return $out;
+    };
+
+    return trim($flatten($root));
+}
+
+/**
+ * Convert one top-level DOM node into a parsed-block array. Returns null for
+ * nodes with nothing to emit (blank text, empty tags).
+ *
+ * @param DOMDocument $doc
+ * @param DOMNode     $node
+ * @return array|null
+ */
+function coptrz_html_node_to_block($doc, $node)
+{
+    if ($node instanceof DOMText) {
+        $text = trim($node->wholeText);
+        return $text === '' ? null : coptrz_block('core/paragraph', array(), '<p>' . esc_html($text) . '</p>');
+    }
+
+    if (!($node instanceof DOMElement)) {
+        return null;
+    }
+
+    $tag = strtolower($node->tagName);
+
+    if ($tag === 'p') {
+        $inner = trim(coptrz_dom_inner_html($doc, $node));
+        return $inner === '' ? null : coptrz_block('core/paragraph', array(), '<p>' . $inner . '</p>');
+    }
+
+    if (preg_match('/^h([1-6])$/', $tag, $m)) {
+        $level = (int) $m[1];
+        $inner = trim(coptrz_inline_html(coptrz_dom_inner_html($doc, $node)));
+        if ($inner === '') {
+            return null;
+        }
+        return coptrz_block(
+            'core/heading',
+            array('level' => $level),
+            '<h' . $level . ' class="wp-block-heading">' . $inner . '</h' . $level . '>'
+        );
+    }
+
+    if ($tag === 'ul' || $tag === 'ol') {
+        $ordered = ($tag === 'ol');
+        $items = array();
+        foreach ($node->childNodes as $child) {
+            if (!($child instanceof DOMElement) || strtolower($child->tagName) !== 'li') {
+                continue;
+            }
+            $li_inner = trim(coptrz_inline_html(coptrz_dom_inner_html($doc, $child)));
+            if ($li_inner === '') {
+                continue;
+            }
+            $items[] = coptrz_block('core/list-item', array(), '<li>' . $li_inner . '</li>');
+        }
+        if (empty($items)) {
+            return null;
+        }
+        // Preserve a custom class carried on the source <ul>/<ol> (Carbon's
+        // rich-text editor lets authors add one — e.g. "styled-cheklist" on the
+        // DJI Care Enterprise lists this fixes) so converting doesn't silently
+        // drop styling. `className` is a universal block-support attribute, so
+        // this needs no ddCustomCSS/render_block whitelisting (core/list isn't
+        // on that whitelist).
+        $extra_class = trim((string) $node->getAttribute('class'));
+        $attrs    = $ordered ? array('ordered' => true) : array();
+        $list_cls = trim('wp-block-list ' . $extra_class);
+        if ($extra_class !== '') {
+            $attrs['className'] = $extra_class;
+        }
+        $tag_name  = $ordered ? 'ol' : 'ul';
+        $tag_open  = '<' . $tag_name . ' class="' . esc_attr($list_cls) . '">';
+        $tag_close = '</' . $tag_name . '>';
+        return coptrz_block_container('core/list', $attrs, $tag_open, $tag_close, $items);
+    }
+
+    // Anything else (table, blockquote, figure, stray div, …) → a lossless
+    // snapshot of just THIS node, so the rest of the description can still go
+    // native — mirrors the whole-section Custom HTML fallback, one level down.
+    $outer = $doc->saveHTML($node);
+    return $outer === '' ? null : coptrz_block('core/html', array(), $outer);
+}
+
+/**
+ * Convert an HTML fragment (already wpautop()'d / wp_kses_post()'d) into an
+ * array of parsed-block arrays, one per top-level node. Falls back to a
+ * single Custom HTML block if the fragment can't be parsed at all (DOM
+ * extension missing, or genuinely empty after parsing) — always valid, just
+ * not native, same fallback the whole-section snapshot already relies on.
+ *
+ * @param string $html
+ * @return array
+ */
+function coptrz_html_to_blocks($html)
+{
+    $html = trim((string) $html);
+    if ($html === '') {
+        return array();
+    }
+
+    $parsed = coptrz_parse_html_fragment($html);
+    if ($parsed === null) {
+        return array(coptrz_block('core/html', array(), $html));
+    }
+    list($doc, $root) = $parsed;
+
+    $blocks = array();
+    foreach ($root->childNodes as $node) {
+        $block = coptrz_html_node_to_block($doc, $node);
+        if ($block !== null) {
+            $blocks[] = $block;
+        }
+    }
+
+    return $blocks ?: array(coptrz_block('core/html', array(), $html));
 }
 
 /**
@@ -1355,9 +1885,12 @@ function coptrz_post_grid_legacy_item_to_attrs($item)
  *     (which causes the enclosing section to snapshot to Custom HTML).
  *   - Dynamic elements (layouts, global_widgets, product_compare, etc.) map to
  *     core/shortcode (or, for layouts/global_widgets/post_grid, their dedicated
- *     coptrz/* block) so they stay live/editable.
- *   - Elements with no native block equivalent and no shortcode form (tabs,
- *     accordion) are intentionally absent → section snapshots as HTML.
+ *     coptrz/* block) so they stay live/editable. tabs/accordion map to the
+ *     theme's own dynamic coptrz/tabs-legacy / coptrz/accordion-legacy blocks.
+ *   - video maps to core/html (lossless; reproduces __video()'s markup exactly —
+ *     see the mapper itself for why core/html can never fail validation).
+ *   - related_post / related_products currently have no mapper → any section
+ *     containing one snapshots to Custom HTML.
  *
  * Filterable via 'coptrz_block_item_mappers' so additional mappings can be added
  * from the element→block guide without editing this file.
@@ -1387,12 +1920,21 @@ function coptrz_block_item_mappers()
         return $sc === '' ? null : array(coptrz_block('core/shortcode', array(), $sc));
     };
 
-    // Heading → core/heading.
+    // Heading → core/heading. $text is normalised to INLINE-only markup via
+    // coptrz_inline_html() before being wrapped in the single <hN> save()
+    // produces — a stray block-level element in the Carbon field (a <p>, a
+    // pasted <div>) would otherwise nest inside the heading tag the same way
+    // it broke core/paragraph below, so it's unwrapped here rather than left
+    // as a latent validation risk.
     $map['heading'] = function ($item) {
         $tag   = strtolower(isset($item['tag']) ? (string) $item['tag'] : 'h2');
         $level = (int) filter_var($tag, FILTER_SANITIZE_NUMBER_INT) ?: 2;
         $text  = isset($item['heading']) ? (string) $item['heading'] : '';
         if ($text === '') {
+            return null;
+        }
+        $inner = trim(coptrz_inline_html(wp_kses_post($text)));
+        if ($inner === '') {
             return null;
         }
         $extra = array();
@@ -1410,30 +1952,80 @@ function coptrz_block_item_mappers()
         if ($extra) {
             $attrs['className'] = implode(' ', $extra);
         }
-        $html = '<h' . $level . ' class="' . esc_attr($cls) . '">' . wp_kses_post($text) . '</h' . $level . '>';
+        $html = '<h' . $level . ' class="' . esc_attr($cls) . '">' . $inner . '</h' . $level . '>';
         return array(coptrz_block('core/heading', $attrs, $html));
     };
 
-    // Description → core/paragraph.
+    // Description → core/paragraph for a single plain paragraph (the common
+    // case, and the shape that already validates), or core/group.description-box
+    // (matching __description()'s own <div class="description-box">, modules.php)
+    // containing native inner blocks when the source is richer than one
+    // paragraph — multiple paragraphs, a list, a heading. Previously this always
+    // hand-wrapped the raw field value in a SINGLE <p class="description-box">,
+    // which produced invalid nested markup (<p><p>…</p></p>, or <p><ul>…</ul></p>)
+    // whenever the Carbon value already contained block-level HTML — see the
+    // "Rich-text HTML → native blocks" section above for how the split is done.
     $map['description'] = function ($item) {
         $text = isset($item['description']) ? (string) $item['description'] : '';
         if ($text === '') {
             return null;
         }
-        $classes = array('description-box');
+
+        $inner_blocks = coptrz_html_to_blocks(wpautop(wp_kses_post($text)));
+        if (empty($inner_blocks)) {
+            return null;
+        }
+
+        $extra = array();
         if (!empty($item['description_alignment'])) {
-            $classes[] = $item['description_alignment'];
+            $extra[] = $item['description_alignment'];
         }
         if (!empty($item['description_size'])) {
-            $classes[] = $item['description_size'];
+            $extra[] = $item['description_size'];
         }
-        $style = !empty($item['description_width'])
-            ? ' style="max-width:' . esc_attr($item['description_width']) . '"'
+        $cls = trim('description-box ' . implode(' ', $extra));
+
+        // ddCustomCSS is this theme's existing per-block Custom CSS mechanism
+        // (functions.php, digitally_disruptive_render_custom_css(), already
+        // whitelisted for core/group and core/paragraph) — used here instead of
+        // a hand-serialized `style` attribute, which would risk a future
+        // save()-mismatch the same way the raw inline `style=""` this replaces
+        // already did (that attribute has no equivalent in either block's
+        // supported attribute schema).
+        $custom_css = !empty($item['description_width'])
+            ? 'max-width: ' . trim((string) $item['description_width']) . ';'
             : '';
-        $cls   = implode(' ', $classes);
-        $attrs = array('className' => $cls);
-        $html  = '<p class="' . esc_attr($cls) . '"' . $style . '>' . wp_kses_post($text) . '</p>';
-        return array(coptrz_block('core/paragraph', $attrs, $html));
+
+        // Simple case: exactly one paragraph → keep the flat core/paragraph
+        // shape (byte-identical to what already validates on plain-text cards).
+        if (count($inner_blocks) === 1 && $inner_blocks[0]['blockName'] === 'core/paragraph') {
+            $attrs = array('className' => $cls);
+            if ($custom_css !== '') {
+                $attrs['ddCustomCSS'] = $custom_css;
+            }
+            // Re-tag the parsed paragraph's own <p> with the description-box
+            // class list. Safe string surgery: coptrz_html_node_to_block()
+            // (just above) is the sole producer of this innerHTML and always
+            // emits exactly '<p>' . $inner . '</p>' with no attributes of its own.
+            $p_inner = preg_replace('/^<p>(.*)<\/p>$/s', '$1', $inner_blocks[0]['innerHTML']);
+            $html    = '<p class="' . esc_attr($cls) . '">' . $p_inner . '</p>';
+            return array(coptrz_block('core/paragraph', $attrs, $html));
+        }
+
+        // Rich case: wrap the native inner blocks in the same .description-box
+        // <div> __description() itself renders.
+        $attrs = array('className' => $cls, 'layout' => array('type' => 'default'));
+        if ($custom_css !== '') {
+            $attrs['ddCustomCSS'] = $custom_css;
+        }
+        $div_cls = trim('wp-block-group ' . $cls);
+        return array(coptrz_block_container(
+            'core/group',
+            $attrs,
+            '<div class="' . esc_attr($div_cls) . '">',
+            '</div>',
+            $inner_blocks
+        ));
     };
 
     // Image → core/image.
@@ -1480,6 +2072,59 @@ function coptrz_block_item_mappers()
             . ' class="wp-image-' . $att_id . '"' . $img_sty . '/>'
             . '</figure>';
         return array(coptrz_block('core/image', $attrs, $html));
+    };
+
+    // Self-hosted or YouTube video → core/html, reproducing __video()'s markup
+    // (elements.php) exactly. core/html's save() is RawHTML — there is no
+    // stored-vs-generated markup to drift, so this can never itself trigger a
+    // validation error, the same rationale as the custom_html leaf mapper
+    // above. Having a mapper for `video` at all is what matters: previously
+    // this element type had none, so ANY section containing a video (e.g. a
+    // self-hosted clip in one card of a feature-card row) forced the WHOLE
+    // section to snapshot as one Custom HTML block, dragging every other
+    // (mappable) item in it down too.
+    //
+    // Class list: modules.php has TWO `case 'video':` renderers with different
+    // classes — the top-level section-item switch (~L1005-1017, no rounded-corner)
+    // vs the per-column-item switch inside ____columns_modules() (~L2654-2666,
+    // always 'video-box rounded-corner overflow-hidden'). This registry has no
+    // way to tell which context called it (both the top-level dispatch and the
+    // `columns` mapper above call every mapper the same way), so this matches
+    // the COLUMN-context classes — that's the shape a video-in-a-feature-card
+    // actually needs (the concrete case that forced whole-section snapshots).
+    // A bare top-level `video` item (not inside `columns`) would gain
+    // 'rounded-corner overflow-hidden' it didn't have before — a minor visual
+    // difference (rounded/clipped corners), not a content bug; flag via the
+    // 'coptrz_block_item_mappers' filter if that turns out to matter somewhere.
+    $map['video'] = function ($item) {
+        $video_type = isset($item['video_type']) ? (string) $item['video_type'] : '';
+        $autoplay   = !empty($item['autoplay']);
+        $class      = 'video-box rounded-corner overflow-hidden' . ($video_type !== '' ? ' ' . $video_type : '');
+
+        if ($video_type === 'youtube') {
+            $youtube_id = isset($item['youtube_video_id']) ? (string) $item['youtube_video_id'] : '';
+            if ($youtube_id === '') {
+                return null;
+            }
+            $parameters = $autoplay
+                ? '?loop=1&controls=0&rel=0&playsinline=1&autoplay=1&mute=1&controls=0&playlist=' . $youtube_id
+                : '';
+            $src  = 'https://www.youtube.com/embed/' . $youtube_id . $parameters;
+            $html = '<div class="' . esc_attr($class) . '"><iframe src="' . esc_url($src) . '"></iframe></div>';
+            return array(coptrz_block('core/html', array(), $html));
+        }
+
+        $video_id = (int) (isset($item['video']) ? $item['video'] : 0);
+        if (!$video_id) {
+            return null;
+        }
+        $video_url = wp_get_attachment_url($video_id);
+        if (!$video_url) {
+            return null;
+        }
+        $params = $autoplay ? 'autoplay loop muted' : 'controls';
+        $html   = '<div class="' . esc_attr($class) . '"><video ' . $params . ' src="' . esc_url($video_url) . '"></video></div>';
+        return array(coptrz_block('core/html', array(), $html));
     };
 
     /* ------------------------------------------------------------------ */
@@ -1559,54 +2204,76 @@ function coptrz_block_item_mappers()
     /*  value can't silently drop the whole block attribute.                */
     /* ------------------------------------------------------------------ */
 
-    // Gallery → coptrz/gallery.
+    // Gallery → coptrz/gallery, flattened typed attributes (not an opaque
+    // blob) so the block is genuinely editable — see coptrz-gallery-block.js /
+    // coptrz_render_gallery_block() (includes/legacy-blocks.php). Spacing
+    // values are stored as bare numbers (registry: coptrz_legacy_block_field_
+    // options()) so the gx-/gy- prefix is stripped here and re-added at render.
     $map['gallery'] = function ($item) {
-        if (empty($item['gallery'])) {
+        if (empty($item['gallery']) || !is_array($item['gallery'])) {
             return null;
         }
-        $legacy = coptrz_json_safe_array($item);
-        if ($legacy === null) {
+        $strip_prefix = function ($v, $prefix) {
+            $v = (string) $v;
+            return strpos($v, $prefix) === 0 ? substr($v, strlen($prefix)) : $v;
+        };
+        $attrs = coptrz_json_safe_array(array(
+            'galleryIds'          => array_map('intval', $item['gallery']),
+            'galleryStyle'        => isset($item['gallery_style']) ? (string) $item['gallery_style'] : 'grid',
+            'numberOfSlides'       => isset($item['number_of_slides']) ? (string) $item['number_of_slides'] : '',
+            'numberOfSlidesTablet' => isset($item['number_of_slides_tablet']) ? (string) $item['number_of_slides_tablet'] : '',
+            'numberOfSlidesMobile' => isset($item['number_of_slides_mobile']) ? (string) $item['number_of_slides_mobile'] : '',
+            'columnWidth'          => isset($item['column_width']) ? (string) $item['column_width'] : 'col-lg',
+            'columnWidthTablet'    => isset($item['column_width_tablet']) ? (string) $item['column_width_tablet'] : '',
+            'columnWidthMobile'    => isset($item['column_width_mobile']) ? (string) $item['column_width_mobile'] : '',
+            'horizontalSpacing'    => $strip_prefix(isset($item['horizontal_spacing']) ? $item['horizontal_spacing'] : '', 'gx-'),
+            'verticalSpacing'      => $strip_prefix(isset($item['vertical_spacing']) ? $item['vertical_spacing'] : '', 'gy-'),
+            'sameImageHeight'      => !empty($item['same_image_height']),
+        ));
+        if ($attrs === null) {
             return null;
         }
-        $style = isset($item['gallery_style']) ? (string) $item['gallery_style'] : '';
-        $count = is_array($item['gallery']) ? count($item['gallery']) : 0;
-        return array(coptrz_block('coptrz/gallery', array(
-            'legacy'  => $legacy,
-            'summary' => $count . ' image(s)' . ($style !== '' ? " ({$style})" : ''),
-        )));
+        return array(coptrz_block('coptrz/gallery', $attrs));
+    };
+
+    // Resolves a list of Carbon association rows ({id, …}) into the
+    // [{id, title}, …] shape IdTokenPicker/SinglePostPicker expect. $resolver
+    // is called with the id and must return a display title.
+    $resolve_picker_ids = function ($rows, $resolver) {
+        $out = array();
+        foreach ((array) $rows as $row) {
+            if (empty($row['id'])) {
+                continue;
+            }
+            $id = (int) $row['id'];
+            $out[] = array('id' => $id, 'title' => (string) call_user_func($resolver, $id));
+        }
+        return $out;
+    };
+    $resolve_term_title = function ($id, $taxonomy) {
+        $term = get_term($id, $taxonomy);
+        return ($term && !is_wp_error($term)) ? $term->name : '';
     };
 
     // Product Slider → coptrz/product-slider. Stores SOURCE FIELDS, not a
     // frozen query — see coptrz_render_product_slider_block() in
     // includes/legacy-blocks.php for why (the `main_query` source depends on
     // the live request).
-    $map['product_slider'] = function ($item) {
+    $map['product_slider'] = function ($item) use ($resolve_picker_ids, $resolve_term_title) {
         $source_type = isset($item['source_type']) ? (string) $item['source_type'] : '';
-        $category_ids = array();
-        if (!empty($item['source']) && is_array($item['source'])) {
-            foreach ($item['source'] as $cat) {
-                if (!empty($cat['id'])) {
-                    $category_ids[] = (int) $cat['id'];
-                }
-            }
-        }
-        $brand_ids = array();
-        if (!empty($item['brand']) && is_array($item['brand'])) {
-            foreach ($item['brand'] as $brand) {
-                if (!empty($brand['id'])) {
-                    $brand_ids[] = (int) $brand['id'];
-                }
-            }
-        }
-        $product_ids = array();
-        if (!empty($item['products']) && is_array($item['products'])) {
-            foreach ($item['products'] as $product) {
-                if (!empty($product['id'])) {
-                    $product_ids[] = (int) $product['id'];
-                }
-            }
-        }
-        return array(coptrz_block('coptrz/product-slider', array(
+        $category_ids = $resolve_picker_ids(
+            !empty($item['source']) && is_array($item['source']) ? $item['source'] : array(),
+            function ($id) use ($resolve_term_title) { return $resolve_term_title($id, 'product_cat'); }
+        );
+        $brand_ids = $resolve_picker_ids(
+            !empty($item['brand']) && is_array($item['brand']) ? $item['brand'] : array(),
+            function ($id) use ($resolve_term_title) { return $resolve_term_title($id, 'pa_brands'); }
+        );
+        $product_ids = $resolve_picker_ids(
+            !empty($item['products']) && is_array($item['products']) ? $item['products'] : array(),
+            function ($id) { return get_the_title($id); }
+        );
+        $attrs = coptrz_json_safe_array(array(
             'sourceType'  => $source_type,
             'categoryIds' => $category_ids,
             'brandIds'    => $brand_ids,
@@ -1615,58 +2282,135 @@ function coptrz_block_item_mappers()
             'heading'     => isset($item['heading']) ? (string) $item['heading'] : '',
             'buttonText'  => isset($item['button_text']) ? (string) $item['button_text'] : '',
             'buttonUrl'   => isset($item['button_url']) ? (string) $item['button_url'] : '',
-        )));
+        ));
+        if ($attrs === null) {
+            return null;
+        }
+        return array(coptrz_block('coptrz/product-slider', $attrs));
     };
 
     // Tabs (Bootstrap nav-tabs) → coptrz/tabs-legacy. Distinct from the native
-    // dd/tabs block — this is a frozen wrapper, not a conversion onto it.
+    // dd/tabs block — this is a frozen-renderer wrapper, not a conversion onto
+    // it. Descriptions are wpautop()'d ONCE here — the block's RichText editor
+    // stores real HTML directly (rendered with autop DISABLED, see
+    // coptrz_render_tabs_legacy_block()), so a legacy textarea's bare newlines
+    // must become real <p> tags now or they're lost forever.
     $map['tabs'] = function ($item) {
         if (empty($item['tabs']) || !is_array($item['tabs'])) {
             return null;
         }
-        $legacy = coptrz_json_safe_array($item);
-        if ($legacy === null) {
+        $tabs = array();
+        foreach ($item['tabs'] as $tab) {
+            $tabs[] = array(
+                'heading'     => isset($tab['heading']) ? (string) $tab['heading'] : '',
+                'description' => wpautop(isset($tab['description']) ? (string) $tab['description'] : ''),
+            );
+        }
+        $attrs = coptrz_json_safe_array(array('tabs' => $tabs));
+        if ($attrs === null) {
             return null;
         }
-        return array(coptrz_block('coptrz/tabs-legacy', array('legacy' => $legacy)));
+        return array(coptrz_block('coptrz/tabs-legacy', $attrs));
     };
 
     // Accordion → coptrz/accordion-legacy. Distinct from core/details — this is
-    // a frozen wrapper that keeps the FAQs-by-selection / FAQs-by-category
-    // dynamic sourcing intact.
-    $map['accordion'] = function ($item) {
-        $legacy = coptrz_json_safe_array($item);
-        if ($legacy === null) {
+    // a frozen-renderer wrapper that keeps the FAQs-by-selection / FAQs-by-
+    // category dynamic sourcing intact. Custom-source descriptions are
+    // wpautop()'d ONCE here, same rationale as `tabs` above.
+    $map['accordion'] = function ($item) use ($resolve_picker_ids, $resolve_term_title) {
+        $items = array();
+        if (!empty($item['accordion']) && is_array($item['accordion'])) {
+            foreach ($item['accordion'] as $row) {
+                $items[] = array(
+                    'heading'     => isset($row['heading']) ? (string) $row['heading'] : '',
+                    'description' => wpautop(isset($row['description']) ? (string) $row['description'] : ''),
+                );
+            }
+        }
+        $faqs = $resolve_picker_ids(
+            !empty($item['faqs']) && is_array($item['faqs']) ? $item['faqs'] : array(),
+            function ($id) { return get_the_title($id); }
+        );
+        $faqs_category = $resolve_picker_ids(
+            !empty($item['faqs_category']) && is_array($item['faqs_category']) ? $item['faqs_category'] : array(),
+            function ($id) use ($resolve_term_title) { return $resolve_term_title($id, 'faqs_category'); }
+        );
+        $attrs = coptrz_json_safe_array(array(
+            'items'         => $items,
+            'source'        => isset($item['accordion_source']) ? (string) $item['accordion_source'] : '',
+            'faqs'          => $faqs,
+            'faqsCategory'  => $faqs_category,
+            'openFirstItem' => !empty($item['open_first_item']),
+            'withBorder'    => !empty($item['with_border']),
+            'lowerOpacity'  => !empty($item['lower_opacity']),
+        ));
+        if ($attrs === null) {
             return null;
         }
-        return array(coptrz_block('coptrz/accordion-legacy', array('legacy' => $legacy)));
+        return array(coptrz_block('coptrz/accordion-legacy', $attrs));
     };
 
-    // Drone Servicing Grid → coptrz/drone-servicing-grid. The nested
-    // servicing_drones[].service_features[] rows MUST keep their `_type` key
-    // (drone/battery/controller/payload) intact — __drone_servicing()
-    // dispatches on it. coptrz_json_safe_array() is key-preserving.
+    // Drone Servicing Grid → coptrz/drone-servicing-grid. Each drone's FIXED
+    // four specs (drone/battery/controller/payload — post-meta.php's
+    // `set_duplicate_groups_allowed(false)`) become an `enabled`+`quantity` map;
+    // __drone_servicing() (woocommerce.php) treats a spec's ABSENCE from
+    // service_features (not an empty value) as "not available", so `enabled`
+    // must reflect presence, not truthiness of quantity.
     $map['drone_servicing_grid'] = function ($item) {
-        if (empty($item['servicing_drones'])) {
+        if (empty($item['servicing_drones']) || !is_array($item['servicing_drones'])) {
             return null;
         }
-        $legacy = coptrz_json_safe_array($item);
-        if ($legacy === null) {
+        $spec_types = array('drone', 'battery', 'controller', 'payload');
+        $drones = array();
+        foreach ($item['servicing_drones'] as $row) {
+            $features = array();
+            foreach ($spec_types as $type) {
+                $features[$type] = array('enabled' => false, 'quantity' => '');
+            }
+            if (!empty($row['service_features']) && is_array($row['service_features'])) {
+                foreach ($row['service_features'] as $feature) {
+                    $type = isset($feature['_type']) ? (string) $feature['_type'] : '';
+                    if (isset($features[$type])) {
+                        $features[$type] = array(
+                            'enabled'  => true,
+                            'quantity' => isset($feature['quantity']) ? $feature['quantity'] : '',
+                        );
+                    }
+                }
+            }
+            $drones[] = array(
+                'serviceName'       => isset($row['service_name']) ? (string) $row['service_name'] : '',
+                'serviceSubheading' => isset($row['service_subheading']) ? (string) $row['service_subheading'] : '',
+                'servicePrice'      => isset($row['service_price']) ? (string) $row['service_price'] : '',
+                'features'          => $features,
+            );
+        }
+        $attrs = coptrz_json_safe_array(array(
+            'heading'     => isset($item['servicing_heading']) ? (string) $item['servicing_heading'] : '',
+            'description' => isset($item['servicing_description']) ? (string) $item['servicing_description'] : '',
+            'drones'      => $drones,
+        ));
+        if ($attrs === null) {
             return null;
         }
-        return array(coptrz_block('coptrz/drone-servicing-grid', array('legacy' => $legacy)));
+        return array(coptrz_block('coptrz/drone-servicing-grid', $attrs));
     };
 
     // Events Widget → coptrz/events-widget.
     $map['events_widget'] = function ($item) {
-        if (empty($item['events_widget'])) {
+        $has_countdown = false;
+        if (!empty($item['events_widget']) && is_array($item['events_widget'])) {
+            foreach ($item['events_widget'] as $sub) {
+                if (isset($sub['_type']) && $sub['_type'] === 'countdown') {
+                    $has_countdown = true;
+                    break;
+                }
+            }
+        }
+        if (!$has_countdown) {
             return null;
         }
-        $legacy = coptrz_json_safe_array($item);
-        if ($legacy === null) {
-            return null;
-        }
-        return array(coptrz_block('coptrz/events-widget', array('legacy' => $legacy)));
+        return array(coptrz_block('coptrz/events-widget', array('showCountdown' => true)));
     };
 
     // Product → coptrz/product ([product_add_to_cart id='N' is_training='…']).
@@ -1684,10 +2428,12 @@ function coptrz_block_item_mappers()
 
     // Global Post Box Selection → a core/group row (legacy row classes) with
     // one coptrz/global-post-box child per selected post, so individual boxes
-    // stay deletable/reorderable in the editor. Column-width classes are
-    // resolved HERE (convert time), including the legacy 3-posts/col-md-6
-    // special case (modules.php ~L1085), which depends on the selection's
-    // post COUNT — not something a single box can know on its own at render time.
+    // stay deletable/reorderable/re-configurable in the editor. Column-width is
+    // now a per-box EDITABLE field on each child block, not a class string
+    // frozen at conversion time — the legacy 3-posts/col-md-6 special case
+    // (modules.php ~L1081-1093) is applied ONCE here, to seed the initial
+    // columnWidthTablet value every box gets, since it depends on the whole
+    // selection's post COUNT, not something a single box can know on its own.
     $map['global_post_box_selection'] = function ($item) {
         $source               = isset($item['source']) ? (string) $item['source'] : '';
         $column_width         = isset($item['column_width']) ? (string) $item['column_width'] : '';
@@ -1700,21 +2446,9 @@ function coptrz_block_item_mappers()
         // the MANUAL selection array, evaluated before a category source
         // reassigns the post list — so for a category source this special
         // case is (as in legacy) effectively never triggered.
-        $col_classes = array();
-        if ($column_width) {
-            $col_classes[] = $column_width;
+        if ($column_width_tablet && count($manual_posts) == 3 && $column_width_tablet == 'col-md-6') {
+            $column_width_tablet = 'col-md-12';
         }
-        if ($column_width_tablet) {
-            if (count($manual_posts) == 3 && $column_width_tablet == 'col-md-6') {
-                $col_classes[] = 'col-md-12';
-            } else {
-                $col_classes[] = $column_width_tablet;
-            }
-        }
-        if ($column_width_mobile) {
-            $col_classes[] = $column_width_mobile;
-        }
-        $col_class_str = implode(' ', $col_classes);
 
         if ($source === 'category') {
             $category_ids = array();
@@ -1754,9 +2488,11 @@ function coptrz_block_item_mappers()
         $box_blocks = array();
         foreach ($posts as $pid) {
             $box_blocks[] = coptrz_block('coptrz/global-post-box', array(
-                'postId'     => (int) $pid,
-                'postTitle'  => (string) get_the_title($pid),
-                'colClasses' => $col_class_str,
+                'postId'            => (int) $pid,
+                'postTitle'         => (string) get_the_title($pid),
+                'columnWidth'       => $column_width,
+                'columnWidthTablet' => $column_width_tablet,
+                'columnWidthMobile' => $column_width_mobile,
             ));
         }
 
@@ -2066,24 +2802,39 @@ function coptrz_section_to_blocks($section, $post_id, $field, $key)
 }
 
 /**
- * Convert one post's sections into native blocks (mode "blocks"). Emits
- * per-element blocks (mirrors the older HTML-repeater path,
- * coptrz_convert_post_sections(), which is kept only for products still on
- * `mode = 'html'`). Sets the same converted flag (so rendering routes
- * identically) plus `_coptrz_sections_mode` = 'blocks' for reporting,
- * preserves `_sections`, and switches `page` posts to the Gutenberg template.
+ * Convert one post to blocks — whichever of sections and hero actually apply
+ * to it (see coptrz_post_conversion_state() for the applicability rules; a
+ * post with neither is reported skipped). Each part is independent and
+ * independently skippable, so re-running this on a post that already has one
+ * part converted only attempts the other.
  *
- * Products: refused if post_content is non-empty (see the guard below) since
- * it isn't rendered anywhere today and conversion would silently publish it.
- * Once accepted, `sections` and `sections_after_main` are joined with a
- * `coptrz/section-split` marker between them so coptrz_product_content_split()
- * can hand each half back to its own template slot (before/after the buy box).
+ * Sections: emits per-element blocks appended to post_content (mirrors the
+ * older HTML-repeater path, coptrz_convert_post_sections(), kept only for
+ * products still on `mode = 'html'`). Sets COPTRZ_SECTIONS_CONVERTED_FLAG (so
+ * ___sections() rendering routes identically — this flag's meaning is
+ * unchanged by the hero merge) plus `_coptrz_sections_mode` = 'blocks',
+ * preserves `_sections`, and switches `page` posts to the Gutenberg template.
+ * Products: refused if post_content (minus any hero block — see
+ * coptrz_content_without_hero()) is non-empty, since it isn't rendered
+ * anywhere today and conversion would silently publish it. Once accepted,
+ * `sections` and `sections_after_main` are joined with a
+ * `coptrz/section-split` marker so coptrz_product_content_split() can hand
+ * each half back to its own template slot (before/after the buy box).
+ *
+ * Hero: prepends a `coptrz/hero` block built from the current Hero meta
+ * (coptrz_hero_conversion_plan(), includes/hero-converter.php), but ONLY when
+ * that block is verified to render identically to the current meta-driven
+ * hero first — otherwise this part is skipped (with a warning) and the post
+ * keeps rendering its hero from meta, which stays a correct, permanent
+ * fallback either way (see ___hero_modules(), modules.php). Sets
+ * COPTRZ_HERO_CONVERTED_FLAG — bookkeeping only; nothing at render time reads
+ * it, the hero renders off the block's presence in post_content.
  *
  * @param int  $post_id
  * @param bool $dry_run
  * @return array
  */
-function coptrz_convert_post_sections_to_blocks($post_id, $dry_run = false)
+function coptrz_convert_post_to_blocks($post_id, $dry_run = false)
 {
     $src = get_post($post_id);
     $report = array(
@@ -2095,85 +2846,117 @@ function coptrz_convert_post_sections_to_blocks($post_id, $dry_run = false)
         'native'   => array(),
         'snapshot' => array(),
         'target'   => 'Native Gutenberg blocks',
+        'hero'     => 'not_applicable',
         'warnings' => array(),
         'skipped'  => false,
     );
 
     if (!$src) {
         $report['warnings'][] = 'Post not found.';
-        return $report;
-    }
-    if (!$dry_run && coptrz_sections_is_converted($post_id)) {
         $report['skipped'] = true;
-        $report['warnings'][] = 'Already converted — skipped to avoid duplicating content.';
-        return $report;
-    }
-    // Products have no rendered use of post_content today (all WooCommerce tabs
-    // are disabled — see 'my_remove_all_product_tabs' in woocommerce.php), so a
-    // product carrying a leftover description in post_content would silently gain
-    // a visible one the moment sections are appended after it. Refuse rather than
-    // the generic soft warning below, so that content is dealt with deliberately
-    // first (cleared, or moved into a section) rather than published as a
-    // byproduct of conversion.
-    if ($src->post_type === 'product' && trim((string) $src->post_content) !== '') {
-        $report['skipped'] = true;
-        $report['warnings'][] = 'This product has a non-empty description (post_content) that is not rendered anywhere on the front end. Converting would publish it, appended before/after the frozen sections. Clear or relocate it first, then convert.';
         return $report;
     }
 
-    global $post;
-    $prev_post = $post;
-    $post = $src;
-    setup_postdata($post);
+    // ---- Hero part: a pure decision, independent of section state ----
+    $hero_plan = function_exists('coptrz_hero_conversion_plan')
+        ? coptrz_hero_conversion_plan($post_id)
+        : array('status' => 'not_applicable', 'markup' => '');
+    $report['hero'] = $hero_plan['status'];
+    if ($hero_plan['status'] === 'not_identical') {
+        $report['warnings'][] = 'Hero: the block would not render identically to the current meta-driven hero — skipped; the page keeps rendering its hero from meta.';
+    } elseif ($hero_plan['status'] === 'renderer_missing') {
+        $report['warnings'][] = 'Hero: renderer unavailable in this admin context — retry from a normal (non blocks-editor-template) edit screen.';
+    }
+    $hero_prefix = ($hero_plan['status'] === 'ready') ? $hero_plan['markup'] : '';
 
-    $blocks_by_field = array();
+    // ---- Sections part: only if not already converted ----
+    $sections_already_converted = coptrz_sections_is_converted($post_id);
+    $products_refused           = false;
+    $blocks_by_field            = array();
 
-    foreach (coptrz_section_source_fields() as $field) {
-        $sections = get__post_meta_by_id($post_id, $field);
-        if (empty($sections) || !is_array($sections)) {
-            continue;
-        }
-        $chunks = array();
-        $native = 0;
-        $snap   = 0;
-        foreach ($sections as $key => $section) {
-            if (!empty($section['disable_section'])) {
-                continue;
+    if ($sections_already_converted) {
+        $report['warnings'][] = 'Sections already converted — skipped to avoid duplicating content.';
+    } else {
+        // Products have no rendered use of post_content today (all WooCommerce
+        // tabs are disabled — see 'my_remove_all_product_tabs' in
+        // woocommerce.php), so a product carrying a leftover description in
+        // post_content would silently gain a visible one the moment sections
+        // are appended after it. Refuse rather than the generic soft warning
+        // below, so that content is dealt with deliberately first. A leading
+        // coptrz/hero block (existing, or the one this run is about to
+        // prepend) doesn't count as "content" for this check — it's
+        // storage-only and renders nowhere in post_content itself
+        // (coptrz_render_hero_block(), includes/hero-block.php).
+        $content_for_check = function_exists('coptrz_content_without_hero')
+            ? coptrz_content_without_hero((string) $src->post_content)
+            : (string) $src->post_content;
+
+        if ($src->post_type === 'product' && trim($content_for_check) !== '') {
+            $products_refused = true;
+            $report['warnings'][] = 'This product has a non-empty description (post_content) that is not rendered anywhere on the front end. Converting would publish it, appended before/after the frozen sections. Clear or relocate it first, then convert.';
+        } else {
+            global $post;
+            $prev_post = $post;
+            $post = $src;
+            setup_postdata($post);
+
+            foreach (coptrz_section_source_fields() as $field) {
+                $sections = get__post_meta_by_id($post_id, $field);
+                if (empty($sections) || !is_array($sections)) {
+                    continue;
+                }
+                $chunks = array();
+                $native = 0;
+                $snap   = 0;
+                foreach ($sections as $key => $section) {
+                    if (!empty($section['disable_section'])) {
+                        continue;
+                    }
+                    list($markup, $was_native, $reason) = coptrz_section_to_blocks($section, $post_id, $field, $key);
+                    if ($markup === '') {
+                        continue;
+                    }
+                    $chunks[] = $markup;
+                    if ($was_native) {
+                        $native++;
+                    } else {
+                        $snap++;
+                        $label = !empty($section['title']) ? $section['title'] : ('Section ' . ($key + 1));
+                        $report['warnings'][] = "\"{$label}\" snapshotted to Custom HTML — {$reason}.";
+                    }
+                }
+                if (empty($chunks)) {
+                    continue;
+                }
+                $report['counts'][$field]   = count($chunks);
+                $report['native'][$field]   = $native;
+                $report['snapshot'][$field] = $snap;
+                $blocks_by_field[$field]    = implode("\n\n", $chunks);
+                if ($dry_run) {
+                    $report['html'][$field] = $chunks;
+                }
             }
-            list($markup, $was_native, $reason) = coptrz_section_to_blocks($section, $post_id, $field, $key);
-            if ($markup === '') {
-                continue;
-            }
-            $chunks[] = $markup;
-            if ($was_native) {
-                $native++;
-            } else {
-                $snap++;
-                $label = !empty($section['title']) ? $section['title'] : ('Section ' . ($key + 1));
-                $report['warnings'][] = "\"{$label}\" snapshotted to Custom HTML — {$reason}.";
-            }
-        }
-        if (empty($chunks)) {
-            continue;
-        }
-        $report['counts'][$field]   = count($chunks);
-        $report['native'][$field]   = $native;
-        $report['snapshot'][$field] = $snap;
-        $blocks_by_field[$field]    = implode("\n\n", $chunks);
-        if ($dry_run) {
-            $report['html'][$field] = $chunks;
+
+            wp_reset_postdata();
+            $post = $prev_post;
         }
     }
 
-    if (!empty($blocks_by_field)) {
-        $existing = (string) $src->post_content;
-        $is_product = ($src->post_type === 'product');
-        if (!$is_product && trim($existing) !== '') {
-            // Products already refused above when post_content is non-empty, so
-            // $existing is always '' here for a product.
+    // ---- Assemble: existing content, sections appended, hero prepended ----
+    $existing = (string) $src->post_content;
+    $is_product = ($src->post_type === 'product');
+    $did_sections = !empty($blocks_by_field);
+
+    $body = $existing;
+    if ($did_sections) {
+        $existing_for_check = function_exists('coptrz_content_without_hero')
+            ? coptrz_content_without_hero($existing)
+            : $existing;
+        if (!$is_product && trim($existing_for_check) !== '') {
+            // Products already refused above when post_content (minus hero) is
+            // non-empty, so $existing is always '' (or just a hero block) here.
             $report['warnings'][] = 'post_content was not empty — section blocks appended after existing content.';
         }
-        $new_content = $existing;
 
         if ($is_product) {
             // Products render two slots either side of the buy box — `sections`
@@ -2185,83 +2968,131 @@ function coptrz_convert_post_sections_to_blocks($post_id, $dry_run = false)
             // fallback already treats the whole content as the "after" slot —
             // the one every product actually uses today.
             if (!empty($blocks_by_field['sections'])) {
-                $new_content .= $blocks_by_field['sections'] . "\n\n" . serialize_blocks(array(coptrz_block('coptrz/section-split')));
+                $body .= $blocks_by_field['sections'] . "\n\n" . serialize_blocks(array(coptrz_block('coptrz/section-split')));
                 if (!empty($blocks_by_field['sections_after_main'])) {
-                    $new_content .= "\n\n" . $blocks_by_field['sections_after_main'];
+                    $body .= "\n\n" . $blocks_by_field['sections_after_main'];
                 }
             } elseif (!empty($blocks_by_field['sections_after_main'])) {
-                $new_content .= $blocks_by_field['sections_after_main'];
+                $body .= $blocks_by_field['sections_after_main'];
             }
         } else {
             foreach (coptrz_section_source_fields() as $field) {
                 if (!empty($blocks_by_field[$field])) {
-                    $new_content .= ($new_content !== '' ? "\n\n" : '') . $blocks_by_field[$field];
+                    $body .= ($body !== '' ? "\n\n" : '') . $blocks_by_field[$field];
                 }
             }
         }
-        if (!$dry_run) {
-            // Backups, so a later revert can restore byte-identical content /
-            // template instead of guessing. Written before the actual update so
-            // COPTRZ_CONVERTED_BLOCKS captures the exact suffix this run added.
-            update_post_meta($post_id, COPTRZ_PRE_CONVERT_CONTENT, $existing);
-            update_post_meta($post_id, COPTRZ_CONVERTED_BLOCKS, substr($new_content, strlen($existing)));
-            wp_update_post(array('ID' => $post_id, 'post_content' => $new_content));
+    }
+    // The exact suffix this run added — captured before the hero prefix below
+    // so it stays a pure "sections only" value, matching what a later revert
+    // needs (see coptrz_revert_post_to_blocks()).
+    $sections_suffix = $did_sections ? substr($body, strlen($existing)) : '';
+
+    $did_hero    = ($hero_prefix !== '');
+    $new_content = $did_hero ? ($hero_prefix . ($body !== '' ? "\n\n" . $body : '')) : $body;
+
+    if (!$did_hero && !$did_sections) {
+        $report['skipped'] = true;
+        if (!$sections_already_converted && !$products_refused && empty($report['counts'])) {
+            $report['warnings'][] = 'No active sections found to convert.';
         }
-        if ($src->post_type === 'page') {
-            $report['template'] = 'templates/page-gutenberg.php';
-            if (!$dry_run) {
-                update_post_meta($post_id, COPTRZ_PRE_CONVERT_TEMPLATE, (string) get_post_meta($post_id, '_wp_page_template', true));
-                update_post_meta($post_id, '_wp_page_template', 'templates/page-gutenberg.php');
-            }
-        }
+        return $report;
     }
 
-    wp_reset_postdata();
-    $post = $prev_post;
+    if ($dry_run) {
+        $report['preview'] = $new_content;
+        return $report;
+    }
 
-    if (!$dry_run && !empty($report['counts'])) {
+    // ---- Write: backups first, so a later revert can restore byte-identical
+    // content instead of guessing. COPTRZ_PRE_CONVERT_CONTENT is write-once —
+    // the FIRST conversion (whichever part triggers it) captures the post's
+    // true pre-conversion state; a later run adding the other part must not
+    // overwrite it with content that already includes the first part. ----
+    // All four writes below (three meta + post_content) are wp_slash()'d:
+    // update_post_meta()/wp_update_post() both call wp_unslash() internally
+    // (they expect input shaped like $_POST, i.e. already slashed), and
+    // $sections_suffix/$hero_prefix/$new_content are serialize_blocks() output
+    // full of literal backslash-escapes (< etc — see
+    // wp-includes/blocks.php serialize_block_attributes()) that would
+    // otherwise be silently stripped, corrupting every escaped character in
+    // every block attribute. These four MUST be slashed together: the revert
+    // comparison at coptrz_revert_post_to_blocks() reconstructs $expected from
+    // the same three meta values and compares it against the live
+    // post_content column, so if only post_content were fixed here that
+    // comparison would break for every future conversion.
+    if (!metadata_exists('post', $post_id, COPTRZ_PRE_CONVERT_CONTENT)) {
+        update_post_meta($post_id, COPTRZ_PRE_CONVERT_CONTENT, wp_slash($existing));
+    }
+    if ($did_sections) {
+        update_post_meta($post_id, COPTRZ_CONVERTED_BLOCKS, wp_slash($sections_suffix));
+    }
+    if ($did_hero && defined('COPTRZ_HERO_BLOCK_PREFIX')) {
+        update_post_meta($post_id, COPTRZ_HERO_BLOCK_PREFIX, wp_slash($hero_prefix));
+    }
+    wp_update_post(array('ID' => $post_id, 'post_content' => wp_slash($new_content)));
+
+    if ($src->post_type === 'page' && $did_sections) {
+        // page-blocks-editor.php (not page-gutenberg.php) — pure the_content(),
+        // no ___hero_modules() call. Correct for a converted page either way:
+        // the hero (if any) now renders INLINE from its block position
+        // (coptrz_render_hero_block(), includes/hero-block.php) rather than
+        // needing a template-level hero call.
+        $report['template'] = 'templates/page-blocks-editor.php';
+        update_post_meta($post_id, COPTRZ_PRE_CONVERT_TEMPLATE, (string) get_post_meta($post_id, '_wp_page_template', true));
+        update_post_meta($post_id, '_wp_page_template', 'templates/page-blocks-editor.php');
+    }
+
+    if ($did_sections) {
         update_post_meta($post_id, COPTRZ_SECTIONS_CONVERTED_FLAG, 'yes');
         update_post_meta($post_id, '_coptrz_sections_mode', 'blocks');
     }
-    if (empty($report['counts'])) {
-        $report['warnings'][] = 'No active sections found to convert.';
+    if ($did_hero && defined('COPTRZ_HERO_CONVERTED_FLAG')) {
+        update_post_meta($post_id, COPTRZ_HERO_CONVERTED_FLAG, 'yes');
+        $report['hero'] = 'converted';
     }
 
     return $report;
 }
 
 /**
- * Revert a converted post back to the legacy "sections" page-builder.
+ * Revert a converted post back to the legacy sections builder AND/OR the
+ * legacy Hero meta box — whichever parts were actually converted (a post
+ * where only one part was ever converted still reverts cleanly; the other
+ * part's flag/meta simply isn't present to begin with).
  *
- *  - product, mode 'html'   -> post_content/template were never touched by
- *    conversion; just clears the sections_html / sections_after_main_html
- *    repeater.
- *  - everything else (incl. product, mode 'blocks') -> restores post_content
- *    from the COPTRZ_PRE_CONVERT_CONTENT backup when available (this also
- *    removes the coptrz/section-split marker, since it was appended as part
- *    of the same write). Posts converted before this backup existed have
- *    none: this regenerates the block markup via a dry run and subtracts it as
- *    an exact suffix of the current post_content instead, so any content that
- *    predated conversion survives. If that suffix doesn't match, aborts rather
- *    than guessing. `page` also gets its pre-conversion _wp_page_template back
- *    (falling back to the Modules template when no backup exists).
+ *  - product, sections mode 'html', no hero -> post_content/template were
+ *    never touched by conversion; just clears the sections_html /
+ *    sections_after_main_html repeater.
+ *  - everything else -> restores post_content from the
+ *    COPTRZ_PRE_CONVERT_CONTENT backup when available (this is the state
+ *    before EITHER part was ever converted, so it correctly removes both).
+ *    Posts converted before this backup existed have none: this regenerates
+ *    the section block markup via a dry run and subtracts it as a suffix of
+ *    the (hero-stripped) current post_content instead, so any content that
+ *    predated conversion survives. If that suffix doesn't match, aborts
+ *    rather than guessing. `page` also gets its pre-conversion
+ *    _wp_page_template back (falling back to the Modules template when no
+ *    backup exists) — only when sections were actually converted.
  *
- * In every case, deletes the converted flag + backup meta. `_sections` /
- * `_sections_after_main` are never touched by conversion, so the legacy render
- * resumes as soon as the flag is gone (see coptrz_sections_should_route()).
+ * In every case, deletes both converted flags + all backup meta. `_sections` /
+ * `_sections_after_main` and the Hero post-meta are never touched by
+ * conversion, so both legacy editing surfaces resume immediately once their
+ * flag is gone (see coptrz_sections_should_route() and
+ * coptrz_hero_block_attrs(), includes/hero-block.php).
  *
  * @param int  $post_id
  * @param bool $dry_run  When true, report what would change but write nothing.
  * @return array Report: warnings, skipped, and (dry-run) the restored content/template.
  */
-function coptrz_revert_post_sections($post_id, $dry_run = false)
+function coptrz_revert_post_to_blocks($post_id, $dry_run = false)
 {
     $src = get_post($post_id);
     $report = array(
         'post_id'  => (int) $post_id,
         'title'    => $src ? $src->post_title : '',
         'type'     => $src ? $src->post_type : '',
-        'target'   => 'Legacy sections builder',
+        'target'   => 'Legacy sections builder + Hero meta box',
         'counts'   => array(), // kept for shape-compatibility with the bulk results table
         'warnings' => array(),
         'skipped'  => false,
@@ -2269,21 +3100,25 @@ function coptrz_revert_post_sections($post_id, $dry_run = false)
 
     if (!$src) {
         $report['warnings'][] = 'Post not found.';
+        $report['skipped'] = true;
         return $report;
     }
 
-    if (!coptrz_sections_is_converted($post_id)) {
+    $sections_converted = coptrz_sections_is_converted($post_id);
+    $hero_converted      = function_exists('coptrz_hero_is_converted') && coptrz_hero_is_converted($post_id);
+
+    if (!$sections_converted && !$hero_converted) {
         $report['skipped'] = true;
         $report['warnings'][] = 'Not converted — nothing to revert.';
         return $report;
     }
 
-    // Only an HTML-mode product (never touched post_content) reverts by just
-    // clearing its repeater — a block-mode product (post_content was written,
-    // same as any other converted post type) falls through to the restore
-    // path below, same as everything else.
+    // Only an HTML-mode product with no hero conversion (never touched
+    // post_content at all) reverts by just clearing its repeater — a
+    // block-mode product, or any post with a hero conversion, falls through
+    // to the restore path below, same as everything else.
     $mode = get_post_meta($post_id, '_coptrz_sections_mode', true);
-    $is_html_product = ($src->post_type === 'product' && $mode !== 'blocks');
+    $is_html_product = ($src->post_type === 'product' && $sections_converted && $mode !== 'blocks' && !$hero_converted);
 
     if ($is_html_product) {
         $report['restored'] = 'HTML repeater cleared; legacy sections resume.';
@@ -2297,18 +3132,27 @@ function coptrz_revert_post_sections($post_id, $dry_run = false)
 
         if ($has_backup) {
             $backup_content   = (string) get_post_meta($post_id, COPTRZ_PRE_CONVERT_CONTENT, true);
-            $converted_blocks = (string) get_post_meta($post_id, COPTRZ_CONVERTED_BLOCKS, true);
-            if ($existing_content !== $backup_content . $converted_blocks) {
+            $sections_suffix  = $sections_converted ? (string) get_post_meta($post_id, COPTRZ_CONVERTED_BLOCKS, true) : '';
+            $hero_prefix      = ($hero_converted && defined('COPTRZ_HERO_BLOCK_PREFIX')) ? (string) get_post_meta($post_id, COPTRZ_HERO_BLOCK_PREFIX, true) : '';
+            $body             = $backup_content . $sections_suffix;
+            $expected         = ($hero_prefix !== '') ? ($hero_prefix . ($body !== '' ? "\n\n" . $body : '')) : $body;
+            if ($existing_content !== $expected) {
                 $report['warnings'][] = 'Content was edited since conversion — restoring the pre-conversion backup anyway; review the result before republishing.';
             }
             $restored_content = $backup_content;
         } else {
-            // No backup (converted before this feature shipped): regenerate the
-            // exact block markup for a dry run and subtract it as a suffix. The
+            // No backup (converted before this feature shipped): strip a
+            // leading hero block, then regenerate the exact section block
+            // markup via a dry run and subtract it as a suffix. The
             // regenerated string never includes the separator joining it to
-            // whatever content preceded it (that depends on whether the ORIGINAL
-            // content was empty — the very thing being recovered) so try both.
-            $dry = coptrz_convert_post_sections_to_blocks($post_id, true);
+            // whatever content preceded it (that depends on whether the
+            // ORIGINAL content was empty — the very thing being recovered) so
+            // try both.
+            $without_hero = function_exists('coptrz_content_without_hero')
+                ? coptrz_content_without_hero($existing_content)
+                : $existing_content;
+
+            $dry = coptrz_convert_post_to_blocks($post_id, true);
             $chunks = array();
             foreach (coptrz_section_source_fields() as $field) {
                 if (!empty($dry['html'][$field])) {
@@ -2318,10 +3162,12 @@ function coptrz_revert_post_sections($post_id, $dry_run = false)
             $regenerated = implode("\n\n", $chunks);
 
             $restored_content = null;
-            if ($regenerated !== '') {
+            if ($regenerated === '') {
+                $restored_content = $without_hero;
+            } else {
                 foreach (array("\n\n" . $regenerated, $regenerated) as $suffix) {
-                    if (substr($existing_content, -strlen($suffix)) === $suffix) {
-                        $restored_content = substr($existing_content, 0, strlen($existing_content) - strlen($suffix));
+                    if (substr($without_hero, -strlen($suffix)) === $suffix) {
+                        $restored_content = substr($without_hero, 0, strlen($without_hero) - strlen($suffix));
                         break;
                     }
                 }
@@ -2336,10 +3182,14 @@ function coptrz_revert_post_sections($post_id, $dry_run = false)
 
         $report['restored'] = $restored_content;
         if (!$dry_run) {
-            wp_update_post(array('ID' => $post_id, 'post_content' => $restored_content));
+            // Same wp_unslash()-on-write gotcha as the convert path above —
+            // $restored_content may itself contain backslash-escaped block
+            // attribute JSON (e.g. when $regenerated came from a dry-run
+            // conversion), so it must be re-slashed before wp_update_post().
+            wp_update_post(array('ID' => $post_id, 'post_content' => wp_slash($restored_content)));
         }
 
-        if ($src->post_type === 'page') {
+        if ($src->post_type === 'page' && $sections_converted) {
             $had_template_backup = metadata_exists('post', $post_id, COPTRZ_PRE_CONVERT_TEMPLATE);
             $target_template = $had_template_backup
                 ? (string) get_post_meta($post_id, COPTRZ_PRE_CONVERT_TEMPLATE, true)
@@ -2354,10 +3204,16 @@ function coptrz_revert_post_sections($post_id, $dry_run = false)
     if (!$dry_run) {
         delete_post_meta($post_id, COPTRZ_SECTIONS_CONVERTED_FLAG);
         delete_post_meta($post_id, '_coptrz_sections_mode');
-        delete_post_meta($post_id, COPTRZ_PRE_CONVERT_CONTENT);
         delete_post_meta($post_id, COPTRZ_PRE_CONVERT_TEMPLATE);
         delete_post_meta($post_id, COPTRZ_CONVERTED_BLOCKS);
         delete_post_meta($post_id, COPTRZ_SERVE_LEGACY_PUBLIC);
+        delete_post_meta($post_id, COPTRZ_PRE_CONVERT_CONTENT);
+        if (defined('COPTRZ_HERO_CONVERTED_FLAG')) {
+            delete_post_meta($post_id, COPTRZ_HERO_CONVERTED_FLAG);
+        }
+        if (defined('COPTRZ_HERO_BLOCK_PREFIX')) {
+            delete_post_meta($post_id, COPTRZ_HERO_BLOCK_PREFIX);
+        }
     }
 
     return $report;
@@ -2368,12 +3224,12 @@ function coptrz_revert_post_sections($post_id, $dry_run = false)
 /* ========================================================================= */
 
 add_action('add_meta_boxes', function ($post_type) {
-    if (!in_array($post_type, coptrz_section_post_types(), true)) {
+    if (!in_array($post_type, coptrz_convertible_post_types(), true)) {
         return;
     }
     add_meta_box(
         'coptrz-section-converter',
-        __('Convert Sections', 'coptrz-theme'),
+        __('Convert to Blocks', 'coptrz-theme'),
         'coptrz_render_section_converter_box',
         $post_type,
         'side',
@@ -2382,32 +3238,46 @@ add_action('add_meta_boxes', function ($post_type) {
 });
 
 /**
- * Per-post convert box: dry-run preview + convert, via admin-ajax. Every post
- * type — products included, now that they have a block editor too, see
- * coptrz_enable_product_block_editor() in includes/woocommerce.php — converts
- * to native blocks via coptrz_convert_post_sections_to_blocks().
+ * Per-post convert box: dry-run preview + convert, via admin-ajax. Converts
+ * whichever of sections/hero apply to this post — see
+ * coptrz_convert_post_to_blocks(). Every post type — products included, now
+ * that they have a block editor too, see coptrz_enable_product_block_editor()
+ * in includes/woocommerce.php.
  *
  * @param WP_Post $post
  * @return void
  */
 function coptrz_render_section_converter_box($post)
 {
-    $converted    = coptrz_sections_is_converted($post->ID);
-    $nonce        = wp_create_nonce('coptrz_convert_sections');
-    $revert_nonce = wp_create_nonce('coptrz_revert_sections');
-    $mode         = get_post_meta($post->ID, '_coptrz_sections_mode', true);
+    $sections_converted = coptrz_sections_is_converted($post->ID);
+    $hero_converted     = function_exists('coptrz_hero_is_converted') && coptrz_hero_is_converted($post->ID);
+    $converted          = $sections_converted || $hero_converted;
+    $nonce              = wp_create_nonce('coptrz_convert_sections');
+    $revert_nonce       = wp_create_nonce('coptrz_revert_sections');
+    $mode               = get_post_meta($post->ID, '_coptrz_sections_mode', true);
     ?>
     <div class="coptrz-conv" data-post="<?php echo (int) $post->ID; ?>" data-nonce="<?php echo esc_attr($nonce); ?>" data-revert-nonce="<?php echo esc_attr($revert_nonce); ?>">
         <?php if ($converted) : ?>
-            <p style="color:#1a7f37;font-weight:600;margin-top:0;">✓ <?php esc_html_e('Already converted.', 'coptrz-theme'); ?></p>
+            <p style="color:#1a7f37;font-weight:600;margin-top:0;">
+                ✓ <?php
+                    if ($sections_converted && $hero_converted) {
+                        esc_html_e('Sections and hero converted.', 'coptrz-theme');
+                    } elseif ($hero_converted) {
+                        esc_html_e('Hero converted.', 'coptrz-theme');
+                    } else {
+                        esc_html_e('Sections converted.', 'coptrz-theme');
+                    }
+                ?>
+            </p>
             <p class="description">
-                <?php if ($mode === 'html') : ?>
+                <?php if ($sections_converted && $mode === 'html') : ?>
                     <?php esc_html_e('The original section data is preserved. Edit the content via the "Page Sections (HTML)" repeater below.', 'coptrz-theme'); ?>
                 <?php else : ?>
-                    <?php esc_html_e('The original section data is preserved. Edit the content via the block editor above.', 'coptrz-theme'); ?>
+                    <?php esc_html_e('The original data is preserved. Edit the content — including the Hero block, if converted — via the block editor above.', 'coptrz-theme'); ?>
                 <?php endif; ?>
             </p>
 
+            <?php if ($sections_converted) : ?>
             <p style="margin:10px 0 6px;">
                 <a href="<?php echo esc_url(add_query_arg('coptrz_preview', 'original', get_permalink($post->ID))); ?>" class="button" target="_blank" rel="noopener">
                     <?php esc_html_e('Preview original (unconverted)', 'coptrz-theme'); ?>
@@ -2422,9 +3292,10 @@ function coptrz_render_section_converter_box($post)
                 </label>
                 <br /><span class="description"><?php esc_html_e('Logged-in users always see the converted blocks. Save the post to apply.', 'coptrz-theme'); ?></span>
             </p>
+            <?php endif; ?>
 
             <hr style="margin:10px 0;" />
-            <p class="description" style="margin-top:0;"><?php esc_html_e('Revert restores the pre-conversion content and template, and clears the conversion.', 'coptrz-theme'); ?></p>
+            <p class="description" style="margin-top:0;"><?php esc_html_e('Revert restores the pre-conversion content (and template, for pages), and clears the conversion.', 'coptrz-theme'); ?></p>
             <p style="margin-bottom:6px;">
                 <button type="button" class="button coptrz-conv__dry-revert"><?php esc_html_e('Dry run revert', 'coptrz-theme'); ?></button>
                 <button type="button" class="button coptrz-conv__revert" style="color:#b32d2e;"><?php esc_html_e('Revert', 'coptrz-theme'); ?></button>
@@ -2432,7 +3303,7 @@ function coptrz_render_section_converter_box($post)
             <div class="coptrz-conv__out" style="font:12px/1.5 monospace;max-height:220px;overflow:auto;"></div>
         <?php else : ?>
             <p class="description" style="margin-top:0;">
-                <?php esc_html_e('Freeze this post’s sections into native Gutenberg blocks (any section that can’t map natively is frozen as Custom HTML instead). Original data is kept (reversible). Products with an existing description (post_content) are refused — clear it first.', 'coptrz-theme'); ?>
+                <?php esc_html_e('Freeze this post’s sections and/or hero into native Gutenberg blocks — whichever apply to this post type (any section that can’t map natively is frozen as Custom HTML instead; the hero only converts if it would render identically). Original data is kept (reversible). Products with an existing description (post_content) are refused — clear it first.', 'coptrz-theme'); ?>
             </p>
             <p style="margin-bottom:6px;">
                 <button type="button" class="button coptrz-conv__dry"><?php esc_html_e('Dry run', 'coptrz-theme'); ?></button>
@@ -2467,7 +3338,7 @@ function coptrz_render_section_converter_box($post)
         });
         box.querySelectorAll('.coptrz-conv__go').forEach(function (b) {
             b.addEventListener('click', function () {
-                if (confirm('<?php echo esc_js(__('Convert this post’s sections?', 'coptrz-theme')); ?>')) { run('coptrz_convert_sections', box.dataset.nonce, false); }
+                if (confirm('<?php echo esc_js(__('Convert this post to blocks?', 'coptrz-theme')); ?>')) { run('coptrz_convert_sections', box.dataset.nonce, false); }
             });
         });
         box.querySelectorAll('.coptrz-conv__dry-revert').forEach(function (b) {
@@ -2475,7 +3346,7 @@ function coptrz_render_section_converter_box($post)
         });
         box.querySelectorAll('.coptrz-conv__revert').forEach(function (b) {
             b.addEventListener('click', function () {
-                if (confirm('<?php echo esc_js(__('Revert this post to the legacy sections builder? The converted blocks will be removed from post_content. This cannot be undone except via a post revision.', 'coptrz-theme')); ?>')) { run('coptrz_revert_sections', box.dataset.revertNonce, false); }
+                if (confirm('<?php echo esc_js(__('Revert this post to the legacy builders? The converted blocks will be removed from post_content. This cannot be undone except via a post revision.', 'coptrz-theme')); ?>')) { run('coptrz_revert_sections', box.dataset.revertNonce, false); }
             });
         });
     })();
@@ -2515,12 +3386,11 @@ add_action('wp_ajax_coptrz_convert_sections', function () {
         wp_send_json_error('Permission denied.');
     }
     $dry = !empty($_POST['dry']) && $_POST['dry'] === '1';
-    // Products now get the block editor too (see coptrz_enable_product_block_editor(),
-    // includes/woocommerce.php), so every post type converts to native blocks —
-    // coptrz_convert_post_sections_to_blocks() snapshots individual sections to
-    // Custom HTML where they can't map natively, and refuses a product with a
-    // non-empty post_content rather than guessing where to put it.
-    $report = coptrz_convert_post_sections_to_blocks($post_id, $dry);
+    // Converts whichever of sections/hero apply to this post — see
+    // coptrz_convert_post_to_blocks(). Products now get the block editor too
+    // (see coptrz_enable_product_block_editor(), includes/woocommerce.php),
+    // so every post type converts to native blocks.
+    $report = coptrz_convert_post_to_blocks($post_id, $dry);
     wp_send_json_success($report);
 });
 
@@ -2531,34 +3401,38 @@ add_action('wp_ajax_coptrz_revert_sections', function () {
         wp_send_json_error('Permission denied.');
     }
     $dry = !empty($_POST['dry']) && $_POST['dry'] === '1';
-    $report = coptrz_revert_post_sections($post_id, $dry);
+    $report = coptrz_revert_post_to_blocks($post_id, $dry);
     wp_send_json_success($report);
 });
 
 /* ========================================================================= */
-/*  Admin UI — bulk runner (Tools > Convert Sections)                         */
+/*  Admin UI — bulk runner (Tools > Convert to Blocks)                        */
 /* ========================================================================= */
 
 add_action('admin_menu', function () {
     add_management_page(
-        __('Convert Sections', 'coptrz-theme'),
-        __('Convert Sections', 'coptrz-theme'),
+        __('Convert to Blocks', 'coptrz-theme'),
+        __('Convert to Blocks', 'coptrz-theme'),
         'manage_options',
-        'coptrz-convert-sections',
+        'coptrz-convert-to-blocks',
         'coptrz_render_bulk_converter_page'
     );
 });
 
 /**
- * AJAX: search section-bearing posts by name, returning id/title/post-type so the
- * runner page can build an explicit selection (replaces the old convert-everything
- * bulk query and the raw post-ID box).
+ * AJAX: search convertible posts (coptrz_convertible_post_types() — the union
+ * of section- and hero-applicable types) by name, returning id/title/post-type
+ * and a `pending` label (sections, hero, or both) so the runner page can build
+ * an explicit selection. Over-fetches title matches and filters/labels them in
+ * PHP via coptrz_post_conversion_state() — cheap at this scale (a title
+ * search's raw match count), and avoids a meta_query that can't correctly
+ * express "hero not converted" scoped to hero-applicable types only when the
+ * candidate list also includes hero-inapplicable types (see
+ * coptrz_conversion_pending_meta_query()'s docblock, which IS scoped and used
+ * instead for the per-type "convert remaining" batch action below).
  *
- * Default (`mode=convert`): only posts that actually NEED converting are returned —
- * they must hold section data (a `_sections` or `_sections_after_main` row exists,
- * in CF's `_<field>|||0|value` row-marker format) AND not already be flagged
- * converted. `mode=revert` inverts the flag condition to find already-converted
- * posts instead, for the revert side of the same runner.
+ * Default (`mode=convert`): only posts with something pending are returned.
+ * `mode=revert` inverts this to already-converted posts (either part).
  *
  * @return void
  */
@@ -2574,42 +3448,55 @@ add_action('wp_ajax_coptrz_search_sections_posts', function () {
     $mode = (isset($_GET['mode']) && $_GET['mode'] === 'revert') ? 'revert' : 'convert';
 
     $query = new WP_Query(array(
-        'post_type'           => coptrz_section_post_types(),
+        'post_type'           => coptrz_convertible_post_types(),
         'post_status'         => array('publish', 'private', 'draft', 'pending', 'future'),
         's'                   => $q,
-        'posts_per_page'      => 20,
+        'posts_per_page'      => 50,
         'no_found_rows'       => true,
         'ignore_sticky_posts' => true,
         'orderby'             => 'title',
         'order'               => 'ASC',
-        'meta_query'          => array(
-            'relation' => 'AND',
-            // Has at least one section to freeze (either source field).
-            array(
-                'relation' => 'OR',
-                array('key' => '_sections|||0|value', 'compare' => 'EXISTS'),
-                array('key' => '_sections_after_main|||0|value', 'compare' => 'EXISTS'),
-            ),
-            array('key' => COPTRZ_SECTIONS_CONVERTED_FLAG, 'compare' => ($mode === 'revert') ? 'EXISTS' : 'NOT EXISTS'),
-        ),
     ));
 
     $out = array();
     foreach ($query->posts as $p) {
+        if ($mode === 'revert') {
+            $parts = array();
+            if (coptrz_sections_is_converted($p->ID)) {
+                $parts[] = 'sections';
+            }
+            if (function_exists('coptrz_hero_is_converted') && coptrz_hero_is_converted($p->ID)) {
+                $parts[] = 'hero';
+            }
+        } else {
+            $parts = coptrz_post_conversion_state($p->ID);
+        }
+        if (empty($parts)) {
+            continue;
+        }
+
         $obj = get_post_type_object($p->post_type);
         $out[] = array(
             'id'         => (int) $p->ID,
             'title'      => $p->post_title !== '' ? $p->post_title : ('#' . $p->ID),
             'type_label' => $obj ? $obj->labels->singular_name : $p->post_type,
+            'pending'    => implode(' + ', $parts),
         );
+        if (count($out) >= 20) {
+            break;
+        }
     }
     wp_send_json_success($out);
 });
 
 /**
- * Convert-by-search runner page: search posts by name (across every section post
- * type), pick the exact ones to freeze, then dry-run or convert just those. There
- * is no "convert everything" path — conversions are always an explicit selection.
+ * Convert-by-search runner page: search posts by name (across every
+ * convertible post type), pick the exact ones to freeze, then dry-run or
+ * convert just those — same explicit-selection UX as before the hero merge,
+ * plus a "Convert all remaining" table per post type below it, since every
+ * post of a hero-applicable type has a hero (even unconfigured ones fall back
+ * to the page title), so hand-picking doesn't reach full coverage for that
+ * part the way search-and-select can for sections.
  *
  * @return void
  */
@@ -2619,36 +3506,135 @@ function coptrz_render_bulk_converter_page()
         return;
     }
 
-    $action     = isset($_POST['coptrz_bulk_action']) ? sanitize_key($_POST['coptrz_bulk_action']) : '';
-    $is_revert  = ($action === 'revert' || $action === 'revert_dry');
-    $ids_raw    = isset($_POST['coptrz_ids']) ? sanitize_text_field(wp_unslash($_POST['coptrz_ids'])) : '';
-    $did        = array();
+    $action    = isset($_POST['coptrz_bulk_action']) ? sanitize_key($_POST['coptrz_bulk_action']) : '';
+    $is_revert = ($action === 'revert' || $action === 'revert_dry');
+    $ids_raw   = isset($_POST['coptrz_ids']) ? sanitize_text_field(wp_unslash($_POST['coptrz_ids'])) : '';
+    $did       = array();
+    $limit     = 50; // safety cap per run
 
     if ($action && check_admin_referer('coptrz_bulk_convert')) {
-        // Always an explicit selection of post IDs (gathered via the name search).
-        preg_match_all('/\d+/', $ids_raw, $m);
-        $ids   = array_values(array_unique(array_map('intval', $m[0])));
-        $limit = 50; // safety cap per run
-        $dry   = ($action === 'dry' || $action === 'revert_dry');
-        foreach (array_slice($ids, 0, $limit) as $pid) {
-            if ($is_revert) {
-                $did[] = coptrz_revert_post_sections($pid, $dry);
-                continue;
+        if ($action === 'convert_remaining' || $action === 'convert_remaining_dry') {
+            $post_type = isset($_POST['coptrz_post_type']) ? sanitize_key($_POST['coptrz_post_type']) : '';
+            $dry       = ($action === 'convert_remaining_dry');
+            $mq        = in_array($post_type, coptrz_convertible_post_types(), true)
+                ? coptrz_conversion_pending_meta_query($post_type)
+                : array();
+            if (!empty($mq)) {
+                $query = new WP_Query(array(
+                    'post_type'           => $post_type,
+                    'post_status'         => array('publish', 'private', 'draft', 'pending', 'future'),
+                    'posts_per_page'      => $limit,
+                    'fields'              => 'ids',
+                    'no_found_rows'       => true,
+                    'ignore_sticky_posts' => true,
+                    'meta_query'          => $mq,
+                ));
+                foreach ($query->posts as $pid) {
+                    $did[] = coptrz_convert_post_to_blocks($pid, $dry);
+                }
             }
-            // Same as the per-post box's AJAX handler: every post type — products
-            // included — now converts to native blocks.
-            $did[] = coptrz_convert_post_sections_to_blocks($pid, $dry);
+        } else {
+            // Always an explicit selection of post IDs (gathered via the name search).
+            preg_match_all('/\d+/', $ids_raw, $m);
+            $ids = array_values(array_unique(array_map('intval', $m[0])));
+            $dry = ($action === 'dry' || $action === 'revert_dry');
+            foreach (array_slice($ids, 0, $limit) as $pid) {
+                $did[] = $is_revert ? coptrz_revert_post_to_blocks($pid, $dry) : coptrz_convert_post_to_blocks($pid, $dry);
+            }
         }
     }
 
     $search_nonce = wp_create_nonce('coptrz_search_sections');
+    $remaining    = coptrz_conversion_remaining_counts();
     ?>
     <div class="wrap">
-        <h1><?php esc_html_e('Convert Sections', 'coptrz-theme'); ?></h1>
+        <h1><?php esc_html_e('Convert to Blocks', 'coptrz-theme'); ?></h1>
         <p class="description">
-            <?php esc_html_e('Freezes the legacy page-builder sections into native Gutenberg blocks (any section that can’t map natively is frozen as Custom HTML instead). Products with an existing description (post_content) are refused — clear it first, then re-run. Original data is preserved, so a conversion can be reverted from the same tool.', 'coptrz-theme'); ?>
+            <?php esc_html_e('Freezes legacy page-builder sections AND/OR the Hero meta box into native Gutenberg blocks — whichever apply to a given post (any section that can’t map natively is frozen as Custom HTML instead; the hero only converts if it would render identically to the current meta-driven hero). Products with an existing description (post_content) are refused for the sections part — clear it first, then re-run. Original data is preserved, so a conversion can be reverted from the same tool.', 'coptrz-theme'); ?>
         </p>
 
+        <?php $corrupted = coptrz_find_corrupted_conversions(); ?>
+        <?php if (!empty($corrupted)) : ?>
+            <div class="notice notice-error" style="padding: 1em;">
+                <h2 style="margin-top:0;"><?php esc_html_e('Corrupted conversions found', 'coptrz-theme'); ?></h2>
+                <p>
+                    <?php esc_html_e('These posts were converted before a wp_slash() bug was fixed (block attributes containing <, >, &, --, or backslashes were silently stripped on save — e.g. a tab description rendering as literal "u003cpu003e" instead of an HTML tag). Revert, then Convert, each post below to regenerate it correctly from the original section/hero data. Any edits made to these posts in the block editor since they were converted will be lost by reverting.', 'coptrz-theme'); ?>
+                </p>
+                <ul style="list-style: disc; padding-left: 2em;">
+                    <?php foreach ($corrupted as $c) : ?>
+                        <li>
+                            <a href="<?php echo esc_url(get_edit_post_link($c['id'])); ?>"><?php echo esc_html($c['title'] ?: ('#' . $c['id'])); ?></a>
+                            <span class="description"> — <?php echo esc_html($c['type']); ?></span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($did)) :
+            $heading = $is_revert
+                ? (($action === 'revert_dry') ? __('Dry run revert results', 'coptrz-theme') : __('Revert results', 'coptrz-theme'))
+                : (($action === 'dry' || $action === 'convert_remaining_dry') ? __('Dry run results', 'coptrz-theme') : __('Conversion results', 'coptrz-theme'));
+        ?>
+            <h2><?php echo esc_html($heading); ?></h2>
+            <table class="widefat striped">
+                <thead><tr>
+                    <th><?php esc_html_e('Post', 'coptrz-theme'); ?></th>
+                    <th><?php esc_html_e('Type', 'coptrz-theme'); ?></th>
+                    <th><?php esc_html_e('Target', 'coptrz-theme'); ?></th>
+                    <th><?php esc_html_e('Sections', 'coptrz-theme'); ?></th>
+                    <th><?php esc_html_e('Hero', 'coptrz-theme'); ?></th>
+                    <th><?php esc_html_e('Notes', 'coptrz-theme'); ?></th>
+                </tr></thead>
+                <tbody>
+                <?php foreach ($did as $r) :
+                    $total = array_sum((array) ($r['counts'] ?? array())); ?>
+                    <tr>
+                        <td><a href="<?php echo esc_url(get_edit_post_link($r['post_id'])); ?>"><?php echo esc_html($r['title'] ?: ('#' . $r['post_id'])); ?></a></td>
+                        <td><?php echo esc_html($r['type']); ?></td>
+                        <td>
+                            <?php echo esc_html($r['target'] ?? ''); ?>
+                            <?php if (!empty($r['template'])) : ?>
+                                <br /><span class="description"><?php echo esc_html__('Template →', 'coptrz-theme') . ' ' . esc_html($r['template']); ?></span>
+                            <?php endif; ?>
+                        </td>
+                        <td><?php echo (int) $total; ?></td>
+                        <td><?php echo esc_html($r['hero'] ?? ''); ?></td>
+                        <td><?php echo esc_html(implode(' ', (array) $r['warnings'])); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+
+        <h2 style="margin-top:2em;"><?php esc_html_e('Convert all remaining, by post type', 'coptrz-theme'); ?></h2>
+        <p class="description"><?php esc_html_e('Runs up to 50 at a time (dry run first is recommended). Click again to continue until the remaining count reaches 0. "Remaining" is an estimate — a post may still be skipped at conversion time (e.g. a hero that wouldn’t render identically as a block).', 'coptrz-theme'); ?></p>
+        <table class="widefat" style="max-width:600px;">
+            <thead><tr><th><?php esc_html_e('Post Type', 'coptrz-theme'); ?></th><th><?php esc_html_e('Remaining', 'coptrz-theme'); ?></th><th></th></tr></thead>
+            <tbody>
+            <?php foreach ($remaining as $post_type => $count) :
+                $obj = get_post_type_object($post_type);
+                $label = $obj ? $obj->labels->name : $post_type;
+            ?>
+                <tr>
+                    <td><?php echo esc_html($label); ?></td>
+                    <td><?php echo (int) $count; ?></td>
+                    <td>
+                        <?php if ($count > 0) : ?>
+                        <form method="post" style="display:inline-block;margin-right:6px;">
+                            <?php wp_nonce_field('coptrz_bulk_convert'); ?>
+                            <input type="hidden" name="coptrz_post_type" value="<?php echo esc_attr($post_type); ?>" />
+                            <button type="submit" name="coptrz_bulk_action" value="convert_remaining_dry" class="button"><?php esc_html_e('Dry run next 50', 'coptrz-theme'); ?></button>
+                            <button type="submit" name="coptrz_bulk_action" value="convert_remaining" class="button button-primary" onclick="return confirm('<?php echo esc_js(__('Convert the next 50 remaining posts of this type?', 'coptrz-theme')); ?>');"><?php esc_html_e('Convert next 50', 'coptrz-theme'); ?></button>
+                        </form>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <h2 style="margin-top:2em;"><?php esc_html_e('Convert or revert specific posts', 'coptrz-theme'); ?></h2>
         <form method="post" class="coptrz-bulk" data-nonce="<?php echo esc_attr($search_nonce); ?>">
             <?php wp_nonce_field('coptrz_bulk_convert'); ?>
 
@@ -2688,45 +3674,11 @@ function coptrz_render_bulk_converter_page()
             <p class="coptrz-bulk__actions-revert" style="display:none;">
                 <button class="button" name="coptrz_bulk_action" value="revert_dry"><?php esc_html_e('Dry run revert', 'coptrz-theme'); ?></button>
                 <button class="button button-primary" name="coptrz_bulk_action" value="revert" style="background:#b32d2e;border-color:#b32d2e;"
-                        onclick="return confirm('<?php echo esc_js(__('Revert the selected posts to the legacy sections builder? Converted blocks will be removed from post_content.', 'coptrz-theme')); ?>');">
+                        onclick="return confirm('<?php echo esc_js(__('Revert the selected posts to the legacy builders? Converted blocks will be removed from post_content.', 'coptrz-theme')); ?>');">
                     <?php esc_html_e('Revert selected posts', 'coptrz-theme'); ?>
                 </button>
             </p>
         </form>
-
-        <?php if (!empty($did)) :
-            $heading = $is_revert
-                ? (($action === 'revert_dry') ? __('Dry run revert results', 'coptrz-theme') : __('Revert results', 'coptrz-theme'))
-                : (($action === 'dry') ? __('Dry run results', 'coptrz-theme') : __('Conversion results', 'coptrz-theme'));
-        ?>
-            <h2><?php echo esc_html($heading); ?></h2>
-            <table class="widefat striped">
-                <thead><tr>
-                    <th><?php esc_html_e('Post', 'coptrz-theme'); ?></th>
-                    <th><?php esc_html_e('Type', 'coptrz-theme'); ?></th>
-                    <th><?php esc_html_e('Target', 'coptrz-theme'); ?></th>
-                    <th><?php esc_html_e('Sections', 'coptrz-theme'); ?></th>
-                    <th><?php esc_html_e('Notes', 'coptrz-theme'); ?></th>
-                </tr></thead>
-                <tbody>
-                <?php foreach ($did as $r) :
-                    $total = array_sum($r['counts']); ?>
-                    <tr>
-                        <td><a href="<?php echo esc_url(get_edit_post_link($r['post_id'])); ?>"><?php echo esc_html($r['title'] ?: ('#' . $r['post_id'])); ?></a></td>
-                        <td><?php echo esc_html($r['type']); ?></td>
-                        <td>
-                            <?php echo esc_html($r['target']); ?>
-                            <?php if (!empty($r['template'])) : ?>
-                                <br /><span class="description"><?php echo esc_html__('Template →', 'coptrz-theme') . ' ' . esc_html($r['template']); ?></span>
-                            <?php endif; ?>
-                        </td>
-                        <td><?php echo (int) $total; ?></td>
-                        <td><?php echo esc_html(implode(' ', $r['warnings'])); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
     </div>
     <script>
     (function () {
@@ -2842,7 +3794,7 @@ function coptrz_render_bulk_converter_page()
                         title.textContent = it.title;
                         var type = document.createElement('span');
                         type.style.color = '#646970';
-                        type.textContent = ' (' + it.type_label + ')';
+                        type.textContent = ' (' + it.type_label + (it.pending ? ' — ' + it.pending : '') + ')';
                         li.appendChild(btn);
                         li.appendChild(title);
                         li.appendChild(type);

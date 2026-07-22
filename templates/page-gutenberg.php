@@ -1,7 +1,7 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
 /* Template Name: Gutenberg
-/* Template Post Type: page, industries, guides
+/* Template Post Type: page, industries, guides, capabilities
 /*-----------------------------------------------------------------------------------*/
 ?>
 <?php get_header(); ?>

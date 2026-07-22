@@ -2,42 +2,81 @@
  * @package   DigitallyDisruptive
  * @author    Digitally Disruptive - Donald Raymundo
  * @link      https://digitallydisruptive.co.uk/
- * Registers the `coptrz/tabs-legacy` block: a native editor placeholder for the
- * legacy section builder's Tabs item (Bootstrap nav-tabs, distinct from the
- * native `dd/tabs` block). save() returns null — rendered server-side by
+ * Registers the `coptrz/tabs-legacy` block: native editor equivalent of the
+ * legacy section builder's Tabs item (Bootstrap nav-tabs — distinct from the
+ * native `dd/tabs` block, this is a frozen-renderer wrapper, not a conversion
+ * onto it). save() returns null — rendered server-side by
  * coptrz_render_tabs_legacy_block() (includes/legacy-blocks.php), which calls
- * ___tab_modules() (modules.php) directly, the same function ___sections() uses.
+ * ___tab_modules() (modules.php) directly with `autop = false`, since these
+ * descriptions come from RichText (already real HTML) rather than a legacy
+ * textarea (bare newlines wpautop() turns into paragraphs).
  */
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
     const { createElement: el } = wp.element;
-    const { useBlockProps }     = wp.blockEditor;
-    const { Placeholder }       = wp.components;
+    const { InspectorControls, useBlockProps, RichText } = wp.blockEditor;
+    const { PanelBody, Placeholder } = wp.components;
+
+    const UI = window.coptrzBlockUI || {};
+
+    function defaultTab() {
+        return { heading: 'New Tab', description: '' };
+    }
 
     registerBlockType('coptrz/tabs-legacy', {
         title:    'Tabs (Legacy)',
         icon:     'index-card',
         category: 'design',
-        description: 'Frozen legacy Tabs item — rendered by the original renderer, not natively editable.',
+        description: 'Bootstrap-style tabs — native equivalent of the section builder\'s Tabs item.',
         supports: { html: false, reusable: false },
         attributes: {
-            // No `default` on `legacy` — see coptrz-gallery-block.js for why.
-            legacy: { type: 'object' }
+            tabs: { type: 'array', default: [] } // [{heading, description}]
         },
 
         edit: function (props) {
-            const { attributes } = props;
-            const tabs = (attributes.legacy && attributes.legacy.tabs) || [];
+            const { attributes, setAttributes } = props;
+            const tabs = attributes.tabs;
+
             return el(
                 'div',
                 useBlockProps(),
-                el(Placeholder, {
-                    icon:  'index-card',
-                    label: 'Tabs (Legacy)',
-                    instructions: tabs.length
-                        ? tabs.length + ' tab(s): ' + tabs.map(function (t) { return t.heading; }).join(', ')
-                        : 'Legacy tabs — content managed elsewhere.'
+                el(
+                    InspectorControls,
+                    null,
+                    el(PanelBody, { title: 'Tabs', initialOpen: true },
+                        el('p', null, 'Manage tab content in the block canvas.')
+                    )
+                ),
+                tabs.length === 0
+                    ? el(Placeholder, {
+                        icon: 'index-card',
+                        label: 'Tabs (Legacy)',
+                        instructions: 'Add tabs below.'
+                    })
+                    : null,
+                el(UI.Repeater, {
+                    items: tabs,
+                    onChange: function (next) { setAttributes({ tabs: next }); },
+                    defaultItem: defaultTab,
+                    addLabel: '+ Add Tab',
+                    rowLabel: function (item) { return item.heading || 'Tab'; },
+                    renderRow: function (item, idx, update) {
+                        return el('div', null,
+                            UI.textField('Tab Heading', item.heading, function (v) { update({ heading: v }); }),
+                            el('div', { style: { marginTop: '8px' } },
+                                el('label', { style: { display: 'block', marginBottom: '4px', fontWeight: 600 } }, 'Description'),
+                                el(RichText, {
+                                    tagName: 'div',
+                                    className: 'coptrz-legacy-richtext',
+                                    style: { border: '1px solid #ddd', borderRadius: '2px', padding: '8px', minHeight: '80px' },
+                                    value: item.description,
+                                    onChange: function (v) { update({ description: v }); },
+                                    placeholder: 'Tab description…'
+                                })
+                            )
+                        );
+                    }
                 })
             );
         },

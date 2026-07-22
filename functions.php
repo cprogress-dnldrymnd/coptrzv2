@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 5.7);
+define('coptz_version', 5.8);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -40,6 +40,7 @@ require_once __DIR__ . '/includes/meta-shim/Writer.php';
 require_once __DIR__ . '/includes/meta-shim/Container_Admin.php';
 require_once __DIR__ . '/includes/meta-reader.php';
 require_once __DIR__ . '/includes/section-converter.php';
+require_once __DIR__ . '/includes/hero-converter.php';
 if (is_admin()) {
     // Transitional parity checker (inert unless ?coptrz_meta_selftest=<id>).
     require_once __DIR__ . '/includes/meta-shim/self-test.php';
@@ -68,6 +69,12 @@ function tissue_paper_register_custom_fields()
     // then boot the admin lifecycle.
     if (function_exists('coptrz_register_html_sections_fields')) {
         coptrz_register_html_sections_fields();
+    }
+    // Hide the Hero meta box's fields once a post's hero is converted to a
+    // coptrz/hero block (includes/hero-converter.php) — same pattern/ordering
+    // as the sections call directly above.
+    if (function_exists('coptrz_register_hero_hidden_fields')) {
+        coptrz_register_hero_hidden_fields();
     }
     // Register the always-on Layout / Custom CSS / Hide Before Footer boxes
     // regardless of the blocks-editor branch above, so they appear on every
@@ -289,6 +296,84 @@ function coptrz_global_widgets()
 }
 
 /**
+ * Select-field option lists for the `coptrz/hero` block, transcribed verbatim
+ * (option VALUES, not just labels) from __hero_fields() / __hero_button_fields()
+ * / __hero_form_fields() (includes/post-meta.php) so the block's Inspector
+ * controls and the legacy admin fields offer identical choices — same pattern
+ * as coptrz_post_grid_field_options() below. Localized to the editor as part
+ * of `coptrzHero`. `buttonTypePostTypes` maps a button type to the post type
+ * (or `popups`) /dd/v1/hero-link-targets (hooks.php) searches for that type —
+ * shared by the editor's post picker and the REST handler so they can't drift.
+ *
+ * @return array<string,array<string,string>>
+ */
+function coptrz_hero_field_options()
+{
+    return array(
+        'backgroundType' => array(
+            'self-hosted' => 'Self Hosted',
+            'youtube'     => 'Youtube',
+        ),
+        'height' => array(
+            ''           => 'Default',
+            'small-hero' => 'Small',
+        ),
+        'alignment' => array(
+            ''            => 'Default',
+            'text-center' => 'Center',
+            'text-start'  => 'Left',
+            'text-end'    => 'Right',
+        ),
+        'buttonType' => array(
+            ''            => 'Select Button Type',
+            'page'        => 'Page',
+            'product'     => 'Product',
+            'guides'      => 'Guides',
+            'casestudies' => 'Case Studies',
+            'post'        => 'Post',
+            'industries'  => 'Industry',
+            'popups'      => 'Popup',
+            'custom'      => 'Custom',
+        ),
+        'buttonStyle' => array(
+            'button-accent'    => 'Accent',
+            'button-primary'   => 'Primary',
+            'button-secondary' => 'Secondary',
+            'button-white'     => 'White',
+            'button-bordered'  => 'Bordered',
+        ),
+        'buttonTarget' => array(
+            'target="_self"'  => 'Default',
+            'target="_blank"' => 'New Tab',
+        ),
+        'formRedirectType' => array(
+            ''         => 'None',
+            'pdf'      => 'PDF File',
+            'custom'   => 'Custom URL',
+            'document' => 'Document',
+        ),
+        'formStyle' => array(
+            ''        => 'Default',
+            'style-2' => 'Style 2',
+        ),
+        'formType' => array(
+            ''        => 'Default',
+            'product' => 'Product',
+            'script'  => 'Script',
+        ),
+        'buttonTypePostTypes' => array(
+            'page'        => 'page',
+            'product'     => 'product',
+            'guides'      => 'guides',
+            'casestudies' => 'casestudies',
+            'post'        => 'post',
+            'industries'  => 'industries',
+            'popups'      => 'popups',
+        ),
+    );
+}
+
+/**
  * The 4 post types selectable by the legacy "Post Grid" section-item field
  * (includes/post-meta.php, `post_type` group inside `post_grid`) — hard-coded
  * groups, not a generic CPT picker, so the `coptrz/post-grid` block mirrors that
@@ -398,6 +483,83 @@ function coptrz_post_grid_field_options()
         ),
         'iconColor' => $color_options,
         'customFieldType' => array('p' => 'p', 'h2' => 'h2', 'h3' => 'h3', 'h4' => 'h4', 'h5' => 'h5', 'h6' => 'h6', 'img' => 'img'),
+    );
+}
+
+/**
+ * Whitelist of post-type/taxonomy pickers exposed through the shared
+ * `/dd/v1/block-pickers?type=…` REST route (includes/hooks.php,
+ * dd_rest_list_block_pickers()) — shared between that endpoint and every
+ * legacy-wrapper block's editor JS so the two can't drift, same rationale as
+ * coptrz_hero_field_options()'s `buttonTypePostTypes`. `kind` is 'post' or
+ * 'term'; `name` is the post_type slug or taxonomy slug get_posts()/get_terms()
+ * expects — NOT necessarily REST-exposed (several of these are deliberately
+ * show_in_rest=false, or in pa_brands's case never had it set at all, which is
+ * the whole reason this route exists instead of core `/wp/v2/*`).
+ *
+ * @return array<string, array{kind:string, name:string}>
+ */
+function coptrz_block_picker_sources()
+{
+    return array(
+        'product'            => array('kind' => 'post', 'name' => 'product'),
+        'product_cat'        => array('kind' => 'term', 'name' => 'product_cat'),
+        'pa_brands'          => array('kind' => 'term', 'name' => 'pa_brands'),
+        'faq'                => array('kind' => 'post', 'name' => 'faq'),
+        'faqs_category'      => array('kind' => 'term', 'name' => 'faqs_category'),
+        'compareproducts'    => array('kind' => 'post', 'name' => 'compareproducts'),
+        'globalpostboxes'    => array('kind' => 'post', 'name' => 'globalpostboxes'),
+    );
+}
+
+/**
+ * Select-field option registries for the legacy-wrapper blocks (Gallery,
+ * Product Slider, Accordion) — same shape/convention as
+ * coptrz_post_grid_field_options() above: `array<fieldKey, array<optionValue,
+ * optionLabel>>`, option VALUES transcribed verbatim from includes/post-meta.php
+ * since they are literal CSS utility classes, not invented. Localized as
+ * `coptrzLegacyBlocks` (functions.php, digitally_disruptive_enqueue_swiper_editor_assets()).
+ *
+ * @return array<string, array<string,string>>
+ */
+function coptrz_legacy_block_field_options()
+{
+    return array(
+        // Gallery — post-meta.php ~L4469-4475, ~L4507-4647.
+        'galleryStyle' => array('logo-slider' => 'Logo Slider', 'grid' => 'Grid'),
+        'galleryColumnWidth' => array(
+            'col-lg' => 'Default', 'col-auto' => 'Auto', 'col-12' => '100.00%',
+            'col-lg-11' => '91.67%', 'col-lg-10' => '83.33%', 'col-lg-9' => '75.00%',
+            'col-lg-8' => '67.00%', 'col-lg-7' => '58.33%', 'col-lg-6' => '50.00%',
+            'col-lg-5' => '41.67%', 'col-lg-4' => '33.33%', 'col-lg-3' => '25.00%',
+            'col-lg-2' => '16.67%', 'col-lg-1' => '08.33%',
+        ),
+        'galleryColumnWidthTablet' => array(
+            '' => 'Default', 'col-auto' => 'Auto', 'col-md-12' => '100.00%',
+            'col-md-11' => '91.67%', 'col-md-10' => '83.33%', 'col-md-9' => '75.00%',
+            'col-md-8' => '67.00%', 'col-md-7' => '58.33%', 'col-md-6' => '50.00%',
+            'col-md-5' => '41.67%', 'col-md-4' => '33.33%', 'col-md-3' => '25.00%',
+            'col-md-2' => '16.67%', 'col-md-1' => '08.33%',
+        ),
+        'galleryColumnWidthMobile' => array(
+            '' => 'Default', 'col-auto' => 'Auto', 'col-12' => '100%',
+            'col-11' => '91.67%', 'col-10' => '83.33%', 'col-9' => '75.00%',
+            'col-8' => '67.00%', 'col-7' => '58.33%', 'col-6' => '50.00%',
+            'col-5' => '41.67%', 'col-4' => '33.33%', 'col-3' => '25.00%',
+            'col-2' => '16.67%', 'col-1' => '08.33%',
+        ),
+        'gallerySpacing' => array(
+            '' => 'Default', '6' => 'Huge', '5' => 'Extra Large', '4' => 'Large',
+            '3' => 'Medium', '2' => 'Small', '1' => 'Extra Small', '20px' => '20px', '0' => 'None',
+        ),
+        // Accordion — post-meta.php ~L5612-5619.
+        'accordionSource' => array('' => 'Custom', 'faqs' => 'FAQs Select Manually', 'faqs_category' => 'FAQs by Category'),
+        // Product Slider — post-meta.php ~L5539-5546.
+        'productSliderSource' => array(
+            'category'   => 'Select by Category',
+            'manually'   => 'Select Manually',
+            'main_query' => 'Main Query (works only for product taxonomy pages)',
+        ),
     );
 }
 
@@ -716,6 +878,15 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
     ));
 
     wp_enqueue_script(
+        'coptrz-hero-block',
+        get_template_directory_uri() . '/assets/js/coptrz-hero-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-hero-block.js'),
+        true
+    );
+    wp_localize_script('coptrz-hero-block', 'coptrzHero', coptrz_hero_field_options());
+
+    wp_enqueue_script(
         'coptrz-section-split-block',
         get_template_directory_uri() . '/assets/js/coptrz-section-split-block.js',
         array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-data'),
@@ -723,9 +894,26 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         true
     );
 
+    // Shared editor UI helpers (IdTokenPicker, SinglePostPicker, selectField, …)
+    // for the legacy wrapper blocks below — see assets/js/coptrz-block-ui.js.
+    // Must be enqueued (and registered as a dependency) BEFORE those blocks,
+    // since they read off window.coptrzBlockUI at parse time.
+    wp_enqueue_script(
+        'coptrz-block-ui',
+        get_template_directory_uri() . '/assets/js/coptrz-block-ui.js',
+        array('wp-element', 'wp-components', 'wp-api-fetch'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-block-ui.js'),
+        true
+    );
+    // Localized on coptrz-block-ui (rather than any one block handle) since it's
+    // a declared dependency of every legacy block below, guaranteeing this prints
+    // — and window.coptrzLegacyBlocks exists — before any of them run.
+    wp_localize_script('coptrz-block-ui', 'coptrzLegacyBlocks', coptrz_legacy_block_field_options());
+
     // Legacy wrapper blocks (Gallery, Product Slider, Tabs, Accordion, Drone
     // Servicing Grid, Events Widget, Product, Product Compare, Global Post Box).
     // Each is `save: null` and rendered server-side — see includes/legacy-blocks.php.
+    // wp-api-fetch + coptrz-block-ui are required by every one of these (pickers).
     $legacy_block_scripts = array(
         'coptrz-gallery-block'             => 'coptrz-gallery-block.js',
         'coptrz-product-slider-block'      => 'coptrz-product-slider-block.js',
@@ -741,7 +929,7 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         wp_enqueue_script(
             $handle,
             get_template_directory_uri() . '/assets/js/' . $file,
-            array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+            array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch', 'coptrz-block-ui'),
             filemtime(get_template_directory() . '/assets/js/' . $file),
             true
         );

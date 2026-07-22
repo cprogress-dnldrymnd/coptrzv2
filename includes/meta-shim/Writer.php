@@ -39,9 +39,15 @@ class Writer
             // Unknown field: best-effort single-meta write so nothing silently no-ops.
             $key = Key_Formatter::KEY_PREFIX . $field_name;
             if ($object_type === 'post') {
-                update_post_meta($object_id, $key, $value);
+                // update_post_meta()/update_term_meta() call wp_unslash() on the
+                // value internally (same as update_post()/wp_insert_post()) —
+                // wp_slash() here cancels that out, matching
+                // Key_Formatter::write_cell()'s add_post_meta()/add_term_meta()
+                // calls just below. update_option() does NOT unslash, so it's
+                // deliberately left as-is.
+                update_post_meta($object_id, $key, wp_slash($value));
             } elseif ($object_type === 'term') {
-                update_term_meta($object_id, $key, $value);
+                update_term_meta($object_id, $key, wp_slash($value));
             } else {
                 update_option($key, $value);
             }

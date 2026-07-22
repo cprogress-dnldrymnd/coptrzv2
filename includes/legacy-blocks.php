@@ -9,15 +9,37 @@
  * section-builder items that have no first-class native block (Gallery, Product
  * Slider, Tabs, Accordion, Drone Servicing Grid, Events Widget, Product, Product
  * Compare, Global Post Box). Each block registers client-side with `save: null`
- * (assets/js/coptrz-*-block.js) and is rendered here by calling the same
- * function ___sections() (modules.php) already calls for that item type, so
- * output is byte-identical to the legacy renderer. See section-converter.php's
- * `coptrz_block_item_mappers()` for the item => block conversion.
+ * (assets/js/coptrz-*-block.js) and flattened, typed attributes (not an opaque
+ * blob) so the block is genuinely editable in Gutenberg. This file converts
+ * those attributes back into the row-array shape the ORIGINAL legacy render
+ * function expects and calls it directly, so output is byte-identical to
+ * ___sections() (modules.php) whichever path — converted or hand-authored —
+ * produced the block. See section-converter.php's `coptrz_block_item_mappers()`
+ * for the item => block conversion (the inverse direction).
  *
  * Every renderer is guarded with function_exists()/shortcode_exists()/
  * class_exists() because modules.php/elements.php/svg.php are not loaded in
  * admin under the blocks-editor template (dd_is_blocks_editor_template_active()).
  */
+
+/**
+ * Normalises a picker attribute that may be either the modern [{id,title}, …]
+ * shape (IdTokenPicker) or a legacy plain int[] shape (blocks converted before
+ * this pass, or before the product-slider picker attribute type changed) into
+ * a flat int[] of ids.
+ */
+function coptrz_block_picker_ids($value)
+{
+    $out = array();
+    foreach ((array) $value as $v) {
+        if (is_array($v) && isset($v['id'])) {
+            $out[] = (int) $v['id'];
+        } elseif (is_numeric($v)) {
+            $out[] = (int) $v;
+        }
+    }
+    return $out;
+}
 
 function coptrz_render_gallery_block($block_content, $block)
 {
@@ -27,24 +49,31 @@ function coptrz_render_gallery_block($block_content, $block)
     if (!function_exists('____gallery_modules')) {
         return $block_content;
     }
-    $attrs  = isset($block['attrs']) ? $block['attrs'] : array();
-    $legacy = isset($attrs['legacy']) && is_array($attrs['legacy']) ? $attrs['legacy'] : array();
-    if (empty($legacy['gallery'])) {
+    $attrs = isset($block['attrs']) ? $block['attrs'] : array();
+    $ids   = isset($attrs['galleryIds']) && is_array($attrs['galleryIds']) ? array_map('intval', $attrs['galleryIds']) : array();
+    if (empty($ids)) {
         return $block_content;
     }
+
+    $h_spacing = isset($attrs['horizontalSpacing']) ? (string) $attrs['horizontalSpacing'] : '';
+    $v_spacing = isset($attrs['verticalSpacing']) ? (string) $attrs['verticalSpacing'] : '';
+
     return ____gallery_modules(array(
         'id'                      => wp_unique_id('gallery-'),
-        'gallery'                 => (array) $legacy['gallery'],
-        'gallery_style'           => isset($legacy['gallery_style']) ? $legacy['gallery_style'] : '',
-        'number_of_slides'        => isset($legacy['number_of_slides']) ? $legacy['number_of_slides'] : '',
-        'number_of_slides_tablet' => isset($legacy['number_of_slides_tablet']) ? $legacy['number_of_slides_tablet'] : '',
-        'number_of_slides_mobile' => isset($legacy['number_of_slides_mobile']) ? $legacy['number_of_slides_mobile'] : '',
-        'column_width'            => isset($legacy['column_width']) ? $legacy['column_width'] : '',
-        'column_width_tablet'     => isset($legacy['column_width_tablet']) ? $legacy['column_width_tablet'] : '',
-        'column_width_mobile'     => isset($legacy['column_width_mobile']) ? $legacy['column_width_mobile'] : '',
-        'vertical_spacing'        => isset($legacy['vertical_spacing']) ? $legacy['vertical_spacing'] : '',
-        'horizontal_spacing'      => isset($legacy['horizontal_spacing']) ? $legacy['horizontal_spacing'] : '',
-        'same_image_height'       => isset($legacy['same_image_height']) ? $legacy['same_image_height'] : false,
+        'gallery'                 => $ids,
+        'gallery_style'           => isset($attrs['galleryStyle']) ? (string) $attrs['galleryStyle'] : 'grid',
+        'number_of_slides'        => isset($attrs['numberOfSlides']) ? $attrs['numberOfSlides'] : '',
+        'number_of_slides_tablet' => isset($attrs['numberOfSlidesTablet']) ? $attrs['numberOfSlidesTablet'] : '',
+        'number_of_slides_mobile' => isset($attrs['numberOfSlidesMobile']) ? $attrs['numberOfSlidesMobile'] : '',
+        'column_width'            => isset($attrs['columnWidth']) ? (string) $attrs['columnWidth'] : '',
+        'column_width_tablet'     => isset($attrs['columnWidthTablet']) ? (string) $attrs['columnWidthTablet'] : '',
+        'column_width_mobile'     => isset($attrs['columnWidthMobile']) ? (string) $attrs['columnWidthMobile'] : '',
+        // Registry option values are bare numbers ('6','5',…,'20px','0') so one
+        // list serves both axes (functions.php, coptrz_legacy_block_field_options())
+        // — prefix back to the gx-/gy- utility classes ____gallery_modules() expects.
+        'vertical_spacing'        => $v_spacing !== '' ? 'gy-' . $v_spacing : '',
+        'horizontal_spacing'      => $h_spacing !== '' ? 'gx-' . $h_spacing : '',
+        'same_image_height'       => !empty($attrs['sameImageHeight']),
     ));
 }
 add_filter('render_block', 'coptrz_render_gallery_block', 10, 2);
@@ -80,14 +109,14 @@ function coptrz_render_product_slider_block($block_content, $block)
     );
 
     if ($source_type === 'category') {
-        $term_ids = isset($attrs['categoryIds']) ? array_map('intval', (array) $attrs['categoryIds']) : array();
+        $term_ids = coptrz_block_picker_ids(isset($attrs['categoryIds']) ? $attrs['categoryIds'] : array());
         $args['tax_query']['relation'] = 'AND';
         $args['tax_query'][] = array(
             'taxonomy' => 'product_cat',
             'field'    => 'term_id',
             'terms'    => $term_ids,
         );
-        $brand_ids = isset($attrs['brandIds']) ? array_map('intval', (array) $attrs['brandIds']) : array();
+        $brand_ids = coptrz_block_picker_ids(isset($attrs['brandIds']) ? $attrs['brandIds'] : array());
         if (!empty($brand_ids)) {
             $args['tax_query'][] = array(
                 'taxonomy' => 'pa_brands',
@@ -96,7 +125,7 @@ function coptrz_render_product_slider_block($block_content, $block)
             );
         }
     } elseif ($source_type === 'manually') {
-        $args['include'] = isset($attrs['productIds']) ? array_map('intval', (array) $attrs['productIds']) : array();
+        $args['include'] = coptrz_block_picker_ids(isset($attrs['productIds']) ? $attrs['productIds'] : array());
     } else {
         // main_query: resolve from the live request, same as modules.php.
         if (function_exists('is_product_taxonomy') && is_product_taxonomy()) {
@@ -129,6 +158,14 @@ function coptrz_render_product_slider_block($block_content, $block)
 }
 add_filter('render_block', 'coptrz_render_product_slider_block', 10, 2);
 
+/**
+ * `tabs` attribute is [{heading, description}, …], authored via RichText in
+ * the editor — already real HTML, not bare textarea newlines — so autop is
+ * disabled here (___tab_modules()'s third param, modules.php). The
+ * section-converter's `tabs` mapper runs wpautop() ONCE at conversion time on
+ * legacy textarea descriptions before storing them, so both paths end up with
+ * real HTML in the attribute and render identically from here on.
+ */
 function coptrz_render_tabs_legacy_block($block_content, $block)
 {
     if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/tabs-legacy') {
@@ -137,16 +174,22 @@ function coptrz_render_tabs_legacy_block($block_content, $block)
     if (!function_exists('___tab_modules')) {
         return $block_content;
     }
-    $attrs  = isset($block['attrs']) ? $block['attrs'] : array();
-    $legacy = isset($attrs['legacy']) && is_array($attrs['legacy']) ? $attrs['legacy'] : array();
-    $tabs   = isset($legacy['tabs']) && is_array($legacy['tabs']) ? $legacy['tabs'] : array();
+    $attrs = isset($block['attrs']) ? $block['attrs'] : array();
+    $tabs  = isset($attrs['tabs']) && is_array($attrs['tabs']) ? $attrs['tabs'] : array();
     if (empty($tabs)) {
         return $block_content;
     }
-    return ___tab_modules($tabs, wp_unique_id('tabs-'));
+    return ___tab_modules($tabs, wp_unique_id('tabs-'), false);
 }
 add_filter('render_block', 'coptrz_render_tabs_legacy_block', 10, 2);
 
+/**
+ * Custom-source `items` are RichText-authored (real HTML already) so autop is
+ * disabled for them; FAQ-sourced descriptions (raw post_content) always keep
+ * wpautop regardless — __accordion_module() (modules.php) enforces that split
+ * itself based on accordion_source, the `autop` flag here only ever applies to
+ * the custom branch.
+ */
 function coptrz_render_accordion_legacy_block($block_content, $block)
 {
     if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/accordion-legacy') {
@@ -156,20 +199,30 @@ function coptrz_render_accordion_legacy_block($block_content, $block)
         return $block_content;
     }
     $attrs  = isset($block['attrs']) ? $block['attrs'] : array();
-    $legacy = isset($attrs['legacy']) && is_array($attrs['legacy']) ? $attrs['legacy'] : array();
+    $source = isset($attrs['source']) ? (string) $attrs['source'] : '';
+
     return __accordion_module(array(
-        'accordion'        => isset($legacy['accordion']) ? $legacy['accordion'] : false,
-        'accordion_source' => isset($legacy['accordion_source']) ? $legacy['accordion_source'] : false,
-        'faqs'             => isset($legacy['faqs']) ? $legacy['faqs'] : false,
-        'faqs_category'    => isset($legacy['faqs_category']) ? $legacy['faqs_category'] : false,
-        'open_first_item'  => isset($legacy['open_first_item']) ? $legacy['open_first_item'] : false,
+        'accordion'        => isset($attrs['items']) && is_array($attrs['items']) ? $attrs['items'] : array(),
+        'accordion_source' => $source,
+        'faqs'             => isset($attrs['faqs']) && is_array($attrs['faqs']) ? $attrs['faqs'] : array(),
+        'faqs_category'    => isset($attrs['faqsCategory']) && is_array($attrs['faqsCategory']) ? $attrs['faqsCategory'] : array(),
+        'open_first_item'  => !empty($attrs['openFirstItem']),
         'module_id'        => wp_unique_id('accordion-'),
-        'with_border'      => isset($legacy['with_border']) ? $legacy['with_border'] : false,
-        'lower_opacity'    => isset($legacy['lower_opacity']) ? $legacy['lower_opacity'] : false,
+        'with_border'      => !empty($attrs['withBorder']),
+        'lower_opacity'    => !empty($attrs['lowerOpacity']),
+        'autop'            => false,
     ));
 }
 add_filter('render_block', 'coptrz_render_accordion_legacy_block', 10, 2);
 
+/**
+ * Each drone's `features` attribute is a fixed map of
+ * {drone,battery,controller,payload} => {enabled, quantity} — only `enabled`
+ * specs are emitted as `service_features` rows (with their `_type` intact,
+ * since __drone_servicing() dispatches SVG icon lookups on it); an absent spec
+ * renders as an X in the comparison table, matching legacy's
+ * "feature not in the array at all" state exactly (woocommerce.php).
+ */
 function coptrz_render_drone_servicing_grid_block($block_content, $block)
 {
     if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/drone-servicing-grid') {
@@ -179,14 +232,36 @@ function coptrz_render_drone_servicing_grid_block($block_content, $block)
         return $block_content;
     }
     $attrs  = isset($block['attrs']) ? $block['attrs'] : array();
-    $legacy = isset($attrs['legacy']) && is_array($attrs['legacy']) ? $attrs['legacy'] : array();
-    if (empty($legacy['servicing_drones'])) {
+    $drones = isset($attrs['drones']) && is_array($attrs['drones']) ? $attrs['drones'] : array();
+    if (empty($drones)) {
         return $block_content;
     }
+
+    $servicing_drones = array();
+    foreach ($drones as $d) {
+        $features = isset($d['features']) && is_array($d['features']) ? $d['features'] : array();
+        $service_features = array();
+        foreach ($features as $type => $f) {
+            if (!empty($f['enabled'])) {
+                $service_features[] = array(
+                    '_type'    => (string) $type,
+                    'quantity' => isset($f['quantity']) ? $f['quantity'] : '',
+                );
+            }
+        }
+        $servicing_drones[] = array(
+            '_type'              => '_',
+            'service_name'       => isset($d['serviceName']) ? (string) $d['serviceName'] : '',
+            'service_subheading' => isset($d['serviceSubheading']) ? (string) $d['serviceSubheading'] : '',
+            'service_price'      => isset($d['servicePrice']) ? (string) $d['servicePrice'] : '',
+            'service_features'   => $service_features,
+        );
+    }
+
     return __drone_servicing(
-        isset($legacy['servicing_heading']) ? (string) $legacy['servicing_heading'] : '',
-        isset($legacy['servicing_description']) ? (string) $legacy['servicing_description'] : '',
-        (array) $legacy['servicing_drones']
+        isset($attrs['heading']) ? (string) $attrs['heading'] : '',
+        isset($attrs['description']) ? (string) $attrs['description'] : '',
+        $servicing_drones
     );
 }
 add_filter('render_block', 'coptrz_render_drone_servicing_grid_block', 10, 2);
@@ -199,17 +274,11 @@ function coptrz_render_events_widget_block($block_content, $block)
     if (!shortcode_exists('event_countdown')) {
         return $block_content;
     }
-    $attrs  = isset($block['attrs']) ? $block['attrs'] : array();
-    $legacy = isset($attrs['legacy']) && is_array($attrs['legacy']) ? $attrs['legacy'] : array();
-    $items  = isset($legacy['events_widget']) && is_array($legacy['events_widget']) ? $legacy['events_widget'] : array();
-
-    $html = '';
-    foreach ($items as $sub) {
-        if (isset($sub['_type']) && $sub['_type'] === 'countdown') {
-            $html .= do_shortcode('[event_countdown]');
-        }
+    $attrs = isset($block['attrs']) ? $block['attrs'] : array();
+    if (empty($attrs['showCountdown'])) {
+        return $block_content;
     }
-    return $html !== '' ? $html : $block_content;
+    return do_shortcode('[event_countdown]');
 }
 add_filter('render_block', 'coptrz_render_events_widget_block', 10, 2);
 
@@ -248,6 +317,15 @@ function coptrz_render_product_compare_block($block_content, $block)
 }
 add_filter('render_block', 'coptrz_render_product_compare_block', 10, 2);
 
+/**
+ * Column-width is now a per-box editable field (columnWidth/columnWidthTablet/
+ * columnWidthMobile) rather than a class string frozen at conversion time — the
+ * legacy 3-posts/col-md-6 special case (modules.php) is only ever applied ONCE,
+ * to seed the initial value each box gets when the section-converter's
+ * `global_post_box_selection` mapper creates it (section-converter.php), since
+ * that special case depends on the whole selection's post COUNT, not something
+ * a single box can (or needs to, after that point) know about.
+ */
 function coptrz_render_global_post_box_block($block_content, $block)
 {
     if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/global-post-box') {
@@ -261,14 +339,21 @@ function coptrz_render_global_post_box_block($block_content, $block)
     if (!$post_id) {
         return $block_content;
     }
-    $col_classes = isset($attrs['colClasses']) ? trim((string) $attrs['colClasses']) : '';
+
+    $col = array();
+    foreach (array('columnWidth', 'columnWidthTablet', 'columnWidthMobile') as $key) {
+        if (!empty($attrs[$key])) {
+            $col[] = (string) $attrs[$key];
+        }
+    }
+
     return __post_box(array(
         'id'                => $post_id,
         'featured'          => false,
         'tag'               => 'h4',
         'description_class' => 'excerpt-no-limit mb-0__related_posts',
         'elements'          => array('image', 'title', 'content'),
-        'col'               => $col_classes !== '' ? explode(' ', $col_classes) : 'col-lg-4 col-md-6',
+        'col'               => !empty($col) ? $col : 'col-lg-4 col-md-6',
     ));
 }
 add_filter('render_block', 'coptrz_render_global_post_box_block', 10, 2);

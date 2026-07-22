@@ -6,45 +6,68 @@
  * "Global Post Box Selection" section item. The section-converter's
  * `global_post_box_selection` mapper (section-converter.php) emits a parent
  * core/group carrying the legacy row classes plus one of these per selected
- * post, so individual boxes stay deletable/reorderable in the editor — deliberately
- * more granular than the other legacy wrappers, since this feature is meant to
- * be dismantled piecemeal in the future. save() returns null — rendered
- * server-side by coptrz_render_global_post_box_block() (includes/legacy-blocks.php),
- * which calls __post_box() (modules.php) directly, the same function
- * ___sections() uses. Column-width classes are resolved once at conversion time
- * (including the legacy 3-posts/col-md-6 special case) and baked into `colClasses`,
- * not recomputed per box.
+ * post, so individual boxes stay deletable/reorderable/re-configurable in the
+ * editor. save() returns null — rendered server-side by
+ * coptrz_render_global_post_box_block() (includes/legacy-blocks.php), which
+ * calls __post_box() (modules.php) directly.
+ *
+ * Column-width is now a per-box editable select (rather than a class string
+ * baked in at conversion time) — the legacy 3-posts/col-md-6 special case
+ * (modules.php) still resolves once at conversion time into each box's initial
+ * value, since it depends on the whole selection's post count, but is freely
+ * editable afterwards like any other setting.
  */
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
     const { createElement: el } = wp.element;
-    const { useBlockProps }     = wp.blockEditor;
-    const { Placeholder }       = wp.components;
+    const { InspectorControls, useBlockProps } = wp.blockEditor;
+    const { PanelBody, Placeholder } = wp.components;
+
+    const UI = window.coptrzBlockUI || {};
+    const OPTS = window.coptrzLegacyBlocks || {};
 
     registerBlockType('coptrz/global-post-box', {
         title:    'Global Post Box (Legacy)',
         icon:     'id',
         category: 'design',
-        description: 'One frozen legacy Global Post Box card — rendered by the original renderer, not natively editable.',
+        description: 'One card from a Global Post Box selection — native equivalent of that section builder item.',
         supports: { html: false, reusable: false },
         attributes: {
-            postId:     { type: 'number', default: 0 },
-            postTitle:  { type: 'string', default: '' },
-            colClasses: { type: 'string', default: '' }
+            postId:            { type: 'number', default: 0 },
+            postTitle:         { type: 'string', default: '' },
+            columnWidth:       { type: 'string', default: '' },
+            columnWidthTablet: { type: 'string', default: '' },
+            columnWidthMobile: { type: 'string', default: '' }
         },
 
         edit: function (props) {
-            const { attributes } = props;
+            const { attributes, setAttributes } = props;
+            const a = attributes;
             return el(
                 'div',
                 useBlockProps(),
+                el(
+                    InspectorControls,
+                    null,
+                    el(PanelBody, { title: 'Global Post Box Settings', initialOpen: true },
+                        el(UI.SinglePostPicker, {
+                            label: 'Post',
+                            fetchPath: '/dd/v1/block-pickers?type=globalpostboxes',
+                            value: a.postId ? { id: a.postId, title: a.postTitle } : null,
+                            onChange: function (v) { setAttributes({ postId: v ? v.id : 0, postTitle: v ? v.title : '' }); }
+                        }),
+                        UI.selectField('Column Width Desktop', a.columnWidth, OPTS.galleryColumnWidth, function (v) { setAttributes({ columnWidth: v }); }),
+                        UI.selectField('Column Width Tablet', a.columnWidthTablet, OPTS.galleryColumnWidthTablet, function (v) { setAttributes({ columnWidthTablet: v }); }),
+                        UI.selectField('Column Width Mobile', a.columnWidthMobile, OPTS.galleryColumnWidthMobile, function (v) { setAttributes({ columnWidthMobile: v }); })
+                    )
+                ),
                 el(Placeholder, {
                     icon:  'id',
                     label: 'Global Post Box (Legacy)',
-                    instructions: attributes.postTitle
-                        ? attributes.postTitle
-                        : 'Legacy global post box — content managed elsewhere.'
+                    instructions: a.postTitle
+                        ? a.postTitle
+                        : 'Select a post in the block settings.'
                 })
             );
         },

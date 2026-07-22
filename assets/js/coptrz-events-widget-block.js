@@ -2,38 +2,49 @@
  * @package   DigitallyDisruptive
  * @author    Digitally Disruptive - Donald Raymundo
  * @link      https://digitallydisruptive.co.uk/
- * Registers the `coptrz/events-widget` block: a native editor placeholder for
- * the legacy section builder's Events Widget item (currently a single
- * "countdown" sub-widget). save() returns null — rendered server-side by
- * coptrz_render_events_widget_block() (includes/legacy-blocks.php), which
- * mirrors the `case 'events_widget':` loop in modules.php and runs
- * `[event_countdown]` through do_shortcode().
+ * Registers the `coptrz/events-widget` block: native editor equivalent of the
+ * legacy section builder's Events Widget item (currently a single "countdown"
+ * sub-widget). save() returns null — rendered server-side by
+ * coptrz_render_events_widget_block() (includes/legacy-blocks.php), which runs
+ * `[event_countdown]` through do_shortcode() when enabled.
  */
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
     const { createElement: el } = wp.element;
-    const { useBlockProps }     = wp.blockEditor;
-    const { Placeholder }       = wp.components;
+    const { InspectorControls, useBlockProps } = wp.blockEditor;
+    const { PanelBody, Placeholder } = wp.components;
+
+    const UI = window.coptrzBlockUI || {};
 
     registerBlockType('coptrz/events-widget', {
         title:    'Events Widget (Legacy)',
         icon:     'clock',
         category: 'design',
-        description: 'Frozen legacy Events Widget item — rendered by the original renderer, not natively editable.',
+        description: 'An event countdown timer — native equivalent of the section builder\'s Events Widget item.',
         supports: { html: false, reusable: false },
         attributes: {
-            legacy: { type: 'object' }
+            showCountdown: { type: 'boolean', default: true }
         },
 
         edit: function (props) {
+            const { attributes, setAttributes } = props;
             return el(
                 'div',
                 useBlockProps(),
+                el(
+                    InspectorControls,
+                    null,
+                    el(PanelBody, { title: 'Events Widget Settings', initialOpen: true },
+                        UI.boolField('Show Countdown', attributes.showCountdown, function (v) { setAttributes({ showCountdown: v }); })
+                    )
+                ),
                 el(Placeholder, {
                     icon:  'clock',
                     label: 'Events Widget (Legacy)',
-                    instructions: 'Event countdown — reads the current event post\'s start/end date.'
+                    instructions: attributes.showCountdown
+                        ? 'Event countdown — reads the current event post\'s start/end date.'
+                        : 'Countdown is hidden.'
                 })
             );
         },

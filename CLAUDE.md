@@ -415,41 +415,114 @@ case studies, rentals, landing pages, etc).
   back from `get_the_ID()` to `get_queried_object_id()` because CF7 can render forms
   outside the main loop (e.g. via Dynamic Text Extension `[dynamic_hidden pdf_url "pdf_url"]`),
   at which point `get_the_ID()` returns 0 and `get__post_meta()` returns nothing.
-- `section-converter.php` — retires the dynamic "sections" / `sections_after_main`
-  page-builder by freezing each post's sections into static HTML/blocks. All post
-  types — including `product`, since `coptrz_enable_product_block_editor()`
-  (woocommerce.php) gave products the block editor too — convert to native
-  Gutenberg blocks appended to `post_content` (sections that can't map natively
-  fall back to a Custom HTML block, per-section — see below), via
-  `coptrz_convert_post_sections_to_blocks()`. The older raw-HTML `sections_html` /
+- `section-converter.php` — one "Convert to Blocks" action that retires TWO
+  legacy Carbon-Fields-shaped editing surfaces at once, whichever apply to a
+  given post: the dynamic "sections" / `sections_after_main` page-builder, and
+  the per-post "Hero" meta box (includes/post-meta.php, `__hero_fields()` etc —
+  see includes/hero-converter.php, the hero data layer this file calls into).
+  Sections and hero are independent per post — `post`/`guides` only ever have a
+  hero to convert, `layouts`/`producttaxonomypages` only ever have sections,
+  everything else may have either or both — all handled by the single
+  `coptrz_convert_post_to_blocks($post_id, $dry_run)` entry point.
+  Sections: all post types — including `product`, since
+  `coptrz_enable_product_block_editor()` (woocommerce.php) gave products the
+  block editor too — convert to native Gutenberg blocks appended to
+  `post_content` (sections that can't map natively fall back to a Custom HTML
+  block, per-section — see below). The older raw-HTML `sections_html` /
   `sections_after_main_html` repeater path (`coptrz_convert_post_sections()`,
   label + raw HTML rows, for the pre-block-editor product flow) is no longer
-  reachable from either UI (per-post box or bulk runner) — both call
-  `coptrz_convert_post_sections_to_blocks()` unconditionally regardless of post
-  type — and is kept only as legacy/reference code, not partially gutted.
-  Original `_sections` meta is preserved (conversion is reversible).
-  Converting a `page` also sets its `_wp_page_template` to `templates/page-gutenberg.php`;
-  that template renders converted posts via `coptrz_render_converted_sections()` (the same
-  wpautop-free path the Modules template uses) and falls back to `the_content()` for
-  non-converted pages. CPTs are left on their bespoke single templates, which already
-  route frozen content through `___sections()`.
+  reachable from either UI (per-post box or bulk runner) and is kept only as
+  legacy/reference code, not partially gutted. Original `_sections` meta is
+  preserved (conversion is reversible). Converting a `page`'s sections also
+  sets its `_wp_page_template` to `templates/page-blocks-editor.php` (plain
+  `the_content()`, no `___hero_modules()` call — see the hero paragraph below
+  for why that's fine) — extended to route converted posts through
+  `coptrz_render_converted_sections()` (the same wpautop-free path the Modules
+  template uses) instead of a bare `the_content()`, mirroring
+  `templates/page-gutenberg.php`, which still exists for any page converted
+  before this switched targets. CPTs are left on their bespoke single
+  templates, which already route frozen content through `___sections()`
+  (and, unlike page-blocks-editor.php, also still render related
+  products/guides/case-studies + `sections_after_main` — see
+  `template-parts/single/single-capabilities.php` /
+  `single-industries.php` — which is why CPTs deliberately stay off
+  page-blocks-editor.php rather than being switched too).
+  Hero: a `coptrz/hero` block is PREPENDED as the first block, built from
+  `coptrz_hero_conversion_plan()` (includes/hero-converter.php) — which only
+  returns a block to prepend when it's verified to render identically to the
+  current meta-driven hero (`coptrz_hero_dry_run_check()`, rendering both paths
+  through the pure `___hero_render()` and comparing HTML) — otherwise that
+  part is skipped with a warning and the post keeps rendering its hero from
+  meta, a permanent, correct fallback either way (`___hero_modules()`,
+  modules.php, via `coptrz_hero_block_attrs()`, includes/hero-block.php).
+  `COPTRZ_SECTIONS_CONVERTED_FLAG` (`coptrz_sections_is_converted()`) still
+  gates `___sections()` render routing exactly as before — a hero-only
+  conversion never sets it. `COPTRZ_HERO_CONVERTED_FLAG` is bookkeeping only;
+  nothing at render time reads it.
+  **Render mode** — the hero renders INLINE, at the block's actual position in
+  `post_content`, for every post type EXCEPT `post`
+  (`coptrz_hero_hoisted_post_types()`, includes/hero-block.php, filterable via
+  `coptrz_hero_hoisted_post_types`) — inline is what makes reordering the
+  block in the editor actually move the hero; it's safe because converted
+  content on every other type renders as a direct child of `<main>` (no
+  Bootstrap `.container`/`.col-*` in the way). `post` stays HOISTED because
+  `the_content()` there sits inside a constrained `.col-lg-7.px-5`
+  (`template-parts/single/single-post.php`) that a full-bleed `section.hero`
+  would break out of — for that one type the block stays storage-only
+  (`coptrz_render_hero_block()` returns `''`) and `___hero_modules()` keeps
+  rendering at the template's existing hero call site, exactly as before this
+  distinction existed. `coptrz_hero_renders_inline($post_id)` is the single
+  source of truth both `coptrz_render_hero_block()` (the inline render) and
+  `___hero_modules()` (the early-return that stops it double-rendering for
+  inline posts) consult. Because an inline render has no template call site to
+  supply a per-type fallback height/alignment (`single-rentals.php`,
+  `single-events.php`, etc pass one; `___hero_render()` only applies it when
+  the meta value is empty), `coptrz_hero_meta_to_attrs()` bakes the effective
+  value into the block's attrs at conversion time via
+  `coptrz_hero_template_defaults($post_type)` — and
+  `coptrz_hero_dry_run_check()` applies the identical defaults to its
+  meta-side comparison, or every `rentals`/`events`/`casestudies`/`guides`
+  post would falsely report `not_identical`.
+  **Hiding the Hero meta box** — `coptrz_register_hero_hidden_fields()`
+  (includes/hero-converter.php, called from
+  `tissue_paper_register_custom_fields()` in functions.php, same call site/
+  ordering as `coptrz_register_html_sections_fields()`) blocklists every root
+  field name across all three Hero tabs (`coptrz_hero_meta_field_names()` —
+  derived from `__hero_fields()`/`__hero_button_fields()`/`__hero_form_fields()`
+  rather than hand-maintained, since `Container_Admin::is_container_render_hidden()`
+  only hides a container when EVERY non-display field on it is blocklisted); a
+  `coptrz_meta_shim_field_visible` filter un-hides it per-post when
+  `!coptrz_hero_is_converted($post_id)`. Only the post-side container is
+  affected — the `term_meta` Hero container (`product_cat`/`pa_brands`) is
+  untouched, since `is_container_render_hidden()` is only consulted by
+  `Container_Admin::register_post_meta_boxes()`.
   Provides: `coptrz_sections_is_converted($post_id)`, `coptrz_sections_should_route()`,
   `coptrz_render_converted_sections()`, `coptrz_convert_post_sections($post_id, $dry_run)`,
-  `coptrz_convert_post_sections_to_blocks($post_id, $dry_run)`,
-  `coptrz_register_html_sections_fields()`.
-  Admin tools: a per-post "Convert Sections" meta box (side, with dry-run) and a
-  convert-by-search runner at Tools > Convert Sections. The runner has no
-  "convert everything" path — you search posts by name across every section post type
-  (via the `wp_ajax_coptrz_search_sections_posts` endpoint, results show each post's
-  type), pick an explicit selection, then dry-run or convert just those (50/run cap).
-  The search only returns posts that still NEED converting (have a `_sections` /
-  `_sections_after_main` row and are not already flagged converted).
-  There is no mode choice or post-type branch in either UI — the per-post box's
-  `wp_ajax_coptrz_convert_sections` handler and the bulk runner's per-ID loop both
-  call `coptrz_convert_post_sections_to_blocks()` (**native blocks**) unconditionally.
+  `coptrz_convert_post_to_blocks($post_id, $dry_run)`,
+  `coptrz_revert_post_to_blocks($post_id, $dry_run)`,
+  `coptrz_register_html_sections_fields()`, `coptrz_convertible_post_types()`
+  (the union of `coptrz_section_post_types()` and `coptrz_hero_post_types()`,
+  includes/hero-converter.php — drives the admin surface below),
+  `coptrz_post_conversion_state($post_id)` (cheap per-post pending-parts
+  estimate for the bulk search), `coptrz_conversion_remaining_counts()`.
+  Admin tools: a per-post "Convert to Blocks" meta box (side, with dry-run) and
+  a convert-by-search runner at Tools > Convert to Blocks. The runner has no
+  "convert everything" path for the search-and-select flow — you search posts
+  by name across every convertible post type (via the
+  `wp_ajax_coptrz_search_sections_posts` endpoint, results show each post's
+  type and what's pending — sections, hero, or both), pick an explicit
+  selection, then dry-run or convert just those (50/run cap). Below that, a
+  per-post-type "Convert all remaining" batch table (also 50/run, click again
+  to continue) exists because — unlike sections, which only apply to posts
+  that actually have section data — EVERY post of a hero-applicable type has a
+  hero (empty meta still falls back to the page title), so hand-picking
+  doesn't reach full coverage for that part at scale.
+  The per-post box's `wp_ajax_coptrz_convert_sections` handler and the bulk
+  runner's per-ID loop both call `coptrz_convert_post_to_blocks()` unconditionally
+  — it decides internally which of sections/hero actually apply.
   `product` posts still need special handling internally (no `before`/`after`-main
   content split the way other post types have), which
-  `coptrz_convert_post_sections_to_blocks()` handles itself via
+  `coptrz_convert_post_to_blocks()` handles itself via
   `coptrz_product_content_split()` rather than by routing to a different function.
   Native-block conversion walks each section's elements through a mapping
   registry `coptrz_block_item_mappers()` (`_type` → callable returning a parsed-block
@@ -606,24 +679,67 @@ case studies, rentals, landing pages, etc).
   Caveat: non-shortcode dynamic content (class-driven widgets) is still a snapshot and
   won't auto-update.
 
-  **Revert** — `coptrz_revert_post_sections($post_id, $dry_run)` undoes a conversion.
-  `product` posts just clear the `sections_html`/`sections_after_main_html` repeater
-  (post_content/template were never touched by conversion). Other post types restore
-  `post_content` from a backup taken at conversion time (`_coptrz_pre_convert_content`,
-  `_coptrz_pre_convert_template` — `page` only, `_coptrz_converted_blocks` — all
-  written in `coptrz_convert_post_sections_to_blocks()` just before the corresponding
-  live write) and, for `page`, restore `_wp_page_template` (falling back to
-  `templates/page-modules.php` when no template backup exists — e.g. the page never
-  had a non-default template before conversion). Posts converted before this backup
-  existed have none: revert instead re-runs `coptrz_convert_post_sections_to_blocks()`
-  as a dry run to regenerate the exact block markup and subtracts it as a suffix of the
-  current `post_content` — tried both with and without a leading `\n\n`, since that
-  depends on whether the ORIGINAL content was empty (the very thing being recovered).
-  If neither matches, it aborts rather than guessing, so content that predated the
-  converter is never silently mangled. Every path finishes by deleting the converted
-  flag, `_coptrz_sections_mode`, and the three backup keys — `_sections` /
-  `_sections_after_main` are never touched by conversion, so the legacy builder resumes
-  rendering the moment the flag is gone (`coptrz_sections_should_route()`).
+  **Revert** — `coptrz_revert_post_to_blocks($post_id, $dry_run)` undoes whichever
+  of sections/hero were converted on a post (a post where only one part was ever
+  converted still reverts cleanly — the other part's flag/backup simply isn't
+  present). `product` posts with sections in `mode = 'html'` AND no hero
+  conversion just clear the `sections_html`/`sections_after_main_html` repeater
+  (post_content/template were never touched). Everything else restores
+  `post_content` from `_coptrz_pre_convert_content` — a WRITE-ONCE backup: the
+  first conversion of EITHER part on a post captures the true pre-conversion
+  state, so a later run adding the other part doesn't overwrite it with content
+  that already includes the first part — plus, for `page`,
+  `_coptrz_pre_convert_template` (falling back to `templates/page-modules.php`
+  when no template backup exists). `_coptrz_converted_blocks` (the sections
+  suffix alone) and `_coptrz_hero_block` (the hero prefix alone,
+  includes/hero-converter.php) are compared against the current `post_content`
+  to warn if it was edited since conversion, but restoring is always a
+  straight return to `_coptrz_pre_convert_content` — no arithmetic subtraction
+  needed, since that backup already excludes both parts by construction. Posts
+  converted before this backup existed have none: revert instead strips a
+  leading hero block, then re-runs `coptrz_convert_post_to_blocks()` as a dry
+  run to regenerate the exact section block markup and subtracts it as a
+  suffix — tried both with and without a leading `\n\n`, since that depends on
+  whether the ORIGINAL content was empty (the very thing being recovered). If
+  it doesn't match, it aborts rather than guessing, so content that predated
+  the converter is never silently mangled. Every path finishes by deleting
+  both converted flags, `_coptrz_sections_mode`, and every backup key —
+  `_sections`/`_sections_after_main` and the Hero post-meta are never touched
+  by conversion, so both legacy builders resume the moment their flag is gone
+  (`coptrz_sections_should_route()`, `coptrz_hero_block_attrs()` in
+  includes/hero-block.php).
+
+  **`wp_slash()` on every write** — `coptrz_convert_post_to_blocks()`,
+  `coptrz_convert_post_sections()`, and `coptrz_revert_post_to_blocks()` all
+  `wp_slash()` the value passed to `wp_update_post()`/`update_post_meta()`
+  (`post_content`, `_coptrz_pre_convert_content`, `_coptrz_converted_blocks`,
+  `_coptrz_hero_block`). Both of those core functions call `wp_unslash()` on
+  their input internally (they're built to accept `$_POST`-shaped data), and
+  `serialize_blocks()` output legitimately contains literal backslash-escapes
+  — WP 7's `serialize_block_attributes()` (wp-includes/blocks.php) escapes `<`,
+  `>`, `&`, `--`, `\`, and `\"` to `<`/`>`/`&`/`--`/
+  `\`/`"` inside every block comment. Without `wp_slash()` first,
+  `wp_unslash()` strips those backslashes and every escaped character is
+  corrupted — e.g. a `<p>` inside a `coptrz/tabs-legacy` description survives
+  as the literal text `u003cpu003e`, not a paragraph tag. The three meta writes
+  and the `post_content` write in `coptrz_convert_post_to_blocks()` MUST stay
+  slashed together: `coptrz_revert_post_to_blocks()`'s edited-since-conversion
+  check reconstructs `$expected` from those same three meta values and compares
+  it against the live `post_content` column, so slashing one without the
+  others breaks that comparison for every future conversion. The meta shim's
+  `Writer::set()` (includes/meta-shim/Writer.php) has the same requirement on
+  its unknown-field fallback, matching `Key_Formatter::write_cell()`'s
+  `add_post_meta(..., wp_slash($value))` a few lines below it in the sibling
+  class — `update_option()` is the one branch in that fallback that must NOT be
+  slashed, since (unlike post/term meta) it doesn't unslash on the way in.
+  `coptrz_find_corrupted_conversions()` scans convertible post types'
+  `post_content` for the six stripped-escape signatures (`u003c`, `u003e`,
+  `u0026`, `u002du002d`, `u005c`, `u0022`) and lists matches on the Tools >
+  Convert to Blocks page — the repair for a listed post is Revert then Convert
+  (regenerates from the untouched `_sections`/Hero meta), not an in-place text
+  patch: a stripped `\n` is ambiguous with a literal trailing "n", so exact
+  recovery from the corrupted string alone isn't possible. Reverting discards
+  any block-editor edits made to that post since it was converted.
 
   Reverting alone doesn't make the legacy builder *editable* again:
   `coptrz_register_html_sections_fields()` hides its meta boxes globally via
@@ -643,7 +759,8 @@ case studies, rentals, landing pages, etc).
   returns true, frontend only, either for an editor hitting `?coptrz_preview=original`
   on the post's permalink (checked via `current_user_can('edit_post', …)`), or for a
   logged-out visitor when the post has opted in via `_coptrz_serve_legacy_public`
-  (checkbox in the "Convert Sections" box; logged-in users always see the converted
+  (checkbox in the "Convert to Blocks" box, shown only when sections were
+  converted for that post; logged-in users always see the converted
   version regardless of that checkbox). It's saved by its own plain `save_post`
   handler rather than routed through the meta shim, since it's one checkbox living
   alongside the revert controls, not a Carbon-shaped field. A `wp_body_open` banner
@@ -654,9 +771,10 @@ case studies, rentals, landing pages, etc).
   `page-gutenberg.php`'s choice between `coptrz_render_converted_sections()` and
   `the_content()`. A `template_include` filter additionally forces
   `templates/page-modules.php` for a `page` while the override is active, since the
-  page's real (post-conversion) template is `page-gutenberg.php`, whose `the_content()`
-  branch would otherwise render the converted `post_content` regardless of what
-  `should_route()` says. Deliberately NOT consulted by `coptrz_sections_is_converted()`,
+  page's real (post-conversion) template is `page-blocks-editor.php`, whose
+  `the_content()`/`coptrz_render_converted_sections()` branch would otherwise
+  render the converted `post_content` regardless of what `should_route()`
+  says. Deliberately NOT consulted by `coptrz_sections_is_converted()`,
   which stays the pure write-path guard against double-conversion (the skip checks in
   both convert functions) — an overridable version there could let a preview/
   public-fallback request re-trigger a conversion and duplicate content.
@@ -664,7 +782,7 @@ case studies, rentals, landing pages, etc).
   Admin tools, extended: the per-post box now also shows a "Preview original" link,
   the public-fallback checkbox, and Dry run revert / Revert buttons (converted posts
   only) — same inline-`<script>`/admin-ajax pattern as convert, hitting a new
-  `wp_ajax_coptrz_revert_sections` handler. The bulk runner (Tools > Convert Sections)
+  `wp_ajax_coptrz_revert_sections` handler. The bulk runner (Tools > Convert to Blocks)
   gained a Convert/Revert mode radio above the search box: it swaps which button pair
   is shown and is passed as `mode` to `wp_ajax_coptrz_search_sections_posts` (default
   `convert` = flag NOT EXISTS, as before; `revert` = flag EXISTS), so the same

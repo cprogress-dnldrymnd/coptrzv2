@@ -474,14 +474,25 @@ add_action('wp_footer', 'action__wp_footer');
 
 function hero_form_redirect()
 {
-    $hero_form_enable = get__post_meta('hero_form_enable');
-    $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
-    $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
-    $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
-    $hero_form_redirect_url = get__post_meta('hero_form_redirect_url');
-    $hero_form = get__post_meta('hero_form');
-    $form_id = isset($hero_form[0]['id']) ? $hero_form[0]['id'] : false;
-    $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
+    // Dual-read the coptrz/hero block's attributes, falling back to the
+    // legacy Hero post-meta — same mechanism as action_body_class() above.
+    $attrs = function_exists('coptrz_hero_block_attrs') ? coptrz_hero_block_attrs(get_the_ID()) : null;
+
+    if ($attrs !== null) {
+        $hero_form_redirect_type = isset($attrs['formRedirectType']) ? $attrs['formRedirectType'] : '';
+        $hero_form_pdf_redirect = !empty($attrs['formPdfRedirectId']) ? (int) $attrs['formPdfRedirectId'] : 0;
+        $hero_form_document_redirect_id = !empty($attrs['formDocumentRedirectId']) ? (int) $attrs['formDocumentRedirectId'] : false;
+        $hero_form_redirect_url = isset($attrs['formRedirectUrl']) ? $attrs['formRedirectUrl'] : '';
+        $form_id = !empty($attrs['formId']) ? (int) $attrs['formId'] : false;
+    } else {
+        $hero_form_redirect_type = get__post_meta('hero_form_redirect_type');
+        $hero_form_pdf_redirect = get__post_meta('hero_form_pdf_redirect');
+        $hero_form_document_redirect = get__post_meta('hero_form_document_redirect');
+        $hero_form_redirect_url = get__post_meta('hero_form_redirect_url');
+        $hero_form = get__post_meta('hero_form');
+        $form_id = isset($hero_form[0]['id']) ? $hero_form[0]['id'] : false;
+        $hero_form_document_redirect_id = isset($hero_form_document_redirect[0]['id']) ? $hero_form_document_redirect[0]['id'] : false;
+    }
 
 
     if ($hero_form_redirect_type == 'pdf') {
@@ -681,9 +692,19 @@ function action_body_class($classes)
         }
     }
     if (is_single() || is_page()) {
+        // header_background lives on a separate "Page Settings" container
+        // (templates/page-modules.php only), not the Hero container, so it
+        // stays meta-only regardless of the coptrz/hero block migration.
         $header_background = get__post_meta('header_background');
 
-        $hero_hidden = get__post_meta('hero_hidden');
+        // action_body_class() runs in the header, before any block renders,
+        // so it reads the coptrz/hero block's attributes directly out of
+        // post_content (coptrz_hero_block_attrs(), includes/hero-block.php)
+        // rather than waiting on a render_block side-channel. Falls back to
+        // the legacy Hero post-meta when the post has no hero block.
+        $attrs = function_exists('coptrz_hero_block_attrs') ? coptrz_hero_block_attrs(get_the_ID()) : null;
+
+        $hero_hidden = ($attrs !== null) ? !empty($attrs['hidden']) : get__post_meta('hero_hidden');
 
         if ($header_background) {
             $classes[] = "hero-$header_background";
@@ -692,11 +713,18 @@ function action_body_class($classes)
         if ($hero_hidden) {
             $classes[] = 'hero-hidden';
         } else {
-            $hero_background = get__post_meta('hero_background');
-            $hero_background_youtube = get__post_meta('hero_background_youtube');
+            if ($attrs !== null) {
+                $hero_background = !empty($attrs['backgroundId']);
+                $hero_background_youtube = !empty($attrs['backgroundYoutube']);
+                $hero_form_enable = !empty($attrs['formEnable']);
+                $hero_form = !empty($attrs['formId']);
+            } else {
+                $hero_background = get__post_meta('hero_background');
+                $hero_background_youtube = get__post_meta('hero_background_youtube');
 
-            $hero_form_enable = get__post_meta('hero_form_enable');
-            $hero_form = get__post_meta('hero_form');
+                $hero_form_enable = get__post_meta('hero_form_enable');
+                $hero_form = get__post_meta('hero_form');
+            }
 
             if ($hero_form_enable && $hero_form) {
                 $classes[] = 'hero-has-form';
@@ -989,8 +1017,146 @@ function dd_register_cf7_pdf_block_rest_routes()
         'permission_callback' => $can_edit,
         'callback'            => 'dd_rest_list_documents',
     ));
+
+    register_rest_route('dd/v1', '/hero-link-targets', array(
+        'methods'             => 'GET',
+        'permission_callback' => $can_edit,
+        'callback'            => 'dd_rest_list_hero_link_targets',
+        'args'                => array(
+            'type'   => array('required' => true),
+            'search' => array('required' => false),
+        ),
+    ));
+
+    register_rest_route('dd/v1', '/block-pickers', array(
+        'methods'             => 'GET',
+        'permission_callback' => $can_edit,
+        'callback'            => 'dd_rest_list_block_pickers',
+        'args'                => array(
+            'type'   => array('required' => true),
+            'search' => array('required' => false),
+        ),
+    ));
 }
 add_action('rest_api_init', 'dd_register_cf7_pdf_block_rest_routes');
+
+/**
+ * Backs every legacy-wrapper block's post/term picker (assets/js/coptrz-gallery-
+ * block.js, coptrz-product-slider-block.js, coptrz-accordion-legacy-block.js,
+ * coptrz-product-block.js, coptrz-product-compare-block.js,
+ * coptrz-global-post-box-block.js). One route for both posts AND terms,
+ * validated against coptrz_block_picker_sources() (functions.php) so the editor
+ * and this endpoint can't drift apart — several of these are not exposed via
+ * core REST at all: `compareproducts`/`globalpostboxes`/`faq` are registered
+ * with `show_in_rest => false` (includes/post-types.php), and `pa_brands` (a
+ * WooCommerce product-attribute taxonomy) has no `show_in_rest` set at all.
+ * Same {id, title} response shape as dd_rest_list_hero_link_targets() above, so
+ * it works with the same IdTokenPicker/SinglePostPicker components.
+ *
+ * @return array<array{id:int,title:string}>
+ */
+function dd_rest_list_block_pickers($request)
+{
+    $type   = (string) $request->get_param('type');
+    $search = (string) $request->get_param('search');
+
+    $sources = function_exists('coptrz_block_picker_sources') ? coptrz_block_picker_sources() : array();
+    if (!isset($sources[$type])) {
+        return array();
+    }
+    $source = $sources[$type];
+
+    if ($source['kind'] === 'term') {
+        $term_args = array(
+            'taxonomy'   => $source['name'],
+            'hide_empty' => false,
+            'number'     => 20,
+        );
+        if ($search !== '') {
+            $term_args['search'] = $search;
+        }
+        $terms = get_terms($term_args);
+        if (is_wp_error($terms)) {
+            return array();
+        }
+        $out = array();
+        foreach ($terms as $term) {
+            $out[] = array('id' => $term->term_id, 'title' => $term->name);
+        }
+        return $out;
+    }
+
+    $args = array(
+        'post_type'      => $source['name'],
+        'post_status'    => 'publish',
+        'posts_per_page' => 20,
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+    );
+    if ($search !== '') {
+        $args['s'] = $search;
+    }
+
+    $posts = get_posts($args);
+
+    $out = array();
+    foreach ($posts as $post) {
+        $out[] = array(
+            'id'    => $post->ID,
+            'title' => get_the_title($post),
+        );
+    }
+
+    return $out;
+}
+
+/**
+ * Backs the `coptrz/hero` block's button/form-product post picker
+ * (assets/js/coptrz-hero-block.js). One route rather than per-type `/wp/v2/*`
+ * because REST exposure is inconsistent across the button types __button()
+ * (includes/elements.php) supports — several CPTs are `show_in_rest => false`
+ * (includes/post-types.php) and `product`'s own REST is WooCommerce's, not
+ * core's — and because it restricts to `post_status = publish`, matching
+ * __button()'s own publish check (elements.php:333-335: a linked post that
+ * isn't published is silently dropped), so the editor can't offer a link that
+ * will vanish on the frontend. `type` is one of coptrz_hero_field_options()'s
+ * `buttonTypePostTypes` values (a post type slug, or the literal `popups`).
+ *
+ * @return array<array{id:int,title:string}>
+ */
+function dd_rest_list_hero_link_targets($request)
+{
+    $type   = (string) $request->get_param('type');
+    $search = (string) $request->get_param('search');
+
+    $post_types = array_values((array) coptrz_hero_field_options()['buttonTypePostTypes']);
+    if (!in_array($type, $post_types, true)) {
+        return array();
+    }
+
+    $args = array(
+        'post_type'      => $type,
+        'post_status'    => 'publish',
+        'posts_per_page' => 20,
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+    );
+    if ($search !== '') {
+        $args['s'] = $search;
+    }
+
+    $posts = get_posts($args);
+
+    $out = array();
+    foreach ($posts as $post) {
+        $out[] = array(
+            'id'    => $post->ID,
+            'title' => get_the_title($post),
+        );
+    }
+
+    return $out;
+}
 
 /**
  * Lists Contact Form 7 forms as [{ id, hash, title }]. The hash is used as the

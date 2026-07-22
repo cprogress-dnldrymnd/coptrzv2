@@ -293,12 +293,20 @@
     /*  Conditional logic (show/hide)                                   */
     /* ----------------------------------------------------------------- */
 
-    /** Read the current value of a sibling field by name within a scope. */
+    /**
+     * Read the current value of a sibling field by name within a scope.
+     * Checkboxes return a real boolean (matching PHP's Reader::read(), which
+     * also casts checkbox to bool) rather than the "yes"/"" string value —
+     * `"yes" == true` and `"" == true` are BOTH false in JS loose equality
+     * (the boolean coerces to 1/0, then the string to NaN), so a string
+     * return made every `{field: 'x', value: true}` conditional rule
+     * evaluate to hidden regardless of the checkbox's actual state.
+     */
     function fieldValue(scope, fieldName) {
         var el = scope.querySelector('[data-cms-name="' + fieldName + '"]');
         if (!el) return '';
         var input = el.querySelector('input[type="checkbox"]');
-        if (input) return input.checked ? input.value : '';
+        if (input) return input.checked;
         var control = el.querySelector('input, select, textarea');
         return control ? control.value : '';
     }
