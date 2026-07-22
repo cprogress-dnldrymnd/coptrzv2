@@ -1885,10 +1885,14 @@ function coptrz_post_grid_legacy_item_to_attrs($item)
  *     (which causes the enclosing section to snapshot to Custom HTML).
  *   - Dynamic elements (layouts, global_widgets, product_compare, etc.) map to
  *     core/shortcode (or, for layouts/global_widgets/post_grid, their dedicated
- *     coptrz/* block) so they stay live/editable. tabs/accordion map to the
- *     theme's own dynamic coptrz/tabs-legacy / coptrz/accordion-legacy blocks.
- *   - video maps to core/html (lossless; reproduces __video()'s markup exactly —
- *     see the mapper itself for why core/html can never fail validation).
+ *     coptrz/* block) so they stay live/editable. tabs/accordion/icon/spec_box/
+ *     divider/cf7 map to the theme's own dynamic coptrz/*-legacy blocks
+ *     (save:null, rendered server-side by includes/legacy-blocks.php) — used for
+ *     element types with theme-specific markup no core block reproduces.
+ *   - Self-hosted video maps to the native core/video block (byte-parity notes
+ *     in the mapper itself, since core/video is a static block); YouTube video
+ *     maps to core/html (core's oEmbed-based YouTube embed can't reproduce the
+ *     theme's custom autoplay/loop/mute iframe params).
  *   - related_post / related_products currently have no mapper → any section
  *     containing one snapshots to Custom HTML.
  *
@@ -2074,15 +2078,27 @@ function coptrz_block_item_mappers()
         return array(coptrz_block('core/image', $attrs, $html));
     };
 
-    // Self-hosted or YouTube video → core/html, reproducing __video()'s markup
-    // (elements.php) exactly. core/html's save() is RawHTML — there is no
-    // stored-vs-generated markup to drift, so this can never itself trigger a
-    // validation error, the same rationale as the custom_html leaf mapper
-    // above. Having a mapper for `video` at all is what matters: previously
-    // this element type had none, so ANY section containing a video (e.g. a
-    // self-hosted clip in one card of a feature-card row) forced the WHOLE
-    // section to snapshot as one Custom HTML block, dragging every other
-    // (mappable) item in it down too.
+    // Self-hosted video → native core/video (a real, editable block-editor Video
+    // widget, per request — previously this mapped to core/html). YouTube stays
+    // core/html: core's own YouTube embed goes through oEmbed and can't
+    // reproduce the theme's custom autoplay/loop/mute iframe params, and there
+    // are no YouTube items in the sections this was written for.
+    //
+    // core/video BYTE-PARITY (it's a static block — unlike core/html, its
+    // stored markup must match save() exactly or this reintroduces "invalid
+    // content"). Per wp-includes/blocks/video/block.json: `autoplay`, `controls`
+    // (default true), `loop`, `muted`, `poster`, `preload` (default 'metadata'),
+    // `src`, `playsInline` all have `"source":"attribute"` — save() reads them
+    // FROM the <video> tag's own HTML attributes, so none of them belong in the
+    // block's JSON attrs (only `id`/`className`, which have no `source`, do —
+    // same split the existing `image` mapper above already relies on for
+    // core/image's `url`/`alt` vs `id`/`sizeSlug`). save()'s JSX prop order is
+    // autoPlay, controls, loop, muted, poster, preload, src, playsInline; boolean
+    // props serialize as a bare attribute when true and are omitted when false
+    // (poster/preload/playsInline are always empty/default here, so always
+    // omitted) — giving `<video autoplay loop muted src="…">` when autoplay, or
+    // `<video controls src="…">` otherwise, exactly mirroring __video()'s own
+    // autoplay-loop-muted vs controls-only split (elements.php).
     //
     // Class list: modules.php has TWO `case 'video':` renderers with different
     // classes — the top-level section-item switch (~L1005-1017, no rounded-corner)
@@ -2122,9 +2138,100 @@ function coptrz_block_item_mappers()
         if (!$video_url) {
             return null;
         }
-        $params = $autoplay ? 'autoplay loop muted' : 'controls';
-        $html   = '<div class="' . esc_attr($class) . '"><video ' . $params . ' src="' . esc_url($video_url) . '"></video></div>';
-        return array(coptrz_block('core/html', array(), $html));
+        $bool_attrs = $autoplay ? 'autoplay loop muted' : 'controls';
+        $fig_cls    = trim('wp-block-video ' . $class);
+        $attrs      = array('id' => $video_id, 'className' => $class);
+        $html       = '<figure class="' . esc_attr($fig_cls) . '">'
+            . '<video ' . $bool_attrs . ' src="' . esc_url($video_url) . '"></video>'
+            . '</figure>';
+        return array(coptrz_block('core/video', $attrs, $html));
+    };
+
+    // Icon → coptrz/icon-legacy. _____icon_modules() (modules.php) inlines the
+    // selected SVG file's contents into a `.icon-box` wrapper (colour/size via
+    // CSS custom properties) — no core block reproduces that (core/image would
+    // emit an <img>, losing the inline-SVG recolouring), so this uses the same
+    // dynamic legacy-wrapper pattern (save:null, rendered server-side) as
+    // coptrz/accordion-legacy etc. above. `iconUrl` is editor-preview-only —
+    // the render callback re-derives the SVG from `iconId`, not from this.
+    $map['icon'] = function ($item) {
+        $icon_id = (int) (isset($item['icon']) ? $item['icon'] : 0);
+        if (!$icon_id) {
+            return null;
+        }
+        $icon_url = wp_get_attachment_url($icon_id);
+        $attrs = coptrz_json_safe_array(array(
+            'iconId'          => $icon_id,
+            'iconUrl'         => $icon_url ? $icon_url : '',
+            'iconColor'       => isset($item['icon_color']) ? (string) $item['icon_color'] : '',
+            'iconColorCustom' => isset($item['icon_color_custom']) ? (string) $item['icon_color_custom'] : '',
+            'iconWidth'       => isset($item['icon_width']) ? (string) $item['icon_width'] : '',
+            'iconHeight'      => isset($item['icon_height']) ? (string) $item['icon_height'] : '',
+        ));
+        if ($attrs === null) {
+            return null;
+        }
+        return array(coptrz_block('coptrz/icon-legacy', $attrs));
+    };
+
+    // Spec Box → coptrz/spec-box-legacy. __spec_box_module() (modules.php) emits
+    // a Bootstrap row of label/value spec cells with theme-specific classing —
+    // no core block equivalent.
+    $map['spec_box'] = function ($item) {
+        $rows  = isset($item['spec_box']) && is_array($item['spec_box']) ? $item['spec_box'] : array();
+        $specs = array();
+        foreach ($rows as $row) {
+            $specs[] = array(
+                'label' => isset($row['spec_label']) ? (string) $row['spec_label'] : '',
+                'value' => isset($row['spec_value']) ? (string) $row['spec_value'] : '',
+            );
+        }
+        if (empty($specs)) {
+            return null;
+        }
+        $attrs = coptrz_json_safe_array(array('specs' => $specs));
+        if ($attrs === null) {
+            return null;
+        }
+        return array(coptrz_block('coptrz/spec-box-legacy', $attrs));
+    };
+
+    // Divider → coptrz/divider-legacy. __divider_module() (modules.php) emits a
+    // plain <hr> with margin-utility + border-color classes; `border_color_custom`/
+    // `border_width` are Carbon fields the renderer never reads, so they have no
+    // attribute here either.
+    $map['divider'] = function ($item) {
+        $attrs = coptrz_json_safe_array(array(
+            'marginTop'    => isset($item['margin_top']) ? (string) $item['margin_top'] : '',
+            'marginBottom' => isset($item['margin_bottom']) ? (string) $item['margin_bottom'] : '',
+            'marginLeft'   => isset($item['margin_left']) ? (string) $item['margin_left'] : '',
+            'marginRight'  => isset($item['margin_right']) ? (string) $item['margin_right'] : '',
+            'borderColor'  => isset($item['border_color']) ? (string) $item['border_color'] : '',
+        ));
+        if ($attrs === null) {
+            return null;
+        }
+        return array(coptrz_block('coptrz/divider-legacy', $attrs));
+    };
+
+    // Cf7 → coptrz/cf7-legacy. __cf7_module() (modules.php) wraps a
+    // [contact-form-7 id='…'] embed in a `.form-box $style` div; `formId` is
+    // the CF7 form's POST ID (the Carbon `association` field's id), not the
+    // unit-tag hash.
+    $map['cf7'] = function ($item) {
+        $form_id = isset($item['form'][0]['id']) ? (int) $item['form'][0]['id'] : 0;
+        if (!$form_id) {
+            return null;
+        }
+        $attrs = coptrz_json_safe_array(array(
+            'formId'    => $form_id,
+            'formTitle' => (string) get_the_title($form_id),
+            'style'     => isset($item['style']) ? (string) $item['style'] : '',
+        ));
+        if ($attrs === null) {
+            return null;
+        }
+        return array(coptrz_block('coptrz/cf7-legacy', $attrs));
     };
 
     /* ------------------------------------------------------------------ */

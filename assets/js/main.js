@@ -954,6 +954,12 @@ function initSwipers() {
         try {
             const config = JSON.parse(configData);
 
+            // Extract and strip mobile-only flags so Swiper never sees unknown params
+            const mobileOnly = config.mobileOnly === true;
+            const mobileMaxWidth = config.mobileMaxWidth || 767;
+            delete config.mobileOnly;
+            delete config.mobileMaxWidth;
+
             /**
              * ARCHITECTURAL FIX: Loop & Overflow Protection
              * 1. Count actual slides present in the DOM.
@@ -1004,7 +1010,22 @@ function initSwipers() {
             }
 
             // Initialize the Swiper instance
-            new Swiper(container, config);
+            if (mobileOnly) {
+                const mq = window.matchMedia('(max-width: ' + mobileMaxWidth + 'px)');
+                let instance = null;
+                const sync = function () {
+                    if (mq.matches && !instance) {
+                        instance = new Swiper(container, config);
+                    } else if (!mq.matches && instance) {
+                        instance.destroy(true, true);
+                        instance = null;
+                    }
+                };
+                sync();
+                mq.addEventListener('change', sync);
+            } else {
+                new Swiper(container, config);
+            }
 
         } catch (error) {
             console.error('Digitally Disruptive: Swiper JSON parsing/init error.', error);

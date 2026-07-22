@@ -31,7 +31,8 @@
             swiperPagination:    { type: 'boolean', default: true },
             swiperNavigation:    { type: 'boolean', default: false },
             swiperAutoplay:      { type: 'boolean', default: false },
-            swiperDelay:         { type: 'string', default: '3000' }
+            swiperDelay:         { type: 'string', default: '3000' },
+            swiperMobileOnly:    { type: 'boolean', default: false }
         });
         return settings;
     }
@@ -61,6 +62,12 @@
 
                         // Render configuration fields ONLY if the toggle is checked
                         attributes.isSwiperSlider ? el( Fragment, {},
+                            el( ToggleControl, {
+                                label: 'Mobile Only (grid on desktop)',
+                                help: 'Below 768px this becomes a Swiper carousel; at 768px and up it renders as a normal grid.',
+                                checked: attributes.swiperMobileOnly,
+                                onChange: function( val ) { setAttributes( { swiperMobileOnly: val } ); }
+                            } ),
                             el( TextControl, {
                                 label: 'Slides Per View (Desktop)',
                                 type: 'number',

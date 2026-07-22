@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 5.8);
+define('coptz_version', 5.9);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -560,6 +560,50 @@ function coptrz_legacy_block_field_options()
             'manually'   => 'Select Manually',
             'main_query' => 'Main Query (works only for product taxonomy pages)',
         ),
+        // Icon — post-meta.php ~L2499-2510.
+        'iconColor' => array(
+            ''                => 'Default',
+            'text-primary'    => 'Primary',
+            'text-secondary'  => 'Secondary',
+            'text-accent'     => 'Accent',
+            'text-white'      => 'White',
+            'text-light-gray' => 'Light Gray',
+            'text-custom'     => 'Custom',
+        ),
+        // Cf7 — post-meta.php ~L2600-2605.
+        'cf7Style' => array('' => 'Default', 'style-2' => 'Style 2'),
+        // Divider — post-meta.php ~L3420-3475. Four distinct value sets (the
+        // Carbon fields use per-side suffixed class names, e.g. 'lg-margin-top'
+        // vs 'lg-margin-bottom'), so each side needs its own option map.
+        'dividerMarginTop' => array(
+            ''              => 'No margin', 'xl-margin-top' => 'Extra Large',
+            'lg-margin-top' => 'Large', 'md-margin-top' => 'Medium',
+            'sm-margin-top' => 'Small', 'xs-margin-top' => 'Extra Small',
+        ),
+        'dividerMarginBottom' => array(
+            ''                 => 'No margin', 'xl-margin-bottom' => 'Extra Large',
+            'lg-margin-bottom' => 'Large', 'md-margin-bottom' => 'Medium',
+            'sm-margin-bottom' => 'Small', 'xs-margin-bottom' => 'Extra Small',
+        ),
+        'dividerMarginLeft' => array(
+            ''               => 'No margin', 'xl-margin-left' => 'Extra Large',
+            'lg-margin-left' => 'Large', 'md-margin-left' => 'Medium',
+            'sm-margin-left' => 'Small', 'xs-margin-left' => 'Extra Small',
+        ),
+        'dividerMarginRight' => array(
+            ''                => 'No margin', 'xl-margin-right' => 'Extra Large',
+            'lg-margin-right' => 'Large', 'md-margin-right' => 'Medium',
+            'sm-margin-right' => 'Small', 'xs-margin-right' => 'Extra Small',
+        ),
+        'dividerBorderColor' => array(
+            ''                    => 'Default',
+            'text-primary'        => 'Primary',
+            'text-secondary'      => 'Secondary',
+            'text-accent'         => 'Accent',
+            'text-white'          => 'White',
+            'text-light-gray'     => 'Light Gray',
+            'border-custom-color' => 'Custom',
+        ),
     );
 }
 
@@ -924,6 +968,10 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         'coptrz-product-block'             => 'coptrz-product-block.js',
         'coptrz-product-compare-block'     => 'coptrz-product-compare-block.js',
         'coptrz-global-post-box-block'     => 'coptrz-global-post-box-block.js',
+        'coptrz-icon-legacy-block'         => 'coptrz-icon-legacy-block.js',
+        'coptrz-spec-box-legacy-block'     => 'coptrz-spec-box-legacy-block.js',
+        'coptrz-divider-legacy-block'      => 'coptrz-divider-legacy-block.js',
+        'coptrz-cf7-legacy-block'          => 'coptrz-cf7-legacy-block.js',
     );
     foreach ($legacy_block_scripts as $handle => $file) {
         wp_enqueue_script(
@@ -1393,6 +1441,7 @@ function digitally_disruptive_render_universal_swiper($block_content, $block)
     $has_navigation = isset($attrs['swiperNavigation']) ? (bool) $attrs['swiperNavigation'] : false;
     $has_autoplay   = isset($attrs['swiperAutoplay']) ? (bool) $attrs['swiperAutoplay'] : false;
     $delay          = isset($attrs['swiperDelay']) ? (int) $attrs['swiperDelay'] : 3000;
+    $mobile_only    = ! empty($attrs['swiperMobileOnly']);
 
     // Construct the JSON Configuration Object
     $swiper_config = array(
@@ -1404,6 +1453,11 @@ function digitally_disruptive_render_universal_swiper($block_content, $block)
             1024 => array('slidesPerView' => $slides_desktop),
         ),
     );
+
+    if ($mobile_only) {
+        $swiper_config['mobileOnly']    = true;
+        $swiper_config['mobileMaxWidth'] = 767;
+    }
 
     if ($has_autoplay) {
         $swiper_config['autoplay'] = array('delay' => $delay, 'disableOnInteraction' => false);
@@ -1423,6 +1477,25 @@ function digitally_disruptive_render_universal_swiper($block_content, $block)
     if ($has_navigation) $controls_html .= '<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>';
 
     /**
+     * 2b. Mobile Only: build scoped grid CSS so the block renders as a normal
+     * grid at 768px and up, and only becomes a Swiper carousel below that.
+     */
+    $mobile_only_id = '';
+    if ($mobile_only) {
+        $mobile_only_id = 'dd-swiper-mo-' . substr(md5(uniqid(wp_rand(), true)), 0, 8);
+
+        $mobile_only_css = sprintf(
+            '@media (min-width: 768px) { .%1$s .swiper-wrapper { display: grid; grid-template-columns: repeat(%2$d, minmax(0, 1fr)); gap: %3$dpx; } .%1$s .swiper-slide { width: auto; } .%1$s .swiper-pagination, .%1$s .swiper-button-prev, .%1$s .swiper-button-next { display: none; } } @media (min-width: 992px) { .%1$s .swiper-wrapper { grid-template-columns: repeat(%4$d, minmax(0, 1fr)); } } ',
+            $mobile_only_id,
+            max(1, (int) $slides_tablet),
+            $space_between,
+            max(1, (int) $slides_desktop)
+        );
+
+        dd_custom_css_collector($mobile_only_css);
+    }
+
+    /**
      * 3. DOM Structural Manipulation based on Block Type
      */
     if ($block['blockName'] === 'core/query') {
@@ -1432,6 +1505,10 @@ function digitally_disruptive_render_universal_swiper($block_content, $block)
         if ($tags->next_tag()) {
             $tags->add_class('swiper');
             $tags->add_class('is-swiper-slider'); // Injects the requested global Swiper indicator class
+            if ($mobile_only) {
+                $tags->add_class('is-swiper-mobile-only');
+                $tags->add_class($mobile_only_id);
+            }
             $tags->set_attribute('data-swiper-config', wp_json_encode($swiper_config));
         }
 
@@ -1473,6 +1550,10 @@ function digitally_disruptive_render_universal_swiper($block_content, $block)
         if ($tags->next_tag()) {
             $tags->add_class('swiper');
             $tags->add_class('is-swiper-slider'); // Injects the requested global Swiper indicator class
+            if ($mobile_only) {
+                $tags->add_class('is-swiper-mobile-only');
+                $tags->add_class($mobile_only_id);
+            }
             $tags->set_attribute('data-swiper-config', wp_json_encode($swiper_config));
 
             // Strip native WordPress flex/grid classes to prevent structural layout conflicts with Swiper

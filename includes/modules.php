@@ -2698,27 +2698,11 @@ function ____columns_modules($items, $id, $html = '')
                     ));
                     break;
                 case 'cf7':
-                    $id = $item['form'][0]['id'];
-                    $style = $item['style'];
-                    $html .= "<div class='form-box $style'>";
-                    $html .= "[contact-form-7 id='$id']";
-                    $html .= "</div>";
+                    $id = isset($item['form'][0]['id']) ? $item['form'][0]['id'] : 0;
+                    $html .= __cf7_module($id, $item['style']);
                     break;
                 case 'divider':
-                    $divider_classes = array();
-                    $divider_styles = array();
-
-                    $divider_classes[] = $item['margin_top'];
-                    $divider_classes[] = $item['margin_bottom'];
-                    $divider_classes[] = $item['margin_left'];
-                    $divider_classes[] = $item['margin_right'];
-
-                    $divider_classes[] = $item['border_color'];
-
-
-                    $classes_val = _attribute('class', $divider_classes);
-
-                    $html .= "<hr $classes_val>";
+                    $html .= __divider_module($item);
                     break;
 
                 case 'post_grid':
@@ -2736,19 +2720,7 @@ function ____columns_modules($items, $id, $html = '')
                     }
                     break;
                 case 'spec_box':
-                    $spec_box = $item['spec_box'];
-                    if ($spec_box) {
-                        $html .= "<div class='row g-4'>";
-                        foreach ($spec_box as $spec) {
-                            $spec_label = $spec['spec_label'];
-                            $spec_value = $spec['spec_value'];
-                            $html .= "<div class='col-auto'>";
-                            $html .= "<div class='spec-label small-text fw-medium text-uppercase'>$spec_label</div>";
-                            $html .= "<div class='spec-value big-text'>$spec_value</div>";
-                            $html .= "</div>";
-                        }
-                        $html .= "</div>";
-                    }
+                    $html .= __spec_box_module($item['spec_box']);
                     break;
             }
         }
@@ -2894,6 +2866,78 @@ function __accordion_module($data, $class = '')
         $html .= '<script type="application/ld+json">' . wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
     }
 
+    return $html;
+}
+
+/**
+ * `cf7` column item — wraps a Contact Form 7 shortcode in a `.form-box $style`
+ * div. Extracted out of the ____columns_modules() switch (below) so
+ * coptrz_render_cf7_legacy_block() (includes/legacy-blocks.php, backing the
+ * `coptrz/cf7-legacy` block) can call the identical renderer instead of
+ * duplicating it.
+ *
+ * @param int    $form_id CF7 form POST ID (the Carbon `association` field's id —
+ *                         NOT the CF7 unit-tag hash `dd/cf7-pdf-form` uses).
+ * @param string $style   '' | 'style-2'
+ * @return string
+ */
+function __cf7_module($form_id, $style = '')
+{
+    if (!$form_id) {
+        return '';
+    }
+    $html = "<div class='form-box $style'>";
+    $html .= "[contact-form-7 id='$form_id']";
+    $html .= "</div>";
+    return $html;
+}
+
+/**
+ * `divider` column item — a plain <hr> carrying margin utility classes and a
+ * border-color class. `border_color_custom`/`border_width` are Carbon fields
+ * defined in post-meta.php but were never read here — pre-existing, preserved
+ * as-is. Extracted out of the ____columns_modules() switch (below) so
+ * coptrz_render_divider_legacy_block() (includes/legacy-blocks.php) shares it.
+ *
+ * @param array $item {margin_top, margin_bottom, margin_left, margin_right, border_color}
+ * @return string
+ */
+function __divider_module($item)
+{
+    $divider_classes = array();
+    $divider_classes[] = isset($item['margin_top']) ? $item['margin_top'] : '';
+    $divider_classes[] = isset($item['margin_bottom']) ? $item['margin_bottom'] : '';
+    $divider_classes[] = isset($item['margin_left']) ? $item['margin_left'] : '';
+    $divider_classes[] = isset($item['margin_right']) ? $item['margin_right'] : '';
+    $divider_classes[] = isset($item['border_color']) ? $item['border_color'] : '';
+
+    $classes_val = _attribute('class', $divider_classes);
+    return "<hr $classes_val>";
+}
+
+/**
+ * `spec_box` column item — a Bootstrap row of label/value spec cells.
+ * Extracted out of the ____columns_modules() switch (below) so
+ * coptrz_render_spec_box_legacy_block() (includes/legacy-blocks.php) shares it.
+ *
+ * @param array $specs [{spec_label, spec_value}, …]
+ * @return string
+ */
+function __spec_box_module($specs)
+{
+    if (empty($specs)) {
+        return '';
+    }
+    $html = "<div class='row g-4'>";
+    foreach ($specs as $spec) {
+        $spec_label = isset($spec['spec_label']) ? $spec['spec_label'] : '';
+        $spec_value = isset($spec['spec_value']) ? $spec['spec_value'] : '';
+        $html .= "<div class='col-auto'>";
+        $html .= "<div class='spec-label small-text fw-medium text-uppercase'>$spec_label</div>";
+        $html .= "<div class='spec-value big-text'>$spec_value</div>";
+        $html .= "</div>";
+    }
+    $html .= "</div>";
     return $html;
 }
 

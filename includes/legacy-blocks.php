@@ -326,6 +326,117 @@ add_filter('render_block', 'coptrz_render_product_compare_block', 10, 2);
  * that special case depends on the whole selection's post COUNT, not something
  * a single box can (or needs to, after that point) know about.
  */
+/**
+ * `icon` column item → `coptrz/icon-legacy`. _____icon_modules() (modules.php)
+ * inlines the selected SVG file's contents into a `.icon-box` wrapper (colour/
+ * size driven by CSS custom properties), which has no native block equivalent
+ * (core/image would emit an <img>, losing the inline-SVG recolouring).
+ */
+function coptrz_render_icon_legacy_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/icon-legacy') {
+        return $block_content;
+    }
+    if (!function_exists('_____icon_modules')) {
+        return $block_content;
+    }
+    $attrs   = isset($block['attrs']) ? $block['attrs'] : array();
+    $icon_id = isset($attrs['iconId']) ? (int) $attrs['iconId'] : 0;
+    if (!$icon_id) {
+        return $block_content;
+    }
+    return _____icon_modules(array(
+        'icon'              => $icon_id,
+        'icon_color'        => isset($attrs['iconColor']) ? (string) $attrs['iconColor'] : '',
+        'icon_color_custom' => isset($attrs['iconColorCustom']) ? (string) $attrs['iconColorCustom'] : '',
+        'icon_width'        => isset($attrs['iconWidth']) ? (string) $attrs['iconWidth'] : '',
+        'icon_height'       => isset($attrs['iconHeight']) ? (string) $attrs['iconHeight'] : '',
+    ));
+}
+add_filter('render_block', 'coptrz_render_icon_legacy_block', 10, 2);
+
+/**
+ * `spec_box` column item → `coptrz/spec-box-legacy`. __spec_box_module()
+ * (modules.php, extracted from the legacy ____columns_modules() switch) emits
+ * a Bootstrap row of label/value spec cells with theme-specific classes; no
+ * core block reproduces that structure/classing.
+ */
+function coptrz_render_spec_box_legacy_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/spec-box-legacy') {
+        return $block_content;
+    }
+    if (!function_exists('__spec_box_module')) {
+        return $block_content;
+    }
+    $attrs = isset($block['attrs']) ? $block['attrs'] : array();
+    $specs = isset($attrs['specs']) && is_array($attrs['specs']) ? $attrs['specs'] : array();
+    if (empty($specs)) {
+        return $block_content;
+    }
+    $rows = array();
+    foreach ($specs as $s) {
+        $rows[] = array(
+            'spec_label' => isset($s['label']) ? (string) $s['label'] : '',
+            'spec_value' => isset($s['value']) ? (string) $s['value'] : '',
+        );
+    }
+    return __spec_box_module($rows);
+}
+add_filter('render_block', 'coptrz_render_spec_box_legacy_block', 10, 2);
+
+/**
+ * `divider` column item → `coptrz/divider-legacy`. __divider_module()
+ * (modules.php) emits a plain <hr> with margin-utility + border-color classes.
+ * A native core/separator + className could reproduce this, but the user asked
+ * for a legacy wrapper here to match the other three for consistency.
+ */
+function coptrz_render_divider_legacy_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/divider-legacy') {
+        return $block_content;
+    }
+    if (!function_exists('__divider_module')) {
+        return $block_content;
+    }
+    $attrs = isset($block['attrs']) ? $block['attrs'] : array();
+    return __divider_module(array(
+        'margin_top'    => isset($attrs['marginTop']) ? (string) $attrs['marginTop'] : '',
+        'margin_bottom' => isset($attrs['marginBottom']) ? (string) $attrs['marginBottom'] : '',
+        'margin_left'   => isset($attrs['marginLeft']) ? (string) $attrs['marginLeft'] : '',
+        'margin_right'  => isset($attrs['marginRight']) ? (string) $attrs['marginRight'] : '',
+        'border_color'  => isset($attrs['borderColor']) ? (string) $attrs['borderColor'] : '',
+    ));
+}
+add_filter('render_block', 'coptrz_render_divider_legacy_block', 10, 2);
+
+/**
+ * `cf7` column item → `coptrz/cf7-legacy`. __cf7_module() (modules.php) wraps
+ * a `[contact-form-7 id='…']` shortcode in a `.form-box $style` div; `formId`
+ * is the CF7 form's POST ID (the legacy Carbon `association` field's id) — NOT
+ * the unit-tag hash `dd/cf7-pdf-form` uses for its dropdown. do_shortcode() is
+ * called directly here (rather than relying on a later the_content pass) so
+ * the form renders correctly even when this block is output via a bare
+ * do_blocks() call with no following shortcode pass — same reasoning as
+ * dd_render_cf7_pdf_block() (functions.php).
+ */
+function coptrz_render_cf7_legacy_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/cf7-legacy') {
+        return $block_content;
+    }
+    if (!function_exists('__cf7_module') || !shortcode_exists('contact-form-7')) {
+        return $block_content;
+    }
+    $attrs   = isset($block['attrs']) ? $block['attrs'] : array();
+    $form_id = isset($attrs['formId']) ? (int) $attrs['formId'] : 0;
+    if (!$form_id) {
+        return $block_content;
+    }
+    return do_shortcode(__cf7_module($form_id, isset($attrs['style']) ? (string) $attrs['style'] : ''));
+}
+add_filter('render_block', 'coptrz_render_cf7_legacy_block', 10, 2);
+
 function coptrz_render_global_post_box_block($block_content, $block)
 {
     if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/global-post-box') {
