@@ -621,32 +621,45 @@ case studies, rentals, landing pages, etc).
   returns `null` from the mapper so the whole section falls back to Custom HTML,
   the same fallback used elsewhere in the registry.
 
-  **Grid conversion (not `core/columns`)** — the `columns` mapper emits a
-  12-track CSS Grid instead of `core/columns`/`core/column`: the outer wrapper
-  is a `core/group` with `layout: {type: 'grid', columnCount: 12}`, and each
-  column is a plain `core/group` (the row-level `align_items`/`justify_content`/
-  `horizontal_spacing`/`vertical_spacing` classes still land on this outer
-  group's `className`, as they did on `core/columns` before). No Bootstrap
-  `col-*` class is carried onto the column group; instead each column's
-  `column_width`/`column_width_tablet`/`column_width_mobile` (captured as
-  `column_widths` by `coptrz_column_wrapper_data()`, replacing the old
-  `column_classes` return key) is converted by `coptrz_bootstrap_col_span($class,
-  $col_count)` into an integer 1-12 span — a numbered class (`col-lg-6`, `col-6`)
-  maps straight to its number; an un-numbered/auto class (`col`, `col-lg`,
-  `col-auto`, or unset) falls back to an even share of the row
-  (`round(12 / $col_count)`) so N auto columns still fill it evenly. The span is
-  written as a `grid-column: span N;` declaration on the column group's
-  `ddCustomCSS` (desktop), and — only when the legacy row actually set a
-  tablet/mobile width — `ddCustomCSSTablet`/`ddCustomCSSMobile`, reusing
-  `digitally_disruptive_render_custom_css()`'s existing per-breakpoint
-  `@media`-wrapped, single-class cascade (functions.php) rather than a native
-  `style.layout.columnSpan`, which would be an inline style that wins over
-  those `@media` overrides regardless of source order. This is a different
-  attribute than the `.column-holder` group's own `ddCustomCSS` (background/
-  border/etc, described below) — they're always different block instances (an
-  outer column group and, when present, its inner holder group), so the two
-  never collide on the same element. Section content unaffected by this
-  change — only the `columns` element's own wrapper/column blocks.
+  **Grid conversion for uniform rows** — the `columns` mapper emits a CSS Grid
+  instead of `core/columns`/`core/column` ONLY when every column in the row
+  shares the exact same Bootstrap width at every breakpoint (desktop/tablet/
+  mobile). In that case the outer wrapper is a `core/group` with
+  `layout: {type: 'grid', columnCount: N}`, where `N = 12 / span` — e.g. every
+  column being `col-lg-4` (span 4) → `columnCount: 3`; `col-lg-6` (span 6)
+  → `columnCount: 2`; `col-lg-3` (span 3) → `columnCount: 4`. Each column is a plain
+  `core/group` with no Bootstrap class and no per-column CSS — the row's width
+  is expressed once, on the parent, not per column. The row-level
+  `align_items`/`justify_content`/`horizontal_spacing`/`vertical_spacing`
+  classes still land on the parent's `className`, as they did on `core/columns`
+  before. `coptrz_bootstrap_col_span($class, $col_count)` derives the 1-12 span
+  from a Bootstrap class (`col-lg-6`, `col-6` → the number directly; `col`,
+  `col-lg`, `col-auto`, or unset → an even share, `round(12 / $col_count)`, so N
+  auto/equal-fill columns still map back to `columnCount: N`).
+  Tablet (`column_width_tablet`, e.g. `col-md-*`) and mobile
+  (`column_width_mobile`, bare `col-*`) widths — when the legacy row actually
+  set them — become `ddGridColumnsTablet`/`ddGridColumnsMobile` on the SAME
+  parent group, each computed the same way (`12 / span`). These two attributes
+  are consumed by the theme's PRE-EXISTING `dd_group_grid_responsive_render()`
+  (functions.php, `render_block_core/group` filter, gated on
+  `layout.type === 'grid'`) — no new render-time plumbing was needed for the
+  responsive half.
+
+  **Mixed-width rows fall back to `core/columns`** — when the row's columns do
+  NOT all share the same width at every breakpoint (e.g. `col-lg-8` +
+  `col-lg-4`), a single `columnCount` can't represent them, so the mapper
+  instead reproduces the original `core/columns` + `core/column[]` shape: each
+  column keeps its own joined Bootstrap width class(es) — from
+  `column_widths` (desktop/tablet/mobile, `coptrz_column_wrapper_data()`'s
+  return shape, replacing the old flat `column_classes` list) — as its
+  `className`, defaulting to `col` when none are set.
+
+  Per-column `.column-holder` styling (background/border/etc, described below)
+  is orthogonal to this width-uniformity check — a uniform-width grid row can
+  still have per-column holder styling; only the width class itself moved from
+  the column onto the parent's `columnCount`/`ddGridColumns*` in the grid
+  branch. Section content unaffected either way — only the `columns` element's
+  own wrapper/column blocks change shape.
 
   `unmappable` (which forces the whole section to snapshot as Custom HTML,
   dragging every item in it down regardless of how well those items map) is now

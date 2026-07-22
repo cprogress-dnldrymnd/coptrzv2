@@ -2744,18 +2744,21 @@ function coptrz_block_item_mappers()
     /*  Composite: columns (recursive through the item registry)          */
     /* ------------------------------------------------------------------ */
 
-    // Columns → a 12-track CSS Grid: an outer core/group (layout type 'grid',
-    // columnCount 12) containing one plain core/group per column (NOT
-    // core/columns / core/column — no Bootstrap col-* class is carried onto
-    // the column group). Each column's Bootstrap width class(es) are instead
-    // converted to a `grid-column: span N` declaration per breakpoint (see
-    // coptrz_bootstrap_col_span()) and set via the theme's existing
-    // ddCustomCSS/ddCustomCSSTablet/ddCustomCSSMobile mechanism
-    // (digitally_disruptive_render_custom_css(), functions.php — already
-    // whitelisted for core/group), so tablet/mobile overrides win via the
-    // @media cascade rather than needing !important. Each column's items
-    // recurse through this same registry; if any sub-item can't be mapped the
-    // whole section falls back to a Custom HTML snapshot.
+    // Columns → when every column shares the SAME Bootstrap width at every
+    // breakpoint, a CSS Grid: an outer core/group (layout type 'grid') whose
+    // columnCount is 12 / that shared span (col-lg-4 on every column →
+    // columnCount 3), with plain core/group cells (no col-* class, no
+    // per-column CSS) for columns. col-md-* / mobile col-* drive
+    // ddGridColumnsTablet / ddGridColumnsMobile — the theme's EXISTING
+    // per-breakpoint grid-count override (dd_group_grid_responsive_render(),
+    // functions.php, already wired for any core/group with layout.type ===
+    // 'grid'), so no new render plumbing is needed. A row whose columns do
+    // NOT all share the same width at every breakpoint falls back to the
+    // original core/columns + core/column[] output (each column keeps its
+    // own col-* className) — a single columnCount can't represent unequal
+    // columns. Each column's items recurse through this same registry; if
+    // any sub-item can't be mapped the whole section falls back to a Custom
+    // HTML snapshot.
     $map['columns'] = function ($item) {
         $raw_cols = isset($item['columns']) && is_array($item['columns']) ? $item['columns'] : array();
         if (empty($raw_cols)) {
@@ -2770,8 +2773,7 @@ function coptrz_block_item_mappers()
         }
 
         $mappers   = coptrz_block_item_mappers(); // safe: static already populated
-        $col_blocks = array();
-        $col_count  = count($raw_cols);
+        $col_count = count($raw_cols);
 
         $individual_column_settings = !empty($item['individual_column_settings']);
         $shared_styles = (!$individual_column_settings && !empty($item['column_styles']) && is_array($item['column_styles']))
@@ -2779,6 +2781,9 @@ function coptrz_block_item_mappers()
             : array();
         $mobile_styling = isset($item['mobile_styling']) ? (string) $item['mobile_styling'] : '';
 
+        // Gather pass: recurse each column's items and derive its wrapper
+        // data once, shared by both branches below.
+        $columns = array();
         foreach ($raw_cols as $col) {
             $col_items = isset($col['items']) && is_array($col['items']) ? $col['items'] : array();
             $inner     = array();
@@ -2798,18 +2803,9 @@ function coptrz_block_item_mappers()
 
             $col_data = coptrz_column_wrapper_data($col, $shared_styles, $individual_column_settings, $mobile_styling, !empty($item['same_image_height']), isset($item['image_fit']) ? $item['image_fit'] : '', isset($item['image_padding']) ? $item['image_padding'] : '');
 
-            $widths = $col_data['column_widths'];
-            $col_attrs = array(
-                'layout'      => array('type' => 'default'),
-                'ddCustomCSS' => 'grid-column: span ' . coptrz_bootstrap_col_span($widths['desktop'], $col_count) . ';',
-            );
-            if ($widths['tablet'] !== '') {
-                $col_attrs['ddCustomCSSTablet'] = 'grid-column: span ' . coptrz_bootstrap_col_span($widths['tablet'], $col_count) . ';';
-            }
-            if ($widths['mobile'] !== '') {
-                $col_attrs['ddCustomCSSMobile'] = 'grid-column: span ' . coptrz_bootstrap_col_span($widths['mobile'], $col_count) . ';';
-            }
-
+            // Per-column styling (.column-holder) is orthogonal to the width
+            // uniformity check below — it may legitimately differ between
+            // columns even when every column shares the same grid width.
             $has_holder_styling = !empty($col_data['holder_classes']) || !empty($col_data['holder_css']);
             if ($has_holder_styling) {
                 $holder_class_attr = implode(' ', $col_data['holder_classes']);
@@ -2834,37 +2830,110 @@ function coptrz_block_item_mappers()
                 ));
             }
 
-            $col_blocks[] = coptrz_block_container(
-                'core/group',
-                $col_attrs,
-                '<div class="wp-block-group">',
-                '</div>',
-                $inner
+            $columns[] = array(
+                'inner'  => $inner,
+                'widths' => $col_data['column_widths'],
             );
         }
 
-        if (empty($col_blocks)) {
+        if (empty($columns)) {
             return null;
         }
 
         // Row-level wrapper classes, matching the non-slider $row_class build
         // at modules.php:2021-2050 (minus the raw 'row'/'g-4'/'g-xs-10px'
         // bootstrap grid/gutter classes, which assume a `.row` flex context
-        // the grid group doesn't need — block gap handles gutters).
+        // neither branch below needs — block gap / the grid handle gutters).
         $row_classes = array();
         foreach (array('align_items', 'justify_content', 'horizontal_spacing', 'vertical_spacing') as $k) {
             if (!empty($item[$k])) {
                 $row_classes[] = (string) $item[$k];
             }
         }
-        $align      = implode(' ', $row_classes);
-        $cols_attrs = array('layout' => array('type' => 'grid', 'columnCount' => 12));
-        if ($align !== '') {
-            $cols_attrs['className'] = $align;
+        $align = implode(' ', $row_classes);
+
+        // Uniform only when every column shares the exact same desktop /
+        // tablet / mobile width triple — that's the only case where a single
+        // grid columnCount per breakpoint faithfully represents the row.
+        $signatures = array();
+        foreach ($columns as $c) {
+            $w = $c['widths'];
+            $signatures[] = $w['desktop'] . '|' . $w['tablet'] . '|' . $w['mobile'];
         }
-        $wrap_cls = trim('wp-block-group ' . $align);
+        $uniform = count(array_unique($signatures)) === 1;
+
+        if ($uniform) {
+            $widths = $columns[0]['widths'];
+            $span_to_count = function ($width) use ($col_count) {
+                $span = coptrz_bootstrap_col_span($width, $col_count);
+                return max(1, min(12, (int) round(12 / $span)));
+            };
+
+            $cols_attrs = array('layout' => array(
+                'type'        => 'grid',
+                'columnCount' => $span_to_count($widths['desktop']),
+            ));
+            if ($widths['tablet'] !== '') {
+                $cols_attrs['ddGridColumnsTablet'] = (string) $span_to_count($widths['tablet']);
+            }
+            if ($widths['mobile'] !== '') {
+                $cols_attrs['ddGridColumnsMobile'] = (string) $span_to_count($widths['mobile']);
+            }
+            if ($align !== '') {
+                $cols_attrs['className'] = $align;
+            }
+            $wrap_cls = trim('wp-block-group ' . $align);
+
+            $col_blocks = array();
+            foreach ($columns as $c) {
+                $col_blocks[] = coptrz_block_container(
+                    'core/group',
+                    array('layout' => array('type' => 'default')),
+                    '<div class="wp-block-group">',
+                    '</div>',
+                    $c['inner']
+                );
+            }
+
+            return array(coptrz_block_container(
+                'core/group',
+                $cols_attrs,
+                '<div class="' . esc_attr($wrap_cls) . '">',
+                '</div>',
+                $col_blocks
+            ));
+        }
+
+        // Mixed widths → the original core/columns + core/column[] output,
+        // each column keeping its own Bootstrap width class(es).
+        $col_blocks = array();
+        foreach ($columns as $c) {
+            $widths      = $c['widths'];
+            $col_classes = array_values(array_filter(
+                array($widths['desktop'], $widths['tablet'], $widths['mobile']),
+                function ($v) {
+                    return trim((string) $v) !== '';
+                }
+            ));
+            if (empty($col_classes)) {
+                $col_classes[] = 'col';
+            }
+            $col_class_attr = implode(' ', $col_classes);
+            $col_wrap_cls   = trim('wp-block-column ' . $col_class_attr);
+
+            $col_blocks[] = coptrz_block_container(
+                'core/column',
+                array('className' => $col_class_attr),
+                '<div class="' . esc_attr($col_wrap_cls) . '">',
+                '</div>',
+                $c['inner']
+            );
+        }
+
+        $cols_attrs = $align !== '' ? array('className' => $align) : array();
+        $wrap_cls   = trim('wp-block-columns ' . $align);
         return array(coptrz_block_container(
-            'core/group',
+            'core/columns',
             $cols_attrs,
             '<div class="' . esc_attr($wrap_cls) . '">',
             '</div>',
