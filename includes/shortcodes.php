@@ -178,6 +178,9 @@ class Shortcodes
 
     function case_study_slider_grid($atts)
     {
+        if (!function_exists('_attribute')) {
+            return '';
+        }
         extract(
             shortcode_atts(
                 array(
@@ -475,6 +478,9 @@ class Shortcodes
     }
     function latest_from_coptrz()
     {
+        if (!function_exists('__post_box')) {
+            return '';
+        }
         $latest_from_coptrz = get__theme_option('latest_from_coptrz');
         $posts = get_posts(array(
             'post_type'   => 'post',
@@ -724,22 +730,34 @@ class Shortcodes
 
     function drone_servicing()
     {
+        if (!function_exists('_attribute')) {
+            return '';
+        }
         return __drone_servicing();
     }
 
 
     function three_year_servicing_plans()
     {
+        if (!function_exists('_attribute')) {
+            return '';
+        }
         return __three_year_servicing_plans();
     }
 
     function remote_support()
     {
+        if (!function_exists('_attribute')) {
+            return '';
+        }
         return __remote_support();
     }
 
     function brands_logo_slider()
     {
+        if (!function_exists('_attribute')) {
+            return '';
+        }
         // Unique per instance: main.js binds the Swiper to the element itself
         // (not this id), but the id must still be unique to be valid HTML —
         // and `.brands-slider` (not the id) is what carries the CSS.
