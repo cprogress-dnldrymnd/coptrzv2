@@ -1376,14 +1376,6 @@ function coptrz_render_global_widget_block($block_content, $block)
         $shortcode = rtrim($shortcode, ']') . " style='" . esc_attr($style) . "']";
     }
 
-    // elements.php/modules.php/svg.php (which most of these shortcodes depend
-    // on) are not loaded in the admin block-editor context (see
-    // includes/_required_files.php) — rendering here would fatal, so fall
-    // back to the block's own placeholder content instead.
-    if (!function_exists('_attribute')) {
-        return $block_content;
-    }
-
     return do_shortcode($shortcode);
 }
 add_filter('render_block', 'coptrz_render_global_widget_block', 10, 2);
