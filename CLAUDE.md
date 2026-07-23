@@ -927,7 +927,16 @@ case studies, rentals, landing pages, etc).
   signature (extracted from `coptrz_find_corrupted_conversions()` into
   `coptrz_content_is_corrupted($content)`, used by both) — purging would destroy
   the only repair path, since repair IS Revert-then-Convert regenerating fresh
-  content from this same legacy data.
+  content from this same legacy data. Bypassable via a `$force` param (still
+  requires `coptrz_post_purgeable_parts()` non-empty — force never applies to
+  "already purged"/"never converted") — this is the one thing `$force` changes;
+  it never touches `post_content` any more than a normal purge does, so a
+  force-purged corrupted post is left with its `u003c`-style garbage forever,
+  PERMANENTLY unrepairable (the meta Revert-then-Convert would regenerate from
+  is exactly what got deleted). `coptrz_find_corrupted_conversions()` marks
+  such a post `unrepairable` (via `coptrz_post_is_legacy_purged()`), and the
+  Tools-page notice below tags it inline so the repair instructions there stop
+  being told to an admin for whom they can no longer work.
   Deliberately does NOT touch: `sections_html`/`sections_after_main_html` (the
   product HTML-mode repeater — still the live rendering surface when
   `_coptrz_sections_mode = 'html'`); `COPTRZ_SECTIONS_CONVERTED_FLAG`/
@@ -957,7 +966,15 @@ case studies, rentals, landing pages, etc).
   corrupted-conversions repair flow instead — found necessary by testing against real
   site data, where most already-converted posts turned out to predate the
   `wp_slash()` fix and would otherwise show a Purge button that dry-run immediately
-  refuses.
+  refuses. Below that explanation sits a collapsed `<details>` disclosure, "Force
+  purge anyway (not recommended)" — deliberately not a visible button, since this
+  is strictly worse than a normal purge (it gives up the post's only remaining
+  repair path on content that's already broken) and must never be the easy/default
+  option. Opening it shows an explicit warning naming the consequence, then Dry run
+  force purge / Force purge buttons; the real action requires TWO sequential
+  `confirm()` dialogs (not one, unlike every other destructive action in this box)
+  before it fires the same `wp_ajax_coptrz_purge_sections` handler with an added
+  `force=1`, which `coptrz_purge_post_legacy_data()` reads as its third parameter.
 - `[layouts id="..."]` shortcode in `shortcodes.php` renders a `layouts` post's
   `sections`/`section_items` fields via `___sections('sections', $id)`; it's
   guarded with `function_exists('___sections')` (not a `layouts()` function,

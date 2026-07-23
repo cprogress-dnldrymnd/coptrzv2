@@ -311,9 +311,13 @@ function coptrz_content_is_corrupted($content)
  * "n", so recovery from the corrupted string alone can't be exact; the
  * untouched `_sections`/Hero meta this theme keeps around lets a fresh
  * conversion regenerate the correct content instead) — which is why
- * coptrz_purge_post_legacy_data() refuses to run on a post listed here.
+ * coptrz_purge_post_legacy_data() refuses to run on a post listed here,
+ * UNLESS force-purged (its $force param) — that path is what `unrepairable`
+ * reports: once true, the "Revert, then Convert" repair above no longer
+ * works for that post (the meta it would regenerate from is gone on purpose),
+ * so the caller should stop suggesting it.
  *
- * @return array<array{id:int,title:string,type:string}>
+ * @return array<array{id:int,title:string,type:string,unrepairable:bool}>
  */
 function coptrz_find_corrupted_conversions()
 {
@@ -324,7 +328,7 @@ function coptrz_find_corrupted_conversions()
     }
 
     $type_placeholders = implode(',', array_fill(0, count($post_types), '%s'));
-    $sql = "SELECT ID, post_title, post_type FROM {$wpdb->posts}
+    $sql = "SELECT ID, post_title, post_type, post_content FROM {$wpdb->posts}
             WHERE post_type IN ({$type_placeholders})
               AND post_status IN ('publish', 'private', 'draft', 'pending', 'future')
               AND post_content LIKE %s";
@@ -334,9 +338,15 @@ function coptrz_find_corrupted_conversions()
     foreach ((array) $rows as $row) {
         if (coptrz_content_is_corrupted($row->post_content)) {
             $found[] = array(
-                'id'    => (int) $row->ID,
-                'title' => $row->post_title,
-                'type'  => $row->post_type,
+                'id'           => (int) $row->ID,
+                'title'        => $row->post_title,
+                'type'         => $row->post_type,
+                // A force-purged corrupted post (coptrz_purge_post_legacy_data(),
+                // $force) no longer HAS a "Revert, then Convert" repair path —
+                // the legacy data that would need is gone on purpose. Flagged
+                // here so the Tools-page notice stops telling the admin to run
+                // repair steps that can't work anymore.
+                'unrepairable' => coptrz_post_is_legacy_purged((int) $row->ID),
             );
         }
     }
@@ -3603,25 +3613,37 @@ function coptrz_post_purgeable_parts($post_id)
  *
  * Refuses (skipped, no writes) when:
  *  - nothing is purgeable — coptrz_post_purgeable_parts() is empty, whether
- *    because the post was never converted or because it's already purged;
+ *    because the post was never converted or because it's already purged
+ *    (never bypassable — there is nothing left to delete either way);
  *  - post_content is corrupted (coptrz_content_is_corrupted() — the
  *    wp_slash() bug signature also listed by
  *    coptrz_find_corrupted_conversions()) — purging would destroy the only
  *    repair path, since repair is Revert-then-Convert regenerating fresh
- *    content from this same legacy data.
+ *    content from this same legacy data. Bypassable via $force: see below.
  *
  * Deliberately does NOT touch: `sections_html` / `sections_after_main_html`
  * (the product HTML-mode repeater — still the live rendering surface when
  * `_coptrz_sections_mode` = 'html', see coptrz_render_converted_sections());
  * COPTRZ_SECTIONS_CONVERTED_FLAG / COPTRZ_HERO_CONVERTED_FLAG /
  * `_coptrz_sections_mode` (these ROUTE rendering — clearing them would send
- * ___sections() / ___hero_modules() back to the now-empty legacy builders).
+ * ___sections() / ___hero_modules() back to the now-empty legacy builders);
+ * `post_content` itself, force or not — purge NEVER writes post_content.
  *
  * @param int  $post_id
  * @param bool $dry_run  When true, report what would be deleted but write nothing.
+ * @param bool $force    When true, purge a corrupted post anyway (see
+ *                        coptrz_render_section_converter_box()'s Force Purge
+ *                        block for the required UI warning). Deliberately
+ *                        DESTROYS the post's only repair path: post_content
+ *                        keeps its corrupted `u003c`-style garbage forever,
+ *                        since Revert-then-Convert (the only thing that can
+ *                        fix it) needs the exact legacy meta this deletes.
+ *                        Never touches post_content itself — force only
+ *                        widens which posts DELETE_ROOT runs against, never
+ *                        what it runs against post_content.
  * @return array Report: post_id, title, type, purged (parts actually purged), warnings, skipped.
  */
-function coptrz_purge_post_legacy_data($post_id, $dry_run = false)
+function coptrz_purge_post_legacy_data($post_id, $dry_run = false, $force = false)
 {
     $src = get_post($post_id);
     $report = array(
@@ -3649,10 +3671,14 @@ function coptrz_purge_post_legacy_data($post_id, $dry_run = false)
         return $report;
     }
 
-    if (coptrz_content_is_corrupted((string) $src->post_content)) {
+    if (!$force && coptrz_content_is_corrupted((string) $src->post_content)) {
         $report['skipped'] = true;
-        $report['warnings'][] = 'This post is listed under "Corrupted conversions" — purging would remove the only repair path (Revert, then Convert). Fix that first.';
+        $report['warnings'][] = 'This post is listed under "Corrupted conversions" — purging would remove the only repair path (Revert, then Convert). Fix that first, or force-purge to permanently keep the corrupted content as-is.';
         return $report;
+    }
+
+    if ($force) {
+        $report['warnings'][] = 'Forced: post_content was left as-is (still corrupted, if it was) — this cannot be repaired afterward, since the legacy data Revert-then-Convert needs is gone.';
     }
 
     if (in_array('sections', $parts, true)) {
@@ -3803,7 +3829,13 @@ add_action('add_meta_boxes', function ($post_type, $post) {
  * delete — coptrz_post_purgeable_parts()), and fully purged (terminal —
  * see coptrz_post_is_legacy_purged(), a message only, no buttons: there is
  * nothing left to act on, and re-showing Revert/Preview/Convert controls
- * would imply actions that no longer work).
+ * would imply actions that no longer work). Within the converted state, a
+ * post whose content is already corrupted ($purge_blocked_corrupt,
+ * coptrz_content_is_corrupted()) gets a tucked-away "Force purge anyway"
+ * disclosure instead of the normal Purge buttons — see
+ * coptrz_purge_post_legacy_data()'s $force param docs for why this is a
+ * strictly worse action than normal Purge (it gives up the post's only
+ * remaining repair path) and must never be the easy/default option.
  *
  * @param WP_Post $post
  * @return void
@@ -3883,6 +3915,16 @@ function coptrz_render_section_converter_box($post)
             <p class="description" style="margin-top:0;">
                 <?php esc_html_e('Purge is unavailable: this post is listed under "Corrupted conversions" on the Tools > Convert to Blocks page. Revert, then Convert, to fix it before purging.', 'coptrz-theme'); ?>
             </p>
+            <details style="margin:6px 0 0;">
+                <summary style="cursor:pointer;color:#b32d2e;font-weight:600;"><?php esc_html_e('Force purge anyway (not recommended)', 'coptrz-theme'); ?></summary>
+                <p class="description" style="color:#b32d2e;">
+                    <?php esc_html_e('This post’s content already shows the corruption (literal text like "u003cpu003e" instead of real HTML on the front end). Force purge deletes the legacy section/hero data regardless — the ONLY thing that can fix the corruption — so the post is left broken PERMANENTLY, with no way to regenerate correct content except rewriting it by hand in the block editor. Only use this if you have already accepted that, or don’t care about this post’s current content.', 'coptrz-theme'); ?>
+                </p>
+                <p style="margin-bottom:6px;">
+                    <button type="button" class="button coptrz-conv__dry-force-purge"><?php esc_html_e('Dry run force purge', 'coptrz-theme'); ?></button>
+                    <button type="button" class="button coptrz-conv__force-purge" style="color:#fff;background:#b32d2e;border-color:#b32d2e;"><?php esc_html_e('Force purge (permanent, unrepairable)', 'coptrz-theme'); ?></button>
+                </p>
+            </details>
             <?php elseif ($can_purge && !empty($purgeable)) : ?>
             <hr style="margin:10px 0;" />
             <p class="description" style="margin-top:0;color:#b32d2e;">
@@ -3908,14 +3950,15 @@ function coptrz_render_section_converter_box($post)
     (function () {
         var box = document.currentScript.previousElementSibling;
         if (!box || !box.classList.contains('coptrz-conv')) { return; }
-        function run(action, nonce, dry) {
+        function run(action, nonce, dry, force) {
             var out = box.querySelector('.coptrz-conv__out');
             out.textContent = '…';
             var body = new URLSearchParams({
                 action: action,
                 nonce: nonce,
                 post: box.dataset.post,
-                dry: dry ? '1' : '0'
+                dry: dry ? '1' : '0',
+                force: force ? '1' : '0'
             });
             fetch(ajaxurl, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body })
                 .then(function (r) { return r.json(); })
@@ -3947,6 +3990,16 @@ function coptrz_render_section_converter_box($post)
         box.querySelectorAll('.coptrz-conv__purge').forEach(function (b) {
             b.addEventListener('click', function () {
                 if (confirm('<?php echo esc_js(__('Permanently delete the original section/hero data for this post? This cannot be undone — Revert and Preview original will stop working.', 'coptrz-theme')); ?>')) { run('coptrz_purge_sections', box.dataset.purgeNonce, false); }
+            });
+        });
+        box.querySelectorAll('.coptrz-conv__dry-force-purge').forEach(function (b) {
+            b.addEventListener('click', function () { run('coptrz_purge_sections', box.dataset.purgeNonce, true, true); });
+        });
+        box.querySelectorAll('.coptrz-conv__force-purge').forEach(function (b) {
+            b.addEventListener('click', function () {
+                if (confirm('<?php echo esc_js(__('Force purge this CORRUPTED post? The corrupted content will be left exactly as-is, PERMANENTLY — there will be no way left to regenerate it correctly.', 'coptrz-theme')); ?>')
+                    && confirm('<?php echo esc_js(__('Really sure? This is not the normal Purge — it deletes the one thing that could still fix this post.', 'coptrz-theme')); ?>')
+                ) { run('coptrz_purge_sections', box.dataset.purgeNonce, false, true); }
             });
         });
     })();
@@ -4018,8 +4071,9 @@ add_action('wp_ajax_coptrz_purge_sections', function () {
     if (!$post_id || !current_user_can('manage_options') || !current_user_can('edit_post', $post_id)) {
         wp_send_json_error('Permission denied.');
     }
-    $dry = !empty($_POST['dry']) && $_POST['dry'] === '1';
-    $report = coptrz_purge_post_legacy_data($post_id, $dry);
+    $dry   = !empty($_POST['dry']) && $_POST['dry'] === '1';
+    $force = !empty($_POST['force']) && $_POST['force'] === '1';
+    $report = coptrz_purge_post_legacy_data($post_id, $dry, $force);
     wp_send_json_success($report);
 });
 
@@ -4154,13 +4208,16 @@ function coptrz_render_bulk_converter_page()
             <div class="notice notice-error" style="padding: 1em;">
                 <h2 style="margin-top:0;"><?php esc_html_e('Corrupted conversions found', 'coptrz-theme'); ?></h2>
                 <p>
-                    <?php esc_html_e('These posts were converted before a wp_slash() bug was fixed (block attributes containing <, >, &, --, or backslashes were silently stripped on save — e.g. a tab description rendering as literal "u003cpu003e" instead of an HTML tag). Revert, then Convert, each post below to regenerate it correctly from the original section/hero data. Any edits made to these posts in the block editor since they were converted will be lost by reverting.', 'coptrz-theme'); ?>
+                    <?php esc_html_e('These posts were converted before a wp_slash() bug was fixed (block attributes containing <, >, &, --, or backslashes were silently stripped on save — e.g. a tab description rendering as literal "u003cpu003e" instead of an HTML tag). Revert, then Convert, each post below to regenerate it correctly from the original section/hero data. Any edits made to these posts in the block editor since they were converted will be lost by reverting. Posts marked "unrepairable" had their legacy data force-purged and can no longer be fixed this way — the content must be rewritten by hand.', 'coptrz-theme'); ?>
                 </p>
                 <ul style="list-style: disc; padding-left: 2em;">
                     <?php foreach ($corrupted as $c) : ?>
                         <li>
                             <a href="<?php echo esc_url(get_edit_post_link($c['id'])); ?>"><?php echo esc_html($c['title'] ?: ('#' . $c['id'])); ?></a>
                             <span class="description"> — <?php echo esc_html($c['type']); ?></span>
+                            <?php if (!empty($c['unrepairable'])) : ?>
+                                <strong style="color:#b32d2e;"> — <?php esc_html_e('unrepairable (legacy data force-purged)', 'coptrz-theme'); ?></strong>
+                            <?php endif; ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>
