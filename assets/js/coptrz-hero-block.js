@@ -66,6 +66,30 @@
     }
 
     /**
+     * Background media preview helpers — a video URL can't render as an
+     * <img>, so detect it by extension (no stored mime type on reload) and
+     * show the file name instead of a broken thumbnail.
+     */
+    function isVideoUrl(url) {
+        return /\.(mp4|webm|ogv|ogg|mov|m4v)(\?.*)?$/i.test(url || '');
+    }
+    function fileNameFromUrl(url) {
+        var clean = String(url || '').split('?')[0].split('#')[0];
+        var name = clean.substring(clean.lastIndexOf('/') + 1);
+        try { name = decodeURIComponent(name); } catch (e) {}
+        return name || String(url || '');
+    }
+    function mediaPreview(url) {
+        if (!url) return null;
+        if (isVideoUrl(url)) {
+            return el('p', {
+                style: { fontSize: '12px', margin: '0 0 8px', wordBreak: 'break-all' }
+            }, '🎬 ' + fileNameFromUrl(url));
+        }
+        return el('img', { src: url, style: { maxWidth: '100%', marginBottom: '8px' } });
+    }
+
+    /**
      * Background media picker for one breakpoint (desktop/tablet/mobile share
      * this markup) — image or video, mirrors the desktop MediaUpload render
      * prop but factored out so tablet/mobile don't triplicate it.
@@ -83,7 +107,7 @@
                     onSelect: onSelect,
                     render: function (o) {
                         return el(Fragment, null,
-                            imageUrl ? el('img', { src: imageUrl, style: { maxWidth: '100%', marginBottom: '8px' } }) : null,
+                            mediaPreview(imageUrl),
                             el(Button, { variant: 'secondary', onClick: o.open }, imageId ? 'Replace' : 'Select'),
                             imageId ? el(Button, { variant: 'link', isDestructive: true, onClick: onRemove }, 'Remove') : null
                         );
@@ -340,7 +364,7 @@
                                     onSelect: function (media) { setAttributes({ backgroundId: media.id, backgroundUrl: media.url }); },
                                     render: function (o) {
                                         return el(Fragment, null,
-                                            a.backgroundUrl ? el('img', { src: a.backgroundUrl, style: { maxWidth: '100%', marginBottom: '8px' } }) : null,
+                                            mediaPreview(a.backgroundUrl),
                                             el(Button, { variant: 'secondary', onClick: o.open }, a.backgroundId ? 'Replace Background' : 'Select Background'),
                                             a.backgroundId ? el(Button, { variant: 'link', isDestructive: true, onClick: function () { setAttributes({ backgroundId: 0, backgroundUrl: '' }); } }, 'Remove') : null
                                         );

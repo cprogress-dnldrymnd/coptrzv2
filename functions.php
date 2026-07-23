@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 6.0);
+define('coptz_version', 6.1);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -935,6 +935,50 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         get_template_directory_uri() . '/assets/js/coptrz-section-split-block.js',
         array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-data'),
         filemtime(get_template_directory() . '/assets/js/coptrz-section-split-block.js'),
+        true
+    );
+
+    // Header element blocks (site logo, nav menu, icons, CTA buttons,
+    // announcement banner) — standalone editor equivalents of
+    // template-parts/header/*.php, rendered server-side via the render_block
+    // filters in includes/header-blocks.php.
+    wp_enqueue_script(
+        'coptrz-site-logo-block',
+        get_template_directory_uri() . '/assets/js/coptrz-site-logo-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-site-logo-block.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'coptrz-header-menu-block',
+        get_template_directory_uri() . '/assets/js/coptrz-header-menu-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-header-menu-block.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'coptrz-header-icons-block',
+        get_template_directory_uri() . '/assets/js/coptrz-header-icons-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-header-icons-block.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'coptrz-header-cta-block',
+        get_template_directory_uri() . '/assets/js/coptrz-header-cta-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-header-cta-block.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'coptrz-announcement-banner-block',
+        get_template_directory_uri() . '/assets/js/coptrz-announcement-banner-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-announcement-banner-block.js'),
         true
     );
 
