@@ -196,13 +196,24 @@ function coptrz_post_has_sections_data($post_id)
  * separately exclude coptrz_conversion_excluded_post_types() itself (`post`)
  * or an excluded type would still report pending.
  *
+ * A legacy-purged post (coptrz_post_is_legacy_purged()) always returns
+ * empty, even if a part was never converted and technically still has real
+ * content: once its legacy data is deleted, "pending" no longer means
+ * anything actionable — there's nothing left to convert FROM for the purged
+ * part(s), and the post is meant to read as done everywhere this function
+ * feeds (the list-table label, the Tools-page search, the meta box's
+ * terminal-state gate).
+ *
  * @param int $post_id
  * @return string[]
  */
 function coptrz_post_conversion_state($post_id)
 {
     $post = get_post($post_id);
-    if (!$post || in_array($post->post_type, coptrz_conversion_excluded_post_types(), true)) {
+    if (!$post
+        || in_array($post->post_type, coptrz_conversion_excluded_post_types(), true)
+        || coptrz_post_is_legacy_purged($post_id)
+    ) {
         return array();
     }
 
@@ -243,6 +254,13 @@ function coptrz_post_conversion_state($post_id)
  * repro: minutes per post type, 504ing the Tools page). Correlated EXISTS
  * subqueries hit the `meta_key` index directly and can't multiply rows.
  *
+ * Also excludes any post already legacy-purged (COPTRZ_LEGACY_PURGED_FLAG) —
+ * mirrors coptrz_post_conversion_state()'s same guard, so the "remaining by
+ * post type" counts this backs agree with the list-table label: once purged,
+ * a post reads as done regardless of whether some never-converted part
+ * technically still has content, since there's nothing left to convert FROM
+ * for the purged part(s).
+ *
  * @param string $post_type
  * @return array{0:string,1:array} [$where_sql ('' if nothing applicable to
  *         this type), $prepare_args for its %s placeholders, in appearance order]
@@ -275,7 +293,13 @@ function coptrz_conversion_pending_where($post_type)
         return array('', array());
     }
 
-    return array('(' . implode(' OR ', $branches) . ')', $args);
+    $args[] = COPTRZ_LEGACY_PURGED_FLAG;
+
+    return array(
+        '(' . implode(' OR ', $branches) . ')'
+        . " AND NOT EXISTS (SELECT 1 FROM {$wpdb->postmeta} lp WHERE lp.post_id = p.ID AND lp.meta_key = %s)",
+        $args
+    );
 }
 
 /** Post statuses eligible for conversion, shared by every pending query below. */

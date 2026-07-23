@@ -309,6 +309,32 @@ function coptrz_hero_has_content_where($alias = 'p')
  * Carbon association row vs a flat block ID), which would cause false
  * mismatches an HTML diff doesn't have.
  *
+ * Comparing two RENDERS (not two data structures) means the comparison must
+ * stay tolerant of markup that is legitimately non-deterministic per render,
+ * or it reports false mismatches forever regardless of whether the hero
+ * would actually look identical. Two such sources exist in hero output, both
+ * neutralised below (`identical` reflects the normalised comparison; the
+ * returned `html_meta`/`html_block` stay raw, for callers that want the
+ * real rendered output):
+ *  - `[contact-form-7]` (__form(), modules.php) — CF7 stamps a fresh
+ *    occurrence counter into both the form's `id` and its `action="/#…"`
+ *    (`wpcf7-f123-o1` vs `-o2`) every time it runs, and Akismet adds its own
+ *    `ak_js_N` id + a randomised hidden field inside that same form. Both are
+ *    neutralised together by short-circuiting the shortcode itself via the
+ *    `pre_do_shortcode_tag` filter — cheaper than diffing output, and it
+ *    means CF7/Akismet don't execute twice per check at all. The stub keeps
+ *    the form id, so a genuinely DIFFERENT form still counts as a real
+ *    mismatch. Scoped to just these two render calls — the actual convert
+ *    write path (coptrz_convert_post_to_blocks()) never touches this filter.
+ *  - `coptrz-yt-player-N` (__background(), elements.php,
+ *    `wp_unique_id('coptrz-yt-player-')`) — this theme's own per-render
+ *    YouTube player id, normalised to a fixed placeholder before comparing.
+ *
+ * Confirmed against production data: without this, 116 of 354 posts with an
+ * unconverted hero that still has real content (any hero with a form or a
+ * YouTube background) were permanently stuck reporting not_identical — not a
+ * rare edge case.
+ *
  * @param int $post_id
  * @return array{identical:bool,html_meta:string,html_block:string,attrs:array}
  */
@@ -322,12 +348,22 @@ function coptrz_hero_dry_run_check($post_id)
     // meta-path comparison must apply the SAME defaults here, or every post
     // of a type with a non-empty default (rentals, events, casestudies,
     // guides) would falsely report not_identical.
-    $defaults  = coptrz_hero_template_defaults(get_post_type($post_id));
+    $defaults = coptrz_hero_template_defaults(get_post_type($post_id));
+
+    $stub_cf7 = function ($return, $tag, $attr) {
+        return ($tag === 'contact-form-7') ? '[cf7:' . (isset($attr['id']) ? $attr['id'] : '') . ']' : $return;
+    };
+    add_filter('pre_do_shortcode_tag', $stub_cf7, 10, 3);
     $html_meta  = ___hero_render(___hero_args_from_meta($post_id, $defaults['alignment'], $defaults['height']));
     $html_block = ___hero_render(coptrz_hero_args_from_block($attrs, $post_id));
+    remove_filter('pre_do_shortcode_tag', $stub_cf7, 10);
+
+    $normalise = function ($html) {
+        return preg_replace('/coptrz-yt-player-\d+/', 'coptrz-yt-player-#', (string) $html);
+    };
 
     return array(
-        'identical'  => ($html_meta === $html_block),
+        'identical'  => ($normalise($html_meta) === $normalise($html_block)),
         'html_meta'  => $html_meta,
         'html_block' => $html_block,
         'attrs'      => $attrs,

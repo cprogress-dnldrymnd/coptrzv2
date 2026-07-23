@@ -485,6 +485,24 @@ case studies, rentals, landing pages, etc).
   gates `___sections()` render routing exactly as before — a hero-only
   conversion never sets it. `COPTRZ_HERO_CONVERTED_FLAG` is bookkeeping only;
   nothing at render time reads it.
+  **`coptrz_hero_dry_run_check()` tolerates per-render nondeterminism** —
+  comparing two RENDERS (not two data structures) means anything a render
+  legitimately regenerates fresh every time it runs would otherwise report
+  every such hero as `not_identical` forever, regardless of whether it would
+  actually look the same. Two sources exist: `[contact-form-7]` (`__form()`,
+  modules.php) stamps a fresh occurrence counter into the form's `id` AND its
+  `action="/#…"` every render, and Akismet adds its own `ak_js_N` id + a
+  randomised hidden field inside that same form — both neutralised together
+  by short-circuiting the shortcode itself via `add_filter('pre_do_shortcode_tag', …)`
+  for the duration of the two render calls (stubbed to `[cf7:{$form_id}]`, so
+  a genuinely different form STILL counts as a real mismatch — this doesn't
+  weaken the check, only removes noise the check was never meant to catch);
+  and this theme's own `wp_unique_id('coptrz-yt-player-')`
+  (`__background()`, elements.php) is normalised to a fixed placeholder
+  before comparing. Confirmed against production data: without this, 116 of
+  354 posts with an unconverted hero that still has real content (any hero
+  with a form or a YouTube background) were permanently stuck — not an edge
+  case.
   **Render mode** — the hero renders INLINE, at the block's actual position in
   `post_content`, for every post type EXCEPT `post`
   (`coptrz_hero_hoisted_post_types()`, includes/hero-block.php, filterable via
@@ -563,7 +581,11 @@ case studies, rentals, landing pages, etc).
   `coptrz_conversion_pending_where()`'s hero branch — so the count no longer
   overstates every hero-applicable post as pending (e.g. it previously showed
   600/602 Posts and 61/61 Guides "remaining" when almost none had real hero
-  content to convert).
+  content to convert). `coptrz_conversion_pending_where()` also excludes any
+  post already legacy-purged (`NOT EXISTS … COPTRZ_LEGACY_PURGED_FLAG`),
+  mirroring `coptrz_post_conversion_state()`'s own purged short-circuit, so
+  the "remaining" count agrees with the list-table label instead of counting
+  posts the label calls done.
   The per-post box's `wp_ajax_coptrz_convert_sections` handler and the
   search-and-select runner's per-ID loop both call
   `coptrz_convert_post_to_blocks()` unconditionally — it decides internally
@@ -882,13 +904,16 @@ case studies, rentals, landing pages, etc).
   to the title on every convertible post type's list table (the same slot core
   uses for "— Private"/"— Posts Page", joined with ", " by core itself), scoped
   to `coptrz_convertible_post_types()`. The two are independent `$states[]`
-  entries, not one winner-take-all label: sections and hero convert (and purge)
-  independently, so a post CAN legitimately be both at once — e.g. sections
-  converted-and-purged while hero was never converted and still has real
-  content reads "Needs converting, Converted (purged)". `coptrz_post_is_legacy_purged()`
-  answers "is everything that was ever purgeable now purged", which is not the
-  same question as "is this post fully done" (see its docblock) — that's why
-  it's fine for both labels to appear together. Reads only
+  entries — sections and hero convert (and purge) independently, so in
+  principle a post could show both at once (sections converted-and-purged
+  while hero, say, still has real un-purged content of its own). In practice
+  "Needs converting" never appears on an ALREADY-purged post, though: once
+  `coptrz_post_is_legacy_purged()` is true, `coptrz_post_conversion_state()`
+  returns empty unconditionally (see its docblock) — a purged post reads as
+  simply done, everywhere this function feeds, even if some part was never
+  converted and technically still has real content behind it. This is a
+  deliberate product decision, not an oversight: once you've decided a post's
+  legacy data is disposable, the tooling stops nagging about it. Reads only
   `coptrz_post_conversion_state()` / the converted flags / `coptrz_post_is_legacy_purged()`
   — all meta-cache-only (see below), so the label adds no queries per row.
   `coptrz_hero_has_content()` was rewritten to read its six signals
@@ -988,21 +1013,30 @@ case studies, rentals, landing pages, etc).
   checkbox is already neutralized either way, since purge deletes
   `_coptrz_serve_legacy_public` itself).
   Meta box: the terminal "This post/page was converted from the old editor." —
-  no buttons — state requires BOTH `coptrz_post_is_legacy_purged()` AND nothing
-  still pending (`coptrz_post_conversion_state()`); the flag alone isn't enough,
-  per the "not the same as fully done" note above — showing the terminal message
-  while a never-converted part still had real content would have hidden the only
-  way to ever convert it. When something's still pending, the converted branch
-  instead shows an extra amber "Still needs converting: hero." (or `sections`, or
-  `sections + hero`) block with the same Dry run / "Convert remaining" buttons
-  the unconverted state uses (`coptrz_convert_post_to_blocks()` already safely
-  skips whichever part is done — same AJAX action, no new handler). While still
-  converted but not fully purged, a manage_options user ALSO sees a Purge block
-  (red warning text, Dry run purge / Purge behind a `confirm()`) below the
-  existing Revert controls, shown only when `coptrz_post_purgeable_parts()` is
-  non-empty — same inline-`<script>`/admin-ajax pattern as convert/revert,
-  hitting a new `wp_ajax_coptrz_purge_sections` handler. The "Preview original"
-  link and logged-out-fallback checkbox are gated on `$sections_converted &&
+  no buttons — state is `$converted && coptrz_post_is_legacy_purged($post->ID) &&
+  empty($pending)` (`$pending = coptrz_post_conversion_state($post->ID)`). The
+  `empty($pending)` term reads as a defensive belt-and-braces check now, since
+  `coptrz_post_conversion_state()` itself already forces empty the moment the
+  purged flag is true (see that function's docblock — a deliberate product
+  choice: a purged post is done, full stop, even if some part was never
+  converted and still technically has real content sitting in meta). The
+  terminal state and the empty-pending guarantee are therefore effectively the
+  same condition in practice; the explicit `empty($pending)` term is kept for
+  clarity and in case that policy ever changes. For a NON-purged post that's
+  converted for one part but still has a genuinely pending OTHER part, the
+  converted branch shows an extra amber "Still needs converting: hero." (or
+  `sections`, or `sections + hero`) block with the same Dry run /
+  "Convert remaining" buttons the unconverted state uses
+  (`coptrz_convert_post_to_blocks()` already safely skips whichever part is
+  done — same AJAX action, no new handler) — this is the case the block
+  exists for; it will not appear once the post is purged, by design. While
+  still converted but not fully purged, a manage_options user ALSO sees a
+  Purge block (red warning text, Dry run purge / Purge behind a `confirm()`)
+  below the existing Revert controls, shown only when
+  `coptrz_post_purgeable_parts()` is non-empty — same inline-`<script>`/
+  admin-ajax pattern as convert/revert, hitting a new
+  `wp_ajax_coptrz_purge_sections` handler. The "Preview original" link and
+  logged-out-fallback checkbox are gated on `$sections_converted &&
   !coptrz_sections_is_purged()`, not just `$sections_converted` — otherwise
   they'd keep showing (uselessly) after sections is purged but hero is still
   the reason the post as a whole isn't `$fully_purged`.
