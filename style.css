@@ -11470,7 +11470,7 @@ hr {
     width: 100%;
     height: 100%;
     object-fit: cover; }
-  .background-image.background-image + div:not(.container) {
+  .background-image.background-image + div:not(.background-image) {
     position: relative;
     z-index: 2; }
   .background-image.background-image iframe {

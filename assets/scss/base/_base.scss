@@ -118,7 +118,7 @@ main {
         object-fit: cover;
     }
 
-    & + div:not(.container) {
+    & + div:not(.background-image) {
         position: relative;
         z-index: 2;
     }
