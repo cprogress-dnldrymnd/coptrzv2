@@ -435,6 +435,9 @@ class Shortcodes
 
     function related_posts()
     {
+        if (!function_exists('__post_box')) {
+            return '';
+        }
         $categories = get_the_category(get_the_ID());
         $args = array(
             'posts_per_page' => 3,
@@ -661,6 +664,9 @@ class Shortcodes
 
     function popup($atts)
     {
+        if (!function_exists('__popup')) {
+            return '';
+        }
         extract(
             shortcode_atts(
                 array(

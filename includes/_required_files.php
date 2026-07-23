@@ -9,17 +9,20 @@ require_once('post-types.php');
  */
 $is_blocks_editor = function_exists('dd_is_blocks_editor_template_active') && dd_is_blocks_editor_template_active();
 
+// elements.php/svg.php are pure function/class definitions with no side
+// effects, and several always-loaded files (shortcodes.php, header-blocks.php)
+// depend on them unconditionally — see their function_exists() guards for the
+// modules.php/ajax.php functions that DO stay conditional below.
+require_once('elements.php');
+require_once('svg.php');
+
 if (!$is_blocks_editor) {
-    require_once('elements.php');
     require_once('modules.php');
     require_once('ajax.php');
-    require_once('svg.php');
 } else {
     if (!is_admin()) {
-        require_once('elements.php');
         require_once('modules.php');
         require_once('ajax.php');
-        require_once('svg.php');
     }
 }
 

@@ -3097,14 +3097,6 @@ function _is_module($post_id = false)
 }
 
 
-function _output_svg_from_url($url)
-{
-    $content = file_get_contents($url);
-
-    // Output the sanitized SVG
-    return $content;
-}
-
 function __product_specifications($for_product_summary = false)
 {
     $pa_specifications = get_the_terms(get_the_ID(), 'pa_specifications');

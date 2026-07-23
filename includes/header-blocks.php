@@ -24,8 +24,10 @@
  * `[site_logo]` shortcode (shortcodes.php) and `header_menu()` (menus.php) —
  * both are loaded unconditionally (not skipped in admin under the
  * blocks-editor template), so no function_exists guard is needed for those
- * two. SVG (svg.php) and __button() (elements.php) ARE skipped there, so the
- * icons/cta helpers below guard on them directly.
+ * two. elements.php/svg.php (SVG, __icon(), __button(), etc) also load
+ * unconditionally now (_required_files.php) — only modules.php/ajax.php stay
+ * conditional there, which is what the guards below (and in shortcodes.php)
+ * protect against.
  */
 
 /**

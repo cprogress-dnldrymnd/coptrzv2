@@ -139,6 +139,14 @@ function __icon($data, $html = '')
     return $html;
 }
 
+function _output_svg_from_url($url)
+{
+    $content = file_get_contents($url);
+
+    // Output the sanitized SVG
+    return $content;
+}
+
 function __image($data)
 {
     $featured_image = isset($data['featured_image']) ? $data['featured_image'] : false;
