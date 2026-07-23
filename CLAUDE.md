@@ -331,6 +331,32 @@ case studies, rentals, landing pages, etc).
   tag to `$block_content` (which would have been the first tag otherwise) —
   see the consolidated-CSS mechanism below, which removed that prepend, but
   the qualified lookup is harmless and remains in place.
+- `assets/js/extend-group-link.js` — Gutenberg block editor extension
+  (enqueued via `digitally_disruptive_enqueue_swiper_editor_assets()`, same
+  hook as the extensions above) adding a "Group Link" panel to **core**
+  `core/group` with a URL field (`ddGroupLinkUrl`, string), an "Open in new
+  tab" toggle (`ddGroupLinkNewTab`, boolean), and an optional accessible-label
+  field (`ddGroupLinkLabel`, string). Rendered server-side by
+  `dd_group_link_render()` (`render_block_core/group` filter in
+  `functions.php`, registered alongside `dd_group_grid_responsive_render()`
+  above), which no-ops when `ddGroupLinkUrl` is empty. When set, it adds
+  `position-relative` to the group (via `WP_HTML_Tag_Processor`, matching the
+  `next_tag(array('class_name' => 'wp-block-group'))` lookup used by the other
+  group filters) and appends a Bootstrap `.stretched-link` `<a>` as the last
+  child before the block's own closing tag — found via the *last* occurrence
+  of that closing tag in the rendered string, since in well-formed nested HTML
+  the outermost element's closing tag is always the final one; this also
+  respects the Group block's "HTML element" advanced setting (div/section/
+  aside/main/etc — the closing tag matched is whatever tag `next_tag()`
+  actually found, not a hardcoded `</div>`). `.stretched-link` is Bootstrap's
+  existing helper (already vendored, `assets/vendor/bootstrap/scss/helpers/
+  _stretched-link.scss`), so no new CSS/SCSS was needed. `target`/`rel` are
+  only added when "Open in new tab" is on; `aria-label` is only added when a
+  label was set (there's no reliable generic way to derive fallback text for
+  an arbitrary group's contents, unlike `_coptrz_link_aria_label()` elsewhere
+  which needs a specific visible-text/context-title pair) — the editor UI's
+  field `help` text recommends setting one when the group has no visible link
+  text of its own.
 - **Consolidated block CSS** (`functions.php`): `digitally_disruptive_render_custom_css()`
   (the `render_block` filter backing the per-block "Custom CSS" panel —
   `ddCustomCSS`/`ddCustomCSSTablet`/`ddCustomCSSMobile` attributes, whitelisted

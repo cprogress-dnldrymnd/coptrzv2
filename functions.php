@@ -893,6 +893,14 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
     );
 
     wp_enqueue_script(
+        'dd-group-link',
+        get_template_directory_uri() . '/assets/js/extend-group-link.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+        filemtime(get_template_directory() . '/assets/js/extend-group-link.js'),
+        true
+    );
+
+    wp_enqueue_script(
         'coptrz-layouts-block',
         get_template_directory_uri() . '/assets/js/coptrz-layouts-block.js',
         array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch'),
@@ -1275,6 +1283,57 @@ function dd_group_grid_responsive_render($block_content, $block)
     return $updated_content;
 }
 add_filter('render_block_core/group', 'dd_group_grid_responsive_render', 10, 2);
+
+/**
+ * The `core/group` "Group Link" extension (registered client-side in
+ * assets/js/extend-group-link.js). When a `ddGroupLinkUrl` attribute is set,
+ * makes the whole group clickable by adding `position-relative` to the group
+ * and injecting a Bootstrap `.stretched-link` anchor covering it. No-ops
+ * (returns the original markup untouched) when no URL is set.
+ */
+function dd_group_link_render($block_content, $block)
+{
+    $attrs = isset($block['attrs']) ? $block['attrs'] : array();
+    $url = isset($attrs['ddGroupLinkUrl']) ? trim((string) $attrs['ddGroupLinkUrl']) : '';
+
+    if ($url === '') {
+        return $block_content;
+    }
+
+    $tags = new WP_HTML_Tag_Processor($block_content);
+    if (! $tags->next_tag(array('class_name' => 'wp-block-group'))) {
+        return $block_content;
+    }
+    // The Group block's "HTML element" setting can change its wrapper tag
+    // (div/section/aside/main/etc), so the closing tag must match it.
+    $tag_name = strtolower($tags->get_tag());
+    $tags->add_class('position-relative');
+    $updated_content = $tags->get_updated_html();
+
+    $new_tab = ! empty($attrs['ddGroupLinkNewTab']);
+    $label = isset($attrs['ddGroupLinkLabel']) ? trim((string) $attrs['ddGroupLinkLabel']) : '';
+
+    $link_attrs = 'href="' . esc_url($url) . '" class="stretched-link"';
+    if ($new_tab) {
+        $link_attrs .= ' target="_blank" rel="noopener noreferrer"';
+    }
+    if ($label !== '') {
+        $link_attrs .= ' aria-label="' . esc_attr($label) . '"';
+    }
+
+    $link_html = '<a ' . $link_attrs . '></a>';
+
+    // The outermost tag's closing tag is always the last occurrence of its
+    // kind in well-formed nested HTML, so this appends the link as the
+    // group's last child.
+    $closing_pos = strripos($updated_content, '</' . $tag_name . '>');
+    if ($closing_pos === false) {
+        return $updated_content;
+    }
+
+    return substr_replace($updated_content, $link_html, $closing_pos, 0);
+}
+add_filter('render_block_core/group', 'dd_group_link_render', 10, 2);
 
 /**
  * The `dd/cf7-pdf-form` block (registered client-side in
