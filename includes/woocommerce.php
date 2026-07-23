@@ -11,7 +11,7 @@ function action_woocommerce_before_main_content()
         if ($product_category_page) {
             global $product_taxonomy_page;
             $product_taxonomy_page[] = $product_category_page;
-            echo do_shortcode(___sections($product_category_page));
+            echo do_shortcode(___sections('sections', $product_category_page));
         }
     } else if (is_product()) {
         echo ___hero_modules();
@@ -840,8 +840,13 @@ function __get_product_taxonomy_page($id)
         'post_type'   => 'producttaxonomypages',
         'fields'      => 'ids',
         'meta_query'  => array(
+            'relation' => 'OR',
             array(
                 'key'   => '_product_term_id',
+                'value' => $id,
+            ),
+            array(
+                'key'   => '_product_tax|||0|id',
                 'value' => $id,
             ),
         ),
