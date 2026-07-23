@@ -342,69 +342,6 @@ function action__wp_footer()
             echo __popup($popup);
         }
 
-        if (current_user_can('administrator')) {
-            global $layouts_global, $product_taxonomy_page, $popups_id;
-            $layouts_global_val = "<div class='ab-sub-wrapper'>";
-            $layouts_global_val .= "<ul role='menu' id='wp-admin-bar-layouts-menu-default' class='ab-submenu'>";
-            $layouts_global_val .= count($popups_id);
-            if ($product_taxonomy_page) {
-                $product_tax_page = array_unique($product_taxonomy_page);
-                foreach ($product_tax_page as $tax_page) {
-                    $title = get_the_title($tax_page) . ' [Term Page]';
-                    $link = get_edit_post_link($tax_page);
-                    $layouts_global_val .= "<li>";
-                    $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
-                    $layouts_global_val .= "</li>";
-                }
-            }
-
-            $_layouts = get_post_meta(get_the_ID(), '_layouts', true);
-            $_layouts_val = $_layouts ? $_layouts : array();
-            $layouts_global_arr = array_merge($layouts_global, $_layouts_val);
-            if ($layouts_global_arr) {
-                $layouts = [];
-                foreach ($layouts_global_arr as $layout) {
-                    $layouts[] = apply_filters('wpml_object_id', $layout, 'post');
-                }
-
-                $layouts = array_unique($layouts);
-
-                foreach ($layouts as $layout) {
-                    $title = get_the_title($layout) . ' [Layout]';
-                    $link = get_edit_post_link($layout);
-
-                    $layouts_global_val .= "<li>";
-                    $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
-                    $layouts_global_val .= "</li>";
-                }
-            }
-            if ($popups_id) {
-                $popups = array_unique($popups_id);
-                foreach ($popups as $popup) {
-                    $title = get_the_title($popup) . ' [Popup]';
-                    $link = get_edit_post_link($popup);
-
-                    $layouts_global_val .= "<li>";
-                    $layouts_global_val .= "<a class='ab-item' role='menuitem' href='$link'>$title</a>";
-                    $layouts_global_val .= "</li>";
-                }
-            }
-
-
-
-
-
-            $layouts_global_val .= "</ul>";
-            $layouts_global_val .= "</div>";
-    ?>
-            <script>
-                jQuery(document).ready(function() {
-                    jQuery("<?= $layouts_global_val ?>").appendTo('#wp-admin-bar-layouts-menu');
-                });
-            </script>
-
-        <?php
-        }
         ?>
         <script>
             jQuery(document).ready(function() {
