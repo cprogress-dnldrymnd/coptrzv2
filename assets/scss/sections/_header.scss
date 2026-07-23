@@ -283,14 +283,6 @@
     }
 }
 
-.admin-bar {
-    header {
-        @include responsive(md-lg) {
-            top: 52px;
-        }
-    }
-}
-
 body.mobile-menu-active {
     header {
         .header-inner {

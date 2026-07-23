@@ -14930,10 +14930,6 @@ body:not(.single-guides):not(.single-landingpages) .form-box:not(.style-2) .inpu
         .header .menu-burger .icon .menu:after {
           top: 8px; }
 
-@media screen and (min-width: 992px) {
-  .admin-bar header {
-    top: 52px; } }
-
 body.mobile-menu-active header .header-inner {
   background-color: var(--bs-primary); }
 body.mobile-menu-active header .menu-burger .icon .menu {
