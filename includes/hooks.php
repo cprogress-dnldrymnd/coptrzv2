@@ -566,6 +566,12 @@ add_action('wp_footer', 'dd_inject_openai_ads_cf7_listener', 20);
 /**
  * Add a new admin bar menu item.
  *
+ * Only the empty parent node is added here. The admin bar renders on
+ * `wp_body_open` (wp-includes/default-filters.php:700), i.e. before any page
+ * content has run, so at this point nothing has been embedded yet and the
+ * child items can't exist. They are injected client-side afterwards by
+ * coptrz_admin_bar_layout_items() below.
+ *
  * @param WP_Admin_Bar $admin_bar Admin bar reference.
  */
 function action_layout_menu($admin_bar)
@@ -585,6 +591,114 @@ function action_layout_menu($admin_bar)
     }
 }
 add_action('admin_bar_menu', 'action_layout_menu', 999999);
+
+/**
+ * Fill the admin bar's "Layouts" menu with every `layouts` /
+ * `producttaxonomypages` post embedded in the current page, each linking to its
+ * edit screen.
+ *
+ * Runs on `wp_footer` (late) because that's the first point at which the whole
+ * page has rendered and the two theme-wide globals are complete:
+ * `$layouts_global` — pushed by the `[layouts]` shortcode (includes/shortcodes.php),
+ * which every render path funnels through — and `$product_taxonomy_page`, pushed
+ * by action_woocommerce_before_main_content() (includes/woocommerce.php) on a
+ * product taxonomy archive backed by a custom page. The admin bar markup is
+ * already in the DOM by then, so the items are appended to it with a small
+ * inline script rather than through WP_Admin_Bar::add_node().
+ *
+ * The parent node is hidden outright when the page embeds neither.
+ */
+function coptrz_admin_bar_layout_items()
+{
+    if (is_admin() || !is_admin_bar_showing() || !current_user_can('edit_posts')) {
+        return;
+    }
+
+    global $layouts_global, $product_taxonomy_page;
+
+    $ids = array_merge(
+        is_array($layouts_global) ? $layouts_global : array(),
+        is_array($product_taxonomy_page) ? $product_taxonomy_page : array()
+    );
+    $ids = array_unique(array_filter(array_map('intval', $ids)));
+
+    $items = array();
+    foreach ($ids as $id) {
+        $post = get_post($id);
+        if (!$post || !current_user_can('edit_post', $id)) {
+            continue;
+        }
+
+        $edit_link = get_edit_post_link($id, 'raw');
+        if (!$edit_link) {
+            continue;
+        }
+
+        $type = get_post_type_object($post->post_type);
+
+        $items[] = array(
+            'id'    => $id,
+            'title' => $post->post_title !== '' ? $post->post_title : sprintf('(no title) #%d', $id),
+            'type'  => $type ? $type->labels->singular_name : $post->post_type,
+            'href'  => $edit_link,
+        );
+    }
+
+    // `layouts` before `producttaxonomypages`, alphabetical within each.
+    usort($items, function ($a, $b) {
+        if ($a['type'] !== $b['type']) {
+            return strcasecmp($a['type'], $b['type']);
+        }
+        return strcasecmp($a['title'], $b['title']);
+    });
+?>
+    <script>
+        (function() {
+            var parent = document.getElementById('wp-admin-bar-layouts-menu');
+            if (!parent) {
+                return;
+            }
+
+            var items = <?= wp_json_encode($items) ?>;
+
+            if (!items.length) {
+                parent.style.display = 'none';
+                return;
+            }
+
+            var label = parent.querySelector('.ab-item');
+            if (label) {
+                label.textContent = 'Layouts (' + items.length + ')';
+            }
+
+            var wrapper = document.createElement('div');
+            wrapper.className = 'ab-sub-wrapper';
+
+            var list = document.createElement('ul');
+            list.id = 'wp-admin-bar-layouts-menu-default';
+            list.className = 'ab-submenu';
+
+            items.forEach(function(item) {
+                var li = document.createElement('li');
+                li.id = 'wp-admin-bar-layouts-menu-' + item.id;
+
+                var a = document.createElement('a');
+                a.className = 'ab-item';
+                a.href = item.href;
+                a.textContent = item.title;
+                a.title = 'Edit ' + item.type + ': ' + item.title;
+
+                li.appendChild(a);
+                list.appendChild(li);
+            });
+
+            wrapper.appendChild(list);
+            parent.appendChild(wrapper);
+        })();
+    </script>
+<?php
+}
+add_action('wp_footer', 'coptrz_admin_bar_layout_items', 9999);
 
 
 function action_pre_get_posts($query)

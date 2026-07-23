@@ -368,6 +368,17 @@ class Shortcodes
             )
         );
 
+        // Register every layout that actually renders on this request, whatever
+        // path got us here (footer/header display locations, a legacy `sections`
+        // row, a converted `coptrz/layouts` block, a hand-typed shortcode). This
+        // shortcode is the one choke point they all pass through, so it's what
+        // the admin bar's Layouts menu is built from (action_layout_menu(),
+        // includes/hooks.php). Duplicates are fine — that menu dedupes.
+        if ($id) {
+            global $layouts_global;
+            $layouts_global[] = (int) $id;
+        }
+
         $out = ___sections('sections', $id);
 
         // A layout authored natively in the block editor has no legacy `sections`
