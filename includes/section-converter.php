@@ -129,14 +129,25 @@ function coptrz_convertible_post_types()
  * the same `Key_Formatter::load_root_map()` lookup the legacy-data
  * admin_notices hook below already uses.
  *
+ * `load_root_map()` also returns Writer's keepalive sentinel row(s)
+ * (`…|_empty`), written whenever the field was saved with zero rows so it
+ * stays present-but-empty rather than falling back — those don't count as
+ * "has data" here, or every post ever saved with an empty Sections builder
+ * would read as pending. Requires at least one NON-keepalive row to remain,
+ * not simply "no keepalive present": a populated field can legitimately carry
+ * nested keepalives (e.g. an empty nested repeater) alongside real rows.
+ *
  * @param int $post_id
  * @return bool
  */
 function coptrz_post_has_sections_data($post_id)
 {
     foreach (coptrz_section_source_fields() as $field_name) {
-        if (!empty(\CoptrzTheme\MetaShim\Key_Formatter::load_root_map('post', $post_id, $field_name))) {
-            return true;
+        $rows = \CoptrzTheme\MetaShim\Key_Formatter::load_root_map('post', $post_id, $field_name);
+        foreach ($rows as $key => $value) {
+            if (!\CoptrzTheme\MetaShim\Key_Formatter::is_keepalive_key($key)) {
+                return true;
+            }
         }
     }
     return false;
@@ -806,15 +817,7 @@ add_action('admin_notices', function () {
         return;
     }
 
-    $has_legacy_data = false;
-    foreach (coptrz_section_source_fields() as $field_name) {
-        $rows = \CoptrzTheme\MetaShim\Key_Formatter::load_root_map('post', $post->ID, $field_name);
-        if (!empty($rows)) {
-            $has_legacy_data = true;
-            break;
-        }
-    }
-    if (!$has_legacy_data) {
+    if (!coptrz_post_has_sections_data($post->ID)) {
         return;
     }
 

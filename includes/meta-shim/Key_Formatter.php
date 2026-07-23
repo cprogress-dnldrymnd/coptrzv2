@@ -308,6 +308,23 @@ class Key_Formatter
     }
 
     /**
+     * True when a storage key is a keepalive sentinel (`…|_empty`) rather than
+     * a real value row — written by Writer whenever a complex/multi/association
+     * field is saved with zero rows, so the field stays present (rather than
+     * falling back) with nothing in it. Splits on SEGMENT_GLUE and checks the
+     * final segment so nested keepalives (e.g. `_sections|section_items|0|0|_empty`)
+     * are caught too, not just root-level ones.
+     *
+     * @param string $key
+     * @return bool
+     */
+    public static function is_keepalive_key($key)
+    {
+        $segments = explode(self::SEGMENT_GLUE, $key);
+        return end($segments) === self::KEEPALIVE_PROPERTY;
+    }
+
+    /**
      * Flush the per-request object cache (call after a save so a subsequent read
      * in the same request reflects new values).
      *
