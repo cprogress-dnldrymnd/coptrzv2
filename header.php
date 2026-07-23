@@ -28,17 +28,7 @@
 			$hide_header = get__post_meta_by_id($header_post_id, 'hide_header');
 		}
 	}
-	// A `layouts` post can be flagged Display Location = Header (includes/post-meta.php,
-	// enforced unique at save time in includes/hooks.php) to take over the banner +
-	// <header> below entirely, editable without a deploy. Falls back to the hardcoded
-	// markup when no layout is flagged.
-	$header_layout_id = function_exists('coptrz_get_header_layout_id') ? coptrz_get_header_layout_id() : 0;
-	if (!$hide_header) {
-		if ($header_layout_id) {
-			global $layouts_global;
-			$layouts_global[] = $header_layout_id;
-			echo do_shortcode('[layouts id="' . $header_layout_id . '"]');
-		} else { ?>
+	if (!$hide_header) { ?>
 		<?php if (!is_404()) { ?>
 			<!--
 		<div
@@ -70,8 +60,7 @@
 				</div>
 			</div>
 		</header>
-		<?php }
-	} ?>
+	<?php } ?>
 	<?php wp_body_open(); ?>
 	<?php
 	$class = '';
