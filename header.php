@@ -34,6 +34,9 @@
 	// markup when no layout is flagged.
 	$header_layout_id = function_exists('coptrz_get_header_layout_id') ? coptrz_get_header_layout_id() : 0;
 	if (!$hide_header) {
+		if (function_exists('coptrz_render_header_location_layouts')) {
+			coptrz_render_header_location_layouts('before_header');
+		}
 		if ($header_layout_id) {
 			global $layouts_global;
 			$layouts_global[] = $header_layout_id;
@@ -71,6 +74,9 @@
 			</div>
 		</header>
 		<?php }
+		if (function_exists('coptrz_render_header_location_layouts')) {
+			coptrz_render_header_location_layouts('after_header');
+		}
 	} ?>
 	<?php wp_body_open(); ?>
 	<?php
@@ -87,3 +93,4 @@
 
 	?>
 	<main class="<?= $class ?>">
+		

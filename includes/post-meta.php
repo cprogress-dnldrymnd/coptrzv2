@@ -6681,6 +6681,7 @@ Container::make('post_meta', __('Conditional Display'))
                 'section'       => __('Section'),
                 'archive'       => __('Archive'),
                 'header'        => __('Header'),
+                'before_header' => __('Before Header'),
                 'after_header'  => __('After Header'),
                 'before_footer' => __('Before Footer'),
                 '404'           => __('404'),
@@ -6732,6 +6733,10 @@ Container::make('post_meta', __('Conditional Display'))
             ->set_conditional_logic(
                 array(
                     'relation' => 'OR',
+                    array(
+                        'field' => 'display_location',
+                        'value' => 'before_header',
+                    ),
                     array(
                         'field' => 'display_location',
                         'value' => 'after_header',

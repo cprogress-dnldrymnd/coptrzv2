@@ -1315,6 +1315,51 @@ function coptrz_get_header_layout_id()
 }
 
 /**
+ * Renders every published `layouts` post flagged for the given Display Location
+ * (Conditional Display > Display Location, includes/post-meta.php), in `menu_order`
+ * order, honouring each layout's `do_not_display_on` field. Used by header.php for
+ * the `before_header`/`after_header` locations — mirrors the `before_footer` loop
+ * in footer.php.
+ *
+ * @param string $location e.g. 'before_header', 'after_header'
+ * @return void
+ */
+function coptrz_render_header_location_layouts($location)
+{
+    global $layouts_global;
+
+    $layouts = get_posts(array(
+        'numberposts' => -1,
+        'post_type'   => 'layouts',
+        'post_status' => 'publish',
+        'fields'      => 'ids',
+        'orderby'     => 'menu_order',
+        'order'       => 'ASC',
+        'meta_query'  => array(
+            array(
+                'key'   => '_display_location',
+                'value' => $location,
+            ),
+        ),
+    ));
+
+    foreach ($layouts as $layout) {
+        $do_not_display_on = get__post_meta_by_id($layout, 'do_not_display_on');
+        if (is_404()) {
+            if ($do_not_display_on === '404') {
+                continue;
+            }
+        } else if (is_post_type_archive()) {
+            if ($do_not_display_on === get_queried_object()->name) {
+                continue;
+            }
+        }
+        echo do_shortcode("[layouts id='$layout']");
+        $layouts_global[] = $layout;
+    }
+}
+
+/**
  * Shared save-time gate for the two hooks below — mirrors the meta shim's own
  * private Container_Admin::can_save(), so we only act on a real, authorised
  * edit-screen submission of a `layouts` post.
