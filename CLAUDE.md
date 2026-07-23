@@ -535,7 +535,10 @@ case studies, rentals, landing pages, etc).
   `Key_Formatter::load_root_map()` rather than `metadata_exists()`, which
   always returns false for a bare `_sections` key),
   `coptrz_post_conversion_state($post_id)` (cheap per-post pending-parts
-  estimate for the bulk search), `coptrz_conversion_remaining_counts()`.
+  estimate for the bulk search), `coptrz_conversion_remaining_counts()`,
+  `coptrz_post_is_legacy_purged($post_id)`, `coptrz_post_purgeable_parts($post_id)`,
+  `coptrz_purge_post_legacy_data($post_id, $dry_run)`,
+  `coptrz_content_is_corrupted($content)` (see Purge below).
   Admin tools: a per-post "Convert to Blocks" meta box (side, with dry-run) and
   a convert-by-search runner at Tools > Convert to Blocks — search-and-select
   is the ONLY way to convert or revert from this page (50/run cap); there is
@@ -872,6 +875,89 @@ case studies, rentals, landing pages, etc).
   `convert` = flag NOT EXISTS, as before; `revert` = flag EXISTS), so the same
   search-and-select UI finds already-converted posts to revert. Switching modes clears
   the current selection (converting vs reverting are disjoint candidate sets).
+
+  **Post-list status label** — a `display_post_states` filter prints "Needs
+  converting" (amber), "Converted" (green), or "Converted (purged)" (grey) next
+  to the title on every convertible post type's list table (the same slot core
+  uses for "— Private"/"— Posts Page"), scoped to `coptrz_convertible_post_types()`.
+  Pending wins over converted (a post with its hero converted but sections still
+  outstanding reads "Needs converting", matching what the meta box would still
+  offer); purged only applies once nothing is pending. Reads only
+  `coptrz_post_conversion_state()` / the converted flags / `coptrz_post_is_legacy_purged()`
+  — all meta-cache-only (see below), so the label adds no queries per row.
+  `coptrz_hero_has_content()` was rewritten to read its six signals
+  (`hero_hidden`, `hero_heading`, `hero_description`, `hero_background`,
+  `hero_background_youtube`, `buttons`, `hero_form_enable`) directly via
+  `get__post_meta_by_id()` instead of routing through `coptrz_hero_meta_to_attrs()`,
+  which additionally resolves `get_the_title()`/`wp_get_attachment_url()` for
+  buttons/forms/backgrounds — real queries this function never needed, since it
+  only checks non-emptiness, and which would otherwise run per row on every list
+  screen. Behaviourally identical (same six signals, same height/alignment
+  exclusion); `coptrz_hero_has_content_where()`'s docblock (includes/hero-converter.php)
+  still describes the same shape and must stay in sync by hand.
+
+  **Purge** — a per-post action (manage_options only, stricter than convert/revert's
+  `edit_post`) that PERMANENTLY deletes the legacy sections/hero meta for a
+  converted post's already-converted part(s), once the converted output has been
+  confirmed correct. Deliberately has no batch/bulk form, for the same reason the
+  "convert all remaining" batch action doesn't exist — see the read-only "remaining
+  by post type" table above.
+  `coptrz_post_purgeable_parts($post_id)` (section-converter.php) returns the subset
+  of `['sections', 'hero']` that is BOTH converted AND still has legacy data present
+  (`coptrz_post_has_sections_data()` / `coptrz_hero_has_content()`) — per-part,
+  because purging the not-yet-converted part of a post would delete data still
+  serving as its live editing surface.
+  `coptrz_purge_post_legacy_data($post_id, $dry_run)` does the deletion, via
+  `Key_Formatter::delete_root('post', $id, $field)` (includes/meta-shim/Key_Formatter.php
+  — "delete every row, exact + descendants, for one root field", the only way to
+  correctly clear a complex field's per-cell keys like `_sections|||0|value`) over
+  `coptrz_section_source_fields()` for the sections part and
+  `coptrz_hero_meta_field_names()` for the hero part, plus each part's own backup
+  meta (`_coptrz_converted_blocks`, `_coptrz_pre_convert_template`,
+  `_coptrz_serve_legacy_public` for sections; `_coptrz_hero_block` for hero).
+  `_coptrz_pre_convert_content` (the write-once backup shared by both parts) is
+  only dropped once a fresh `coptrz_post_purgeable_parts()` call confirms nothing
+  purgeable remains — a post converted for both parts but purged one at a time
+  must not lose the backup the other part might still need. Once purging leaves
+  nothing purgeable, `_coptrz_legacy_purged` (`COPTRZ_LEGACY_PURGED_FLAG`,
+  `coptrz_post_is_legacy_purged()`) is set — the terminal state the meta box and
+  list-table label both check.
+  Refuses (no writes, `skipped: true`) when nothing is purgeable (never converted,
+  or already purged), or when `post_content` matches the `wp_slash()` corruption
+  signature (extracted from `coptrz_find_corrupted_conversions()` into
+  `coptrz_content_is_corrupted($content)`, used by both) — purging would destroy
+  the only repair path, since repair IS Revert-then-Convert regenerating fresh
+  content from this same legacy data.
+  Deliberately does NOT touch: `sections_html`/`sections_after_main_html` (the
+  product HTML-mode repeater — still the live rendering surface when
+  `_coptrz_sections_mode = 'html'`); `COPTRZ_SECTIONS_CONVERTED_FLAG`/
+  `COPTRZ_HERO_CONVERTED_FLAG`/`_coptrz_sections_mode` (these ROUTE rendering —
+  clearing them would send `___sections()`/`___hero_modules()` back to the now-empty
+  legacy builders); `hide_on_list`/`cpd_maker`/`tquk_logo` (declared on OTHER
+  containers in post-meta.php, so absent from `coptrz_hero_meta_field_names()` and
+  unreachable by a name-driven purge even though the hero block's render path
+  still reads them from meta).
+  Purging a part is irreversible: `coptrz_revert_post_to_blocks()` now checks
+  `coptrz_post_is_legacy_purged()` first and refuses (rather than falling through to
+  its no-backup regeneration path, which — with the source meta gone — would
+  silently strip the hero block and leave the unsourced converted section blocks in
+  place instead of actually restoring anything). `coptrz_sections_legacy_override()`
+  likewise refuses once purged, so `?coptrz_preview=original` stops working (the
+  public-fallback checkbox is already neutralized, since purge deletes
+  `_coptrz_serve_legacy_public` itself).
+  Meta box: once `coptrz_post_is_legacy_purged()`, the box collapses to ONE line —
+  "This post/page was converted from the old editor." — no buttons; Convert/Revert
+  controls would imply actions that no longer work. While still converted but not
+  fully purged, a manage_options user sees a Purge block (red warning text, Dry run
+  purge / Purge behind a `confirm()`) below the existing Revert controls, shown only
+  when `coptrz_post_purgeable_parts()` is non-empty — same inline-`<script>`/admin-ajax
+  pattern as convert/revert, hitting a new `wp_ajax_coptrz_purge_sections` handler.
+  When purgeable but `coptrz_content_is_corrupted($post->post_content)` is also true,
+  the button is replaced with a one-line explanation pointing at the Tools page's
+  corrupted-conversions repair flow instead — found necessary by testing against real
+  site data, where most already-converted posts turned out to predate the
+  `wp_slash()` fix and would otherwise show a Purge button that dry-run immediately
+  refuses.
 - `[layouts id="..."]` shortcode in `shortcodes.php` renders a `layouts` post's
   `sections`/`section_items` fields via `___sections('sections', $id)`; it's
   guarded with `function_exists('___sections')` (not a `layouts()` function,

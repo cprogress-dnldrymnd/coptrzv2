@@ -70,6 +70,9 @@ const COPTRZ_CONVERTED_BLOCKS = '_coptrz_converted_blocks';
 /** Per-post opt-in: serve the legacy (unconverted) render to logged-out visitors. */
 const COPTRZ_SERVE_LEGACY_PUBLIC = '_coptrz_serve_legacy_public';
 
+/** Post meta flag marking a converted post's legacy sections/hero data as permanently deleted. */
+const COPTRZ_LEGACY_PURGED_FLAG = '_coptrz_legacy_purged';
+
 /** Source page-builder fields, in render order. */
 function coptrz_section_source_fields()
 {
@@ -265,28 +268,50 @@ function coptrz_conversion_remaining_counts()
 }
 
 /**
- * Finds posts whose stored post_content contains the signature of the
- * wp_update_post()/wp_slash() bug (fixed in coptrz_convert_post_to_blocks()
- * and coptrz_revert_post_to_blocks()): wp_update_post()/update_post_meta() both
+ * Whether $content contains the signature of the wp_update_post()/wp_slash()
+ * bug (fixed in coptrz_convert_post_to_blocks() and
+ * coptrz_revert_post_to_blocks()): wp_update_post()/update_post_meta() both
  * call wp_unslash() on their input internally, and prior to the fix, block
  * comment JSON (which contains literal backslash-escapes like <, produced by
  * wp-includes/blocks.php serialize_block_attributes()) was being written
  * without wp_slash() first, so every escaped character was silently stripped —
  * `<p>` became the literal text `u003cpu003e` on the frontend, instead of `<p>`.
  *
- * A post matches if any of the six escape signatures (u003c, u003e, u0026,
- * u002du002d, u005c, u0022 — the stripped forms of <, >, &, --, \, and \")
- * appears anywhere in post_content. These are not naturally-occurring English
- * substrings, so a false positive here is effectively impossible; this is a
- * diagnostic listing, not a strict parser, so no attempt is made to bound the
- * match to inside a specific block comment.
+ * True if any of the six escape signatures (u003c, u003e, u0026, u002du002d,
+ * u005c, u0022 — the stripped forms of <, >, &, --, \, and \") appears
+ * anywhere in $content. These are not naturally-occurring English substrings,
+ * so a false positive here is effectively impossible; this is a diagnostic
+ * check, not a strict parser, so no attempt is made to bound the match to
+ * inside a specific block comment.
  *
- * Only posts already fixed writes can occur for are checked. Repair is:
+ * Used both by coptrz_find_corrupted_conversions() (site-wide listing) and
+ * coptrz_purge_post_legacy_data() (refuses to purge a corrupted post, since
+ * purging removes the only repair path — see that function's docblock).
+ *
+ * @param string $content
+ * @return bool
+ */
+function coptrz_content_is_corrupted($content)
+{
+    $signatures = array('u003c', 'u003e', 'u0026', 'u002du002d', 'u005c', 'u0022');
+    foreach ($signatures as $sig) {
+        if (strpos((string) $content, $sig) !== false) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * Finds posts whose stored post_content contains the wp_slash() corruption
+ * signature (coptrz_content_is_corrupted()). Only posts already fixed writes
+ * can occur for are checked (coptrz_convertible_post_types()). Repair is:
  * Tools > Convert to Blocks > Revert, then Convert, on each listed post — NOT
  * an in-place text patch (a stripped \n is ambiguous with a literal trailing
  * "n", so recovery from the corrupted string alone can't be exact; the
  * untouched `_sections`/Hero meta this theme keeps around lets a fresh
- * conversion regenerate the correct content instead).
+ * conversion regenerate the correct content instead) — which is why
+ * coptrz_purge_post_legacy_data() refuses to run on a post listed here.
  *
  * @return array<array{id:int,title:string,type:string}>
  */
@@ -305,18 +330,14 @@ function coptrz_find_corrupted_conversions()
               AND post_content LIKE %s";
     $rows = $wpdb->get_results($wpdb->prepare($sql, array_merge($post_types, array('%u00%'))));
 
-    $signatures = array('u003c', 'u003e', 'u0026', 'u002du002d', 'u005c', 'u0022');
     $found = array();
     foreach ((array) $rows as $row) {
-        foreach ($signatures as $sig) {
-            if (strpos($row->post_content, $sig) !== false) {
-                $found[] = array(
-                    'id'    => (int) $row->ID,
-                    'title' => $row->post_title,
-                    'type'  => $row->post_type,
-                );
-                break;
-            }
+        if (coptrz_content_is_corrupted($row->post_content)) {
+            $found[] = array(
+                'id'    => (int) $row->ID,
+                'title' => $row->post_title,
+                'type'  => $row->post_type,
+            );
         }
     }
     return $found;
@@ -329,6 +350,20 @@ function coptrz_find_corrupted_conversions()
 function coptrz_sections_is_converted($post_id)
 {
     return get_post_meta($post_id, COPTRZ_SECTIONS_CONVERTED_FLAG, true) === 'yes';
+}
+
+/**
+ * Whether a post's legacy sections/hero data has been permanently deleted via
+ * the per-post box's Purge action (coptrz_purge_post_legacy_data()). Once set,
+ * Revert/"Preview original"/the legacy public fallback are no longer possible
+ * for the purged part(s) — there is nothing left to revert to.
+ *
+ * @param int $post_id
+ * @return bool
+ */
+function coptrz_post_is_legacy_purged($post_id)
+{
+    return get_post_meta($post_id, COPTRZ_LEGACY_PURGED_FLAG, true) === 'yes';
 }
 
 /**
@@ -349,7 +384,7 @@ function coptrz_sections_is_converted($post_id)
  */
 function coptrz_sections_legacy_override($post_id)
 {
-    if (is_admin() || !coptrz_sections_is_converted($post_id)) {
+    if (is_admin() || !coptrz_sections_is_converted($post_id) || coptrz_post_is_legacy_purged($post_id)) {
         return false;
     }
     if (isset($_GET['coptrz_preview']) && $_GET['coptrz_preview'] === 'original'
@@ -3387,6 +3422,18 @@ function coptrz_revert_post_to_blocks($post_id, $dry_run = false)
         return $report;
     }
 
+    // Purge (coptrz_purge_post_legacy_data()) deletes the backups this
+    // function restores from, INCLUDING the untouched _sections/Hero meta the
+    // no-backup regeneration path below would otherwise fall back to —
+    // without this guard that path would silently "succeed" by stripping the
+    // hero block and leaving the (now unsourced) converted section blocks in
+    // place, discarding content rather than restoring it.
+    if (coptrz_post_is_legacy_purged($post_id)) {
+        $report['skipped'] = true;
+        $report['warnings'][] = 'Legacy data was purged — nothing to revert to.';
+        return $report;
+    }
+
     // Only an HTML-mode product with no hero conversion (never touched
     // post_content at all) reverts by just clearing its repeater — a
     // block-mode product, or any post with a hero conversion, falls through
@@ -3494,15 +3541,231 @@ function coptrz_revert_post_to_blocks($post_id, $dry_run = false)
 }
 
 /* ========================================================================= */
+/*  Purge — permanently delete legacy data on a converted post                */
+/* ========================================================================= */
+
+/**
+ * Which of `['sections', 'hero']` a post can still have permanently deleted:
+ * converted AND its legacy data hasn't already been purged/emptied. Per-part,
+ * same as coptrz_post_conversion_state() — a post with only one part
+ * converted can only purge that part.
+ *
+ * @param int $post_id
+ * @return string[]
+ */
+function coptrz_post_purgeable_parts($post_id)
+{
+    $post = get_post($post_id);
+    if (!$post) {
+        return array();
+    }
+
+    $parts = array();
+
+    if (in_array($post->post_type, coptrz_section_post_types(), true)
+        && coptrz_sections_is_converted($post_id)
+        && coptrz_post_has_sections_data($post_id)
+    ) {
+        $parts[] = 'sections';
+    }
+
+    if (function_exists('coptrz_hero_post_types') && function_exists('coptrz_hero_is_converted') && function_exists('coptrz_hero_has_content')
+        && in_array($post->post_type, coptrz_hero_post_types(), true)
+        && coptrz_hero_is_converted($post_id)
+        && coptrz_hero_has_content($post_id)
+    ) {
+        $parts[] = 'hero';
+    }
+
+    return $parts;
+}
+
+/**
+ * Permanently deletes a converted post's legacy sections/hero data — the
+ * Purge action in the per-post box. Irreversible: once a part is purged,
+ * Revert, "Preview original", and the logged-out legacy fallback are no
+ * longer possible for it — coptrz_revert_post_to_blocks() and
+ * coptrz_sections_legacy_override() both check coptrz_post_is_legacy_purged()
+ * and refuse/no-op accordingly.
+ *
+ * Safe to delete because nothing at render time reads it back once converted:
+ * ___sections() routes through coptrz_sections_should_route(), which stays
+ * true once COPTRZ_SECTIONS_CONVERTED_FLAG is set — a flag this function
+ * deliberately does NOT clear, unlike revert. ___hero_modules() and the two
+ * dual-readers in hooks.php (action_body_class(), hero_form_redirect()) all
+ * prefer coptrz_hero_block_attrs() over meta whenever a coptrz/hero block is
+ * present in post_content — true for the hoisted `post` type too, since
+ * hoisting only moves WHERE the hero renders, not what it reads from (see
+ * includes/hero-block.php's docblock). hide_on_list / cpd_maker / tquk_logo
+ * are declared on OTHER containers (post-meta.php), so they're absent from
+ * coptrz_hero_meta_field_names() and this function can't touch them even
+ * though the block path still reads them from meta.
+ *
+ * Refuses (skipped, no writes) when:
+ *  - nothing is purgeable — coptrz_post_purgeable_parts() is empty, whether
+ *    because the post was never converted or because it's already purged;
+ *  - post_content is corrupted (coptrz_content_is_corrupted() — the
+ *    wp_slash() bug signature also listed by
+ *    coptrz_find_corrupted_conversions()) — purging would destroy the only
+ *    repair path, since repair is Revert-then-Convert regenerating fresh
+ *    content from this same legacy data.
+ *
+ * Deliberately does NOT touch: `sections_html` / `sections_after_main_html`
+ * (the product HTML-mode repeater — still the live rendering surface when
+ * `_coptrz_sections_mode` = 'html', see coptrz_render_converted_sections());
+ * COPTRZ_SECTIONS_CONVERTED_FLAG / COPTRZ_HERO_CONVERTED_FLAG /
+ * `_coptrz_sections_mode` (these ROUTE rendering — clearing them would send
+ * ___sections() / ___hero_modules() back to the now-empty legacy builders).
+ *
+ * @param int  $post_id
+ * @param bool $dry_run  When true, report what would be deleted but write nothing.
+ * @return array Report: post_id, title, type, purged (parts actually purged), warnings, skipped.
+ */
+function coptrz_purge_post_legacy_data($post_id, $dry_run = false)
+{
+    $src = get_post($post_id);
+    $report = array(
+        'post_id'  => (int) $post_id,
+        'title'    => $src ? $src->post_title : '',
+        'type'     => $src ? $src->post_type : '',
+        'target'   => 'Legacy sections/hero meta (permanent deletion)',
+        'purged'   => array(),
+        'warnings' => array(),
+        'skipped'  => false,
+    );
+
+    if (!$src) {
+        $report['warnings'][] = 'Post not found.';
+        $report['skipped'] = true;
+        return $report;
+    }
+
+    $parts = coptrz_post_purgeable_parts($post_id);
+    if (empty($parts)) {
+        $report['skipped'] = true;
+        $report['warnings'][] = coptrz_post_is_legacy_purged($post_id)
+            ? 'Already purged — nothing left to delete.'
+            : 'Nothing purgeable — this post has no converted part with legacy data still present.';
+        return $report;
+    }
+
+    if (coptrz_content_is_corrupted((string) $src->post_content)) {
+        $report['skipped'] = true;
+        $report['warnings'][] = 'This post is listed under "Corrupted conversions" — purging would remove the only repair path (Revert, then Convert). Fix that first.';
+        return $report;
+    }
+
+    if (in_array('sections', $parts, true)) {
+        $report['purged'][] = 'sections';
+        if (!$dry_run) {
+            foreach (coptrz_section_source_fields() as $field) {
+                \CoptrzTheme\MetaShim\Key_Formatter::delete_root('post', $post_id, $field);
+            }
+            delete_post_meta($post_id, COPTRZ_CONVERTED_BLOCKS);
+            delete_post_meta($post_id, COPTRZ_PRE_CONVERT_TEMPLATE);
+            delete_post_meta($post_id, COPTRZ_SERVE_LEGACY_PUBLIC);
+        }
+    }
+
+    if (in_array('hero', $parts, true)) {
+        $report['purged'][] = 'hero';
+        if (!$dry_run) {
+            foreach (coptrz_hero_meta_field_names() as $field) {
+                \CoptrzTheme\MetaShim\Key_Formatter::delete_root('post', $post_id, $field);
+            }
+            if (defined('COPTRZ_HERO_BLOCK_PREFIX')) {
+                delete_post_meta($post_id, COPTRZ_HERO_BLOCK_PREFIX);
+            }
+        }
+    }
+
+    // Key_Formatter::delete_root()'s only other caller (persist_root()) always
+    // follows it with flush_cache() itself, so delete_root() doesn't do so on
+    // its own — this function is the first caller that reads the SAME post's
+    // meta again (via coptrz_post_purgeable_parts() below) within the same
+    // request as the delete, so it must flush explicitly or that re-check
+    // silently rereads Key_Formatter's stale in-memory map and never
+    // observes the deletion. Confirmed by testing: without this, the "fully
+    // purged" flag never got set, `_coptrz_pre_convert_content` was never
+    // cleaned up, and — worse — coptrz_revert_post_to_blocks()'s purged-guard
+    // never tripped, leaving Revert clickable and silently destructive
+    // (restoring stale/empty content) on an already-purged post.
+    if (!$dry_run) {
+        \CoptrzTheme\MetaShim\Key_Formatter::flush_cache('post', $post_id);
+    }
+
+    // COPTRZ_PRE_CONVERT_CONTENT is the shared write-once backup for BOTH
+    // parts (see coptrz_convert_post_to_blocks()) — only safe to drop once a
+    // fresh coptrz_post_purgeable_parts() call confirms nothing purgeable
+    // remains, i.e. this run finished the job rather than doing one of two
+    // parts on a post converted for both.
+    if (!$dry_run && empty(coptrz_post_purgeable_parts($post_id))) {
+        delete_post_meta($post_id, COPTRZ_PRE_CONVERT_CONTENT);
+        update_post_meta($post_id, COPTRZ_LEGACY_PURGED_FLAG, 'yes');
+    }
+
+    return $report;
+}
+
+/* ========================================================================= */
 /*  Admin UI — per-post meta box                                              */
 /* ========================================================================= */
+
+/**
+ * Conversion status label shown next to the post title on every convertible
+ * post type's list table (Pages, Products, …) — the same "— Private" /
+ * "— Posts Page" slot core uses, via the display_post_states filter. Lets an
+ * editor see what still needs converting without opening each post.
+ *
+ * Checked in this order: pending (either part) wins over "converted" — a post
+ * with its hero converted but sections still outstanding should read "Needs
+ * converting", matching what the meta box would still offer. Purged only
+ * applies once nothing is pending, since a post can have one part converted
+ * (and purged) while the other is still mid-migration.
+ *
+ * Both underlying checks (coptrz_post_conversion_state() ->
+ * coptrz_post_has_sections_data() / coptrz_hero_has_content()) read only from
+ * WP's per-object meta cache, already primed for the whole list query — this
+ * adds no extra queries per row.
+ *
+ * @param array   $states
+ * @param WP_Post $post
+ * @return array
+ */
+add_filter('display_post_states', function ($states, $post) {
+    if (!in_array($post->post_type, coptrz_convertible_post_types(), true)) {
+        return $states;
+    }
+
+    if (!empty(coptrz_post_conversion_state($post->ID))) {
+        $states['coptrz_convert'] = '<span style="color:#996800;font-weight:600;">' . __('Needs converting', 'coptrz-theme') . '</span>';
+        return $states;
+    }
+
+    $converted = coptrz_sections_is_converted($post->ID)
+        || (function_exists('coptrz_hero_is_converted') && coptrz_hero_is_converted($post->ID));
+    if (!$converted) {
+        return $states;
+    }
+
+    if (coptrz_post_is_legacy_purged($post->ID)) {
+        $states['coptrz_convert'] = '<span style="color:#646970;">' . __('Converted (purged)', 'coptrz-theme') . '</span>';
+    } else {
+        $states['coptrz_convert'] = '<span style="color:#1a7f37;">' . __('Converted', 'coptrz-theme') . '</span>';
+    }
+
+    return $states;
+}, 10, 2);
 
 add_action('add_meta_boxes', function ($post_type, $post) {
     if (!in_array($post_type, coptrz_convertible_post_types(), true)) {
         return;
     }
 
-    // Already-converted posts keep the box — the Revert controls live in it.
+    // Already-converted posts keep the box — the Revert/Purge controls (or,
+    // once purged, the terminal "converted from the old editor" message)
+    // live in it. Purge deliberately never clears these flags, so a fully
+    // purged post is still $converted here.
     $converted = coptrz_sections_is_converted($post->ID)
         || (function_exists('coptrz_hero_is_converted') && coptrz_hero_is_converted($post->ID));
 
@@ -3535,6 +3798,13 @@ add_action('add_meta_boxes', function ($post_type, $post) {
  * that they have a block editor too, see coptrz_enable_product_block_editor()
  * in includes/woocommerce.php.
  *
+ * Three states: not converted (convert UI), converted (today's UI, plus a
+ * Purge block when there's still legacy data a manage_options user can
+ * delete — coptrz_post_purgeable_parts()), and fully purged (terminal —
+ * see coptrz_post_is_legacy_purged(), a message only, no buttons: there is
+ * nothing left to act on, and re-showing Revert/Preview/Convert controls
+ * would imply actions that no longer work).
+ *
  * @param WP_Post $post
  * @return void
  */
@@ -3543,12 +3813,27 @@ function coptrz_render_section_converter_box($post)
     $sections_converted = coptrz_sections_is_converted($post->ID);
     $hero_converted     = function_exists('coptrz_hero_is_converted') && coptrz_hero_is_converted($post->ID);
     $converted          = $sections_converted || $hero_converted;
+    $fully_purged       = $converted && coptrz_post_is_legacy_purged($post->ID);
+    $purgeable          = $fully_purged ? array() : coptrz_post_purgeable_parts($post->ID);
+    // coptrz_purge_post_legacy_data() already refuses on corrupted content
+    // (see its docblock) — checked here too so the box explains why instead
+    // of showing a button that dry-run would immediately refuse anyway.
+    $purge_blocked_corrupt = !empty($purgeable) && coptrz_content_is_corrupted((string) $post->post_content);
+    $can_purge          = current_user_can('manage_options');
     $nonce              = wp_create_nonce('coptrz_convert_sections');
     $revert_nonce       = wp_create_nonce('coptrz_revert_sections');
+    $purge_nonce        = wp_create_nonce('coptrz_purge_sections');
     $mode               = get_post_meta($post->ID, '_coptrz_sections_mode', true);
     ?>
-    <div class="coptrz-conv" data-post="<?php echo (int) $post->ID; ?>" data-nonce="<?php echo esc_attr($nonce); ?>" data-revert-nonce="<?php echo esc_attr($revert_nonce); ?>">
-        <?php if ($converted) : ?>
+    <div class="coptrz-conv" data-post="<?php echo (int) $post->ID; ?>" data-nonce="<?php echo esc_attr($nonce); ?>" data-revert-nonce="<?php echo esc_attr($revert_nonce); ?>" data-purge-nonce="<?php echo esc_attr($purge_nonce); ?>">
+        <?php if ($fully_purged) : ?>
+            <p style="color:#646970;font-weight:600;margin-top:0;">
+                <?php esc_html_e('This post/page was converted from the old editor.', 'coptrz-theme'); ?>
+            </p>
+            <p class="description" style="margin-bottom:0;">
+                <?php esc_html_e('The legacy section/hero data has been permanently deleted. Edit the content via the block editor above.', 'coptrz-theme'); ?>
+            </p>
+        <?php elseif ($converted) : ?>
             <p style="color:#1a7f37;font-weight:600;margin-top:0;">
                 ✓ <?php
                     if ($sections_converted && $hero_converted) {
@@ -3592,6 +3877,22 @@ function coptrz_render_section_converter_box($post)
                 <button type="button" class="button coptrz-conv__revert" style="color:#b32d2e;"><?php esc_html_e('Revert', 'coptrz-theme'); ?></button>
             </p>
             <div class="coptrz-conv__out" style="font:12px/1.5 monospace;max-height:220px;overflow:auto;"></div>
+
+            <?php if ($can_purge && $purge_blocked_corrupt) : ?>
+            <hr style="margin:10px 0;" />
+            <p class="description" style="margin-top:0;">
+                <?php esc_html_e('Purge is unavailable: this post is listed under "Corrupted conversions" on the Tools > Convert to Blocks page. Revert, then Convert, to fix it before purging.', 'coptrz-theme'); ?>
+            </p>
+            <?php elseif ($can_purge && !empty($purgeable)) : ?>
+            <hr style="margin:10px 0;" />
+            <p class="description" style="margin-top:0;color:#b32d2e;">
+                <?php esc_html_e('Purge permanently deletes the original section/hero data for the converted part(s) of this post. This cannot be undone: Revert, "Preview original", and the logged-out legacy fallback all stop working. Only do this once you have confirmed the converted version is correct.', 'coptrz-theme'); ?>
+            </p>
+            <p style="margin-bottom:6px;">
+                <button type="button" class="button coptrz-conv__dry-purge"><?php esc_html_e('Dry run purge', 'coptrz-theme'); ?></button>
+                <button type="button" class="button coptrz-conv__purge" style="color:#fff;background:#b32d2e;border-color:#b32d2e;"><?php esc_html_e('Purge', 'coptrz-theme'); ?></button>
+            </p>
+            <?php endif; ?>
         <?php else : ?>
             <p class="description" style="margin-top:0;">
                 <?php esc_html_e('Freeze this post’s sections and/or hero into native Gutenberg blocks — whichever apply to this post type (any section that can’t map natively is frozen as Custom HTML instead; the hero only converts if it would render identically). Original data is kept (reversible). Products with an existing description (post_content) are refused — clear it first.', 'coptrz-theme'); ?>
@@ -3638,6 +3939,14 @@ function coptrz_render_section_converter_box($post)
         box.querySelectorAll('.coptrz-conv__revert').forEach(function (b) {
             b.addEventListener('click', function () {
                 if (confirm('<?php echo esc_js(__('Revert this post to the legacy builders? The converted blocks will be removed from post_content. This cannot be undone except via a post revision.', 'coptrz-theme')); ?>')) { run('coptrz_revert_sections', box.dataset.revertNonce, false); }
+            });
+        });
+        box.querySelectorAll('.coptrz-conv__dry-purge').forEach(function (b) {
+            b.addEventListener('click', function () { run('coptrz_purge_sections', box.dataset.purgeNonce, true); });
+        });
+        box.querySelectorAll('.coptrz-conv__purge').forEach(function (b) {
+            b.addEventListener('click', function () {
+                if (confirm('<?php echo esc_js(__('Permanently delete the original section/hero data for this post? This cannot be undone — Revert and Preview original will stop working.', 'coptrz-theme')); ?>')) { run('coptrz_purge_sections', box.dataset.purgeNonce, false); }
             });
         });
     })();
@@ -3693,6 +4002,24 @@ add_action('wp_ajax_coptrz_revert_sections', function () {
     }
     $dry = !empty($_POST['dry']) && $_POST['dry'] === '1';
     $report = coptrz_revert_post_to_blocks($post_id, $dry);
+    wp_send_json_success($report);
+});
+
+/**
+ * Purge is irreversible (unlike convert/revert, which stay edit_post-gated
+ * throughout this file), so it's held to the same manage_options bar as the
+ * Tools > Convert to Blocks page itself, not just per-post edit capability.
+ * The meta box mirrors this — see coptrz_render_section_converter_box() below,
+ * which only prints the Purge controls for a manage_options user.
+ */
+add_action('wp_ajax_coptrz_purge_sections', function () {
+    check_ajax_referer('coptrz_purge_sections', 'nonce');
+    $post_id = isset($_POST['post']) ? (int) $_POST['post'] : 0;
+    if (!$post_id || !current_user_can('manage_options') || !current_user_can('edit_post', $post_id)) {
+        wp_send_json_error('Permission denied.');
+    }
+    $dry = !empty($_POST['dry']) && $_POST['dry'] === '1';
+    $report = coptrz_purge_post_legacy_data($post_id, $dry);
     wp_send_json_success($report);
 });
 

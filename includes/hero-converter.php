@@ -212,27 +212,42 @@ function coptrz_hero_meta_to_attrs($post_id)
  * True when a post's Hero meta carries real content — i.e. the hero is more
  * than the empty title-fallback every hero-type post otherwise renders. Used to
  * decide whether the per-post "Convert to Blocks" box has a hero worth
- * converting (section-converter.php's add_meta_boxes gate). Reuses
- * coptrz_hero_meta_to_attrs() as the single source of truth for what the hero
- * holds; height/alignment are excluded because coptrz_hero_template_defaults()
- * bakes non-empty per-type defaults into them, so they're never a reliable
- * "author put something here" signal.
+ * converting (section-converter.php's add_meta_boxes gate), and — since it's
+ * cheap enough to run per-row — the post-list "Needs converting" status label
+ * (coptrz_render_conversion_state_column(), section-converter.php).
+ *
+ * Reads the six raw signals directly via get__post_meta_by_id() rather than
+ * routing through coptrz_hero_meta_to_attrs(): that function additionally
+ * resolves get_the_title()/wp_get_attachment_url() for buttons, forms, and
+ * backgrounds — real content, real queries — which this function has no need
+ * for, since it only ever checks non-emptiness. Kept behaviourally identical
+ * to that resolved shape: height/alignment are excluded because
+ * coptrz_hero_template_defaults() bakes non-empty per-type defaults into them,
+ * so they're never a reliable "author put something here" signal; `buttons` is
+ * checked as the raw complex-field row array (non-empty rows = non-empty
+ * attrs['buttons'], the same signal coptrz_hero_meta_to_attrs() would produce
+ * without needing the per-row title lookups it does).
+ *
+ * MUST be kept in sync with coptrz_hero_has_content_where() below, its SQL
+ * mirror.
  *
  * @param int $post_id
  * @return bool
  */
 function coptrz_hero_has_content($post_id)
 {
-    $a = coptrz_hero_meta_to_attrs($post_id);
-    if (!empty($a['hidden'])) {
+    if ((bool) get__post_meta_by_id($post_id, 'hero_hidden')) {
         return false;
     }
-    return $a['heading'] !== ''
-        || $a['description'] !== ''
-        || (int) $a['backgroundId'] !== 0
-        || $a['backgroundYoutube'] !== ''
-        || !empty($a['buttons'])
-        || !empty($a['formEnable']);
+
+    $background = get__post_meta_by_id($post_id, 'hero_background');
+
+    return (string) get__post_meta_by_id($post_id, 'hero_heading') !== ''
+        || (string) get__post_meta_by_id($post_id, 'hero_description') !== ''
+        || (is_numeric($background) && (int) $background !== 0)
+        || (string) get__post_meta_by_id($post_id, 'hero_background_youtube') !== ''
+        || !empty(get__post_meta_by_id($post_id, 'buttons'))
+        || (bool) get__post_meta_by_id($post_id, 'hero_form_enable');
 }
 
 /**
