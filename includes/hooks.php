@@ -1270,3 +1270,201 @@ function dd_rest_list_documents()
     return $out;
 }
 
+
+
+/* ========================================================================= */
+/*  Header layout — one `layouts` post drives the site header                */
+/* ========================================================================= */
+
+/**
+ * ID of the single published `layouts` post flagged for the `header` display
+ * location (Conditional Display > Display Location = Header, includes/post-meta.php).
+ *
+ * header.php renders it in place of the hardcoded announcement banner +
+ * <header> element. Returns 0 when no layout is flagged, in which case the
+ * hardcoded markup stays. Memoized per request — header.php and the save-time
+ * uniqueness guard both call this.
+ *
+ * @return int
+ */
+function coptrz_get_header_layout_id()
+{
+    static $id = null;
+    if ($id !== null) {
+        return $id;
+    }
+
+    $layouts = get_posts(array(
+        'numberposts' => 1,
+        'post_type'   => 'layouts',
+        'post_status' => 'publish',
+        'fields'      => 'ids',
+        'orderby'     => 'menu_order',
+        'order'       => 'ASC',
+        'meta_query'  => array(
+            array(
+                'key'   => '_display_location',
+                'value' => 'header',
+            ),
+        ),
+    ));
+
+    $id = $layouts ? (int) $layouts[0] : 0;
+
+    return $id;
+}
+
+/**
+ * Shared save-time gate for the two hooks below — mirrors the meta shim's own
+ * private Container_Admin::can_save(), so we only act on a real, authorised
+ * edit-screen submission of a `layouts` post.
+ *
+ * @param int      $post_id
+ * @param \WP_Post $post
+ * @return bool
+ */
+function coptrz_header_layout_can_save($post_id, $post)
+{
+    if (!$post || $post->post_type !== 'layouts') {
+        return false;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return false;
+    }
+    if (wp_is_post_revision($post_id)) {
+        return false;
+    }
+    if (
+        !isset($_POST['coptrz_meta_shim_nonce'])
+        || !wp_verify_nonce($_POST['coptrz_meta_shim_nonce'], 'coptrz_meta_shim_save')
+    ) {
+        return false;
+    }
+
+    return current_user_can('edit_post', $post_id);
+}
+
+/**
+ * Static store for a layout's pre-save `_display_location`, so the uniqueness
+ * guard below can put it back when the change is rejected. Read/write in one
+ * function to keep the state in a single place.
+ *
+ * @param int         $post_id
+ * @param string|null $value  Pass a string to store, omit to read.
+ * @return string
+ */
+function coptrz_header_layout_previous_location($post_id, $value = null)
+{
+    static $previous = array();
+    if ($value !== null) {
+        $previous[$post_id] = (string) $value;
+    }
+
+    return isset($previous[$post_id]) ? $previous[$post_id] : '';
+}
+
+/**
+ * Capture `_display_location` BEFORE the meta shim writes the submitted value
+ * (Container_Admin::save_post runs on save_post at priority 10).
+ *
+ * @param int      $post_id
+ * @param \WP_Post $post
+ * @return void
+ */
+function coptrz_capture_header_layout_previous($post_id, $post)
+{
+    if (!coptrz_header_layout_can_save($post_id, $post)) {
+        return;
+    }
+    coptrz_header_layout_previous_location($post_id, get_post_meta($post_id, '_display_location', true));
+}
+add_action('save_post', 'coptrz_capture_header_layout_previous', 5, 2);
+
+/**
+ * Only one layout may hold the `header` display location. If this save would
+ * make a second one, the change is REJECTED — `_display_location` is restored to
+ * its pre-save value and an admin notice names the layout that already holds it.
+ *
+ * Rejecting (rather than demoting the incumbent) is deliberate: silently moving
+ * the location off the live header layout would swap the whole site's header on
+ * an unrelated save.
+ *
+ * Runs at priority 20, after the meta shim has persisted the submitted value.
+ *
+ * @param int      $post_id
+ * @param \WP_Post $post
+ * @return void
+ */
+function coptrz_enforce_single_header_layout($post_id, $post)
+{
+    if (!coptrz_header_layout_can_save($post_id, $post)) {
+        return;
+    }
+    if (get_post_meta($post_id, '_display_location', true) !== 'header') {
+        return;
+    }
+
+    $others = get_posts(array(
+        'numberposts' => 1,
+        'post_type'   => 'layouts',
+        'post_status' => 'publish',
+        'fields'      => 'ids',
+        'exclude'     => array($post_id),
+        'meta_query'  => array(
+            array(
+                'key'   => '_display_location',
+                'value' => 'header',
+            ),
+        ),
+    ));
+
+    if (!$others) {
+        return;
+    }
+
+    $previous = coptrz_header_layout_previous_location($post_id);
+    if ($previous === 'header') {
+        $previous = ''; // Shouldn't happen (it would be the incumbent), but don't re-save 'header'.
+    }
+    update_post_meta($post_id, '_display_location', $previous);
+
+    $holder = (int) $others[0];
+    set_transient(
+        'coptrz_header_layout_conflict_' . get_current_user_id(),
+        array(
+            'holder_id'    => $holder,
+            'holder_title' => get_the_title($holder),
+        ),
+        60
+    );
+}
+add_action('save_post', 'coptrz_enforce_single_header_layout', 20, 2);
+
+/**
+ * Print (and clear) the "another layout is already the header" notice set above.
+ *
+ * @return void
+ */
+function coptrz_header_layout_conflict_notice()
+{
+    $key      = 'coptrz_header_layout_conflict_' . get_current_user_id();
+    $conflict = get_transient($key);
+    if (!$conflict || empty($conflict['holder_id'])) {
+        return;
+    }
+    delete_transient($key);
+
+    $edit_link = get_edit_post_link($conflict['holder_id']);
+    $title     = $conflict['holder_title'] ? $conflict['holder_title'] : __('(untitled)');
+
+    echo '<div class="notice notice-error"><p>';
+    echo esc_html__('Display Location was not changed to Header: only one layout can be the site header, and ');
+    if ($edit_link) {
+        echo '<a href="' . esc_url($edit_link) . '">' . esc_html($title) . '</a>';
+    } else {
+        echo '<strong>' . esc_html($title) . '</strong>';
+    }
+    echo esc_html__(' already holds it. Change that layout first, then set this one.');
+    echo '</p></div>';
+}
+add_action('admin_notices', 'coptrz_header_layout_conflict_notice');

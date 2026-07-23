@@ -6680,6 +6680,7 @@ Container::make('post_meta', __('Conditional Display'))
             ->add_options(array(
                 'section'       => __('Section'),
                 'archive'       => __('Archive'),
+                'header'        => __('Header'),
                 'after_header'  => __('After Header'),
                 'before_footer' => __('Before Footer'),
                 '404'           => __('404'),
