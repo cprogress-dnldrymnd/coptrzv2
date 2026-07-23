@@ -108,6 +108,7 @@ if (!$hide_footer) {
 
 <?php } ?>
 </main>
+</div>
 
 
 <?php wp_footer(); ?>

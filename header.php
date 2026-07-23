@@ -92,5 +92,10 @@
 	}
 
 	?>
+	<div class="site-wrapper position-relative">
+		<?php
+		if (function_exists('coptrz_render_header_location_layouts')) {
+			coptrz_render_header_location_layouts('before_main');
+		}
+		?>
 	<main class="<?= $class ?>">
-		
