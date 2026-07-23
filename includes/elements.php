@@ -255,24 +255,31 @@ function __video($data)
     }
 }
 
-function __background($background, $is_youtube = false)
+function __background($background, $is_youtube = false, $extra_class = '')
 {
+    $class_args = array('background-image', 'background-overlay');
+    if ($extra_class) {
+        $class_args[] = $extra_class;
+    }
+
     if ($is_youtube == false) {
         $mime_type = get_post_mime_type($background);
         if (str_contains($mime_type, 'video')) {
             return __video(array(
                 'video_id' => $background,
-                'class'    => _attribute('class', array('background-image', 'background-overlay'))
+                'class'    => _attribute('class', $class_args)
             ));
         } else {
             return __image(array(
                 'image_id' => $background,
-                'class'    => _attribute('class', array('background-image', 'background-overlay')),
+                'class'    => _attribute('class', $class_args),
                 'size'     => 'full'
             ));
         }
     } else {
-        return "<div class='background-image background-overlay'><div id='player' video_id='$background'></div></iframe></div>";
+        $wrapper_class = _attribute('class', $class_args);
+        $player_id = wp_unique_id('coptrz-yt-player-');
+        return "<div $wrapper_class><div id='$player_id' class='coptrz-yt-player' video_id='$background'></div></div>";
     }
 }
 

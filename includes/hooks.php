@@ -412,9 +412,21 @@ function action__wp_footer()
             });
         </script>
         <script>
-            if (jQuery('#player').length > 0) {
-                video_id = document.getElementById('player').getAttribute('video_id');
-                if (video_id) {
+            (function() {
+                // Hero backgrounds can render up to three YouTube players (desktop/
+                // tablet/mobile), only one visible at a time via d-* display
+                // utilities — only initialise the one(s) actually on screen, so we
+                // don't load 2-3 simultaneous YouTube iframes for one hero.
+                var ytPlayerEls = Array.prototype.filter.call(
+                    document.querySelectorAll('.coptrz-yt-player[video_id]'),
+                    function(el) { return el.getClientRects().length > 0; }
+                );
+                if (ytPlayerEls.length === 0) {
+                    var firstPlayer = document.querySelector('.coptrz-yt-player[video_id]');
+                    if (firstPlayer) ytPlayerEls = [firstPlayer];
+                }
+
+                if (ytPlayerEls.length > 0) {
                     // 2. This code loads the IFrame Player API code asynchronously.
                     var tag = document.createElement('script');
 
@@ -423,11 +435,18 @@ function action__wp_footer()
                     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
                     // 3. This function creates an <iframe> (and YouTube player)
-                    //    after the API code downloads.
-                    var player;
+                    //    per visible placeholder after the API code downloads.
+                    function onPlayerReady(event) {
+                        setTimeout(function() {
+                            jQuery(event.target.getIframe()).addClass('show');
+                        }, 500);
+                    }
 
-                    function onYouTubeIframeAPIReady() {
-                        player = new YT.Player('player', {
+                    function createHeroYtPlayer(el) {
+                        var video_id = el.getAttribute('video_id');
+                        if (!video_id) return;
+
+                        new YT.Player(el.id, {
                             height: '100%',
                             width: '100%',
                             videoId: video_id,
@@ -456,15 +475,13 @@ function action__wp_footer()
                                 }
                             }
                         });
-
-                        function onPlayerReady(event) {
-                            setTimeout(function() {
-                                jQuery('.background-image iframe').addClass('show');
-                            }, 500);
-                        }
                     }
+
+                    window.onYouTubeIframeAPIReady = function() {
+                        ytPlayerEls.forEach(createHeroYtPlayer);
+                    };
                 }
-            }
+            })();
         </script>
     <?php
     }

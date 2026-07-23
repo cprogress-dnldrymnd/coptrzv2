@@ -222,6 +222,13 @@ function ___hero_render($args)
     $hero_background                 = $args['hero_background'];
     $hero_background_youtube         = $args['hero_background_youtube'];
     $hero_background_type            = $args['hero_background_type'];
+    // Optional per-breakpoint overrides — only the block path supplies these;
+    // the legacy meta path (___hero_args_from_meta()) has no equivalent
+    // fields, so absence here just means "desktop background at every size".
+    $hero_background_tablet          = isset($args['hero_background_tablet']) ? $args['hero_background_tablet'] : 0;
+    $hero_background_mobile          = isset($args['hero_background_mobile']) ? $args['hero_background_mobile'] : 0;
+    $hero_background_youtube_tablet  = isset($args['hero_background_youtube_tablet']) ? $args['hero_background_youtube_tablet'] : '';
+    $hero_background_youtube_mobile  = isset($args['hero_background_youtube_mobile']) ? $args['hero_background_youtube_mobile'] : '';
     $hero_height                     = $args['hero_height'];
     $hero_alignment                  = $args['hero_alignment'];
     $breadcrumbs_hidden              = $args['breadcrumbs_hidden'];
@@ -291,11 +298,39 @@ function ___hero_render($args)
     $hero_heading_val = $hero_heading ? $hero_heading : get_the_title($id);
     if (!$hero_hidden) {
         $hero = "<section $hero_class_attribute id='hero'>";
-        if ($hero_background_youtube && $hero_background_type == 'youtube') {
-            $hero .= __background($hero_background_youtube, true);
-        } else if ($hero_background) {
-            $hero .= __background($hero_background);
+
+        $is_youtube_hero = ($hero_background_youtube && $hero_background_type == 'youtube');
+        $has_tablet_bg    = $is_youtube_hero ? !empty($hero_background_youtube_tablet) : !empty($hero_background_tablet);
+        $has_mobile_bg    = $is_youtube_hero ? !empty($hero_background_youtube_mobile) : !empty($hero_background_mobile);
+
+        if ($has_tablet_bg && $has_mobile_bg) {
+            $desktop_bg_class = 'd-none d-lg-block'; // >=992 only
+        } else if ($has_tablet_bg) {
+            $desktop_bg_class = 'd-block d-md-none d-lg-block'; // <=767 + >=992
+        } else if ($has_mobile_bg) {
+            $desktop_bg_class = 'd-none d-md-block'; // >=768
+        } else {
+            $desktop_bg_class = ''; // no overrides — unchanged desktop-only markup
         }
+
+        if ($is_youtube_hero) {
+            $hero .= __background($hero_background_youtube, true, $desktop_bg_class);
+        } else if ($hero_background) {
+            $hero .= __background($hero_background, false, $desktop_bg_class);
+        }
+
+        if ($has_tablet_bg) {
+            $hero .= $is_youtube_hero
+                ? __background($hero_background_youtube_tablet, true, 'd-none d-md-block d-lg-none')
+                : __background($hero_background_tablet, false, 'd-none d-md-block d-lg-none');
+        }
+
+        if ($has_mobile_bg) {
+            $hero .= $is_youtube_hero
+                ? __background($hero_background_youtube_mobile, true, 'd-block d-md-none')
+                : __background($hero_background_mobile, false, 'd-block d-md-none');
+        }
+
         $hero .= "<div class='container'>";
 
         if ($hero_form_enable) {
@@ -499,11 +534,27 @@ function ___hero_modules($hero_alignment_args = false, $hero_height_args = false
 {
     $post_id = get_the_ID();
 
-    if (function_exists('coptrz_hero_renders_inline') && coptrz_hero_renders_inline($post_id)) {
+    $legacy_override = function_exists('coptrz_sections_legacy_override')
+        && coptrz_sections_legacy_override($post_id);
+
+    // Inline hero blocks render at their own position via the render_block
+    // filter, so this call must stay silent to avoid a double render — EXCEPT
+    // under a legacy override, where post_content renders through the legacy
+    // ___sections() builder (not do_blocks()), so the inline block never
+    // fires and this is the only place that can render the hero.
+    if (!$legacy_override
+        && function_exists('coptrz_hero_renders_inline')
+        && coptrz_hero_renders_inline($post_id)
+    ) {
         return '';
     }
 
-    $attrs = function_exists('coptrz_hero_block_attrs') ? coptrz_hero_block_attrs($post_id) : null;
+    // Under a legacy override, render the ORIGINAL hero from meta (untouched
+    // by conversion) to match the original sections shown alongside it,
+    // ignoring any post-conversion edits to the coptrz/hero block.
+    $attrs = (!$legacy_override && function_exists('coptrz_hero_block_attrs'))
+        ? coptrz_hero_block_attrs($post_id)
+        : null;
 
     $args = ($attrs === null)
         ? ___hero_args_from_meta($post_id, $hero_alignment_args, $hero_height_args)

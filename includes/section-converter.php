@@ -141,52 +141,119 @@ function coptrz_post_conversion_state($post_id)
 }
 
 /**
- * The `meta_query` clause selecting posts of ONE given post type that still
- * have something pending — used per-type (never across a mixed post_type
- * list, where "hero not converted" would wrongly match a hero-inapplicable
- * type) by coptrz_conversion_remaining_counts() and the bulk "convert
- * remaining" batch action. Cheaper than coptrz_post_conversion_state() at
- * scale since it's one indexed query instead of a per-post PHP loop, at the
- * cost of not re-verifying the hero identical-render check (same estimate
- * caveat as coptrz_post_conversion_state()).
+ * Builds a correlated-EXISTS WHERE fragment (scoped to ONE given post type,
+ * against a `wp_posts p` alias) selecting posts that still have something
+ * pending — used per-type (never across a mixed post_type list, where "hero
+ * not converted" would wrongly match a hero-inapplicable type) by
+ * coptrz_conversion_pending_count() and coptrz_conversion_pending_ids().
+ *
+ * Deliberately NOT a WP_Query `meta_query`: an OR of two EXISTS clauses on
+ * different meta keys (has `_sections` OR has `_sections_after_main`)
+ * compiles to two UNKEYED `wp_postmeta` LEFT JOINs — the meta_key check lands
+ * in WHERE, not the JOIN's ON clause — so each join matches every meta row of
+ * every post. With Carbon Fields' meta-per-post counts on this site that's a
+ * posts × meta-per-post² cartesian scan (confirmed via EXPLAIN and a timed
+ * repro: minutes per post type, 504ing the Tools page). Correlated EXISTS
+ * subqueries hit the `meta_key` index directly and can't multiply rows.
  *
  * @param string $post_type
- * @return array meta_query clause array, or [] if nothing is applicable.
+ * @return array{0:string,1:array} [$where_sql ('' if nothing applicable to
+ *         this type), $prepare_args for its %s placeholders, in appearance order]
  */
-function coptrz_conversion_pending_meta_query($post_type)
+function coptrz_conversion_pending_where($post_type)
 {
+    global $wpdb;
+
     $hero_applicable    = function_exists('coptrz_hero_post_types') && in_array($post_type, coptrz_hero_post_types(), true);
     $section_applicable = in_array($post_type, coptrz_section_post_types(), true);
 
-    $clauses = array();
+    $branches = array();
+    $args     = array();
+
     if ($hero_applicable && defined('COPTRZ_HERO_CONVERTED_FLAG')) {
-        $clauses[] = array('key' => COPTRZ_HERO_CONVERTED_FLAG, 'compare' => 'NOT EXISTS');
-    }
-    if ($section_applicable) {
-        $clauses[] = array(
-            'relation' => 'AND',
-            array(
-                'relation' => 'OR',
-                array('key' => '_sections|||0|value', 'compare' => 'EXISTS'),
-                array('key' => '_sections_after_main|||0|value', 'compare' => 'EXISTS'),
-            ),
-            array('key' => COPTRZ_SECTIONS_CONVERTED_FLAG, 'compare' => 'NOT EXISTS'),
-        );
+        $branches[] = "NOT EXISTS (SELECT 1 FROM {$wpdb->postmeta} h WHERE h.post_id = p.ID AND h.meta_key = %s)";
+        $args[]     = COPTRZ_HERO_CONVERTED_FLAG;
     }
 
-    if (empty($clauses)) {
+    if ($section_applicable) {
+        $branches[] = "( EXISTS (SELECT 1 FROM {$wpdb->postmeta} s WHERE s.post_id = p.ID AND s.meta_key IN (%s, %s))
+                         AND NOT EXISTS (SELECT 1 FROM {$wpdb->postmeta} c WHERE c.post_id = p.ID AND c.meta_key = %s) )";
+        array_push($args, '_sections|||0|value', '_sections_after_main|||0|value', COPTRZ_SECTIONS_CONVERTED_FLAG);
+    }
+
+    if (empty($branches)) {
+        return array('', array());
+    }
+
+    return array('(' . implode(' OR ', $branches) . ')', $args);
+}
+
+/** Post statuses eligible for conversion, shared by every pending query below. */
+function coptrz_convertible_post_statuses()
+{
+    return array('publish', 'private', 'draft', 'pending', 'future');
+}
+
+/**
+ * How many posts of ONE post type still have something pending. Backs the
+ * "Convert all remaining" per-type batch table on the bulk page. An estimate
+ * — see coptrz_conversion_pending_where()'s docblock.
+ *
+ * @param string $post_type
+ * @return int
+ */
+function coptrz_conversion_pending_count($post_type)
+{
+    global $wpdb;
+
+    list($where, $args) = coptrz_conversion_pending_where($post_type);
+    if ($where === '') {
+        return 0;
+    }
+
+    $statuses  = coptrz_convertible_post_statuses();
+    $in_status = implode(',', array_fill(0, count($statuses), '%s'));
+
+    $sql = "SELECT COUNT(*) FROM {$wpdb->posts} p
+            WHERE p.post_type = %s AND p.post_status IN ({$in_status}) AND {$where}";
+
+    return (int) $wpdb->get_var($wpdb->prepare($sql, array_merge(array($post_type), $statuses, $args)));
+}
+
+/**
+ * IDs of posts of ONE post type that still have something pending, oldest ID
+ * first, capped at $limit. Backs the "Convert all remaining" batch action.
+ *
+ * @param string $post_type
+ * @param int $limit
+ * @return int[]
+ */
+function coptrz_conversion_pending_ids($post_type, $limit)
+{
+    global $wpdb;
+
+    list($where, $args) = coptrz_conversion_pending_where($post_type);
+    if ($where === '') {
         return array();
     }
-    if (count($clauses) === 1) {
-        return array($clauses[0]);
-    }
-    return array_merge(array('relation' => 'OR'), $clauses);
+
+    $statuses  = coptrz_convertible_post_statuses();
+    $in_status = implode(',', array_fill(0, count($statuses), '%s'));
+
+    $sql = "SELECT p.ID FROM {$wpdb->posts} p
+            WHERE p.post_type = %s AND p.post_status IN ({$in_status}) AND {$where}
+            ORDER BY p.ID ASC LIMIT %d";
+
+    return array_map('intval', $wpdb->get_col($wpdb->prepare(
+        $sql,
+        array_merge(array($post_type), $statuses, $args, array((int) $limit))
+    )));
 }
 
 /**
  * How many posts of each convertible post type still have something pending.
  * Backs the "Convert all remaining" per-type batch table on the bulk page.
- * An estimate — see coptrz_conversion_pending_meta_query()'s docblock.
+ * An estimate — see coptrz_conversion_pending_where()'s docblock.
  *
  * @return array<string,int> post_type => remaining count
  */
@@ -194,21 +261,7 @@ function coptrz_conversion_remaining_counts()
 {
     $out = array();
     foreach (coptrz_convertible_post_types() as $post_type) {
-        $mq = coptrz_conversion_pending_meta_query($post_type);
-        if (empty($mq)) {
-            $out[$post_type] = 0;
-            continue;
-        }
-        $query = new WP_Query(array(
-            'post_type'           => $post_type,
-            'post_status'         => array('publish', 'private', 'draft', 'pending', 'future'),
-            'posts_per_page'      => 1,
-            'fields'              => 'ids',
-            'no_found_rows'       => false,
-            'ignore_sticky_posts' => true,
-            'meta_query'          => $mq,
-        ));
-        $out[$post_type] = (int) $query->found_posts;
+        $out[$post_type] = coptrz_conversion_pending_count($post_type);
     }
     return $out;
 }
@@ -3651,7 +3704,7 @@ add_action('admin_menu', function () {
  * search's raw match count), and avoids a meta_query that can't correctly
  * express "hero not converted" scoped to hero-applicable types only when the
  * candidate list also includes hero-inapplicable types (see
- * coptrz_conversion_pending_meta_query()'s docblock, which IS scoped and used
+ * coptrz_conversion_pending_where()'s docblock, which IS scoped and used
  * instead for the per-type "convert remaining" batch action below).
  *
  * Default (`mode=convert`): only posts with something pending are returned.
@@ -3739,22 +3792,11 @@ function coptrz_render_bulk_converter_page()
         if ($action === 'convert_remaining' || $action === 'convert_remaining_dry') {
             $post_type = isset($_POST['coptrz_post_type']) ? sanitize_key($_POST['coptrz_post_type']) : '';
             $dry       = ($action === 'convert_remaining_dry');
-            $mq        = in_array($post_type, coptrz_convertible_post_types(), true)
-                ? coptrz_conversion_pending_meta_query($post_type)
+            $ids       = in_array($post_type, coptrz_convertible_post_types(), true)
+                ? coptrz_conversion_pending_ids($post_type, $limit)
                 : array();
-            if (!empty($mq)) {
-                $query = new WP_Query(array(
-                    'post_type'           => $post_type,
-                    'post_status'         => array('publish', 'private', 'draft', 'pending', 'future'),
-                    'posts_per_page'      => $limit,
-                    'fields'              => 'ids',
-                    'no_found_rows'       => true,
-                    'ignore_sticky_posts' => true,
-                    'meta_query'          => $mq,
-                ));
-                foreach ($query->posts as $pid) {
-                    $did[] = coptrz_convert_post_to_blocks($pid, $dry);
-                }
+            foreach ($ids as $pid) {
+                $did[] = coptrz_convert_post_to_blocks($pid, $dry);
             }
         } else {
             // Always an explicit selection of post IDs (gathered via the name search).

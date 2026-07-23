@@ -66,6 +66,34 @@
     }
 
     /**
+     * Background media picker for one breakpoint (desktop/tablet/mobile share
+     * this markup) — image or video, mirrors the desktop MediaUpload render
+     * prop but factored out so tablet/mobile don't triplicate it.
+     */
+    function backgroundMediaSlot(label, hint, imageUrl, imageId, onSelect, onRemove) {
+        return el(
+            'div',
+            { style: { marginBottom: '16px' } },
+            el('p', { style: { fontWeight: 600, margin: '0 0 4px' } }, label),
+            hint ? el('p', { style: { fontSize: '12px', color: '#757575', margin: '0 0 8px' } }, hint) : null,
+            el(MediaUploadCheck, null,
+                el(MediaUpload, {
+                    allowedTypes: ['image', 'video'],
+                    value: imageId || undefined,
+                    onSelect: onSelect,
+                    render: function (o) {
+                        return el(Fragment, null,
+                            imageUrl ? el('img', { src: imageUrl, style: { maxWidth: '100%', marginBottom: '8px' } }) : null,
+                            el(Button, { variant: 'secondary', onClick: o.open }, imageId ? 'Replace' : 'Select'),
+                            imageId ? el(Button, { variant: 'link', isDestructive: true, onClick: onRemove }, 'Remove') : null
+                        );
+                    }
+                })
+            )
+        );
+    }
+
+    /**
      * Single-item search-as-you-type picker, backed by a real ID rather than
      * freeform text. Same debounced-suggestions approach as
      * coptrz-post-grid-block.js's IdTokenPicker, constrained to one token.
@@ -240,6 +268,12 @@
             backgroundId: { type: 'number', default: 0 },
             backgroundUrl: { type: 'string', default: '' },
             backgroundYoutube: { type: 'string', default: '' },
+            backgroundTabletId: { type: 'number', default: 0 },
+            backgroundTabletUrl: { type: 'string', default: '' },
+            backgroundTabletYoutube: { type: 'string', default: '' },
+            backgroundMobileId: { type: 'number', default: 0 },
+            backgroundMobileUrl: { type: 'string', default: '' },
+            backgroundMobileYoutube: { type: 'string', default: '' },
             height: { type: 'string', default: '' },
             alignment: { type: 'string', default: '' },
             buttons: { type: 'array', default: [] },
@@ -312,6 +346,27 @@
                                         );
                                     }
                                 })
+                            ),
+                        el('hr', { style: { margin: '16px 0' } }),
+                        el('p', { style: { fontSize: '12px', color: '#757575', marginTop: 0 } },
+                            'Optionally override the background on smaller screens. Leave blank to use the background above.'),
+                        a.backgroundType === 'youtube'
+                            ? textField('Tablet YouTube ID', a.backgroundTabletYoutube, function (v) { setAttributes({ backgroundTabletYoutube: v }); }, { help: 'Shown at 768–991px. Optional — falls back to the background above.' })
+                            : backgroundMediaSlot(
+                                'Tablet background',
+                                'Shown at 768–991px. Optional — falls back to the background above.',
+                                a.backgroundTabletUrl, a.backgroundTabletId,
+                                function (media) { setAttributes({ backgroundTabletId: media.id, backgroundTabletUrl: media.url }); },
+                                function () { setAttributes({ backgroundTabletId: 0, backgroundTabletUrl: '' }); }
+                            ),
+                        a.backgroundType === 'youtube'
+                            ? textField('Mobile YouTube ID', a.backgroundMobileYoutube, function (v) { setAttributes({ backgroundMobileYoutube: v }); }, { help: 'Shown at ≤767px. Optional — falls back to the background above.' })
+                            : backgroundMediaSlot(
+                                'Mobile background',
+                                'Shown at ≤767px. Optional — falls back to the background above.',
+                                a.backgroundMobileUrl, a.backgroundMobileId,
+                                function (media) { setAttributes({ backgroundMobileId: media.id, backgroundMobileUrl: media.url }); },
+                                function () { setAttributes({ backgroundMobileId: 0, backgroundMobileUrl: '' }); }
                             )
                     ),
                     el(
