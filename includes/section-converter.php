@@ -94,20 +94,49 @@ function coptrz_section_source_fields()
 
 /** Post types that can carry sections. Still used on its own where the check
  * is specifically about legacy `_sections` data (the admin_notices legacy-edit
- * hatch below); the combined admin surface uses coptrz_convertible_post_types(). */
+ * hatch below); the combined admin surface uses coptrz_convertible_post_types().
+ *
+ * `guides` has no `single-guides.php` / `template-parts/single/single-guides.php`
+ * of its own, so it falls through to single.php's fallback branch, which renders
+ * `___hero_modules()` + `___sections()` exactly like a post type with a bespoke
+ * template would — 52 guides on this site have empty `post_content` and render
+ * their entire page from legacy `sections` data this way. */
 function coptrz_section_post_types()
 {
     return array(
         'page', 'product', 'layouts', 'capabilities', 'casestudies',
         'producttaxonomypages', 'industries', 'events', 'rentals', 'landingpages',
+        'guides',
     );
 }
 
 /**
+ * Post types intentionally kept OUT of the conversion tooling even though they
+ * may satisfy coptrz_section_post_types() / coptrz_hero_post_types(). `post` is
+ * excluded here: blog posts are never converted on this site (verified — no
+ * `post` has ever carried a converted flag) and essentially never carry real
+ * hero content either, so surfacing them as "Needs converting" / listing them
+ * as corrupted / offering a Convert box was pure noise. This does NOT touch
+ * coptrz_hero_post_types() itself, which documents which post types the Hero
+ * post-meta container actually targets (post-meta.php still includes `post`)
+ * and is relied on by coptrz_hero_default_content() (includes/hero-block.php)
+ * to auto-insert an empty coptrz/hero block on new posts — posts keep that and
+ * keep their Hero meta box; only the conversion tooling stops listing them.
+ *
+ * @return string[]
+ */
+function coptrz_conversion_excluded_post_types()
+{
+    return apply_filters('coptrz_conversion_excluded_post_types', array('post'));
+}
+
+/**
  * The union of coptrz_section_post_types() and coptrz_hero_post_types()
- * (includes/hero-converter.php) — drives the single "Convert to Blocks" admin
- * surface (meta box registration + bulk search post types). Sections and hero
- * are independent per post: `post`/`guides` only ever have a hero to convert,
+ * (includes/hero-converter.php), minus coptrz_conversion_excluded_post_types()
+ * — drives the single "Convert to Blocks" admin surface (meta box registration
+ * + bulk search post types). Sections and hero are independent per post:
+ * `guides` only ever has a hero to convert (unless it also carries legacy
+ * `sections` — see coptrz_section_post_types()'s docblock),
  * `layouts`/`producttaxonomypages` only ever have sections, and everything
  * else may have either or both — coptrz_convert_post_to_blocks() decides per
  * post which parts actually apply.
@@ -117,7 +146,8 @@ function coptrz_section_post_types()
 function coptrz_convertible_post_types()
 {
     $hero = function_exists('coptrz_hero_post_types') ? coptrz_hero_post_types() : array();
-    return array_values(array_unique(array_merge(coptrz_section_post_types(), $hero)));
+    $all  = array_unique(array_merge(coptrz_section_post_types(), $hero));
+    return array_values(array_diff($all, coptrz_conversion_excluded_post_types()));
 }
 
 /**
@@ -161,13 +191,18 @@ function coptrz_post_has_sections_data($post_id)
  * re-verify at conversion time (e.g. the hero identical-render check) rather
  * than trusting this cheap estimate.
  *
+ * Checks coptrz_hero_post_types() / coptrz_section_post_types() directly
+ * rather than routing through coptrz_convertible_post_types(), so it must
+ * separately exclude coptrz_conversion_excluded_post_types() itself (`post`)
+ * or an excluded type would still report pending.
+ *
  * @param int $post_id
  * @return string[]
  */
 function coptrz_post_conversion_state($post_id)
 {
     $post = get_post($post_id);
-    if (!$post) {
+    if (!$post || in_array($post->post_type, coptrz_conversion_excluded_post_types(), true)) {
         return array();
     }
 
@@ -303,10 +338,17 @@ function coptrz_conversion_remaining_counts()
  *
  * True if any of the six escape signatures (u003c, u003e, u0026, u002du002d,
  * u005c, u0022 — the stripped forms of <, >, &, --, \, and \") appears
- * anywhere in $content. These are not naturally-occurring English substrings,
- * so a false positive here is effectively impossible; this is a diagnostic
- * check, not a strict parser, so no attempt is made to bound the match to
- * inside a specific block comment.
+ * anywhere in $content WITHOUT a leading backslash. The backslash matters:
+ * each signature is a substring of its own correctly-escaped form (`<`
+ * contains `u003c`), and serialize_block_attributes() legitimately writes
+ * those escapes into every block comment whose attributes contain <, >, &, or
+ * \" — so a plain substring search flags perfectly healthy content (confirmed
+ * against production data: 51 posts matched a bare strpos(), only 6 actually
+ * had the corruption). Requiring the signature NOT be preceded by a backslash
+ * is exactly the corrupted-vs-healthy distinction: corrupted content lost that
+ * backslash, healthy content still has it. This is a diagnostic check, not a
+ * strict parser, so no attempt is made to bound the match to inside a
+ * specific block comment.
  *
  * Used both by coptrz_find_corrupted_conversions() (site-wide listing) and
  * coptrz_purge_post_legacy_data() (refuses to purge a corrupted post, since
@@ -319,7 +361,7 @@ function coptrz_content_is_corrupted($content)
 {
     $signatures = array('u003c', 'u003e', 'u0026', 'u002du002d', 'u005c', 'u0022');
     foreach ($signatures as $sig) {
-        if (strpos((string) $content, $sig) !== false) {
+        if (preg_match('/(?<!\\\\)' . preg_quote($sig, '/') . '/', (string) $content)) {
             return true;
         }
     }
