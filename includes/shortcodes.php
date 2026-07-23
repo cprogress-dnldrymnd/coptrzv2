@@ -368,7 +368,29 @@ class Shortcodes
             )
         );
 
-        return do_shortcode(___sections('sections', $id));
+        $out = ___sections('sections', $id);
+
+        // A layout authored natively in the block editor has no legacy `sections`
+        // rows and no converted flag, so ___sections() returns ''. Fall back to
+        // its block content. do_blocks() only — deliberately NOT
+        // apply_filters('the_content'), which runs wpautop (mangles block
+        // markup) and every third-party the_content filter, matching
+        // coptrz_render_converted_sections().
+        if (trim($out) === '' && $id) {
+            // Re-entrancy guard: block content that embeds [layouts id=<same id>]
+            // would otherwise recurse forever.
+            static $rendering = array();
+            if (empty($rendering[$id])) {
+                $rendering[$id] = true;
+                $content = get_post_field('post_content', $id);
+                if (is_string($content) && trim($content) !== '') {
+                    $out = do_blocks($content);
+                }
+                unset($rendering[$id]);
+            }
+        }
+
+        return do_shortcode($out);
     }
     function blog_meta()
     {

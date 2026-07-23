@@ -1128,6 +1128,47 @@ case studies, rentals, landing pages, etc).
   so it shows on `page-blocks-editor.php` too. Same post types as before (`page`,
   `guides`, `casestudies`, `events`, `landingpages`; side context). Defined only
   there.
+- **Header display location** — `layouts`' `display_location` select (see
+  `Display Location` above, `includes/post-meta.php`) has a `header` option. At
+  most ONE published layout may hold it, enforced at save time in
+  `includes/hooks.php`: `coptrz_capture_header_layout_previous()` (`save_post`
+  priority 5, before the shim writes) stashes the pre-save `_display_location`;
+  `coptrz_enforce_single_header_layout()` (`save_post` priority 20, after the
+  shim writes) checks for another published layout already holding `header` and,
+  if found, REJECTS the change — writes the stashed value back and queues an
+  `admin_notices` transient naming the conflicting layout with an edit link —
+  rather than silently demoting the incumbent, which would swap the live site
+  header on an unrelated save. `coptrz_get_header_layout_id()` (memoized
+  `static`) resolves the current one; `header.php` calls it and, when non-zero,
+  renders `[layouts id="…"]` **raw** — no `<header class="header">` wrapper — in
+  place of BOTH the hardcoded promo banner and the `<header>` element, still
+  gated by the existing `hide_header` check. Falls back to the original
+  hardcoded markup when no layout is flagged. Only `header.php` (the default
+  template) is wired up; `header-clean.php` / `header-simple.php` /
+  `header-landing*.php` are untouched. Since there's no `.header` wrapper,
+  `main.js`'s `.header` selectors (offcanvas menu/cart `insertAfter`,
+  `overflow-hidden` removal) only work if the layout's own top-level block
+  carries a `header` class.
+- **`[layouts]` block-content fallback** — a `layouts` post can now be authored
+  two ways: the legacy Carbon `sections` repeater (routed through
+  `coptrz_render_converted_sections()` once converted, or the raw repeater
+  before that), or **plain block-editor content** with no `sections` data at
+  all. `Shortcodes::layouts()` (`includes/shortcodes.php`) tries
+  `___sections('sections', $id)` first; when that returns `''` (empty complex
+  field — the normal case for a block-authored layout, no PHP warning) it falls
+  back to `do_blocks(get_post_field('post_content', $id))`, `do_blocks()` only —
+  deliberately NOT `apply_filters('the_content')`, matching
+  `coptrz_render_converted_sections()`'s own rationale (wpautop mangles block
+  markup; third-party `the_content` filters can misbehave off the main loop). A
+  `static` re-entrancy guard (same pattern as
+  `coptrz_render_converted_sections()`) stops a layout whose content embeds
+  `[layouts id=<itself>]` from recursing forever. The fallback only fires on an
+  empty legacy result, so it can't affect any pre-existing sections-based
+  layout. Deliberately patched in the **shortcode**, not `___sections()` itself:
+  `single-layouts.php` calls `___sections()` then `the_content()` back to back,
+  so a block-authored layout's own permalink already renders its content via
+  `the_content()` — putting the fallback inside `___sections()` would render it
+  a second time there.
 
 ### WooCommerce catalog mode
 
