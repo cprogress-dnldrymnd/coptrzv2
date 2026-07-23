@@ -3499,10 +3499,27 @@ function coptrz_revert_post_to_blocks($post_id, $dry_run = false)
 /*  Admin UI — per-post meta box                                              */
 /* ========================================================================= */
 
-add_action('add_meta_boxes', function ($post_type) {
+add_action('add_meta_boxes', function ($post_type, $post) {
     if (!in_array($post_type, coptrz_convertible_post_types(), true)) {
         return;
     }
+
+    // Already-converted posts keep the box — the Revert controls live in it.
+    $converted = coptrz_sections_is_converted($post->ID)
+        || (function_exists('coptrz_hero_is_converted') && coptrz_hero_is_converted($post->ID));
+
+    if (!$converted) {
+        $has_sections = metadata_exists('post', $post->ID, '_sections')
+            || metadata_exists('post', $post->ID, '_sections_after_main');
+        $has_hero = in_array($post_type, coptrz_hero_post_types(), true)
+            && function_exists('coptrz_hero_has_content')
+            && coptrz_hero_has_content($post->ID);
+
+        if (!$has_sections && !$has_hero) {
+            return;
+        }
+    }
+
     add_meta_box(
         'coptrz-section-converter',
         __('Convert to Blocks', 'coptrz-theme'),
@@ -3511,7 +3528,7 @@ add_action('add_meta_boxes', function ($post_type) {
         'side',
         'high'
     );
-});
+}, 10, 2);
 
 /**
  * Per-post convert box: dry-run preview + convert, via admin-ajax. Converts

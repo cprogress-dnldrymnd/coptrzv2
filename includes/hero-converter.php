@@ -209,6 +209,33 @@ function coptrz_hero_meta_to_attrs($post_id)
 }
 
 /**
+ * True when a post's Hero meta carries real content — i.e. the hero is more
+ * than the empty title-fallback every hero-type post otherwise renders. Used to
+ * decide whether the per-post "Convert to Blocks" box has a hero worth
+ * converting (section-converter.php's add_meta_boxes gate). Reuses
+ * coptrz_hero_meta_to_attrs() as the single source of truth for what the hero
+ * holds; height/alignment are excluded because coptrz_hero_template_defaults()
+ * bakes non-empty per-type defaults into them, so they're never a reliable
+ * "author put something here" signal.
+ *
+ * @param int $post_id
+ * @return bool
+ */
+function coptrz_hero_has_content($post_id)
+{
+    $a = coptrz_hero_meta_to_attrs($post_id);
+    if (!empty($a['hidden'])) {
+        return false;
+    }
+    return $a['heading'] !== ''
+        || $a['description'] !== ''
+        || (int) $a['backgroundId'] !== 0
+        || $a['backgroundYoutube'] !== ''
+        || !empty($a['buttons'])
+        || !empty($a['formEnable']);
+}
+
+/**
  * The strongest available "would this convert cleanly" check: render the hero
  * BOTH ways — from the live meta (___hero_args_from_meta()) and from the
  * block attributes a conversion would write

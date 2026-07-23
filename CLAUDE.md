@@ -532,7 +532,17 @@ case studies, rentals, landing pages, etc).
   `coptrz_post_conversion_state($post_id)` (cheap per-post pending-parts
   estimate for the bulk search), `coptrz_conversion_remaining_counts()`.
   Admin tools: a per-post "Convert to Blocks" meta box (side, with dry-run) and
-  a convert-by-search runner at Tools > Convert to Blocks. The runner has no
+  a convert-by-search runner at Tools > Convert to Blocks. The per-post box
+  only renders when there's actually something to convert: it's suppressed for
+  a post with no `_sections`/`_sections_after_main` meta AND no meaningful hero
+  content (`coptrz_hero_has_content()`, includes/hero-converter.php — real
+  heading/description/background/buttons/form, not just the title-fallback
+  every hero-type post otherwise has), unless the post is already converted (the
+  box's Revert controls must stay reachable). This keeps the box off empty
+  pages and plain blog posts. The bulk runner is deliberately NOT changed to
+  match — its "Convert all remaining" batch table intentionally sweeps every
+  hero-applicable post (title-fallback included) for full coverage; see below.
+  The runner has no
   "convert everything" path for the search-and-select flow — you search posts
   by name across every convertible post type (via the
   `wp_ajax_coptrz_search_sections_posts` endpoint, results show each post's
