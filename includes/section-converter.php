@@ -34,11 +34,12 @@
  *              bookkeeping only, read by nothing at render time.
  *
  *              Tools provided: a per-post "Convert to Blocks" meta box (with
- *              dry-run) and a bulk runner under Tools > Convert to Blocks,
- *              including a per-post-type "convert all remaining" batch action
- *              — every post of a hero-applicable type has a hero (empty meta
- *              still falls back to the page title), so hand-picking posts one
- *              at a time doesn't cover that case at scale.
+ *              dry-run) and a search-and-select bulk runner under
+ *              Tools > Convert to Blocks (50/run cap). A read-only "remaining
+ *              by post type" table sits above the search as a progress
+ *              overview only — there is deliberately no batch "convert all
+ *              remaining" action; every post must be converted (or reverted)
+ *              individually, to avoid a wholesale sitewide conversion run.
  *
  *              Caveat: freezing sections is a SNAPSHOT. Dynamic widgets (post
  *              grids, sliders) keep working visually (main.js re-inits by
@@ -104,6 +105,28 @@ function coptrz_convertible_post_types()
 }
 
 /**
+ * Whether a post has any legacy `sections` / `sections_after_main` row data.
+ * Complex root fields are stored per-cell (e.g. `_sections|||0|value`, one row
+ * per cell) by the Carbon-fields-shaped meta shim — there is no bare
+ * `_sections` postmeta row, so a plain `metadata_exists('post', $id,
+ * '_sections')` check (the bug this replaces) always returns false. Mirrors
+ * the same `Key_Formatter::load_root_map()` lookup the legacy-data
+ * admin_notices hook below already uses.
+ *
+ * @param int $post_id
+ * @return bool
+ */
+function coptrz_post_has_sections_data($post_id)
+{
+    foreach (coptrz_section_source_fields() as $field_name) {
+        if (!empty(\CoptrzTheme\MetaShim\Key_Formatter::load_root_map('post', $post_id, $field_name))) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
  * What's pending for a post: a subset of `['hero', 'sections']`, empty when
  * there's nothing left to convert (or nothing applicable). Used by the bulk
  * search (to filter + label results) and mirrors — but doesn't replace — the
@@ -124,17 +147,19 @@ function coptrz_post_conversion_state($post_id)
     $pending = array();
 
     if (function_exists('coptrz_hero_is_converted')
+        && function_exists('coptrz_hero_has_content')
         && in_array($post->post_type, coptrz_hero_post_types(), true)
         && !coptrz_hero_is_converted($post_id)
+        && coptrz_hero_has_content($post_id)
     ) {
         $pending[] = 'hero';
     }
 
-    if (in_array($post->post_type, coptrz_section_post_types(), true) && !coptrz_sections_is_converted($post_id)) {
-        $has_sections = metadata_exists('post', $post_id, '_sections') || metadata_exists('post', $post_id, '_sections_after_main');
-        if ($has_sections) {
-            $pending[] = 'sections';
-        }
+    if (in_array($post->post_type, coptrz_section_post_types(), true)
+        && !coptrz_sections_is_converted($post_id)
+        && coptrz_post_has_sections_data($post_id)
+    ) {
+        $pending[] = 'sections';
     }
 
     return $pending;
@@ -170,9 +195,12 @@ function coptrz_conversion_pending_where($post_type)
     $branches = array();
     $args     = array();
 
-    if ($hero_applicable && defined('COPTRZ_HERO_CONVERTED_FLAG')) {
-        $branches[] = "NOT EXISTS (SELECT 1 FROM {$wpdb->postmeta} h WHERE h.post_id = p.ID AND h.meta_key = %s)";
+    if ($hero_applicable && defined('COPTRZ_HERO_CONVERTED_FLAG') && function_exists('coptrz_hero_has_content_where')) {
+        list($hero_where, $hero_args) = coptrz_hero_has_content_where('p');
+        $branches[] = "( NOT EXISTS (SELECT 1 FROM {$wpdb->postmeta} h WHERE h.post_id = p.ID AND h.meta_key = %s)
+                         AND {$hero_where} )";
         $args[]     = COPTRZ_HERO_CONVERTED_FLAG;
+        array_push($args, ...$hero_args);
     }
 
     if ($section_applicable) {
@@ -196,8 +224,8 @@ function coptrz_convertible_post_statuses()
 
 /**
  * How many posts of ONE post type still have something pending. Backs the
- * "Convert all remaining" per-type batch table on the bulk page. An estimate
- * — see coptrz_conversion_pending_where()'s docblock.
+ * read-only "remaining by post type" progress table on the bulk page. An
+ * estimate — see coptrz_conversion_pending_where()'s docblock.
  *
  * @param string $post_type
  * @return int
@@ -221,39 +249,9 @@ function coptrz_conversion_pending_count($post_type)
 }
 
 /**
- * IDs of posts of ONE post type that still have something pending, oldest ID
- * first, capped at $limit. Backs the "Convert all remaining" batch action.
- *
- * @param string $post_type
- * @param int $limit
- * @return int[]
- */
-function coptrz_conversion_pending_ids($post_type, $limit)
-{
-    global $wpdb;
-
-    list($where, $args) = coptrz_conversion_pending_where($post_type);
-    if ($where === '') {
-        return array();
-    }
-
-    $statuses  = coptrz_convertible_post_statuses();
-    $in_status = implode(',', array_fill(0, count($statuses), '%s'));
-
-    $sql = "SELECT p.ID FROM {$wpdb->posts} p
-            WHERE p.post_type = %s AND p.post_status IN ({$in_status}) AND {$where}
-            ORDER BY p.ID ASC LIMIT %d";
-
-    return array_map('intval', $wpdb->get_col($wpdb->prepare(
-        $sql,
-        array_merge(array($post_type), $statuses, $args, array((int) $limit))
-    )));
-}
-
-/**
  * How many posts of each convertible post type still have something pending.
- * Backs the "Convert all remaining" per-type batch table on the bulk page.
- * An estimate — see coptrz_conversion_pending_where()'s docblock.
+ * Backs the read-only "remaining by post type" progress table on the bulk
+ * page. An estimate — see coptrz_conversion_pending_where()'s docblock.
  *
  * @return array<string,int> post_type => remaining count
  */
@@ -3509,8 +3507,8 @@ add_action('add_meta_boxes', function ($post_type, $post) {
         || (function_exists('coptrz_hero_is_converted') && coptrz_hero_is_converted($post->ID));
 
     if (!$converted) {
-        $has_sections = metadata_exists('post', $post->ID, '_sections')
-            || metadata_exists('post', $post->ID, '_sections_after_main');
+        $has_sections = in_array($post_type, coptrz_section_post_types(), true)
+            && coptrz_post_has_sections_data($post->ID);
         $has_hero = in_array($post_type, coptrz_hero_post_types(), true)
             && function_exists('coptrz_hero_has_content')
             && coptrz_hero_has_content($post->ID);
@@ -3785,11 +3783,11 @@ add_action('wp_ajax_coptrz_search_sections_posts', function () {
 /**
  * Convert-by-search runner page: search posts by name (across every
  * convertible post type), pick the exact ones to freeze, then dry-run or
- * convert just those — same explicit-selection UX as before the hero merge,
- * plus a "Convert all remaining" table per post type below it, since every
- * post of a hero-applicable type has a hero (even unconfigured ones fall back
- * to the page title), so hand-picking doesn't reach full coverage for that
- * part the way search-and-select can for sections.
+ * convert just those — the only way to convert or revert a post from this
+ * page (50/run cap). A read-only "remaining by post type" table is shown
+ * above the search as a progress overview only; there is deliberately no
+ * batch "convert all remaining" action here, to avoid a wholesale sitewide
+ * conversion run.
  *
  * @return void
  */
@@ -3806,23 +3804,12 @@ function coptrz_render_bulk_converter_page()
     $limit     = 50; // safety cap per run
 
     if ($action && check_admin_referer('coptrz_bulk_convert')) {
-        if ($action === 'convert_remaining' || $action === 'convert_remaining_dry') {
-            $post_type = isset($_POST['coptrz_post_type']) ? sanitize_key($_POST['coptrz_post_type']) : '';
-            $dry       = ($action === 'convert_remaining_dry');
-            $ids       = in_array($post_type, coptrz_convertible_post_types(), true)
-                ? coptrz_conversion_pending_ids($post_type, $limit)
-                : array();
-            foreach ($ids as $pid) {
-                $did[] = coptrz_convert_post_to_blocks($pid, $dry);
-            }
-        } else {
-            // Always an explicit selection of post IDs (gathered via the name search).
-            preg_match_all('/\d+/', $ids_raw, $m);
-            $ids = array_values(array_unique(array_map('intval', $m[0])));
-            $dry = ($action === 'dry' || $action === 'revert_dry');
-            foreach (array_slice($ids, 0, $limit) as $pid) {
-                $did[] = $is_revert ? coptrz_revert_post_to_blocks($pid, $dry) : coptrz_convert_post_to_blocks($pid, $dry);
-            }
+        // Always an explicit selection of post IDs (gathered via the name search).
+        preg_match_all('/\d+/', $ids_raw, $m);
+        $ids = array_values(array_unique(array_map('intval', $m[0])));
+        $dry = ($action === 'dry' || $action === 'revert_dry');
+        foreach (array_slice($ids, 0, $limit) as $pid) {
+            $did[] = $is_revert ? coptrz_revert_post_to_blocks($pid, $dry) : coptrz_convert_post_to_blocks($pid, $dry);
         }
     }
 
@@ -3856,7 +3843,7 @@ function coptrz_render_bulk_converter_page()
         <?php if (!empty($did)) :
             $heading = $is_revert
                 ? (($action === 'revert_dry') ? __('Dry run revert results', 'coptrz-theme') : __('Revert results', 'coptrz-theme'))
-                : (($action === 'dry' || $action === 'convert_remaining_dry') ? __('Dry run results', 'coptrz-theme') : __('Conversion results', 'coptrz-theme'));
+                : (($action === 'dry') ? __('Dry run results', 'coptrz-theme') : __('Conversion results', 'coptrz-theme'));
         ?>
             <h2><?php echo esc_html($heading); ?></h2>
             <table class="widefat striped">
@@ -3889,10 +3876,10 @@ function coptrz_render_bulk_converter_page()
             </table>
         <?php endif; ?>
 
-        <h2 style="margin-top:2em;"><?php esc_html_e('Convert all remaining, by post type', 'coptrz-theme'); ?></h2>
-        <p class="description"><?php esc_html_e('Runs up to 50 at a time (dry run first is recommended). Click again to continue until the remaining count reaches 0. "Remaining" is an estimate — a post may still be skipped at conversion time (e.g. a hero that wouldn’t render identically as a block).', 'coptrz-theme'); ?></p>
-        <table class="widefat" style="max-width:600px;">
-            <thead><tr><th><?php esc_html_e('Post Type', 'coptrz-theme'); ?></th><th><?php esc_html_e('Remaining', 'coptrz-theme'); ?></th><th></th></tr></thead>
+        <h2 style="margin-top:2em;"><?php esc_html_e('Remaining to convert, by post type', 'coptrz-theme'); ?></h2>
+        <p class="description"><?php esc_html_e('Progress overview only — posts are converted individually, via the per-post "Convert to Blocks" box or the search below. "Remaining" is an estimate — a post may still be skipped at conversion time (e.g. a hero that wouldn’t render identically as a block).', 'coptrz-theme'); ?></p>
+        <table class="widefat" style="max-width:400px;">
+            <thead><tr><th><?php esc_html_e('Post Type', 'coptrz-theme'); ?></th><th><?php esc_html_e('Remaining', 'coptrz-theme'); ?></th></tr></thead>
             <tbody>
             <?php foreach ($remaining as $post_type => $count) :
                 $obj = get_post_type_object($post_type);
@@ -3901,16 +3888,6 @@ function coptrz_render_bulk_converter_page()
                 <tr>
                     <td><?php echo esc_html($label); ?></td>
                     <td><?php echo (int) $count; ?></td>
-                    <td>
-                        <?php if ($count > 0) : ?>
-                        <form method="post" style="display:inline-block;margin-right:6px;">
-                            <?php wp_nonce_field('coptrz_bulk_convert'); ?>
-                            <input type="hidden" name="coptrz_post_type" value="<?php echo esc_attr($post_type); ?>" />
-                            <button type="submit" name="coptrz_bulk_action" value="convert_remaining_dry" class="button"><?php esc_html_e('Dry run next 50', 'coptrz-theme'); ?></button>
-                            <button type="submit" name="coptrz_bulk_action" value="convert_remaining" class="button button-primary" onclick="return confirm('<?php echo esc_js(__('Convert the next 50 remaining posts of this type?', 'coptrz-theme')); ?>');"><?php esc_html_e('Convert next 50', 'coptrz-theme'); ?></button>
-                        </form>
-                        <?php endif; ?>
-                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

@@ -236,6 +236,54 @@ function coptrz_hero_has_content($post_id)
 }
 
 /**
+ * SQL mirror of coptrz_hero_has_content() — a correlated-EXISTS WHERE
+ * fragment (against a `{$alias}` alias on wp_posts) matching posts whose Hero
+ * meta carries real content, i.e. NOT hero_hidden AND at least one of
+ * heading/description/background/background_youtube/buttons/form_enable is
+ * set. MUST be kept in sync with coptrz_hero_has_content() by hand — there is
+ * no single source of truth, since one runs in PHP per-post (on real Carbon
+ * values via get__post_meta_by_id()) and this one runs as SQL over raw
+ * postmeta rows.
+ *
+ * Storage formats (confirmed against production data): checkboxes
+ * (`hero_hidden`, `hero_form_enable`) store `'yes'` or `''`
+ * (meta-shim Writer::normalize()); `hero_background` stores an attachment ID
+ * string, `'0'`/`''` meaning none; the `buttons` complex field's first row
+ * cell is stored under the key `_buttons|||0|value`.
+ *
+ * Used by coptrz_conversion_pending_where() (section-converter.php) for the
+ * bulk page's "remaining" counts — a correlated EXISTS/NOT EXISTS pair against
+ * {$wpdb->postmeta}, not a meta_query, per the performance note in that
+ * function's docblock (an OR of unkeyed LEFT JOINs is a cartesian scan at this
+ * site's meta-per-post scale).
+ *
+ * @param string $alias wp_posts table alias to correlate against.
+ * @return array{0:string,1:array} [$where_sql, $prepare_args]
+ */
+function coptrz_hero_has_content_where($alias = 'p')
+{
+    global $wpdb;
+
+    $sql = "NOT EXISTS (SELECT 1 FROM {$wpdb->postmeta} hh WHERE hh.post_id = {$alias}.ID AND hh.meta_key = %s AND hh.meta_value = %s)
+            AND EXISTS (SELECT 1 FROM {$wpdb->postmeta} hc WHERE hc.post_id = {$alias}.ID AND (
+                (hc.meta_key IN (%s, %s, %s) AND hc.meta_value <> '')
+                OR (hc.meta_key = %s AND hc.meta_value NOT IN ('', '0'))
+                OR (hc.meta_key = %s AND hc.meta_value <> '')
+                OR (hc.meta_key = %s AND hc.meta_value = %s)
+            ))";
+
+    $args = array(
+        '_hero_hidden', 'yes',
+        '_hero_heading', '_hero_description', '_hero_background_youtube',
+        '_hero_background',
+        '_buttons|||0|value',
+        '_hero_form_enable', 'yes',
+    );
+
+    return array($sql, $args);
+}
+
+/**
  * The strongest available "would this convert cleanly" check: render the hero
  * BOTH ways — from the live meta (___hero_args_from_meta()) and from the
  * block attributes a conversion would write

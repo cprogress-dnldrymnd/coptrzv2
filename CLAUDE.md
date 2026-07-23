@@ -529,33 +529,41 @@ case studies, rentals, landing pages, etc).
   `coptrz_register_html_sections_fields()`, `coptrz_convertible_post_types()`
   (the union of `coptrz_section_post_types()` and `coptrz_hero_post_types()`,
   includes/hero-converter.php — drives the admin surface below),
+  `coptrz_post_has_sections_data($post_id)` (whether a post has any legacy
+  `sections`/`sections_after_main` row data — complex root fields are stored
+  per-cell, e.g. `_sections|||0|value`, so this reads via
+  `Key_Formatter::load_root_map()` rather than `metadata_exists()`, which
+  always returns false for a bare `_sections` key),
   `coptrz_post_conversion_state($post_id)` (cheap per-post pending-parts
   estimate for the bulk search), `coptrz_conversion_remaining_counts()`.
   Admin tools: a per-post "Convert to Blocks" meta box (side, with dry-run) and
-  a convert-by-search runner at Tools > Convert to Blocks. The per-post box
-  only renders when there's actually something to convert: it's suppressed for
-  a post with no `_sections`/`_sections_after_main` meta AND no meaningful hero
-  content (`coptrz_hero_has_content()`, includes/hero-converter.php — real
+  a convert-by-search runner at Tools > Convert to Blocks — search-and-select
+  is the ONLY way to convert or revert from this page (50/run cap); there is
+  no batch "convert all remaining" action, by design, to avoid a wholesale
+  sitewide conversion run. The per-post box only renders when there's
+  actually something to convert: it's suppressed for a post with no sections
+  data (`coptrz_post_has_sections_data()`) AND no meaningful hero content
+  (`coptrz_hero_has_content()`, includes/hero-converter.php — real
   heading/description/background/buttons/form, not just the title-fallback
-  every hero-type post otherwise has), unless the post is already converted (the
-  box's Revert controls must stay reachable). This keeps the box off empty
-  pages and plain blog posts. The bulk runner is deliberately NOT changed to
-  match — its "Convert all remaining" batch table intentionally sweeps every
-  hero-applicable post (title-fallback included) for full coverage; see below.
-  The runner has no
-  "convert everything" path for the search-and-select flow — you search posts
-  by name across every convertible post type (via the
-  `wp_ajax_coptrz_search_sections_posts` endpoint, results show each post's
-  type and what's pending — sections, hero, or both), pick an explicit
-  selection, then dry-run or convert just those (50/run cap). Below that, a
-  per-post-type "Convert all remaining" batch table (also 50/run, click again
-  to continue) exists because — unlike sections, which only apply to posts
-  that actually have section data — EVERY post of a hero-applicable type has a
-  hero (empty meta still falls back to the page title), so hand-picking
-  doesn't reach full coverage for that part at scale.
-  The per-post box's `wp_ajax_coptrz_convert_sections` handler and the bulk
-  runner's per-ID loop both call `coptrz_convert_post_to_blocks()` unconditionally
-  — it decides internally which of sections/hero actually apply.
+  every hero-type post otherwise has), unless the post is already converted
+  (the box's Revert controls must stay reachable). This keeps the box off
+  empty pages and plain blog posts. `coptrz_post_conversion_state()` (backing
+  the search results' pending label) and the read-only "remaining by post
+  type" progress table above the search both use these same two gates —
+  `coptrz_post_has_sections_data()` for sections,
+  `coptrz_hero_has_content_where()` (includes/hero-converter.php — the SQL
+  mirror of `coptrz_hero_has_content()`, kept in sync by hand; storage
+  formats: checkboxes are `'yes'`/`''`, `hero_background` is an attachment ID
+  string, the `buttons` complex field's first row lives at
+  `_buttons|||0|value`) for hero, wired into
+  `coptrz_conversion_pending_where()`'s hero branch — so the count no longer
+  overstates every hero-applicable post as pending (e.g. it previously showed
+  600/602 Posts and 61/61 Guides "remaining" when almost none had real hero
+  content to convert).
+  The per-post box's `wp_ajax_coptrz_convert_sections` handler and the
+  search-and-select runner's per-ID loop both call
+  `coptrz_convert_post_to_blocks()` unconditionally — it decides internally
+  which of sections/hero actually apply.
   `product` posts still need special handling internally (no `before`/`after`-main
   content split the way other post types have), which
   `coptrz_convert_post_to_blocks()` handles itself via
