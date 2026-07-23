@@ -22,5 +22,8 @@
     <?php
     echo do_shortcode(___sections());
     ?>
+    <?php
+    the_content();
+    ?>
     <?php wp_footer(); ?>
 </body>
