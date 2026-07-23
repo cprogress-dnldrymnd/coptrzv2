@@ -70,8 +70,21 @@ const COPTRZ_CONVERTED_BLOCKS = '_coptrz_converted_blocks';
 /** Per-post opt-in: serve the legacy (unconverted) render to logged-out visitors. */
 const COPTRZ_SERVE_LEGACY_PUBLIC = '_coptrz_serve_legacy_public';
 
-/** Post meta flag marking a converted post's legacy sections/hero data as permanently deleted. */
+/**
+ * Post meta flag: EVERY part that was ever purgeable on this post has been
+ * purged (coptrz_purge_post_legacy_data() only sets this once
+ * coptrz_post_purgeable_parts() comes back empty). NOT the same as "the whole
+ * post is done" — a part that was never converted in the first place is
+ * never "purgeable", so this can be true while that part is still pending.
+ * See coptrz_post_is_legacy_purged()'s docblock.
+ */
 const COPTRZ_LEGACY_PURGED_FLAG = '_coptrz_legacy_purged';
+
+/** Post meta flag: this post's SECTIONS legacy data specifically has been purged. */
+const COPTRZ_SECTIONS_PURGED_FLAG = '_coptrz_sections_purged';
+
+/** Post meta flag: this post's HERO legacy data specifically has been purged. */
+const COPTRZ_HERO_PURGED_FLAG = '_coptrz_hero_purged';
 
 /** Source page-builder fields, in render order. */
 function coptrz_section_source_fields()
@@ -363,10 +376,20 @@ function coptrz_sections_is_converted($post_id)
 }
 
 /**
- * Whether a post's legacy sections/hero data has been permanently deleted via
- * the per-post box's Purge action (coptrz_purge_post_legacy_data()). Once set,
- * Revert/"Preview original"/the legacy public fallback are no longer possible
- * for the purged part(s) — there is nothing left to revert to.
+ * Whether EVERY part of a post that was ever purgeable has been purged via
+ * the per-post box's Purge action (coptrz_purge_post_legacy_data()). Once
+ * set, the shared COPTRZ_PRE_CONVERT_CONTENT backup is gone, so Revert is
+ * permanently refused for the whole post (coptrz_revert_post_to_blocks()) and
+ * the sections legacy override/public fallback are refused too
+ * (coptrz_sections_legacy_override()).
+ *
+ * NOT the same question as "is there nothing left to do on this post" — a
+ * part that was NEVER converted in the first place is never "purgeable"
+ * (coptrz_post_purgeable_parts() requires converted AND has-data), so this
+ * can be true while that other part is still genuinely pending. Callers that
+ * need "is THIS SPECIFIC part purged" should use coptrz_sections_is_purged()
+ * / coptrz_hero_is_purged() instead; callers that need "is there anything
+ * left to act on at all" should also check coptrz_post_conversion_state().
  *
  * @param int $post_id
  * @return bool
@@ -374,6 +397,33 @@ function coptrz_sections_is_converted($post_id)
 function coptrz_post_is_legacy_purged($post_id)
 {
     return get_post_meta($post_id, COPTRZ_LEGACY_PURGED_FLAG, true) === 'yes';
+}
+
+/**
+ * Whether THIS post's sections data specifically was purged — set alongside
+ * (and independently of) COPTRZ_LEGACY_PURGED_FLAG, which only reflects
+ * whether EVERY purgeable part is done. Use this (not the post-wide flag)
+ * anywhere the question is specifically about sections, e.g. whether the
+ * "Preview original" / logged-out-fallback controls still mean anything.
+ *
+ * @param int $post_id
+ * @return bool
+ */
+function coptrz_sections_is_purged($post_id)
+{
+    return get_post_meta($post_id, COPTRZ_SECTIONS_PURGED_FLAG, true) === 'yes';
+}
+
+/**
+ * Whether THIS post's hero data specifically was purged. See
+ * coptrz_sections_is_purged()'s docblock — same reasoning, hero side.
+ *
+ * @param int $post_id
+ * @return bool
+ */
+function coptrz_hero_is_purged($post_id)
+{
+    return get_post_meta($post_id, COPTRZ_HERO_PURGED_FLAG, true) === 'yes';
 }
 
 /**
@@ -389,12 +439,24 @@ function coptrz_post_is_legacy_purged($post_id)
  * and must stay pure, or a preview/public-fallback request could re-trigger a
  * conversion and duplicate content.
  *
+ * Refuses once EITHER coptrz_post_is_legacy_purged() (everything purgeable is
+ * gone) OR coptrz_sections_is_purged() (just the sections part is gone) is
+ * true — the post-wide flag alone isn't enough, since it can stay false while
+ * sections has already been purged (e.g. hero was converted separately and is
+ * still awaiting its own purge, so coptrz_post_purgeable_parts() isn't empty
+ * yet) — without the sections-specific check this would try to render
+ * ___sections() legacy output from data that's already gone.
+ *
  * @param int $post_id
  * @return bool
  */
 function coptrz_sections_legacy_override($post_id)
 {
-    if (is_admin() || !coptrz_sections_is_converted($post_id) || coptrz_post_is_legacy_purged($post_id)) {
+    if (is_admin()
+        || !coptrz_sections_is_converted($post_id)
+        || coptrz_post_is_legacy_purged($post_id)
+        || coptrz_sections_is_purged($post_id)
+    ) {
         return false;
     }
     if (isset($_GET['coptrz_preview']) && $_GET['coptrz_preview'] === 'original'
@@ -3161,6 +3223,7 @@ function coptrz_convert_post_to_blocks($post_id, $dry_run = false)
         'title'    => $src ? $src->post_title : '',
         'type'     => $src ? $src->post_type : '',
         'mode'     => 'blocks',
+        'dry_run'  => (bool) $dry_run,
         'counts'   => array(),
         'native'   => array(),
         'snapshot' => array(),
@@ -3412,6 +3475,7 @@ function coptrz_revert_post_to_blocks($post_id, $dry_run = false)
         'title'    => $src ? $src->post_title : '',
         'type'     => $src ? $src->post_type : '',
         'target'   => 'Legacy sections builder + Hero meta box',
+        'dry_run'  => (bool) $dry_run,
         'counts'   => array(), // kept for shape-compatibility with the bulk results table
         'warnings' => array(),
         'skipped'  => false,
@@ -3629,6 +3693,22 @@ function coptrz_post_purgeable_parts($post_id)
  * ___sections() / ___hero_modules() back to the now-empty legacy builders);
  * `post_content` itself, force or not — purge NEVER writes post_content.
  *
+ * Sets COPTRZ_SECTIONS_PURGED_FLAG / COPTRZ_HERO_PURGED_FLAG independently,
+ * one per part actually purged in THIS call — read by
+ * coptrz_sections_is_purged() / coptrz_hero_is_purged(). Separate from (and
+ * set alongside, never instead of) COPTRZ_LEGACY_PURGED_FLAG below, which
+ * only reflects "every part that was ever purgeable is now purged" — a post
+ * can have its sections purged (this flag true) while its hero was never
+ * converted and is still pending, in which case the post-wide flag stays
+ * false until hero is eventually converted-then-purged too.
+ *
+ * The report's `dry_run` key reflects what actually ran, server-side — the
+ * box's JS trusts this (not its own local intent) to decide whether to show
+ * the "nothing was written" banner, since a dry run's `purged` key is
+ * populated exactly the same way a real run's is (it describes what
+ * would/did happen either way) and is not on its own distinguishable.
+ *
+
  * @param int  $post_id
  * @param bool $dry_run  When true, report what would be deleted but write nothing.
  * @param bool $force    When true, purge a corrupted post anyway (see
@@ -3651,6 +3731,8 @@ function coptrz_purge_post_legacy_data($post_id, $dry_run = false, $force = fals
         'title'    => $src ? $src->post_title : '',
         'type'     => $src ? $src->post_type : '',
         'target'   => 'Legacy sections/hero meta (permanent deletion)',
+        'dry_run'  => (bool) $dry_run,
+        'force'    => (bool) $force,
         'purged'   => array(),
         'warnings' => array(),
         'skipped'  => false,
@@ -3690,6 +3772,7 @@ function coptrz_purge_post_legacy_data($post_id, $dry_run = false, $force = fals
             delete_post_meta($post_id, COPTRZ_CONVERTED_BLOCKS);
             delete_post_meta($post_id, COPTRZ_PRE_CONVERT_TEMPLATE);
             delete_post_meta($post_id, COPTRZ_SERVE_LEGACY_PUBLIC);
+            update_post_meta($post_id, COPTRZ_SECTIONS_PURGED_FLAG, 'yes');
         }
     }
 
@@ -3702,6 +3785,7 @@ function coptrz_purge_post_legacy_data($post_id, $dry_run = false, $force = fals
             if (defined('COPTRZ_HERO_BLOCK_PREFIX')) {
                 delete_post_meta($post_id, COPTRZ_HERO_BLOCK_PREFIX);
             }
+            update_post_meta($post_id, COPTRZ_HERO_PURGED_FLAG, 'yes');
         }
     }
 
@@ -3738,16 +3822,24 @@ function coptrz_purge_post_legacy_data($post_id, $dry_run = false, $force = fals
 /* ========================================================================= */
 
 /**
- * Conversion status label shown next to the post title on every convertible
- * post type's list table (Pages, Products, …) — the same "— Private" /
- * "— Posts Page" slot core uses, via the display_post_states filter. Lets an
- * editor see what still needs converting without opening each post.
+ * Conversion status label(s) shown next to the post title on every
+ * convertible post type's list table (Pages, Products, …) — the same
+ * "— Private" / "— Posts Page" slot core uses, via the display_post_states
+ * filter (core joins every entry in $states with ", ", the same mechanism
+ * that already produces "Front Page, Needs converting"). Lets an editor see
+ * what still needs converting without opening each post.
  *
- * Checked in this order: pending (either part) wins over "converted" — a post
- * with its hero converted but sections still outstanding should read "Needs
- * converting", matching what the meta box would still offer. Purged only
- * applies once nothing is pending, since a post can have one part converted
- * (and purged) while the other is still mid-migration.
+ * Sections and hero are independent per post (coptrz_convert_post_to_blocks()
+ * converts whichever applies), so a post can genuinely be in BOTH states at
+ * once — e.g. sections converted-and-purged while hero was never converted
+ * and still has real content. Both entries are added independently rather
+ * than one winning: "Needs converting" reflects
+ * coptrz_post_conversion_state() (pending, either part); "Converted"/
+ * "Converted (purged)" reflects whether ANYTHING is converted at all, and
+ * coptrz_post_is_legacy_purged() for the wording — that flag means "every
+ * part that was ever purgeable has been purged", which can be true even
+ * while some OTHER, never-converted part is still pending; it is not "this
+ * whole post is done".
  *
  * Both underlying checks (coptrz_post_conversion_state() ->
  * coptrz_post_has_sections_data() / coptrz_hero_has_content()) read only from
@@ -3764,20 +3856,17 @@ add_filter('display_post_states', function ($states, $post) {
     }
 
     if (!empty(coptrz_post_conversion_state($post->ID))) {
-        $states['coptrz_convert'] = '<span style="color:#996800;font-weight:600;">' . __('Needs converting', 'coptrz-theme') . '</span>';
-        return $states;
+        $states['coptrz_convert_pending'] = '<span style="color:#996800;font-weight:600;">' . __('Needs converting', 'coptrz-theme') . '</span>';
     }
 
     $converted = coptrz_sections_is_converted($post->ID)
         || (function_exists('coptrz_hero_is_converted') && coptrz_hero_is_converted($post->ID));
-    if (!$converted) {
-        return $states;
-    }
-
-    if (coptrz_post_is_legacy_purged($post->ID)) {
-        $states['coptrz_convert'] = '<span style="color:#646970;">' . __('Converted (purged)', 'coptrz-theme') . '</span>';
-    } else {
-        $states['coptrz_convert'] = '<span style="color:#1a7f37;">' . __('Converted', 'coptrz-theme') . '</span>';
+    if ($converted) {
+        if (coptrz_post_is_legacy_purged($post->ID)) {
+            $states['coptrz_convert_done'] = '<span style="color:#646970;">' . __('Converted (purged)', 'coptrz-theme') . '</span>';
+        } else {
+            $states['coptrz_convert_done'] = '<span style="color:#1a7f37;">' . __('Converted', 'coptrz-theme') . '</span>';
+        }
     }
 
     return $states;
@@ -3827,10 +3916,18 @@ add_action('add_meta_boxes', function ($post_type, $post) {
  * Three states: not converted (convert UI), converted (today's UI, plus a
  * Purge block when there's still legacy data a manage_options user can
  * delete — coptrz_post_purgeable_parts()), and fully purged (terminal —
- * see coptrz_post_is_legacy_purged(), a message only, no buttons: there is
- * nothing left to act on, and re-showing Revert/Preview/Convert controls
- * would imply actions that no longer work). Within the converted state, a
- * post whose content is already corrupted ($purge_blocked_corrupt,
+ * a message only, no buttons: there is nothing left to act on, and
+ * re-showing Revert/Preview/Convert controls would imply actions that no
+ * longer work). That terminal state requires BOTH
+ * coptrz_post_is_legacy_purged() (nothing left to revert to) AND nothing
+ * still pending (coptrz_post_conversion_state()) — the flag alone isn't
+ * enough, since it can be true while some OTHER part was never converted in
+ * the first place and still has real content: e.g. sections purged, hero
+ * never touched. In that case the converted branch still renders, with an
+ * extra "still needs converting" block above Revert (same Dry run/Convert
+ * buttons the not-converted state uses; coptrz_convert_post_to_blocks()
+ * already safely skips whichever part is done). Within the converted state,
+ * a post whose content is already corrupted ($purge_blocked_corrupt,
  * coptrz_content_is_corrupted()) gets a tucked-away "Force purge anyway"
  * disclosure instead of the normal Purge buttons — see
  * coptrz_purge_post_legacy_data()'s $force param docs for why this is a
@@ -3845,7 +3942,8 @@ function coptrz_render_section_converter_box($post)
     $sections_converted = coptrz_sections_is_converted($post->ID);
     $hero_converted     = function_exists('coptrz_hero_is_converted') && coptrz_hero_is_converted($post->ID);
     $converted          = $sections_converted || $hero_converted;
-    $fully_purged       = $converted && coptrz_post_is_legacy_purged($post->ID);
+    $pending            = coptrz_post_conversion_state($post->ID);
+    $fully_purged       = $converted && coptrz_post_is_legacy_purged($post->ID) && empty($pending);
     $purgeable          = $fully_purged ? array() : coptrz_post_purgeable_parts($post->ID);
     // coptrz_purge_post_legacy_data() already refuses on corrupted content
     // (see its docblock) — checked here too so the box explains why instead
@@ -3885,7 +3983,21 @@ function coptrz_render_section_converter_box($post)
                 <?php endif; ?>
             </p>
 
-            <?php if ($sections_converted) : ?>
+            <?php if (!empty($pending)) : ?>
+            <hr style="margin:10px 0;" />
+            <p class="description" style="margin-top:0;color:#996800;font-weight:600;">
+                <?php
+                /* translators: %s: "sections", "hero", or "sections + hero" */
+                printf(esc_html__('Still needs converting: %s.', 'coptrz-theme'), esc_html(implode(' + ', $pending)));
+                ?>
+            </p>
+            <p style="margin-bottom:6px;">
+                <button type="button" class="button coptrz-conv__dry"><?php esc_html_e('Dry run', 'coptrz-theme'); ?></button>
+                <button type="button" class="button button-primary coptrz-conv__go"><?php esc_html_e('Convert remaining', 'coptrz-theme'); ?></button>
+            </p>
+            <?php endif; ?>
+
+            <?php if ($sections_converted && !coptrz_sections_is_purged($post->ID)) : ?>
             <p style="margin:10px 0 6px;">
                 <a href="<?php echo esc_url(add_query_arg('coptrz_preview', 'original', get_permalink($post->ID))); ?>" class="button" target="_blank" rel="noopener">
                     <?php esc_html_e('Preview original (unconverted)', 'coptrz-theme'); ?>
@@ -3963,7 +4075,19 @@ function coptrz_render_section_converter_box($post)
             fetch(ajaxurl, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body })
                 .then(function (r) { return r.json(); })
                 .then(function (res) {
-                    out.textContent = JSON.stringify(res.data || res, null, 2);
+                    var data = res.data || res;
+                    // Trust the SERVER's report, not the client's own `dry` var —
+                    // this is what actually ran. A dry run's report is otherwise
+                    // shaped identically to a real one (same "purged"/"restored"
+                    // keys get populated either way, since the report describes
+                    // what WOULD/DID happen) — this banner is the only thing that
+                    // stops a dry-run result from reading as confirmation that
+                    // something irreversible actually happened.
+                    var isDry = !!(data && data.dry_run);
+                    out.style.cssText = 'font:12px/1.5 monospace;max-height:220px;overflow:auto;' +
+                        (isDry ? 'border:2px solid #dba617;background:#fcf5e6;padding:6px;' : '');
+                    var prefix = isDry ? '⚠ DRY RUN — nothing was written. Nothing below actually happened yet.\n\n' : '';
+                    out.textContent = prefix + JSON.stringify(data, null, 2);
                     if (!dry && res.success) { setTimeout(function () { location.reload(); }, 800); }
                 })
                 .catch(function (e) { out.textContent = 'Error: ' + e; });

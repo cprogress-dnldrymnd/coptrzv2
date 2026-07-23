@@ -536,8 +536,9 @@ case studies, rentals, landing pages, etc).
   always returns false for a bare `_sections` key),
   `coptrz_post_conversion_state($post_id)` (cheap per-post pending-parts
   estimate for the bulk search), `coptrz_conversion_remaining_counts()`,
-  `coptrz_post_is_legacy_purged($post_id)`, `coptrz_post_purgeable_parts($post_id)`,
-  `coptrz_purge_post_legacy_data($post_id, $dry_run)`,
+  `coptrz_post_is_legacy_purged($post_id)`, `coptrz_sections_is_purged($post_id)`,
+  `coptrz_hero_is_purged($post_id)`, `coptrz_post_purgeable_parts($post_id)`,
+  `coptrz_purge_post_legacy_data($post_id, $dry_run, $force)`,
   `coptrz_content_is_corrupted($content)` (see Purge below).
   Admin tools: a per-post "Convert to Blocks" meta box (side, with dry-run) and
   a convert-by-search runner at Tools > Convert to Blocks — search-and-select
@@ -877,12 +878,17 @@ case studies, rentals, landing pages, etc).
   the current selection (converting vs reverting are disjoint candidate sets).
 
   **Post-list status label** — a `display_post_states` filter prints "Needs
-  converting" (amber), "Converted" (green), or "Converted (purged)" (grey) next
+  converting" (amber) and/or "Converted"/"Converted (purged)" (green/grey) next
   to the title on every convertible post type's list table (the same slot core
-  uses for "— Private"/"— Posts Page"), scoped to `coptrz_convertible_post_types()`.
-  Pending wins over converted (a post with its hero converted but sections still
-  outstanding reads "Needs converting", matching what the meta box would still
-  offer); purged only applies once nothing is pending. Reads only
+  uses for "— Private"/"— Posts Page", joined with ", " by core itself), scoped
+  to `coptrz_convertible_post_types()`. The two are independent `$states[]`
+  entries, not one winner-take-all label: sections and hero convert (and purge)
+  independently, so a post CAN legitimately be both at once — e.g. sections
+  converted-and-purged while hero was never converted and still has real
+  content reads "Needs converting, Converted (purged)". `coptrz_post_is_legacy_purged()`
+  answers "is everything that was ever purgeable now purged", which is not the
+  same question as "is this post fully done" (see its docblock) — that's why
+  it's fine for both labels to appear together. Reads only
   `coptrz_post_conversion_state()` / the converted flags / `coptrz_post_is_legacy_purged()`
   — all meta-cache-only (see below), so the label adds no queries per row.
   `coptrz_hero_has_content()` was rewritten to read its six signals
@@ -920,8 +926,33 @@ case studies, rentals, landing pages, etc).
   purgeable remains — a post converted for both parts but purged one at a time
   must not lose the backup the other part might still need. Once purging leaves
   nothing purgeable, `_coptrz_legacy_purged` (`COPTRZ_LEGACY_PURGED_FLAG`,
-  `coptrz_post_is_legacy_purged()`) is set — the terminal state the meta box and
-  list-table label both check.
+  `coptrz_post_is_legacy_purged()`) is set. **This is NOT "this post is fully
+  done"** — it's "every part that was ever purgeable is now purged" — and it can
+  be true while a DIFFERENT part that was never converted in the first place is
+  still genuinely pending (that part was never "purgeable", so it doesn't block
+  the flag). E.g. sections purged, hero never touched: the flag is true, but the
+  post still needs hero converting. Each part ALSO gets its own independent flag
+  — `COPTRZ_SECTIONS_PURGED_FLAG` / `COPTRZ_HERO_PURGED_FLAG`
+  (`coptrz_sections_is_purged()` / `coptrz_hero_is_purged()`) — set alongside the
+  post-wide one, for callers that need to know about ONE specific part rather
+  than "is everything purgeable done". `coptrz_sections_legacy_override()` checks
+  both the post-wide flag AND `coptrz_sections_is_purged()` before allowing
+  `?coptrz_preview=original` — the post-wide flag alone would miss the case
+  above (sections purged, hero still pending keeps it false), and without the
+  per-part check the preview would try to render `___sections()` legacy output
+  from data that's already gone.
+  The report every convert/revert/purge action returns now carries an explicit
+  `'dry_run' => (bool) $dry_run` key. This was found necessary the hard way: a
+  dry run's report is otherwise shaped IDENTICALLY to a real run's (`purged`/
+  `restored`/etc describe what would/did happen either way), so reading one in
+  the meta box's output pane gave no indication nothing had actually been
+  written — exactly what caused a real support incident (a homepage believed
+  force-purged, that in fact still had all its legacy data intact, because only
+  "Dry run force purge" had been clicked). The box's JS now reads this key from
+  the SERVER's response (not its own local intent) and, when true, prepends a
+  visible "⚠ DRY RUN — nothing was written" banner with a distinct
+  border/background on the output pane — not just a JSON field a user has to
+  know to look for.
   Refuses (no writes, `skipped: true`) when nothing is purgeable (never converted,
   or already purged), or when `post_content` matches the `wp_slash()` corruption
   signature (extracted from `coptrz_find_corrupted_conversions()` into
@@ -951,16 +982,30 @@ case studies, rentals, landing pages, etc).
   its no-backup regeneration path, which — with the source meta gone — would
   silently strip the hero block and leave the unsourced converted section blocks in
   place instead of actually restoring anything). `coptrz_sections_legacy_override()`
-  likewise refuses once purged, so `?coptrz_preview=original` stops working (the
-  public-fallback checkbox is already neutralized, since purge deletes
+  likewise refuses once EITHER the post-wide flag OR `coptrz_sections_is_purged()`
+  is true, so `?coptrz_preview=original` stops working the moment sections
+  specifically is purged, not only once the whole post is (the public-fallback
+  checkbox is already neutralized either way, since purge deletes
   `_coptrz_serve_legacy_public` itself).
-  Meta box: once `coptrz_post_is_legacy_purged()`, the box collapses to ONE line —
-  "This post/page was converted from the old editor." — no buttons; Convert/Revert
-  controls would imply actions that no longer work. While still converted but not
-  fully purged, a manage_options user sees a Purge block (red warning text, Dry run
-  purge / Purge behind a `confirm()`) below the existing Revert controls, shown only
-  when `coptrz_post_purgeable_parts()` is non-empty — same inline-`<script>`/admin-ajax
-  pattern as convert/revert, hitting a new `wp_ajax_coptrz_purge_sections` handler.
+  Meta box: the terminal "This post/page was converted from the old editor." —
+  no buttons — state requires BOTH `coptrz_post_is_legacy_purged()` AND nothing
+  still pending (`coptrz_post_conversion_state()`); the flag alone isn't enough,
+  per the "not the same as fully done" note above — showing the terminal message
+  while a never-converted part still had real content would have hidden the only
+  way to ever convert it. When something's still pending, the converted branch
+  instead shows an extra amber "Still needs converting: hero." (or `sections`, or
+  `sections + hero`) block with the same Dry run / "Convert remaining" buttons
+  the unconverted state uses (`coptrz_convert_post_to_blocks()` already safely
+  skips whichever part is done — same AJAX action, no new handler). While still
+  converted but not fully purged, a manage_options user ALSO sees a Purge block
+  (red warning text, Dry run purge / Purge behind a `confirm()`) below the
+  existing Revert controls, shown only when `coptrz_post_purgeable_parts()` is
+  non-empty — same inline-`<script>`/admin-ajax pattern as convert/revert,
+  hitting a new `wp_ajax_coptrz_purge_sections` handler. The "Preview original"
+  link and logged-out-fallback checkbox are gated on `$sections_converted &&
+  !coptrz_sections_is_purged()`, not just `$sections_converted` — otherwise
+  they'd keep showing (uselessly) after sections is purged but hero is still
+  the reason the post as a whole isn't `$fully_purged`.
   When purgeable but `coptrz_content_is_corrupted($post->post_content)` is also true,
   the button is replaced with a one-line explanation pointing at the Tools page's
   corrupted-conversions repair flow instead — found necessary by testing against real
