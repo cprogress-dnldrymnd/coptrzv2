@@ -1774,9 +1774,13 @@ function dd_custom_css_collector($css = null)
 
 /**
  * Reserves the spot in <head> where the consolidated CSS will land. Runs late
- * (priority 999) so it sits after core's own block-support styles, giving our
- * rules a source-order edge in addition to the !important they already carry
- * where needed.
+ * (priority 999), but on a classic theme WP 7's wp_hoist_late_printed_styles()
+ * still moves core's block-support styles to just before </head> — later than
+ * this placeholder — so source order alone can't be relied on here. Rules that
+ * need to win against equal-specificity core output either carry !important
+ * (dd_group_grid_responsive_render, dd_cover_responsive_render) or, for the
+ * Custom CSS panel output, a doubled class selector for (0,2,0) specificity
+ * (see digitally_disruptive_render_custom_css()).
  */
 function dd_consolidated_css_placeholder()
 {
@@ -1891,11 +1895,11 @@ function digitally_disruptive_render_custom_css($block_content, $block)
 
         $scoped_css = '';
         if (! empty($base_properties)) {
-            $scoped_css .= sprintf('.%s { %s } ', $uid, $base_properties);
+            $scoped_css .= sprintf('.%1$s.%1$s { %2$s } ', $uid, $base_properties);
         }
 
         foreach ($advanced_blocks as $block_rule) {
-            $scoped_css .= str_replace('SELECTOR', '.' . $uid, $block_rule) . ' ';
+            $scoped_css .= str_replace('SELECTOR', '.' . $uid . '.' . $uid, $block_rule) . ' ';
         }
 
         return $scoped_css;

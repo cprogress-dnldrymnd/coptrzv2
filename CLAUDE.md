@@ -367,16 +367,28 @@ case studies, rentals, landing pages, etc).
   push their compiled CSS string into a shared buffer via
   `dd_custom_css_collector($css)` (a static-array accumulator; calling it with
   no args reads the buffer back). `dd_consolidated_css_placeholder()` (`wp_head`,
-  priority 999, so it lands after core's own block-support styles) echoes a
-  `<!--DD_CONSOLIDATED_CSS-->` marker comment. `dd_start_css_buffer()`
-  (`template_redirect`, skipped for admin/REST/AJAX/cron/feed requests) opens
-  a full-page `ob_start('dd_flush_consolidated_css')` buffer so CSS collected
-  later in the request (blocks render after `<head>` is already sent) can
-  still be spliced in; `dd_flush_consolidated_css()` swaps the marker for a
-  single `<style id="dd-consolidated-custom-css">` containing everything
-  collected (falls back to appending before `</head>`, or to the very end of
-  the HTML, if the marker is somehow missing). Net effect: one `<style>` tag
-  per page instead of one per styled block instance.
+  priority 999) echoes a `<!--DD_CONSOLIDATED_CSS-->` marker comment.
+  `dd_start_css_buffer()` (`template_redirect`, skipped for admin/REST/AJAX/
+  cron/feed requests) opens a full-page `ob_start('dd_flush_consolidated_css')`
+  buffer so CSS collected later in the request (blocks render after `<head>` is
+  already sent) can still be spliced in; `dd_flush_consolidated_css()` swaps
+  the marker for a single `<style id="dd-consolidated-custom-css">` containing
+  everything collected (falls back to appending before `</head>`, or to the
+  very end of the HTML, if the marker is somehow missing). Net effect: one
+  `<style>` tag per page instead of one per styled block instance.
+  **Priority 999 alone doesn't guarantee a source-order win**: on a classic
+  theme (this one has no `theme.json`), WP 7's `wp_hoist_late_printed_styles()`
+  still relocates core's block-support styles to immediately before `</head>`,
+  which is later than this placeholder — so equal-specificity core rules (e.g.
+  a `core/group` grid's `.wp-container-core-group-is-layout-… {
+  grid-template-columns: … }`) can still beat a same-specificity `.dd-css-*`
+  rule despite the 999 priority. `dd_group_grid_responsive_render()` and
+  `dd_cover_responsive_render()` were already immune via `!important`.
+  `digitally_disruptive_render_custom_css()`'s scoped selector is therefore
+  emitted **doubled** — `.dd-css-x.dd-css-x` instead of `.dd-css-x`, specificity
+  `(0,2,0)` instead of `(0,1,0)` — so its Custom CSS panel output wins against
+  core's hoisted styles on specificity rather than depending on source order,
+  without needing `!important` on arbitrary user-authored declarations.
 - Custom fields are registered on the `carbon_fields_register_fields` hook
   (`tissue_paper_register_custom_fields()` in `functions.php`), which requires
   `includes/post-meta.php` — a Carbon Fields 3 `Container::make()` /
