@@ -34,6 +34,8 @@
     const POST_TYPES = REGISTRY.postTypes || {};
     const OPTS = REGISTRY.fieldOptions || {};
 
+    const UI = window.coptrzBlockUI || {};
+
     const SOURCE_LABELS = { all: 'All', manually: 'Manually', category: 'By Category' };
 
     /* --------------------------------------------------------------- */
@@ -300,6 +302,8 @@
 
             var typeDef = POST_TYPES[postType];
 
+            const [mode, setMode] = useState(postType ? 'preview' : 'edit');
+
             function setBoxStyle(patch) {
                 setAttributes({ boxStyles: Object.assign({}, boxStyles, patch) });
             }
@@ -308,9 +312,20 @@
                 Object.keys(POST_TYPES).map(function (slug) { return { label: POST_TYPES[slug].label, value: slug }; })
             );
 
+            var emptyPlaceholder = el(Placeholder, {
+                icon: 'grid-view',
+                label: 'Post Grid',
+                instructions: postType
+                    ? (typeDef ? typeDef.label : postType) + ' — ' + (SOURCE_LABELS[source] || source)
+                        + (isSlider ? ' (slider)' : ' (grid)')
+                        + ', ' + elements.length + ' element' + (elements.length === 1 ? '' : 's')
+                    : 'Select a post type from the block settings.'
+            });
+
             return el(
                 Fragment,
                 null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -422,15 +437,9 @@
                 el(
                     'div',
                     useBlockProps(),
-                    el(Placeholder, {
-                        icon: 'grid-view',
-                        label: 'Post Grid',
-                        instructions: postType
-                            ? (typeDef ? typeDef.label : postType) + ' — ' + (SOURCE_LABELS[source] || source)
-                                + (isSlider ? ' (slider)' : ' (grid)')
-                                + ', ' + elements.length + ' element' + (elements.length === 1 ? '' : 's')
-                            : 'Select a post type from the block settings.'
-                    })
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/post-grid', attributes: attributes, placeholder: emptyPlaceholder })
+                        : emptyPlaceholder
                 )
             );
         },

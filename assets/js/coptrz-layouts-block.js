@@ -20,6 +20,8 @@
     const { InspectorControls, useBlockProps }      = wp.blockEditor;
     const { PanelBody, SelectControl, Placeholder }  = wp.components;
 
+    const UI = window.coptrzBlockUI || {};
+
     registerBlockType('coptrz/layouts', {
         title:    'Layout (Legacy)',
         icon:     'layout',
@@ -36,6 +38,7 @@
 
             const [layouts, setLayouts] = useState([]);
             const [loading, setLoading] = useState(true);
+            const [mode, setMode] = useState(layoutId ? 'preview' : 'edit');
 
             useEffect(function () {
                 wp.apiFetch({ path: '/wp/v2/layouts?per_page=100&status=publish&orderby=title&order=asc' })
@@ -51,9 +54,18 @@
                     .catch(function () { setLoading(false); });
             }, []);
 
+            var emptyPlaceholder = el(Placeholder, {
+                icon:  'layout',
+                label: 'Layout',
+                instructions: layoutId
+                    ? 'Layout: ' + (layoutTitle || ('#' + layoutId))
+                    : 'Select a Layout post from the block settings.'
+            });
+
             return el(
                 Fragment,
                 null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -77,13 +89,9 @@
                 el(
                     'div',
                     useBlockProps(),
-                    el(Placeholder, {
-                        icon:  'layout',
-                        label: 'Layout',
-                        instructions: layoutId
-                            ? 'Layout: ' + (layoutTitle || ('#' + layoutId))
-                            : 'Select a Layout post from the block settings.'
-                    })
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/layouts', attributes: attributes, placeholder: emptyPlaceholder })
+                        : emptyPlaceholder
                 )
             );
         },

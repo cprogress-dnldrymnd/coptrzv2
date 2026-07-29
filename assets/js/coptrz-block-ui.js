@@ -16,9 +16,12 @@
  * enqueued — and declared as a dependency — BEFORE any block script that reads
  * off it (see digitally_disruptive_enqueue_swiper_editor_assets(), functions.php).
  *
- * coptrz-post-grid-block.js and coptrz-hero-block.js are NOT refactored onto
- * this file — they already work, and moving working code is pure risk with no
- * user-visible benefit. This is the version for everything new.
+ * coptrz-post-grid-block.js and coptrz-layouts-block.js keep their own local
+ * field-building helpers rather than adopting selectField/textField/etc from
+ * here — they already work, and moving working code is pure risk with no
+ * user-visible benefit. Both do still depend on this file for LivePreview/
+ * PreviewToggle (see coptrz_block_preview_renderers(), includes/block-preview.php).
+ * This is the version for everything new.
  */
 (function (wp) {
 

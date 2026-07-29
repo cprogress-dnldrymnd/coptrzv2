@@ -8,9 +8,11 @@
  * Live-preview REST route for the "legacy wrapper" blocks
  * (coptrz/tabs-legacy, coptrz/accordion-legacy, coptrz/icon-legacy,
  * coptrz/spec-box-legacy, coptrz/divider-legacy, coptrz/cf7-legacy,
- * coptrz/global-widget) and coptrz/hero — every `save: null` block whose real
- * markup only exists via a render_block filter (includes/legacy-blocks.php,
- * includes/hero-block.php, functions.php's coptrz_render_global_widget_block()).
+ * coptrz/global-widget, coptrz/post-grid, coptrz/layouts) and coptrz/hero —
+ * every `save: null` block whose real markup only exists via a render_block
+ * filter (includes/legacy-blocks.php, includes/hero-block.php, functions.php's
+ * coptrz_render_global_widget_block() / coptrz_render_post_grid_block() /
+ * coptrz_render_layouts_block()).
  *
  * Not core's ServerSideRender/`/wp/v2/block-renderer/*`: that route only
  * exists for blocks registered SERVER-SIDE via register_block_type() with a
@@ -88,6 +90,18 @@ function coptrz_block_preview_renderers()
                 return '';
             }
             return ___hero_render(coptrz_hero_args_from_block($attrs, $post_id));
+        },
+        'coptrz/post-grid' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_post_grid_block')) {
+                return '';
+            }
+            return coptrz_render_post_grid_block('', array('blockName' => 'coptrz/post-grid', 'attrs' => $attrs));
+        },
+        'coptrz/layouts' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_layouts_block')) {
+                return '';
+            }
+            return coptrz_render_layouts_block('', array('blockName' => 'coptrz/layouts', 'attrs' => $attrs));
         },
     );
 

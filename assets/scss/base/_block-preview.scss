@@ -9,13 +9,28 @@
  * verbatim to the compiled style.css without a full theme recompile — see
  * CLAUDE.md's Build/styles note on style.css being checked-in compiled
  * output.
+ *
+ * Deliberately does NOT touch `.swiper`/`.swiper-wrapper`/`.swiper-slide`
+ * layout: every Swiper-based widget in this theme (logo slider, case-study
+ * slider, post-grid slider, …) already carries its own bespoke slide-sizing
+ * CSS tuned for that widget. An earlier version of this file forced
+ * `.swiper-wrapper` to `display: block`, which fought those per-widget rules
+ * (e.g. `.logo-slider .swiper-wrapper .swiper-slide` — assets/scss/base/
+ * _base.scss) at equal specificity and produced a tall, mostly-empty box with
+ * only the first slide visible. Left alone, `.swiper`'s own `overflow: hidden`
+ * (vendor default, assets/vendor/swiper/scss/swiper.scss) simply clips
+ * whichever slides don't fit in the row — a reasonable static approximation
+ * since Swiper JS never runs in the editor and the preview isn't interactive.
  */
 .coptrz-block-preview {
   position: relative;
-  max-height: 640px;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 32px), transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 calc(100% - 32px), transparent 100%);
+  /* Bootstrap's .row (e.g. the Post Grid's non-slider markup) carries negative
+     left/right margins normally absorbed by an ancestor .container's padding —
+     absent here, so the row bleeds past this wrapper's edge. Clip it instead —
+     same static-approximation approach already used for un-initialized Swiper
+     markup below. No max-height/overflow-y here: the preview renders at full
+     natural height. */
+  overflow-x: hidden;
 }
 
 /* Read-only canvas: clicking anywhere selects the block rather than
@@ -28,15 +43,6 @@
 
 .coptrz-block-preview.is-refreshing {
   opacity: 0.6;
-}
-
-/* Swiper JS never loads in the editor, so a slider's markup is otherwise a
-   zero-width overlapping stack — fall back to a plain vertical list. */
-.coptrz-block-preview .swiper-wrapper {
-  display: block;
-}
-.coptrz-block-preview .swiper-slide {
-  width: auto;
 }
 
 /* Bootstrap's collapse JS never loads in the editor either, so accordion
