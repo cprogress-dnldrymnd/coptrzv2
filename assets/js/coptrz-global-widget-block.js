@@ -22,10 +22,11 @@
 (function (wp) {
 
     const { registerBlockType }                    = wp.blocks;
-    const { createElement: el, Fragment }           = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps }      = wp.blockEditor;
     const { PanelBody, SelectControl, Placeholder }  = wp.components;
 
+    const UI = window.coptrzBlockUI || {};
     var WIDGETS = window.coptrzGlobalWidgets || {};
 
     registerBlockType('coptrz/global-widget', {
@@ -41,6 +42,7 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const { widget, style } = attributes;
+            const [mode, setMode] = useState(widget ? 'preview' : 'edit');
 
             var widgetOptions = [{ label: '— Select a widget —', value: '' }].concat(
                 Object.keys(WIDGETS).map(function (slug) {
@@ -51,9 +53,18 @@
             var current    = WIDGETS[widget];
             var styleChoices = current && current.styles ? current.styles : null;
 
+            var emptyPlaceholder = el(Placeholder, {
+                icon:  'slides',
+                label: 'Global Widget',
+                instructions: current
+                    ? 'Widget: ' + current.label + (style ? ' (' + (styleChoices ? styleChoices[style] : style) + ')' : '')
+                    : 'Select a widget from the block settings.'
+            });
+
             return el(
                 Fragment,
                 null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -85,13 +96,9 @@
                 el(
                     'div',
                     useBlockProps(),
-                    el(Placeholder, {
-                        icon:  'slides',
-                        label: 'Global Widget',
-                        instructions: current
-                            ? 'Widget: ' + current.label + (style ? ' (' + (styleChoices ? styleChoices[style] : style) + ')' : '')
-                            : 'Select a widget from the block settings.'
-                    })
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/global-widget', attributes: attributes, placeholder: emptyPlaceholder })
+                        : emptyPlaceholder
                 )
             );
         },

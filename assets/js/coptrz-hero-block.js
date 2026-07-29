@@ -6,8 +6,12 @@
  * Registers the `coptrz/hero` block: a native Gutenberg equivalent of the
  * legacy per-post "Hero" meta container (includes/post-meta.php,
  * __hero_fields() / __hero_button_fields() / __hero_form_fields()), covering
- * every option those three tabs expose in one Inspector-only block — the
- * canvas shows a summary Placeholder, all editing happens in the sidebar.
+ * every option those three tabs expose in one Inspector-only block — all
+ * editing happens in the sidebar. The canvas defaults to a live preview
+ * (toggle in the block toolbar, UI.PreviewToggle/UI.LivePreview from
+ * coptrz-block-ui.js, backed by /dd/v1/block-preview —
+ * includes/block-preview.php) with the summary Placeholder as the Edit-mode
+ * fallback and the empty-preview state.
  *
  * The block is storage only: save() returns null, and its render_block filter
  * (coptrz_render_hero_block(), includes/hero-block.php) always emits '' — the
@@ -33,6 +37,7 @@
     } = wp.components;
 
     const OPTS = window.coptrzHero || {};
+    const UI = window.coptrzBlockUI || {};
 
     /* --------------------------------------------------------------- */
     /*  Small helpers (kept local — each coptrz/* block file is self-    */
@@ -324,6 +329,7 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const a = attributes;
+            const [mode, setMode] = useState('preview');
 
             var summaryParts = [];
             summaryParts.push(a.heading ? a.heading : 'Defaults to page title');
@@ -334,9 +340,18 @@
             if (a.buttons && a.buttons.length) { summaryParts.push(a.buttons.length + ' button' + (a.buttons.length === 1 ? '' : 's')); }
             if (a.formEnable) { summaryParts.push('Form: ' + (a.formTitle || a.formType || 'enabled')); }
 
+            var emptyPlaceholder = el(Placeholder, {
+                icon: 'cover-image',
+                label: 'Hero',
+                instructions: a.hidden
+                    ? 'Hero hidden — breadcrumbs + page title only.'
+                    : summaryParts.join(' · ')
+            });
+
             return el(
                 Fragment,
                 null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -471,13 +486,9 @@
                 el(
                     'div',
                     useBlockProps(),
-                    el(Placeholder, {
-                        icon: 'cover-image',
-                        label: 'Hero',
-                        instructions: a.hidden
-                            ? 'Hero hidden — breadcrumbs + page title only.'
-                            : summaryParts.join(' · ')
-                    })
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/hero', attributes: a, placeholder: emptyPlaceholder })
+                        : emptyPlaceholder
                 )
             );
         },

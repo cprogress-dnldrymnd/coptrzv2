@@ -42,6 +42,7 @@
 
             const [forms, setForms] = useState([]);
             const [loading, setLoading] = useState(true);
+            const [mode, setMode] = useState(a.formId ? 'preview' : 'edit');
 
             useEffect(function () {
                 wp.apiFetch({ path: '/dd/v1/cf7-forms' })
@@ -58,7 +59,19 @@
                 loading ? [{ label: 'Loading…', value: 0 }] : forms
             );
 
+            const emptyPlaceholder = el('div', {
+                style: {
+                    border: '1px dashed #c3c4c7', borderRadius: '4px', padding: '16px',
+                    background: '#f6f7f7'
+                }
+            },
+                el('strong', null, 'Contact Form (Legacy)'),
+                el('div', { style: { marginTop: '6px', fontSize: '13px', color: '#1e1e1e' } },
+                    a.formTitle ? 'Form: ' + a.formTitle : 'No form selected')
+            );
+
             return el(Fragment, null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(InspectorControls, null,
                     el(PanelBody, { title: 'Contact Form', initialOpen: true },
                         el(SelectControl, {
@@ -75,16 +88,9 @@
                     )
                 ),
                 el('div', useBlockProps(),
-                    el('div', {
-                        style: {
-                            border: '1px dashed #c3c4c7', borderRadius: '4px', padding: '16px',
-                            background: '#f6f7f7'
-                        }
-                    },
-                        el('strong', null, 'Contact Form (Legacy)'),
-                        el('div', { style: { marginTop: '6px', fontSize: '13px', color: '#1e1e1e' } },
-                            a.formTitle ? 'Form: ' + a.formTitle : 'No form selected')
-                    )
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/cf7-legacy', attributes: a, placeholder: emptyPlaceholder })
+                        : emptyPlaceholder
                 )
             );
         },

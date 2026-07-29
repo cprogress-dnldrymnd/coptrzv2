@@ -14,7 +14,7 @@
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
-    const { createElement: el } = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps, RichText } = wp.blockEditor;
     const { PanelBody, Placeholder } = wp.components;
 
@@ -37,10 +37,18 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const tabs = attributes.tabs;
+            const [mode, setMode] = useState(tabs.length === 0 ? 'edit' : 'preview');
+
+            const emptyPlaceholder = el(Placeholder, {
+                icon: 'index-card',
+                label: 'Tabs (Legacy)',
+                instructions: 'Add tabs below.'
+            });
 
             return el(
                 'div',
                 useBlockProps(),
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -48,36 +56,34 @@
                         el('p', null, 'Manage tab content in the block canvas.')
                     )
                 ),
-                tabs.length === 0
-                    ? el(Placeholder, {
-                        icon: 'index-card',
-                        label: 'Tabs (Legacy)',
-                        instructions: 'Add tabs below.'
-                    })
-                    : null,
-                el(UI.Repeater, {
-                    items: tabs,
-                    onChange: function (next) { setAttributes({ tabs: next }); },
-                    defaultItem: defaultTab,
-                    addLabel: '+ Add Tab',
-                    rowLabel: function (item) { return item.heading || 'Tab'; },
-                    renderRow: function (item, idx, update) {
-                        return el('div', null,
-                            UI.textField('Tab Heading', item.heading, function (v) { update({ heading: v }); }),
-                            el('div', { style: { marginTop: '8px' } },
-                                el('label', { style: { display: 'block', marginBottom: '4px', fontWeight: 600 } }, 'Description'),
-                                el(RichText, {
-                                    tagName: 'div',
-                                    className: 'coptrz-legacy-richtext',
-                                    style: { border: '1px solid #ddd', borderRadius: '2px', padding: '8px', minHeight: '80px' },
-                                    value: item.description,
-                                    onChange: function (v) { update({ description: v }); },
-                                    placeholder: 'Tab description…'
-                                })
-                            )
-                        );
-                    }
-                })
+                mode === 'preview'
+                    ? el(UI.LivePreview, { name: 'coptrz/tabs-legacy', attributes: attributes, placeholder: emptyPlaceholder })
+                    : el(Fragment, null,
+                        tabs.length === 0 ? emptyPlaceholder : null,
+                        el(UI.Repeater, {
+                            items: tabs,
+                            onChange: function (next) { setAttributes({ tabs: next }); },
+                            defaultItem: defaultTab,
+                            addLabel: '+ Add Tab',
+                            rowLabel: function (item) { return item.heading || 'Tab'; },
+                            renderRow: function (item, idx, update) {
+                                return el('div', null,
+                                    UI.textField('Tab Heading', item.heading, function (v) { update({ heading: v }); }),
+                                    el('div', { style: { marginTop: '8px' } },
+                                        el('label', { style: { display: 'block', marginBottom: '4px', fontWeight: 600 } }, 'Description'),
+                                        el(RichText, {
+                                            tagName: 'div',
+                                            className: 'coptrz-legacy-richtext',
+                                            style: { border: '1px solid #ddd', borderRadius: '2px', padding: '8px', minHeight: '80px' },
+                                            value: item.description,
+                                            onChange: function (v) { update({ description: v }); },
+                                            placeholder: 'Tab description…'
+                                        })
+                                    )
+                                );
+                            }
+                        })
+                    )
             );
         },
 

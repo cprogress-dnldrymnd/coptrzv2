@@ -227,6 +227,97 @@
         );
     }
 
+    /**
+     * Live server-rendered preview for a `save: null` block, fetched from
+     * `/dd/v1/block-preview` (includes/block-preview.php). Debounced 400ms
+     * since these renderers call wp_unique_id() — every response is
+     * byte-different, so re-fetching on every keystroke would re-key the
+     * canvas DOM constantly. `props.attributes` is the block's live (possibly
+     * unsaved) attributes object; `props.placeholder` is rendered instead
+     * whenever the preview comes back empty (a function_exists() guard
+     * bailed, or the block has no content yet) — pass the block's existing
+     * empty-state Placeholder so that case looks exactly as it does today.
+     * The post ID is read imperatively (not via useSelect) since it never
+     * changes within one editor session.
+     */
+    function LivePreview(props) {
+        var name = props.name;
+        var attributes = props.attributes || {};
+        var placeholder = props.placeholder || null;
+        var attrKey = JSON.stringify(attributes);
+
+        const [state, setState] = useState({ html: '', rendered: false, loading: true });
+        const seqRef = useRef(0);
+        const timerRef = useRef(null);
+
+        useEffect(function () {
+            if (timerRef.current) { clearTimeout(timerRef.current); }
+            setState(function (s) { return Object.assign({}, s, { loading: true }); });
+
+            timerRef.current = setTimeout(function () {
+                var mySeq = ++seqRef.current;
+                var postId = 0;
+                try {
+                    postId = wp.data.select('core/editor').getCurrentPostId() || 0;
+                } catch (e) { /* not in a post-editing context */ }
+
+                wp.apiFetch({
+                    path: '/dd/v1/block-preview',
+                    method: 'POST',
+                    data: { name: name, attributes: attributes, post_id: postId }
+                }).then(function (res) {
+                    if (mySeq !== seqRef.current) { return; }
+                    setState({ html: (res && res.html) || '', rendered: !!(res && res.rendered), loading: false });
+                }).catch(function () {
+                    if (mySeq !== seqRef.current) { return; }
+                    setState({ html: '', rendered: false, loading: false });
+                });
+            }, 400);
+
+            return function () { if (timerRef.current) { clearTimeout(timerRef.current); } };
+            // eslint-disable-next-line
+        }, [name, attrKey]);
+
+        if (!state.rendered) {
+            return placeholder || el('div', {
+                style: {
+                    border: '1px dashed #c3c4c7', borderRadius: '4px', padding: '24px',
+                    background: '#f6f7f7', textAlign: 'center', color: '#757575'
+                }
+            }, state.loading ? 'Loading preview…' : 'Nothing to preview yet.');
+        }
+
+        return el('div', { className: 'coptrz-block-preview' + (state.loading ? ' is-refreshing' : '') },
+            el(wp.element.RawHTML, null, state.html)
+        );
+    }
+
+    /**
+     * Block-toolbar Preview/Edit switch. `mode` lives in the block's own React
+     * state (not an attribute) — it's editor UI only, so it never affects
+     * serialization or invalidates existing saved blocks.
+     */
+    function PreviewToggle(props) {
+        const { BlockControls } = wp.blockEditor;
+        const { ToolbarGroup, ToolbarButton } = wp.components;
+        return el(BlockControls, null,
+            el(ToolbarGroup, null,
+                el(ToolbarButton, {
+                    icon: 'visibility',
+                    label: 'Preview',
+                    isPressed: props.mode === 'preview',
+                    onClick: function () { props.setMode('preview'); }
+                }),
+                el(ToolbarButton, {
+                    icon: 'edit',
+                    label: 'Edit',
+                    isPressed: props.mode === 'edit',
+                    onClick: function () { props.setMode('edit'); }
+                })
+            )
+        );
+    }
+
     window.coptrzBlockUI = {
         opts: opts,
         selectField: selectField,
@@ -235,7 +326,9 @@
         IdTokenPicker: IdTokenPicker,
         SinglePostPicker: SinglePostPicker,
         FetchOnceSelect: FetchOnceSelect,
-        Repeater: Repeater
+        Repeater: Repeater,
+        LivePreview: LivePreview,
+        PreviewToggle: PreviewToggle
     };
 
 })(window.wp);

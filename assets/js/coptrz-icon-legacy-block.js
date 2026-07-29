@@ -13,7 +13,7 @@
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
-    const { createElement: el, Fragment } = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps, MediaUpload, MediaUploadCheck } = wp.blockEditor;
     const { PanelBody, Button, BaseControl, ColorPalette } = wp.components;
 
@@ -38,8 +38,17 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const a = attributes;
+            const [mode, setMode] = useState(a.iconId ? 'preview' : 'edit');
+
+            const emptyPlaceholder = el('div', {
+                style: {
+                    border: '1px dashed #c3c4c7', borderRadius: '4px', padding: '24px',
+                    background: '#f6f7f7', textAlign: 'center', color: '#757575'
+                }
+            }, 'Icon (Legacy) — select an SVG in the sidebar.');
 
             return el(Fragment, null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(InspectorControls, null,
                     el(PanelBody, { title: 'Icon', initialOpen: true },
                         el(MediaUploadCheck, null,
@@ -75,14 +84,11 @@
                     )
                 ),
                 el('div', useBlockProps(),
-                    a.iconUrl
-                        ? el('img', { src: a.iconUrl, style: { width: a.iconWidth || '60px', height: a.iconHeight || '60px', objectFit: 'contain' } })
-                        : el('div', {
-                            style: {
-                                border: '1px dashed #c3c4c7', borderRadius: '4px', padding: '24px',
-                                background: '#f6f7f7', textAlign: 'center', color: '#757575'
-                            }
-                        }, 'Icon (Legacy) — select an SVG in the sidebar.')
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/icon-legacy', attributes: a, placeholder: emptyPlaceholder })
+                        : (a.iconUrl
+                            ? el('img', { src: a.iconUrl, style: { width: a.iconWidth || '60px', height: a.iconHeight || '60px', objectFit: 'contain' } })
+                            : emptyPlaceholder)
                 )
             );
         },

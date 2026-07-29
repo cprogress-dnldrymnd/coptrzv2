@@ -1,0 +1,58 @@
+/**
+ * Editor-only styling for the live block preview (assets/js/coptrz-block-ui.js
+ * `LivePreview`, backed by /dd/v1/block-preview — includes/block-preview.php).
+ * Scoped entirely to `.coptrz-block-preview` so nothing reaches the front end
+ * — editor and front end share this one compiled stylesheet
+ * (add_editor_style('style.css'), includes/hooks.php).
+ *
+ * Written in plain CSS (no SCSS-only syntax) so it can also be appended
+ * verbatim to the compiled style.css without a full theme recompile — see
+ * CLAUDE.md's Build/styles note on style.css being checked-in compiled
+ * output.
+ */
+.coptrz-block-preview {
+  position: relative;
+  max-height: 640px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 32px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 32px), transparent 100%);
+}
+
+/* Read-only canvas: clicking anywhere selects the block rather than
+   following a link, submitting the CF7 form, or opening a popup trigger. */
+.coptrz-block-preview,
+.coptrz-block-preview * {
+  pointer-events: none;
+  user-select: none;
+}
+
+.coptrz-block-preview.is-refreshing {
+  opacity: 0.6;
+}
+
+/* Swiper JS never loads in the editor, so a slider's markup is otherwise a
+   zero-width overlapping stack — fall back to a plain vertical list. */
+.coptrz-block-preview .swiper-wrapper {
+  display: block;
+}
+.coptrz-block-preview .swiper-slide {
+  width: auto;
+}
+
+/* Bootstrap's collapse JS never loads in the editor either, so accordion
+   bodies would otherwise render collapsed/empty regardless of content. */
+.coptrz-block-preview .accordion-collapse {
+  display: block !important;
+  height: auto !important;
+}
+
+/* Empty/guard-bailed preview state — matches the legacy blocks' own grey
+   dashed placeholder look (see assets/js/coptrz-*-legacy-block.js). */
+.coptrz-block-preview-empty {
+  border: 1px dashed #c3c4c7;
+  border-radius: 4px;
+  padding: 24px;
+  background: #f6f7f7;
+  text-align: center;
+  color: #757575;
+}

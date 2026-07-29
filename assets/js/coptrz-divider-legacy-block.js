@@ -14,7 +14,7 @@
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
-    const { createElement: el } = wp.element;
+    const { createElement: el, useState } = wp.element;
     const { InspectorControls, useBlockProps } = wp.blockEditor;
     const { PanelBody } = wp.components;
 
@@ -38,8 +38,10 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const a = attributes;
+            const [mode, setMode] = useState('preview');
 
             return el('div', useBlockProps(),
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(InspectorControls, null,
                     el(PanelBody, { title: 'Divider Settings', initialOpen: true },
                         UI.selectField('Margin Top', a.marginTop, OPTS.dividerMarginTop, function (v) { setAttributes({ marginTop: v }); }),
@@ -49,7 +51,9 @@
                         UI.selectField('Border Color', a.borderColor, OPTS.dividerBorderColor, function (v) { setAttributes({ borderColor: v }); })
                     )
                 ),
-                el('hr', { style: { borderTop: '1px solid #ccc' } })
+                mode === 'preview'
+                    ? el(UI.LivePreview, { name: 'coptrz/divider-legacy', attributes: a, placeholder: el('hr', { style: { borderTop: '1px solid #ccc' } }) })
+                    : el('hr', { style: { borderTop: '1px solid #ccc' } })
             );
         },
 

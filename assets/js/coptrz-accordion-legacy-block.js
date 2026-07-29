@@ -19,7 +19,7 @@
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
-    const { createElement: el, Fragment } = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps, RichText } = wp.blockEditor;
     const { PanelBody, Placeholder } = wp.components;
 
@@ -50,10 +50,23 @@
             const { attributes, setAttributes } = props;
             const a = attributes;
             const isCustom = a.source === '';
+            const hasContent = isCustom
+                ? a.items.length > 0
+                : (a.source === 'faqs' ? a.faqs.length > 0 : a.faqsCategory.length > 0);
+            const [mode, setMode] = useState(hasContent ? 'preview' : 'edit');
+
+            const emptyPlaceholder = isCustom
+                ? el(Placeholder, { icon: 'list-view', label: 'Accordion (Legacy)', instructions: 'Add accordion items below.' })
+                : el(Placeholder, {
+                    icon: 'list-view',
+                    label: 'Accordion (Legacy)',
+                    instructions: a.source === 'faqs' ? (a.faqs.length + ' FAQ(s) selected') : (a.faqsCategory.length ? 'Category: ' + a.faqsCategory.map(function (c) { return c.title; }).join(', ') : 'Select a FAQ category in the block settings.')
+                });
 
             return el(
                 'div',
                 useBlockProps(),
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -76,40 +89,36 @@
                         UI.boolField('Lower Opacity for Inactive', a.lowerOpacity, function (v) { setAttributes({ lowerOpacity: v }); })
                     )
                 ),
-                isCustom
-                    ? el(Fragment, null,
-                        a.items.length === 0
-                            ? el(Placeholder, { icon: 'list-view', label: 'Accordion (Legacy)', instructions: 'Add accordion items below.' })
-                            : null,
-                        el(UI.Repeater, {
-                            items: a.items,
-                            onChange: function (next) { setAttributes({ items: next }); },
-                            defaultItem: defaultItem,
-                            addLabel: '+ Add Item',
-                            rowLabel: function (item) { return item.heading || 'Item'; },
-                            renderRow: function (item, idx, update) {
-                                return el('div', null,
-                                    UI.textField('Heading', item.heading, function (v) { update({ heading: v }); }),
-                                    el('div', { style: { marginTop: '8px' } },
-                                        el('label', { style: { display: 'block', marginBottom: '4px', fontWeight: 600 } }, 'Description'),
-                                        el(RichText, {
-                                            tagName: 'div',
-                                            className: 'coptrz-legacy-richtext',
-                                            style: { border: '1px solid #ddd', borderRadius: '2px', padding: '8px', minHeight: '80px' },
-                                            value: item.description,
-                                            onChange: function (v) { update({ description: v }); },
-                                            placeholder: 'Item description…'
-                                        })
-                                    )
-                                );
-                            }
-                        })
-                    )
-                    : el(Placeholder, {
-                        icon: 'list-view',
-                        label: 'Accordion (Legacy)',
-                        instructions: a.source === 'faqs' ? (a.faqs.length + ' FAQ(s) selected') : (a.faqsCategory.length ? 'Category: ' + a.faqsCategory.map(function (c) { return c.title; }).join(', ') : 'Select a FAQ category in the block settings.')
-                    })
+                mode === 'preview'
+                    ? el(UI.LivePreview, { name: 'coptrz/accordion-legacy', attributes: a, placeholder: emptyPlaceholder })
+                    : (isCustom
+                        ? el(Fragment, null,
+                            a.items.length === 0 ? emptyPlaceholder : null,
+                            el(UI.Repeater, {
+                                items: a.items,
+                                onChange: function (next) { setAttributes({ items: next }); },
+                                defaultItem: defaultItem,
+                                addLabel: '+ Add Item',
+                                rowLabel: function (item) { return item.heading || 'Item'; },
+                                renderRow: function (item, idx, update) {
+                                    return el('div', null,
+                                        UI.textField('Heading', item.heading, function (v) { update({ heading: v }); }),
+                                        el('div', { style: { marginTop: '8px' } },
+                                            el('label', { style: { display: 'block', marginBottom: '4px', fontWeight: 600 } }, 'Description'),
+                                            el(RichText, {
+                                                tagName: 'div',
+                                                className: 'coptrz-legacy-richtext',
+                                                style: { border: '1px solid #ddd', borderRadius: '2px', padding: '8px', minHeight: '80px' },
+                                                value: item.description,
+                                                onChange: function (v) { update({ description: v }); },
+                                                placeholder: 'Item description…'
+                                            })
+                                        )
+                                    );
+                                }
+                            })
+                        )
+                        : emptyPlaceholder)
             );
         },
 

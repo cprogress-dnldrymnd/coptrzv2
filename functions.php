@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 6.1);
+define('coptz_version', 6.2);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -911,7 +911,7 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
     wp_enqueue_script(
         'coptrz-global-widget-block',
         get_template_directory_uri() . '/assets/js/coptrz-global-widget-block.js',
-        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch', 'coptrz-block-ui'),
         filemtime(get_template_directory() . '/assets/js/coptrz-global-widget-block.js'),
         true
     );
@@ -932,7 +932,7 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
     wp_enqueue_script(
         'coptrz-hero-block',
         get_template_directory_uri() . '/assets/js/coptrz-hero-block.js',
-        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch'),
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch', 'coptrz-block-ui'),
         filemtime(get_template_directory() . '/assets/js/coptrz-hero-block.js'),
         true
     );
@@ -1001,7 +1001,7 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
     wp_enqueue_script(
         'coptrz-block-ui',
         get_template_directory_uri() . '/assets/js/coptrz-block-ui.js',
-        array('wp-element', 'wp-components', 'wp-api-fetch'),
+        array('wp-element', 'wp-components', 'wp-api-fetch', 'wp-block-editor', 'wp-data'),
         filemtime(get_template_directory() . '/assets/js/coptrz-block-ui.js'),
         true
     );
