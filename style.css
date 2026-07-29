@@ -11737,6 +11737,12 @@ section .container-inner > *:not(:last-child) {
     background-color: var(--bs-accent);
     border-color: var(--bs-accent);
     color: var(--bs-white); }
+  .button-box.button-box.button-box.button-bordered a.bg-transparent:hover, .button-box.button-box.button-box.button-bordered a.bg-transparent:active, .button-box.button-box.button-box.button-bordered a.bg-transparent:focus,
+  .button-box.button-box.button-box.button-bordered button.bg-transparent:hover,
+  .button-box.button-box.button-box.button-bordered button.bg-transparent:active,
+  .button-box.button-box.button-box.button-bordered button.bg-transparent:focus {
+    background-color: var(--bs-black) !important;
+    border-color: var(--bs-black) !important; }
 .button-box.button-box.button-box.button-white a,
 .button-box.button-box.button-box.button-white button {
   background-color: var(--bs-white);
@@ -12767,7 +12773,8 @@ hr {
 .single-guides .button-accent.button-accent.button-accent a,
 .single-guides .button-accent.button-accent.button-accent button,
 .single-guides .button-white.button-white.button-white a,
-.single-guides .button-white.button-white.button-white button, .single-guides .button--animate .wp-element-button.wp-element-button,
+.single-guides .button-white.button-white.button-white button,
+.single-guides .button--animate .wp-element-button.wp-element-button,
 .single-landingpages .wpcf7-submit.wpcf7-submit.wpcf7-submit,
 .single-landingpages .button-accent.button-accent.button-accent a,
 .single-landingpages .button-accent.button-accent.button-accent button,

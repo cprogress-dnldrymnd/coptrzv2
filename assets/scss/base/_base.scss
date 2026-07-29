@@ -222,7 +222,7 @@ main {
 
 .full-width {
     .wp-block-group.container {
-         max-width: 100%;
+        max-width: 100%;
         --bs-gutter-x: 0;
     }
 }
@@ -397,6 +397,12 @@ section {
         a,
         button {
             @include button-bordered;
+            &.bg-transparent {
+                @include on-event {
+                    background-color: var(--bs-black) !important;
+                    border-color: var(--bs-black) !important;
+                }
+            }
         }
     }
 
@@ -1917,7 +1923,8 @@ hr {
     .button-accent.button-accent.button-accent a,
     .button-accent.button-accent.button-accent button,
     .button-white.button-white.button-white a,
-    .button-white.button-white.button-white button, .button--animate .wp-element-button.wp-element-button{
+    .button-white.button-white.button-white button,
+    .button--animate .wp-element-button.wp-element-button {
         background-color: #f84a01 !important;
         border-color: #f84a01 !important;
         animation-duration: 2s;
@@ -2426,7 +2433,6 @@ ul.is-swiper-slider,
             display: flex;
         }
     }
-
 }
 
 /* -----------------------------------------

@@ -414,7 +414,7 @@ function request_info()
         ? sprintf(__('Request info about %s', 'coptrz-theme'), $product_title)
         : __('Request product information', 'coptrz-theme');
     $html = '<div class="button-box button-bordered request-info">';
-    $html .= '<button type="button" class="rounded-10px border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#modal-' . esc_attr($id) . '" aria-label="' . esc_attr($request_label) . '">';
+    $html .= '<button type="button" class="rounded-10px bg-transparent" data-bs-toggle="modal" data-bs-target="#modal-' . esc_attr($id) . '" aria-label="' . esc_attr($request_label) . '">';
     $html .= esc_html__('Request Info', 'coptrz-theme');
     $html .= '</button>';
     $html .= '</div>';
@@ -2291,7 +2291,7 @@ function action_woocommerce_before_single_product_shopify_link()
     <div class="button-group-box ">
         <div class="row g-3 justify-content-center ">
 
-            <div class="button-box button-bordered col-auto"><button type="button" class="rounded-10px border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#modal-299743" aria-label="<?= esc_attr(sprintf('Enquire about %s', get_the_title())) ?>">Enquire</button></div>
+            <div class="button-box button-bordered col-auto"><button type="button" class="rounded-10px  bg-transparent" data-bs-toggle="modal" data-bs-target="#modal-299743" aria-label="<?= esc_attr(sprintf('Enquire about %s', get_the_title())) ?>">Enquire</button></div>
 
             <div class="button-accent col-auto button-box"><a target="_blank" rel="noopener noreferrer" class="rounded-10px" href="<?= esc_url(get__post_meta('shopify_product_link')) ?>" aria-label="<?= esc_attr(sprintf('%s: %s', $button_text, get_the_title())) ?>">
                     <?= $button_text ?>
