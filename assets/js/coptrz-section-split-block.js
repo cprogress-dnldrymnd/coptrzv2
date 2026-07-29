@@ -11,19 +11,17 @@
  *
  * Carries no attributes and never emits markup: save() returns null, and the
  * render_block filter (coptrz_render_section_split_block(), functions.php)
- * always returns an empty string. Restricted to the `product` post type since
- * it has no meaning anywhere else.
+ * always returns an empty string. The block is registered unconditionally
+ * (so already-saved markers always resolve, on any post type), but is only
+ * insertable on the `product` screen — `supports.inserter` reads the
+ * `coptrzSectionSplit.isProduct` flag localized alongside this script's
+ * enqueue in functions.php, since it has no meaning outside products.
  */
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
     const { createElement: el } = wp.element;
     const { useBlockProps }     = wp.blockEditor;
-    const { select }            = wp.data;
-
-    if (select('core/editor').getCurrentPostType() !== 'product') {
-        return;
-    }
 
     registerBlockType('coptrz/section-split', {
         title:    'Section Split (Product summary)',
@@ -33,7 +31,8 @@
         supports: {
             html: false,
             multiple: false,
-            reusable: false
+            reusable: false,
+            inserter: !!(window.coptrzSectionSplit && window.coptrzSectionSplit.isProduct)
         },
 
         edit: function () {

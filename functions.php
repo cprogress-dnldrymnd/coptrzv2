@@ -941,10 +941,14 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
     wp_enqueue_script(
         'coptrz-section-split-block',
         get_template_directory_uri() . '/assets/js/coptrz-section-split-block.js',
-        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-data'),
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
         filemtime(get_template_directory() . '/assets/js/coptrz-section-split-block.js'),
         true
     );
+    $section_split_screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    wp_localize_script('coptrz-section-split-block', 'coptrzSectionSplit', array(
+        'isProduct' => ($section_split_screen && $section_split_screen->id === 'product' && $section_split_screen->base === 'post') ? '1' : '',
+    ));
 
     // Header element blocks (site logo, nav menu, icons, CTA buttons,
     // announcement banner) — standalone editor equivalents of
