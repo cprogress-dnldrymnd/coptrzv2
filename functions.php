@@ -76,11 +76,13 @@ function tissue_paper_register_custom_fields()
     if (function_exists('coptrz_register_hero_hidden_fields')) {
         coptrz_register_hero_hidden_fields();
     }
-    // Register the always-on Layout / Custom CSS / Hide Before Footer boxes
-    // regardless of the blocks-editor branch above, so they appear on every
-    // template (including page-blocks-editor.php, on which post-meta.php is
-    // skipped in admin). MUST run before boot() so the containers are indexed.
+    // Register the always-on Layout / Custom CSS / Hide Before Footer / OpenAI
+    // Ads Conversion boxes regardless of the blocks-editor branch above, so
+    // they appear on every template (including page-blocks-editor.php, on
+    // which post-meta.php is skipped in admin). MUST run before boot() so the
+    // containers are indexed.
     coptrz_register_global_layout_fields();
+    coptrz_register_openai_ads_conversion_fields();
     \CoptrzTheme\MetaShim\Container_Admin::boot();
 }
 add_action('after_setup_theme', 'tissue_paper_register_custom_fields', 20);
@@ -165,6 +167,94 @@ function coptrz_register_global_layout_fields()
         ->add_fields(array(
             \CoptrzTheme\MetaShim\Field::make('set', 'hidden_layouts', __(''))
                 ->set_options($before_footer_options)
+        ));
+}
+
+/**
+ * Register the per-page "OpenAI Ads Conversion" meta box through the native
+ * meta shim — unconditionally, on every template — for the same reason as
+ * coptrz_register_global_layout_fields() above: includes/post-meta.php is not
+ * loaded in admin when the page-blocks-editor.php template is active (see
+ * dd_is_blocks_editor_template_active()), which was hiding this box (and its
+ * save_post handler) on every page converted to blocks. Registering it here,
+ * from tissue_paper_register_custom_fields() (which always runs, on both
+ * branches), keeps the container indexed on every template. Keep the fields
+ * defined ONLY here to avoid a duplicate container (they were removed from
+ * includes/post-meta.php for this reason).
+ */
+function coptrz_register_openai_ads_conversion_fields()
+{
+    if (!class_exists('\CoptrzTheme\MetaShim\Container')) {
+        return;
+    }
+
+    \CoptrzTheme\MetaShim\Container::make('post_meta', __('OpenAI Ads Conversion'))
+        ->where('post_type', '=', 'page')
+        ->or_where('post_type', '=', 'product')
+        ->or_where('post_type', '=', 'post')
+        ->or_where('post_type', '=', 'capabilities')
+        ->or_where('post_type', '=', 'casestudies')
+        ->or_where('post_type', '=', 'industries')
+        ->or_where('post_type', '=', 'events')
+        ->or_where('post_type', '=', 'guides')
+        ->or_where('post_type', '=', 'rentals')
+        ->or_where('post_type', '=', 'landingpages')
+        ->add_fields(array(
+            \CoptrzTheme\MetaShim\Field::make('checkbox', 'openai_ads_conversion_enable', __('Report Conversions to OpenAI Ads'))->set_classes('inline-field')
+                ->set_help_text('Requires "OpenAI Ads" to be enabled under Theme Settings.'),
+            \CoptrzTheme\MetaShim\Field::make('association', 'openai_ads_conversion_form', __('Select Form'))->set_classes('inline-field')
+                ->set_types(
+                    array(
+                        array(
+                            'type'      => 'post',
+                            'post_type' => 'wpcf7_contact_form',
+                        )
+                    )
+                )
+                ->set_max(1)
+                ->set_options_query(array('post_type' => 'wpcf7_contact_form'))
+                ->set_help_text('The CF7 form (e.g. inside a modal/popup on this page) whose successful submission should be reported as a conversion.')
+                ->set_conditional_logic(
+                    array(
+                        array(
+                            'field' => 'openai_ads_conversion_enable',
+                            'value' => true,
+                        )
+                    )
+                ),
+            \CoptrzTheme\MetaShim\Field::make('select', 'openai_ads_conversion_event', __('Conversion Event'))->set_classes('inline-field')
+                ->set_options(
+                    array(
+                        'lead_created'           => 'Lead Created',
+                        'registration_completed' => 'Registration Completed',
+                        'appointment_scheduled'  => 'Appointment Scheduled',
+                        'custom'                 => 'Custom Event',
+                    )
+                )
+                ->set_default_value('lead_created')
+                ->set_help_text('The event name/shape sent to OpenAI Ads (see developers.openai.com/ads/measurement-pixel).')
+                ->set_conditional_logic(
+                    array(
+                        array(
+                            'field' => 'openai_ads_conversion_enable',
+                            'value' => true,
+                        )
+                    )
+                ),
+            \CoptrzTheme\MetaShim\Field::make('text', 'openai_ads_conversion_custom_event_name', __('Custom Event Name'))->set_classes('inline-field')
+                ->set_help_text('Required when Conversion Event is "Custom Event" — sent as the "custom_event_name" option.')
+                ->set_conditional_logic(
+                    array(
+                        array(
+                            'field' => 'openai_ads_conversion_enable',
+                            'value' => true,
+                        ),
+                        array(
+                            'field' => 'openai_ads_conversion_event',
+                            'value' => 'custom',
+                        )
+                    )
+                ),
         ));
 }
 // NOTE: these wrappers now delegate to the native meta shim (coptrz_get_*),

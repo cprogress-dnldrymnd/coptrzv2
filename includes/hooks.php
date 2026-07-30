@@ -479,7 +479,8 @@ add_action('wp_footer', 'hero_form_redirect');
  *
  * The Pixel ID lives globally under Theme Settings > OpenAI Ads, but the base
  * pixel itself only renders on pages that opt in via the "OpenAI Ads
- * Conversion" tab (see __openai_ads_conversion_fields() in post-meta.php) —
+ * Conversion" tab (see coptrz_register_openai_ads_conversion_fields() in
+ * functions.php) —
  * keeps the script off pages with no conversion configured. On those pages we
  * also listen for a successful Contact Form 7 submission matching the
  * configured form and report it as a conversion. Since CF7 submits over AJAX,
@@ -561,6 +562,150 @@ function dd_inject_openai_ads_cf7_listener()
 <?php
 }
 add_action('wp_footer', 'dd_inject_openai_ads_cf7_listener', 20);
+
+/**
+ * Tools > OpenAI Ads Conversions — read-only overview of every post that has
+ * "Report Conversions to OpenAI Ads" enabled, across all post types the
+ * per-page "OpenAI Ads Conversion" box is registered on
+ * (coptrz_register_openai_ads_conversion_fields(), functions.php). The
+ * checkbox is scattered across ten different post types' edit screens with no
+ * combined view otherwise — this is the only place to answer "which
+ * pages/posts report conversions to OpenAI Ads?" without opening each one.
+ *
+ * Also surfaces the two ways an opted-in page can still silently do nothing:
+ * the global Theme Settings > OpenAI Ads enable/Pixel ID being off (gates the
+ * base pixel for every page at once — dd_inject_openai_ads_base_pixel()
+ * above), and a page with the checkbox on but no CF7 form selected (the
+ * conversion listener never prints — dd_inject_openai_ads_cf7_listener()
+ * above bails at $form_id === 0).
+ */
+add_action('admin_menu', function () {
+    add_management_page(
+        __('OpenAI Ads Conversions', 'coptrz-theme'),
+        __('OpenAI Ads Conversions', 'coptrz-theme'),
+        'manage_options',
+        'coptrz-openai-ads-conversions',
+        'coptrz_render_openai_ads_conversions_page'
+    );
+});
+
+function coptrz_render_openai_ads_conversions_page()
+{
+    if (!current_user_can('manage_options')) {
+        wp_die(esc_html__('Permission denied.', 'coptrz-theme'));
+    }
+
+    // Same post types coptrz_register_openai_ads_conversion_fields() (functions.php)
+    // registers the box on.
+    $post_types = array('page', 'product', 'post', 'capabilities', 'casestudies', 'industries', 'events', 'guides', 'rentals', 'landingpages');
+
+    $query = new WP_Query(array(
+        'post_type'      => $post_types,
+        'post_status'    => array('publish', 'draft', 'pending', 'future', 'private'),
+        'posts_per_page' => -1,
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+        'no_found_rows'  => true,
+        'meta_query'     => array(
+            array(
+                'key'   => '_openai_ads_conversion_enable',
+                'value' => 'yes',
+            ),
+        ),
+    ));
+
+    $event_labels = array(
+        'lead_created'           => __('Lead Created', 'coptrz-theme'),
+        'registration_completed' => __('Registration Completed', 'coptrz-theme'),
+        'appointment_scheduled'  => __('Appointment Scheduled', 'coptrz-theme'),
+        'custom'                 => __('Custom Event', 'coptrz-theme'),
+    );
+
+    $global_enabled = (bool) get__theme_option('openai_ads_enable');
+    $pixel_id       = get__theme_option('openai_ads_pixel_id');
+
+    // Resolve the Theme Settings menu URL from the live container rather than
+    // hardcoding its slug — Container::make() derives the slug from the
+    // container's title (see Container.php), so a hardcoded guess would break
+    // silently if that title ever changes.
+    $theme_settings_url = '';
+    if (class_exists('\CoptrzTheme\MetaShim\Container')) {
+        foreach (\CoptrzTheme\MetaShim\Container::$containers as $container) {
+            if ($container->type === 'theme_options' && $container->title === 'Theme Settings') {
+                $theme_settings_url = admin_url('admin.php?page=coptrz-' . $container->id);
+                break;
+            }
+        }
+    }
+    ?>
+    <div class="wrap">
+        <h1><?php esc_html_e('OpenAI Ads Conversions', 'coptrz-theme'); ?></h1>
+        <p class="description">
+            <?php esc_html_e('Every page/post with "Report Conversions to OpenAI Ads" enabled. Configure the checkbox on each post\'s own "OpenAI Ads Conversion" box; the account-wide Pixel ID lives under Theme Settings > OpenAI Ads.', 'coptrz-theme'); ?>
+        </p>
+
+        <?php if (!$global_enabled || !$pixel_id) : ?>
+            <div class="notice notice-warning" style="padding: 1em;">
+                <p>
+                    <?php if (!$global_enabled) : ?>
+                        <?php esc_html_e('"Enable OpenAI Ads Conversion Tracking" is currently OFF under Theme Settings > OpenAI Ads — none of the pages below will fire the pixel until it is turned on.', 'coptrz-theme'); ?>
+                    <?php else : ?>
+                        <?php esc_html_e('No Pixel ID is set under Theme Settings > OpenAI Ads — none of the pages below will fire the pixel until one is added.', 'coptrz-theme'); ?>
+                    <?php endif; ?>
+                    <?php if ($theme_settings_url) : ?>
+                        <a href="<?php echo esc_url($theme_settings_url); ?>"><?php esc_html_e('Open Theme Settings', 'coptrz-theme'); ?></a>
+                    <?php endif; ?>
+                </p>
+            </div>
+        <?php endif; ?>
+
+        <?php if (empty($query->posts)) : ?>
+            <p><?php esc_html_e('No posts currently have OpenAI Ads conversion tracking enabled.', 'coptrz-theme'); ?></p>
+        <?php else : ?>
+            <table class="widefat striped">
+                <thead>
+                <tr>
+                    <th><?php esc_html_e('Post', 'coptrz-theme'); ?></th>
+                    <th><?php esc_html_e('Type', 'coptrz-theme'); ?></th>
+                    <th><?php esc_html_e('Status', 'coptrz-theme'); ?></th>
+                    <th><?php esc_html_e('Form', 'coptrz-theme'); ?></th>
+                    <th><?php esc_html_e('Event', 'coptrz-theme'); ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($query->posts as $post) :
+                    $form_data = get__post_meta_by_id($post->ID, 'openai_ads_conversion_form');
+                    $form_id   = isset($form_data[0]['id']) ? (int) $form_data[0]['id'] : 0;
+                    $event     = get__post_meta_by_id($post->ID, 'openai_ads_conversion_event') ?: 'lead_created';
+                    $custom    = get__post_meta_by_id($post->ID, 'openai_ads_conversion_custom_event_name');
+                    $post_type_obj = get_post_type_object($post->post_type);
+                    $status_obj    = get_post_status_object($post->post_status);
+                ?>
+                    <tr>
+                        <td><a href="<?php echo esc_url(get_edit_post_link($post->ID)); ?>"><?php echo esc_html(get_the_title($post)); ?></a></td>
+                        <td><?php echo esc_html($post_type_obj ? $post_type_obj->labels->singular_name : $post->post_type); ?></td>
+                        <td><?php echo esc_html($status_obj ? $status_obj->label : $post->post_status); ?></td>
+                        <td>
+                            <?php if ($form_id) : ?>
+                                <a href="<?php echo esc_url(get_edit_post_link($form_id)); ?>"><?php echo esc_html(get_the_title($form_id)); ?></a>
+                            <?php else : ?>
+                                <span style="color:#b32d2e;"><?php esc_html_e('No form selected — conversions will never fire', 'coptrz-theme'); ?></span>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?php echo esc_html(isset($event_labels[$event]) ? $event_labels[$event] : $event); ?>
+                            <?php if ($event === 'custom' && $custom) : ?>
+                                <span class="description"> (<?php echo esc_html($custom); ?>)</span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+    <?php
+}
 
 
 /**

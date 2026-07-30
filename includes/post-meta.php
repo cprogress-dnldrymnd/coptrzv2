@@ -1344,73 +1344,6 @@ function __hero_form_fields()
     );
 }
 
-function __openai_ads_conversion_fields()
-{
-    return array(
-        Field::make('checkbox', 'openai_ads_conversion_enable', __('Report Conversions to OpenAI Ads'))->set_classes('inline-field')
-            ->set_help_text('Requires "OpenAI Ads" to be enabled under Theme Settings.'),
-        Field::make('association', 'openai_ads_conversion_form', __('Select Form'))->set_classes('inline-field')
-            ->set_types(
-                array(
-                    array(
-                        'type'      => 'post',
-                        'post_type' => 'wpcf7_contact_form',
-                    )
-                )
-            )
-            ->set_max(1)
-            ->set_help_text('The CF7 form (e.g. inside a modal/popup on this page) whose successful submission should be reported as a conversion.')
-            ->set_conditional_logic(
-                array(
-                    array(
-                        'field' => 'openai_ads_conversion_enable',
-                        'value' => true,
-                    )
-                )
-            ),
-        Field::make('select', 'openai_ads_conversion_event', __('Conversion Event'))->set_classes('inline-field')
-            ->set_options(
-                array(
-                    'lead_created'           => 'Lead Created',
-                    'registration_completed' => 'Registration Completed',
-                    'appointment_scheduled'  => 'Appointment Scheduled',
-                    'custom'                 => 'Custom Event',
-                )
-            )
-            ->set_default_value('lead_created')
-            ->set_help_text('The event name/shape sent to OpenAI Ads (see developers.openai.com/ads/measurement-pixel).')
-            ->set_conditional_logic(
-                array(
-                    array(
-                        'field' => 'openai_ads_conversion_enable',
-                        'value' => true,
-                    )
-                )
-            ),
-        Field::make('text', 'openai_ads_conversion_custom_event_name', __('Custom Event Name'))->set_classes('inline-field')
-            ->set_help_text('Required when Conversion Event is "Custom Event" — sent as the "custom_event_name" option.')
-            ->set_conditional_logic(
-                array(
-                    array(
-                        'field' => 'openai_ads_conversion_enable',
-                        'value' => true,
-                    ),
-                    array(
-                        'field' => 'openai_ads_conversion_event',
-                        'value' => 'custom',
-                    )
-                )
-            ),
-    );
-}
-add_filter('carbon_fields_association_field_options_openai_ads_conversion_form_post_wpcf7_contact_form', function ($query_arguments) {
-    $query_arguments = array(
-        'post_type' => 'wpcf7_contact_form',
-    );
-
-    return $query_arguments;
-});
-
 Container::make('post_meta', __('Hero'))
     ->where('post_type', '=', 'page')
     ->where('post_template', '!=', 'templates/page-blocks-editor.php')
@@ -1428,22 +1361,11 @@ Container::make('post_meta', __('Hero'))
     ->add_tab('Hero Buttons', __hero_button_fields())
     ->add_tab('Hero Form', __hero_form_fields());
 
-// Split out from the Hero container above so it survives independently of the
-// hero -> coptrz/hero block migration (the Hero container is slated for removal
-// once every post is converted; conversion tracking is unrelated to hero display).
-Container::make('post_meta', __('OpenAI Ads Conversion'))
-    ->where('post_type', '=', 'page')
-    ->where('post_template', '!=', 'templates/page-blocks-editor.php')
-    ->or_where('post_type', '=', 'product')
-    ->or_where('post_type', '=', 'post')
-    ->or_where('post_type', '=', 'capabilities')
-    ->or_where('post_type', '=', 'casestudies')
-    ->or_where('post_type', '=', 'industries')
-    ->or_where('post_type', '=', 'events')
-    ->or_where('post_type', '=', 'guides')
-    ->or_where('post_type', '=', 'rentals')
-    ->or_where('post_type', '=', 'landingpages')
-    ->add_fields(__openai_ads_conversion_fields());
+// The "OpenAI Ads Conversion" per-page fields moved to
+// coptrz_register_openai_ads_conversion_fields() in functions.php — see the
+// docblock there for why (this file is skipped in admin under the
+// page-blocks-editor.php template, which would otherwise hide the box on
+// every converted page).
 
 Container::make('term_meta', __('Hero'))
     ->where('term_taxonomy', '=', 'product_cat')

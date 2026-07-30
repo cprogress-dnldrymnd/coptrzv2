@@ -1140,6 +1140,17 @@ case studies, rentals, landing pages, etc).
   so it shows on `page-blocks-editor.php` too. Same post types as before (`page`,
   `guides`, `casestudies`, `events`, `landingpages`; side context). Defined only
   there.
+- The **OpenAI Ads Conversion** box (`openai_ads_conversion_enable` +
+  `openai_ads_conversion_form` + `openai_ads_conversion_event` +
+  `openai_ads_conversion_custom_event_name`) is a fourth box registered the same
+  way — `coptrz_register_openai_ads_conversion_fields()` (`functions.php`) via
+  the meta shim — so it too shows on `page-blocks-editor.php`. It previously
+  lived in `post-meta.php` as its own `post_meta` container (split out from the
+  Hero container's old "OpenAI Ads Conversion" tab) and was invisible — with no
+  `save_post` handler — on every page converted to blocks, since `post-meta.php`
+  is skipped there; moving it here fixed that. Same 10 post types as the Layout
+  box (normal context, not side). See the "OpenAI Ads conversion tracking"
+  section below for the rest of the feature.
 - **Header display location** — `layouts`' `display_location` select (see
   `Display Location` above, `includes/post-meta.php`) has a `header` option. At
   most ONE published layout may hold it, enforced at save time in
@@ -1254,21 +1265,35 @@ case studies, rentals, landing pages, etc).
 
 - Both pieces live in `includes/hooks.php` (`dd_inject_openai_ads_base_pixel`
   on `wp_head`, `dd_inject_openai_ads_cf7_listener` on `wp_footer`), driven by
-  Carbon Fields defined in `post-meta.php`:
-  - Pixel ID / global enable: `__openai_ads_fields()`, an "OpenAI Ads" tab on
-    `theme_options` (`openai_ads_enable` + `openai_ads_pixel_id` +
-    `openai_ads_debug` — passed as `debug` in the `oaiq("init", ...)` call to
-    log pixel SDK activity to the browser console; both `pixel_id` and `debug`
-    fields are gated behind `openai_ads_enable` via conditional logic).
-  - Per-page conversion opt-in: `__openai_ads_conversion_fields()`, an
-    "OpenAI Ads Conversion" tab on the same `post_meta` "Hero" container used by
+  meta-shim fields defined in two different places (see below for why):
+  - Pixel ID / global enable: `__openai_ads_fields()` (`includes/post-meta.php`),
+    an "OpenAI Ads" tab on `theme_options` (`openai_ads_enable` +
+    `openai_ads_pixel_id` + `openai_ads_debug` — passed as `debug` in the
+    `oaiq("init", ...)` call to log pixel SDK activity to the browser console;
+    both `pixel_id` and `debug` fields are gated behind `openai_ads_enable` via
+    conditional logic).
+  - Per-page conversion opt-in: `coptrz_register_openai_ads_conversion_fields()`
+    (`functions.php`), a standalone "OpenAI Ads Conversion" `post_meta` box on
     `page`/`product`/`post`/`capabilities`/`casestudies`/`industries`/`events`/
     `guides`/`rentals`/`landingpages` (`openai_ads_conversion_enable`, an
-    `association` field picking a single `wpcf7_contact_form` post, plus a
+    `association` field picking a single `wpcf7_contact_form` post — resolved via
+    `set_options_query(array('post_type' => 'wpcf7_contact_form'))`, the meta
+    shim's native replacement for Carbon's
+    `carbon_fields_association_field_options_*` filters — plus a
     `openai_ads_conversion_event` select — `lead_created` (default),
     `registration_completed`, `appointment_scheduled`, or `custom` — and
-    `openai_ads_conversion_custom_event_name` (text, shown only when
-    `custom` is selected)).
+    `openai_ads_conversion_custom_event_name` (text, shown only when `custom` is
+    selected)). Registered from `functions.php` rather than `post-meta.php` for
+    the same reason as the Layout/Custom CSS/Hide Before Footer boxes above:
+    `post-meta.php` (and therefore any container defined in it) is skipped in
+    admin under the `page-blocks-editor.php` template, which was silently
+    hiding this box — and its `save_post` handler — on every page converted to
+    blocks, the one place the site's content is actually heading. It was
+    originally its own container split out from the Hero container's old
+    "OpenAI Ads Conversion" tab (with a `post_template !=
+    templates/page-blocks-editor.php` condition inherited from Hero, where that
+    exclusion is deliberate — hero converts to a block, conversion tracking
+    doesn't); both the container and the exclusion moved to `functions.php`.
 - `dd_inject_openai_ads_base_pixel` requires **both** `openai_ads_enable`
   (theme-wide) and `openai_ads_conversion_enable` (per-page) to be true — the
   base pixel (`window.oaiq` queue shim + `bzrcdn.openai.com/sdk/oaiq.min.js`)
@@ -1285,6 +1310,24 @@ case studies, rentals, landing pages, etc).
   `customer_action`, `custom` → `custom`). `custom_event_name` is only added to
   the options object when the event is `custom` and a name was set — matches
   OpenAI Ads' measurement pixel event shapes (developers.openai.com/ads/measurement-pixel).
+- **Tools > OpenAI Ads Conversions** (`coptrz_render_openai_ads_conversions_page()`,
+  `includes/hooks.php`, `manage_options`) — read-only list of every post with
+  `openai_ads_conversion_enable` on, across the ten applicable post types
+  (`WP_Query` with a `meta_query` on `_openai_ads_conversion_enable = 'yes'`,
+  since that's how the shim stores a scalar checkbox — see
+  `Key_Formatter::write_cell()`). Since the checkbox is otherwise scattered
+  across ten post types' edit screens with no combined view, this is the only
+  place to see which pages/posts report conversions to OpenAI Ads without
+  opening each one. Each row also resolves and links the selected CF7 form
+  (flagging in red when none is selected — the listener silently never prints
+  without one, `dd_inject_openai_ads_cf7_listener()`'s `$form_id === 0` bail)
+  and the conversion event (+ custom event name, when set). A banner at the
+  top warns when the global Theme Settings > OpenAI Ads enable/Pixel ID is
+  off, since either makes every row below a no-op regardless of its own
+  setting — the banner's link is resolved from the live `Theme Settings`
+  `theme_options` container's `->id` (`Container::$containers`) rather than a
+  hardcoded menu slug, since `Container::make()` derives the slug from the
+  container's title.
 
 ## Conventions / gotchas
 
