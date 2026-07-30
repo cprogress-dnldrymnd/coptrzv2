@@ -189,16 +189,22 @@ function coptrz_csp_directives()
 {
     $directives = array(
         'default-src' => array("'self'"),
-        // Origins found in the theme/plugin code: jsDelivr (bootstrap/swiper/intl-tel-input),
-        // OpenAI Ads pixel, YouTube hero backgrounds, Google Fonts, Hotjar, Intercom,
-        // Booqable rentals widget. Anything pasted into Theme Settings > header/footer
-        // scripts (GTM, etc) is NOT visible from code — verify with a live network-tab
-        // pass per the plan's Phase 0 and extend via the filter above if something's missing.
+        // Swiper, intl-tel-input and jQuery Validation are vendored locally under
+        // assets/vendor/ (see enqueue_scripts() in functions.php, header-clean.php, and
+        // templates/page-calculator.php) rather than loaded from jsDelivr — deliberate:
+        // removes a third-party script origin entirely rather than trusting it, and the
+        // old CDN pin (swiper@11) floated to whatever release was current, which SRI can't
+        // protect against. cdn.jsdelivr.net is intentionally NOT in this allowlist; if a
+        // future change reintroduces a CDN dependency, prefer vendoring it again over
+        // re-adding the origin. Remaining origins found in theme/plugin code: OpenAI Ads
+        // pixel, YouTube hero backgrounds, Google Fonts, Hotjar, Intercom, Booqable rentals
+        // widget, reCAPTCHA, Google Ads/doubleclick, RevenueHunt. Anything pasted into Theme
+        // Settings > header/footer scripts is NOT visible from code — verify with a live
+        // network-tab pass and extend via the filter above if something's missing.
         'script-src' => array(
             "'self'",
             "'unsafe-inline'",
             "'unsafe-eval'",
-            'https://cdn.jsdelivr.net',
             'https://bzrcdn.openai.com',
             'https://www.youtube.com',
             'https://www.googletagmanager.com',
@@ -219,7 +225,6 @@ function coptrz_csp_directives()
             "'self'",
             "'unsafe-inline'",
             'https://fonts.googleapis.com',
-            'https://cdn.jsdelivr.net',
             'https://*.booqable.com', // Booqable's Vite-bundled CSS (e.g. cdn2.booqable.com)
             'https://*.booqableshop.com',
         ),
@@ -227,14 +232,12 @@ function coptrz_csp_directives()
             "'self'",
             'data:',
             'https://fonts.gstatic.com',
-            'https://cdn.jsdelivr.net',
             'https://*.booqable.com', // fonts referenced by Booqable's bundled CSS above
             'https://*.booqableshop.com',
         ),
         'img-src' => array("'self'", 'data:', 'https:'),
         'connect-src' => array(
             "'self'",
-            'https://cdn.jsdelivr.net', // sourcemap fetches when devtools is open; harmless without this but keeps the console clean
             'https://*.hotjar.com',
             'wss://*.hotjar.com',
             'https://api-iam.intercom.io',

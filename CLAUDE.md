@@ -464,11 +464,19 @@ case studies, rentals, landing pages, etc).
   mirror below — can't be exercised on a local nginx-fronted stack since
   nginx doesn't read `.htaccess`.
   The allowlist is seeded from origins found in the theme/installed plugins
-  (jsDelivr, OpenAI Ads, YouTube, Google Fonts, Hotjar, Intercom, Booqable) —
-  it does **not** see whatever is pasted into Theme Settings header/footer
-  script fields (Carbon Fields `Footer_Scripts_Field`), so a live network-tab
-  pass across page types is required before/after rollout to catch anything
-  missing; extend via the filter, not by editing this file.
+  (OpenAI Ads, YouTube, Google Fonts, Hotjar, Intercom, Booqable, RevenueHunt,
+  reCAPTCHA, Google Ads/doubleclick) — it does **not** see whatever is pasted
+  into Theme Settings header/footer script fields (Carbon Fields
+  `Footer_Scripts_Field`), so a live network-tab pass across page types is
+  required before/after rollout to catch anything missing; extend via the
+  filter, not by editing this file. **`cdn.jsdelivr.net` is deliberately NOT
+  in the allowlist**: Swiper, intl-tel-input, and jQuery Validation used to
+  load from there and are now vendored locally under `assets/vendor/`
+  (`enqueue_scripts()` in `functions.php`, plus hardcoded tags in
+  `header-clean.php` and `templates/page-calculator.php`) — the old CDN pin
+  for Swiper floated to whatever `@11` release was current, which SRI can't
+  protect against, so removing the origin entirely was preferred over pinning
+  it. Prefer vendoring over re-adding a CDN origin if this comes up again.
   **Gotcha:** on a LiteSpeed full-page-cache HIT these PHP-emitted headers may
   be bypassed — mirrored in `.htaccess` (`mod_headers`, `BEGIN Coptrz Security
   Headers` block) for guaranteed coverage on cached responses. The `.htaccess`

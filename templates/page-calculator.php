@@ -140,7 +140,7 @@
         <?= do_shortcode('[contact-form-7 id="2412b9c" title="Calculator"]') ?>
     </div>
     <?php get_footer(); ?>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="<?php echo esc_url(vendor_dir . 'jquery-validation/jquery.validate.min.js'); ?>"></script>
     <script>
         jQuery(document).ready(function() {
 

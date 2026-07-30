@@ -290,14 +290,12 @@ function get__theme_option($value)
 /*-----------------------------------------------------------------------------------*/
 function enqueue_scripts()
 {
-    //wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
-    wp_enqueue_style('intl-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/css/intlTelInput.css', NULL, coptz_version);
-    wp_enqueue_script('intlTelInput', 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/js/intlTelInput.js', NULL, coptz_version);
+    // Swiper CSS is compiled locally via SCSS (style.scss imports assets/vendor/swiper/scss/swiper), not enqueued separately.
+    wp_enqueue_style('intl-tel', vendor_dir . 'intlTelInput/css/intlTelInput.css', NULL, coptz_version);
+    wp_enqueue_script('intlTelInput', vendor_dir . 'intlTelInput/js/intlTelInput.min.js', NULL, coptz_version);
 
-    //wp_enqueue_script('swiper', vendor_dir . 'swiper/js/swiper-bundle.min.js');
-    wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js');
+    wp_enqueue_script('swiper', vendor_dir . 'swiper/js/swiper-bundle.min.js', NULL, coptz_version);
     wp_enqueue_script('bootstrap', vendor_dir . 'bootstrap/js/bootstrap.min.js');
-    //wp_enqueue_script('intlTelInput', vendor_dir.'intlTelInput/js/intlTelInput.min.js');
     wp_register_script('main', assets_dir . 'js/main.js', NULL, coptz_version);
     wp_localize_script(
         'main',

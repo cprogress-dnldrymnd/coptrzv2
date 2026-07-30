@@ -54,7 +54,7 @@
     <link rel="stylesheet" id="coptz-style-css" href="https://old.coptrz.com/wp-content/themes/coptrz/style.css?ver=5.5"
         type="text/css" media="all">
     <link rel="stylesheet" id="intl-tel-css"
-        href="https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/css/intlTelInput.css?ver=5.5" type="text/css"
+        href="<?php echo esc_url(vendor_dir . 'intlTelInput/css/intlTelInput.css'); ?>?ver=5.5" type="text/css"
         media="all">
     <link rel="stylesheet" id="google-fonts-1-css"
         href="https://fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRubik%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=swap&amp;ver=6.7.1"
@@ -67,7 +67,7 @@
         type="text/css" media="all">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
     <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/js/intlTelInput.min.js?ver=5.5"
+        src="<?php echo esc_url(vendor_dir . 'intlTelInput/js/intlTelInput.min.js'); ?>?ver=5.5"
         id="intl-tel-js"></script>
     <script type="text/javascript"
         src="https://old.coptrz.com/wp-content/themes/coptrz/assets/coptrz_vendors/swiper/swiper-bundle.min.js?ver=6.7.1"
