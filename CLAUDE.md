@@ -425,19 +425,12 @@ case studies, rentals, landing pages, etc).
   `post-meta.php`).
 - `hooks.php` — general action/filter hooks, including CF7 integrations (see
   Forms below). `dd_send_security_headers()` (on `send_headers`, so it applies
-  to every front-end WP-served response, not just `<head>` — confirmed
-  (2026-07) it does NOT fire for `wp-login.php` or the `wp-admin` bootstrap,
-  since neither goes through `WP::main()`; on production, admin/login coverage
-  for these headers relies entirely on the `.htaccess` mirror below) emits
-  baseline security headers flagged by securityheaders.com / Mozilla
-  Observatory scans: `X-Content-Type-Options: nosniff`,
-  `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy:
-  strict-origin-when-cross-origin`, `Permissions-Policy` (denies
-  camera/microphone/geolocation/usb/serial/interest-cohort, keeps
-  `payment=(self)` for checkout wallets), `Cross-Origin-Opener-Policy:
-  same-origin-allow-popups`, a `Content-Security-Policy` limited to
-  `frame-ancestors 'self'`, and (HTTPS only) `Strict-Transport-Security`
-  (`max-age=31536000`, 1 year). Also removes the `X-Powered-By` header.
+  to every WP-served response, not just `<head>`) emits baseline security
+  headers flagged by securityheaders.com / Mozilla Observatory scans:
+  `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, a
+  `Content-Security-Policy` limited to `frame-ancestors 'self'`,
+  `Referrer-Policy: strict-origin-when-cross-origin`, and (HTTPS only) a
+  `Strict-Transport-Security` header (`max-age=31536000`, 1 year).
   `includeSubDomains`/`preload` are left off deliberately: enabling them makes
   every subdomain HTTPS-only and is near-irreversible once submitted to
   hstspreload.org — add them only once every subdomain is confirmed
@@ -446,36 +439,18 @@ case studies, rentals, landing pages, etc).
   theme/Woo/CF7/analytics scripts; scanners still grade a frame-ancestors-only
   policy "unsafe" for lacking `script-src`, which is accepted here as
   defense-in-depth alongside `X-Frame-Options` (a real script-restricting CSP
-  would need a nonce-based rollout). **An enforcing origin-allowlist
-  `script-src` was trialled 2026-07 and rolled back** — chasing every
-  third-party integration's exact origins (Booqable's separate
-  `booqableshop.com` apex, RevenueHunt, reCAPTCHA, Google Ads/doubleclick,
-  Hotjar's two TLDs, OpenAI Ads' two subdomains, a missing `media-src` for
-  product videos…) turned into ongoing whack-a-mole; revisit only with a
-  nonce-based approach if this comes up again. Separately, Swiper,
-  intl-tel-input, and jQuery Validation were vendored locally under
+  would need a nonce-based rollout). **Gotcha:** on a LiteSpeed
+  full-page-cache HIT these PHP-emitted headers may be bypassed — mirror them
+  in `.htaccess`/server config for guaranteed coverage. (2026-07: a broader
+  security-headers hardening pass — Permissions-Policy, COOP, an enforcing
+  CSP allowlist, fingerprint reduction, user-enumeration blocking, an
+  `.htaccess` mirror — was trialled and fully reverted after ongoing issues;
+  this paragraph reflects the original, stable baseline.) Swiper,
+  intl-tel-input, and jQuery Validation are vendored locally under
   `assets/vendor/` (`enqueue_scripts()` in `functions.php`, plus hardcoded
   tags in `header-clean.php` and `templates/page-calculator.php`) instead of
-  loading from `cdn.jsdelivr.net` — the old CDN pin for Swiper floated to
-  whatever `@11` release was current, which SRI can't protect against; this
-  vendoring is independent of the CSP work and was kept. **Gotcha:** on a
-  LiteSpeed full-page-cache HIT these PHP-emitted headers may be bypassed —
-  mirror them in `.htaccess`/server config for guaranteed coverage. **Also
-  check Really Simple SSL's own Security Headers module** (Settings > Really
-  Simple Security > Hardening) isn't independently emitting HSTS/
-  X-Frame-Options — that plugin is active on this site and can
-  duplicate/conflict with these headers.
-  `dd_reduce_fingerprint()` (`init`) removes the WP generator meta tag, RSD/
-  WLW manifest links, and the shortlink tag, and disables XML-RPC methods via
-  `xmlrpc_enabled` (the file stays reachable, just rejects every method) —
-  this only reduces the banner text scanners use to match CVEs, it patches
-  nothing. `dd_strip_core_asset_version()` (`script_loader_src`/
-  `style_loader_src`) strips `?ver=` only when it matches the exact WP core
-  version, leaving `coptz_version` and plugin version strings untouched.
-  `dd_block_author_enumeration()` (`template_redirect`) and
-  `dd_restrict_users_rest_endpoint()` (`rest_endpoints`) block the
-  `?author=N` redirect and `/wp-json/wp/v2/users` for anyone without
-  `list_users`, closing a common username-harvesting path.
+  loading from `cdn.jsdelivr.net` — unrelated to the headers above (an asset
+  supply-chain change, not a response-header change), and was kept.
 - `elements.php`, `shortcodes.php`, `theme-widgets.php`, `menus.php`,
   `customizer.php`, `marquee.php`, `ajax.php`, `schema.php`, `checkout.php` —
   one concern per file, named accordingly. `__button()` in `elements.php`

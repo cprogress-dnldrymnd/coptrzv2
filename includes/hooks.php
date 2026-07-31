@@ -133,37 +133,24 @@ add_action('wp_head', 'action_wp_head');
  * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
  *
  * Emit baseline security-response headers flagged by securityheaders.com /
- * Mozilla Observatory scans. Hooked on `send_headers`, which covers every
- * FRONT-END request routed through WP::main() — confirmed (2026-07) that it
- * does NOT fire for wp-login.php or the wp-admin bootstrap (neither goes
- * through the main query/template lifecycle), so this function never runs
- * there. On production (LiteSpeed, per the cache note further down) admin/login
- * coverage comes entirely from the .htaccess mod_headers mirror instead —
- * verify with `curl -I` on wp-login.php there, since it can't be exercised
- * on a local nginx-fronted stack (nginx doesn't read .htaccess).
+ * Mozilla Observatory scans. Hooked on `send_headers` so they apply to every
+ * WordPress-served response (front end + admin), not just the <head>.
  *
  * Coverage:
  *   - X-Content-Type-Options: nosniff            (stops MIME sniffing)
  *   - X-Frame-Options: SAMEORIGIN                (clickjacking, legacy header)
  *   - Content-Security-Policy: frame-ancestors   (clickjacking, modern header)
  *   - Referrer-Policy: strict-origin-when-cross-origin
- *   - Permissions-Policy                         (locks down unused browser APIs)
- *   - Cross-Origin-Opener-Policy: same-origin-allow-popups
  *   - Strict-Transport-Security                  (HTTPS only)
  *
  * The CSP is intentionally frame-ancestors-only: it governs framing but does NOT
  * restrict script-src/object-src, so it can't break inline theme/Woo/CF7/analytics
  * scripts. Scanners grade a frame-ancestors-only policy "unsafe" (no script-src),
  * which is accepted here in exchange for defense-in-depth alongside X-Frame-Options;
- * a real script-restricting CSP would need a nonce-based rollout. (An enforcing
- * origin-allowlist script-src was trialled 2026-07 and rolled back — chasing
- * every third-party integration's exact origins turned into ongoing whack-a-mole
- * across Booqable, RevenueHunt, reCAPTCHA, Google Ads, Hotjar's two TLDs, etc.
- * Revisit only with a nonce-based approach if this comes up again.)
+ * a real script-restricting CSP would need a nonce-based rollout.
  *
  * NOTE: On a LiteSpeed full-page-cache HIT these PHP headers may be bypassed.
- * They are mirrored in .htaccess (mod_headers) for guaranteed coverage — keep
- * both in sync if this policy changes.
+ * For guaranteed coverage mirror them in .htaccess / server config too.
  */
 function dd_send_security_headers()
 {
@@ -171,13 +158,10 @@ function dd_send_security_headers()
         return;
     }
 
-    header_remove('X-Powered-By');
     header('X-Content-Type-Options: nosniff');
     header('X-Frame-Options: SAMEORIGIN');
     header("Content-Security-Policy: frame-ancestors 'self'");
     header('Referrer-Policy: strict-origin-when-cross-origin');
-    header('Permissions-Policy: camera=(), microphone=(), geolocation=(), usb=(), serial=(), interest-cohort=(), payment=(self)');
-    header('Cross-Origin-Opener-Policy: same-origin-allow-popups');
 
     // HSTS only over HTTPS. 1-year max-age. includeSubDomains/preload are left
     // off deliberately: enabling them makes EVERY subdomain HTTPS-only and is
@@ -188,70 +172,6 @@ function dd_send_security_headers()
     }
 }
 add_action('send_headers', 'dd_send_security_headers');
-
-/*
- * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
- *
- * Reduce version/software fingerprinting that automated scanners rely on to match
- * this install against known CVEs. This does not patch anything — it only removes
- * the banner text a scanner reads to assert "version X, therefore CVE Y".
- */
-function dd_reduce_fingerprint()
-{
-    remove_action('wp_head', 'wp_generator');
-    add_filter('the_generator', '__return_empty_string');
-    remove_action('wp_head', 'rsd_link');
-    remove_action('wp_head', 'wlwmanifest_link');
-    remove_action('wp_head', 'wp_shortlink_wp_head');
-    remove_action('template_redirect', 'wp_shortlink_header');
-
-    // Disabling rather than blocking xmlrpc.php outright: this keeps the file
-    // reachable (some monitoring/uptime tools ping it) but rejects every XML-RPC
-    // method, closing the pingback-amplification / brute-force vector.
-    add_filter('xmlrpc_enabled', '__return_false');
-}
-add_action('init', 'dd_reduce_fingerprint');
-
-/*
- * Strip the `?ver=X.Y.Z` query string from core WordPress asset URLs (it leaks the
- * exact WP version to scanners). Only strips when the version matches
- * get_bloginfo('version') exactly, so the theme's own coptz_version cache-busting
- * param (see functions.php — bumping it is how returning visitors get updated
- * style.css) and plugin version strings are left untouched.
- */
-function dd_strip_core_asset_version($src)
-{
-    if ($src && strpos($src, 'ver=' . get_bloginfo('version')) !== false) {
-        $src = remove_query_arg('ver', $src);
-    }
-    return $src;
-}
-add_filter('script_loader_src', 'dd_strip_core_asset_version');
-add_filter('style_loader_src', 'dd_strip_core_asset_version');
-
-/*
- * Block unauthenticated user enumeration: the ?author=N redirect and the
- * /wp-json/wp/v2/users REST route are both commonly scraped to build a valid
- * username list ahead of a credential-stuffing run. Gated on
- * current_user_can('list_users') so logged-in editors/admins are unaffected.
- */
-function dd_block_author_enumeration()
-{
-    if (is_author() && !is_admin() && !current_user_can('list_users') && isset($_GET['author'])) {
-        wp_die(esc_html__('Forbidden', 'coptrz-theme'), esc_html__('Forbidden', 'coptrz-theme'), array('response' => 403));
-    }
-}
-add_action('template_redirect', 'dd_block_author_enumeration');
-
-function dd_restrict_users_rest_endpoint($endpoints)
-{
-    if (!current_user_can('list_users')) {
-        unset($endpoints['/wp/v2/users']);
-        unset($endpoints['/wp/v2/users/(?P<id>[\d]+)']);
-    }
-    return $endpoints;
-}
-add_filter('rest_endpoints', 'dd_restrict_users_rest_endpoint');
 
 /*-----------------------------------------------------------------------------------*/
 /* Admin Settings
