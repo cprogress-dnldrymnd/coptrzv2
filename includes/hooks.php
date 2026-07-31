@@ -211,6 +211,7 @@ function coptrz_csp_directives()
             'https://www.google-analytics.com',
             'https://static.hotjar.com',
             'https://script.hotjar.com',
+            'https://*.hotjar.io', // Hotjar uses BOTH .com and .io — see connect-src note below
             'https://widget.intercom.io',
             'https://js.intercomcdn.com',
             'https://*.booqable.com',
@@ -236,10 +237,18 @@ function coptrz_csp_directives()
             'https://*.booqableshop.com',
         ),
         'img-src' => array("'self'", 'data:', 'https:'),
+        // No directive falls back to default-src 'self' — blocks any editor-uploaded
+        // product video hosted off-site (e.g. DJI's www-cdn.djiits.com). Video sources
+        // are per-product editor content, not a fixed set of vendor origins, so an
+        // allowlist can't be maintained reliably; media injection is a much lower-severity
+        // vector than script injection, so this mirrors img-src's https: approach.
+        'media-src' => array("'self'", 'data:', 'blob:', 'https:'),
         'connect-src' => array(
             "'self'",
             'https://*.hotjar.com',
             'wss://*.hotjar.com',
+            'https://*.hotjar.io', // Hotjar uses BOTH .com and .io — .io was missing, blocking content.hotjar.io
+            'wss://*.hotjar.io',
             'https://api-iam.intercom.io',
             'https://*.booqable.com',
             'https://*.booqableshop.com', // Booqable storefront API/i18n calls (e.g. coptrz.booqableshop.com/locales/en/common.json)
