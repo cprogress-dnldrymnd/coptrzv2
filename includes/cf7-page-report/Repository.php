@@ -392,9 +392,16 @@ class Repository
 
     /**
      * Build the detail-view WHERE clause: date/form filters plus whichever
-     * page buckets the caller opted into (explicit pages, unmatched URLs,
-     * no-page-data). Falls back to "matched pages only" when nothing at all
-     * was selected, so an empty filter set can't silently return every row.
+     * page buckets the caller opted into.
+     *
+     * Matched pages are ALWAYS included — restricted to the selected pages
+     * when the page multi-select has a selection, otherwise every attributed
+     * page — the same default the Summary view uses. The unmatched-URL and
+     * no-page-data buckets are additive on top of that, never a replacement
+     * for it: since both checkboxes default to checked on first load (no
+     * page selected yet), treating the buckets as the *only* clause here
+     * used to silently exclude every real, matched-page submission from the
+     * Detail view and its export whenever no page was explicitly picked.
      *
      * @param array<string,mixed> $filters
      * @return array{0:string,1:array<int,mixed>}
@@ -408,7 +415,10 @@ class Repository
 
         if (!empty($filters['page_ids'])) {
             $bucket_clauses[] = self::in_clause('page_id', $filters['page_ids'], $params);
+        } else {
+            $bucket_clauses[] = 'page_id > 0';
         }
+
         if (!empty($filters['include_unmatched'])) {
             $bucket_clauses[] = "(page_id = 0 AND page_path != '')";
         }
@@ -416,11 +426,7 @@ class Repository
             $bucket_clauses[] = "(page_id = 0 AND page_path = '')";
         }
 
-        if (!empty($bucket_clauses)) {
-            $clauses[] = '(' . implode(' OR ', $bucket_clauses) . ')';
-        } else {
-            $clauses[] = 'page_id > 0';
-        }
+        $clauses[] = '(' . implode(' OR ', $bucket_clauses) . ')';
 
         return array(implode(' AND ', $clauses), $params);
     }
