@@ -13,9 +13,11 @@
 (function (wp) {
 
     const { registerBlockType }               = wp.blocks;
-    const { createElement: el }               = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { useBlockProps }                    = wp.blockEditor;
     const { Placeholder }                      = wp.components;
+
+    const UI = window.coptrzBlockUI || {};
 
     registerBlockType('coptrz/site-logo', {
         title:    'Header — Site Logo',
@@ -25,14 +27,25 @@
         attributes: {},
 
         edit: function () {
+            const [mode, setMode] = useState('preview');
+
+            const emptyPlaceholder = el(Placeholder, {
+                icon:  'admin-home',
+                label: 'Site Logo',
+                instructions: 'Renders the site logo set in Theme Options.'
+            });
+
             return el(
-                'div',
-                useBlockProps(),
-                el(Placeholder, {
-                    icon:  'admin-home',
-                    label: 'Site Logo',
-                    instructions: 'Renders the site logo set in Theme Options.'
-                })
+                Fragment,
+                null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
+                el(
+                    'div',
+                    useBlockProps(),
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/site-logo', attributes: {}, placeholder: emptyPlaceholder, context: 'header' })
+                        : emptyPlaceholder
+                )
             );
         },
 

@@ -16,9 +16,11 @@
 (function (wp) {
 
     const { registerBlockType }               = wp.blocks;
-    const { createElement: el, Fragment }     = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps } = wp.blockEditor;
     const { PanelBody, ToggleControl, Placeholder } = wp.components;
+
+    const UI = window.coptrzBlockUI || {};
 
     registerBlockType('coptrz/header-icons', {
         title:    'Header — Icons',
@@ -35,6 +37,7 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const { showAccount, showAcademy, showCart, showBurger } = attributes;
+            const [mode, setMode] = useState('preview');
 
             var enabled = [];
             if (showAccount) { enabled.push('Account'); }
@@ -42,9 +45,16 @@
             if (showCart)    { enabled.push('Cart'); }
             if (showBurger)  { enabled.push('Mobile Menu Burger'); }
 
+            const emptyPlaceholder = el(Placeholder, {
+                icon:  'admin-users',
+                label: 'Header Icons',
+                instructions: enabled.length ? ('Showing: ' + enabled.join(', ')) : 'No icons enabled — select at least one in the block settings.'
+            });
+
             return el(
                 Fragment,
                 null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -77,11 +87,9 @@
                 el(
                     'div',
                     useBlockProps(),
-                    el(Placeholder, {
-                        icon:  'admin-users',
-                        label: 'Header Icons',
-                        instructions: enabled.length ? ('Showing: ' + enabled.join(', ')) : 'No icons enabled — select at least one in the block settings.'
-                    })
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/header-icons', attributes: attributes, placeholder: emptyPlaceholder, context: 'header' })
+                        : emptyPlaceholder
                 )
             );
         },

@@ -10,7 +10,7 @@
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
-    const { createElement: el } = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps } = wp.blockEditor;
     const { PanelBody, Placeholder } = wp.components;
 
@@ -31,9 +31,20 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const a = attributes;
+            const [mode, setMode] = useState(a.productId ? 'preview' : 'edit');
+
+            const emptyPlaceholder = el(Placeholder, {
+                icon:  'cart',
+                label: 'Product (Legacy)',
+                instructions: a.productName
+                    ? 'Product: ' + a.productName + (a.isTraining ? ' (training template)' : '')
+                    : 'Select a product in the block settings.'
+            });
+
             return el(
-                'div',
-                useBlockProps(),
+                Fragment,
+                null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -47,13 +58,13 @@
                         UI.boolField('Training Template', a.isTraining, function (v) { setAttributes({ isTraining: v }); })
                     )
                 ),
-                el(Placeholder, {
-                    icon:  'cart',
-                    label: 'Product (Legacy)',
-                    instructions: a.productName
-                        ? 'Product: ' + a.productName + (a.isTraining ? ' (training template)' : '')
-                        : 'Select a product in the block settings.'
-                })
+                el(
+                    'div',
+                    useBlockProps(),
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/product', attributes: a, placeholder: emptyPlaceholder })
+                        : emptyPlaceholder
+                )
             );
         },
 

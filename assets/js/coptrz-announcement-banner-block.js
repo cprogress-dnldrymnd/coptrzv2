@@ -16,9 +16,11 @@
 (function (wp) {
 
     const { registerBlockType }               = wp.blocks;
-    const { createElement: el, Fragment }     = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps, MediaUpload, MediaUploadCheck } = wp.blockEditor;
     const { PanelBody, TextControl, Button, BaseControl, Placeholder } = wp.components;
+
+    const UI = window.coptrzBlockUI || {};
 
     function imagePicker(label, url, onSelect, onClear) {
         return el(BaseControl, { label: label },
@@ -53,10 +55,20 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const { linkUrl, desktopImageUrl, mobileImageUrl } = attributes;
+            const [mode, setMode] = useState('preview');
+
+            const emptyPlaceholder = el(Placeholder, {
+                icon:  'megaphone',
+                label: 'Announcement Banner',
+                instructions: (desktopImageUrl || mobileImageUrl || linkUrl)
+                    ? 'Custom banner configured.'
+                    : 'Renders the current live promo banner. Set an image above to override it.'
+            });
 
             return el(
                 Fragment,
                 null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -86,13 +98,9 @@
                 el(
                     'div',
                     useBlockProps(),
-                    el(Placeholder, {
-                        icon:  'megaphone',
-                        label: 'Announcement Banner',
-                        instructions: (desktopImageUrl || mobileImageUrl || linkUrl)
-                            ? 'Custom banner configured.'
-                            : 'Renders the current live promo banner. Set an image above to override it.'
-                    })
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/announcement-banner', attributes: attributes, placeholder: emptyPlaceholder })
+                        : emptyPlaceholder
                 )
             );
         },

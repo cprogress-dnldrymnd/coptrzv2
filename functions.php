@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 6.32);
+define('coptz_version', 6.33);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -1038,54 +1038,11 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         'isProduct' => ($section_split_screen && $section_split_screen->id === 'product' && $section_split_screen->base === 'post') ? '1' : '',
     ));
 
-    // Header element blocks (site logo, nav menu, icons, CTA buttons,
-    // announcement banner) — standalone editor equivalents of
-    // template-parts/header/*.php, rendered server-side via the render_block
-    // filters in includes/header-blocks.php.
-    wp_enqueue_script(
-        'coptrz-site-logo-block',
-        get_template_directory_uri() . '/assets/js/coptrz-site-logo-block.js',
-        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
-        filemtime(get_template_directory() . '/assets/js/coptrz-site-logo-block.js'),
-        true
-    );
-
-    wp_enqueue_script(
-        'coptrz-header-menu-block',
-        get_template_directory_uri() . '/assets/js/coptrz-header-menu-block.js',
-        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
-        filemtime(get_template_directory() . '/assets/js/coptrz-header-menu-block.js'),
-        true
-    );
-
-    wp_enqueue_script(
-        'coptrz-header-icons-block',
-        get_template_directory_uri() . '/assets/js/coptrz-header-icons-block.js',
-        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
-        filemtime(get_template_directory() . '/assets/js/coptrz-header-icons-block.js'),
-        true
-    );
-
-    wp_enqueue_script(
-        'coptrz-header-cta-block',
-        get_template_directory_uri() . '/assets/js/coptrz-header-cta-block.js',
-        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor'),
-        filemtime(get_template_directory() . '/assets/js/coptrz-header-cta-block.js'),
-        true
-    );
-
-    wp_enqueue_script(
-        'coptrz-announcement-banner-block',
-        get_template_directory_uri() . '/assets/js/coptrz-announcement-banner-block.js',
-        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch'),
-        filemtime(get_template_directory() . '/assets/js/coptrz-announcement-banner-block.js'),
-        true
-    );
-
-    // Shared editor UI helpers (IdTokenPicker, SinglePostPicker, selectField, …)
-    // for the legacy wrapper blocks below — see assets/js/coptrz-block-ui.js.
-    // Must be enqueued (and registered as a dependency) BEFORE those blocks,
-    // since they read off window.coptrzBlockUI at parse time.
+    // Shared editor UI helpers (IdTokenPicker, SinglePostPicker, selectField, …,
+    // LivePreview/PreviewToggle) for the legacy wrapper + header element blocks
+    // below — see assets/js/coptrz-block-ui.js. Enqueued (and registered as a
+    // dependency) BEFORE those blocks, since they read off window.coptrzBlockUI
+    // at parse time.
     wp_enqueue_script(
         'coptrz-block-ui',
         get_template_directory_uri() . '/assets/js/coptrz-block-ui.js',
@@ -1097,6 +1054,51 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
     // a declared dependency of every legacy block below, guaranteeing this prints
     // — and window.coptrzLegacyBlocks exists — before any of them run.
     wp_localize_script('coptrz-block-ui', 'coptrzLegacyBlocks', coptrz_legacy_block_field_options());
+
+    // Header element blocks (site logo, nav menu, icons, CTA buttons,
+    // announcement banner) — standalone editor equivalents of
+    // template-parts/header/*.php, rendered server-side via the render_block
+    // filters in includes/header-blocks.php. wp-api-fetch + coptrz-block-ui are
+    // required by all five (LivePreview/PreviewToggle).
+    wp_enqueue_script(
+        'coptrz-site-logo-block',
+        get_template_directory_uri() . '/assets/js/coptrz-site-logo-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch', 'coptrz-block-ui'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-site-logo-block.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'coptrz-header-menu-block',
+        get_template_directory_uri() . '/assets/js/coptrz-header-menu-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch', 'coptrz-block-ui'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-header-menu-block.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'coptrz-header-icons-block',
+        get_template_directory_uri() . '/assets/js/coptrz-header-icons-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch', 'coptrz-block-ui'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-header-icons-block.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'coptrz-header-cta-block',
+        get_template_directory_uri() . '/assets/js/coptrz-header-cta-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch', 'coptrz-block-ui'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-header-cta-block.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'coptrz-announcement-banner-block',
+        get_template_directory_uri() . '/assets/js/coptrz-announcement-banner-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch', 'coptrz-block-ui'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-announcement-banner-block.js'),
+        true
+    );
 
     // Legacy wrapper blocks (Gallery, Product Slider, Tabs, Accordion, Drone
     // Servicing Grid, Events Widget, Product, Product Compare, Global Post Box).

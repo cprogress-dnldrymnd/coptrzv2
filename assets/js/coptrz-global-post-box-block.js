@@ -20,7 +20,7 @@
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
-    const { createElement: el } = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps } = wp.blockEditor;
     const { PanelBody, Placeholder } = wp.components;
 
@@ -44,9 +44,20 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const a = attributes;
+            const [mode, setMode] = useState(a.postId ? 'preview' : 'edit');
+
+            const emptyPlaceholder = el(Placeholder, {
+                icon:  'id',
+                label: 'Global Post Box (Legacy)',
+                instructions: a.postTitle
+                    ? a.postTitle
+                    : 'Select a post in the block settings.'
+            });
+
             return el(
-                'div',
-                useBlockProps(),
+                Fragment,
+                null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -62,13 +73,13 @@
                         UI.selectField('Column Width Mobile', a.columnWidthMobile, OPTS.galleryColumnWidthMobile, function (v) { setAttributes({ columnWidthMobile: v }); })
                     )
                 ),
-                el(Placeholder, {
-                    icon:  'id',
-                    label: 'Global Post Box (Legacy)',
-                    instructions: a.postTitle
-                        ? a.postTitle
-                        : 'Select a post in the block settings.'
-                })
+                el(
+                    'div',
+                    useBlockProps(),
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/global-post-box', attributes: a, placeholder: emptyPlaceholder })
+                        : emptyPlaceholder
+                )
             );
         },
 

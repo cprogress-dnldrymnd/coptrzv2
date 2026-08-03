@@ -976,6 +976,35 @@ function action_body_scripts()
 
 add_action('wp_body_open', 'action_body_scripts');
 
+/*
+ * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
+ *
+ * Print the Theme Settings > Header and Footer Scripts fields. Under Carbon
+ * Fields, `header_scripts`/`footer_scripts` were self-printing field types
+ * (Scripts_Field::init() hooked wp_head/wp_footer itself); the native
+ * meta-shim replacement stores them as plain textareas with no print side,
+ * so this restores the missing output explicitly.
+ */
+function action_header_scripts()
+{
+    $header_scripts = get__theme_option('header_scripts');
+    if ($header_scripts) {
+        echo $header_scripts;
+    }
+}
+
+add_action('wp_head', 'action_header_scripts');
+
+function action_footer_scripts()
+{
+    $footer_scripts = get__theme_option('footer_scripts');
+    if ($footer_scripts) {
+        echo $footer_scripts;
+    }
+}
+
+add_action('wp_footer', 'action_footer_scripts');
+
 
 function remove_canonical()
 {

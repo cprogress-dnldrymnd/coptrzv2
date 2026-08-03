@@ -5,14 +5,22 @@
  * @author    Digitally Disruptive - Donald Raymundo
  * @link      https://digitallydisruptive.co.uk/
  *
- * Live-preview REST route for the "legacy wrapper" blocks
+ * Live-preview REST route for every `save: null` coptrz/* block whose real
+ * markup only exists via a render_block filter: the "legacy wrapper" blocks
  * (coptrz/tabs-legacy, coptrz/accordion-legacy, coptrz/icon-legacy,
  * coptrz/spec-box-legacy, coptrz/divider-legacy, coptrz/cf7-legacy,
- * coptrz/global-widget, coptrz/post-grid, coptrz/layouts) and coptrz/hero —
- * every `save: null` block whose real markup only exists via a render_block
- * filter (includes/legacy-blocks.php, includes/hero-block.php, functions.php's
- * coptrz_render_global_widget_block() / coptrz_render_post_grid_block() /
- * coptrz_render_layouts_block()).
+ * coptrz/gallery, coptrz/product-slider, coptrz/drone-servicing-grid,
+ * coptrz/events-widget, coptrz/product, coptrz/product-compare,
+ * coptrz/global-post-box — includes/legacy-blocks.php), coptrz/hero
+ * (includes/hero-block.php), coptrz/global-widget / coptrz/post-grid /
+ * coptrz/layouts (functions.php), and the header element blocks
+ * (coptrz/site-logo, coptrz/header-menu, coptrz/header-icons,
+ * coptrz/header-cta, coptrz/announcement-banner — includes/header-blocks.php).
+ *
+ * coptrz/section-split is the one server-rendered coptrz/* block deliberately
+ * NOT in this registry — its renderer always returns '' by design (a
+ * structural marker only, functions.php coptrz_render_section_split_block()),
+ * so there is nothing to preview.
  *
  * Not core's ServerSideRender/`/wp/v2/block-renderer/*`: that route only
  * exists for blocks registered SERVER-SIDE via register_block_type() with a
@@ -102,6 +110,106 @@ function coptrz_block_preview_renderers()
                 return '';
             }
             return coptrz_render_layouts_block('', array('blockName' => 'coptrz/layouts', 'attrs' => $attrs));
+        },
+        'coptrz/gallery' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_gallery_block')) {
+                return '';
+            }
+            return coptrz_render_gallery_block('', array('blockName' => 'coptrz/gallery', 'attrs' => $attrs));
+        },
+        /**
+         * Product Slider's `main_query` source resolves its category from
+         * `is_product_taxonomy()`, else from `$_GET['post']` (the admin editor's
+         * post id — see includes/legacy-blocks.php + the legacy mirror in
+         * includes/modules.php). The preview REST request carries no `post` query
+         * arg, so that branch would preview empty; shim `$_GET['post']` from this
+         * route's own `post_id` for the duration of the call only.
+         */
+        'coptrz/product-slider' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_product_slider_block')) {
+                return '';
+            }
+            $had_get_post = array_key_exists('post', $_GET);
+            $prev_get_post = $had_get_post ? $_GET['post'] : null;
+            if ($post_id) {
+                $_GET['post'] = $post_id;
+            }
+            try {
+                return coptrz_render_product_slider_block('', array('blockName' => 'coptrz/product-slider', 'attrs' => $attrs));
+            } finally {
+                if ($had_get_post) {
+                    $_GET['post'] = $prev_get_post;
+                } else {
+                    unset($_GET['post']);
+                }
+            }
+        },
+        'coptrz/drone-servicing-grid' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_drone_servicing_grid_block')) {
+                return '';
+            }
+            return coptrz_render_drone_servicing_grid_block('', array('blockName' => 'coptrz/drone-servicing-grid', 'attrs' => $attrs));
+        },
+        /**
+         * [event_countdown] reads the event post's start/end meta off
+         * get_the_ID() — the route's own $GLOBALS['post']/setup_postdata() setup
+         * from `post_id` already covers that. The countdown JS is stripped by
+         * this route's <script> filter below, so the digits render static (00s),
+         * same static-approximation as every other JS-driven preview here.
+         */
+        'coptrz/events-widget' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_events_widget_block')) {
+                return '';
+            }
+            return coptrz_render_events_widget_block('', array('blockName' => 'coptrz/events-widget', 'attrs' => $attrs));
+        },
+        'coptrz/product' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_product_block')) {
+                return '';
+            }
+            return coptrz_render_product_block('', array('blockName' => 'coptrz/product', 'attrs' => $attrs));
+        },
+        'coptrz/product-compare' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_product_compare_block')) {
+                return '';
+            }
+            return coptrz_render_product_compare_block('', array('blockName' => 'coptrz/product-compare', 'attrs' => $attrs));
+        },
+        'coptrz/global-post-box' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_global_post_box_block')) {
+                return '';
+            }
+            return coptrz_render_global_post_box_block('', array('blockName' => 'coptrz/global-post-box', 'attrs' => $attrs));
+        },
+        'coptrz/site-logo' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_site_logo_block')) {
+                return '';
+            }
+            return coptrz_render_site_logo_block('', array('blockName' => 'coptrz/site-logo', 'attrs' => $attrs));
+        },
+        'coptrz/header-menu' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_header_menu_block')) {
+                return '';
+            }
+            return coptrz_render_header_menu_block('', array('blockName' => 'coptrz/header-menu', 'attrs' => $attrs));
+        },
+        'coptrz/header-icons' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_header_icons_block')) {
+                return '';
+            }
+            return coptrz_render_header_icons_block('', array('blockName' => 'coptrz/header-icons', 'attrs' => $attrs));
+        },
+        'coptrz/header-cta' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_header_cta_block')) {
+                return '';
+            }
+            return coptrz_render_header_cta_block('', array('blockName' => 'coptrz/header-cta', 'attrs' => $attrs));
+        },
+        'coptrz/announcement-banner' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_announcement_banner_block')) {
+                return '';
+            }
+            return coptrz_render_announcement_banner_block('', array('blockName' => 'coptrz/announcement-banner', 'attrs' => $attrs));
         },
     );
 

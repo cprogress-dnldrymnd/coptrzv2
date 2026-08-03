@@ -265,6 +265,50 @@ case studies, rentals, landing pages, etc).
   ordered before `post_title` (or `post_title` wasn't included at all), the link
   text was stale or empty. `____post_grid_module()`'s `permalink` case
   (modules.php) now calls `get_the_title($post->ID)` directly instead.
+- **Live block preview** (`includes/block-preview.php`, `assets/js/coptrz-block-ui.js`'s
+  `LivePreview`/`PreviewToggle`) — every `save: null` coptrz/* block (the legacy
+  wrapper blocks, hero, global-widget/post-grid/layouts, and the header element
+  blocks) renders real front-end markup in the editor canvas instead of a static
+  Placeholder. A block-toolbar Preview/Edit `ToolbarButton` pair
+  (`PreviewToggle`) toggles per-block, editor-only React state (not an
+  attribute, so it never affects serialization). In Preview mode, `LivePreview`
+  POSTs the block's live (possibly unsaved) `attributes` to
+  `/dd/v1/block-preview`, debounced 400ms with a sequence guard against
+  out-of-order responses. That REST route (`coptrz_rest_block_preview()`) looks
+  up the block name in `coptrz_block_preview_renderers()` — a whitelist mapping
+  block name → a closure that calls the block's EXISTING `render_block` render
+  function with a synthetic `array('blockName' => …, 'attrs' => $attrs)`, so
+  the front-end `render_block` chain is never touched and can't drift from the
+  preview. This is deliberately **not** core's `ServerSideRender`/
+  `/wp/v2/block-renderer/*`: that route only exists for blocks registered
+  SERVER-SIDE via `register_block_type()` with a `render_callback`, and every
+  coptrz/* block here is registered client-side only — adding a parallel
+  server-side registration + attribute schema per block would be a second
+  source of truth that can drift from the JS `attributes`.
+  `coptrz/section-split` is the one server-rendered coptrz/* block deliberately
+  NOT in the registry — its renderer always returns `''` by design (a
+  structural marker only), so there's nothing to preview.
+  Response HTML has `<script>`/`<style type="application/ld+json">` tags
+  stripped (never execute inside React's `dangerouslySetInnerHTML`, and would
+  otherwise leave the canvas holding dead tabs/accordion bootstrap JS or a
+  schema blob) — plain `<style>` tags (e.g. per-instance scoped CSS) are kept.
+  The preview wrapper (`.coptrz-block-preview`, `assets/scss/base/
+  _block-preview.scss`, compiled into `style.css` and loaded in the editor via
+  `add_editor_style('style.css')`, `includes/hooks.php`) is `pointer-events:
+  none` / `user-select: none` (read-only canvas — clicking selects the block
+  rather than following a link or submitting a CF7 form), forces open
+  `.accordion-collapse` (Bootstrap's collapse JS never runs in the editor), and
+  clips horizontal overflow instead of fighting Swiper/Bootstrap `.row`
+  negative-margin layout with JS that never initialises there.
+  `LivePreview` accepts an optional `context` prop (currently only `'header'`,
+  used by the five header element blocks) that nests the rendered HTML inside
+  the real header's ancestor chain (`.header > .header-inner > .row.header-
+  right`, mirroring `header.php` + `template-parts/header/header-right.php`) so
+  that markup's white-on-transparent styling and `d-lg-*` visibility utilities
+  actually match — `.coptrz-block-preview--header` in `_block-preview.scss`
+  gives that nested `.header` a dark static backdrop instead of its live
+  `position: absolute` + transparent/blurred one, and forces the desktop
+  (`d-lg-*`) rendition regardless of the editor iframe's current width.
 - `assets/js/extend-cover-responsive.js` — Gutenberg block editor extension
   (enqueued via `digitally_disruptive_enqueue_swiper_editor_assets()`, same
   hook as `dd-tabs-block.js`/`dd-cf7-pdf-block.js`) that adds a "Responsive
