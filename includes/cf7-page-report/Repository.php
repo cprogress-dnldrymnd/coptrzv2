@@ -117,6 +117,13 @@ class Repository
      * that stops the report being silently wrong about how much of the
      * period it can actually account for.
      *
+     * Uses the SAME scoping as detail_where() (page selection + bucket
+     * checkboxes), not just the date/form filters, so this always agrees
+     * with what Summary/Detail actually show — using base_where() here used
+     * to report totals across every attributed page regardless of which
+     * pages were selected, which could read as e.g. "82 (100%) total" while
+     * Detail, correctly scoped to the selection, showed only 9 rows.
+     *
      * @param array<string,mixed> $filters
      * @return array{total:int,attributed:int,unmatched_url:int,no_page_data:int}
      */
@@ -125,7 +132,7 @@ class Repository
         global $wpdb;
         $table = Schema::submission_page_table();
 
-        list($where, $params) = self::base_where($filters);
+        list($where, $params) = self::detail_where($filters);
 
         $sql = "SELECT
                     COUNT(*) AS total,
