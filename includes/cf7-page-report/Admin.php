@@ -150,7 +150,9 @@ class Admin
         $scope = (isset($_GET['scope']) && 'detail' === $_GET['scope']) ? 'detail' : 'summary';
 
         if ('detail' === $scope && 'xlsx' === $export) {
-            Exporter::export_detail_xlsx($filters);
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only, nonce already verified above.
+            $group_by = (isset($_GET['group_by']) && 'page' === $_GET['group_by']) ? 'page' : 'form';
+            Exporter::export_detail_xlsx($filters, $group_by);
             return;
         }
 
@@ -513,8 +515,12 @@ class Admin
             add_query_arg(array_merge(self::current_view_args(), array('coptrz_cf7_page_export' => 'csv', 'scope' => 'detail')), menu_page_url(self::PAGE_SLUG, false)),
             self::EXPORT_NONCE
         );
-        $export_xlsx_url = wp_nonce_url(
-            add_query_arg(array_merge(self::current_view_args(), array('coptrz_cf7_page_export' => 'xlsx', 'scope' => 'detail')), menu_page_url(self::PAGE_SLUG, false)),
+        $export_xlsx_by_page_url = wp_nonce_url(
+            add_query_arg(array_merge(self::current_view_args(), array('coptrz_cf7_page_export' => 'xlsx', 'scope' => 'detail', 'group_by' => 'page')), menu_page_url(self::PAGE_SLUG, false)),
+            self::EXPORT_NONCE
+        );
+        $export_xlsx_by_form_url = wp_nonce_url(
+            add_query_arg(array_merge(self::current_view_args(), array('coptrz_cf7_page_export' => 'xlsx', 'scope' => 'detail', 'group_by' => 'form')), menu_page_url(self::PAGE_SLUG, false)),
             self::EXPORT_NONCE
         );
         $total_pages = max(1, (int) ceil($detail_total / $per_page));
@@ -523,8 +529,11 @@ class Admin
             <a class="button" href="<?php echo esc_url($export_csv_url); ?>">
                 <span class="dashicons dashicons-media-text"></span><?php esc_html_e('Export CSV', 'coptrz-theme'); ?>
             </a>
-            <a class="button" href="<?php echo esc_url($export_xlsx_url); ?>">
-                <span class="dashicons dashicons-media-spreadsheet"></span><?php esc_html_e('Export Excel', 'coptrz-theme'); ?>
+            <a class="button" href="<?php echo esc_url($export_xlsx_by_page_url); ?>" title="<?php esc_attr_e('One sheet per page', 'coptrz-theme'); ?>">
+                <span class="dashicons dashicons-media-spreadsheet"></span><?php esc_html_e('Export Excel — by page', 'coptrz-theme'); ?>
+            </a>
+            <a class="button" href="<?php echo esc_url($export_xlsx_by_form_url); ?>" title="<?php esc_attr_e('One sheet per form', 'coptrz-theme'); ?>">
+                <span class="dashicons dashicons-media-spreadsheet"></span><?php esc_html_e('Export Excel — by form', 'coptrz-theme'); ?>
             </a>
         </div>
         <table class="widefat striped">

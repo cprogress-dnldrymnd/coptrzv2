@@ -171,12 +171,13 @@ class Exporter
 
     /**
      * Stream the detail drill-down as XLSX: a Summary sheet plus one sheet
-     * per form, each with that form's own natural columns. Exits on write,
-     * or wp_die()s if the plugin's bundled XLSXWriter isn't available.
+     * per form OR one sheet per page, depending on $group_by. Exits on
+     * write, or wp_die()s if the plugin's bundled XLSXWriter isn't available.
      *
      * @param array<string,mixed> $filters
+     * @param string              $group_by 'form' (default) or 'page'.
      */
-    public static function export_detail_xlsx(array $filters)
+    public static function export_detail_xlsx(array $filters, $group_by = 'form')
     {
         $writer_path = self::locate_xlsxwriter();
         if (null === $writer_path) {
@@ -188,12 +189,7 @@ class Exporter
             wp_die(esc_html__('Excel export is unavailable — XLSXWriter failed to load. Use CSV export instead.', 'coptrz-theme'));
         }
 
-        list($rows, $pivoted, , $truncated) = self::gather_detail($filters);
-
-        $by_form = array();
-        foreach ($rows as $row) {
-            $by_form[(int) $row['cf7_id']][] = $row;
-        }
+        list($rows, $pivoted, $extra_field_names, $truncated) = self::gather_detail($filters);
 
         while (ob_get_level() > 0) {
             ob_end_clean();
@@ -222,8 +218,39 @@ class Exporter
             $writer->writeSheetRow('Summary', array(sprintf(__('Detail sheets truncated at %d rows.', 'coptrz-theme'), self::EXPORT_ROW_LIMIT)));
         }
 
+        if ('page' === $group_by) {
+            self::write_page_sheets($writer, $rows, $pivoted, $extra_field_names);
+        } else {
+            self::write_form_sheets($writer, $rows, $pivoted);
+        }
+
+        $suffix   = 'page' === $group_by ? '-by-page' : '-by-form';
+        $filename = 'cf7-page-report' . $suffix . '-' . gmdate('Ymd-His') . '.xlsx';
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . sanitize_file_name($filename) . '"');
+        $writer->writeToStdOut();
+        exit;
+    }
+
+    /**
+     * One sheet per form, each with that form's own natural columns (from
+     * vsz_cf7_get_db_fields() when available).
+     *
+     * @param \XLSXWriter $writer
+     * @param array<int,array<string,mixed>> $rows
+     * @param array<int,array<string,string>> $pivoted
+     */
+    private static function write_form_sheets(\XLSXWriter $writer, array $rows, array $pivoted)
+    {
+        $by_form = array();
+        foreach ($rows as $row) {
+            $by_form[(int) $row['cf7_id']][] = $row;
+        }
+
+        $used_names = array();
+
         foreach ($by_form as $cf7_id => $form_rows) {
-            $sheet_name = self::sheet_name(self::form_title($cf7_id));
+            $sheet_name = self::unique_sheet_name($used_names, self::form_title($cf7_id));
             $fields     = function_exists('vsz_cf7_get_db_fields')
                 ? array_values(vsz_cf7_get_db_fields($cf7_id))
                 : self::union_fields_for($form_rows, $pivoted);
@@ -242,12 +269,98 @@ class Exporter
                 $writer->writeSheetRow($sheet_name, $line);
             }
         }
+    }
 
-        $filename = 'cf7-page-report-' . gmdate('Ymd-His') . '.xlsx';
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment; filename="' . sanitize_file_name($filename) . '"');
-        $writer->writeToStdOut();
-        exit;
+    /**
+     * One sheet per page (plus a shared "Unmatched URLs" and "No page data"
+     * sheet for the two attribution buckets). A page can have submissions
+     * from several different forms, so unlike the by-form layout there is no
+     * single "natural" column set — each sheet uses the same canonical
+     * columns (Date, Form, Name, Email, Phone, Message) plus the union of
+     * every other field seen anywhere in the export, matching the CSV
+     * detail export's wide-table shape.
+     *
+     * @param \XLSXWriter $writer
+     * @param array<int,array<string,mixed>> $rows
+     * @param array<int,array<string,string>> $pivoted
+     * @param string[] $extra_field_names
+     */
+    private static function write_page_sheets(\XLSXWriter $writer, array $rows, array $pivoted, array $extra_field_names)
+    {
+        $by_page = array();
+        foreach ($rows as $row) {
+            $key = self::page_group_key($row);
+            if (!isset($by_page[$key])) {
+                $by_page[$key] = array('label' => self::page_group_label($row), 'rows' => array());
+            }
+            $by_page[$key]['rows'][] = $row;
+        }
+
+        $header = array_merge(
+            array(
+                __('Date', 'coptrz-theme'),
+                __('Form', 'coptrz-theme'),
+                __('Name', 'coptrz-theme'),
+                __('Email', 'coptrz-theme'),
+                __('Phone', 'coptrz-theme'),
+                __('Message', 'coptrz-theme'),
+            ),
+            $extra_field_names
+        );
+
+        $used_names = array();
+
+        foreach ($by_page as $group) {
+            $sheet_name = self::unique_sheet_name($used_names, $group['label']);
+            $writer->writeSheetRow($sheet_name, $header);
+
+            foreach ($group['rows'] as $row) {
+                $data_id   = (int) $row['data_id'];
+                $fields    = $pivoted[$data_id] ?? array();
+                $canonical = Field_Map::extract($fields);
+
+                $line = array(
+                    $row['submitted_at'],
+                    self::form_title((int) $row['cf7_id']),
+                    $canonical['name'],
+                    $canonical['email'],
+                    $canonical['phone'],
+                    $canonical['message'],
+                );
+
+                foreach ($extra_field_names as $name) {
+                    $line[] = $fields[$name] ?? '';
+                }
+
+                $writer->writeSheetRow($sheet_name, $line);
+            }
+        }
+    }
+
+    /**
+     * @param array<string,mixed> $row
+     * @return string
+     */
+    private static function page_group_key(array $row)
+    {
+        if ((int) $row['page_id'] > 0) {
+            return 'page_' . $row['page_id'];
+        }
+
+        return '' !== (string) $row['page_path'] ? 'unmatched' : 'no_data';
+    }
+
+    /**
+     * @param array<string,mixed> $row
+     * @return string
+     */
+    private static function page_group_label(array $row)
+    {
+        if ((int) $row['page_id'] > 0) {
+            return self::page_title((int) $row['page_id']);
+        }
+
+        return '' !== (string) $row['page_path'] ? __('Unmatched URLs', 'coptrz-theme') : __('No page data', 'coptrz-theme');
     }
 
     /**
@@ -390,6 +503,33 @@ class Exporter
         }
 
         return substr($name, 0, 31);
+    }
+
+    /**
+     * sheet_name() truncated to 31 chars can collide (two differently-named
+     * pages/forms sharing the same first 31 characters, or two pages with
+     * identical titles) — real Excel rejects duplicate sheet names, so
+     * dedupe with a numeric suffix before handing off to XLSXWriter.
+     *
+     * @param array<string,bool> $used  Sheet names already used, by reference.
+     * @param string             $title
+     * @return string
+     */
+    private static function unique_sheet_name(array &$used, $title)
+    {
+        $base      = self::sheet_name($title);
+        $candidate = $base;
+        $i         = 2;
+
+        while (isset($used[$candidate])) {
+            $suffix    = ' (' . $i . ')';
+            $candidate = substr($base, 0, 31 - strlen($suffix)) . $suffix;
+            $i++;
+        }
+
+        $used[$candidate] = true;
+
+        return $candidate;
     }
 
     /**
