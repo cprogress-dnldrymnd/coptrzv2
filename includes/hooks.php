@@ -133,35 +133,182 @@ add_action('wp_head', 'action_wp_head');
  * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
  *
  * Emit baseline security-response headers flagged by securityheaders.com /
- * Mozilla Observatory scans. Hooked on `send_headers` so they apply to every
- * WordPress-served response (front end + admin), not just the <head>.
+ * Mozilla Observatory scans. Hooked on `send_headers`, which covers every
+ * FRONT-END request routed through WP::main() — confirmed (2026-07) that it
+ * does NOT fire for wp-login.php or the wp-admin bootstrap (neither goes
+ * through the main query/template lifecycle), so this function never runs
+ * there regardless of the is_admin()/wp-login.php branch below. On
+ * production (LiteSpeed, per the cache note further down) admin/login
+ * coverage comes entirely from the .htaccess mod_headers mirror instead —
+ * verify with `curl -I` on wp-login.php there, since it can't be exercised
+ * on a local nginx-fronted stack (nginx doesn't read .htaccess).
  *
+
  * Coverage:
  *   - X-Content-Type-Options: nosniff            (stops MIME sniffing)
  *   - X-Frame-Options: SAMEORIGIN                (clickjacking, legacy header)
- *   - Content-Security-Policy: frame-ancestors   (clickjacking, modern header)
+ *   - Content-Security-Policy                    (clickjacking + script-origin allowlist)
  *   - Referrer-Policy: strict-origin-when-cross-origin
+ *   - Permissions-Policy                         (locks down unused browser APIs)
+ *   - Cross-Origin-Opener-Policy: same-origin-allow-popups
  *   - Strict-Transport-Security                  (HTTPS only)
  *
- * The CSP is intentionally frame-ancestors-only: it governs framing but does NOT
- * restrict script-src/object-src, so it can't break inline theme/Woo/CF7/analytics
- * scripts. Scanners grade a frame-ancestors-only policy "unsafe" (no script-src),
- * which is accepted here in exchange for defense-in-depth alongside X-Frame-Options;
- * a real script-restricting CSP would need a nonce-based rollout.
+ * The CSP now enforces script-src/object-src (not just frame-ancestors) but keeps
+ * 'unsafe-inline' on script-src: the theme and several plugins (OpenAI Ads pixel —
+ * dd_inject_openai_ads_base_pixel() below, CF7 listeners, JSON-LD schema,
+ * wp_localize_script data) rely on inline <script> tags with no nonce
+ * infrastructure. Dropping 'unsafe-inline' without a nonce rollout breaks the site
+ * outright, so this policy defends against the more relevant threat — an attacker
+ * INJECTING a <script src="evil.example/x.js"> (e.g. a checkout skimmer) — rather
+ * than every inline-script class of attack. object-src/base-uri are locked down
+ * regardless, at no compatibility cost.
+ *
+ * The is_admin()/wp-login.php check below falls back to the old
+ * frame-ancestors-only policy for the block editor (eval()/blob: workers a
+ * script-src allowlist would break) — currently unreachable for wp-login.php
+ * itself per the note above (send_headers never fires there), kept as
+ * defense-in-depth in case that assumption changes, and still live for any
+ * is_admin() context that DOES fire send_headers (e.g. some admin-ajax.php
+ * requests).
+ *
+ * Kill switch: define('COPTRZ_CSP_DISABLE', true) in wp-config.php reverts every
+ * request to the frame-ancestors-only policy with no deploy, if a third-party
+ * integration breaks in production.
+ *
+ * Extend the allowlist without editing this file:
+ *   add_filter('coptrz_csp_directives', function ($directives) {
+ *       $directives['script-src'][] = 'https://example.com';
+ *       return $directives;
+ *   });
  *
  * NOTE: On a LiteSpeed full-page-cache HIT these PHP headers may be bypassed.
- * For guaranteed coverage mirror them in .htaccess / server config too.
+ * They are mirrored in .htaccess (mod_headers) for guaranteed coverage — keep
+ * both in sync if this policy changes.
  */
+function coptrz_csp_directives()
+{
+    $directives = array(
+        'default-src' => array("'self'"),
+        // Swiper, intl-tel-input and jQuery Validation are vendored locally under
+        // assets/vendor/ (see enqueue_scripts() in functions.php, header-clean.php, and
+        // templates/page-calculator.php) rather than loaded from jsDelivr — deliberate:
+        // removes a third-party script origin entirely rather than trusting it, and the
+        // old CDN pin (swiper@11) floated to whatever release was current, which SRI can't
+        // protect against. cdn.jsdelivr.net is intentionally NOT in this allowlist; if a
+        // future change reintroduces a CDN dependency, prefer vendoring it again over
+        // re-adding the origin. Remaining origins found in theme/plugin code: OpenAI Ads
+        // pixel, YouTube hero backgrounds, Google Fonts, Hotjar, Intercom, Booqable rentals
+        // widget, reCAPTCHA, Google Ads/doubleclick, RevenueHunt. Anything pasted into Theme
+        // Settings > header/footer scripts is NOT visible from code — verify with a live
+        // network-tab pass and extend via the filter above if something's missing.
+        'script-src' => array(
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            'https://bzrcdn.openai.com',
+            'https://www.youtube.com',
+            'https://www.googletagmanager.com',
+            'https://www.google-analytics.com',
+            'https://static.hotjar.com',
+            'https://script.hotjar.com',
+            'https://*.hotjar.io', // Hotjar uses BOTH .com and .io — see connect-src note below
+            'https://widget.intercom.io',
+            'https://js.intercomcdn.com',
+            'https://*.booqable.com',
+            'https://*.booqableshop.com', // Booqable storefront/checkout — separate apex domain from *.booqable.com, per-tenant (e.g. coptrz.booqableshop.com)
+            'https://admin.revenuehunt.com', // RevenueHunt product recommendation quiz embed
+            'https://www.google.com', // reCAPTCHA (Contact Form 7)
+            'https://www.gstatic.com', // reCAPTCHA
+            'https://*.doubleclick.net', // Google Ads conversion tracking — pasted into a Theme Settings header/footer script field, not in theme code
+            'https://www.googleadservices.com',
+        ),
+        'style-src' => array(
+            "'self'",
+            "'unsafe-inline'",
+            'https://fonts.googleapis.com',
+            'https://*.booqable.com', // Booqable's Vite-bundled CSS (e.g. cdn2.booqable.com)
+            'https://*.booqableshop.com',
+        ),
+        'font-src' => array(
+            "'self'",
+            'data:',
+            'https://fonts.gstatic.com',
+            'https://*.booqable.com', // fonts referenced by Booqable's bundled CSS above
+            'https://*.booqableshop.com',
+        ),
+        'img-src' => array("'self'", 'data:', 'https:'),
+        // No directive falls back to default-src 'self' — blocks any editor-uploaded
+        // product video hosted off-site (e.g. DJI's www-cdn.djiits.com). Video sources
+        // are per-product editor content, not a fixed set of vendor origins, so an
+        // allowlist can't be maintained reliably; media injection is a much lower-severity
+        // vector than script injection, so this mirrors img-src's https: approach.
+        'media-src' => array("'self'", 'data:', 'blob:', 'https:'),
+        'connect-src' => array(
+            "'self'",
+            'https://*.hotjar.com',
+            'wss://*.hotjar.com',
+            'https://*.hotjar.io', // Hotjar uses BOTH .com and .io — .io was missing, blocking content.hotjar.io
+            'wss://*.hotjar.io',
+            'https://api-iam.intercom.io',
+            'https://*.booqable.com',
+            'https://*.booqableshop.com', // Booqable storefront API/i18n calls (e.g. coptrz.booqableshop.com/locales/en/common.json)
+            'https://www.google.com', // reCAPTCHA verification
+            'https://*.doubleclick.net', // Google Ads conversion beacons
+            'https://www.googleadservices.com',
+            'https://bzr.openai.com', // OpenAI Ads SDK (loaded from bzrcdn.openai.com, see dd_inject_openai_ads_base_pixel() above) — events endpoint
+            'https://bzrcdn.openai.com', // same SDK also fetches its own pixel-config JSON from the CDN domain, not just bzr.openai.com
+        ),
+        'frame-src' => array(
+            "'self'",
+            'https://www.youtube.com',
+            'https://*.booqable.com',
+            'https://*.booqableshop.com',
+            'https://www.google.com', // reCAPTCHA challenge iframe
+        ),
+        // Without this, worker-src falls back to script-src, which has no 'blob:'
+        // source — blocking WP core's own emoji-detection Worker (wp-emoji-loader.js)
+        // among anything else that spins up a blob: worker. Scoped here rather than
+        // adding blob: to script-src itself, which is the more sensitive directive.
+        'worker-src' => array("'self'", 'blob:'),
+        'object-src'       => array("'none'"),
+        'base-uri'         => array("'self'"),
+        'form-action'      => array("'self'", 'https://shop.coptrz.com'),
+        'frame-ancestors'  => array("'self'"),
+    );
+
+    return apply_filters('coptrz_csp_directives', $directives);
+}
+
+function coptrz_build_csp_header()
+{
+    $parts = array();
+    foreach (coptrz_csp_directives() as $directive => $sources) {
+        $parts[] = $directive . ' ' . implode(' ', $sources);
+    }
+    $parts[] = 'upgrade-insecure-requests';
+    return implode('; ', $parts);
+}
+
 function dd_send_security_headers()
 {
     if (headers_sent()) {
         return;
     }
 
+    header_remove('X-Powered-By');
     header('X-Content-Type-Options: nosniff');
     header('X-Frame-Options: SAMEORIGIN');
-    header("Content-Security-Policy: frame-ancestors 'self'");
     header('Referrer-Policy: strict-origin-when-cross-origin');
+    header('Permissions-Policy: camera=(), microphone=(), geolocation=(), usb=(), serial=(), interest-cohort=(), payment=(self)');
+    header('Cross-Origin-Opener-Policy: same-origin-allow-popups');
+
+    global $pagenow;
+    $csp_disabled = defined('COPTRZ_CSP_DISABLE') && COPTRZ_CSP_DISABLE;
+    if ($csp_disabled || is_admin() || $pagenow === 'wp-login.php') {
+        header("Content-Security-Policy: frame-ancestors 'self'");
+    } else {
+        header('Content-Security-Policy: ' . coptrz_build_csp_header());
+    }
 
     // HSTS only over HTTPS. 1-year max-age. includeSubDomains/preload are left
     // off deliberately: enabling them makes EVERY subdomain HTTPS-only and is
@@ -172,6 +319,70 @@ function dd_send_security_headers()
     }
 }
 add_action('send_headers', 'dd_send_security_headers');
+
+/*
+ * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
+ *
+ * Reduce version/software fingerprinting that automated scanners rely on to match
+ * this install against known CVEs. This does not patch anything — it only removes
+ * the banner text a scanner reads to assert "version X, therefore CVE Y".
+ */
+function dd_reduce_fingerprint()
+{
+    remove_action('wp_head', 'wp_generator');
+    add_filter('the_generator', '__return_empty_string');
+    remove_action('wp_head', 'rsd_link');
+    remove_action('wp_head', 'wlwmanifest_link');
+    remove_action('wp_head', 'wp_shortlink_wp_head');
+    remove_action('template_redirect', 'wp_shortlink_header');
+
+    // Disabling rather than blocking xmlrpc.php outright: this keeps the file
+    // reachable (some monitoring/uptime tools ping it) but rejects every XML-RPC
+    // method, closing the pingback-amplification / brute-force vector.
+    add_filter('xmlrpc_enabled', '__return_false');
+}
+add_action('init', 'dd_reduce_fingerprint');
+
+/*
+ * Strip the `?ver=X.Y.Z` query string from core WordPress asset URLs (it leaks the
+ * exact WP version to scanners). Only strips when the version matches
+ * get_bloginfo('version') exactly, so the theme's own coptz_version cache-busting
+ * param (see functions.php — bumping it is how returning visitors get updated
+ * style.css) and plugin version strings are left untouched.
+ */
+function dd_strip_core_asset_version($src)
+{
+    if ($src && strpos($src, 'ver=' . get_bloginfo('version')) !== false) {
+        $src = remove_query_arg('ver', $src);
+    }
+    return $src;
+}
+add_filter('script_loader_src', 'dd_strip_core_asset_version');
+add_filter('style_loader_src', 'dd_strip_core_asset_version');
+
+/*
+ * Block unauthenticated user enumeration: the ?author=N redirect and the
+ * /wp-json/wp/v2/users REST route are both commonly scraped to build a valid
+ * username list ahead of a credential-stuffing run. Gated on
+ * current_user_can('list_users') so logged-in editors/admins are unaffected.
+ */
+function dd_block_author_enumeration()
+{
+    if (is_author() && !is_admin() && !current_user_can('list_users') && isset($_GET['author'])) {
+        wp_die(esc_html__('Forbidden', 'coptrz-theme'), esc_html__('Forbidden', 'coptrz-theme'), array('response' => 403));
+    }
+}
+add_action('template_redirect', 'dd_block_author_enumeration');
+
+function dd_restrict_users_rest_endpoint($endpoints)
+{
+    if (!current_user_can('list_users')) {
+        unset($endpoints['/wp/v2/users']);
+        unset($endpoints['/wp/v2/users/(?P<id>[\d]+)']);
+    }
+    return $endpoints;
+}
+add_filter('rest_endpoints', 'dd_restrict_users_rest_endpoint');
 
 /*-----------------------------------------------------------------------------------*/
 /* Admin Settings
