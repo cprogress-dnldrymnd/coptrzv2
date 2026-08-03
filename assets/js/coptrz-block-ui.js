@@ -242,11 +242,21 @@
      * empty-state Placeholder so that case looks exactly as it does today.
      * The post ID is read imperatively (not via useSelect) since it never
      * changes within one editor session.
+     *
+     * `props.context` is an optional modifier (currently only `'header'`) that
+     * (1) appends a `coptrz-block-preview--{context}` class, and (2) for
+     * `'header'`, nests the rendered HTML inside the real header's ancestor
+     * chain (`.header > .header-inner > .row.header-right`) so the theme's
+     * `.header …`-scoped CSS (dark backdrop, white text, `d-lg-*` utilities —
+     * see assets/scss/base/_block-preview.scss) actually matches. Header
+     * element blocks render fragments (icon clusters, nav, logo) that are only
+     * legible inside that real markup context, not on the bare white canvas.
      */
     function LivePreview(props) {
         var name = props.name;
         var attributes = props.attributes || {};
         var placeholder = props.placeholder || null;
+        var context = props.context || '';
         var attrKey = JSON.stringify(attributes);
 
         const [state, setState] = useState({ html: '', rendered: false, loading: true });
@@ -290,9 +300,18 @@
             }, state.loading ? 'Loading preview…' : 'Nothing to preview yet.');
         }
 
-        return el('div', { className: 'coptrz-block-preview' + (state.loading ? ' is-refreshing' : '') },
-            el(wp.element.RawHTML, null, state.html)
-        );
+        var rawHtml = el(wp.element.RawHTML, null, state.html);
+        var content = context === 'header'
+            ? el('div', { className: 'header small-text' },
+                el('div', { className: 'header-inner rounded-10px' },
+                    el('div', { className: 'row g-2 header-right align-items-center' }, rawHtml)
+                )
+            )
+            : rawHtml;
+
+        var className = 'coptrz-block-preview' + (context ? ' coptrz-block-preview--' + context : '') + (state.loading ? ' is-refreshing' : '');
+
+        return el('div', { className: className }, content);
     }
 
     /**

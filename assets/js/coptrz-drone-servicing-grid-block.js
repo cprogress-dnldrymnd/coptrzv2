@@ -20,7 +20,7 @@
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
-    const { createElement: el, Fragment } = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps } = wp.blockEditor;
     const { PanelBody, Placeholder } = wp.components;
 
@@ -58,21 +58,12 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const a = attributes;
+            const [mode, setMode] = useState(a.drones.length ? 'preview' : 'edit');
 
-            return el(
-                'div',
-                useBlockProps(),
-                el(
-                    InspectorControls,
-                    null,
-                    el(PanelBody, { title: 'Drone Servicing Grid Settings', initialOpen: true },
-                        UI.textField('Heading', a.heading, function (v) { setAttributes({ heading: v }); }),
-                        UI.textField('Description', a.description, function (v) { setAttributes({ description: v }); })
-                    )
-                ),
-                a.drones.length === 0
-                    ? el(Placeholder, { icon: 'grid-view', label: 'Drone Servicing Grid (Legacy)', instructions: 'Add drone services below.' })
-                    : null,
+            const emptyPlaceholder = el(Placeholder, { icon: 'grid-view', label: 'Drone Servicing Grid (Legacy)', instructions: 'Add drone services below.' });
+
+            const editSurface = el(Fragment, null,
+                a.drones.length === 0 ? emptyPlaceholder : null,
                 el(UI.Repeater, {
                     items: a.drones,
                     onChange: function (next) { setAttributes({ drones: next }); },
@@ -102,6 +93,23 @@
                         );
                     }
                 })
+            );
+
+            return el(
+                'div',
+                useBlockProps(),
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
+                el(
+                    InspectorControls,
+                    null,
+                    el(PanelBody, { title: 'Drone Servicing Grid Settings', initialOpen: true },
+                        UI.textField('Heading', a.heading, function (v) { setAttributes({ heading: v }); }),
+                        UI.textField('Description', a.description, function (v) { setAttributes({ description: v }); })
+                    )
+                ),
+                mode === 'preview'
+                    ? el(UI.LivePreview, { name: 'coptrz/drone-servicing-grid', attributes: a, placeholder: emptyPlaceholder })
+                    : editSurface
             );
         },
 

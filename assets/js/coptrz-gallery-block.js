@@ -84,10 +84,36 @@
             const { attributes, setAttributes } = props;
             const a = attributes;
             const isGrid = a.galleryStyle !== 'logo-slider';
+            const [mode, setMode] = useState(a.galleryIds.length ? 'preview' : 'edit');
+
+            const emptyPlaceholder = el(Placeholder, {
+                icon:  'format-gallery',
+                label: 'Gallery (Legacy)',
+                instructions: a.galleryIds.length ? '' : 'Select the images for this gallery.'
+            },
+                el(GalleryPreview, { ids: a.galleryIds }),
+                el(MediaUploadCheck, null,
+                    el(MediaUpload, {
+                        multiple: true,
+                        gallery: true,
+                        allowedTypes: ['image'],
+                        value: a.galleryIds,
+                        onSelect: function (media) {
+                            var ids = (media || []).map(function (m) { return m.id; });
+                            setAttributes({ galleryIds: ids });
+                        },
+                        render: function (o) {
+                            return el(Button, { variant: 'secondary', onClick: o.open },
+                                a.galleryIds.length ? 'Edit Gallery Images (' + a.galleryIds.length + ')' : 'Select Gallery Images');
+                        }
+                    })
+                )
+            );
 
             return el(
                 Fragment,
                 null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -109,29 +135,9 @@
                 el(
                     'div',
                     useBlockProps(),
-                    el(Placeholder, {
-                        icon:  'format-gallery',
-                        label: 'Gallery (Legacy)',
-                        instructions: a.galleryIds.length ? '' : 'Select the images for this gallery.'
-                    },
-                        el(GalleryPreview, { ids: a.galleryIds }),
-                        el(MediaUploadCheck, null,
-                            el(MediaUpload, {
-                                multiple: true,
-                                gallery: true,
-                                allowedTypes: ['image'],
-                                value: a.galleryIds,
-                                onSelect: function (media) {
-                                    var ids = (media || []).map(function (m) { return m.id; });
-                                    setAttributes({ galleryIds: ids });
-                                },
-                                render: function (o) {
-                                    return el(Button, { variant: 'secondary', onClick: o.open },
-                                        a.galleryIds.length ? 'Edit Gallery Images (' + a.galleryIds.length + ')' : 'Select Gallery Images');
-                                }
-                            })
-                        )
-                    )
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/gallery', attributes: a, placeholder: emptyPlaceholder })
+                        : emptyPlaceholder
                 )
             );
         },

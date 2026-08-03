@@ -18,7 +18,7 @@
 (function (wp) {
 
     const { registerBlockType } = wp.blocks;
-    const { createElement: el, Fragment } = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps } = wp.blockEditor;
     const { PanelBody, Placeholder } = wp.components;
 
@@ -45,10 +45,20 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const a = attributes;
+            const [mode, setMode] = useState('preview');
+
+            const emptyPlaceholder = el(Placeholder, {
+                icon:  'slides',
+                label: 'Product Slider (Legacy)',
+                instructions: a.heading
+                    ? 'Heading: ' + a.heading
+                    : 'Configure the source and heading in the block settings.'
+            });
 
             return el(
                 Fragment,
                 null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -83,13 +93,9 @@
                 el(
                     'div',
                     useBlockProps(),
-                    el(Placeholder, {
-                        icon:  'slides',
-                        label: 'Product Slider (Legacy)',
-                        instructions: a.heading
-                            ? 'Heading: ' + a.heading
-                            : 'Configure the source and heading in the block settings.'
-                    })
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/product-slider', attributes: a, placeholder: emptyPlaceholder })
+                        : emptyPlaceholder
                 )
             );
         },

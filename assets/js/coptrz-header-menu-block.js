@@ -14,9 +14,11 @@
 (function (wp) {
 
     const { registerBlockType }               = wp.blocks;
-    const { createElement: el }               = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { useBlockProps }                    = wp.blockEditor;
     const { Placeholder }                      = wp.components;
+
+    const UI = window.coptrzBlockUI || {};
 
     registerBlockType('coptrz/header-menu', {
         title:    'Header — Nav Menu',
@@ -26,14 +28,25 @@
         attributes: {},
 
         edit: function () {
+            const [mode, setMode] = useState('preview');
+
+            const emptyPlaceholder = el(Placeholder, {
+                icon:  'menu',
+                label: 'Header Nav Menu',
+                instructions: 'Renders the "Header Menu" nav location (Appearance > Menus).'
+            });
+
             return el(
-                'div',
-                useBlockProps(),
-                el(Placeholder, {
-                    icon:  'menu',
-                    label: 'Header Nav Menu',
-                    instructions: 'Renders the "Header Menu" nav location (Appearance > Menus).'
-                })
+                Fragment,
+                null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
+                el(
+                    'div',
+                    useBlockProps(),
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/header-menu', attributes: {}, placeholder: emptyPlaceholder, context: 'header' })
+                        : emptyPlaceholder
+                )
             );
         },
 

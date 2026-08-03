@@ -17,9 +17,11 @@
 (function (wp) {
 
     const { registerBlockType }               = wp.blocks;
-    const { createElement: el, Fragment }     = wp.element;
+    const { createElement: el, Fragment, useState } = wp.element;
     const { InspectorControls, useBlockProps } = wp.blockEditor;
     const { PanelBody, ToggleControl, Placeholder } = wp.components;
+
+    const UI = window.coptrzBlockUI || {};
 
     registerBlockType('coptrz/header-cta', {
         title:    'Header — CTA Buttons',
@@ -34,14 +36,22 @@
         edit: function (props) {
             const { attributes, setAttributes } = props;
             const { showButtonOne, showButtonTwo } = attributes;
+            const [mode, setMode] = useState('preview');
 
             var enabled = [];
             if (showButtonTwo) { enabled.push('Header Button 2'); }
             if (showButtonOne) { enabled.push('Header Button'); }
 
+            const emptyPlaceholder = el(Placeholder, {
+                icon:  'button',
+                label: 'Header CTA Buttons',
+                instructions: enabled.length ? ('Showing: ' + enabled.join(', ')) : 'No buttons enabled — select at least one in the block settings.'
+            });
+
             return el(
                 Fragment,
                 null,
+                el(UI.PreviewToggle, { mode: mode, setMode: setMode }),
                 el(
                     InspectorControls,
                     null,
@@ -65,11 +75,9 @@
                 el(
                     'div',
                     useBlockProps(),
-                    el(Placeholder, {
-                        icon:  'button',
-                        label: 'Header CTA Buttons',
-                        instructions: enabled.length ? ('Showing: ' + enabled.join(', ')) : 'No buttons enabled — select at least one in the block settings.'
-                    })
+                    mode === 'preview'
+                        ? el(UI.LivePreview, { name: 'coptrz/header-cta', attributes: attributes, placeholder: emptyPlaceholder, context: 'header' })
+                        : emptyPlaceholder
                 )
             );
         },

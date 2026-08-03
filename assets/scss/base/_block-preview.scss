@@ -62,3 +62,38 @@
   text-align: center;
   color: #757575;
 }
+
+/**
+ * Header element blocks (Site Logo, Nav Menu, Icons, CTA Buttons) render
+ * fragments meant to sit inside `.header > .header-inner`
+ * (assets/scss/sections/_header.scss) — white text/icons on a transparent
+ * backdrop over the hero. LivePreview's `context: 'header'` nests them in that
+ * same ancestor chain (coptrz-block-ui.js) so this scoped CSS matches; without
+ * it the fragments would be invisible white-on-white on the editor canvas.
+ */
+.coptrz-block-preview--header .header {
+  /* The real .header is `position: absolute; top: 20px; z-index: 9999` —
+     that would rip the preview out of the canvas's normal document flow. */
+  position: static;
+  top: auto;
+  z-index: auto;
+}
+
+.coptrz-block-preview--header .header-inner {
+  background-color: #1a1a1a;
+}
+
+/* The CTA buttons are `d-none d-lg-block` and the mobile burger is
+   `d-lg-none` — force the desktop rendition so the preview doesn't flip
+   between clusters depending on the editor iframe's current width. */
+.coptrz-block-preview--header .d-lg-block {
+  display: block !important;
+}
+
+.coptrz-block-preview--header .d-lg-flex {
+  display: flex !important;
+}
+
+.coptrz-block-preview--header .d-lg-none {
+  display: none !important;
+}
