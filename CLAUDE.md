@@ -425,66 +425,46 @@ case studies, rentals, landing pages, etc).
   `post-meta.php`).
 - `hooks.php` — general action/filter hooks, including CF7 integrations (see
   Forms below). `dd_send_security_headers()` (on `send_headers`, so it applies
-  to every WP-served response, not just `<head>`) emits baseline security
-  headers flagged by securityheaders.com / Mozilla Observatory scans:
-  `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`,
-  `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`
-  (denies camera/microphone/geolocation/usb/serial/interest-cohort, keeps
+  to every front-end WP-served response, not just `<head>` — confirmed
+  (2026-07) it does NOT fire for `wp-login.php` or the `wp-admin` bootstrap,
+  since neither goes through `WP::main()`; on production, admin/login coverage
+  for these headers relies entirely on the `.htaccess` mirror below) emits
+  baseline security headers flagged by securityheaders.com / Mozilla
+  Observatory scans: `X-Content-Type-Options: nosniff`,
+  `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy:
+  strict-origin-when-cross-origin`, `Permissions-Policy` (denies
+  camera/microphone/geolocation/usb/serial/interest-cohort, keeps
   `payment=(self)` for checkout wallets), `Cross-Origin-Opener-Policy:
-  same-origin-allow-popups`, an enforcing `Content-Security-Policy` (see
-  below), and (HTTPS only) `Strict-Transport-Security`
+  same-origin-allow-popups`, a `Content-Security-Policy` limited to
+  `frame-ancestors 'self'`, and (HTTPS only) `Strict-Transport-Security`
   (`max-age=31536000`, 1 year). Also removes the `X-Powered-By` header.
   `includeSubDomains`/`preload` are left off deliberately: enabling them makes
   every subdomain HTTPS-only and is near-irreversible once submitted to
   hstspreload.org — add them only once every subdomain is confirmed
-  HTTPS-only.
-  **CSP**: `coptrz_csp_directives()` builds an allowlist-based policy
-  (`coptrz_build_csp_header()` serializes it) covering `script-src`/`style-src`/
-  `font-src`/`img-src`/`connect-src`/`frame-src`/`object-src`/`base-uri`/
-  `form-action`/`frame-ancestors`, extensible via the `coptrz_csp_directives`
-  filter. `script-src` keeps `'unsafe-inline'`/`'unsafe-eval'` — the theme has
-  no nonce infrastructure and several features (OpenAI Ads pixel, CF7 inline
-  listeners, JSON-LD schema, `wp_localize_script`) rely on inline `<script>` —
-  so this policy's real value is blocking an attacker-injected external
-  `<script src="…">` (e.g. a checkout skimmer), not every inline-script
-  vector; `object-src 'none'`/`base-uri 'self'` are enforced at no
-  compatibility cost. The enforcing policy is skipped in `is_admin()` and on
-  `wp-login.php` (falls back to the old `frame-ancestors 'self'` only — the
-  block editor needs `eval()`/`blob:` workers) and can be killed sitewide via
-  `define('COPTRZ_CSP_DISABLE', true)` in `wp-config.php` with no deploy.
-  **Confirmed via curl (2026-07): `send_headers` never fires for
-  `wp-login.php` or the `wp-admin` bootstrap** (neither goes through
-  `WP::main()`), so `dd_send_security_headers()` doesn't run there at all —
-  the `is_admin()`/`wp-login.php` branch above is dead code for those two
-  paths specifically. Whatever headers appear on `wp-login.php` today come
-  from elsewhere (Really Simple SSL's own header module is active on this
-  site and is the likely source — its readme advertises the same
-  X-Frame-Options/Referrer-Policy/CSP baseline). On production, admin/login
-  coverage for *this* theme's headers relies entirely on the `.htaccess`
-  mirror below — can't be exercised on a local nginx-fronted stack since
-  nginx doesn't read `.htaccess`.
-  The allowlist is seeded from origins found in the theme/installed plugins
-  (OpenAI Ads, YouTube, Google Fonts, Hotjar, Intercom, Booqable, RevenueHunt,
-  reCAPTCHA, Google Ads/doubleclick) — it does **not** see whatever is pasted
-  into Theme Settings header/footer script fields (Carbon Fields
-  `Footer_Scripts_Field`), so a live network-tab pass across page types is
-  required before/after rollout to catch anything missing; extend via the
-  filter, not by editing this file. **`cdn.jsdelivr.net` is deliberately NOT
-  in the allowlist**: Swiper, intl-tel-input, and jQuery Validation used to
-  load from there and are now vendored locally under `assets/vendor/`
-  (`enqueue_scripts()` in `functions.php`, plus hardcoded tags in
-  `header-clean.php` and `templates/page-calculator.php`) — the old CDN pin
-  for Swiper floated to whatever `@11` release was current, which SRI can't
-  protect against, so removing the origin entirely was preferred over pinning
-  it. Prefer vendoring over re-adding a CDN origin if this comes up again.
-  **Gotcha:** on a LiteSpeed full-page-cache HIT these PHP-emitted headers may
-  be bypassed — mirrored in `.htaccess` (`mod_headers`, `BEGIN Coptrz Security
-  Headers` block) for guaranteed coverage on cached responses. The `.htaccess`
-  copy is hand-maintained, not generated from `coptrz_csp_directives()` — keep
-  both in sync manually if the policy changes. **Also check Really Simple
-  SSL's own Security Headers module** (Settings > Really Simple Security >
-  Hardening) isn't independently emitting HSTS/X-Frame-Options — that plugin
-  is active on this site and can duplicate/conflict with these headers.
+  HTTPS-only. The CSP is intentionally frame-ancestors-only (governs framing,
+  doesn't restrict `script-src`/`object-src`) so it can't break inline
+  theme/Woo/CF7/analytics scripts; scanners still grade a frame-ancestors-only
+  policy "unsafe" for lacking `script-src`, which is accepted here as
+  defense-in-depth alongside `X-Frame-Options` (a real script-restricting CSP
+  would need a nonce-based rollout). **An enforcing origin-allowlist
+  `script-src` was trialled 2026-07 and rolled back** — chasing every
+  third-party integration's exact origins (Booqable's separate
+  `booqableshop.com` apex, RevenueHunt, reCAPTCHA, Google Ads/doubleclick,
+  Hotjar's two TLDs, OpenAI Ads' two subdomains, a missing `media-src` for
+  product videos…) turned into ongoing whack-a-mole; revisit only with a
+  nonce-based approach if this comes up again. Separately, Swiper,
+  intl-tel-input, and jQuery Validation were vendored locally under
+  `assets/vendor/` (`enqueue_scripts()` in `functions.php`, plus hardcoded
+  tags in `header-clean.php` and `templates/page-calculator.php`) instead of
+  loading from `cdn.jsdelivr.net` — the old CDN pin for Swiper floated to
+  whatever `@11` release was current, which SRI can't protect against; this
+  vendoring is independent of the CSP work and was kept. **Gotcha:** on a
+  LiteSpeed full-page-cache HIT these PHP-emitted headers may be bypassed —
+  mirror them in `.htaccess`/server config for guaranteed coverage. **Also
+  check Really Simple SSL's own Security Headers module** (Settings > Really
+  Simple Security > Hardening) isn't independently emitting HSTS/
+  X-Frame-Options — that plugin is active on this site and can
+  duplicate/conflict with these headers.
   `dd_reduce_fingerprint()` (`init`) removes the WP generator meta tag, RSD/
   WLW manifest links, and the shortlink tag, and disables XML-RPC methods via
   `xmlrpc_enabled` (the file stays reachable, just rejects every method) —
