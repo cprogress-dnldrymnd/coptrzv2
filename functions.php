@@ -46,6 +46,32 @@ if (is_admin()) {
     require_once __DIR__ . '/includes/meta-shim/self-test.php';
 }
 
+/*-----------------------------------------------------------------------------------*/
+/* CF7 Page Report — attributes Contact Form 7 submissions to the page they came
+/* from and reports on it by page (Advanced CF7 DB's own admin only reports by
+/* form). Loaded unconditionally where the forward-capture hook and the hourly
+/* reconcile cron need to be registered on every request type (front end, REST,
+/* admin-ajax.php, wp-cron.php, WP-CLI) — see includes/cf7-page-report/Attribution.php
+/* and Backfill.php. The admin screen, export, and self-test are is_admin()-gated,
+/* matching the self-test require just above.
+/*-----------------------------------------------------------------------------------*/
+require_once __DIR__ . '/includes/cf7-page-report/Url_Normaliser.php';
+require_once __DIR__ . '/includes/cf7-page-report/Page_Resolver.php';
+require_once __DIR__ . '/includes/cf7-page-report/Schema.php';
+require_once __DIR__ . '/includes/cf7-page-report/Field_Map.php';
+require_once __DIR__ . '/includes/cf7-page-report/Repository.php';
+require_once __DIR__ . '/includes/cf7-page-report/Attribution.php';
+require_once __DIR__ . '/includes/cf7-page-report/Backfill.php';
+if (is_admin()) {
+    require_once __DIR__ . '/includes/cf7-page-report/Exporter.php';
+    require_once __DIR__ . '/includes/cf7-page-report/Admin.php';
+    // Inert unless ?coptrz_cf7_report_selftest=fixtures|live.
+    require_once __DIR__ . '/includes/cf7-page-report/self-test.php';
+}
+if (defined('WP_CLI') && WP_CLI) {
+    require_once __DIR__ . '/includes/cf7-page-report/cli.php';
+}
+
 /**
  * Register all custom field definitions through the meta shim, then wire up the
  * native admin UI. Runs early on every request so the field-definition index is

@@ -1,0 +1,163 @@
+/*
+ * CF7 Page Report admin screen.
+ * Screen-gated enqueue: see Admin::enqueue_assets() in
+ * includes/cf7-page-report/Admin.php. Kept as its own small file rather than
+ * inline styles because this screen has real layout (grid filters, stat
+ * pills, tab bar) beyond what the theme's other single-purpose admin pages need.
+ */
+
+.coptrz-cf7-report .coptrz-cf7-card {
+    background: #fff;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 16px 0 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+}
+
+.coptrz-cf7-report .coptrz-cf7-card h2 {
+    margin-top: 0;
+}
+
+.coptrz-cf7-filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px 24px;
+    align-items: start;
+}
+
+.coptrz-cf7-field--wide {
+    grid-column: span 2;
+}
+
+.coptrz-cf7-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.coptrz-cf7-field input[type="date"],
+.coptrz-cf7-field input[type="text"] {
+    width: 100%;
+}
+
+.coptrz-cf7-field select[multiple] {
+    width: 100%;
+    min-height: 160px;
+}
+
+.coptrz-cf7-field-hint {
+    display: block;
+    margin-bottom: 6px;
+    color: #646970;
+    font-size: 12px;
+}
+
+.coptrz-cf7-checkbox-list label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.coptrz-cf7-filters-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f1;
+}
+
+/* Coverage stat pills, replacing a plain notice paragraph. */
+.coptrz-cf7-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0 0 20px;
+}
+
+.coptrz-cf7-stat {
+    background: #fff;
+    border: 1px solid #dcdcde;
+    border-left: 4px solid #8c8f94;
+    border-radius: 4px;
+    padding: 10px 16px;
+    min-width: 140px;
+}
+
+.coptrz-cf7-stat--good {
+    border-left-color: #00a32a;
+}
+
+.coptrz-cf7-stat--warn {
+    border-left-color: #dba617;
+}
+
+.coptrz-cf7-stat--total {
+    border-left-color: #2271b1;
+}
+
+.coptrz-cf7-stat-num {
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #1d2327;
+}
+
+.coptrz-cf7-stat-label {
+    display: block;
+    font-size: 12px;
+    color: #646970;
+    margin-top: 2px;
+}
+
+/* Tab bar (Summary / Detail) + result panel. Uses WP core's own
+   nav-tab-wrapper/nav-tab styling for the tabs themselves — only spacing
+   is customised here. */
+.coptrz-cf7-tabs {
+    margin: 0;
+}
+
+.coptrz-cf7-panel {
+    background: #fff;
+    border: 1px solid #dcdcde;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+}
+
+.coptrz-cf7-panel h2:first-child {
+    margin-top: 0;
+}
+
+.coptrz-cf7-panel-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.coptrz-cf7-panel-toolbar .button .dashicons {
+    margin: 3px 4px 0 -2px;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.coptrz-cf7-panel table.widefat {
+    margin-top: 0;
+}
+
+.coptrz-cf7-panel details summary {
+    cursor: pointer;
+    color: #2271b1;
+    font-size: 12px;
+}
+
+.coptrz-cf7-panel details ul {
+    margin: 6px 0 0 16px;
+    font-size: 12px;
+}
