@@ -1707,8 +1707,10 @@ function digitally_disruptive_render_universal_swiper($block_content, $block)
     if ($mobile_only) {
         $mobile_only_id = 'dd-swiper-mo-' . substr(md5(uniqid(wp_rand(), true)), 0, 8);
 
+        // Beat theme .is-swiper-slider rules (flex !important + .swiper-pagination.swiper-pagination display:flex).
+        // Use .is-swiper-slider.%1$s so specificity wins even if theme CSS loads after consolidated CSS.
         $mobile_only_css = sprintf(
-            '@media (min-width: 768px) { .%1$s .swiper-wrapper { display: grid; grid-template-columns: repeat(%2$d, minmax(0, 1fr)); gap: %3$dpx; } .%1$s .swiper-slide { width: auto; } .%1$s .swiper-pagination, .%1$s .swiper-button-prev, .%1$s .swiper-button-next { display: none; } } @media (min-width: 992px) { .%1$s .swiper-wrapper { grid-template-columns: repeat(%4$d, minmax(0, 1fr)); } } ',
+            '@media (min-width: 768px) { .is-swiper-slider.%1$s .swiper-wrapper { display: grid !important; flex-wrap: unset !important; gap: %3$dpx !important; grid-template-columns: repeat(%2$d, minmax(0, 1fr)); } .is-swiper-slider.%1$s .swiper-slide { width: auto !important; } .is-swiper-slider.%1$s .swiper-pagination.swiper-pagination, .is-swiper-slider.%1$s .swiper-button-prev, .is-swiper-slider.%1$s .swiper-button-next { display: none !important; } } @media (min-width: 992px) { .is-swiper-slider.%1$s .swiper-wrapper { grid-template-columns: repeat(%4$d, minmax(0, 1fr)); } } ',
             $mobile_only_id,
             max(1, (int) $slides_tablet),
             $space_between,
