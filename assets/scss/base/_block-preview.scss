@@ -63,6 +63,14 @@
   color: #757575;
 }
 
+/* Off-screen LivePreview shell (viewport-gated) — reserve height so the
+   canvas scroll position does not jump when previews hydrate on scroll. */
+.coptrz-block-preview.is-pending,
+.coptrz-block-preview-pending {
+  min-height: 80px;
+  box-sizing: border-box;
+}
+
 /**
  * Header element blocks (Site Logo, Nav Menu, Icons, CTA Buttons) render
  * fragments meant to sit inside `.header > .header-inner`

@@ -231,6 +231,57 @@
     }
 
     /**
+     * Shared preview fetch plumbing — prevents section-heavy pages from
+     * freezing the editor. Without this, every LivePreview mount fires
+     * /dd/v1/block-preview at once (thundering herd of PHP SSR + RawHTML).
+     *
+     * - Concurrency queue: at most PREVIEW_MAX_CONCURRENT in-flight POSTs.
+     * - Session cache: keyed by name|postId|attrKey; scroll away/back reuses HTML.
+     */
+    var PREVIEW_MAX_CONCURRENT = 3;
+    var previewInFlight = 0;
+    var previewQueue = [];
+    var previewCache = typeof Map !== 'undefined' ? new Map() : null;
+
+    function drainPreviewQueue() {
+        while (previewInFlight < PREVIEW_MAX_CONCURRENT && previewQueue.length) {
+            (function (item) {
+                previewInFlight++;
+                Promise.resolve()
+                    .then(item.task)
+                    .then(function (res) {
+                        previewInFlight--;
+                        item.resolve(res);
+                        drainPreviewQueue();
+                    }, function (err) {
+                        previewInFlight--;
+                        item.reject(err);
+                        drainPreviewQueue();
+                    });
+            })(previewQueue.shift());
+        }
+    }
+
+    function enqueuePreviewFetch(task) {
+        return new Promise(function (resolve, reject) {
+            previewQueue.push({ task: task, resolve: resolve, reject: reject });
+            drainPreviewQueue();
+        });
+    }
+
+    function previewCacheKey(name, postId, attrKey) {
+        return name + '|' + postId + '|' + attrKey;
+    }
+
+    function getCurrentPostId() {
+        try {
+            return wp.data.select('core/editor').getCurrentPostId() || 0;
+        } catch (e) {
+            return 0;
+        }
+    }
+
+    /**
      * Live server-rendered preview for a `save: null` block, fetched from
      * `/dd/v1/block-preview` (includes/block-preview.php). Debounced 400ms
      * since these renderers call wp_unique_id() — every response is
@@ -242,6 +293,11 @@
      * empty-state Placeholder so that case looks exactly as it does today.
      * The post ID is read imperatively (not via useSelect) since it never
      * changes within one editor session.
+     *
+     * Fetches only when the preview shell is in (or near) the viewport, or
+     * when `props.clientId` is set and that block is selected — so opening a
+     * long page does not SSR every section at once. Off-screen shells show a
+     * lightweight pending placeholder until scrolled into view.
      *
      * `props.context` is an optional modifier (currently only `'header'`) that
      * (1) appends a `coptrz-block-preview--{context}` class, and (2) for
@@ -257,61 +313,133 @@
         var attributes = props.attributes || {};
         var placeholder = props.placeholder || null;
         var context = props.context || '';
+        var clientId = props.clientId || '';
         var attrKey = JSON.stringify(attributes);
 
-        const [state, setState] = useState({ html: '', rendered: false, loading: true });
+        const [state, setState] = useState({ html: '', rendered: false, loading: false, waiting: true });
+        const [isVisible, setIsVisible] = useState(false);
+        const [isSelected, setIsSelected] = useState(false);
         const seqRef = useRef(0);
         const timerRef = useRef(null);
+        const rootRef = useRef(null);
+        const fetchedKeyRef = useRef('');
+
+        // Viewport gate — only SSR when near the editor canvas viewport.
+        useEffect(function () {
+            var node = rootRef.current;
+            if (!node) { return; }
+            if (typeof IntersectionObserver === 'undefined') {
+                setIsVisible(true);
+                return;
+            }
+            var obs = new IntersectionObserver(function (entries) {
+                var entry = entries[0];
+                if (entry) { setIsVisible(!!entry.isIntersecting); }
+            }, { root: null, rootMargin: '200px 0px', threshold: 0 });
+            obs.observe(node);
+            return function () { obs.disconnect(); };
+        }, []);
+
+        // Optional selected-block boost (callers may pass clientId).
+        useEffect(function () {
+            if (!clientId || !wp.data || !wp.data.subscribe) { return; }
+            function check() {
+                try {
+                    setIsSelected(!!wp.data.select('core/block-editor').isBlockSelected(clientId));
+                } catch (e) { /* store not ready */ }
+            }
+            check();
+            return wp.data.subscribe(check);
+        }, [clientId]);
+
+        var shouldFetch = isVisible || isSelected;
 
         useEffect(function () {
-            if (timerRef.current) { clearTimeout(timerRef.current); }
-            setState(function (s) { return Object.assign({}, s, { loading: true }); });
+            if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
+
+            if (!shouldFetch) {
+                // Keep existing HTML if we already rendered; otherwise stay pending.
+                setState(function (s) {
+                    if (s.rendered || s.loading) { return s; }
+                    return { html: '', rendered: false, loading: false, waiting: true };
+                });
+                return;
+            }
+
+            var postId = getCurrentPostId();
+            var cacheKey = previewCacheKey(name, postId, attrKey);
+
+            if (previewCache && previewCache.has(cacheKey)) {
+                fetchedKeyRef.current = cacheKey;
+                var cached = previewCache.get(cacheKey);
+                setState({ html: cached.html, rendered: cached.rendered, loading: false, waiting: false });
+                return;
+            }
+
+            setState(function (s) {
+                return Object.assign({}, s, { loading: true, waiting: false });
+            });
 
             timerRef.current = setTimeout(function () {
                 var mySeq = ++seqRef.current;
-                var postId = 0;
-                try {
-                    postId = wp.data.select('core/editor').getCurrentPostId() || 0;
-                } catch (e) { /* not in a post-editing context */ }
+                // Re-check cache after debounce (a sibling LivePreview may have filled it).
+                if (previewCache && previewCache.has(cacheKey)) {
+                    if (mySeq !== seqRef.current) { return; }
+                    fetchedKeyRef.current = cacheKey;
+                    var hit = previewCache.get(cacheKey);
+                    setState({ html: hit.html, rendered: hit.rendered, loading: false, waiting: false });
+                    return;
+                }
 
-                wp.apiFetch({
-                    path: '/dd/v1/block-preview',
-                    method: 'POST',
-                    data: { name: name, attributes: attributes, post_id: postId }
+                fetchedKeyRef.current = cacheKey;
+                enqueuePreviewFetch(function () {
+                    return wp.apiFetch({
+                        path: '/dd/v1/block-preview',
+                        method: 'POST',
+                        data: { name: name, attributes: attributes, post_id: postId }
+                    });
                 }).then(function (res) {
                     if (mySeq !== seqRef.current) { return; }
-                    setState({ html: (res && res.html) || '', rendered: !!(res && res.rendered), loading: false });
+                    var html = (res && res.html) || '';
+                    var rendered = !!(res && res.rendered);
+                    if (previewCache) {
+                        previewCache.set(cacheKey, { html: html, rendered: rendered });
+                    }
+                    setState({ html: html, rendered: rendered, loading: false, waiting: false });
                 }).catch(function () {
                     if (mySeq !== seqRef.current) { return; }
-                    setState({ html: '', rendered: false, loading: false });
+                    setState({ html: '', rendered: false, loading: false, waiting: false });
                 });
             }, 400);
 
             return function () { if (timerRef.current) { clearTimeout(timerRef.current); } };
             // eslint-disable-next-line
-        }, [name, attrKey]);
+        }, [name, attrKey, shouldFetch]);
 
-        if (!state.rendered) {
-            return placeholder || el('div', {
-                style: {
-                    border: '1px dashed #c3c4c7', borderRadius: '4px', padding: '24px',
-                    background: '#f6f7f7', textAlign: 'center', color: '#757575'
-                }
-            }, state.loading ? 'Loading preview…' : 'Nothing to preview yet.');
+        var inner;
+        if (state.waiting && !state.rendered) {
+            inner = el('div', { className: 'coptrz-block-preview-empty coptrz-block-preview-pending' },
+                'Preview when visible…');
+        } else if (!state.rendered) {
+            inner = placeholder || el('div', { className: 'coptrz-block-preview-empty' },
+                state.loading ? 'Loading preview…' : 'Nothing to preview yet.');
+        } else {
+            var rawHtml = el(wp.element.RawHTML, null, state.html);
+            inner = context === 'header'
+                ? el('div', { className: 'header small-text' },
+                    el('div', { className: 'header-inner rounded-10px' },
+                        el('div', { className: 'row g-2 header-right align-items-center' }, rawHtml)
+                    )
+                )
+                : rawHtml;
         }
 
-        var rawHtml = el(wp.element.RawHTML, null, state.html);
-        var content = context === 'header'
-            ? el('div', { className: 'header small-text' },
-                el('div', { className: 'header-inner rounded-10px' },
-                    el('div', { className: 'row g-2 header-right align-items-center' }, rawHtml)
-                )
-            )
-            : rawHtml;
+        var className = 'coptrz-block-preview'
+            + (context ? ' coptrz-block-preview--' + context : '')
+            + (state.loading && state.rendered ? ' is-refreshing' : '')
+            + (state.waiting && !state.rendered ? ' is-pending' : '');
 
-        var className = 'coptrz-block-preview' + (context ? ' coptrz-block-preview--' + context : '') + (state.loading ? ' is-refreshing' : '');
-
-        return el('div', { className: className }, content);
+        return el('div', { ref: rootRef, className: className }, inner);
     }
 
     /**
