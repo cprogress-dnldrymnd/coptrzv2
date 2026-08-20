@@ -58,7 +58,7 @@
                         el(TextareaControl, {
                             label: 'Active Tab Description',
                             value: attributes.tabDescription,
-                            help: 'Vertical Stacked layout only: text shown beneath the title (in the highlight box) when this tab is active.',
+                            help: 'Shown under the tab navigation when this tab is active (Horizontal Tabs), or beneath the title in the highlight box (Vertical Stacked).',
                             onChange: function (val) { setAttributes({ tabDescription: val }); }
                         })
                     )
@@ -68,7 +68,7 @@
                         'Tab: ' + attributes.tabTitle
                     ),
                     el('div', { style: { padding: '0 10px 8px', fontSize: '11px', color: '#757575' } },
-                        'The content below is this tab’s main content (left column on the frontend — e.g. an image). The title + the optional “Active Tab Description” (Tab Settings) appear in the right-hand nav when active.'
+                        'The content below is this tab’s main content (e.g. an image). On the frontend, the title appears in the tab nav; the optional “Active Tab Description” (Tab Settings) shows under the nav when active (Horizontal) or in the side nav highlight (Vertical Stacked).'
                     ),
                     el('div', { className: 'dd-tab-panel-inner' },
                         el(InnerBlocks, { template: [['core/paragraph', { placeholder: 'Enter this tab’s main content here…' }]] })

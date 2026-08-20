@@ -152,9 +152,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 wrapper.insertBefore(desktopNav, wrapper.firstChild);
             }
 
+            // Shared Active Tab Description — always sits directly under the nav row.
+            const activeDesc = document.createElement('div');
+            activeDesc.className = 'dd-tabs-active-desc';
+            activeDesc.hidden = true;
+            desktopNav.insertAdjacentElement('afterend', activeDesc);
+
             // Arrays to keep track of generated buttons to sync their active states easily
             const desktopButtons = [];
             const accordionButtons = [];
+            const descriptions = [];
 
             /**
              * Centralized logic to activate a specific tab index.
@@ -181,12 +188,17 @@ document.addEventListener('DOMContentLoaded', function () {
                         accordionButtons[i].setAttribute('aria-expanded', 'false');
                     }
                 });
+
+                const desc = descriptions[targetIndex] || '';
+                activeDesc.textContent = desc;
+                activeDesc.hidden = !desc;
             };
 
             // 2. Loop through panels to create buttons and bind events
             panels.forEach(function (panel, index) {
                 const title = panel.getAttribute('data-tab-title') || 'Tab';
-                
+                descriptions.push(panel.getAttribute('data-tab-description') || '');
+
                 // --- Desktop Tab Button ---
                 const dBtn = document.createElement('button');
                 dBtn.className = 'dd-tab-button';

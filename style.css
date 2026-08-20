@@ -12913,6 +12913,16 @@ ul.is-swiper-slider,
 .dd-tabs-wrapper[data-nav-placement="bottom"] .dd-tabs-nav-desktop {
   margin-top: 1.25rem; }
 
+/* Active Tab Description for horizontal layout — sits directly under the nav row */
+.dd-tabs-wrapper .dd-tabs-active-desc {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.55; }
+
+.dd-tabs-wrapper .dd-tabs-active-desc[hidden] {
+  display: none !important; }
+
 /* Button Structural & Typography Styling */
 .dd-tabs-wrapper .dd-tab-button {
   background-color: var(--dd-btn-bg, transparent);
@@ -13001,6 +13011,9 @@ ul.is-swiper-slider,
   .dd-tabs-wrapper[data-accordion-breakpoint="991"] .dd-tabs-nav-desktop {
     display: none !important; }
 
+  .dd-tabs-wrapper[data-accordion-breakpoint="991"] .dd-tabs-active-desc {
+    display: none !important; }
+
   .dd-tabs-wrapper[data-accordion-breakpoint="991"] .dd-accordion-button {
     display: flex;
     /* Update display value to match your specific layout needs */ } }
@@ -13010,6 +13023,9 @@ ul.is-swiper-slider,
 @media (max-width: 767px) {
   /* If breakpoint is set to 767, hide desktop tabs & show accordion */
   .dd-tabs-wrapper[data-accordion-breakpoint="767"] .dd-tabs-nav-desktop {
+    display: none !important; }
+
+  .dd-tabs-wrapper[data-accordion-breakpoint="767"] .dd-tabs-active-desc {
     display: none !important; }
 
   .dd-tabs-wrapper[data-accordion-breakpoint="767"] .dd-accordion-button {
@@ -13041,6 +13057,9 @@ ul.is-swiper-slider,
   .dd-tabs-wrapper[data-mobile-accordion="true"] .dd-tabs-nav-desktop {
     display: none;
     /* Hide top navigation */ }
+
+  .dd-tabs-wrapper[data-mobile-accordion="true"] .dd-tabs-active-desc {
+    display: none !important; }
 
   .dd-tabs-wrapper[data-mobile-accordion="true"] .dd-accordion-button {
     display: flex;
