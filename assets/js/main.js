@@ -273,24 +273,36 @@ jQuery(document).on('click', 'a[href]', function () {
 });
 
 /**
- * On /contact/, auto-select sector from ?sector= after placeholder option values are cleared.
+ * Auto-select sector from ?sector= on CF7 forms.
+ * Re-run after CF7's cached form.reset() on window load (WP_CACHE / wpcf7.cached).
  */
 function prefillSectorFromQuery() {
     var params = new URLSearchParams(window.location.search);
     var sector = params.get('sector');
     if (!sector) return;
 
-    var $select = jQuery('select[name="sector"]');
+    var $select = jQuery('.wpcf7 select[name="sector"]');
     if (!$select.length) return;
 
-    var hasMatch = $select.find('option').filter(function () {
-        return jQuery(this).val() === sector;
-    }).length;
+    $select.each(function () {
+        var $el = jQuery(this);
+        var hasMatch = $el.find('option').filter(function () {
+            return jQuery(this).val() === sector;
+        }).length;
 
-    if (!hasMatch) return;
+        if (!hasMatch) return;
 
-    $select.val(sector).trigger('change').trigger('focus');
+        $el.val(sector).trigger('change');
+        $el.closest('.wpcf7-form-control-wrap').addClass('filled');
+        $el.parent().addClass('filled');
+    });
 }
+
+// CF7 calls form.reset() on window load when wpcf7.cached is set; re-apply after that.
+window.addEventListener('load', function () {
+    setTimeout(prefillSectorFromQuery, 0);
+});
+document.addEventListener('wpcf7reset', prefillSectorFromQuery);
 
 function __shop_coptrz_link() {
     jQuery('a').each(function () {
