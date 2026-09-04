@@ -16,7 +16,7 @@ jQuery(document).ready(function () {
     __hero_video_column();
     pasturlparameters();
     passSectorToContactLinks();
-    prefillSectorFromQuery();
+    scheduleSectorPrefill();
     if (window.innerWidth < 768) {
         initResponsiveTableCards(jQuery('.responsive--table-2>table'));
     }
@@ -274,35 +274,104 @@ jQuery(document).on('click', 'a[href]', function () {
 
 /**
  * Auto-select sector from ?sector= on CF7 forms.
- * Re-run after CF7's cached form.reset() on window load (WP_CACHE / wpcf7.cached).
+ *
+ * CF7 with WP_CACHE sets wpcf7.cached and on window `load` calls form.reset(),
+ * which fires a native `reset` event and then CF7's async `/refill` → `wpcf7reset`.
+ * Prefill must survive all of those — a single ready()/setTimeout(0) is not enough.
  */
+function getSectorQueryValue() {
+    try {
+        var raw = new URLSearchParams(window.location.search).get('sector');
+        return raw ? String(raw).trim() : '';
+    } catch (e) {
+        return '';
+    }
+}
+
+/**
+ * Resolve a ?sector= value to an <option> value on this select (value or label, case-insensitive).
+ */
+function matchSectorOptionValue($select, sector) {
+    if (!$select || !$select.length || !sector) return null;
+
+    var needle = String(sector).trim().toLowerCase();
+    var matched = null;
+
+    $select.find('option').each(function () {
+        var $opt = jQuery(this);
+        var val = String($opt.val() == null ? '' : $opt.val()).trim();
+        var label = String($opt.text() || '').trim();
+
+        if (val.toLowerCase() === needle || label.toLowerCase() === needle) {
+            matched = { value: val, index: this.index };
+            return false;
+        }
+    });
+
+    return matched;
+}
+
+function markSectorSelectFilled($el) {
+    $el.closest('.wpcf7-form-control-wrap').addClass('filled');
+    $el.parent().addClass('filled');
+    $el.parent().parent().addClass('filled');
+}
+
 function prefillSectorFromQuery() {
-    var params = new URLSearchParams(window.location.search);
-    var sector = params.get('sector');
+    var sector = getSectorQueryValue();
     if (!sector) return;
 
-    var $select = jQuery('.wpcf7 select[name="sector"]');
+    var $select = jQuery('.wpcf7 select[name="sector"], form.wpcf7-form select[name="sector"]');
     if (!$select.length) return;
 
     $select.each(function () {
         var $el = jQuery(this);
-        var hasMatch = $el.find('option').filter(function () {
-            return jQuery(this).val() === sector;
-        }).length;
+        var match = matchSectorOptionValue($el, sector);
+        if (!match) return;
 
-        if (!hasMatch) return;
+        if (String($el.val() == null ? '' : $el.val()) === String(match.value)
+            && $el.prop('selectedIndex') === match.index) {
+            markSectorSelectFilled($el);
+            return;
+        }
 
-        $el.val(sector).trigger('change');
-        $el.closest('.wpcf7-form-control-wrap').addClass('filled');
-        $el.parent().addClass('filled');
+        $el.prop('selectedIndex', match.index);
+        if (match.value !== '') {
+            $el.val(match.value);
+        }
+
+        markSectorSelectFilled($el);
+        $el.trigger('change');
     });
 }
 
-// CF7 calls form.reset() on window load when wpcf7.cached is set; re-apply after that.
-window.addEventListener('load', function () {
+/**
+ * Schedule several re-applies so we win against CF7's sync reset and async refill.
+ */
+function scheduleSectorPrefill() {
+    if (!getSectorQueryValue()) return;
+
+    prefillSectorFromQuery();
+    [0, 50, 200, 500, 1000, 2000].forEach(function (ms) {
+        setTimeout(prefillSectorFromQuery, ms);
+    });
+}
+
+// CF7: window load → form.reset() → native reset → wpcf7.reset() → /refill → wpcf7reset
+window.addEventListener('load', scheduleSectorPrefill);
+
+document.addEventListener('reset', function (event) {
+    var form = event.target;
+    if (!form || !form.classList || !form.classList.contains('wpcf7-form')) return;
     setTimeout(prefillSectorFromQuery, 0);
+    setTimeout(prefillSectorFromQuery, 100);
+    setTimeout(prefillSectorFromQuery, 500);
+}, true);
+
+document.addEventListener('wpcf7reset', function () {
+    setTimeout(prefillSectorFromQuery, 0);
+    setTimeout(prefillSectorFromQuery, 100);
 });
-document.addEventListener('wpcf7reset', prefillSectorFromQuery);
 
 function __shop_coptrz_link() {
     jQuery('a').each(function () {
