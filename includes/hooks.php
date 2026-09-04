@@ -444,59 +444,34 @@ function action__wp_footer()
                 }
 
                 if (ytPlayerEls.length > 0) {
-                    // 2. This code loads the IFrame Player API code asynchronously.
-                    var tag = document.createElement('script');
-
-                    tag.src = "https://www.youtube.com/iframe_api";
-                    var firstScriptTag = document.getElementsByTagName('script')[0];
-                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-                    // 3. This function creates an <iframe> (and YouTube player)
-                    //    per visible placeholder after the API code downloads.
-                    function onPlayerReady(event) {
-                        setTimeout(function() {
-                            jQuery(event.target.getIframe()).addClass('show');
-                        }, 500);
-                    }
-
+                    // Plain muted embeds (no IFrame API / seekTo) — matches content
+                    // YouTube backgrounds and avoids the API chrome that stays visible
+                    // even with controls=0 on the redesigned player.
                     function createHeroYtPlayer(el) {
                         var video_id = el.getAttribute('video_id');
                         if (!video_id) return;
 
-                        new YT.Player(el.id, {
-                            height: '100%',
-                            width: '100%',
-                            videoId: video_id,
-                            playerVars: {
-                                controls: 1,
-                                showinfo: 0,
-                                rel: 0,
-                                autoplay: 1,
-                                mute: 1,
-                                playsinline: 1,
-                                playlist: video_id,
-                                loop: 1,
-                            },
-                            events: {
-                                'onReady': onPlayerReady,
-                                'onStateChange': function(event) {
-                                    var YTP = event.target;
-                                    if (event.data === 1) {
-                                        var remains = YTP.getDuration() - YTP.getCurrentTime();
-                                        if (this.rewindTO)
-                                            clearTimeout(this.rewindTO);
-                                        this.rewindTO = setTimeout(function() {
-                                            YTP.seekTo(0);
-                                        }, (remains - 1) * 1000);
-                                    }
-                                }
-                            }
-                        });
+                        var iframe = document.createElement('iframe');
+                        iframe.id = el.id;
+                        iframe.className = 'coptrz-yt-player';
+                        iframe.setAttribute('frameborder', '0');
+                        iframe.setAttribute('allowfullscreen', '');
+                        iframe.setAttribute(
+                            'allow',
+                            'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                        );
+                        iframe.src = 'https://www.youtube.com/embed/' + video_id
+                            + '?loop=1&controls=0&rel=0&playsinline=1&autoplay=1&mute=1'
+                            + '&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1'
+                            + '&playlist=' + encodeURIComponent(video_id);
+
+                        el.parentNode.replaceChild(iframe, el);
+                        setTimeout(function() {
+                            iframe.classList.add('show');
+                        }, 500);
                     }
 
-                    window.onYouTubeIframeAPIReady = function() {
-                        ytPlayerEls.forEach(createHeroYtPlayer);
-                    };
+                    ytPlayerEls.forEach(createHeroYtPlayer);
                 }
             })();
         </script>
