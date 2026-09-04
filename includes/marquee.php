@@ -26,6 +26,9 @@ class DD_Logo_Marquee {
         add_action( 'save_post_dd_marquee_group', [ $this, 'save_meta_box' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
+        // Editor canvas (iframed) — LivePreview injects marquee HTML without the
+        // front-end enqueue, so the same stylesheet must load in the iframe too.
+        add_action( 'enqueue_block_assets', [ $this, 'enqueue_styles' ] );
         add_shortcode( 'dd_logo_marquee', [ $this, 'render_shortcode' ] );
     }
 
@@ -221,13 +224,12 @@ class DD_Logo_Marquee {
     }
 
     /**
-     * Injects the required CSS styles into the front-end.
-     * Utilizes CSS variables (--marquee-speed) for dynamic control via shortcode attributes.
-     * Registers an inline style block attached to a core dummy handle to keep the plugin entirely self-contained.
-     * * @return void
+     * Front-end + editor marquee layout CSS (shared string).
+     *
+     * @return string
      */
-    public function enqueue_styles() {
-        $css = '
+    public function get_styles_css() {
+        return '
         .dd-marquee-container {
             overflow: hidden;
             white-space: nowrap;
@@ -240,7 +242,6 @@ class DD_Logo_Marquee {
         .dd-marquee-track {
             display: flex;
             width: max-content;
-            /* Leverages a CSS variable for speed injection, falling back to 30s if undefined */
             animation: dd-marquee-scroll var(--marquee-speed, 30s) linear infinite;
         }
         .dd-marquee-track:hover {
@@ -252,7 +253,7 @@ class DD_Logo_Marquee {
             justify-content: space-around;
             flex-shrink: 0;
             gap: 3rem;
-            padding-right: 3rem; /* Critical: exact match to gap for seamless stitch */
+            padding-right: 3rem;
         }
         .dd-marquee-item img {
             max-width: 160px;
@@ -263,7 +264,6 @@ class DD_Logo_Marquee {
             object-fit: contain;
             transition: filter 0.3s ease;
         }
-        /* Scoped grayscale toggle */
         .dd-marquee-grayscale .dd-marquee-item img {
             filter: grayscale(100%);
         }
@@ -284,6 +284,49 @@ class DD_Logo_Marquee {
                 max-height: 60px;
             }
         }';
+    }
+
+    /**
+     * Extra rules for LivePreview / editor canvas — dark strip so light logos
+     * read on the white Gutenberg background, and a stable min-height.
+     *
+     * @return string
+     */
+    public function get_editor_preview_css() {
+        return '
+        .coptrz-block-preview .dd-marquee-container {
+            background: #1f1f1f;
+            min-height: 96px;
+            padding: 20px 0;
+            border-radius: 4px;
+        }
+        .coptrz-block-preview .dd-marquee-track {
+            animation-play-state: paused;
+        }
+        .coptrz-block-preview .dd-marquee-item img {
+            max-height: 48px;
+            max-width: 120px;
+        }';
+    }
+
+    /**
+     * Injects the required CSS styles into the front-end and block editor canvas.
+     * Utilizes CSS variables (--marquee-speed) for dynamic control via shortcode attributes.
+     * Registers an inline style block attached to a core dummy handle to keep the plugin entirely self-contained.
+     *
+     * @return void
+     */
+    public function enqueue_styles() {
+        static $done = false;
+        if ( $done ) {
+            return;
+        }
+        $done = true;
+
+        $css = $this->get_styles_css();
+        if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+            $css .= $this->get_editor_preview_css();
+        }
 
         wp_register_style( 'dd-marquee-style', false );
         wp_enqueue_style( 'dd-marquee-style' );
@@ -418,10 +461,24 @@ function coptrz_render_logo_marquee_block( $block_content, $block ) {
 
     if ( $source === 'direct' ) {
         $image_ids = isset( $attrs['imageIds'] ) && is_array( $attrs['imageIds'] ) ? $attrs['imageIds'] : array();
-        return $marquee->render_from_image_ids( $image_ids, $speed, $is_grayscale );
+        $html      = $marquee->render_from_image_ids( $image_ids, $speed, $is_grayscale );
+    } else {
+        $group_id = isset( $attrs['groupId'] ) ? intval( $attrs['groupId'] ) : 0;
+        $html     = $marquee->render_from_group( $group_id, $speed, $is_grayscale );
     }
 
-    $group_id = isset( $attrs['groupId'] ) ? intval( $attrs['groupId'] ) : 0;
-    return $marquee->render_from_group( $group_id, $speed, $is_grayscale );
+    if ( $html === '' ) {
+        return '';
+    }
+
+    // LivePreview fetches HTML over REST and injects it via RawHTML — the
+    // editor iframe may not have dd-marquee-style loaded yet, so embed the
+    // stylesheet in the response (block-preview keeps plain <style> tags).
+    if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+        $css  = $marquee->get_styles_css() . $marquee->get_editor_preview_css();
+        $html = '<style id="dd-marquee-preview-css">' . wp_strip_all_tags( $css ) . '</style>' . $html;
+    }
+
+    return $html;
 }
 add_filter( 'render_block', 'coptrz_render_logo_marquee_block', 10, 2 );

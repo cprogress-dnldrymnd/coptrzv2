@@ -13505,6 +13505,45 @@ ul.is-swiper-slider,
 .coptrz-block-preview--header .d-lg-none {
   display: none !important; }
 
+/**
+ * Logo marquee — front-end CSS lives in includes/marquee.php (inline) and is
+ * not part of style.css. LivePreview also embeds those rules in the REST HTML,
+ * but keep a canvas fallback here so the strip has height + contrast even if
+ * the inline <style> is stripped or the iframe stylesheet lags.
+ */
+.coptrz-block-preview .dd-marquee-container {
+  background: #1f1f1f;
+  min-height: 96px;
+  padding: 20px 0;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  box-sizing: border-box; }
+
+.coptrz-block-preview .dd-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: none; }
+
+.coptrz-block-preview .dd-marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 2rem;
+  padding-right: 2rem; }
+
+.coptrz-block-preview .dd-marquee-item img {
+  max-height: 48px;
+  max-width: 120px;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain; }
+
+.coptrz-block-preview .dd-marquee-grayscale .dd-marquee-item img {
+  filter: grayscale(100%); }
+
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/

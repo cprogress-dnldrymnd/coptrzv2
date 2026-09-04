@@ -72,7 +72,7 @@
         },
 
         edit: function (props) {
-            const { attributes, setAttributes } = props;
+            const { attributes, setAttributes, clientId } = props;
             const a = attributes;
             const [mode, setMode] = useState(hasContent(a) ? 'preview' : 'edit');
 
@@ -158,9 +158,14 @@
                 ),
                 el(
                     'div',
-                    useBlockProps(),
+                    useBlockProps({ style: { minHeight: hasContent(a) ? '96px' : undefined } }),
                     mode === 'preview'
-                        ? el(UI.LivePreview, { name: 'coptrz/logo-marquee', attributes: a, placeholder: emptyPlaceholder })
+                        ? el(UI.LivePreview, {
+                            name: 'coptrz/logo-marquee',
+                            attributes: a,
+                            placeholder: emptyPlaceholder,
+                            clientId: clientId
+                        })
                         : emptyPlaceholder
                 )
             );
