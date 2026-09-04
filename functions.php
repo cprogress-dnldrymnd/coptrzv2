@@ -623,6 +623,7 @@ function coptrz_block_picker_sources()
         'faqs_category'      => array('kind' => 'term', 'name' => 'faqs_category'),
         'compareproducts'    => array('kind' => 'post', 'name' => 'compareproducts'),
         'globalpostboxes'    => array('kind' => 'post', 'name' => 'globalpostboxes'),
+        'dd_marquee_group'   => array('kind' => 'post', 'name' => 'dd_marquee_group'),
     );
 }
 
@@ -1144,6 +1145,8 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         'coptrz-spec-box-legacy-block'     => 'coptrz-spec-box-legacy-block.js',
         'coptrz-divider-legacy-block'      => 'coptrz-divider-legacy-block.js',
         'coptrz-cf7-legacy-block'          => 'coptrz-cf7-legacy-block.js',
+        'coptrz-logo-marquee-block'        => 'coptrz-logo-marquee-block.js',
+        'coptrz-breadcrumbs-block'         => 'coptrz-breadcrumbs-block.js',
     );
     foreach ($legacy_block_scripts as $handle => $file) {
         wp_enqueue_script(

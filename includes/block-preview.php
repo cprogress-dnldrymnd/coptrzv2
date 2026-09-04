@@ -211,6 +211,18 @@ function coptrz_block_preview_renderers()
             }
             return coptrz_render_announcement_banner_block('', array('blockName' => 'coptrz/announcement-banner', 'attrs' => $attrs));
         },
+        'coptrz/logo-marquee' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_logo_marquee_block')) {
+                return '';
+            }
+            return coptrz_render_logo_marquee_block('', array('blockName' => 'coptrz/logo-marquee', 'attrs' => $attrs));
+        },
+        'coptrz/breadcrumbs' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_breadcrumbs_block')) {
+                return '';
+            }
+            return coptrz_render_breadcrumbs_block('', array('blockName' => 'coptrz/breadcrumbs', 'attrs' => $attrs));
+        },
     );
 
     return apply_filters('coptrz_block_preview_renderers', $renderers);

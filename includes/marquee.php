@@ -291,39 +291,25 @@ class DD_Logo_Marquee {
     }
 
     /**
-     * Generates the front-end HTML for the logo marquee via shortcode.
-     * Processes new `speed` and `grayscale` attributes to allow configuration per shortcode instance.
-     * Retrieves the attached gallery IDs and constructs a duplicated DOM group to achieve 
-     * a seamless infinite CSS loop.
-     * * @param array $atts User-defined shortcode attributes.
-     * @return string Compiled HTML output for the marquee.
+     * Builds the marquee HTML from a list of attachment IDs.
+     * Shared by the shortcode and the coptrz/logo-marquee block.
+     *
+     * @param array            $image_ids    Attachment IDs.
+     * @param float|int|string $speed        Animation duration in seconds.
+     * @param bool             $is_grayscale Whether to apply the grayscale class.
+     * @return string
      */
-    public function render_shortcode( $atts ) {
-        $atts = shortcode_atts( [
-            'id'        => '',
-            'speed'     => '30',   // CSS animation duration in seconds
-            'grayscale' => 'true', // Applies grayscale filter by default
-        ], $atts, 'dd_logo_marquee' );
-
-        if ( empty( $atts['id'] ) ) {
+    public function render_from_image_ids( $image_ids, $speed = 30, $is_grayscale = true ) {
+        $image_ids = array_filter( array_map( 'intval', (array) $image_ids ) );
+        if ( empty( $image_ids ) ) {
             return '';
         }
 
-        $image_ids_string = get_post_meta( intval( $atts['id'] ), '_dd_marquee_image_ids', true );
-
-        if ( empty( $image_ids_string ) ) {
-            return '';
-        }
-
-        $image_ids = explode( ',', $image_ids_string );
-        
-        // Parse attributes
-        $speed = floatval( $atts['speed'] );
+        $speed = floatval( $speed );
         if ( $speed <= 0 ) {
-            $speed = 30; // Fallback if invalid negative or zero value parsed
+            $speed = 30;
         }
-        
-        $is_grayscale = filter_var( $atts['grayscale'], FILTER_VALIDATE_BOOLEAN );
+
         $grayscale_class = $is_grayscale ? ' dd-marquee-grayscale' : '';
 
         ob_start();
@@ -349,16 +335,93 @@ class DD_Logo_Marquee {
         <?php
         $group_html = ob_get_clean();
 
-        // Pass parsed attribute states to the front end utilizing CSS custom properties and scoped classes
         $output  = sprintf( '<div class="dd-marquee-container%s" style="--marquee-speed: %ss;">', esc_attr( $grayscale_class ), esc_attr( $speed ) );
         $output .= '<div class="dd-marquee-track">';
-        $output .= $group_html; 
+        $output .= $group_html;
         $output .= str_replace( 'class="dd-marquee-group"', 'class="dd-marquee-group" aria-hidden="true"', $group_html );
         $output .= '</div></div>';
 
         return $output;
     }
+
+    /**
+     * Resolves image IDs from a dd_marquee_group post and renders the marquee.
+     *
+     * @param int              $group_id     Marquee group post ID.
+     * @param float|int|string $speed        Animation duration in seconds.
+     * @param bool             $is_grayscale Whether to apply grayscale.
+     * @return string
+     */
+    public function render_from_group( $group_id, $speed = 30, $is_grayscale = true ) {
+        $group_id = intval( $group_id );
+        if ( ! $group_id ) {
+            return '';
+        }
+
+        $image_ids_string = get_post_meta( $group_id, '_dd_marquee_image_ids', true );
+        if ( empty( $image_ids_string ) ) {
+            return '';
+        }
+
+        return $this->render_from_image_ids( explode( ',', $image_ids_string ), $speed, $is_grayscale );
+    }
+
+    /**
+     * Generates the front-end HTML for the logo marquee via shortcode.
+     * Processes `speed` and `grayscale` attributes to allow configuration per shortcode instance.
+     *
+     * @param array $atts User-defined shortcode attributes.
+     * @return string Compiled HTML output for the marquee.
+     */
+    public function render_shortcode( $atts ) {
+        $atts = shortcode_atts( [
+            'id'        => '',
+            'speed'     => '30',
+            'grayscale' => 'true',
+        ], $atts, 'dd_logo_marquee' );
+
+        if ( empty( $atts['id'] ) ) {
+            return '';
+        }
+
+        $is_grayscale = filter_var( $atts['grayscale'], FILTER_VALIDATE_BOOLEAN );
+
+        return $this->render_from_group( intval( $atts['id'] ), $atts['speed'], $is_grayscale );
+    }
 }
 
 // Instantiate the class to initialize the plugin.
-new DD_Logo_Marquee();
+$GLOBALS['dd_logo_marquee'] = new DD_Logo_Marquee();
+
+/**
+ * Server render for the `coptrz/logo-marquee` block.
+ * source=group → dd_marquee_group meta; source=direct → imageIds attribute.
+ *
+ * @param string $block_content
+ * @param array  $block
+ * @return string
+ */
+function coptrz_render_logo_marquee_block( $block_content, $block ) {
+    if ( empty( $block['blockName'] ) || $block['blockName'] !== 'coptrz/logo-marquee' ) {
+        return $block_content;
+    }
+
+    $marquee = isset( $GLOBALS['dd_logo_marquee'] ) ? $GLOBALS['dd_logo_marquee'] : null;
+    if ( ! $marquee instanceof DD_Logo_Marquee ) {
+        return '';
+    }
+
+    $attrs        = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+    $source       = isset( $attrs['source'] ) ? (string) $attrs['source'] : 'group';
+    $speed        = isset( $attrs['speed'] ) ? $attrs['speed'] : 30;
+    $is_grayscale = array_key_exists( 'grayscale', $attrs ) ? (bool) $attrs['grayscale'] : true;
+
+    if ( $source === 'direct' ) {
+        $image_ids = isset( $attrs['imageIds'] ) && is_array( $attrs['imageIds'] ) ? $attrs['imageIds'] : array();
+        return $marquee->render_from_image_ids( $image_ids, $speed, $is_grayscale );
+    }
+
+    $group_id = isset( $attrs['groupId'] ) ? intval( $attrs['groupId'] ) : 0;
+    return $marquee->render_from_group( $group_id, $speed, $is_grayscale );
+}
+add_filter( 'render_block', 'coptrz_render_logo_marquee_block', 10, 2 );

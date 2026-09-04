@@ -1171,3 +1171,46 @@ add_shortcode('product_add_to_cart', array($Shortcodes, 'product_add_to_cart'));
 add_shortcode('get_url_param', array($Shortcodes, 'get_url_param'));
 add_shortcode('popup', array($Shortcodes, 'popup'));
 add_shortcode('post_url', array($Shortcodes, 'post_url'));
+
+/**
+ * Server render for the `coptrz/breadcrumbs` block.
+ * Builds `[breadcrumbs …]` from block attributes and runs do_shortcode().
+ * Omits id when 0 so the shortcode default (get_the_ID()) applies.
+ *
+ * @param string $block_content
+ * @param array  $block
+ * @return string
+ */
+function coptrz_render_breadcrumbs_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'coptrz/breadcrumbs') {
+        return $block_content;
+    }
+    if (!shortcode_exists('breadcrumbs')) {
+        return $block_content;
+    }
+
+    $attrs = isset($block['attrs']) && is_array($block['attrs']) ? $block['attrs'] : array();
+    $type  = isset($attrs['type']) ? sanitize_key($attrs['type']) : 'page';
+    if (!in_array($type, array('page', 'term', 'archive'), true)) {
+        $type = 'page';
+    }
+
+    $sc = '[breadcrumbs type="' . esc_attr($type) . '"';
+
+    $id = isset($attrs['id']) ? intval($attrs['id']) : 0;
+    if ($id > 0) {
+        $sc .= ' id="' . $id . '"';
+    }
+
+    if ($type === 'archive') {
+        $archive_title = isset($attrs['archiveTitle']) ? sanitize_text_field((string) $attrs['archiveTitle']) : '';
+        if ($archive_title !== '') {
+            $sc .= ' archive_title="' . esc_attr($archive_title) . '"';
+        }
+    }
+
+    $sc .= ']';
+    return do_shortcode($sc);
+}
+add_filter('render_block', 'coptrz_render_breadcrumbs_block', 10, 2);
