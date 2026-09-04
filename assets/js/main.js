@@ -15,6 +15,8 @@ jQuery(document).ready(function () {
     __shop_coptrz_link();
     __hero_video_column();
     pasturlparameters();
+    passSectorToContactLinks();
+    prefillSectorFromQuery();
     if (window.innerWidth < 768) {
         initResponsiveTableCards(jQuery('.responsive--table-2>table'));
     }
@@ -169,6 +171,126 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
     return false;
 };
+
+/**
+ * True when href targets the site Contact page (/contact/), excluding shop.coptrz.com.
+ */
+function isContactLink(href) {
+    if (!href) return false;
+
+    var hrefString = String(href).toLowerCase();
+    if (hrefString.indexOf('shop.coptrz.com') !== -1) return false;
+
+    try {
+        var url = new URL(href, window.location.origin);
+        var path = url.pathname.replace(/\/+$/, '') || '/';
+        return /\/contact$/i.test(path);
+    } catch (e) {
+        return false;
+    }
+}
+
+/**
+ * Sets or removes the sector query param on a URL, preserving other params and hash.
+ */
+function withSectorParam(href, sector) {
+    try {
+        var url = new URL(href, window.location.origin);
+        if (sector) {
+            url.searchParams.set('sector', sector);
+        } else {
+            url.searchParams.delete('sector');
+        }
+
+        if (/^https?:\/\//i.test(href) || href.indexOf('//') === 0) {
+            return url.toString();
+        }
+
+        return url.pathname + url.search + url.hash;
+    } catch (e) {
+        return href;
+    }
+}
+
+/**
+ * Reads the first non-empty select[name=sector] value on the page.
+ */
+function getSelectedSectorValue($prefer) {
+    if ($prefer && $prefer.length) {
+        var preferred = $prefer.val();
+        if (preferred) return preferred;
+    }
+
+    var sector = '';
+    jQuery('select[name="sector"]').each(function () {
+        var value = jQuery(this).val();
+        if (value) {
+            sector = value;
+            return false;
+        }
+    });
+    return sector;
+}
+
+/**
+ * Appends/updates ?sector= on all /contact/ links from the origin page sector select.
+ */
+function passSectorToContactLinks(sectorOverride) {
+    var sector = typeof sectorOverride === 'string'
+        ? sectorOverride
+        : getSelectedSectorValue();
+
+    jQuery('a[href]').each(function () {
+        var $link = jQuery(this);
+        var href = $link.attr('href');
+        if (!isContactLink(href)) return;
+
+        if (!sector) {
+            // Leave links alone when nothing is selected (do not add empty sector=).
+            // Still strip a stale sector if the visitor cleared the select after choosing one.
+            if (href.indexOf('sector=') === -1) return;
+            $link.attr('href', withSectorParam(href, ''));
+            return;
+        }
+
+        $link.attr('href', withSectorParam(href, sector));
+    });
+}
+
+jQuery(document).on('change', 'select[name="sector"]', function () {
+    passSectorToContactLinks(jQuery(this).val() || '');
+});
+
+jQuery(document).on('click', 'a[href]', function () {
+    var $link = jQuery(this);
+    var href = $link.attr('href');
+    if (!isContactLink(href)) return;
+
+    var sector = getSelectedSectorValue();
+    if (!sector) return;
+
+    $link.attr('href', withSectorParam(href, sector));
+});
+
+/**
+ * On /contact/, auto-select sector from ?sector= after placeholder option values are cleared.
+ */
+function prefillSectorFromQuery() {
+    var params = new URLSearchParams(window.location.search);
+    var sector = params.get('sector');
+    if (!sector) return;
+
+    var $select = jQuery('select[name="sector"]');
+    if (!$select.length) return;
+
+    var hasMatch = $select.find('option').filter(function () {
+        return jQuery(this).val() === sector;
+    }).length;
+
+    if (!hasMatch) return;
+
+    $select.val(sector).trigger('change').trigger('focus');
+}
 
 function __shop_coptrz_link() {
     jQuery('a').each(function () {
