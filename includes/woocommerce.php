@@ -2,16 +2,81 @@
 
 remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
 
+/**
+ * Render a linked producttaxonomypages body on the taxonomy archive URL,
+ * honoring the CPT's assigned page template (Blocks Editor / HTML Page)
+ * without leaving the archive query.
+ *
+ * @param int $post_id producttaxonomypages post ID.
+ * @return string HTML
+ */
+function coptrz_render_product_taxonomy_page_content($post_id)
+{
+    $post_id = (int) $post_id;
+    if (!$post_id) {
+        return '';
+    }
+
+    $template = get_page_template_slug($post_id);
+
+    // Match templates/page-blocks-editor.php: converted sections, else blocks.
+    if ($template === 'templates/page-blocks-editor.php') {
+        if (function_exists('coptrz_sections_render_converted')
+            && coptrz_sections_render_converted($post_id)
+        ) {
+            return (string) coptrz_render_converted_sections('sections', $post_id);
+        }
+
+        $content = get_post_field('post_content', $post_id);
+        if (!is_string($content) || trim($content) === '') {
+            return '';
+        }
+        // do_blocks only — same as layouts empty→content fallback and
+        // converted sections; avoid the_content wpautop on block markup.
+        return do_shortcode(do_blocks($content));
+    }
+
+    // Match templates/page-html.php: raw editor content through the_content.
+    if ($template === 'templates/page-html.php') {
+        $content = get_post_field('post_content', $post_id);
+        if (!is_string($content) || trim($content) === '') {
+            return '';
+        }
+        return apply_filters('the_content', $content);
+    }
+
+    // Default / modules-style CPT: legacy sections (or converted route inside).
+    return do_shortcode(___sections('sections', $post_id));
+}
+
 function action_woocommerce_before_main_content()
 {
     if (is_product_taxonomy()) {
-        echo do_shortcode(___hero_product_taxonomy());
         $product_category_page = __get_product_taxonomy_page(get_queried_object()->term_id);
 
         if ($product_category_page) {
             global $product_taxonomy_page;
             $product_taxonomy_page[] = $product_category_page;
-            echo do_shortcode(___sections('sections', $product_category_page));
+
+            $template = get_page_template_slug($product_category_page);
+            $honors_own_chrome = in_array(
+                $template,
+                array(
+                    'templates/page-blocks-editor.php',
+                    'templates/page-html.php',
+                ),
+                true
+            );
+
+            // Blocks Editor / HTML Page own their full layout (including any
+            // hero in post_content). Term hero stays for legacy sections pages.
+            if (!$honors_own_chrome) {
+                echo do_shortcode(___hero_product_taxonomy());
+            }
+
+            echo coptrz_render_product_taxonomy_page_content($product_category_page);
+        } else {
+            echo do_shortcode(___hero_product_taxonomy());
         }
     } else if (is_product()) {
         echo ___hero_modules();
