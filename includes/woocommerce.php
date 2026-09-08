@@ -17,36 +17,58 @@ function coptrz_render_product_taxonomy_page_content($post_id)
         return '';
     }
 
-    $template = get_page_template_slug($post_id);
-
-    // Match templates/page-blocks-editor.php: converted sections, else blocks.
-    if ($template === 'templates/page-blocks-editor.php') {
-        if (function_exists('coptrz_sections_render_converted')
-            && coptrz_sections_render_converted($post_id)
-        ) {
-            return (string) coptrz_render_converted_sections('sections', $post_id);
-        }
-
-        $content = get_post_field('post_content', $post_id);
-        if (!is_string($content) || trim($content) === '') {
-            return '';
-        }
-        // do_blocks only — same as layouts empty→content fallback and
-        // converted sections; avoid the_content wpautop on block markup.
-        return do_shortcode(do_blocks($content));
+    $cpt_post = get_post($post_id);
+    if (!$cpt_post) {
+        return '';
     }
 
-    // Match templates/page-html.php: raw editor content through the_content.
-    if ($template === 'templates/page-html.php') {
-        $content = get_post_field('post_content', $post_id);
-        if (!is_string($content) || trim($content) === '') {
-            return '';
-        }
-        return apply_filters('the_content', $content);
-    }
+    // Archive main query is products; without this, get_the_ID() during
+    // do_blocks() resolves to the first product (wrong breadcrumbs/hero).
+    global $post;
+    $previous_post = $post;
+    $post = $cpt_post;
+    setup_postdata($post);
 
-    // Default / modules-style CPT: legacy sections (or converted route inside).
-    return do_shortcode(___sections('sections', $post_id));
+    try {
+        $template = get_page_template_slug($post_id);
+
+        // Match templates/page-blocks-editor.php: converted sections, else blocks.
+        if ($template === 'templates/page-blocks-editor.php') {
+            if (function_exists('coptrz_sections_render_converted')
+                && coptrz_sections_render_converted($post_id)
+            ) {
+                return (string) coptrz_render_converted_sections('sections', $post_id);
+            }
+
+            $content = get_post_field('post_content', $post_id);
+            if (!is_string($content) || trim($content) === '') {
+                return '';
+            }
+            // do_blocks only — same as layouts empty→content fallback and
+            // converted sections; avoid the_content wpautop on block markup.
+            return do_shortcode(do_blocks($content));
+        }
+
+        // Match templates/page-html.php: raw editor content through the_content.
+        if ($template === 'templates/page-html.php') {
+            $content = get_post_field('post_content', $post_id);
+            if (!is_string($content) || trim($content) === '') {
+                return '';
+            }
+            return apply_filters('the_content', $content);
+        }
+
+        // Default / modules-style CPT: legacy sections (or converted route inside).
+        return do_shortcode(___sections('sections', $post_id));
+    } finally {
+        if ($previous_post instanceof WP_Post) {
+            $post = $previous_post;
+            setup_postdata($previous_post);
+        } else {
+            $post = $previous_post;
+            wp_reset_postdata();
+        }
+    }
 }
 
 function action_woocommerce_before_main_content()

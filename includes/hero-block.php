@@ -209,7 +209,22 @@ function coptrz_render_hero_block($block_content, $block)
         return $block_content;
     }
 
-    $post_id = get_the_ID();
+    // On product taxonomy archives the main query is products; prefer the
+    // linked producttaxonomypages CPT so hero/breadcrumbs use that post.
+    $post_id = 0;
+    if (function_exists('is_product_taxonomy')
+        && is_product_taxonomy()
+        && function_exists('__get_product_taxonomy_page')
+    ) {
+        $term = get_queried_object();
+        if ($term && !empty($term->term_id)) {
+            $post_id = (int) __get_product_taxonomy_page($term->term_id);
+        }
+    }
+    if (!$post_id) {
+        $post_id = (int) get_the_ID();
+    }
+
     if (!$post_id || !coptrz_hero_renders_inline($post_id) || !function_exists('___hero_render')) {
         return '';
     }

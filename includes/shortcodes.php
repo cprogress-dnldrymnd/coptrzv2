@@ -103,6 +103,17 @@ class Shortcodes
 
         $html .= "<li><a class='item text-white' href='" . esc_url($home) . "' aria-label='Coptrz home'>Home</a></li>";
 
+        // Taxonomy archives embed producttaxonomypages block content whose hero
+        // emits type=page crumbs. Force the queried term trail so the first
+        // product in the archive loop never becomes the final crumb.
+        if (function_exists('is_product_taxonomy') && is_product_taxonomy() && $type !== 'archive') {
+            $queried = get_queried_object();
+            if ($queried && !empty($queried->term_id)) {
+                $type = 'term';
+                $id   = (int) $queried->term_id;
+            }
+        }
+
         if ($type == 'page') {
             $title = get_the_title($id);
 
