@@ -115,7 +115,29 @@ add_filter('upload_mimes', 'add_svg_support');
 
 function action_wp_head()
 {
-    $custom_css = get__post_meta('custom_css');
+    $custom_css = '';
+
+    // Taxonomy archives embed a linked producttaxonomypages post — its Custom
+    // CSS must apply on this URL even though the queried object is a term.
+    // Lookup here (not via $product_taxonomy_page): that global is only filled
+    // later in woocommerce_before_main_content, after wp_head has already run.
+    if (function_exists('is_product_taxonomy')
+        && is_product_taxonomy()
+        && function_exists('__get_product_taxonomy_page')
+    ) {
+        $term = get_queried_object();
+        if ($term && !empty($term->term_id)) {
+            $taxonomy_page_id = __get_product_taxonomy_page($term->term_id);
+            if ($taxonomy_page_id) {
+                $custom_css = get__post_meta_by_id($taxonomy_page_id, 'custom_css');
+            }
+        }
+    }
+
+    if ($custom_css === '' || $custom_css === null || $custom_css === false) {
+        $custom_css = get__post_meta('custom_css');
+    }
+
     if ($custom_css) {
 ?>
         <style id="wp-head">
