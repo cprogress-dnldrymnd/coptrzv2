@@ -1,7 +1,7 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
 /* Template Name: HTML Page
-/* Template Post Type: page, guides
+/* Template Post Type: page, guides, producttaxonomypages
 /*-----------------------------------------------------------------------------------*/
 ?>
 <!DOCTYPE html>

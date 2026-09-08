@@ -109,6 +109,8 @@ function tissue_paper_register_custom_fields()
     // containers are indexed.
     coptrz_register_global_layout_fields();
     coptrz_register_openai_ads_conversion_fields();
+    // Select Category for producttaxonomypages — same always-on reason as above.
+    coptrz_register_product_taxonomy_page_fields();
     \CoptrzTheme\MetaShim\Container_Admin::boot();
 }
 add_action('after_setup_theme', 'tissue_paper_register_custom_fields', 20);
@@ -283,6 +285,76 @@ function coptrz_register_openai_ads_conversion_fields()
                 ),
         ));
 }
+
+/**
+ * Register the "Select Category" association for producttaxonomypages through
+ * the native meta shim — unconditionally, on every template — for the same
+ * reason as coptrz_register_global_layout_fields(): includes/post-meta.php is
+ * not loaded in admin when the page-blocks-editor.php template is active.
+ * Keep the fields defined ONLY here to avoid a duplicate container.
+ */
+function coptrz_register_product_taxonomy_page_fields()
+{
+    if (!class_exists('\CoptrzTheme\MetaShim\Container')) {
+        return;
+    }
+
+    \CoptrzTheme\MetaShim\Container::make('post_meta', __('Select taxonomy term to display content'))
+        ->or_where('post_type', '=', 'producttaxonomypages')
+        ->add_fields(array(
+            \CoptrzTheme\MetaShim\Field::make('association', 'product_tax', 'Select Category')
+                ->set_types(
+                    array(
+                        array(
+                            'type'     => 'term',
+                            'taxonomy' => 'product_cat',
+                        ),
+                        array(
+                            'type'     => 'term',
+                            'taxonomy' => 'pa_brands',
+                        )
+                    )
+                )->set_max(1)
+        ));
+}
+
+/**
+ * Sync product_tax association → _product_term_id on save for
+ * producttaxonomypages. Lives here (always loaded) rather than modules.php,
+ * which is skipped in admin when page-blocks-editor.php is active.
+ *
+ * Hooked to generic save_post at priority 20 so the meta shim (priority 10)
+ * has already persisted product_tax.
+ *
+ * @param int     $post_id Post ID.
+ * @param WP_Post $post    Post object.
+ * @param bool    $update  Whether this is an existing post being updated.
+ */
+function action_module_content_optimized($post_id, $post, $update)
+{
+    if ($post->post_type !== 'producttaxonomypages') {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (wp_is_post_revision($post_id)) {
+        return;
+    }
+
+    $product_tax_data = get__post_meta_by_id($post_id, 'product_tax');
+
+    if (is_array($product_tax_data) && isset($product_tax_data[0]['id'])) {
+        $product_term_id = $product_tax_data[0]['id'];
+        update_post_meta($post_id, '_product_term_id', $product_term_id);
+    } else {
+        delete_post_meta($post_id, '_product_term_id');
+    }
+}
+add_action('save_post', 'action_module_content_optimized', 20, 3);
+
 // NOTE: these wrappers now delegate to the native meta shim (coptrz_get_*),
 // which reconstructs the identical nested arrays Carbon Fields returned. Keep
 // using these wrappers throughout the theme rather than calling the shim direct.

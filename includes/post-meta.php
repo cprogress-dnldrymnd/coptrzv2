@@ -6674,24 +6674,11 @@ Container::make('post_meta', __('Conditional Display'))
 /*-----------------------------------------------------------------------------------*/
 /* Product category pages
 /*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', __('Select taxonomy term to display content'))
-    ->or_where('post_type', '=', 'producttaxonomypages')
-    ->add_fields(array(
-        Field::make('association', 'product_tax', 'Select Category')
-            ->set_types(
-                array(
-                    array(
-                        'type'     => 'term',
-                        'taxonomy' => 'product_cat',
-                    ),
-                    array(
-                        'type'     => 'term',
-                        'taxonomy' => 'pa_brands',
-                    )
-                )
-            )->set_max(1)
-    ));
-
+/* "Select taxonomy term to display content" / product_tax is registered in
+   functions.php (coptrz_register_product_taxonomy_page_fields), unconditionally
+   via the meta shim, so it is available on every template — including
+   page-blocks-editor.php, on which this file is skipped in admin. Do not
+   re-add it here (duplicate container). */
 
 
 /* Landing page settings

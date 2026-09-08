@@ -6,49 +6,10 @@
  */
 
 /**
- * Updates the custom product term ID meta when a 'producttaxonomypages' post is saved.
- *
- * Hooked to the generic 'save_post' at priority 20 (rather than the
- * post-type-specific 'save_post_producttaxonomypages'), because WordPress
- * fires the type-specific hook BEFORE the generic one — and the meta shim
- * that persists the 'product_tax' association field writes on the generic
- * 'save_post' at priority 10. Reading any earlier would mirror the
- * pre-save value.
- *
- * @param int     $post_id Post ID.
- * @param WP_Post $post    Post object.
- * @param bool    $update  Whether this is an existing post being updated.
+ * action_module_content_optimized (product_tax → _product_term_id sync) lives in
+ * functions.php so it still runs when this file is skipped in admin under the
+ * page-blocks-editor.php template. Do not re-add the save_post hook here.
  */
-function action_module_content_optimized($post_id, $post, $update)
-{
-    if ($post->post_type !== 'producttaxonomypages') {
-        return;
-    }
-
-    // Check if this is an autosave to prevent execution during background saves.
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-
-    // Check if it's a revision to prevent duplicate meta updates.
-    if (wp_is_post_revision($post_id)) {
-        return;
-    }
-
-    // Retrieve the product tax meta for the post being saved (not the loop post).
-    $product_tax_data = get__post_meta_by_id($post_id, 'product_tax');
-
-    // Validate the array structure to prevent undefined offset/key PHP warnings.
-    if (is_array($product_tax_data) && isset($product_tax_data[0]['id'])) {
-        $product_term_id = $product_tax_data[0]['id'];
-        update_post_meta($post_id, '_product_term_id', $product_term_id);
-    } else {
-        // Association cleared: don't leave the post bound to a stale term.
-        delete_post_meta($post_id, '_product_term_id');
-    }
-}
-add_action('save_post', 'action_module_content_optimized', 20, 3);
-
 
 function _date_format($date_input, $include_year = false)
 {

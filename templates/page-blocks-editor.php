@@ -1,7 +1,7 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
 /* Template Name: Blocks Editor
-/* Template Post Type: page, industries, guides, capabilities, casestudies, product
+/* Template Post Type: page, industries, guides, capabilities, casestudies, product, producttaxonomypages
 /*-----------------------------------------------------------------------------------*/
 ?>
 <?php get_header(); ?>
