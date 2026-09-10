@@ -982,7 +982,11 @@ add_action('admin_bar_menu', 'action_cf7_forms_menu', 999999);
  */
 function coptrz_admin_bar_cf7_items()
 {
-    if (is_admin() || !is_admin_bar_showing() || !current_user_can('edit_posts')) {
+    if (
+        is_admin()
+        || !is_admin_bar_showing()
+        || !current_user_can('wpcf7_edit_contact_forms')
+    ) {
         return;
     }
 
@@ -994,14 +998,19 @@ function coptrz_admin_bar_cf7_items()
     $items = array();
     foreach ($ids as $id) {
         $post = get_post($id);
-        if (!$post || $post->post_type !== 'wpcf7_contact_form' || !current_user_can('edit_post', $id)) {
+        if (
+            !$post
+            || $post->post_type !== 'wpcf7_contact_form'
+            || !current_user_can('wpcf7_edit_contact_form', $id)
+        ) {
             continue;
         }
 
-        $edit_link = get_edit_post_link($id, 'raw');
-        if (!$edit_link) {
-            continue;
-        }
+        // CF7's post type is not show_ui, so get_edit_post_link() is empty.
+        // Use the same admin URL CF7's list table builds.
+        $edit_link = admin_url(
+            'admin.php?page=wpcf7&post=' . absint($id) . '&action=edit'
+        );
 
         $items[] = array(
             'id'    => $id,
