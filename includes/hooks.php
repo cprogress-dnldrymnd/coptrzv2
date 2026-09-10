@@ -922,6 +922,146 @@ function coptrz_admin_bar_layout_items()
 }
 add_action('wp_footer', 'coptrz_admin_bar_layout_items', 9999);
 
+/**
+ * Collect Contact Form 7 IDs rendered on the current front-end page.
+ *
+ * Fires after every successful `[contact-form-7]` shortcode render (hero,
+ * modules, blocks, popups, calculator, raw shortcodes). IDs feed the admin
+ * bar's "Contact Forms" menu via coptrz_admin_bar_cf7_items().
+ *
+ * @param WPCF7_ContactForm $contact_form Form instance that was just rendered.
+ */
+function coptrz_collect_cf7_form_id($contact_form)
+{
+    if (is_admin() || !($contact_form instanceof WPCF7_ContactForm)) {
+        return;
+    }
+
+    global $cf7_forms_global;
+    if (!is_array($cf7_forms_global)) {
+        $cf7_forms_global = array();
+    }
+    $cf7_forms_global[] = (int) $contact_form->id();
+}
+add_action('wpcf7_shortcode_callback', 'coptrz_collect_cf7_form_id', 10, 1);
+
+/**
+ * Empty "Contact Forms" parent in the front-end admin bar. Child items are
+ * injected later by coptrz_admin_bar_cf7_items().
+ *
+ * @param WP_Admin_Bar $admin_bar Admin bar reference.
+ */
+function action_cf7_forms_menu($admin_bar)
+{
+    if (!is_admin()) {
+        $admin_bar->add_menu(
+            array(
+                'id'    => 'cf7-forms-menu',
+                'title' => 'Contact Forms',
+                'href'  => false,
+                'meta'  => array(
+                    'class' => 'menupop cf7-forms-menu',
+                    'title' => 'Contact Forms',
+                ),
+            )
+        );
+    }
+}
+add_action('admin_bar_menu', 'action_cf7_forms_menu', 999999);
+
+/**
+ * Fill the admin bar's "Contact Forms" menu with every CF7 form embedded in
+ * the current page, each linking to its edit screen.
+ *
+ * Runs on `wp_footer` (late) because that's the first point at which the whole
+ * page has rendered and `$cf7_forms_global` is complete. The admin bar markup
+ * is already in the DOM by then, so the items are appended with a small inline
+ * script rather than through WP_Admin_Bar::add_node().
+ *
+ * The parent node is hidden outright when the page embeds no forms.
+ */
+function coptrz_admin_bar_cf7_items()
+{
+    if (is_admin() || !is_admin_bar_showing() || !current_user_can('edit_posts')) {
+        return;
+    }
+
+    global $cf7_forms_global;
+
+    $ids = is_array($cf7_forms_global) ? $cf7_forms_global : array();
+    $ids = array_unique(array_filter(array_map('intval', $ids)));
+
+    $items = array();
+    foreach ($ids as $id) {
+        $post = get_post($id);
+        if (!$post || $post->post_type !== 'wpcf7_contact_form' || !current_user_can('edit_post', $id)) {
+            continue;
+        }
+
+        $edit_link = get_edit_post_link($id, 'raw');
+        if (!$edit_link) {
+            continue;
+        }
+
+        $items[] = array(
+            'id'    => $id,
+            'title' => $post->post_title !== '' ? $post->post_title : sprintf('(no title) #%d', $id),
+            'href'  => $edit_link,
+        );
+    }
+
+    usort($items, function ($a, $b) {
+        return strcasecmp($a['title'], $b['title']);
+    });
+?>
+    <script>
+        (function() {
+            var parent = document.getElementById('wp-admin-bar-cf7-forms-menu');
+            if (!parent) {
+                return;
+            }
+
+            var items = <?= wp_json_encode($items) ?>;
+
+            if (!items.length) {
+                parent.style.display = 'none';
+                return;
+            }
+
+            var label = parent.querySelector('.ab-item');
+            if (label) {
+                label.textContent = 'Contact Forms (' + items.length + ')';
+            }
+
+            var wrapper = document.createElement('div');
+            wrapper.className = 'ab-sub-wrapper';
+
+            var list = document.createElement('ul');
+            list.id = 'wp-admin-bar-cf7-forms-menu-default';
+            list.className = 'ab-submenu';
+
+            items.forEach(function(item) {
+                var li = document.createElement('li');
+                li.id = 'wp-admin-bar-cf7-forms-menu-' + item.id;
+
+                var a = document.createElement('a');
+                a.className = 'ab-item';
+                a.href = item.href;
+                a.textContent = item.title;
+                a.title = 'Edit Contact Form: ' + item.title;
+
+                li.appendChild(a);
+                list.appendChild(li);
+            });
+
+            wrapper.appendChild(list);
+            parent.appendChild(wrapper);
+        })();
+    </script>
+<?php
+}
+add_action('wp_footer', 'coptrz_admin_bar_cf7_items', 9999);
+
 
 function action_pre_get_posts($query)
 {
