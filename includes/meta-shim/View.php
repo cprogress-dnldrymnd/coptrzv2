@@ -342,6 +342,11 @@ class View
             esc_attr($field->name)
         );
 
+        // Hidden ensures a cleared association still posts an (empty) value so
+        // save() writes the keepalive cell and wipes prior rows — same pattern
+        // as checkboxes. Lives outside .cms-assoc__selected so × cannot remove it.
+        printf('<input type="hidden" name="%s[]" value="" />', esc_attr($name));
+
         echo '<ul class="cms-assoc__selected">';
         foreach ($items as $item) {
             self::association_item($name, $item['value'], self::association_label($item));
