@@ -518,6 +518,18 @@ input[type="checkbox"] {
     @include after {
         font-size: 15px;
     }
+
+    &.has-custom-nav-icon {
+        &::after {
+            display: none;
+        }
+
+        svg {
+            width: 1em;
+            height: 1em;
+            display: block;
+        }
+    }
 }
 
 .swiper-pagination.swiper-pagination {

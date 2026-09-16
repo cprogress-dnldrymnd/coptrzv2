@@ -11856,6 +11856,14 @@ input[type="checkbox"] {
   .swiper-button-next:after,
   .swiper-button-prev:after {
     font-size: 15px; }
+  .swiper-button-next.has-custom-nav-icon::after,
+  .swiper-button-prev.has-custom-nav-icon::after {
+    display: none; }
+  .swiper-button-next.has-custom-nav-icon svg,
+  .swiper-button-prev.has-custom-nav-icon svg {
+    width: 1em;
+    height: 1em;
+    display: block; }
 
 .swiper-pagination.swiper-pagination {
   position: static;

@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 6.33);
+define('coptz_version', 6.34);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -1773,7 +1773,33 @@ function digitally_disruptive_render_universal_swiper($block_content, $block)
      */
     $controls_html = '';
     if ($has_pagination) $controls_html .= '<div class="swiper-pagination"></div>';
-    if ($has_navigation) $controls_html .= '<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>';
+    if ($has_navigation) {
+        $prev_icon_id = ! empty($attrs['swiperNavPrevIconId']) ? (int) $attrs['swiperNavPrevIconId'] : 0;
+        $next_icon_id = ! empty($attrs['swiperNavNextIconId']) ? (int) $attrs['swiperNavNextIconId'] : 0;
+
+        $prev_inner = '';
+        $prev_class = 'swiper-button-prev';
+        if ($prev_icon_id && function_exists('_output_svg_from_url')) {
+            $prev_path = wp_get_original_image_path($prev_icon_id);
+            if ($prev_path) {
+                $prev_inner = _output_svg_from_url($prev_path);
+                $prev_class .= ' has-custom-nav-icon';
+            }
+        }
+
+        $next_inner = '';
+        $next_class = 'swiper-button-next';
+        if ($next_icon_id && function_exists('_output_svg_from_url')) {
+            $next_path = wp_get_original_image_path($next_icon_id);
+            if ($next_path) {
+                $next_inner = _output_svg_from_url($next_path);
+                $next_class .= ' has-custom-nav-icon';
+            }
+        }
+
+        $controls_html .= '<div class="' . esc_attr($prev_class) . '">' . $prev_inner . '</div>';
+        $controls_html .= '<div class="' . esc_attr($next_class) . '">' . $next_inner . '</div>';
+    }
 
     /**
      * 2b. Mobile Only: build scoped grid CSS so the block renders as a normal

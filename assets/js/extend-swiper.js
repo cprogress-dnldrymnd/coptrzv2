@@ -9,11 +9,52 @@
     const { addFilter } = wp.hooks;
     const { createHigherOrderComponent } = wp.compose;
     const { Fragment, createElement: el } = wp.element;
-    const { InspectorControls } = wp.blockEditor;
-    const { PanelBody, ToggleControl, TextControl } = wp.components;
+    const { InspectorControls, MediaUpload, MediaUploadCheck } = wp.blockEditor;
+    const { PanelBody, ToggleControl, TextControl, Button, BaseControl } = wp.components;
 
     // Architectural whitelist for blocks capable of becoming Swiper instances
     const ALLOWED_BLOCKS = [ 'core/group', 'core/query' ];
+
+    /**
+     * MediaUpload row for a single nav icon (prev or next).
+     */
+    function navIconControl( label, iconId, iconUrl, idAttr, urlAttr, setAttributes ) {
+        return el( BaseControl, { label: label, className: 'dd-swiper-nav-icon' },
+            el( MediaUploadCheck, null,
+                el( MediaUpload, {
+                    allowedTypes: [ 'image/svg+xml' ],
+                    value: iconId || 0,
+                    onSelect: function( media ) {
+                        var attrs = {};
+                        attrs[ idAttr ] = media.id;
+                        attrs[ urlAttr ] = media.url;
+                        setAttributes( attrs );
+                    },
+                    render: function( o ) {
+                        return el( Button, { variant: 'secondary', onClick: o.open },
+                            iconId ? 'Replace SVG' : 'Select SVG'
+                        );
+                    }
+                } )
+            ),
+            iconUrl ? el( 'img', {
+                src: iconUrl,
+                alt: '',
+                style: { display: 'block', width: '32px', height: '32px', marginTop: '8px', objectFit: 'contain' }
+            } ) : null,
+            iconId ? el( Button, {
+                variant: 'link',
+                isDestructive: true,
+                style: { marginTop: '8px', display: 'block' },
+                onClick: function() {
+                    var attrs = {};
+                    attrs[ idAttr ] = 0;
+                    attrs[ urlAttr ] = '';
+                    setAttributes( attrs );
+                }
+            }, 'Remove' ) : null
+        );
+    }
 
     /**
      * 1. Register Universal Swiper Attributes
@@ -32,7 +73,11 @@
             swiperNavigation:    { type: 'boolean', default: false },
             swiperAutoplay:      { type: 'boolean', default: false },
             swiperDelay:         { type: 'string', default: '3000' },
-            swiperMobileOnly:    { type: 'boolean', default: false }
+            swiperMobileOnly:    { type: 'boolean', default: false },
+            swiperNavPrevIconId:  { type: 'number', default: 0 },
+            swiperNavPrevIconUrl: { type: 'string', default: '' },
+            swiperNavNextIconId:  { type: 'number', default: 0 },
+            swiperNavNextIconUrl: { type: 'string', default: '' }
         });
         return settings;
     }
@@ -107,6 +152,24 @@
                                 checked: attributes.swiperNavigation,
                                 onChange: function( val ) { setAttributes( { swiperNavigation: val } ); }
                             } ),
+                            attributes.swiperNavigation ? el( Fragment, {},
+                                navIconControl(
+                                    'Previous Icon (SVG)',
+                                    attributes.swiperNavPrevIconId,
+                                    attributes.swiperNavPrevIconUrl,
+                                    'swiperNavPrevIconId',
+                                    'swiperNavPrevIconUrl',
+                                    setAttributes
+                                ),
+                                navIconControl(
+                                    'Next Icon (SVG)',
+                                    attributes.swiperNavNextIconId,
+                                    attributes.swiperNavNextIconUrl,
+                                    'swiperNavNextIconId',
+                                    'swiperNavNextIconUrl',
+                                    setAttributes
+                                )
+                            ) : null,
                             el( ToggleControl, {
                                 label: 'Enable Autoplay',
                                 checked: attributes.swiperAutoplay,
