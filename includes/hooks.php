@@ -94,14 +94,8 @@ function custom_theme_block_editor_setup()
 
     ));
 
-    /**
-     * Optional constraint: Disable the custom color picker completely.
-     * Enforces strict adherence to the defined palette by preventing users
-     * from inputting arbitrary hex codes.
-     */
     add_theme_support('appearance-tools');
     add_theme_support('custom-spacing');
-    add_theme_support('disable-custom-colors');
 }
 
 add_action('after_setup_theme', 'custom_theme_block_editor_setup');
