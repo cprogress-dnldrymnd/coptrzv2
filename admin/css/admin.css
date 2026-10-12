@@ -88,3 +88,66 @@ body,
   border-top: 2px dashed #2271b1;
   border-bottom: 2px dashed #2271b1;
 }
+
+/* Dedicated Reorder admin page */
+.coptrz-order-page .description {
+  margin-bottom: 1.25rem;
+}
+.coptrz-order-list {
+  margin: 0;
+  max-width: 720px;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #c3c4c7;
+  border-radius: 4px;
+  background: #fff;
+}
+.coptrz-order-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #dcdcde;
+  background: #fff;
+  cursor: move;
+}
+.coptrz-order-item:last-child {
+  border-bottom: none;
+}
+.coptrz-order-item.ui-sortable-helper {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.coptrz-order-grip {
+  flex: 0 0 auto;
+  color: #787c82;
+  letter-spacing: -2px;
+  user-select: none;
+}
+.coptrz-order-title {
+  flex: 1 1 auto;
+  font-weight: 600;
+}
+.coptrz-order-badge {
+  flex: 0 0 auto;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  background: #fcf0f1;
+  color: #b32d2e;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+.coptrz-order-edit {
+  flex: 0 0 auto;
+  text-decoration: none;
+}
+.coptrz-order-placeholder {
+  display: block;
+  min-height: 48px;
+  margin: 0;
+  background: #f0f6fc !important;
+  border: 2px dashed #2271b1 !important;
+  visibility: visible !important;
+}
