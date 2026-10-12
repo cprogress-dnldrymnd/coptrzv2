@@ -32,6 +32,7 @@ require_once('block-preview.php');
 require_once('header-blocks.php');
 require_once('hero-block.php');
 require_once('hooks.php');
+require_once('post-order.php');
 require_once('theme-widgets.php');
 require_once('menus.php');
 require_once('woocommerce.php');

@@ -70,3 +70,21 @@ body,
 .d-none {
   display: none !important;
 }
+
+/* Drag-and-drop post order (Guides / Case Studies list tables) */
+.coptrz-post-order-list tr {
+  cursor: move;
+}
+.coptrz-post-order-list tr.ui-sortable-helper {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  display: table;
+}
+.coptrz-post-order-placeholder {
+  background: #f0f6fc !important;
+  visibility: visible !important;
+}
+.coptrz-post-order-placeholder td {
+  border-top: 2px dashed #2271b1;
+  border-bottom: 2px dashed #2271b1;
+}

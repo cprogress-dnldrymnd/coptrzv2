@@ -54,6 +54,11 @@ function archive_ajax()
 		);
 	}
 
+	if ($query_val['post_type'] == 'guides' || $query_val['post_type'] == 'casestudies') {
+		$args['orderby'] = 'menu_order';
+		$args['order'] = 'ASC';
+	}
+
 	$the_query = new WP_Query($args);
 
 	echo '<div class="row g-4 same-image-height">';
