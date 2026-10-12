@@ -27,6 +27,7 @@ if (!$is_blocks_editor) {
 }
 
 require_once('shortcodes.php');
+require_once('search-modal.php');
 require_once('legacy-blocks.php');
 require_once('block-preview.php');
 require_once('header-blocks.php');

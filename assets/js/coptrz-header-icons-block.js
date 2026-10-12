@@ -3,7 +3,7 @@
  * @author    Digitally Disruptive - Donald Raymundo
  * @link      https://digitallydisruptive.co.uk/
  * Registers the `coptrz/header-icons` block: a native Gutenberg equivalent of
- * the account/academy/cart/mobile-burger icon cluster in
+ * the account/academy/search/cart/mobile-burger icon cluster in
  * template-parts/header/header-right.php. Each icon is individually
  * toggleable so the block can be reused for a partial cluster.
  *
@@ -26,22 +26,24 @@
         title:    'Header — Icons',
         icon:     'admin-users',
         category: 'design',
-        description: 'Embeds the account / academy / cart / mobile-menu icon cluster from the header.',
+        description: 'Embeds the account / academy / search / cart / mobile-menu icon cluster from the header.',
         attributes: {
             showAccount: { type: 'boolean', default: true },
             showAcademy: { type: 'boolean', default: true },
+            showSearch:  { type: 'boolean', default: true },
             showCart:    { type: 'boolean', default: true },
             showBurger:  { type: 'boolean', default: true }
         },
 
         edit: function (props) {
             const { attributes, setAttributes } = props;
-            const { showAccount, showAcademy, showCart, showBurger } = attributes;
+            const { showAccount, showAcademy, showSearch, showCart, showBurger } = attributes;
             const [mode, setMode] = useState('preview');
 
             var enabled = [];
             if (showAccount) { enabled.push('Account'); }
             if (showAcademy) { enabled.push('Academy'); }
+            if (showSearch)  { enabled.push('Search'); }
             if (showCart)    { enabled.push('Cart'); }
             if (showBurger)  { enabled.push('Mobile Menu Burger'); }
 
@@ -70,6 +72,12 @@
                             label: 'Coptrz Academy icon',
                             checked: !!showAcademy,
                             onChange: function (val) { setAttributes({ showAcademy: val }); }
+                        }),
+                        el(ToggleControl, {
+                            label: 'Search modal',
+                            checked: !!showSearch,
+                            help: 'Opens the accessible search dialog (same as the Search Modal block).',
+                            onChange: function (val) { setAttributes({ showSearch: val }); }
                         }),
                         el(ToggleControl, {
                             label: 'Rentals cart button',

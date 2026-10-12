@@ -1880,14 +1880,18 @@ remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
 remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
 
 
+/**
+ * 404 the bare WooCommerce shop page. Product-filtered searches
+ * (?s=…&post_type=product) also report is_shop() — skip those so they
+ * can render via search.php instead of becoming a 404.
+ */
 function woocommerce_disable_shop_page()
 {
-    global $post;
-    if (is_shop()):
+    if (is_shop() && ! is_search()) {
         global $wp_query;
         $wp_query->set_404();
         status_header(404);
-    endif;
+    }
 }
 add_action('wp', 'woocommerce_disable_shop_page');
 

@@ -1068,6 +1068,12 @@ add_action('wp_footer', 'coptrz_admin_bar_cf7_items', 9999);
 
 function action_pre_get_posts($query)
 {
+    // Search must keep core relevance ordering — archive menu_order / meta
+    // overrides below would otherwise apply (is_search is neither single nor page).
+    if (!is_admin() && $query->is_main_query() && $query->is_search()) {
+        return;
+    }
+
     if (!is_admin() && $query->is_main_query() && !is_single() && !is_page()) {
         $query->set('post_status', 'publish');
         $query->set('orderby', 'menu_order');

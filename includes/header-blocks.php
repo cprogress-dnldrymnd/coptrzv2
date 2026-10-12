@@ -31,10 +31,10 @@
  */
 
 /**
- * Account / Academy / Cart / mobile-menu-burger icon cluster — mirrors
+ * Account / Academy / Search / Cart / mobile-menu-burger icon cluster — mirrors
  * template-parts/header/header-right.php's icon markup exactly.
  *
- * @param array $args showAccount, showAcademy, showCart, showBurger (bool, default true)
+ * @param array $args showAccount, showAcademy, showSearch, showCart, showBurger (bool, default true)
  * @return string
  */
 function coptrz_header_icons_html($args = array())
@@ -46,6 +46,7 @@ function coptrz_header_icons_html($args = array())
     $args = wp_parse_args($args, array(
         'showAccount' => true,
         'showAcademy' => true,
+        'showSearch'  => true,
         'showCart'    => true,
         'showBurger'  => true,
     ));
@@ -66,6 +67,12 @@ function coptrz_header_icons_html($args = array())
         $html .= '<a target="_blank" rel="noopener noreferrer" href="https://www.coptrzacademy-usp.io/login" class="header-icon account-icon text-white d-flex align-items-center" aria-label="Coptrz Academy login">';
         $html .= $SVG->academy();
         $html .= '</a>';
+        $html .= '</div>';
+    }
+
+    if ($args['showSearch'] && function_exists('coptrz_search_modal_trigger')) {
+        $html .= '<div class="col-auto d-flex align-items-center coptrz-header-search">';
+        $html .= coptrz_search_modal_trigger(array('label' => ''));
         $html .= '</div>';
     }
 
@@ -206,6 +213,7 @@ function coptrz_render_header_icons_block($block_content, $block)
     return coptrz_header_icons_html(array(
         'showAccount' => !isset($attrs['showAccount']) || (bool) $attrs['showAccount'],
         'showAcademy' => !isset($attrs['showAcademy']) || (bool) $attrs['showAcademy'],
+        'showSearch'  => !isset($attrs['showSearch']) || (bool) $attrs['showSearch'],
         'showCart'    => !isset($attrs['showCart']) || (bool) $attrs['showCart'],
         'showBurger'  => !isset($attrs['showBurger']) || (bool) $attrs['showBurger'],
     ));

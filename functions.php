@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Define the version so we can easily replace it throughout the theme
 /*-----------------------------------------------------------------------------------*/
-define('coptz_version', 6.34);
+define('coptz_version', 6.38);
 define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
@@ -1118,6 +1118,14 @@ function digitally_disruptive_enqueue_swiper_editor_assets()
         get_template_directory_uri() . '/assets/js/coptrz-layouts-block.js',
         array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'wp-api-fetch', 'coptrz-block-ui'),
         filemtime(get_template_directory() . '/assets/js/coptrz-layouts-block.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'coptrz-search-modal-block',
+        get_template_directory_uri() . '/assets/js/coptrz-search-modal-block.js',
+        array('wp-blocks', 'wp-element', 'wp-hooks', 'wp-editor', 'wp-components', 'wp-block-editor', 'coptrz-block-ui'),
+        filemtime(get_template_directory() . '/assets/js/coptrz-search-modal-block.js'),
         true
     );
 

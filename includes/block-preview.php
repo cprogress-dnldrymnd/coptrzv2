@@ -111,6 +111,12 @@ function coptrz_block_preview_renderers()
             }
             return coptrz_render_layouts_block('', array('blockName' => 'coptrz/layouts', 'attrs' => $attrs));
         },
+        'coptrz/search-modal' => function ($attrs, $post_id) {
+            if (!function_exists('coptrz_render_search_modal_block')) {
+                return '';
+            }
+            return coptrz_render_search_modal_block('', array('blockName' => 'coptrz/search-modal', 'attrs' => $attrs));
+        },
         'coptrz/gallery' => function ($attrs, $post_id) {
             if (!function_exists('coptrz_render_gallery_block')) {
                 return '';
