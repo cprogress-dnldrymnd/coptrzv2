@@ -1958,3 +1958,71 @@ function coptrz_header_layout_conflict_notice()
     echo '</p></div>';
 }
 add_action('admin_notices', 'coptrz_header_layout_conflict_notice');
+
+/**
+ * Plugin/Snippet Author: Digitally Disruptive - Donald Raymundo
+ *
+ * Admin list-table column for the Hide on List checkbox (`_hide_on_list`),
+ * shared by guides / industries / casestudies (the same post types the
+ * archive meta_query excludes). Lets editors scan which posts are off the
+ * public archive without opening each one.
+ *
+ * @return string[]
+ */
+function coptrz_hide_on_list_post_types()
+{
+    return array('guides', 'industries', 'casestudies');
+}
+
+/**
+ * Insert a "Hide on List" column before the date column.
+ *
+ * @param array $columns
+ * @return array
+ */
+function coptrz_hide_on_list_columns($columns)
+{
+    $new = array();
+    foreach ($columns as $key => $label) {
+        if ($key === 'date') {
+            $new['hide_on_list'] = __('Hide on List', 'coptrz-theme');
+        }
+        $new[$key] = $label;
+    }
+    if (!isset($new['hide_on_list'])) {
+        $new['hide_on_list'] = __('Hide on List', 'coptrz-theme');
+    }
+    return $new;
+}
+
+/**
+ * Render Yes / — for the Hide on List column.
+ *
+ * @param string $column
+ * @param int    $post_id
+ * @return void
+ */
+function coptrz_hide_on_list_column_content($column, $post_id)
+{
+    if ($column !== 'hide_on_list') {
+        return;
+    }
+
+    $hidden = false;
+    if (function_exists('get__post_meta_by_id')) {
+        $hidden = (bool) get__post_meta_by_id($post_id, 'hide_on_list');
+    } else {
+        $hidden = get_post_meta($post_id, '_hide_on_list', true) === 'yes';
+    }
+
+    if ($hidden) {
+        echo '<span style="color:#b32d2e;font-weight:600;">' . esc_html__('Yes', 'coptrz-theme') . '</span>';
+    } else {
+        echo '<span style="color:#646970;">—</span>';
+    }
+}
+
+foreach (coptrz_hide_on_list_post_types() as $coptrz_hol_post_type) {
+    add_filter('manage_' . $coptrz_hol_post_type . '_posts_columns', 'coptrz_hide_on_list_columns');
+    add_action('manage_' . $coptrz_hol_post_type . '_posts_custom_column', 'coptrz_hide_on_list_column_content', 10, 2);
+}
