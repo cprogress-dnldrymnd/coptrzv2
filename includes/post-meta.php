@@ -6859,17 +6859,9 @@ Container::make('post_meta', 'Industry Settings')
 
 
 /*-----------------------------------------------------------------------------------*/
-/* Gudies
+/* Guides — Hide on List moved to coptrz_register_guide_settings_fields() in
+/* functions.php so it appears in admin on page-blocks-editor.php templates too.
 /*-----------------------------------------------------------------------------------*/
-Container::make('post_meta', 'Industry Settings')
-    ->where('post_type', '=', 'guides')
-    ->add_tab(
-        'General Settings',
-        array(
-            Field::make('checkbox', 'hide_on_list', 'Hide on List'),
-        )
-    );
-
 
 /*-----------------------------------------------------------------------------------*/
 /* Popups

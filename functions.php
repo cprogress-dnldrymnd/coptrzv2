@@ -112,6 +112,8 @@ function tissue_paper_register_custom_fields()
     coptrz_register_openai_ads_conversion_fields();
     // Select Category for producttaxonomypages — same always-on reason as above.
     coptrz_register_product_taxonomy_page_fields();
+    // Guide Settings (Hide on List) — same always-on reason as above.
+    coptrz_register_guide_settings_fields();
     \CoptrzTheme\MetaShim\Container_Admin::boot();
 }
 add_action('after_setup_theme', 'tissue_paper_register_custom_fields', 20);
@@ -284,6 +286,29 @@ function coptrz_register_openai_ads_conversion_fields()
                         )
                     )
                 ),
+        ));
+}
+
+/**
+ * Register Guide Settings (Hide on List) through the native meta shim —
+ * unconditionally, on every template — for the same reason as
+ * coptrz_register_global_layout_fields(): includes/post-meta.php is not loaded
+ * in admin when the page-blocks-editor.php template is active. Field name
+ * hide_on_list is unchanged so archive/AJAX exclusion and existing postmeta
+ * keep working. Keep the fields defined ONLY here to avoid a duplicate container.
+ */
+function coptrz_register_guide_settings_fields()
+{
+    if (!class_exists('\CoptrzTheme\MetaShim\Container')) {
+        return;
+    }
+
+    \CoptrzTheme\MetaShim\Container::make('post_meta', 'Guide Settings')
+        ->where('post_type', '=', 'guides')
+        ->set_context('side')
+        ->set_priority('high')
+        ->add_fields(array(
+            \CoptrzTheme\MetaShim\Field::make('checkbox', 'hide_on_list', 'Hide on List'),
         ));
 }
 
