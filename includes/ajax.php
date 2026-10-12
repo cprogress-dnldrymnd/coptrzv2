@@ -55,8 +55,10 @@ function archive_ajax()
 	}
 
 	if ($query_val['post_type'] == 'guides' || $query_val['post_type'] == 'casestudies') {
-		$args['orderby'] = 'menu_order';
-		$args['order'] = 'ASC';
+		$args['orderby'] = array(
+			'menu_order' => 'ASC',
+			'date'       => 'DESC',
+		);
 	}
 
 	$the_query = new WP_Query($args);

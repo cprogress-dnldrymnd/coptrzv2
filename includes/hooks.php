@@ -1073,6 +1073,17 @@ function action_pre_get_posts($query)
         $query->set('orderby', 'menu_order');
         $query->set('order', 'ASC');
 
+        // Guides / case studies: menu_order ASC, then newest post_date among ties.
+        if (
+            is_post_type_archive('guides') || is_tax('guides_category')
+            || is_post_type_archive('casestudies') || is_tax('casestudies_category')
+        ) {
+            $query->set('orderby', array(
+                'menu_order' => 'ASC',
+                'date'       => 'DESC',
+            ));
+        }
+
         if (is_post_type_archive('industries') || is_post_type_archive('guides') || is_post_type_archive('casestudies')) {
             $meta_query[] = [
                 'key'     => '_hide_on_list',

@@ -52,8 +52,11 @@ function coptrz_post_order_admin_list_query($query)
         return;
     }
 
-    $query->set('orderby', 'menu_order');
-    $query->set('order', 'ASC');
+    // Match front archive: menu_order ASC, then newest date among ties.
+    $query->set('orderby', array(
+        'menu_order' => 'ASC',
+        'date'       => 'DESC',
+    ));
 }
 add_action('pre_get_posts', 'coptrz_post_order_admin_list_query');
 
